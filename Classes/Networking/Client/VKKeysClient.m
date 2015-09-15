@@ -47,9 +47,7 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
 #pragma mark - Overrides
 
 - (NSString *)serviceURL {
-#warning SET PROPER URL!
-    return @"https://keys-stg.virgilsecurity.com/v2";
-//    return @"https://keys.virgilsecurity.com/v2";
+    return @"https://keys.virgilsecurity.com/v2";
 }
 
 - (void)send:(VFServiceRequest *)request {
