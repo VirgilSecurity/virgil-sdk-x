@@ -69,7 +69,7 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [super encodeWithCoder:aCoder];
     
-    if (self.ID != nil) {
+    if (self.Id != nil) {
         [aCoder encodeObject:self.Id forKey:kVKModelId];
     }
     if (self.Confirmed != nil) {
