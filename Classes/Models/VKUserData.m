@@ -8,6 +8,7 @@
 
 #import "VKUserData.h"
 #import "VKIdBundle.h"
+#import <VirgilFrameworkiOS/VFUserData_Protected.h>
 #import <VirgilFrameworkiOS/NSObject+VFUtils.h>
 
 @interface VKUserData ()
