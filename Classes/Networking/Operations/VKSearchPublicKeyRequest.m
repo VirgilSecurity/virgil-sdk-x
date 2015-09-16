@@ -8,7 +8,8 @@
 
 #import "VKSearchPublicKeyRequest.h"
 #import "VKPublicKey.h"
-#import "NSObject+VFUtils.h"
+#import <VirgilFrameworkiOS/NSObject+VFUtils.h>
+#import <VirgilFrameworkiOS/VFUserData.h>
 
 @interface VKSearchPublicKeyRequest ()
 
@@ -31,7 +32,7 @@
     [self setRequestMethod:POST];
     NSMutableDictionary *dto = [[NSMutableDictionary alloc] init];
     if (userIdValue != nil) {
-        dto[kVKModelValue] = userIdValue;
+        dto[kVFModelValue] = userIdValue;
     }
     [self setRequestBodyWithObject:dto useUUID:@YES];
     

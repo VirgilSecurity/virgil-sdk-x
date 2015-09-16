@@ -8,7 +8,7 @@
 
 #import "VKUpdatePublicKeyRequest.h"
 #import "VKPublicKey.h"
-#import "NSObject+VFUtils.h"
+#import <VirgilFrameworkiOS/NSObject+VFUtils.h>
 
 #import <VirgilCryptoiOS/VCKeyPair.h>
 #import <VirgilCryptoiOS/VCSigner.h>

@@ -8,9 +8,8 @@
 
 #import "VKCreatePublicKeyRequest.h"
 #import "VKPublicKey.h"
-#import "NSObject+VFUtils.h"
-
-#import "VFServiceRequest.h"
+#import <VirgilFrameworkiOS/NSObject+VFUtils.h>
+#import <VirgilFrameworkiOS/VFServiceRequest.h>
 
 @interface VKCreatePublicKeyRequest ()
 

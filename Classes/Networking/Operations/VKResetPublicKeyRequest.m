@@ -9,7 +9,7 @@
 #import "VKResetPublicKeyRequest.h"
 #import "VKBaseModel.h"
 #import "VKActionToken.h"
-#import "NSObject+VFUtils.h"
+#import <VirgilFrameworkiOS/NSObject+VFUtils.h>
 
 @interface VKResetPublicKeyRequest ()
 
