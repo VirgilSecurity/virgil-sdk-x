@@ -8,6 +8,8 @@
 
 #import <VirgilFrameworkiOS/VFModel.h>
 
+@class VKIdBundle;
+
 @interface VKBaseModel : VFModel
 
 @property (nonatomic, copy, readonly) VKIdBundle *Id;

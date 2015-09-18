@@ -7,6 +7,7 @@
 //
 
 #import "VKActionToken.h"
+#import "VKModelCommons.h"
 #import <VirgilFrameworkiOS/NSObject+VFUtils.h>
 
 @interface VKActionToken ()

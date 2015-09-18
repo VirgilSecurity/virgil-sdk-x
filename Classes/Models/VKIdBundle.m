@@ -7,20 +7,8 @@
 //
 
 #import "VKIdBundle.h"
+#import "VKModelCommons.h"
 #import <VirgilFrameworkiOS/NSObject+VFUtils.h>
-
-NSString *const kVKModelId = @"id";
-NSString *const kVKModelContainerId = @"account_id";
-NSString *const kVKModelPublicKeyId = @"public_key_id";
-NSString *const kVKModelUserDataId = @"user_data_id";
-NSString *const kVKModelConfirmed = @"is_confirmed";
-NSString *const kVKModelPublicKey = @"public_key";
-NSString *const kVKModelUserData = @"user_data";
-NSString *const kVKModelActionToken = @"action_token";
-NSString *const kVKModelUserIDs = @"user_ids";
-NSString *const kVKModelConfirmationCode = @"confirmation_code";
-NSString *const kVKModelConfirmationCodes = @"confirmation_codes";
-NSString *const kVKModelUUIDSign = @"uuid_sign";
 
 @interface VKIdBundle ()
 

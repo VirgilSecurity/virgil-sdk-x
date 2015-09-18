@@ -9,19 +9,6 @@
 #import <VirgilFrameworkiOS/VFModel.h>
 #import <VirgilFrameworkiOS/VFTypes.h>
 
-extern NSString *const kVKModelId;
-extern NSString *const kVKModelContainerId;
-extern NSString *const kVKModelPublicKeyId;
-extern NSString *const kVKModelUserDataId;
-extern NSString *const kVKModelConfirmed;
-extern NSString *const kVKModelPublicKey;
-extern NSString *const kVKModelUserData;
-extern NSString *const kVKModelActionToken;
-extern NSString *const kVKModelUserIDs;
-extern NSString *const kVKModelConfirmationCode;
-extern NSString *const kVKModelConfirmationCodes;
-extern NSString *const kVKModelUUIDSign;
-
 @interface VKIdBundle : VFModel
 
 @property (nonatomic, copy, readonly) GUID *containerId;

@@ -7,6 +7,8 @@
 //
 
 #import "VKBaseModel.h"
+#import "VKIdBundle.h"
+#import "VKModelCommons.h"
 #import <VirgilFrameworkiOS/NSObject+VFUtils.h>
 
 @interface VKBaseModel ()
