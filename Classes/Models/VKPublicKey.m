@@ -8,6 +8,7 @@
 
 #import "VKPublicKey.h"
 #import "VKUserData.h"
+#import "VKIdBundle.h"
 #import "VKModelCommons.h"
 
 #import <VirgilFrameworkiOS/NSObject+VFUtils.h>
