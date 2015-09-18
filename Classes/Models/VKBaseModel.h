@@ -7,7 +7,6 @@
 //
 
 #import <VirgilFrameworkiOS/VFModel.h>
-#import <VirgilFrameworkiOS/VFTypes.h>
 
 @interface VKBaseModel : VFModel
 
