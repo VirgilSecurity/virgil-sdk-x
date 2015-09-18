@@ -8,6 +8,8 @@
 
 #import "VKCreateUserDataRequest.h"
 #import "VKUserData.h"
+#import "VKModelCommons.h"
+
 #import <VirgilFrameworkiOS/NSObject+VFUtils.h>
 
 @interface VKCreateUserDataRequest ()

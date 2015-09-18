@@ -8,6 +8,7 @@
 
 #import "VKPersistUserDataRequest.h"
 #import "VKBaseModel.h"
+#import "VKModelCommons.h"
 
 @interface VKPersistUserDataRequest ()
 
