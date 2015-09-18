@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <VirgilFrameworkiOS/VFClient.h>
-#import "VKIdBundle.h"
+#import <VirgilFrameworkiOS/VFTypes.h>
 
 @class VKPublicKey;
 @class VKUserData;

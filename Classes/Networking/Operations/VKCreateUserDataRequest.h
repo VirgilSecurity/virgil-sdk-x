@@ -7,7 +7,7 @@
 //
 
 #import "VKBaseRequest.h"
-#import "VKIdBundle.h"
+#import <VirgilFrameworkiOS/VFTypes.h>
 
 @class VKUserData;
 

@@ -7,7 +7,7 @@
 //
 
 #import <VirgilFrameworkiOS/VFModel.h>
-#import "VKIdBundle.h"
+#import <VirgilFrameworkiOS/VFTypes.h>
 
 @interface VKActionToken : VFModel
 
