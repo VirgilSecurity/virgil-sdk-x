@@ -392,35 +392,6 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
     [self send:request];
 }
 
-- (void)createUserData:(VKUserData *)userData publicKeyId:(GUID *)publicKeyId completionHandler:(void(^)(VKUserData *uData, NSError *error))completionHandler {
-    if (userData == nil || publicKeyId.length == 0) {
-        if (completionHandler != nil) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, [NSError errorWithDomain:kVKKeysClientErrorDomain code:-112 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the creation of the user data can not be sent. User data value is not valid or public key's id is not set.", @"CreateUserData") }]);
-            });
-        }
-        return;
-    }
-    
-    ServiceRequestCompletionHandler handler = ^(VFServiceRequest *request) {
-        if (request.status != Done) {
-            if (completionHandler != nil) {
-                completionHandler(nil, request.error);
-            }
-            return;
-        }
-        
-        if (completionHandler != nil) {
-            VKCreateUserDataRequest *udrequest = [request as:[VKCreateUserDataRequest class]];
-            completionHandler(udrequest.userData, nil);
-        }
-    };
-    
-    VKCreateUserDataRequest *request = [[VKCreateUserDataRequest alloc] initWithBaseURL:self.serviceURL publicKeyId:publicKeyId userData:userData];
-    request.completionHandler = handler;
-    [self send:request];
-}
-
 - (void)deleteUserDataId:(GUID *)userDataId publicKeyId:(GUID *)publicKeyId privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword completionHandler:(void(^)(NSError *error))completionHandler {
     if (userDataId.length == 0 || publicKeyId.length == 0 || privateKey.length == 0) {
         if (completionHandler != nil) {

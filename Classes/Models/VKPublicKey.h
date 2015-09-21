@@ -11,7 +11,9 @@
 
 @interface VKPublicKey : VKBaseModel
 
+/// Actual public key data.
 @property (nonatomic, copy, readonly) NSData *Key;
+/// The array with user data entities attached to (or associated with) this public key at the Virgil Keys Service.
 @property (nonatomic, copy, readonly) NSArray *UserDataList;
 
 - (instancetype)initWithId:(VKIdBundle *)Id Key:(NSData *)Key UserDataList:(NSArray *)UserDataList NS_DESIGNATED_INITIALIZER;
