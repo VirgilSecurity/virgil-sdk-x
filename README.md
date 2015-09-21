@@ -21,13 +21,13 @@ You don't need to install any of them manually. CocoaPods will handle it for you
 
 Now it is possible to add VirgilKeysiOS to the particular application. So:
 
-1. Open Xcode and create a new project (in the Xcode menu: File->New->Project), or navigate to existing Xcode project using:
+- Open Xcode and create a new project (in the Xcode menu: File->New->Project), or navigate to existing Xcode project using:
 
 ```
 $ cd <Path to Xcode project folder>
 ```
 
-2. In the Xcode project's folder create a new file, give it a name *Podfile* (with a capital *P* and without any extension). Put the following lines in the Podfile and save it.
+- In the Xcode project's folder create a new file, give it a name *Podfile* (with a capital *P* and without any extension). Put the following lines in the Podfile and save it.
 
 ```
 source 'https://github.com/CocoaPods/Specs.git'
@@ -35,13 +35,13 @@ platform :ios, '8.0'
 pod 'VirgilKeysiOS'
 ```
 
-3. Get back to your terminal window and execute the following line:
+- Get back to your terminal window and execute the following line:
 
 ```
 $ pod install
 ```
  
-4. Close Xcode project (if it is still opened). For any further development purposes you should use Xcode *.xcworkspace* file created for you by CocoaPods.
+- Close Xcode project (if it is still opened). For any further development purposes you should use Xcode *.xcworkspace* file created for you by CocoaPods.
  
 At this point you should be able to use VirgilKeys functionality in your code. See examples for most common tasks below.
 If you encountered any issues with CocoaPods installations try to find more information at [cocoapods.org](https://guides.cocoapods.org/using/getting-started.html).
@@ -49,16 +49,17 @@ If you encountered any issues with CocoaPods installations try to find more info
 ##### Swift note
 Although VirgilCrypto is using Objective-C as its primary language it might be quite easily used in a Swift application.
 After VirgilCrypto is installed as described in the *Getting started* section it is necessary to perform the following:
-1. Create a new header file in the Swift project.
 
-2. Name it something like *BridgingHeader.h*
+- Create a new header file in the Swift project.
 
-3. Put there the following line:
+- Name it something like *BridgingHeader.h*
+
+- Put there the following line:
 ``` objective-c
 #import <VirgilCryptoiOS/VirgilCryptoiOS.h>
 ```
 
-4. In the Xcode build settings find the setting called *Objective-C Bridging Header* and set the path to your *BridgingHeader.h* file. Be aware that this path is relative to your Xcode project's folder. After adding bridging header setting you should be able to use the framework.
+- In the Xcode build settings find the setting called *Objective-C Bridging Header* and set the path to your *BridgingHeader.h* file. Be aware that this path is relative to your Xcode project's folder. After adding bridging header setting you should be able to use the framework.
 
 You can find more information about using Objective-C and Swift in the same project [here](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html).
 
