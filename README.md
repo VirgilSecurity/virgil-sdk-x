@@ -106,9 +106,9 @@ Requests to the service is an asynchronous network operation. VKKeysClient insta
 // Create a new key pair
 VCKeyPair *keyPair = [[VCKeyPair alloc] init];
 // Create a new user data object
-VKUserData* userData = [[VKUserData alloc] initWithId:nil Class:UDCUserId Type:UDTEmail Value:<# email address #> Confirmed:nil];
+VKUserData* userData = [[VKUserData alloc] initWithIdb:nil dataClass:UDCUserId dataType:UDTEmail value:<# email address #> confirmed:nil];
 // Create a new public key candidate
-VKPublicKey *publicKey = [[VKPublicKey alloc] initWithId:nil Key:pair.publicKey UserDataList:@[ userData ]];
+VKPublicKey *publicKey = [[VKPublicKey alloc] initWithIdb:nil key:pair.publicKey userDataList:@[ userData ]];
 // Create a new instance of the keysClient
 self.keysClient = [[VKKeysClient alloc] initWithApplicationToken:<# Virgil Application Token #>];
 // Create a requst
@@ -151,9 +151,9 @@ self.keysClient = [[VKKeysClient alloc] initWithApplicationToken:<# Virgil Appli
         
     // Process received pubKey... 
     NSLog(@"Got the public key:");
-    NSLog(@"account_id: %@", pubKey.Id.containerId);
-    NSLog(@"public_key_id: %@", pubKey.Id.publicKeyId);
-    NSLog(@"%@", [[NSString alloc] initWithData:pubKey.Key encoding:NSUTF8StringEncoding]);
+    NSLog(@"account_id: %@", pubKey.idb.containerId);
+    NSLog(@"public_key_id: %@", pubKey.idb.publicKeyId);
+    NSLog(@"%@", [[NSString alloc] initWithData:pubKey.key encoding:NSUTF8StringEncoding]);
 }];
 //...
 ```
@@ -177,7 +177,7 @@ NSData *toEncrypt = [message dataUsingEncoding:NSUTF8StringEncoding allowLossyCo
 // Create a new VCCryptor instance
 VCCryptor *cryptor = [[VCCryptor alloc] init];
 // Now we should add a key recepient (recepientKey is a VKPublicKey instance received from the Virgil Keys Service)
-[cryptor addKeyRecepient:recepientKey.Id.publicKeyId publicKey:recepientKey.Key];
+[cryptor addKeyRecepient:recepientKey.idb.publicKeyId publicKey:recepientKey.key];
 // And now we can easily encrypt the plain data
 NSData *encryptedData = [cryptor encryptData:toEncrypt embedContentInfo:@YES];
 // Now it is safe to send encryptedData to the recepient. Only person who holds the private key which corresponds to the recepientKey.Key public key is able to decrypt and read this data.
@@ -199,7 +199,7 @@ In case when a user needs to decrypt received encrypted message he/she needs to 
 // Create a new VCCryptor instance
 VCCryptor *decryptor = [[VCCryptor alloc] init];
 // Decrypt data
-NSData *plainData = [decryptor decryptData:<#encryptedData#> publicKeyId:<#myPublicKey.Id.publicKeyId#> privateKey:<#myPrivateKey#> keyPassword:<# Private key password or nil #>];
+NSData *plainData = [decryptor decryptData:<#encryptedData#> publicKeyId:<#myPublicKey.idb.publicKeyId#> privateKey:<#myPrivateKey#> keyPassword:<# Private key password or nil #>];
 // Compose initial message from the plain decrypted data
 NSString *initialMessage = [[NSString alloc] initWithData:plainData encoding:NSUTF8StringEncoding];
 ```
@@ -248,7 +248,7 @@ To verify some signature it is necessary to get a sender's public key from the V
 // Create a new VCSigner instance
 VCSigner *verifier = [[VCSigner alloc] init];
 // Verify signature against the signed data and sender's public key.
-BOOL verified = [verifier verifyData:<#signedMessageData#> sign:<#signature#> publicKey:<#senderKey.Id.Key#>];
+BOOL verified = [verifier verifyData:<#signedMessageData#> sign:<#signature#> publicKey:<#senderKey.key#>];
 if (verified) {
     // Sender is the real holder of the private key, so it might be trusted.
 }
