@@ -15,67 +15,67 @@
 
 @interface VKUserData ()
 
-@property (nonatomic, copy, readwrite) VKIdBundle *Id;
-@property (nonatomic, copy, readwrite) NSNumber *Confirmed;
+@property (nonatomic, copy, readwrite) VKIdBundle *idb;
+@property (nonatomic, copy, readwrite) NSNumber *confirmed;
 
 @end
 
 @implementation VKUserData
 
-@synthesize Id = _Id;
-@synthesize Confirmed = _Confirmed;
+@synthesize idb = _idb;
+@synthesize confirmed = _confirmed;
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithId:(VKIdBundle *)Id Class:(VFUserDataClass)Class Type:(VFUserDataType)Type Value:(NSString *)Value Confirmed:(NSNumber *)Confirmed {
-    self = [super initWithClass:Class Type:Type Value:Value];
+- (instancetype)initWithIdb:(VKIdBundle *)idb dataClass:(VFUserDataClass)dataClass dataType:(VFUserDataType)dataType value:(NSString *)value confirmed:(NSNumber *)confirmed {
+    self = [super initWithDataClass:dataClass dataType:dataType value:value];
     if (self == nil) {
         return nil;
     }
 
-    _Id = [Id copy];
-    _Confirmed = [Confirmed copy];
+    _idb = [idb copy];
+    _confirmed = [confirmed copy];
     return self;
 }
 
 - (instancetype)initWithUserData:(VKUserData *)userData {
-    return [self initWithId:userData.Id Class:userData.Class Type:userData.Type Value:userData.Value Confirmed:userData.Confirmed];
+    return [self initWithIdb:userData.idb dataClass:userData.dataClass dataType:userData.dataType value:userData.value confirmed:userData.confirmed];
 }
 
-- (instancetype)initWithClass:(VFUserDataClass)Class Type:(VFUserDataType)Type Value:(NSString *)Value {
-    return [self initWithId:nil Class:Class Type:Type Value:Value Confirmed:@NO];
+- (instancetype)initWithDataClass:(VFUserDataClass)dataClass dataType:(VFUserDataType)dataType value:(NSString *)value {
+    return [self initWithIdb:nil dataClass:dataClass dataType:dataType value:value confirmed:@NO];
 }
 
 - (instancetype)init {
-    return [self initWithId:nil Class:UDCUnknown Type:UDTUnknown Value:nil Confirmed:@NO];
+    return [self initWithIdb:nil dataClass:UDCUnknown dataType:UDTUnknown value:nil confirmed:@NO];
 }
 
 #pragma mark - NSCopying protocol implementation
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    return [[[self class] alloc] initWithId:self.Id Class:self.Class Type:self.Type Value:self.Value Confirmed:self.Confirmed];
+    return [[[self class] alloc] initWithIdb:self.idb dataClass:self.dataClass dataType:self.dataType value:self.value confirmed:self.confirmed];
 }
 
 #pragma mark - NSCoding protocol implementation
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    VKIdBundle *Id = [[aDecoder decodeObjectForKey:kVKModelId] as:[VKIdBundle class]];
+    VKIdBundle *idb = [[aDecoder decodeObjectForKey:kVKModelId] as:[VKIdBundle class]];
     NSNumber *classCandidate = [[aDecoder decodeObjectForKey:kVFModelClass] as:[NSNumber class]];
     NSNumber *typeCandidate = [[aDecoder decodeObjectForKey:kVFModelType] as:[NSNumber class]];
     NSString *value = [[aDecoder decodeObjectForKey:kVFModelValue] as:[NSString class]];
     NSNumber *confirmed = [[aDecoder decodeObjectForKey:kVKModelConfirmed] as:[NSNumber class]];
     
-    return [self initWithId:Id Class:(VFUserDataClass)[classCandidate unsignedIntegerValue] Type:(VFUserDataType)[typeCandidate unsignedIntegerValue] Value:value Confirmed:confirmed];
+    return [self initWithIdb:idb dataClass:(VFUserDataClass)[classCandidate unsignedIntegerValue] dataType:(VFUserDataType)[typeCandidate unsignedIntegerValue] value:value confirmed:confirmed];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [super encodeWithCoder:aCoder];
     
-    if (self.Id != nil) {
-        [aCoder encodeObject:self.Id forKey:kVKModelId];
+    if (self.idb != nil) {
+        [aCoder encodeObject:self.idb forKey:kVKModelId];
     }
-    if (self.Confirmed != nil) {
-        [aCoder encodeObject:self.Confirmed forKey:kVKModelConfirmed];
+    if (self.confirmed != nil) {
+        [aCoder encodeObject:self.confirmed forKey:kVKModelConfirmed];
     }
 }
 
@@ -83,21 +83,21 @@
 
 + (instancetype)deserializeFrom:(NSDictionary *)candidate {
     NSDictionary *idBundle = [candidate[kVKModelId] as:[NSDictionary class]];
-    VKIdBundle *Id = [VKIdBundle deserializeFrom:idBundle];
+    VKIdBundle *idb = [VKIdBundle deserializeFrom:idBundle];
 
     NSString *classCandidate = [candidate[kVFModelClass] as:[NSString class]];
     NSString *typeCandidate = [candidate[kVFModelType] as:[NSString class]];
     NSString *value = [candidate[kVFModelValue] as:[NSString class]];
     NSNumber *confirmed = [candidate[kVKModelConfirmed] as:[NSNumber class]];
     
-    return [[self alloc] initWithId:Id Class:[self userDataClassFromString:classCandidate] Type:[self userDataTypeFromString:typeCandidate] Value:value Confirmed:confirmed];
+    return [[self alloc] initWithIdb:idb dataClass:[self userDataClassFromString:classCandidate] dataType:[self userDataTypeFromString:typeCandidate] value:value confirmed:confirmed];
 }
 
 #pragma mark - Overrides 
 
 - (NSNumber *)isValid {
     BOOL valid = NO;
-    valid = ( [super isValid] && (self.Id.userDataId.length > 0) );
+    valid = ( [super isValid] && (self.idb.userDataId.length > 0) );
     return [NSNumber numberWithBool:valid];
 }
 

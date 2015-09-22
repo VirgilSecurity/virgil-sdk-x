@@ -12,8 +12,8 @@
 
 @interface VKBaseModel : VFModel
 
-@property (nonatomic, copy, readonly) VKIdBundle *Id;
+@property (nonatomic, copy, readonly) VKIdBundle *idb;
 
-- (instancetype)initWithId:(VKIdBundle *)Id NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithIdb:(VKIdBundle *)idb NS_DESIGNATED_INITIALIZER;
 
 @end

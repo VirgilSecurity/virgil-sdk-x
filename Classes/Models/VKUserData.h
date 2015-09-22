@@ -14,11 +14,11 @@
 @interface VKUserData : VFUserData
 
 /// Id bundle containing the containerId, publicKeyId and userDataId of this entity at the Virgil Keys Service
-@property (nonatomic, copy, readonly) VKIdBundle *Id;
+@property (nonatomic, copy, readonly) VKIdBundle *idb;
 /// NSNumber containing a BOOL flag which indicates if this user data was confirmed (so user is owner of it) or not.
-@property (nonatomic, copy, readonly) NSNumber *Confirmed;
+@property (nonatomic, copy, readonly) NSNumber *confirmed;
 
-- (instancetype)initWithId:(VKIdBundle *)Id Class:(VFUserDataClass)Class Type:(VFUserDataType)Type Value:(NSString *)Value Confirmed:(NSNumber *)Confirmed NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithIdb:(VKIdBundle *)idb dataClass:(VFUserDataClass)dataClass dataType:(VFUserDataType)dataType value:(NSString *)value confirmed:(NSNumber *)confirmed NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithUserData:(VKUserData *)userData;
 
 @end

@@ -15,46 +15,46 @@
 
 @interface VKPublicKey ()
 
-@property (nonatomic, copy, readwrite) NSData *Key;
-@property (nonatomic, copy, readwrite) NSArray *UserDataList;
+@property (nonatomic, copy, readwrite) NSData *key;
+@property (nonatomic, copy, readwrite) NSArray *userDataList;
 
 @end
 
 @implementation VKPublicKey
 
-@synthesize Key = _Key;
-@synthesize UserDataList = _UserDataList;
+@synthesize key = _key;
+@synthesize userDataList = _userDataList;
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithId:(VKIdBundle *)Id Key:(NSData *)Key UserDataList:(NSArray *)UserDataList {
-    self = [super initWithId:Id];
+- (instancetype)initWithIdb:(VKIdBundle *)idb key:(NSData *)key userDataList:(NSArray *)userDataList {
+    self = [super initWithIdb:idb];
     if (self == nil) {
         return nil;
     }
     
-    _Key = [Key copy];
+    _key = [key copy];
     // Deep 1-level copy, because UserDataList just contains VKUserData objects, and they conform to NSCopying protocol.
-    _UserDataList = [[NSArray alloc] initWithArray:UserDataList copyItems:YES];
+    _userDataList = [[NSArray alloc] initWithArray:userDataList copyItems:YES];
     return self;
 }
 
-- (instancetype)initWithId:(VKIdBundle *)Id {
-    return [self initWithId:Id Key:nil UserDataList:nil];
+- (instancetype)initWithIdb:(VKIdBundle *)idb {
+    return [self initWithIdb:idb key:nil userDataList:nil];
 }
 
 - (instancetype)initWithPublicKey:(VKPublicKey *)publicKey {
-    return [self initWithId:publicKey.Id Key:publicKey.Key UserDataList:publicKey.UserDataList];
+    return [self initWithIdb:publicKey.idb key:publicKey.key userDataList:publicKey.userDataList];
 }
 
 - (instancetype)init {
-    return [self initWithId:nil Key:nil UserDataList:nil];
+    return [self initWithIdb:nil key:nil userDataList:nil];
 }
 
 #pragma mark - NSCopying protocol implementation
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    return [[[self class] alloc] initWithId:self.Id Key:self.Key UserDataList:self.UserDataList];
+    return [[[self class] alloc] initWithIdb:self.idb key:self.key userDataList:self.userDataList];
 }
 
 #pragma mark - NSCoding protocol implementation
@@ -64,17 +64,17 @@
     NSData *Key = [[aDecoder decodeObjectForKey:kVKModelPublicKey] as:[NSData class]];
     NSArray *UserDataList = [[aDecoder decodeObjectForKey:kVKModelUserData] as:[NSArray class]];
     
-    return [self initWithId:Id Key:Key UserDataList:UserDataList];
+    return [self initWithIdb:idb key:key userDataList:userDataList];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [super encodeWithCoder:aCoder];
     
-    if (self.Key != nil) {
-        [aCoder encodeObject:self.Key forKey:kVKModelPublicKey];
+    if (self.key != nil) {
+        [aCoder encodeObject:self.key forKey:kVKModelPublicKey];
     }
-    if (self.UserDataList != nil) {
-        [aCoder encodeObject:self.UserDataList forKey:kVKModelUserData];
+    if (self.userDataList != nil) {
+        [aCoder encodeObject:self.userDataList forKey:kVKModelUserData];
     }
 }
 
@@ -83,13 +83,13 @@
 - (NSDictionary *)serialize {
     NSMutableDictionary *dto = [[NSMutableDictionary alloc] initWithDictionary:[super serialize]];
     
-    NSString *encodedKey = [self.Key base64EncodedStringWithOptions:0];
+    NSString *encodedKey = [self.key base64EncodedStringWithOptions:0];
     if (encodedKey != nil) {
         dto[kVKModelPublicKey] = encodedKey;
     }
 
-    NSMutableArray *udDto = [[NSMutableArray alloc] initWithCapacity:self.UserDataList.count];
-    for (VKUserData *ud in self.UserDataList) {
+    NSMutableArray *udDto = [[NSMutableArray alloc] initWithCapacity:self.userDataList.count];
+    for (VKUserData *ud in self.userDataList) {
         [udDto addObject:[ud serialize]];
     }
     if (udDto.count > 0) {
@@ -100,21 +100,21 @@
 
 + (instancetype)deserializeFrom:(NSDictionary *)candidate {
     NSDictionary *idBundle = [candidate[kVKModelId] as:[NSDictionary class]];
-    VKIdBundle *Id = [VKIdBundle deserializeFrom:idBundle];
+    VKIdBundle *idb = [VKIdBundle deserializeFrom:idBundle];
 
     NSString *encodedKey = [candidate[kVKModelPublicKey] as:[NSString class]];
-    NSData *Key = [[NSData alloc] initWithBase64EncodedString:encodedKey options:0];
+    NSData *key = [[NSData alloc] initWithBase64EncodedString:encodedKey options:0];
     
     NSArray *udlist = [candidate[kVKModelUserData] as:[NSArray class]];
-    NSMutableArray *UserDataList = [[NSMutableArray alloc] initWithCapacity:udlist.count];
+    NSMutableArray *userDataList = [[NSMutableArray alloc] initWithCapacity:udlist.count];
     for (NSDictionary *udCandidate in udlist) {
-        [UserDataList addObject:[VKUserData deserializeFrom:udCandidate]];
+        [userDataList addObject:[VKUserData deserializeFrom:udCandidate]];
     }
-    if (UserDataList.count == 0) {
-        UserDataList = nil;
+    if (userDataList.count == 0) {
+        userDataList = nil;
     }
     
-    return [[self alloc] initWithId:Id Key:Key UserDataList:UserDataList];
+    return [[self alloc] initWithIdb:idb key:key userDataList:userDataList];
 }
 
 #pragma mark - NSObject protocol implementation: equality checks
@@ -125,17 +125,17 @@
         return NO;
     }
     
-    return ([self.Id isEqual:pk.Id]);
+    return ([self.idb isEqual:pk.idb]);
 }
 
 - (NSUInteger)hash {
-    return [self.Id hash];
+    return [self.idb hash];
 }
 
 #pragma mark - Overrides 
 
 - (NSNumber *)isValid {
-    return [NSNumber numberWithBool:( (self.Id.publicKeyId != nil) && (self.Key.length > 0) )];
+    return [NSNumber numberWithBool:( (self.idb.publicKeyId != nil) && (self.key.length > 0) )];
 }
 
 @end

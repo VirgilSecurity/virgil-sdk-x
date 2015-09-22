@@ -13,48 +13,48 @@
 
 @interface VKBaseModel ()
 
-@property (nonatomic, copy, readwrite) VKIdBundle *Id;
+@property (nonatomic, copy, readwrite) VKIdBundle *idb;
 
 @end
 
 @implementation VKBaseModel
 
-@synthesize Id = _Id;
+@synthesize idb = _idb;
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithId:(VKIdBundle *)Id {
+- (instancetype)initWithIdb:(VKIdBundle *)idb {
     self = [super init];
     if (self == nil) {
         return nil;
     }
  
-    _Id = [Id copy];
+    _idb = [idb copy];
     return self;
 }
 
 - (instancetype)init {
-    return [self initWithId:nil];
+    return [self initWithIdb:nil];
 }
 
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    return [[[self class] alloc] initWithId:self.Id];
+    return [[[self class] alloc] initWithIdb:self.idb];
 }
 
 #pragma mark - NSCoding
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    VKIdBundle *Id = [[aDecoder decodeObjectForKey:kVKModelId] as:[VKIdBundle class]];
-    return [self initWithId:Id];
+    VKIdBundle *idb = [[aDecoder decodeObjectForKey:kVKModelId] as:[VKIdBundle class]];
+    return [self initWithIdb:idb];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [super encodeWithCoder:aCoder];
     
-    if (self.Id != nil) {
-        [aCoder encodeObject:self.Id forKey:kVKModelId];
+    if (self.idb != nil) {
+        [aCoder encodeObject:self.idb forKey:kVKModelId];
     }
 }
 
@@ -76,11 +76,11 @@
         return NO;
     }
     
-    return [self.Id isEqual:candidate.Id];
+    return [self.idb isEqual:candidate.idb];
 }
 
 - (NSUInteger)hash {
-    return [self.Id hash];
+    return [self.idb hash];
 }
 
 @end
