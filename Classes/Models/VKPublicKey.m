@@ -60,9 +60,9 @@
 #pragma mark - NSCoding protocol implementation
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    VKIdBundle *Id = [[aDecoder decodeObjectForKey:kVKModelId] as:[VKIdBundle class]];
-    NSData *Key = [[aDecoder decodeObjectForKey:kVKModelPublicKey] as:[NSData class]];
-    NSArray *UserDataList = [[aDecoder decodeObjectForKey:kVKModelUserData] as:[NSArray class]];
+    VKIdBundle *idb = [[aDecoder decodeObjectForKey:kVKModelId] as:[VKIdBundle class]];
+    NSData *key = [[aDecoder decodeObjectForKey:kVKModelPublicKey] as:[NSData class]];
+    NSArray *userDataList = [[aDecoder decodeObjectForKey:kVKModelUserData] as:[NSArray class]];
     
     return [self initWithIdb:idb key:key userDataList:userDataList];
 }
