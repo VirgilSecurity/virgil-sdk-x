@@ -47,8 +47,8 @@ At this point you should be able to use VirgilKeys functionality in your code. S
 If you encountered any issues with CocoaPods installations try to find more information at [cocoapods.org](https://guides.cocoapods.org/using/getting-started.html).
 
 ##### Swift note
-Although VirgilCrypto is using Objective-C as its primary language it might be quite easily used in a Swift application.
-After VirgilCrypto is installed as described in the *Getting started* section it is necessary to perform the following:
+Although VirgilKeys is using Objective-C as its primary language it might be quite easily used in a Swift application.
+After VirgilKeys is installed as described in the *Getting started* section it is necessary to perform the following:
 
 - Create a new header file in the Swift project.
 
@@ -56,7 +56,7 @@ After VirgilCrypto is installed as described in the *Getting started* section it
 
 - Put there the following line:
 ``` objective-c
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
+#import <VirgilKeysiOS/VirgilKeysiOS.h>
 ```
 
 - In the Xcode build settings find the setting called *Objective-C Bridging Header* and set the path to your *BridgingHeader.h* file. Be aware that this path is relative to your Xcode project's folder. After adding bridging header setting you should be able to use the framework.
