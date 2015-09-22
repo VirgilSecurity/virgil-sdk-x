@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 extern NSString *const kVKModelId;
 extern NSString *const kVKModelContainerId;
 extern NSString *const kVKModelPublicKeyId;

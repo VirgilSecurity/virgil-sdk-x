@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "VKModelCommons.h"
 
 NSString *const kVKModelId = @"id";
 NSString *const kVKModelContainerId = @"account_id";

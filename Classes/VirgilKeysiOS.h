@@ -17,3 +17,6 @@
 #import "VKActionToken.h"
 
 #import "VKKeysClient.h"
+
+#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
+#import <VirgilCryptoiOS/VirgilFrameworkiOS.h>
