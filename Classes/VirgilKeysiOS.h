@@ -19,4 +19,4 @@
 #import "VKKeysClient.h"
 
 #import <VirgilCryptoiOS/VirgilCryptoiOS.h>
-#import <VirgilCryptoiOS/VirgilFrameworkiOS.h>
+#import <VirgilFrameworkiOS/VirgilFrameworkiOS.h>
