@@ -1,0 +1,1 @@
+../../../VirgilFrameworkiOS/Classes/Networking/Client/VFClient.h

@@ -1,0 +1,1 @@
+../../../VirgilCryptoiOS/Wrapper/VCSigner.h

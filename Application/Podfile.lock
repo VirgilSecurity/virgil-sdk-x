@@ -1,0 +1,13 @@
+PODS:
+  - VirgilCryptoiOS (1.0.9)
+  - VirgilFrameworkiOS (0.0.10)
+
+DEPENDENCIES:
+  - VirgilCryptoiOS
+  - VirgilFrameworkiOS
+
+SPEC CHECKSUMS:
+  VirgilCryptoiOS: dcee083985e8d1e61d8191f9018952551e769514
+  VirgilFrameworkiOS: 9a3c6c179fab53e9b38f1c5594ce6129728ddd6f
+
+COCOAPODS: 0.37.2
