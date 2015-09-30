@@ -8,8 +8,6 @@
 
 #import "ViewController.h"
 
-#import "VCKeyPair.h"
-
 @interface ViewController ()
 
 @end
