@@ -35,7 +35,12 @@ class VK001_KeysClientSwiftTests: XCTestCase {
 
         self.keysClient = VKKeysClientStg(applicationToken: kApplicationToken)
         self.mailinator = Mailinator(applicationToken: kMailinatorToken)
-        self.regexp = NSRegularExpression(pattern: "Your confirmation code is.+([A-Z0-9]{6})", options: .CaseInsensitive, error: nil)
+        do {
+            self.regexp = try NSRegularExpression(pattern: "Your confirmation code is.+([A-Z0-9]{6})", options: NSRegularExpressionOptions.CaseInsensitive)
+        }
+        catch {
+            self.regexp = nil
+        }
         self.keyPair = VCKeyPair(password: nil)
     }
     
@@ -166,6 +171,12 @@ class VK001_KeysClientSwiftTests: XCTestCase {
                 })
             })
         })
+        
+        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout), handler: { error in
+            if error != nil {
+                XCTFail("Expectation failed: \(error!.localizedDescription)")
+            }
+        })
     }
     
     func test005_addUserDataToExistingPublicKey() {
@@ -200,6 +211,12 @@ class VK001_KeysClientSwiftTests: XCTestCase {
                 })
             })
         })
+        
+        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout), handler: { error in
+            if error != nil {
+                XCTFail("Expectation failed: \(error!.localizedDescription)")
+            }
+        })
     }
     
     func test007_deleteUserDataFromExistingPublicKey() {
@@ -233,6 +250,12 @@ class VK001_KeysClientSwiftTests: XCTestCase {
                 })
             })
         })
+        
+        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout), handler: { error in
+            if error != nil {
+                XCTFail("Expectation failed: \(error!.localizedDescription)")
+            }
+        })
     }
     
 }
@@ -251,7 +274,7 @@ extension VK001_KeysClientSwiftTests {
 
     func userDataListWithLength(length: Int) -> NSArray {
         let list = NSMutableArray(capacity: length)
-        for i in 0..<length {
+        for _ in 0..<length {
             list.addObject(self.userData())
         }
         return list;
@@ -285,7 +308,7 @@ extension VK001_KeysClientSwiftTests {
     }
     
     func confirmUserDataOfPublicKey(pKey: VKPublicKey, handler: ((NSError?)->Void)?) {
-        var confirmationList = NSMutableArray(capacity: pKey.userDataList.count)
+        let confirmationList = NSMutableArray(capacity: pKey.userDataList.count)
         for i in 0..<pKey.userDataList.count {
             confirmationList[i] = false
         }
@@ -326,7 +349,7 @@ extension VK001_KeysClientSwiftTests {
                             // Extract the email body text
                             let bodyPart: MPart = email.parts[0] as! MPart
                             // Try to find the actual confirmation code in body
-                            let matchResult = self.regexp.firstMatchInString(bodyPart.body, options: .ReportCompletion, range: NSMakeRange(0, count(bodyPart.body)))
+                            let matchResult = self.regexp.firstMatchInString(bodyPart.body, options: .ReportCompletion, range: NSMakeRange(0, bodyPart.body.characters.count))
                             if matchResult == nil || matchResult!.range.location == NSNotFound {
                                 // There is no match in the email body.
                                 // Confirmation code is absent or can not be extracted.
@@ -340,7 +363,7 @@ extension VK001_KeysClientSwiftTests {
                             // Now match string should contain something like "Your confirmation code is ....."
                             // Actual code is the last 6 charachters.
                             // Extract the code
-                            let code = (match as NSString).substringFromIndex(count(match) - 6);
+                            let code = (match as NSString).substringFromIndex(match.characters.count - 6);
                             self.keysClient.persistUserDataId(ud.idb.userDataId, confirmationCode: code, completionHandler: { confirmError in
                                 if confirmError != nil {
                                     if handler != nil {
