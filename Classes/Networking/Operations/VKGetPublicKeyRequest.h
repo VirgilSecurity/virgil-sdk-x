@@ -13,8 +13,8 @@
 
 @interface VKGetPublicKeyRequest : VKBaseRequest
 
-@property (nonatomic, strong, readonly) VKPublicKey *publicKey;
+@property (nonatomic, strong, readonly) VKPublicKey * __nullable publicKey;
 
-- (instancetype)initWithBaseURL:(NSString *)url publicKeyId:(GUID *)pkId NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithBaseURL:(NSString * __nonnull)url publicKeyId:(GUID * __nonnull)pkId NS_DESIGNATED_INITIALIZER;
 
 @end

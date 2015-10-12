@@ -10,6 +10,6 @@
 
 @interface VFJSONRequest : VFServiceRequest
 
-- (void)setRequestBodyWithObject:(NSObject *)candidate useUUID:(NSNumber *)useUUID;
+- (void)setRequestBodyWithObject:(NSObject * __nonnull)candidate useUUID:(NSNumber * __nonnull)useUUID;
 
 @end

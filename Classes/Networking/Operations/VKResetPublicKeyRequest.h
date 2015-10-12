@@ -13,8 +13,8 @@
 
 @interface VKResetPublicKeyRequest : VKBaseRequest
 
-@property (nonatomic, strong, readonly) VKActionToken *actionToken;
+@property (nonatomic, strong, readonly) VKActionToken * __nullable actionToken;
 
-- (instancetype)initWithBaseURL:(NSString *)url publicKeyId:(GUID *)publicKeyId publicKey:(NSData *)publicKey;
+- (instancetype __nonnull)initWithBaseURL:(NSString * __nonnull)url publicKeyId:(GUID * __nonnull)publicKeyId publicKey:(NSData * __nonnull)publicKey;
 
 @end

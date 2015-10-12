@@ -13,8 +13,8 @@
 
 @interface VKDeletePublicKeyRequest : VKBaseRequest
 
-@property (nonatomic, strong, readonly) VKActionToken *actionToken;
+@property (nonatomic, strong, readonly) VKActionToken * __nullable actionToken;
 
-- (instancetype)initWithBaseURL:(NSString *)url publicKeyId:(GUID *)publicKeyId NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithBaseURL:(NSString * __nonnull)url publicKeyId:(GUID * __nonnull)publicKeyId NS_DESIGNATED_INITIALIZER;
 
 @end

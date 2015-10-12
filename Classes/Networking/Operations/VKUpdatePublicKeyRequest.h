@@ -14,8 +14,8 @@
 
 @interface VKUpdatePublicKeyRequest : VKBaseRequest
 
-@property (nonatomic, strong, readonly) VKPublicKey *publicKey;
+@property (nonatomic, strong, readonly) VKPublicKey * __nullable publicKey;
 
-- (instancetype)initWithBaseURL:(NSString *)url publicKeyId:(GUID *)pkId newKeyPair:(VCKeyPair *)keyPair keyPassword:(NSString *)keyPassword NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithBaseURL:(NSString * __nonnull)url publicKeyId:(GUID * __nonnull)pkId newKeyPair:(VCKeyPair * __nonnull)keyPair keyPassword:(NSString * __nullable)keyPassword NS_DESIGNATED_INITIALIZER;
 
 @end

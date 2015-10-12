@@ -12,7 +12,7 @@
 
 @interface VKPersistUserDataRequest ()
 
-@property (nonatomic, strong) GUID *userDataId;
+@property (nonatomic, strong) GUID * __nonnull userDataId;
 
 @end
 
@@ -43,7 +43,7 @@
 }
 
 - (instancetype)initWithBaseURL:(NSString *)url {
-    return [self initWithBaseURL:url userDataId:nil confirmationCode:nil];
+    return [self initWithBaseURL:url userDataId:@"" confirmationCode:@""];
 }
 
 #pragma mark - Overrides

@@ -12,8 +12,8 @@
 
 @interface VKActionToken ()
 
-@property (nonatomic, copy, readwrite) GUID *tokenId;
-@property (nonatomic, copy, readwrite) NSArray *userIdList;
+@property (nonatomic, copy, readwrite) GUID * __nonnull tokenId;
+@property (nonatomic, copy, readwrite) NSArray * __nonnull userIdList;
 
 @end
 

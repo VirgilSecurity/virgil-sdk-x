@@ -9,12 +9,13 @@
 #import "VKBaseRequest.h"
 #import <VirgilFrameworkiOS/VFTypes.h>
 
+@class VFUserData;
 @class VKUserData;
 
 @interface VKCreateUserDataRequest : VKBaseRequest
 
-@property (nonatomic, strong, readonly) VKUserData *userData;
+@property (nonatomic, strong, readonly) VKUserData * __nullable userData;
 
-- (instancetype)initWithBaseURL:(NSString *)url publicKeyId:(GUID *)publicKeyId userData:(VKUserData *)userData NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithBaseURL:(NSString * __nonnull)url publicKeyId:(GUID * __nonnull)publicKeyId userData:(VFUserData * __nonnull)userData NS_DESIGNATED_INITIALIZER;
 
 @end

@@ -12,8 +12,8 @@
 
 @interface VKDeletePublicKeyRequest ()
 
-@property (nonatomic, strong, readwrite) VKActionToken *actionToken;
-@property (nonatomic, strong) GUID *publicKeyId;
+@property (nonatomic, strong, readwrite) VKActionToken * __nullable actionToken;
+@property (nonatomic, strong) GUID * __nonnull publicKeyId;
 
 @end
 
@@ -39,7 +39,7 @@
 }
 
 - (instancetype)initWithBaseURL:(NSString *)url {
-    return [self initWithBaseURL:url publicKeyId:nil];
+    return [self initWithBaseURL:url publicKeyId:@""];
 }
 
 #pragma mark - Overrides

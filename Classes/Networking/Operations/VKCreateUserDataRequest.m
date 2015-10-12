@@ -11,11 +11,12 @@
 #import "VKModelCommons.h"
 
 #import <VirgilFrameworkiOS/NSObject+VFUtils.h>
+#import <VirgilFrameworkiOS/VFUserData.h>
 
 @interface VKCreateUserDataRequest ()
 
-@property (nonatomic, strong, readwrite) VKUserData *userData;
-@property (nonatomic, strong) GUID *publicKeyId;
+@property (nonatomic, strong, readwrite) VKUserData * __nullable userData;
+@property (nonatomic, strong) GUID * __nonnull publicKeyId;
 
 @end
 
@@ -26,7 +27,7 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithBaseURL:(NSString *)url publicKeyId:(GUID *)publicKeyId userData:(VKUserData *)userData {
+- (instancetype)initWithBaseURL:(NSString *)url publicKeyId:(GUID *)publicKeyId userData:(VFUserData *)userData {
     self = [super initWithBaseURL:url];
     if (self == nil) {
         return nil;
@@ -47,7 +48,7 @@
 }
 
 - (instancetype)initWithBaseURL:(NSString *)url {
-    return [self initWithBaseURL:url publicKeyId:nil userData:nil];
+    return [self initWithBaseURL:url publicKeyId:@"" userData:[[VFUserData alloc] init]];
 }
 
 #pragma mark - Overrides

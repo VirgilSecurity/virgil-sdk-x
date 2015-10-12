@@ -11,6 +11,6 @@
 
 @interface VKPersistUserDataRequest : VKBaseRequest
 
-- (instancetype)initWithBaseURL:(NSString *)url userDataId:(GUID *)userDataId confirmationCode:(NSString *)code NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithBaseURL:(NSString * __nonnull)url userDataId:(GUID * __nonnull)userDataId confirmationCode:(NSString * __nonnull)code NS_DESIGNATED_INITIALIZER;
 
 @end

@@ -9,53 +9,53 @@
 #import "VKError.h"
 
 // General errors
-static const NSInteger kVKInternalError                             = 10000;
-static const NSInteger kVKJSONRequestError                          = 10100;
+const NSInteger kVKInternalError                             = 10000;
+const NSInteger kVKJSONRequestError                          = 10100;
 //Request sign errors
-static const NSInteger kVKUUIDDuplicateError                        = 10200;
-static const NSInteger kVKUUIDError                                 = 10201;
-static const NSInteger kVKSignHeaderError                           = 10202;
-static const NSInteger kVKPublicKeyHeaderError                      = 10203;
-static const NSInteger kVKSignError                                 = 10204;
-static const NSInteger kVKPublicKeyUUIDError                        = 10207;
-static const NSInteger kVKPublicKeyApplicationViolationError        = 10209;
-static const NSInteger kVKPublicKeyBase64EncodingError              = 10210;
-static const NSInteger kVKPublicKeyUUIDMatchError                   = 10211;
+const NSInteger kVKUUIDDuplicateError                        = 10200;
+const NSInteger kVKUUIDError                                 = 10201;
+const NSInteger kVKSignHeaderError                           = 10202;
+const NSInteger kVKPublicKeyHeaderError                      = 10203;
+const NSInteger kVKSignError                                 = 10204;
+const NSInteger kVKPublicKeyUUIDError                        = 10207;
+const NSInteger kVKPublicKeyApplicationViolationError        = 10209;
+const NSInteger kVKPublicKeyBase64EncodingError              = 10210;
+const NSInteger kVKPublicKeyUUIDMatchError                   = 10211;
 //Application token errors
-static const NSInteger kVKApplicationTokenError                     = 10205;
-static const NSInteger kVKStatisticsError                           = 10206;
+const NSInteger kVKApplicationTokenError                     = 10205;
+const NSInteger kVKStatisticsError                           = 10206;
 //Endpoints errors
-static const NSInteger kVKPublicKeyRequiredError                    = 10208;
-static const NSInteger kVKActionTokenError                          = 20010;
-static const NSInteger kVKConfirmationCodesNumberError              = 20011;
-static const NSInteger kVKConfirmationCodeError                     = 20012;
-static const NSInteger kVKPublicKeyIsNotFoundError                  = 20100;
-static const NSInteger kVKPublicKeyLengthError                      = 20101;
-static const NSInteger kVKPublicKeyError                            = 20102;
-static const NSInteger kVKPublicKeyEncodingError                    = 20103;
-static const NSInteger kVKPublicKeyUserDataUnconfirmedError         = 20104;
-static const NSInteger kVKPublicKeyUserIdError                      = 20105;
-static const NSInteger kVKPublicKeyUDIDRegisteredError              = 20107;
-static const NSInteger kVKPublicKeyUDIDsRegisteredError             = 20108;
-static const NSInteger kVKPublicKeyIsNotFoundForApplicationError    = 20110;
-static const NSInteger kVKPublicKeyIsFoundForApplicationError       = 20111;
-static const NSInteger kVKPublicKeyIsRegisteredForApplicationError  = 20112;
-static const NSInteger kVKUUIDSignVerificationError                 = 20113;
-static const NSInteger kVKUserDataIsNotFoundError                   = 20200;
-static const NSInteger kVKUserDataTypeError                         = 20202;
-static const NSInteger kVKUserDataDomainError                       = 20203;
-static const NSInteger kVKUserDataEmailError                        = 20204;
-static const NSInteger kVKUserDataPhoneError                        = 20205;
-static const NSInteger kVKUserDataConstraintError                   = 20210;
-static const NSInteger kVKUserDataConfirmationEntityError           = 20211;
-static const NSInteger kVKUserDataConfirmationTokenError            = 20212;
-static const NSInteger kVKUserDataConfirmationDuplicateError        = 20213;
-static const NSInteger kVKUserDataClassError                        = 20214;
-static const NSInteger kVKUserDataDomainValueError                  = 20215;
-static const NSInteger kVKUserDataUserIdConfirmationDuplicateError  = 20216;
-static const NSInteger kVKUserDataIsNotConfirmedError               = 20217;
-static const NSInteger kVKUserDataValueError                        = 20218;
-static const NSInteger kVKUserDataUserInfoError                     = 20300;
+const NSInteger kVKPublicKeyRequiredError                    = 10208;
+const NSInteger kVKActionTokenError                          = 20010;
+const NSInteger kVKConfirmationCodesNumberError              = 20011;
+const NSInteger kVKConfirmationCodeError                     = 20012;
+const NSInteger kVKPublicKeyIsNotFoundError                  = 20100;
+const NSInteger kVKPublicKeyLengthError                      = 20101;
+const NSInteger kVKPublicKeyError                            = 20102;
+const NSInteger kVKPublicKeyEncodingError                    = 20103;
+const NSInteger kVKPublicKeyUserDataUnconfirmedError         = 20104;
+const NSInteger kVKPublicKeyUserIdError                      = 20105;
+const NSInteger kVKPublicKeyUDIDRegisteredError              = 20107;
+const NSInteger kVKPublicKeyUDIDsRegisteredError             = 20108;
+const NSInteger kVKPublicKeyIsNotFoundForApplicationError    = 20110;
+const NSInteger kVKPublicKeyIsFoundForApplicationError       = 20111;
+const NSInteger kVKPublicKeyIsRegisteredForApplicationError  = 20112;
+const NSInteger kVKUUIDSignVerificationError                 = 20113;
+const NSInteger kVKUserDataIsNotFoundError                   = 20200;
+const NSInteger kVKUserDataTypeError                         = 20202;
+const NSInteger kVKUserDataDomainError                       = 20203;
+const NSInteger kVKUserDataEmailError                        = 20204;
+const NSInteger kVKUserDataPhoneError                        = 20205;
+const NSInteger kVKUserDataConstraintError                   = 20210;
+const NSInteger kVKUserDataConfirmationEntityError           = 20211;
+const NSInteger kVKUserDataConfirmationTokenError            = 20212;
+const NSInteger kVKUserDataConfirmationDuplicateError        = 20213;
+const NSInteger kVKUserDataClassError                        = 20214;
+const NSInteger kVKUserDataDomainValueError                  = 20215;
+const NSInteger kVKUserDataUserIdConfirmationDuplicateError  = 20216;
+const NSInteger kVKUserDataIsNotConfirmedError               = 20217;
+const NSInteger kVKUserDataValueError                        = 20218;
+const NSInteger kVKUserDataUserInfoError                     = 20300;
 
 @implementation VKError
 

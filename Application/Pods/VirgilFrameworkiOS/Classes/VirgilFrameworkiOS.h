@@ -12,6 +12,7 @@
 #import "VFModel.h"
 #import "VFError.h"
 #import "VFUserData.h"
+#import "VFPrivateKey.h"
 
 #import "VFClient.h"
 #import "VFServiceRequest.h"

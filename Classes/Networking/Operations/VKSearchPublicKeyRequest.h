@@ -12,8 +12,8 @@
 
 @interface VKSearchPublicKeyRequest : VKBaseRequest
 
-@property (nonatomic, strong, readonly) VKPublicKey *publicKey;
+@property (nonatomic, strong, readonly) VKPublicKey * __nullable publicKey;
 
-- (instancetype)initWithBaseURL:(NSString *)url userIdValue:(NSString *)userIdValue NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithBaseURL:(NSString * __nonnull)url userIdValue:(NSString * __nullable)userIdValue NS_DESIGNATED_INITIALIZER;
 
 @end

@@ -13,7 +13,7 @@
 
 @interface VKCreatePublicKeyRequest ()
 
-@property (nonatomic, strong, readwrite) VKPublicKey *publicKey;
+@property (nonatomic, strong, readwrite) VKPublicKey * __nullable publicKey;
 
 @end
 
@@ -37,7 +37,7 @@
 }
 
 - (instancetype)initWithBaseURL:(NSString *)url {
-    return [self initWithBaseURL:url publicKey:nil];
+    return [self initWithBaseURL:url publicKey:[[VKPublicKey alloc] init]];
 }
 
 #pragma mark - Overrides

@@ -10,7 +10,7 @@
 
 @interface VKDeleteUserDataRequest ()
 
-@property (nonatomic, strong) GUID *userDataId;
+@property (nonatomic, strong) GUID * __nonnull userDataId;
 
 @end
 
@@ -35,7 +35,7 @@
 }
 
 - (instancetype)initWithBaseURL:(NSString *)url {
-    return [self initWithBaseURL:url userDataId:nil];
+    return [self initWithBaseURL:url userDataId:@""];
 }
 
 #pragma mark - Overrides

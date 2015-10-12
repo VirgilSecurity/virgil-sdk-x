@@ -11,9 +11,9 @@
 
 @interface VFClient ()
 
-@property (nonatomic, strong, readwrite) NSString *token;
+@property (nonatomic, strong, readwrite) NSString * __nonnull token;
 
-@property (nonatomic, strong) NSOperationQueue *queue;
+@property (nonatomic, strong) NSOperationQueue * __nonnull queue;
 
 @end
 
@@ -38,7 +38,7 @@
 }
 
 - (instancetype)init {
-    return [self initWithApplicationToken:nil];
+    return [self initWithApplicationToken:@""];
 }
 
 - (void)dealloc {
@@ -48,7 +48,7 @@
 #pragma mark - Public class logic
 
 - (NSString *)serviceURL {
-    return nil;
+    return @"";
 }
 
 - (void)send:(VFServiceRequest *)request {

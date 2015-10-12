@@ -16,9 +16,8 @@
 
 @interface VKUpdatePublicKeyRequest ()
 
-@property (nonatomic, strong, readwrite) VKPublicKey *publicKey;
-
-@property (nonatomic, strong) GUID *publicKeyId;
+@property (nonatomic, strong, readwrite) VKPublicKey * __nullable publicKey;
+@property (nonatomic, strong) GUID * __nonnull publicKeyId;
 
 @end
 
@@ -65,7 +64,7 @@
 }
 
 - (instancetype)initWithBaseURL:(NSString *)url {
-    return [self initWithBaseURL:url publicKeyId:nil newKeyPair:nil keyPassword:nil];
+    return [self initWithBaseURL:url publicKeyId:@"" newKeyPair:[[VCKeyPair alloc] init] keyPassword:nil];
 }
 
 #pragma mark - Overrides

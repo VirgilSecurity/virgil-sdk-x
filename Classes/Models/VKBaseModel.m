@@ -13,7 +13,7 @@
 
 @interface VKBaseModel ()
 
-@property (nonatomic, copy, readwrite) VKIdBundle *idb;
+@property (nonatomic, copy, readwrite) VKIdBundle * __nonnull idb;
 
 @end
 
@@ -34,7 +34,7 @@
 }
 
 - (instancetype)init {
-    return [self initWithIdb:nil];
+    return [self initWithIdb:[[VKIdBundle alloc] init]];
 }
 
 #pragma mark - NSCopying

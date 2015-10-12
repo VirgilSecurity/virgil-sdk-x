@@ -39,32 +39,32 @@ typedef NS_ENUM(NSUInteger, HTTPRequestMethod) {
 /**
  * Callback for operation completion.
  */
-typedef void (^ServiceRequestCompletionHandler)(VFServiceRequest *request);
+typedef void (^ServiceRequestCompletionHandler)(VFServiceRequest * __nonnull request);
 
 /**
  * Incoming responce body chunks processing code block
  */
-typedef void (^ServiceRequestResponseBodyHandler)(VFServiceRequest *request, NSData *bodyChunk);
+typedef void (^ServiceRequestResponseBodyHandler)(VFServiceRequest * __nonnull request, NSData * __nonnull bodyChunk);
 
 /// Key for looking up HTTP response object in the HTTP error descriptor userInfo dictionary.
-extern NSString *const kVirgilServiceRequestErrorHTTPResponseKey;
+extern NSString * __nonnull const kVirgilServiceRequestErrorHTTPResponseKey;
 
 /// Key for looking up HTTP response body in the HTTP error descriptor userInfo dictionary.
-extern NSString *const kVirgilServiceRequestErrorHTTPBodyKey;
+extern NSString * __nonnull const kVirgilServiceRequestErrorHTTPBodyKey;
 
 /// Default timeout value for the HTTP operations.
 extern const NSTimeInterval kVirgilServiceRequestDefaultTimeout;
 
 /// Default HTTP method for HTTP operations.
-extern NSString *const kVirgilServiceRequestDefaultMethod;
+extern NSString * __nonnull const kVirgilServiceRequestDefaultMethod;
 
-extern NSString *const kVirgilServiceRequestErrorDomain;
+extern NSString * __nonnull const kVirgilServiceRequestErrorDomain;
 
 /// Code for indicating of cancelled HTTP request.
 extern const NSInteger kVVirgilServiceRequestCancelledErrorCode;
 
 /// String description of cancelled HTTP request.
-extern NSString *const kVirgilServiceRequestCancelledErrorDescription;
+extern NSString * __nonnull const kVirgilServiceRequestCancelledErrorDescription;
 
 /**
  * Base class for HTTP requests to YF proxy.
@@ -72,28 +72,28 @@ extern NSString *const kVirgilServiceRequestCancelledErrorDescription;
 @interface VFServiceRequest : NSOperation <NSURLConnectionDataDelegate>
 
 /// Network operation unique identifier;
-@property (nonatomic, strong, readonly) NSString *uuid;
+@property (nonatomic, strong, readonly) NSString * __nonnull uuid;
 
 /// Network operation status.
 @property (nonatomic, assign, readonly) ServiceRequestStatus status;
 
 /// Underlying HTTP request.
-@property (nonatomic, strong, readonly) NSURLRequest *request;
+@property (nonatomic, strong, readonly) NSURLRequest * __nonnull request;
 
 /// Response for the underlying HTTP request.
-@property (nonatomic, strong, readonly) NSHTTPURLResponse *response;
+@property (nonatomic, strong, readonly) NSHTTPURLResponse * __nullable response;
 
 /// Error description if one occured.
-@property (nonatomic, strong, readonly) NSError *error;
+@property (nonatomic, strong, readonly) NSError * __nullable error;
 
 /// HTTP response body, collected so far. This property is not used if responseBodyHandler provided.
-@property (nonatomic, strong, readonly) NSData *responseBody;
+@property (nonatomic, strong, readonly) NSData * __nullable responseBody;
 
 /// Handler for response body chunks. If set, then responseBody is not accumulated.
-@property (nonatomic, copy) ServiceRequestResponseBodyHandler responseBodyHandler;
+@property (nonatomic, copy) ServiceRequestResponseBodyHandler __nullable responseBodyHandler;
 
 /// Callback for operation completion.
-@property (nonatomic, copy) ServiceRequestCompletionHandler completionHandler;
+@property (nonatomic, copy) ServiceRequestCompletionHandler __nullable completionHandler;
 
 
 /**
@@ -102,7 +102,7 @@ extern NSString *const kVirgilServiceRequestCancelledErrorDescription;
  * @param url Target URL for HTTP request. By default HTTP request method is POST and body is empty.
  * @return Instance of particular network operation.
  */
-- (instancetype)initWithBaseURL:(NSString *)url;
+- (instancetype __nonnull)initWithBaseURL:(NSString * __nonnull)url;
 
 /**
  * Set the HTTP request method.
@@ -116,26 +116,26 @@ extern NSString *const kVirgilServiceRequestCancelledErrorDescription;
  *
  * @param dict String to String dictionary with key-value pars for the header names and values.
  */
-- (void)setRequestHeaders:(NSDictionary *)headers;
+- (void)setRequestHeaders:(NSDictionary * __nonnull)headers;
 
 /**
  * Set the HTTP request body with given data.
  */
-- (void)setRequestBody:(NSData *)body;
+- (void)setRequestBody:(NSData * __nonnull)body;
 
 /**
  * Set the HTTP query string using key-value pairs derived from the dictionary.
  *
  * @param dict String to String dictionary with key-value pars for the request query string.
  */
-- (void)setRequestQuery:(NSDictionary *)params;
+- (void)setRequestQuery:(NSDictionary * __nonnull)params;
 
 /// The following methods are supposed to be overriden in descendants.
 
 /**
  * @return service method name (path to it) which should be called related to service base url.
  */
-- (NSString *)methodPath;
+- (NSString * __nonnull)methodPath;
 
 /**
  * This method is called when connection did finish loading. It returns the object which is derived from the response data.
@@ -143,7 +143,7 @@ extern NSString *const kVirgilServiceRequestCancelledErrorDescription;
  * 
  * @return Some object derived from the response data. NSError in case of parsing error.
  */
-- (NSObject *)parseResponse;
+- (NSObject * __nullable)parseResponse;
 
 /**
  * This method is called when connection did finish loading after -parseResponse. It takes as parameter the object returned from -parseResponse. If that object contains some logical service error or parsing error - this method should process this error and return it.
@@ -152,7 +152,7 @@ extern NSString *const kVirgilServiceRequestCancelledErrorDescription;
  * @param candidate NSObject received by call to -parseResponse method.
  * @return NSError in case of any errors inside response data or during the parsing. Otherwise returns nil.
  */
-- (NSError *)handleError:(NSObject *)candidate;
+- (NSError * __nullable)handleError:(NSObject * __nullable)candidate;
 
 /**
  * This method is called when connection did finish loading, after -parseResponse and after -handleError. Because of this, parameter of this method should contain coorectly parsed object and it should never be NSError or any kind of logical service error. But even not-error response may sometimes be broken by absence some mandatory params, etc.
@@ -161,6 +161,6 @@ extern NSString *const kVirgilServiceRequestCancelledErrorDescription;
  * @param candidate NSObject received by call to -parseResponse method.
  * @return NSError in case of error during handling the object. Otherwise - nil.
  */
-- (NSError *)handleResponse:(NSObject *)candidate;
+- (NSError * __nullable)handleResponse:(NSObject * __nullable)candidate;
 
 @end

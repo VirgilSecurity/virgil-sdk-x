@@ -15,8 +15,8 @@
 
 @interface VKPublicKey ()
 
-@property (nonatomic, copy, readwrite) NSData *key;
-@property (nonatomic, copy, readwrite) NSArray *userDataList;
+@property (nonatomic, copy, readwrite) NSData * __nonnull key;
+@property (nonatomic, copy, readwrite) NSArray * __nonnull userDataList;
 
 @end
 
@@ -40,7 +40,7 @@
 }
 
 - (instancetype)initWithIdb:(VKIdBundle *)idb {
-    return [self initWithIdb:idb key:nil userDataList:nil];
+    return [self initWithIdb:idb key:[NSData data] userDataList:@[]];
 }
 
 - (instancetype)initWithPublicKey:(VKPublicKey *)publicKey {
@@ -48,7 +48,7 @@
 }
 
 - (instancetype)init {
-    return [self initWithIdb:nil key:nil userDataList:nil];
+    return [self initWithIdb:[[VKIdBundle alloc] init] key:[NSData data] userDataList:@[]];
 }
 
 #pragma mark - NSCopying protocol implementation

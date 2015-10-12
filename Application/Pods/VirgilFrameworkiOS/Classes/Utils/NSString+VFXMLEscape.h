@@ -10,7 +10,7 @@
 
 @interface NSString (VFXMLEscape)
 
-+ (NSString *)stringWithPercentEscapesForString:(NSString *)srcString;
-+ (NSString *)stringRemovePercentEscapesForString:(NSString*)srcString;
++ (NSString * __nonnull)stringWithPercentEscapesForString:(NSString * __nonnull)srcString;
++ (NSString * __nonnull)stringRemovePercentEscapesForString:(NSString* __nonnull)srcString;
 
 @end

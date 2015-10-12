@@ -8,15 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString *const kVKModelId;
-extern NSString *const kVKModelContainerId;
-extern NSString *const kVKModelPublicKeyId;
-extern NSString *const kVKModelUserDataId;
-extern NSString *const kVKModelConfirmed;
-extern NSString *const kVKModelPublicKey;
-extern NSString *const kVKModelUserData;
-extern NSString *const kVKModelActionToken;
-extern NSString *const kVKModelUserIDs;
-extern NSString *const kVKModelConfirmationCode;
-extern NSString *const kVKModelConfirmationCodes;
-extern NSString *const kVKModelUUIDSign;
+extern NSString * __nonnull const kVKModelId;
+extern NSString * __nonnull const kVKModelContainerId;
+extern NSString * __nonnull const kVKModelPublicKeyId;
+extern NSString * __nonnull const kVKModelUserDataId;
+extern NSString * __nonnull const kVKModelConfirmed;
+extern NSString * __nonnull const kVKModelPublicKey;
+extern NSString * __nonnull const kVKModelUserData;
+extern NSString * __nonnull const kVKModelActionToken;
+extern NSString * __nonnull const kVKModelUserIDs;
+extern NSString * __nonnull const kVKModelConfirmationCode;
+extern NSString * __nonnull const kVKModelConfirmationCodes;
+extern NSString * __nonnull const kVKModelUUIDSign;

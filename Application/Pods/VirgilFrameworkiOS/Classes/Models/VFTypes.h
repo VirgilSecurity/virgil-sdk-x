@@ -6,4 +6,6 @@
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 typedef NSString GUID;

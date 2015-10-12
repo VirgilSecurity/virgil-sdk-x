@@ -12,10 +12,10 @@
 @interface VKActionToken : VFModel
 
 /// UUID for action token at the Virgil Keys Service
-@property (nonatomic, copy, readonly) GUID *tokenId;
+@property (nonatomic, copy, readonly) GUID * __nonnull tokenId;
 /// Array with the user data ids which are need to be confirmed for Virgil Keys Service
-@property (nonatomic, copy, readonly) NSArray *userIdList;
+@property (nonatomic, copy, readonly) NSArray * __nonnull userIdList;
 /// Array with confirmation tokens/codes for each user id from the userIdList.
-@property (nonatomic, copy) NSArray *confirmationCodeList;
+@property (nonatomic, copy) NSArray * __nullable confirmationCodeList;
 
 @end

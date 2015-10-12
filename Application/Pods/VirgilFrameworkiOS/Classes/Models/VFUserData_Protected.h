@@ -12,6 +12,6 @@
 
 @property (nonatomic, assign, readwrite) VFUserDataClass dataClass;
 @property (nonatomic, assign, readwrite) VFUserDataType dataType;
-@property (nonatomic, copy, readwrite) NSString *value;
+@property (nonatomic, copy, readwrite) NSString * __nonnull value;
 
 @end

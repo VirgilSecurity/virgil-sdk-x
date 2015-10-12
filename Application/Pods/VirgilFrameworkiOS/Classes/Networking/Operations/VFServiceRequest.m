@@ -21,21 +21,21 @@ NSString *const kVirgilServiceRequestCancelledErrorDescription = @"Cancelled";
 
 @interface VFServiceRequest () <NSURLConnectionDelegate>
 
-@property (nonatomic, strong) NSString *uuid;
-@property (nonatomic, strong) NSString *baseUrl;
-@property (nonatomic, strong) NSURLRequest *request;
-@property (nonatomic, strong) NSHTTPURLResponse *response;
-@property (nonatomic, strong) NSError *error;
+@property (nonatomic, strong) NSString * __nonnull uuid;
+@property (nonatomic, strong) NSString * __nonnull baseUrl;
+@property (nonatomic, strong) NSURLRequest * __nonnull request;
+@property (nonatomic, strong) NSHTTPURLResponse * __nullable response;
+@property (nonatomic, strong) NSError * __nullable error;
 
-@property (nonatomic, strong) NSURLConnection *connection;
-@property (nonatomic, strong) NSMutableData *actualResponseBody;
-@property (nonatomic, strong) NSThread *thread;
-@property (nonatomic, strong) NSRunLoop *runLoop;
+@property (nonatomic, strong) NSURLConnection * __nullable connection;
+@property (nonatomic, strong) NSMutableData * __nullable actualResponseBody;
+@property (nonatomic, strong) NSThread * __nullable thread;
+@property (nonatomic, strong) NSRunLoop * __nullable runLoop;
 
 @property (nonatomic, strong) NSObject *parsedResponse;
 
-+ (NSString *)HTTPMethodNameForMethod:(HTTPRequestMethod)method;
-+ (HTTPRequestMethod)methodForHTTPMethodName:(NSString *)name;
++ (NSString * __nonnull)HTTPMethodNameForMethod:(HTTPRequestMethod)method;
++ (HTTPRequestMethod)methodForHTTPMethodName:(NSString * __nullable)name;
 
 @end
 
@@ -143,7 +143,7 @@ NSString *const kVirgilServiceRequestCancelledErrorDescription = @"Cancelled";
 #pragma mark - Initialization and configuration stuff
 
 - (instancetype)init {
-    return [self initWithBaseURL:nil];
+    return [self initWithBaseURL:@""];
 }
 
 - (instancetype)initWithBaseURL:(NSString *)url {

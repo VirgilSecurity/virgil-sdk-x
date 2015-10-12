@@ -10,6 +10,6 @@
 
 @interface NSObject (VFUtils)
 
-- (id)as:(Class)expectedClass;
+- (id __nullable)as:(Class __nonnull)expectedClass;
 
 @end

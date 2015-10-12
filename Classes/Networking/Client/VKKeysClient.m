@@ -8,6 +8,8 @@
 
 #import "VKKeysClient.h"
 
+#import <VirgilFrameworkiOS/VFPrivateKey.h>
+#import <VirgilFrameworkiOS/VFUserData.h>
 #import <VirgilFrameworkiOS/VFServiceRequest.h>
 #import <VirgilFrameworkiOS/NSObject+VFUtils.h>
 
@@ -34,11 +36,10 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
  * Performs security sign for the actual HTTP request body with given private key, converts sign data to base64 format and set the specific HTTP header for the HTTP request.
  *
  * @param request VFServiceRequest object container for HTTP request which need to be signed.
- * @param key NSData with private key data.
- * @param keyPassword NSString with password that protect the private key data. May be nil in case of unprotected private key.
+ * @param key VFPrivateKey container with private key data.
  * @return NSError in case of some error during sign process or nil if all has finished successfuly.
  */
-- (NSError *)signRequest:(VFServiceRequest *)request privateKey:(NSData *)key keyPassword:(NSString *)keyPassword;
+- (NSError * __nullable)signRequest:(VFServiceRequest * __nonnull)request privateKey:(VFPrivateKey * __nonnull)key;
 
 @end
 
@@ -60,7 +61,7 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
 
 #pragma mark - Public key related functionality
 
-- (void)createPublicKey:(VKPublicKey *)publicKey privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword completionHandler:(void(^)(VKPublicKey *pubKey, NSError *error))completionHandler {
+- (void)createPublicKey:(VKPublicKey *)publicKey privateKey:(VFPrivateKey *)privateKey completionHandler:(void(^)(VKPublicKey *pubKey, NSError *error))completionHandler {
     if (publicKey == nil || privateKey == nil) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -87,7 +88,7 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
     VKCreatePublicKeyRequest *request = [[VKCreatePublicKeyRequest alloc] initWithBaseURL:self.serviceURL publicKey:publicKey];
     request.completionHandler = handler;
     
-    NSError *signError = [self signRequest:request privateKey:privateKey keyPassword:keyPassword];
+    NSError *signError = [self signRequest:request privateKey:privateKey];
     if (signError != nil) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -129,8 +130,8 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
     [self send:request];
 }
 
-- (void)updatePublicKeyId:(GUID *)publicKeyId privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword newKeyPair:(VCKeyPair *)keyPair newKeyPassword:(NSString *)newKeyPassword completionHandler:(void(^)(VKPublicKey *pubKey, NSError *error))completionHandler {
-    if (publicKeyId.length == 0 || privateKey.length == 0 || keyPair == nil || keyPair.publicKey.length == 0 || keyPair.privateKey.length == 0) {
+- (void)updatePublicKeyId:(GUID *)publicKeyId privateKey:(VFPrivateKey *)privateKey newKeyPair:(VCKeyPair *)keyPair newKeyPassword:(NSString *)newKeyPassword completionHandler:(void(^)(VKPublicKey *pubKey, NSError *error))completionHandler {
+    if (publicKeyId.length == 0 || privateKey.key.length == 0 || keyPair == nil || keyPair.publicKey.length == 0 || keyPair.privateKey.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 completionHandler(nil, [NSError errorWithDomain:kVKKeysClientErrorDomain code:-105 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the public key's update can not be sent. Public key's id is not set, private key is not set or new key pair is not valid.", @"UpdatePublicKey") }]);
@@ -156,7 +157,7 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
     VKUpdatePublicKeyRequest *request = [[VKUpdatePublicKeyRequest alloc] initWithBaseURL:self.serviceURL publicKeyId:publicKeyId newKeyPair:keyPair keyPassword:newKeyPassword];
     request.completionHandler = handler;
     
-    NSError *signError = [self signRequest:request privateKey:privateKey keyPassword:keyPassword];
+    NSError *signError = [self signRequest:request privateKey:privateKey];
     if (signError != nil) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -170,8 +171,8 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
     [self send:request];
 }
 
-- (void)deletePublicKeyId:(GUID *)publicKeyId privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword completionHandler:(void(^)(VKActionToken *actionToken, NSError *error))completionHandler {
-    if (publicKeyId.length == 0 || privateKey.length == 0) {
+- (void)deletePublicKeyId:(GUID *)publicKeyId privateKey:(VFPrivateKey *)privateKey completionHandler:(void(^)(VKActionToken *actionToken, NSError *error))completionHandler {
+    if (publicKeyId.length == 0 || privateKey.key.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 completionHandler(nil, [NSError errorWithDomain:kVKKeysClientErrorDomain code:-106 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the deletion of the public key can not be sent. Public key's id is not set or private key is missing.", @"DeletePublicKey") }]);
@@ -197,7 +198,7 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
     VKDeletePublicKeyRequest *request = [[VKDeletePublicKeyRequest alloc] initWithBaseURL:self.serviceURL publicKeyId:publicKeyId];
     request.completionHandler = handler;
     
-    NSError *signError = [self signRequest:request privateKey:privateKey keyPassword:keyPassword];
+    NSError *signError = [self signRequest:request privateKey:privateKey];
     if (signError != nil) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -238,7 +239,8 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
     VKResetPublicKeyRequest *request = [[VKResetPublicKeyRequest alloc] initWithBaseURL:self.serviceURL publicKeyId:publicKeyId publicKey:keyPair.publicKey];
     request.completionHandler = handler;
     
-    NSError *signError = [self signRequest:request privateKey:keyPair.privateKey keyPassword:keyPassword];
+    VFPrivateKey *pKey = [[VFPrivateKey alloc] initWithKey:keyPair.privateKey password:keyPassword];
+    NSError *signError = [self signRequest:request privateKey:pKey];
     if (signError != nil) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -279,8 +281,8 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
     [self send:request];
 }
 
-- (void)searchPublicKeyId:(GUID *)publicKeyId privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword completionHandler:(void(^)(VKPublicKey *pubKey, NSError *error))completionHandler {
-    if (publicKeyId.length == 0 || privateKey.length == 0) {
+- (void)searchPublicKeyId:(GUID *)publicKeyId privateKey:(VFPrivateKey *)privateKey completionHandler:(void(^)(VKPublicKey *pubKey, NSError *error))completionHandler {
+    if (publicKeyId.length == 0 || privateKey.key.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 completionHandler(nil, [NSError errorWithDomain:kVKKeysClientErrorDomain code:-109 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the searching of the public key can not be sent. Public key's id is not set private key is not set.", @"SearchPublicKey") }]);
@@ -306,7 +308,7 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
     VKSearchPublicKeyRequest *request = [[VKSearchPublicKeyRequest alloc] initWithBaseURL:self.serviceURL userIdValue:nil];
     request.completionHandler = handler;
     
-    NSError *signError = [self signRequest:request privateKey:privateKey keyPassword:keyPassword];
+    NSError *signError = [self signRequest:request privateKey:privateKey];
     if (signError != nil) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -351,8 +353,8 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
 
 #pragma mark - User data related functionality
 
-- (void)createUserData:(VKUserData *)userData publicKeyId:(GUID *)publicKeyId privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword completionHandler:(void(^)(VKUserData *uData, NSError *error))completionHandler {
-    if (userData == nil || publicKeyId.length == 0 || privateKey.length == 0) {
+- (void)createUserData:(VFUserData *)userData publicKeyId:(GUID *)publicKeyId privateKey:(VFPrivateKey *)privateKey completionHandler:(void(^)(VKUserData *uData, NSError *error))completionHandler {
+    if (userData == nil || publicKeyId.length == 0 || privateKey.key.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 completionHandler(nil, [NSError errorWithDomain:kVKKeysClientErrorDomain code:-111 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the creation of the user data can not be sent. User data value is not valid, public key's id is not set or private key is absent.", @"CreateUserData") }]);
@@ -375,10 +377,10 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
         }
     };
     
-    VKCreateUserDataRequest *request = [[VKCreateUserDataRequest alloc] initWithBaseURL:self.serviceURL publicKeyId:nil userData:userData];
+    VKCreateUserDataRequest *request = [[VKCreateUserDataRequest alloc] initWithBaseURL:self.serviceURL publicKeyId:publicKeyId userData:userData];
     request.completionHandler = handler;
     
-    NSError *signError = [self signRequest:request privateKey:privateKey keyPassword:keyPassword];
+    NSError *signError = [self signRequest:request privateKey:privateKey];
     if (signError != nil) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -392,8 +394,8 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
     [self send:request];
 }
 
-- (void)deleteUserDataId:(GUID *)userDataId publicKeyId:(GUID *)publicKeyId privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword completionHandler:(void(^)(NSError *error))completionHandler {
-    if (userDataId.length == 0 || publicKeyId.length == 0 || privateKey.length == 0) {
+- (void)deleteUserDataId:(GUID *)userDataId publicKeyId:(GUID *)publicKeyId privateKey:(VFPrivateKey *)privateKey completionHandler:(void(^)(NSError *error))completionHandler {
+    if (userDataId.length == 0 || publicKeyId.length == 0 || privateKey.key.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 completionHandler([NSError errorWithDomain:kVKKeysClientErrorDomain code:-113 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the deletion of the user data can not be sent. User data id is not set, public key's id is not set or private key is absent.", @"DeleteUserData") }]);
@@ -418,7 +420,7 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
     VKDeleteUserDataRequest *request = [[VKDeleteUserDataRequest alloc] initWithBaseURL:self.serviceURL userDataId:userDataId];
     request.completionHandler = handler;
     
-    NSError *signError = [self signRequest:request privateKey:privateKey keyPassword:keyPassword];
+    NSError *signError = [self signRequest:request privateKey:privateKey];
     if (signError != nil) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -460,8 +462,8 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
     [self send:request];
 }
 
-- (void)resendConfirmationUserDataId:(GUID *)userDataId publicKeyId:(GUID *)publicKeyId privateKey:(NSData *)privateKey keyPassword:(NSString *)keyPassword completionHandler:(void(^)(NSError *error))completionHandler {
-    if (userDataId.length == 0 || publicKeyId.length == 0 || privateKey.length == 0) {
+- (void)resendConfirmationUserDataId:(GUID *)userDataId publicKeyId:(GUID *)publicKeyId privateKey:(VFPrivateKey *)privateKey completionHandler:(void(^)(NSError *error))completionHandler {
+    if (userDataId.length == 0 || publicKeyId.length == 0 || privateKey.key.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 completionHandler([NSError errorWithDomain:kVKKeysClientErrorDomain code:-115 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the confirmation code of the user data can not be sent. User data id is not set, public key id is not set or private key is absent.", @"ResendConfirmationUserData") }]);
@@ -486,7 +488,7 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
     VKResendConfirmationUserDataRequest *request = [[VKResendConfirmationUserDataRequest alloc] initWithBaseURL:self.serviceURL userDataId:userDataId];
     request.completionHandler = handler;
     
-    NSError *signError = [self signRequest:request privateKey:privateKey keyPassword:keyPassword];
+    NSError *signError = [self signRequest:request privateKey:privateKey];
     if (signError != nil) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -502,15 +504,15 @@ static NSString *const kVKKeysClientErrorDomain = @"VirgilKeysClientErrorDomain"
 
 #pragma mark - Private class logic
 
-- (NSError *)signRequest:(VFServiceRequest *)request privateKey:(NSData *)key keyPassword:(NSString *)keyPassword {
-    if (request == nil || key.length == 0) {
+- (NSError *)signRequest:(VFServiceRequest *)request privateKey:(VFPrivateKey *)privateKey {
+    if (request == nil || privateKey.key.length == 0) {
         VFCLDLog(@"There is nothing to sign: request or/and private key is/are not given.");
         return [NSError errorWithDomain:kVKKeysClientErrorDomain code:-100 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"There is nothing to sign: request or/and private key is/are not given.", @"Sign for the request is not possible.") }];
     }
     
     // Sign request body with given key.
     VCSigner *signer = [[VCSigner alloc] init];
-    NSData *signData = [signer signData:request.request.HTTPBody privateKey:key keyPassword:keyPassword];
+    NSData *signData = [signer signData:request.request.HTTPBody privateKey:privateKey.key keyPassword:privateKey.password];
     if (signData.length == 0) {
         VFCLDLog(@"Unable to sign request data with given private key.");
         return [NSError errorWithDomain:kVKKeysClientErrorDomain code:-101 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to sign the request with given private key.", @"Sign for the request is failed.") }];;

@@ -11,7 +11,7 @@
 @protocol VFSerializable <NSObject>
 
 @required
-- (NSDictionary *)serialize;
-+ (instancetype)deserializeFrom:(NSDictionary *)candidate;
+- (NSDictionary * __nonnull)serialize;
++ (instancetype __nonnull)deserializeFrom:(NSDictionary * __nonnull)candidate;
 
 @end

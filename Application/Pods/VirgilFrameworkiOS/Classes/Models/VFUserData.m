@@ -51,7 +51,7 @@ NSString* const kVFUserDataTypeLastName = @"last_name";
 }
 
 - (instancetype)init {
-    return [self initWithDataClass:UDCUnknown dataType:UDTUnknown value:nil];
+    return [self initWithDataClass:UDCUnknown dataType:UDTUnknown value:@""];
 }
 
 #pragma mark - NSCopying protocol implementation

@@ -14,7 +14,7 @@
 
 @interface VKSearchPublicKeyRequest ()
 
-@property (nonatomic, strong, readwrite) VKPublicKey *publicKey;
+@property (nonatomic, strong, readwrite) VKPublicKey *__nullable publicKey;
 
 @end
 
@@ -40,7 +40,7 @@
     return self;
 }
 
-- (instancetype) initWithBaseURL:(NSString *)url {
+- (instancetype)initWithBaseURL:(NSString *)url {
     return [self initWithBaseURL:url userIdValue:nil];
 }
 

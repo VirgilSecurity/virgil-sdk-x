@@ -8,7 +8,7 @@
 
 #import <VirgilFrameworkiOS/VFJSONRequest.h>
 
-extern NSString *const kVKBaseRequestErrorDomain;
+extern NSString * __nonnull const kVKBaseRequestErrorDomain;
 extern const NSInteger kVKBaseRequestErrorCode;
 
 @interface VKBaseRequest : VFJSONRequest

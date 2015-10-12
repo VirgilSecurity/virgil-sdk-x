@@ -10,16 +10,16 @@
 
 extern NSInteger const kVirgilNoError;
 
-extern NSString *const kVirgilServiceErrorDomain;
-extern NSString *const kVirgilServiceUnknownError;
+extern NSString * __nonnull const kVirgilServiceErrorDomain;
+extern NSString * __nonnull const kVirgilServiceUnknownError;
 
 @interface VFError : VFModel
 
 @property (nonatomic, assign, readonly) NSInteger code;
 
-- (instancetype)initWithCode:(NSInteger)code NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithCode:(NSInteger)code NS_DESIGNATED_INITIALIZER;
 
-- (NSString *)message;
-- (NSError *)nsError;
+- (NSString * __nullable)message;
+- (NSError * __nullable)nsError;
 
 @end

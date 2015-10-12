@@ -11,6 +11,6 @@
 
 @interface VFModel : NSObject <NSCopying, NSCoding, VFSerializable>
 
-- (NSNumber *)isValid;
+- (NSNumber * __nonnull)isValid;
 
 @end

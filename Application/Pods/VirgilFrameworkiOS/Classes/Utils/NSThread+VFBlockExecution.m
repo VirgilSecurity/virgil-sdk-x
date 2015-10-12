@@ -10,7 +10,7 @@
 
 @interface NSThread (VFBlockExecutionPrivate)
 
-- (void)__performBlock:(void(^)(void))block;
+- (void)__performBlock:(void(^ __nullable)(void))block;
 
 @end
 

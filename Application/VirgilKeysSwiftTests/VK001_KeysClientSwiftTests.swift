@@ -60,7 +60,7 @@ class VK001_KeysClientSwiftTests: XCTestCase {
         let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
         
         let userDataList = self.userDataListWithLength(kTestUserDataCount)
-        self.createPublicKeyWithUserDataList(userDataList, confirmUserDataWithHandler: { error in
+        self.createPublicKeyWithUserDataList(userDataList) { error in
             if error != nil {
                 XCTFail("Error: \(error!.localizedDescription)")
                 return
@@ -68,13 +68,13 @@ class VK001_KeysClientSwiftTests: XCTestCase {
             
             XCTAssertNotNil(self.publicKey, "Public key should be created successfully.")
             ex.fulfill()
-        })
+        }
         
-        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout), handler: { error in
+        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout)) { error in
             if error != nil {
                 XCTFail("Expectation failed: \(error!.localizedDescription)")
             }
-        })
+        }
     }
     
     func test002_getExistingPublicKey() {
@@ -83,63 +83,64 @@ class VK001_KeysClientSwiftTests: XCTestCase {
         let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
         
         let userDataList = self.userDataListWithLength(kTestUserDataCount)
-        self.createPublicKeyWithUserDataList(userDataList, confirmUserDataWithHandler: { error in
+        self.createAndConfirmPublicKeyWithUserDataList(userDataList) { error in
             if error != nil {
                 XCTFail("Error: \(error!.localizedDescription)")
                 return
             }
             
-            self.keysClient.getPublicKeyId(self.publicKey.idb.publicKeyId, completionHandler: { pubKey, getError in
+            self.keysClient.getPublicKeyId(self.publicKey.idb.publicKeyId!) { pubKey, getError in
                 if getError != nil {
                     XCTFail("Error getting the key: \(getError!.localizedDescription)")
                     return
                 }
                 
                 XCTAssertNotNil(pubKey, "Public key should be get successfully")
-                XCTAssertNotNil(pubKey.key, "Actual key data should be returned within Public Key structure.")
+                XCTAssertNotNil(pubKey!.key, "Actual key data should be returned within Public Key structure.")
                 ex.fulfill()
-            })
-        })
+            }
+        }
         
         
-        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout), handler: { error in
+        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout)) { error in
             if error != nil {
                 XCTFail("Expectation failed: \(error!.localizedDescription)")
             }
-        })
+        }
     }
     
     func test003_updateExistingPublicKey() {
         let newKeyPair = VCKeyPair()
         
-        let ex = self.expectationWithDescription("Public key should be get after creation.")
+        let ex = self.expectationWithDescription("Public key should be updated after creation.")
         let numberOfRequests = kTestUserDataCount * 3 + 1 + 1
         let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
         
         let userDataList = self.userDataListWithLength(kTestUserDataCount)
-        self.createPublicKeyWithUserDataList(userDataList, confirmUserDataWithHandler: { error in
+        self.createAndConfirmPublicKeyWithUserDataList(userDataList) { error in
             if error != nil {
                 XCTFail("Error: \(error!.localizedDescription)")
                 return
             }
             
-            self.keysClient.updatePublicKeyId(self.publicKey.idb.publicKeyId, privateKey: self.keyPair.privateKey(), keyPassword: nil, newKeyPair: newKeyPair, newKeyPassword: nil, completionHandler: { pubKey, updateError in
+            let pKey = VFPrivateKey(key: self.keyPair.privateKey(), password: nil)
+            self.keysClient.updatePublicKeyId(self.publicKey.idb.publicKeyId!, privateKey:pKey, newKeyPair: newKeyPair, newKeyPassword: nil) { pubKey, updateError in
                 if updateError != nil {
                     XCTFail("Error updating public key: \(updateError!.localizedDescription)")
                     return
                 }
                 
-                XCTAssertNotEqual(self.publicKey.key, pubKey.key, "Public key data should be updated.")
-                XCTAssertEqual(newKeyPair.publicKey(), pubKey.key, "Updated public key should contain the exact data which was generated in the new key pair.")
+                XCTAssertNotEqual(self.publicKey.key, pubKey!.key, "Public key data should be updated.")
+                XCTAssertEqual(newKeyPair.publicKey(), pubKey!.key, "Updated public key should contain the exact data which was generated in the new key pair.")
                 ex.fulfill()
-            })
-        })
+            }
+        }
         
-        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout), handler: { error in
+        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout)) { error in
             if error != nil {
                 XCTFail("Expectation failed: \(error!.localizedDescription)")
             }
-        })
+        }
     }
     
     func test004_deleteExistingPublicKey() {
@@ -148,19 +149,20 @@ class VK001_KeysClientSwiftTests: XCTestCase {
         let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
         
         let userDataList = self.userDataListWithLength(kTestUserDataCount)
-        self.createPublicKeyWithUserDataList(userDataList, confirmUserDataWithHandler: { error in
+        self.createAndConfirmPublicKeyWithUserDataList(userDataList) { error in
             if error != nil {
                 XCTFail("Error: \(error!.localizedDescription)")
                 return
             }
             
-            self.keysClient.deletePublicKeyId(self.publicKey.idb.publicKeyId, privateKey: self.keyPair.privateKey(), keyPassword: nil, completionHandler: { actionToken, deleteError in
+            let pKey = VFPrivateKey(key: self.keyPair.privateKey(), password: nil)
+            self.keysClient.deletePublicKeyId(self.publicKey.idb.publicKeyId!, privateKey: pKey) { actionToken, deleteError in
                 if deleteError != nil {
                     XCTFail("Public key should be successfully deleted.")
                     return
                 }
                 
-                self.keysClient.getPublicKeyId(self.publicKey.idb.publicKeyId, completionHandler: { pubKey, getError in
+                self.keysClient.getPublicKeyId(self.publicKey.idb.publicKeyId!) { pubKey, getError in
                     if getError != nil {
                         ex.fulfill()
                         return
@@ -168,55 +170,56 @@ class VK001_KeysClientSwiftTests: XCTestCase {
                     
                     XCTFail("Public key should not be get after deletion.")
                     return
-                })
-            })
-        })
+                }
+            }
+        }
         
-        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout), handler: { error in
+        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout)) { error in
             if error != nil {
                 XCTFail("Expectation failed: \(error!.localizedDescription)")
             }
-        })
+        }
     }
     
     func test005_addUserDataToExistingPublicKey() {
         let ex = self.expectationWithDescription("User data entity should be added.")
-        let numberOfRequests = 3 + 1 + 1 + 1
+        let numberOfRequests = 3 + 1 + 1
         let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
         
         let userDataList = self.userDataListWithLength(1)
-        self.createPublicKeyWithUserDataList(userDataList, confirmUserDataWithHandler: { error in
+        self.createAndConfirmPublicKeyWithUserDataList(userDataList) { error in
             if error != nil {
                 XCTFail("Error: \(error!.localizedDescription)")
                 return
             }
             
+            let pKey = VFPrivateKey(key: self.keyPair.privateKey(), password: nil)
             let userDataList1 = self.userDataListWithLength(1)
             let ud = userDataList1[0] as! VKUserData
-            self.keysClient.createUserData(ud, publicKeyId: self.publicKey.idb.publicKeyId, privateKey: self.keyPair.privateKey(), keyPassword: nil, completionHandler: { userData, createError in
+            self.keysClient.createUserData(ud, publicKeyId: self.publicKey.idb.publicKeyId!, privateKey: pKey) { userData, createError in
                 if createError != nil {
                     XCTFail("Error: \(createError!.localizedDescription)")
                     return
                 }
                 
-                self.keysClient.getPublicKeyId(self.publicKey.idb.publicKeyId, completionHandler: { pubKey, getError in
+                self.keysClient.searchPublicKeyId(self.publicKey.idb.publicKeyId!, privateKey: pKey) { pubKey, getError in
                     if getError != nil {
                         XCTFail("Error: \(getError!.localizedDescription)")
                         return
                     }
                     
-                    XCTAssertTrue(pubKey.userDataList.count - self.publicKey.userDataList.count == 1, "Public key should now have one additional user data.")
+                    XCTAssertTrue(pubKey!.userDataList.count - self.publicKey.userDataList.count == 1, "Public key should now have one additional user data.")
                     
                     ex.fulfill()
-                })
-            })
-        })
+                }
+            }
+        }
         
-        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout), handler: { error in
+        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout)) { error in
             if error != nil {
                 XCTFail("Expectation failed: \(error!.localizedDescription)")
             }
-        })
+        }
     }
     
     func test007_deleteUserDataFromExistingPublicKey() {
@@ -225,37 +228,45 @@ class VK001_KeysClientSwiftTests: XCTestCase {
         let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
         
         let userDataList = self.userDataListWithLength(kTestUserDataCount)
-        self.createPublicKeyWithUserDataList(userDataList, confirmUserDataWithHandler: { error in
+        self.createAndConfirmPublicKeyWithUserDataList(userDataList) { error in
             if error != nil {
                 XCTFail("Error: \(error!.localizedDescription)")
                 return
             }
-            
-            let ud = userDataList[0] as! VKUserData
-            self.keysClient.deleteUserDataId(ud.idb.userDataId, publicKeyId: self.publicKey.idb.publicKeyId, privateKey: self.keyPair.privateKey(), keyPassword: nil, completionHandler: { deleteError in
-                if deleteError != nil {
-                    XCTFail("Error: \(deleteError!.localizedDescription)")
+
+            let pKey = VFPrivateKey(key: self.keyPair.privateKey(), password: nil)
+            self.keysClient.searchPublicKeyId(self.publicKey.idb.publicKeyId!, privateKey: pKey) { pubKey, error in
+                if error != nil {
+                    XCTFail("Error getting public key: \(error!.localizedDescription)")
                     return
                 }
-                
-                self.keysClient.getPublicKeyId(self.publicKey.idb.publicKeyId, completionHandler: { pubKey, getError in
-                    if getError != nil {
-                        XCTFail("Error: \(getError!.localizedDescription)")
+
+                let ud = pubKey!.userDataList[0] as! VKUserData
+                self.keysClient.deleteUserDataId(ud.idb.userDataId!, publicKeyId: pubKey!.idb.publicKeyId!, privateKey:pKey) { deleteError in
+                    if deleteError != nil {
+                        XCTFail("Error: \(deleteError!.localizedDescription)")
                         return
                     }
                     
-                    XCTAssertTrue(self.publicKey.userDataList.count - pubKey.userDataList.count == 1, "Public key should now have one additional user data less than initially created.")
-                    
-                    ex.fulfill()
-                })
-            })
-        })
+                    self.keysClient.searchPublicKeyId(pubKey!.idb.publicKeyId!, privateKey: pKey) { pubKey1, getError in
+                        if getError != nil {
+                            XCTFail("Error: \(getError!.localizedDescription)")
+                            return
+                        }
+                        
+                        XCTAssertTrue(pubKey!.userDataList.count - pubKey1!.userDataList.count == 1, "Public key should now have one additional user data less than initially created.")
+                        
+                        ex.fulfill()
+                    }
+                }
+            }
+        }
         
-        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout), handler: { error in
+        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout)) { error in
             if error != nil {
                 XCTFail("Expectation failed: \(error!.localizedDescription)")
             }
-        })
+        }
     }
     
 }
@@ -269,7 +280,7 @@ extension VK001_KeysClientSwiftTests {
     }
 
     func userData() -> VKUserData {
-        return VKUserData(idb: nil, dataClass: .UDCUserId, dataType: .UDTEmail, value: self.userDataValue(), confirmed: false)
+        return VKUserData(idb: VKIdBundle(), dataClass: .UDCUserId, dataType: .UDTEmail, value: self.userDataValue(), confirmed: false)
     }
 
     func userDataListWithLength(length: Int) -> NSArray {
@@ -291,8 +302,9 @@ extension VK001_KeysClientSwiftTests {
     }
     
     func createPublicKeyWithUserDataList(list: NSArray, handler: ((NSError?) -> Void)?) {
-        let pKey = VKPublicKey(idb: nil, key: self.keyPair.publicKey(), userDataList: list as [AnyObject])
-        self.keysClient.createPublicKey(pKey, privateKey: self.keyPair.privateKey(), keyPassword: nil) { pubKey, error in
+        let pKey = VKPublicKey(idb: VKIdBundle(), key: self.keyPair.publicKey(), userDataList: list as [AnyObject])
+        let privKey = VFPrivateKey(key: self.keyPair.privateKey(), password: nil)
+        self.keysClient.createPublicKey(pKey, privateKey: privKey) { pubKey, error in
             if error != nil {
                 if handler != nil {
                     handler!(error!)
@@ -364,7 +376,7 @@ extension VK001_KeysClientSwiftTests {
                             // Actual code is the last 6 charachters.
                             // Extract the code
                             let code = (match as NSString).substringFromIndex(match.characters.count - 6);
-                            self.keysClient.persistUserDataId(ud.idb.userDataId, confirmationCode: code, completionHandler: { confirmError in
+                            self.keysClient.persistUserDataId(ud.idb.userDataId!, confirmationCode: code, completionHandler: { confirmError in
                                 if confirmError != nil {
                                     if handler != nil {
                                         handler!(confirmError!)
@@ -391,7 +403,7 @@ extension VK001_KeysClientSwiftTests {
         }
     }
     
-    func createPublicKeyWithUserDataList(list: NSArray, confirmUserDataWithHandler handler: ((NSError?)->Void)?) {
+    func createAndConfirmPublicKeyWithUserDataList(list: NSArray, confirmUserDataWithHandler handler: ((NSError?)->Void)?) {
         self.createPublicKeyWithUserDataList(list, handler: { error in
             if error != nil {
                 if handler != nil {

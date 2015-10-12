@@ -12,9 +12,9 @@
 
 @interface VKIdBundle ()
 
-@property (nonatomic, copy, readwrite) GUID *containerId;
-@property (nonatomic, copy, readwrite) GUID *publicKeyId;
-@property (nonatomic, copy, readwrite) GUID *userDataId;
+@property (nonatomic, copy, readwrite) GUID * __nullable containerId;
+@property (nonatomic, copy, readwrite) GUID * __nullable publicKeyId;
+@property (nonatomic, copy, readwrite) GUID * __nullable userDataId;
 
 @end
 

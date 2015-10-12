@@ -10,7 +10,7 @@
 
 @interface NSThread (VFBlockExecution)
 
-- (void)performBlockAsync:(void(^)(void))block;
-- (void)performBlockSync:(void(^)(void))block;
+- (void)performBlockAsync:(void(^ __nullable)(void))block;
+- (void)performBlockSync:(void(^ __nullable)(void))block;
 
 @end

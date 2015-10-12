@@ -15,8 +15,8 @@
 
 @interface VKUserData ()
 
-@property (nonatomic, copy, readwrite) VKIdBundle *idb;
-@property (nonatomic, copy, readwrite) NSNumber *confirmed;
+@property (nonatomic, copy, readwrite) VKIdBundle * __nonnull idb;
+@property (nonatomic, copy, readwrite) NSNumber * __nonnull confirmed;
 
 @end
 
@@ -43,11 +43,11 @@
 }
 
 - (instancetype)initWithDataClass:(VFUserDataClass)dataClass dataType:(VFUserDataType)dataType value:(NSString *)value {
-    return [self initWithIdb:nil dataClass:dataClass dataType:dataType value:value confirmed:@NO];
+    return [self initWithIdb:[[VKIdBundle alloc] init] dataClass:dataClass dataType:dataType value:value confirmed:@NO];
 }
 
 - (instancetype)init {
-    return [self initWithIdb:nil dataClass:UDCUnknown dataType:UDTUnknown value:nil confirmed:@NO];
+    return [self initWithIdb:[[VKIdBundle alloc] init] dataClass:UDCUnknown dataType:UDTUnknown value:@"" confirmed:@NO];
 }
 
 #pragma mark - NSCopying protocol implementation

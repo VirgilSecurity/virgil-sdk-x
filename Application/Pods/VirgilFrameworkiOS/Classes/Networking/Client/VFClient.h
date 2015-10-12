@@ -23,23 +23,23 @@
 
 @interface VFClient : NSObject
 
-@property (nonatomic, strong, readonly) NSString *token;
+@property (nonatomic, strong, readonly) NSString * __nonnull token;
 
 /**
  * Creates instance of VFClient particular class.
  *
  * @param token NSString containing application token received from https://api.virgilsecurity.com
  */
-- (instancetype)initWithApplicationToken:(NSString *)token NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithApplicationToken:(NSString * __nonnull)token NS_DESIGNATED_INITIALIZER;
 
 /**
  * Getter for Virgil Service URL in form of NSString.
  */
-- (NSString *)serviceURL;
+- (NSString * __nonnull)serviceURL;
 
 /**
  * Adds given request to the execution queue and sends it to service.
  */
-- (void)send:(VFServiceRequest *)request;
+- (void)send:(VFServiceRequest * __nonnull)request;
 
 @end
