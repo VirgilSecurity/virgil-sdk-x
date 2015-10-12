@@ -115,6 +115,7 @@ Requests to the service is an asynchronous network operation. VKKeysClient insta
 #import <VirgilKeysiOS/VKPublicKey.h>
 #import <VirgilKeysiOS/VKUserData.h>
 #import <VirgilKeysiOS/VKKeysClient.h>
+#import <VirgilFrameworkiOS/VFPrivateKey.h>
 
 //...
 @property (nonatomic, strong) VKKeysClient *keysClient;
@@ -128,8 +129,10 @@ VKUserData* userData = [[VKUserData alloc] initWithIdb:nil dataClass:UDCUserId d
 VKPublicKey *publicKey = [[VKPublicKey alloc] initWithIdb:nil key:pair.publicKey userDataList:@[ userData ]];
 // Create a new instance of the keysClient
 self.keysClient = [[VKKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#>];
-// Create a requst
-[self.keysClient createPublicKey:publicKey privateKey:keyPair.privateKey keyPassword:nil completionHandler:^(VKPublicKey *pubKey, NSError *error) {
+// Pack the private key into container
+VFPrivateKey *pKey = [[VFPrivateKey alloc] initWithKey:keyPair.privateKey password:nil];
+// Create a request
+[self.keysClient createPublicKey:publicKey privateKey:pKey completionHandler:^(VKPublicKey *pubKey, NSError *error) {
 	// Each request to the service is executed in a different background thread.
 	// This completion handler is called NOT on the main thread.
     if (error != nil) {
@@ -160,7 +163,8 @@ let userData = VKUserData(idb: nil, dataClass: .UDCUserId, dataType: .UDTEmail, 
 let publicKey = VKPublicKey(idb: nil, key: keyPair.publicKey(), userDataList: [ userData ])
 // Create a new instance of the keysClient
 self.keysClient = VKKeysClient(applicationToken: <#Virgil Application Token#>)
-self.keysClient.createPublicKey(publicKey, privateKey: keyPair.privateKey(), keyPassword: nil) { pubKey, error in
+let pKey = VFPrivateKey(key: self.keyPair.privateKey(), password: nil)
+self.keysClient.createPublicKey(publicKey, privateKey: pKey) { pubKey, error in
     if error != nil {
         println("Error creating public key object: \(error!.localizedDescription)")
         return
