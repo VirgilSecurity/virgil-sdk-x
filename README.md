@@ -73,17 +73,17 @@ After signing in press *Register an application* button and fill required fields
 
 ###### Objective-C
 ```objective-c
-#import <VirgilCryptoiOS/VCKeyPair.h>
+#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
 
 //...
-VCKeyPair *keyPair = [[VCKeyPair alloc] init];
+VSSKeyPair *keyPair = [[VSSKeyPair alloc] init];
 //...
 ```
 
 ###### Swift
 ```swift
 //...
-let keyPair = VCKeyPair()
+let keyPair = VSSKeyPair()
 //...
 ```
 
@@ -91,48 +91,46 @@ Optionally it is possible to create a new key pair protected by some password:
 
 ###### Objective-C
 ```objective-c
-#import <VirgilCryptoiOS/VCKeyPair.h>
+#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
 
 //...
-VCKeyPair *keyPair = [[VCKeyPair alloc] initWithPassword:<#password#>];
+VSSKeyPair *keyPair = [[VSSKeyPair alloc] initWithPassword:<#password#>];
 //...
 ```
 
 ###### Swift
 ```swift
 //...
-let keyPair = VCKeyPair(password:<#password#>)
+let keyPair = VSSKeyPair(password:<#password#>)
 //...
 ```
 
 #### Creating a new public key at the Virgil Keys Service
 
-Requests to the service is an asynchronous network operation. VKKeysClient instance send the request and when it is done it calls completion handler block given as last parameter in any call. To get this work VKKeysClient instance should exist when the request is done. It is a good idea to make a property which will hold the VKKeysClient instance.
+Requests to the service is an asynchronous network operation. VSSKeysClient instance send the request and when it is done it calls completion handler block given as last parameter in any call. To get this work VSSKeysClient instance should exist when the request is done. It is a good idea to make a property which will hold the VSSKeysClient instance.
 
 ###### Objective-C
 ```objective-c
-#import <VirgilCryptoiOS/VCKeyPair.h>
-#import <VirgilKeysiOS/VKPublicKey.h>
-#import <VirgilKeysiOS/VKUserData.h>
-#import <VirgilKeysiOS/VKKeysClient.h>
-#import <VirgilFrameworkiOS/VFPrivateKey.h>
+#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
+#import <VirgilFrameworkiOS/VirgilFrameworkiOS.h>
+#import <VirgilKeysiOS/VirgilKeysiOS.h>
 
 //...
-@property (nonatomic, strong) VKKeysClient *keysClient;
+@property (nonatomic, strong) VSSKeysClient *keysClient;
 //...
 //...
 // Create a new key pair
-VCKeyPair *keyPair = [[VCKeyPair alloc] init];
+VSSKeyPair *keyPair = [[VSSKeyPair alloc] init];
 // Create a new user data object
-VKUserData* userData = [[VKUserData alloc] initWithIdb:nil dataClass:UDCUserId dataType:UDTEmail value:<#email address#> confirmed:nil];
+VSSUserData* userData = [[VSSUserData alloc] initWithDataClass:UDCUserId dataType:UDTEmail value:<#email address#>];
 // Create a new public key candidate
-VKPublicKey *publicKey = [[VKPublicKey alloc] initWithIdb:nil key:pair.publicKey userDataList:@[ userData ]];
+VSSPublicKey *publicKey = [[VSSPublicKey alloc] initWithKey:pair.publicKey userDataList:@[ userData ]];
 // Create a new instance of the keysClient
-self.keysClient = [[VKKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#>];
+self.keysClient = [[VSSKeysClient alloc] initWithApplicationToken:<#Virgil Application Token#>];
 // Pack the private key into container
-VFPrivateKey *pKey = [[VFPrivateKey alloc] initWithKey:keyPair.privateKey password:nil];
+VSSPrivateKey *pKey = [[VSSPrivateKey alloc] initWithKey:keyPair.privateKey password:nil];
 // Create a request
-[self.keysClient createPublicKey:publicKey privateKey:pKey completionHandler:^(VKPublicKey *pubKey, NSError *error) {
+[self.keysClient createPublicKey:publicKey privateKey:pKey completionHandler:^(VSSPublicKey *pubKey, NSError *error) {
 	// Each request to the service is executed in a different background thread.
 	// This completion handler is called NOT on the main thread.
     if (error != nil) {
@@ -152,18 +150,18 @@ VFPrivateKey *pKey = [[VFPrivateKey alloc] initWithKey:keyPair.privateKey passwo
 ###### Swift
 ```swift
 //...
-private var keysClient: VKKeysClient!
+private var keysClient: VSSKeysClient!
 //...
 //... 
 // Create a new key pair
-let keyPair = VCKeyPair()
+let keyPair = VSSKeyPair()
 // Create a new user data object
-let userData = VKUserData(idb: nil, dataClass: .UDCUserId, dataType: .UDTEmail, value: <#email address#>, confirmed: false)
+let userData = VSSUserData(dataClass: .UDCUserId, dataType: .UDTEmail, value: <#email address#>)
 // Create a new public key candidate
-let publicKey = VKPublicKey(idb: nil, key: keyPair.publicKey(), userDataList: [ userData ])
+let publicKey = VSSPublicKey(key: keyPair.publicKey(), userDataList: [ userData ])
+let privateKey = VSSPrivateKey(key: keyPair.privateKey(), password: nil)
 // Create a new instance of the keysClient
-self.keysClient = VKKeysClient(applicationToken: <#Virgil Application Token#>)
-let pKey = VFPrivateKey(key: self.keyPair.privateKey(), password: nil)
+self.keysClient = VSSKeysClient(applicationToken: <#Virgil Application Token#>)
 self.keysClient.createPublicKey(publicKey, privateKey: pKey) { pubKey, error in
     if error != nil {
         println("Error creating public key object: \(error!.localizedDescription)")
@@ -182,16 +180,15 @@ self.keysClient.createPublicKey(publicKey, privateKey: pKey) { pubKey, error in
 
 ###### Objective-C
 ```objective-c
-#import <VirgilKeysiOS/VKPublicKey.h>
-#import <VirgilKeysiOS/VKKeysClient.h>
+#import <VirgilKeysiOS/VirgilKeysiOS.h>
 
 //...
-@property (nonatomic, strong) VKKeysClient *keysClient;
+@property (nonatomic, strong) VSSKeysClient *keysClient;
 //...
 //...
 // Assuming that keysClient was instantiated at some point before. If not - see 'Creating a new public key at the Virgil Keys Service' example.
 // Send a request
-[self.keysClient searchPublicKeyUserIdValue:<#email address#> completionHandler:^(VKPublicKey *pubKey, NSError *error) {
+[self.keysClient searchPublicKeyUserIdValue:<#email address#> completionHandler:^(VSSPublicKey *pubKey, NSError *error) {
 	// Each request to the service is executed in a different background thread.
 	// This completion handler is called NOT on the main thread.
     if (error != nil) {
@@ -211,7 +208,7 @@ self.keysClient.createPublicKey(publicKey, privateKey: pKey) { pubKey, error in
 ###### Swift
 ```swift
 //...
-private var keysClient: VKKeysClient!
+private var keysClient: VSSKeysClient!
 //...
 //...
 // Assuming that keysClient was instantiated at some point before. If not - see 'Creating a new public key at the Virgil Keys Service' example.
@@ -237,7 +234,7 @@ When the user wants to send a private message which can be read only by recipien
 ###### Objective-C
 ```objective-c
 //...
-#import <VirgilCryptoiOS/VCCryptor.h>
+#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
 //...
 
 // Assuming that we have some initial private string message.
@@ -245,11 +242,11 @@ NSString *message = @"This is a secret message which should be encrypted.";
 // Convert it to the NSData
 NSData *toEncrypt = [message dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
 // Assuming that we have received a recepient's public key from the Virgil Keys Service.
-// So, VKPublicKey *recepientKey exists.
+// So, VSSPublicKey *recepientKey exists.
 
-// Create a new VCCryptor instance
-VCCryptor *cryptor = [[VCCryptor alloc] init];
-// Now we should add a key recepient (recepientKey is a VKPublicKey instance received from the Virgil Keys Service)
+// Create a new VSSCryptor instance
+VSSCryptor *cryptor = [[VSSCryptor alloc] init];
+// Now we should add a key recepient (recepientKey is a VSSPublicKey instance received from the Virgil Keys Service)
 [cryptor addKeyRecepient:<#recepientKey.idb.publicKeyId#> publicKey:<#recepientKey.key#>];
 // And now we can easily encrypt the plain data
 NSData *encryptedData = [cryptor encryptData:toEncrypt embedContentInfo:@YES];
@@ -264,9 +261,9 @@ NSData *encryptedData = [cryptor encryptData:toEncrypt embedContentInfo:@YES];
 let message = "This is a secret message which should be encrypted."
 // Convert it to the NSData
 if let toEncrypt = (message as NSString).dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-    // Create a new VCCryptor instance
-    let cryptor = VCCryptor()
-    // Now we should add a key recepient (recepientKey is a VKPublicKey instance received from the Virgil Keys Service)
+    // Create a new VSSCryptor instance
+    let cryptor = VSSCryptor()
+    // Now we should add a key recepient (recepientKey is a VSSPublicKey instance received from the Virgil Keys Service)
     cryptor.addKeyRecepient(<#recepientKey.idb.publicKeyId#>, publicKey: <#recepientKey.key#>)
     // And now we can easily encrypt the plain data
     if let encryptedData = cryptor.encryptData(toEncrypt, embedContentInfo: true) {
@@ -282,14 +279,14 @@ In case when a user needs to decrypt received encrypted message he/she needs to 
 ###### Objective-C
 ```objective-c
 //...
-#import <VirgilCryptoiOS/VCCryptor.h>
+#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
 //...
 
 // Assuming that we have received some data encrypted using our public key from the Virgil Keys Service.
-// Assuming that we got VKPublicKey instance of our public key from the Virgil Keys Service.
+// Assuming that we got VSSPublicKey instance of our public key from the Virgil Keys Service.
 // Assuming that we have our private key which corresponds the public key from the Virgil Keys Service.
-// Create a new VCCryptor instance
-VCCryptor *decryptor = [[VCCryptor alloc] init];
+// Create a new VSSCryptor instance
+VSSCryptor *decryptor = [[VSSCryptor alloc] init];
 // Decrypt data
 NSData *plainData = [decryptor decryptData:<#encryptedData#> publicKeyId:<#myPublicKey.idb.publicKeyId#> privateKey:<#myPrivateKey#> keyPassword:<# Private key password or nil #>];
 // Compose initial message from the plain decrypted data
@@ -301,10 +298,10 @@ NSString *initialMessage = [[NSString alloc] initWithData:plainData encoding:NSU
 //...
 
 // Assuming that we have received some data encrypted using our public key from the Virgil Keys Service.
-// Assuming that we got VKPublicKey instance of our public key from the Virgil Keys Service.
+// Assuming that we got VSSPublicKey instance of our public key from the Virgil Keys Service.
 // Assuming that we have our private key which corresponds the public key from the Virgil Keys Service.
-// Create a new VCCryptor instance
-let decryptor = VCCryptor()
+// Create a new VSSCryptor instance
+let decryptor = VSSCryptor()
 // Decrypt data
 if let plainData = decryptor.decryptData(<#encrypted data#>, publicKeyId: <#myPublicKey.idb.publicKeyId#>, privateKey: <#myPrivateKey#>, keyPassword: <#passwword or nil#>) {
     // Compose initial message from the plain decrypted data
@@ -323,7 +320,7 @@ Signature is a piece of data which is composed using a particular user's private
 ###### Objective-C
 ```objective-c
 //...
-#import <VirgilCryptoiOS/VCSigner.h>
+#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
 //...
 
 // Assuming that we have some initial string message that we want to sign.
@@ -331,8 +328,8 @@ NSString *message = @"This is a message which should be signed.";
 // Convert it to the NSData
 NSData *toSign = [message dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
 // Assuming that we have our private key.
-// Create a new VCSigner instance
-VCSigner *signer = [[VCSigner alloc] init];
+// Create a new VSSSigner instance
+VSSSigner *signer = [[VSSSigner alloc] init];
 // Sign the initial data
 NSData *signature = [signer signData:toSign privateKey:<#myPrivateKey#> keyPassword:<#password or nil#>];
 if (signature.length > 0) {
@@ -351,8 +348,8 @@ let message = "This is a message which should be signed."
 // Convert it to the NSData
 if let toSign = (message as NSString).dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
     // Assuming that we have our private key.
-    // Create a new VCSigner instance
-    let signer = VCSigner()
+    // Create a new VSSSigner instance
+    let signer = VSSSigner()
     if let signature = signer.signData(toSign, privateKey: <#myPrivateKey#>, keyPassword: <#password or nil#>) {
         // Use composed signature data to make recipient sure about the sender identity.
         //...  
@@ -368,14 +365,14 @@ To verify some signature it is necessary to get a sender's public key from the V
 ###### Objective-C
 ```objective-c
 //...
-#import <VirgilCryptoiOS/VCSigner.h>
+#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
 //...
 
 // Assuming that we get the public key of the user whose signature we need to verify from the Virgil Keys Service
 // Assuming that we have a NSData object which was actually signed.
 // Assuming that we have a NSData object with a signature.
-// Create a new VCSigner instance
-VCSigner *verifier = [[VCSigner alloc] init];
+// Create a new VSSSigner instance
+VSSSigner *verifier = [[VSSSigner alloc] init];
 // Verify signature against the signed data and sender's public key.
 BOOL verified = [verifier verifySignature:<#signature#> data:<#signed data#> publicKey:<#senderKey.key#>];
 if (verified) {
@@ -391,8 +388,8 @@ if (verified) {
 // Assuming that we get the public key of the user whose signature we need to verify from the Virgil Keys Service
 // Assuming that we have a NSData object which was actually signed.
 // Assuming that we have a NSData object with a signature.
-// Create a new VCSigner instance
-let verifier = VCSigner()
+// Create a new VSSSigner instance
+let verifier = VSSSigner()
 // Verify signature against the signed data and sender's public key.
 let verified = verifier.verifySignature(<#signature#>, data: <#signed data#>, publicKey: <#senderKey.key#>)
 if verified {
