@@ -9,8 +9,8 @@
 #import "MailinatorRequest.h"
 #import "MailinatorRequestSettingsProvider.h"
 
-#import <VirgilFrameworkiOS/VFError.h>
-#import <VirgilFrameworkiOS/NSObject+VFUtils.h>
+#import <VirgilFrameworkiOS/VSSError.h>
+#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
 
 @interface MailinatorRequest ()
 
@@ -38,7 +38,7 @@
         return error;
     }
     
-    VFError *vfError = [VFError deserializeFrom:[candidate as:[NSDictionary class]]];
+    VSSError *vfError = [VSSError deserializeFrom:[candidate as:[NSDictionary class]]];
     return vfError.nsError;
 }
 

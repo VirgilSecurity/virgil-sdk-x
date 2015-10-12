@@ -1,1 +1,0 @@
-../../../VirgilCryptoiOS/Wrapper/VCVirgilVersion.h

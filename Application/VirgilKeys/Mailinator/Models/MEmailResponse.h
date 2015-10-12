@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VFModel.h"
+#import "VSSModel.h"
 
 @class MEmail;
 
-@interface MEmailResponse : VFModel
+@interface MEmailResponse : VSSModel
 
 @property (nonatomic, strong, readonly) NSNumber *apiInboxFetchesLeft;
 @property (nonatomic, strong, readonly) NSNumber *apiEmailFetchesLeft;

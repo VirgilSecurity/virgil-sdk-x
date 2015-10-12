@@ -9,17 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
-#import "VKKeysClientStg.h"
-#import "VKUserData.h"
-#import "VKPublicKey.h"
-#import "VKActionToken.h"
+#import "VSSKeysClientStg.h"
+#import "VSSUserData.h"
+#import "VSSPublicKey.h"
+#import "VSSActionToken.h"
 
 #import "Mailinator.h"
 #import "MEmailMetadata.h"
 #import "MEmailResponse.h"
 #import "MEmail.h"
 #import "MPart.h"
-#import "VKIdBundle.h"
+#import "VSSIdBundle.h"
 
 #import <VirgilCryptoiOS/VirgilCryptoiOS.h>
 #import <VirgilFrameworkiOS/VirgilFrameworkiOS.h>
@@ -37,16 +37,16 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
 
 @interface VK001_KeysClientTests : XCTestCase
 
-@property (nonatomic, strong) VKKeysClientStg *keysClient;
+@property (nonatomic, strong) VSSKeysClientStg *keysClient;
 @property (nonatomic, strong) Mailinator *mailinator;
 
 @property (nonatomic, strong) NSRegularExpression *regexp;
 
-@property (nonatomic, strong) VCKeyPair *keyPair;
-@property (nonatomic, strong) VKPublicKey *publicKey;
+@property (nonatomic, strong) VSSKeyPair *keyPair;
+@property (nonatomic, strong) VSSPublicKey *publicKey;
 
 - (NSString *)userDataValue;
-- (VKUserData *)userData;
+- (VSSUserDataExtended *)userData;
 - (NSArray *)userDataListWithLength:(NSUInteger)length;
 - (NSNumber *)completedConfirmationList:(NSArray *)list;
 
@@ -77,7 +77,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
 
 - (void)setUp {
     [super setUp];
-    self.keysClient = [[VKKeysClientStg alloc] initWithApplicationToken:kApplicationToken];
+    self.keysClient = [[VSSKeysClientStg alloc] initWithApplicationToken:kApplicationToken];
     self.mailinator = [[Mailinator alloc] initWithApplicationToken:kMailinatorToken];
     self.regexp = [NSRegularExpression regularExpressionWithPattern:@"Your confirmation code is.+([A-Z0-9]{6})" options:NSRegularExpressionCaseInsensitive error:nil];
     self.keyPair = [[VCKeyPair alloc] init];
@@ -209,7 +209,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
         }
         
         VFPrivateKey *pKey = [[VFPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
-        [self.keysClient deletePublicKeyId:self.publicKey.idb.publicKeyId privateKey:pKey completionHandler:^(VKActionToken *actionToken, NSError *delError) {
+        [self.keysClient deletePublicKeyId:self.publicKey.idb.publicKeyId privateKey:pKey completionHandler:^(VSSActionToken *actionToken, NSError *delError) {
             if (delError != nil) {
                 XCTFail(@"Public key should be successfully deleted.");
                 return;
@@ -250,9 +250,9 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
         }
         
         NSArray *userDataList1 = [self userDataListWithLength:1];
-        VKUserData *ud = [userDataList1[0] as:[VKUserData class]];
+        VSSUserDataExtended *ud = [userDataList1[0] as:[VSSUserDataExtended class]];
         VFPrivateKey *pKey = [[VFPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
-        [self.keysClient createUserData:ud publicKeyId:self.publicKey.idb.publicKeyId privateKey:pKey completionHandler:^(VKUserData *uData, NSError *udError) {
+        [self.keysClient createUserData:ud publicKeyId:self.publicKey.idb.publicKeyId privateKey:pKey completionHandler:^(VSSUserDataExtended *uData, NSError *udError) {
             if (udError != nil) {
                 XCTFail(@"User data should be created successfully: %@", [udError localizedDescription]);
                 return;
@@ -299,7 +299,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
                 return;
             }
             
-            VKUserData *ud = [pubKey.userDataList[0] as:[VKUserData class]];
+            VSSUserDataExtended *ud = [pubKey.userDataList[0] as:[VKUserData class]];
             [self.keysClient deleteUserDataId:ud.idb.userDataId publicKeyId:pubKey.idb.publicKeyId privateKey:pKey completionHandler:^(NSError *udError) {
                 if (udError != nil) {
                     XCTFail(@"User data should be created successfully: %@", [udError localizedDescription]);
@@ -335,8 +335,8 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
     return [NSString stringWithFormat:@"%@@mailinator.com", userId];
 }
 
-- (VKUserData *)userData {
-    return [[VKUserData alloc] initWithIdb:[[VKIdBundle alloc] init] dataClass:UDCUserId dataType:UDTEmail value:[self userDataValue] confirmed:@NO];
+- (VSSUserDataExtended *)userData {
+    return [[VSSUserDataExtended alloc] initWithIdb:[[VSSIdBundle alloc] init] dataClass:UDCUserId dataType:UDTEmail value:[self userDataValue] confirmed:@NO];
 }
 
 - (NSArray *)userDataListWithLength:(NSUInteger)length {
@@ -358,9 +358,9 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
 }
 
 - (void)createPublicKeyWithUserDataList:(NSArray *)userDataList andHandler:(void(^)(NSError *))handler {
-    VKPublicKey *pKey = [[VKPublicKey alloc] initWithIdb:[[VKIdBundle alloc] init] key:self.keyPair.publicKey userDataList:userDataList];
-    VFPrivateKey *privKey = [[VFPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
-    [self.keysClient createPublicKey:pKey privateKey:privKey completionHandler:^(VKPublicKey *pubKey, NSError *error) {
+    VSSPublicKey *pKey = [[VSSPublicKey alloc] initWithIdb:[[VSSIdBundle alloc] init] key:self.keyPair.publicKey userDataList:userDataList];
+    VSSPrivateKey *privKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
+    [self.keysClient createPublicKey:pKey privateKey:privKey completionHandler:^(VSSPublicKey *pubKey, NSError *error) {
         if (error != nil) {
             if (handler != nil) {
                 handler(error);
@@ -375,13 +375,13 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
     }];
 }
 
-- (void)confirmUserDataOfPublicKey:(VKPublicKey *)key withHandler:(void(^)(NSError *error))handler {
+- (void)confirmUserDataOfPublicKey:(VSSPublicKey *)key withHandler:(void(^)(NSError *error))handler {
     // Just some object to use in synchronization
     NSObject *mutex = [[NSObject alloc] init];
     // Create an array of flags to monitor the fact that all user data from the public key's list are comfirmed.
     NSMutableArray *confirmationsList = [[NSMutableArray alloc] initWithCapacity:key.userDataList.count];
     
-    for(VKUserData *ud in key.userDataList) {
+    for(VSSUserDataExtended *ud in key.userDataList) {
         // Add the flag that userData is not confirmed yet.
         [confirmationsList addObject:@NO];
         // Get the Mailinator inbox name

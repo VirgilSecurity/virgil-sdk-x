@@ -6,18 +6,18 @@
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-#import "VFTypes.h"
-#import "VFSerializable.h"
+#import "VSSTypes.h"
+#import "VSSSerializable.h"
 
-#import "VFModel.h"
-#import "VFError.h"
-#import "VFUserData.h"
-#import "VFPrivateKey.h"
+#import "VSSModel.h"
+#import "VSSError.h"
+#import "VSSUserData.h"
+#import "VSSPrivateKey.h"
 
-#import "VFClient.h"
-#import "VFServiceRequest.h"
-#import "VFJSONRequest.h"
+#import "VSSClient.h"
+#import "VSSServiceRequest.h"
+#import "VSSJSONRequest.h"
 
-#import "NSObject+VFUtils.h"
-#import "NSString+VFXMLEscape.h"
-#import "NSThread+VFBlockExecution.h"
+#import "NSObject+VSSUtils.h"
+#import "NSString+VSSXMLEscape.h"
+#import "NSThread+VSSBlockExecution.h"

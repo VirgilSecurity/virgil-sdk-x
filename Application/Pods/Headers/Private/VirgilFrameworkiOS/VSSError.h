@@ -1,0 +1,1 @@
+../../../VirgilFrameworkiOS/Classes/Models/VSSError.h

@@ -7,7 +7,7 @@
 //
 
 #import "MPart.h"
-#import <VirgilFrameworkiOS/NSObject+VFUtils.h>
+#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
 
 static NSString *const kMPHeaders = @"headers";
 static NSString *const kMPBody = @"body";

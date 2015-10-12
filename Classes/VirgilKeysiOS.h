@@ -6,17 +6,17 @@
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-#import "VKModelCommons.h"
+#import "VSSKeysModelCommons.h"
 
-#import "VKBaseModel.h"
-#import "VKIdBundle.h"
-#import "VKError.h"
+#import "VSSBaseModel.h"
+#import "VSSIdBundle.h"
+#import "VSSKeysError.h"
 
-#import "VKPublicKey.h"
-#import "VKUserData.h"
-#import "VKActionToken.h"
+#import "VSSPublicKey.h"
+#import "VSSUserDataExtended.h"
+#import "VSSActionToken.h"
 
-#import "VKKeysClient.h"
+#import "VSSKeysClient.h"
 
 #import <VirgilCryptoiOS/VirgilCryptoiOS.h>
 #import <VirgilFrameworkiOS/VirgilFrameworkiOS.h>

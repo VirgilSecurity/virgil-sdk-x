@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VFModel.h"
+#import "VSSModel.h"
 
 @class MEmailMetadata;
 
-@interface MEmail : VFModel
+@interface MEmail : VSSModel
 
 @property (nonatomic, strong, readonly) MEmailMetadata *metadata;
 @property (nonatomic, strong, readonly) NSDictionary *headers;

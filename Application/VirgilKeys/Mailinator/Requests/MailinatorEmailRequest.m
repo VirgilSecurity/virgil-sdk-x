@@ -12,7 +12,7 @@
 #import "MEmailResponse.h"
 #import "MailinatorRequestSettingsProvider.h"
 
-#import <VirgilFrameworkiOS/NSObject+VFUtils.h>
+#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
 
 @interface MailinatorEmailRequest ()
 

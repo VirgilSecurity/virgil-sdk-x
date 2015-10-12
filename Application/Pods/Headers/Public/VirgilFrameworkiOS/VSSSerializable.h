@@ -1,0 +1,1 @@
+../../../VirgilFrameworkiOS/Classes/Models/VSSSerializable.h

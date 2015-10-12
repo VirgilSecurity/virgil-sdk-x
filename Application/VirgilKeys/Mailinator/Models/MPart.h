@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VFModel.h"
+#import "VSSModel.h"
 
-@interface MPart : VFModel
+@interface MPart : VSSModel
 
 @property (nonatomic, strong, readonly) NSDictionary *headers;
 @property (nonatomic, strong, readonly) NSString* body;

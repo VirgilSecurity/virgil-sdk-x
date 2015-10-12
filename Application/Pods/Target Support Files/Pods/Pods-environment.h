@@ -9,12 +9,12 @@
 // VirgilCryptoiOS
 #define COCOAPODS_POD_AVAILABLE_VirgilCryptoiOS
 #define COCOAPODS_VERSION_MAJOR_VirgilCryptoiOS 1
-#define COCOAPODS_VERSION_MINOR_VirgilCryptoiOS 0
-#define COCOAPODS_VERSION_PATCH_VirgilCryptoiOS 11
+#define COCOAPODS_VERSION_MINOR_VirgilCryptoiOS 1
+#define COCOAPODS_VERSION_PATCH_VirgilCryptoiOS 0
 
 // VirgilFrameworkiOS
 #define COCOAPODS_POD_AVAILABLE_VirgilFrameworkiOS
 #define COCOAPODS_VERSION_MAJOR_VirgilFrameworkiOS 1
-#define COCOAPODS_VERSION_MINOR_VirgilFrameworkiOS 0
-#define COCOAPODS_VERSION_PATCH_VirgilFrameworkiOS 13
+#define COCOAPODS_VERSION_MINOR_VirgilFrameworkiOS 1
+#define COCOAPODS_VERSION_PATCH_VirgilFrameworkiOS 0
 

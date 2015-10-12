@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-#import "VFClient.h"
+#import "VSSClient.h"
 #import "MailinatorRequestSettingsProvider.h"
 
 @class MEmail;
 
-@interface Mailinator : VFClient <MailinatorRequestSettingsProvider>
+@interface Mailinator : VSSClient <MailinatorRequestSettingsProvider>
 
 - (void)getInbox:(NSString *)name completionHandler:(void(^)(NSArray *metadataList, NSError *error))completionHandler;
 - (void)getEmail:(NSString *)emailId completionHandler:(void(^)(MEmail *email, NSError *error))completionHandler;

@@ -1,0 +1,1 @@
+../../../VirgilFrameworkiOS/Classes/Models/VSSUserData_Protected.h

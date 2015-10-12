@@ -9,7 +9,7 @@
 #import "MEmailResponse.h"
 #import "MEmail.h"
 
-#import <VirgilFrameworkiOS/NSObject+VFUtils.h>
+#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
 
 static NSString *const kMERApiInboxFetchesLeft = @"apiInboxFetchesLeft";
 static NSString *const kMERApiEmailFetchesLeft = @"apiEmailFetchesLeft";

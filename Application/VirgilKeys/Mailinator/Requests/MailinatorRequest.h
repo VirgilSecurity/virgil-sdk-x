@@ -6,11 +6,11 @@
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-#import "VFJSONRequest.h"
+#import "VSSJSONRequest.h"
 
 @protocol MailinatorRequestSettingsProvider;
 
-@interface MailinatorRequest : VFJSONRequest
+@interface MailinatorRequest : VSSJSONRequest
 
 @property (nonatomic, weak, readonly) id<MailinatorRequestSettingsProvider> provider;
 

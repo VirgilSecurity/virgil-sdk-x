@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VFModel.h"
+#import "VSSModel.h"
 
 //{
 //    "seconds_ago":475,
@@ -21,7 +21,7 @@
 //    "ip":"38.7.248.176"
 //}
 
-@interface MEmailMetadata : VFModel
+@interface MEmailMetadata : VSSModel
 
 @property (nonatomic, strong, readonly) NSNumber *seconds_ago;
 @property (nonatomic, strong, readonly) NSString *mid;

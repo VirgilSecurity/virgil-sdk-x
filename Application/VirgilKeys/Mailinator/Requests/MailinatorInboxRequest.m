@@ -11,7 +11,7 @@
 
 #import "MEmailMetadata.h"
 
-#import <VirgilFrameworkiOS/NSObject+VFUtils.h>
+#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
 
 static NSString *const kMRMessages = @"messages";
 
