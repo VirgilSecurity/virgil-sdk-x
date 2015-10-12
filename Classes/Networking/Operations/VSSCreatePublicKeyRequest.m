@@ -23,7 +23,7 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithBaseURL:(NSString *)url publicKey:(VKPublicKey *)key {
+- (instancetype)initWithBaseURL:(NSString *)url publicKey:(VSSPublicKey *)key {
     self = [super initWithBaseURL:url];
     if (self == nil) {
         return nil;
@@ -37,7 +37,7 @@
 }
 
 - (instancetype)initWithBaseURL:(NSString *)url {
-    return [self initWithBaseURL:url publicKey:[[VKPublicKey alloc] init]];
+    return [self initWithBaseURL:url publicKey:[[VSSPublicKey alloc] init]];
 }
 
 #pragma mark - Overrides
@@ -55,7 +55,7 @@
     self.publicKey = [VSSPublicKey deserializeFrom:[candidate as:[NSDictionary class]]];
     if (![[self.publicKey isValid] boolValue]) {
         self.publicKey = nil;
-        return [NSError errorWithDomain:kVKBaseRequestErrorDomain code:kVKBaseRequestErrorCode userInfo:@{ NSLocalizedDescriptionKey: @"Public key deserialization from the service response has been unsuccessful." }];
+        return [NSError errorWithDomain:kVSSKeysBaseRequestErrorDomain code:kVSSKeysBaseRequestErrorCode userInfo:@{ NSLocalizedDescriptionKey: @"Public key deserialization from the service response has been unsuccessful." }];
     }
     
     return nil;

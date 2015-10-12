@@ -65,7 +65,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     if (publicKey == nil || privateKey == nil) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, [NSError errorWithDomain:kVKKeysClientErrorDomain code:-103 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the creation of the public key can not be signed. Public or private key is absent.", @"CreatePublicKey") }]);
+                completionHandler(nil, [NSError errorWithDomain:kVSSKeysClientErrorDomain code:-103 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the creation of the public key can not be signed. Public or private key is absent.", @"CreatePublicKey") }]);
             });
         }
         return;
@@ -105,7 +105,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     if (publicKeyId.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, [NSError errorWithDomain:kVKKeysClientErrorDomain code:-104 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the public key can not be sent. Public key's id is not set.", @"GetPublicKey") }]);
+                completionHandler(nil, [NSError errorWithDomain:kVSSKeysClientErrorDomain code:-104 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the public key can not be sent. Public key's id is not set.", @"GetPublicKey") }]);
             });
         }
         return;
@@ -134,7 +134,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     if (publicKeyId.length == 0 || privateKey.key.length == 0 || keyPair == nil || keyPair.publicKey.length == 0 || keyPair.privateKey.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, [NSError errorWithDomain:kVKKeysClientErrorDomain code:-105 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the public key's update can not be sent. Public key's id is not set, private key is not set or new key pair is not valid.", @"UpdatePublicKey") }]);
+                completionHandler(nil, [NSError errorWithDomain:kVSSKeysClientErrorDomain code:-105 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the public key's update can not be sent. Public key's id is not set, private key is not set or new key pair is not valid.", @"UpdatePublicKey") }]);
             });
         }
         return;
@@ -175,7 +175,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     if (publicKeyId.length == 0 || privateKey.key.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, [NSError errorWithDomain:kVKKeysClientErrorDomain code:-106 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the deletion of the public key can not be sent. Public key's id is not set or private key is missing.", @"DeletePublicKey") }]);
+                completionHandler(nil, [NSError errorWithDomain:kVSSKeysClientErrorDomain code:-106 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the deletion of the public key can not be sent. Public key's id is not set or private key is missing.", @"DeletePublicKey") }]);
             });
         }
         return;
@@ -216,7 +216,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     if (publicKeyId.length == 0 || keyPair == nil || keyPair.publicKey.length == 0 || keyPair.privateKey.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, [NSError errorWithDomain:kVKKeysClientErrorDomain code:-107 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the reset of the public key can not be sent. Public key's id is not set or new key pair is invalid.", @"ResetPublicKey") }]);
+                completionHandler(nil, [NSError errorWithDomain:kVSSKeysClientErrorDomain code:-107 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the reset of the public key can not be sent. Public key's id is not set or new key pair is invalid.", @"ResetPublicKey") }]);
             });
         }
         return;
@@ -257,7 +257,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     if (publicKeyId.length == 0 || actionToken == nil) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, [NSError errorWithDomain:kVKKeysClientErrorDomain code:-108 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the persist public key can not be sent. Public key's id is not set or action token is invalid.", @"PersistPublicKey") }]);
+                completionHandler(nil, [NSError errorWithDomain:kVSSKeysClientErrorDomain code:-108 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the persist public key can not be sent. Public key's id is not set or action token is invalid.", @"PersistPublicKey") }]);
             });
         }
         return;
@@ -285,7 +285,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     if (publicKeyId.length == 0 || privateKey.key.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, [NSError errorWithDomain:kVKKeysClientErrorDomain code:-109 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the searching of the public key can not be sent. Public key's id is not set private key is not set.", @"SearchPublicKey") }]);
+                completionHandler(nil, [NSError errorWithDomain:kVSSKeysClientErrorDomain code:-109 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the searching of the public key can not be sent. Public key's id is not set private key is not set.", @"SearchPublicKey") }]);
             });
         }
         return;
@@ -326,7 +326,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     if (value.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, [NSError errorWithDomain:kVKKeysClientErrorDomain code:-110 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the searching of the public key can not be sent. User id value is not set.", @"SearchPublicKey") }]);
+                completionHandler(nil, [NSError errorWithDomain:kVSSKeysClientErrorDomain code:-110 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the searching of the public key can not be sent. User id value is not set.", @"SearchPublicKey") }]);
             });
         }
         return;
@@ -357,7 +357,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     if (userData == nil || publicKeyId.length == 0 || privateKey.key.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, [NSError errorWithDomain:kVKKeysClientErrorDomain code:-111 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the creation of the user data can not be sent. User data value is not valid, public key's id is not set or private key is absent.", @"CreateUserData") }]);
+                completionHandler(nil, [NSError errorWithDomain:kVSSKeysClientErrorDomain code:-111 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the creation of the user data can not be sent. User data value is not valid, public key's id is not set or private key is absent.", @"CreateUserData") }]);
             });
         }
         return;
@@ -398,7 +398,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     if (userDataId.length == 0 || publicKeyId.length == 0 || privateKey.key.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler([NSError errorWithDomain:kVKKeysClientErrorDomain code:-113 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the deletion of the user data can not be sent. User data id is not set, public key's id is not set or private key is absent.", @"DeleteUserData") }]);
+                completionHandler([NSError errorWithDomain:kVSSKeysClientErrorDomain code:-113 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the deletion of the user data can not be sent. User data id is not set, public key's id is not set or private key is absent.", @"DeleteUserData") }]);
             });
         }
         return;
@@ -438,7 +438,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     if (userDataId.length == 0 || code.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler([NSError errorWithDomain:kVKKeysClientErrorDomain code:-114 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the persist of the user data can not be sent. User data id is not set or confirmation code is absent.", @"PersistUserData") }]);
+                completionHandler([NSError errorWithDomain:kVSSKeysClientErrorDomain code:-114 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the persist of the user data can not be sent. User data id is not set or confirmation code is absent.", @"PersistUserData") }]);
             });
         }
         return;
@@ -466,7 +466,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     if (userDataId.length == 0 || publicKeyId.length == 0 || privateKey.key.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler([NSError errorWithDomain:kVKKeysClientErrorDomain code:-115 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the confirmation code of the user data can not be sent. User data id is not set, public key id is not set or private key is absent.", @"ResendConfirmationUserData") }]);
+                completionHandler([NSError errorWithDomain:kVSSKeysClientErrorDomain code:-115 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the confirmation code of the user data can not be sent. User data id is not set, public key id is not set or private key is absent.", @"ResendConfirmationUserData") }]);
             });
         }
         return;
@@ -504,25 +504,25 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
 
 #pragma mark - Private class logic
 
-- (NSError *)signRequest:(VFServiceRequest *)request privateKey:(VSSPrivateKey *)privateKey {
+- (NSError *)signRequest:(VSSServiceRequest *)request privateKey:(VSSPrivateKey *)privateKey {
     if (request == nil || privateKey.key.length == 0) {
         VFCLDLog(@"There is nothing to sign: request or/and private key is/are not given.");
-        return [NSError errorWithDomain:kVKKeysClientErrorDomain code:-100 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"There is nothing to sign: request or/and private key is/are not given.", @"Sign for the request is not possible.") }];
+        return [NSError errorWithDomain:kVSSKeysClientErrorDomain code:-100 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"There is nothing to sign: request or/and private key is/are not given.", @"Sign for the request is not possible.") }];
     }
     
     // Sign request body with given key.
-    VCSigner *signer = [[VCSigner alloc] init];
+    VSSSigner *signer = [[VSSSigner alloc] init];
     NSData *signData = [signer signData:request.request.HTTPBody privateKey:privateKey.key keyPassword:privateKey.password];
     if (signData.length == 0) {
         VFCLDLog(@"Unable to sign request data with given private key.");
-        return [NSError errorWithDomain:kVKKeysClientErrorDomain code:-101 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to sign the request with given private key.", @"Sign for the request is failed.") }];;
+        return [NSError errorWithDomain:kVSSKeysClientErrorDomain code:-101 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to sign the request with given private key.", @"Sign for the request is failed.") }];;
     }
     
     // Encode sign to base64
     NSString *encodedSign = [signData base64EncodedStringWithOptions:0];
     if (encodedSign.length == 0) {
         VFCLDLog(@"Unable to encode received sign into base64 format.");
-        return [NSError errorWithDomain:kVKKeysClientErrorDomain code:-102 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to encode sign data to base64 format.", @"Sign for request can not be encoded.") }];;
+        return [NSError errorWithDomain:kVSSKeysClientErrorDomain code:-102 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to encode sign data to base64 format.", @"Sign for request can not be encoded.") }];;
     }
     
     [request setRequestHeaders:@{ @"X-VIRGIL-REQUEST-SIGN": encodedSign }];

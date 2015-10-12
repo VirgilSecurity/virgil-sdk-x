@@ -10,40 +10,40 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var keysClient: VKKeysClientStg! = nil
+    var keysClient: VSSKeysClientStg! = nil
     var mailinator: Mailinator! = nil
-    var keyPair: VCKeyPair = VCKeyPair()
+    var keyPair: VSSKeyPair = VSSKeyPair()
     var regexp: NSRegularExpression! = nil
-    var publicKey: VKPublicKey! = nil
+    var publicKey: VSSPublicKey! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let pubBase64 = self.keyPair.publicKey().base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
-        print(pubBase64)
-        let privBase64 = self.keyPair.privateKey().base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
-        print(privBase64)
-        
-        self.keysClient = VKKeysClientStg(applicationToken: "e872d6f718a2dd0bd8cd7d7e73a25f49")
-        self.mailinator = Mailinator(applicationToken: "3b0f46370d9f44cb9b5ac0e80dda97d7")
-        do {
-            self.regexp = try NSRegularExpression(pattern: "Your confirmation code is.+([A-Z0-9]{6})", options: NSRegularExpressionOptions.CaseInsensitive)
-        }
-        catch {
-            self.regexp = nil
-        }
-        
-        let userData = VKUserData(idb: VKIdBundle(), dataClass: .UDCUserId, dataType: .UDTEmail, value: "virgil.test.ios@mailinator.com", confirmed: false)
-        self.createAndConfirmPublicKeyWithUserDataList(NSArray(array: [userData])) { error in
-            if error != nil {
-                print("Error confirmation of the user data: \(error!.localizedDescription)")
-                return
-            }
-            
-            print("Public key is created and confirmed!")
-            print("Account ID: \(self.publicKey.idb.containerId)")
-            print("Public key ID: \(self.publicKey.idb.publicKeyId)")
-        }
+//        let pubBase64 = self.keyPair.publicKey().base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+//        print(pubBase64)
+//        let privBase64 = self.keyPair.privateKey().base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+//        print(privBase64)
+//        
+//        self.keysClient = VSSKeysClientStg(applicationToken: "e872d6f718a2dd0bd8cd7d7e73a25f49")
+//        self.mailinator = Mailinator(applicationToken: "3b0f46370d9f44cb9b5ac0e80dda97d7")
+//        do {
+//            self.regexp = try NSRegularExpression(pattern: "Your confirmation code is.+([A-Z0-9]{6})", options: NSRegularExpressionOptions.CaseInsensitive)
+//        }
+//        catch {
+//            self.regexp = nil
+//        }
+//        
+//        let userData = VSSUserData(dataClass: .UDCUserId, dataType: .UDTEmail, value: "virgil.test.ios@mailinator.com")
+//        self.createAndConfirmPublicKeyWithUserDataList(NSArray(array: [userData])) { error in
+//            if error != nil {
+//                print("Error confirmation of the user data: \(error!.localizedDescription)")
+//                return
+//            }
+//            
+//            print("Public key is created and confirmed!")
+//            print("Account ID: \(self.publicKey.idb.containerId)")
+//            print("Public key ID: \(self.publicKey.idb.publicKeyId)")
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,8 +56,8 @@ class ViewController: UIViewController {
     }
 
     func createPublicKeyWithUserDataList(list: NSArray, handler: ((NSError?) -> Void)?) {
-        let privKey = VFPrivateKey(key: self.keyPair.privateKey(), password: nil)
-        let pKey = VKPublicKey(idb: VKIdBundle(), key: self.keyPair.publicKey(), userDataList: list as [AnyObject])
+        let privKey = VSSPrivateKey(key: self.keyPair.privateKey(), password: nil)
+        let pKey = VSSPublicKey(key: self.keyPair.publicKey(), userDataList: list as [AnyObject])
         self.keysClient.createPublicKey(pKey, privateKey: privKey) { pubKey, error in
             if error != nil {
                 if handler != nil {
@@ -73,14 +73,14 @@ class ViewController: UIViewController {
         }
     }
     
-    func confirmUserDataOfPublicKey(pKey: VKPublicKey, handler: ((NSError?)->Void)?) {
+    func confirmUserDataOfPublicKey(pKey: VSSPublicKey, handler: ((NSError?)->Void)?) {
         let confirmationList = NSMutableArray(capacity: pKey.userDataList.count)
         for i in 0..<pKey.userDataList.count {
             confirmationList[i] = false
         }
         
         for i in 0..<pKey.userDataList.count {
-            let ud = pKey.userDataList[i] as! VKUserData
+            let ud = pKey.userDataList[i] as! VSSUserDataExtended
             let inbox = (ud.value as NSString).substringToIndex((ud.value as NSString).rangeOfString("@").location)
             
             let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);

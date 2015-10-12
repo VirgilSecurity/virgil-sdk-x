@@ -16,5 +16,5 @@
 #define COCOAPODS_POD_AVAILABLE_VirgilFrameworkiOS
 #define COCOAPODS_VERSION_MAJOR_VirgilFrameworkiOS 1
 #define COCOAPODS_VERSION_MINOR_VirgilFrameworkiOS 1
-#define COCOAPODS_VERSION_PATCH_VirgilFrameworkiOS 0
+#define COCOAPODS_VERSION_PATCH_VirgilFrameworkiOS 1
 

@@ -19,7 +19,6 @@
 @property (nonatomic, copy, readonly) NSNumber * __nonnull confirmed;
 
 - (instancetype __nonnull)initWithIdb:(VSSIdBundle * __nonnull)idb dataClass:(VSSUserDataClass)dataClass dataType:(VSSUserDataType)dataType value:(NSString * __nonnull)value confirmed:(NSNumber * __nonnull)confirmed NS_DESIGNATED_INITIALIZER;
-- (instancetype __nonnull)initWithUserData:(VSSUserDataExtended * __nonnull)userData;
 
 @end
 

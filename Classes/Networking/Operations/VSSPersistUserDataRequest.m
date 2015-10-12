@@ -33,7 +33,7 @@
     [self setRequestMethod:POST];
     NSMutableDictionary *dto = [[NSMutableDictionary alloc] init];
     if (code != nil) {
-        dto[kVKModelConfirmationCode] = code;
+        dto[kVSSKeysModelConfirmationCode] = code;
     }
     
     if (dto.allKeys.count > 0) {

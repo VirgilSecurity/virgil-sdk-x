@@ -9,28 +9,28 @@
 #import <Foundation/Foundation.h>
 #import "VSSModel.h"
 
-extern NSString * __nonnull const kVFModelClass;
-extern NSString * __nonnull const kVFModelType;
-extern NSString * __nonnull const kVFModelValue;
+extern NSString * __nonnull const kVSSModelClass;
+extern NSString * __nonnull const kVSSModelType;
+extern NSString * __nonnull const kVSSModelValue;
 
-extern NSString * __nonnull const kVFUserDataClassUnknown;
-extern NSString * __nonnull const kVFUserDataClassUserId;
-extern NSString * __nonnull const kVFUserDataClassUserInfo;
+extern NSString * __nonnull const kVSSUserDataClassUnknown;
+extern NSString * __nonnull const kVSSUserDataClassUserId;
+extern NSString * __nonnull const kVSSUserDataClassUserInfo;
 
-typedef NS_ENUM(NSUInteger, VFUserDataClass) {
+typedef NS_ENUM(NSUInteger, VSSUserDataClass) {
     UDCUnknown,
     UDCUserId,
     UDCUserInfo
 };
 
-extern NSString * __nonnull const kVFUserDataTypeUnknown;
-extern NSString * __nonnull const kVFUserDataTypeEmail;
-extern NSString * __nonnull const kVFUserDataTypeDomain;
-extern NSString * __nonnull const kVFUserDataTypeApplication;
-extern NSString * __nonnull const kVFUserDataTypeFirstName;
-extern NSString * __nonnull const kVFUserDataTypeLastName;
+extern NSString * __nonnull const kVSSUserDataTypeUnknown;
+extern NSString * __nonnull const kVSSUserDataTypeEmail;
+extern NSString * __nonnull const kVSSUserDataTypeDomain;
+extern NSString * __nonnull const kVSSUserDataTypeApplication;
+extern NSString * __nonnull const kVSSUserDataTypeFirstName;
+extern NSString * __nonnull const kVSSUserDataTypeLastName;
 
-typedef NS_ENUM(NSUInteger, VFUserDataType) {
+typedef NS_ENUM(NSUInteger, VSSUserDataType) {
     UDTUnknown,
     UDTFirstName,   // Can be used with Class = user_id.
     UDTLastName,    // Can be used with Class = user_id.
@@ -41,18 +41,18 @@ typedef NS_ENUM(NSUInteger, VFUserDataType) {
 
 @interface VSSUserData : VSSModel
 
-@property (nonatomic, assign, readonly) VFUserDataClass dataClass;
-@property (nonatomic, assign, readonly) VFUserDataType dataType;
+@property (nonatomic, assign, readonly) VSSUserDataClass dataClass;
+@property (nonatomic, assign, readonly) VSSUserDataType dataType;
 @property (nonatomic, copy, readonly) NSString * __nonnull value;
 
-- (instancetype __nonnull)initWithDataClass:(VFUserDataClass)dataClass dataType:(VFUserDataType)dataType value:(NSString * __nonnull)value NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithDataClass:(VSSUserDataClass)dataClass dataType:(VSSUserDataType)dataType value:(NSString * __nonnull)value NS_DESIGNATED_INITIALIZER;
 
 // Convenient methods for converting enums to strings and vice-versa.
-+ (NSString * __nonnull)stringFromUserDataClass:(VFUserDataClass)dataClass;
-+ (VFUserDataClass)userDataClassFromString:(NSString * __nullable)classCandidate;
++ (NSString * __nonnull)stringFromUserDataClass:(VSSUserDataClass)dataClass;
++ (VSSUserDataClass)userDataClassFromString:(NSString * __nullable)classCandidate;
 
-+ (NSString * __nonnull)stringFromUserDataType:(VFUserDataType)dataType;
-+ (VFUserDataType)userDataTypeFromString:(NSString * __nullable)typeCandidate;
++ (NSString * __nonnull)stringFromUserDataType:(VSSUserDataType)dataType;
++ (VSSUserDataType)userDataTypeFromString:(NSString * __nullable)typeCandidate;
 
 @end
 

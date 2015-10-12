@@ -51,9 +51,9 @@
 #pragma mark - NSCoding
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    GUID *containerId = [[aDecoder decodeObjectForKey:kVKModelContainerId] as:[GUID class]];
-    GUID *publicKeyId = [[aDecoder decodeObjectForKey:kVKModelPublicKeyId] as:[GUID class]];
-    GUID *userDataId = [[aDecoder decodeObjectForKey:kVKModelUserDataId] as:[GUID class]];
+    GUID *containerId = [[aDecoder decodeObjectForKey:kVSSKeysModelContainerId] as:[GUID class]];
+    GUID *publicKeyId = [[aDecoder decodeObjectForKey:kVSSKeysModelPublicKeyId] as:[GUID class]];
+    GUID *userDataId = [[aDecoder decodeObjectForKey:kVSSKeysModelUserDataId] as:[GUID class]];
     
     return [self initWithContainerId:containerId publicKeyId:publicKeyId userDataId:userDataId];
 }
@@ -62,13 +62,13 @@
     [super encodeWithCoder:aCoder];
     
     if (self.containerId != nil) {
-        [aCoder encodeObject:self.containerId forKey:kVKModelContainerId];
+        [aCoder encodeObject:self.containerId forKey:kVSSKeysModelContainerId];
     }
     if (self.publicKeyId != nil) {
-        [aCoder encodeObject:self.publicKeyId forKey:kVKModelPublicKeyId];
+        [aCoder encodeObject:self.publicKeyId forKey:kVSSKeysModelPublicKeyId];
     }
     if (self.userDataId != nil) {
-        [aCoder encodeObject:self.userDataId forKey:kVKModelUserDataId];
+        [aCoder encodeObject:self.userDataId forKey:kVSSKeysModelUserDataId];
     }
 }
 
@@ -77,21 +77,21 @@
 - (NSDictionary *)serialize {
     NSMutableDictionary *dto = [[NSMutableDictionary alloc] initWithDictionary:[super serialize]];
     if (self.containerId != nil) {
-        dto[kVKModelContainerId] = self.containerId;
+        dto[kVSSKeysModelContainerId] = self.containerId;
     }
     if (self.publicKeyId != nil) {
-        dto[kVKModelPublicKeyId] = self.publicKeyId;
+        dto[kVSSKeysModelPublicKeyId] = self.publicKeyId;
     }
     if (self.userDataId != nil) {
-        dto[kVKModelUserDataId] = self.userDataId;
+        dto[kVSSKeysModelUserDataId] = self.userDataId;
     }
     return dto;
 }
 
 + (instancetype)deserializeFrom:(NSDictionary *)candidate {
-    GUID *containerId = [candidate[kVKModelContainerId] as:[GUID class]];
-    GUID *publicKeyId = [candidate[kVKModelPublicKeyId] as:[GUID class]];
-    GUID *userDataId = [candidate[kVKModelUserDataId] as:[GUID class]];
+    GUID *containerId = [candidate[kVSSKeysModelContainerId] as:[GUID class]];
+    GUID *publicKeyId = [candidate[kVSSKeysModelPublicKeyId] as:[GUID class]];
+    GUID *userDataId = [candidate[kVSSKeysModelUserDataId] as:[GUID class]];
     
     return [[self alloc] initWithContainerId:containerId publicKeyId:publicKeyId userDataId:userDataId];
 }

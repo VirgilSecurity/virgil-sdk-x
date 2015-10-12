@@ -20,14 +20,14 @@
 
 @end
 
-@implementation VKUserData
+@implementation VSSUserDataExtended
 
 @synthesize idb = _idb;
 @synthesize confirmed = _confirmed;
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithIdb:(VSSIdBundle *)idb dataClass:(VFUserDataClass)dataClass dataType:(VFUserDataType)dataType value:(NSString *)value confirmed:(NSNumber *)confirmed {
+- (instancetype)initWithIdb:(VSSIdBundle *)idb dataClass:(VSSUserDataClass)dataClass dataType:(VSSUserDataType)dataType value:(NSString *)value confirmed:(NSNumber *)confirmed {
     self = [super initWithDataClass:dataClass dataType:dataType value:value];
     if (self == nil) {
         return nil;
@@ -36,10 +36,6 @@
     _idb = [idb copy];
     _confirmed = [confirmed copy];
     return self;
-}
-
-- (instancetype)initWithUserData:(VSSUserDataExtended *)userData {
-    return [self initWithIdb:userData.idb dataClass:userData.dataClass dataType:userData.dataType value:userData.value confirmed:userData.confirmed];
 }
 
 - (instancetype)initWithDataClass:(VSSUserDataClass)dataClass dataType:(VSSUserDataType)dataType value:(NSString *)value {
@@ -59,36 +55,36 @@
 #pragma mark - NSCoding protocol implementation
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    VSSIdBundle *idb = [[aDecoder decodeObjectForKey:kVKModelId] as:[VSSIdBundle class]];
-    NSNumber *classCandidate = [[aDecoder decodeObjectForKey:kVFModelClass] as:[NSNumber class]];
-    NSNumber *typeCandidate = [[aDecoder decodeObjectForKey:kVFModelType] as:[NSNumber class]];
-    NSString *value = [[aDecoder decodeObjectForKey:kVFModelValue] as:[NSString class]];
-    NSNumber *confirmed = [[aDecoder decodeObjectForKey:kVKModelConfirmed] as:[NSNumber class]];
+    VSSIdBundle *idb = [[aDecoder decodeObjectForKey:kVSSKeysModelId] as:[VSSIdBundle class]];
+    NSNumber *classCandidate = [[aDecoder decodeObjectForKey:kVSSModelClass] as:[NSNumber class]];
+    NSNumber *typeCandidate = [[aDecoder decodeObjectForKey:kVSSModelType] as:[NSNumber class]];
+    NSString *value = [[aDecoder decodeObjectForKey:kVSSModelValue] as:[NSString class]];
+    NSNumber *confirmed = [[aDecoder decodeObjectForKey:kVSSKeysModelConfirmed] as:[NSNumber class]];
     
-    return [self initWithIdb:idb dataClass:(VFUserDataClass)[classCandidate unsignedIntegerValue] dataType:(VFUserDataType)[typeCandidate unsignedIntegerValue] value:value confirmed:confirmed];
+    return [self initWithIdb:idb dataClass:(VSSUserDataClass)[classCandidate unsignedIntegerValue] dataType:(VSSUserDataType)[typeCandidate unsignedIntegerValue] value:value confirmed:confirmed];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [super encodeWithCoder:aCoder];
     
     if (self.idb != nil) {
-        [aCoder encodeObject:self.idb forKey:kVKModelId];
+        [aCoder encodeObject:self.idb forKey:kVSSKeysModelId];
     }
     if (self.confirmed != nil) {
-        [aCoder encodeObject:self.confirmed forKey:kVKModelConfirmed];
+        [aCoder encodeObject:self.confirmed forKey:kVSSKeysModelConfirmed];
     }
 }
 
 #pragma mark - VKSerializable
 
 + (instancetype)deserializeFrom:(NSDictionary *)candidate {
-    NSDictionary *idBundle = [candidate[kVKModelId] as:[NSDictionary class]];
+    NSDictionary *idBundle = [candidate[kVSSKeysModelId] as:[NSDictionary class]];
     VSSIdBundle *idb = [VSSIdBundle deserializeFrom:idBundle];
 
-    NSString *classCandidate = [candidate[kVFModelClass] as:[NSString class]];
-    NSString *typeCandidate = [candidate[kVFModelType] as:[NSString class]];
-    NSString *value = [candidate[kVFModelValue] as:[NSString class]];
-    NSNumber *confirmed = [candidate[kVKModelConfirmed] as:[NSNumber class]];
+    NSString *classCandidate = [candidate[kVSSModelClass] as:[NSString class]];
+    NSString *typeCandidate = [candidate[kVSSModelType] as:[NSString class]];
+    NSString *value = [candidate[kVSSModelValue] as:[NSString class]];
+    NSNumber *confirmed = [candidate[kVSSKeysModelConfirmed] as:[NSNumber class]];
     
     return [[self alloc] initWithIdb:idb dataClass:[self userDataClassFromString:classCandidate] dataType:[self userDataTypeFromString:typeCandidate] value:value confirmed:confirmed];
 }

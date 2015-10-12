@@ -41,19 +41,19 @@
     if (keyPair.publicKey != nil) {
         NSString *encodedPk = [keyPair.publicKey base64EncodedStringWithOptions:0];
         if (encodedPk != nil) {
-            dto[kVKModelPublicKey] = encodedPk;
+            dto[kVSSKeysModelPublicKey] = encodedPk;
         }
     }
     
     if (keyPair.privateKey != nil) {
         NSData *toSign = [self.uuid dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
         if (toSign != nil) {
-            VCSigner *signer = [[VCSigner alloc] init];
+            VSSSigner *signer = [[VSSSigner alloc] init];
             NSData *sign = [signer signData:toSign privateKey:keyPair.privateKey keyPassword:keyPassword];
             if (sign != nil) {
                 NSString *encodedSign = [sign base64EncodedStringWithOptions:0];
                 if (encodedSign != nil) {
-                    dto[kVKModelUUIDSign] = encodedSign;
+                    dto[kVSSKeysModelUUIDSign] = encodedSign;
                 }
             }
         }
@@ -64,7 +64,7 @@
 }
 
 - (instancetype)initWithBaseURL:(NSString *)url {
-    return [self initWithBaseURL:url publicKeyId:@"" newKeyPair:[[VCKeyPair alloc] init] keyPassword:nil];
+    return [self initWithBaseURL:url publicKeyId:@"" newKeyPair:[[VSSKeyPair alloc] init] keyPassword:nil];
 }
 
 #pragma mark - Overrides
@@ -82,7 +82,7 @@
     self.publicKey = [VSSPublicKey deserializeFrom:[candidate as:[NSDictionary class]]];
     if (![[self.publicKey isValid] boolValue]) {
         self.publicKey = nil;
-        return [NSError errorWithDomain:kVKBaseRequestErrorDomain code:kVKBaseRequestErrorCode userInfo:@{ NSLocalizedDescriptionKey: @"Public key deserialization from the service response has been unsuccessful." }];
+        return [NSError errorWithDomain:kVSSKeysBaseRequestErrorDomain code:kVSSKeysBaseRequestErrorCode userInfo:@{ NSLocalizedDescriptionKey: @"Public key deserialization from the service response has been unsuccessful." }];
     }
     return nil;
 }

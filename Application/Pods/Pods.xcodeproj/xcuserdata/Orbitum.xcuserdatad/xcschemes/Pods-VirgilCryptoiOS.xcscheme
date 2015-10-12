@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E8697FF7DE8EFF671F9ADDAA"
+               BlueprintIdentifier = "7F0326A7A6EB2A5CF59C62A1"
                BuildableName = "libPods-VirgilCryptoiOS.a"
                BlueprintName = "Pods-VirgilCryptoiOS"
                ReferencedContainer = "container:Pods.xcodeproj">

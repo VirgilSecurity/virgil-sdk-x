@@ -33,7 +33,7 @@
     [self setRequestMethod:POST];
     NSMutableDictionary *dto = [[NSMutableDictionary alloc] init];
     if (userIdValue != nil) {
-        dto[kVFModelValue] = userIdValue;
+        dto[kVSSModelValue] = userIdValue;
     }
     [self setRequestBodyWithObject:dto useUUID:@YES];
     
@@ -59,7 +59,7 @@
     self.publicKey = [VSSPublicKey deserializeFrom:[candidate as:[NSDictionary class]]];
     if (![[self.publicKey isValid] boolValue]) {
         self.publicKey = nil;
-        return [NSError errorWithDomain:kVKBaseRequestErrorDomain code:kVKBaseRequestErrorCode userInfo:@{ NSLocalizedDescriptionKey: @"Public key deserialization from the service response has been unsuccessful." }];
+        return [NSError errorWithDomain:kVSSKeysBaseRequestErrorDomain code:kVSSKeysBaseRequestErrorCode userInfo:@{ NSLocalizedDescriptionKey: @"Public key deserialization from the service response has been unsuccessful." }];
     }
     return nil;
 }

@@ -10,25 +10,25 @@
 #import "VSSUserData_Protected.h"
 #import "NSObject+VSSUtils.h"
 
-NSString *const kVFModelClass = @"class";
-NSString *const kVFModelType = @"type";
-NSString *const kVFModelValue = @"value";
+NSString *const kVSSModelClass = @"class";
+NSString *const kVSSModelType = @"type";
+NSString *const kVSSModelValue = @"value";
 
 // String equivalents for enums.
 // The following string values will be used in data transfer objects
 
 // String values for UserData class enum.
-NSString* const kVFUserDataClassUnknown = @"unknown";
-NSString* const kVFUserDataClassUserId = @"user_id";
-NSString* const kVFUserDataClassUserInfo = @"user_info";
+NSString* const kVSSUserDataClassUnknown = @"unknown";
+NSString* const kVSSUserDataClassUserId = @"user_id";
+NSString* const kVSSUserDataClassUserInfo = @"user_info";
 
 // String values for UserData type enum.
-NSString* const kVFUserDataTypeUnknown = @"unknown";
-NSString* const kVFUserDataTypeEmail = @"email";
-NSString* const kVFUserDataTypeDomain = @"doimain";
-NSString* const kVFUserDataTypeApplication = @"application";
-NSString* const kVFUserDataTypeFirstName = @"first_name";
-NSString* const kVFUserDataTypeLastName = @"last_name";
+NSString* const kVSSUserDataTypeUnknown = @"unknown";
+NSString* const kVSSUserDataTypeEmail = @"email";
+NSString* const kVSSUserDataTypeDomain = @"doimain";
+NSString* const kVSSUserDataTypeApplication = @"application";
+NSString* const kVSSUserDataTypeFirstName = @"first_name";
+NSString* const kVSSUserDataTypeLastName = @"last_name";
 
 @implementation VSSUserData
 
@@ -38,7 +38,7 @@ NSString* const kVFUserDataTypeLastName = @"last_name";
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithDataClass:(VFUserDataClass)dataClass dataType:(VFUserDataType)dataType value:(NSString *)value {
+- (instancetype)initWithDataClass:(VSSUserDataClass)dataClass dataType:(VSSUserDataType)dataType value:(NSString *)value {
     self = [super init];
     if (self == nil) {
         return nil;
@@ -63,20 +63,20 @@ NSString* const kVFUserDataTypeLastName = @"last_name";
 #pragma mark - NSCoding protocol implementation
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    NSNumber *classCandidate = [[aDecoder decodeObjectForKey:kVFModelClass] as:[NSNumber class]];
-    NSNumber *typeCandidate = [[aDecoder decodeObjectForKey:kVFModelType] as:[NSNumber class]];
-    NSString *value = [[aDecoder decodeObjectForKey:kVFModelValue] as:[NSString class]];
+    NSNumber *classCandidate = [[aDecoder decodeObjectForKey:kVSSModelClass] as:[NSNumber class]];
+    NSNumber *typeCandidate = [[aDecoder decodeObjectForKey:kVSSModelType] as:[NSNumber class]];
+    NSString *value = [[aDecoder decodeObjectForKey:kVSSModelValue] as:[NSString class]];
     
-    return [self initWithDataClass:(VFUserDataClass)[classCandidate unsignedIntegerValue] dataType:(VFUserDataType)[typeCandidate unsignedIntegerValue] value:value];
+    return [self initWithDataClass:(VSSUserDataClass)[classCandidate unsignedIntegerValue] dataType:(VSSUserDataType)[typeCandidate unsignedIntegerValue] value:value];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [super encodeWithCoder:aCoder];
     
-    [aCoder encodeObject:[NSNumber numberWithUnsignedInteger:self.dataClass] forKey:kVFModelClass];
-    [aCoder encodeObject:[NSNumber numberWithUnsignedInteger:self.dataType] forKey:kVFModelType];
+    [aCoder encodeObject:[NSNumber numberWithUnsignedInteger:self.dataClass] forKey:kVSSModelClass];
+    [aCoder encodeObject:[NSNumber numberWithUnsignedInteger:self.dataType] forKey:kVSSModelType];
     if (self.value != nil) {
-        [aCoder encodeObject:self.value forKey:kVFModelValue];
+        [aCoder encodeObject:self.value forKey:kVSSModelValue];
     }
 }
 
@@ -84,19 +84,19 @@ NSString* const kVFUserDataTypeLastName = @"last_name";
 
 - (NSDictionary *)serialize {
     NSMutableDictionary *dto = [[NSMutableDictionary alloc] initWithDictionary:[super serialize]];
-    dto[kVFModelClass] = [[self class] stringFromUserDataClass:self.dataClass];
-    dto[kVFModelType] = [[self class] stringFromUserDataType:self.dataType];
+    dto[kVSSModelClass] = [[self class] stringFromUserDataClass:self.dataClass];
+    dto[kVSSModelType] = [[self class] stringFromUserDataType:self.dataType];
     if (self.value != nil) {
-        dto[kVFModelValue] = self.value;
+        dto[kVSSModelValue] = self.value;
     }
     
     return dto;
 }
 
 + (instancetype)deserializeFrom:(NSDictionary *)candidate {
-    NSString *classCandidate = [candidate[kVFModelClass] as:[NSString class]];
-    NSString *typeCandidate = [candidate[kVFModelType] as:[NSString class]];
-    NSString *value = [candidate[kVFModelValue] as:[NSString class]];
+    NSString *classCandidate = [candidate[kVSSModelClass] as:[NSString class]];
+    NSString *typeCandidate = [candidate[kVSSModelType] as:[NSString class]];
+    NSString *value = [candidate[kVSSModelValue] as:[NSString class]];
     
     return [[self alloc] initWithDataClass:[self userDataClassFromString:classCandidate] dataType:[self userDataTypeFromString:typeCandidate] value:value];
 }
@@ -126,73 +126,73 @@ NSString* const kVFUserDataTypeLastName = @"last_name";
 
 #pragma mark - Public utility logic
 
-+ (NSString *)stringFromUserDataClass:(VFUserDataClass)dataClass {
++ (NSString *)stringFromUserDataClass:(VSSUserDataClass)dataClass {
     NSString *strClass = nil;
     switch (dataClass) {
         case UDCUserId:
-            strClass = kVFUserDataClassUserId;
+            strClass = kVSSUserDataClassUserId;
             break;
         case UDCUserInfo:
-            strClass = kVFUserDataClassUserInfo;
+            strClass = kVSSUserDataClassUserInfo;
             break;
         default:
-            strClass = kVFUserDataClassUnknown;
+            strClass = kVSSUserDataClassUnknown;
             break;
     }
     return strClass;
 }
 
-+ (VFUserDataClass)userDataClassFromString:(NSString *)classCandidate {
-    VFUserDataClass cls = UDCUnknown;
-    if ([classCandidate isEqualToString:kVFUserDataClassUserId]) {
++ (VSSUserDataClass)userDataClassFromString:(NSString *)classCandidate {
+    VSSUserDataClass cls = UDCUnknown;
+    if ([classCandidate isEqualToString:kVSSUserDataClassUserId]) {
         cls = UDCUserId;
     }
-    else if ([classCandidate isEqualToString:kVFUserDataClassUserInfo]) {
+    else if ([classCandidate isEqualToString:kVSSUserDataClassUserInfo]) {
         cls = UDCUserInfo;
     }
     return cls;
 }
 
-+ (NSString *)stringFromUserDataType:(VFUserDataType)dataType {
++ (NSString *)stringFromUserDataType:(VSSUserDataType)dataType {
     NSString *strType = nil;
     switch (dataType) {
         case UDTFirstName:
-            strType = kVFUserDataTypeFirstName;
+            strType = kVSSUserDataTypeFirstName;
             break;
         case UDTLastName:
-            strType = kVFUserDataTypeLastName;
+            strType = kVSSUserDataTypeLastName;
             break;
         case UDTEmail:
-            strType = kVFUserDataTypeEmail;
+            strType = kVSSUserDataTypeEmail;
             break;
         case UDTDomain:
-            strType = kVFUserDataTypeDomain;
+            strType = kVSSUserDataTypeDomain;
             break;
         case UDTApplication:
-            strType = kVFUserDataTypeApplication;
+            strType = kVSSUserDataTypeApplication;
             break;
         default:
-            strType = kVFUserDataTypeUnknown;
+            strType = kVSSUserDataTypeUnknown;
             break;
     }
     return strType;
 }
 
-+ (VFUserDataType)userDataTypeFromString:(NSString *)typeCandidate {
-    VFUserDataType tp = UDTUnknown;
-    if ([typeCandidate isEqualToString:kVFUserDataTypeFirstName]) {
++ (VSSUserDataType)userDataTypeFromString:(NSString *)typeCandidate {
+    VSSUserDataType tp = UDTUnknown;
+    if ([typeCandidate isEqualToString:kVSSUserDataTypeFirstName]) {
         tp = UDTFirstName;
     }
-    else if ([typeCandidate isEqualToString:kVFUserDataTypeLastName]) {
+    else if ([typeCandidate isEqualToString:kVSSUserDataTypeLastName]) {
         tp = UDTLastName;
     }
-    else if ([typeCandidate isEqualToString:kVFUserDataTypeEmail]) {
+    else if ([typeCandidate isEqualToString:kVSSUserDataTypeEmail]) {
         tp = UDTEmail;
     }
-    else if ([typeCandidate isEqualToString:kVFUserDataTypeDomain]) {
+    else if ([typeCandidate isEqualToString:kVSSUserDataTypeDomain]) {
         tp = UDTDomain;
     }
-    else if ([typeCandidate isEqualToString:kVFUserDataTypeApplication]) {
+    else if ([typeCandidate isEqualToString:kVSSUserDataTypeApplication]) {
         tp = UDTApplication;
     }
     return tp;

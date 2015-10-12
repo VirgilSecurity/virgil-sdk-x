@@ -8,7 +8,7 @@
 
 #import "VSSKeysBaseRequest.h"
 
-@class VKPublicKey;
+@class VSSPublicKey;
 
 @interface VSSCreatePublicKeyRequest : VSSKeysBaseRequest
 

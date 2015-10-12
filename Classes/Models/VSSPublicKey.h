@@ -17,6 +17,6 @@
 @property (nonatomic, copy, readonly) NSArray * __nonnull userDataList;
 
 - (instancetype __nonnull)initWithIdb:(VSSIdBundle * __nonnull)idb key:(NSData * __nonnull)key userDataList:(NSArray * __nonnull)userDataList NS_DESIGNATED_INITIALIZER;
-- (instancetype __nonnull)initWithPublicKey:(VSSPublicKey * __nonnull)publicKey;
+- (instancetype __nonnull)initWithKey:(NSData * __nonnull)key userDataList:(NSArray * __nonnull)userDataList;
 
 @end

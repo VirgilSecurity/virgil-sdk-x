@@ -39,7 +39,7 @@
     if (publicKey != nil) {
         NSString *encodedPk = [publicKey base64EncodedStringWithOptions:0];
         if (encodedPk != nil) {
-            dto[kVKModelPublicKey] = encodedPk;
+            dto[kVSSKeysModelPublicKey] = encodedPk;
         }
     }
     [self setRequestBodyWithObject:dto useUUID:@YES];
@@ -67,7 +67,7 @@
     self.actionToken = [VSSActionToken deserializeFrom:[candidate as:[NSDictionary class]]];
     if (![[self.actionToken isValid] boolValue]) {
         self.actionToken = nil;
-        return [NSError errorWithDomain:kVKBaseRequestErrorDomain code:kVKBaseRequestErrorCode userInfo:@{ NSLocalizedDescriptionKey: @"Action token deserialization from the service response has been unsuccessful." }];
+        return [NSError errorWithDomain:kVSSKeysBaseRequestErrorDomain code:kVSSKeysBaseRequestErrorCode userInfo:@{ NSLocalizedDescriptionKey: @"Action token deserialization from the service response has been unsuccessful." }];
     }
     
     return nil;

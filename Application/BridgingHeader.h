@@ -11,7 +11,7 @@
 
 #import "VirgilKeysiOS.h"
 
-#import "VKKeysClientStg.h"
+#import "VSSKeysClientStg.h"
 #import "Mailinator.h"
 #import "MEmailMetadata.h"
 #import "MPart.h"

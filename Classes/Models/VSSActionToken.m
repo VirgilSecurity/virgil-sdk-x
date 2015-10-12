@@ -41,6 +41,10 @@
     return self;
 }
 
+- (instancetype)init {
+    return [self initWithTokenId:@"" userIdList:@[] confirmationCodeList:nil];
+}
+
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
@@ -50,9 +54,9 @@
 #pragma mark - NSCoding
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    GUID *tokenId = [[aDecoder decodeObjectForKey:kVKModelActionToken] as:[GUID class]];
-    NSArray *userIdList = [[aDecoder decodeObjectForKey:kVKModelUserIDs] as:[NSArray class]];
-    NSArray *confCodes = [[aDecoder decodeObjectForKey:kVKModelConfirmationCodes] as:[NSArray class]];
+    GUID *tokenId = [[aDecoder decodeObjectForKey:kVSSKeysModelActionToken] as:[GUID class]];
+    NSArray *userIdList = [[aDecoder decodeObjectForKey:kVSSKeysModelUserIDs] as:[NSArray class]];
+    NSArray *confCodes = [[aDecoder decodeObjectForKey:kVSSKeysModelConfirmationCodes] as:[NSArray class]];
     
     return [self initWithTokenId:tokenId userIdList:userIdList confirmationCodeList:confCodes];
 }
@@ -61,13 +65,13 @@
     [super encodeWithCoder:aCoder];
     
     if (self.tokenId != nil) {
-        [aCoder encodeObject:self.tokenId forKey:kVKModelActionToken];
+        [aCoder encodeObject:self.tokenId forKey:kVSSKeysModelActionToken];
     }
     if (self.userIdList != nil) {
-        [aCoder encodeObject:self.userIdList forKey:kVKModelUserIDs];
+        [aCoder encodeObject:self.userIdList forKey:kVSSKeysModelUserIDs];
     }
     if (self.confirmationCodeList != nil) {
-        [aCoder encodeObject:self.confirmationCodeList forKey:kVKModelConfirmationCodes];
+        [aCoder encodeObject:self.confirmationCodeList forKey:kVSSKeysModelConfirmationCodes];
     }
 }
 
@@ -77,19 +81,19 @@
     NSMutableDictionary *dto = [[NSMutableDictionary alloc] initWithDictionary:[super serialize]];
     
     if (self.tokenId != nil) {
-        dto[kVKModelActionToken] = self.tokenId;
+        dto[kVSSKeysModelActionToken] = self.tokenId;
     }
 
     if (self.confirmationCodeList != nil) {
-        dto[kVKModelConfirmationCodes] = self.confirmationCodeList;
+        dto[kVSSKeysModelConfirmationCodes] = self.confirmationCodeList;
     }
     
     return dto;
 }
 
 + (instancetype)deserializeFrom:(NSDictionary *)candidate {
-    GUID *tokenId = [candidate[kVKModelActionToken] as:[GUID class]];
-    NSArray *userIdList = [candidate[kVKModelUserIDs] as:[NSArray class]];
+    GUID *tokenId = [candidate[kVSSKeysModelActionToken] as:[GUID class]];
+    NSArray *userIdList = [candidate[kVSSKeysModelUserIDs] as:[NSArray class]];
     
     return [[[self class] alloc] initWithTokenId:tokenId userIdList:userIdList confirmationCodeList:nil];
 }

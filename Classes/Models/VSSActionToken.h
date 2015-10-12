@@ -18,4 +18,6 @@
 /// Array with confirmation tokens/codes for each user id from the userIdList.
 @property (nonatomic, copy) NSArray * __nullable confirmationCodeList;
 
+- (instancetype __nonnull)initWithTokenId:(GUID * __nonnull)tokenId userIdList:(NSArray * __nonnull)userIdList confirmationCodeList:(NSArray * __nullable)codeList NS_DESIGNATED_INITIALIZER;
+
 @end

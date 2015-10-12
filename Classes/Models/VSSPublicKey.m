@@ -7,10 +7,11 @@
 //
 
 #import "VSSPublicKey.h"
-#import "VSSUserData.h"
+#import "VSSUserDataExtended.h"
 #import "VSSIdBundle.h"
 #import "VSSKeysModelCommons.h"
 
+#import <VirgilFrameworkiOS/VSSUserData.h>
 #import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
 
 @interface VSSPublicKey ()
@@ -20,7 +21,7 @@
 
 @end
 
-@implementation VKPublicKey
+@implementation VSSPublicKey
 
 @synthesize key = _key;
 @synthesize userDataList = _userDataList;
@@ -43,8 +44,8 @@
     return [self initWithIdb:idb key:[NSData data] userDataList:@[]];
 }
 
-- (instancetype)initWithPublicKey:(VSSPublicKey *)publicKey {
-    return [self initWithIdb:publicKey.idb key:publicKey.key userDataList:publicKey.userDataList];
+- (instancetype)initWithKey:(NSData *)key userDataList:(NSArray *)userDataList {
+    return [self initWithIdb:[[VSSIdBundle alloc] init] key:key userDataList:userDataList];
 }
 
 - (instancetype)init {
@@ -60,9 +61,9 @@
 #pragma mark - NSCoding protocol implementation
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    VSSIdBundle *idb = [[aDecoder decodeObjectForKey:kVKModelId] as:[VSSIdBundle class]];
-    NSData *key = [[aDecoder decodeObjectForKey:kVKModelPublicKey] as:[NSData class]];
-    NSArray *userDataList = [[aDecoder decodeObjectForKey:kVKModelUserData] as:[NSArray class]];
+    VSSIdBundle *idb = [[aDecoder decodeObjectForKey:kVSSKeysModelId] as:[VSSIdBundle class]];
+    NSData *key = [[aDecoder decodeObjectForKey:kVSSKeysModelPublicKey] as:[NSData class]];
+    NSArray *userDataList = [[aDecoder decodeObjectForKey:kVSSKeysModelUserData] as:[NSArray class]];
     
     return [self initWithIdb:idb key:key userDataList:userDataList];
 }
@@ -71,10 +72,10 @@
     [super encodeWithCoder:aCoder];
     
     if (self.key != nil) {
-        [aCoder encodeObject:self.key forKey:kVKModelPublicKey];
+        [aCoder encodeObject:self.key forKey:kVSSKeysModelPublicKey];
     }
     if (self.userDataList != nil) {
-        [aCoder encodeObject:self.userDataList forKey:kVKModelUserData];
+        [aCoder encodeObject:self.userDataList forKey:kVSSKeysModelUserData];
     }
 }
 
@@ -85,30 +86,30 @@
     
     NSString *encodedKey = [self.key base64EncodedStringWithOptions:0];
     if (encodedKey != nil) {
-        dto[kVKModelPublicKey] = encodedKey;
+        dto[kVSSKeysModelPublicKey] = encodedKey;
     }
 
     NSMutableArray *udDto = [[NSMutableArray alloc] initWithCapacity:self.userDataList.count];
-    for (VKUserData *ud in self.userDataList) {
+    for (VSSUserData *ud in self.userDataList) {
         [udDto addObject:[ud serialize]];
     }
     if (udDto.count > 0) {
-        dto[kVKModelUserData] = udDto;
+        dto[kVSSKeysModelUserData] = udDto;
     }
     return dto;
 }
 
 + (instancetype)deserializeFrom:(NSDictionary *)candidate {
-    NSDictionary *idBundle = [candidate[kVKModelId] as:[NSDictionary class]];
+    NSDictionary *idBundle = [candidate[kVSSKeysModelId] as:[NSDictionary class]];
     VSSIdBundle *idb = [VSSIdBundle deserializeFrom:idBundle];
 
-    NSString *encodedKey = [candidate[kVKModelPublicKey] as:[NSString class]];
+    NSString *encodedKey = [candidate[kVSSKeysModelPublicKey] as:[NSString class]];
     NSData *key = [[NSData alloc] initWithBase64EncodedString:encodedKey options:0];
     
-    NSArray *udlist = [candidate[kVKModelUserData] as:[NSArray class]];
+    NSArray *udlist = [candidate[kVSSKeysModelUserData] as:[NSArray class]];
     NSMutableArray *userDataList = [[NSMutableArray alloc] initWithCapacity:udlist.count];
     for (NSDictionary *udCandidate in udlist) {
-        [userDataList addObject:[VKUserData deserializeFrom:udCandidate]];
+        [userDataList addObject:[VSSUserDataExtended deserializeFrom:udCandidate]];
     }
     if (userDataList.count == 0) {
         userDataList = nil;
@@ -120,7 +121,7 @@
 #pragma mark - NSObject protocol implementation: equality checks
 
 - (BOOL)isEqual:(id)object {
-    VKPublicKey *pk = [object as:[VKPublicKey class]];
+    VSSPublicKey *pk = [object as:[VSSPublicKey class]];
     if (pk == nil) {
         return NO;
     }

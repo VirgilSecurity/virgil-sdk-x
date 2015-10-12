@@ -22,18 +22,18 @@ let kEstimatedEmailReceivingTime: Int = 2
 
 class VK001_KeysClientSwiftTests: XCTestCase {
     
-    private var keysClient: VKKeysClientStg! = nil
+    private var keysClient: VSSKeysClientStg! = nil
     private var mailinator: Mailinator! = nil
     
     private var regexp: NSRegularExpression! = nil
     
-    private var keyPair: VCKeyPair! = nil
-    private var publicKey: VKPublicKey! = nil
+    private var keyPair: VSSKeyPair! = nil
+    private var publicKey: VSSPublicKey! = nil
     
     override func setUp() {
         super.setUp()
 
-        self.keysClient = VKKeysClientStg(applicationToken: kApplicationToken)
+        self.keysClient = VSSKeysClientStg(applicationToken: kApplicationToken)
         self.mailinator = Mailinator(applicationToken: kMailinatorToken)
         do {
             self.regexp = try NSRegularExpression(pattern: "Your confirmation code is.+([A-Z0-9]{6})", options: NSRegularExpressionOptions.CaseInsensitive)
@@ -41,7 +41,7 @@ class VK001_KeysClientSwiftTests: XCTestCase {
         catch {
             self.regexp = nil
         }
-        self.keyPair = VCKeyPair(password: nil)
+        self.keyPair = VSSKeyPair(password: nil)
     }
     
     override func tearDown() {
@@ -55,7 +55,7 @@ class VK001_KeysClientSwiftTests: XCTestCase {
     }
     
     func test001_createPublicKeyAndConfirmUserData() {
-        let ex = self.expectationWithDescription("Public key should be created and user data should be confirmed.")
+        weak var ex = self.expectationWithDescription("Public key should be created and user data should be confirmed.")
         let numberOfRequests = kTestUserDataCount * 3 + 1
         let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
         
@@ -67,7 +67,9 @@ class VK001_KeysClientSwiftTests: XCTestCase {
             }
             
             XCTAssertNotNil(self.publicKey, "Public key should be created successfully.")
-            ex.fulfill()
+            if let e = ex {
+                e.fulfill()
+            }
         }
         
         self.waitForExpectationsWithTimeout(NSTimeInterval(timeout)) { error in
@@ -78,7 +80,7 @@ class VK001_KeysClientSwiftTests: XCTestCase {
     }
     
     func test002_getExistingPublicKey() {
-        let ex = self.expectationWithDescription("Public key should be get after creation.")
+        weak var ex = self.expectationWithDescription("Public key should be get after creation.")
         let numberOfRequests = kTestUserDataCount * 3 + 1 + 1
         let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
         
@@ -97,7 +99,9 @@ class VK001_KeysClientSwiftTests: XCTestCase {
                 
                 XCTAssertNotNil(pubKey, "Public key should be get successfully")
                 XCTAssertNotNil(pubKey!.key, "Actual key data should be returned within Public Key structure.")
-                ex.fulfill()
+                if let e = ex {
+                    e.fulfill()
+                }
             }
         }
         
@@ -110,9 +114,9 @@ class VK001_KeysClientSwiftTests: XCTestCase {
     }
     
     func test003_updateExistingPublicKey() {
-        let newKeyPair = VCKeyPair()
+        let newKeyPair = VSSKeyPair()
         
-        let ex = self.expectationWithDescription("Public key should be updated after creation.")
+        weak var ex = self.expectationWithDescription("Public key should be updated after creation.")
         let numberOfRequests = kTestUserDataCount * 3 + 1 + 1
         let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
         
@@ -123,7 +127,7 @@ class VK001_KeysClientSwiftTests: XCTestCase {
                 return
             }
             
-            let pKey = VFPrivateKey(key: self.keyPair.privateKey(), password: nil)
+            let pKey = VSSPrivateKey(key: self.keyPair.privateKey(), password: nil)
             self.keysClient.updatePublicKeyId(self.publicKey.idb.publicKeyId!, privateKey:pKey, newKeyPair: newKeyPair, newKeyPassword: nil) { pubKey, updateError in
                 if updateError != nil {
                     XCTFail("Error updating public key: \(updateError!.localizedDescription)")
@@ -132,7 +136,10 @@ class VK001_KeysClientSwiftTests: XCTestCase {
                 
                 XCTAssertNotEqual(self.publicKey.key, pubKey!.key, "Public key data should be updated.")
                 XCTAssertEqual(newKeyPair.publicKey(), pubKey!.key, "Updated public key should contain the exact data which was generated in the new key pair.")
-                ex.fulfill()
+
+                if let e = ex {
+                    e.fulfill()
+                }
             }
         }
         
@@ -144,7 +151,7 @@ class VK001_KeysClientSwiftTests: XCTestCase {
     }
     
     func test004_deleteExistingPublicKey() {
-        let ex = self.expectationWithDescription("Public key should be deleted.")
+        weak var ex = self.expectationWithDescription("Public key should be deleted.")
         let numberOfRequests = kTestUserDataCount * 3 + 1 + 1 + 1
         let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
         
@@ -155,7 +162,7 @@ class VK001_KeysClientSwiftTests: XCTestCase {
                 return
             }
             
-            let pKey = VFPrivateKey(key: self.keyPair.privateKey(), password: nil)
+            let pKey = VSSPrivateKey(key: self.keyPair.privateKey(), password: nil)
             self.keysClient.deletePublicKeyId(self.publicKey.idb.publicKeyId!, privateKey: pKey) { actionToken, deleteError in
                 if deleteError != nil {
                     XCTFail("Public key should be successfully deleted.")
@@ -164,7 +171,9 @@ class VK001_KeysClientSwiftTests: XCTestCase {
                 
                 self.keysClient.getPublicKeyId(self.publicKey.idb.publicKeyId!) { pubKey, getError in
                     if getError != nil {
-                        ex.fulfill()
+                        if let e = ex {
+                            e.fulfill()
+                        }
                         return
                     }
                     
@@ -182,7 +191,7 @@ class VK001_KeysClientSwiftTests: XCTestCase {
     }
     
     func test005_addUserDataToExistingPublicKey() {
-        let ex = self.expectationWithDescription("User data entity should be added.")
+        weak var ex = self.expectationWithDescription("User data entity should be added.")
         let numberOfRequests = 3 + 1 + 1
         let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
         
@@ -193,9 +202,9 @@ class VK001_KeysClientSwiftTests: XCTestCase {
                 return
             }
             
-            let pKey = VFPrivateKey(key: self.keyPair.privateKey(), password: nil)
+            let pKey = VSSPrivateKey(key: self.keyPair.privateKey(), password: nil)
             let userDataList1 = self.userDataListWithLength(1)
-            let ud = userDataList1[0] as! VKUserData
+            let ud = userDataList1[0] as! VSSUserData
             self.keysClient.createUserData(ud, publicKeyId: self.publicKey.idb.publicKeyId!, privateKey: pKey) { userData, createError in
                 if createError != nil {
                     XCTFail("Error: \(createError!.localizedDescription)")
@@ -209,8 +218,9 @@ class VK001_KeysClientSwiftTests: XCTestCase {
                     }
                     
                     XCTAssertTrue(pubKey!.userDataList.count - self.publicKey.userDataList.count == 1, "Public key should now have one additional user data.")
-                    
-                    ex.fulfill()
+                    if let e = ex {
+                        e.fulfill()
+                    }
                 }
             }
         }
@@ -223,7 +233,7 @@ class VK001_KeysClientSwiftTests: XCTestCase {
     }
     
     func test007_deleteUserDataFromExistingPublicKey() {
-        let ex = self.expectationWithDescription("User data entity should be removed.")
+        weak var ex = self.expectationWithDescription("User data entity should be removed.")
         let numberOfRequests = kTestUserDataCount * 3 + 1 + 1 + 1
         let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
         
@@ -234,14 +244,14 @@ class VK001_KeysClientSwiftTests: XCTestCase {
                 return
             }
 
-            let pKey = VFPrivateKey(key: self.keyPair.privateKey(), password: nil)
+            let pKey = VSSPrivateKey(key: self.keyPair.privateKey(), password: nil)
             self.keysClient.searchPublicKeyId(self.publicKey.idb.publicKeyId!, privateKey: pKey) { pubKey, error in
                 if error != nil {
                     XCTFail("Error getting public key: \(error!.localizedDescription)")
                     return
                 }
 
-                let ud = pubKey!.userDataList[0] as! VKUserData
+                let ud = pubKey!.userDataList[0] as! VSSUserDataExtended
                 self.keysClient.deleteUserDataId(ud.idb.userDataId!, publicKeyId: pubKey!.idb.publicKeyId!, privateKey:pKey) { deleteError in
                     if deleteError != nil {
                         XCTFail("Error: \(deleteError!.localizedDescription)")
@@ -255,8 +265,9 @@ class VK001_KeysClientSwiftTests: XCTestCase {
                         }
                         
                         XCTAssertTrue(pubKey!.userDataList.count - pubKey1!.userDataList.count == 1, "Public key should now have one additional user data less than initially created.")
-                        
-                        ex.fulfill()
+                        if let e = ex {
+                            e.fulfill()
+                        }
                     }
                 }
             }
@@ -279,8 +290,8 @@ extension VK001_KeysClientSwiftTests {
         return "\(userId)@mailinator.com"
     }
 
-    func userData() -> VKUserData {
-        return VKUserData(idb: VKIdBundle(), dataClass: .UDCUserId, dataType: .UDTEmail, value: self.userDataValue(), confirmed: false)
+    func userData() -> VSSUserData {
+        return VSSUserData(dataClass: .UDCUserId, dataType: .UDTEmail, value: self.userDataValue())
     }
 
     func userDataListWithLength(length: Int) -> NSArray {
@@ -302,8 +313,8 @@ extension VK001_KeysClientSwiftTests {
     }
     
     func createPublicKeyWithUserDataList(list: NSArray, handler: ((NSError?) -> Void)?) {
-        let pKey = VKPublicKey(idb: VKIdBundle(), key: self.keyPair.publicKey(), userDataList: list as [AnyObject])
-        let privKey = VFPrivateKey(key: self.keyPair.privateKey(), password: nil)
+        let pKey = VSSPublicKey(key: self.keyPair.publicKey(), userDataList: list as [AnyObject])
+        let privKey = VSSPrivateKey(key: self.keyPair.privateKey(), password: nil)
         self.keysClient.createPublicKey(pKey, privateKey: privKey) { pubKey, error in
             if error != nil {
                 if handler != nil {
@@ -319,14 +330,14 @@ extension VK001_KeysClientSwiftTests {
         }
     }
     
-    func confirmUserDataOfPublicKey(pKey: VKPublicKey, handler: ((NSError?)->Void)?) {
+    func confirmUserDataOfPublicKey(pKey: VSSPublicKey, handler: ((NSError?)->Void)?) {
         let confirmationList = NSMutableArray(capacity: pKey.userDataList.count)
         for i in 0..<pKey.userDataList.count {
             confirmationList[i] = false
         }
         
         for i in 0..<pKey.userDataList.count {
-            let ud = pKey.userDataList[i] as! VKUserData
+            let ud = pKey.userDataList[i] as! VSSUserDataExtended
             let inbox = (ud.value as NSString).substringToIndex((ud.value as NSString).rangeOfString("@").location)
 
             let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);

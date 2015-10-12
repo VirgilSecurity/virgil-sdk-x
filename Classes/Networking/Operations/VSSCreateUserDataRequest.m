@@ -20,7 +20,7 @@
 
 @end
 
-@implementation VKCreateUserDataRequest
+@implementation VSSCreateUserDataRequest
 
 @synthesize userData = _userData;
 @synthesize publicKeyId = _publicKeyId;
@@ -37,7 +37,7 @@
     
     NSMutableDictionary *dto = [[NSMutableDictionary alloc] init];
     if (_publicKeyId != nil) {
-        dto[kVKModelPublicKeyId] = _publicKeyId;
+        dto[kVSSKeysModelPublicKeyId] = _publicKeyId;
     }
     if (userData != nil) {
         [dto addEntriesFromDictionary:[userData serialize]];
@@ -48,7 +48,7 @@
 }
 
 - (instancetype)initWithBaseURL:(NSString *)url {
-    return [self initWithBaseURL:url publicKeyId:@"" userData:[[VFUserData alloc] init]];
+    return [self initWithBaseURL:url publicKeyId:@"" userData:[[VSSUserData alloc] init]];
 }
 
 #pragma mark - Overrides
@@ -66,7 +66,7 @@
     self.userData = [VSSUserDataExtended deserializeFrom:[candidate as:[NSDictionary class]]];
     if (![[self.userData isValid] boolValue]) {
         self.userData = nil;
-        return [NSError errorWithDomain:kVKBaseRequestErrorDomain code:kVKBaseRequestErrorCode userInfo:@{ NSLocalizedDescriptionKey: @"User data deserialization from the service response has been unsuccessful." }];
+        return [NSError errorWithDomain:kVSSKeysBaseRequestErrorDomain code:kVSSKeysBaseRequestErrorCode userInfo:@{ NSLocalizedDescriptionKey: @"User data deserialization from the service response has been unsuccessful." }];
     }
     
     return nil;

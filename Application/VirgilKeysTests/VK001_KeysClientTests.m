@@ -10,9 +10,9 @@
 #import <XCTest/XCTest.h>
 
 #import "VSSKeysClientStg.h"
-#import "VSSUserData.h"
 #import "VSSPublicKey.h"
 #import "VSSActionToken.h"
+#import "VSSUserDataExtended.h"
 
 #import "Mailinator.h"
 #import "MEmailMetadata.h"
@@ -51,7 +51,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
 - (NSNumber *)completedConfirmationList:(NSArray *)list;
 
 - (void)createPublicKeyWithUserDataList:(NSArray *)userDataList andHandler:(void(^)(NSError *))handler;
-- (void)confirmUserDataOfPublicKey:(VKPublicKey *)key withHandler:(void(^)(NSError *error))handler;
+- (void)confirmUserDataOfPublicKey:(VSSPublicKey *)key withHandler:(void(^)(NSError *error))handler;
 
 /**
  * @discussion This method will execute the following network requests:
@@ -80,7 +80,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
     self.keysClient = [[VSSKeysClientStg alloc] initWithApplicationToken:kApplicationToken];
     self.mailinator = [[Mailinator alloc] initWithApplicationToken:kMailinatorToken];
     self.regexp = [NSRegularExpression regularExpressionWithPattern:@"Your confirmation code is.+([A-Z0-9]{6})" options:NSRegularExpressionCaseInsensitive error:nil];
-    self.keyPair = [[VCKeyPair alloc] init];
+    self.keyPair = [[VSSKeyPair alloc] init];
 }
 
 - (void)tearDown {
@@ -96,7 +96,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
 
 - (void)test001_createPublicKeyAndConfirmUserData {
     // Create test expectation object.
-    XCTestExpectation *ex = [self expectationWithDescription:@"Public key should be created and user data should be confirmed."];
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Public key should be created and user data should be confirmed."];
     // Total estimated number of network requests:
     // 3 requests for each user data: mailinator inbox + mailinator email + user data confirm
     // And one general request for public key create.
@@ -127,7 +127,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
 }
 
 - (void)test002_getExistingPublicKey {
-    XCTestExpectation *ex = [self expectationWithDescription:@"Public key should be get after creation."];
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Public key should be get after creation."];
     
     NSUInteger numberOfRequests = kTestUserDataCount * 3 + 1 + 1;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime;
@@ -139,7 +139,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
             return;
         }
         
-        [self.keysClient getPublicKeyId:self.publicKey.idb.publicKeyId completionHandler:^(VKPublicKey *pubKey, NSError *getError) {
+        [self.keysClient getPublicKeyId:self.publicKey.idb.publicKeyId completionHandler:^(VSSPublicKey *pubKey, NSError *getError) {
             if (getError != nil) {
                 XCTFail(@"Error: %@", [getError localizedDescription]);
                 return;
@@ -161,9 +161,9 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
 }
 
 - (void)test003_updateExistingPublicKey {
-    VCKeyPair *newKeyPair = [[VCKeyPair alloc] init];
+    VSSKeyPair *newKeyPair = [[VSSKeyPair alloc] init];
     
-    XCTestExpectation *ex = [self expectationWithDescription:@"Public key should be updated after creation."];
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Public key should be updated after creation."];
     
     NSUInteger numberOfRequests = kTestUserDataCount * 3 + 1 + 1;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime;
@@ -174,8 +174,8 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
             XCTFail(@"Error: %@", [error localizedDescription]);
             return;
         }
-        VFPrivateKey *pKey = [[VFPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
-        [self.keysClient updatePublicKeyId:self.publicKey.idb.publicKeyId privateKey:pKey newKeyPair:newKeyPair newKeyPassword:nil completionHandler:^(VKPublicKey *pubKey, NSError *updateError) {
+        VSSPrivateKey *pKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
+        [self.keysClient updatePublicKeyId:self.publicKey.idb.publicKeyId privateKey:pKey newKeyPair:newKeyPair newKeyPassword:nil completionHandler:^(VSSPublicKey *pubKey, NSError *updateError) {
             if (updateError != nil) {
                 XCTFail(@"Error: %@", [updateError localizedDescription]);
                 return;
@@ -196,7 +196,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
 }
 
 - (void)test004_deleteExistingPublicKey {
-    XCTestExpectation *ex = [self expectationWithDescription:@"Public key should be deleted after creation."];
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Public key should be deleted after creation."];
     
     NSUInteger numberOfRequests = 1/*create the key*/ + kTestUserDataCount * 3 /*user datas confirm*/ + 1/* delete the key*/ + 1/*try to get the deleted key*/;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime;
@@ -208,7 +208,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
             return;
         }
         
-        VFPrivateKey *pKey = [[VFPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
+        VSSPrivateKey *pKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
         [self.keysClient deletePublicKeyId:self.publicKey.idb.publicKeyId privateKey:pKey completionHandler:^(VSSActionToken *actionToken, NSError *delError) {
             if (delError != nil) {
                 XCTFail(@"Public key should be successfully deleted.");
@@ -216,7 +216,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
             }
             
             // try to get the deleted public key.
-            [self.keysClient getPublicKeyId:self.publicKey.idb.publicKeyId completionHandler:^(VKPublicKey *pubKey, NSError *getError) {
+            [self.keysClient getPublicKeyId:self.publicKey.idb.publicKeyId completionHandler:^(VSSPublicKey *pubKey, NSError *getError) {
                 if (getError != nil) {
                     [ex fulfill];
                     return;
@@ -237,7 +237,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
 }
 
 - (void)test005_addUserDataToExistingPublicKey {
-    XCTestExpectation *ex = [self expectationWithDescription:@"User data should be added."];
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"User data should be added."];
     
     NSUInteger numberOfRequests = 3 + 1 + 1;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime;
@@ -251,14 +251,14 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
         
         NSArray *userDataList1 = [self userDataListWithLength:1];
         VSSUserDataExtended *ud = [userDataList1[0] as:[VSSUserDataExtended class]];
-        VFPrivateKey *pKey = [[VFPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
+        VSSPrivateKey *pKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
         [self.keysClient createUserData:ud publicKeyId:self.publicKey.idb.publicKeyId privateKey:pKey completionHandler:^(VSSUserDataExtended *uData, NSError *udError) {
             if (udError != nil) {
                 XCTFail(@"User data should be created successfully: %@", [udError localizedDescription]);
                 return;
             }
             
-            [self.keysClient searchPublicKeyId:self.publicKey.idb.publicKeyId privateKey:pKey completionHandler:^(VKPublicKey *pubKey, NSError *getError) {
+            [self.keysClient searchPublicKeyId:self.publicKey.idb.publicKeyId privateKey:pKey completionHandler:^(VSSPublicKey *pubKey, NSError *getError) {
                 if (getError != nil) {
                     XCTFail(@"Error: %@", [getError localizedDescription]);
                     return;
@@ -280,7 +280,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
 }
 
 - (void)test006_deleteUserDataFromExistingPublicKey {
-    XCTestExpectation *ex = [self expectationWithDescription:@"User data should be deleted."];
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"User data should be deleted."];
     
     NSUInteger numberOfRequests = kTestUserDataCount * 3 + 1 + 1 + 1;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime;
@@ -292,21 +292,21 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
             return;
         }
 
-        VFPrivateKey *pKey = [[VFPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
-        [self.keysClient searchPublicKeyId:self.publicKey.idb.publicKeyId privateKey:pKey completionHandler:^(VKPublicKey *pubKey, NSError *getError) {
+        VSSPrivateKey *pKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
+        [self.keysClient searchPublicKeyId:self.publicKey.idb.publicKeyId privateKey:pKey completionHandler:^(VSSPublicKey *pubKey, NSError *getError) {
             if (getError != nil) {
                 XCTFail(@"Error: %@", [getError localizedDescription]);
                 return;
             }
             
-            VSSUserDataExtended *ud = [pubKey.userDataList[0] as:[VKUserData class]];
+            VSSUserDataExtended *ud = [pubKey.userDataList[0] as:[VSSUserDataExtended class]];
             [self.keysClient deleteUserDataId:ud.idb.userDataId publicKeyId:pubKey.idb.publicKeyId privateKey:pKey completionHandler:^(NSError *udError) {
                 if (udError != nil) {
                     XCTFail(@"User data should be created successfully: %@", [udError localizedDescription]);
                     return;
                 }
                 
-                [self.keysClient searchPublicKeyId:pubKey.idb.publicKeyId privateKey:pKey completionHandler:^(VKPublicKey *pubKey1, NSError *getError) {
+                [self.keysClient searchPublicKeyId:pubKey.idb.publicKeyId privateKey:pKey completionHandler:^(VSSPublicKey *pubKey1, NSError *getError) {
                     if (getError != nil) {
                         XCTFail(@"Error: %@", [getError localizedDescription]);
                         return;
@@ -336,7 +336,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
 }
 
 - (VSSUserDataExtended *)userData {
-    return [[VSSUserDataExtended alloc] initWithIdb:[[VSSIdBundle alloc] init] dataClass:UDCUserId dataType:UDTEmail value:[self userDataValue] confirmed:@NO];
+    return [[VSSUserDataExtended alloc] initWithDataClass:UDCUserId dataType:UDTEmail value:[self userDataValue]];
 }
 
 - (NSArray *)userDataListWithLength:(NSUInteger)length {
@@ -358,7 +358,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
 }
 
 - (void)createPublicKeyWithUserDataList:(NSArray *)userDataList andHandler:(void(^)(NSError *))handler {
-    VSSPublicKey *pKey = [[VSSPublicKey alloc] initWithIdb:[[VSSIdBundle alloc] init] key:self.keyPair.publicKey userDataList:userDataList];
+    VSSPublicKey *pKey = [[VSSPublicKey alloc] initWithKey:self.keyPair.publicKey userDataList:userDataList];
     VSSPrivateKey *privKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
     [self.keysClient createPublicKey:pKey privateKey:privKey completionHandler:^(VSSPublicKey *pubKey, NSError *error) {
         if (error != nil) {
