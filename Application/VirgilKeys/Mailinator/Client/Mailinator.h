@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSClient.h"
 #import "MailinatorRequestSettingsProvider.h"
+#import <VirgilFrameworkiOS/VSSClient.h>
 
 @class MEmail;
 

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VSSModel.h"
+#import <VirgilFrameworkiOS/VSSModel.h>
 
 @interface MPart : VSSModel
 

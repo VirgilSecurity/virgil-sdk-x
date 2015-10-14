@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSJSONRequest.h"
+#import <VirgilFrameworkiOS/VSSJSONRequest.h>
 
 @protocol MailinatorRequestSettingsProvider;
 

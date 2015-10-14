@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '7F6281169A8788602696040B'
+               BlueprintIdentifier = '306DE8B1C77E03874CF37C8E'
                BlueprintName = 'VirgilCryptoiOS'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libVirgilCryptoiOS.a'>

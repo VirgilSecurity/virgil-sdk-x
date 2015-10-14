@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VSSModel.h"
+#import <VirgilFrameworkiOS/VSSModel.h>
 
 //{
 //    "seconds_ago":475,
