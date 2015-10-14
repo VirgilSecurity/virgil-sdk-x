@@ -7,595 +7,515 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02CD0C62BE2D466500BF0752 /* VSSCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7326E47A89C0C184BAD1B2AA /* VSSCryptor.mm */; };
-		0581CF918D2AFBF06767EE99 /* Pods-VirgilFrameworkiOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F100A855009D5C4648E0871F /* Pods-VirgilFrameworkiOS-dummy.m */; };
-		0724BD45E0B335A5471F7E45 /* VSSUserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 80182FAED94D883F3C0A2306 /* VSSUserData.m */; };
-		074504D6345B6B4D0AA6C83E /* VSSUserData.h in Headers */ = {isa = PBXBuildFile; fileRef = 48241664C0E9FF7E01AD7BC0 /* VSSUserData.h */; };
-		0C6369AED19BF017E8A4F969 /* VSSPrivateKey.m in Sources */ = {isa = PBXBuildFile; fileRef = CA1F55D4EAFEA132F02824F4 /* VSSPrivateKey.m */; };
-		0D12D909E2A7CA70A069AA6B /* VirgilFrameworkiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F5D333797ACEBB2BBD4E2A /* VirgilFrameworkiOS.h */; };
-		0ECE3155835E82C27CF93BF8 /* VSSSigner.mm in Sources */ = {isa = PBXBuildFile; fileRef = 327F3A0501B5C7E7CD057E79 /* VSSSigner.mm */; };
-		1608587B991B57C935CFC0D7 /* VSSClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FF4FDD0869DE1535387926F /* VSSClient.h */; };
-		20161500FF3ADC323D7098F5 /* NSObject+VSSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BACA31153C6725D95EA9CC0 /* NSObject+VSSUtils.h */; };
-		233C48622315DD48792094D7 /* VSSTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 50C0BF1B70F2E48C894DFFC9 /* VSSTypes.h */; };
-		24A1033BA5FECE1B13225DD8 /* VSSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A0A80EB00BD425BB452C099 /* VSSModel.m */; };
-		2AEAE86BC97737CD2C6CDCEB /* VSSCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 06F00086ABE8F0C10DE43D57 /* VSSCryptor.h */; };
-		2D87B4E29A4E56A3BC66E363 /* VSSKeyPair.h in Headers */ = {isa = PBXBuildFile; fileRef = F8E71D6AEBE60C6452562866 /* VSSKeyPair.h */; };
-		36619F95135093550A05DB02 /* VSSVirgilVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = B64F2C75E8E3A4FE04006BDD /* VSSVirgilVersion.h */; };
-		3C6F864F40C6E3442A7342B6 /* NSThread+VSSBlockExecution.h in Headers */ = {isa = PBXBuildFile; fileRef = 64FE4C08F94937A5E36B3DFB /* NSThread+VSSBlockExecution.h */; };
-		634E6B31137F079DB3E6AEA9 /* VSSPrivateKey.h in Headers */ = {isa = PBXBuildFile; fileRef = B50654A72C61719D1AA605F7 /* VSSPrivateKey.h */; };
-		642EC428838C1D3623CC072D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E15C810C9355469CA6CA09C /* Foundation.framework */; };
-		6885B7455CDA5A7A364332E4 /* VSSServiceRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DE4E1F0D2966CD33905EAB5 /* VSSServiceRequest.h */; };
-		6A38B6F200BACAC99D51B89A /* VSSServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 367CC0E6343934AA264F4BF1 /* VSSServiceRequest.m */; };
-		6C7AA91FEB59CB9EA7E45C31 /* VSSKeyPair.mm in Sources */ = {isa = PBXBuildFile; fileRef = F274BDDA796FAC9BAD105ECD /* VSSKeyPair.mm */; };
-		7F6DD8527A662CF281556329 /* VSSJSONRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 28DA43F4D0A4830B5313D601 /* VSSJSONRequest.h */; };
-		844E50FD6210B8DD62BC7D29 /* Pods-VirgilCryptoiOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 00270C76F374A8039C3F7170 /* Pods-VirgilCryptoiOS-dummy.m */; };
-		8B014D37B2F2B30A0AE538F9 /* NSObject+VSSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DAAFB74DE2890B98A218C73 /* NSObject+VSSUtils.m */; };
-		8B413FD142A5EBE5EFD45027 /* VSSClient.m in Sources */ = {isa = PBXBuildFile; fileRef = BED711719E00C7E91393B923 /* VSSClient.m */; };
-		994BB1086C708B70CD91DAC0 /* VSSError.h in Headers */ = {isa = PBXBuildFile; fileRef = 98FF41A0F8BC3527D482EE4C /* VSSError.h */; };
-		9DDAA4F6C6EBBF1D0A90CBC6 /* VirgilCryptoiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = F750984ABBCAFD9EBB12AFE6 /* VirgilCryptoiOS.h */; };
-		A74BAB7479A5794C9CD64F0C /* VSSSerializable.h in Headers */ = {isa = PBXBuildFile; fileRef = 34025DA50533B2E17D1EB2B0 /* VSSSerializable.h */; };
-		B77F225C9DE26DB86180CC15 /* VSSSigner.h in Headers */ = {isa = PBXBuildFile; fileRef = A39FEC24040C812D8070628D /* VSSSigner.h */; };
-		B94B0CA5D519177D848CF0A0 /* NSString+VSSXMLEscape.h in Headers */ = {isa = PBXBuildFile; fileRef = EB9454E14DC6D26D77544074 /* NSString+VSSXMLEscape.h */; };
-		C6DCC36D7E53F26A96F73C18 /* NSString+VSSXMLEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = E8B196FE8BE3F75F74524EE4 /* NSString+VSSXMLEscape.m */; };
-		C6EF2980635E515FA7402BEC /* NSThread+VSSBlockExecution.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E892A56BC97B9BD8C29217 /* NSThread+VSSBlockExecution.m */; };
-		CBE8E933FF519B7FDCFFEFDD /* VSSUserData_Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F89F64D00F609CA275E9D61 /* VSSUserData_Protected.h */; };
-		CC6A41DEECA7440D34921F15 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C6B9D41E243BAC6B59D579 /* Pods-dummy.m */; };
-		CEA54CCE8C41FA5C909D2E6C /* VSSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E84F0341D1C69524C707214 /* VSSError.m */; };
-		D6F9B24751938FC1A167FC04 /* VSSModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 230ABEBABB0443D6D4E4E4F8 /* VSSModel.h */; };
-		DD00FF3EB2D134BDC0D7D366 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E15C810C9355469CA6CA09C /* Foundation.framework */; };
-		E108D8CA945E6463BF5B0413 /* VSSVirgilVersion.mm in Sources */ = {isa = PBXBuildFile; fileRef = AA06A43EE0AEEBDFCEBFF430 /* VSSVirgilVersion.mm */; };
-		ED111E050108487A10A2D37B /* VSSJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A201A106F7B59C9A9FC254B2 /* VSSJSONRequest.m */; };
-		F8FBB54584D0183EBAF90CEB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E15C810C9355469CA6CA09C /* Foundation.framework */; };
+		013294842283A200EF255413B249F4E9 /* VSSKeyPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 8471CB362B012D7DB17B9224B32478D1 /* VSSKeyPair.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		06754962BD43E1E47F6A091235B7E1EC /* NSThread+VSSBlockExecution.h in Headers */ = {isa = PBXBuildFile; fileRef = 03B0944291AD889EEAC40694FD27295F /* NSThread+VSSBlockExecution.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B5FEBE61A16C8302A3ABCDFFE5C12BF /* VSSServiceRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80062177A04BEACC17DBB063BD1474CA /* VSSServiceRequest.m */; };
+		1549BC59BA1A36BD5023EB436DD0EDE4 /* VSSSigner.h in Headers */ = {isa = PBXBuildFile; fileRef = D301E433A2770FE9997C581B7F21DB34 /* VSSSigner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1917A7C650A7F53ACE61D6F5BCB4129A /* VSSTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 8236C2F86B69EC6CFAA59FCF4BE7A9C7 /* VSSTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1D84869700E11D66C9591B988EE19091 /* VSSPrivateKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 83CEB378E5A0DD9FB0AC6A75439BC0AE /* VSSPrivateKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2C043C2985DF32C400F27AA62FA962F5 /* NSString+VSSXMLEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = D58E75D17BA9F3F2F31CA261E35DC3AF /* NSString+VSSXMLEscape.m */; };
+		2D7BF0D2643B606AD943BB697D8AA8AF /* VSSClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 637ED5AEF73A757E5CDBA1A9EE767913 /* VSSClient.m */; };
+		2DD4BA281D0A43EE20B00C6D4778538B /* VSSClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E4EBBA3D79A1166AECD908265D75E47 /* VSSClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		398FADD42E7E0BC655AC7FC3A0B80F99 /* VSSPrivateKey.m in Sources */ = {isa = PBXBuildFile; fileRef = C3375A9D18FFF2B03F3D8CA413920693 /* VSSPrivateKey.m */; };
+		3A6BDA0D5AF7B9B699360317A0D2476A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		3FAFD4C126DF4ED24BC3436CAD96E3DE /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 272643F56613CA0D336AE3DBF19DC404 /* Pods-dummy.m */; };
+		46F1915331D6045F59B2E11FC4F36F87 /* VirgilCryptoiOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 15E05803918EAA50B0A1532198D42A40 /* VirgilCryptoiOS-dummy.m */; };
+		49238F107A16301EBC61AAEFBB7299F0 /* VSSError.h in Headers */ = {isa = PBXBuildFile; fileRef = 733BAC83481764F940D0CB6FC473A24E /* VSSError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4C498FCA95C84AF1F68AED1B5C0649A4 /* VSSServiceRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = FF7E35D49BBFE935E2C8CA06C80C4E62 /* VSSServiceRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5A087A667C2B368C6FF1D6C02D3F5044 /* VSSSigner.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8B3907FACF70E258650AAA79C83E15DB /* VSSSigner.mm */; };
+		5FEE72C077ADE7EDB34D315B8B45971D /* VirgilFrameworkiOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EADCA7BCAA6B3D768266DC862126BD8C /* VirgilFrameworkiOS-dummy.m */; };
+		66E5F0907B3099B9D8F7CAE2FC1F9AE8 /* VSSModel.h in Headers */ = {isa = PBXBuildFile; fileRef = E02777726B9A375D0C9848D7D373D2E2 /* VSSModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E3610E5C9E93EC4B7F4DD9312510FBA /* VSSUserData.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CD16FAE7C9BDB01FB542404D77B6003 /* VSSUserData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		77A4AA86E405532E3B283F9841B39EDC /* NSThread+VSSBlockExecution.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD79E717035959910DA9D5F95A1544E /* NSThread+VSSBlockExecution.m */; };
+		77D8B66DB93BB96FB7E160DEBC8B8122 /* VSSUserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 469735A84581014FFE5F056F66E272D3 /* VSSUserData.m */; };
+		7A4025235D5B0004FC6DA053A03D81CE /* VSSCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 71F8C8EC1692AB2F3D4FC3D357AEE7B6 /* VSSCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E7192142584752FD3F8739F8F375ECF /* VSSSerializable.h in Headers */ = {isa = PBXBuildFile; fileRef = E08DAE5970019C8C0BE7A01F5C91AA74 /* VSSSerializable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		804DE350FE44ADD27739BF6BE45CF0A6 /* VirgilCryptoiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = F038C64C32D6BE4B781081CFBEED3F2E /* VirgilCryptoiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		995DFEE9D887077BC2ED59585D4093EF /* VSSJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = CC10749A3B0C6C195AADE5375DEFB18F /* VSSJSONRequest.m */; };
+		997EF9A65410EA1B54EF439597CA2512 /* VSSVirgilVersion.mm in Sources */ = {isa = PBXBuildFile; fileRef = E66A470DE65E75D0A27922836C0C4BFA /* VSSVirgilVersion.mm */; };
+		9FF9850CEC85B418716760DA61D3EB34 /* NSObject+VSSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C1DD04B5A2A0DBF8A8902C97EF243868 /* NSObject+VSSUtils.m */; };
+		ADDA2C827012912EE7F884AEF96F1415 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
+		B1AEC150F7CD0DDD1297E0912A6B59C4 /* VSSUserData_Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = EA717327D02C8089F828D3A5FD5CCF68 /* VSSUserData_Protected.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B8D9E9FA1711B65F0B0CD095FAC451BD /* VSSJSONRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 74BC29D2AF7964D47FFCFCF808BA5C09 /* VSSJSONRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C25038EBDF2BAB426BA31EC8FD66E894 /* VSSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 790CD030B1E30238111E6028C4159D43 /* VSSError.m */; };
+		C3B4A8A96A0B4958E25D8ADBFA6B4259 /* NSObject+VSSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EDA0A8787A74D193EAFB8EA5785EB87D /* NSObject+VSSUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C562076501DAE6E0FBE3EF873E7D4C18 /* VSSCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8C9421FACE83E26E980851BFF25953A4 /* VSSCryptor.mm */; };
+		C5E9B9692F9C76E880479FBE2DCCFB52 /* VSSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AFB2C8B092B3A5BA0B1D6B855FD31A7 /* VSSModel.m */; };
+		CAFB7181CFDB151E281638E93DE6ADE1 /* NSString+VSSXMLEscape.h in Headers */ = {isa = PBXBuildFile; fileRef = C3322FD9324F2462F508A3B32E4121A7 /* NSString+VSSXMLEscape.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D906DF899F5CD75F461CB4EBD10E7523 /* VSSKeyPair.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2545C7B02CB7316D6A48F7CB71392801 /* VSSKeyPair.mm */; };
+		E524DD04AF1A5EEDD804339D41B831B3 /* VSSVirgilVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 66542C60A8E0C14558EE1D897E002379 /* VSSVirgilVersion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E7E13D284C5791C468C5CC820A0A0B65 /* VirgilFrameworkiOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 786DA2E211EDEE8B5177A44173782526 /* VirgilFrameworkiOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F740459711E82D5E89F0D3D4FAC78F7F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1DDB4C9485465E40F33B745B /* PBXContainerItemProxy */ = {
+		1DFEBE94457457CE8821A72582497C50 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 98B0CC7F402A0C84E8754E62 /* Project object */;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 7F0326A7A6EB2A5CF59C62A1;
-			remoteInfo = "Pods-VirgilCryptoiOS";
+			remoteGlobalIDString = 315F39A740B839AC308D55A259CF402C;
+			remoteInfo = VirgilFrameworkiOS;
 		};
-		8852257E0CE719B21F072160 /* PBXContainerItemProxy */ = {
+		9BDF812C05B32FC2C8BDC80803827648 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 98B0CC7F402A0C84E8754E62 /* Project object */;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 252521FAA30002619E80AC5D;
-			remoteInfo = "Pods-VirgilFrameworkiOS";
+			remoteGlobalIDString = DE24CB2968C8854B22BCB2342913D198;
+			remoteInfo = VirgilCryptoiOS;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00270C76F374A8039C3F7170 /* Pods-VirgilCryptoiOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-VirgilCryptoiOS-dummy.m"; sourceTree = "<group>"; };
-		06F00086ABE8F0C10DE43D57 /* VSSCryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSCryptor.h; path = Wrapper/VSSCryptor.h; sourceTree = "<group>"; };
-		1AFFE4D9D32712069A10634B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		1DAAFB74DE2890B98A218C73 /* NSObject+VSSUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+VSSUtils.m"; path = "Classes/Utils/NSObject+VSSUtils.m"; sourceTree = "<group>"; };
-		230ABEBABB0443D6D4E4E4F8 /* VSSModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSModel.h; path = Classes/Models/VSSModel.h; sourceTree = "<group>"; };
-		24F29A3D5486BCC8AB37FBB5 /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
-		25C159F500AB432B59494B03 /* Pods-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-environment.h"; sourceTree = "<group>"; };
-		27F5D333797ACEBB2BBD4E2A /* VirgilFrameworkiOS.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VirgilFrameworkiOS.h; path = Classes/VirgilFrameworkiOS.h; sourceTree = "<group>"; };
-		28DA43F4D0A4830B5313D601 /* VSSJSONRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSJSONRequest.h; path = Classes/Networking/Operations/VSSJSONRequest.h; sourceTree = "<group>"; };
-		2A0A80EB00BD425BB452C099 /* VSSModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VSSModel.m; path = Classes/Models/VSSModel.m; sourceTree = "<group>"; };
-		2E84F0341D1C69524C707214 /* VSSError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VSSError.m; path = Classes/Models/VSSError.m; sourceTree = "<group>"; };
-		327F3A0501B5C7E7CD057E79 /* VSSSigner.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSSigner.mm; path = Wrapper/VSSSigner.mm; sourceTree = "<group>"; };
-		34025DA50533B2E17D1EB2B0 /* VSSSerializable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSSerializable.h; path = Classes/Models/VSSSerializable.h; sourceTree = "<group>"; };
-		367CC0E6343934AA264F4BF1 /* VSSServiceRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VSSServiceRequest.m; path = Classes/Networking/Operations/VSSServiceRequest.m; sourceTree = "<group>"; };
-		41C6B9D41E243BAC6B59D579 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
-		48241664C0E9FF7E01AD7BC0 /* VSSUserData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSUserData.h; path = Classes/Models/VSSUserData.h; sourceTree = "<group>"; };
-		4BACA31153C6725D95EA9CC0 /* NSObject+VSSUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+VSSUtils.h"; path = "Classes/Utils/NSObject+VSSUtils.h"; sourceTree = "<group>"; };
-		50C0BF1B70F2E48C894DFFC9 /* VSSTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSTypes.h; path = Classes/Models/VSSTypes.h; sourceTree = "<group>"; };
-		64FE4C08F94937A5E36B3DFB /* NSThread+VSSBlockExecution.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSThread+VSSBlockExecution.h"; path = "Classes/Utils/NSThread+VSSBlockExecution.h"; sourceTree = "<group>"; };
-		6DE4E1F0D2966CD33905EAB5 /* VSSServiceRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSServiceRequest.h; path = Classes/Networking/Operations/VSSServiceRequest.h; sourceTree = "<group>"; };
-		6E15C810C9355469CA6CA09C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		7326E47A89C0C184BAD1B2AA /* VSSCryptor.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSCryptor.mm; path = Wrapper/VSSCryptor.mm; sourceTree = "<group>"; };
-		7F4A8F8648AA663CF0891EFC /* Pods-VirgilFrameworkiOS-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VirgilFrameworkiOS-Private.xcconfig"; sourceTree = "<group>"; };
-		7FC5F2F4DEA9874AEE561A45 /* Pods-VirgilCryptoiOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VirgilCryptoiOS.xcconfig"; sourceTree = "<group>"; };
-		80182FAED94D883F3C0A2306 /* VSSUserData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VSSUserData.m; path = Classes/Models/VSSUserData.m; sourceTree = "<group>"; };
-		88B537B767A3099CF5BF75EB /* VirgilSecurity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilSecurity.framework; path = Frameworks/VirgilSecurity.framework; sourceTree = "<group>"; };
-		8C6C4311758BD75F137CE820 /* Pods-VirgilCryptoiOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-VirgilCryptoiOS-prefix.pch"; sourceTree = "<group>"; };
-		8DCB31653CEF5B15E12CBA6A /* Pods-VirgilCryptoiOS-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VirgilCryptoiOS-Private.xcconfig"; sourceTree = "<group>"; };
-		98E5C97CE6EA7A932FC352F0 /* libPods-VirgilCryptoiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VirgilCryptoiOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		98FF41A0F8BC3527D482EE4C /* VSSError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSError.h; path = Classes/Models/VSSError.h; sourceTree = "<group>"; };
-		9F89F64D00F609CA275E9D61 /* VSSUserData_Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSUserData_Protected.h; path = Classes/Models/VSSUserData_Protected.h; sourceTree = "<group>"; };
-		9FF4FDD0869DE1535387926F /* VSSClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSClient.h; path = Classes/Networking/Client/VSSClient.h; sourceTree = "<group>"; };
-		A201A106F7B59C9A9FC254B2 /* VSSJSONRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VSSJSONRequest.m; path = Classes/Networking/Operations/VSSJSONRequest.m; sourceTree = "<group>"; };
-		A39FEC24040C812D8070628D /* VSSSigner.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSSigner.h; path = Wrapper/VSSSigner.h; sourceTree = "<group>"; };
-		AA06A43EE0AEEBDFCEBFF430 /* VSSVirgilVersion.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSVirgilVersion.mm; path = Wrapper/VSSVirgilVersion.mm; sourceTree = "<group>"; };
-		AAFF0DF0C9C27F85CE959715 /* Pods-VirgilFrameworkiOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VirgilFrameworkiOS.xcconfig"; sourceTree = "<group>"; };
-		B4F7550B41E2BB9165907881 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
-		B50654A72C61719D1AA605F7 /* VSSPrivateKey.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSPrivateKey.h; path = Classes/Models/VSSPrivateKey.h; sourceTree = "<group>"; };
-		B52589BA5E4C83F890E87490 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
-		B64F2C75E8E3A4FE04006BDD /* VSSVirgilVersion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSVirgilVersion.h; path = Wrapper/VSSVirgilVersion.h; sourceTree = "<group>"; };
-		B97BD7F2B72140EEA5278BC1 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		BED711719E00C7E91393B923 /* VSSClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VSSClient.m; path = Classes/Networking/Client/VSSClient.m; sourceTree = "<group>"; };
-		C5F12A34A7E09E2866807CFD /* Pods-VirgilFrameworkiOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-VirgilFrameworkiOS-prefix.pch"; sourceTree = "<group>"; };
-		CA1F55D4EAFEA132F02824F4 /* VSSPrivateKey.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VSSPrivateKey.m; path = Classes/Models/VSSPrivateKey.m; sourceTree = "<group>"; };
-		D257A77C1B9518C2BE80D0EA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
-		E0E892A56BC97B9BD8C29217 /* NSThread+VSSBlockExecution.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSThread+VSSBlockExecution.m"; path = "Classes/Utils/NSThread+VSSBlockExecution.m"; sourceTree = "<group>"; };
-		E47F34DCA54C7409E9E510C3 /* libPods-VirgilFrameworkiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VirgilFrameworkiOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E61CEFDFADA3E519A3202321 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
-		E8B196FE8BE3F75F74524EE4 /* NSString+VSSXMLEscape.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+VSSXMLEscape.m"; path = "Classes/Utils/NSString+VSSXMLEscape.m"; sourceTree = "<group>"; };
-		EB9454E14DC6D26D77544074 /* NSString+VSSXMLEscape.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+VSSXMLEscape.h"; path = "Classes/Utils/NSString+VSSXMLEscape.h"; sourceTree = "<group>"; };
-		F100A855009D5C4648E0871F /* Pods-VirgilFrameworkiOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-VirgilFrameworkiOS-dummy.m"; sourceTree = "<group>"; };
-		F274BDDA796FAC9BAD105ECD /* VSSKeyPair.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSKeyPair.mm; path = Wrapper/VSSKeyPair.mm; sourceTree = "<group>"; };
-		F750984ABBCAFD9EBB12AFE6 /* VirgilCryptoiOS.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VirgilCryptoiOS.h; path = Wrapper/VirgilCryptoiOS.h; sourceTree = "<group>"; };
-		F8E71D6AEBE60C6452562866 /* VSSKeyPair.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSKeyPair.h; path = Wrapper/VSSKeyPair.h; sourceTree = "<group>"; };
+		03B0944291AD889EEAC40694FD27295F /* NSThread+VSSBlockExecution.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSThread+VSSBlockExecution.h"; path = "Classes/Utils/NSThread+VSSBlockExecution.h"; sourceTree = "<group>"; };
+		10834806BD7B412BC24F347361FA2C8E /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		15E05803918EAA50B0A1532198D42A40 /* VirgilCryptoiOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "VirgilCryptoiOS-dummy.m"; sourceTree = "<group>"; };
+		2545C7B02CB7316D6A48F7CB71392801 /* VSSKeyPair.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSKeyPair.mm; path = Wrapper/VSSKeyPair.mm; sourceTree = "<group>"; };
+		272643F56613CA0D336AE3DBF19DC404 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		297015F3AD7220193115738194545053 /* libVirgilCryptoiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVirgilCryptoiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		37DB56D75062CC75FCB0966E1C6E8A8E /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		45F8948E9BBDBF413F07A8150925295A /* VirgilCryptoiOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VirgilCryptoiOS-prefix.pch"; sourceTree = "<group>"; };
+		469735A84581014FFE5F056F66E272D3 /* VSSUserData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VSSUserData.m; path = Classes/Models/VSSUserData.m; sourceTree = "<group>"; };
+		4E762F23EC34ED4A6FF3312D84E33A40 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
+		5DD79E717035959910DA9D5F95A1544E /* NSThread+VSSBlockExecution.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSThread+VSSBlockExecution.m"; path = "Classes/Utils/NSThread+VSSBlockExecution.m"; sourceTree = "<group>"; };
+		637ED5AEF73A757E5CDBA1A9EE767913 /* VSSClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VSSClient.m; path = Classes/Networking/Client/VSSClient.m; sourceTree = "<group>"; };
+		66542C60A8E0C14558EE1D897E002379 /* VSSVirgilVersion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSVirgilVersion.h; path = Wrapper/VSSVirgilVersion.h; sourceTree = "<group>"; };
+		6911BECA35E7518D864239B7E898EEF3 /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
+		6CD16FAE7C9BDB01FB542404D77B6003 /* VSSUserData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSUserData.h; path = Classes/Models/VSSUserData.h; sourceTree = "<group>"; };
+		71F8C8EC1692AB2F3D4FC3D357AEE7B6 /* VSSCryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSCryptor.h; path = Wrapper/VSSCryptor.h; sourceTree = "<group>"; };
+		733BAC83481764F940D0CB6FC473A24E /* VSSError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSError.h; path = Classes/Models/VSSError.h; sourceTree = "<group>"; };
+		74BC29D2AF7964D47FFCFCF808BA5C09 /* VSSJSONRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSJSONRequest.h; path = Classes/Networking/Operations/VSSJSONRequest.h; sourceTree = "<group>"; };
+		786DA2E211EDEE8B5177A44173782526 /* VirgilFrameworkiOS.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VirgilFrameworkiOS.h; path = Classes/VirgilFrameworkiOS.h; sourceTree = "<group>"; };
+		790CD030B1E30238111E6028C4159D43 /* VSSError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VSSError.m; path = Classes/Models/VSSError.m; sourceTree = "<group>"; };
+		7AFB2C8B092B3A5BA0B1D6B855FD31A7 /* VSSModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VSSModel.m; path = Classes/Models/VSSModel.m; sourceTree = "<group>"; };
+		7E4EBBA3D79A1166AECD908265D75E47 /* VSSClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSClient.h; path = Classes/Networking/Client/VSSClient.h; sourceTree = "<group>"; };
+		80062177A04BEACC17DBB063BD1474CA /* VSSServiceRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VSSServiceRequest.m; path = Classes/Networking/Operations/VSSServiceRequest.m; sourceTree = "<group>"; };
+		8236C2F86B69EC6CFAA59FCF4BE7A9C7 /* VSSTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSTypes.h; path = Classes/Models/VSSTypes.h; sourceTree = "<group>"; };
+		83CEB378E5A0DD9FB0AC6A75439BC0AE /* VSSPrivateKey.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSPrivateKey.h; path = Classes/Models/VSSPrivateKey.h; sourceTree = "<group>"; };
+		8471CB362B012D7DB17B9224B32478D1 /* VSSKeyPair.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSKeyPair.h; path = Wrapper/VSSKeyPair.h; sourceTree = "<group>"; };
+		8B3907FACF70E258650AAA79C83E15DB /* VSSSigner.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSSigner.mm; path = Wrapper/VSSSigner.mm; sourceTree = "<group>"; };
+		8C9421FACE83E26E980851BFF25953A4 /* VSSCryptor.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSCryptor.mm; path = Wrapper/VSSCryptor.mm; sourceTree = "<group>"; };
+		8D5BC8C35F0B9CD7A55F7226DEA30858 /* VirgilFrameworkiOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = VirgilFrameworkiOS.xcconfig; sourceTree = "<group>"; };
+		98C98CDFB3F20F2925F6CD1F141BB14F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		A1A36D34413696BE466E2CA0AFF194DA /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		B3C6C07395742ED820A1533D097034E4 /* VirgilCryptoiOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = VirgilCryptoiOS.xcconfig; sourceTree = "<group>"; };
+		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		C1DD04B5A2A0DBF8A8902C97EF243868 /* NSObject+VSSUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+VSSUtils.m"; path = "Classes/Utils/NSObject+VSSUtils.m"; sourceTree = "<group>"; };
+		C3322FD9324F2462F508A3B32E4121A7 /* NSString+VSSXMLEscape.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+VSSXMLEscape.h"; path = "Classes/Utils/NSString+VSSXMLEscape.h"; sourceTree = "<group>"; };
+		C3375A9D18FFF2B03F3D8CA413920693 /* VSSPrivateKey.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VSSPrivateKey.m; path = Classes/Models/VSSPrivateKey.m; sourceTree = "<group>"; };
+		CC10749A3B0C6C195AADE5375DEFB18F /* VSSJSONRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VSSJSONRequest.m; path = Classes/Networking/Operations/VSSJSONRequest.m; sourceTree = "<group>"; };
+		CF14C90D444619D15DDE2C4B65D4A032 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D301E433A2770FE9997C581B7F21DB34 /* VSSSigner.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSSigner.h; path = Wrapper/VSSSigner.h; sourceTree = "<group>"; };
+		D58E75D17BA9F3F2F31CA261E35DC3AF /* NSString+VSSXMLEscape.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+VSSXMLEscape.m"; path = "Classes/Utils/NSString+VSSXMLEscape.m"; sourceTree = "<group>"; };
+		E02777726B9A375D0C9848D7D373D2E2 /* VSSModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSModel.h; path = Classes/Models/VSSModel.h; sourceTree = "<group>"; };
+		E08DAE5970019C8C0BE7A01F5C91AA74 /* VSSSerializable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSSerializable.h; path = Classes/Models/VSSSerializable.h; sourceTree = "<group>"; };
+		E66A470DE65E75D0A27922836C0C4BFA /* VSSVirgilVersion.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSVirgilVersion.mm; path = Wrapper/VSSVirgilVersion.mm; sourceTree = "<group>"; };
+		EA717327D02C8089F828D3A5FD5CCF68 /* VSSUserData_Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSUserData_Protected.h; path = Classes/Models/VSSUserData_Protected.h; sourceTree = "<group>"; };
+		EADCA7BCAA6B3D768266DC862126BD8C /* VirgilFrameworkiOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "VirgilFrameworkiOS-dummy.m"; sourceTree = "<group>"; };
+		EDA0A8787A74D193EAFB8EA5785EB87D /* NSObject+VSSUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+VSSUtils.h"; path = "Classes/Utils/NSObject+VSSUtils.h"; sourceTree = "<group>"; };
+		F038C64C32D6BE4B781081CFBEED3F2E /* VirgilCryptoiOS.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VirgilCryptoiOS.h; path = Wrapper/VirgilCryptoiOS.h; sourceTree = "<group>"; };
+		F526C37F59E359A09FB9E711063B4B12 /* VirgilFrameworkiOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VirgilFrameworkiOS-prefix.pch"; sourceTree = "<group>"; };
+		F76B4035E6A773539D59AAC631AE1BAB /* libVirgilFrameworkiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVirgilFrameworkiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAA0C5BE830370BCBC0EE3C405F31DDD /* VirgilSecurity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilSecurity.framework; path = Frameworks/VirgilSecurity.framework; sourceTree = "<group>"; };
+		FF7E35D49BBFE935E2C8CA06C80C4E62 /* VSSServiceRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSServiceRequest.h; path = Classes/Networking/Operations/VSSServiceRequest.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		07A6307A62A7DB16FE286F22 /* Frameworks */ = {
+		5B02991C8436AFC8A4B30797506E5913 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				642EC428838C1D3623CC072D /* Foundation.framework in Frameworks */,
+				F740459711E82D5E89F0D3D4FAC78F7F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		44C9AD1CA962EDCF4D28EE72 /* Frameworks */ = {
+		9EC0EC762DE4148BA191A263FBD586B7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8FBB54584D0183EBAF90CEB /* Foundation.framework in Frameworks */,
+				3A6BDA0D5AF7B9B699360317A0D2476A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B1D6616C85D971A96EF18492 /* Frameworks */ = {
+		AF1B0F90CE3407BDAF2A7F14C619C64F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD00FF3EB2D134BDC0D7D366 /* Foundation.framework in Frameworks */,
+				ADDA2C827012912EE7F884AEF96F1415 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		01632533DE109C656D885580 /* iOS */ = {
+		021906F143A7683C82E2B6F40418A254 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6E15C810C9355469CA6CA09C /* Foundation.framework */,
+				CF14C90D444619D15DDE2C4B65D4A032 /* libPods.a */,
+				297015F3AD7220193115738194545053 /* libVirgilCryptoiOS.a */,
+				F76B4035E6A773539D59AAC631AE1BAB /* libVirgilFrameworkiOS.a */,
 			);
-			name = iOS;
+			name = Products;
 			sourceTree = "<group>";
 		};
-		2DDD0B05910855636BD9079B /* Frameworks */ = {
+		037C0CA694176A3C0915F62C9D20B3E6 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				88B537B767A3099CF5BF75EB /* VirgilSecurity.framework */,
+				B3D1D13E0C6553800746CB8FD61CF946 /* Pods */,
 			);
-			name = Frameworks;
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		305B4112DD4C643A9022DD23 /* Frameworks */ = {
+		0D78625D82DECF375E1017B43DC5689C /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				01632533DE109C656D885580 /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		60AA581F0759C95DDE40641C /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				AAFF0DF0C9C27F85CE959715 /* Pods-VirgilFrameworkiOS.xcconfig */,
-				7F4A8F8648AA663CF0891EFC /* Pods-VirgilFrameworkiOS-Private.xcconfig */,
-				F100A855009D5C4648E0871F /* Pods-VirgilFrameworkiOS-dummy.m */,
-				C5F12A34A7E09E2866807CFD /* Pods-VirgilFrameworkiOS-prefix.pch */,
+				8D5BC8C35F0B9CD7A55F7226DEA30858 /* VirgilFrameworkiOS.xcconfig */,
+				EADCA7BCAA6B3D768266DC862126BD8C /* VirgilFrameworkiOS-dummy.m */,
+				F526C37F59E359A09FB9E711063B4B12 /* VirgilFrameworkiOS-prefix.pch */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/Pods-VirgilFrameworkiOS";
+			path = "../Target Support Files/VirgilFrameworkiOS";
 			sourceTree = "<group>";
 		};
-		6A34C8D4CD5E4362BCCF0D4F /* Pods */ = {
+		6B2BEFC50FCE6C37F55B905168B0A82B /* VirgilCryptoiOS */ = {
 			isa = PBXGroup;
 			children = (
-				24F29A3D5486BCC8AB37FBB5 /* Pods-acknowledgements.markdown */,
-				B52589BA5E4C83F890E87490 /* Pods-acknowledgements.plist */,
-				41C6B9D41E243BAC6B59D579 /* Pods-dummy.m */,
-				25C159F500AB432B59494B03 /* Pods-environment.h */,
-				E61CEFDFADA3E519A3202321 /* Pods-resources.sh */,
-				B4F7550B41E2BB9165907881 /* Pods.debug.xcconfig */,
-				D257A77C1B9518C2BE80D0EA /* Pods.release.xcconfig */,
+				F038C64C32D6BE4B781081CFBEED3F2E /* VirgilCryptoiOS.h */,
+				71F8C8EC1692AB2F3D4FC3D357AEE7B6 /* VSSCryptor.h */,
+				8C9421FACE83E26E980851BFF25953A4 /* VSSCryptor.mm */,
+				8471CB362B012D7DB17B9224B32478D1 /* VSSKeyPair.h */,
+				2545C7B02CB7316D6A48F7CB71392801 /* VSSKeyPair.mm */,
+				D301E433A2770FE9997C581B7F21DB34 /* VSSSigner.h */,
+				8B3907FACF70E258650AAA79C83E15DB /* VSSSigner.mm */,
+				66542C60A8E0C14558EE1D897E002379 /* VSSVirgilVersion.h */,
+				E66A470DE65E75D0A27922836C0C4BFA /* VSSVirgilVersion.mm */,
+				80E0D9C74631323220BADEBC63D1AB4A /* Frameworks */,
+				7D6472E4213CDB1B5C5232C0223CC28E /* Support Files */,
+			);
+			path = VirgilCryptoiOS;
+			sourceTree = "<group>";
+		};
+		7D6472E4213CDB1B5C5232C0223CC28E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				B3C6C07395742ED820A1533D097034E4 /* VirgilCryptoiOS.xcconfig */,
+				15E05803918EAA50B0A1532198D42A40 /* VirgilCryptoiOS-dummy.m */,
+				45F8948E9BBDBF413F07A8150925295A /* VirgilCryptoiOS-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/VirgilCryptoiOS";
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				AB6E76BB444EB1680C5B954D82BFF4EA /* Pods */,
+				021906F143A7683C82E2B6F40418A254 /* Products */,
+				037C0CA694176A3C0915F62C9D20B3E6 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		80E0D9C74631323220BADEBC63D1AB4A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FAA0C5BE830370BCBC0EE3C405F31DDD /* VirgilSecurity.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		93F08B8B9848C340C5FB3B0C79DD257D /* VirgilFrameworkiOS */ = {
+			isa = PBXGroup;
+			children = (
+				EDA0A8787A74D193EAFB8EA5785EB87D /* NSObject+VSSUtils.h */,
+				C1DD04B5A2A0DBF8A8902C97EF243868 /* NSObject+VSSUtils.m */,
+				C3322FD9324F2462F508A3B32E4121A7 /* NSString+VSSXMLEscape.h */,
+				D58E75D17BA9F3F2F31CA261E35DC3AF /* NSString+VSSXMLEscape.m */,
+				03B0944291AD889EEAC40694FD27295F /* NSThread+VSSBlockExecution.h */,
+				5DD79E717035959910DA9D5F95A1544E /* NSThread+VSSBlockExecution.m */,
+				786DA2E211EDEE8B5177A44173782526 /* VirgilFrameworkiOS.h */,
+				7E4EBBA3D79A1166AECD908265D75E47 /* VSSClient.h */,
+				637ED5AEF73A757E5CDBA1A9EE767913 /* VSSClient.m */,
+				733BAC83481764F940D0CB6FC473A24E /* VSSError.h */,
+				790CD030B1E30238111E6028C4159D43 /* VSSError.m */,
+				74BC29D2AF7964D47FFCFCF808BA5C09 /* VSSJSONRequest.h */,
+				CC10749A3B0C6C195AADE5375DEFB18F /* VSSJSONRequest.m */,
+				E02777726B9A375D0C9848D7D373D2E2 /* VSSModel.h */,
+				7AFB2C8B092B3A5BA0B1D6B855FD31A7 /* VSSModel.m */,
+				83CEB378E5A0DD9FB0AC6A75439BC0AE /* VSSPrivateKey.h */,
+				C3375A9D18FFF2B03F3D8CA413920693 /* VSSPrivateKey.m */,
+				E08DAE5970019C8C0BE7A01F5C91AA74 /* VSSSerializable.h */,
+				FF7E35D49BBFE935E2C8CA06C80C4E62 /* VSSServiceRequest.h */,
+				80062177A04BEACC17DBB063BD1474CA /* VSSServiceRequest.m */,
+				8236C2F86B69EC6CFAA59FCF4BE7A9C7 /* VSSTypes.h */,
+				6CD16FAE7C9BDB01FB542404D77B6003 /* VSSUserData.h */,
+				469735A84581014FFE5F056F66E272D3 /* VSSUserData.m */,
+				EA717327D02C8089F828D3A5FD5CCF68 /* VSSUserData_Protected.h */,
+				0D78625D82DECF375E1017B43DC5689C /* Support Files */,
+			);
+			path = VirgilFrameworkiOS;
+			sourceTree = "<group>";
+		};
+		AB6E76BB444EB1680C5B954D82BFF4EA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6B2BEFC50FCE6C37F55B905168B0A82B /* VirgilCryptoiOS */,
+				93F08B8B9848C340C5FB3B0C79DD257D /* VirgilFrameworkiOS */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B3D1D13E0C6553800746CB8FD61CF946 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				37DB56D75062CC75FCB0966E1C6E8A8E /* Pods-acknowledgements.markdown */,
+				10834806BD7B412BC24F347361FA2C8E /* Pods-acknowledgements.plist */,
+				272643F56613CA0D336AE3DBF19DC404 /* Pods-dummy.m */,
+				6911BECA35E7518D864239B7E898EEF3 /* Pods-frameworks.sh */,
+				A1A36D34413696BE466E2CA0AFF194DA /* Pods-resources.sh */,
+				4E762F23EC34ED4A6FF3312D84E33A40 /* Pods.debug.xcconfig */,
+				98C98CDFB3F20F2925F6CD1F141BB14F /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			path = "Target Support Files/Pods";
 			sourceTree = "<group>";
 		};
-		6F0FAA8C9C922DA322791780 /* Targets Support Files */ = {
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6A34C8D4CD5E4362BCCF0D4F /* Pods */,
+				BF6342C8B29F4CEEA088EFF7AB4DE362 /* iOS */,
 			);
-			name = "Targets Support Files";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7F21F60BE876ADDDA1E8C9CA /* Support Files */ = {
+		BF6342C8B29F4CEEA088EFF7AB4DE362 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				7FC5F2F4DEA9874AEE561A45 /* Pods-VirgilCryptoiOS.xcconfig */,
-				8DCB31653CEF5B15E12CBA6A /* Pods-VirgilCryptoiOS-Private.xcconfig */,
-				00270C76F374A8039C3F7170 /* Pods-VirgilCryptoiOS-dummy.m */,
-				8C6C4311758BD75F137CE820 /* Pods-VirgilCryptoiOS-prefix.pch */,
+				3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/Pods-VirgilCryptoiOS";
-			sourceTree = "<group>";
-		};
-		8A2387FF7A847C14FEFE4460 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				91BABB5969F65AF349CFFEE4 /* VirgilCryptoiOS */,
-				D72C5A31A91F1C0F635E3EF0 /* VirgilFrameworkiOS */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		91BABB5969F65AF349CFFEE4 /* VirgilCryptoiOS */ = {
-			isa = PBXGroup;
-			children = (
-				06F00086ABE8F0C10DE43D57 /* VSSCryptor.h */,
-				7326E47A89C0C184BAD1B2AA /* VSSCryptor.mm */,
-				F8E71D6AEBE60C6452562866 /* VSSKeyPair.h */,
-				F274BDDA796FAC9BAD105ECD /* VSSKeyPair.mm */,
-				A39FEC24040C812D8070628D /* VSSSigner.h */,
-				327F3A0501B5C7E7CD057E79 /* VSSSigner.mm */,
-				B64F2C75E8E3A4FE04006BDD /* VSSVirgilVersion.h */,
-				AA06A43EE0AEEBDFCEBFF430 /* VSSVirgilVersion.mm */,
-				F750984ABBCAFD9EBB12AFE6 /* VirgilCryptoiOS.h */,
-				2DDD0B05910855636BD9079B /* Frameworks */,
-				7F21F60BE876ADDDA1E8C9CA /* Support Files */,
-			);
-			path = VirgilCryptoiOS;
-			sourceTree = "<group>";
-		};
-		D72C5A31A91F1C0F635E3EF0 /* VirgilFrameworkiOS */ = {
-			isa = PBXGroup;
-			children = (
-				4BACA31153C6725D95EA9CC0 /* NSObject+VSSUtils.h */,
-				1DAAFB74DE2890B98A218C73 /* NSObject+VSSUtils.m */,
-				EB9454E14DC6D26D77544074 /* NSString+VSSXMLEscape.h */,
-				E8B196FE8BE3F75F74524EE4 /* NSString+VSSXMLEscape.m */,
-				64FE4C08F94937A5E36B3DFB /* NSThread+VSSBlockExecution.h */,
-				E0E892A56BC97B9BD8C29217 /* NSThread+VSSBlockExecution.m */,
-				9FF4FDD0869DE1535387926F /* VSSClient.h */,
-				BED711719E00C7E91393B923 /* VSSClient.m */,
-				98FF41A0F8BC3527D482EE4C /* VSSError.h */,
-				2E84F0341D1C69524C707214 /* VSSError.m */,
-				28DA43F4D0A4830B5313D601 /* VSSJSONRequest.h */,
-				A201A106F7B59C9A9FC254B2 /* VSSJSONRequest.m */,
-				230ABEBABB0443D6D4E4E4F8 /* VSSModel.h */,
-				2A0A80EB00BD425BB452C099 /* VSSModel.m */,
-				B50654A72C61719D1AA605F7 /* VSSPrivateKey.h */,
-				CA1F55D4EAFEA132F02824F4 /* VSSPrivateKey.m */,
-				34025DA50533B2E17D1EB2B0 /* VSSSerializable.h */,
-				6DE4E1F0D2966CD33905EAB5 /* VSSServiceRequest.h */,
-				367CC0E6343934AA264F4BF1 /* VSSServiceRequest.m */,
-				50C0BF1B70F2E48C894DFFC9 /* VSSTypes.h */,
-				48241664C0E9FF7E01AD7BC0 /* VSSUserData.h */,
-				80182FAED94D883F3C0A2306 /* VSSUserData.m */,
-				9F89F64D00F609CA275E9D61 /* VSSUserData_Protected.h */,
-				27F5D333797ACEBB2BBD4E2A /* VirgilFrameworkiOS.h */,
-				60AA581F0759C95DDE40641C /* Support Files */,
-			);
-			path = VirgilFrameworkiOS;
-			sourceTree = "<group>";
-		};
-		F1560B8D736B6E9628D2A645 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				1AFFE4D9D32712069A10634B /* libPods.a */,
-				98E5C97CE6EA7A932FC352F0 /* libPods-VirgilCryptoiOS.a */,
-				E47F34DCA54C7409E9E510C3 /* libPods-VirgilFrameworkiOS.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		FB76D2B5FA2490EF012515C3 = {
-			isa = PBXGroup;
-			children = (
-				B97BD7F2B72140EEA5278BC1 /* Podfile */,
-				305B4112DD4C643A9022DD23 /* Frameworks */,
-				8A2387FF7A847C14FEFE4460 /* Pods */,
-				F1560B8D736B6E9628D2A645 /* Products */,
-				6F0FAA8C9C922DA322791780 /* Targets Support Files */,
-			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		263027AE6C0C7968632C161E /* Headers */ = {
+		57099FDC72C0984E05ABF5D171B5FD84 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20161500FF3ADC323D7098F5 /* NSObject+VSSUtils.h in Headers */,
-				B94B0CA5D519177D848CF0A0 /* NSString+VSSXMLEscape.h in Headers */,
-				3C6F864F40C6E3442A7342B6 /* NSThread+VSSBlockExecution.h in Headers */,
-				1608587B991B57C935CFC0D7 /* VSSClient.h in Headers */,
-				994BB1086C708B70CD91DAC0 /* VSSError.h in Headers */,
-				7F6DD8527A662CF281556329 /* VSSJSONRequest.h in Headers */,
-				D6F9B24751938FC1A167FC04 /* VSSModel.h in Headers */,
-				634E6B31137F079DB3E6AEA9 /* VSSPrivateKey.h in Headers */,
-				A74BAB7479A5794C9CD64F0C /* VSSSerializable.h in Headers */,
-				6885B7455CDA5A7A364332E4 /* VSSServiceRequest.h in Headers */,
-				233C48622315DD48792094D7 /* VSSTypes.h in Headers */,
-				074504D6345B6B4D0AA6C83E /* VSSUserData.h in Headers */,
-				CBE8E933FF519B7FDCFFEFDD /* VSSUserData_Protected.h in Headers */,
-				0D12D909E2A7CA70A069AA6B /* VirgilFrameworkiOS.h in Headers */,
+				804DE350FE44ADD27739BF6BE45CF0A6 /* VirgilCryptoiOS.h in Headers */,
+				7A4025235D5B0004FC6DA053A03D81CE /* VSSCryptor.h in Headers */,
+				013294842283A200EF255413B249F4E9 /* VSSKeyPair.h in Headers */,
+				1549BC59BA1A36BD5023EB436DD0EDE4 /* VSSSigner.h in Headers */,
+				E524DD04AF1A5EEDD804339D41B831B3 /* VSSVirgilVersion.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B454039BE5ECB5D7F6123D94 /* Headers */ = {
+		D17E742997509BF3C9233CCFDE1BA95E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AEAE86BC97737CD2C6CDCEB /* VSSCryptor.h in Headers */,
-				2D87B4E29A4E56A3BC66E363 /* VSSKeyPair.h in Headers */,
-				B77F225C9DE26DB86180CC15 /* VSSSigner.h in Headers */,
-				36619F95135093550A05DB02 /* VSSVirgilVersion.h in Headers */,
-				9DDAA4F6C6EBBF1D0A90CBC6 /* VirgilCryptoiOS.h in Headers */,
+				C3B4A8A96A0B4958E25D8ADBFA6B4259 /* NSObject+VSSUtils.h in Headers */,
+				CAFB7181CFDB151E281638E93DE6ADE1 /* NSString+VSSXMLEscape.h in Headers */,
+				06754962BD43E1E47F6A091235B7E1EC /* NSThread+VSSBlockExecution.h in Headers */,
+				E7E13D284C5791C468C5CC820A0A0B65 /* VirgilFrameworkiOS.h in Headers */,
+				2DD4BA281D0A43EE20B00C6D4778538B /* VSSClient.h in Headers */,
+				49238F107A16301EBC61AAEFBB7299F0 /* VSSError.h in Headers */,
+				B8D9E9FA1711B65F0B0CD095FAC451BD /* VSSJSONRequest.h in Headers */,
+				66E5F0907B3099B9D8F7CAE2FC1F9AE8 /* VSSModel.h in Headers */,
+				1D84869700E11D66C9591B988EE19091 /* VSSPrivateKey.h in Headers */,
+				7E7192142584752FD3F8739F8F375ECF /* VSSSerializable.h in Headers */,
+				4C498FCA95C84AF1F68AED1B5C0649A4 /* VSSServiceRequest.h in Headers */,
+				1917A7C650A7F53ACE61D6F5BCB4129A /* VSSTypes.h in Headers */,
+				6E3610E5C9E93EC4B7F4DD9312510FBA /* VSSUserData.h in Headers */,
+				B1AEC150F7CD0DDD1297E0912A6B59C4 /* VSSUserData_Protected.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		252521FAA30002619E80AC5D /* Pods-VirgilFrameworkiOS */ = {
+		315F39A740B839AC308D55A259CF402C /* VirgilFrameworkiOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4A6AFC3FC1CD548548C8904B /* Build configuration list for PBXNativeTarget "Pods-VirgilFrameworkiOS" */;
+			buildConfigurationList = 819514F84FBA91CDF0042DAA0A749EA5 /* Build configuration list for PBXNativeTarget "VirgilFrameworkiOS" */;
 			buildPhases = (
-				5E1CD13CE8F2F673C7CF8064 /* Sources */,
-				44C9AD1CA962EDCF4D28EE72 /* Frameworks */,
-				263027AE6C0C7968632C161E /* Headers */,
+				226AC0A466CDDBEDE3362C59D917CCBA /* Sources */,
+				AF1B0F90CE3407BDAF2A7F14C619C64F /* Frameworks */,
+				D17E742997509BF3C9233CCFDE1BA95E /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-VirgilFrameworkiOS";
-			productName = "Pods-VirgilFrameworkiOS";
-			productReference = E47F34DCA54C7409E9E510C3 /* libPods-VirgilFrameworkiOS.a */;
+			name = VirgilFrameworkiOS;
+			productName = VirgilFrameworkiOS;
+			productReference = F76B4035E6A773539D59AAC631AE1BAB /* libVirgilFrameworkiOS.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		51FC97E6C643FFFAEFB824D7 /* Pods */ = {
+		A24DBDD9ED057BA1E83D95D7CF1C1FF5 /* Pods */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E7604C2EFD0D0C88D5365126 /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildConfigurationList = BFA52D5E18CFC5CB392BD1ED73CAE944 /* Build configuration list for PBXNativeTarget "Pods" */;
 			buildPhases = (
-				F321C4A1967821E497374C82 /* Sources */,
-				07A6307A62A7DB16FE286F22 /* Frameworks */,
+				33665E771A8B4A42BAC6E3153BA7C88B /* Sources */,
+				9EC0EC762DE4148BA191A263FBD586B7 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F5CA372F0AC15BF1519189EC /* PBXTargetDependency */,
-				5CA77556F00D8390C1CAEDD1 /* PBXTargetDependency */,
+				77EBB1147836F7FC48DE7C730D6483B9 /* PBXTargetDependency */,
+				AEBEB2E64CE83BB950B043175920168E /* PBXTargetDependency */,
 			);
 			name = Pods;
 			productName = Pods;
-			productReference = 1AFFE4D9D32712069A10634B /* libPods.a */;
+			productReference = CF14C90D444619D15DDE2C4B65D4A032 /* libPods.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		7F0326A7A6EB2A5CF59C62A1 /* Pods-VirgilCryptoiOS */ = {
+		DE24CB2968C8854B22BCB2342913D198 /* VirgilCryptoiOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CB1A4642953D5B6E2305C81F /* Build configuration list for PBXNativeTarget "Pods-VirgilCryptoiOS" */;
+			buildConfigurationList = EB5FC1AB8BD0DAD2B5DD8A34B7F29FFE /* Build configuration list for PBXNativeTarget "VirgilCryptoiOS" */;
 			buildPhases = (
-				71E24B931BE66440AB33AB95 /* Sources */,
-				B1D6616C85D971A96EF18492 /* Frameworks */,
-				B454039BE5ECB5D7F6123D94 /* Headers */,
+				A41D13161F989036A9316C4D1DAB293C /* Sources */,
+				5B02991C8436AFC8A4B30797506E5913 /* Frameworks */,
+				57099FDC72C0984E05ABF5D171B5FD84 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-VirgilCryptoiOS";
-			productName = "Pods-VirgilCryptoiOS";
-			productReference = 98E5C97CE6EA7A932FC352F0 /* libPods-VirgilCryptoiOS.a */;
+			name = VirgilCryptoiOS;
+			productName = VirgilCryptoiOS;
+			productReference = 297015F3AD7220193115738194545053 /* libVirgilCryptoiOS.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		98B0CC7F402A0C84E8754E62 /* Project object */ = {
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 			};
-			buildConfigurationList = 5FE389871153EE024BB47377 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = FB76D2B5FA2490EF012515C3;
-			productRefGroup = F1560B8D736B6E9628D2A645 /* Products */;
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 021906F143A7683C82E2B6F40418A254 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				51FC97E6C643FFFAEFB824D7 /* Pods */,
-				7F0326A7A6EB2A5CF59C62A1 /* Pods-VirgilCryptoiOS */,
-				252521FAA30002619E80AC5D /* Pods-VirgilFrameworkiOS */,
+				A24DBDD9ED057BA1E83D95D7CF1C1FF5 /* Pods */,
+				DE24CB2968C8854B22BCB2342913D198 /* VirgilCryptoiOS */,
+				315F39A740B839AC308D55A259CF402C /* VirgilFrameworkiOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5E1CD13CE8F2F673C7CF8064 /* Sources */ = {
+		226AC0A466CDDBEDE3362C59D917CCBA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B014D37B2F2B30A0AE538F9 /* NSObject+VSSUtils.m in Sources */,
-				C6DCC36D7E53F26A96F73C18 /* NSString+VSSXMLEscape.m in Sources */,
-				C6EF2980635E515FA7402BEC /* NSThread+VSSBlockExecution.m in Sources */,
-				0581CF918D2AFBF06767EE99 /* Pods-VirgilFrameworkiOS-dummy.m in Sources */,
-				8B413FD142A5EBE5EFD45027 /* VSSClient.m in Sources */,
-				CEA54CCE8C41FA5C909D2E6C /* VSSError.m in Sources */,
-				ED111E050108487A10A2D37B /* VSSJSONRequest.m in Sources */,
-				24A1033BA5FECE1B13225DD8 /* VSSModel.m in Sources */,
-				0C6369AED19BF017E8A4F969 /* VSSPrivateKey.m in Sources */,
-				6A38B6F200BACAC99D51B89A /* VSSServiceRequest.m in Sources */,
-				0724BD45E0B335A5471F7E45 /* VSSUserData.m in Sources */,
+				9FF9850CEC85B418716760DA61D3EB34 /* NSObject+VSSUtils.m in Sources */,
+				2C043C2985DF32C400F27AA62FA962F5 /* NSString+VSSXMLEscape.m in Sources */,
+				77A4AA86E405532E3B283F9841B39EDC /* NSThread+VSSBlockExecution.m in Sources */,
+				5FEE72C077ADE7EDB34D315B8B45971D /* VirgilFrameworkiOS-dummy.m in Sources */,
+				2D7BF0D2643B606AD943BB697D8AA8AF /* VSSClient.m in Sources */,
+				C25038EBDF2BAB426BA31EC8FD66E894 /* VSSError.m in Sources */,
+				995DFEE9D887077BC2ED59585D4093EF /* VSSJSONRequest.m in Sources */,
+				C5E9B9692F9C76E880479FBE2DCCFB52 /* VSSModel.m in Sources */,
+				398FADD42E7E0BC655AC7FC3A0B80F99 /* VSSPrivateKey.m in Sources */,
+				0B5FEBE61A16C8302A3ABCDFFE5C12BF /* VSSServiceRequest.m in Sources */,
+				77D8B66DB93BB96FB7E160DEBC8B8122 /* VSSUserData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		71E24B931BE66440AB33AB95 /* Sources */ = {
+		33665E771A8B4A42BAC6E3153BA7C88B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				844E50FD6210B8DD62BC7D29 /* Pods-VirgilCryptoiOS-dummy.m in Sources */,
-				02CD0C62BE2D466500BF0752 /* VSSCryptor.mm in Sources */,
-				6C7AA91FEB59CB9EA7E45C31 /* VSSKeyPair.mm in Sources */,
-				0ECE3155835E82C27CF93BF8 /* VSSSigner.mm in Sources */,
-				E108D8CA945E6463BF5B0413 /* VSSVirgilVersion.mm in Sources */,
+				3FAFD4C126DF4ED24BC3436CAD96E3DE /* Pods-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F321C4A1967821E497374C82 /* Sources */ = {
+		A41D13161F989036A9316C4D1DAB293C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC6A41DEECA7440D34921F15 /* Pods-dummy.m in Sources */,
+				46F1915331D6045F59B2E11FC4F36F87 /* VirgilCryptoiOS-dummy.m in Sources */,
+				C562076501DAE6E0FBE3EF873E7D4C18 /* VSSCryptor.mm in Sources */,
+				D906DF899F5CD75F461CB4EBD10E7523 /* VSSKeyPair.mm in Sources */,
+				5A087A667C2B368C6FF1D6C02D3F5044 /* VSSSigner.mm in Sources */,
+				997EF9A65410EA1B54EF439597CA2512 /* VSSVirgilVersion.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5CA77556F00D8390C1CAEDD1 /* PBXTargetDependency */ = {
+		77EBB1147836F7FC48DE7C730D6483B9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "Pods-VirgilFrameworkiOS";
-			target = 252521FAA30002619E80AC5D /* Pods-VirgilFrameworkiOS */;
-			targetProxy = 8852257E0CE719B21F072160 /* PBXContainerItemProxy */;
+			name = VirgilCryptoiOS;
+			target = DE24CB2968C8854B22BCB2342913D198 /* VirgilCryptoiOS */;
+			targetProxy = 9BDF812C05B32FC2C8BDC80803827648 /* PBXContainerItemProxy */;
 		};
-		F5CA372F0AC15BF1519189EC /* PBXTargetDependency */ = {
+		AEBEB2E64CE83BB950B043175920168E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = "Pods-VirgilCryptoiOS";
-			target = 7F0326A7A6EB2A5CF59C62A1 /* Pods-VirgilCryptoiOS */;
-			targetProxy = 1DDB4C9485465E40F33B745B /* PBXContainerItemProxy */;
+			name = VirgilFrameworkiOS;
+			target = 315F39A740B839AC308D55A259CF402C /* VirgilFrameworkiOS */;
+			targetProxy = 1DFEBE94457457CE8821A72582497C50 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		42CA1E0ACEB0C07A971C08BB /* Debug */ = {
+		6DAD2817278C1E3B87D2BC0FFF526433 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F4A8F8648AA663CF0891EFC /* Pods-VirgilFrameworkiOS-Private.xcconfig */;
+			baseConfigurationReference = B3C6C07395742ED820A1533D097034E4 /* VirgilCryptoiOS.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-VirgilFrameworkiOS/Pods-VirgilFrameworkiOS-prefix.pch";
+				GCC_PREFIX_HEADER = "Target Support Files/VirgilCryptoiOS/VirgilCryptoiOS-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
-		5360C0BB0D90194762D1C712 /* Debug */ = {
+		6EAEFB53076A6D3F815076526392B648 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8DCB31653CEF5B15E12CBA6A /* Pods-VirgilCryptoiOS-Private.xcconfig */;
+			baseConfigurationReference = 8D5BC8C35F0B9CD7A55F7226DEA30858 /* VirgilFrameworkiOS.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-VirgilCryptoiOS/Pods-VirgilCryptoiOS-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		64F193970105D12DA9F81340 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		7AAFBA0638D6A3C489C571EB /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D257A77C1B9518C2BE80D0EA /* Pods.release.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/VirgilFrameworkiOS/VirgilFrameworkiOS-prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		98244670D90D941701EF6040 /* Release */ = {
+		8DDBEF799FC0E47D3985A2898AAD7E5D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7F4A8F8648AA663CF0891EFC /* Pods-VirgilFrameworkiOS-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-VirgilFrameworkiOS/Pods-VirgilFrameworkiOS-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		BA55F3F5119F1D0A78DBBB81 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8DCB31653CEF5B15E12CBA6A /* Pods-VirgilCryptoiOS-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-VirgilCryptoiOS/Pods-VirgilCryptoiOS-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		D42AE789723B650F1BFA02FF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4F7550B41E2BB9165907881 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 4E762F23EC34ED4A6FF3312D84E33A40 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -606,7 +526,25 @@
 			};
 			name = Debug;
 		};
-		D74FFB4D4137EAB5B1669FE7 /* Debug */ = {
+		9BB8F9ED085CE656CA69C92FFA06A6B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D5BC8C35F0B9CD7A55F7226DEA30858 /* VirgilFrameworkiOS.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/VirgilFrameworkiOS/VirgilFrameworkiOS-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A70CDAD61F90AC503C7D04CC22DA2923 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -645,46 +583,115 @@
 			};
 			name = Debug;
 		};
+		E40713F19E20706762335CA0482971B7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3C6C07395742ED820A1533D097034E4 /* VirgilCryptoiOS.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/VirgilCryptoiOS/VirgilCryptoiOS-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		F3597620B6FFE54B4BABF5A7CE6CDFFF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98C98CDFB3F20F2925F6CD1F141BB14F /* Pods.release.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		FB45FFD90572718D82AB9092B750F0CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4A6AFC3FC1CD548548C8904B /* Build configuration list for PBXNativeTarget "Pods-VirgilFrameworkiOS" */ = {
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				42CA1E0ACEB0C07A971C08BB /* Debug */,
-				98244670D90D941701EF6040 /* Release */,
+				A70CDAD61F90AC503C7D04CC22DA2923 /* Debug */,
+				FB45FFD90572718D82AB9092B750F0CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5FE389871153EE024BB47377 /* Build configuration list for PBXProject "Pods" */ = {
+		819514F84FBA91CDF0042DAA0A749EA5 /* Build configuration list for PBXNativeTarget "VirgilFrameworkiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D74FFB4D4137EAB5B1669FE7 /* Debug */,
-				64F193970105D12DA9F81340 /* Release */,
+				9BB8F9ED085CE656CA69C92FFA06A6B1 /* Debug */,
+				6EAEFB53076A6D3F815076526392B648 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		CB1A4642953D5B6E2305C81F /* Build configuration list for PBXNativeTarget "Pods-VirgilCryptoiOS" */ = {
+		BFA52D5E18CFC5CB392BD1ED73CAE944 /* Build configuration list for PBXNativeTarget "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5360C0BB0D90194762D1C712 /* Debug */,
-				BA55F3F5119F1D0A78DBBB81 /* Release */,
+				8DDBEF799FC0E47D3985A2898AAD7E5D /* Debug */,
+				F3597620B6FFE54B4BABF5A7CE6CDFFF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E7604C2EFD0D0C88D5365126 /* Build configuration list for PBXNativeTarget "Pods" */ = {
+		EB5FC1AB8BD0DAD2B5DD8A34B7F29FFE /* Build configuration list for PBXNativeTarget "VirgilCryptoiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D42AE789723B650F1BFA02FF /* Debug */,
-				7AAFBA0638D6A3C489C571EB /* Release */,
+				6DAD2817278C1E3B87D2BC0FFF526433 /* Debug */,
+				E40713F19E20706762335CA0482971B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 98B0CC7F402A0C84E8754E62 /* Project object */;
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 }

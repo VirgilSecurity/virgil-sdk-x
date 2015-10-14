@@ -1,0 +1,6 @@
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/VirgilCryptoiOS/Frameworks"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/VirgilCryptoiOS" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/VirgilCryptoiOS" "${PODS_ROOT}/Headers/Public/VirgilFrameworkiOS" $(FRAMEWORK_SEARCH_PATHS)/VirgilSecurity.framework/Headers
+OTHER_LDFLAGS = -l"stdc++" -framework "VirgilSecurity"
+PODS_ROOT = ${SRCROOT}
+SKIP_INSTALL = YES
