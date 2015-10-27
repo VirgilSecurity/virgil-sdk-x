@@ -50,7 +50,14 @@
  * @param privateKey VSSPrivateKey Private key container corresponding the public key which is about to be deleted. It is necessary to compose X-VIRGIL-REQUEST-SIGN header to make service sure that user is actual owner of the public key.
  * @param completionHandler Block with callback code which should be called in case of request completion due to success or error. In case of success NSError parameter of the callback will be nil. Otherwise it will contain error information. 
  */
-- (void)deletePublicKeyId:(GUID * __nonnull)publicKeyId privateKey:(VSSPrivateKey * __nonnull)privateKey completionHandler:(void(^ __nullable)(VSSActionToken *__nullable actionToken, NSError * __nullable error))completionHandler;
+- (void)deletePublicKeyId:(GUID * __nonnull)publicKeyId privateKey:(VSSPrivateKey * __nonnull)privateKey completionHandler:(void(^ __nullable)(NSError * __nullable error))completionHandler;
+
+/**
+ * Request for removing public key from the Virgil Keys Service (Unsigned request which should return action token for further confirmations).
+ * @param publicKeyId GUID NSString containing lowercased UUID of the public key which is necessary to be deleted.
+ * @param completionHandler Block with callback code which should be called in case of request completion due to success or error. In case of success NSError parameter of the callback will be nil. Otherwise it will contain error information.
+ */
+- (void)deletePublicKeyId:(GUID * __nonnull)publicKeyId completionHandler:(void(^ __nullable)(VSSActionToken *__nullable actionToken, NSError * __nullable error))completionHandler;
 /**
  * Request for reseting the public key at the Virgil Keys Service. It might be useful in case when user lost his/her private key, so he/she can not sign any requests and can not prove that he/she is owner of the public key. In case of successful request the Virgil Keys Service will return VKActionToken instance via the first parameter of the completionHandler. This Action Token should be used to prove that user is actual owner of the all user data objects (e.g. email addresses) attached to the public key which is about to be reset.
  * @param publicKeyId GUID NSString containing lowercased UUID of the public key which is necessary to be reset.

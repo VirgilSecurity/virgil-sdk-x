@@ -171,11 +171,51 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     [self send:request];
 }
 
-- (void)deletePublicKeyId:(GUID *)publicKeyId privateKey:(VSSPrivateKey *)privateKey completionHandler:(void(^)(VSSActionToken *actionToken, NSError *error))completionHandler {
+- (void)deletePublicKeyId:(GUID *)publicKeyId privateKey:(VSSPrivateKey *)privateKey completionHandler:(void(^)(NSError *error))completionHandler {
     if (publicKeyId.length == 0 || privateKey.key.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, [NSError errorWithDomain:kVSSKeysClientErrorDomain code:-106 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the deletion of the public key can not be sent. Public key's id is not set or private key is missing.", @"DeletePublicKey") }]);
+                completionHandler([NSError errorWithDomain:kVSSKeysClientErrorDomain code:-106 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the deletion of the public key can not be sent. Public key's id is not set or private key is missing.", @"DeletePublicKey") }]);
+            });
+        }
+        return;
+    }
+    
+    ServiceRequestCompletionHandler handler = ^(VSSServiceRequest *request) {
+        if (request.status != Done) {
+            if (completionHandler != nil) {
+                completionHandler(request.error);
+            }
+            return;
+        }
+        
+        if (completionHandler != nil) {
+            completionHandler(nil);
+        }
+    };
+    
+    VSSDeletePublicKeyRequest *request = [[VSSDeletePublicKeyRequest alloc] initWithBaseURL:self.serviceURL publicKeyId:publicKeyId];
+    request.completionHandler = handler;
+    
+    NSError *signError = [self signRequest:request privateKey:privateKey];
+    if (signError != nil) {
+        if (completionHandler != nil) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                completionHandler(signError);
+            });
+        }
+        return;
+    }
+    
+    [request setRequestHeaders:@{ @"X-VIRGIL-REQUEST-SIGN-PK-ID": publicKeyId }];
+    [self send:request];
+}
+
+- (void)deletePublicKeyId:(GUID * __nonnull)publicKeyId completionHandler:(void(^ __nullable)(VSSActionToken *__nullable actionToken, NSError * __nullable error))completionHandler {
+    if (publicKeyId.length == 0) {
+        if (completionHandler != nil) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                completionHandler(nil, [NSError errorWithDomain:kVSSKeysClientErrorDomain code:-106 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Request for the deletion of the public key can not be sent. Public key's id is not set.", @"DeletePublicKey") }]);
             });
         }
         return;
@@ -198,17 +238,6 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     VSSDeletePublicKeyRequest *request = [[VSSDeletePublicKeyRequest alloc] initWithBaseURL:self.serviceURL publicKeyId:publicKeyId];
     request.completionHandler = handler;
     
-    NSError *signError = [self signRequest:request privateKey:privateKey];
-    if (signError != nil) {
-        if (completionHandler != nil) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, signError);
-            });
-        }
-        return;
-    }
-    
-    [request setRequestHeaders:@{ @"X-VIRGIL-REQUEST-SIGN-PK-ID": publicKeyId }];
     [self send:request];
 }
 
