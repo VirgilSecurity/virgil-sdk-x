@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface VSSPrivateKey : NSObject
+@interface VSSPrivateKey : NSObject <NSCopying, NSCoding>
 
-@property (nonatomic, strong, readonly) NSData  * __nonnull key;
-@property (nonatomic, strong, readonly) NSString  * __nullable password;
+@property (nonatomic, copy, readonly) NSData  * __nonnull key;
+@property (nonatomic, copy, readonly) NSString  * __nullable password;
 
 - (instancetype __nonnull)initWithKey:(NSData * __nonnull)key password:(NSString * __nullable)password NS_DESIGNATED_INITIALIZER;
 - (instancetype __nonnull)initWithKey:(NSData * __nonnull)key;

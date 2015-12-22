@@ -100,6 +100,7 @@
 		A1A36D34413696BE466E2CA0AFF194DA /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
 		B3C6C07395742ED820A1533D097034E4 /* VirgilCryptoiOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = VirgilCryptoiOS.xcconfig; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		BC482351AE521A4EAEE212B96DCD6E87 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = Frameworks/ios/VirgilCrypto.framework; sourceTree = "<group>"; };
 		C1DD04B5A2A0DBF8A8902C97EF243868 /* NSObject+VSSUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+VSSUtils.m"; path = "Classes/Utils/NSObject+VSSUtils.m"; sourceTree = "<group>"; };
 		C3322FD9324F2462F508A3B32E4121A7 /* NSString+VSSXMLEscape.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+VSSXMLEscape.h"; path = "Classes/Utils/NSString+VSSXMLEscape.h"; sourceTree = "<group>"; };
 		C3375A9D18FFF2B03F3D8CA413920693 /* VSSPrivateKey.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = VSSPrivateKey.m; path = Classes/Models/VSSPrivateKey.m; sourceTree = "<group>"; };
@@ -116,7 +117,6 @@
 		F038C64C32D6BE4B781081CFBEED3F2E /* VirgilCryptoiOS.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VirgilCryptoiOS.h; path = Wrapper/VirgilCryptoiOS.h; sourceTree = "<group>"; };
 		F526C37F59E359A09FB9E711063B4B12 /* VirgilFrameworkiOS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VirgilFrameworkiOS-prefix.pch"; sourceTree = "<group>"; };
 		F76B4035E6A773539D59AAC631AE1BAB /* libVirgilFrameworkiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVirgilFrameworkiOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		FAA0C5BE830370BCBC0EE3C405F31DDD /* VirgilSecurity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilSecurity.framework; path = Frameworks/VirgilSecurity.framework; sourceTree = "<group>"; };
 		FF7E35D49BBFE935E2C8CA06C80C4E62 /* VSSServiceRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSServiceRequest.h; path = Classes/Networking/Operations/VSSServiceRequest.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,7 +189,7 @@
 				8B3907FACF70E258650AAA79C83E15DB /* VSSSigner.mm */,
 				66542C60A8E0C14558EE1D897E002379 /* VSSVirgilVersion.h */,
 				E66A470DE65E75D0A27922836C0C4BFA /* VSSVirgilVersion.mm */,
-				80E0D9C74631323220BADEBC63D1AB4A /* Frameworks */,
+				DB709C246CF07AE9C9083EDDBC3D5B3A /* Frameworks */,
 				7D6472E4213CDB1B5C5232C0223CC28E /* Support Files */,
 			);
 			path = VirgilCryptoiOS;
@@ -215,14 +215,6 @@
 				021906F143A7683C82E2B6F40418A254 /* Products */,
 				037C0CA694176A3C0915F62C9D20B3E6 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		80E0D9C74631323220BADEBC63D1AB4A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				FAA0C5BE830370BCBC0EE3C405F31DDD /* VirgilSecurity.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		93F08B8B9848C340C5FB3B0C79DD257D /* VirgilFrameworkiOS */ = {
@@ -295,6 +287,14 @@
 				3E4E89230EF59BC255123B67864ACF77 /* Foundation.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		DB709C246CF07AE9C9083EDDBC3D5B3A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BC482351AE521A4EAEE212B96DCD6E87 /* VirgilCrypto.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

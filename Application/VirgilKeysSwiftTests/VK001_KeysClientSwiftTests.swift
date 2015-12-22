@@ -163,7 +163,7 @@ class VK001_KeysClientSwiftTests: XCTestCase {
             }
             
             let pKey = VSSPrivateKey(key: self.keyPair.privateKey(), password: nil)
-            self.keysClient.deletePublicKeyId(self.publicKey.idb.publicKeyId!, privateKey: pKey) { actionToken, deleteError in
+            self.keysClient.deletePublicKeyId(self.publicKey.idb.publicKeyId!, privateKey: pKey) { deleteError in
                 if deleteError != nil {
                     XCTFail("Public key should be successfully deleted.")
                     return

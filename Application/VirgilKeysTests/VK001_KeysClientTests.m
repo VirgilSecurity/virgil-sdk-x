@@ -209,7 +209,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
         }
         
         VSSPrivateKey *pKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
-        [self.keysClient deletePublicKeyId:self.publicKey.idb.publicKeyId privateKey:pKey completionHandler:^(VSSActionToken *actionToken, NSError *delError) {
+        [self.keysClient deletePublicKeyId:self.publicKey.idb.publicKeyId privateKey:pKey completionHandler:^(NSError *delError) {
             if (delError != nil) {
                 XCTFail(@"Public key should be successfully deleted.");
                 return;

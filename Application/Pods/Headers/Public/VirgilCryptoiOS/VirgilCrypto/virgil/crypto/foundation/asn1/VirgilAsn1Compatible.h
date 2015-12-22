@@ -1,0 +1,1 @@
+../../../../../../../../VirgilCryptoiOS/Frameworks/ios/VirgilCrypto.framework/Versions/A/Headers/virgil/crypto/foundation/asn1/VirgilAsn1Compatible.h
