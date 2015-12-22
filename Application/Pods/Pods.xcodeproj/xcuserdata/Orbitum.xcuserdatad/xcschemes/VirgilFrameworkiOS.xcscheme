@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'D37BA0DB5340EE5A68DA40A8'
+               BlueprintIdentifier = '1244C40AB39A23784BD1BB15'
                BlueprintName = 'VirgilFrameworkiOS'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libVirgilFrameworkiOS.a'>
