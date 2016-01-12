@@ -194,7 +194,7 @@
 		361403681BB2E0FC002E69CA /* VSSSearchPublicKeyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSearchPublicKeyRequest.m; sourceTree = "<group>"; };
 		361403691BB2E0FC002E69CA /* VSSUpdatePublicKeyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSUpdatePublicKeyRequest.h; sourceTree = "<group>"; };
 		3614036A1BB2E0FC002E69CA /* VSSUpdatePublicKeyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSUpdatePublicKeyRequest.m; sourceTree = "<group>"; };
-		3614036B1BB2E0FC002E69CA /* VirgilKeysiOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirgilKeysiOS.h; sourceTree = "<group>"; };
+		3614036B1BB2E0FC002E69CA /* VirgilKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirgilKeys.h; sourceTree = "<group>"; };
 		361403D81BB2EF7E002E69CA /* VK001_KeysClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VK001_KeysClientTests.m; sourceTree = "<group>"; };
 		361403E91BB31014002E69CA /* MEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEmail.h; sourceTree = "<group>"; };
 		361403EA1BB31014002E69CA /* MEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEmail.m; sourceTree = "<group>"; };
@@ -377,7 +377,7 @@
 			children = (
 				3614033F1BB2E0FC002E69CA /* Models */,
 				3614034E1BB2E0FC002E69CA /* Networking */,
-				3614036B1BB2E0FC002E69CA /* VirgilKeysiOS.h */,
+				3614036B1BB2E0FC002E69CA /* VirgilKeys.h */,
 			);
 			name = "VirgilKeys Pod Content";
 			path = ../Classes;
