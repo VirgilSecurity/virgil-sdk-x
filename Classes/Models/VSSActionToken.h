@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-#import <VirgilFrameworkiOS/VSSModel.h>
-#import <VirgilFrameworkiOS/VSSTypes.h>
+#import <VirgilKit/VSSModel.h>
+#import <VirgilKit/VSSTypes.h>
 
 @interface VSSActionToken : VSSModel
 

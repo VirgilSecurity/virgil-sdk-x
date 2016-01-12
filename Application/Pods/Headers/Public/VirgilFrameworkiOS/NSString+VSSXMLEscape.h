@@ -1,1 +1,0 @@
-../../../VirgilFrameworkiOS/Classes/Utils/NSString+VSSXMLEscape.h

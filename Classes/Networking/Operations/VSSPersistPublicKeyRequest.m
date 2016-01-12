@@ -9,7 +9,7 @@
 #import "VSSPersistPublicKeyRequest.h"
 #import "VSSPublicKey.h"
 #import "VSSActionToken.h"
-#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
+#import <VirgilKit/NSObject+VSSUtils.h>
 
 @interface VSSPersistPublicKeyRequest ()
 

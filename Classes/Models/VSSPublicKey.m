@@ -11,8 +11,8 @@
 #import "VSSIdBundle.h"
 #import "VSSKeysModelCommons.h"
 
-#import <VirgilFrameworkiOS/VSSUserData.h>
-#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
+#import <VirgilKit/VSSUserData.h>
+#import <VirgilKit/NSObject+VSSUtils.h>
 
 @interface VSSPublicKey ()
 

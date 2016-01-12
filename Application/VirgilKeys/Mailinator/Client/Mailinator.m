@@ -12,7 +12,7 @@
 #import "MailinatorInboxRequest.h"
 #import "MailinatorEmailRequest.h"
 
-#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
+#import <VirgilKit/NSObject+VSSUtils.h>
 
 static NSString *const kMailinatorErrorDomain = @"MailinatorErrorDomain";
 
@@ -35,7 +35,7 @@ static NSString *const kMailinatorErrorDomain = @"MailinatorErrorDomain";
     }
     
     ServiceRequestCompletionHandler handler = ^(VSSServiceRequest *request) {
-        if (request.status != Done) {
+        if (request.error != nil) {
             if (completionHandler != nil) {
                 completionHandler(nil, request.error);
             }
@@ -64,7 +64,7 @@ static NSString *const kMailinatorErrorDomain = @"MailinatorErrorDomain";
     }
     
     ServiceRequestCompletionHandler handler = ^(VSSServiceRequest *request) {
-        if (request.status != Done) {
+        if (request.error != nil) {
             if (completionHandler != nil) {
                 completionHandler(nil, request.error);
             }

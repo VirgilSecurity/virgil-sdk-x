@@ -2,5 +2,5 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 link_with 'VirgilKeys', 'VirgilKeysTests', 'VirgilKeysSwift', 'VirgilKeysSwiftTests'
 
-pod 'VirgilCryptoiOS'
-pod 'VirgilFrameworkiOS'
+pod 'VirgilFoundation'
+pod 'VirgilKit'

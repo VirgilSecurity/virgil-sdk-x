@@ -10,7 +10,7 @@
 #import "MEmailMetadata.h"
 #import "MPart.h"
 
-#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
+#import <VirgilKit/NSObject+VSSUtils.h>
 
 static NSString *const kMEMetadata = @"metadata";
 static NSString *const kMEHeaders = @"headers";

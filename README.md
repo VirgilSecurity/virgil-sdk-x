@@ -1,10 +1,10 @@
 ## Description
 
-VirgilKeysiOS framework is a wrapper over the Virgil Keys service for iOS applications. It allows user to interact with Virgil Keys service much easier. This framework takes care about composing correct requests and parsing the service's responds into usable model classes.  
+VirgilKeys framework is a wrapper over the Virgil Keys service for Apple-based platforms. It allows user to interact with Virgil Keys service much easier. This framework takes care about composing correct requests and parsing the service's responds into usable model classes.  
 
 ## Getting started
 
-VirgilKeysiOS framework is supposed to be installed via CocoaPods. So, if you are not familiar with it it is time to install CocoaPods. Open your terminal window and execute the following line:
+VirgilKeys framework is supposed to be installed via CocoaPods. So, if you are not familiar with it it is time to install CocoaPods. Open your terminal window and execute the following line:
 ```
 $ sudo gem install cocoapods
 ``` 
@@ -12,14 +12,14 @@ It will ask you about the password and then will install latest release version 
 
 If you encountered any issues during this installation, please take a look at [cocoapods.org](https://guides.cocoapods.org/using/getting-started.html) for more information.
 
-VirgilKeysiOS framework has 2 dependencies:
+VirgilKeys framework has 2 dependencies:
  
-- VirgilCryptoiOS - this is low-level framework for performing basic security operations such as: creating key pairs, encrypting/decrypting some data and signing/verifying signs.
-- VirgilFrameworkiOS - this is a small framework with some base classes which is also used for other Virgil libraries and applications.
+- VirgilFoundation - this is low-level framework for performing basic security operations such as: creating key pairs, encrypting/decrypting some data and signing/verifying signs.
+- VirgilKit - this is a small framework with some base classes which is also used for other Virgil libraries and applications.
 
 You don't need to install any of them manually. CocoaPods will handle it for you automatically.
 
-Now it is possible to add VirgilKeysiOS to the particular application. So:
+Now it is possible to add VirgilKeys to the particular application. So:
 
 - Open Xcode and create a new project (in the Xcode menu: File->New->Project), or navigate to existing Xcode project using:
 
@@ -27,12 +27,12 @@ Now it is possible to add VirgilKeysiOS to the particular application. So:
 $ cd <Path to Xcode project folder>
 ```
 
-- In the Xcode project's folder create a new file, give it a name *Podfile* (with a capital *P* and without any extension). Put the following lines in the Podfile and save it.
+- In the Xcode project's folder create a new file, give it a name *Podfile* (with a capital *P* and without any extension). The following example shows how to compose the Podfile for an iOS application.
 
 ```
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
-pod 'VirgilKeysiOS'
+pod 'VirgilKeys'
 ```
 
 - Get back to your terminal window and execute the following line:
@@ -56,7 +56,7 @@ After VirgilKeys is installed as described in the *Getting started* section it i
 
 - Put there the following line:
 ``` objective-c
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
+#import <VirgilKeys/VirgilKeys.h>
 ```
 
 - In the Xcode build settings find the setting called *Objective-C Bridging Header* and set the path to your *BridgingHeader.h* file. Be aware that this path is relative to your Xcode project's folder. After adding bridging header setting you should be able to use the framework.
@@ -73,7 +73,7 @@ After signing in press *Register an application* button and fill required fields
 
 ###### Objective-C
 ```objective-c
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
+#import <VirgilFoundation/VirgilFoundation.h>
 
 //...
 VSSKeyPair *keyPair = [[VSSKeyPair alloc] init];
@@ -91,7 +91,7 @@ Optionally it is possible to create a new key pair protected by some password:
 
 ###### Objective-C
 ```objective-c
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
+#import <VirgilFoundation/VirgilFoundation.h>
 
 //...
 VSSKeyPair *keyPair = [[VSSKeyPair alloc] initWithPassword:<#password#>];
@@ -111,9 +111,9 @@ Requests to the service is an asynchronous network operation. VSSKeysClient inst
 
 ###### Objective-C
 ```objective-c
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
-#import <VirgilFrameworkiOS/VirgilFrameworkiOS.h>
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
+#import <VirgilFoundation/VirgilFoundation.h>
+#import <VirgilKit/VirgilKit.h>
+#import <VirgilKeys/VirgilKeys.h>
 
 //...
 @property (nonatomic, strong) VSSKeysClient *keysClient;
@@ -180,7 +180,7 @@ self.keysClient.createPublicKey(publicKey, privateKey: pKey) { pubKey, error in
 
 ###### Objective-C
 ```objective-c
-#import <VirgilKeysiOS/VirgilKeysiOS.h>
+#import <VirgilKeys/VirgilKeys.h>
 
 //...
 @property (nonatomic, strong) VSSKeysClient *keysClient;
@@ -234,7 +234,7 @@ When the user wants to send a private message which can be read only by recipien
 ###### Objective-C
 ```objective-c
 //...
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
+#import <VirgilFoundation/VirgilFoundation.h>
 //...
 
 // Assuming that we have some initial private string message.
@@ -279,7 +279,7 @@ In case when a user needs to decrypt received encrypted message he/she needs to 
 ###### Objective-C
 ```objective-c
 //...
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
+#import <VirgilFoundation/VirgilFoundation.h>
 //...
 
 // Assuming that we have received some data encrypted using our public key from the Virgil Keys Service.
@@ -320,7 +320,7 @@ Signature is a piece of data which is composed using a particular user's private
 ###### Objective-C
 ```objective-c
 //...
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
+#import <VirgilFoundation/VirgilFoundation.h>
 //...
 
 // Assuming that we have some initial string message that we want to sign.
@@ -365,7 +365,7 @@ To verify some signature it is necessary to get a sender's public key from the V
 ###### Objective-C
 ```objective-c
 //...
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
+#import <VirgilFoundation/VirgilFoundation.h>
 //...
 
 // Assuming that we get the public key of the user whose signature we need to verify from the Virgil Keys Service

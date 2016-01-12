@@ -10,7 +10,7 @@
 #import "VSSBaseModel.h"
 #import "VSSActionToken.h"
 #import "VSSKeysModelCommons.h"
-#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
+#import <VirgilKit/NSObject+VSSUtils.h>
 
 @interface VSSResetPublicKeyRequest ()
 

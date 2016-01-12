@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <VirgilFrameworkiOS/VSSUserData.h>
+#import <VirgilKit/VSSUserData.h>
 
 @class VSSIdBundle;
 

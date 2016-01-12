@@ -8,7 +8,7 @@
 
 #import "VSSDeletePublicKeyRequest.h"
 #import "VSSActionToken.h"
-#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
+#import <VirgilKit/NSObject+VSSUtils.h>
 
 @interface VSSDeletePublicKeyRequest ()
 

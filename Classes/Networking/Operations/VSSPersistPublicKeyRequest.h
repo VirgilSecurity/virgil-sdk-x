@@ -7,7 +7,7 @@
 //
 
 #import "VSSKeysBaseRequest.h"
-#import <VirgilFrameworkiOS/VSSTypes.h>
+#import <VirgilKit/VSSTypes.h>
 
 @class VSSPublicKey;
 @class VSSActionToken;

@@ -10,8 +10,8 @@
 #import "VSSIdBundle.h"
 #import "VSSKeysModelCommons.h"
 
-#import <VirgilFrameworkiOS/VSSUserData_Protected.h>
-#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
+#import <VirgilKit/VSSUserData_Protected.h>
+#import <VirgilKit/NSObject+VSSUtils.h>
 
 @interface VSSUserDataExtended ()
 

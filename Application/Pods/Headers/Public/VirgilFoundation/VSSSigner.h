@@ -1,0 +1,1 @@
+../../../VirgilFoundation/Wrapper/VSSSigner.h

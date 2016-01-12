@@ -1,0 +1,1 @@
+../../../VirgilKit/Classes/Networking/Client/VSSClient.h

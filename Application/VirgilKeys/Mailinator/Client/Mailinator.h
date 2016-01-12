@@ -7,7 +7,7 @@
 //
 
 #import "MailinatorRequestSettingsProvider.h"
-#import <VirgilFrameworkiOS/VSSClient.h>
+#import <VirgilKit/VSSClient.h>
 
 @class MEmail;
 

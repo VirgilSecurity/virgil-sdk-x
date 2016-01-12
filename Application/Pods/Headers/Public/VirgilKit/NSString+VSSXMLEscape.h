@@ -1,0 +1,1 @@
+../../../VirgilKit/Classes/Utils/NSString+VSSXMLEscape.h

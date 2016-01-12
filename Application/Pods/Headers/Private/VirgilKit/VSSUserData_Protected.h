@@ -1,0 +1,1 @@
+../../../VirgilKit/Classes/Models/VSSUserData_Protected.h

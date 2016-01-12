@@ -9,8 +9,8 @@
 #import "MailinatorRequest.h"
 #import "MailinatorRequestSettingsProvider.h"
 
-#import <VirgilFrameworkiOS/VSSError.h>
-#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
+#import <VirgilKit/VSSError.h>
+#import <VirgilKit/NSObject+VSSUtils.h>
 
 @interface MailinatorRequest ()
 

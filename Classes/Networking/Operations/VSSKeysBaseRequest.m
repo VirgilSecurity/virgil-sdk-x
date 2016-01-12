@@ -9,7 +9,7 @@
 #import "VSSKeysBaseRequest.h"
 #import "VSSKeysError.h"
 
-#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
+#import <VirgilKit/NSObject+VSSUtils.h>
 
 NSString *const kVSSKeysBaseRequestErrorDomain = @"BaseRequestErrorDomain";
 const NSInteger kVSSKeysBaseRequestErrorCode = 100;

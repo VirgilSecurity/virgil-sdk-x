@@ -8,7 +8,7 @@
 
 #import "VSSIdBundle.h"
 #import "VSSKeysModelCommons.h"
-#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
+#import <VirgilKit/NSObject+VSSUtils.h>
 
 @interface VSSIdBundle ()
 

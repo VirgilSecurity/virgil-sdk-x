@@ -1,1 +1,0 @@
-../../../VirgilCryptoiOS/Wrapper/VSSKeyPair.h

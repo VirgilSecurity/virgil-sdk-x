@@ -10,8 +10,8 @@
 #import "VSSUserDataExtended.h"
 #import "VSSKeysModelCommons.h"
 
-#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
-#import <VirgilFrameworkiOS/VSSUserData.h>
+#import <VirgilKit/NSObject+VSSUtils.h>
+#import <VirgilKit/VSSUserData.h>
 
 @interface VSSCreateUserDataRequest ()
 

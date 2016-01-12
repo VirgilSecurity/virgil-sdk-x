@@ -8,13 +8,13 @@
 
 #import "VSSKeysClient.h"
 
-#import <VirgilFrameworkiOS/VSSPrivateKey.h>
-#import <VirgilFrameworkiOS/VSSUserData.h>
-#import <VirgilFrameworkiOS/VSSServiceRequest.h>
-#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
+#import <VirgilKit/VSSPrivateKey.h>
+#import <VirgilKit/VSSUserData.h>
+#import <VirgilKit/VSSServiceRequest.h>
+#import <VirgilKit/NSObject+VSSUtils.h>
 
-#import <VirgilCryptoiOS/VSSSigner.h>
-#import <VirgilCryptoiOS/VSSKeyPair.h>
+#import <VirgilFoundation/VSSSigner.h>
+#import <VirgilFoundation/VSSKeyPair.h>
 
 #import "VSSCreatePublicKeyRequest.h"
 #import "VSSGetPublicKeyRequest.h"
@@ -72,7 +72,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     }
     
     ServiceRequestCompletionHandler handler = ^(VSSServiceRequest *request) {
-        if (request.status != Done) {
+        if (request.error != nil) {
             if (completionHandler != nil) {
                 completionHandler(nil, request.error);
             }
@@ -112,7 +112,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     }
     
     ServiceRequestCompletionHandler handler = ^(VSSServiceRequest *request) {
-        if (request.status != Done) {
+        if (request.error != nil) {
             if (completionHandler != nil) {
                 completionHandler(nil, request.error);
             }
@@ -141,7 +141,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     }
     
     ServiceRequestCompletionHandler handler = ^(VSSServiceRequest *request) {
-        if (request.status != Done) {
+        if (request.error != nil) {
             if (completionHandler != nil) {
                 completionHandler(nil, request.error);
             }
@@ -182,7 +182,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     }
     
     ServiceRequestCompletionHandler handler = ^(VSSServiceRequest *request) {
-        if (request.status != Done) {
+        if (request.error != nil) {
             if (completionHandler != nil) {
                 completionHandler(request.error);
             }
@@ -222,7 +222,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     }
     
     ServiceRequestCompletionHandler handler = ^(VSSServiceRequest *request) {
-        if (request.status != Done) {
+        if (request.error != nil) {
             if (completionHandler != nil) {
                 completionHandler(nil, request.error);
             }
@@ -252,7 +252,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     }
 
     ServiceRequestCompletionHandler handler = ^(VSSServiceRequest *request) {
-        if (request.status != Done) {
+        if (request.error != nil) {
             if (completionHandler != nil) {
                 completionHandler(nil, request.error);
             }
@@ -293,7 +293,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     }
     
     ServiceRequestCompletionHandler handler = ^(VSSServiceRequest *request) {
-        if (request.status != Done) {
+        if (request.error != nil) {
             if (completionHandler != nil) {
                 completionHandler(nil, request.error);
             }
@@ -321,7 +321,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     }
     
     ServiceRequestCompletionHandler handler = ^(VSSServiceRequest *request) {
-        if (request.status != Done) {
+        if (request.error != nil) {
             if (completionHandler != nil) {
                 completionHandler(nil, request.error);
             }
@@ -362,7 +362,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     }
     
     ServiceRequestCompletionHandler handler = ^(VSSServiceRequest *request) {
-        if (request.status != Done) {
+        if (request.error != nil) {
             if (completionHandler != nil) {
                 completionHandler(nil, request.error);
             }
@@ -393,7 +393,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     }
     
     ServiceRequestCompletionHandler handler = ^(VSSServiceRequest *request) {
-        if (request.status != Done) {
+        if (request.error != nil) {
             if (completionHandler != nil) {
                 completionHandler(nil, request.error);
             }
@@ -434,7 +434,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     }
     
     ServiceRequestCompletionHandler handler = ^(VSSServiceRequest *request) {
-        if (request.status != Done) {
+        if (request.error != nil) {
             if (completionHandler != nil) {
                 completionHandler(request.error);
             }
@@ -474,7 +474,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     }
 
     ServiceRequestCompletionHandler handler = ^(VSSServiceRequest *request) {
-        if (request.status != Done) {
+        if (request.error != nil) {
             if (completionHandler != nil) {
                 completionHandler(request.error);
             }
@@ -502,7 +502,7 @@ static NSString *const kVSSKeysClientErrorDomain = @"VirgilKeysClientErrorDomain
     }
     
     ServiceRequestCompletionHandler handler = ^(VSSServiceRequest *request) {
-        if (request.status != Done) {
+        if (request.error != nil) {
             if (completionHandler != nil) {
                 completionHandler(request.error);
             }

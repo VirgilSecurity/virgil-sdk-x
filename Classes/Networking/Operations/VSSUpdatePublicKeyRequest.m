@@ -9,10 +9,10 @@
 #import "VSSUpdatePublicKeyRequest.h"
 #import "VSSPublicKey.h"
 #import "VSSKeysModelCommons.h"
-#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
+#import <VirgilKit/NSObject+VSSUtils.h>
 
-#import <VirgilCryptoiOS/VSSKeyPair.h>
-#import <VirgilCryptoiOS/VSSSigner.h>
+#import <VirgilFoundation/VSSKeyPair.h>
+#import <VirgilFoundation/VSSSigner.h>
 
 @interface VSSUpdatePublicKeyRequest ()
 

@@ -1,1 +1,0 @@
-../../../VirgilFrameworkiOS/Classes/VirgilFrameworkiOS.h

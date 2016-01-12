@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-#import <VirgilFrameworkiOS/VSSError.h>
+#import <VirgilKit/VSSError.h>
 
 // General errors
 extern const NSInteger kVSSKeysInternalError;

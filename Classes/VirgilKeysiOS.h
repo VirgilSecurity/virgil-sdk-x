@@ -18,5 +18,5 @@
 
 #import "VSSKeysClient.h"
 
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
-#import <VirgilFrameworkiOS/VirgilFrameworkiOS.h>
+#import <VirgilFoundation/VirgilFoundation.h>
+#import <VirgilKit/VirgilKit.h>

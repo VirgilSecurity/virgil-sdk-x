@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-#import <VirgilFrameworkiOS/VSSModel.h>
+#import <VirgilKit/VSSModel.h>
 
 @class VSSIdBundle;
 

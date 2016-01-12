@@ -8,8 +8,8 @@
 
 #import "VSSCreatePublicKeyRequest.h"
 #import "VSSPublicKey.h"
-#import <VirgilFrameworkiOS/NSObject+VSSUtils.h>
-#import <VirgilFrameworkiOS/VSSServiceRequest.h>
+#import <VirgilKit/NSObject+VSSUtils.h>
+#import <VirgilKit/VSSServiceRequest.h>
 
 @interface VSSCreatePublicKeyRequest ()
 

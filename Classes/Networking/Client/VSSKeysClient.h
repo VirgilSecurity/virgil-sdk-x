@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <VirgilFrameworkiOS/VSSClient.h>
-#import <VirgilFrameworkiOS/VSSTypes.h>
+#import <VirgilKit/VSSClient.h>
+#import <VirgilKit/VSSTypes.h>
 
 @class VSSPublicKey;
 @class VSSPrivateKey;

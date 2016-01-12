@@ -1,1 +1,0 @@
-../../../VirgilFrameworkiOS/Classes/Utils/NSObject+VSSUtils.h

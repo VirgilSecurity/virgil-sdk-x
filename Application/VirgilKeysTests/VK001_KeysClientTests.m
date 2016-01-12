@@ -21,8 +21,8 @@
 #import "MPart.h"
 #import "VSSIdBundle.h"
 
-#import <VirgilCryptoiOS/VirgilCryptoiOS.h>
-#import <VirgilFrameworkiOS/VirgilFrameworkiOS.h>
+#import <VirgilFoundation/VirgilFoundation.h>
+#import <VirgilKit/VirgilKit.h>
 
 /// Virgil Application Token for testing applications
 static NSString *const kApplicationToken = @"e872d6f718a2dd0bd8cd7d7e73a25f49";
