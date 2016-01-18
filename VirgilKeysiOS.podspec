@@ -12,6 +12,6 @@ Pod::Spec.new do |s|
   s.requires_arc            = true
   s.deprecated              = true
   s.deprecated_in_favor_of  = 'VirgilKeys'
-  s.dependency "VirgilCryptoiOS"
-  s.dependency "VirgilFrameworkiOS"  
+  s.dependency "VirgilFoundation"
+  s.dependency "VirgilKit"  
 end
