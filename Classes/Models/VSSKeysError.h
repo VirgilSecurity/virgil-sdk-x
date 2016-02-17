@@ -6,56 +6,52 @@
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-#import <VirgilKit/VSSError.h>
+#import "VSSError.h"
 
-// General errors
+/// HTTP 500. Server error status is returned on internal application errors
 extern const NSInteger kVSSKeysInternalError;
-extern const NSInteger kVSSKeysJSONRequestError;
-//Request sign errors
-extern const NSInteger kVSSKeysUUIDDuplicateError;
-extern const NSInteger kVSSKeysUUIDError;
-extern const NSInteger kVSSKeysSignHeaderError;
-extern const NSInteger kVSSKeysPublicKeyHeaderError;
-extern const NSInteger kVSSKeysSignError;
-extern const NSInteger kVSSKeysPublicKeyUUIDError;
-extern const NSInteger kVSSKeysPublicKeyApplicationViolationError;
-extern const NSInteger kVSSKeysPublicKeyBase64EncodingError;
-extern const NSInteger kVSSKeysPublicKeyUUIDMatchError;
-//Application token errors
-extern const NSInteger kVSSKeysApplicationTokenError;
+
+/// HTTP 401. Auth error status is returned on authorization errors
+extern const NSInteger kVSSKeysIdHeaderDuplicationError;
+extern const NSInteger kVSSKeysIdHeaderInvalidError;
+extern const NSInteger kVSSKeysSignHeaderNotFoundError;
+extern const NSInteger kVSSKeysCardIdHeaderInvalidError;
+extern const NSInteger kVSSKeysSignHeaderInvalidError;
+extern const NSInteger kVSSKeysPublicKeyValueNotFoundError;
+extern const NSInteger kVSSKeysPublicKeyValueEncodingError;
+extern const NSInteger kVSSKeysPublicKeyIdsMatchError;
+extern const NSInteger kVSSKeysPublicKeyIdInvalidError;
+extern const NSInteger kVSSKeysCardIdsMatchError;
+extern const NSInteger kVSSKeysApplicationTokenInvalidError;
 extern const NSInteger kVSSKeysStatisticsError;
-//Endpoints errors
-extern const NSInteger kVSSKeysPublicKeyRequiredError;
-extern const NSInteger kVSSKeysActionTokenError;
-extern const NSInteger kVSSKeysConfirmationCodesNumberError;
-extern const NSInteger kVSSKeysConfirmationCodeError;
-extern const NSInteger kVSSKeysPublicKeyIsNotFoundError;
+
+/// HTTP 400. Request error status is returned on request data validation errors
+extern const NSInteger kVSSKeysJSONError;
+extern const NSInteger kVSSKeysPublicKeyIdError;
 extern const NSInteger kVSSKeysPublicKeyLengthError;
-extern const NSInteger kVSSKeysPublicKeyError;
 extern const NSInteger kVSSKeysPublicKeyEncodingError;
-extern const NSInteger kVSSKeysPublicKeyUserDataUnconfirmedError;
-extern const NSInteger kVSSKeysPublicKeyUserIdError;
-extern const NSInteger kVSSKeysPublicKeyUDIDRegisteredError;
-extern const NSInteger kVSSKeysPublicKeyUDIDsRegisteredError;
-extern const NSInteger kVSSKeysPublicKeyIsNotFoundForApplicationError;
-extern const NSInteger kVSSKeysPublicKeyIsFoundForApplicationError;
-extern const NSInteger kVSSKeysPublicKeyIsRegisteredForApplicationError;
-extern const NSInteger kVSSKeysUUIDSignVerificationError;
-extern const NSInteger kVSSKeysUserDataIsNotFoundError;
-extern const NSInteger kVSSKeysUserDataTypeError;
-extern const NSInteger kVSSKeysUserDataDomainError;
-extern const NSInteger kVSSKeysUserDataEmailError;
-extern const NSInteger kVSSKeysUserDataPhoneError;
-extern const NSInteger kVSSKeysUserDataConstraintError;
-extern const NSInteger kVSSKeysUserDataConfirmationEntityError;
-extern const NSInteger kVSSKeysUserDataConfirmationTokenError;
-extern const NSInteger kVSSKeysUserDataConfirmationDuplicateError;
-extern const NSInteger kVSSKeysUserDataClassError;
-extern const NSInteger kVSSKeysUserDataDomainValueError;
-extern const NSInteger kVSSKeysUserDataUserIdConfirmationDuplicateError;
-extern const NSInteger kVSSKeysUserDataIsNotConfirmedError;
-extern const NSInteger kVSSKeysUserDataValueError;
-extern const NSInteger kVSSKeysUserDataUserInfoError;
+extern const NSInteger kVSSKeysIdentityTypeError;
+extern const NSInteger kVSSKeysIdentityEmailError;
+extern const NSInteger kVSSKeysIdentityUnconfirmedApplicationError;
+extern const NSInteger kVSSKeysIdentityApplicationValueError;
+extern const NSInteger kVSSKeysCardNotFoundError;
+extern const NSInteger kVSSKeysCardSignsListInvalidError;
+extern const NSInteger kVSSKeysCardSignedDigestInvalidError;
+extern const NSInteger kVSSKeysCardDataFormatInvalidError;
+extern const NSInteger kVSSKeysCardDataArrayFormatInvalidError;
+extern const NSInteger kVSSKeysCardDataLengthInvalidError;
+extern const NSInteger kVSSKeysSignNotFoundError;
+extern const NSInteger kVSSKeysSignedDigestInvalidError;
+extern const NSInteger kVSSKeysSignedDigestEncodingError;
+extern const NSInteger kVSSKeysSignDuplicationError;
+extern const NSInteger kVSSKeysSearchValueInvalidError;
+extern const NSInteger kVSSKeysApplicationSearchValueInvalidError;
+extern const NSInteger kVSSKeysCardSignsFormatError;
+extern const NSInteger kVSSKeysIdentityTokenInvalidError;
+extern const NSInteger kVSSKeysCardRevocationMatchError;
+extern const NSInteger kVSSKeysIdentityServiceError;
+extern const NSInteger kVSSKeysIdentitiesInvalidError;
+extern const NSInteger kVSSKeysIdentityInvalidError;
 
 @interface VSSKeysError : VSSError
 

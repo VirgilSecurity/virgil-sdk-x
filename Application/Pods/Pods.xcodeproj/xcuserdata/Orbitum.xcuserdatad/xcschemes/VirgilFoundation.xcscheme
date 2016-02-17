@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '09DF94D3263D2C496713E783'
+               BlueprintIdentifier = 'A23BB9D13FFF3460833661E630569084'
                BlueprintName = 'VirgilFoundation'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libVirgilFoundation.a'>

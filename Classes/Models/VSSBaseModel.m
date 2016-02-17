@@ -7,80 +7,89 @@
 //
 
 #import "VSSBaseModel.h"
-#import "VSSIdBundle.h"
-#import "VSSKeysModelCommons.h"
-#import <VirgilKit/NSObject+VSSUtils.h>
+#import "VSSModelCommons.h"
+#import "NSObject+VSSUtils.h"
 
 @interface VSSBaseModel ()
 
-@property (nonatomic, copy, readwrite) VSSIdBundle * __nonnull idb;
+@property (nonatomic, copy, readwrite) GUID * __nonnull Id;
+@property (nonatomic, copy, readwrite) NSDate * __nonnull createdAt;
 
 @end
 
 @implementation VSSBaseModel
 
-@synthesize idb = _idb;
+@synthesize Id = _Id;
+@synthesize createdAt = _createdAt;
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithIdb:(VSSIdBundle *)idb {
+- (instancetype)initWithId:(GUID *)Id createdAt:(NSDate *)createdAt {
     self = [super init];
     if (self == nil) {
         return nil;
     }
  
-    _idb = [idb copy];
+    _Id = [Id copy];
+    _createdAt = [createdAt copy];
     return self;
 }
 
 - (instancetype)init {
-    return [self initWithIdb:[[VSSIdBundle alloc] init]];
+    return [self initWithId:@"" createdAt:nil];
 }
 
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    return [[[self class] alloc] initWithIdb:self.idb];
+    return [(VSSBaseModel *)[[self class] alloc] initWithId:self.Id createdAt:self.createdAt];
 }
 
 #pragma mark - NSCoding
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    VSSIdBundle *idb = [[aDecoder decodeObjectForKey:kVSSKeysModelId] as:[VSSIdBundle class]];
-    return [self initWithIdb:idb];
+    GUID *gid = [[aDecoder decodeObjectForKey:kVSSModelId] as:[GUID class]];
+    NSDate *cat = [[aDecoder decodeObjectForKey:kVSSModelCreatedAt] as:[NSDate class]];
+    return [self initWithId:gid createdAt:cat];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [super encodeWithCoder:aCoder];
     
-    if (self.idb != nil) {
-        [aCoder encodeObject:self.idb forKey:kVSSKeysModelId];
+    if (self.Id.length > 0) {
+        [aCoder encodeObject:self.Id forKey:kVSSModelId];
+    }
+    if (self.createdAt != nil) {
+        [aCoder encodeObject:self.createdAt forKey:kVSSModelCreatedAt];
     }
 }
 
-#pragma mark - VFSerializable
-
-- (NSDictionary *)serialize {
-    return [super serialize];
-}
+#pragma mark - VSSSerializable
 
 + (instancetype)deserializeFrom:(NSDictionary *)candidate {
-    return [[self alloc] init];
+    GUID *gid = [candidate[kVSSModelId] as:[GUID class]];
+
+    NSDate *cat = nil;
+    NSString *strDate = [candidate[kVSSModelCreatedAt] as:[NSString class]];
+    if (strDate.length > 0) {
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"yyyy-MM-ddTkk:mm:ssZZZ"];
+        cat = [df dateFromString:strDate];
+    }
+
+    return [[self alloc] initWithId:gid createdAt:cat];
 }
 
 #pragma mark - NSObject protocol implementation: Equality
 
 - (BOOL)isEqual:(id)object {
     VSSBaseModel *candidate = [object as:[VSSBaseModel class]];
-    if (candidate == nil) {
-        return NO;
-    }
-    
-    return [self.idb isEqual:candidate.idb];
+    return candidate == nil ? NO : [self.Id isEqualToString:candidate.Id];
+
 }
 
 - (NSUInteger)hash {
-    return [self.idb hash];
+    return [self.Id hash];
 }
 
 @end

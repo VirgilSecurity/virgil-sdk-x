@@ -8,54 +8,50 @@
 
 #import "VSSKeysError.h"
 
-// General errors
-const NSInteger kVSSKeysInternalError                             = 10000;
-const NSInteger kVSSKeysJSONRequestError                          = 10100;
-//Request sign errors
-const NSInteger kVSSKeysUUIDDuplicateError                        = 10200;
-const NSInteger kVSSKeysUUIDError                                 = 10201;
-const NSInteger kVSSKeysSignHeaderError                           = 10202;
-const NSInteger kVSSKeysPublicKeyHeaderError                      = 10203;
-const NSInteger kVSSKeysSignError                                 = 10204;
-const NSInteger kVSSKeysPublicKeyUUIDError                        = 10207;
-const NSInteger kVSSKeysPublicKeyApplicationViolationError        = 10209;
-const NSInteger kVSSKeysPublicKeyBase64EncodingError              = 10210;
-const NSInteger kVSSKeysPublicKeyUUIDMatchError                   = 10211;
-//Application token errors
-const NSInteger kVSSKeysApplicationTokenError                     = 10205;
-const NSInteger kVSSKeysStatisticsError                           = 10206;
-//Endpoints errors
-const NSInteger kVSSKeysPublicKeyRequiredError                    = 10208;
-const NSInteger kVSSKeysActionTokenError                          = 20010;
-const NSInteger kVSSKeysConfirmationCodesNumberError              = 20011;
-const NSInteger kVSSKeysConfirmationCodeError                     = 20012;
-const NSInteger kVSSKeysPublicKeyIsNotFoundError                  = 20100;
-const NSInteger kVSSKeysPublicKeyLengthError                      = 20101;
-const NSInteger kVSSKeysPublicKeyError                            = 20102;
-const NSInteger kVSSKeysPublicKeyEncodingError                    = 20103;
-const NSInteger kVSSKeysPublicKeyUserDataUnconfirmedError         = 20104;
-const NSInteger kVSSKeysPublicKeyUserIdError                      = 20105;
-const NSInteger kVSSKeysPublicKeyUDIDRegisteredError              = 20107;
-const NSInteger kVSSKeysPublicKeyUDIDsRegisteredError             = 20108;
-const NSInteger kVSSKeysPublicKeyIsNotFoundForApplicationError    = 20110;
-const NSInteger kVSSKeysPublicKeyIsFoundForApplicationError       = 20111;
-const NSInteger kVSSKeysPublicKeyIsRegisteredForApplicationError  = 20112;
-const NSInteger kVSSKeysUUIDSignVerificationError                 = 20113;
-const NSInteger kVSSKeysUserDataIsNotFoundError                   = 20200;
-const NSInteger kVSSKeysUserDataTypeError                         = 20202;
-const NSInteger kVSSKeysUserDataDomainError                       = 20203;
-const NSInteger kVSSKeysUserDataEmailError                        = 20204;
-const NSInteger kVSSKeysUserDataPhoneError                        = 20205;
-const NSInteger kVSSKeysUserDataConstraintError                   = 20210;
-const NSInteger kVSSKeysUserDataConfirmationEntityError           = 20211;
-const NSInteger kVSSKeysUserDataConfirmationTokenError            = 20212;
-const NSInteger kVSSKeysUserDataConfirmationDuplicateError        = 20213;
-const NSInteger kVSSKeysUserDataClassError                        = 20214;
-const NSInteger kVSSKeysUserDataDomainValueError                  = 20215;
-const NSInteger kVSSKeysUserDataUserIdConfirmationDuplicateError  = 20216;
-const NSInteger kVSSKeysUserDataIsNotConfirmedError               = 20217;
-const NSInteger kVSSKeysUserDataValueError                        = 20218;
-const NSInteger kVSSKeysUserDataUserInfoError                     = 20300;
+/// HTTP 500. Server error status is returned on internal application errors
+const NSInteger kVSSKeysInternalError                               = 10000;
+
+/// HTTP 401. Auth error status is returned on authorization errors
+const NSInteger kVSSKeysIdHeaderDuplicationError                    = 20100;
+const NSInteger kVSSKeysIdHeaderInvalidError                        = 20101;
+const NSInteger kVSSKeysSignHeaderNotFoundError                     = 20200;
+const NSInteger kVSSKeysCardIdHeaderInvalidError                    = 20201;
+const NSInteger kVSSKeysSignHeaderInvalidError                      = 20202;
+const NSInteger kVSSKeysPublicKeyValueNotFoundError                 = 20203;
+const NSInteger kVSSKeysPublicKeyValueEncodingError                 = 20204;
+const NSInteger kVSSKeysPublicKeyIdsMatchError                      = 20205;
+const NSInteger kVSSKeysPublicKeyIdInvalidError                     = 20206;
+const NSInteger kVSSKeysCardIdsMatchError                           = 20208;
+const NSInteger kVSSKeysApplicationTokenInvalidError                = 20300;
+const NSInteger kVSSKeysStatisticsError                             = 20301;
+
+/// HTTP 400. Request error status is returned on request data validation errors
+const NSInteger kVSSKeysJSONError                                   = 30000;
+const NSInteger kVSSKeysPublicKeyIdError                            = 30100;
+const NSInteger kVSSKeysPublicKeyLengthError                        = 30101;
+const NSInteger kVSSKeysPublicKeyEncodingError                      = 30102;
+const NSInteger kVSSKeysIdentityTypeError                           = 30201;
+const NSInteger kVSSKeysIdentityEmailError                          = 30202;
+const NSInteger kVSSKeysIdentityUnconfirmedApplicationError         = 30203;
+const NSInteger kVSSKeysIdentityApplicationValueError               = 30204;
+const NSInteger kVSSKeysCardNotFoundError                           = 30300;
+const NSInteger kVSSKeysCardSignsListInvalidError                   = 30301;
+const NSInteger kVSSKeysCardSignedDigestInvalidError                = 30302;
+const NSInteger kVSSKeysCardDataFormatInvalidError                  = 30303;
+const NSInteger kVSSKeysCardDataArrayFormatInvalidError             = 30304;
+const NSInteger kVSSKeysCardDataLengthInvalidError                  = 30305;
+const NSInteger kVSSKeysSignNotFoundError                           = 30400;
+const NSInteger kVSSKeysSignedDigestInvalidError                    = 30402;
+const NSInteger kVSSKeysSignedDigestEncodingError                   = 30403;
+const NSInteger kVSSKeysSignDuplicationError                        = 30404;
+const NSInteger kVSSKeysSearchValueInvalidError                     = 31000;
+const NSInteger kVSSKeysApplicationSearchValueInvalidError          = 31010;
+const NSInteger kVSSKeysCardSignsFormatError                        = 31020;
+const NSInteger kVSSKeysIdentityTokenInvalidError                   = 31030;
+const NSInteger kVSSKeysCardRevocationMatchError                    = 31040;
+const NSInteger kVSSKeysIdentityServiceError                        = 31050;
+const NSInteger kVSSKeysIdentitiesInvalidError                      = 31060;
+const NSInteger kVSSKeysIdentityInvalidError                        = 31070;
 
 @implementation VSSKeysError
 
@@ -65,134 +61,119 @@ const NSInteger kVSSKeysUserDataUserInfoError                     = 20300;
         case kVSSKeysInternalError:
             message = @"Internal service error.";
             break;
-        case kVSSKeysJSONRequestError:
-            message = @"JSON specified as a request is invalid.";
+        case kVSSKeysIdHeaderDuplicationError:
+            message = @"The request ID header was used already.";
             break;
-        case kVSSKeysUUIDDuplicateError:
-            message = @"The request_sign_uuid parameter was already used for another request.";
+        case kVSSKeysIdHeaderInvalidError:
+            message = @"The request ID header is invalid.";
             break;
-        case kVSSKeysUUIDError:
-            message = @"The request_sign_uuid parameter is invalid.";
-            break;
-        case kVSSKeysSignHeaderError:
+        case kVSSKeysSignHeaderNotFoundError:
             message = @"The request sign header not found.";
             break;
-        case kVSSKeysPublicKeyHeaderError:
-            message = @"The Public Key header not specified or incorrect.";
+        case kVSSKeysCardIdHeaderInvalidError:
+            message = @"The Virgil Card ID header not specified or incorrect.";
             break;
-        case kVSSKeysSignError:
-            message = @"The request sign specified is incorrect.";
+        case kVSSKeysSignHeaderInvalidError:
+            message = @" The request sign header is invalid.";
             break;
-        case kVSSKeysPublicKeyUUIDError:
-            message = @"The Public Key UUID passed in header was not confirmed yet.";
+        case kVSSKeysPublicKeyValueNotFoundError:
+            message = @"Public Key value is required in request body.";
             break;
-        case kVSSKeysPublicKeyApplicationViolationError:
-            message = @"Public Key specified in authorization header is registered for another application.";
+        case kVSSKeysPublicKeyValueEncodingError:
+            message = @"Public Key value in request body must be base64 encoded value.";
             break;
-        case kVSSKeysPublicKeyBase64EncodingError:
-            message = @"Public Key value in request body for POST /public-key endpoint must be base64 encoded value.";
+        case kVSSKeysPublicKeyIdsMatchError:
+            message = @"Public Key IDs in URL part and public key for the Virgil Card retrieved from X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID header must match.";
             break;
-        case kVSSKeysPublicKeyUUIDMatchError:
-            message = @"Public Key UUIDs in URL part and X-VIRGIL-REQUEST-SIGN-PK-ID header must match.";
+        case kVSSKeysPublicKeyIdInvalidError:
+            message = @"The public key id in the request body is invalid.";
             break;
-        case kVSSKeysApplicationTokenError:
-            message = @"The Virgil application token not specified or invalid.";
+        case kVSSKeysCardIdsMatchError:
+            message = @"Virgil card ids in url and authentication header must match.";
+            break;
+        case kVSSKeysApplicationTokenInvalidError:
+            message = @"The Virgil application token was not specified or invalid.";
             break;
         case kVSSKeysStatisticsError:
             message = @"The Virgil statistics application error.";
             break;
-        case kVSSKeysPublicKeyRequiredError:
-            message = @"Public Key value required in request body.";
+        case kVSSKeysJSONError:
+            message = @"JSON specified as a request body is invalid.";
             break;
-        case kVSSKeysActionTokenError:
-            message = @"Action token is invalid, expired on not found.";
-            break;
-        case kVSSKeysConfirmationCodesNumberError:
-            message = @"Action token's confirmation codes number doesn't match.";
-            break;
-        case kVSSKeysConfirmationCodeError:
-            message = @"One of action token's confirmation codes is invalid.";
-            break;
-        case kVSSKeysPublicKeyIsNotFoundError:
-            message = @"Public Key object not found for id specified.";
+        case kVSSKeysPublicKeyIdError:
+            message = @"Public Key ID is invalid.";
             break;
         case kVSSKeysPublicKeyLengthError:
             message = @"Public key length invalid.";
             break;
-        case kVSSKeysPublicKeyError:
-            message = @"Public key not specified.";
-            break;
         case kVSSKeysPublicKeyEncodingError:
             message = @"Public key must be base64-encoded string.";
             break;
-        case kVSSKeysPublicKeyUserDataUnconfirmedError:
-            message = @"Public key must contain confirmed UserData entities.";
+        case kVSSKeysIdentityTypeError:
+            message = @"Identity type is invalid. Valid types are: 'email', 'application'.";
             break;
-        case kVSSKeysPublicKeyUserIdError:
-            message = @"Public key must contain at least one 'user ID' entry.";
-            break;
-        case kVSSKeysPublicKeyUDIDRegisteredError:
-            message = @"There is UDID registered for current application already.";
-            break;
-        case kVSSKeysPublicKeyUDIDsRegisteredError:
-            message = @"UDIDs specified are registered for several accounts.";
-            break;
-        case kVSSKeysPublicKeyIsNotFoundForApplicationError:
-            message = @"Public key is not found for any application.";
-            break;
-        case kVSSKeysPublicKeyIsFoundForApplicationError:
-            message = @"Public key is found for another application.";
-            break;
-        case kVSSKeysPublicKeyIsRegisteredForApplicationError:
-            message = @"Public key is registered for another application.";
-            break;
-        case kVSSKeysUUIDSignVerificationError:
-            message = @"Sign verification failed for request UUID parameter in PUT /public-key.";
-            break;
-        case kVSSKeysUserDataIsNotFoundError:
-            message = @"User Data object not found for id specified.";
-            break;
-        case kVSSKeysUserDataTypeError:
-            message = @"User Data type specified as user identity is invalid.";
-            break;
-        case kVSSKeysUserDataDomainError:
-            message = @"Domain value specified for the domain identity is invalid.";
-            break;
-        case kVSSKeysUserDataEmailError:
+        case kVSSKeysIdentityEmailError:
             message = @"Email value specified for the email identity is invalid.";
             break;
-        case kVSSKeysUserDataPhoneError:
-            message = @"Phone value specified for the phone identity is invalid.";
+        case kVSSKeysIdentityUnconfirmedApplicationError:
+            message = @"Cannot create unconfirmed application identity.";
             break;
-        case kVSSKeysUserDataConstraintError:
-            message = @"User Data integrity constraint violation.";
+        case kVSSKeysIdentityApplicationValueError:
+            message = @"Application value specified for the application identity is invalid.";
             break;
-        case kVSSKeysUserDataConfirmationEntityError:
-            message = @"User Data confirmation entity not found.";
+        case kVSSKeysCardNotFoundError:
+            message = @"Signed Virgil Card not found by UUID provided.";
             break;
-        case kVSSKeysUserDataConfirmationTokenError:
-            message = @"User Data confirmation token invalid.";
+        case kVSSKeysCardSignsListInvalidError:
+            message = @"Virgil Card's signs list contains an item with invalid signed_id value.";
             break;
-        case kVSSKeysUserDataConfirmationDuplicateError:
-            message = @"User Data was already confirmed and does not need further confirmation.";
+        case kVSSKeysCardSignedDigestInvalidError:
+            message = @"Virgil Card's one of sined digests is invalid.";
             break;
-        case kVSSKeysUserDataClassError:
-            message = @"User Data class specified is invalid.";
+        case kVSSKeysCardDataFormatInvalidError:
+            message = @"Virgil Card's data parameters must be strings.";
             break;
-        case kVSSKeysUserDataDomainValueError:
-            message = @"Domain value specified for the domain identity is invalid.";
+        case kVSSKeysCardDataArrayFormatInvalidError:
+            message = @"Virgil Card's data parameters must be an array of strings.";
             break;
-        case kVSSKeysUserDataUserIdConfirmationDuplicateError:
-            message = @"This user id had been confirmed earlier.";
+        case kVSSKeysCardDataLengthInvalidError:
+            message = @"Virgil Card custom data entry value length validation failed.";
             break;
-        case kVSSKeysUserDataIsNotConfirmedError:
-            message = @"The user data is not confirmed yet.";
+        case kVSSKeysSignNotFoundError:
+            message = @"Sign object not found for id specified.";
             break;
-        case kVSSKeysUserDataValueError:
-            message = @"The user data value is required.";
+        case kVSSKeysSignedDigestInvalidError:
+            message = @"The signed digest value is invalid.";
             break;
-        case kVSSKeysUserDataUserInfoError:
-            message = @"User info data validation failed.";
+        case kVSSKeysSignedDigestEncodingError:
+            message = @"Sign Signed digest must be base64 encoded string.";
+            break;
+        case kVSSKeysSignDuplicationError:
+            message = @"Cannot save the Sign because it exists already.";
+            break;
+        case kVSSKeysSearchValueInvalidError:
+            message = @"Value search parameter is mandatory.";
+            break;
+        case kVSSKeysApplicationSearchValueInvalidError:
+            message = @"Search value parameter is mandatory for the application search.";
+            break;
+        case kVSSKeysCardSignsFormatError:
+            message = @"Virgil Card's signs parameter must be an array.";
+            break;
+        case kVSSKeysIdentityTokenInvalidError:
+            message = @"Identity validation token is invalid.";
+            break;
+        case kVSSKeysCardRevocationMatchError:
+            message = @"Virgil Card revokation parameters do not match Virgil Card's identity.";
+            break;
+        case kVSSKeysIdentityServiceError:
+            message = @"Virgil Identity service error.";
+            break;
+        case kVSSKeysIdentitiesInvalidError:
+            message = @"Identities parameter is invalid.";
+            break;
+        case kVSSKeysIdentityInvalidError:
+            message = @"Identity validation failed.";
             break;
         default:
             break;

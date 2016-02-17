@@ -1,1 +1,0 @@
-../../../VirgilKit/Classes/Models/VSSModel.h
