@@ -10,6 +10,7 @@
 #import "VSSRequest_Private.h"
 #import "VSSRequestContextExtended.h"
 
+#import "VSSCard.h"
 #import "VSSPublicKey.h"
 #import "VSSPrivateKey.h"
 #import "NSObject+VSSUtils.h"
@@ -73,7 +74,7 @@
 }
 
 - (NSError *)verify {
-    if (self.extendedContext.serviceKey.Id.length == 0 || self.extendedContext.serviceKey.key.length == 0) {
+    if (self.extendedContext.serviceCard.publicKey.key.length == 0) {
         VSSRDLog(@"Impossible to verify the signature for the response: service's public key is not given.");
         return [NSError errorWithDomain:kVSSRequestErrorDomain code:-108 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to verify the signature for the response: service's public key is not given.", @"Signature verification is not possible.") }];
     }
@@ -103,7 +104,7 @@
     [signedData appendData:self.responseBody];
     
     VSSSigner *verifier = [[VSSSigner alloc] init];
-    BOOL verified = [verifier verifySignature:signatureData data:signedData publicKey:self.extendedContext.serviceKey.key];
+    BOOL verified = [verifier verifySignature:signatureData data:signedData publicKey:self.extendedContext.serviceCard.publicKey.key];
     if (!verified) {
         VSSRDLog(@"Signature verification has failed.");
         return [NSError errorWithDomain:kVSSRequestErrorDomain code:-112 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Signature verification has failed.", @"Signature verification is not possible.") }];
@@ -113,13 +114,13 @@
 }
 
 - (NSError *)encrypt {
-    if (self.extendedContext.serviceKey.Id.length == 0 || self.extendedContext.serviceKey.key.length == 0 || self.request.HTTPBody.length == 0) {
+    if (self.extendedContext.serviceCard.Id.length == 0 || self.extendedContext.serviceCard.publicKey.key.length == 0 || self.request.HTTPBody.length == 0) {
         VSSRDLog(@"Impossible to encrypt the request body for the request: request body or/and public key is/are not given.");
         return [NSError errorWithDomain:kVSSRequestErrorDomain code:-104 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to compose encrypted body for the request: request uuid or/and request body or/and private key is/are not given.", @"Encryption for the request is not possible.") }];
     }
     /// Encrypt the request body
     VSSCryptor *cryptor = [[VSSCryptor alloc] init];
-    [cryptor addKeyRecepient:self.extendedContext.serviceKey.Id publicKey:self.extendedContext.serviceKey.key];
+    [cryptor addKeyRecepient:self.extendedContext.serviceCard.Id publicKey:self.extendedContext.serviceCard.publicKey.key];
     NSData *encryptedBody = [cryptor encryptData:self.request.HTTPBody embedContentInfo:@YES];
     if (encryptedBody.length == 0) {
         VSSRDLog(@"Encryption of the request body has failed.");

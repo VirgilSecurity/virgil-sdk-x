@@ -1231,7 +1231,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = VirgilKeysSwiftTests/Info.plist;
+				INFOPLIST_FILE = VirgilSDKSwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = VirgilSDK;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
@@ -1245,7 +1245,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = VirgilKeysSwiftTests/Info.plist;
+				INFOPLIST_FILE = VirgilSDKSwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = VirgilSDK;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;

@@ -10,11 +10,9 @@ import Foundation
 import XCTest
 
 /// Virgil Application Token for testing applications
-let kApplicationToken: String = "e872d6f718a2dd0bd8cd7d7e73a25f49"
+let kApplicationToken: String = "eyJpZCI6IjMyYTAwZDEwLWYyNTgtNDVjMi04YTQyLTY5OGFhYTU5NjhhNiIsImFwcGxpY2F0aW9uX2NhcmRfaWQiOiI2MTNiYTEwYy1lODQ5LTRkNTctODhlMy03YTZmZjdlZmVkYmEiLCJ0dGwiOi0xLCJjdGwiOi0xLCJwcm9sb25nIjowfQ==.MIGbMA0GCWCGSAFlAwQCAgUABIGJMIGGAkEAhcP5jjV88b/uRVwuILO8sCrqXElVLGrAi9YzHMxkp0rrDIjHtC7LKN3nGAs1z8N80yWHXDEpzv6YNiv6M9aoIgJBAJ+s8BOCDkMSdDoXN4G0KwQuzxWpm+x8Id1qEv+sYb1FRHlbpvwvJMH0kfMNwq42TwlGDvZTDQZRbN1N2OnX55k="
 /// Virgil Application Token for testing applications
 let kMailinatorToken: String = "3b0f46370d9f44cb9b5ac0e80dda97d7"
-/// Number of user data objects associated with/attached to the public key.
-let kTestUserDataCount: Int = 2
 /// Each request should be done less than or equal this number of seconds.
 let kEstimatedRequestCompletionTime: Int = 5
 /// Time for waiting for the emails with confirmation codes sent by the Virgil Keys Service.
@@ -30,415 +28,163 @@ class VSS001_ClientSwiftTests: XCTestCase {
     private var keyPair: VSSKeyPair! = nil
     private var publicKey: VSSPublicKey! = nil
     
-//    override func setUp() {
-//        super.setUp()
-//
-//        self.client = VSSKeysClientStg(applicationToken: kApplicationToken)
-//        self.mailinator = Mailinator(applicationToken: kMailinatorToken)
-//        do {
-//            self.regexp = try NSRegularExpression(pattern: "Your confirmation code is.+([A-Z0-9]{6})", options: NSRegularExpressionOptions.CaseInsensitive)
-//        }
-//        catch {
-//            self.regexp = nil
-//        }
-//        self.keyPair = VSSKeyPair(password: nil)
-//    }
-//    
-//    override func tearDown() {
-//        self.client = nil;
-//        self.mailinator = nil;
-//        self.regexp = nil;
-//        self.keyPair = nil;
-//        self.publicKey = nil;
-//        
-//        super.tearDown()
-//    }
-//    
-//    func test001_createPublicKeyAndConfirmUserData() {
-//        weak var ex = self.expectationWithDescription("Public key should be created and user data should be confirmed.")
-//        let numberOfRequests = kTestUserDataCount * 3 + 1
-//        let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
-//        
-//        let userDataList = self.userDataListWithLength(kTestUserDataCount)
-//        self.createPublicKeyWithUserDataList(userDataList) { error in
-//            if error != nil {
-//                XCTFail("Error: \(error!.localizedDescription)")
-//                return
-//            }
-//            
-//            XCTAssertNotNil(self.publicKey, "Public key should be created successfully.")
-//            if let e = ex {
-//                e.fulfill()
-//            }
-//        }
-//        
-//        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout)) { error in
-//            if error != nil {
-//                XCTFail("Expectation failed: \(error!.localizedDescription)")
-//            }
-//        }
-//    }
-//    
-//    func test002_getExistingPublicKey() {
-//        weak var ex = self.expectationWithDescription("Public key should be get after creation.")
-//        let numberOfRequests = kTestUserDataCount * 3 + 1 + 1
-//        let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
-//        
-//        let userDataList = self.userDataListWithLength(kTestUserDataCount)
-//        self.createAndConfirmPublicKeyWithUserDataList(userDataList) { error in
-//            if error != nil {
-//                XCTFail("Error: \(error!.localizedDescription)")
-//                return
-//            }
-//            
-//            self.keysClient.getPublicKeyId(self.publicKey.idb.publicKeyId!) { pubKey, getError in
-//                if getError != nil {
-//                    XCTFail("Error getting the key: \(getError!.localizedDescription)")
-//                    return
-//                }
-//                
-//                XCTAssertNotNil(pubKey, "Public key should be get successfully")
-//                XCTAssertNotNil(pubKey!.key, "Actual key data should be returned within Public Key structure.")
-//                if let e = ex {
-//                    e.fulfill()
-//                }
-//            }
-//        }
-//        
-//        
-//        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout)) { error in
-//            if error != nil {
-//                XCTFail("Expectation failed: \(error!.localizedDescription)")
-//            }
-//        }
-//    }
-//    
-//    func test003_updateExistingPublicKey() {
-//        let newKeyPair = VSSKeyPair()
-//        
-//        weak var ex = self.expectationWithDescription("Public key should be updated after creation.")
-//        let numberOfRequests = kTestUserDataCount * 3 + 1 + 1
-//        let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
-//        
-//        let userDataList = self.userDataListWithLength(kTestUserDataCount)
-//        self.createAndConfirmPublicKeyWithUserDataList(userDataList) { error in
-//            if error != nil {
-//                XCTFail("Error: \(error!.localizedDescription)")
-//                return
-//            }
-//            
-//            let pKey = VSSPrivateKey(key: self.keyPair.privateKey(), password: nil)
-//            self.keysClient.updatePublicKeyId(self.publicKey.idb.publicKeyId!, privateKey:pKey, newKeyPair: newKeyPair, newKeyPassword: nil) { pubKey, updateError in
-//                if updateError != nil {
-//                    XCTFail("Error updating public key: \(updateError!.localizedDescription)")
-//                    return
-//                }
-//                
-//                XCTAssertNotEqual(self.publicKey.key, pubKey!.key, "Public key data should be updated.")
-//                XCTAssertEqual(newKeyPair.publicKey(), pubKey!.key, "Updated public key should contain the exact data which was generated in the new key pair.")
-//
-//                if let e = ex {
-//                    e.fulfill()
-//                }
-//            }
-//        }
-//        
-//        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout)) { error in
-//            if error != nil {
-//                XCTFail("Expectation failed: \(error!.localizedDescription)")
-//            }
-//        }
-//    }
-//    
-//    func test004_deleteExistingPublicKey() {
-//        weak var ex = self.expectationWithDescription("Public key should be deleted.")
-//        let numberOfRequests = kTestUserDataCount * 3 + 1 + 1 + 1
-//        let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
-//        
-//        let userDataList = self.userDataListWithLength(kTestUserDataCount)
-//        self.createAndConfirmPublicKeyWithUserDataList(userDataList) { error in
-//            if error != nil {
-//                XCTFail("Error: \(error!.localizedDescription)")
-//                return
-//            }
-//            
-//            let pKey = VSSPrivateKey(key: self.keyPair.privateKey(), password: nil)
-//            self.keysClient.deletePublicKeyId(self.publicKey.idb.publicKeyId!, privateKey: pKey) { deleteError in
-//                if deleteError != nil {
-//                    XCTFail("Public key should be successfully deleted.")
-//                    return
-//                }
-//                
-//                self.keysClient.getPublicKeyId(self.publicKey.idb.publicKeyId!) { pubKey, getError in
-//                    if getError != nil {
-//                        if let e = ex {
-//                            e.fulfill()
-//                        }
-//                        return
-//                    }
-//                    
-//                    XCTFail("Public key should not be get after deletion.")
-//                    return
-//                }
-//            }
-//        }
-//        
-//        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout)) { error in
-//            if error != nil {
-//                XCTFail("Expectation failed: \(error!.localizedDescription)")
-//            }
-//        }
-//    }
-//    
-//    func test005_addUserDataToExistingPublicKey() {
-//        weak var ex = self.expectationWithDescription("User data entity should be added.")
-//        let numberOfRequests = 3 + 1 + 1
-//        let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
-//        
-//        let userDataList = self.userDataListWithLength(1)
-//        self.createAndConfirmPublicKeyWithUserDataList(userDataList) { error in
-//            if error != nil {
-//                XCTFail("Error: \(error!.localizedDescription)")
-//                return
-//            }
-//            
-//            let pKey = VSSPrivateKey(key: self.keyPair.privateKey(), password: nil)
-//            let userDataList1 = self.userDataListWithLength(1)
-//            let ud = userDataList1[0] as! VSSUserData
-//            self.keysClient.createUserData(ud, publicKeyId: self.publicKey.idb.publicKeyId!, privateKey: pKey) { userData, createError in
-//                if createError != nil {
-//                    XCTFail("Error: \(createError!.localizedDescription)")
-//                    return
-//                }
-//                
-//                self.keysClient.searchPublicKeyId(self.publicKey.idb.publicKeyId!, privateKey: pKey) { pubKey, getError in
-//                    if getError != nil {
-//                        XCTFail("Error: \(getError!.localizedDescription)")
-//                        return
-//                    }
-//                    
-//                    XCTAssertTrue(pubKey!.userDataList.count - self.publicKey.userDataList.count == 1, "Public key should now have one additional user data.")
-//                    if let e = ex {
-//                        e.fulfill()
-//                    }
-//                }
-//            }
-//        }
-//        
-//        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout)) { error in
-//            if error != nil {
-//                XCTFail("Expectation failed: \(error!.localizedDescription)")
-//            }
-//        }
-//    }
-//    
-//    func test007_deleteUserDataFromExistingPublicKey() {
-//        weak var ex = self.expectationWithDescription("User data entity should be removed.")
-//        let numberOfRequests = kTestUserDataCount * 3 + 1 + 1 + 1
-//        let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
-//        
-//        let userDataList = self.userDataListWithLength(kTestUserDataCount)
-//        self.createAndConfirmPublicKeyWithUserDataList(userDataList) { error in
-//            if error != nil {
-//                XCTFail("Error: \(error!.localizedDescription)")
-//                return
-//            }
-//
-//            let pKey = VSSPrivateKey(key: self.keyPair.privateKey(), password: nil)
-//            self.keysClient.searchPublicKeyId(self.publicKey.idb.publicKeyId!, privateKey: pKey) { pubKey, error in
-//                if error != nil {
-//                    XCTFail("Error getting public key: \(error!.localizedDescription)")
-//                    return
-//                }
-//
-//                let ud = pubKey!.userDataList[0] as! VSSUserDataExtended
-//                self.keysClient.deleteUserDataId(ud.idb.userDataId!, publicKeyId: pubKey!.idb.publicKeyId!, privateKey:pKey) { deleteError in
-//                    if deleteError != nil {
-//                        XCTFail("Error: \(deleteError!.localizedDescription)")
-//                        return
-//                    }
-//                    
-//                    self.keysClient.searchPublicKeyId(pubKey!.idb.publicKeyId!, privateKey: pKey) { pubKey1, getError in
-//                        if getError != nil {
-//                            XCTFail("Error: \(getError!.localizedDescription)")
-//                            return
-//                        }
-//                        
-//                        XCTAssertTrue(pubKey!.userDataList.count - pubKey1!.userDataList.count == 1, "Public key should now have one additional user data less than initially created.")
-//                        if let e = ex {
-//                            e.fulfill()
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        
-//        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout)) { error in
-//            if error != nil {
-//                XCTFail("Expectation failed: \(error!.localizedDescription)")
-//            }
-//        }
-//    }
-//    
-//}
-//
-//extension VK001_KeysClientSwiftTests {
-//
-//    func userDataValue() -> String {
-//        let candidate = NSUUID().UUIDString as NSString;
-//        let userId = candidate.stringByReplacingOccurrencesOfString("-", withString: "")
-//        return "\(userId)@mailinator.com"
-//    }
-//
-//    func userData() -> VSSUserData {
-//        return VSSUserData(dataClass: .UDCUserId, dataType: .UDTEmail, value: self.userDataValue())
-//    }
-//
-//    func userDataListWithLength(length: Int) -> NSArray {
-//        let list = NSMutableArray(capacity: length)
-//        for _ in 0..<length {
-//            list.addObject(self.userData())
-//        }
-//        return list;
-//    }
-//
-//    func completedConfirmationList(list: NSArray) -> Bool {
-//        for conf in list {
-//            if !(conf as! NSNumber).boolValue {
-//                return false
-//            }
-//        }
-//        
-//        return true
-//    }
-//    
-//    func createPublicKeyWithUserDataList(list: NSArray, handler: ((NSError?) -> Void)?) {
-//        let pKey = VSSPublicKey(key: self.keyPair.publicKey(), userDataList: list as [AnyObject])
-//        let privKey = VSSPrivateKey(key: self.keyPair.privateKey(), password: nil)
-//        self.keysClient.createPublicKey(pKey, privateKey: privKey) { pubKey, error in
-//            if error != nil {
-//                if handler != nil {
-//                    handler!(error!)
-//                }
-//                return
-//            }
-//            
-//            self.publicKey = pubKey
-//            if handler != nil {
-//                handler!(nil)
-//            }
-//        }
-//    }
-//    
-//    func confirmUserDataOfPublicKey(pKey: VSSPublicKey, handler: ((NSError?)->Void)?) {
-//        let confirmationList = NSMutableArray(capacity: pKey.userDataList.count)
-//        for i in 0..<pKey.userDataList.count {
-//            confirmationList[i] = false
-//        }
-//        
-//        for i in 0..<pKey.userDataList.count {
-//            let ud = pKey.userDataList[i] as! VSSUserDataExtended
-//            let inbox = (ud.value as NSString).substringToIndex((ud.value as NSString).rangeOfString("@").location)
-//
-//            let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (Int64)(1 * NSEC_PER_SEC)), queue, { () -> Void in
-//                self.mailinator.getInbox(inbox, completionHandler: { metadataList, inboxError in
-//                    if inboxError != nil {
-//                        if handler != nil {
-//                            handler!(inboxError!)
-//                        }
-//                        return
-//                    }
-//                    if metadataList.count == 0 {
-//                        // But there is no any mails in the inbox.
-//                        // We can't get the confirmation code.
-//                        if (handler != nil) {
-//                            handler!(NSError(domain: "TestDomain", code: -1, userInfo: nil))
-//                        }
-//                        return
-//                    }
-//                    // Get the latest metadata from the list (it is the first object)
-//                    let metadata: MEmailMetadata = metadataList[0] as! MEmailMetadata
-//                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (Int64)(1 * NSEC_PER_SEC)), queue, { () -> Void in
-//                        self.mailinator.getEmail(metadata.mid, completionHandler: { email, emailError in
-//                            if emailError != nil {
-//                                // We can't get the email and code.
-//                                if handler != nil {
-//                                    handler!(emailError!)
-//                                }
-//                                return
-//                            }
-//                            
-//                            // Extract the email body text
-//                            let bodyPart: MPart = email.parts[0] as! MPart
-//                            // Try to find the actual confirmation code in body
-//                            let matchResult = self.regexp.firstMatchInString(bodyPart.body, options: .ReportCompletion, range: NSMakeRange(0, bodyPart.body.characters.count))
-//                            if matchResult == nil || matchResult!.range.location == NSNotFound {
-//                                // There is no match in the email body.
-//                                // Confirmation code is absent or can not be extracted.
-//                                if (handler != nil) {
-//                                    handler!(NSError(domain: "TestDomain", code: -2, userInfo: nil))
-//                                }
-//                                return
-//                            }
-//                            // If we have a match
-//                            let match = (bodyPart.body as NSString).substringWithRange(matchResult!.range)
-//                            // Now match string should contain something like "Your confirmation code is ....."
-//                            // Actual code is the last 6 charachters.
-//                            // Extract the code
-//                            let code = (match as NSString).substringFromIndex(match.characters.count - 6);
-//                            self.keysClient.persistUserDataId(ud.idb.userDataId!, confirmationCode: code, completionHandler: { confirmError in
-//                                if confirmError != nil {
-//                                    if handler != nil {
-//                                        handler!(confirmError!)
-//                                    }
-//                                    return
-//                                }
-//                                let index = (pKey.userDataList as NSArray).indexOfObject(ud)
-//                                // Confirmation successful!
-//                                if index != NSNotFound {
-//                                    confirmationList[index] = true;
-//                                }
-//                                
-//                                // Check if all of the user data confirmed - call handler without error, signalling that all is OK.
-//                                if self.completedConfirmationList(confirmationList) {
-//                                    if handler != nil {
-//                                        handler!(nil)
-//                                    }
-//                                }
-//                            })
-//                        })
-//                    })
-//                })
-//            })
-//        }
-//    }
-//    
-//    func createAndConfirmPublicKeyWithUserDataList(list: NSArray, confirmUserDataWithHandler handler: ((NSError?)->Void)?) {
-//        self.createPublicKeyWithUserDataList(list, handler: { error in
-//            if error != nil {
-//                if handler != nil {
-//                    handler!(error!)
-//                }
-//                return
-//            }
-//            
-//            let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(UInt64(kEstimatedEmailReceivingTime) * NSEC_PER_SEC)), queue, { () -> Void in
-//                self.confirmUserDataOfPublicKey(self.publicKey, handler: { udError in
-//                    if udError != nil {
-//                        if handler != nil {
-//                            handler!(udError!)
-//                        }
-//                        return
-//                    }
-//                    
-//                    if handler != nil {
-//                        handler!(nil)
-//                    }
-//                })
-//            })
-//        })
-//    }
+    private var card: VSSCard! = nil
+    private var validationToken: String! = nil
+    
+    override func setUp() {
+        super.setUp()
 
+        self.client = VSSClient(applicationToken: kApplicationToken, serviceConfig: VSSServiceConfigStg())
+        self.mailinator = Mailinator(applicationToken: kMailinatorToken, serviceConfig: MailinatorConfig())
+        do {
+            self.regexp = try NSRegularExpression(pattern: "Your confirmation code is.+([A-Z0-9]{6})", options: NSRegularExpressionOptions.CaseInsensitive)
+        }
+        catch {
+            self.regexp = nil
+        }
+        self.keyPair = VSSKeyPair(password: nil)
+    }
+
+    override func tearDown() {
+        self.client = nil;
+        self.mailinator = nil;
+        self.regexp = nil;
+        self.keyPair = nil;
+        self.publicKey = nil;
+        
+        super.tearDown()
+    }
+    
+    func test001_createCardAndConfirmIdentity() {
+        weak var ex = self.expectationWithDescription("Public key should be created and user data should be confirmed.")
+        let numberOfRequests = 6
+        let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
+        
+        self.client.setupClientWithCompletionHandler { (error) -> Void in
+            if error != nil {
+                XCTFail("Client has not been setup properly: \(error!.localizedDescription)")
+                return
+            }
+            
+            self.createConfirmedCardWithConfirmationHandler { (error) -> Void in
+                if error != nil {
+                    XCTFail("Error: \(error!.localizedDescription)")
+                    return
+                }
+                
+                XCTAssertNotNil(self.card, "Virgil Card should be created.")
+                XCTAssertNotNil(self.card.Id, "Virgil Card should have ID.")
+                XCTAssertTrue(self.card.isConfirmed.boolValue, "Virgil Card should be created confirmed.")
+                
+                ex?.fulfill()
+            }
+        }
+        
+        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout)) { error in
+            if error != nil {
+                XCTFail("Expectation failed: \(error!.localizedDescription)")
+            }
+        }
+    }
+    
+    func identityValue() -> String {
+        let candidate = NSUUID().UUIDString.lowercaseString
+        let identity = candidate.stringByReplacingOccurrencesOfString("-", withString: "")
+        return "\(identity)@mailinator.com"
+    }
+
+    func identity() -> NSDictionary {
+        return [ kVSSModelType: VSSIdentity.stringFromIdentityType(.Email), kVSSModelValue: self.identityValue()]
+    }
+
+    func createConfirmedCardWithConfirmationHandler(handler: ((NSError?) -> Void)?) {
+        let identity = self.identity();
+        self.client.verifyIdentityWithType(VSSIdentity.identityTypeFromString(identity[kVSSModelType] as? String), value: identity[kVSSModelValue] as! String) { (actionId, error) -> Void in
+            if error != nil {
+                if handler != nil {
+                    handler!(error!)
+                }
+                return
+            }
+            
+            self.confirmIdentity(identity, actionId: actionId!, handler: handler)
+        }
+    }
+    
+    func confirmIdentity(identity: NSDictionary, actionId: String, handler:((NSError?) -> Void)?) {
+        let val = identity[kVSSModelValue] as! NSString
+        let inbox = val.substringToIndex(val.rangeOfString("@").location)
+        self.mailinator.getInbox(inbox) { (metadataList, error) -> Void in
+            if error != nil {
+                if handler != nil {
+                    handler!(error!)
+                }
+                return
+            }
+            
+            if metadataList?.count == 0 {
+                if (handler != nil) {
+                    handler!(NSError(domain: "TestDomain", code: -1, userInfo: nil))
+                }
+                return
+            }
+            
+            let metadata: MEmailMetadata = metadataList![0] as! MEmailMetadata
+            self.mailinator.getEmail(metadata.mid, completionHandler: { (email, error) -> Void in
+                if error != nil {
+                    if handler != nil {
+                        handler!(error!)
+                    }
+                    return
+                }
+                
+                let bodyPart: MPart = email!.parts[0]
+                // Try to find the actual confirmation code in body
+                let matchResult = self.regexp.firstMatchInString(bodyPart.body, options: .ReportCompletion, range: NSMakeRange(0, bodyPart.body.characters.count))
+                if matchResult == nil || matchResult!.range.location == NSNotFound {
+                    // There is no match in the email body.
+                    // Confirmation code is absent or can not be extracted.
+                    if (handler != nil) {
+                        handler!(NSError(domain: "TestDomain", code: -2, userInfo: nil))
+                    }
+                    return
+                }
+                // If we have a match
+                let match = (bodyPart.body as NSString).substringWithRange(matchResult!.range)
+                // Now match string should contain something like "Your confirmation code is ....."
+                // Actual code is the last 6 charachters.
+                // Extract the code
+                let code = (match as NSString).substringFromIndex(match.characters.count - 6);
+                self.client.confirmIdentityWithActionId(actionId, code: code, ttl: nil, ctl: 10, completionHandler: { (itype, ivalue, ivalToken, error) -> Void in
+                    if error != nil {
+                        if handler != nil {
+                            handler!(error!)
+                        }
+                        return
+                    }
+                    
+                    if identity[kVSSModelValue] as? String != ivalue || ivalToken?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0 {
+                        if (handler != nil) {
+                            handler!(NSError(domain: "TestDomain", code: -3, userInfo: nil))
+                        }
+                        return
+                    }
+                    self.validationToken = ivalToken
+                    let identityExt = NSMutableDictionary(dictionary: identity)
+                    identityExt[kVSSModelValidationToken] = ivalToken!
+                    
+                    let privateKey = VSSPrivateKey(key: self.keyPair.privateKey(), password: nil)
+                    self.client.createCardWithPublicKey(self.keyPair.publicKey(), identity: identityExt as [NSObject : AnyObject], data: nil, signs: nil, privateKey: privateKey, completionHandler: { (card, error) -> Void in
+                        self.card = card
+                        if handler != nil {
+                            handler!(error)
+                        }
+                        return
+                    })
+                })
+            })
+            
+        }
+    }
+    
 }

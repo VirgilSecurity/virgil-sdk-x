@@ -46,16 +46,8 @@
     }
 
     [self setRequestBody:body];
-    /// After serialization of the request body
-    /// Check if the context require request encryption. In this case
-    /// request body should be encrypted with service key and response will be decrypted with context's password
-    if ([self.extendedContext.requestEncrypt boolValue]) {
-        NSError *error = [self encrypt];
-        if (error != nil) {
-            VSSRDLog(@"Unable to encrypt request body: '%@'", [error localizedDescription]);
-            return;
-        }
-    }
+    [self setRequestHeaders:@{ @"Content-Type": @"application/json" }];
+    
     /// If there is a private key given in context
     /// Then request should be signed.
     if (self.extendedContext.privateKey.key.length > 0) {
@@ -65,8 +57,22 @@
             return;
         }
     }
-    /// Set content-type.
-    [self setRequestHeaders:@{ @"Content-Type": @"application/json" }];
+    
+    /// After serialization of the request body
+    /// Check if the context require request encryption. In this case
+    /// request body should be encrypted with service key and response will be decrypted with context's password
+    if ([self.extendedContext.requestEncrypt boolValue]) {
+        VSSRDLog(@"Request body before encryption:");
+        VSSRDLog(@"%@", [[NSString alloc] initWithData:self.request.HTTPBody encoding:NSUTF8StringEncoding]);
+        
+        NSError *error = [self encrypt];
+        if (error != nil) {
+            VSSRDLog(@"Unable to encrypt request body: '%@'", [error localizedDescription]);
+            return;
+        }
+        /// Set content-type.
+        [self setRequestHeaders:@{ @"Content-Type": @"text/plain;charset=UTF-8" }];
+    }
 }
 
 - (NSObject *)parseResponse {

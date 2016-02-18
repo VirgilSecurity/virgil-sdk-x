@@ -117,7 +117,7 @@
     };
     
     VSSCard *sCard = [self.serviceCards[kVSSServiceIDKeys] as:[VSSCard class]];
-    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceKey:sCard.publicKey requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
+    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
     VSSGetPublicKeyRequest *request = [[VSSGetPublicKeyRequest alloc] initWithContext:context publicKeyId:keyId];
     request.completionHandler = handler;
     [self send:request];
@@ -149,7 +149,7 @@
     };
     
     VSSCard *sCard = [self.serviceCards[kVSSServiceIDKeys] as:[VSSCard class]];
-    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceKey:sCard.publicKey requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:card.Id password:nil];
+    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:card.Id password:nil];
     VSSGetPublicKeyRequest *request = [[VSSGetPublicKeyRequest alloc] initWithContext:context publicKeyId:keyId];
     request.completionHandler = handler;
     [self send:request];
@@ -173,7 +173,7 @@
     };
     
     VSSCard *sCard = [self.serviceCards[kVSSServiceIDKeys] as:[VSSCard class]];
-    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceKey:sCard.publicKey requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:card.Id password:nil];
+    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:card.Id password:nil];
     VSSDeletePublicKeyRequest *request = [[VSSDeletePublicKeyRequest alloc] initWithContext:context publicKeyId:keyId identities:identities];
     request.completionHandler = handler;
     [self send:request];
@@ -206,7 +206,7 @@
     };
     
     VSSCard *sCard = [self.serviceCards[kVSSServiceIDKeys] as:[VSSCard class]];
-    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceKey:sCard.publicKey requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:nil password:nil];
+    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:nil password:nil];
     VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithContext:context publicKeyId:keyId identity:identity data:data signs:signs];
     request.completionHandler = handler;
     [self send:request];
@@ -239,7 +239,7 @@
     };
     
     VSSCard *sCard = [self.serviceCards[kVSSServiceIDKeys] as:[VSSCard class]];
-    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceKey:sCard.publicKey requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:nil password:nil];
+    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:nil password:nil];
     VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithContext:context publicKey:key identity:identity data:data signs:signs];
     request.completionHandler = handler;
     [self send:request];
@@ -271,7 +271,7 @@
     };
     
     VSSCard *sCard = [self.serviceCards[kVSSServiceIDKeys] as:[VSSCard class]];
-    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceKey:sCard.publicKey requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
+    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
     VSSGetCardRequest *request = [[VSSGetCardRequest alloc] initWithContext:context cardId:cardId];
     request.completionHandler = handler;
     [self send:request];
@@ -303,7 +303,7 @@
     };
     
     VSSCard *sCard = [self.serviceCards[kVSSServiceIDKeys] as:[VSSCard class]];
-    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceKey:sCard.publicKey requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:signerCard.Id password:nil];
+    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:signerCard.Id password:nil];
     VSSSignCardRequest *request = [[VSSSignCardRequest alloc] initWithContext:context signerCardId:signerCard.Id signedCardId:cardId digest:digest];
     request.completionHandler = handler;
     [self send:request];
@@ -327,7 +327,7 @@
     };
     
     VSSCard *sCard = [self.serviceCards[kVSSServiceIDKeys] as:[VSSCard class]];
-    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceKey:sCard.publicKey requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:signerCard.Id password:nil];
+    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:signerCard.Id password:nil];
     VSSUnsignCardRequest *request = [[VSSUnsignCardRequest alloc] initWithContext:context signerCardId:signerCard.Id signedCardId:cardId];
     request.completionHandler = handler;
     [self send:request];
@@ -359,7 +359,7 @@
     };
     
     VSSCard *sCard = [self.serviceCards[kVSSServiceIDKeys] as:[VSSCard class]];
-    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceKey:sCard.publicKey requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
+    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
     VSSSearchCardRequest *request = [[VSSSearchCardRequest alloc] initWithContext:context value:value type:type relations:relations unconfirmed:unconfirmed];
     request.completionHandler = handler;
     [self send:request];
@@ -392,7 +392,7 @@
     };
     
     VSSCard *sCard = [self.serviceCards[kVSSServiceIDKeys] as:[VSSCard class]];
-    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceKey:sCard.publicKey requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
+    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
     VSSSearchAppCardRequest *request = [[VSSSearchAppCardRequest alloc] initWithContext:context value:value];
     request.completionHandler = handler;
     [self send:request];
@@ -416,7 +416,7 @@
     };
     
     VSSCard *sCard = [self.serviceCards[kVSSServiceIDKeys] as:[VSSCard class]];
-    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceKey:sCard.publicKey requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:(signerCard.Id.length == 0) ? cardId : signerCard.Id password:nil];
+    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:(signerCard.Id.length == 0) ? cardId : signerCard.Id password:nil];
     VSSDeleteCardRequest *request = [[VSSDeleteCardRequest alloc] initWithContext:context cardId:cardId identity:identity];
     request.completionHandler = handler;
     [self send:request];
@@ -448,7 +448,7 @@
     };
     
     VSSCard *sCard = [self.serviceCards[kVSSServiceIDIdentity] as:[VSSCard class]];
-    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDIdentity] serviceKey:sCard.publicKey requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
+    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDIdentity] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
     VSSVerifyIdentityRequest *request = [[VSSVerifyIdentityRequest alloc] initWithContext:context type:type value:value];
     request.completionHandler = handler;
     [self send:request];
@@ -480,7 +480,7 @@
     };
     
     VSSCard *sCard = [self.serviceCards[kVSSServiceIDIdentity] as:[VSSCard class]];
-    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDIdentity] serviceKey:sCard.publicKey requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
+    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDIdentity] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
     VSSConfirmIdentityRequest *request = [[VSSConfirmIdentityRequest alloc] initWithContext:context actionId:actionId code:code ttl:ttl ctl:ctl];
     request.completionHandler = handler;
     [self send:request];
@@ -504,7 +504,7 @@
     };
     
     VSSCard *sCard = [self.serviceCards[kVSSServiceIDPrivateKeys] as:[VSSCard class]];
-    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDPrivateKeys] serviceKey:sCard.publicKey requestEncrypt:@YES responseVerify:@NO privateKey:privateKey cardId:cardId password:nil];
+    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDPrivateKeys] serviceCard:sCard requestEncrypt:@YES responseVerify:@NO privateKey:privateKey cardId:cardId password:nil];
     VSSStorePrivateKeyRequest *request = [[VSSStorePrivateKeyRequest alloc] initWithContext:context privateKey:privateKey.key cardId:cardId];
     request.completionHandler = handler;
     [self send:request];
@@ -537,11 +537,16 @@
     
     NSString *responsePassword = password;
     if (responsePassword.length == 0) {
-        responsePassword = [[[NSUUID UUID] UUIDString] lowercaseString];
+        responsePassword = [[[[[NSUUID UUID] UUIDString] lowercaseString] stringByReplacingOccurrencesOfString:@"-" withString:@""] substringToIndex:31];
+    }
+    else {
+        if (responsePassword.length > 31) {
+            responsePassword = [responsePassword substringToIndex:31];
+        }
     }
     
     VSSCard *sCard = [self.serviceCards[kVSSServiceIDPrivateKeys] as:[VSSCard class]];
-    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDPrivateKeys] serviceKey:sCard.publicKey requestEncrypt:@YES responseVerify:@NO privateKey:nil cardId:cardId password:responsePassword];
+    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDPrivateKeys] serviceCard:sCard requestEncrypt:@YES responseVerify:@NO privateKey:nil cardId:cardId password:responsePassword];
     VSSGrabPrivateKeyRequest *request = [[VSSGrabPrivateKeyRequest alloc] initWithContext:context identity:identity cardId:cardId];
     request.completionHandler = handler;
     [self send:request];
@@ -565,7 +570,7 @@
     };
     
     VSSCard *sCard = [self.serviceCards[kVSSServiceIDPrivateKeys] as:[VSSCard class]];
-    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDPrivateKeys] serviceKey:sCard.publicKey requestEncrypt:@YES responseVerify:@NO privateKey:privateKey cardId:cardId password:nil];
+    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDPrivateKeys] serviceCard:sCard requestEncrypt:@YES responseVerify:@NO privateKey:privateKey cardId:cardId password:nil];
     VSSDeletePrivateKeyRequest *request = [[VSSDeletePrivateKeyRequest alloc] initWithContext:context cardId:cardId];
     request.completionHandler = handler;
     [self send:request];
