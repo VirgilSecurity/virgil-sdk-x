@@ -1,1 +1,0 @@
-../../../VirgilFoundation/Wrapper/VSSVirgilVersion.h

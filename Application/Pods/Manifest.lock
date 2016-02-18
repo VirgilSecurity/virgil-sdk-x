@@ -1,12 +1,12 @@
 PODS:
-  - VirgilFoundation (1.3.3)
+  - VirgilFoundation (1.3.4)
 
 DEPENDENCIES:
   - VirgilFoundation
 
 SPEC CHECKSUMS:
-  VirgilFoundation: b64515ffe7877109551f00bdf9c2d3bae115d47f
+  VirgilFoundation: 4f1abecb8ac689ffa99295a37cb746ca82364160
 
-PODFILE CHECKSUM: 79c1540067a897ac03b1799da9eb85e41e0d192b
+PODFILE CHECKSUM: 94f50f86f2e4d7941f9d965bb71570ca0c886690
 
 COCOAPODS: 1.0.0.beta.3

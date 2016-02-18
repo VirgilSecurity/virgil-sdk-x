@@ -15,7 +15,7 @@
 #import "VSSPrivateKey.h"
 #import "NSObject+VSSUtils.h"
 
-#import <VirgilFoundation/VirgilFoundation.h>
+@import VirgilFoundation;
 
 @interface VSSRequestExtended ()
 

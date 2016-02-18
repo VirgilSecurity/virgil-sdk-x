@@ -1,6 +1,6 @@
 FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/VirgilFoundation/Frameworks/ios"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/VirgilFoundation" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/VirgilFoundation" $(FRAMEWORK_SEARCH_PATHS)/VirgilCrypto.framework/Headers
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Public" $(FRAMEWORK_SEARCH_PATHS)/VirgilCrypto.framework/Headers
 OTHER_LDFLAGS = -l"stdc++" -framework "VirgilCrypto"
 PODS_ROOT = ${SRCROOT}
 PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.${PRODUCT_NAME:rfc1034identifier}

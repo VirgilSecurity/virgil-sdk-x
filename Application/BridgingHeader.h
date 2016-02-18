@@ -55,6 +55,6 @@
 #import "MailinatorInboxRequest.h"
 #import "MailinatorEmailRequest.h"
 
-#import <VirgilFoundation/VirgilFoundation.h>
+@import VirgilFoundation;
 
 #endif

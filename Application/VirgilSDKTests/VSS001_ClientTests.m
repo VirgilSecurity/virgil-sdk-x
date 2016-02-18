@@ -10,7 +10,6 @@
 #import <XCTest/XCTest.h>
 
 #import "BridgingHeader.h"
-#import <VirgilFoundation/VirgilFoundation.h>
 
 /// Virgil Application Token for testing applications
 static NSString *const kApplicationToken = @"eyJpZCI6IjMyYTAwZDEwLWYyNTgtNDVjMi04YTQyLTY5OGFhYTU5NjhhNiIsImFwcGxpY2F0aW9uX2NhcmRfaWQiOiI2MTNiYTEwYy1lODQ5LTRkNTctODhlMy03YTZmZjdlZmVkYmEiLCJ0dGwiOi0xLCJjdGwiOi0xLCJwcm9sb25nIjowfQ==.MIGbMA0GCWCGSAFlAwQCAgUABIGJMIGGAkEAhcP5jjV88b/uRVwuILO8sCrqXElVLGrAi9YzHMxkp0rrDIjHtC7LKN3nGAs1z8N80yWHXDEpzv6YNiv6M9aoIgJBAJ+s8BOCDkMSdDoXN4G0KwQuzxWpm+x8Id1qEv+sYb1FRHlbpvwvJMH0kfMNwq42TwlGDvZTDQZRbN1N2OnX55k=";

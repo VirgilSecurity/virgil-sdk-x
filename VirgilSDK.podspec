@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = "VirgilSDK"
-  s.version               = "0.9.0-pre-2"
+  s.version               = "0.9.0-pre-3"
   s.summary               = "Virgil SDK for Apple devices and languages."
   s.cocoapods_version     = ">= 0.36"
   s.homepage              = "https://github.com/VirgilSecurity/virgil-sdk-x/tree/v3"
