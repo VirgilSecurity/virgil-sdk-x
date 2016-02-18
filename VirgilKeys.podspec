@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                    = "VirgilKeys"
-  s.version                 = "2.2.1"
+  s.version                 = "2.2.2"
   s.summary                 = "VirgilKeys offers SDK for Virgil Keys service calls and models."
   s.homepage                = "https://github.com/VirgilSecurity/virgil-sdk-keys-x"
   s.license                 = { :type => "BSD", :file => "LICENSE" }
@@ -12,6 +12,6 @@ Pod::Spec.new do |s|
   s.requires_arc            = true
   s.deprecated              = true
   s.deprecated_in_favor_of  = 'VirgilSDK'
-  s.dependency "VirgilFoundation"
+  s.dependency "VirgilFoundation", "1.3.3"
   s.dependency "VirgilKit"
 end
