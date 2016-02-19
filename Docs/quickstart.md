@@ -414,3 +414,4 @@ self.client.searchCardWithIdentityValue(<# Sender email address #>, type: .Email
 ## See Also
 
 * [Tutorial Virgil Foundation](https://github.com/VirgilSecurity/virgil-foundation-x/blob/master/README.md)
+* [Tutorial Virgil SDK](tutorial-sdk.md)
