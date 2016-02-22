@@ -239,6 +239,55 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
     }];
 }
 
+- (void)test005_createAndDeleteVirgilCard {
+    // Create test expectation object.
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil card should be created and then deleted."];
+    
+    NSUInteger numberOfRequests = 9;
+    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime;
+    
+    [self.client setupClientWithCompletionHandler:^(NSError *error) {
+        if (error != nil) {
+            XCTFail(@"VSSClient setup has failed");
+            return;
+        }
+        [self createConfirmedCardWithConfirmationHandler:^(NSError *error) {
+            if (error != nil) {
+                XCTFail(@"Error: %@", [error localizedDescription]);
+                return;
+            }
+            
+            NSMutableDictionary *idtt = [NSMutableDictionary dictionary];
+            idtt[kVSSModelType] = [VSSIdentity stringFromIdentityType:self.card.identity.type];
+            idtt[kVSSModelValue] = self.card.identity.value;
+            idtt[kVSSModelValidationToken] = self.validationToken;
+            
+            VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
+            [self.client deleteCardWithCardId:self.card.Id identity:idtt privateKey:privateKey completionHandler:^(NSError * _Nullable error) {
+                if (error != nil) {
+                    XCTFail(@"Error: %@", [error localizedDescription]);
+                    return;
+                }
+                
+                [self.client getCardWithCardId:self.card.Id completionHandler:^(VSSCard * _Nullable card, NSError * _Nullable error) {
+                    /// We should not get a deleted card.
+                    XCTAssertNil(card);
+                    /// Error should be returned.
+                    XCTAssertNotNil(error);
+                    
+                    [ex fulfill];
+                }];
+            }];
+        }];
+    }];
+    
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil) {
+            XCTFail(@"Expectation failed: %@", error);
+        }
+    }];
+}
+
 #pragma mark - Private class logic
 
 - (NSString *)identityValue {

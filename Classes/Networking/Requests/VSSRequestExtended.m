@@ -80,9 +80,9 @@
     }
     
     /// Get response headers for signature check:
-    if (self.response.allHeaderFields.count == 0 || self.responseBody.length == 0) {
-        VSSRDLog(@"Impossible to verify the signature for the response: there is no headers/response body present.");
-        return [NSError errorWithDomain:kVSSRequestErrorDomain code:-109 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to verify the signature for the response: there is no headers/response present.", @"Signature verification is not possible.") }];
+    if (self.response.allHeaderFields.count == 0) {
+        VSSRDLog(@"Impossible to verify the signature for the response: there is no headers present.");
+        return [NSError errorWithDomain:kVSSRequestErrorDomain code:-109 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to verify the signature for the response: there is no headers.", @"Signature verification is not possible.") }];
     }
     
     NSString *responseID = [self.response.allHeaderFields[kVSSResponseIDHeader] as:[NSString class]];
@@ -101,7 +101,9 @@
     }
     
     NSMutableData *signedData = [NSMutableData dataWithData:responseIDData];
-    [signedData appendData:self.responseBody];
+    if (self.responseBody.length > 0) {
+        [signedData appendData:self.responseBody];
+    }
     
     VSSSigner *verifier = [[VSSSigner alloc] init];
     BOOL verified = [verifier verifySignature:signatureData data:signedData publicKey:self.extendedContext.serviceCard.publicKey.key];
