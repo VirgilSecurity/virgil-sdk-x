@@ -11,6 +11,6 @@
 
 @interface VSSDeleteCardRequest : VSSKeysBaseRequest
 
-- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context cardId:(GUID * __nonnull)cardId identity:(NSDictionary * __nonnull)identity NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context cardId:(GUID * __nonnull)cardId identity:(NSDictionary * __nullable)identity NS_DESIGNATED_INITIALIZER;
 
 @end

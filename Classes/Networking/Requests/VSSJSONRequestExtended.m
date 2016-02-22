@@ -18,6 +18,10 @@
 #pragma mark - Overrides
 
 - (void)setRequestBodyWithObject:(NSObject *)dto {
+    if (dto == nil) {
+        dto = @{};
+    }
+    
     NSDictionary *dtoDict = nil;
     if (![NSJSONSerialization isValidJSONObject:dto]) {
         VSSRDLog(@"Invalid object for JSON serialization of the request body: '%@'", [dto description]);

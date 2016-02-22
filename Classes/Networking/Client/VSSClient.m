@@ -398,7 +398,7 @@
     [self send:request];
 }
 
-- (void)deleteCardWithCardId:(GUID *)cardId identity:(NSDictionary *)identity signerCard:(VSSCard *)signerCard privateKey:(VSSPrivateKey *)privateKey completionHandler:(void(^)(NSError *error))completionHandler {
+- (void)deleteCardWithCardId:(GUID *)cardId identity:(NSDictionary *)identity privateKey:(VSSPrivateKey *)privateKey completionHandler:(void(^)(NSError *error))completionHandler {
     if (cardId.length == 0 || identity.count == 0 || privateKey.key.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -416,7 +416,7 @@
     };
     
     VSSCard *sCard = [self.serviceCards[kVSSServiceIDKeys] as:[VSSCard class]];
-    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:(signerCard.Id.length == 0) ? cardId : signerCard.Id password:nil];
+    VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:cardId password:nil];
     VSSDeleteCardRequest *request = [[VSSDeleteCardRequest alloc] initWithContext:context cardId:cardId identity:identity];
     request.completionHandler = handler;
     [self send:request];

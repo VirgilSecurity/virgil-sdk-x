@@ -68,7 +68,7 @@
 
 - (void)searchAppCardWithIdentityValue:(NSString * __nonnull)value completionHandler:(void(^ __nullable)(NSArray <VSSCard *>* __nullable cards, NSError * __nullable error))completionHandler;
 
-- (void)deleteCardWithCardId:(GUID * __nonnull)cardId identity:(NSDictionary * __nonnull)identity signerCard:(VSSCard * __nullable)signerCard privateKey:(VSSPrivateKey * __nonnull)privateKey completionHandler:(void(^ __nullable)(NSError * __nullable error))completionHandler;
+- (void)deleteCardWithCardId:(GUID * __nonnull)cardId identity:(NSDictionary * __nullable)identity privateKey:(VSSPrivateKey * __nonnull)privateKey completionHandler:(void(^ __nullable)(NSError * __nullable error))completionHandler;
 
 
 

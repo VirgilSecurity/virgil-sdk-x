@@ -7,7 +7,11 @@
 //
 
 #import "ViewController.h"
-#import <VirgilFoundation/VSSVirgilVersion.h>
+#import "VSSClient.h"
+#import "VSSCard.h"
+#import "VSSPrivateKey.h"
+
+@import VirgilFoundation;
 
 @interface ViewController ()
 
@@ -20,7 +24,6 @@
     [super viewDidLoad];
     
     NSLog(@"%@", [[[VSSVirgilVersion alloc] init] versionString]);
-
 }
 
 - (void)didReceiveMemoryWarning {

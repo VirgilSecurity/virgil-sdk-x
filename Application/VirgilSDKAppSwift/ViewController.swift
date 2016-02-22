@@ -23,15 +23,6 @@ class ViewController: UIViewController {
         print(pubBase64)
         let privBase64 = self.keyPair.privateKey().base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
         print(privBase64)
-        
-//        self.client = VSSClient(applicationToken: "e872d6f718a2dd0bd8cd7d7e73a25f49", serviceConfig: VSSServiceConfigStg())
-//        self.mailinator = Mailinator(applicationToken: "3b0f46370d9f44cb9b5ac0e80dda97d7")
-//        do {
-//            self.regexp = try NSRegularExpression(pattern: "Your confirmation code is.+([A-Z0-9]{6})", options: NSRegularExpressionOptions.CaseInsensitive)
-//        }
-//        catch {
-//            self.regexp = nil
-//        }
     }
 
     override func didReceiveMemoryWarning() {
