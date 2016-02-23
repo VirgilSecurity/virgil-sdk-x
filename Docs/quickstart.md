@@ -8,7 +8,7 @@
     - [Initialization](#initialization)
     - [Step 1. Create and Publish the Keys](#step-1-create-and-publish-the-keys)
     - [Step 2. Encrypt and Sign](#step-2-encrypt-and-sign)
-    - [Step 3. Get sender's Public Key](#step-3-get-senders-public-key)
+    - [Step 3. Get Sender's Card](#step-3-get-senders-card)
     - [Step 4. Verify and Decrypt](#step-4-verify-and-decrypt)
 - [See also](#see-also)
 
@@ -396,7 +396,7 @@ self.client.searchCardWithIdentityValue(<# Recepient email address #>,
 //...
 ```
 
-## Step 3. Get sender's Public Key
+## Step 3. Get Sender's Card
 In order to decrypt the received data the app on recipient’s side needs to get sender’s Virgil Card from the Public Keys Service.
 
 ###### Objective-C
