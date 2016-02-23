@@ -26,22 +26,22 @@ This tutorial explains how to use the Virgil Security Services with SDK library 
 
 ##Install
 
-You can easily add SDK dependency to your project using CocoaPods. So, if you are not familiar with it it is time to install CocoaPods. Open your terminal window and execute the following line:
+You can easily add SDK dependency to your project using CocoaPods. So, if you are not familiar with this dependency manager it is time to install CocoaPods. Open your terminal window and execute the following line:
 ```
 $ sudo gem install cocoapods
 ``` 
-It will ask you about the password and then will install latest release version of CocoaPods. CocoaPods is built with Ruby and it will be installable with the default Ruby available on OS X.
-If you encountered any issues during this installation, please take a look at [cocoapods.org](https://guides.cocoapods.org/using/getting-started.html) for more information.
+It will ask you about the password and then will install latest release version of CocoaPods. CocoaPods is built with Ruby and it will be installed with the default Ruby available in OS X.
+If you encounter any issues during this installation, please take a look at [cocoapods.org](https://guides.cocoapods.org/using/getting-started.html) for more information.
 
 Now it is possible to add VirgilSDK to the particular application. So:
 
-- Open Xcode and create a new project (in the Xcode menu: File->New->Project), or navigate to existing Xcode project using:
+- Open Xcode and create a new project (in the Xcode menu: File->New->Project), or navigate to an existing Xcode project using:
 
 ```
 $ cd <Path to Xcode project folder>
 ```
 
-- In the Xcode project's folder create a new file, give it a name *Podfile* (with a capital *P* and without any extension). The following example shows how to compose the Podfile for an iOS application. If you are planning to use other platform the process will be quite similar. You only need to change platform to correspondent value. [Here](https://guides.cocoapods.org/syntax/podfile.html#platform) you can find more information about platform values.
+- In the Xcode project's folder create a new file, give it a name *Podfile* (with a capital *P* and without any extension). The following example shows how to compose the Podfile for an iOS application. If you are planning to use another platform, the process will be quite similar. You only need to change a platform to the correspondent value. [Here](https://guides.cocoapods.org/syntax/podfile.html#platform) you can find more information about the platform values.
 
 ```
 source 'https://github.com/CocoaPods/Specs.git'
@@ -61,7 +61,7 @@ $ pod install
  
 - Close Xcode project (if it is still opened). For any further development purposes you should use Xcode *.xcworkspace* file created for you by CocoaPods.
  
-At this point you should be able to use VirgilSDK pod in your code. If you encountered any issues with CocoaPods installations try to find more information at [cocoapods.org](https://guides.cocoapods.org/using/getting-started.html).
+At this point you should be able to use VirgilSDK pod in your code. If you encountered any issues with CocoaPods installations, try to find more information at [cocoapods.org](https://guides.cocoapods.org/using/getting-started.html).
 
 ## Swift note
 
@@ -84,18 +84,19 @@ You can find more information about using Objective-C and Swift in the same proj
 
 ##Obtaining an Access Token
 
-First you must create a free Virgil Security developer's account by signing up [here](https://virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://virgilsecurity.com/account/signin) and generate an access token for your application.
+First you must create a free Virgil Security developer's account by signing up [here](https://developer.virgilsecurity.com/account/signup). Once you have your account you can [sign in](https://developer.virgilsecurity.com/account/signin) and generate an access token for your application.
 
 The access token provides an authenticated secure access to the Virgil Security Services and is passed with each API call. The access token also allows the API to associate your app’s requests with your Virgil Security developer's account.
 
-Simply add your access token to the client constuctor as application token.
+Simply add your access token to the client constuctor as an application token.
 
 ###### Objective-C
 ```objective-c
 //...
 @property (nonatomic, strong) VSSClient * __nonnull client;
 //...
-self.client = [[VSSClient alloc] initWithApplicationToken:<# Virgil Access Token #>];
+self.client = [[VSSClient alloc] 
+				initWithApplicationToken:<# Virgil Access Token #>];
 //...
 ```
 
@@ -110,13 +111,15 @@ let client = VSSClient(applicationToken: <# Virgil Access Token #>)
 
 ## Client setup 
 
-Before any calls to Virgil Security Services VSSClient instance should perform additional setup.
+Before any calls to Virgil Security Services VSSClient instance should perform an additional setup.
 
 ```objective-c
 //...
-[self.client setupClientWithCompletionHandler:^(NSError * _Nullable error) {
+[self.client setupClientWithCompletionHandler:^(NSError * _Nullable error) 
+	{
     if (error != nil) {
-        NSLog(@"Virgil Client has not been set up properly: %@", [error localizedDescription]);
+        NSLog(@"Virgil Client has not been set up properly: %@", 
+        		[error localizedDescription]);
         return;        
     }
     // VSSClient is ready to work.
@@ -130,7 +133,8 @@ Before any calls to Virgil Security Services VSSClient instance should perform a
 //...
 self.client.setupClientWithCompletionHandler { (error) -> Void in 
     if error != nil {
-        print("Virgil Client has not been set up properly: \(error!.localizedDescription)")
+        print("Virgil Client has not been set up properly: 
+        		\(error!.localizedDescription)")
         return
     }
     // VSSClient is ready to work.
@@ -150,13 +154,17 @@ Initialize the identity verification process.
 ###### Objective-C
 ```objective-c
 //...
-[self.client verifyIdentityWithType:VSSIdentityTypeEmail value:<# Email address #> completionHandler:^(GUID *actionId, NSError *error) {
-    if (error != nil) {
-        NSLog(@"Error identity verification: %@", [error localizedDescription]);
-        return;
-    }
+[self.client verifyIdentityWithType:VSSIdentityTypeEmail 
+	value:<# Email address #> 
+	completionHandler:^(GUID *actionId, NSError *error) {
+	    if (error != nil) {
+	        NSLog(@"Error identity verification: %@", 
+	        		[error localizedDescription]);
+	        return;
+	    }
     
-    // Store actionId, it will be necessary to confirm identity and obtain verificationToken.
+    // Store actionId, it will be necessary to confirm identity 
+    // and obtain verificationToken.
     //...
 }];
 //...
@@ -165,13 +173,16 @@ Initialize the identity verification process.
 ###### Swift
 ```swift
 //...
-self.client.verifyIdentityWithType(.Email, value: <# Email address #>) { (actionId, error) -> Void in
-    if error != nil {
-        print("Error identity verification: \(error!.localizedDescription)")
-        return
+self.client.verifyIdentityWithType(.Email, value: <# Email address #>) 
+	{ (actionId, error) -> Void in
+	    if error != nil {
+	        print("Error identity verification: 
+	        		\(error!.localizedDescription)")
+	        return
     }
     
-    // Store actionId, it will be necessary to confirm identity and obtain verificationToken.
+    // Store actionId, it will be necessary to confirm identity 
+    // and obtain verificationToken.
     //...
 }
 //...
@@ -186,11 +197,20 @@ Confirm the identity and get a temporary token.
 //...
 // ttl parameter is NSNumber integer for "Time to live" in seconds value.
 // ctl parameter is NSNumber integer for "Counts to live" value. 
-[self.client confirmIdentityWithActionId:<# Action ID from verification step #> code:<# Code from email #> ttl:<# Time to live or nil #> ctl:<# Counts to live or nil #> completionHandler:^(VSSIdentityType type, NSString *value, NSString *validationToken, NSError *error) {
-    if (error != nil) {
-        NSLog(@"Error identity confirmation: %@", [error localizedDescription]);
-        return;
-    }
+[self.client 
+	confirmIdentityWithActionId:<# Action ID from verification step #> 
+	code:<# Code from email #> 
+	ttl:<# Time to live or nil #> 
+	ctl:<# Counts to live or nil #> 
+	completionHandler:^(VSSIdentityType type, 
+		NSString *value, 
+		NSString *validationToken, 
+		NSError *error) {
+		    if (error != nil) {
+		        NSLog(@"Error identity confirmation: %@", 
+		        	[error localizedDescription]);
+		        return;
+		    }
 
     // Use validationToken for further operations, e.g publishing a Virgil Card.
     //...
@@ -203,7 +223,12 @@ Confirm the identity and get a temporary token.
 //...
 // ttl parameter is NSNumber integer for "Time to live" in seconds value.
 // ctl parameter is NSNumber integer for "Counts to live" value.
-self.client.confirmIdentityWithActionId(<# Action ID from verification step #>, code: <# Code from email #>, ttl: <# Time to live or nil #>, ctl: <# Counts to live or nil #>, completionHandler: { (itype, ivalue, ivalToken, error) -> Void in
+self.client.confirmIdentityWithActionId
+	(<# Action ID from verification step #>, 
+	code: <# Code from email #>, 
+	ttl: <# Time to live or nil #>, 
+	ctl: <# Counts to live or nil #>, 
+	completionHandler: { (itype, ivalue, ivalToken, error) -> Void in
     if error != nil {
         print("Error identity confirmation: \(error!.localizedDescription)")
         return
@@ -231,11 +256,17 @@ NSDictionary *identity = @{
     kVSSModelValue: <# Email Address #>,
     kVSSModelValidationToken: <# Validation token from confirmaton step #>    
 };
-[self.client createCardWithPublicKey:<# Public key data #> identity:identity data:<# Custom NSDictionary or nil #> signs:<# NSArray of signatures or nil #> privateKey:<# VSSPrivateKey object #> completionHandler:^(VSSCard *card, NSError *error) {
-    if (error != nil) {
-        NSLog(@"Error creating Virgil Card: %@", [error localizedDescription]);
-        return;
-    }
+[self.client 
+	createCardWithPublicKey:<# Public key data #> 
+	identity:identity data:<# Custom NSDictionary or nil #> 
+	signs:<# NSArray of signatures or nil #> 
+	privateKey:<# VSSPrivateKey object #> 
+	completionHandler:^(VSSCard *card, NSError *error) {
+	    if (error != nil) {
+	        NSLog(@"Error creating Virgil Card: %@", 
+	        	[error localizedDescription]);
+	        return;
+	    }
     
     //Virgil Card has been saved at Virgil Keys Service.
     // Use card object for further references.
@@ -252,11 +283,16 @@ let identity = [
     kVSSModelValue: <# Email Address #>,
     kVSSModelValidationToken: <# Validation token from confirmaton step #> 
 ]
-self.client.createCardWithPublicKey(<# Public key data #>, identity: identity as [NSObject : AnyObject], data: nil, signs: nil, privateKey: <# VSSPrivateKey object #>, completionHandler: { (card, error) -> Void in
-    if error != nil {
-        print("Error creating Virgil Card: \(error!.localizedDescription)")
-        return
-    }
+self.client.createCardWithPublicKey(<# Public key data #>, 
+	identity: identity as [NSObject : AnyObject], 
+	data: nil, 
+	signs: nil, 
+	privateKey: <# VSSPrivateKey object #>, 
+	completionHandler: { (card, error) -> Void in
+	    if error != nil {
+	        print("Error creating Virgil Card: \(error!.localizedDescription)")
+	        return
+	    }
     
     //Virgil Card has been saved at Virgil Keys Service.
     // Use card object for further references.
@@ -272,11 +308,18 @@ Search for the Virgil Card by provided parameters.
 ###### Objective-C
 ```objective-c
 //...
-[self.client searchCardWithIdentityValue:<# Email Address #> type:VSSIdentityTypeEmail relations:nil unconfirmed:nil completionHandler:^(NSArray<VSSCard *> * _Nullable cards, NSError * _Nullable error) {
-    if (error != nil) {
-        NSLog(@"Error searching for Virgil Cards: %@", [error localizedDescription]);
-        return;
-    }
+[self.client 
+	searchCardWithIdentityValue:<# Email Address #> 
+	type:VSSIdentityTypeEmail 
+	relations:nil 
+	unconfirmed:nil 
+	completionHandler:^(NSArray<VSSCard *> * _Nullable cards, 
+		NSError * _Nullable error) {
+		    if (error != nil) {
+		        NSLog(@"Error searching for Virgil Cards: %@", 
+		        	[error localizedDescription]);
+		        return;
+		    }
     
     // cards contains an array of VSSCard objects which fit given parameters.
     // Quite often it might be only one VSSCard in the array.
@@ -288,11 +331,15 @@ Search for the Virgil Card by provided parameters.
 ###### Swift
 ```swift
 //...
-self.client.searchCardWithIdentityValue(<# Email Address #>, type: .Email, relations: nil, unconfirmed: nil) { (cards, error) -> Void in
-    if error != nil {
-        print("Error searching for Virgil Cards: \(error!.localizedDescription)")
-        return
-    }
+self.client.searchCardWithIdentityValue(<# Email Address #>, 
+	type: .Email, 
+	relations: nil, 
+	unconfirmed: nil) { (cards, error) -> Void in
+	    if error != nil {
+	        print("Error searching for Virgil Cards: 
+	        	\(error!.localizedDescription)")
+	        return
+	    }
     
     // cards contains an array of VSSCard objects which fit given parameters.
     // Quite often it might be only one VSSCard in the array.
@@ -308,11 +355,14 @@ Search for the Virgil Cards by a defined pattern. The example below returns a li
 ###### Objective-C
 ```objective-c
 //...
-[self.client searchAppCardWithIdentityValue:@"com.virgil.*" completionHandler:^(NSArray<VSSCard *> * _Nullable cards, NSError * _Nullable error) {
-    if (error != nil) {
-        NSLog(@"Error searching for Virgil Cards: %@", [error localizedDescription]);
-        return;
-    }
+[self.client searchAppCardWithIdentityValue:@"com.virgil.*" 
+	completionHandler:^(NSArray<VSSCard *> * _Nullable cards, 
+	NSError * _Nullable error) {
+	    if (error != nil) {
+	        NSLog(@"Error searching for Virgil Cards: %@", 
+	        	[error localizedDescription]);
+	        return;
+	    }
     
     // cards contains an array of VSSCard objects which fit given identity value.
     //...
@@ -323,13 +373,14 @@ Search for the Virgil Cards by a defined pattern. The example below returns a li
 ###### Swift
 ```swift
 //...
-self.client.searchAppCardWithIdentityValue("com.virgil.*") { (cards, error) -> Void in
+self.client.searchAppCardWithIdentityValue("com.virgil.*") 
+	{ (cards, error) -> Void in
     if error != nil {
         print("Error searching for Virgil Cards: \(error!.localizedDescription)")
         return
     }
     
-    // cards contains an array of VSSCard objects which fit given identity value.
+    // cards contains an array of VSSCard objects which fit given identity value
     //...
 }
 //...
@@ -341,21 +392,31 @@ Any Virgil Card user can act as a certification center within the Virgil Securit
 
 The example below demonstrates how to certify a user's Virgil Card by signing its hash attribute. 
 
-<!--В рамках экосистемы Virgil Security любой пользователь карты может выступать в качестве центра сертификации. Каждый пользователь может заверить карту другого, и построить на основе этого сеть доверия. 
-В приведенном примере ниже показанно как заверить карту пользователя, путем подписи ее hash атирибута.  -->
  
 ###### Objective-C
 ```objective-c
 //...
 VSSSigner *signer = [[VSSSigner alloc] init];
-NSData *hashData = [[NSData alloc] initWithBase64EncodedString:<# VSSCard which need to be trusted #>.Hash options:0];
-NSData *digest = [signer signData:hashData privateKey:<# VSSPrivateKey object #>.key keyPassword:<# VSSPrivateKey object #>.password];
+NSData *hashData = 
+	[[NSData alloc] 
+	initWithBase64EncodedString:<# VSSCard to be trusted #>.Hash options:0];
+NSData *digest = 
+	[signer signData:hashData 
+	privateKey:<# VSSPrivateKey object #>.key 
+	keyPassword:<# VSSPrivateKey object #>.password];
     
-[self.client signCardWithCardId:<# VSSCard which need to be trusted #>.Id digest:digest signerCard:<# VSSCard which is used to compose trust #> privateKey:<# VSSPrivateKey object #> completionHandler:^(VSSSign * _Nullable sign, NSError * _Nullable error) {
-    if (error != nil) {
-        NSLog(@"Error signing Virgil Card: %@", [error localizedDescription]);
-        return;
-    }
+[self.client 
+	signCardWithCardId:<# VSSCard to be trusted #>.Id 
+	digest:digest 
+	signerCard:<# VSSCard which is used to compose trust #> 
+	privateKey:<# VSSPrivateKey object #> 
+			completionHandler:^(VSSSign * _Nullable sign, NSError * _Nullable error) 
+			{
+		    if (error != nil) {
+		        NSLog(@"Error signing Virgil Card: %@", 
+		        	[error localizedDescription]);
+		        return;
+		    }
     
     //...
 }];
@@ -366,13 +427,21 @@ NSData *digest = [signer signData:hashData privateKey:<# VSSPrivateKey object #>
 ```swift
 //...
 let signer = VSSSigner()
-let hashData = NSData(base64EncodedString: <# VSSCard which need to be trusted #>.Hash, options: .IgnoreUnknownCharacters)
-let digest = signer.signData(hashData, privateKey: <# VSSPrivateKey object #>.key, keyPassword: <# VSSPrivateKey object #>.password)
+let hashData = NSData(base64EncodedString: <# VSSCard to be trusted #>.Hash, 
+		options: .IgnoreUnknownCharacters)
+let digest = signer.signData(hashData, 
+		privateKey: <# VSSPrivateKey object #>.key, 
+		keyPassword: <# VSSPrivateKey object #>.password)
 
-self.client.signCardWithCardId(<# VSSCard which need to be trusted #>.Id, digest: digest, signerCard: <# VSSCard which is used to compose trust #>, privateKey: <# VSSPrivateKey object #>) { (sign, error) -> Void in
-    if error != nil {
-        print("Error signing Virgil Card: \(error!.localizedDescription)")
-        return
+self.client.signCardWithCardId(<# VSSCard which need to be trusted #>.Id, 
+		digest: digest, 
+		signerCard: <# VSSCard which is used to compose trust #>, 
+		privateKey: <# VSSPrivateKey object #>) 
+		{ (sign, error) -> Void in
+		    if error != nil {
+		        print("Error signing Virgil Card: 
+		        	\(error!.localizedDescription)")
+		        return
     }
     
     //...
@@ -387,7 +456,11 @@ Naturally it is possible to stop trusting the Virgil Card owner as in all relati
 ###### Objective-C
 ```objective-c
 //...
-[self.client unsignCardWithId:<# VSSCard which should not be trusted any more #>.Id signerCard:<# VSSCard which was used to compose trust #> privateKey:[<# VSSKeyPair object #> privateKey] completionHandler:^(NSError * _Nullable error) {
+[self.client 
+	unsignCardWithId:<# VSSCard which should not be trusted any more #>.Id 
+	signerCard:<# VSSCard which was used to compose trust #> 
+	privateKey:[<# VSSKeyPair object #> privateKey] 
+	completionHandler:^(NSError * _Nullable error) {
     if (error != nil) {
         NSLog(@"Error unsigning Virgil Card: %@", [error localizedDescription]);
         return;
@@ -401,7 +474,10 @@ Naturally it is possible to stop trusting the Virgil Card owner as in all relati
 ###### Swift
 ```swift
 //...
-self.client.unsignCardWithId(<# VSSCard which should not be trusted any more #>.Id, signerCard: <# VSSCard which was used to compose trust #>, privateKey: <# VSSKeyPair object #>.privateKey()) { (error) -> Void in
+self.client.unsignCardWithId(<# VSSCard which should not be trusted any more #>.Id, 
+signerCard: <# VSSCard which was used to compose trust #>, 
+privateKey: <# VSSKeyPair object #>.privateKey()) 
+{ (error) -> Void in
     if error != nil {
         print("Error unsigning Virgil Card: \(error!.localizedDescription)")
         return
@@ -419,13 +495,17 @@ This operation is used to delete the Virgil Card from the search and mark it as 
 ###### Objective-C
 ```objective-c
 //...
-// It is not necessary to compose identity dictionary for unconfirmed Virgil Cards. Just pass nil.
+// It is not necessary to compose identity dictionary for 
+// unconfirmed Virgil Cards. Just pass nil.
 NSDictionary *identity = @{
     kVSSModelType: [VSSIdentity stringFromIdentityType:VSSIdentityTypeEmail],
     kVSSModelValue: <# Email Address #>,
     kVSSModelValidationToken: <# Validation token from confirmaton step #>
 };
-[self.client deleteCardWithCardId:<# VSSCard which is need to be deleted #>.Id identity:identity privateKey:<# VSSPrivateKey object #> completionHandler:^(NSError * _Nullable error) {
+[self.client deleteCardWithCardId:<# VSSCard to be deleted #>.Id
+ identity:identity 
+ privateKey:<# VSSPrivateKey object #> 
+ completionHandler:^(NSError * _Nullable error) {
     if (error != nil) {
         NSLog(@"Error deleting Virgil Card: %@", [error localizedDescription]);
         return;
@@ -439,13 +519,16 @@ NSDictionary *identity = @{
 ###### Swift
 ```swift
 //...
-// It is not necessary to compose identity dictionary for unconfirmed Virgil Cards. Just pass nil.
+// It is not necessary to compose identity dictionary for 
+// unconfirmed Virgil Cards. Just pass nil.
 let identity = [ 
     kVSSModelType: VSSIdentity.stringFromIdentityType(.Email), 
     kVSSModelValue: <# Email Address #>,
     kVSSModelValidationToken: <# Validation token from confirmaton step #> 
 ]
-self.client.deleteCardWithCardId(<# VSSCard which is need to be deleted #>.Id, identity: identity as [NSObject : AnyObject], privateKey: <# VSSPrivateKey object #>) { (error) -> Void in
+self.client.deleteCardWithCardId(<# VSSCard to be deleted #>.Id, 
+identity: identity as [NSObject : AnyObject], 
+privateKey: <# VSSPrivateKey object #>) { (error) -> Void in
       if error != nil {
         print("Error deleting Virgil Card: \(error!.localizedDescription)")
         return
@@ -463,7 +546,8 @@ Gets a public key from the Public Keys Service by the specified ID.
 ###### Objective-C
 ```objective-c
 //...
-[client getPublicKeyWithId:<# Public key ID #> completionHandler:^(VSSPublicKey * _Nullable key, NSError * _Nullable error) {
+[client getPublicKeyWithId:<# Public key ID #> 
+completionHandler:^(VSSPublicKey * _Nullable key, NSError * _Nullable error) {
     if (error != nil) {
         NSLog(@"Error getting Public key: %@", [error localizedDescription]);
         return;
@@ -507,7 +591,9 @@ The Private Keys Service stores private keys the original way as they were trans
 ###### Objective-C
 ```objective-c
 //...
-[self.client storePrivateKey:<# VSSPrivateKey object #> cardId:<# Virgil Card ID of the card with corresponding public key #> completionHandler:^(NSError * _Nullable error) {
+[self.client storePrivateKey:<# VSSPrivateKey object #> 
+cardId:<# Virgil Card ID of the card with corresponding public key #> 
+completionHandler:^(NSError * _Nullable error) {
     if (error != nil) {
         NSLog(@"Error storing a private key: %@", [error localizedDescription]);
         return;
@@ -520,7 +606,9 @@ The Private Keys Service stores private keys the original way as they were trans
 ###### Swift
 ```swift
 //...
-self.client.storePrivateKey(<# VSSPrivateKey object #>, cardId: <# Virgil Card ID of the card with corresponding public key #>) { (error) -> Void in
+self.client.storePrivateKey(<# VSSPrivateKey object #>, 
+cardId: <# Virgil Card ID of the card with corresponding public key #>) 
+{ (error) -> Void in
     if error != nil {
         print("Error storing a private key: \(error!.localizedDescription)")
         return
@@ -543,16 +631,26 @@ NSDictionary *identity = @{
     kVSSModelValue: <# Email Address #>,
     kVSSModelValidationToken: <# Validation token from confirmaton step #>    
 };
-// password parameter represents a password which will be used by Virgil Service to encrypt the response. 
-// If this parameter is nil then VSSClient will generate password automatically. 
-// This password is generated new every time this request taking place. VSSClient will never use the same password twice. 
-[self.client grabPrivateKeyWithIdentity:identity cardId:<# Virgil Card ID #> password:<# Specific password for response encryption or nil to generate it automatically #> completionHandler:^(NSData * _Nullable keyData, GUID * _Nullable cardId, NSError * _Nullable error) {
+// password parameter represents a password which will be used 
+// by Virgil Service to encrypt the response. 
+// If this parameter is nil, VSSClient will generate password automatically. 
+// This password is freshly generated every time this request takes place. 
+// VSSClient will never use the same password twice. 
+[self.client grabPrivateKeyWithIdentity:identity 
+cardId:<# Virgil Card ID #> 
+password:<# Specific password for response encryption 
+	or nil to generate it automatically #> 
+completionHandler:^(NSData * _Nullable keyData, 
+	GUID * _Nullable cardId, 
+	NSError * _Nullable error) {
     if (error != nil) {
-        NSLog(@"Error getting the private key: %@", [error localizedDescription]);
+        NSLog(@"Error getting the private key: %@", 
+        	[error localizedDescription]);
         return;
     }
     
-    // keyData contains the NSData object with private key in the same form as it was stored (e.g. it might be in password-protected form).
+    // keyData contains the NSData object with private key in the same form
+    // as it was stored (e.g. it might be in password-protected form).
     //...
 }];
 //...
@@ -566,14 +664,21 @@ let identity = [
     kVSSModelValue: <# Email Address #>,
     kVSSModelValidationToken: <# Validation token from confirmaton step #> 
 ]
-// password parameter represents a password which will be used by Virgil Service to encrypt the response. 
-// If this parameter is nil then VSSClient will generate password automatically. 
-// This password is generated new every time this request taking place. VSSClient will never use the same password twice. 
-self.client.grabPrivateKeyWithIdentity(identity, cardId: <# Virgil Card ID #>, password: <# Specific password for response encryption or nil to generate it automatically #>) { (keyData, cardId, error) -> Void in
-    if error != nil {
-        print("Error getting the private key: \(error!.localizedDescription)")
-        return
-    }
+// password parameter represents a password which will be used by 
+// Virgil Service to encrypt the response. 
+// If this parameter is nil, VSSClient will generate password automatically. 
+// This password is generated freshly every time this request takes place. 
+// VSSClient will never use the same password twice. 
+self.client.grabPrivateKeyWithIdentity(identity, 
+	cardId: <# Virgil Card ID #>, 
+	password: <# Specific password for response encryption 
+			or nil to generate it automatically #>) 
+	{ (keyData, cardId, error) -> Void in
+	    if error != nil {
+	        print("Error getting the private key: 
+	        	\(error!.localizedDescription)")
+	        return
+	    }
     
     // keyData contains the NSData object with private key in the same form as it was stored (e.g. it might be in password-protected form).
     //...
@@ -588,9 +693,12 @@ This operation deletes the private key from the service without a possibility to
 ###### Objective-C
 ```objective-c
 //...
-[client deletePrivateKey:<# VSSPrivateKey object #> cardId:<# Virgil Card ID #> completionHandler:^(NSError * _Nullable error) {
+[client deletePrivateKey:<# VSSPrivateKey object #> 
+cardId:<# Virgil Card ID #> 
+completionHandler:^(NSError * _Nullable error) {
     if (error != nil) {
-        NSLog(@"Error deleting the private key: %@", [error localizedDescription]);
+        NSLog(@"Error deleting the private key: %@", 
+        	[error localizedDescription]);
         return;
     }
     //...
@@ -601,9 +709,11 @@ This operation deletes the private key from the service without a possibility to
 ###### Swift
 ```swift
 //...
-self.client.deletePrivateKey(<# VSSPrivateKey object #>, cardId: <# Virgil Card ID #>) { (error) -> Void in
+self.client.deletePrivateKey(<# VSSPrivateKey object #>, 
+	cardId: <# Virgil Card ID #>) { (error) -> Void in
     if error != nil {
-        print("Error deleting the private key: \(error!.localizedDescription)")
+        print("Error deleting the private key: 
+        	\(error!.localizedDescription)")
         return
     }
     //...
