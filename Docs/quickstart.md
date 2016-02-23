@@ -8,7 +8,8 @@
     - [Initialization](#initialization)
     - [Step 1. Create and Publish the Keys](#step-1-create-and-publish-the-keys)
     - [Step 2. Encrypt and Sign](#step-2-encrypt-and-sign)
-    - [Step 3. Verify and Decrypt received data and signature](#step-4-verify-and-decrypt-received-data-and-signature)
+    - [Step 3. Get sender's Public Key](#step-3-get-senders-public-key)
+    - [Step 4. Verify and Decrypt received data and signature](#step-4-verify-and-decrypt-received-data-and-signature)
 - [See also](#see-also)
 
 ## Introduction
@@ -327,45 +328,27 @@ self.client.searchCardWithIdentityValue(<# Recepient email address #>, type: .Em
 //...
 ```
 
-## Step 3. Verify and Decrypt received data and signature
-We are making sure the data came from the declared sender by verifying his signature using his Virgil Card from Public Keys Service. In case of success we are decrypting the letter using the recipient's private key.
+## Step 3. Step 3. Get sender's Public Key
+In order to decrypt the received data the app on recipient’s side needs to get sender’s Virgil Card from the Public Keys Service.
 
 ###### Objective-C
 ```objective-c
 //...
-NSData *encryptedMessage = <# Encrypted message received from sender user #>;
-NSData *signature = <# Composed signature of sender user #>;
 [self.client searchCardWithIdentityValue:<# Sender email address #> type:VSSIdentityTypeEmail relations:nil unconfirmed:nil completionHandler:^(NSArray<VSSCard *> * _Nullable cards, NSError * _Nullable error) {
     if (error != nil) {
         NSLog(@"Error searching for Virgil Card: %@", [error localizedDescription]);
         return;
     }
     
+    // NSArray cards contains Vrigil Card objects which fit given search parameters.
+    // Most likely this array will contain only one Virgil Card, which we are interested in.
     if (cards.count > 0) {
         // Take first card:
         VSSCard *senderCard = [cards[0] as:[VSSCard class]];
-        VSSSigner *verifier = [[VSSSigner alloc] init];
-        // Try to verify sender's signature
-        BOOL verified = [verifier verifySignature:signature data:encryptedMessage publicKey:senderCard.publicKey.key];
-        if (!verified) {
-            NSLog(@"Error verification sender's signature.");
-            return;
-        }
-        
-        VSSCryptor *decryptor = [[VSSCryptor alloc] init];
-        // Try to decrypt encrypted message
-        NSData *decryptedMessage = [decryptor decryptData:encryptedMessage publicKeyId:<# Recepient VSSCard #>.Id privateKey:[<# Recepient VSSKeyPair #> privateKey] keyPassword:<# Private key password or nil #>];
-        if (decryptedMessage.length == 0) {
-            NSLog(@"Error decrypting sender's message");
-            return
-        }
-        
-        NSString *message = [[NSString alloc] initWithData:decryptedMessage encoding:NSUTF8StringEncoding];
-        // message contains readable decrypted message which was sent by another user referred as sender.
-        //...
-    }
+        // Use the card for further operations.
+        // ...
     else {
-        // No recipient's cards found. 
+        // No sender's cards found. 
     }
 }];
 //...
@@ -374,39 +357,79 @@ NSData *signature = <# Composed signature of sender user #>;
 ###### Swift
 ```swift
 //...
-let encryptedMessage = <# NSData: Encrypted message received from sender user  #>
-let signature = <# NSData: Composed signature of sender user #>
 self.client.searchCardWithIdentityValue(<# Sender email address #>, type: .Email, relations: nil, unconfirmed: nil) { (cards, error) -> Void in
     if error != nil {
         print("Error searching for Virgil Card: \(error!.localizedDescription)")
         return
     }
     
+    // NSArray cards contains Vrigil Card objects which fit given search parameters.
+    // Most likely this array will contain only one Virgil Card, which we are interested in.
     if cards?.count > 0 {
         // Take first card:
         let senderCard = cards![0]
-        let verifier = VSSSigner()
-        // Try to verify signature
-        let verified = verifier.verifySignature(signature, data: encryptedMessage, publicKey: senderCard.publicKey.key)
-        if !verified {
-            print("Error verification sender's signature.")
-            return;
-        }
-        
-        let decryptor = VSSCryptor()
-        let decryptedMessage = decryptor.decryptData(encryptedMessage, publicKeyId: <# Recepient VSSCard #>.Id, privateKey: <# Recepient VSSKeyPair #>.privateKey(), keyPassword: <# Private key password or nil #>)
-        if let messageData = decryptedMessage, message = NSString(data: messageData, encoding: NSUTF8StringEncoding) {
-            // message contains readable decrypted message which was sent by another user referred as sender.
-            //...
-        }
-        else {
-            print("Error decrypting sender's message.")
-            return
-        }
-    }
+        // Use the card for further operations.
+        // ...
     else {
-        // No sender cards found.
+        // No sender's cards found.
     }
+}
+//...
+```
+
+## Step 4. Verify and Decrypt received data and signature
+We are making sure the data came from the declared sender by verifying his signature using his Virgil Card from Public Keys Service. In case of success we are decrypting the letter using the recipient's private key.
+
+###### Objective-C
+```objective-c
+//...
+NSData *encryptedMessage = <# Encrypted message received from sender user #>;
+NSData *signature = <# Composed signature of sender user #>;
+//...
+VSSSigner *verifier = [[VSSSigner alloc] init];
+// Try to verify sender's signature
+BOOL verified = [verifier verifySignature:signature data:encryptedMessage publicKey:<# VSSCard: sender card from previous step #>.publicKey.key];
+if (!verified) {
+    NSLog(@"Error verification sender's signature.");
+    return;
+}
+
+VSSCryptor *decryptor = [[VSSCryptor alloc] init];
+// Try to decrypt encrypted message
+NSData *decryptedMessage = [decryptor decryptData:encryptedMessage publicKeyId:<# Recepient VSSCard #>.Id privateKey:[<# Recepient VSSKeyPair #> privateKey] keyPassword:<# Private key password or nil #>];
+if (decryptedMessage.length == 0) {
+    NSLog(@"Error decrypting sender's message");
+    return;
+}
+
+NSString *message = [[NSString alloc] initWithData:decryptedMessage encoding:NSUTF8StringEncoding];
+// message contains readable decrypted message which was sent by another user referred as sender.
+//...
+```
+
+###### Swift
+```swift
+//...
+let encryptedMessage = <# NSData: Encrypted message received from sender user  #>
+let signature = <# NSData: Composed signature of sender user #>
+//...
+let verifier = VSSSigner()
+// Try to verify signature
+let verified = verifier.verifySignature(signature, data: encryptedMessage, publicKey: <# VSSCard: sender card from previous step #>.publicKey.key)
+if !verified {
+    print("Error verification sender's signature.")
+    return;
+}
+
+let decryptor = VSSCryptor()
+let decryptedMessage = decryptor.decryptData(encryptedMessage, publicKeyId: <# Recepient VSSCard #>.Id, privateKey: <# Recepient VSSKeyPair #>.privateKey(), keyPassword: <# Private key password or nil #>)
+if let messageData = decryptedMessage, message = NSString(data: messageData, encoding: NSUTF8StringEncoding) {
+    // message contains readable decrypted message which was sent by another user referred as sender.
+    //...
+}
+else {
+    print("Error decrypting sender's message.")
+    return
 }
 //...
 ```
