@@ -76,6 +76,8 @@
 
 - (void)verifyIdentityWithType:(VSSIdentityType)type value:(NSString * __nonnull)value completionHandler:(void(^ __nullable)(GUID * __nullable actionId, NSError * __nullable error))completionHandler;
 
+- (void)verifyIdentityWithType:(VSSIdentityType)type value:(NSString * __nonnull)value extraFields:(NSDictionary * __nullable)extraFields completionHandler:(void(^ __nullable)(GUID * __nullable actionId, NSError * __nullable error))completionHandler;
+
 - (void)confirmIdentityWithActionId:(GUID * __nonnull)actionId code:(NSString * __nonnull)code ttl:(NSNumber * __nullable)ttl ctl:(NSNumber * __nullable)ctl completionHandler:(void(^ __nullable)(VSSIdentityType type, NSString * __nullable value, NSString * __nullable validationToken, NSError * __nullable error))completionHandler;
 
 

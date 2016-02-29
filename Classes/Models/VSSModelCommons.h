@@ -42,6 +42,7 @@ extern NSString * __nonnull const kVSSModelConfirmationCode;
 extern NSString * __nonnull const kVSSModelToken;
 extern NSString * __nonnull const kVSSModelTTL;
 extern NSString * __nonnull const kVSSModelCTL;
+extern NSString * __nonnull const kVSSModelExtraFields;
 
 extern NSString * __nonnull const kVSSModelError;
 extern NSString * __nonnull const kVSSModelCode;

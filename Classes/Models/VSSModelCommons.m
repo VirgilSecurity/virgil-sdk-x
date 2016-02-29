@@ -42,6 +42,7 @@ NSString *const kVSSModelConfirmationCode = @"confirmation_code";
 NSString *const kVSSModelToken = @"token";
 NSString *const kVSSModelTTL = @"time_to_live";
 NSString *const kVSSModelCTL = @"count_to_live";
+NSString *const kVSSModelExtraFields = @"extra_fields";
 
 NSString *const kVSSModelError = @"error";
 NSString *const kVSSModelCode = @"code";
