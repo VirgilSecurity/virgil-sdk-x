@@ -8,8 +8,10 @@
     - [Initialization](#initialization)
     - [Step 1. Create and Publish the Keys](#step-1-create-and-publish-the-keys)
     - [Step 2. Encrypt and Sign](#step-2-encrypt-and-sign)
-    - [Step 3. Get Sender's Card](#step-3-get-senders-card)
-    - [Step 4. Verify and Decrypt](#step-4-verify-and-decrypt)
+    - [Step 3. Send a Message](#step-3-send-a-message)
+    - [Step 4. Receive a Message](#step-4-receive-a-message)
+    - [Step 5. Get Sender's Card](#step-5-get-senders-card)
+    - [Step 6. Verify and Decrypt](#step-6-verify-and-decrypt)
 - [See also](#see-also)
 
 ## Introduction
@@ -17,7 +19,7 @@
 This guide will help you get started using the Crypto Library and Virgil Security Services for the most popular platforms and languages.
 This branch focuses on the Objective-C/Swift library implementation and covers its usage.
 
-Let's go through an encrypted message exchange steps as one of the possible [use cases](#use-case) of Virgil Security Services. ![Use case mail](https://raw.githubusercontent.com/VirgilSecurity/virgil/master/images/Email-diagram.jpg)
+Let's go through an encrypted message exchange steps as one of the possible [use cases](#use-case) of Virgil Security Services. ![Use case IP Messaging](https://raw.githubusercontent.com/VirgilSecurity/virgil/master/images/IPMessaging.jpg)
 
 ## Obtaining an Access Token
 
@@ -88,13 +90,13 @@ You can find more information about using Objective-C and Swift in the same proj
 ## Use Case
 **Secure any data end to end**: users need to securely exchange information (text messages, files, audio, video etc) while enabling both in transit and at rest protection. 
 
-- Application generates public and private key pairs using Virgil Crypto library and use Virgil Keys service to enable secure end to end communications:
+- Application generates public and private key pairs using Virgil Crypto Library and use Virgil Keys Service to enable secure end to end communications:
     - public key on Virgil Public Keys Service;
     - private key on Virgil Private Keys Service or locally.
 - Sender’s information is encrypted in Virgil Crypto Library with the recipient’s public key.
 - Sender’s encrypted information is signed with his private key in Virgil Crypto Library.
 - Application securely transfers the encrypted data, sender’s digital signature and UDID to the recipient without any risk to be revealed.
-- Application on the recipient’s side verifies that the signature of transferred data is valid using the signature and sender’s public key in Virgil Crypto Library.
+- Application on the recipient’s side verifies that the signature of transferred data is valid using the signature and sender’s public key from Virgil Keys Service.
 - Received information is decrypted with the recipient’s private key using Virgil Crypto Library.
 - Decrypted data is provided to the recipient.
 
@@ -333,15 +335,6 @@ NSString *message = <# Secret message which should be encryped #>;
 	        [signer signData:encryptedMessage 
 	        privateKey:[<# Sender VSSKeyPair #> privateKey] 
 	        keyPassword:nil];
-        // Now encryptedMessage contains encrypted data of initial 
-        // secret message which can only be decrypted
-        // using private key of recipient's key pair.
-        // And signature contains actual signature of sender 
-        // composed using sender's private key and it
-        // can be easily verified only using sender's public key 
-        // which is available on Virgil Keys Service.
-        // So, encryptedMessage and signature can now be sent to 
-        // recipient using any desirable way (e.g. email).
         //...
     }
     else {
@@ -379,14 +372,6 @@ self.client.searchCardWithIdentityValue(<# Recepient email address #>,
         let signature = signer.signData(encryptedMessage, 
         	privateKey: <# Sender VSSKeyPair #>.privateKey(), 
         	keyPassword: nil)
-        // Now encryptedMessage contains encrypted data of initial 
-        // secret message which can only be decrypted
-        // using private key of recipient's key pair.
-        // And signature contains actual signature of sender composed 
-        // using sender's private key and it
-        // can be easily verified only using sender's public key 
-        // which is available on Virgil Keys Service.
-        // So, encryptedMessage and signature can now be sent to recipient using any desirable way (e.g. email).
         //...
     }
     else {
@@ -396,8 +381,14 @@ self.client.searchCardWithIdentityValue(<# Recepient email address #>,
 //...
 ```
 
-## Step 3. Get Sender's Card
-In order to decrypt the received data the app on recipient’s side needs to get sender’s Virgil Card from the Public Keys Service.
+## Step 3. Send a Message
+After completion of the Step 2 there is encryptedMessage NSData object which contains encrypted data of initial secret message. This data can only be decrypted using private key of recipient's key pair. Also there is the signature NSData object which contains digital signature of sender composed using sender's private key and it can be easily verified only using sender's public key which is available on Virgil Keys Service. These two objects (encryptedMessage, signature) can now be sent to recipient using any desirable way (e.g. email, using third-party communication API, etc.).
+
+## Step 4. Receive a Message
+It is assumed that the application received a message composed in a way described in steps 1-3. So, here the application should have 2 pieces of data (or 2 NSData objects, to be exact): encryptedMessage and signature. The encryptedMessage should contain secret message encrypted by sender using recipient's public key, so it can be decrypted only with recipient's private key. Before actual decryption happens it might be a good idea to verify the signature data. The signature NSData object should contain sender's digital signature composed using sender's private key, so it can be verified only using sender's public key. This public key can be easily get from the Virgil Keys Service.
+
+## Step 5. Get Sender's Card
+In order to verify the received signature the app on recipient’s side needs to get sender’s Virgil Card from the Public Keys Service.
 
 ###### Objective-C
 ```objective-c
@@ -460,8 +451,8 @@ self.client.searchCardWithIdentityValue(<# Sender email address #>,
 //...
 ```
 
-## Step 4. Verify and Decrypt 
-We are making sure the data came from the declared sender by verifying his signature using his Virgil Card from Public Keys Service. In case of success we are decrypting the letter using the recipient's private key.
+## Step 6. Verify and Decrypt 
+We are making sure the data came from the declared sender by verifying his signature using his Virgil Card from Public Keys Service. In case of success we are decrypting the message using the recipient's private key.
 
 ###### Objective-C
 ```objective-c
