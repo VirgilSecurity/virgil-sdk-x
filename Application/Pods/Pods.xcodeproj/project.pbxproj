@@ -7,29 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06BD6EBB95C5FCB4E73DF86718594959 /* VSSStreamSigner.h in Headers */ = {isa = PBXBuildFile; fileRef = 264FC7D2E3D84E6A675D760C32799100 /* VSSStreamSigner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		07F6BBFFCFD1A7EAA467AD4C17F20F15 /* VSSChunkCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 23422E1EC695F036249303F5FF85D477 /* VSSChunkCryptor.mm */; };
 		0B4631E9E1CF2C9BDE01F6D0AA6D77DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
-		1BF812042ECEC350E3815C299A4BDA3D /* VSSVirgilVersion.mm in Sources */ = {isa = PBXBuildFile; fileRef = F3649E9EAFE1F65FD7FB168292D8080E /* VSSVirgilVersion.mm */; };
+		1366C02AE5A9800DB1885408C9373F0A /* VSSCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = F664D916B57E3ECDD439B0D2223B40F7 /* VSSCryptor.mm */; };
 		2303E0C3818ACCC31156010D11F514D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
-		237FA52675A80391BB5561DBA3CE8349 /* VirgilFoundation-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE83D130EE1F564440677FF8C92D546 /* VirgilFoundation-dummy.m */; };
-		2F9F49CD1617854F648BB5F7E58B6F90 /* VSSCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = ADB009A772791F0DF7DD83D67B3B2F3D /* VSSCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3E05606DF54D045E72C4214655C54A57 /* VirgilFoundation-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E55B5B7EBA0831B6528331EA3AF5637A /* VirgilFoundation-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2B2DCB63324AB8E9CCABA791C4714B02 /* VirgilFoundation-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B1481E25553A1091C7E0644BF2D88E0E /* VirgilFoundation-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2C0A13C5451827571A3B348C2352E0DB /* VSSFoundationCommons.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36DB1E8A42068D8BF96E571EE5D7B44F /* VSSFoundationCommons.mm */; };
+		32AF9F31FE0542B0687178103C79170E /* VirgilFoundation-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F443D1EE8F9AB42249221A8C1766D2C0 /* VirgilFoundation-dummy.m */; };
+		34C9189C3CAE8CB6C11C970AAF3C879C /* VSSStreamCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 95C0115965C061ECDB65CEEE4C8EB778 /* VSSStreamCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4C5FD96AAFADE43BCF08E25690CB62AC /* Pods-VirgilSDKApp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C30C87DEC51B715A159B1CB3016ED4F /* Pods-VirgilSDKApp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4C6B23BD6A49D85244B2E230B16E614C /* Pods-VirgilSDKSwiftTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F0CF4056ADE80BF7F23CA04B9949EE59 /* Pods-VirgilSDKSwiftTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4CE99D78414AFB2168C193FBE4D58F0B /* VSSBaseCryptor_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = CF8CB0C613A56F73ECB363F228EB8B64 /* VSSBaseCryptor_Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5900CE44A72463D66CF9C5592C7A7CB2 /* Pods-VirgilSDKAppSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F147BCCC92D334A8D07656EE7EA12609 /* Pods-VirgilSDKAppSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5EC88EE09AD1CEA3164F5113F2C40515 /* VSSVirgilVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ED0F5FB9377779DC7199BF803618448 /* VSSVirgilVersion.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		753FE1C0D96709EFE4F61396CACB53F5 /* VSSSigner.mm in Sources */ = {isa = PBXBuildFile; fileRef = 44B769811C89DC600AAD8EE6F0941BE3 /* VSSSigner.mm */; };
-		78620F12D4DC470B85A5E04F811019FD /* VSSCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = E68A92B20710D0D230690B9961E912F5 /* VSSCryptor.mm */; };
-		82AE3CB765DE126C735ED95242B6824B /* VSSKeyPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CD9DE7B962430DCBA85B93AD9D5E88D /* VSSKeyPair.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E5122C70308A6E55BF717AD21CCB235 /* VSSFoundationCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 159962B33FEF1792F4D34BFF4620840F /* VSSFoundationCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6A48982FC7178646A350175AEB7B7FED /* VSSSigner.mm in Sources */ = {isa = PBXBuildFile; fileRef = AE5B6702D3A3FDA77AA88CC833A17146 /* VSSSigner.mm */; };
+		6C80C58B1C78B195D2C535DAB102BE2F /* VSSKeyPair.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D8419356DE17FF80E8258EE35A387C1 /* VSSKeyPair.mm */; };
+		73D1FB45EFE8CA8E09F5ACE53141A2F7 /* VSSVirgilVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B25B09232219272E007D0E51B3135FB /* VSSVirgilVersion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7CB4C3F587EF8A5967951EFDF2660994 /* VSSCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = A31396A56530B2C99ED415BCC98BBF46 /* VSSCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		81D37789623F52D27C2354301ACAACD2 /* VSSBaseCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 5879EC652DC236DB407D389A14D96D26 /* VSSBaseCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1F94890437A5E4D53D60690AB85D0EC /* VSSBaseCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = D4879767B454BEF581E6BEFA439E6F43 /* VSSBaseCryptor.mm */; };
 		A74FA419B220BF620E564830D04214CD /* Pods-VirgilSDKTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B44C9D52EC0EEA28D5F09CEC3DEDBF /* Pods-VirgilSDKTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A9018F4475E9C7550D2F37C70A469C98 /* VSSSigner.h in Headers */ = {isa = PBXBuildFile; fileRef = C9028C9A5F61821A25DF2E196B302502 /* VSSSigner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AF190BD3173BFF1CA89E85E649F922BA /* Pods-VirgilSDKTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A27AF216D1BAE6245CCBFCA47D4DAE /* Pods-VirgilSDKTests-dummy.m */; };
 		AF60D35B5D04B7092E207241E9CAE980 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
+		B15EC9B84CBFEF76103878843B9F6E25 /* VSSStreamCryptor.mm in Sources */ = {isa = PBXBuildFile; fileRef = A05FD9BA66842D15CEB1059FC697E970 /* VSSStreamCryptor.mm */; };
 		C3E8BE14DA6D22854C7E5145FCCA0A1D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
-		C4CD3E3C3A7549EB9A99703B7AF6B90B /* VSSSigner.h in Headers */ = {isa = PBXBuildFile; fileRef = FDCDC453E2B961EACD5C8585ACA1E0D7 /* VSSSigner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB53E7E0A80CEFDF0C14D1078BB9B8BC /* VSSVirgilVersion.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3A260E52F263EFD733DB56766BD2D3EE /* VSSVirgilVersion.mm */; };
+		CBE57DE86664EDF6DDB03CEF8BA02516 /* VSSChunkCryptor.h in Headers */ = {isa = PBXBuildFile; fileRef = F34620DCA58EFC7F221BB92EFD6CD19E /* VSSChunkCryptor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CC1DBD46B91CADF55DAC7D2AF6F8EFDE /* Pods-VirgilSDKApp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 883CCF6F33EFD259F915572DD199D8AC /* Pods-VirgilSDKApp-dummy.m */; };
+		D363DC0AA88BB7C85E92B7F517C4C20A /* VSSStreamSigner.mm in Sources */ = {isa = PBXBuildFile; fileRef = EC85B94703AA8228AC832001F350D19B /* VSSStreamSigner.mm */; };
 		D48351157BA7C1115CAD4F2FCBF7CEDE /* Pods-VirgilSDKSwiftTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DCF9A10505C6A9A4357237C34EC1286 /* Pods-VirgilSDKSwiftTests-dummy.m */; };
 		DBA833357AE815D6EF3C750DE029F3DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */; };
+		DBF413BD6757F4994909E04C57656483 /* VSSKeyPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 54EE53D62E302589DC6AB381DF04AF09 /* VSSKeyPair.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FC49EF4F180A30D3A9360A1BD5F2543E /* Pods-VirgilSDKAppSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C2CF8C8A675EB61486494069CE827D7B /* Pods-VirgilSDKAppSwift-dummy.m */; };
-		FFB86A92FB12C61530217FFC9E6E41E7 /* VSSKeyPair.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4648ACD9ABFB416C178ADFAA1A70500D /* VSSKeyPair.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,29 +62,32 @@
 
 /* Begin PBXFileReference section */
 		01CE1F326AB03A68908C92A99D3C4649 /* Pods-VirgilSDKApp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-VirgilSDKApp-acknowledgements.markdown"; sourceTree = "<group>"; };
+		038B7C2FD6ACC7575BEC4FEF2ED8D8B5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B25323066B392B099283FC97979C76A /* Pods-VirgilSDKAppSwift-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-VirgilSDKAppSwift-acknowledgements.plist"; sourceTree = "<group>"; };
 		1033CB0E3BFBDC54D50E83B040D68BB5 /* Pods-VirgilSDKAppSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-VirgilSDKAppSwift.modulemap"; sourceTree = "<group>"; };
 		151FEAE25F63AFF5B4FD99E8A19F55DC /* Pods-VirgilSDKSwiftTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-VirgilSDKSwiftTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		159962B33FEF1792F4D34BFF4620840F /* VSSFoundationCommons.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSFoundationCommons.h; path = Wrapper/VSSFoundationCommons.h; sourceTree = "<group>"; };
 		1D3A537509625D1DFB825846F995ECE6 /* Pods-VirgilSDKTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-VirgilSDKTests-resources.sh"; sourceTree = "<group>"; };
+		23422E1EC695F036249303F5FF85D477 /* VSSChunkCryptor.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSChunkCryptor.mm; path = Wrapper/VSSChunkCryptor.mm; sourceTree = "<group>"; };
+		264FC7D2E3D84E6A675D760C32799100 /* VSSStreamSigner.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSStreamSigner.h; path = Wrapper/VSSStreamSigner.h; sourceTree = "<group>"; };
 		2A81DEE2658D0E82FDAE1ED57580805E /* Pods_VirgilSDKApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirgilSDKApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2CD9DE7B962430DCBA85B93AD9D5E88D /* VSSKeyPair.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSKeyPair.h; path = Wrapper/VSSKeyPair.h; sourceTree = "<group>"; };
 		2DCF9A10505C6A9A4357237C34EC1286 /* Pods-VirgilSDKSwiftTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-VirgilSDKSwiftTests-dummy.m"; sourceTree = "<group>"; };
 		2E91334774C18CF9613109042F0DE1C5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3066E9098A1D28C286C0C31C0D2EC90A /* Pods-VirgilSDKAppSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VirgilSDKAppSwift.debug.xcconfig"; sourceTree = "<group>"; };
+		36DB1E8A42068D8BF96E571EE5D7B44F /* VSSFoundationCommons.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSFoundationCommons.mm; path = Wrapper/VSSFoundationCommons.mm; sourceTree = "<group>"; };
 		37CEA53DA21C33384311294D67315289 /* Pods_VirgilSDKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirgilSDKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3997E5D2953ECDF377B85B234FDF550D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		3A260E52F263EFD733DB56766BD2D3EE /* VSSVirgilVersion.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSVirgilVersion.mm; path = Wrapper/VSSVirgilVersion.mm; sourceTree = "<group>"; };
 		3A8C802EBC0570619F994BCAE6134DD4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3DE83D130EE1F564440677FF8C92D546 /* VirgilFoundation-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "VirgilFoundation-dummy.m"; sourceTree = "<group>"; };
+		3B25B09232219272E007D0E51B3135FB /* VSSVirgilVersion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSVirgilVersion.h; path = Wrapper/VSSVirgilVersion.h; sourceTree = "<group>"; };
 		3E387E9B743E80CC45DBC3A6D4473339 /* Pods-VirgilSDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VirgilSDKTests.debug.xcconfig"; sourceTree = "<group>"; };
-		44B769811C89DC600AAD8EE6F0941BE3 /* VSSSigner.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSSigner.mm; path = Wrapper/VSSSigner.mm; sourceTree = "<group>"; };
-		4648ACD9ABFB416C178ADFAA1A70500D /* VSSKeyPair.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSKeyPair.mm; path = Wrapper/VSSKeyPair.mm; sourceTree = "<group>"; };
 		4B79BFE9FECF5140C99E7BB09CE924F9 /* Pods_VirgilSDKAppSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirgilSDKAppSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F00096514DFEE05721B754FA1E8FD4F /* Pods-VirgilSDKAppSwift-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-VirgilSDKAppSwift-frameworks.sh"; sourceTree = "<group>"; };
-		51AEC33F2C138748EC424741D921A942 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = Frameworks/ios/VirgilCrypto.framework; sourceTree = "<group>"; };
+		503D3C0D8277C85568EEA9767770CB75 /* VirgilFoundation-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VirgilFoundation-prefix.pch"; sourceTree = "<group>"; };
 		5393C86CA3730C01EA77E9979A7A3853 /* Pods_VirgilSDKSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirgilSDKSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5906C182ABC4AE3067924A8D58928809 /* VirgilFoundation-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VirgilFoundation-prefix.pch"; sourceTree = "<group>"; };
+		54EE53D62E302589DC6AB381DF04AF09 /* VSSKeyPair.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSKeyPair.h; path = Wrapper/VSSKeyPair.h; sourceTree = "<group>"; };
+		5879EC652DC236DB407D389A14D96D26 /* VSSBaseCryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSBaseCryptor.h; path = Wrapper/VSSBaseCryptor.h; sourceTree = "<group>"; };
 		5FF14B08993CA140BFE7C02E097F44C4 /* VirgilFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6149D54C4DE2E1596843D271D739B7D0 /* VirgilFoundation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = VirgilFoundation.xcconfig; sourceTree = "<group>"; };
 		68B8BE2144EABDA26BA4BEA173731479 /* Pods-VirgilSDKSwiftTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-VirgilSDKSwiftTests.modulemap"; sourceTree = "<group>"; };
 		6CCC8126141BA2AE8E5F8A3958985115 /* Pods-VirgilSDKApp-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-VirgilSDKApp-resources.sh"; sourceTree = "<group>"; };
 		6E0EE61D7AA0B0944C870582DEAED94D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,17 +96,22 @@
 		7A83170175E831A7FE80977D7A0C1B0C /* Pods-VirgilSDKTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-VirgilSDKTests-frameworks.sh"; sourceTree = "<group>"; };
 		7C30C87DEC51B715A159B1CB3016ED4F /* Pods-VirgilSDKApp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-VirgilSDKApp-umbrella.h"; sourceTree = "<group>"; };
 		8302F119594F804A2CEC39D380AF7B3A /* Pods-VirgilSDKAppSwift-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-VirgilSDKAppSwift-acknowledgements.markdown"; sourceTree = "<group>"; };
+		835F75C9518F095F996462B4878E6DFB /* VirgilFoundation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = VirgilFoundation.xcconfig; sourceTree = "<group>"; };
 		883CCF6F33EFD259F915572DD199D8AC /* Pods-VirgilSDKApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-VirgilSDKApp-dummy.m"; sourceTree = "<group>"; };
+		8BC1E9A3D8F4B5573291C8920F2F1C61 /* VirgilFoundation.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = VirgilFoundation.modulemap; sourceTree = "<group>"; };
 		8E165492A2E6677FCD8211B6DC3E5B49 /* Pods-VirgilSDKAppSwift-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-VirgilSDKAppSwift-resources.sh"; sourceTree = "<group>"; };
 		8E69B808D05FE72D195C13608BE52E58 /* Pods-VirgilSDKSwiftTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-VirgilSDKSwiftTests-frameworks.sh"; sourceTree = "<group>"; };
 		90B44C9D52EC0EEA28D5F09CEC3DEDBF /* Pods-VirgilSDKTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-VirgilSDKTests-umbrella.h"; sourceTree = "<group>"; };
 		9266B7DB4F728BC38BC4B3F71B932266 /* Pods-VirgilSDKApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VirgilSDKApp.release.xcconfig"; sourceTree = "<group>"; };
+		95C0115965C061ECDB65CEEE4C8EB778 /* VSSStreamCryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSStreamCryptor.h; path = Wrapper/VSSStreamCryptor.h; sourceTree = "<group>"; };
 		9A8A37FF7CA8F49F9B537EAC76E5A14B /* Pods-VirgilSDKApp-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-VirgilSDKApp-frameworks.sh"; sourceTree = "<group>"; };
 		9D73C9AC08FC53559ECCFF8F3BD1D469 /* Pods-VirgilSDKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VirgilSDKTests.release.xcconfig"; sourceTree = "<group>"; };
-		9ED0F5FB9377779DC7199BF803618448 /* VSSVirgilVersion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSVirgilVersion.h; path = Wrapper/VSSVirgilVersion.h; sourceTree = "<group>"; };
+		9D8419356DE17FF80E8258EE35A387C1 /* VSSKeyPair.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSKeyPair.mm; path = Wrapper/VSSKeyPair.mm; sourceTree = "<group>"; };
+		A05FD9BA66842D15CEB1059FC697E970 /* VSSStreamCryptor.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSStreamCryptor.mm; path = Wrapper/VSSStreamCryptor.mm; sourceTree = "<group>"; };
+		A31396A56530B2C99ED415BCC98BBF46 /* VSSCryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSCryptor.h; path = Wrapper/VSSCryptor.h; sourceTree = "<group>"; };
 		A3ADED27D3DB30753A609F1FCBC4D6BA /* Pods-VirgilSDKAppSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VirgilSDKAppSwift.release.xcconfig"; sourceTree = "<group>"; };
-		A58EF022B8DFCD26FEAAFEC9AF57DB10 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ADB009A772791F0DF7DD83D67B3B2F3D /* VSSCryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSCryptor.h; path = Wrapper/VSSCryptor.h; sourceTree = "<group>"; };
+		AE5B6702D3A3FDA77AA88CC833A17146 /* VSSSigner.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSSigner.mm; path = Wrapper/VSSSigner.mm; sourceTree = "<group>"; };
+		B1481E25553A1091C7E0644BF2D88E0E /* VirgilFoundation-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VirgilFoundation-umbrella.h"; sourceTree = "<group>"; };
 		B185CF3E3866E22CB24DC24025254568 /* Pods-VirgilSDKSwiftTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-VirgilSDKSwiftTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		B6897B86366A6F9870C42D358035818B /* Pods-VirgilSDKApp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-VirgilSDKApp-acknowledgements.plist"; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -100,18 +119,21 @@
 		C2CF8C8A675EB61486494069CE827D7B /* Pods-VirgilSDKAppSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-VirgilSDKAppSwift-dummy.m"; sourceTree = "<group>"; };
 		C46A58793CF32D5FB4B64C62B534480A /* Pods-VirgilSDKSwiftTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-VirgilSDKSwiftTests-resources.sh"; sourceTree = "<group>"; };
 		C69556BB02B33E429B4A22A64DE14033 /* Pods-VirgilSDKApp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-VirgilSDKApp.modulemap"; sourceTree = "<group>"; };
-		DE0D9177C30B53748E052A3D2AEE126F /* VirgilFoundation.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = VirgilFoundation.modulemap; sourceTree = "<group>"; };
-		E55B5B7EBA0831B6528331EA3AF5637A /* VirgilFoundation-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "VirgilFoundation-umbrella.h"; sourceTree = "<group>"; };
+		C9028C9A5F61821A25DF2E196B302502 /* VSSSigner.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSSigner.h; path = Wrapper/VSSSigner.h; sourceTree = "<group>"; };
+		CF8CB0C613A56F73ECB363F228EB8B64 /* VSSBaseCryptor_Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSBaseCryptor_Private.h; path = Wrapper/VSSBaseCryptor_Private.h; sourceTree = "<group>"; };
+		D4879767B454BEF581E6BEFA439E6F43 /* VSSBaseCryptor.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSBaseCryptor.mm; path = Wrapper/VSSBaseCryptor.mm; sourceTree = "<group>"; };
+		E0EA6DB2848B246D803EF7333F094E73 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = Frameworks/ios/VirgilCrypto.framework; sourceTree = "<group>"; };
 		E5BBC5D5551C3705DDD2F6D735CAF9EC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E68A92B20710D0D230690B9961E912F5 /* VSSCryptor.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSCryptor.mm; path = Wrapper/VSSCryptor.mm; sourceTree = "<group>"; };
 		EC1D44F05F5D95C97749D013DFB5F00C /* Pods-VirgilSDKTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-VirgilSDKTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		EC85B94703AA8228AC832001F350D19B /* VSSStreamSigner.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSStreamSigner.mm; path = Wrapper/VSSStreamSigner.mm; sourceTree = "<group>"; };
 		F0CF4056ADE80BF7F23CA04B9949EE59 /* Pods-VirgilSDKSwiftTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-VirgilSDKSwiftTests-umbrella.h"; sourceTree = "<group>"; };
 		F147BCCC92D334A8D07656EE7EA12609 /* Pods-VirgilSDKAppSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-VirgilSDKAppSwift-umbrella.h"; sourceTree = "<group>"; };
-		F3649E9EAFE1F65FD7FB168292D8080E /* VSSVirgilVersion.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSVirgilVersion.mm; path = Wrapper/VSSVirgilVersion.mm; sourceTree = "<group>"; };
+		F34620DCA58EFC7F221BB92EFD6CD19E /* VSSChunkCryptor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSChunkCryptor.h; path = Wrapper/VSSChunkCryptor.h; sourceTree = "<group>"; };
 		F3A27AF216D1BAE6245CCBFCA47D4DAE /* Pods-VirgilSDKTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-VirgilSDKTests-dummy.m"; sourceTree = "<group>"; };
 		F416337303AAE43A1D14FEC03AA1ECFA /* Pods-VirgilSDKTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-VirgilSDKTests.modulemap"; sourceTree = "<group>"; };
+		F443D1EE8F9AB42249221A8C1766D2C0 /* VirgilFoundation-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "VirgilFoundation-dummy.m"; sourceTree = "<group>"; };
+		F664D916B57E3ECDD439B0D2223B40F7 /* VSSCryptor.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = VSSCryptor.mm; path = Wrapper/VSSCryptor.mm; sourceTree = "<group>"; };
 		F74E3A72632BDD6057B45CDE4295FF17 /* Pods-VirgilSDKSwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-VirgilSDKSwiftTests.release.xcconfig"; sourceTree = "<group>"; };
-		FDCDC453E2B961EACD5C8585ACA1E0D7 /* VSSSigner.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = VSSSigner.h; path = Wrapper/VSSSigner.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,14 +188,6 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		201C8CF0B1CA0B76473E04115A59F864 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				51AEC33F2C138748EC424741D921A942 /* VirgilCrypto.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		25381F16FA9899D883A0B1C01F2B6196 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,27 +218,10 @@
 			path = "Target Support Files/Pods-VirgilSDKSwiftTests";
 			sourceTree = "<group>";
 		};
-		55BBF4C04CB0DCB9C0908474F7F515E8 /* VirgilFoundation */ = {
+		47165A43900FBF6B7DD390A63E8C6E2D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				ADB009A772791F0DF7DD83D67B3B2F3D /* VSSCryptor.h */,
-				E68A92B20710D0D230690B9961E912F5 /* VSSCryptor.mm */,
-				2CD9DE7B962430DCBA85B93AD9D5E88D /* VSSKeyPair.h */,
-				4648ACD9ABFB416C178ADFAA1A70500D /* VSSKeyPair.mm */,
-				FDCDC453E2B961EACD5C8585ACA1E0D7 /* VSSSigner.h */,
-				44B769811C89DC600AAD8EE6F0941BE3 /* VSSSigner.mm */,
-				9ED0F5FB9377779DC7199BF803618448 /* VSSVirgilVersion.h */,
-				F3649E9EAFE1F65FD7FB168292D8080E /* VSSVirgilVersion.mm */,
-				201C8CF0B1CA0B76473E04115A59F864 /* Frameworks */,
-				E2ED3C3AE23F9D98B5916A07A070D7A6 /* Support Files */,
-			);
-			path = VirgilFoundation;
-			sourceTree = "<group>";
-		};
-		68FE478D8122BF2C546241CF679F2FD7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				55BBF4C04CB0DCB9C0908474F7F515E8 /* VirgilFoundation */,
+				BB862A7FA5255F113D81A840D9C02B24 /* VirgilFoundation */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -234,10 +231,46 @@
 			children = (
 				BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				68FE478D8122BF2C546241CF679F2FD7 /* Pods */,
+				47165A43900FBF6B7DD390A63E8C6E2D /* Pods */,
 				25381F16FA9899D883A0B1C01F2B6196 /* Products */,
 				CA1E282BFF85CA3BFD49FFD7BE337525 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		B6D9564F02CF660F524826BF32CD4907 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E0EA6DB2848B246D803EF7333F094E73 /* VirgilCrypto.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BB862A7FA5255F113D81A840D9C02B24 /* VirgilFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				5879EC652DC236DB407D389A14D96D26 /* VSSBaseCryptor.h */,
+				D4879767B454BEF581E6BEFA439E6F43 /* VSSBaseCryptor.mm */,
+				CF8CB0C613A56F73ECB363F228EB8B64 /* VSSBaseCryptor_Private.h */,
+				F34620DCA58EFC7F221BB92EFD6CD19E /* VSSChunkCryptor.h */,
+				23422E1EC695F036249303F5FF85D477 /* VSSChunkCryptor.mm */,
+				A31396A56530B2C99ED415BCC98BBF46 /* VSSCryptor.h */,
+				F664D916B57E3ECDD439B0D2223B40F7 /* VSSCryptor.mm */,
+				159962B33FEF1792F4D34BFF4620840F /* VSSFoundationCommons.h */,
+				36DB1E8A42068D8BF96E571EE5D7B44F /* VSSFoundationCommons.mm */,
+				54EE53D62E302589DC6AB381DF04AF09 /* VSSKeyPair.h */,
+				9D8419356DE17FF80E8258EE35A387C1 /* VSSKeyPair.mm */,
+				C9028C9A5F61821A25DF2E196B302502 /* VSSSigner.h */,
+				AE5B6702D3A3FDA77AA88CC833A17146 /* VSSSigner.mm */,
+				95C0115965C061ECDB65CEEE4C8EB778 /* VSSStreamCryptor.h */,
+				A05FD9BA66842D15CEB1059FC697E970 /* VSSStreamCryptor.mm */,
+				264FC7D2E3D84E6A675D760C32799100 /* VSSStreamSigner.h */,
+				EC85B94703AA8228AC832001F350D19B /* VSSStreamSigner.mm */,
+				3B25B09232219272E007D0E51B3135FB /* VSSVirgilVersion.h */,
+				3A260E52F263EFD733DB56766BD2D3EE /* VSSVirgilVersion.mm */,
+				B6D9564F02CF660F524826BF32CD4907 /* Frameworks */,
+				DEF9BD6644CD2025A1F5C68BE10A15EF /* Support Files */,
+			);
+			path = VirgilFoundation;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -277,15 +310,15 @@
 			path = "Target Support Files/Pods-VirgilSDKTests";
 			sourceTree = "<group>";
 		};
-		E2ED3C3AE23F9D98B5916A07A070D7A6 /* Support Files */ = {
+		DEF9BD6644CD2025A1F5C68BE10A15EF /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				A58EF022B8DFCD26FEAAFEC9AF57DB10 /* Info.plist */,
-				DE0D9177C30B53748E052A3D2AEE126F /* VirgilFoundation.modulemap */,
-				6149D54C4DE2E1596843D271D739B7D0 /* VirgilFoundation.xcconfig */,
-				3DE83D130EE1F564440677FF8C92D546 /* VirgilFoundation-dummy.m */,
-				5906C182ABC4AE3067924A8D58928809 /* VirgilFoundation-prefix.pch */,
-				E55B5B7EBA0831B6528331EA3AF5637A /* VirgilFoundation-umbrella.h */,
+				038B7C2FD6ACC7575BEC4FEF2ED8D8B5 /* Info.plist */,
+				8BC1E9A3D8F4B5573291C8920F2F1C61 /* VirgilFoundation.modulemap */,
+				835F75C9518F095F996462B4878E6DFB /* VirgilFoundation.xcconfig */,
+				F443D1EE8F9AB42249221A8C1766D2C0 /* VirgilFoundation-dummy.m */,
+				503D3C0D8277C85568EEA9767770CB75 /* VirgilFoundation-prefix.pch */,
+				B1481E25553A1091C7E0644BF2D88E0E /* VirgilFoundation-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/VirgilFoundation";
@@ -354,15 +387,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DCE7EA288803A2CB581A3FF250BBCE26 /* Headers */ = {
+		910BD6B37DEAD4BC1C830EB695BA7490 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E05606DF54D045E72C4214655C54A57 /* VirgilFoundation-umbrella.h in Headers */,
-				2F9F49CD1617854F648BB5F7E58B6F90 /* VSSCryptor.h in Headers */,
-				82AE3CB765DE126C735ED95242B6824B /* VSSKeyPair.h in Headers */,
-				C4CD3E3C3A7549EB9A99703B7AF6B90B /* VSSSigner.h in Headers */,
-				5EC88EE09AD1CEA3164F5113F2C40515 /* VSSVirgilVersion.h in Headers */,
+				2B2DCB63324AB8E9CCABA791C4714B02 /* VirgilFoundation-umbrella.h in Headers */,
+				81D37789623F52D27C2354301ACAACD2 /* VSSBaseCryptor.h in Headers */,
+				4CE99D78414AFB2168C193FBE4D58F0B /* VSSBaseCryptor_Private.h in Headers */,
+				CBE57DE86664EDF6DDB03CEF8BA02516 /* VSSChunkCryptor.h in Headers */,
+				7CB4C3F587EF8A5967951EFDF2660994 /* VSSCryptor.h in Headers */,
+				5E5122C70308A6E55BF717AD21CCB235 /* VSSFoundationCommons.h in Headers */,
+				DBF413BD6757F4994909E04C57656483 /* VSSKeyPair.h in Headers */,
+				A9018F4475E9C7550D2F37C70A469C98 /* VSSSigner.h in Headers */,
+				34C9189C3CAE8CB6C11C970AAF3C879C /* VSSStreamCryptor.h in Headers */,
+				06BD6EBB95C5FCB4E73DF86718594959 /* VSSStreamSigner.h in Headers */,
+				73D1FB45EFE8CA8E09F5ACE53141A2F7 /* VSSVirgilVersion.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,9 +438,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A6BC582FCBBE4FE26C5788421C79CCC0 /* Build configuration list for PBXNativeTarget "VirgilFoundation" */;
 			buildPhases = (
-				5F082553DA4BD31E1B0091E366110EF1 /* Sources */,
+				22F92BB66BC752E2BDDD0CFC2351ED32 /* Sources */,
 				33636C0E8F331E3A32C6C15D14B7C952 /* Frameworks */,
-				DCE7EA288803A2CB581A3FF250BBCE26 /* Headers */,
+				910BD6B37DEAD4BC1C830EB695BA7490 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -495,15 +534,20 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5F082553DA4BD31E1B0091E366110EF1 /* Sources */ = {
+		22F92BB66BC752E2BDDD0CFC2351ED32 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				237FA52675A80391BB5561DBA3CE8349 /* VirgilFoundation-dummy.m in Sources */,
-				78620F12D4DC470B85A5E04F811019FD /* VSSCryptor.mm in Sources */,
-				FFB86A92FB12C61530217FFC9E6E41E7 /* VSSKeyPair.mm in Sources */,
-				753FE1C0D96709EFE4F61396CACB53F5 /* VSSSigner.mm in Sources */,
-				1BF812042ECEC350E3815C299A4BDA3D /* VSSVirgilVersion.mm in Sources */,
+				32AF9F31FE0542B0687178103C79170E /* VirgilFoundation-dummy.m in Sources */,
+				A1F94890437A5E4D53D60690AB85D0EC /* VSSBaseCryptor.mm in Sources */,
+				07F6BBFFCFD1A7EAA467AD4C17F20F15 /* VSSChunkCryptor.mm in Sources */,
+				1366C02AE5A9800DB1885408C9373F0A /* VSSCryptor.mm in Sources */,
+				2C0A13C5451827571A3B348C2352E0DB /* VSSFoundationCommons.mm in Sources */,
+				6C80C58B1C78B195D2C535DAB102BE2F /* VSSKeyPair.mm in Sources */,
+				6A48982FC7178646A350175AEB7B7FED /* VSSSigner.mm in Sources */,
+				B15EC9B84CBFEF76103878843B9F6E25 /* VSSStreamCryptor.mm in Sources */,
+				D363DC0AA88BB7C85E92B7F517C4C20A /* VSSStreamSigner.mm in Sources */,
+				CB53E7E0A80CEFDF0C14D1078BB9B8BC /* VSSVirgilVersion.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,7 +735,7 @@
 		};
 		774D9126ED095E81AA262F6DC6212120 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6149D54C4DE2E1596843D271D739B7D0 /* VirgilFoundation.xcconfig */;
+			baseConfigurationReference = 835F75C9518F095F996462B4878E6DFB /* VirgilFoundation.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -831,7 +875,7 @@
 		};
 		A4FB49C9F3565CDB65A35C4091542F1F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6149D54C4DE2E1596843D271D739B7D0 /* VirgilFoundation.xcconfig */;
+			baseConfigurationReference = 835F75C9518F095F996462B4878E6DFB /* VirgilFoundation.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;

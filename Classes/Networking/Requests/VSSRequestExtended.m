@@ -121,8 +121,11 @@
         return [NSError errorWithDomain:kVSSRequestErrorDomain code:-104 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to compose encrypted body for the request: request uuid or/and request body or/and private key is/are not given.", @"Encryption for the request is not possible.") }];
     }
     /// Encrypt the request body
+    NSError *error = nil;
     VSSCryptor *cryptor = [[VSSCryptor alloc] init];
-    [cryptor addKeyRecepient:self.extendedContext.serviceCard.Id publicKey:self.extendedContext.serviceCard.publicKey.key];
+    if (![cryptor addKeyRecipient:self.extendedContext.serviceCard.Id publicKey:self.extendedContext.serviceCard.publicKey.key error:&error]) {
+        return error;
+    }
     NSData *encryptedBody = [cryptor encryptData:self.request.HTTPBody embedContentInfo:@YES];
     if (encryptedBody.length == 0) {
         VSSRDLog(@"Encryption of the request body has failed.");

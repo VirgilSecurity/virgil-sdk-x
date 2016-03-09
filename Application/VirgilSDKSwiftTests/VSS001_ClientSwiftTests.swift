@@ -75,6 +75,7 @@ class VSS001_ClientSwiftTests: XCTestCase {
                 XCTAssertNotNil(self.card, "Virgil Card should be created.")
                 XCTAssertNotNil(self.card.Id, "Virgil Card should have ID.")
                 XCTAssertTrue(self.card.isConfirmed.boolValue, "Virgil Card should be created confirmed.")
+                XCTAssertNotNil(self.card.createdAt, "Virgil Card should contain correct date of creation.")
                 
                 ex?.fulfill()
             }
@@ -88,8 +89,9 @@ class VSS001_ClientSwiftTests: XCTestCase {
     }
     
     func identityValue() -> String {
-        let candidate = NSUUID().UUIDString.lowercaseString
-        let identity = candidate.stringByReplacingOccurrencesOfString("-", withString: "")
+        let guid = NSUUID().UUIDString.lowercaseString
+        let candidate = guid.stringByReplacingOccurrencesOfString("-", withString: "")
+        let identity = candidate.substringToIndex(candidate.startIndex.advancedBy(25))
         return "\(identity)@mailinator.com"
     }
 

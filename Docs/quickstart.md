@@ -306,41 +306,59 @@ The app is searching for the recipient’s public key on the Public Keys Service
 ###### Objective-C
 ```objective-c
 //...
-NSString *message = <# Secret message which should be encryped #>;
-[self.client 
-	searchCardWithIdentityValue:<# Recepient email address #> 
-	type:VSSIdentityTypeEmail 
-	relations:nil 
-	unconfirmed:nil 
-	completionHandler:^(NSArray<VSSCard *> * _Nullable cards, 
-		NSError * _Nullable error) {
-    if (error != nil) {
-        NSLog(@"Error searching for Virgil Card: %@", 
-        	[error localizedDescription]);
-        return;
-    }
-    
-    if (cards.count > 0) {
-        VSSCryptor *cryptor = [[VSSCryptor alloc] init];
-        for (VSSCard *card in cards) {
-            [cryptor addKeyRecepient:card.Id publicKey:card.publicKey.key];
+NSString *message = <# Secret message which should be encrypted #>;
+[self.client
+    searchCardWithIdentityValue:<# Recipient email address #>
+    type:VSSIdentityTypeEmail
+    relations:nil
+    unconfirmed:nil
+    completionHandler:^(NSArray<VSSCard *> * _Nullable cards,
+                        NSError * _Nullable error) {
+        if (error != nil) {
+            NSLog(@"Error searching for Virgil Card: %@",
+                [error localizedDescription]);
+            return;
         }
-        NSData *encryptedMessage = 
-        [cryptor encryptData:[message dataUsingEncoding:NSUTF8StringEncoding 
-        allowLossyConversion:NO] 
-        embedContentInfo:@YES];
         
-        VSSSigner *signer = [[VSSSigner alloc] init];
-        NSData *signature = 
-	        [signer signData:encryptedMessage 
-	        privateKey:[<# Sender VSSKeyPair #> privateKey] 
-	        keyPassword:nil];
-        //...
-    }
-    else {
-        // No recipient's cards found. 
-    }
-}];
+        if (cards.count > 0) {
+            NSError *secError = nil;
+            VSSCryptor *cryptor = [[VSSCryptor alloc] init];
+            for (VSSCard *card in cards) {
+                if (![cryptor addKeyRecipient:card.Id 
+                                    publicKey:card.publicKey.key 
+                                        error:&secError]) {
+                    NSLog(@"Error adding key recipient: %@", 
+                            [secError localizedDescription]);
+                    return;
+                }
+            }
+            NSData *encryptedMessage =
+            [cryptor encryptData:[message dataUsingEncoding:NSUTF8StringEncoding
+                                       allowLossyConversion:NO]
+                embedContentInfo:YES
+                           error:&secError];
+            if (secError != nil) {
+                NSLog(@"Error encrypting data: %@", 
+                        [secError localizedDescription]);
+                return;
+            }
+            VSSSigner *signer = [[VSSSigner alloc] init];
+            NSData *signature =
+            [signer signData:encryptedMessage
+                  privateKey:<# VSSKeyPair sender's key pair object #>.privateKey
+                 keyPassword:<# Private key password or nil #>
+                       error:&secError];
+            if (secError != nil) {
+                NSLog(@"Error composing the signature: %@", 
+                        [secError localizedDescription]);
+                return;
+            }
+            //...
+        }
+        else {
+            // No recipient's cards found. 
+        }
+    }];
 //...
 ```
 
@@ -348,35 +366,47 @@ NSString *message = <# Secret message which should be encryped #>;
 ```swift
 //...
 let message: NSString = <# Secret message which should be encryped #>
-self.client.searchCardWithIdentityValue(<# Recepient email address #>, 
-	type: .Email, 
-	relations: nil, 
-	unconfirmed: nil) { (cards, error) -> Void in
-    if error != nil {
-        print("Error searching for Virgil Card: 
-        	\(error!.localizedDescription)")
-        return
-    }
-    
-    if cards?.count > 0 {
-        let cryptor = VSSCryptor()
-        for card: VSSCard in cards {
-            cryptor.addKeyRecepient(card.Id, publicKey: card.publicKey.key)
+self.client.searchCardWithIdentityValue(<# Recipient's email address #>,
+    type: .Email,
+    relations: nil,
+    unconfirmed: nil) { (cards, error) -> Void in
+        if error != nil {
+            print("Error searching for Virgil Card:
+                \(error!.localizedDescription)")
+            return
         }
-        let encryptedMessage = 	
-	   	   cryptor.encryptData(message.dataUsingEncoding(NSUTF8StringEncoding, 
-	        allowLossyConversion: false), 
-	        embedContentInfo: true)
         
-        let signer = VSSSigner()
-        let signature = signer.signData(encryptedMessage, 
-        	privateKey: <# Sender VSSKeyPair #>.privateKey(), 
-        	keyPassword: nil)
-        //...
-    }
-    else {
-        // No recipient's cards found.
-    }
+        if cards?.count > 0 {
+            let cryptor = VSSCryptor()
+            do {
+                for card: VSSCard in cards {
+                    try cryptor.addKeyRecipient(card.Id,
+                        publicKey: card.publicKey.key,
+                        error: ())
+                }
+                
+                if let msg = message.dataUsingEncoding(NSUTF8StringEncoding,
+                    allowLossyConversion: false) {
+                    // Compose encrypted message
+                    let encryptedMessage = try cryptor.encryptData(msg,
+                        embedContentInfo: true,
+                        error: ())
+                    let signer = VSSSigner()
+                    // Compose a signature based on the encrypted message
+                    let signature = try signer.signData(encryptedMessage,
+                        privateKey: <# VSSKeyPair sender's key pair object #>.privateKey(),
+                        keyPassword: <# Private key password or nil #>)
+                    //...
+                }
+            }
+            catch let error as NSError {
+                print("Error: \(error.localizedDescription)")
+                return
+            }
+        }
+        else {
+            // No recipient's cards found.
+        }
 }
 //...
 ```
@@ -394,12 +424,12 @@ In order to verify the received signature the app on recipient’s side needs to
 ```objective-c
 //...
 [self.client searchCardWithIdentityValue:<# Sender email address #> 
-type:VSSIdentityTypeEmail 
-relations:nil 
-unconfirmed:nil 
-completionHandler:^(NSArray<VSSCard *> 
- * _Nullable cards, 
- * NSError * _Nullable error) {
+                                    type:VSSIdentityTypeEmail 
+                               relations:nil 
+                             unconfirmed:nil 
+                       completionHandler:^(NSArray<VSSCard *> 
+                                            * _Nullable cards, 
+                                            * NSError * _Nullable error) {
     if (error != nil) {
         NSLog(@"Error searching for Virgil Card: %@", 
         	[error localizedDescription]);
@@ -462,28 +492,32 @@ NSData *signature = <# Composed signature of sender user #>;
 //...
 VSSSigner *verifier = [[VSSSigner alloc] init];
 // Try to verify sender's signature
-BOOL verified = [verifier verifySignature:signature 
-	data:encryptedMessage 
-	publicKey:<# VSSCard: sender card from previous step #>.publicKey.key];
-if (!verified) {
-    NSLog(@"Error verification sender's signature.");
+NSError *error = nil;
+if (![verifier verifySignature:signature
+                          data:encryptedMessage
+                     publicKey:<# VSSCard: sender card from previous step #>.publicKey.key
+                         error:&error]) {
+    NSLog(@"Error verification sender's signature: %@",
+            [error localizedDescription]);
     return;
 }
 
 VSSCryptor *decryptor = [[VSSCryptor alloc] init];
 // Try to decrypt encrypted message
-NSData *decryptedMessage = [decryptor decryptData:encryptedMessage 
-	publicKeyId:<# Recepient VSSCard #>.Id 
-	privateKey:[<# Recepient VSSKeyPair #> privateKey] 
-	keyPassword:<# Private key password or nil #>];
-if (decryptedMessage.length == 0) {
-    NSLog(@"Error decrypting sender's message");
+NSData *decryptedMessage = [decryptor decryptData:encryptedMessage
+                                      recipientId:<# Recipient VSSCard #>.Id
+                                       privateKey:<# Recipient VSSKeyPair #>.privateKey
+                                      keyPassword:<# Private key password or nil #>
+                                            error:&error];
+if (error != nil) {
+    NSLog(@"Error decrypting sender's message: %@",
+            [error localizedDescription]);
     return;
 }
 
 NSString *message = [[NSString alloc] 
-	initWithData:decryptedMessage 
-	encoding:NSUTF8StringEncoding];
+                        initWithData:decryptedMessage 
+                            encoding:NSUTF8StringEncoding];
 // message contains readable decrypted message which was sent 
 // by another user referred as sender.
 //...
@@ -495,30 +529,29 @@ NSString *message = [[NSString alloc]
 let encryptedMessage = <# NSData: Encrypted message received from sender user #>
 let signature = <# NSData: Composed signature of sender user #>
 //...
-let verifier = VSSSigner()
-// Try to verify signature
-let verified = verifier.verifySignature(signature, 
-	data: encryptedMessage, 
-	publicKey: <# VSSCard: sender card from previous step #>.publicKey.key)
-if !verified {
-    print("Error verification sender's signature.")
-    return;
-}
+do {
+    let verifier = VSSSigner()
+    // Try to verify signature
+    try verifier.verifySignature(signature,
+        data: encryptedMessage,
+        publicKey: <# VSSCard: sender card from previous step #>.publicKey.key)
 
-let decryptor = VSSCryptor()
-let decryptedMessage = decryptor.decryptData(encryptedMessage, 
-	publicKeyId: <# Recepient VSSCard #>.Id, 
-	privateKey: <# Recepient VSSKeyPair #>.privateKey(), 
-	keyPassword: <# Private key password or nil #>)
-if let messageData = decryptedMessage, 
-	message = NSString(data: messageData, 
-	encoding: NSUTF8StringEncoding) {
-    // message contains readable decrypted message which was sent 
-    // by another user referred as sender.
-    //...
+    // Try to decrypt encrypted message
+    let decryptor = VSSCryptor()
+    let decryptedMessage = try decryptor.decryptData(encryptedMessage,
+        recipientId: <# Recipient VSSCard #>.Id,
+        privateKey: <# Recipient VSSKeyPair #>.privateKey(),
+        keyPassword: <# Private key password or nil #>)
+    if let messageData = decryptedMessage,
+        message = NSString(data: messageData,
+            encoding: NSUTF8StringEncoding) {
+                // message contains readable decrypted message which was sent
+                // by another user referred as sender.
+                //...
+    }
 }
-else {
-    print("Error decrypting sender's message.")
+catch let error as NSError {
+    print("Error: \(error.localizedDescription)")
     return
 }
 //...

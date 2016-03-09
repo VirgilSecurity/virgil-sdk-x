@@ -7,13 +7,19 @@
 //
 
 #import "ViewController.h"
+
 #import "VSSClient.h"
+#import "VSSServiceConfigStg.h"
+
 #import "VSSCard.h"
+#import "VSSPublicKey.h"
 #import "VSSPrivateKey.h"
 
 @import VirgilFoundation;
 
 @interface ViewController ()
+
+@property (nonatomic, strong) VSSClient *client;
 
 @end
 
@@ -23,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"%@", [[[VSSVirgilVersion alloc] init] versionString]);
+    NSLog(@"%@", [[[VSSVirgilVersion alloc] init] versionString]);    
 }
 
 - (void)didReceiveMemoryWarning {

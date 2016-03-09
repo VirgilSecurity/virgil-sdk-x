@@ -97,6 +97,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
             XCTAssertNotNil(self.card, @"Virgil Card should be created.");
             XCTAssertNotNil(self.card.Id, @"Virgil Card should have ID.");
             XCTAssertTrue([[self.card isConfirmed] boolValue], @"Virgil Card should be created confirmed.");
+            XCTAssertNotNil([self.card createdAt], @"Virgil Card should have correct creation date.");
             
             [ex fulfill];
         }];
@@ -288,11 +289,83 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
     }];
 }
 
+- (void)test006_decryptWithIncorrectPassword {
+    NSString *message = @"Message to encrypt";
+    NSData *toEncrypt = [message dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
+    
+    NSError *error = nil;
+    VSSCryptor *cryptor = [[VSSCryptor alloc] init];
+    if (![cryptor addPasswordRecipient:@"secret" error:&error]) {
+        XCTFail(@"Error adding password recipient: %@", [error localizedDescription]);
+        return;
+    }
+    
+    error = nil;
+    NSData *encryptedData = [cryptor encryptData:toEncrypt embedContentInfo:YES error:&error];
+    if (encryptedData.length == 0) {
+        XCTFail(@"Error encrypting data: %@", [error localizedDescription]);
+        return;
+    }
+    
+    error = nil;
+    VSSCryptor *decryptor = [[VSSCryptor alloc] init];
+    NSData* decryptedData = [decryptor decryptData:encryptedData password:@"incorrect" error:&error];
+    if (decryptedData.length != 0) {
+        XCTFail(@"Error: decryption with incorrect password should fail!");
+        return;
+    }
+    NSLog(@"Unable to decrypt data using incorrect password: %@", [error localizedDescription]);
+    
+    error = nil;
+    decryptedData = [decryptor decryptData:encryptedData password:@"secret" error:&error];
+    if (decryptedData.length == 0) {
+        XCTFail(@"Error decrypting data: %@", [error localizedDescription]);
+        return;
+    }
+}
+
+- (void)test007_createAndGetUnconfirmedCard {
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created unconfirmed."];
+    
+    NSUInteger numberOfRequests = 9;
+    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime;
+    
+    [self.client setupClientWithCompletionHandler:^(NSError *error) {
+        if (error != nil) {
+            XCTFail(@"VSSClient setup has failed");
+            return;
+        }
+        
+        NSDictionary *identity = [self identity];
+        VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
+        [self.client createCardWithPublicKey:self.keyPair.publicKey identity:identity data:nil signs:nil privateKey:privateKey completionHandler:^(VSSCard *card, NSError *error) {
+            if (error != nil) {
+                XCTFail(@"Error creating unconfirmed card: %@", [error localizedDescription]);
+                return;
+            }
+            
+            XCTAssertNotNil(card, @"Virgil Card should be created.");
+            XCTAssertNotNil(card.Id, @"Virgil Card should have ID.");
+            XCTAssertFalse([[card isConfirmed] boolValue], @"Virgil Card should be created unconfirmed.");
+            XCTAssertNotNil([card createdAt], @"Virgil Card should have correct creation date.");
+           
+            [ex fulfill];
+        }];
+    }];
+    
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil) {
+            XCTFail(@"Expectation failed: %@", error);
+            return;
+        }
+    }];
+}
+
 #pragma mark - Private class logic
 
 - (NSString *)identityValue {
     NSString *candidate = [[[NSUUID UUID] UUIDString] lowercaseString];
-    NSString *identity = [candidate stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    NSString *identity = [[candidate stringByReplacingOccurrencesOfString:@"-" withString:@""] substringToIndex:25];
     return [NSString stringWithFormat:@"%@@mailinator.com", identity];
 }
 

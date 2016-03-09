@@ -541,11 +541,11 @@
     
     NSString *responsePassword = password;
     if (responsePassword.length == 0) {
-        responsePassword = [[[[[NSUUID UUID] UUIDString] lowercaseString] stringByReplacingOccurrencesOfString:@"-" withString:@""] substringToIndex:31];
+        responsePassword = [[[[[NSUUID UUID] UUIDString] lowercaseString] stringByReplacingOccurrencesOfString:@"-" withString:@""] substringToIndex:30];
     }
     else {
-        if (responsePassword.length > 31) {
-            responsePassword = [responsePassword substringToIndex:31];
+        if (responsePassword.length > 30) {
+            responsePassword = [responsePassword substringToIndex:30];
         }
     }
     

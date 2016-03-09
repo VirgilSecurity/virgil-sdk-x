@@ -73,7 +73,7 @@
     NSString *strDate = [candidate[kVSSModelCreatedAt] as:[NSString class]];
     if (strDate.length > 0) {
         NSDateFormatter *df = [[NSDateFormatter alloc] init];
-        [df setDateFormat:@"yyyy-MM-ddTkk:mm:ssZZZ"];
+        [df setDateFormat:@"yyyy-MM-dd'T'kk:mm:ssZ"];
         cat = [df dateFromString:strDate];
     }
 
