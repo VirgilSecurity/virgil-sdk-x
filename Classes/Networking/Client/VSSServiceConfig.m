@@ -27,7 +27,7 @@ NSString *const kVSSServiceIDIdentity = @"VSSServiceIDIdentity";
         return @"https://keys.virgilsecurity.com/v3";
     }
     else if ([serviceID isEqualToString:kVSSServiceIDPrivateKeys]) {
-        return @"https://keyring.virgilsecurity.com/v3";
+        return @"https://keys-private.virgilsecurity.com/v3";
     }
     else if ([serviceID isEqualToString:kVSSServiceIDIdentity]) {
         return @"https://identity.virgilsecurity.com/v1";

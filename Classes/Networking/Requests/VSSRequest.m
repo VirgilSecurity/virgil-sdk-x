@@ -49,8 +49,17 @@ NSString *const kVSSResponseIDHeader = @"X-VIRGIL-RESPONSE-ID";
         return _request;
     }
     
-    NSURL *url = [NSURL URLWithString:[[self.context serviceUrl] stringByAppendingPathComponent:[self methodPath]]];
+    NSString *serviceURL = [self.context serviceUrl];
+    if (![serviceURL hasSuffix:@"/"]) {
+        serviceURL = [NSString stringWithFormat:@"%@/", serviceURL];
+    }
+    NSString *methodPath = [self methodPath];
+    if ([methodPath hasPrefix:@"/"]) {
+        methodPath = [methodPath substringFromIndex:1];
+    }
     
+    NSURL *url = [NSURL URLWithString:[serviceURL stringByAppendingString:methodPath]];
+
     NSMutableURLRequest* r = [NSMutableURLRequest requestWithURL:url];
     [r setTimeoutInterval:kVSSRequestDefaultTimeout];
     [r setHTTPMethod:kVSSRequestDefaultMethod];
