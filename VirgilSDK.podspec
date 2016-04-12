@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = "VirgilSDK"
-  s.version               = "3.0.6-rc1"
+  s.version               = "3.0.6"
   s.summary               = "Virgil SDK for Apple devices and languages."
   s.cocoapods_version     = ">= 0.36"
   s.homepage              = "https://github.com/VirgilSecurity/virgil-sdk-x/tree/v3"
@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
   s.source_files          = "Classes/**/*"
   s.private_header_files  = "Classes/Networking/Requests/Identity/**/*.h", "Classes/Networking/Requests/Keys/**/*.h", "Classes/Networking/Requests/PrivateKeys/**/*.h"
   s.requires_arc          = true
-  s.dependency "VirgilFoundation", "1.4.4-rc1"
+  s.dependency "VirgilFoundation", "~> 1.4"
 end
