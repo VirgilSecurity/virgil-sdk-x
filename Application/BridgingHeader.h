@@ -43,7 +43,6 @@
 #import "NSObject+VSSUtils.h"
 #import "NSString+VSSXMLEscape.h"
 
-#import "VSSServiceConfigStg.h"
 #import "Mailinator.h"
 #import "MailinatorConfig.h"
 #import "MEmailMetadata.h"

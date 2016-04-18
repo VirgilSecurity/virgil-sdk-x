@@ -49,7 +49,6 @@
 		362CFE2C1C74C02E002A3E93 /* MailinatorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 362CFE091C74C02E002A3E93 /* MailinatorRequest.m */; };
 		362CFE2D1C74C02E002A3E93 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 362CFE0B1C74C02E002A3E93 /* main.m */; };
 		362CFE2E1C74C02E002A3E93 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362CFE0D1C74C02E002A3E93 /* ViewController.m */; };
-		362CFE2F1C74C02E002A3E93 /* VSSServiceConfigStg.m in Sources */ = {isa = PBXBuildFile; fileRef = 362CFE0F1C74C02E002A3E93 /* VSSServiceConfigStg.m */; };
 		362CFE3A1C74C0AB002A3E93 /* VSS001_ClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 362CFE1E1C74C02E002A3E93 /* VSS001_ClientTests.m */; };
 		362CFE3B1C74C0B1002A3E93 /* VSS001_ClientSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFE1B1C74C02E002A3E93 /* VSS001_ClientSwiftTests.swift */; };
 		362CFE3C1C74C0BE002A3E93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFE111C74C02E002A3E93 /* AppDelegate.swift */; };
@@ -92,7 +91,6 @@
 		362CFE611C74C988002A3E93 /* VSSKeychainValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 364782C81C5AA44500165778 /* VSSKeychainValue.m */; };
 		362CFE621C74C98B002A3E93 /* NSObject+VSSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */; };
 		362CFE631C74C98E002A3E93 /* NSString+VSSXMLEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF4B901C4D7FED00E901F3 /* NSString+VSSXMLEscape.m */; };
-		362CFE641C74C998002A3E93 /* VSSServiceConfigStg.m in Sources */ = {isa = PBXBuildFile; fileRef = 362CFE0F1C74C02E002A3E93 /* VSSServiceConfigStg.m */; };
 		362CFE651C74C99D002A3E93 /* Mailinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 362CFDF71C74C02E002A3E93 /* Mailinator.m */; };
 		362CFE661C74C9A0002A3E93 /* MailinatorConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 362CFDF91C74C02E002A3E93 /* MailinatorConfig.m */; };
 		362CFE671C74C9A4002A3E93 /* MEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 362CFDFC1C74C02E002A3E93 /* MEmail.m */; };
@@ -229,8 +227,6 @@
 		362CFE0B1C74C02E002A3E93 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		362CFE0C1C74C02E002A3E93 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		362CFE0D1C74C02E002A3E93 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		362CFE0E1C74C02E002A3E93 /* VSSServiceConfigStg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSServiceConfigStg.h; sourceTree = "<group>"; };
-		362CFE0F1C74C02E002A3E93 /* VSSServiceConfigStg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSServiceConfigStg.m; sourceTree = "<group>"; };
 		362CFE111C74C02E002A3E93 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		362CFE131C74C02E002A3E93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		362CFE151C74C02E002A3E93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -490,8 +486,6 @@
 				362CFDEC1C74C02E002A3E93 /* AppDelegate.m */,
 				362CFE0C1C74C02E002A3E93 /* ViewController.h */,
 				362CFE0D1C74C02E002A3E93 /* ViewController.m */,
-				362CFE0E1C74C02E002A3E93 /* VSSServiceConfigStg.h */,
-				362CFE0F1C74C02E002A3E93 /* VSSServiceConfigStg.m */,
 				362CFDED1C74C02E002A3E93 /* LaunchScreen.xib */,
 				362CFDEF1C74C02E002A3E93 /* Main.storyboard */,
 				362CFDF21C74C02E002A3E93 /* Images.xcassets */,
@@ -1045,7 +1039,6 @@
 				3606B2A91BBB1FBF0074B4C1 /* VSSModelCommons.m in Sources */,
 				362CFE5A1C74C971002A3E93 /* VSSSearchCardRequest.m in Sources */,
 				362CFE691C74C9A9002A3E93 /* MEmailResponse.m in Sources */,
-				362CFE641C74C998002A3E93 /* VSSServiceConfigStg.m in Sources */,
 				362CFE6B1C74C9B0002A3E93 /* MailinatorEmailRequest.m in Sources */,
 				362CFE4E1C74C924002A3E93 /* VSSJSONRequest.m in Sources */,
 				362CFE6C1C74C9B2002A3E93 /* MailinatorInboxRequest.m in Sources */,
@@ -1114,7 +1107,6 @@
 				362CFE2E1C74C02E002A3E93 /* ViewController.m in Sources */,
 				36FF4B8B1C4D7F2F00E901F3 /* VSSModel.m in Sources */,
 				362CFE2D1C74C02E002A3E93 /* main.m in Sources */,
-				362CFE2F1C74C02E002A3E93 /* VSSServiceConfigStg.m in Sources */,
 				36FF4B941C4D7FED00E901F3 /* NSString+VSSXMLEscape.m in Sources */,
 				3614036E1BB2E0FC002E69CA /* VSSKeysError.m in Sources */,
 				362CFE241C74C02E002A3E93 /* Mailinator.m in Sources */,

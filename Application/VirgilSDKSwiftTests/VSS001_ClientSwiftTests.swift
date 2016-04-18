@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 
 /// Virgil Application Token for testing applications
-let kApplicationToken: String = "eyJpZCI6IjMyYTAwZDEwLWYyNTgtNDVjMi04YTQyLTY5OGFhYTU5NjhhNiIsImFwcGxpY2F0aW9uX2NhcmRfaWQiOiI2MTNiYTEwYy1lODQ5LTRkNTctODhlMy03YTZmZjdlZmVkYmEiLCJ0dGwiOi0xLCJjdGwiOi0xLCJwcm9sb25nIjowfQ==.MIGbMA0GCWCGSAFlAwQCAgUABIGJMIGGAkEAhcP5jjV88b/uRVwuILO8sCrqXElVLGrAi9YzHMxkp0rrDIjHtC7LKN3nGAs1z8N80yWHXDEpzv6YNiv6M9aoIgJBAJ+s8BOCDkMSdDoXN4G0KwQuzxWpm+x8Id1qEv+sYb1FRHlbpvwvJMH0kfMNwq42TwlGDvZTDQZRbN1N2OnX55k="
+let kApplicationToken: String = "eyJpZCI6IjdhNDhjM2YwLWIxODgtNDUyMS04MDM1LTQxZTQxY2JhNjVjMiIsImFwcGxpY2F0aW9uX2NhcmRfaWQiOiJjZjQxZjc2Yi0yMGI5LTRjMzEtYTFiNy04ZTIyOWU1YjE1MjgiLCJ0dGwiOi0xLCJjdGwiOi0xLCJwcm9sb25nIjowfQ==.MIGYMA0GCWCGSAFlAwQCAgUABIGGMIGDAj9YLidW8KpeA1nyZ6c1/QGqMCSun1g7KRpVcmUNrQ3qn++DX1OTlKzsExi8K2io5fcnYGAKyo2Hx+dSZA3134wCQBxLjS6JW2n7MCFeRm9F3KtSvjpPBT2eCQ5eqb43dEjZu14yWDTab3Pyjg41Pc4nZkIUMACk0biOZ0++5rom8sE="
 /// Virgil Application Token for testing applications
 let kMailinatorToken: String = "3b0f46370d9f44cb9b5ac0e80dda97d7"
 /// Each request should be done less than or equal this number of seconds.
@@ -34,7 +34,7 @@ class VSS001_ClientSwiftTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        self.client = VSSClient(applicationToken: kApplicationToken, serviceConfig: VSSServiceConfigStg())
+        self.client = VSSClient(applicationToken: kApplicationToken)
         self.mailinator = Mailinator(applicationToken: kMailinatorToken, serviceConfig: MailinatorConfig())
         do {
             self.regexp = try NSRegularExpression(pattern: "Your confirmation code is.+([A-Z0-9]{6})", options: NSRegularExpressionOptions.CaseInsensitive)

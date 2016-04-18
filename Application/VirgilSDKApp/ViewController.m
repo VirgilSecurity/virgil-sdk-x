@@ -9,7 +9,6 @@
 #import "ViewController.h"
 
 #import "VSSClient.h"
-#import "VSSServiceConfigStg.h"
 
 #import "VSSCard.h"
 #import "VSSPublicKey.h"
