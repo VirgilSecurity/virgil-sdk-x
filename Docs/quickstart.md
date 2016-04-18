@@ -283,7 +283,7 @@ self.client.createCardWithPublicKey(<# VSSKeyPair #>.publicKey(),
 ## Step 2. Encrypt and Sign
 
 The app is searching for all channel members' public keys on the Keys Service to encrypt a message for them. The app is signing the encrypted message with sender’s private key so that the recipient can make sure the message had been sent by the declared sender.
-The example app we are discussing here uses [IPMSecurityManager]() helper class which manages all security related activities. Also you can find calls to [XAsync](https://github.com/p-orbitum/XAsync), which helps to manage asyncronous calls.
+The example app we are discussing here uses IPMSecurityManager helper class ([IPMSecurityManager.m](https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-objc/IPMExample-objc/IPM/IPMSecurityManager.m) or [IPMSecurityManager.swift](https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-swift/IPMExample-swift/IPM/IPMSecurityManager.swift)) which manages all security related activities. Also you can find calls to [XAsync](https://github.com/p-orbitum/XAsync), which helps to manage asyncronous calls.
 
 ###### Objective-C
 ```objective-c
@@ -344,8 +344,8 @@ if let participants = result as? Array<String> where participants.count > 0 {
 
 ## Step 3. Send a Message
 
-The application uses [IPMSecureMessage]() class as a convenient container for encrypted message data and sender's signature data. Objects of this class also have a functionality to serialize them to proper JSON data, which then can be sent to the channel. 
-> The example app uses our custom IP Messaging Server, so it will be necessary to adjust the following functionality in a real world project. See details of the [IPMChannelClient]() class.
+The application uses IPMSecureMessage class ([IPMSecureMessage.m](https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-objc/IPMExample-objc/IPM/IPMSecureMessage.m) or [IPMSecureMessage.swift](https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-swift/IPMExample-swift/IPM/IPMSecureMessage.swift)) as a convenient container for encrypted message data and sender's signature data. Objects of this class also have a functionality to serialize them to proper JSON data, which then can be sent to the channel. 
+> The example app uses our custom IP Messaging Server, so it will be necessary to adjust the following functionality in a real world project. See details of the IPMChannelClient class ([IPMChannelClient.m](https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-objc/IPMExample-objc/IPM/IPMChannelClient.m) or [IPMChannelClient.swift](https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-swift/IPMExample-swift/IPM/IPMChannelClient.swift)).
 
 ###### Objective-C
 ```objective-c
@@ -377,7 +377,7 @@ if let error = XAsync.awaitResult(self.ipmClient.channel.sendMessage(ipm)) as? N
 ```
 
 ## Step 4. Receive a Message
-An encrypted message is received on the recipient’s side using the [IPMDataSourceListener]() handler. This handler is registered during the channel creation and get called every time the channel discovers a new message.
+An encrypted message is received on the recipient’s side using the IPMDataSourceListener handler. This handler is registered during the channel creation and get called every time the channel discovers a new message. You can see its declaration in [IPMDataSource.h](https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-objc/IPMExample-objc/IPM/IPMDataSource.h) or [IPMDataSource.swift](https://github.com/VirgilSecurity/virgil-sdk-x/blob/v3/Docs/IPMExample-swift/IPMExample-swift/IPM/IPMDataSource.swift)
 
 ###### Objective-C
 ```objective-c
@@ -446,5 +446,5 @@ if let plainData = self.ipmSecurity.decryptData(secureMessage.message), text = N
 * [Tutorial Virgil Foundation](https://github.com/VirgilSecurity/virgil-foundation-x/blob/master/README.md)
 * [Tutorial Virgil SDK](tutorial-sdk.md)
 * [IP-Messaging Simple Server](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/server)
-* [Example iOS App written in Objective-C](https://github.com/VirgilSecurity/...)
-* [Example iOS App written in Swift](https://github.com/VirgilSecurity/...)
+* [Example iOS App written in Objective-C](https://github.com/VirgilSecurity/virgil-sdk-x/tree/v3/Docs/IPMExample-objc)
+* [Example iOS App written in Swift](https://github.com/VirgilSecurity/virgil-sdk-x/tree/v3/Docs/IPMExample-swift)
