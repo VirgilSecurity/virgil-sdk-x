@@ -10,7 +10,7 @@
 #import "VSSModelCommons.h"
 #import "VSSCard.h"
 #import "VSSPublicKey.h"
-#import "VSSIdentity.h"
+#import "VSSIdentityInfo.h"
 #import "NSObject+VSSUtils.h"
 
 @interface VSSSearchCardRequest ()
@@ -36,7 +36,7 @@
         body[kVSSModelValue] = value;
     }
     if (type != VSSIdentityTypeUnknown) {
-        NSString *str = [VSSIdentity stringFromIdentityType:type];
+        NSString *str = [VSSIdentityTypeHelper toString:type];
         body[kVSSModelType] = str;
     }
     if (relations.count > 0) {
@@ -48,6 +48,10 @@
     }
     [self setRequestBodyWithObject:body];
     return self;
+}
+
+- (instancetype)initWithContext:(VSSRequestContext *)context identityInfo:(VSSIdentityInfo *)identityInfo relations:(NSArray <GUID *>*)relations unconfirmed:(BOOL)unconfirmed {
+    return [self initWithContext:context value:identityInfo.value type:identityInfo.type relations:relations unconfirmed:[NSNumber numberWithBool:unconfirmed]];
 }
 
 - (instancetype)initWithContext:(VSSRequestContext *)context {

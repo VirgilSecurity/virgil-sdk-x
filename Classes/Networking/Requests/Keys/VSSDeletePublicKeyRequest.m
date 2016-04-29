@@ -9,6 +9,7 @@
 #import "VSSDeletePublicKeyRequest.h"
 #import "NSObject+VSSUtils.h"
 #import "VSSModelCommons.h"
+#import "VSSIdentityInfo.h"
 
 @interface VSSDeletePublicKeyRequest ()
 
@@ -31,11 +32,23 @@
     _publicKeyId = publicKeyId;
     
     [self setRequestMethod:DELETE];
-    if (identities != nil) {
+    if (identities.count > 0) {
         NSDictionary *idtts = @{ kVSSModelIdentities: identities };
         [self setRequestBodyWithObject:idtts];
     }
     return self;
+}
+
+- (instancetype)initWithContext:(VSSRequestContext *)context publicKeyId:(GUID *)publicKeyId identityInfoList:(NSArray <VSSIdentityInfo*>*)identityInfoList {
+    NSMutableArray *identities = [NSMutableArray array];
+    for (VSSIdentityInfo *identity in identityInfoList) {
+        [identities addObject:[identity asDictionary]];
+    }
+    if (identities.count == 0) {
+        identities = nil;
+    }
+    
+    return [self initWithContext:context publicKeyId:publicKeyId identities:identities];
 }
 
 - (instancetype)initWithContext:(VSSRequestContext *)context {

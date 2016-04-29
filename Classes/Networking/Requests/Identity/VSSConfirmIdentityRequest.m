@@ -40,10 +40,10 @@
         body[kVSSModelConfirmationCode] = code;
     }
     NSMutableDictionary *token = [[NSMutableDictionary alloc] init];
-    if (ttl != nil) {
+    if (ttl != nil && [ttl unsignedIntegerValue] > 0) {
         token[kVSSModelTTL] = ttl;
     }
-    if (ctl != nil) {
+    if (ctl != nil && [ctl unsignedIntegerValue] > 0) {
         token[kVSSModelCTL] = ctl;
     }
     if (token.count > 0) {

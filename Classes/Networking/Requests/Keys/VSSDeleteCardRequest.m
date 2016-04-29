@@ -8,6 +8,7 @@
 
 #import "VSSDeleteCardRequest.h"
 #import "VSSModelCommons.h"
+#import "VSSIdentityInfo.h"
 
 @interface VSSDeleteCardRequest ()
 
@@ -31,6 +32,10 @@
         [self setRequestBodyWithObject:@{ kVSSModelIdentity: identity }];
     }
     return self;
+}
+
+- (instancetype)initWithContext:(VSSRequestContext *)context cardId:(GUID *)cardId identityInfo:(VSSIdentityInfo *)identityInfo {
+    return [self initWithContext:context cardId:cardId identity:[identityInfo asDictionary]];
 }
 
 - (instancetype)initWithContext:(VSSRequestContext *)context {

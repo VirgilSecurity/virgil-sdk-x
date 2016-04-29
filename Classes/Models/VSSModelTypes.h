@@ -12,6 +12,14 @@ typedef NSString GUID;
 
 typedef NS_ENUM(NSUInteger, VSSIdentityType) {
     VSSIdentityTypeUnknown,
+    VSSIdentityTypeCustom,
     VSSIdentityTypeEmail,
     VSSIdentityTypeApplication
 };
+
+@interface VSSIdentityTypeHelper : NSObject
+
++ (VSSIdentityType)fromString:(NSString * __nullable)source;
++ (NSString * __nonnull)toString:(VSSIdentityType)source;
+
+@end

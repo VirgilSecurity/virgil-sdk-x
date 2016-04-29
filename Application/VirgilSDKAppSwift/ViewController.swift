@@ -10,11 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var mailinator: Mailinator! = nil
     var keyPair: VSSKeyPair = VSSKeyPair()
-    var regexp: NSRegularExpression! = nil
-    var publicKey: VSSPublicKey! = nil
-    var client: VSSClient! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,17 +21,5 @@ class ViewController: UIViewController {
         print(privBase64)
     }
     
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-        self.client = nil
-        self.mailinator = nil
-        self.publicKey = nil
-        self.regexp = nil
-    }
-
-    
-
 }
 

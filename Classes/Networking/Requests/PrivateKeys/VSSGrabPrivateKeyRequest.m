@@ -8,6 +8,7 @@
 
 #import "VSSGrabPrivateKeyRequest.h"
 #import "VSSModelCommons.h"
+#import "VSSIdentityInfo.h"
 #import "NSObject+VSSUtils.h"
 
 @interface VSSGrabPrivateKeyRequest ()
@@ -37,6 +38,10 @@
     }
     [self setRequestBodyWithObject:body];
     return self;
+}
+
+- (instancetype)initWithContext:(VSSRequestContext *)context identityInfo:(VSSIdentityInfo *)identityInfo cardId:(GUID *)cardId {
+    return [self initWithContext:context identity:[identityInfo asDictionary] cardId:cardId];
 }
 
 - (instancetype)initWithContext:(VSSRequestContext *)context {

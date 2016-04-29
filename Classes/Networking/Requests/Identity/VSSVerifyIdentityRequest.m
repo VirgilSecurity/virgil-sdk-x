@@ -8,7 +8,7 @@
 
 #import "VSSVerifyIdentityRequest.h"
 #import "VSSModelCommons.h"
-#import "VSSIdentity.h"
+#import "VSSIdentityInfo.h"
 #import "NSObject+VSSUtils.h"
 
 @interface VSSVerifyIdentityRequest ()
@@ -28,7 +28,7 @@
     }
     
     NSMutableDictionary *body = [[NSMutableDictionary alloc] init];
-    NSString *sType = [VSSIdentity stringFromIdentityType:type];
+    NSString *sType = [VSSIdentityTypeHelper toString:type];
     if (sType.length > 0) {
         body[kVSSModelType] = sType;
     }
@@ -45,6 +45,10 @@
 
 - (instancetype)initWithContext:(VSSRequestContext *)context type:(VSSIdentityType)type value:(NSString *)value {
     return [self initWithContext:context type:type value:value extraFields:nil];
+}
+
+- (instancetype)initWithContext:(VSSRequestContext *)context identityInfo:(VSSIdentityInfo *)identityInfo extraFields:(NSDictionary *)extraFields {
+    return [self initWithContext:context type:identityInfo.type value:identityInfo.value extraFields:extraFields];
 }
 
 - (instancetype)initWithContext:(VSSRequestContext *)context {

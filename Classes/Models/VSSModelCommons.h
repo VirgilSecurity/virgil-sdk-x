@@ -48,6 +48,7 @@ extern NSString * __nonnull const kVSSModelError;
 extern NSString * __nonnull const kVSSModelCode;
 
 extern NSString * __nonnull const kVSSIdentityTypeUnknown;
+extern NSString * __nonnull const kVSSIdentityTypeCustom;
 extern NSString * __nonnull const kVSSIdentityTypeEmail;
 extern NSString * __nonnull const kVSSIdentityTypeApplication;
 

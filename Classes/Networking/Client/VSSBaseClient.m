@@ -84,11 +84,6 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
         return;
     }
     
-    /// Before sending any request set proper token value into correspondent header field:
-    if (self.token.length > 0) {
-        [request setRequestHeaders:@{ kVSSAccessTokenHeader: self.token }];
-    }
-    
 #if USE_SERVICE_REQUEST_DEBUG
     {
         VSSRDLog(@"%@: request URL: %@", NSStringFromClass(request.class), request.request.URL);

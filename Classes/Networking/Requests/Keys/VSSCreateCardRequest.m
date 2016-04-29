@@ -10,6 +10,7 @@
 #import "VSSModelCommons.h"
 #import "VSSPublicKey.h"
 #import "VSSCard.h"
+#import "VSSIdentityInfo.h"
 #import "NSObject+VSSUtils.h"
 
 @interface VSSCreateCardRequest ()
@@ -48,6 +49,10 @@
     return self;
 }
 
+- (instancetype)initWithContext:(VSSRequestContext *)context publicKeyId:(GUID *)pkId identityInfo:(VSSIdentityInfo *)identityInfo data:(NSDictionary *)data signs:(NSArray <NSDictionary *>*)signs {
+    return [self initWithContext:context publicKeyId:pkId identity:[identityInfo asDictionary] data:data signs:signs];
+}
+
 - (instancetype)initWithContext:(VSSRequestContext *)context publicKey:(NSData *)publicKey identity:(NSDictionary *)identity data:(NSDictionary *)data signs:(NSArray <NSDictionary *>*)signs {
     self = [super initWithContext:context];
     if (self == nil) {
@@ -73,6 +78,10 @@
     [self setRequestBodyWithObject:body];
     
     return self;
+}
+
+- (instancetype)initWithContext:(VSSRequestContext *)context publicKey:(NSData *)publicKey identityInfo:(VSSIdentityInfo *)identityInfo data:(NSDictionary *)data signs:(NSArray <NSDictionary *>*)signs {
+    return [self initWithContext:context publicKey:publicKey identity:[identityInfo asDictionary] data:data signs:signs];
 }
 
 - (instancetype)initWithContext:(VSSRequestContext *)context {

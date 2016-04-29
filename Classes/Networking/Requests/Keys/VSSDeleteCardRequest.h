@@ -9,8 +9,11 @@
 #import "VSSKeysBaseRequest.h"
 #import "VSSModelTypes.h"
 
+@class VSSIdentityInfo;
+
 @interface VSSDeleteCardRequest : VSSKeysBaseRequest
 
 - (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context cardId:(GUID * __nonnull)cardId identity:(NSDictionary * __nullable)identity NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context cardId:(GUID * __nonnull)cardId identityInfo:(VSSIdentityInfo * __nullable)identityInfo;
 
 @end

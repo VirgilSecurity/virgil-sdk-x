@@ -34,10 +34,10 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
 @property (nonatomic, strong) NSString *validationToken;
 
 - (NSString *)identityValue;
-- (NSDictionary *)identity;
+- (VSSIdentityInfo *)identity;
 
 - (void)createConfirmedCardWithConfirmationHandler:(void(^)(NSError *))handler;
-- (void)confirmIdentity:(NSDictionary *)identity actionId:(NSString *)actionId withHandler:(void(^)(NSError *error))handler;
+- (void)confirmIdentity:(VSSIdentityInfo *)identity actionId:(NSString *)actionId withHandler:(void(^)(NSError *error))handler;
 
 @end
 
@@ -84,24 +84,18 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
     NSUInteger numberOfRequests = 7;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime;
     
-    [self.client setupClientWithCompletionHandler:^(NSError *error) {
+    [self createConfirmedCardWithConfirmationHandler:^(NSError *error) {
         if (error != nil) {
-            XCTFail(@"VSSClient setup has failed");
+            XCTFail(@"Error: %@", [error localizedDescription]);
             return;
         }
-        [self createConfirmedCardWithConfirmationHandler:^(NSError *error) {
-            if (error != nil) {
-                XCTFail(@"Error: %@", [error localizedDescription]);
-                return;
-            }
-            
-            XCTAssertNotNil(self.card, @"Virgil Card should be created.");
-            XCTAssertNotNil(self.card.Id, @"Virgil Card should have ID.");
-            XCTAssertTrue([[self.card isConfirmed] boolValue], @"Virgil Card should be created confirmed.");
-            XCTAssertNotNil([self.card createdAt], @"Virgil Card should have correct creation date.");
-            
-            [ex fulfill];
-        }];
+        
+        XCTAssertNotNil(self.card, @"Virgil Card should be created.");
+        XCTAssertNotNil(self.card.Id, @"Virgil Card should have ID.");
+        XCTAssertTrue([[self.card isConfirmed] boolValue], @"Virgil Card should be created confirmed.");
+        XCTAssertNotNil([self.card createdAt], @"Virgil Card should have correct creation date.");
+        
+        [ex fulfill];
     }];
     
     [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
@@ -117,27 +111,21 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
     NSUInteger numberOfRequests = 8;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime;
 
-    [self.client setupClientWithCompletionHandler:^(NSError *error) {
+    [self createConfirmedCardWithConfirmationHandler:^(NSError *error) {
         if (error != nil) {
-            XCTFail(@"VSSClient setup has failed");
+            XCTFail(@"Error: %@", [error localizedDescription]);
             return;
         }
-        [self createConfirmedCardWithConfirmationHandler:^(NSError *error) {
+        
+        VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
+        [self.client getPublicKeyWithId:self.card.publicKey.Id card:self.card privateKey:privateKey completionHandler:^(VSSPublicKeyExtended * _Nullable key, NSError * _Nullable error) {
             if (error != nil) {
                 XCTFail(@"Error: %@", [error localizedDescription]);
                 return;
             }
             
-            VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
-            [self.client getPublicKeyWithId:self.card.publicKey.Id card:self.card privateKey:privateKey completionHandler:^(VSSPublicKeyExtended * _Nullable key, NSError * _Nullable error) {
-                if (error != nil) {
-                    XCTFail(@"Error: %@", [error localizedDescription]);
-                    return;
-                }
-                
-                XCTAssertNotNil(key, @"Public key should be returned.");
-                [ex fulfill];
-            }];
+            XCTAssertNotNil(key, @"Public key should be returned.");
+            [ex fulfill];
         }];
     }];
     
@@ -167,7 +155,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
             }
             
             VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
-            [self.client createCardWithPublicKeyId:self.card.publicKey.Id identity:[self identity] data:nil signs:nil privateKey:privateKey completionHandler:^(VSSCard * _Nullable card, NSError * _Nullable error) {
+            [self.client createCardWithPublicKeyId:self.card.publicKey.Id identityInfo:[self identity] data:nil signs:nil privateKey:privateKey completionHandler:^(VSSCard * _Nullable card, NSError * _Nullable error) {
                 if (error != nil) {
                     XCTFail(@"Error: %@", [error localizedDescription]);
                     return;
@@ -196,40 +184,31 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
     NSUInteger numberOfRequests = 9;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime;
     
-    [self.client setupClientWithCompletionHandler:^(NSError *error) {
+    [self createConfirmedCardWithConfirmationHandler:^(NSError *error) {
         if (error != nil) {
-            XCTFail(@"VSSClient setup has failed");
+            XCTFail(@"Error: %@", [error localizedDescription]);
             return;
         }
-        [self createConfirmedCardWithConfirmationHandler:^(NSError *error) {
+        
+        VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
+        [self.client storePrivateKey:privateKey cardId:self.card.Id completionHandler:^(NSError * _Nullable error) {
             if (error != nil) {
                 XCTFail(@"Error: %@", [error localizedDescription]);
                 return;
             }
             
-            VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
-            [self.client storePrivateKey:privateKey cardId:self.card.Id completionHandler:^(NSError * _Nullable error) {
+            VSSIdentityInfo *info = [[VSSIdentityInfo alloc] initWithType:self.card.identity.type value:self.card.identity.value validationToken:self.validationToken];
+
+            [self.client getPrivateKeyWithCardId:self.card.Id identityInfo:info password:nil completionHandler:^(NSData * _Nullable keyData, GUID * _Nullable cardId, NSError * _Nullable error) {
                 if (error != nil) {
                     XCTFail(@"Error: %@", [error localizedDescription]);
                     return;
                 }
                 
-                NSMutableDictionary *idtt = [NSMutableDictionary dictionary];
-                idtt[kVSSModelType] = [VSSIdentity stringFromIdentityType:self.card.identity.type];
-                idtt[kVSSModelValue] = self.card.identity.value;
-                idtt[kVSSModelValidationToken] = self.validationToken;
+                XCTAssertEqualObjects(cardId, self.card.Id, @"Virgil card IDs should match.");
+                XCTAssertEqualObjects(keyData, privateKey.key, @"Private key data returned should match data which was sent.");
                 
-                [self.client grabPrivateKeyWithIdentity:idtt cardId:self.card.Id password:nil completionHandler:^(NSData * _Nullable keyData, GUID * _Nullable cardId, NSError * _Nullable error) {
-                    if (error != nil) {
-                        XCTFail(@"Error: %@", [error localizedDescription]);
-                        return;
-                    }
-                    
-                    XCTAssertEqualObjects(cardId, self.card.Id, @"Virgil card IDs should match.");
-                    XCTAssertEqualObjects(keyData, privateKey.key, @"Private key data returned should match data which was sent.");
-                    
-                    [ex fulfill];
-                }];
+                [ex fulfill];
             }];
         }];
     }];
@@ -248,37 +227,28 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
     NSUInteger numberOfRequests = 9;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime;
     
-    [self.client setupClientWithCompletionHandler:^(NSError *error) {
+    [self createConfirmedCardWithConfirmationHandler:^(NSError *error) {
         if (error != nil) {
-            XCTFail(@"VSSClient setup has failed");
+            XCTFail(@"Error: %@", [error localizedDescription]);
             return;
         }
-        [self createConfirmedCardWithConfirmationHandler:^(NSError *error) {
+        
+        VSSIdentityInfo *info = [[VSSIdentityInfo alloc] initWithType:self.card.identity.type value:self.card.identity.value validationToken:self.validationToken];
+        
+        VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
+        [self.client deleteCardWithCardId:self.card.Id identityInfo:info privateKey:privateKey completionHandler:^(NSError * _Nullable error) {
             if (error != nil) {
                 XCTFail(@"Error: %@", [error localizedDescription]);
                 return;
             }
             
-            NSMutableDictionary *idtt = [NSMutableDictionary dictionary];
-            idtt[kVSSModelType] = [VSSIdentity stringFromIdentityType:self.card.identity.type];
-            idtt[kVSSModelValue] = self.card.identity.value;
-            idtt[kVSSModelValidationToken] = self.validationToken;
-            
-            VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
-            [self.client deleteCardWithCardId:self.card.Id identity:idtt privateKey:privateKey completionHandler:^(NSError * _Nullable error) {
-                if (error != nil) {
-                    XCTFail(@"Error: %@", [error localizedDescription]);
-                    return;
-                }
+            [self.client getCardWithCardId:self.card.Id completionHandler:^(VSSCard * _Nullable card, NSError * _Nullable error) {
+                /// We should not get a deleted card.
+                XCTAssertNil(card);
+                /// Error should be returned.
+                XCTAssertNotNil(error);
                 
-                [self.client getCardWithCardId:self.card.Id completionHandler:^(VSSCard * _Nullable card, NSError * _Nullable error) {
-                    /// We should not get a deleted card.
-                    XCTAssertNil(card);
-                    /// Error should be returned.
-                    XCTAssertNotNil(error);
-                    
-                    [ex fulfill];
-                }];
+                [ex fulfill];
             }];
         }];
     }];
@@ -337,9 +307,8 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
             return;
         }
         
-        NSDictionary *identity = [self identity];
         VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
-        [self.client createCardWithPublicKey:self.keyPair.publicKey identity:identity data:nil signs:nil privateKey:privateKey completionHandler:^(VSSCard *card, NSError *error) {
+        [self.client createCardWithPublicKey:self.keyPair.publicKey identityInfo:[self identity] data:nil signs:nil privateKey:privateKey completionHandler:^(VSSCard *card, NSError *error) {
             if (error != nil) {
                 XCTFail(@"Error creating unconfirmed card: %@", [error localizedDescription]);
                 return;
@@ -370,13 +339,13 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
     return [NSString stringWithFormat:@"%@@mailinator.com", identity];
 }
 
-- (NSDictionary *)identity {
-    return @{ kVSSModelType: [VSSIdentity stringFromIdentityType:VSSIdentityTypeEmail], kVSSModelValue: [self identityValue] };
+- (VSSIdentityInfo *)identity {
+    return [[VSSIdentityInfo alloc] initWithType:VSSIdentityTypeEmail value:[self identityValue] validationToken:nil];
 }
 
 - (void)createConfirmedCardWithConfirmationHandler:(void(^)(NSError *))handler {
-    NSDictionary *identity = [self identity];
-    [self.client verifyIdentityWithType:[VSSIdentity identityTypeFromString:identity[kVSSModelType]] value:identity[kVSSModelValue] completionHandler:^(GUID *actionId, NSError *error) {
+    VSSIdentityInfo *identity = [self identity];
+    [self.client verifyIdentityWithInfo:identity extraFields:nil completionHandler:^(GUID * _Nullable actionId, NSError * _Nullable error) {
         if (error != nil) {
             if (handler != nil) {
                 handler(error);
@@ -388,10 +357,9 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
     }];
 }
 
-- (void)confirmIdentity:(NSDictionary *)identity actionId:(NSString *)actionId withHandler:(void(^)(NSError *error))handler {
+- (void)confirmIdentity:(VSSIdentityInfo *)identity actionId:(NSString *)actionId withHandler:(void(^)(NSError *error))handler {
     // Get the Mailinator inbox name
-    NSString *val = [identity[kVSSModelValue] as:[NSString class]];
-    NSString *inbox = [val substringToIndex:[val rangeOfString:@"@"].location];
+    NSString *inbox = [identity.value substringToIndex:[identity.value rangeOfString:@"@"].location];
     [self.mailinator getInbox:inbox completionHandler:^(NSArray *metadataList, NSError *error) {
         if (error != nil) {
             // We can't get emails list and we can't get confirmation code.
@@ -439,26 +407,26 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
             // Actual code is the last 6 charachters.
             // Extract the code
             NSString *code = [match substringFromIndex:match.length - 6];
-            [self.client confirmIdentityWithActionId:actionId code:code ttl:nil ctl:@10 completionHandler:^(VSSIdentityType type, NSString *value, NSString *validationToken, NSError *error) {
+            [self.client confirmIdentityWithActionId:actionId code:code tokenTtl:0 tokenCtl:10 completionHandler:^(VSSIdentityInfo * _Nullable identityInfo, NSError * _Nullable error) {
                 if (error != nil) {
                     if (handler != nil) {
                         handler(error);
                     }
                     return;
                 }
-
-                if (![value isEqualToString:identity[kVSSModelValue]] && validationToken.length == 0) {
+                
+                if(![identity isEqual:identityInfo] || identityInfo.validationToken.length == 0) {
                     if (handler != nil) {
                         handler([NSError errorWithDomain:@"TestDomain" code:-3 userInfo:nil]);
                     }
                     return;
                 }
-                self.validationToken = validationToken;
-                NSMutableDictionary *identityExt = [[NSMutableDictionary alloc] initWithDictionary:identity];
-                identityExt[kVSSModelValidationToken] = validationToken;
                 
+                identity.validationToken = identityInfo.validationToken;
+                self.validationToken = identityInfo.validationToken;
+               
                 VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
-                [self.client createCardWithPublicKey:self.keyPair.publicKey identity:identityExt data:nil signs:nil privateKey:privateKey completionHandler:^(VSSCard *card, NSError *error) {
+                [self.client createCardWithPublicKey:self.keyPair.publicKey identityInfo:identityInfo data:nil signs:nil privateKey:privateKey completionHandler:^(VSSCard * _Nullable card, NSError * _Nullable error) {
                     self.card = card;
                     if (handler != nil) {
                         handler(error);

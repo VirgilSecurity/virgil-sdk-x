@@ -6,6 +6,7 @@
 #import "VSSCryptor.h"
 #import "VSSFoundationCommons.h"
 #import "VSSKeyPair.h"
+#import "VSSPBKDF.h"
 #import "VSSSigner.h"
 #import "VSSStreamCryptor.h"
 #import "VSSStreamSigner.h"

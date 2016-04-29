@@ -11,11 +11,13 @@
 
 @class VSSCard;
 @class VSSPublicKey;
+@class VSSIdentityInfo;
 
 @interface VSSSearchCardRequest : VSSKeysBaseRequest
 
 @property (nonatomic, strong, readonly) NSArray <VSSCard *>* __nullable cards;
 
 - (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context value:(NSString * __nonnull)value type:(VSSIdentityType)type relations:(NSArray <GUID *>* __nullable)relations unconfirmed:(NSNumber * __nullable)unconfirmed NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context identityInfo:(VSSIdentityInfo * __nonnull)identityInfo relations:(NSArray <GUID *>* __nullable)relations unconfirmed:(BOOL)unconfirmed;
 
 @end

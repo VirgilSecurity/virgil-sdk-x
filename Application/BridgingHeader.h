@@ -16,6 +16,7 @@
 #import "VSSModel.h"
 #import "VSSBaseModel.h"
 #import "VSSIdentity.h"
+#import "VSSIdentityInfo.h"
 #import "VSSCard.h"
 #import "VSSPublicKey.h"
 #import "VSSPublicKeyExtended.h"

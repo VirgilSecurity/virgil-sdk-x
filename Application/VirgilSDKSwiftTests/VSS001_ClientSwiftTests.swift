@@ -60,25 +60,18 @@ class VSS001_ClientSwiftTests: XCTestCase {
         let numberOfRequests = 6
         let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
         
-        self.client.setupClientWithCompletionHandler { (error) -> Void in
+        self.createConfirmedCardWithConfirmationHandler { (error) -> Void in
             if error != nil {
-                XCTFail("Client has not been setup properly: \(error!.localizedDescription)")
+                XCTFail("Error: \(error!.localizedDescription)")
                 return
             }
             
-            self.createConfirmedCardWithConfirmationHandler { (error) -> Void in
-                if error != nil {
-                    XCTFail("Error: \(error!.localizedDescription)")
-                    return
-                }
-                
-                XCTAssertNotNil(self.card, "Virgil Card should be created.")
-                XCTAssertNotNil(self.card.Id, "Virgil Card should have ID.")
-                XCTAssertTrue(self.card.isConfirmed.boolValue, "Virgil Card should be created confirmed.")
-                XCTAssertNotNil(self.card.createdAt, "Virgil Card should contain correct date of creation.")
-                
-                ex?.fulfill()
-            }
+            XCTAssertNotNil(self.card, "Virgil Card should be created.")
+            XCTAssertNotNil(self.card.Id, "Virgil Card should have ID.")
+            XCTAssertTrue(self.card.isConfirmed.boolValue, "Virgil Card should be created confirmed.")
+            XCTAssertNotNil(self.card.createdAt, "Virgil Card should contain correct date of creation.")
+            
+            ex?.fulfill()
         }
         
         self.waitForExpectationsWithTimeout(NSTimeInterval(timeout)) { error in
@@ -95,13 +88,14 @@ class VSS001_ClientSwiftTests: XCTestCase {
         return "\(identity)@mailinator.com"
     }
 
-    func identity() -> NSDictionary {
-        return [ kVSSModelType: VSSIdentity.stringFromIdentityType(.Email), kVSSModelValue: self.identityValue()]
+    func identity() -> VSSIdentityInfo {
+        return VSSIdentityInfo(type: .Email, value: self.identityValue(), validationToken: nil)
     }
 
     func createConfirmedCardWithConfirmationHandler(handler: ((NSError?) -> Void)?) {
         let identity = self.identity();
-        self.client.verifyIdentityWithType(VSSIdentity.identityTypeFromString(identity[kVSSModelType] as? String), value: identity[kVSSModelValue] as! String) { (actionId, error) -> Void in
+        
+        self.client.verifyIdentityWithInfo(identity, extraFields: nil) { (actionId, error) -> Void in
             if error != nil {
                 if handler != nil {
                     handler!(error!)
@@ -113,9 +107,9 @@ class VSS001_ClientSwiftTests: XCTestCase {
         }
     }
     
-    func confirmIdentity(identity: NSDictionary, actionId: String, handler:((NSError?) -> Void)?) {
-        let val = identity[kVSSModelValue] as! NSString
-        let inbox = val.substringToIndex(val.rangeOfString("@").location)
+    func confirmIdentity(identity: VSSIdentityInfo, actionId: String, handler:((NSError?) -> Void)?) {
+        let value = identity.value as NSString
+        let inbox = value.substringToIndex(value.rangeOfString("@").location)
         self.mailinator.getInbox(inbox) { (metadataList, error) -> Void in
             if error != nil {
                 if handler != nil {
@@ -157,7 +151,7 @@ class VSS001_ClientSwiftTests: XCTestCase {
                 // Actual code is the last 6 charachters.
                 // Extract the code
                 let code = (match as NSString).substringFromIndex(match.characters.count - 6);
-                self.client.confirmIdentityWithActionId(actionId, code: code, ttl: nil, ctl: 10, completionHandler: { (itype, ivalue, ivalToken, error) -> Void in
+                self.client.confirmIdentityWithActionId(actionId, code: code, tokenTtl: 0, tokenCtl: 10) { identityInfo, error in
                     if error != nil {
                         if handler != nil {
                             handler!(error!)
@@ -165,25 +159,26 @@ class VSS001_ClientSwiftTests: XCTestCase {
                         return
                     }
                     
-                    if identity[kVSSModelValue] as? String != ivalue || ivalToken?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0 {
+                    if identityInfo == nil || !identity.isEqual(identityInfo!) || identityInfo!.validationToken?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0 {
                         if (handler != nil) {
                             handler!(NSError(domain: "TestDomain", code: -3, userInfo: nil))
                         }
                         return
                     }
-                    self.validationToken = ivalToken
-                    let identityExt = NSMutableDictionary(dictionary: identity)
-                    identityExt[kVSSModelValidationToken] = ivalToken!
+                    
+                    self.validationToken = identityInfo!.validationToken
+                    identity.validationToken = identityInfo!.validationToken
                     
                     let privateKey = VSSPrivateKey(key: self.keyPair.privateKey(), password: nil)
-                    self.client.createCardWithPublicKey(self.keyPair.publicKey(), identity: identityExt as [NSObject : AnyObject], data: nil, signs: nil, privateKey: privateKey, completionHandler: { (card, error) -> Void in
+                    self.client.createCardWithPublicKey(self.keyPair.publicKey(), identityInfo: identityInfo!, data: nil, signs: nil, privateKey: privateKey) { card, error in
+                    
                         self.card = card
                         if handler != nil {
                             handler!(error)
                         }
                         return
-                    })
-                })
+                    }
+                }
             })
             
         }

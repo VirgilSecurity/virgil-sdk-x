@@ -7,6 +7,7 @@
 //
 
 #import "VSSIdentity.h"
+#import "VSSIdentityInfo.h"
 #import "VSSModelCommons.h"
 #import "NSObject+VSSUtils.h"
 
@@ -98,30 +99,16 @@
 
 #pragma mark - Public class logic
 
-// Convenient methods for converting enums to strings and vice-versa.
+- (VSSIdentityInfo * __nonnull)asIdentityInfo {
+    return [[VSSIdentityInfo alloc] initWithType:self.type value:self.value validationToken:nil];
+}
+
 + (NSString * __nonnull)stringFromIdentityType:(VSSIdentityType)identityType {
-    NSString *itString = kVSSIdentityTypeUnknown;
-    switch (identityType) {
-        case VSSIdentityTypeEmail:
-            itString = kVSSIdentityTypeEmail;
-            break;
-        case VSSIdentityTypeApplication:
-            itString = kVSSIdentityTypeApplication;
-        default:
-            break;
-    }
-    return itString;
+    return [VSSIdentityTypeHelper toString:identityType];
 }
 
 + (VSSIdentityType)identityTypeFromString:(NSString * __nullable)itCandidate {
-    VSSIdentityType itype = VSSIdentityTypeUnknown;
-    if ([itCandidate isEqualToString:kVSSIdentityTypeEmail]) {
-        itype = VSSIdentityTypeEmail;
-    }
-    else if ([itCandidate isEqualToString:kVSSIdentityTypeApplication]) {
-        itype = VSSIdentityTypeApplication;
-    }
-    return itype;
+    return [VSSIdentityTypeHelper fromString:itCandidate];
 }
 
 @end

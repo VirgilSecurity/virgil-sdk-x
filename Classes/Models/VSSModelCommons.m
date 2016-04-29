@@ -48,6 +48,7 @@ NSString *const kVSSModelError = @"error";
 NSString *const kVSSModelCode = @"code";
 
 NSString *const kVSSIdentityTypeUnknown = @"unknown";
+NSString *const kVSSIdentityTypeCustom = @"custom";
 NSString *const kVSSIdentityTypeEmail = @"email";
 NSString *const kVSSIdentityTypeApplication = @"application";
 

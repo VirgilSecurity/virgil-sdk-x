@@ -103,6 +103,12 @@
 		3644046C1C6D2FCC000EB66D /* VSSJSONRequestExtended.m in Sources */ = {isa = PBXBuildFile; fileRef = 3644046B1C6D2FCC000EB66D /* VSSJSONRequestExtended.m */; };
 		36472ECD1C5C02D200DE096F /* VSSPrivateKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 36472ECC1C5C02D200DE096F /* VSSPrivateKey.m */; };
 		364782C91C5AA44500165778 /* VSSKeychainValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 364782C81C5AA44500165778 /* VSSKeychainValue.m */; };
+		36590EF61CD252E400BE9338 /* VSSValidationTokenGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 36590EF51CD252E400BE9338 /* VSSValidationTokenGenerator.m */; };
+		36590EF71CD252E400BE9338 /* VSSValidationTokenGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 36590EF51CD252E400BE9338 /* VSSValidationTokenGenerator.m */; };
+		36590EFA1CD269FC00BE9338 /* VSSIdentityInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36590EF91CD269FC00BE9338 /* VSSIdentityInfo.m */; };
+		36590EFB1CD269FC00BE9338 /* VSSIdentityInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36590EF91CD269FC00BE9338 /* VSSIdentityInfo.m */; };
+		36590EFD1CD26C9B00BE9338 /* VSSModelTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 36590EFC1CD26C9B00BE9338 /* VSSModelTypes.m */; };
+		36590EFE1CD26C9B00BE9338 /* VSSModelTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 36590EFC1CD26C9B00BE9338 /* VSSModelTypes.m */; };
 		3664028D1C74CC5F0044B853 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362CFDED1C74C02E002A3E93 /* LaunchScreen.xib */; };
 		3664028E1C74CC5F0044B853 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 362CFDEF1C74C02E002A3E93 /* Main.storyboard */; };
 		3664028F1C74CC710044B853 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362CFDED1C74C02E002A3E93 /* LaunchScreen.xib */; };
@@ -110,6 +116,8 @@
 		366402911C74CC710044B853 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 362CFDF21C74C02E002A3E93 /* Images.xcassets */; };
 		368B6BA31C52BCEC00A1C11F /* VSSCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 368B6BA21C52BCEC00A1C11F /* VSSCard.m */; };
 		369033521C502C6200EEA634 /* VSSIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 369033511C502C6200EEA634 /* VSSIdentity.m */; };
+		36912FAD1CD21C650058BBF8 /* VSSPBKDF+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 36912FAC1CD21C650058BBF8 /* VSSPBKDF+Base64.m */; };
+		36912FAE1CD21C650058BBF8 /* VSSPBKDF+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 36912FAC1CD21C650058BBF8 /* VSSPBKDF+Base64.m */; };
 		36915C711C652EA100DAA563 /* VSSPublicKeyExtended.m in Sources */ = {isa = PBXBuildFile; fileRef = 36915C701C652EA100DAA563 /* VSSPublicKeyExtended.m */; };
 		36C1D16D1C6A947E009ED570 /* VSSBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C1D1491C6A947E009ED570 /* VSSBaseClient.m */; };
 		36C1D16E1C6A947E009ED570 /* VSSClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C1D14B1C6A947E009ED570 /* VSSClient.m */; };
@@ -243,10 +251,17 @@
 		36472ECC1C5C02D200DE096F /* VSSPrivateKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSPrivateKey.m; sourceTree = "<group>"; };
 		364782C71C5AA44500165778 /* VSSKeychainValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeychainValue.h; sourceTree = "<group>"; };
 		364782C81C5AA44500165778 /* VSSKeychainValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeychainValue.m; sourceTree = "<group>"; };
+		36590EF41CD252E400BE9338 /* VSSValidationTokenGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSValidationTokenGenerator.h; sourceTree = "<group>"; };
+		36590EF51CD252E400BE9338 /* VSSValidationTokenGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSValidationTokenGenerator.m; sourceTree = "<group>"; };
+		36590EF81CD269FC00BE9338 /* VSSIdentityInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSIdentityInfo.h; sourceTree = "<group>"; };
+		36590EF91CD269FC00BE9338 /* VSSIdentityInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSIdentityInfo.m; sourceTree = "<group>"; };
+		36590EFC1CD26C9B00BE9338 /* VSSModelTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSModelTypes.m; sourceTree = "<group>"; };
 		368B6BA11C52BCEC00A1C11F /* VSSCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSCard.h; sourceTree = "<group>"; };
 		368B6BA21C52BCEC00A1C11F /* VSSCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCard.m; sourceTree = "<group>"; };
 		369033501C502C6200EEA634 /* VSSIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSIdentity.h; sourceTree = "<group>"; };
 		369033511C502C6200EEA634 /* VSSIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSIdentity.m; sourceTree = "<group>"; };
+		36912FAB1CD21C650058BBF8 /* VSSPBKDF+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VSSPBKDF+Base64.h"; sourceTree = "<group>"; };
+		36912FAC1CD21C650058BBF8 /* VSSPBKDF+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VSSPBKDF+Base64.m"; sourceTree = "<group>"; };
 		36915C6F1C652EA100DAA563 /* VSSPublicKeyExtended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSPublicKeyExtended.h; sourceTree = "<group>"; };
 		36915C701C652EA100DAA563 /* VSSPublicKeyExtended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSPublicKeyExtended.m; sourceTree = "<group>"; };
 		36C1D1481C6A947E009ED570 /* VSSBaseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSBaseClient.h; sourceTree = "<group>"; };
@@ -439,6 +454,7 @@
 				361403481BB2E0FC002E69CA /* VSSModelCommons.h */,
 				361403491BB2E0FC002E69CA /* VSSModelCommons.m */,
 				36FF4B8A1C4D7F2F00E901F3 /* VSSModelTypes.h */,
+				36590EFC1CD26C9B00BE9338 /* VSSModelTypes.m */,
 				36FF4B891C4D7F2F00E901F3 /* VSSSerializable.h */,
 				36FF4B871C4D7F2F00E901F3 /* VSSModel.h */,
 				36FF4B881C4D7F2F00E901F3 /* VSSModel.m */,
@@ -464,6 +480,8 @@
 				36005FC41C732853007E5CBF /* VSSIdentityError.m */,
 				36005FCC1C73C010007E5CBF /* VSSPrivateKeysError.h */,
 				36005FCD1C73C010007E5CBF /* VSSPrivateKeysError.m */,
+				36590EF81CD269FC00BE9338 /* VSSIdentityInfo.h */,
+				36590EF91CD269FC00BE9338 /* VSSIdentityInfo.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -628,6 +646,10 @@
 				36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */,
 				36FF4B8F1C4D7FED00E901F3 /* NSString+VSSXMLEscape.h */,
 				36FF4B901C4D7FED00E901F3 /* NSString+VSSXMLEscape.m */,
+				36912FAB1CD21C650058BBF8 /* VSSPBKDF+Base64.h */,
+				36912FAC1CD21C650058BBF8 /* VSSPBKDF+Base64.m */,
+				36590EF41CD252E400BE9338 /* VSSValidationTokenGenerator.h */,
+				36590EF51CD252E400BE9338 /* VSSValidationTokenGenerator.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1004,6 +1026,7 @@
 				362CFE561C74C965002A3E93 /* VSSCreateCardRequest.m in Sources */,
 				362CFE5F1C74C980002A3E93 /* VSSGrabPrivateKeyRequest.m in Sources */,
 				362CFE581C74C96A002A3E93 /* VSSSignCardRequest.m in Sources */,
+				36590EF71CD252E400BE9338 /* VSSValidationTokenGenerator.m in Sources */,
 				362CFE4C1C74C91F002A3E93 /* VSSRequest.m in Sources */,
 				362CFE591C74C96D002A3E93 /* VSSUnsignCardRequest.m in Sources */,
 				362CFE3D1C74C0C2002A3E93 /* ViewController.swift in Sources */,
@@ -1013,6 +1036,7 @@
 				3606B2AA1BBB1FBF0074B4C1 /* VSSPublicKey.m in Sources */,
 				362CFE401C74C8F0002A3E93 /* VSSCard.m in Sources */,
 				3606B2A61BBB1FBF0074B4C1 /* VSSBaseModel.m in Sources */,
+				36590EFE1CD26C9B00BE9338 /* VSSModelTypes.m in Sources */,
 				3606B2A71BBB1FBF0074B4C1 /* VSSKeysError.m in Sources */,
 				362CFE431C74C8FA002A3E93 /* VSSSign.m in Sources */,
 				362CFE4A1C74C916002A3E93 /* VSSRequestContext.m in Sources */,
@@ -1029,6 +1053,7 @@
 				362CFE551C74C960002A3E93 /* VSSDeletePublicKeyRequest.m in Sources */,
 				362CFE3E1C74C8E7002A3E93 /* VSSModel.m in Sources */,
 				362CFE5D1C74C97B002A3E93 /* VSSPrivateKeysBaseRequest.m in Sources */,
+				36590EFB1CD269FC00BE9338 /* VSSIdentityInfo.m in Sources */,
 				362CFE3F1C74C8ED002A3E93 /* VSSIdentity.m in Sources */,
 				362CFE5C1C74C975002A3E93 /* VSSDeleteCardRequest.m in Sources */,
 				362CFE681C74C9A7002A3E93 /* MEmailMetadata.m in Sources */,
@@ -1037,6 +1062,7 @@
 				362CFE411C74C8F5002A3E93 /* VSSPublicKeyExtended.m in Sources */,
 				362CFE441C74C8FD002A3E93 /* VSSError.m in Sources */,
 				3606B2A91BBB1FBF0074B4C1 /* VSSModelCommons.m in Sources */,
+				36912FAE1CD21C650058BBF8 /* VSSPBKDF+Base64.m in Sources */,
 				362CFE5A1C74C971002A3E93 /* VSSSearchCardRequest.m in Sources */,
 				362CFE691C74C9A9002A3E93 /* MEmailResponse.m in Sources */,
 				362CFE6B1C74C9B0002A3E93 /* MailinatorEmailRequest.m in Sources */,
@@ -1082,6 +1108,7 @@
 				3644046C1C6D2FCC000EB66D /* VSSJSONRequestExtended.m in Sources */,
 				36C1D1711C6A947E009ED570 /* VSSRequestContext.m in Sources */,
 				36005FDA1C73C70F007E5CBF /* VSSDeletePrivateKeyRequest.m in Sources */,
+				36590EFD1CD26C9B00BE9338 /* VSSModelTypes.m in Sources */,
 				36F598741C628D95007137B2 /* VSSSign.m in Sources */,
 				36005FD41C73C6D7007E5CBF /* VSSGrabPrivateKeyRequest.m in Sources */,
 				36005FBC1C7327B6007E5CBF /* VSSSearchAppCardRequest.m in Sources */,
@@ -1096,6 +1123,7 @@
 				362CFE1F1C74C02E002A3E93 /* AppDelegate.m in Sources */,
 				36005FC81C73864F007E5CBF /* VSSVerifyIdentityRequest.m in Sources */,
 				36472ECD1C5C02D200DE096F /* VSSPrivateKey.m in Sources */,
+				36590EFA1CD269FC00BE9338 /* VSSIdentityInfo.m in Sources */,
 				36005FBF1C7327B6007E5CBF /* VSSUnsignCardRequest.m in Sources */,
 				36005FC51C732853007E5CBF /* VSSIdentityError.m in Sources */,
 				36C1D1701C6A947E009ED570 /* VSSServiceConfig.m in Sources */,
@@ -1112,8 +1140,10 @@
 				362CFE241C74C02E002A3E93 /* Mailinator.m in Sources */,
 				36005FBA1C7327B6007E5CBF /* VSSGetPublicKeyRequest.m in Sources */,
 				362CFE2A1C74C02E002A3E93 /* MailinatorEmailRequest.m in Sources */,
+				36912FAD1CD21C650058BBF8 /* VSSPBKDF+Base64.m in Sources */,
 				36005FBE1C7327B6007E5CBF /* VSSSignCardRequest.m in Sources */,
 				361403711BB2E0FC002E69CA /* VSSPublicKey.m in Sources */,
+				36590EF61CD252E400BE9338 /* VSSValidationTokenGenerator.m in Sources */,
 				368B6BA31C52BCEC00A1C11F /* VSSCard.m in Sources */,
 				364782C91C5AA44500165778 /* VSSKeychainValue.m in Sources */,
 				36C1D16E1C6A947E009ED570 /* VSSClient.m in Sources */,
