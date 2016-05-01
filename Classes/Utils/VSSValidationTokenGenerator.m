@@ -36,7 +36,7 @@
     
     VSSSigner *signer = [[VSSSigner alloc] init];
     NSData *signature = [signer signData:sigData privateKey:privateKey.key keyPassword:privateKey.password error:error];
-    if (*error != nil) {
+    if (error && *error != nil) {
         return nil;
     }
     

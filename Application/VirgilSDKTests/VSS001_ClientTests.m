@@ -12,7 +12,10 @@
 #import "BridgingHeader.h"
 
 /// Virgil Application Token for testing applications
-static NSString *const kApplicationToken = @"eyJpZCI6IjdhNDhjM2YwLWIxODgtNDUyMS04MDM1LTQxZTQxY2JhNjVjMiIsImFwcGxpY2F0aW9uX2NhcmRfaWQiOiJjZjQxZjc2Yi0yMGI5LTRjMzEtYTFiNy04ZTIyOWU1YjE1MjgiLCJ0dGwiOi0xLCJjdGwiOi0xLCJwcm9sb25nIjowfQ==.MIGYMA0GCWCGSAFlAwQCAgUABIGGMIGDAj9YLidW8KpeA1nyZ6c1/QGqMCSun1g7KRpVcmUNrQ3qn++DX1OTlKzsExi8K2io5fcnYGAKyo2Hx+dSZA3134wCQBxLjS6JW2n7MCFeRm9F3KtSvjpPBT2eCQ5eqb43dEjZu14yWDTab3Pyjg41Pc4nZkIUMACk0biOZ0++5rom8sE=";
+static NSString *const kApplicationToken = @"eyJpZCI6IjAwOTUwMWFjLWNlZmYtNDRhZC1iMGI2LTk0ZjlkYjJmYzY1YiIsImFwcGxpY2F0aW9uX2NhcmRfaWQiOiIxNTJhOGM3Yi03MDNmLTRmYWMtOTcxYi02MDcyMjNjZTc1NjAiLCJ0dGwiOi0xLCJjdGwiOi0xLCJwcm9sb25nIjowfQ==.MFgwDQYJYIZIAWUDBAICBQAERzBFAiAi1tiSdVSU6ZP8U7jRv2cN+jxkqvhrjpmT0ejIgnB/AQIhAM6H13yqn5xpkkC+GJ//aa1rS/84kpoBleDLTmv/KTge";
+
+static NSString *const kApplicationPublicKey = @"-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEDzS4ocTOJ+edeft8wv6GR2Scd0In\nSUvNsCt6ostcyBley1UkWEgGosOluDB1q0pIjesON2B7/fuEgQSzV38zcA==\n-----END PUBLIC KEY-----\n";
+static NSString *const kApplicationPrivateKey = @"-----BEGIN ENCRYPTED PRIVATE KEY-----\nMIHyMF0GCSqGSIb3DQEFDTBQMC8GCSqGSIb3DQEFDDAiBBBPmb1eLU1/ciH4go7I\nQkvGAgIN7zAKBggqhkiG9w0CCjAdBglghkgBZQMEASoEECpnDS0OMWZE1m610bHx\na/cEgZBcHuiTKRJq4hAYQOKpSd8ahdG0f+bDDL/XkZ+S/AYTPyGtI7auMcDiihAm\n9PZnb0Awhx28vVBVeuz6/18S6b+tyEehhTKw2XuXQCR7+NFUezlCAcQgLYdk/qnQ\nL1O8Cj1cmuFtEpUQLf0Tx9AlyBeAqH5xO6iHIPOMXc/HI7fmRc4oihOztb5wrbIY\nWKMd8Ug=\n-----END ENCRYPTED PRIVATE KEY-----\n";
 /// Mailinator Application Token for Virgil applications
 static NSString *const kMailinatorToken = @"3b0f46370d9f44cb9b5ac0e80dda97d7";
 /// Each request should be done less than or equal this number of seconds.
@@ -301,26 +304,101 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
     NSUInteger numberOfRequests = 9;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime;
     
-    [self.client setupClientWithCompletionHandler:^(NSError *error) {
+    VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
+    [self.client createCardWithPublicKey:self.keyPair.publicKey identityInfo:[self identity] data:nil signs:nil privateKey:privateKey completionHandler:^(VSSCard *card, NSError *error) {
         if (error != nil) {
-            XCTFail(@"VSSClient setup has failed");
+            XCTFail(@"Error creating unconfirmed card: %@", [error localizedDescription]);
             return;
         }
         
-        VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
-        [self.client createCardWithPublicKey:self.keyPair.publicKey identityInfo:[self identity] data:nil signs:nil privateKey:privateKey completionHandler:^(VSSCard *card, NSError *error) {
-            if (error != nil) {
-                XCTFail(@"Error creating unconfirmed card: %@", [error localizedDescription]);
-                return;
-            }
-            
-            XCTAssertNotNil(card, @"Virgil Card should be created.");
-            XCTAssertNotNil(card.Id, @"Virgil Card should have ID.");
-            XCTAssertFalse([[card isConfirmed] boolValue], @"Virgil Card should be created unconfirmed.");
-            XCTAssertNotNil([card createdAt], @"Virgil Card should have correct creation date.");
-           
-            [ex fulfill];
-        }];
+        XCTAssertNotNil(card, @"Virgil Card should be created.");
+        XCTAssertNotNil(card.Id, @"Virgil Card should have ID.");
+        XCTAssertFalse([[card isConfirmed] boolValue], @"Virgil Card should be created unconfirmed.");
+        XCTAssertNotNil([card createdAt], @"Virgil Card should have correct creation date.");
+        
+        [ex fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil) {
+            XCTFail(@"Expectation failed: %@", error);
+            return;
+        }
+    }];
+}
+
+- (void)test008_createAndGetUnconfirmedCustomCard {
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card with custom identity should be created unconfirmed."];
+    
+    NSUInteger numberOfRequests = 9;
+    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime;
+    
+    VSSPBKDF *pbkdf = [[VSSPBKDF alloc] initWithSalt:nil iterations:0];
+    NSString *obfuscated = [pbkdf base64KeyFromPassword:@"test-identity-value" size:64 error:nil];
+    if (obfuscated.length == 0) {
+        XCTFail(@"Error obfuscating identity value.");
+        return;
+    }
+    
+    VSSIdentityInfo *identity = [[VSSIdentityInfo alloc] initWithType:VSSIdentityTypeCustom value:obfuscated validationToken:nil];
+    VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
+    [self.client createCardWithPublicKey:self.keyPair.publicKey identityInfo:identity data:nil signs:nil privateKey:privateKey completionHandler:^(VSSCard *card, NSError *error) {
+        if (error != nil) {
+            XCTFail(@"Error creating unconfirmed card: %@", [error localizedDescription]);
+            return;
+        }
+        
+        XCTAssertNotNil(card, @"Virgil Card should be created.");
+        XCTAssertNotNil(card.Id, @"Virgil Card should have ID.");
+        XCTAssertFalse([[card isConfirmed] boolValue], @"Virgil Card should be created unconfirmed.");
+        XCTAssertNotNil([card createdAt], @"Virgil Card should have correct creation date.");
+        
+        [ex fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil) {
+            XCTFail(@"Expectation failed: %@", error);
+            return;
+        }
+    }];
+}
+
+- (void)test009_createAndGetConfirmedCustomCard {
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card with custom identity should be created confirmed."];
+    
+    NSUInteger numberOfRequests = 9;
+    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime;
+    
+    VSSPBKDF *pbkdf = [[VSSPBKDF alloc] initWithSalt:nil iterations:0];
+    NSString *obfuscated = [pbkdf base64KeyFromPassword:@"test-identity-value" size:64 error:nil];
+    if (obfuscated.length == 0) {
+        XCTFail(@"Error obfuscating identity value.");
+        return;
+    }
+    VSSIdentityInfo *identity = [[VSSIdentityInfo alloc] initWithType:VSSIdentityTypeCustom value:obfuscated validationToken:nil];
+    NSData *keyData = [kApplicationPrivateKey dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
+    VSSPrivateKey *appKey = [[VSSPrivateKey alloc] initWithKey:keyData password:@"secret"];
+    NSError *error = nil;
+    [VSSValidationTokenGenerator setValidationTokenForIdentityInfo:identity privateKey:appKey error:&error];
+    if (identity.validationToken.length == 0) {
+        XCTFail(@"Error generating validation token: %@", [error localizedDescription]);
+        return;
+    }
+    
+    VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
+    [self.client createCardWithPublicKey:self.keyPair.publicKey identityInfo:identity data:nil signs:nil privateKey:privateKey completionHandler:^(VSSCard *card, NSError *error) {
+        if (error != nil) {
+            XCTFail(@"Error creating unconfirmed card: %@", [error localizedDescription]);
+            return;
+        }
+        
+        XCTAssertNotNil(card, @"Virgil Card should be created.");
+        XCTAssertNotNil(card.Id, @"Virgil Card should have ID.");
+        XCTAssertTrue([[card isConfirmed] boolValue], @"Virgil Card should be created confirmed.");
+        XCTAssertNotNil([card createdAt], @"Virgil Card should have correct creation date.");
+        
+        [ex fulfill];
     }];
     
     [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {

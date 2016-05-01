@@ -12,10 +12,6 @@
 
 - (NSString *)base64KeyFromPassword:(NSString *)password size:(size_t)size error:(NSError **)error {
     NSData *keyData = [self keyFromPassword:password size:size error:error];
-    if (*error != nil) {
-        return nil;
-    }
-    
     return [keyData base64EncodedStringWithOptions:0];
 }
 

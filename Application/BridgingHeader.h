@@ -43,6 +43,8 @@
 #import "VSSKeychainValue.h"
 #import "NSObject+VSSUtils.h"
 #import "NSString+VSSXMLEscape.h"
+#import "VSSPBKDF+Base64.h"
+#import "VSSValidationTokenGenerator.h"
 
 #import "Mailinator.h"
 #import "MailinatorConfig.h"
