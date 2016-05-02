@@ -68,7 +68,7 @@ class VSS001_ClientSwiftTests: XCTestCase {
             
             XCTAssertNotNil(self.card, "Virgil Card should be created.")
             XCTAssertNotNil(self.card.Id, "Virgil Card should have ID.")
-            XCTAssertTrue(self.card.isConfirmed.boolValue, "Virgil Card should be created confirmed.")
+            XCTAssertNotNil(self.card.authorizedBy, "Virgil Card should be created confirmed.")
             XCTAssertNotNil(self.card.createdAt, "Virgil Card should contain correct date of creation.")
             
             ex?.fulfill()
@@ -89,7 +89,7 @@ class VSS001_ClientSwiftTests: XCTestCase {
     }
 
     func identity() -> VSSIdentityInfo {
-        return VSSIdentityInfo(type: .Email, value: self.identityValue(), validationToken: nil)
+        return VSSIdentityInfo(type: kVSSIdentityTypeEmail, value: self.identityValue(), validationToken: nil)
     }
 
     func createConfirmedCardWithConfirmationHandler(handler: ((NSError?) -> Void)?) {

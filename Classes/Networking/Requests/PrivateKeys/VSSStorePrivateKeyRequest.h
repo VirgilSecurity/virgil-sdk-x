@@ -7,7 +7,7 @@
 //
 
 #import "VSSPrivateKeysBaseRequest.h"
-#import "VSSModelTypes.h"
+#import "VSSModelCommons.h"
 
 @interface VSSStorePrivateKeyRequest : VSSPrivateKeysBaseRequest
 

@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-#import "VSSModelTypes.h"
+#import "VSSModelCommons.h"
 #import "VSSIdentityInfo.h"
 #import "VSSPrivateKey.h"
 #import "VSSPBKDF+Base64.h"
@@ -41,14 +41,14 @@
         return;
     }
     
-    VSSIdentityInfo *identity = [[VSSIdentityInfo alloc] initWithType:VSSIdentityTypeCustom value:obfuscated validationToken:nil];
+    VSSIdentityInfo *identity = [[VSSIdentityInfo alloc] initWithType:@"private" value:obfuscated validationToken:nil];
     [VSSValidationTokenGenerator setValidationTokenForIdentityInfo:identity privateKey:privateKey error:&error];
     if (error != nil) {
         NSLog(@"Error: %@", [error localizedDescription]);
         return;
     }
     
-    NSLog(@"IDENTITY TYPE: %@", [VSSIdentityTypeHelper toString:identity.type]);
+    NSLog(@"IDENTITY TYPE: %@", identity.type);
     NSLog(@"IDENTITY VALUE: %@", identity.value);
     NSLog(@"IDENTITY TOKEN: %@", identity.validationToken);
 }

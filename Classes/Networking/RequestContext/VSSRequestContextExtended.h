@@ -7,7 +7,7 @@
 //
 
 #import "VSSRequestContext.h"
-#import "VSSModelTypes.h"
+#import "VSSModelCommons.h"
 
 @class VSSCard;
 @class VSSPrivateKey;

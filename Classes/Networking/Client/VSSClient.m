@@ -238,38 +238,6 @@
     }];
 }
 
-- (void)deletePublicKeyWithId:(GUID *)keyId identities:(NSArray <NSDictionary *>*)identities card:(VSSCard *)card privateKey:(VSSPrivateKey *)privateKey completionHandler:(void(^)(NSError *error))completionHandler {
-    if (keyId.length == 0 || identities.count == 0 || card.Id.length == 0 || privateKey.key.length == 0) {
-        if (completionHandler != nil) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler([NSError errorWithDomain:kVSSRequestErrorDomain code:-202 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to delete public key: public key id or/and identites list or/and virgil card id or/and private key is/are not set.", @"DeletePublicKeySignedError") }]);
-            });
-        }
-        return;
-    }
-    
-    [self lazySetupServiceWithId:kVSSServiceIDKeys completionHandler:^(NSError * _Nullable error) {
-        if (error != nil) {
-            if (completionHandler != nil) {
-                completionHandler(error);
-            }
-            return;
-        }
-        VSSRequestCompletionHandler handler = ^(VSSRequest *request) {
-            if (completionHandler != nil) {
-                completionHandler(request.error);
-            }
-            return;
-        };
-        
-        VSSCard *sCard = [self cachedCardForServiceId:kVSSServiceIDKeys];
-        VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:card.Id password:nil];
-        VSSDeletePublicKeyRequest *request = [[VSSDeletePublicKeyRequest alloc] initWithContext:context publicKeyId:keyId identities:identities];
-        request.completionHandler = handler;
-        [self send:request];
-    }];
-}
-
 - (void)deletePublicKeyWithId:(GUID * __nonnull)keyId identityInfoList:(NSArray <VSSIdentityInfo *>* __nonnull)identityInfoList card:(VSSCard * __nonnull)card privateKey:(VSSPrivateKey * __nonnull)privateKey completionHandler:(void(^ __nullable)(NSError * __nullable error))completionHandler {
     
     if (keyId.length == 0 || identityInfoList.count == 0 || card.Id.length == 0 || privateKey.key.length == 0) {
@@ -305,48 +273,6 @@
 }
 
 #pragma mark - Virgil Cards related functionality
-
-- (void)createCardWithPublicKeyId:(GUID *)keyId identity:(NSDictionary *)identity data:(NSDictionary *)data signs:(NSArray <NSDictionary *>*)signs privateKey:(VSSPrivateKey *)privateKey completionHandler:(void(^)(VSSCard *card, NSError *error))completionHandler {
-    if (keyId.length == 0 || identity.count == 0 || privateKey.key.length == 0) {
-        if (completionHandler != nil) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, [NSError errorWithDomain:kVSSRequestErrorDomain code:-210 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to create card: public key id or/and identity or/and private key is/are not set.", @"CreateCardByKeyIDSignedError") }]);
-            });
-        }
-        return;
-    }
-    
-    [self lazySetupServiceWithId:kVSSServiceIDKeys completionHandler:^(NSError * _Nullable error) {
-        if (error != nil) {
-            if (completionHandler != nil) {
-                completionHandler(nil, error);
-            }
-            return;
-        }
-        
-        VSSRequestCompletionHandler handler = ^(VSSRequest *request) {
-            if (request.error != nil) {
-                if (completionHandler != nil) {
-                    completionHandler(nil, request.error);
-                }
-                return;
-            }
-            
-            if (completionHandler != nil) {
-                VSSCreateCardRequest *r = [request as:[VSSCreateCardRequest class]];
-                completionHandler(r.card, nil);
-                
-            }
-            return;
-        };
-        
-        VSSCard *sCard = [self cachedCardForServiceId:kVSSServiceIDKeys];
-        VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:nil password:nil];
-        VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithContext:context publicKeyId:keyId identity:identity data:data signs:signs];
-        request.completionHandler = handler;
-        [self send:request];
-    }];
-}
 
 - (void)createCardWithPublicKeyId:(GUID *)keyId identityInfo:(VSSIdentityInfo *)identityInfo data:(NSDictionary * )data signs:(NSArray <NSDictionary *>*)signs privateKey:(VSSPrivateKey *)privateKey completionHandler:(void(^)(VSSCard *card, NSError *error))completionHandler {
     if (keyId.length == 0 || identityInfo == nil || identityInfo.value.length == 0 || privateKey.key.length == 0) {
@@ -385,48 +311,6 @@
         VSSCard *sCard = [self cachedCardForServiceId:kVSSServiceIDKeys];
         VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:nil password:nil];
         VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithContext:context publicKeyId:keyId identityInfo:identityInfo data:data signs:signs];
-        request.completionHandler = handler;
-        [self send:request];
-    }];
-}
-
-- (void)createCardWithPublicKey:(NSData *)key identity:(NSDictionary *)identity data:(NSDictionary *)data signs:(NSArray <NSDictionary *>*)signs privateKey:(VSSPrivateKey *)privateKey completionHandler:(void(^)(VSSCard *card, NSError *error))completionHandler {
-    if (key.length == 0 || identity.count == 0 || privateKey.key.length == 0) {
-        if (completionHandler != nil) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, [NSError errorWithDomain:kVSSRequestErrorDomain code:-211 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to create card: public key or/and identity or/and private key is/are not set.", @"CreateCardByKeyDataSignedError") }]);
-            });
-        }
-        return;
-    }
-    
-    [self lazySetupServiceWithId:kVSSServiceIDKeys completionHandler:^(NSError * _Nullable error) {
-        if (error != nil) {
-            if (completionHandler != nil) {
-                completionHandler(nil, error);
-            }
-            return;
-        }
-        
-        VSSRequestCompletionHandler handler = ^(VSSRequest *request) {
-            if (request.error != nil) {
-                if (completionHandler != nil) {
-                    completionHandler(nil, request.error);
-                }
-                return;
-            }
-            
-            if (completionHandler != nil) {
-                VSSCreateCardRequest *r = [request as:[VSSCreateCardRequest class]];
-                completionHandler(r.card, nil);
-                
-            }
-            return;
-        };
-        
-        VSSCard *sCard = [self.serviceCards[kVSSServiceIDKeys] as:[VSSCard class]];
-        VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:nil password:nil];
-        VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithContext:context publicKey:key identity:identity data:data signs:signs];
         request.completionHandler = handler;
         [self send:request];
     }];
@@ -590,47 +474,6 @@
     }];
 }
 
-- (void)searchCardWithIdentityValue:(NSString *)value type:(VSSIdentityType)type relations:(NSArray <GUID *>*)relations unconfirmed:(NSNumber *)unconfirmed completionHandler:(void(^)(NSArray <VSSCard *>*cards, NSError *error))completionHandler {
-    if (value.length == 0) {
-        if (completionHandler != nil) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, [NSError errorWithDomain:kVSSRequestErrorDomain code:-215 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to search for a card: idetity value is not set.", @"SearchCardError") }]);
-            });
-        }
-        return;
-    }
-    
-    [self lazySetupServiceWithId:kVSSServiceIDKeys completionHandler:^(NSError * _Nullable error) {
-        if (error != nil) {
-            if (completionHandler != nil) {
-                completionHandler(nil, error);
-            }
-            return;
-        }
-        
-        VSSRequestCompletionHandler handler = ^(VSSRequest *request) {
-            if (request.error != nil) {
-                if (completionHandler != nil) {
-                    completionHandler(nil, request.error);
-                }
-                return;
-            }
-            
-            if (completionHandler != nil) {
-                VSSSearchCardRequest *r = [request as:[VSSSearchCardRequest class]];
-                completionHandler(r.cards, nil);
-            }
-            return;
-        };
-        
-        VSSCard *sCard = [self cachedCardForServiceId:kVSSServiceIDKeys];
-        VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
-        VSSSearchCardRequest *request = [[VSSSearchCardRequest alloc] initWithContext:context value:value type:type relations:relations unconfirmed:unconfirmed];
-        request.completionHandler = handler;
-        [self send:request];
-    }];
-}
-
 - (void)searchCardWithIdentityInfo:(VSSIdentityInfo * __nonnull)identityInfo relations:(NSArray <GUID *>* __nullable)relations unconfirmed:(BOOL)unconfirmed completionHandler:(void(^ __nullable)(NSArray <VSSCard *>* __nullable cards, NSError * __nullable error))completionHandler {
     if (identityInfo == nil || identityInfo.value.length == 0) {
         if (completionHandler != nil) {
@@ -713,39 +556,6 @@
     }];
 }
 
-- (void)deleteCardWithCardId:(GUID *)cardId identity:(NSDictionary *)identity privateKey:(VSSPrivateKey *)privateKey completionHandler:(void(^)(NSError *error))completionHandler {
-    if (cardId.length == 0 || identity.count == 0 || privateKey.key.length == 0) {
-        if (completionHandler != nil) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler([NSError errorWithDomain:kVSSRequestErrorDomain code:-217 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to delete a card: card id or/and idetity or/and private key is/are not set.", @"DeleteCardError") }]);
-            });
-        }
-        return;
-    }
-    
-    [self lazySetupServiceWithId:kVSSServiceIDKeys completionHandler:^(NSError * _Nullable error) {
-        if (error != nil) {
-            if (completionHandler != nil) {
-                completionHandler(error);
-            }
-            return;
-        }
-        
-        VSSRequestCompletionHandler handler = ^(VSSRequest *request) {
-            if (completionHandler != nil) {
-                completionHandler(request.error);
-            }
-            return;
-        };
-        
-        VSSCard *sCard = [self cachedCardForServiceId:kVSSServiceIDKeys];
-        VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:cardId password:nil];
-        VSSDeleteCardRequest *request = [[VSSDeleteCardRequest alloc] initWithContext:context cardId:cardId identity:identity];
-        request.completionHandler = handler;
-        [self send:request];
-    }];
-}
-
 - (void)deleteCardWithCardId:(GUID *)cardId identityInfo:(VSSIdentityInfo *)identityInfo privateKey:(VSSPrivateKey *)privateKey completionHandler:(void(^)(NSError *error))completionHandler {
     if (cardId.length == 0 || identityInfo == nil || identityInfo.value.length == 0 || privateKey.key.length == 0) {
         if (completionHandler != nil) {
@@ -781,53 +591,8 @@
 
 #pragma mark - Identities related functionality
 
-- (void)verifyIdentityWithType:(VSSIdentityType)type value:(NSString *)value completionHandler:(void(^)(GUID *actionId, NSError *error))completionHandler {
-    [self verifyIdentityWithType:type value:value extraFields:nil completionHandler:completionHandler];
-}
-
-- (void)verifyIdentityWithType:(VSSIdentityType)type value:(NSString *)value extraFields:(NSDictionary *)extraFields completionHandler:(void(^)(GUID *actionId, NSError *error))completionHandler {
-    if (type == VSSIdentityTypeUnknown || value.length == 0) {
-        if (completionHandler != nil) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, [NSError errorWithDomain:kVSSRequestErrorDomain code:-220 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to initiate verification procedure: identity type or/and identity value is/are not set.", @"VerifyIdentityError") }]);
-            });
-        }
-        return;
-    }
-    
-    [self lazySetupServiceWithId:kVSSServiceIDIdentity completionHandler:^(NSError * _Nullable error) {
-        if (error != nil) {
-            if (completionHandler != nil) {
-                completionHandler(nil, error);
-            }
-            return;
-        }
-        
-        VSSRequestCompletionHandler handler = ^(VSSRequest *request) {
-            if (request.error != nil) {
-                if (completionHandler != nil) {
-                    completionHandler(nil, request.error);
-                }
-                return;
-            }
-            
-            if (completionHandler != nil) {
-                VSSVerifyIdentityRequest *r = [request as:[VSSVerifyIdentityRequest class]];
-                completionHandler(r.actionId, nil);
-            }
-            return;
-        };
-        
-        VSSCard *sCard = [self cachedCardForServiceId:kVSSServiceIDIdentity];
-        VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDIdentity] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
-        VSSVerifyIdentityRequest *request = [[VSSVerifyIdentityRequest alloc] initWithContext:context type:type value:value extraFields:extraFields];
-        request.completionHandler = handler;
-        [self send:request];
-    }];
-}
-
 - (void)verifyIdentityWithInfo:(VSSIdentityInfo * __nonnull)identityInfo extraFields:(NSDictionary * __nullable)extraFields completionHandler:(void(^ __nullable)(GUID * __nullable actionId, NSError * __nullable error))completionHandler {
-    if (identityInfo.type == VSSIdentityTypeUnknown || identityInfo.value.length == 0) {
+    if (identityInfo == nil || identityInfo.value.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 completionHandler(nil, [NSError errorWithDomain:kVSSRequestErrorDomain code:-220 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to initiate verification procedure: identity type or/and identity value is/are not set.", @"VerifyIdentityError") }]);
@@ -867,47 +632,6 @@
     }];
 }
 
-- (void)confirmIdentityWithActionId:(GUID *)actionId code:(NSString *)code ttl:(NSNumber *)ttl ctl:(NSNumber *)ctl completionHandler:(void(^)(VSSIdentityType type, NSString *value, NSString *validationToken, NSError *error))completionHandler {
-    if (actionId.length == 0 || code.length == 0) {
-        if (completionHandler != nil) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(VSSIdentityTypeUnknown, nil, nil, [NSError errorWithDomain:kVSSRequestErrorDomain code:-221 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to confirm identity: action id or/and confirmation code is/are not set.", @"ConfirmIdentityError") }]);
-            });
-        }
-        return;
-    }
-    
-    [self lazySetupServiceWithId:kVSSServiceIDIdentity completionHandler:^(NSError * _Nullable error) {
-        if (error != nil) {
-            if (completionHandler != nil) {
-                completionHandler(VSSIdentityTypeUnknown, nil, nil, error);
-            }
-            return;
-        }
-        
-        VSSRequestCompletionHandler handler = ^(VSSRequest *request) {
-            if (request.error != nil) {
-                if (completionHandler != nil) {
-                    completionHandler(VSSIdentityTypeUnknown, nil, nil, request.error);
-                }
-                return;
-            }
-            
-            if (completionHandler != nil) {
-                VSSConfirmIdentityRequest *r = [request as:[VSSConfirmIdentityRequest class]];
-                completionHandler(r.type, r.value, r.validationToken, nil);
-            }
-            return;
-        };
-        
-        VSSCard *sCard = [self cachedCardForServiceId:kVSSServiceIDIdentity];
-        VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDIdentity] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
-        VSSConfirmIdentityRequest *request = [[VSSConfirmIdentityRequest alloc] initWithContext:context actionId:actionId code:code ttl:ttl ctl:ctl];
-        request.completionHandler = handler;
-        [self send:request];
-    }];
-}
-
 - (void)confirmIdentityWithActionId:(GUID * __nonnull)actionId code:(NSString * __nonnull)code tokenTtl:(NSUInteger)tokenTtl tokenCtl:(NSUInteger)tokenCtl completionHandler:(void(^ __nullable)(VSSIdentityInfo * __nullable identityInfo, NSError * __nullable error))completionHandler {
     if (actionId.length == 0 || code.length == 0) {
         if (completionHandler != nil) {
@@ -936,15 +660,14 @@
             
             if (completionHandler != nil) {
                 VSSConfirmIdentityRequest *r = [request as:[VSSConfirmIdentityRequest class]];
-                VSSIdentityInfo *info = [[VSSIdentityInfo alloc] initWithType:r.type value:r.value validationToken:r.validationToken];
-                completionHandler(info, nil);
+                completionHandler(r.identityInfo, nil);
             }
             return;
         };
         
         VSSCard *sCard = [self cachedCardForServiceId:kVSSServiceIDIdentity];
         VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDIdentity] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
-        VSSConfirmIdentityRequest *request = [[VSSConfirmIdentityRequest alloc] initWithContext:context actionId:actionId code:code ttl:[NSNumber numberWithUnsignedInteger:tokenTtl] ctl:[NSNumber numberWithUnsignedInteger:tokenCtl]];
+        VSSConfirmIdentityRequest *request = [[VSSConfirmIdentityRequest alloc] initWithContext:context actionId:actionId code:code ttl:tokenTtl ctl:tokenCtl];
         request.completionHandler = handler;
         [self send:request];
     }];
@@ -980,57 +703,6 @@
         VSSCard *sCard = [self cachedCardForServiceId:kVSSServiceIDPrivateKeys];
         VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDPrivateKeys] serviceCard:sCard requestEncrypt:@YES responseVerify:@NO privateKey:privateKey cardId:cardId password:nil];
         VSSStorePrivateKeyRequest *request = [[VSSStorePrivateKeyRequest alloc] initWithContext:context privateKey:privateKey.key cardId:cardId];
-        request.completionHandler = handler;
-        [self send:request];
-    }];
-}
-
-- (void)grabPrivateKeyWithIdentity:(NSDictionary *)identity cardId:(GUID *)cardId password:(NSString *)password completionHandler:(void(^)(NSData *keyData, GUID *cardId, NSError *error))completionHandler {
-    if (identity.count == 0 || cardId.length == 0) {
-        if (completionHandler != nil) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, nil, [NSError errorWithDomain:kVSSRequestErrorDomain code:-231 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to grab private key: card id or/and identity is/are not set.", @"GrabPrivateKeyError") }]);
-            });
-        }
-        return;
-    }
-    
-    [self lazySetupServiceWithId:kVSSServiceIDPrivateKeys completionHandler:^(NSError * _Nullable error) {
-        if (error != nil) {
-            if (completionHandler != nil) {
-                completionHandler(nil, nil, error);
-            }
-            return;
-        }
-        
-        VSSRequestCompletionHandler handler = ^(VSSRequest *request) {
-            if (request.error != nil) {
-                if (completionHandler != nil) {
-                    completionHandler(nil, nil, request.error);
-                }
-                return;
-            }
-            
-            if (completionHandler != nil) {
-                VSSGrabPrivateKeyRequest *r = [request as:[VSSGrabPrivateKeyRequest class]];
-                completionHandler(r.privateKey, r.cardId, nil);
-            }
-            return;
-        };
-        
-        NSString *responsePassword = password;
-        if (responsePassword.length == 0) {
-            responsePassword = [[[[[NSUUID UUID] UUIDString] lowercaseString] stringByReplacingOccurrencesOfString:@"-" withString:@""] substringToIndex:30];
-        }
-        else {
-            if (responsePassword.length > 30) {
-                responsePassword = [responsePassword substringToIndex:30];
-            }
-        }
-        
-        VSSCard *sCard = [self cachedCardForServiceId:kVSSServiceIDPrivateKeys];
-        VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDPrivateKeys] serviceCard:sCard requestEncrypt:@YES responseVerify:@NO privateKey:nil cardId:cardId password:responsePassword];
-        VSSGrabPrivateKeyRequest *request = [[VSSGrabPrivateKeyRequest alloc] initWithContext:context identity:identity cardId:cardId];
         request.completionHandler = handler;
         [self send:request];
     }];

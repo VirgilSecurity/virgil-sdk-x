@@ -8,14 +8,12 @@
 
 #import "VSSIdentity.h"
 #import "VSSIdentityInfo.h"
-#import "VSSModelCommons.h"
 #import "NSObject+VSSUtils.h"
 
 @interface VSSIdentity ()
 
-@property (nonatomic, assign, readwrite) VSSIdentityType type;
+@property (nonatomic, copy, readwrite) NSString * __nonnull type;
 @property (nonatomic, copy, readwrite) NSString * __nonnull value;
-@property (nonatomic, copy, readwrite) NSNumber * __nonnull isConfirmed;
 
 @end
 
@@ -23,34 +21,28 @@
 
 @synthesize type = _type;
 @synthesize value = _value;
-@synthesize isConfirmed = _isConfirmed;
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithId:(GUID *)Id createdAt:(NSDate *)createdAt type:(VSSIdentityType)type value:(NSString *)value isConfirmed:(NSNumber *)isConfirmed {
+- (instancetype)initWithId:(GUID *)Id createdAt:(NSDate *)createdAt type:(NSString *)type value:(NSString *)value {
     self = [super initWithId:Id createdAt:createdAt];
     if (self == nil) {
         return nil;
     }
     
-    _type = type;
+    _type = [type copy];
     _value = [value copy];
-    _isConfirmed = [isConfirmed copy];
     return self;
 }
 
-- (instancetype)initWithId:(GUID *)Id createdAt:(NSDate *)createdAt typeString:(NSString *)typeString value:(NSString *)value isConfirmed:(NSNumber *)isConfirmed {
-    return [self initWithId:Id createdAt:createdAt type:[[self class] identityTypeFromString:typeString] value:value isConfirmed:isConfirmed];
-}
-
 - (instancetype)initWithId:(GUID *)Id createdAt:(NSDate *)createdAt {
-    return [self initWithId:Id createdAt:createdAt type:VSSIdentityTypeUnknown value:@"" isConfirmed:@NO];
+    return [self initWithId:Id createdAt:createdAt type:@"" value:@""];
 }
 
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    return [[[self class] alloc] initWithId:self.Id createdAt:self.createdAt type:self.type value:self.value isConfirmed:self.isConfirmed];
+    return [[[self class] alloc] initWithId:self.Id createdAt:self.createdAt type:self.type value:self.value];
 }
 
 #pragma mark - NSCoding
@@ -58,25 +50,19 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     GUID *gid = [[aDecoder decodeObjectForKey:kVSSModelId] as:[GUID class]];
     NSDate *cat = [[aDecoder decodeObjectForKey:kVSSModelCreatedAt] as:[NSDate class]];
-    VSSIdentityType typ = (VSSIdentityType)[[[aDecoder decodeObjectForKey:kVSSModelType] as:[NSNumber class]] integerValue];
+    NSString *typ = [[aDecoder decodeObjectForKey:kVSSModelType] as:[NSString class]];
     NSString *val = [[aDecoder decodeObjectForKey:kVSSModelValue] as:[NSString class]];
-    NSNumber *isConf = [[aDecoder decodeObjectForKey:kVSSModelIsConfirmed] as:[NSNumber class]];
-    return [self initWithId:gid createdAt:cat type:typ value:val isConfirmed:isConf];
+    return [self initWithId:gid createdAt:cat type:typ value:val];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [super encodeWithCoder:aCoder];
 
-    NSNumber *t = [NSNumber numberWithInteger:(NSInteger)self.type];
-    if (t != nil) {
-        [aCoder encodeObject:t forKey:kVSSModelType];
+    if (self.type != nil) {
+        [aCoder encodeObject:self.type forKey:kVSSModelType];
     }
-    
     if (self.value != nil) {
         [aCoder encodeObject:self.value forKey:kVSSModelValue];
-    }
-    if (self.isConfirmed != nil) {
-        [aCoder encodeObject:self.isConfirmed forKey:kVSSModelIsConfirmed];
     }
 }
 
@@ -85,14 +71,11 @@
 + (instancetype)deserializeFrom:(NSDictionary *)candidate {
     VSSIdentity *identity = [super deserializeFrom:candidate];
     
-    VSSIdentityType type = [self identityTypeFromString:[candidate[kVSSModelType] as:[NSString class]]];
+    NSString *type = [candidate[kVSSModelType] as:[NSString class]];
     identity.type = type;
     
     NSString *value = [candidate[kVSSModelValue] as:[NSString class]];
     identity.value = value;
-    
-    NSNumber *confirmed = [candidate[kVSSModelIsConfirmed] as:[NSNumber class]];
-    identity.isConfirmed = confirmed;
     
     return identity;
 }
@@ -101,14 +84,6 @@
 
 - (VSSIdentityInfo * __nonnull)asIdentityInfo {
     return [[VSSIdentityInfo alloc] initWithType:self.type value:self.value validationToken:nil];
-}
-
-+ (NSString * __nonnull)stringFromIdentityType:(VSSIdentityType)identityType {
-    return [VSSIdentityTypeHelper toString:identityType];
-}
-
-+ (VSSIdentityType)identityTypeFromString:(NSString * __nullable)itCandidate {
-    return [VSSIdentityTypeHelper fromString:itCandidate];
 }
 
 @end

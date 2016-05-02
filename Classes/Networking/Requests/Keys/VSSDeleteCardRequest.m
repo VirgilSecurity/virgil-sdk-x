@@ -7,7 +7,6 @@
 //
 
 #import "VSSDeleteCardRequest.h"
-#import "VSSModelCommons.h"
 #import "VSSIdentityInfo.h"
 
 @interface VSSDeleteCardRequest ()
@@ -20,7 +19,7 @@
 
 @synthesize cardId = _cardId;
 
-- (instancetype)initWithContext:(VSSRequestContext *)context cardId:(GUID *)cardId identity:(NSDictionary *)identity {
+- (instancetype)initWithContext:(VSSRequestContext *)context cardId:(GUID *)cardId identityInfo:(VSSIdentityInfo *)identityInfo {
     self = [super initWithContext:context];
     if (self == nil) {
         return nil;
@@ -28,18 +27,15 @@
     
     _cardId = cardId;
     [self setRequestMethod:DELETE];
-    if (identity.count > 0) {
-        [self setRequestBodyWithObject:@{ kVSSModelIdentity: identity }];
+    NSDictionary *identityDict = [identityInfo asDictionary];
+    if (identityDict.count > 0) {
+        [self setRequestBodyWithObject:@{ kVSSModelIdentity: identityDict }];
     }
     return self;
 }
 
-- (instancetype)initWithContext:(VSSRequestContext *)context cardId:(GUID *)cardId identityInfo:(VSSIdentityInfo *)identityInfo {
-    return [self initWithContext:context cardId:cardId identity:[identityInfo asDictionary]];
-}
-
 - (instancetype)initWithContext:(VSSRequestContext *)context {
-    return [self initWithContext:context cardId:@"" identity:@{}];
+    return [self initWithContext:context cardId:@"" identityInfo:[[VSSIdentityInfo alloc] init]];
 }
 
 #pragma mark - Overrides

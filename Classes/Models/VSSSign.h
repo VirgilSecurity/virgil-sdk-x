@@ -7,7 +7,7 @@
 //
 
 #import "VSSBaseModel.h"
-#import "VSSModelTypes.h"
+#import "VSSModelCommons.h"
 
 @interface VSSSign : VSSBaseModel
 

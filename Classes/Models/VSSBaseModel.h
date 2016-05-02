@@ -7,7 +7,7 @@
 //
 
 #import "VSSModel.h"
-#import "VSSModelTypes.h"
+#import "VSSModelCommons.h"
 
 @interface VSSBaseModel : VSSModel
 

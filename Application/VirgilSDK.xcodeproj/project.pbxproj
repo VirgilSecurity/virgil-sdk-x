@@ -107,8 +107,6 @@
 		36590EF71CD252E400BE9338 /* VSSValidationTokenGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 36590EF51CD252E400BE9338 /* VSSValidationTokenGenerator.m */; };
 		36590EFA1CD269FC00BE9338 /* VSSIdentityInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36590EF91CD269FC00BE9338 /* VSSIdentityInfo.m */; };
 		36590EFB1CD269FC00BE9338 /* VSSIdentityInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36590EF91CD269FC00BE9338 /* VSSIdentityInfo.m */; };
-		36590EFD1CD26C9B00BE9338 /* VSSModelTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 36590EFC1CD26C9B00BE9338 /* VSSModelTypes.m */; };
-		36590EFE1CD26C9B00BE9338 /* VSSModelTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 36590EFC1CD26C9B00BE9338 /* VSSModelTypes.m */; };
 		3664028D1C74CC5F0044B853 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362CFDED1C74C02E002A3E93 /* LaunchScreen.xib */; };
 		3664028E1C74CC5F0044B853 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 362CFDEF1C74C02E002A3E93 /* Main.storyboard */; };
 		3664028F1C74CC710044B853 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362CFDED1C74C02E002A3E93 /* LaunchScreen.xib */; };
@@ -255,7 +253,6 @@
 		36590EF51CD252E400BE9338 /* VSSValidationTokenGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSValidationTokenGenerator.m; sourceTree = "<group>"; };
 		36590EF81CD269FC00BE9338 /* VSSIdentityInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSIdentityInfo.h; sourceTree = "<group>"; };
 		36590EF91CD269FC00BE9338 /* VSSIdentityInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSIdentityInfo.m; sourceTree = "<group>"; };
-		36590EFC1CD26C9B00BE9338 /* VSSModelTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSModelTypes.m; sourceTree = "<group>"; };
 		368B6BA11C52BCEC00A1C11F /* VSSCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSCard.h; sourceTree = "<group>"; };
 		368B6BA21C52BCEC00A1C11F /* VSSCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCard.m; sourceTree = "<group>"; };
 		369033501C502C6200EEA634 /* VSSIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSIdentity.h; sourceTree = "<group>"; };
@@ -288,7 +285,6 @@
 		36FF4B871C4D7F2F00E901F3 /* VSSModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSModel.h; sourceTree = "<group>"; };
 		36FF4B881C4D7F2F00E901F3 /* VSSModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSModel.m; sourceTree = "<group>"; };
 		36FF4B891C4D7F2F00E901F3 /* VSSSerializable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSSerializable.h; sourceTree = "<group>"; };
-		36FF4B8A1C4D7F2F00E901F3 /* VSSModelTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSModelTypes.h; sourceTree = "<group>"; };
 		36FF4B8D1C4D7FED00E901F3 /* NSObject+VSSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+VSSUtils.h"; sourceTree = "<group>"; };
 		36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+VSSUtils.m"; sourceTree = "<group>"; };
 		36FF4B8F1C4D7FED00E901F3 /* NSString+VSSXMLEscape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+VSSXMLEscape.h"; sourceTree = "<group>"; };
@@ -453,8 +449,6 @@
 			children = (
 				361403481BB2E0FC002E69CA /* VSSModelCommons.h */,
 				361403491BB2E0FC002E69CA /* VSSModelCommons.m */,
-				36FF4B8A1C4D7F2F00E901F3 /* VSSModelTypes.h */,
-				36590EFC1CD26C9B00BE9338 /* VSSModelTypes.m */,
 				36FF4B891C4D7F2F00E901F3 /* VSSSerializable.h */,
 				36FF4B871C4D7F2F00E901F3 /* VSSModel.h */,
 				36FF4B881C4D7F2F00E901F3 /* VSSModel.m */,
@@ -1036,7 +1030,6 @@
 				3606B2AA1BBB1FBF0074B4C1 /* VSSPublicKey.m in Sources */,
 				362CFE401C74C8F0002A3E93 /* VSSCard.m in Sources */,
 				3606B2A61BBB1FBF0074B4C1 /* VSSBaseModel.m in Sources */,
-				36590EFE1CD26C9B00BE9338 /* VSSModelTypes.m in Sources */,
 				3606B2A71BBB1FBF0074B4C1 /* VSSKeysError.m in Sources */,
 				362CFE431C74C8FA002A3E93 /* VSSSign.m in Sources */,
 				362CFE4A1C74C916002A3E93 /* VSSRequestContext.m in Sources */,
@@ -1108,7 +1101,6 @@
 				3644046C1C6D2FCC000EB66D /* VSSJSONRequestExtended.m in Sources */,
 				36C1D1711C6A947E009ED570 /* VSSRequestContext.m in Sources */,
 				36005FDA1C73C70F007E5CBF /* VSSDeletePrivateKeyRequest.m in Sources */,
-				36590EFD1CD26C9B00BE9338 /* VSSModelTypes.m in Sources */,
 				36F598741C628D95007137B2 /* VSSSign.m in Sources */,
 				36005FD41C73C6D7007E5CBF /* VSSGrabPrivateKeyRequest.m in Sources */,
 				36005FBC1C7327B6007E5CBF /* VSSSearchAppCardRequest.m in Sources */,

@@ -7,7 +7,7 @@
 //
 
 #import "VSSPrivateKeysBaseRequest.h"
-#import "VSSModelTypes.h"
+#import "VSSModelCommons.h"
 
 @class VSSIdentityInfo;
 
@@ -16,7 +16,6 @@
 @property (nonatomic, strong, readonly) NSData * __nullable privateKey;
 @property (nonatomic, strong, readonly) GUID * __nullable cardId;
 
-- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context identity:(NSDictionary * __nonnull)identity cardId:(GUID * __nonnull)cardId NS_DESIGNATED_INITIALIZER;
-- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context identityInfo:(VSSIdentityInfo * __nonnull)identityInfo cardId:(GUID * __nonnull)cardId;
+- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context identityInfo:(VSSIdentityInfo * __nonnull)identityInfo cardId:(GUID * __nonnull)cardId NS_DESIGNATED_INITIALIZER;
 
 @end

@@ -8,7 +8,6 @@
 
 #import "VSSValidationTokenGenerator.h"
 
-#import "VSSModelCommons.h"
 #import "VSSIdentityInfo.h"
 #import "VSSPrivateKey.h"
 
@@ -16,8 +15,8 @@
 
 @implementation VSSValidationTokenGenerator
 
-+ (NSString *)validationTokenForIdentityType:(VSSIdentityType)type value:(NSString *)value privateKey:(VSSPrivateKey *)privateKey error:(NSError **)error {
-    if (type == VSSIdentityTypeUnknown || value.length == 0 || privateKey.key.length == 0) {
++ (NSString *)validationTokenForIdentityType:(NSString *)type value:(NSString *)value privateKey:(VSSPrivateKey *)privateKey error:(NSError **)error {
+    if (type.length == 0 || value.length == 0 || privateKey.key.length == 0) {
         if (error) {
             *error = [NSError errorWithDomain:kVSSErrorDomain code:-1900 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to generate validation token: required parameters are missing or incorrect.", @"Impossible to generate validation token: required parameters are missing or incorrect.") }];
         }
@@ -25,7 +24,7 @@
     }
     
     NSString *uuid = [[NSUUID UUID] UUIDString];
-    NSString *sigString = [NSString stringWithFormat:@"%@%@%@", uuid, [VSSIdentityTypeHelper toString:type], value];
+    NSString *sigString = [NSString stringWithFormat:@"%@%@%@", uuid, type, value];
     NSData *sigData = [sigString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
     if (sigData.length == 0) {
         if (error) {

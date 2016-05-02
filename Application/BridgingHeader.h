@@ -10,7 +10,6 @@
 #define VirgilKeys_BridgingHeader_h
 
 #import "VSSModelCommons.h"
-#import "VSSModelTypes.h"
 #import "VSSSerializable.h"
 
 #import "VSSModel.h"

@@ -109,40 +109,6 @@ let client = VSSClient(applicationToken: <# Virgil Access Token #>)
 //...
 ```
 
-## Client setup 
-
-Before any calls to Virgil Security Services VSSClient instance should perform an additional setup.
-
-```objective-c
-//...
-[self.client setupClientWithCompletionHandler:^(NSError * _Nullable error) 
-	{
-    if (error != nil) {
-        NSLog(@"Virgil Client has not been set up properly: %@", 
-        		[error localizedDescription]);
-        return;        
-    }
-    // VSSClient is ready to work.
-    //...
-}];
-//...
-```
-
-###### Swift
-```swift
-//...
-self.client.setupClientWithCompletionHandler { (error) -> Void in 
-    if error != nil {
-        print("Virgil Client has not been set up properly: 
-        		\(error!.localizedDescription)")
-        return
-    }
-    // VSSClient is ready to work.
-    //...
-}
-//...
-```
-
 ## Identity Check
 
 All the Virgil Security services are strongly interconnected with the Identity Service. It determines the ownership of the identity being checked using particular mechanisms and as a result it generates a temporary token to be used for the operations which require an identity verification. 
@@ -195,24 +161,18 @@ Confirm the identity and get a temporary token.
 ###### Objective-C
 ```objective-c
 //...
-// ttl parameter is NSNumber integer for "Time to live" in seconds value.
-// ctl parameter is NSNumber integer for "Counts to live" value. 
-[self.client 
-	confirmIdentityWithActionId:<# Action ID from verification step #> 
-	code:<# Code from email #> 
-	ttl:<# Time to live or nil #> 
-	ctl:<# Counts to live or nil #> 
-	completionHandler:^(VSSIdentityType type, 
-		NSString *value, 
-		NSString *validationToken, 
-		NSError *error) {
-		    if (error != nil) {
-		        NSLog(@"Error identity confirmation: %@", 
-		        	[error localizedDescription]);
-		        return;
-		    }
+[self.client confirmIdentityWithActionId:<# Action ID from verification step #> 
+                                    code:<# Code from email #> 
+                                tokenTtl:<# Time to live or 0 for default #> 
+                                tokenCtl:<# Counts to live or 0 for default #> 
+                       completionHandler:^(VSSIdentityInfo * _Nullable identityInfo, NSError * _Nullable error) {
+    if (error != nil) {
+        NSLog(@"Error identity confirmation: %@", 
+            [error localizedDescription]);
+        return;
+	}
 
-    // Use validationToken for further operations, e.g publishing a Virgil Card.
+    // Use VSSIdentityInfo with validationToken for further operations, e.g publishing a Virgil Card.
     //...
 }];
 //...
@@ -221,22 +181,15 @@ Confirm the identity and get a temporary token.
 ###### Swift
 ```swift
 //...
-// ttl parameter is NSNumber integer for "Time to live" in seconds value.
-// ctl parameter is NSNumber integer for "Counts to live" value.
-self.client.confirmIdentityWithActionId
-	(<# Action ID from verification step #>, 
-	code: <# Code from email #>, 
-	ttl: <# Time to live or nil #>, 
-	ctl: <# Counts to live or nil #>, 
-	completionHandler: { (itype, ivalue, ivalToken, error) -> Void in
+self.client.confirmIdentityWithActionId<# Action ID from verification step #>, 
+    code: <# Code from email #>, 
+    tokenTtl: <# Time to live or 0 for default #>, 
+    tokenCtl: <# Counts to live or 0 for default #>) { identityInfo, error in
     if error != nil {
         print("Error identity confirmation: \(error!.localizedDescription)")
         return
-    }
-    
-    // Use ivalToken for further operations, e.g publishing a Virgil Card.
-    //...    
-})
+    } 
+}
 //...
 ```
 

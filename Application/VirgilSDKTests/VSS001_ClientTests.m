@@ -95,8 +95,8 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
         
         XCTAssertNotNil(self.card, @"Virgil Card should be created.");
         XCTAssertNotNil(self.card.Id, @"Virgil Card should have ID.");
-        XCTAssertTrue([[self.card isConfirmed] boolValue], @"Virgil Card should be created confirmed.");
-        XCTAssertNotNil([self.card createdAt], @"Virgil Card should have correct creation date.");
+        XCTAssertNotNil(self.card.authorizedBy, @"Virgil Card should be created confirmed.");
+        XCTAssertNotNil(self.card.createdAt, @"Virgil Card should have correct creation date.");
         
         [ex fulfill];
     }];
@@ -166,7 +166,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
                 
                 XCTAssertNotNil(card, @"Virgil Card should be created.");
                 XCTAssertNotNil(card.Id, @"Virgil Card should have ID.");
-                XCTAssertFalse([[card isConfirmed] boolValue], @"Virgil Card should be created unconfirmed.");
+                XCTAssertNil(card.authorizedBy, @"Virgil Card should be created unconfirmed.");
                 
                 [ex fulfill];
             }];
@@ -313,8 +313,8 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
         
         XCTAssertNotNil(card, @"Virgil Card should be created.");
         XCTAssertNotNil(card.Id, @"Virgil Card should have ID.");
-        XCTAssertFalse([[card isConfirmed] boolValue], @"Virgil Card should be created unconfirmed.");
-        XCTAssertNotNil([card createdAt], @"Virgil Card should have correct creation date.");
+        XCTAssertNil(card.authorizedBy, @"Virgil Card should be created unconfirmed.");
+        XCTAssertNotNil(card.createdAt, @"Virgil Card should have correct creation date.");
         
         [ex fulfill];
     }];
@@ -340,7 +340,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
         return;
     }
     
-    VSSIdentityInfo *identity = [[VSSIdentityInfo alloc] initWithType:VSSIdentityTypeCustom value:obfuscated validationToken:nil];
+    VSSIdentityInfo *identity = [[VSSIdentityInfo alloc] initWithType:@"private" value:obfuscated validationToken:nil];
     VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:self.keyPair.privateKey password:nil];
     [self.client createCardWithPublicKey:self.keyPair.publicKey identityInfo:identity data:nil signs:nil privateKey:privateKey completionHandler:^(VSSCard *card, NSError *error) {
         if (error != nil) {
@@ -350,8 +350,8 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
         
         XCTAssertNotNil(card, @"Virgil Card should be created.");
         XCTAssertNotNil(card.Id, @"Virgil Card should have ID.");
-        XCTAssertFalse([[card isConfirmed] boolValue], @"Virgil Card should be created unconfirmed.");
-        XCTAssertNotNil([card createdAt], @"Virgil Card should have correct creation date.");
+        XCTAssertNil(card.authorizedBy, @"Virgil Card should be created unconfirmed.");
+        XCTAssertNotNil(card.createdAt, @"Virgil Card should have correct creation date.");
         
         [ex fulfill];
     }];
@@ -376,7 +376,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
         XCTFail(@"Error obfuscating identity value.");
         return;
     }
-    VSSIdentityInfo *identity = [[VSSIdentityInfo alloc] initWithType:VSSIdentityTypeCustom value:obfuscated validationToken:nil];
+    VSSIdentityInfo *identity = [[VSSIdentityInfo alloc] initWithType:@"private" value:obfuscated validationToken:nil];
     NSData *keyData = [kApplicationPrivateKey dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
     VSSPrivateKey *appKey = [[VSSPrivateKey alloc] initWithKey:keyData password:@"secret"];
     NSError *error = nil;
@@ -395,8 +395,8 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
         
         XCTAssertNotNil(card, @"Virgil Card should be created.");
         XCTAssertNotNil(card.Id, @"Virgil Card should have ID.");
-        XCTAssertTrue([[card isConfirmed] boolValue], @"Virgil Card should be created confirmed.");
-        XCTAssertNotNil([card createdAt], @"Virgil Card should have correct creation date.");
+        XCTAssertNotNil(card.authorizedBy, @"Virgil Card should be created confirmed.");
+        XCTAssertNotNil(card.createdAt, @"Virgil Card should have correct creation date.");
         
         [ex fulfill];
     }];
@@ -418,7 +418,7 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
 }
 
 - (VSSIdentityInfo *)identity {
-    return [[VSSIdentityInfo alloc] initWithType:VSSIdentityTypeEmail value:[self identityValue] validationToken:nil];
+    return [[VSSIdentityInfo alloc] initWithType:kVSSIdentityTypeEmail value:[self identityValue] validationToken:nil];
 }
 
 - (void)createConfirmedCardWithConfirmationHandler:(void(^)(NSError *))handler {

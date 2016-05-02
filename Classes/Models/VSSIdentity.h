@@ -7,40 +7,17 @@
 //
 
 #import "VSSBaseModel.h"
-#import "VSSModelTypes.h"
+#import "VSSModelCommons.h"
 
 @class VSSIdentityInfo;
 
 @interface VSSIdentity : VSSBaseModel
 
-@property (nonatomic, assign, readonly) VSSIdentityType type;
+@property (nonatomic, copy, readonly) NSString * __nonnull type;
 @property (nonatomic, copy, readonly) NSString * __nonnull value;
-@property (nonatomic, copy, readonly) NSNumber * __nonnull isConfirmed;
 
-- (instancetype __nonnull)initWithId:(GUID * __nonnull)Id createdAt:(NSDate * __nullable)createdAt type:(VSSIdentityType)type value:(NSString * __nonnull)value isConfirmed:(NSNumber * __nonnull)isConfirmed NS_DESIGNATED_INITIALIZER;
-- (instancetype __nonnull)initWithId:(GUID * __nonnull)Id createdAt:(NSDate *__nullable)createdAt typeString:(NSString * __nonnull)typeString value:(NSString * __nonnull)value isConfirmed:(NSNumber * __nonnull)isConfirmed;
+- (instancetype __nonnull)initWithId:(GUID * __nonnull)Id createdAt:(NSDate *__nullable)createdAt type:(NSString * __nonnull)type value:(NSString * __nonnull)value NS_DESIGNATED_INITIALIZER;
 
 - (VSSIdentityInfo * __nonnull)asIdentityInfo;
-
-// Convenient methods for converting enums to strings and vice-versa.
-/**
- * @brief Converts VSSIdentityType to NSString.
- * @deprecated. Use VSSIdentityTypeHelper +toString: instead.
- *
- * @param identityType VSSIdentityType which have to be converted.
- * 
- * @returns NSString representation of the VSSIdentityType
- */
-+ (NSString * __nonnull)stringFromIdentityType:(VSSIdentityType)identityType;
-
-/**
- * @brief Converts NSString to VSSIdentityType.
- * @deprecated. Use VSSIdentityTypeHelper +fromString: instead.
- *
- * @param itCandidate NSString representation of the VSSIdentityType.
- *
- * @returns VSSIdentityType corresponding given NSString value.
- */
-+ (VSSIdentityType)identityTypeFromString:(NSString * __nullable)itCandidate;
 
 @end

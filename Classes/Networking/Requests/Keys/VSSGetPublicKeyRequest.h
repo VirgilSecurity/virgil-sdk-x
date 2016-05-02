@@ -7,7 +7,7 @@
 //
 
 #import "VSSKeysBaseRequest.h"
-#import "VSSModelTypes.h"
+#import "VSSModelCommons.h"
 
 @class VSSPublicKeyExtended;
 

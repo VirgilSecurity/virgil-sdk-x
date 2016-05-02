@@ -7,7 +7,6 @@
 //
 
 #import "VSSSearchCardRequest.h"
-#import "VSSModelCommons.h"
 #import "VSSCard.h"
 #import "VSSPublicKey.h"
 #import "VSSIdentityInfo.h"
@@ -25,37 +24,31 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithContext:(VSSRequestContext *)context value:(NSString *)value type:(VSSIdentityType)type relations:(NSArray <GUID *>*)relations unconfirmed:(NSNumber *)unconfirmed {
+- (instancetype)initWithContext:(VSSRequestContext *)context identityInfo:(VSSIdentityInfo *)identityInfo relations:(NSArray <GUID *>*)relations unconfirmed:(BOOL)unconfirmed {
     self = [super initWithContext:context];
     if (self == nil) {
         return nil;
     }
     
     NSMutableDictionary *body = [[NSMutableDictionary alloc] init];
-    if (value.length > 0) {
-        body[kVSSModelValue] = value;
+    if (identityInfo.value.length > 0) {
+        body[kVSSModelValue] = identityInfo.value;
     }
-    if (type != VSSIdentityTypeUnknown) {
-        NSString *str = [VSSIdentityTypeHelper toString:type];
-        body[kVSSModelType] = str;
+    if (identityInfo.type.length > 0) {
+        body[kVSSModelType] = identityInfo.type;
     }
     if (relations.count > 0) {
         body[kVSSModelRelations] = relations;
     }
-    if (unconfirmed != nil) {
-        NSString *str = ([unconfirmed boolValue]) ? kVSSStringValueTrue : kVSSStringValueFalse;
-        body[kVSSModelIncludeUnconfirmed] = str;
-    }
+    NSString *str = (unconfirmed) ? kVSSStringValueTrue : kVSSStringValueFalse;
+    body[kVSSModelIncludeUnconfirmed] = str;
+
     [self setRequestBodyWithObject:body];
     return self;
 }
 
-- (instancetype)initWithContext:(VSSRequestContext *)context identityInfo:(VSSIdentityInfo *)identityInfo relations:(NSArray <GUID *>*)relations unconfirmed:(BOOL)unconfirmed {
-    return [self initWithContext:context value:identityInfo.value type:identityInfo.type relations:relations unconfirmed:[NSNumber numberWithBool:unconfirmed]];
-}
-
 - (instancetype)initWithContext:(VSSRequestContext *)context {
-    return [self initWithContext:context value:@"" type:VSSIdentityTypeUnknown relations:nil unconfirmed:nil];
+    return [self initWithContext:context identityInfo:[[VSSIdentityInfo alloc] init] relations:nil unconfirmed:NO];
 }
 
 #pragma mark - Overrides

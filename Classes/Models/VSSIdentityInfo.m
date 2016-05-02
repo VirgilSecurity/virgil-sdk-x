@@ -7,8 +7,6 @@
 //
 
 #import "VSSIdentityInfo.h"
-
-#import "VSSModelCommons.h"
 #import "NSObject+VSSUtils.h"
 
 @implementation VSSIdentityInfo
@@ -17,24 +15,24 @@
 @synthesize value = _value;
 @synthesize validationToken = _validationToken;
 
-- (instancetype)initWithType:(VSSIdentityType)type value:(NSString *)value validationToken:(NSString *)validationToken {
+- (instancetype)initWithType:(NSString *)type value:(NSString *)value validationToken:(NSString *)validationToken {
     self = [super init];
     if (self == nil) {
         return nil;
     }
     
-    _type = type;
+    _type = (type == nil) ? @"" : [type copy];
     _value = (value == nil) ? @"" : [value copy];
     _validationToken = [validationToken copy];
     return self;
 }
 
-- (instancetype)Type:(VSSIdentityType)type value:(NSString *)value {
+- (instancetype)initWithType:(NSString *)type value:(NSString *)value {
     return [self initWithType:type value:value validationToken:nil];
 }
 
 - (instancetype)init {
-    return [self initWithType:VSSIdentityTypeUnknown value:@"" validationToken:nil];
+    return [self initWithType:@"" value:@"" validationToken:nil];
 }
 
 #pragma mark - NSCopying
@@ -46,7 +44,7 @@
 #pragma mark - NSCoding
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    VSSIdentityType typ = (VSSIdentityType)[[[aDecoder decodeObjectForKey:kVSSModelType] as:[NSNumber class]] integerValue];
+    NSString *typ = [[aDecoder decodeObjectForKey:kVSSModelType] as:[NSString class]];
     NSString *val = [[aDecoder decodeObjectForKey:kVSSModelValue] as:[NSString class]];
     NSString *token = [[aDecoder decodeObjectForKey:kVSSModelValidationToken] as:[NSString class]];
     return [self initWithType:typ value:val validationToken:token];
@@ -55,11 +53,9 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [super encodeWithCoder:aCoder];
     
-    NSNumber *t = [NSNumber numberWithInteger:(NSInteger)self.type];
-    if (t != nil) {
-        [aCoder encodeObject:t forKey:kVSSModelType];
+    if (self.type != nil) {
+        [aCoder encodeObject:self.type forKey:kVSSModelType];
     }
-    
     if (self.value != nil) {
         [aCoder encodeObject:self.value forKey:kVSSModelValue];
     }
@@ -73,7 +69,7 @@
 + (instancetype)deserializeFrom:(NSDictionary *)candidate {
     VSSIdentityInfo *identityInfo = [super deserializeFrom:candidate];
     
-    VSSIdentityType type = [VSSIdentityTypeHelper fromString:[candidate[kVSSModelType] as:[NSString class]]];
+    NSString *type = [candidate[kVSSModelType] as:[NSString class]];
     identityInfo.type = type;
     
     NSString *value = [candidate[kVSSModelValue] as:[NSString class]];
@@ -89,7 +85,9 @@
 
 - (NSDictionary *)asDictionary {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    dict[kVSSModelType] = [VSSIdentityTypeHelper toString:self.type];
+    if (self.type != nil) {
+        dict[kVSSModelType] = self.type;
+    }
     if (self.value != nil) {
         dict[kVSSModelValue] = self.value;
     }
@@ -107,12 +105,12 @@
         return NO;
     }
     /// The same value and the same type.
-    return ([self.value isEqualToString:candidate.value] && (self.type == candidate.type));
+    return ([self.value isEqualToString:candidate.value] && [self.type isEqualToString:candidate.type]);
     
 }
 
 - (NSUInteger)hash {
-    return [[NSString stringWithFormat:@"%@-%@", [VSSIdentityTypeHelper toString:self.type], self.value] hash];
+    return [[NSString stringWithFormat:@"%@-%@", self.type, self.value] hash];
 }
 
 

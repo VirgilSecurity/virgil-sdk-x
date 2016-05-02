@@ -25,7 +25,7 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithContext:(VSSRequestContext *)context publicKeyId:(GUID *)pkId identity:(NSDictionary *)identity data:(NSDictionary *)data signs:(NSArray <NSDictionary *>*)signs {
+- (instancetype)initWithContext:(VSSRequestContext *)context publicKeyId:(GUID *)pkId identityInfo:(VSSIdentityInfo *)identityInfo data:(NSDictionary *)data signs:(NSArray <NSDictionary *>*)signs {
     self = [super initWithContext:context];
     if (self == nil) {
         return nil;
@@ -35,39 +35,9 @@
     if (pkId.length > 0) {
         body[kVSSModelPublicKeyId] = pkId;
     }
-    if (identity.count > 0) {
-        body[kVSSModelIdentity] = identity;
-    }
-    if (data.count > 0) {
-        body[kVSSModelData] = data;
-    }
-    if (signs.count > 0) {
-        body[kVSSModelSigns] = signs;
-    }
-    [self setRequestBodyWithObject:body];
-    
-    return self;
-}
-
-- (instancetype)initWithContext:(VSSRequestContext *)context publicKeyId:(GUID *)pkId identityInfo:(VSSIdentityInfo *)identityInfo data:(NSDictionary *)data signs:(NSArray <NSDictionary *>*)signs {
-    return [self initWithContext:context publicKeyId:pkId identity:[identityInfo asDictionary] data:data signs:signs];
-}
-
-- (instancetype)initWithContext:(VSSRequestContext *)context publicKey:(NSData *)publicKey identity:(NSDictionary *)identity data:(NSDictionary *)data signs:(NSArray <NSDictionary *>*)signs {
-    self = [super initWithContext:context];
-    if (self == nil) {
-        return nil;
-    }
-    
-    NSMutableDictionary *body = [[NSMutableDictionary alloc] init];
-    if (publicKey.length > 0) {
-        NSString *base64 = [publicKey base64EncodedStringWithOptions:0];
-        if (base64.length > 0) {
-            body[kVSSModelPublicKey] = base64;
-        }
-    }
-    if (identity.count > 0) {
-        body[kVSSModelIdentity] = identity;
+    NSDictionary *identityDict = [identityInfo asDictionary];
+    if (identityDict.count > 0) {
+        body[kVSSModelIdentity] = identityDict;
     }
     if (data.count > 0) {
         body[kVSSModelData] = data;
@@ -81,11 +51,35 @@
 }
 
 - (instancetype)initWithContext:(VSSRequestContext *)context publicKey:(NSData *)publicKey identityInfo:(VSSIdentityInfo *)identityInfo data:(NSDictionary *)data signs:(NSArray <NSDictionary *>*)signs {
-    return [self initWithContext:context publicKey:publicKey identity:[identityInfo asDictionary] data:data signs:signs];
+    self = [super initWithContext:context];
+    if (self == nil) {
+        return nil;
+    }
+    
+    NSMutableDictionary *body = [[NSMutableDictionary alloc] init];
+    if (publicKey.length > 0) {
+        NSString *base64 = [publicKey base64EncodedStringWithOptions:0];
+        if (base64.length > 0) {
+            body[kVSSModelPublicKey] = base64;
+        }
+    }
+    NSDictionary *identityDict = [identityInfo asDictionary];
+    if (identityDict.count > 0) {
+        body[kVSSModelIdentity] = identityDict;
+    }
+    if (data.count > 0) {
+        body[kVSSModelData] = data;
+    }
+    if (signs.count > 0) {
+        body[kVSSModelSigns] = signs;
+    }
+    [self setRequestBodyWithObject:body];
+    
+    return self;
 }
 
 - (instancetype)initWithContext:(VSSRequestContext *)context {
-    return [self initWithContext:context publicKey:[[NSData alloc] init] identity:@{} data:nil signs:@[]];
+    return [self initWithContext:context publicKey:[[NSData alloc] init] identityInfo:[[VSSIdentityInfo alloc] init] data:nil signs:@[]];
 }
 
 #pragma mark - Overrides

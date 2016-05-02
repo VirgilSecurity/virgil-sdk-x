@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VSSModelTypes.h"
+#import "VSSModelCommons.h"
 
 @class VSSPrivateKey;
 @class VSSIdentityInfo;
 
 @interface VSSValidationTokenGenerator : NSObject
 
-+ (NSString * __nullable)validationTokenForIdentityType:(VSSIdentityType)type value:(NSString * __nonnull)value privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)error;
++ (NSString * __nullable)validationTokenForIdentityType:(NSString * __nonnull)type value:(NSString * __nonnull)value privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)error;
 + (void)setValidationTokenForIdentityInfo:(VSSIdentityInfo * __nonnull)identityInfo privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)error;
 
 @end

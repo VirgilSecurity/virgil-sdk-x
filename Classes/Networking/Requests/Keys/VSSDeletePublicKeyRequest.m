@@ -23,7 +23,7 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithContext:(VSSRequestContext *)context publicKeyId:(GUID *)publicKeyId identities:(NSArray <NSDictionary*>*)identities {
+- (instancetype)initWithContext:(VSSRequestContext *)context publicKeyId:(GUID *)publicKeyId identityInfoList:(NSArray <VSSIdentityInfo*>*)identityInfoList {
     self = [super initWithContext:context];
     if (self == nil) {
         return nil;
@@ -32,27 +32,20 @@
     _publicKeyId = publicKeyId;
     
     [self setRequestMethod:DELETE];
-    if (identities.count > 0) {
-        NSDictionary *idtts = @{ kVSSModelIdentities: identities };
+    
+    NSMutableArray *list = [NSMutableArray array];
+    for (VSSIdentityInfo *identity in identityInfoList) {
+        [list addObject:[identity asDictionary]];
+    }
+    if (list.count > 0) {
+        NSDictionary *idtts = @{ kVSSModelIdentities: list };
         [self setRequestBodyWithObject:idtts];
     }
     return self;
 }
 
-- (instancetype)initWithContext:(VSSRequestContext *)context publicKeyId:(GUID *)publicKeyId identityInfoList:(NSArray <VSSIdentityInfo*>*)identityInfoList {
-    NSMutableArray *identities = [NSMutableArray array];
-    for (VSSIdentityInfo *identity in identityInfoList) {
-        [identities addObject:[identity asDictionary]];
-    }
-    if (identities.count == 0) {
-        identities = nil;
-    }
-    
-    return [self initWithContext:context publicKeyId:publicKeyId identities:identities];
-}
-
 - (instancetype)initWithContext:(VSSRequestContext *)context {
-    return [self initWithContext:context publicKeyId:@"" identities:@[]];
+    return [self initWithContext:context publicKeyId:@"" identityInfoList:@[]];
 }
 
 #pragma mark - Overrides
