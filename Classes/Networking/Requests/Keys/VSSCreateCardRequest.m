@@ -25,7 +25,7 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithContext:(VSSRequestContext *)context publicKeyId:(GUID *)pkId identityInfo:(VSSIdentityInfo *)identityInfo data:(NSDictionary *)data signs:(NSArray <NSDictionary *>*)signs {
+- (instancetype)initWithContext:(VSSRequestContext *)context publicKeyId:(GUID *)pkId identityInfo:(VSSIdentityInfo *)identityInfo data:(NSDictionary *)data {
     self = [super initWithContext:context];
     if (self == nil) {
         return nil;
@@ -42,15 +42,12 @@
     if (data.count > 0) {
         body[kVSSModelData] = data;
     }
-    if (signs.count > 0) {
-        body[kVSSModelSigns] = signs;
-    }
     [self setRequestBodyWithObject:body];
     
     return self;
 }
 
-- (instancetype)initWithContext:(VSSRequestContext *)context publicKey:(NSData *)publicKey identityInfo:(VSSIdentityInfo *)identityInfo data:(NSDictionary *)data signs:(NSArray <NSDictionary *>*)signs {
+- (instancetype)initWithContext:(VSSRequestContext *)context publicKey:(NSData *)publicKey identityInfo:(VSSIdentityInfo *)identityInfo data:(NSDictionary *)data {
     self = [super initWithContext:context];
     if (self == nil) {
         return nil;
@@ -70,16 +67,13 @@
     if (data.count > 0) {
         body[kVSSModelData] = data;
     }
-    if (signs.count > 0) {
-        body[kVSSModelSigns] = signs;
-    }
     [self setRequestBodyWithObject:body];
     
     return self;
 }
 
 - (instancetype)initWithContext:(VSSRequestContext *)context {
-    return [self initWithContext:context publicKey:[[NSData alloc] init] identityInfo:[[VSSIdentityInfo alloc] init] data:nil signs:@[]];
+    return [self initWithContext:context publicKey:[[NSData alloc] init] identityInfo:[[VSSIdentityInfo alloc] init] data:nil];
 }
 
 #pragma mark - Overrides

@@ -117,6 +117,8 @@
 		36912FAD1CD21C650058BBF8 /* VSSPBKDF+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 36912FAC1CD21C650058BBF8 /* VSSPBKDF+Base64.m */; };
 		36912FAE1CD21C650058BBF8 /* VSSPBKDF+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 36912FAC1CD21C650058BBF8 /* VSSPBKDF+Base64.m */; };
 		36915C711C652EA100DAA563 /* VSSPublicKeyExtended.m in Sources */ = {isa = PBXBuildFile; fileRef = 36915C701C652EA100DAA563 /* VSSPublicKeyExtended.m */; };
+		36C00B751CD7843700738DC1 /* VSSSearchEmailCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C00B741CD7843700738DC1 /* VSSSearchEmailCardRequest.m */; };
+		36C00B761CD80F4D00738DC1 /* VSSSearchEmailCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C00B741CD7843700738DC1 /* VSSSearchEmailCardRequest.m */; };
 		36C1D16D1C6A947E009ED570 /* VSSBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C1D1491C6A947E009ED570 /* VSSBaseClient.m */; };
 		36C1D16E1C6A947E009ED570 /* VSSClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C1D14B1C6A947E009ED570 /* VSSClient.m */; };
 		36C1D1701C6A947E009ED570 /* VSSServiceConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C1D14F1C6A947E009ED570 /* VSSServiceConfig.m */; };
@@ -261,6 +263,8 @@
 		36912FAC1CD21C650058BBF8 /* VSSPBKDF+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VSSPBKDF+Base64.m"; sourceTree = "<group>"; };
 		36915C6F1C652EA100DAA563 /* VSSPublicKeyExtended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSPublicKeyExtended.h; sourceTree = "<group>"; };
 		36915C701C652EA100DAA563 /* VSSPublicKeyExtended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSPublicKeyExtended.m; sourceTree = "<group>"; };
+		36C00B731CD7843700738DC1 /* VSSSearchEmailCardRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSSearchEmailCardRequest.h; sourceTree = "<group>"; };
+		36C00B741CD7843700738DC1 /* VSSSearchEmailCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSearchEmailCardRequest.m; sourceTree = "<group>"; };
 		36C1D1481C6A947E009ED570 /* VSSBaseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSBaseClient.h; sourceTree = "<group>"; };
 		36C1D1491C6A947E009ED570 /* VSSBaseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSBaseClient.m; sourceTree = "<group>"; };
 		36C1D14A1C6A947E009ED570 /* VSSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSClient.h; sourceTree = "<group>"; };
@@ -386,6 +390,8 @@
 				36005FB01C7327B6007E5CBF /* VSSSearchCardRequest.m */,
 				36005FAD1C7327B6007E5CBF /* VSSSearchAppCardRequest.h */,
 				36005FAE1C7327B6007E5CBF /* VSSSearchAppCardRequest.m */,
+				36C00B731CD7843700738DC1 /* VSSSearchEmailCardRequest.h */,
+				36C00B741CD7843700738DC1 /* VSSSearchEmailCardRequest.m */,
 				36005FA31C7327B6007E5CBF /* VSSDeleteCardRequest.h */,
 				36005FA41C7327B6007E5CBF /* VSSDeleteCardRequest.m */,
 			);
@@ -1036,6 +1042,7 @@
 				362CFE611C74C988002A3E93 /* VSSKeychainValue.m in Sources */,
 				362CFE511C74C930002A3E93 /* VSSVerifyIdentityRequest.m in Sources */,
 				362CFE481C74C90E002A3E93 /* VSSClient.m in Sources */,
+				36C00B761CD80F4D00738DC1 /* VSSSearchEmailCardRequest.m in Sources */,
 				362CFE501C74C92E002A3E93 /* VSSIdentityBaseRequest.m in Sources */,
 				362CFE571C74C967002A3E93 /* VSSGetCardRequest.m in Sources */,
 				362CFE4B1C74C91A002A3E93 /* VSSRequestContextExtended.m in Sources */,
@@ -1098,6 +1105,7 @@
 				36C1D1801C6A94AA009ED570 /* VSSRequestContextExtended.m in Sources */,
 				3614036D1BB2E0FC002E69CA /* VSSBaseModel.m in Sources */,
 				36FF4B931C4D7FED00E901F3 /* NSObject+VSSUtils.m in Sources */,
+				36C00B751CD7843700738DC1 /* VSSSearchEmailCardRequest.m in Sources */,
 				3644046C1C6D2FCC000EB66D /* VSSJSONRequestExtended.m in Sources */,
 				36C1D1711C6A947E009ED570 /* VSSRequestContext.m in Sources */,
 				36005FDA1C73C70F007E5CBF /* VSSDeletePrivateKeyRequest.m in Sources */,

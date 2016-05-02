@@ -1,57 +1,47 @@
 //
-//  VSSSearchCardRequest.m
+//  VSSSearchEmailCardRequest.m
 //  VirgilSDK
 //
-//  Created by Pavel Gorb on 2/4/16.
+//  Created by Pavel Gorb on 5/2/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSSearchCardRequest.h"
+#import "VSSSearchEmailCardRequest.h"
 #import "VSSModelCommons.h"
 #import "VSSCard.h"
 #import "VSSPublicKey.h"
 #import "NSObject+VSSUtils.h"
 
-@interface VSSSearchCardRequest ()
+@interface VSSSearchEmailCardRequest ()
 
 @property (nonatomic, strong, readwrite) NSArray <VSSCard *>* __nullable cards;
 
 @end
 
-@implementation VSSSearchCardRequest
+@implementation VSSSearchEmailCardRequest
 
 @synthesize cards = _cards;
 
-#pragma mark - Lifecycle
-
-- (instancetype)initWithContext:(VSSRequestContext *)context value:(NSString *)value type:(NSString *)type unauthorized:(BOOL)unauthorized {
+- (instancetype)initWithContext:(VSSRequestContext *)context value:(NSString *)value {
     self = [super initWithContext:context];
     if (self == nil) {
         return nil;
     }
     
-    NSMutableDictionary *body = [[NSMutableDictionary alloc] init];
     if (value.length > 0) {
-        body[kVSSModelValue] = value;
+        [self setRequestBodyWithObject:@{ kVSSModelValue: value }];
     }
-    if (type.length > 0) {
-        body[kVSSModelType] = type;
-    }
-    NSString *str = (unauthorized) ? kVSSStringValueTrue : kVSSStringValueFalse;
-    body[kVSSModelIncludeUnconfirmed] = str;
-
-    [self setRequestBodyWithObject:body];
     return self;
 }
 
 - (instancetype)initWithContext:(VSSRequestContext *)context {
-    return [self initWithContext:context value:@"" type:nil unauthorized:NO];
+    return [self initWithContext:context value:@""];
 }
 
 #pragma mark - Overrides
 
 - (NSString *)methodPath {
-    return @"virgil-card/actions/search";
+    return @"virgil-card/actions/search/email";
 }
 
 - (NSError *)handleResponse:(NSObject *)candidate {
@@ -59,7 +49,7 @@
     if (error != nil) {
         return error;
     }
-
+    
     NSMutableArray *cards = [[NSMutableArray alloc] init];
     for (NSDictionary *item in [candidate as:[NSArray class]]) {
         /// Deserialize actual card
@@ -73,5 +63,6 @@
     }
     return nil;
 }
+
 
 @end

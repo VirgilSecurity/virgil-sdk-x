@@ -47,8 +47,8 @@ NSString *const kVSSModelExtraFields = @"extra_fields";
 NSString *const kVSSModelError = @"error";
 NSString *const kVSSModelCode = @"code";
 
-NSString *const kVSSIdentityTypeCustom = @"custom";
 NSString *const kVSSIdentityTypeEmail = @"email";
+NSString *const kVSSIdentityTypeApplication = @"application";
 
 NSString *const kVSSStringValueTrue = @"true";
 NSString *const kVSSStringValueFalse = @"false";

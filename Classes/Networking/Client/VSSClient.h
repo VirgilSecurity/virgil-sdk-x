@@ -69,7 +69,7 @@
  * @param completionHandler Callback handler which will be called after request completed.
  *
  */
-- (void)createCardWithPublicKeyId:(GUID * __nonnull)keyId identityInfo:(VSSIdentityInfo * __nonnull)identityInfo data:(NSDictionary * __nullable)data signs:(NSArray <NSDictionary *>* __nullable)signs privateKey:(VSSPrivateKey * __nonnull)privateKey completionHandler:(void(^ __nullable)(VSSCard * __nullable card, NSError * __nullable error))completionHandler;
+- (void)createCardWithPublicKeyId:(GUID * __nonnull)keyId identityInfo:(VSSIdentityInfo * __nonnull)identityInfo data:(NSDictionary * __nullable)data privateKey:(VSSPrivateKey * __nonnull)privateKey completionHandler:(void(^ __nullable)(VSSCard * __nullable card, NSError * __nullable error))completionHandler;
 
 /**
  * @brief Creates Virgil Card instance on the Virgil Keys Service with given public key data.
@@ -82,7 +82,7 @@
  * @param completionHandler Callback handler which will be called after request completed.
  *
  */
-- (void)createCardWithPublicKey:(NSData * __nonnull)key identityInfo:(VSSIdentityInfo * __nonnull)identityInfo data:(NSDictionary * __nullable)data signs:(NSArray <NSDictionary *>* __nullable)signs privateKey:(VSSPrivateKey * __nonnull)privateKey completionHandler:(void(^ __nullable)(VSSCard * __nullable card, NSError * __nullable error))completionHandler;
+- (void)createCardWithPublicKey:(NSData * __nonnull)key identityInfo:(VSSIdentityInfo * __nonnull)identityInfo data:(NSDictionary * __nullable)data privateKey:(VSSPrivateKey * __nonnull)privateKey completionHandler:(void(^ __nullable)(VSSCard * __nullable card, NSError * __nullable error))completionHandler;
 
 /**
  * @brief Gets Virgil Card with given id from the Virgil Keys Service.
@@ -93,47 +93,37 @@
 - (void)getCardWithCardId:(GUID * __nonnull)cardId completionHandler:(void(^ __nullable)(VSSCard * __nullable card, NSError * __nullable error))completionHandler;
 
 /**
- * @brief Allows to sign the Card with given Id by the other card, so that other card entrust the card with given Id.
+ * @brief Performs search of the private cards only with given parameters on the Virgil Keys Service. 
+            The cards array in callback of this method will NOT return global cards, even if type is set to VSSIdentityTypeApplication or VSSIdentityTypeEmail
+            See
  *
- * @param cardId GUID identifier of the card which needs to be entrusted.
- * @param digest NSData with signature digest.
- * @param signerCard VSSCard object with card which trust the card with id given in cardId parameter.
- * @param privateKey VSSPrivateKey container with private key data and password if any.
- * @param completionHandler Callback handler which will be called after request completed.
- *
- */
-- (void)signCardWithCardId:(GUID * __nonnull)cardId digest:(NSData * __nonnull)digest signerCard:(VSSCard * __nonnull)signerCard privateKey:(VSSPrivateKey * __nonnull)privateKey completionHandler:(void(^ __nullable)(VSSSign * __nullable sign, NSError * __nullable error))completionHandler;
-
-/**
- * @brief Allows to revoke trust of the Card with given Id by the other card.
- *
- * @param cardId GUID identifier of the card which needs to not be trusted any more.
- * @param signerCard VSSCard object with card which don't want to trust the card with id given in cardId parameter.
- * @param privateKey VSSPrivateKey container with private key data and password if any.
- * @param completionHandler Callback handler which will be called after request completed.
- *
- */
-- (void)unsignCardWithId:(GUID * __nonnull)cardId signerCard:(VSSCard * __nonnull)signerCard privateKey:(VSSPrivateKey * __nonnull)privateKey completionHandler:(void(^ __nullable)(NSError * __nullable error))completionHandler;
-
-/**
- * @brief Performs search of the cards with given parameters on the Virgil Keys Service.
- *
- * @param identityInfo VSSIdentityInfo containing the identity information.
- * @param relations NSArray <GUID> with IDs of Virgil Cards related to the required card.
+ * @param value NSString Identity value for the card to search.
+ * @param type NSString type of identity. May be nil.
  * @param unconfirmed BOOL In case of NO - unconfirmed cards will not be returned in the array of cards in callback.
  * @param completionHandler Callback handler which will be called after request completed.
  *
  */
-- (void)searchCardWithIdentityInfo:(VSSIdentityInfo * __nonnull)identityInfo relations:(NSArray <GUID *>* __nullable)relations unconfirmed:(BOOL)unconfirmed completionHandler:(void(^ __nullable)(NSArray <VSSCard *>* __nullable cards, NSError * __nullable error))completionHandler;
+- (void)searchCardWithIdentityValue:(NSString * __nonnull)value type:(NSString * __nullable)type unauthorized:(BOOL)unauthorized completionHandler:(void(^ __nullable)(NSArray <VSSCard *>* __nullable cards, NSError * __nullable error))completionHandler;
 
 /**
- * @brief Performs search of the cards only with type VSSIdentityTypeApplication with given parameters on the Virgil Keys Service.
+ * @brief Performs search of the global cards only with type VSSIdentityTypeApplication with given parameters on the Virgil Keys Service. 
+            The cards array in callback of this method will not return private cards even if type is the same.
  *
- * @param value NSString value of the identity associated with required Virgil Card.
+ * @param value NSString value of the app identity associated with required global Virgil Card.
  * @param completionHandler Callback handler which will be called after request completed.
  *
  */
 - (void)searchAppCardWithIdentityValue:(NSString * __nonnull)value completionHandler:(void(^ __nullable)(NSArray <VSSCard *>* __nullable cards, NSError * __nullable error))completionHandler;
+
+/**
+ * @brief Performs search of the global cards only with type VSSIdentityTypeEmail with given parameters on the Virgil Keys Service.
+            The cards array in callback of this method will not return private cards even if type is the same.
+ *
+ * @param value NSString value of the email identity associated with required global Virgil Card.
+ * @param completionHandler Callback handler which will be called after request completed.
+ *
+ */
+- (void)searchEmailCardWithIdentityValue:(NSString * __nonnull)value completionHandler:(void(^ __nullable)(NSArray <VSSCard *>* __nullable cards, NSError * __nullable error))completionHandler;
 
 /**
  * @brief Deletes the Virgil Card with given cardId and identity from the Virgil Keys Service.
@@ -149,16 +139,16 @@
 #pragma mark - Identities related functionality
 
 /**
- * @brief Initiates identity verification flow for given identity with extra information.
+ * @brief Initiates email identity global verification flow for given identity with extra information.
  *
- * @param identityInfo VSSIdentityInfo of the identity which have to be verified.
+ * @param value NSString value of the identity which have to be verified. The only supported type for now is VSSIdentityTypeEmail.
  * @param extraFields NSDictionary<NSString, NSString> containing required extra key-value pairs to be used in verification process.
  * @param completionHandler Callback handler which will be called after request completed.
  */
-- (void)verifyIdentityWithInfo:(VSSIdentityInfo * __nonnull)identityInfo extraFields:(NSDictionary * __nullable)extraFields completionHandler:(void(^ __nullable)(GUID * __nullable actionId, NSError * __nullable error))completionHandler;
+- (void)verifyEmailIdentityWithValue:(NSString * __nonnull)value extraFields:(NSDictionary * __nullable)extraFields completionHandler:(void(^ __nullable)(GUID * __nullable actionId, NSError * __nullable error))completionHandler;
 
 /**
- * @brief Completes identity verification flow by Id and using confirmation code.
+ * @brief Completes email identity global verification flow by action id and using confirmation code.
  *
  * @param actionId GUID identifier of the verification identity flow returned in callback of -verifyIdentity...
  * @param code NSString Confirmation code received from the user.
@@ -166,7 +156,7 @@
  * @param tokenCtl NSUInteger with token's 'count to live' parameter to restrict the number of token usages (maximum value is 100). Default value is 1. In case of 0 - default value will be used by the SDK.
  * @param completionHandler Callback handler which will be called after request completed.
  */
-- (void)confirmIdentityWithActionId:(GUID * __nonnull)actionId code:(NSString * __nonnull)code tokenTtl:(NSUInteger)tokenTtl tokenCtl:(NSUInteger)tokenCtl completionHandler:(void(^ __nullable)(VSSIdentityInfo * __nullable identityInfo, NSError * __nullable error))completionHandler;
+- (void)confirmEmailIdentityWithActionId:(GUID * __nonnull)actionId code:(NSString * __nonnull)code tokenTtl:(NSUInteger)tokenTtl tokenCtl:(NSUInteger)tokenCtl completionHandler:(void(^ __nullable)(VSSIdentityInfo * __nullable identityInfo, NSError * __nullable error))completionHandler;
 
 
 #pragma mark - Private keys related functionality

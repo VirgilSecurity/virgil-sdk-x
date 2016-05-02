@@ -155,7 +155,7 @@ The app is registering a Virgil Card which includes a public key and an email ad
 //...
 // For 'confirmed' Virgil Card you should compose identity information object with correct validation token parameter.
 VSSIdentityInfo *identity = 
-    [[VSSIdentityInfo alloc] initWithType:VSSIdentityTypeEmail 
+    [[VSSIdentityInfo alloc] initWithType:kVSSIdentityTypeEmail 
                                     value:<# Email address #> 
                           validationToken:<# Identity verification token #>]; 
 VSSPrivateKey *privateKey = 
@@ -163,8 +163,7 @@ VSSPrivateKey *privateKey =
 	                          password:<# Private key password or nil #>];
 [self.client createCardWithPublicKey:[<# VSSKeyPair #> publicKey] 
 	                    identityInfo:identity 
-	                            data:nil 
-	                           signs:nil 
+	                            data:nil  
 	                      privateKey:privateKey 
 	               completionHandler:^(VSSCard * _Nullable card, NSError * _Nullable error)
 	 {
@@ -183,13 +182,12 @@ VSSPrivateKey *privateKey =
 ```swift
 //...
 // For 'confirmed' Virgil Card you should compose identity information object with correct validation token parameter.
-let identity = VSSIdentityInfo(type: .Email, value: <# Email address #>, validationToken: <# Validation token #>)
+let identity = VSSIdentityInfo(type: kVSSIdentityTypeEmail, value: <# Email address #>, validationToken: <# Validation token #>)
 let privateKey = VSSPrivateKey(key: <# VSSKeyPair #>.privateKey(), 
 	password: <# Private key password or nil #)
 self.client.createCardWithPublicKey(<# VSSKeyPair #>.publicKey(), 
 	identityInfo: identity, 
 	data: nil, 
-	signs: nil, 
 	privateKey: privateKey) { (card, error) -> Void in
     if error != nil {
         // Handle error for creation of the Virgil Card.
@@ -209,7 +207,7 @@ The following code snippets show how to create a new Virgil Card without identit
 //...
 // For 'unconfirmed' Virgil Card identity object contains only 'type' and 'value'.
 VSSIdentityInfo *identity = 
-    [[VSSIdentityInfo alloc] initWithType:VSSIdentityTypeEmail 
+    [[VSSIdentityInfo alloc] initWithType:kVSSIdentityTypeEmail 
                                     value:<# Email address #> 
                           validationToken:nil]; 
 VSSPrivateKey *privateKey = 
@@ -217,8 +215,7 @@ VSSPrivateKey *privateKey =
 	                          password:<# Private key password or nil #>];
 [self.client createCardWithPublicKey:[<# VSSKeyPair #> publicKey] 
 	                    identityInfo:identity 
-	                            data:nil 
-	                           signs:nil 
+	                            data:nil  
 	                      privateKey:privateKey 
 	               completionHandler:^(VSSCard * _Nullable card, NSError * _Nullable error)
 	 {
@@ -237,13 +234,12 @@ VSSPrivateKey *privateKey =
 ```swift
 //...
 // For 'unconfirmed' Virgil Card identity object contains only 'type' and 'value'.
-let identity = VSSIdentityInfo(type: .Email, value: <# Email address #>, validationToken: nil)
+let identity = VSSIdentityInfo(type: kVSSIdentityTypeEmail, value: <# Email address #>, validationToken: nil)
 let privateKey = VSSPrivateKey(key: <# VSSKeyPair #>.privateKey(), 
 	password: <# Private key password or nil #)
 self.client.createCardWithPublicKey(<# VSSKeyPair #>.publicKey(), 
 	identityInfo: identity, 
 	data: nil, 
-	signs: nil, 
 	privateKey: privateKey) { (card, error) -> Void in
     if error != nil {
         // Handle error for creation of the Virgil Card.

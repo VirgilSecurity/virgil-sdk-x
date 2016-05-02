@@ -7,12 +7,7 @@
 //
 
 #import "ViewController.h"
-
-#import "VSSModelCommons.h"
-#import "VSSIdentityInfo.h"
-#import "VSSPrivateKey.h"
-#import "VSSPBKDF+Base64.h"
-#import "VSSValidationTokenGenerator.h"
+#import "BridgingHeader.h"
 
 @import VirgilFoundation;
 
@@ -26,31 +21,6 @@
     [super viewDidLoad];
     
     NSLog(@"%@", [[[VSSVirgilVersion alloc] init] versionString]);
-    
-    NSString *password = @"secret";
-    VSSKeyPair *pair = [[VSSKeyPair alloc] initWithPassword:password];
-    VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:pair.privateKey password:password];
-    
-    NSString *email = @"app-user@app.com";
-    
-    VSSPBKDF *pbkdf = [[VSSPBKDF alloc] initWithSalt:nil iterations:0];
-    NSError *error = nil;
-    NSString *obfuscated = [pbkdf base64KeyFromPassword:email size:64 error:&error];
-    if (error != nil) {
-        NSLog(@"Error: %@", [error localizedDescription]);
-        return;
-    }
-    
-    VSSIdentityInfo *identity = [[VSSIdentityInfo alloc] initWithType:@"private" value:obfuscated validationToken:nil];
-    [VSSValidationTokenGenerator setValidationTokenForIdentityInfo:identity privateKey:privateKey error:&error];
-    if (error != nil) {
-        NSLog(@"Error: %@", [error localizedDescription]);
-        return;
-    }
-    
-    NSLog(@"IDENTITY TYPE: %@", identity.type);
-    NSLog(@"IDENTITY VALUE: %@", identity.value);
-    NSLog(@"IDENTITY TOKEN: %@", identity.validationToken);
 }
 
 @end

@@ -28,6 +28,7 @@
 #import "VSSUnsignCardRequest.h"
 #import "VSSSearchCardRequest.h"
 #import "VSSSearchAppCardRequest.h"
+#import "VSSSearchEmailCardRequest.h"
 #import "VSSDeleteCardRequest.h"
 
 #import "VSSVerifyIdentityRequest.h"
@@ -274,7 +275,7 @@
 
 #pragma mark - Virgil Cards related functionality
 
-- (void)createCardWithPublicKeyId:(GUID *)keyId identityInfo:(VSSIdentityInfo *)identityInfo data:(NSDictionary * )data signs:(NSArray <NSDictionary *>*)signs privateKey:(VSSPrivateKey *)privateKey completionHandler:(void(^)(VSSCard *card, NSError *error))completionHandler {
+- (void)createCardWithPublicKeyId:(GUID *)keyId identityInfo:(VSSIdentityInfo *)identityInfo data:(NSDictionary * )data privateKey:(VSSPrivateKey *)privateKey completionHandler:(void(^)(VSSCard *card, NSError *error))completionHandler {
     if (keyId.length == 0 || identityInfo == nil || identityInfo.value.length == 0 || privateKey.key.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -310,13 +311,13 @@
         
         VSSCard *sCard = [self cachedCardForServiceId:kVSSServiceIDKeys];
         VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:nil password:nil];
-        VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithContext:context publicKeyId:keyId identityInfo:identityInfo data:data signs:signs];
+        VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithContext:context publicKeyId:keyId identityInfo:identityInfo data:data];
         request.completionHandler = handler;
         [self send:request];
     }];
 }
 
-- (void)createCardWithPublicKey:(NSData *)key identityInfo:(VSSIdentityInfo *)identityInfo data:(NSDictionary *)data signs:(NSArray <NSDictionary *>*)signs privateKey:(VSSPrivateKey *)privateKey completionHandler:(void(^)(VSSCard *card, NSError *error))completionHandler {
+- (void)createCardWithPublicKey:(NSData *)key identityInfo:(VSSIdentityInfo *)identityInfo data:(NSDictionary *)data privateKey:(VSSPrivateKey *)privateKey completionHandler:(void(^)(VSSCard *card, NSError *error))completionHandler {
     if (key.length == 0 || identityInfo == nil || identityInfo.value.length == 0 || privateKey.key.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -352,7 +353,7 @@
         
         VSSCard *sCard = [self cachedCardForServiceId:kVSSServiceIDKeys];
         VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:nil password:nil];
-        VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithContext:context publicKey:key identityInfo:identityInfo data:data signs:signs];
+        VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithContext:context publicKey:key identityInfo:identityInfo data:data];
         request.completionHandler = handler;
         [self send:request];
     }];
@@ -400,82 +401,8 @@
     
 }
 
-- (void)signCardWithCardId:(GUID *)cardId digest:(NSData *)digest signerCard:(VSSCard *)signerCard privateKey:(VSSPrivateKey *)privateKey completionHandler:(void(^)(VSSSign *sign, NSError *error))completionHandler {
-    if (cardId.length == 0 || digest.length == 0 || signerCard.Id.length == 0 || privateKey.key.length == 0) {
-        if (completionHandler != nil) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, [NSError errorWithDomain:kVSSRequestErrorDomain code:-213 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to sign a card: card id and/or signed digest and/or signer card id and/or private key is/are not set.", @"SignCardSignedError") }]);
-            });
-        }
-        return;
-    }
-    
-    [self lazySetupServiceWithId:kVSSServiceIDKeys completionHandler:^(NSError * _Nullable error) {
-        if (error != nil) {
-            if (completionHandler != nil) {
-                completionHandler(nil, error);
-            }
-            return;
-        }
-        
-        VSSRequestCompletionHandler handler = ^(VSSRequest *request) {
-            if (request.error != nil) {
-                if (completionHandler != nil) {
-                    completionHandler(nil, request.error);
-                }
-                return;
-            }
-            
-            if (completionHandler != nil) {
-                VSSSignCardRequest *r = [request as:[VSSSignCardRequest class]];
-                completionHandler(r.Sign, nil);
-            }
-            return;
-        };
-        
-        VSSCard *sCard = [self cachedCardForServiceId:kVSSServiceIDKeys];
-        VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:signerCard.Id password:nil];
-        VSSSignCardRequest *request = [[VSSSignCardRequest alloc] initWithContext:context signerCardId:signerCard.Id signedCardId:cardId digest:digest];
-        request.completionHandler = handler;
-        [self send:request];
-    }];
-}
-
-- (void)unsignCardWithId:(GUID *)cardId signerCard:(VSSCard *)signerCard privateKey:(VSSPrivateKey *)privateKey completionHandler:(void(^)(NSError *error))completionHandler {
-    if (cardId.length == 0 || signerCard.Id.length == 0 || privateKey.key.length == 0) {
-        if (completionHandler != nil) {
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler([NSError errorWithDomain:kVSSRequestErrorDomain code:-214 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to unsign a card: card id and/or signer card id and/or private key is/are not set.", @"UnsignCardSignedError") }]);
-            });
-        }
-        return;
-    }
-    
-    [self lazySetupServiceWithId:kVSSServiceIDKeys completionHandler:^(NSError * _Nullable error) {
-        if (error != nil) {
-            if (completionHandler != nil) {
-                completionHandler(error);
-            }
-            return;
-        }
-
-        VSSRequestCompletionHandler handler = ^(VSSRequest *request) {
-            if (completionHandler != nil) {
-                completionHandler(request.error);
-            }
-            return;
-        };
-        
-        VSSCard *sCard = [self cachedCardForServiceId:kVSSServiceIDKeys];
-        VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:privateKey cardId:signerCard.Id password:nil];
-        VSSUnsignCardRequest *request = [[VSSUnsignCardRequest alloc] initWithContext:context signerCardId:signerCard.Id signedCardId:cardId];
-        request.completionHandler = handler;
-        [self send:request];
-    }];
-}
-
-- (void)searchCardWithIdentityInfo:(VSSIdentityInfo * __nonnull)identityInfo relations:(NSArray <GUID *>* __nullable)relations unconfirmed:(BOOL)unconfirmed completionHandler:(void(^ __nullable)(NSArray <VSSCard *>* __nullable cards, NSError * __nullable error))completionHandler {
-    if (identityInfo == nil || identityInfo.value.length == 0) {
+- (void)searchCardWithIdentityValue:(NSString *)value type:(NSString *)type unauthorized:(BOOL)unauthorized completionHandler:(void(^)(NSArray <VSSCard *>*cards, NSError *error))completionHandler; {
+    if (value.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 completionHandler(nil, [NSError errorWithDomain:kVSSRequestErrorDomain code:-215 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to search for a card: identity value is not set.", @"SearchCardError") }]);
@@ -509,7 +436,7 @@
         
         VSSCard *sCard = [self cachedCardForServiceId:kVSSServiceIDKeys];
         VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
-        VSSSearchCardRequest *request = [[VSSSearchCardRequest alloc] initWithContext:context identityInfo:identityInfo relations:relations unconfirmed:unconfirmed];
+        VSSSearchCardRequest *request = [[VSSSearchCardRequest alloc] initWithContext:context value:value type:type unauthorized:unauthorized];
         request.completionHandler = handler;
         [self send:request];
     }];
@@ -519,7 +446,7 @@
     if (value.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                completionHandler(nil, [NSError errorWithDomain:kVSSRequestErrorDomain code:-216 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to search for an application's card: idetity value is not set.", @"SearchAppCardError") }]);
+                completionHandler(nil, [NSError errorWithDomain:kVSSRequestErrorDomain code:-216 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to search for an application's card: identity value is not set.", @"SearchAppCardError") }]);
             });
         }
         return;
@@ -551,6 +478,47 @@
         VSSCard *sCard = [self cachedCardForServiceId:kVSSServiceIDKeys];
         VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
         VSSSearchAppCardRequest *request = [[VSSSearchAppCardRequest alloc] initWithContext:context value:value];
+        request.completionHandler = handler;
+        [self send:request];
+    }];
+}
+
+- (void)searchEmailCardWithIdentityValue:(NSString *)value completionHandler:(void(^)(NSArray <VSSCard *>*cards, NSError *error))completionHandler {
+    if (value.length == 0) {
+        if (completionHandler != nil) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                completionHandler(nil, [NSError errorWithDomain:kVSSRequestErrorDomain code:-233 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to search for an application's card: identity value is not set.", @"SearchEmailCardError") }]);
+            });
+        }
+        return;
+    }
+    
+    [self lazySetupServiceWithId:kVSSServiceIDKeys completionHandler:^(NSError * _Nullable error) {
+        if (error != nil) {
+            if (completionHandler != nil) {
+                completionHandler(nil, error);
+            }
+            return;
+        }
+        
+        VSSRequestCompletionHandler handler = ^(VSSRequest *request) {
+            if (request.error != nil) {
+                if (completionHandler != nil) {
+                    completionHandler(nil, request.error);
+                }
+                return;
+            }
+            
+            if (completionHandler != nil) {
+                VSSSearchAppCardRequest *r = [request as:[VSSSearchAppCardRequest class]];
+                completionHandler(r.cards, nil);
+            }
+            return;
+        };
+        
+        VSSCard *sCard = [self cachedCardForServiceId:kVSSServiceIDKeys];
+        VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
+        VSSSearchEmailCardRequest *request = [[VSSSearchEmailCardRequest alloc] initWithContext:context value:value];
         request.completionHandler = handler;
         [self send:request];
     }];
@@ -591,8 +559,8 @@
 
 #pragma mark - Identities related functionality
 
-- (void)verifyIdentityWithInfo:(VSSIdentityInfo * __nonnull)identityInfo extraFields:(NSDictionary * __nullable)extraFields completionHandler:(void(^ __nullable)(GUID * __nullable actionId, NSError * __nullable error))completionHandler {
-    if (identityInfo == nil || identityInfo.value.length == 0) {
+- (void)verifyEmailIdentityWithValue:(NSString *)value extraFields:(NSDictionary *)extraFields completionHandler:(void(^)(GUID *actionId, NSError *error))completionHandler; {
+    if (value.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 completionHandler(nil, [NSError errorWithDomain:kVSSRequestErrorDomain code:-220 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to initiate verification procedure: identity type or/and identity value is/are not set.", @"VerifyIdentityError") }]);
@@ -626,13 +594,13 @@
         
         VSSCard *sCard = [self cachedCardForServiceId:kVSSServiceIDIdentity];
         VSSRequestContextExtended *context = [[VSSRequestContextExtended alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDIdentity] serviceCard:sCard requestEncrypt:@NO responseVerify:@YES privateKey:nil cardId:nil password:nil];
-        VSSVerifyIdentityRequest *request = [[VSSVerifyIdentityRequest alloc] initWithContext:context identityInfo:identityInfo extraFields:extraFields];
+        VSSVerifyIdentityRequest *request = [[VSSVerifyIdentityRequest alloc] initWithContext:context type:kVSSIdentityTypeEmail value:value extraFields:extraFields];
         request.completionHandler = handler;
         [self send:request];
     }];
 }
 
-- (void)confirmIdentityWithActionId:(GUID * __nonnull)actionId code:(NSString * __nonnull)code tokenTtl:(NSUInteger)tokenTtl tokenCtl:(NSUInteger)tokenCtl completionHandler:(void(^ __nullable)(VSSIdentityInfo * __nullable identityInfo, NSError * __nullable error))completionHandler {
+- (void)confirmEmailIdentityWithActionId:(GUID *)actionId code:(NSString *)code tokenTtl:(NSUInteger)tokenTtl tokenCtl:(NSUInteger)tokenCtl completionHandler:(void(^)(VSSIdentityInfo *identityInfo, NSError *error))completionHandler; {
     if (actionId.length == 0 || code.length == 0) {
         if (completionHandler != nil) {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{

@@ -1,8 +1,8 @@
 //
-//  VSSSearchAppCardRequest.h
+//  VSSSearchEmailCardRequest.h
 //  VirgilSDK
 //
-//  Created by Pavel Gorb on 2/4/16.
+//  Created by Pavel Gorb on 5/2/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 @class VSSCard;
 
-@interface VSSSearchAppCardRequest : VSSKeysBaseRequest
+@interface VSSSearchEmailCardRequest : VSSKeysBaseRequest
 
 @property (nonatomic, strong, readonly) NSArray <VSSCard *>* __nullable cards;
 

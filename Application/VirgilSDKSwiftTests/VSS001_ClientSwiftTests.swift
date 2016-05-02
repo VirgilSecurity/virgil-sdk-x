@@ -95,7 +95,7 @@ class VSS001_ClientSwiftTests: XCTestCase {
     func createConfirmedCardWithConfirmationHandler(handler: ((NSError?) -> Void)?) {
         let identity = self.identity();
         
-        self.client.verifyIdentityWithInfo(identity, extraFields: nil) { (actionId, error) -> Void in
+        self.client.verifyEmailIdentityWithValue(identity.value, extraFields: nil) { (actionId, error) in
             if error != nil {
                 if handler != nil {
                     handler!(error!)
@@ -151,7 +151,7 @@ class VSS001_ClientSwiftTests: XCTestCase {
                 // Actual code is the last 6 charachters.
                 // Extract the code
                 let code = (match as NSString).substringFromIndex(match.characters.count - 6);
-                self.client.confirmIdentityWithActionId(actionId, code: code, tokenTtl: 0, tokenCtl: 10) { identityInfo, error in
+                self.client.confirmEmailIdentityWithActionId(actionId, code: code, tokenTtl: 0, tokenCtl: 10, completionHandler: { (identityInfo, error) in
                     if error != nil {
                         if handler != nil {
                             handler!(error!)
@@ -170,15 +170,15 @@ class VSS001_ClientSwiftTests: XCTestCase {
                     identity.validationToken = identityInfo!.validationToken
                     
                     let privateKey = VSSPrivateKey(key: self.keyPair.privateKey(), password: nil)
-                    self.client.createCardWithPublicKey(self.keyPair.publicKey(), identityInfo: identityInfo!, data: nil, signs: nil, privateKey: privateKey) { card, error in
-                    
+                    self.client.createCardWithPublicKey(self.keyPair.publicKey(), identityInfo: identityInfo!, data: nil, privateKey: privateKey) { card, error in
+                        
                         self.card = card
                         if handler != nil {
                             handler!(error)
                         }
                         return
                     }
-                }
+                })
             })
             
         }
