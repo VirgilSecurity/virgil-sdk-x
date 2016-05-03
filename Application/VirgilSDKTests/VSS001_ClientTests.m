@@ -12,12 +12,12 @@
 #import "BridgingHeader.h"
 
 /// Virgil Application Token for testing applications
-static NSString *const kApplicationToken = <# NSString: Virgil Application Token #>;
-static NSString *const kApplicationPublicKey = <# NSString: Application Public Key #>;
-static NSString *const kApplicationPrivateKey = <# NSString: Application Private Key #>;
+//static NSString *const kApplicationToken = <# NSString: Virgil Application Token #>;
+//static NSString *const kApplicationPublicKey = <# NSString: Application Public Key #>;
+//static NSString *const kApplicationPrivateKey = <# NSString: Application Private Key #>;
 
 /// Mailinator Application Token for Virgil applications
-static NSString *const kMailinatorToken = <# NSString: Mailinator token #>;
+//static NSString *const kMailinatorToken = <# NSString: Mailinator token #>;
 /// Each request should be done less than or equal this number of seconds.
 static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 /// Time for waiting for the emails with confirmation codes sent by the Virgil Keys Service.
@@ -59,9 +59,9 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
 - (void)setUp {
     [super setUp];
 
-    self.client = [[VSSClient alloc] initWithApplicationToken:kApplicationToken];
+    self.client = [[VSSClient alloc] initWithApplicationToken:nil];
     
-    self.mailinator = [[Mailinator alloc] initWithApplicationToken:kMailinatorToken serviceConfig:[MailinatorConfig serviceConfig]];
+    self.mailinator = [[Mailinator alloc] initWithApplicationToken:nil serviceConfig:[MailinatorConfig serviceConfig]];
     self.regexp = [NSRegularExpression regularExpressionWithPattern:@"Your confirmation code is.+([A-Z0-9]{6})" options:NSRegularExpressionCaseInsensitive error:nil];
     self.keyPair = [[VSSKeyPair alloc] init];
 }
@@ -377,7 +377,8 @@ static const NSTimeInterval kEstimatedEmailReceivingTime = 2.;
         return;
     }
     VSSIdentityInfo *identity = [[VSSIdentityInfo alloc] initWithType:@"private" value:obfuscated validationToken:nil];
-    NSData *keyData = [kApplicationPrivateKey dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
+#warning Put proper key string here
+    NSData *keyData = [@"" dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
     VSSPrivateKey *appKey = [[VSSPrivateKey alloc] initWithKey:keyData password:@"secret"];
     NSError *error = nil;
     [VSSValidationTokenGenerator setValidationTokenForIdentityInfo:identity privateKey:appKey error:&error];

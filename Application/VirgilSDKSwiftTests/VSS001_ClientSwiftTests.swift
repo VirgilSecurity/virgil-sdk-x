@@ -10,9 +10,9 @@ import Foundation
 import XCTest
 
 /// Virgil Application Token for testing applications
-let kApplicationToken: String = <# String: Virgil Application Token #>
+//let kApplicationToken: String = <# String: Virgil Application Token #>
 /// Virgil Application Token for testing applications
-let kMailinatorToken: String = <# String: Mailinator Token #>
+//let kMailinatorToken: String = <# String: Mailinator Token #>
 /// Each request should be done less than or equal this number of seconds.
 let kEstimatedRequestCompletionTime: Int = 5
 /// Time for waiting for the emails with confirmation codes sent by the Virgil Keys Service.
@@ -34,8 +34,10 @@ class VSS001_ClientSwiftTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        self.client = VSSClient(applicationToken: kApplicationToken)
-        self.mailinator = Mailinator(applicationToken: kMailinatorToken, serviceConfig: MailinatorConfig())
+        // FIXME: Put proper app token
+        self.client = VSSClient(applicationToken: "")
+        // FIXME: Put proper mailinator token
+        self.mailinator = Mailinator(applicationToken: "", serviceConfig: MailinatorConfig())
         do {
             self.regexp = try NSRegularExpression(pattern: "Your confirmation code is.+([A-Z0-9]{6})", options: NSRegularExpressionOptions.CaseInsensitive)
         }
