@@ -10,9 +10,9 @@ import Foundation
 import XCTest
 
 /// Virgil Application Token for testing applications
-let kApplicationToken: String = "eyJpZCI6IjAwOTUwMWFjLWNlZmYtNDRhZC1iMGI2LTk0ZjlkYjJmYzY1YiIsImFwcGxpY2F0aW9uX2NhcmRfaWQiOiIxNTJhOGM3Yi03MDNmLTRmYWMtOTcxYi02MDcyMjNjZTc1NjAiLCJ0dGwiOi0xLCJjdGwiOi0xLCJwcm9sb25nIjowfQ==.MFgwDQYJYIZIAWUDBAICBQAERzBFAiAi1tiSdVSU6ZP8U7jRv2cN+jxkqvhrjpmT0ejIgnB/AQIhAM6H13yqn5xpkkC+GJ//aa1rS/84kpoBleDLTmv/KTge"
+let kApplicationToken: String = <# String: Virgil Application Token #>
 /// Virgil Application Token for testing applications
-let kMailinatorToken: String = "3b0f46370d9f44cb9b5ac0e80dda97d7"
+let kMailinatorToken: String = <# String: Mailinator Token #>
 /// Each request should be done less than or equal this number of seconds.
 let kEstimatedRequestCompletionTime: Int = 5
 /// Time for waiting for the emails with confirmation codes sent by the Virgil Keys Service.

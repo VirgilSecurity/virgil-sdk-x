@@ -12,12 +12,12 @@
 #import "BridgingHeader.h"
 
 /// Virgil Application Token for testing applications
-static NSString *const kApplicationToken = @"eyJpZCI6IjAwOTUwMWFjLWNlZmYtNDRhZC1iMGI2LTk0ZjlkYjJmYzY1YiIsImFwcGxpY2F0aW9uX2NhcmRfaWQiOiIxNTJhOGM3Yi03MDNmLTRmYWMtOTcxYi02MDcyMjNjZTc1NjAiLCJ0dGwiOi0xLCJjdGwiOi0xLCJwcm9sb25nIjowfQ==.MFgwDQYJYIZIAWUDBAICBQAERzBFAiAi1tiSdVSU6ZP8U7jRv2cN+jxkqvhrjpmT0ejIgnB/AQIhAM6H13yqn5xpkkC+GJ//aa1rS/84kpoBleDLTmv/KTge";
-static NSString *const kApplicationPublicKey = @"-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEDzS4ocTOJ+edeft8wv6GR2Scd0In\nSUvNsCt6ostcyBley1UkWEgGosOluDB1q0pIjesON2B7/fuEgQSzV38zcA==\n-----END PUBLIC KEY-----\n";
-static NSString *const kApplicationPrivateKey = @"-----BEGIN ENCRYPTED PRIVATE KEY-----\nMIHyMF0GCSqGSIb3DQEFDTBQMC8GCSqGSIb3DQEFDDAiBBBPmb1eLU1/ciH4go7I\nQkvGAgIN7zAKBggqhkiG9w0CCjAdBglghkgBZQMEASoEECpnDS0OMWZE1m610bHx\na/cEgZBcHuiTKRJq4hAYQOKpSd8ahdG0f+bDDL/XkZ+S/AYTPyGtI7auMcDiihAm\n9PZnb0Awhx28vVBVeuz6/18S6b+tyEehhTKw2XuXQCR7+NFUezlCAcQgLYdk/qnQ\nL1O8Cj1cmuFtEpUQLf0Tx9AlyBeAqH5xO6iHIPOMXc/HI7fmRc4oihOztb5wrbIY\nWKMd8Ug=\n-----END ENCRYPTED PRIVATE KEY-----\n";
+static NSString *const kApplicationToken = <# NSString: Virgil Application Token #>;
+static NSString *const kApplicationPublicKey = <# NSString: Application Public Key #>;
+static NSString *const kApplicationPrivateKey = <# NSString: Application Private Key #>;
 
 /// Mailinator Application Token for Virgil applications
-static NSString *const kMailinatorToken = @"3b0f46370d9f44cb9b5ac0e80dda97d7";
+static NSString *const kMailinatorToken = <# NSString: Mailinator token #>;
 /// Each request should be done less than or equal this number of seconds.
 static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 /// Time for waiting for the emails with confirmation codes sent by the Virgil Keys Service.
