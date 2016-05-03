@@ -129,7 +129,7 @@
         VSSRDLog(@"Error adding key recipient: %@", [error localizedDescription]);
         return error;
     }
-    NSData *encryptedBody = [cryptor encryptData:self.request.HTTPBody embedContentInfo:@YES error:&error];
+    NSData *encryptedBody = [cryptor encryptData:self.request.HTTPBody embedContentInfo:YES error:&error];
     if (error != nil) {
         VSSRDLog(@"Encryption of the request body has failed: %@", [error localizedDescription]);
         return error;
