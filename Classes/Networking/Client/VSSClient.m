@@ -510,7 +510,7 @@
             }
             
             if (completionHandler != nil) {
-                VSSSearchAppCardRequest *r = [request as:[VSSSearchAppCardRequest class]];
+                VSSSearchEmailCardRequest *r = [request as:[VSSSearchEmailCardRequest class]];
                 completionHandler(r.cards, nil);
             }
             return;
