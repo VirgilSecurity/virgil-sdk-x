@@ -55,7 +55,7 @@ extern NSString * __nonnull const kVSSClientErrorDomain;
  * Designated constructor.
  * Creates instance of VSSClient particular class.
  *
- * @param token NSString containing application token received from https://api.virgilsecurity.com
+ * @param token NSString containing application token received from https://developer.virgilsecurity.com/dashboard/
  * @param serviceConfig Object containing the service configuration. When nil - the default Virgil Service configuration will be used.
  *
  * @return Instance of the Virgil client.
@@ -67,7 +67,7 @@ extern NSString * __nonnull const kVSSClientErrorDomain;
  * Creates instance of VSSClient particular class. 
  * Call to this method is a shortcut for the initWithApplicationToken:serviceConfig: when serviceConfig is nil.
  *
- * @param token NSString containing application token received from https://api.virgilsecurity.com
+ * @param token NSString containing application token received from https://developer.virgilsecurity.com/dashboard/
  *
  * @return Instance of the Virgil client.
  */
