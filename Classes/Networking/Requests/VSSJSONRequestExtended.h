@@ -8,6 +8,10 @@
 
 #import "VSSJSONRequest.h"
 
+/**
+ * Extended version of the JSON-based request.
+ * Manages encryption/decryption, signature composition and verification.
+ */
 @interface VSSJSONRequestExtended : VSSJSONRequest
 
 @end

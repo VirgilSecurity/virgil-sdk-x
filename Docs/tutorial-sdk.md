@@ -807,4 +807,4 @@ catch let error as NSError {
 ## See Also
 
 * [Quickstart](quickstart.md)
-* [Reference API for SDK](sdk-reference-api.md)
+* [Virgil SDK API Reference](https://github.com/VirgilSecurity/virgil-sdk-x/tree/v3/Docs/VirgilSDK/index.html)

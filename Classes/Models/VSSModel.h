@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "VSSSerializable.h"
 
+/**
+ * Base class for all Virgil models. 
+ */
 @interface VSSModel : NSObject <NSCopying, NSCoding, VSSSerializable>
 
 @end

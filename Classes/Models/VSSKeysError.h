@@ -53,6 +53,9 @@ extern const NSInteger kVSSKeysIdentityServiceError;
 extern const NSInteger kVSSKeysIdentitiesInvalidError;
 extern const NSInteger kVSSKeysIdentityInvalidError;
 
+/**
+ * Concrete subclass representing the errors returning by the Virgil Keys Service.
+ */
 @interface VSSKeysError : VSSError
 
 @end

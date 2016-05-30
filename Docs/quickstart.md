@@ -420,3 +420,4 @@ if let plainData = self.ipmSecurity.decryptData(secureMessage.message), text = N
 * [IP-Messaging Simple Server](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/master/examples/ip-messaging/server)
 * [Example iOS App written in Objective-C](https://github.com/VirgilSecurity/virgil-sdk-x/tree/v3/Docs/IPMExample-objc)
 * [Example iOS App written in Swift](https://github.com/VirgilSecurity/virgil-sdk-x/tree/v3/Docs/IPMExample-swift)
+* [Virgil SDK API Reference](https://github.com/VirgilSecurity/virgil-sdk-x/tree/v3/Docs/VirgilSDK/index.html)

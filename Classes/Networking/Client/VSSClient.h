@@ -18,14 +18,18 @@
 @class VSSIdentityInfo;
 
 /**
- * Client handles all interactions with Virgil Services.
+ * The Virgil Service Client handles all the interactions with the Virgil Services.
  */
 @interface VSSClient : VSSBaseClient
 
 #pragma mark - Public keys related functionality
 
+///------------------------------------------
+/// @name Public keys related functionality
+///------------------------------------------
+
 /**
- * @brief Gets public key instance from the Virgil Keys Service. This method sends unauthenticated request,
+ * Gets public key instance from the Virgil Keys Service. This method sends unauthenticated request,
  * so the returned public key will contain only id, actual public key data and creation date. There will not be an array 
  * of cards for the key returned. Use authenticated request instead.
  *
@@ -58,26 +62,27 @@
 
 #pragma mark - Virgil Cards related functionality
 
+///------------------------------------------
+/// @name Virgil Cards related functionality
+///------------------------------------------
+
 /**
- * @brief Creates Virgil Card instance on the Virgil Keys Service and associates it with the public key with given ID.
+ * Creates Virgil Card instance on the Virgil Keys Service and associates it with the public key with given ID.
  *
  * @param keyId GUID public key identifier to associate this card with.
  * @param identityInfo VSSIdentityInfo containing the identity information.
  * @param data NSDictionary<String, String> object containing the custom key-value pairs associated with this card. May be nil.
- * @param signs NSArray of NSDictionary containing the signatures information for this card. May be nil.
  * @param privateKey VSSPrivateKey container with private key data and password if any.
  * @param completionHandler Callback handler which will be called after request completed.
- *
  */
 - (void)createCardWithPublicKeyId:(GUID * __nonnull)keyId identityInfo:(VSSIdentityInfo * __nonnull)identityInfo data:(NSDictionary * __nullable)data privateKey:(VSSPrivateKey * __nonnull)privateKey completionHandler:(void(^ __nullable)(VSSCard * __nullable card, NSError * __nullable error))completionHandler;
 
 /**
- * @brief Creates Virgil Card instance on the Virgil Keys Service with given public key data.
+ * Creates Virgil Card instance on the Virgil Keys Service with given public key data.
  *
- * @param keyId GUID public key identifier to associate this card with.
+ * @param key Public key data to associate this card with.
  * @param identityInfo VSSIdentityInfo containing the identity information.
  * @param data NSDictionary<String, String> object containing the custom key-value pairs associated with this card. May be nil.
- * @param signs NSArray of NSDictionary containing the signatures information for this card. May be nil.
  * @param privateKey VSSPrivateKey container with private key data and password if any.
  * @param completionHandler Callback handler which will be called after request completed.
  *
@@ -85,7 +90,7 @@
 - (void)createCardWithPublicKey:(NSData * __nonnull)key identityInfo:(VSSIdentityInfo * __nonnull)identityInfo data:(NSDictionary * __nullable)data privateKey:(VSSPrivateKey * __nonnull)privateKey completionHandler:(void(^ __nullable)(VSSCard * __nullable card, NSError * __nullable error))completionHandler;
 
 /**
- * @brief Gets Virgil Card with given id from the Virgil Keys Service.
+ * Gets Virgil Card with given id from the Virgil Keys Service.
  *
  * @param cardId GUID identifier of the card.
  * @param completionHandler Callback handler which will be called after request completed.
@@ -93,21 +98,19 @@
 - (void)getCardWithCardId:(GUID * __nonnull)cardId completionHandler:(void(^ __nullable)(VSSCard * __nullable card, NSError * __nullable error))completionHandler;
 
 /**
- * @brief Performs search of the private cards only with given parameters on the Virgil Keys Service. 
-            The cards array in callback of this method will NOT return global cards, even if type is set to VSSIdentityTypeApplication or VSSIdentityTypeEmail
-            See
+ * Performs search of the private cards only with given parameters on the Virgil Keys Service.
+ * The cards array in callback of this method will NOT return global cards, even if type is set to VSSIdentityTypeApplication or VSSIdentityTypeEmail
  *
  * @param value NSString Identity value for the card to search.
  * @param type NSString type of identity. May be nil.
- * @param unconfirmed BOOL In case of NO - unconfirmed cards will not be returned in the array of cards in callback.
+ * @param unauthorized BOOL In case of NO - unauthorized cards will not be returned in the array of cards in callback.
  * @param completionHandler Callback handler which will be called after request completed.
- *
  */
 - (void)searchCardWithIdentityValue:(NSString * __nonnull)value type:(NSString * __nullable)type unauthorized:(BOOL)unauthorized completionHandler:(void(^ __nullable)(NSArray <VSSCard *>* __nullable cards, NSError * __nullable error))completionHandler;
 
 /**
- * @brief Performs search of the global cards only with type VSSIdentityTypeApplication with given parameters on the Virgil Keys Service. 
-            The cards array in callback of this method will not return private cards even if type is the same.
+ * Performs search of the global cards only with type VSSIdentityTypeApplication with given parameters on the Virgil Keys Service.
+ * The cards array in callback of this method will not return private cards even if type is the same.
  *
  * @param value NSString value of the app identity associated with required global Virgil Card.
  * @param completionHandler Callback handler which will be called after request completed.
@@ -116,30 +119,32 @@
 - (void)searchAppCardWithIdentityValue:(NSString * __nonnull)value completionHandler:(void(^ __nullable)(NSArray <VSSCard *>* __nullable cards, NSError * __nullable error))completionHandler;
 
 /**
- * @brief Performs search of the global cards only with type VSSIdentityTypeEmail with given parameters on the Virgil Keys Service.
-            The cards array in callback of this method will not return private cards even if type is the same.
+ * Performs search of the global cards only with type VSSIdentityTypeEmail with given parameters on the Virgil Keys Service.
+ * The cards array in callback of this method will not return private cards even if type is the same.
  *
  * @param value NSString value of the email identity associated with required global Virgil Card.
  * @param completionHandler Callback handler which will be called after request completed.
- *
  */
 - (void)searchEmailCardWithIdentityValue:(NSString * __nonnull)value completionHandler:(void(^ __nullable)(NSArray <VSSCard *>* __nullable cards, NSError * __nullable error))completionHandler;
 
 /**
- * @brief Deletes the Virgil Card with given cardId and identity from the Virgil Keys Service.
+ * Deletes the Virgil Card with given cardId and identity from the Virgil Keys Service.
  *
  * @param cardId GUID identifier of the card which is needs to be deleted.
  * @param identityInfo VSSIdentityInfo containing the identity information. May be nil for unconfirmed Virgil Cards.
  * @param privateKey VSSPrivateKey container with private key data and password if any.
  * @param completionHandler Callback handler which will be called after request completed.
- *
  */
 - (void)deleteCardWithCardId:(GUID * __nonnull)cardId identityInfo:(VSSIdentityInfo * __nullable)identityInfo privateKey:(VSSPrivateKey * __nonnull)privateKey completionHandler:(void(^ __nullable)(NSError * __nullable error))completionHandler;
 
 #pragma mark - Identities related functionality
 
+///------------------------------------------
+/// @name Identities related functionality
+///------------------------------------------
+
 /**
- * @brief Initiates email identity global verification flow for given identity with extra information.
+ * Initiates email identity global verification flow for given identity with extra information.
  *
  * @param value NSString value of the identity which have to be verified. The only supported type for now is VSSIdentityTypeEmail.
  * @param extraFields NSDictionary<NSString, NSString> containing required extra key-value pairs to be used in verification process.
@@ -148,12 +153,14 @@
 - (void)verifyEmailIdentityWithValue:(NSString * __nonnull)value extraFields:(NSDictionary * __nullable)extraFields completionHandler:(void(^ __nullable)(GUID * __nullable actionId, NSError * __nullable error))completionHandler;
 
 /**
- * @brief Completes email identity global verification flow by action id and using confirmation code.
+ * Completes email identity global verification flow by action id and using confirmation code.
  *
  * @param actionId GUID identifier of the verification identity flow returned in callback of -verifyIdentity...
  * @param code NSString Confirmation code received from the user.
- * @param tokenTtl NSUInteger with token's 'time to live' parameter for the limitations of the token's lifetime in seconds (maximum value is 60 * 60 * 24 * 365 = 1 year). Default value is 3600. In case of 0 - default value will be used by the SDK.
- * @param tokenCtl NSUInteger with token's 'count to live' parameter to restrict the number of token usages (maximum value is 100). Default value is 1. In case of 0 - default value will be used by the SDK.
+ * @param tokenTtl NSUInteger with token's 'time to live' parameter for the limitations of the token's lifetime in seconds:
+ * (maximum value is 60 * 60 * 24 * 365 = 1 year). Default value is 3600. In case of 0 - default value will be used by the SDK.
+ * @param tokenCtl NSUInteger with token's 'count to live' parameter to restrict the number of token usages (maximum value is 100). 
+ * Default value is 1. In case of 0 - default value will be used by the SDK.
  * @param completionHandler Callback handler which will be called after request completed.
  */
 - (void)confirmEmailIdentityWithActionId:(GUID * __nonnull)actionId code:(NSString * __nonnull)code tokenTtl:(NSUInteger)tokenTtl tokenCtl:(NSUInteger)tokenCtl completionHandler:(void(^ __nullable)(VSSIdentityInfo * __nullable identityInfo, NSError * __nullable error))completionHandler;
@@ -161,8 +168,12 @@
 
 #pragma mark - Private keys related functionality
 
+///------------------------------------------
+/// @name Private keys related functionality
+///------------------------------------------
+
 /**
- * @brief Stores the private key instance on the Virgil Private Keys Service.
+ * Stores the private key instance on the Virgil Private Keys Service.
  *
  * @param privateKey VSSPrivateKey containing the private key data and password if any.
  * @param cardId GUID identifier of the correspondent Virgil Card stored on the Virgil Keys Service.
@@ -171,11 +182,12 @@
 - (void)storePrivateKey:(VSSPrivateKey * __nonnull)privateKey cardId:(GUID * __nonnull)cardId completionHandler:(void(^ __nullable)(NSError * __nullable error))completionHandler;
 
 /**
- * @brief Gets the private key instance from the Virgil Private Keys Service.
+ * Gets the private key instance from the Virgil Private Keys Service.
  *
  * @param cardId GUID identifier of the correspondent Virgil Card stored on the Virgil Keys Service.
  * @param identityInfo VSSIdentityInfo containing the identity information.
- * @param password NSString password which will be used by the Virgil Private Keys Service for response encryption. If password is nil then random password will be generated by the SDK for this single request.
+ * @param password NSString password which will be used by the Virgil Private Keys Service for response encryption. 
+ * If password is nil then random password will be generated by the SDK for this single request.
  * @param completionHandler Callback handler which will be called after request completed.
  */
 - (void)getPrivateKeyWithCardId:(GUID * __nonnull)cardId identityInfo:(VSSIdentityInfo * __nonnull)identityInfo password:(NSString * __nullable)password completionHandler:(void(^ __nullable)(NSData * __nullable keyData, GUID * __nullable cardId, NSError * __nullable error))completionHandler;
