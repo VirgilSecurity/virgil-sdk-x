@@ -56,6 +56,10 @@ NSString *const kVSSServiceName = @"VirgilSecurityServices";
     return self;
 }
 
+- (instancetype)init {
+    return [self initWithId:kVSSServiceName accessGroup:nil];
+}
+
 - (void)reset {
     OSStatus kcError = errSecSuccess;
     NSMutableDictionary *query = [[NSMutableDictionary alloc] initWithDictionary:[self query]];
