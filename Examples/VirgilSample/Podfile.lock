@@ -1,0 +1,15 @@
+PODS:
+  - VirgilFoundation (1.5.2)
+  - VirgilSDK (3.1.6):
+    - VirgilFoundation (~> 1.5)
+
+DEPENDENCIES:
+  - VirgilSDK (~> 3.1)
+
+SPEC CHECKSUMS:
+  VirgilFoundation: f628bdd9d887e11148e64db1b418f2d4b56a6569
+  VirgilSDK: d5f628c7d8b2445ce05f1dfdf762a90730ec5bde
+
+PODFILE CHECKSUM: a4240a5820d451049b7c5400ce9f7df0783614c5
+
+COCOAPODS: 1.0.0.beta.3
