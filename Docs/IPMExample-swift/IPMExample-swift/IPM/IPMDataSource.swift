@@ -15,7 +15,7 @@ protocol IPMDataSource {
     func startListeningWithHandler(handler: IPMDataSourceListener)
     func stopListening()
 
-    func getParticipants() -> XAsyncActionResult
-    func sendMessage(message: IPMSecureMessage) -> XAsyncActionResult
+    func getParticipants() -> Array<String>
+    func sendMessage(message: IPMSecureMessage) -> NSError?
 
 }

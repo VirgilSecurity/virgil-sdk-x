@@ -19,9 +19,6 @@ class IPMSecurityManager: NSObject {
     private var clientSetUp: Bool
     private var mutex: NSObject
     
-    private var actionId: String! = nil
-    private var validationToken: String! = nil
-    
     init(identity: String) {
         self.identity = identity
         
@@ -35,14 +32,7 @@ class IPMSecurityManager: NSObject {
     }
     
     func cacheCardsForIdentities(identities: Array<String>) {
-        if let error = XAsync.awaitResult(self.setup()) as? NSError {
-            print("Error: \(error.localizedDescription)")
-            return
-        }
-        
-        XAsync.await { 
-            let semaphore = dispatch_semaphore_create(0)
-            
+        let async = XAsyncTask { (weakTask) in
             var itemsCount = identities.count
             for identity in identities {
                 if synchronized(self.mutex, closure: { () -> VSSCard? in
@@ -50,13 +40,13 @@ class IPMSecurityManager: NSObject {
                 }) != nil {
                     itemsCount -= 1;
                     if itemsCount == 0 {
-                        dispatch_semaphore_signal(semaphore)
+                        weakTask?.fireSignal()
                         return
                     }
                     continue
                 }
                 
-                self.client.searchCardWithIdentityValue(identity, type: .Email, relations: nil, unconfirmed: nil, completionHandler: { cards, error in
+                self.client.searchCardWithIdentityValue(identity, type: kIPMExampleCardType, unauthorized: false, completionHandler: { (cards, error) in
                     if error != nil {
                         print("Error searching for card: \(error!.localizedDescription)")
                     }
@@ -70,40 +60,43 @@ class IPMSecurityManager: NSObject {
                     
                     itemsCount -= 1;
                     if itemsCount == 0 {
-                        dispatch_semaphore_signal(semaphore)
+                        weakTask?.fireSignal()
                         return
                     }
                 })
             }
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
         }
+        async.awaitSignal()
     }
     
     func checkSignature(signature: NSData, data: NSData, identity: String) -> Bool {
         self.cacheCardsForIdentities([identity])
-        
-        var ok = false
-        XAsync.await { 
+        let task = XAsyncTask { (weakTask) in
             if let sender = synchronized(self.mutex, closure: {() -> VSSCard? in
                 self.cardCache[identity] as? VSSCard
             }) {
                 let verifier = VSSSigner()
                 do {
                     try verifier.verifySignature(signature, data: data, publicKey: sender.publicKey.key, error: ())
-                    ok = true
+                    weakTask?.result = true
                 }
                 catch {
-                    ok = false
+                    weakTask?.result = false
                 }
             }
         }
-        return ok
+        task.await()
+        if let ok = task.result as? Bool {
+            return ok
+        }
+        
+        return false
     }
     
     func encryptData(data: NSData, identities: Array<String>) -> NSData? {
         self.cacheCardsForIdentities(identities)
         
-        return XAsync.awaitResult({ () -> AnyObject? in
+        let task = XAsyncTask { (weakTask) in
             let cryptor = VSSCryptor()
             for identity in identities {
                 if let recipient = synchronized(self.mutex, closure: {() -> VSSCard? in
@@ -116,132 +109,70 @@ class IPMSecurityManager: NSObject {
                 }
             }
             
-            return try? cryptor.encryptData(data, embedContentInfo: true, error: ())
-        }) as? NSData
+            weakTask?.result = try? cryptor.encryptData(data, embedContentInfo: true, error: ())
+        }
+        task.await()
+        return task.result as? NSData
     }
     
     func decryptData(data: NSData) -> NSData? {
         self.cacheCardsForIdentities([self.identity])
         
-        return XAsync.awaitResult({ () -> AnyObject? in
+        let task = XAsyncTask { (weakTask) in
             if let recipient = synchronized(self.mutex, closure: { () -> VSSCard? in
                 return self.cardCache[self.identity] as? VSSCard
             }) {
                 let decryptor = VSSCryptor()
-                return try? decryptor.decryptData(data, recipientId: recipient.Id, privateKey: self.privateKey.key, keyPassword: self.privateKey.password, error: ())
+                weakTask?.result = try? decryptor.decryptData(data, recipientId: recipient.Id, privateKey: self.privateKey.key, keyPassword: self.privateKey.password, error: ())
             }
-            
-            return nil
-        }) as? NSData
+        }
+        task.await()
+        return task.result as? NSData
     }
     
     func composeSignatureOnData(data: NSData) -> NSData? {
-        return XAsync.awaitResult({ () -> AnyObject? in
+        let task = XAsyncTask { (weakTask) in
             let signer = VSSSigner()
-            return try? signer.signData(data, privateKey: self.privateKey.key, keyPassword: self.privateKey.password, error: ())
-        }) as? NSData
-    }
-    
-    
-    func verifyIdentity() -> XAsyncActionResult {
-        return { () -> AnyObject? in
-            var actionError: NSError? = XAsync.awaitResult(self.setup()) as? NSError
-            if actionError != nil {
-                return actionError
-            }
-            
-            let semaphore = dispatch_semaphore_create(0)
-            self.client.verifyIdentityWithType(.Email, value: self.identity, completionHandler: { (actionId, error) in
-                if error != nil {
-                    actionError = error
-                    dispatch_semaphore_signal(semaphore)
-                    return
-                }
-                
-                self.actionId = actionId
-                actionError = nil
-                dispatch_semaphore_signal(semaphore)
-            })
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
-            return actionError
+            weakTask?.result = try? signer.signData(data, privateKey: self.privateKey.key, keyPassword: self.privateKey.password, error: ())
         }
+        task.await()
+        return task.result as? NSData
     }
     
-    func confirmWithCode(code: String) -> XAsyncActionResult {
-        return { () -> AnyObject? in
-            var actionError: NSError? = XAsync.awaitResult(self.setup()) as? NSError
-            if actionError != nil {
-                return actionError
-            }
-            
-            let semaphore = dispatch_semaphore_create(0)
-            self.client.confirmIdentityWithActionId(self.actionId, code: code, ttl: nil, ctl: nil, completionHandler: { (type, value, validationToken, error) in
-                if error != nil {
-                    actionError = error
-                    dispatch_semaphore_signal(semaphore)
-                    return
-                }
-                
-                self.validationToken = validationToken
-                actionError = nil
-                dispatch_semaphore_signal(semaphore)
-            })
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
-            return actionError
-        }
-    }
     
-    func signin() -> XAsyncActionResult {
-        return { () -> AnyObject? in
-            var actionError: NSError? = XAsync.awaitResult(self.setup()) as? NSError
-            if actionError != nil {
-                return actionError
-            }
-            
+    func signin() -> NSError? {
+        let async = XAsyncTask { (weakTask) in
             self.cacheCardsForIdentities([self.identity])
-
-            if let card = synchronized(self.mutex, closure: { () -> VSSCard? in
+            if synchronized(self.mutex, closure: { () -> VSSCard? in
                 return self.cardCache[self.identity] as? VSSCard
-            }) {
-                let semaphore = dispatch_semaphore_create(0)
-                let idict = [ kVSSModelValue: self.identity, kVSSModelType: VSSIdentity.stringFromIdentityType(.Email), kVSSModelValidationToken: self.validationToken]
-                self.client.grabPrivateKeyWithIdentity(idict, cardId: card.Id, password: nil, completionHandler: { (keyData, cardId, error) in
-                    if error != nil {
-                        actionError = error
-                        dispatch_semaphore_signal(semaphore)
-                        return
-                    }
-                    
-                    self.actionId = nil
-                    self.validationToken = nil
-                    self.privateKey = VSSPrivateKey(key: keyData!, password: nil)
-                    actionError = nil
-                    dispatch_semaphore_signal(semaphore)
-                })
-                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
-                return actionError
+            }) != nil {
+                let pkStorage = VSSKeychainValue(id: kPrivateKeyStorage, accessGroup: nil)
+                self.privateKey = pkStorage.objectForKey(self.identity) as? VSSPrivateKey
+                if self.privateKey == nil {
+                    print("Private key should be present.")
+                    weakTask?.result = NSError(domain: "SignInError", code: -6660, userInfo: nil)
+                    assert(true)
+                }
             }
             else {
-                return NSError(domain: "SignInError", code: -5555, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("No cards found for given identity", comment: "")])
+                weakTask?.result = NSError(domain: "SignInError", code: -5555, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("No cards found for given identity", comment: "")])
             }
         }
+        async.await()
+        return async.error()
     }
     
-    func signup() -> XAsyncActionResult {
-        return { () -> AnyObject? in
-            var actionError: NSError? = XAsync.awaitResult(self.setup()) as? NSError
-            if actionError != nil {
-                return actionError
-            }
-            
-            let semaphore = dispatch_semaphore_create(0)
+    func signup() -> NSError? {
+        let async = XAsyncTask { (weakTask) in
             let pair = VSSKeyPair(password: nil)
             self.privateKey = VSSPrivateKey(key: pair.privateKey(), password: nil)
-            let idict = [kVSSModelValue: self.identity, kVSSModelType: VSSIdentity.stringFromIdentityType(.Email), kVSSModelValidationToken: self.validationToken]
-            self.client.createCardWithPublicKey(pair.publicKey(), identity: idict, data: nil, signs: nil, privateKey: self.privateKey, completionHandler: { (card, error) in
+            let appKey = VSSPrivateKey(key: kAppPrivateKey.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, password: kAppPrivateKeyPassword)
+            let info = VSSIdentityInfo(type: kIPMExampleCardType, value: self.identity, validationToken: nil)
+            VSSValidationTokenGenerator.setValidationTokenForIdentityInfo(info, privateKey: appKey, error: nil)
+            self.client.createCardWithPublicKey(pair.publicKey(), identityInfo: info, data: nil, privateKey: self.privateKey, completionHandler: { (card, error) in
                 if error != nil || card == nil {
-                    actionError = error
-                    dispatch_semaphore_signal(semaphore)
+                    weakTask?.result = error
+                    weakTask?.fireSignal()
                     return
                 }
                 
@@ -249,46 +180,14 @@ class IPMSecurityManager: NSObject {
                     self.cardCache[self.identity] = card!
                 }
                 
-                self.client.storePrivateKey(self.privateKey, cardId: card!.Id, completionHandler: { (error) in
-                    if error != nil {
-                        actionError = error
-                        dispatch_semaphore_signal(semaphore)
-                        return
-                    }
-                    
-                    self.actionId = nil
-                    self.validationToken = nil
-                    actionError = nil
-                    dispatch_semaphore_signal(semaphore)
-                })
-            })
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
-            return actionError
-        }
-    }
-    
-    private func setup() -> XAsyncActionResult {
-        return { () -> AnyObject? in
-            if self.clientSetUp {
-                return nil
-            }
-            
-            var actionError: NSError! = nil
-            let semaphore = dispatch_semaphore_create(0)
-            self.client.setupClientWithCompletionHandler({ error in
-                if error != nil {
-                    actionError = error
-                    dispatch_semaphore_signal(semaphore)
-                    return
-                }
+                let pkStorage = VSSKeychainValue(id: kPrivateKeyStorage, accessGroup: nil)
+                pkStorage.setObject(self.privateKey, forKey: self.identity)
                 
-                self.clientSetUp = true
-                actionError = nil
-                dispatch_semaphore_signal(semaphore)
+                weakTask?.result = nil
+                weakTask?.fireSignal()
             })
-            
-            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
-            return actionError
         }
+        async.awaitSignal()
+        return async.error()
     }
 }

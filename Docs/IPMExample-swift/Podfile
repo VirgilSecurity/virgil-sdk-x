@@ -4,6 +4,6 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'IPMExample-swift' do
-    pod 'VirgilSDK', '~> 3.1'
+    pod 'VirgilSDK', '~> 3.2'
     pod 'XAsync', '~> 2.0'
 end

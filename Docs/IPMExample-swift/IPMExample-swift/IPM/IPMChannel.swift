@@ -42,35 +42,33 @@ class IPMChannel: NSObject, IPMDataSource {
         self.listener = nil
     }
     
-    func getParticipants() -> XAsyncActionResult {
-        return { () -> AnyObject? in
-            let urlString = "\(kBaseURL)/channels/\(self.name)/members"
-            if let url = NSURL(string: urlString) {
-                let request = NSMutableURLRequest(URL: url)
-                request.HTTPMethod = "GET"
-                request.setValue(self.token, forHTTPHeaderField: kIdentityTokenHeader)
-                
-                let semaphore = dispatch_semaphore_create(0)
-                var actionError: NSError? = nil
+    func getParticipants() -> Array<String> {
+        let urlString = "\(kBaseURL)/channels/\(self.name)/members"
+        if let url = NSURL(string: urlString) {
+            let request = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "GET"
+            request.setValue(self.token, forHTTPHeaderField: kIdentityTokenHeader)
+            
+            let async = XAsyncTask(action: { (weakTask) in
                 var members = Array<String>()
                 let task = self.session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
                     if error != nil {
-                        actionError = error
-                        dispatch_semaphore_signal(semaphore)
+                        weakTask?.result = error
+                        weakTask?.fireSignal()
                         return
                     }
                     
                     let r = response as! NSHTTPURLResponse
                     if r.statusCode >= 400 {
                         let httpError = NSError(domain: "HTTPError", code: r.statusCode, userInfo: [ NSLocalizedDescriptionKey: NSLocalizedString(NSHTTPURLResponse.localizedStringForStatusCode(r.statusCode), comment: "No comments") ])
-                        actionError = httpError
-                        dispatch_semaphore_signal(semaphore)
+                        weakTask?.result = httpError
+                        weakTask?.fireSignal()
                         return
                     }
                     
                     if data?.length == 0 {
-                        actionError = nil
-                        dispatch_semaphore_signal(semaphore)
+                        weakTask?.result = nil
+                        weakTask?.fireSignal()
                         return
                     }
                     
@@ -86,58 +84,58 @@ class IPMChannel: NSObject, IPMDataSource {
                         else { throw NSError(domain: "GetParticipantsError", code: -8989, userInfo: nil) }
                     }
                     catch let err as NSError {
-                        actionError = err
-                        dispatch_semaphore_signal(semaphore)
+                        weakTask?.result = err
+                        weakTask?.fireSignal()
                         return
                     }
-                    actionError = nil
-                    dispatch_semaphore_signal(semaphore);
-                    
+                    weakTask?.result = members
+                    weakTask?.fireSignal()
                 })
                 task.resume()
-                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
-                return actionError ?? members
+            })
+            async.awaitSignal()
+            if let participants = async.result as? Array<String> {
+                return participants
             }
-            return NSError(domain: "GetParticipantsError", code: -9696, userInfo: nil)
         }
+        return Array<String>()
     }
     
-    func sendMessage(message: IPMSecureMessage) -> XAsyncActionResult {
-        return { () -> AnyObject? in
-            let urlString = "\(kBaseURL)/channels/\(self.name)/messages"
-            if let url = NSURL(string: urlString) {
-                let request = NSMutableURLRequest(URL: url)
-                request.HTTPMethod = "POST"
-                request.HTTPBody = message.toJSON()
-                request.setValue(self.token, forHTTPHeaderField: kIdentityTokenHeader)
-                request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                
-                let semaphore = dispatch_semaphore_create(0)
-                var actionError: NSError? = nil
+    func sendMessage(message: IPMSecureMessage) -> NSError? {
+        let urlString = "\(kBaseURL)/channels/\(self.name)/messages"
+        if let url = NSURL(string: urlString) {
+            let request = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "POST"
+            request.HTTPBody = message.toJSON()
+            request.setValue(self.token, forHTTPHeaderField: kIdentityTokenHeader)
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            let async = XAsyncTask(action: { (weakTask) in
                 let task = self.session.dataTaskWithRequest(request, completionHandler: { (data, response, error) in
                     if error != nil {
-                        actionError = error
-                        dispatch_semaphore_signal(semaphore)
+                        weakTask?.result = error
+                        weakTask?.fireSignal()
                         return
                     }
                     
                     let r = response as! NSHTTPURLResponse
                     if r.statusCode >= 400 {
                         let httpError = NSError(domain: "HTTPError", code: r.statusCode, userInfo: [ NSLocalizedDescriptionKey: NSLocalizedString(NSHTTPURLResponse.localizedStringForStatusCode(r.statusCode), comment: "No comments") ])
-                        actionError = httpError
-                        dispatch_semaphore_signal(semaphore)
+                        weakTask?.result = httpError
+                        weakTask?.fireSignal()
                         return
                     }
-
-                    actionError = nil
-                    dispatch_semaphore_signal(semaphore);
+                    
+                    weakTask?.result = nil
+                    weakTask?.fireSignal()
                 })
                 task.resume()
-                dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
-                return actionError
-            }
-            return NSError(domain: "ParticipantsError", code: -7676, userInfo: nil)
+            })
+            async.awaitSignal()
+            return async.error()
         }
+        
+        return NSError(domain: "ParticipantsError", code: -7676, userInfo: nil)
     }
     
     func startTimer() {

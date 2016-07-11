@@ -56,15 +56,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let ipmChannelSetup = {
             self.ipmClient = IPMChannelClient(userId: self.ipmSecurity.identity)
-            
-            if let error = XAsync.awaitResult(self.ipmClient.joinChannel("iOS-IPM-EXAMPLE", listener: listener)) as? NSError {
+            if let error = self.ipmClient.joinChannel(kAppChannelName, listener: listener) {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.dismissViewControllerAnimated(false, completion: nil)
                 }
                 print("Error joining the channel: \(error.localizedDescription)")
                 return
             }
-            
+
             dispatch_async(dispatch_get_main_queue()) {
                 self.dismissViewControllerAnimated(false, completion: nil)
                 self.lIdentity.text = self.ipmSecurity.identity
@@ -82,78 +81,46 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if let text = tf.text {
                 self.presentViewController(self.loadingController, animated: false, completion: nil)
                 self.ipmSecurity = IPMSecurityManager(identity: text)
-                if let error = XAsync.awaitResult(self.ipmSecurity.verifyIdentity()) as? NSError {
-                    self.dismissViewControllerAnimated(false, completion: nil)
-                    print("Error: \(error.localizedDescription)")
-                    return
-                }
-                
-                self.dismissViewControllerAnimated(false, completion: nil)
-                let confirmation = UIAlertController(title: nil, message: NSLocalizedString("Enter confirmation code from email", comment: ""), preferredStyle: .Alert)
-                confirmation.modalPresentationStyle = .OverCurrentContext
-                confirmation.addTextFieldWithConfigurationHandler({ (textField) in
-                    textField.keyboardType = .Default
-                    textField.returnKeyType = .Done
-                    textField.autocapitalizationType = .AllCharacters
-                })
-                let confirm = UIAlertAction(title: NSLocalizedString("Confirm", comment: ""), style: .Default, handler: { _ in
-                    let tf = confirmation.textFields![0]
-                    if let text = tf.text {
-                        self.presentViewController(self.loadingController, animated: false, completion: nil)
-                        if let error = XAsync.awaitResult(self.ipmSecurity.confirmWithCode(text)) as? NSError {
-                            print("Error: \(error.localizedDescription)")
-                            return
-                        }
-                        
-                        if let error = XAsync.awaitResult(self.ipmSecurity.signin()) as? NSError {
-                            if error.code == -5555 {
-                                if let error = XAsync.awaitResult(self.ipmSecurity.signup()) as? NSError {
-                                    self.dismissViewControllerAnimated(false, completion: nil)
-                                    print("Error: \(error.localizedDescription)")
-                                    return
-                                }
-                                
-                                ipmChannelSetup()
-                                return
-                            }
-                            
+                if let signinerror = self.ipmSecurity.signin() {
+                    if signinerror.code == -5555 {
+                        if let signuperror = self.ipmSecurity.signup() {
                             self.dismissViewControllerAnimated(false, completion: nil)
-                            print("Error: \(error.localizedDescription)")
+                            print("Error: \(signuperror.localizedDescription)")
                             return
                         }
                         
                         ipmChannelSetup()
+                        return
                     }
-                })
-                confirmation.addAction(confirm)
-                self.presentViewController(confirmation, animated: true, completion: nil)
+                    
+                    self.dismissViewControllerAnimated(false, completion: nil)
+                    print("Error: \(signinerror.localizedDescription)")
+                    return
+                }
+                
+                ipmChannelSetup()
             }
         }
+        
         introduction.addAction(ok)
         self.presentViewController(introduction, animated: true, completion: nil)
     }
 
     func sendMessage(text: String) {
         self.presentViewController(self.loadingController, animated: false, completion: nil)
-        let result = XAsync.awaitResult(self.ipmClient.channel.getParticipants())
-        if let error = result as? NSError {
-            self.dismissViewControllerAnimated(false, completion: nil)
-            print("Error: \(error.localizedDescription)")
-            return
-        }
         
-        if let participants = result as? Array<String> where participants.count > 0 {
-            if let plainData = text.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
-                if let encryptedData = self.ipmSecurity.encryptData(plainData, identities: participants) {
-                    if let signature = self.ipmSecurity.composeSignatureOnData(encryptedData) {
-                        let ipm = IPMSecureMessage(message: encryptedData, signature: signature)
-                        if let error = XAsync.awaitResult(self.ipmClient.channel.sendMessage(ipm)) as? NSError {
+        let participants = self.ipmClient.channel.getParticipants()
+        if participants.count > 0 {
+            if let plaindata = text.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false) {
+                if let encrypted = self.ipmSecurity.encryptData(plaindata, identities: participants) {
+                    if let signature = self.ipmSecurity.composeSignatureOnData(encrypted) {
+                        let ipm = IPMSecureMessage(message: encrypted, signature: signature)
+                        if let error = self.ipmClient.channel.sendMessage(ipm) {
                             print("Error: \(error.localizedDescription)")
                             self.dismissViewControllerAnimated(false, completion: nil)
                             return
                         }
-                        
-                        /// succcess
+                        /// success
                         self.tfMessage.text = nil
                         self.dismissViewControllerAnimated(false, completion: nil)
                         return
@@ -162,7 +129,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
         }
         
-        print("Error sending message.")
+        print("No participants on the channel.")
         self.dismissViewControllerAnimated(false, completion: nil)
     }
     
