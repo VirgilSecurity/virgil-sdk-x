@@ -20,3 +20,11 @@ extern NSString * _Nonnull const kIdentityToken;
 extern NSString * _Nonnull const kBaseURL;
 extern NSString * _Nonnull const kIdentityTokenHeader;
 extern NSString * _Nonnull const kAppToken;
+extern NSString * _Nonnull const kAppPrivateKey;
+extern NSString * _Nonnull const kAppPrivateKeyPassword;
+
+extern NSString * _Nonnull const kIPMExampleCardType;
+extern NSString * _Nonnull const kPrivateKeyStorage;
+extern NSString * _Nonnull const kPrivateKeyValue;
+
+extern NSString * _Nonnull const kAppChannelName;

@@ -7,7 +7,7 @@
 //
 
 #import "VSSGrabPrivateKeyRequest.h"
-#import "VSSModelCommons.h"
+#import "VSSIdentityInfo.h"
 #import "NSObject+VSSUtils.h"
 
 @interface VSSGrabPrivateKeyRequest ()
@@ -22,15 +22,16 @@
 @synthesize privateKey = _privateKey;
 @synthesize cardId = _cardId;
 
-- (instancetype)initWithContext:(VSSRequestContext *)context identity:(NSDictionary *)identity cardId:(GUID *)cardId {
+- (instancetype)initWithContext:(VSSRequestContext *)context identityInfo:(VSSIdentityInfo *)identityInfo cardId:(GUID *)cardId {
     self = [super initWithContext:context];
     if (self == nil) {
         return nil;
     }
     
     NSMutableDictionary *body = [[NSMutableDictionary alloc] init];
-    if (identity.count > 0) {
-        body[kVSSModelIdentity] = identity;
+    NSDictionary *identityDict = [identityInfo asDictionary];
+    if (identityDict.count > 0) {
+        body[kVSSModelIdentity] = identityDict;
     }
     if (cardId.length > 0) {
         body[kVSSModelVirgilCardId] = cardId;
@@ -40,7 +41,7 @@
 }
 
 - (instancetype)initWithContext:(VSSRequestContext *)context {
-    return [self initWithContext:context identity:@{} cardId:@""];
+    return [self initWithContext:context identityInfo:[[VSSIdentityInfo alloc] init] cardId:@""];
 }
 
 #pragma mark - Overrides

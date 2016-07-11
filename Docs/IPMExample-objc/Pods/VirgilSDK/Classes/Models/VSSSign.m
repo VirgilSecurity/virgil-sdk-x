@@ -7,7 +7,6 @@
 //
 
 #import "VSSSign.h"
-#import "VSSModelCommons.h"
 #import "NSObject+VSSUtils.h"
 
 @interface VSSSign()

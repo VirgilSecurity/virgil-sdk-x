@@ -28,6 +28,9 @@ extern const NSInteger kVSSIdentityAppSignedMessageNotValidError;
 extern const NSInteger kVSSIdentityEntityNotFoundError;
 extern const NSInteger kVSSIdentityConfirmationPeriodExpiredError;
 
+/**
+ * Concrete subclass representing the errors returning by the Virgil Identity Service.
+ */
 @interface VSSIdentityError : VSSError
 
 @end

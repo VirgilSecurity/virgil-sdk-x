@@ -9,7 +9,6 @@
 #import "VSSKeysBaseRequest.h"
 
 @class VSSCard;
-@class VSSPublicKey;
 
 @interface VSSSearchAppCardRequest : VSSKeysBaseRequest
 

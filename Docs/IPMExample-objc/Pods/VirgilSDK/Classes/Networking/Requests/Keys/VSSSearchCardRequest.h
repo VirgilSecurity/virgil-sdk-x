@@ -7,7 +7,6 @@
 //
 
 #import "VSSKeysBaseRequest.h"
-#import "VSSModelTypes.h"
 
 @class VSSCard;
 @class VSSPublicKey;
@@ -16,6 +15,6 @@
 
 @property (nonatomic, strong, readonly) NSArray <VSSCard *>* __nullable cards;
 
-- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context value:(NSString * __nonnull)value type:(VSSIdentityType)type relations:(NSArray <GUID *>* __nullable)relations unconfirmed:(NSNumber * __nullable)unconfirmed NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context value:(NSString * __nonnull)value type:(NSString * __nullable)type unauthorized:(BOOL)unauthorized NS_DESIGNATED_INITIALIZER;
 
 @end

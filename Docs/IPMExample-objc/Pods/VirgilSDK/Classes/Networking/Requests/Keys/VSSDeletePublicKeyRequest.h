@@ -7,10 +7,12 @@
 //
 
 #import "VSSKeysBaseRequest.h"
-#import "VSSModelTypes.h"
+#import "VSSModelCommons.h"
+
+@class VSSIdentityInfo;
 
 @interface VSSDeletePublicKeyRequest : VSSKeysBaseRequest
 
-- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context publicKeyId:(GUID * __nonnull)publicKeyId identities:(NSArray <NSDictionary*>* __nonnull)identities NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context publicKeyId:(GUID * __nonnull)publicKeyId identityInfoList:(NSArray <VSSIdentityInfo*>* __nonnull)identityInfoList NS_DESIGNATED_INITIALIZER;
 
 @end

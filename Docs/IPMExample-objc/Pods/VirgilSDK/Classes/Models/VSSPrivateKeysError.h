@@ -40,6 +40,9 @@ extern const NSInteger kVSSPrivateKeysIdentityTokenNotFoundError;
 extern const NSInteger kVSSPrivateKeysIdentityValidationRAError;
 extern const NSInteger kVSSPrivateKeysAccessTokenValidationStatsError;
 
+/**
+ * Concrete subclass representing the errors returning by the Virgil Private Keys Service.
+ */
 @interface VSSPrivateKeysError : VSSError
 
 @end

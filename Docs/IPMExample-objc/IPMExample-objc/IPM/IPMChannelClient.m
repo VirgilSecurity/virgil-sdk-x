@@ -47,13 +47,15 @@ NS_ASSUME_NONNULL_END
 
 #pragma mark - Class logic
 
-- (XAsyncActionResult)joinChannelWithName:(NSString *)name channelListener:(IPMDataSourceListener)listener {
-    return ^ id {
+- (NSError *)joinChannelWithName:(NSString *)name channelListener:(IPMDataSourceListener)listener {
+    XAsyncTask *join = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable async) {
         NSDictionary *dto = @{ kSenderIdentifier: self.userId };
         NSError *jsonError = nil;
         NSData *httpBody = [NSJSONSerialization dataWithJSONObject:dto options:0 error:&jsonError];
         if (jsonError != nil) {
-            return jsonError;
+            async.result = jsonError;
+            [async fireSignal];
+            return;
         }
         
         NSString *urlString = [NSString stringWithFormat:@"%@/channels/%@/join", kBaseURL, name];
@@ -62,12 +64,10 @@ NS_ASSUME_NONNULL_END
         [request setHTTPBody:httpBody];
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         
-        NSError * __block actionError = nil;
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
         NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
             if (error != nil) {
-                actionError = error;
-                dispatch_semaphore_signal(semaphore);
+                async.result = error;
+                [async fireSignal];
                 return;
             }
             
@@ -84,31 +84,30 @@ NS_ASSUME_NONNULL_END
 #endif
             if (r.statusCode >= 400) {
                 NSError *httpError = [NSError errorWithDomain:@"HTTPError" code:r.statusCode userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString([NSHTTPURLResponse localizedStringForStatusCode:r.statusCode], @"No comments") }];
-                actionError = httpError;
-                dispatch_semaphore_signal(semaphore);
+                async.result = httpError;
+                [async fireSignal];
                 return;
             }
             
             NSError *jsonResponseError = nil;
             NSDictionary *candidate = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonResponseError];
             if (jsonResponseError != nil) {
-                actionError = jsonResponseError;
-                dispatch_semaphore_signal(semaphore);
+                async.result = jsonResponseError;
+                [async fireSignal];
                 return;
             }
             
             NSString *identityToken = [candidate[kIdentityToken] as:[NSString class]];
             if (identityToken.length == 0) {
-                actionError = [NSError errorWithDomain:@"Error" code:-999 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"There is no identity token returned.", @"No comments") }];
-                dispatch_semaphore_signal(semaphore);
+                async.result = [NSError errorWithDomain:@"Error" code:-999 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"There is no identity token returned.", @"No comments") }];
+                [async fireSignal];
                 return;
             }
             
             IPMChannel *channel = [[IPMChannel alloc] initWithName:name token:identityToken];
             [channel startListeningWithHandler:listener];
             self.channel = channel;
-
-            dispatch_semaphore_signal(semaphore);
+            [async fireSignal];
         }];
         
 #ifdef DEBUG
@@ -127,9 +126,10 @@ NS_ASSUME_NONNULL_END
         }
 #endif
         [task resume];
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-        return actionError;
-    };
+    }];
+    
+    [join awaitSignal];
+    return join.error;
 }
 
 - (void)leaveChannel {

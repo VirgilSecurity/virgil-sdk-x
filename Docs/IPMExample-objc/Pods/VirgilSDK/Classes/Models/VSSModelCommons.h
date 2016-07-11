@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NSString GUID;
+
 extern NSString * __nonnull const kVSSModelId;
 extern NSString * __nonnull const kVSSModelCreatedAt;
 
 extern NSString * __nonnull const kVSSModelType;
 extern NSString * __nonnull const kVSSModelValue;
-extern NSString * __nonnull const kVSSModelIsConfirmed;
+extern NSString * __nonnull const kVSSModelAuthorizedBy;
 
 extern NSString * __nonnull const kVSSModelIdentity;
 extern NSString * __nonnull const kVSSModelHash;
@@ -47,7 +49,6 @@ extern NSString * __nonnull const kVSSModelExtraFields;
 extern NSString * __nonnull const kVSSModelError;
 extern NSString * __nonnull const kVSSModelCode;
 
-extern NSString * __nonnull const kVSSIdentityTypeUnknown;
 extern NSString * __nonnull const kVSSIdentityTypeEmail;
 extern NSString * __nonnull const kVSSIdentityTypeApplication;
 

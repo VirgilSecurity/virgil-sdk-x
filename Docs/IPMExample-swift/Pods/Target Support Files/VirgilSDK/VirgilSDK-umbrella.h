@@ -5,10 +5,10 @@
 #import "VSSError.h"
 #import "VSSIdentity.h"
 #import "VSSIdentityError.h"
+#import "VSSIdentityInfo.h"
 #import "VSSKeysError.h"
 #import "VSSModel.h"
 #import "VSSModelCommons.h"
-#import "VSSModelTypes.h"
 #import "VSSPrivateKey.h"
 #import "VSSPrivateKeysError.h"
 #import "VSSPublicKey.h"
@@ -28,6 +28,8 @@
 #import "NSObject+VSSUtils.h"
 #import "NSString+VSSXMLEscape.h"
 #import "VSSKeychainValue.h"
+#import "VSSPBKDF+Base64.h"
+#import "VSSValidationTokenGenerator.h"
 
 FOUNDATION_EXPORT double VirgilSDKVersionNumber;
 FOUNDATION_EXPORT const unsigned char VirgilSDKVersionString[];

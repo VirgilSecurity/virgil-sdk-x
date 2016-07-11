@@ -28,10 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSData * _Nullable)decryptData:(NSData *)data;
 - (NSData * _Nullable)composeSignatureOnData:(NSData *)data;
 
-- (XAsyncActionResult)verifyIdentity;
-- (XAsyncActionResult)confirmWithCode:(NSString *)code;
-- (XAsyncActionResult)signin;
-- (XAsyncActionResult)signup;
+- (NSError * _Nullable)signin;
+- (NSError * _Nullable)signup;
 
 @end
 

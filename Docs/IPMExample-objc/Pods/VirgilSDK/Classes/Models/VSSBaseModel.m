@@ -7,7 +7,6 @@
 //
 
 #import "VSSBaseModel.h"
-#import "VSSModelCommons.h"
 #import "NSObject+VSSUtils.h"
 
 @interface VSSBaseModel ()

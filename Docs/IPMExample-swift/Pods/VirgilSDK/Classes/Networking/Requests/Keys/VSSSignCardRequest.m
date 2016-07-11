@@ -8,7 +8,6 @@
 
 #import "VSSSignCardRequest.h"
 #import "VSSSign.h"
-#import "VSSModelCommons.h"
 #import "NSObject+VSSUtils.h"
 
 @interface VSSSignCardRequest ()

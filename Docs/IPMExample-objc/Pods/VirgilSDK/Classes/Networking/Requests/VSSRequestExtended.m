@@ -50,10 +50,11 @@
     
     // Sign request body with given key.
     VSSSigner *signer = [[VSSSigner alloc] init];
-    NSData *signData = [signer signData:toSign privateKey:self.extendedContext.privateKey.key keyPassword:self.extendedContext.privateKey.password];
-    if (signData.length == 0) {
-        VSSRDLog(@"Unable to sign request data with context private key.");
-        return [NSError errorWithDomain:kVSSRequestErrorDomain code:-102 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to sign the request with context private key.", @"Sign for the request has failed.") }];;
+    NSError *error = nil;
+    NSData *signData = [signer signData:toSign privateKey:self.extendedContext.privateKey.key keyPassword:self.extendedContext.privateKey.password error:&error];
+    if (error != nil) {
+        VSSRDLog(@"Unable to sign request data with context private key: %@", [error localizedDescription]);
+        return error;
     }
     
     // Encode sign to base64
@@ -105,11 +106,12 @@
         [signedData appendData:self.responseBody];
     }
     
+    NSError *error = nil;
     VSSSigner *verifier = [[VSSSigner alloc] init];
-    BOOL verified = [verifier verifySignature:signatureData data:signedData publicKey:self.extendedContext.serviceCard.publicKey.key];
+    BOOL verified = [verifier verifySignature:signatureData data:signedData publicKey:self.extendedContext.serviceCard.publicKey.key error:&error];
     if (!verified) {
         VSSRDLog(@"Signature verification has failed.");
-        return [NSError errorWithDomain:kVSSRequestErrorDomain code:-112 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Signature verification has failed.", @"Signature verification is not possible.") }];
+        return (error != nil) ? error : [NSError errorWithDomain:kVSSRequestErrorDomain code:-112 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Signature verification has failed.", @"Signature verification is not possible.") }];
     }
     
     return nil;
@@ -124,12 +126,13 @@
     NSError *error = nil;
     VSSCryptor *cryptor = [[VSSCryptor alloc] init];
     if (![cryptor addKeyRecipient:self.extendedContext.serviceCard.Id publicKey:self.extendedContext.serviceCard.publicKey.key error:&error]) {
+        VSSRDLog(@"Error adding key recipient: %@", [error localizedDescription]);
         return error;
     }
-    NSData *encryptedBody = [cryptor encryptData:self.request.HTTPBody embedContentInfo:@YES];
-    if (encryptedBody.length == 0) {
-        VSSRDLog(@"Encryption of the request body has failed.");
-        return [NSError errorWithDomain:kVSSRequestErrorDomain code:-105 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Encryption of the request body has failed.", @"Encryption for the request has failed.") }];
+    NSData *encryptedBody = [cryptor encryptData:self.request.HTTPBody embedContentInfo:YES error:&error];
+    if (error != nil) {
+        VSSRDLog(@"Encryption of the request body has failed: %@", [error localizedDescription]);
+        return error;
     }
     
     /// Set request body to a proper encrypted and base64 encoded body.
@@ -156,10 +159,11 @@
     }
     
     VSSCryptor *decryptor = [[VSSCryptor alloc] init];
-    NSData *plainResponseData = [decryptor decryptData:encryptedData password:self.extendedContext.password];
-    if (plainResponseData.length == 0) {
-        VSSRDLog(@"Decryption of the response body has failed.");
-        return [NSError errorWithDomain:kVSSRequestErrorDomain code:-115 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Decryption of the response body has failed.", @"Response body can not be decrypted.") }];
+    NSError *error = nil;
+    NSData *plainResponseData = [decryptor decryptData:encryptedData password:self.extendedContext.password error:&error];
+    if (error != nil) {
+        VSSRDLog(@"Decryption of the response body has failed: %@", [error localizedDescription]);
+        return error;
     }
     
     self.responseBody = plainResponseData;

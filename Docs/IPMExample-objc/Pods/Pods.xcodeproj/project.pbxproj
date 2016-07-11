@@ -10,23 +10,25 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
-		<key>000078E86BB91FB20E711F9310FD0E69</key>
+		<key>0068C1C5DB88FA7860C4585157A4B44D</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>VSSStreamSigner.mm</string>
+			<string>VSSPublicKey.m</string>
 			<key>path</key>
-			<string>Wrapper/VSSStreamSigner.mm</string>
+			<string>Classes/Models/VSSPublicKey.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>00089B6AFA5C20A8D7ADD14936D27FE7</key>
+		<key>007148EF65D564389C8286BB323CBF91</key>
 		<dict>
 			<key>fileRef</key>
-			<string>48076B161BA2F67332330B74EA3EC4B1</string>
+			<string>030A90FC3AAD58E7B0F31451CC64E502</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -37,14 +39,21 @@
 				</array>
 			</dict>
 		</dict>
-		<key>00F97E56939D0D4E81B635EFB53786AF</key>
+		<key>00DF6BC2C33354781D7A75F5EDDA6121</key>
 		<dict>
 			<key>fileRef</key>
-			<string>7ABB5633FF92E8B14853726D10880D2F</string>
+			<string>0630621D41053F9270625369601B21B5</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
-		<key>04CCC021FF227EF6A39A9E838B5E0A91</key>
+		<key>030A90FC3AAD58E7B0F31451CC64E502</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -53,36 +62,97 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSStreamSigner.h</string>
+			<string>NSString+VSSXMLEscape.h</string>
 			<key>path</key>
-			<string>Wrapper/VSSStreamSigner.h</string>
+			<string>Classes/Utils/NSString+VSSXMLEscape.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>06D9CFB2E2CF340BDC7A05C522491621</key>
-		<dict>
-			<key>fileRef</key>
-			<string>000078E86BB91FB20E711F9310FD0E69</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>071D7DB42EFD776160EDF133EE167E3E</key>
+		<key>031F666AE0553EDEE31B3039BE2FCE55</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSVirgilVersion.mm</string>
+			<string>VSSStorePrivateKeyRequest.h</string>
 			<key>path</key>
-			<string>Wrapper/VSSVirgilVersion.mm</string>
+			<string>Classes/Networking/Requests/PrivateKeys/VSSStorePrivateKeyRequest.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>0752E5E1058FB7A70D50141D7DC86C8A</key>
+		<key>035A681274D5FA2EF97411173BE5006C</key>
 		<dict>
 			<key>fileRef</key>
-			<string>968AC039711CDED883DCDDE9C205BDA0</string>
+			<string>452A0655D94541B1A87C60387A58B673</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>04E5ABF78315B640887CD8F80A367F83</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSVerifyIdentityRequest.m</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/Identity/VSSVerifyIdentityRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>05E3138156CC0FCD04337B567E6182C8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSDeletePublicKeyRequest.h</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/Keys/VSSDeletePublicKeyRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0630621D41053F9270625369601B21B5</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSFoundationCommons.h</string>
+			<key>path</key>
+			<string>Wrapper/VSSFoundationCommons.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>07BEAD380EAFBE11F52BE273163798D6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CA2F52B6F31EACF18156BCE499F9FB71</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>086A5835BA000589E2811F1EAEA43FC8</key>
+		<dict>
+			<key>fileRef</key>
+			<string>70BBECB7171CE863295CC93C0FC92B24</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -93,40 +163,10 @@
 				</array>
 			</dict>
 		</dict>
-		<key>07789C04BEB8DCD50ED200F131E9A6F6</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSVerifyIdentityRequest.h</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Identity/VSSVerifyIdentityRequest.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>077FF9FB6E94C015241C576FEF46FE3F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSVirgilVersion.h</string>
-			<key>path</key>
-			<string>Wrapper/VSSVirgilVersion.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>08D9BE12337FA19050BF308F4E57E145</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>2A9FBD74935177D4DB040B60D1B33CF9</string>
+			<string>939848F7D424980F0A2D353FE74AF19E</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -183,13 +223,6 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>0A23EB6E7EDC624F706CFE677A2FF65F</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5354A92EECEE7A723A9CCFE12C2DB67F</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>0A7900041AA724E85A6411C6AD15EA01</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -203,52 +236,32 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>0B2A36434DAFCA3071056D52487E23FC</key>
+		<key>0B21D055CA33B20201E5E0CE6D4CB1FF</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSPublicKeyExtended.h</string>
+			<key>path</key>
+			<string>Classes/Models/VSSPublicKeyExtended.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0B654DF03E642233F73FB4053C361C69</key>
 		<dict>
 			<key>fileRef</key>
-			<string>6068AC3C72F808D1DB93D4B2B00DA8A3</string>
+			<string>D6A64CE3FBAC4BC900356E34B42C3068</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>0B779EF3E9EC8639B773DB464FEB7248</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8E44B8A2E7D7FD3E3097CA2C104BB00E</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>0BD54BD1340722091C6175587B96AFB7</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>E6A2F7CECC1343445C0A1B1F15BD595C</string>
-				<string>CC01110FE95859768F77274BFBA4AE1E</string>
-			</array>
-			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
 		</dict>
 		<key>0C513DC4A95AD72A2339B090E4D703B8</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>2A9FBD74935177D4DB040B60D1B33CF9</string>
+			<string>939848F7D424980F0A2D353FE74AF19E</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -305,10 +318,25 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>0C74E57C8A361DFE9601A90A864E05B4</key>
+		<key>0D9D8BC42300F18E13D0F345BA685582</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>NSObject+VSSUtils.h</string>
+			<key>path</key>
+			<string>Classes/Utils/NSObject+VSSUtils.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0DB38CAA17364260D6F837B7AAE1DB5B</key>
 		<dict>
 			<key>fileRef</key>
-			<string>79FFF4C2B8E73702E9EED1F072B7DB3A</string>
+			<string>87612AFEF5FBA54F0DC16BABFA5844A7</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -332,7 +360,7 @@
 			<key>remoteInfo</key>
 			<string>XAsync</string>
 		</dict>
-		<key>0E6CA2FE44DABC729A540EA83BF4AF6F</key>
+		<key>12057C519A5E2A1BBBB3E32C053915EA</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -341,68 +369,155 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSStorePrivateKeyRequest.h</string>
+			<string>VSSConfirmIdentityRequest.h</string>
 			<key>path</key>
-			<string>Classes/Networking/Requests/PrivateKeys/VSSStorePrivateKeyRequest.h</string>
+			<string>Classes/Networking/Requests/Identity/VSSConfirmIdentityRequest.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>0F17A18A649F576F84B074D6DFB8102E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSRequestContextExtended.h</string>
-			<key>path</key>
-			<string>Classes/Networking/RequestContext/VSSRequestContextExtended.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>1073575750B209A07DE43167A46AD1F0</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>VSSBaseCryptor.mm</string>
-			<key>path</key>
-			<string>Wrapper/VSSBaseCryptor.mm</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>112376C1E9044F2A9C3C7F57B7BBF101</key>
+		<key>12F233096985F504B750347DD9B4BF70</key>
 		<dict>
 			<key>fileRef</key>
-			<string>B0E5160BF747898F45B68CB8185221EE</string>
+			<string>8BBFA9503B4F86EC72E9417053E3DE0A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>14139CA525A5393CDF34ADA03B7A5A21</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E3B433365195D6648DF80772A92D2BD4</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>125F297D357A7F1CE888E8FE891F57B6</key>
-		<dict>
-			<key>fileRef</key>
-			<string>E82B5905855DC19A6E0B2EAB08DB11AC</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>15BD7D32847616CA589B8BDF9E14421C</key>
+		<key>14169A790285B1443452B1642012F4F0</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>34015C0035DE0E28E53E7F04194AA46A</string>
-				<string>83DF678C96DFA560728B6C5871ADF10D</string>
-				<string>D89951FCE21B27D114E96F49A234EB3E</string>
+				<string>0D9D8BC42300F18E13D0F345BA685582</string>
+				<string>30A6619C9724423F19106FC3DD6BE5DA</string>
+				<string>030A90FC3AAD58E7B0F31451CC64E502</string>
+				<string>34DE0CF64BFC4F8B8D750CED9CCBB1AB</string>
+				<string>452A0655D94541B1A87C60387A58B673</string>
+				<string>1B9207F857E9E805E36893600C7760AD</string>
+				<string>1CE417AF17F0AEE1AD3969D88AAEA205</string>
+				<string>E463E5923952F43B4E7093B39966273D</string>
+				<string>A1BFB7C7F44E64F97903D15B58E0330C</string>
+				<string>929A1B41967FF6A561B75653E57D61B7</string>
+				<string>A15776F2B2A94C2AAD05DEC958A939CB</string>
+				<string>9E0D01C0500A40D88E0836AE5899BA4B</string>
+				<string>12057C519A5E2A1BBBB3E32C053915EA</string>
+				<string>BD545482CCD06538E6CD2B0E67774BA0</string>
+				<string>87612AFEF5FBA54F0DC16BABFA5844A7</string>
+				<string>DA5FF1FC649E140BDF707D039F5BF24B</string>
+				<string>70BBECB7171CE863295CC93C0FC92B24</string>
+				<string>E23490C2C4D4BCCB11E44473D30B66EB</string>
+				<string>7271FD7019B9807893A4A8675E494C62</string>
+				<string>8F8177AF6519618FDAF9166B45E973F8</string>
+				<string>05E3138156CC0FCD04337B567E6182C8</string>
+				<string>852B4CECD1E019E9CDF27C220CE54BA6</string>
+				<string>56442D0C16A7D30F7F41EDC50DFBBF08</string>
+				<string>F3E9AE84165B1C703E36AAB6F432559B</string>
+				<string>A888342F14DA8319E3C4D8E1BA438ABA</string>
+				<string>2B9032608A7C69DE5E3F01C08FE4B764</string>
+				<string>5E4A9B1C6AAD514E667E4B3A1184D390</string>
+				<string>59949514E66D6C29514D9FD35D147828</string>
+				<string>CF47172450D2E46FC86ED42A3ABE11C3</string>
+				<string>2F2ADA219787116820B5CF93BF9FFD22</string>
+				<string>74BA8461541B9DC8AF7A29595725DAB2</string>
+				<string>A026EC25FAA2A120CBAEB333FE4D57EA</string>
+				<string>77D018DC96971D65C2B353831BCECCFD</string>
+				<string>43D1735C6AE12EE748F9FAE97881FBC2</string>
+				<string>50EB5E44D5E55B0BDD7F6B7E13C35B37</string>
+				<string>BF5BB1720A16F5C405B251F5FEE0C7CE</string>
+				<string>6C76FC181A89C0143F240C9835320264</string>
+				<string>2446CD37E8D336FD868A2A37AEBAEE1E</string>
+				<string>1D8699D731EC86921BF43C7AE788F758</string>
+				<string>B3F81677C9C7E875CFEFF6A927D18363</string>
+				<string>95DF294271733CC19CDC2CB08AB3455D</string>
+				<string>C6807E256245B10A1A5E933225D6BFEA</string>
+				<string>EBD5E88DE61DDCE8A7B34F0477BD2F72</string>
+				<string>E8C9082BB7147555B0DD7A9C24374C10</string>
+				<string>8749EE5FE9B962DE489FCED504074026</string>
+				<string>418A53BE6EF09CEC9022619CD2B9FE09</string>
+				<string>52CAF6AB86D927EE29D46453E5AC7FEA</string>
+				<string>C4DC0E35CC94BA1FCB2CF84224266773</string>
+				<string>59A3E7762FC8ABF182A6E2443E0C5007</string>
+				<string>AA82C2B9806E4CF373254A1920374F94</string>
+				<string>50095EAC050117ADC29DB8DB2118E09D</string>
+				<string>685ADEA968294F6612906F871204E23C</string>
+				<string>8BBFA9503B4F86EC72E9417053E3DE0A</string>
+				<string>A9F05C87825A4F738CE7DA15568216E5</string>
+				<string>53AC2F8A6A39F0011F9FA6BAB19CF202</string>
+				<string>45F4D9AA03460903C720C29157CC2D8B</string>
+				<string>D7BA96D682064B64A8EC997999A51386</string>
+				<string>49B122A019E008E8F3D50D73441965D5</string>
+				<string>E0C970ED0E4E971C2861176C10312D81</string>
+				<string>D6A64CE3FBAC4BC900356E34B42C3068</string>
+				<string>A7CD82EF65E03A547178CE7675005761</string>
+				<string>0068C1C5DB88FA7860C4585157A4B44D</string>
+				<string>0B21D055CA33B20201E5E0CE6D4CB1FF</string>
+				<string>49C3F29A00B8ECB72B123C0BD050A6C7</string>
+				<string>750AF932EA64DE41CAAAC4ACB6A95A48</string>
+				<string>5D2BA186E97AE1BE4B1DD0AA9D92EA07</string>
+				<string>BFCB97CFC523DAA60415C4B365397663</string>
+				<string>564235BCA2D849D843911DE2CF098C78</string>
+				<string>CD275315C127B0F415CF948F90B25C84</string>
+				<string>A77D690908BE1E700A037668ED0157F9</string>
+				<string>9BAF085CC5B7E402E03AE84C0B78A69F</string>
+				<string>FE98C51E97DF21A407F6FEF00359CE23</string>
+				<string>B018406F2CAF780EB1F8A16F28974CC2</string>
+				<string>4DB60E2E2E61D4D318248367DB2FFB53</string>
+				<string>A4016CFC0058B7C97F69BEFD4F3CE5E1</string>
+				<string>315ABDAD54550042B8DA835496E748F1</string>
+				<string>36E22C9A17BD8245B8F6401BEE2C1F4F</string>
+				<string>FE285459D0BDDC78DBE2AC051ADBB328</string>
+				<string>C88E4E8374C761FBD05E1A10EF3154AF</string>
+				<string>B8DAA26BDBD2DF6A37620FCB52A94EB0</string>
+				<string>9E2A719203C782C9603A06BE18CC7112</string>
+				<string>D0657B73D7405C365ED9D37B25706A43</string>
+				<string>CDEB147C42936B781395E68522B476AD</string>
+				<string>FA8B15C5D9602EA582C1AADC633E261D</string>
+				<string>A9BE1C1E87EC12560FE7A6ED417C1A4B</string>
+				<string>B5B16DBBA2199C81D025BFF0E2714CD4</string>
+				<string>031F666AE0553EDEE31B3039BE2FCE55</string>
+				<string>9F0415DB09059491E0A7AC63EC786A81</string>
+				<string>7D2F9E846B0CDE3B60ED881CDE17289F</string>
+				<string>AFB8079D27A53F774119740751FCC542</string>
+				<string>67E45610AAA6C43DE895E9FF7EB61F26</string>
+				<string>E3B433365195D6648DF80772A92D2BD4</string>
+				<string>EC39AEF64BDA8B5BEFD25E0070E89A4A</string>
+				<string>04E5ABF78315B640887CD8F80A367F83</string>
+				<string>E0361AA2DD4677C0BDE7F0579AD645C1</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Pods</string>
+			<string>VirgilSDK</string>
+			<key>path</key>
+			<string>VirgilSDK</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>147F99ACB843DC77B45DB8A41214E584</key>
+		<dict>
+			<key>fileRef</key>
+			<string>FE285459D0BDDC78DBE2AC051ADBB328</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Private</string>
+				</array>
+			</dict>
 		</dict>
 		<key>15C1444E475492C2E8808F649DCF8516</key>
 		<dict>
@@ -472,81 +587,47 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>162B7951D007867A2C091176CC8A5F9B</key>
+		<key>164B35B073E036171012DAE4394CA1A0</key>
 		<dict>
 			<key>fileRef</key>
-			<string>748258BA2897BB32BF71AC32A4714C72</string>
+			<string>83A4CB624A3AE609C878B7E073004001</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>16DBF5574A4ED51E44C9AB89F5C03891</key>
+		<key>1A1FF5BEDDBF007E7511EBB9418436C6</key>
 		<dict>
-			<key>fileRef</key>
-			<string>D4FF46767DBA1916B0D4BA62FBFE7FAD</string>
+			<key>children</key>
+			<array>
+				<string>28FC3ED0BDBD294F13402C88FC028AE7</string>
+				<string>B4B611E09EB05655012536A3EB0A1870</string>
+				<string>939848F7D424980F0A2D353FE74AF19E</string>
+				<string>9EB21FF5413ABDA98739FD157ED82A0D</string>
+				<string>7A0552016E66FA6FD66411945FE18491</string>
+				<string>1C7681D76C485F8B5156AB1F2B16C57A</string>
+			</array>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/XAsync</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
-		<key>18E38AEE050FA2E807882D63E751D693</key>
+		<key>1B9207F857E9E805E36893600C7760AD</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>VSSKeyPair.mm</string>
+			<string>VSSBaseClient.m</string>
 			<key>path</key>
-			<string>Wrapper/VSSKeyPair.mm</string>
+			<string>Classes/Networking/Client/VSSBaseClient.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>19B7DC03C3E4D7C20BCCD32195306FC1</key>
-		<dict>
-			<key>fileRef</key>
-			<string>D6169084E027A853CE803A3531730291</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Private</string>
-				</array>
-			</dict>
-		</dict>
-		<key>19C01261EFD80FA22753698361BD5993</key>
-		<dict>
-			<key>fileRef</key>
-			<string>0E6CA2FE44DABC729A540EA83BF4AF6F</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Private</string>
-				</array>
-			</dict>
-		</dict>
-		<key>1B35A065DCBD4096154420CEEAB50D26</key>
-		<dict>
-			<key>fileRef</key>
-			<string>387616CBC1B8CB01ECFFCA90E57723E6</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Private</string>
-				</array>
-			</dict>
 		</dict>
 		<key>1C111A0A7484AC0AC1458B5BF92A9D68</key>
 		<dict>
@@ -561,18 +642,68 @@
 			<key>remoteInfo</key>
 			<string>VirgilFoundation</string>
 		</dict>
-		<key>1C446FEF2F560EAC1B3459CC3A0C714D</key>
+		<key>1C7681D76C485F8B5156AB1F2B16C57A</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSRequestContextExtended.m</string>
+			<string>sourcecode.c.h</string>
 			<key>path</key>
-			<string>Classes/Networking/RequestContext/VSSRequestContextExtended.m</string>
+			<string>XAsync-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1CE417AF17F0AEE1AD3969D88AAEA205</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSBaseModel.h</string>
+			<key>path</key>
+			<string>Classes/Models/VSSBaseModel.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1D3D740645CF2101A84E1B75150C32B7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5D2BA186E97AE1BE4B1DD0AA9D92EA07</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>1D8699D731EC86921BF43C7AE788F758</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSJSONRequest.h</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/VSSJSONRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>1DB8B54DDCA060166C60905809E925FA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSBaseCryptor_Private.h</string>
+			<key>path</key>
+			<string>Wrapper/VSSBaseCryptor_Private.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -582,9 +713,9 @@
 			<string>C436CED406FCB02EDEE7ACE61C709451</string>
 			<key>buildPhases</key>
 			<array>
-				<string>B50885571C8369A5A923E3CF50B327FF</string>
+				<string>C3D453C92C6744048B51FEC9CE47A5AA</string>
 				<string>2B524EDF7C293FB92F044FF738B40E61</string>
-				<string>8B831D9A0F928D8A9BAAC5F55FB327C3</string>
+				<string>9951B3E754EC17F264E12659503C8737</string>
 			</array>
 			<key>buildRules</key>
 			<array/>
@@ -601,46 +732,33 @@
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
-		<key>1E494CFFF3BFD5C0E911769022BE074D</key>
+		<key>1F00F7D9968E5EC1E1330D9D488007A8</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>3140FC871DBE99A06889E0BE25C9A421</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>VirgilFoundation.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
 		</dict>
-		<key>1FD9768313172428AAA70BF28EA6C11D</key>
+		<key>1F73A0A1BB1BE336FCC5272F1E50F9B6</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>E8C01D21031D4A2AB1AA005DEA117270</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>XAsync-umbrella.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
-		<key>205D6E67797E5C0C26352E809D4CDD89</key>
+		<key>201206CF3A20F0F98722C446FDF5DD68</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>36E22C9A17BD8245B8F6401BEE2C1F4F</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSDeletePublicKeyRequest.m</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSDeletePublicKeyRequest.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>2067361FA4536BD46C5CBB337236A3C0</key>
 		<dict>
@@ -693,14 +811,28 @@
 			<key>remoteInfo</key>
 			<string>VirgilSDK</string>
 		</dict>
-		<key>20B56FD4E3484A0DB9C562C9E684F2CF</key>
+		<key>22CBEB525E05B734DB1B857206AE2AE0</key>
 		<dict>
 			<key>fileRef</key>
-			<string>64049E62FDF1E3A60069373FF99393A4</string>
+			<string>30A6619C9724423F19106FC3DD6BE5DA</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>21DD62D15EB6ADA5166E8400C617D8BC</key>
+		<key>2324ACD71B56DA75DF4F06C9F87D6754</key>
+		<dict>
+			<key>fileRef</key>
+			<string>418A53BE6EF09CEC9022619CD2B9FE09</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>240B7E80B43C2FBC62D1733C3A4F814F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C6807E256245B10A1A5E933225D6BFEA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>2446CD37E8D336FD868A2A37AEBAEE1E</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -709,16 +841,29 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>VSSRequest.m</string>
+			<string>VSSIdentityInfo.m</string>
 			<key>path</key>
-			<string>Classes/Networking/Requests/VSSRequest.m</string>
+			<string>Classes/Models/VSSIdentityInfo.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>2294B782992DCD216C8FA45A3FFD3FCC</key>
+		<key>28FC3ED0BDBD294F13402C88FC028AE7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>29181BE95FE4713E6BBFF0E6650536E2</key>
 		<dict>
 			<key>fileRef</key>
-			<string>0F17A18A649F576F84B074D6DFB8102E</string>
+			<string>FE98C51E97DF21A407F6FEF00359CE23</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -729,142 +874,10 @@
 				</array>
 			</dict>
 		</dict>
-		<key>23549A618481F0A6777170C0F4AEDB12</key>
+		<key>2AFA0876F773A5B619B27859BE3B31BF</key>
 		<dict>
 			<key>fileRef</key>
-			<string>F98F4B627E21F8C37DED4819D9A560AD</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>239220E21D7BF1CF0EDA2863DEE4E05A</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>2A1D746878387EEAC572D903560EC3C3</string>
-				<string>58C2FEC618BCCC9235EDCD1E91F34C97</string>
-				<string>00089B6AFA5C20A8D7ADD14936D27FE7</string>
-				<string>E1FB31C14434219FC84D484165C62FEF</string>
-				<string>58DF9A49A994E11EDD42669FB993B01C</string>
-				<string>F16C5A4DBB2A707B0D360A6338529D7D</string>
-				<string>3091EA93E0555157B96183A0403F5C88</string>
-				<string>6E70B95CCF7706DA1BDDE70E786245CA</string>
-				<string>E903118A8221C7A193883EEB6815CDC0</string>
-				<string>C695750FCCCE7F424232A1FD0E7106E9</string>
-				<string>BFAAF498665A0BBB616386DFED03D21D</string>
-				<string>FAF63FD28FDCF5399F539AD6160517FF</string>
-				<string>AADC92C02DF22D9B3D92BF2E3C08E6FD</string>
-				<string>0C74E57C8A361DFE9601A90A864E05B4</string>
-				<string>6D9C86C6A9A2034F80927E6FDBBBA8B1</string>
-				<string>FE11606CCDC1630EE5434306B2CBB62F</string>
-				<string>A057B6CDF70DF414E8214BA4E60E24FB</string>
-				<string>19B7DC03C3E4D7C20BCCD32195306FC1</string>
-				<string>85EB9A2A1D4D7E26098E28081DBA8013</string>
-				<string>DE66F84243E001EB8E3D7C429B180E9E</string>
-				<string>2B8AFA2A4BC998BF956D67838F268ACD</string>
-				<string>2C29A137A84EFC146DFF1EAAA2847DEC</string>
-				<string>9784074B670725990F5CF6F141EC07AD</string>
-				<string>16DBF5574A4ED51E44C9AB89F5C03891</string>
-				<string>E4D4FA0D14D1BDBA85E3797B252A396D</string>
-				<string>39A45E1F9960A12E7B9DEE008986B83F</string>
-				<string>52A749697E286C3A262732D5609ADA71</string>
-				<string>382196A7E759F8452AC20F64EA834880</string>
-				<string>1B35A065DCBD4096154420CEEAB50D26</string>
-				<string>4563DDB9691DDBB46FA8EBAC732D13D2</string>
-				<string>271F4EB98616DAA8EA8EBA28D4EB1149</string>
-				<string>ED0A774B37B79F4B1652E40EF37A96D2</string>
-				<string>B4227D197641F65F3F94B7C9465CD285</string>
-				<string>B0D5482D0F2184463A3AD7CF5F627603</string>
-				<string>699A2016F12FACC9F7CD5FB5A115F3E8</string>
-				<string>2294B782992DCD216C8FA45A3FFD3FCC</string>
-				<string>D85B6E7174FF2F08A16F5E91978F1762</string>
-				<string>67ABF76E2E35ED2B35539EEFC7EF4189</string>
-				<string>0752E5E1058FB7A70D50141D7DC86C8A</string>
-				<string>8F08ADE90966B8F0696229FE6E4EE304</string>
-				<string>0B779EF3E9EC8639B773DB464FEB7248</string>
-				<string>6852C5697B426C83AC502B0FC8B6B1DB</string>
-				<string>CBECF42570CDA91CCD6FFBDBA0349928</string>
-				<string>19C01261EFD80FA22753698361BD5993</string>
-				<string>A4D17C6E78165CA4810E60ED86F517F0</string>
-				<string>40D4E71B26C1629B62AA761DCC1EEC45</string>
-			</array>
-			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>241C5599EB7723F78F1C6A83C75DECC2</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSKeyPair.h</string>
-			<key>path</key>
-			<string>Wrapper/VSSKeyPair.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>2554344FA944E69B9B7C4065CDD466D9</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSStreamCryptor.h</string>
-			<key>path</key>
-			<string>Wrapper/VSSStreamCryptor.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>25870436AB686A476F015AC6AED0877E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSPrivateKey.h</string>
-			<key>path</key>
-			<string>Classes/Models/VSSPrivateKey.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>25B7A1E565ACC2AFDB06A52676414338</key>
-		<dict>
-			<key>fileRef</key>
-			<string>D17D12013F51A3D77A32B3254F15E6D5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>268581FBA93AF2892BF7ACD707ECA2DE</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSRequest_Private.h</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/VSSRequest_Private.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>271F4EB98616DAA8EA8EBA28D4EB1149</key>
-		<dict>
-			<key>fileRef</key>
-			<string>6E97034B357837DDE8A0817D066889E7</string>
+			<string>B8DAA26BDBD2DF6A37620FCB52A94EB0</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -874,33 +887,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>2A1D746878387EEAC572D903560EC3C3</key>
-		<dict>
-			<key>fileRef</key>
-			<string>2CBFDE18B1BC629C76AAB737E9F5EA58</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>2A9FBD74935177D4DB040B60D1B33CF9</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>XAsync.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>2B524EDF7C293FB92F044FF738B40E61</key>
 		<dict>
@@ -915,92 +901,34 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>2B6FCA592894A6C23AEAFBE1F50623B8</key>
+		<key>2B9032608A7C69DE5E3F01C08FE4B764</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
+			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>VSSPrivateKeysError.h</string>
+			<string>VSSGetCardRequest.m</string>
 			<key>path</key>
-			<string>Classes/Models/VSSPrivateKeysError.h</string>
+			<string>Classes/Networking/Requests/Keys/VSSGetCardRequest.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>2B8AFA2A4BC998BF956D67838F268ACD</key>
+		<key>2C891B491F437D76F4B0F783B1542806</key>
 		<dict>
 			<key>fileRef</key>
-			<string>A325E8FA4DC1673336DD049016A2A13F</string>
+			<string>315ABDAD54550042B8DA835496E748F1</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
 			<dict>
 				<key>ATTRIBUTES</key>
 				<array>
-					<string>Public</string>
+					<string>Private</string>
 				</array>
 			</dict>
-		</dict>
-		<key>2BCD00842625A6AAAA951FFE48FF8845</key>
-		<dict>
-			<key>fileRef</key>
-			<string>4F887519D2A84521EF580D6F221B02D5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>2C29A137A84EFC146DFF1EAAA2847DEC</key>
-		<dict>
-			<key>fileRef</key>
-			<string>358AA4BD0E6111B54EA24507A9333117</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>2C69642497AC732CEA9F2711ED028A3D</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSCard.h</string>
-			<key>path</key>
-			<string>Classes/Models/VSSCard.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>2CBFDE18B1BC629C76AAB737E9F5EA58</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>NSObject+VSSUtils.h</string>
-			<key>path</key>
-			<string>Classes/Utils/NSObject+VSSUtils.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>2CE16AC72762C01C5DC595053F1F2EF4</key>
 		<dict>
@@ -1092,50 +1020,31 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>2D9FE346E3A05D0B6A3CEF101ACFD731</key>
+		<key>2DD1F326A41D140E19042B36CEA25959</key>
 		<dict>
 			<key>fileRef</key>
-			<string>3AA7263F612611D52DAA7D7E711F6C4C</string>
+			<string>8749EE5FE9B962DE489FCED504074026</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Private</string>
+				</array>
+			</dict>
+		</dict>
+		<key>2E0C8D289EC46E64C49474942C45E3FD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4FB7DCB0A9E0EAFF5A800A77B0ABA41B</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>2EF1DBFE07BA19E19416818AEBFBDD3E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSUnsignCardRequest.m</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSUnsignCardRequest.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>2EFF23A887749424F993F07338066513</key>
+		<key>2EE4082972D0A7B9A791A0593605DFBE</key>
 		<dict>
 			<key>fileRef</key>
-			<string>39EA7A4C1D68967D7FBA8B8DAAD55321</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>30473D61B398B90687E96EB8B3E39527</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>VirgilSDK.modulemap</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>3091EA93E0555157B96183A0403F5C88</key>
-		<dict>
-			<key>fileRef</key>
-			<string>E7C34C938FDFB6D7C69D37C9840199CC</string>
+			<string>67E45610AAA6C43DE895E9FF7EB61F26</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -1146,7 +1055,7 @@
 				</array>
 			</dict>
 		</dict>
-		<key>30E8A9A53F7378BB312B85D9B599B590</key>
+		<key>2F2ADA219787116820B5CF93BF9FFD22</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1155,78 +1064,103 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>VSSRequestContext.m</string>
+			<string>VSSGrabPrivateKeyRequest.m</string>
 			<key>path</key>
-			<string>Classes/Networking/RequestContext/VSSRequestContext.m</string>
+			<string>Classes/Networking/Requests/PrivateKeys/VSSGrabPrivateKeyRequest.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>30F6212AFF52C2524E50CC561E42C0DE</key>
+		<key>3030D9ECDD75A8DCEBBDDF268DBB89B5</key>
 		<dict>
 			<key>fileRef</key>
-			<string>B22284277632AA520AFB075D597968D0</string>
+			<string>0068C1C5DB88FA7860C4585157A4B44D</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>317A35B1A387092825F6F59D36665D48</key>
-		<dict>
-			<key>fileRef</key>
-			<string>21DD62D15EB6ADA5166E8400C617D8BC</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>32BCC76DDDACCE472E6C12FE74108894</key>
-		<dict>
-			<key>fileRef</key>
-			<string>6EFCE58C00EE1BFCB879516F47737986</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>34015C0035DE0E28E53E7F04194AA46A</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>4E4AE42ACF690D48F3F03490C29473D6</string>
-				<string>1073575750B209A07DE43167A46AD1F0</string>
-				<string>8E0F8739827B2008F851DBE9A78909EF</string>
-				<string>6068AC3C72F808D1DB93D4B2B00DA8A3</string>
-				<string>96BD41DE5E3C2566293D9871E7DCAD33</string>
-				<string>62DFB75873FAC79BEE5E6E99ED71B8FA</string>
-				<string>B22284277632AA520AFB075D597968D0</string>
-				<string>64F527402E74947ED37B6263EF083EF5</string>
-				<string>3431F13CF942098B47A32E0969E18473</string>
-				<string>241C5599EB7723F78F1C6A83C75DECC2</string>
-				<string>18E38AEE050FA2E807882D63E751D693</string>
-				<string>C169452539F7A59B6558F2E2B89F1161</string>
-				<string>7AFEE7AB047CB9A8636CDA2884E04CCB</string>
-				<string>2554344FA944E69B9B7C4065CDD466D9</string>
-				<string>B1F711E6FABC10EDA5A38905FAF50CFB</string>
-				<string>04CCC021FF227EF6A39A9E838B5E0A91</string>
-				<string>000078E86BB91FB20E711F9310FD0E69</string>
-				<string>077FF9FB6E94C015241C576FEF46FE3F</string>
-				<string>071D7DB42EFD776160EDF133EE167E3E</string>
-				<string>57305B1EEC56E393FCB319B53BAB8E34</string>
-				<string>4CE1EEE3950C6A4921B5D21A1DAFB14F</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>VirgilFoundation</string>
-			<key>path</key>
-			<string>VirgilFoundation</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>3431F13CF942098B47A32E0969E18473</key>
+		<key>30A6619C9724423F19106FC3DD6BE5DA</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>VSSFoundationCommons.mm</string>
+			<string>NSObject+VSSUtils.m</string>
 			<key>path</key>
-			<string>Wrapper/VSSFoundationCommons.mm</string>
+			<string>Classes/Utils/NSObject+VSSUtils.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3140FC871DBE99A06889E0BE25C9A421</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>XAsyncTask.m</string>
+			<key>path</key>
+			<string>Content/XAsyncTask.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>315ABDAD54550042B8DA835496E748F1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSSearchCardRequest.h</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/Keys/VSSSearchCardRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>332781C7D7D7330346B45154FB31816B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>929A1B41967FF6A561B75653E57D61B7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>33B4252994C342CC4D5AFFFDFF761750</key>
+		<dict>
+			<key>fileRef</key>
+			<string>DA5FF1FC649E140BDF707D039F5BF24B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>33D687BC3FBA2AA5450AB13611AB9D3D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>VirgilSDK.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>34DE0CF64BFC4F8B8D750CED9CCBB1AB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>NSString+VSSXMLEscape.m</string>
+			<key>path</key>
+			<string>Classes/Utils/NSString+VSSXMLEscape.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1243,7 +1177,7 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>358AA4BD0E6111B54EA24507A9333117</key>
+		<key>3625FA25F7C9875C9D8785E1F35B32F4</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1252,16 +1186,31 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSKeychainValue.h</string>
+			<string>VSSStreamCryptor.h</string>
 			<key>path</key>
-			<string>Classes/Utils/VSSKeychainValue.h</string>
+			<string>Wrapper/VSSStreamCryptor.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>382196A7E759F8452AC20F64EA834880</key>
+		<key>36E22C9A17BD8245B8F6401BEE2C1F4F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSSearchCardRequest.m</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/Keys/VSSSearchCardRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3B6AF6DCC42544F68BA7926764F46CD2</key>
 		<dict>
 			<key>fileRef</key>
-			<string>25870436AB686A476F015AC6AED0877E</string>
+			<string>95DF294271733CC19CDC2CB08AB3455D</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -1271,80 +1220,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>387616CBC1B8CB01ECFFCA90E57723E6</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSPrivateKeysBaseRequest.h</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/PrivateKeys/VSSPrivateKeysBaseRequest.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>39A45E1F9960A12E7B9DEE008986B83F</key>
-		<dict>
-			<key>fileRef</key>
-			<string>54428654EB30BF2C0210317DF64C1A03</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>39ACA166A5A3F62A33603ADC3780D54A</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSCreateCardRequest.h</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSCreateCardRequest.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>39EA7A4C1D68967D7FBA8B8DAAD55321</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSGetCardRequest.m</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSGetCardRequest.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>3AA7263F612611D52DAA7D7E711F6C4C</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSRequestExtended.m</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/VSSRequestExtended.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>3D45E8F69D0C7127D8748CB7E939DA82</key>
 		<dict>
@@ -1353,39 +1228,43 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>3FF639C098E2C4B55254970638C6D02E</key>
+		<key>3E64F8D50D54B55586097B6FE2AA829F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>685ADEA968294F6612906F871204E23C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>409AD9A6A8EE0ABB8243CA0BC2D1B63F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>34DE0CF64BFC4F8B8D750CED9CCBB1AB</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>40DE38EB14358A04985C714749A11428</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSSigner.h</string>
 			<key>path</key>
-			<string>VirgilFoundation.modulemap</string>
+			<string>Wrapper/VSSSigner.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>40D4E71B26C1629B62AA761DCC1EEC45</key>
+		<key>414E1C8C13843E370B4A9CD4C6478859</key>
 		<dict>
 			<key>fileRef</key>
-			<string>07789C04BEB8DCD50ED200F131E9A6F6</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Private</string>
-				</array>
-			</dict>
-		</dict>
-		<key>41DD8717514D8E288204CE459800C6C3</key>
-		<dict>
-			<key>fileRef</key>
-			<string>89B7344C58C04791534FC7F4A8979454</string>
+			<string>49C3F29A00B8ECB72B123C0BD050A6C7</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>42FFBEE2E212669CB37F992A54FF77EC</key>
+		<key>418A53BE6EF09CEC9022619CD2B9FE09</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1394,9 +1273,9 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>VSSPrivateKeysBaseRequest.m</string>
+			<string>VSSKeysBaseRequest.m</string>
 			<key>path</key>
-			<string>Classes/Networking/Requests/PrivateKeys/VSSPrivateKeysBaseRequest.m</string>
+			<string>Classes/Networking/Requests/Keys/VSSKeysBaseRequest.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1413,40 +1292,20 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>43542C40E6318C0EBAD2E9C03BB44F34</key>
+		<key>43D1735C6AE12EE748F9FAE97881FBC2</key>
 		<dict>
-			<key>fileRef</key>
-			<string>077FF9FB6E94C015241C576FEF46FE3F</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>438E5BFC44DB9D44DD11F92C8C4F5CAC</key>
-		<dict>
-			<key>fileRef</key>
-			<string>2554344FA944E69B9B7C4065CDD466D9</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>4416B828675D37E5A124AD3E6DC67F90</key>
-		<dict>
-			<key>fileRef</key>
-			<string>071D7DB42EFD776160EDF133EE167E3E</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSIdentityBaseRequest.m</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/Identity/VSSIdentityBaseRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>44D2E9DE399140181582024FE711965A</key>
 		<dict>
@@ -1474,24 +1333,40 @@
 			<key>targetProxy</key>
 			<string>544BD69FFBC285C070BC469F806D01EC</string>
 		</dict>
-		<key>4563DDB9691DDBB46FA8EBAC732D13D2</key>
+		<key>452A0655D94541B1A87C60387A58B673</key>
 		<dict>
-			<key>fileRef</key>
-			<string>2B6FCA592894A6C23AEAFBE1F50623B8</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSBaseClient.h</string>
+			<key>path</key>
+			<string>Classes/Networking/Client/VSSBaseClient.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
-		<key>461001FED893DF70E376EE29CED0ACB6</key>
+		<key>45F4D9AA03460903C720C29157CC2D8B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSPrivateKey.m</string>
+			<key>path</key>
+			<string>Classes/Models/VSSPrivateKey.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>461D4D1FD3F36DECFEE9E2320155E1D0</key>
 		<dict>
 			<key>fileRef</key>
-			<string>6BAE355BC6605458C4C54F2C0EA59E24</string>
+			<string>C3D59949660CE95DA5FC7CF5E1596F78</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -1502,7 +1377,7 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>47F8334ECC715215922AC1C70E6E0855</key>
+		<key>49B122A019E008E8F3D50D73441965D5</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1511,13 +1386,62 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>VSSCard.m</string>
+			<string>VSSPrivateKeysBaseRequest.m</string>
 			<key>path</key>
-			<string>Classes/Models/VSSCard.m</string>
+			<string>Classes/Networking/Requests/PrivateKeys/VSSPrivateKeysBaseRequest.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>48076B161BA2F67332330B74EA3EC4B1</key>
+		<key>49C3F29A00B8ECB72B123C0BD050A6C7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSPublicKeyExtended.m</string>
+			<key>path</key>
+			<string>Classes/Models/VSSPublicKeyExtended.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4A0F028980907ECCBACBFBF78DB8E72E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>ACEC64045E4BC3D1AF2A4D81B9663ED4</string>
+				<string>F7190E75CDDBA36F1BBC10A800802867</string>
+				<string>A4D745CDB8162D4B404BA4BEBF011EE9</string>
+				<string>659AD46C418B12F1FB3A860940CE3821</string>
+				<string>E907197A028F5CB87808B849B4E767F8</string>
+				<string>E8C01D21031D4A2AB1AA005DEA117270</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/VirgilFoundation</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4BCCEFCA763F2DF560840914E2D6A685</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CDEB147C42936B781395E68522B476AD</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>4CE88BA4170D46D13D2301B4AF3D63E7</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1530,160 +1454,35 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>487496B19A15C85ABEB60E5A5B32C9FF</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSKeychainValue.m</string>
-			<key>path</key>
-			<string>Classes/Utils/VSSKeychainValue.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>48D65CA7DBDAD3FF81ABBC3672517AFF</key>
+		<key>4D70D07CCF236C87789256A681EE2BFD</key>
 		<dict>
 			<key>fileRef</key>
-			<string>E54D0E557025F9C0891040C9730BA6A1</string>
+			<string>77D018DC96971D65C2B353831BCECCFD</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Private</string>
+				</array>
+			</dict>
 		</dict>
-		<key>4ADE7353BEB6856FAA7C8397EAE9DC66</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4C425BF30B918561977C3C45C7C2D472</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4CE1EEE3950C6A4921B5D21A1DAFB14F</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>4C425BF30B918561977C3C45C7C2D472</string>
-				<string>3FF639C098E2C4B55254970638C6D02E</string>
-				<string>1E494CFFF3BFD5C0E911769022BE074D</string>
-				<string>E54D0E557025F9C0891040C9730BA6A1</string>
-				<string>5DE829D93AEF3B9A1195C3A71C11E30A</string>
-				<string>4F887519D2A84521EF580D6F221B02D5</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Support Files</string>
-			<key>path</key>
-			<string>../Target Support Files/VirgilFoundation</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4E40BDA62B30ACFC7E96A720B5B60D93</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSError.h</string>
-			<key>path</key>
-			<string>Classes/Models/VSSError.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4E4AE42ACF690D48F3F03490C29473D6</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSBaseCryptor.h</string>
-			<key>path</key>
-			<string>Wrapper/VSSBaseCryptor.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4E642099C932921EE8E7B8E272EC3238</key>
+		<key>4DA4CC6313E8C30BEC8ED72B0630A1DD</key>
 		<dict>
 			<key>buildActionMask</key>
 			<string>2147483647</string>
 			<key>files</key>
 			<array>
-				<string>AC22662D7DA3A6B002020637653A5CBE</string>
-				<string>77D94F2B2BA24B7150A5B8DFA9FC9DD2</string>
-				<string>5C83E2275CDAF6C85944C2A866F78CC4</string>
-				<string>20B56FD4E3484A0DB9C562C9E684F2CF</string>
-				<string>EBB4E8B42202EF090E5EADA91494F646</string>
-				<string>FEF54B3AB15C520167405984DB8DE912</string>
-				<string>B8FD87245C93C41D90D2A5845112F4A3</string>
-				<string>0A23EB6E7EDC624F706CFE677A2FF65F</string>
-				<string>B6E002160E0E5BA20C3B068E04D79B80</string>
-				<string>B00A10F2F8988AAD5CBEDD73F062EFDC</string>
-				<string>5F51763B9390E11EAB7DDAB7B29B9118</string>
-				<string>82CC5F3F5B3A701C4E8A28F6F83DB98B</string>
-				<string>125F297D357A7F1CE888E8FE891F57B6</string>
-				<string>2EFF23A887749424F993F07338066513</string>
-				<string>FE5BF30B81A8E232E6DB67321042E630</string>
-				<string>25B7A1E565ACC2AFDB06A52676414338</string>
-				<string>6FFCE8067227506E57DB61F68BB185CA</string>
-				<string>E3348F6A1B842E6713AAB4CE96EFE313</string>
-				<string>23549A618481F0A6777170C0F4AEDB12</string>
-				<string>32BCC76DDDACCE472E6C12FE74108894</string>
-				<string>9650A5CA4B21D0AAAA8AF39784AFAC8C</string>
-				<string>D84E439C737326BD9F872D5B93D88586</string>
-				<string>D171D7B159EEBB51324095698801CE03</string>
-				<string>741B2D70EE71304055FA9459B3D5C06A</string>
-				<string>112376C1E9044F2A9C3C7F57B7BBF101</string>
-				<string>F3BA0ED7B5B1BCC8AFF3F90FC54253B2</string>
-				<string>CD0CB04BF5E06A1D1360B502525205A9</string>
-				<string>9B9C2FAFB1BDF4457FD191F235D02A27</string>
-				<string>162B7951D007867A2C091176CC8A5F9B</string>
-				<string>E14FA634A4AE946A3AA3FC6CF8AA1C05</string>
-				<string>794776EB3D7EF06956D36F789166FD91</string>
-				<string>317A35B1A387092825F6F59D36665D48</string>
-				<string>FCB448ABA0A9B76E14858C5AE50E7AC8</string>
-				<string>5350CCC5A206897B406FDA91104968F2</string>
-				<string>2D9FE346E3A05D0B6A3CEF101ACFD731</string>
-				<string>98D6215C2A1C70F56DF6EEB58E549CF5</string>
-				<string>D6EAE81E321342725FA76F7C4B7D8A36</string>
-				<string>461001FED893DF70E376EE29CED0ACB6</string>
-				<string>00F97E56939D0D4E81B635EFB53786AF</string>
-				<string>41DD8717514D8E288204CE459800C6C3</string>
-				<string>783E51C28C5A1F967841C74B9E4B4B5C</string>
-				<string>D058E7A79902D4FC4FB4ACDA7A9392FB</string>
-				<string>5731E37F6A30C4412F75C2BD5B8508C4</string>
+				<string>9B5400304A74F060017A9AB5E761D3F2</string>
+				<string>B7CA1708154CC14854B542DC10E203A0</string>
 			</array>
 			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
+			<string>PBXHeadersBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>4E9AEF7FC2B80F6B5A58458267B16A9C</key>
+		<key>4DB60E2E2E61D4D318248367DB2FFB53</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1691,12 +1490,34 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSSearchAppCardRequest.h</string>
 			<key>path</key>
-			<string>XAsync-prefix.pch</string>
+			<string>Classes/Networking/Requests/Keys/VSSSearchAppCardRequest.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>4F887519D2A84521EF580D6F221B02D5</key>
+		<key>4F05C2163D8BA5FB1E678BB3EF7344D6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A026EC25FAA2A120CBAEB333FE4D57EA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>4FB7DCB0A9E0EAFF5A800A77B0ABA41B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>VSSChunkCryptor.mm</string>
+			<key>path</key>
+			<string>Wrapper/VSSChunkCryptor.mm</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>50095EAC050117ADC29DB8DB2118E09D</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1704,12 +1525,42 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSModelCommons.h</string>
 			<key>path</key>
-			<string>VirgilFoundation-umbrella.h</string>
+			<string>Classes/Models/VSSModelCommons.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>5038B308F0A2AFAB65FC391C1A96DB89</key>
+		<key>5045E149E260BFF3A4412319C48D4E70</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BFCB97CFC523DAA60415C4B365397663</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>50CCA316016F4DD2E6E82258FE6BA507</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A1BFB7C7F44E64F97903D15B58E0330C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>50EB5E44D5E55B0BDD7F6B7E13C35B37</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1724,118 +1575,58 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>50D174E8A311349B1EAF1772CFD67C1A</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSPublicKeyExtended.h</string>
-			<key>path</key>
-			<string>Classes/Models/VSSPublicKeyExtended.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5128F4217C52E5FA5C9FEA036759ABBF</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSModelTypes.h</string>
-			<key>path</key>
-			<string>Classes/Models/VSSModelTypes.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>52635F630D5F4C0CE9441D63672156C5</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSGetPublicKeyRequest.m</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSGetPublicKeyRequest.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>527F1AE2FEB47BF363C2FBC5099298D4</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSDeletePrivateKeyRequest.m</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/PrivateKeys/VSSDeletePrivateKeyRequest.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>52A749697E286C3A262732D5609ADA71</key>
+		<key>52B54EEF810E927A418FD919B73709BC</key>
 		<dict>
 			<key>fileRef</key>
-			<string>5128F4217C52E5FA5C9FEA036759ABBF</string>
+			<string>C88E4E8374C761FBD05E1A10EF3154AF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>52CAF6AB86D927EE29D46453E5AC7FEA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSKeysError.h</string>
+			<key>path</key>
+			<string>Classes/Models/VSSKeysError.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>53AC2F8A6A39F0011F9FA6BAB19CF202</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSPrivateKey.h</string>
+			<key>path</key>
+			<string>Classes/Models/VSSPrivateKey.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>542F292CA00756F0C64D31BD59A2DCE6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A888342F14DA8319E3C4D8E1BA438ABA</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
 			<dict>
 				<key>ATTRIBUTES</key>
 				<array>
-					<string>Public</string>
+					<string>Private</string>
 				</array>
 			</dict>
 		</dict>
-		<key>5350CCC5A206897B406FDA91104968F2</key>
-		<dict>
-			<key>fileRef</key>
-			<string>1C446FEF2F560EAC1B3459CC3A0C714D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>5354A92EECEE7A723A9CCFE12C2DB67F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSConfirmIdentityRequest.m</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Identity/VSSConfirmIdentityRequest.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>540453DB0714F8F144AC4EBD7628D074</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSDeleteCardRequest.m</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSDeleteCardRequest.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>54428654EB30BF2C0210317DF64C1A03</key>
+		<key>54462F13ACB8BC9C2BE951F5A3AF7DAA</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1844,9 +1635,9 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSModelCommons.h</string>
+			<string>VSSVirgilVersion.h</string>
 			<key>path</key>
-			<string>Classes/Models/VSSModelCommons.h</string>
+			<string>Wrapper/VSSVirgilVersion.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1863,7 +1654,59 @@
 			<key>remoteInfo</key>
 			<string>VirgilFoundation</string>
 		</dict>
-		<key>55E2CF8C5DC71ED7AC8E67505D37A838</key>
+		<key>564235BCA2D849D843911DE2CF098C78</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSRequestContext.h</string>
+			<key>path</key>
+			<string>Classes/Networking/RequestContext/VSSRequestContext.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>56442D0C16A7D30F7F41EDC50DFBBF08</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSError.h</string>
+			<key>path</key>
+			<string>Classes/Models/VSSError.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>585050970B74ADE6642795C11C79A81F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A700BA6D97D31AC8451EB5F52ACBB997</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>59949514E66D6C29514D9FD35D147828</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSGetPublicKeyRequest.m</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/Keys/VSSGetPublicKeyRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>59A3E7762FC8ABF182A6E2443E0C5007</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1878,118 +1721,35 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>5688C7C9261673D27008D6A2AAF6CBC2</key>
+		<key>5A082E5BB636B468951E96E60E6A9B6F</key>
 		<dict>
 			<key>fileRef</key>
-			<string>62DFB75873FAC79BEE5E6E99ED71B8FA</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>57305B1EEC56E393FCB319B53BAB8E34</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>72F9987A505CE52BF337057EB303C586</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Frameworks</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5731E37F6A30C4412F75C2BD5B8508C4</key>
-		<dict>
-			<key>fileRef</key>
-			<string>FDB6DD72249905B6402FC4A6DF449322</string>
+			<string>2F2ADA219787116820B5CF93BF9FFD22</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>5884CC5459BF2A19E5C0902D90B38D8C</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSSignCardRequest.h</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSSignCardRequest.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>58C2FEC618BCCC9235EDCD1E91F34C97</key>
+		<key>5B0D349227CDDC08C2038B037F1C5201</key>
 		<dict>
 			<key>fileRef</key>
-			<string>8413B43E90504CD78B7262620E148E23</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>58DF9A49A994E11EDD42669FB993B01C</key>
-		<dict>
-			<key>fileRef</key>
-			<string>78A072C4F7B0D7A1E64FC71B716E3290</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>5A04BA12C68CEAB04342DBB439B69D36</key>
-		<dict>
-			<key>fileRef</key>
-			<string>B1F711E6FABC10EDA5A38905FAF50CFB</string>
+			<string>B018406F2CAF780EB1F8A16F28974CC2</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>5C83E2275CDAF6C85944C2A866F78CC4</key>
+		<key>5B930D3ED7249E00E305F78C75B29736</key>
 		<dict>
 			<key>fileRef</key>
-			<string>8A03A801B48CD6837C0FAE0AB87F2308</string>
+			<string>BCDA124C1DAA24F7379B611FBA14C2D4</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>5DE829D93AEF3B9A1195C3A71C11E30A</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>VirgilFoundation-prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>5F51763B9390E11EAB7DDAB7B29B9118</key>
+		<key>5C4B01F33C19995CBE1A74E8E19F2089</key>
 		<dict>
 			<key>fileRef</key>
-			<string>527F1AE2FEB47BF363C2FBC5099298D4</string>
+			<string>E23490C2C4D4BCCB11E44473D30B66EB</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>6057FF70A361CC39641645C226F39650</key>
+		<key>5D2BA186E97AE1BE4B1DD0AA9D92EA07</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1998,13 +1758,13 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>VSSKeysBaseRequest.m</string>
+			<string>VSSRequest.m</string>
 			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSKeysBaseRequest.m</string>
+			<string>Classes/Networking/Requests/VSSRequest.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>6068AC3C72F808D1DB93D4B2B00DA8A3</key>
+		<key>5E4A9B1C6AAD514E667E4B3A1184D390</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -2013,26 +1773,33 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSChunkCryptor.h</string>
+			<string>VSSGetPublicKeyRequest.h</string>
 			<key>path</key>
-			<string>Wrapper/VSSChunkCryptor.h</string>
+			<string>Classes/Networking/Requests/Keys/VSSGetPublicKeyRequest.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>60B0D2315087374732ADD76D0A34607B</key>
+		<key>5F19EF5012E51ACDA62CF27EABB2D0E2</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSPublicKeyExtended.m</string>
+			<string>VSSBaseCryptor.h</string>
 			<key>path</key>
-			<string>Classes/Models/VSSPublicKeyExtended.m</string>
+			<string>Wrapper/VSSBaseCryptor.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>60939919ED94AF5C435B4656DB29C958</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E463E5923952F43B4E7093B39966273D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>61894AEACD08C20ABEAAE0B0AE57318C</key>
 		<dict>
@@ -2052,49 +1819,19 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>62DFB75873FAC79BEE5E6E99ED71B8FA</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSCryptor.h</string>
-			<key>path</key>
-			<string>Wrapper/VSSCryptor.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>637AC13285296D86202E606E3A1B6632</key>
+		<key>641978916700B43613AF556CFEF7F5BC</key>
 		<dict>
 			<key>fileRef</key>
-			<string>8E0F8739827B2008F851DBE9A78909EF</string>
+			<string>1DB8B54DDCA060166C60905809E925FA</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
 			<dict>
 				<key>ATTRIBUTES</key>
 				<array>
-					<string>Public</string>
+					<string>Private</string>
 				</array>
 			</dict>
-		</dict>
-		<key>64049E62FDF1E3A60069373FF99393A4</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSBaseClient.m</string>
-			<key>path</key>
-			<string>Classes/Networking/Client/VSSBaseClient.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>64A0721CCC7D907EF43A9CECC38CCF2C</key>
 		<dict>
@@ -2107,7 +1844,41 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>64F527402E74947ED37B6263EF083EF5</key>
+		<key>64E930898C9A1971F8F826101EB5C925</key>
+		<dict>
+			<key>fileRef</key>
+			<string>49B122A019E008E8F3D50D73441965D5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>659AD46C418B12F1FB3A860940CE3821</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>VirgilFoundation-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>6772C17ADBADAAED2C47140CEC7DD672</key>
+		<dict>
+			<key>fileRef</key>
+			<string>50095EAC050117ADC29DB8DB2118E09D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>67E45610AAA6C43DE895E9FF7EB61F26</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -2116,58 +1887,38 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSFoundationCommons.h</string>
+			<string>VSSValidationTokenGenerator.h</string>
 			<key>path</key>
-			<string>Wrapper/VSSFoundationCommons.h</string>
+			<string>Classes/Utils/VSSValidationTokenGenerator.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>67ABF76E2E35ED2B35539EEFC7EF4189</key>
+		<key>685ADEA968294F6612906F871204E23C</key>
 		<dict>
-			<key>fileRef</key>
-			<string>8163EFE1C8DC3E3B3CC975803FB6F767</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Private</string>
-				</array>
-			</dict>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSModelCommons.m</string>
+			<key>path</key>
+			<string>Classes/Models/VSSModelCommons.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
-		<key>6852C5697B426C83AC502B0FC8B6B1DB</key>
+		<key>698627CEB0650D06386FDCCA5B5EC836</key>
 		<dict>
 			<key>fileRef</key>
-			<string>CC46C21A87433802A9F47739192EDC2B</string>
+			<string>8F8177AF6519618FDAF9166B45E973F8</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>699A2016F12FACC9F7CD5FB5A115F3E8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>B3F710106D4373BA63AFC797424E4F86</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>6A03B582CBE6DD7ADCB92AE445D04148</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>779A42BFD240C9BBBC658CC37356AE0A</string>
+			<string>33D687BC3FBA2AA5450AB13611AB9D3D</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -2224,20 +1975,26 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>6BAE355BC6605458C4C54F2C0EA59E24</key>
+		<key>6BCF66DCA9A55E9A957B4E503277BC91</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>A15776F2B2A94C2AAD05DEC958A939CB</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSServiceConfig.m</string>
-			<key>path</key>
-			<string>Classes/Networking/Client/VSSServiceConfig.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>6BD7BED75291CCA91E6FC27FF42E3200</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9EB21FF5413ABDA98739FD157ED82A0D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>6C67EEDD244C2F3FB9DC984A86E31D18</key>
 		<dict>
@@ -2252,35 +2009,7 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>6D9C86C6A9A2034F80927E6FDBBBA8B1</key>
-		<dict>
-			<key>fileRef</key>
-			<string>9CBCBB3A78E199B39668E9404CB20007</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Private</string>
-				</array>
-			</dict>
-		</dict>
-		<key>6E70B95CCF7706DA1BDDE70E786245CA</key>
-		<dict>
-			<key>fileRef</key>
-			<string>A9E82D8A3C515C7372B402C29D320674</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Private</string>
-				</array>
-			</dict>
-		</dict>
-		<key>6E97034B357837DDE8A0817D066889E7</key>
+		<key>6C76FC181A89C0143F240C9835320264</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -2289,31 +2018,16 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSPublicKey.h</string>
+			<string>VSSIdentityInfo.h</string>
 			<key>path</key>
-			<string>Classes/Models/VSSPublicKey.h</string>
+			<string>Classes/Models/VSSIdentityInfo.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>6EFCE58C00EE1BFCB879516F47737986</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSJSONRequest.m</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/VSSJSONRequest.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>6F23454E2C6E71F527C753EE6ED30B5B</key>
+		<key>6E4FFEBAE2D9B7AE8549E5C6845ED16D</key>
 		<dict>
 			<key>fileRef</key>
-			<string>C169452539F7A59B6558F2E2B89F1161</string>
+			<string>B737F1EE2D12DC6A1FC2220306E4CD50</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -2323,13 +2037,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>6FFCE8067227506E57DB61F68BB185CA</key>
-		<dict>
-			<key>fileRef</key>
-			<string>C4A080F6A5EBCCDED5BE6E698376F643</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>701DEFF34EFB3CB77F9593F06669CC90</key>
 		<dict>
@@ -2350,9 +2057,9 @@
 			<string>96700FFD470C859460AA06057B64BDA6</string>
 			<key>buildPhases</key>
 			<array>
-				<string>4E642099C932921EE8E7B8E272EC3238</string>
+				<string>E474ACD2F0F3968120B8A48B678962A1</string>
 				<string>A54373668F0DFDFC6DBC8EEF72BB5421</string>
-				<string>239220E21D7BF1CF0EDA2863DEE4E05A</string>
+				<string>F70922B3F0BD1E81501946596B55DC23</string>
 			</array>
 			<key>buildRules</key>
 			<array/>
@@ -2371,22 +2078,80 @@
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
-		<key>70928054F3B4D2D4E44BA5D6532860C8</key>
+		<key>70942FFE8D99FADAFBB47B23CD55ACA4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9E0D01C0500A40D88E0836AE5899BA4B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>70A4AD5C0E64FC59C14062C0D523C48E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>C5EA83175220A60BD2986867A7926465</string>
+				<string>14169A790285B1443452B1642012F4F0</string>
+				<string>86EA2BF5D466E6ED884E62F6F811224E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>70BBECB7171CE863295CC93C0FC92B24</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSCreateCardRequest.m</string>
+			<string>VSSDeleteCardRequest.h</string>
 			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSCreateCardRequest.m</string>
+			<string>Classes/Networking/Requests/Keys/VSSDeleteCardRequest.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>72F9987A505CE52BF337057EB303C586</key>
+		<key>7160B749A2C0CC01A3E698F58F280013</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C4DC0E35CC94BA1FCB2CF84224266773</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>7271FD7019B9807893A4A8675E494C62</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSDeletePrivateKeyRequest.h</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/PrivateKeys/VSSDeletePrivateKeyRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7398D0C49DCD7F08BEE7AED2499FA7B3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>AA82C2B9806E4CF373254A1920374F94</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>73DCD53AAD6BBF982506033F63DF08E2</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F53AF57842BE209BEDAA46CB7FDA95C7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>743BB1DC0C364CF47A6D98A1677DE5B2</key>
 		<dict>
 			<key>isa</key>
 			<string>PBXFileReference</string>
@@ -2399,56 +2164,7 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>741B2D70EE71304055FA9459B3D5C06A</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8423F6AF094612F93AFE4C66C9D06A52</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>748258BA2897BB32BF71AC32A4714C72</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSPrivateKeysError.m</string>
-			<key>path</key>
-			<string>Classes/Models/VSSPrivateKeysError.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>779A42BFD240C9BBBC658CC37356AE0A</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>VirgilSDK.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>77D94F2B2BA24B7150A5B8DFA9FC9DD2</key>
-		<dict>
-			<key>fileRef</key>
-			<string>7E77928F38C58AB3526072D3CFDECAF5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>783E51C28C5A1F967841C74B9E4B4B5C</key>
-		<dict>
-			<key>fileRef</key>
-			<string>EC800989326D51A418D622F74BF52428</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>78A072C4F7B0D7A1E64FC71B716E3290</key>
+		<key>74BA8461541B9DC8AF7A29595725DAB2</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -2457,35 +2173,27 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSBaseModel.h</string>
+			<string>VSSIdentity.h</string>
 			<key>path</key>
-			<string>Classes/Models/VSSBaseModel.h</string>
+			<string>Classes/Models/VSSIdentity.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>794776EB3D7EF06956D36F789166FD91</key>
+		<key>74DE1B5F76DB42A3849A46DFD2B3609A</key>
 		<dict>
 			<key>fileRef</key>
-			<string>60B0D2315087374732ADD76D0A34607B</string>
+			<string>59A3E7762FC8ABF182A6E2443E0C5007</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
-		<key>79FA021CCB192D106CC79BD94F877C3E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>NSObject+VSSUtils.m</string>
-			<key>path</key>
-			<string>Classes/Utils/NSObject+VSSUtils.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>79FFF4C2B8E73702E9EED1F072B7DB3A</key>
+		<key>750AF932EA64DE41CAAAC4ACB6A95A48</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -2494,13 +2202,49 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSGetCardRequest.h</string>
+			<string>VSSRequest.h</string>
 			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSGetCardRequest.h</string>
+			<string>Classes/Networking/Requests/VSSRequest.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>7ABB5633FF92E8B14853726D10880D2F</key>
+		<key>7599B9C12953188A7C74FFBD6DF40D19</key>
+		<dict>
+			<key>fileRef</key>
+			<string>564235BCA2D849D843911DE2CF098C78</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>7723B66D0A6A655DB8DF04D549C5CDA8</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9F0415DB09059491E0A7AC63EC786A81</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>77D018DC96971D65C2B353831BCECCFD</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSIdentityBaseRequest.h</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/Identity/VSSIdentityBaseRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>791D1FF5B37FBC79F1BB9F00BE80090D</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -2508,23 +2252,21 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSSign.m</string>
 			<key>path</key>
-			<string>Classes/Models/VSSSign.m</string>
+			<string>VirgilSDK-dummy.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>7AFEE7AB047CB9A8636CDA2884E04CCB</key>
+		<key>7A0552016E66FA6FD66411945FE18491</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>VSSSigner.mm</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
 			<key>path</key>
-			<string>Wrapper/VSSSigner.mm</string>
+			<string>XAsync-prefix.pch</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2541,19 +2283,34 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>7C677356D6BAECECBA2B7FA811EE2425</key>
+		<key>7C120A8B89719B46869B19C69C66C4FC</key>
 		<dict>
 			<key>fileRef</key>
-			<string>4E4AE42ACF690D48F3F03490C29473D6</string>
+			<string>A9BE1C1E87EC12560FE7A6ED417C1A4B</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
 			<dict>
 				<key>ATTRIBUTES</key>
 				<array>
-					<string>Public</string>
+					<string>Private</string>
 				</array>
 			</dict>
+		</dict>
+		<key>7D2F9E846B0CDE3B60ED881CDE17289F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSUnsignCardRequest.h</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/Keys/VSSUnsignCardRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>7DB346D0F39D3F0E887471402A8071AB</key>
 		<dict>
@@ -2561,23 +2318,12 @@
 			<array>
 				<string>BA6428E9F66FD5A23C0A2E06ED26CD2F</string>
 				<string>FF1F5974B2DDF76781E08A5BE35FF6AE</string>
-				<string>15BD7D32847616CA589B8BDF9E14421C</string>
+				<string>70A4AD5C0E64FC59C14062C0D523C48E</string>
 				<string>9F7DFF2BEBF7DD25BCA036CD6723302A</string>
 				<string>CEC15C1EDFE3D0BFC4B8F66BD46FC04E</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>7DFA212C83DAB8A03C6823C455D50317</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>path</key>
-			<string>XAsync.modulemap</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2592,40 +2338,17 @@
 			<key>targetProxy</key>
 			<string>208CE4EFF51E99CD8AAA0EBC1DC90993</string>
 		</dict>
-		<key>7E77928F38C58AB3526072D3CFDECAF5</key>
+		<key>80EACB9E7B5CA5E0825841075716829A</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>CD275315C127B0F415CF948F90B25C84</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>NSString+VSSXMLEscape.m</string>
-			<key>path</key>
-			<string>Classes/Utils/NSString+VSSXMLEscape.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8163EFE1C8DC3E3B3CC975803FB6F767</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSSearchAppCardRequest.h</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSSearchAppCardRequest.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>81860145A73ECE425279E17C726B2544</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>779A42BFD240C9BBBC658CC37356AE0A</string>
+			<string>33D687BC3FBA2AA5450AB13611AB9D3D</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -2682,131 +2405,34 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>82CC5F3F5B3A701C4E8A28F6F83DB98B</key>
+		<key>83437635E515599FA39DABE049C56DDA</key>
 		<dict>
 			<key>fileRef</key>
-			<string>205D6E67797E5C0C26352E809D4CDD89</string>
+			<string>EC39AEF64BDA8B5BEFD25E0070E89A4A</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Private</string>
+				</array>
+			</dict>
 		</dict>
-		<key>83DF678C96DFA560728B6C5871ADF10D</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>2CBFDE18B1BC629C76AAB737E9F5EA58</string>
-				<string>79FA021CCB192D106CC79BD94F877C3E</string>
-				<string>8413B43E90504CD78B7262620E148E23</string>
-				<string>7E77928F38C58AB3526072D3CFDECAF5</string>
-				<string>F4C14AB5E24B27F04651D83B991863FC</string>
-				<string>64049E62FDF1E3A60069373FF99393A4</string>
-				<string>78A072C4F7B0D7A1E64FC71B716E3290</string>
-				<string>B1814D33EC23F34782E54F8E7DEB8866</string>
-				<string>2C69642497AC732CEA9F2711ED028A3D</string>
-				<string>47F8334ECC715215922AC1C70E6E0855</string>
-				<string>E7C34C938FDFB6D7C69D37C9840199CC</string>
-				<string>FD26D712EDD069B54D63F25B7BACF983</string>
-				<string>A9E82D8A3C515C7372B402C29D320674</string>
-				<string>5354A92EECEE7A723A9CCFE12C2DB67F</string>
-				<string>39ACA166A5A3F62A33603ADC3780D54A</string>
-				<string>70928054F3B4D2D4E44BA5D6532860C8</string>
-				<string>AA24D40238A077992B26C3804CE21869</string>
-				<string>540453DB0714F8F144AC4EBD7628D074</string>
-				<string>D5E6F3FE5353B8643A5B1CEBBE18BEA5</string>
-				<string>527F1AE2FEB47BF363C2FBC5099298D4</string>
-				<string>BC371C294C7F5BD8C97B0D814CEF4A85</string>
-				<string>205D6E67797E5C0C26352E809D4CDD89</string>
-				<string>4E40BDA62B30ACFC7E96A720B5B60D93</string>
-				<string>E82B5905855DC19A6E0B2EAB08DB11AC</string>
-				<string>79FFF4C2B8E73702E9EED1F072B7DB3A</string>
-				<string>39EA7A4C1D68967D7FBA8B8DAAD55321</string>
-				<string>9CBCBB3A78E199B39668E9404CB20007</string>
-				<string>52635F630D5F4C0CE9441D63672156C5</string>
-				<string>A90B11BC9D48A5FF71D465759230DF19</string>
-				<string>D17D12013F51A3D77A32B3254F15E6D5</string>
-				<string>C46018C8C8526683C64C83144F8A38C4</string>
-				<string>C4A080F6A5EBCCDED5BE6E698376F643</string>
-				<string>D6169084E027A853CE803A3531730291</string>
-				<string>943184411B3E7EB49F44BE6C9599D2AC</string>
-				<string>5038B308F0A2AFAB65FC391C1A96DB89</string>
-				<string>F98F4B627E21F8C37DED4819D9A560AD</string>
-				<string>A6767B2ECA6EC7C2DB45F4BCC6A74F99</string>
-				<string>6EFCE58C00EE1BFCB879516F47737986</string>
-				<string>A325E8FA4DC1673336DD049016A2A13F</string>
-				<string>F1FF70D8D0EAD2A9818F078CA45E884C</string>
-				<string>358AA4BD0E6111B54EA24507A9333117</string>
-				<string>487496B19A15C85ABEB60E5A5B32C9FF</string>
-				<string>E343A93B7FF903A9B6040F875ECF00E8</string>
-				<string>6057FF70A361CC39641645C226F39650</string>
-				<string>D4FF46767DBA1916B0D4BA62FBFE7FAD</string>
-				<string>8423F6AF094612F93AFE4C66C9D06A52</string>
-				<string>55E2CF8C5DC71ED7AC8E67505D37A838</string>
-				<string>B0E5160BF747898F45B68CB8185221EE</string>
-				<string>54428654EB30BF2C0210317DF64C1A03</string>
-				<string>88973CFF7C71F4DFBD11E2A8AA6AA9A5</string>
-				<string>5128F4217C52E5FA5C9FEA036759ABBF</string>
-				<string>25870436AB686A476F015AC6AED0877E</string>
-				<string>8B4819CC7E36B23C92DA2D68DCC33A42</string>
-				<string>387616CBC1B8CB01ECFFCA90E57723E6</string>
-				<string>42FFBEE2E212669CB37F992A54FF77EC</string>
-				<string>2B6FCA592894A6C23AEAFBE1F50623B8</string>
-				<string>748258BA2897BB32BF71AC32A4714C72</string>
-				<string>6E97034B357837DDE8A0817D066889E7</string>
-				<string>A887D690CC3CEE4943A1A776ECAB4B64</string>
-				<string>50D174E8A311349B1EAF1772CFD67C1A</string>
-				<string>60B0D2315087374732ADD76D0A34607B</string>
-				<string>9DB9070051C0181B8CE752FB1C79BC6E</string>
-				<string>21DD62D15EB6ADA5166E8400C617D8BC</string>
-				<string>268581FBA93AF2892BF7ACD707ECA2DE</string>
-				<string>B3F710106D4373BA63AFC797424E4F86</string>
-				<string>30E8A9A53F7378BB312B85D9B599B590</string>
-				<string>0F17A18A649F576F84B074D6DFB8102E</string>
-				<string>1C446FEF2F560EAC1B3459CC3A0C714D</string>
-				<string>FDE453A1770E265F429B3C20A6732333</string>
-				<string>3AA7263F612611D52DAA7D7E711F6C4C</string>
-				<string>8163EFE1C8DC3E3B3CC975803FB6F767</string>
-				<string>AAA0FB470FC0BC8E2EE467E7528C13A6</string>
-				<string>968AC039711CDED883DCDDE9C205BDA0</string>
-				<string>94B4ED53A6ADCB2DE5922445EF4287CB</string>
-				<string>EABA74CA1479D697D7460442BAB1D195</string>
-				<string>8E44B8A2E7D7FD3E3097CA2C104BB00E</string>
-				<string>6BAE355BC6605458C4C54F2C0EA59E24</string>
-				<string>CC46C21A87433802A9F47739192EDC2B</string>
-				<string>7ABB5633FF92E8B14853726D10880D2F</string>
-				<string>5884CC5459BF2A19E5C0902D90B38D8C</string>
-				<string>89B7344C58C04791534FC7F4A8979454</string>
-				<string>0E6CA2FE44DABC729A540EA83BF4AF6F</string>
-				<string>EC800989326D51A418D622F74BF52428</string>
-				<string>9A537C3283CC9184731622F8C349DBF1</string>
-				<string>2EF1DBFE07BA19E19416818AEBFBDD3E</string>
-				<string>07789C04BEB8DCD50ED200F131E9A6F6</string>
-				<string>FDB6DD72249905B6402FC4A6DF449322</string>
-				<string>F672802B7F18473BE4345E5F9BAA5DFD</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>VirgilSDK</string>
-			<key>path</key>
-			<string>VirgilSDK</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8413B43E90504CD78B7262620E148E23</key>
+		<key>83A4CB624A3AE609C878B7E073004001</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>NSString+VSSXMLEscape.h</string>
+			<string>VSSStreamCryptor.mm</string>
 			<key>path</key>
-			<string>Classes/Utils/NSString+VSSXMLEscape.h</string>
+			<string>Wrapper/VSSStreamCryptor.mm</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>8423F6AF094612F93AFE4C66C9D06A52</key>
+		<key>852B4CECD1E019E9CDF27C220CE54BA6</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -2815,9 +2441,9 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>VSSKeysError.m</string>
+			<string>VSSDeletePublicKeyRequest.m</string>
 			<key>path</key>
-			<string>Classes/Models/VSSKeysError.m</string>
+			<string>Classes/Networking/Requests/Keys/VSSDeletePublicKeyRequest.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2847,26 +2473,22 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>85EB9A2A1D4D7E26098E28081DBA8013</key>
+		<key>86EA2BF5D466E6ED884E62F6F811224E</key>
 		<dict>
-			<key>fileRef</key>
-			<string>5038B308F0A2AFAB65FC391C1A96DB89</string>
+			<key>children</key>
+			<array>
+				<string>E6C510376550D9B706DABFE53D88A1A7</string>
+				<string>3140FC871DBE99A06889E0BE25C9A421</string>
+				<string>1A1FF5BEDDBF007E7511EBB9418436C6</string>
+			</array>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>8655058C49B381342DB74451ED346A1B</key>
-		<dict>
-			<key>fileRef</key>
-			<string>3431F13CF942098B47A32E0969E18473</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>XAsync</string>
+			<key>path</key>
+			<string>XAsync</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>871E44088A853A8D33EFACF8EAE7E04A</key>
 		<dict>
@@ -2883,20 +2505,63 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
-		<key>88973CFF7C71F4DFBD11E2A8AA6AA9A5</key>
+		<key>8749EE5FE9B962DE489FCED504074026</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSModelCommons.m</string>
+			<string>VSSKeysBaseRequest.h</string>
 			<key>path</key>
-			<string>Classes/Models/VSSModelCommons.m</string>
+			<string>Classes/Networking/Requests/Keys/VSSKeysBaseRequest.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>87612AFEF5FBA54F0DC16BABFA5844A7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSCreateCardRequest.h</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/Keys/VSSCreateCardRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>888C0AC90BD014E740E58FB6FD05EA92</key>
+		<dict>
+			<key>fileRef</key>
+			<string>0B21D055CA33B20201E5E0CE6D4CB1FF</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>890726211B31F0E6A207B02A01F0ADBC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6C76FC181A89C0143F240C9835320264</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>8989ACABDD536B99F209280A33865CAC</key>
 		<dict>
@@ -2912,84 +2577,48 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>89B7344C58C04791534FC7F4A8979454</key>
+		<key>8B0F846023B605C733404DEE08D79D32</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4CE88BA4170D46D13D2301B4AF3D63E7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>8B1DD110BACB31A66B8D35DEAAC47DAD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A9F05C87825A4F738CE7DA15568216E5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>8BBFA9503B4F86EC72E9417053E3DE0A</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSSignCardRequest.m</string>
+			<string>VSSPBKDF+Base64.h</string>
 			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSSignCardRequest.m</string>
+			<string>Classes/Utils/VSSPBKDF+Base64.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>8A03A801B48CD6837C0FAE0AB87F2308</key>
+		<key>8DB1167F4A47855A741DA1F825A1E61D</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>DBDA6732607C010880FA7596F06F084A</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>VirgilSDK-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8B4819CC7E36B23C92DA2D68DCC33A42</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSPrivateKey.m</string>
-			<key>path</key>
-			<string>Classes/Models/VSSPrivateKey.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8B831D9A0F928D8A9BAAC5F55FB327C3</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>2BCD00842625A6AAAA951FFE48FF8845</string>
-				<string>7C677356D6BAECECBA2B7FA811EE2425</string>
-				<string>637AC13285296D86202E606E3A1B6632</string>
-				<string>0B2A36434DAFCA3071056D52487E23FC</string>
-				<string>5688C7C9261673D27008D6A2AAF6CBC2</string>
-				<string>9EC5636C770A66F5AC3CC7A2630FA426</string>
-				<string>C814C7913DB944B946BDE96686A75F3F</string>
-				<string>6F23454E2C6E71F527C753EE6ED30B5B</string>
-				<string>438E5BFC44DB9D44DD11F92C8C4F5CAC</string>
-				<string>E6EA5FC202C971C347E418E2261F9CD2</string>
-				<string>43542C40E6318C0EBAD2E9C03BB44F34</string>
-			</array>
-			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>8CB3FD4E85974F1943E4C6F6EBAF2E3D</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.plist.xml</string>
-			<key>path</key>
-			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>8DFA96F03F88378B9F835093C8D1EFC8</key>
 		<dict>
@@ -2997,36 +2626,6 @@
 			<string>701DEFF34EFB3CB77F9593F06669CC90</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>8E0F8739827B2008F851DBE9A78909EF</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSBaseCryptor_Private.h</string>
-			<key>path</key>
-			<string>Wrapper/VSSBaseCryptor_Private.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8E44B8A2E7D7FD3E3097CA2C104BB00E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSServiceConfig.h</string>
-			<key>path</key>
-			<string>Classes/Networking/Client/VSSServiceConfig.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>8E70713A703C7905D732C53F29FC89B8</key>
 		<dict>
@@ -3041,10 +2640,25 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>8F08ADE90966B8F0696229FE6E4EE304</key>
+		<key>8F8177AF6519618FDAF9166B45E973F8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSDeletePrivateKeyRequest.m</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/PrivateKeys/VSSDeletePrivateKeyRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>921CD2C49FF165FE1639CCA0A87DEE61</key>
 		<dict>
 			<key>fileRef</key>
-			<string>EABA74CA1479D697D7460442BAB1D195</string>
+			<string>E0C970ED0E4E971C2861176C10312D81</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -3055,42 +2669,90 @@
 				</array>
 			</dict>
 		</dict>
-		<key>943184411B3E7EB49F44BE6C9599D2AC</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSIdentityBaseRequest.m</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Identity/VSSIdentityBaseRequest.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>94B4ED53A6ADCB2DE5922445EF4287CB</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSSearchCardRequest.m</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSSearchCardRequest.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9650A5CA4B21D0AAAA8AF39784AFAC8C</key>
+		<key>9269A58DC77A69061C03101B7888FB81</key>
 		<dict>
 			<key>fileRef</key>
-			<string>F1FF70D8D0EAD2A9818F078CA45E884C</string>
+			<string>A77D690908BE1E700A037668ED0157F9</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>929A1B41967FF6A561B75653E57D61B7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSCard.m</string>
+			<key>path</key>
+			<string>Classes/Models/VSSCard.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>939848F7D424980F0A2D353FE74AF19E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>XAsync.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>94BC92E4E62AA84AA55D413B98EA2349</key>
+		<dict>
+			<key>fileRef</key>
+			<string>FE9B1F6C938A17F3BD32223890EE108A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>94D4F89343742D0ED13416B49A0C1FA9</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E00CDBB03583CA06A1C481DA2B398D79</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>94FC3D33A2ECFE4C7FE1D1628E79C9CA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D0657B73D7405C365ED9D37B25706A43</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>95DF294271733CC19CDC2CB08AB3455D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSJSONRequestExtended.h</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/VSSJSONRequestExtended.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>96700FFD470C859460AA06057B64BDA6</key>
 		<dict>
@@ -3105,21 +2767,6 @@
 			<string>Release</string>
 			<key>isa</key>
 			<string>XCConfigurationList</string>
-		</dict>
-		<key>968AC039711CDED883DCDDE9C205BDA0</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSSearchCardRequest.h</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSSearchCardRequest.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>96A9168B25B35D23F99BF4BC1F6F62B6</key>
 		<dict>
@@ -3136,23 +2783,10 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
-		<key>96BD41DE5E3C2566293D9871E7DCAD33</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>VSSChunkCryptor.mm</string>
-			<key>path</key>
-			<string>Wrapper/VSSChunkCryptor.mm</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9784074B670725990F5CF6F141EC07AD</key>
+		<key>9721314FA29D60870A23A7261C2DAD83</key>
 		<dict>
 			<key>fileRef</key>
-			<string>E343A93B7FF903A9B6040F875ECF00E8</string>
+			<string>D7BA96D682064B64A8EC997999A51386</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -3163,98 +2797,77 @@
 				</array>
 			</dict>
 		</dict>
-		<key>978EFA4C63C5B9EA17A03EF101A49AA4</key>
+		<key>98099AB0794439DD4304EBDFBBAAA992</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>XAsync.m</string>
+			<string>VSSChunkCryptor.h</string>
 			<key>path</key>
-			<string>Content/XAsync.m</string>
+			<string>Wrapper/VSSChunkCryptor.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>98B6482371A7724C67A7CB1044368ECB</key>
+		<key>9951B3E754EC17F264E12659503C8737</key>
 		<dict>
 			<key>buildActionMask</key>
 			<string>2147483647</string>
 			<key>files</key>
 			<array>
-				<string>C72B144B447EDB85467FE5EEFF85D4B2</string>
-				<string>BB3E538314DC39642AFD70082506FC6D</string>
+				<string>1F73A0A1BB1BE336FCC5272F1E50F9B6</string>
+				<string>C1BB776C2E3A8BA6CEBB79E296F2ED40</string>
+				<string>641978916700B43613AF556CFEF7F5BC</string>
+				<string>D0AC5B3621BD3905FEBC5A54E7974523</string>
+				<string>94D4F89343742D0ED13416B49A0C1FA9</string>
+				<string>00DF6BC2C33354781D7A75F5EDDA6121</string>
+				<string>6E4FFEBAE2D9B7AE8549E5C6845ED16D</string>
+				<string>DC8CB1D1475B150CAF81CC4EF4D17FAB</string>
+				<string>C490B40E96C0E55E9B42A297E9E8E0C0</string>
+				<string>E291921AED9010F2A619F47062990AF5</string>
+				<string>C89A5019731416BB2BC62F0BDF7FCB14</string>
+				<string>C9B823F609F9A74B69080CE1CCD4E07C</string>
 			</array>
 			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
+			<string>PBXHeadersBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>98D6215C2A1C70F56DF6EEB58E549CF5</key>
+		<key>9980E81A522E4DC6A89C463479E1692E</key>
 		<dict>
 			<key>fileRef</key>
-			<string>AAA0FB470FC0BC8E2EE467E7528C13A6</string>
+			<string>031F666AE0553EDEE31B3039BE2FCE55</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Private</string>
+				</array>
+			</dict>
 		</dict>
-		<key>9A537C3283CC9184731622F8C349DBF1</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSUnsignCardRequest.h</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSUnsignCardRequest.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9B9C2FAFB1BDF4457FD191F235D02A27</key>
+		<key>998C259FB7CA9EF1D917CD0D594625BA</key>
 		<dict>
 			<key>fileRef</key>
-			<string>42FFBEE2E212669CB37F992A54FF77EC</string>
+			<string>7271FD7019B9807893A4A8675E494C62</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Private</string>
+				</array>
+			</dict>
 		</dict>
-		<key>9CBCBB3A78E199B39668E9404CB20007</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSGetPublicKeyRequest.h</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSGetPublicKeyRequest.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9DB9070051C0181B8CE752FB1C79BC6E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSRequest.h</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/VSSRequest.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9EC5636C770A66F5AC3CC7A2630FA426</key>
+		<key>9B5400304A74F060017A9AB5E761D3F2</key>
 		<dict>
 			<key>fileRef</key>
-			<string>64F527402E74947ED37B6263EF083EF5</string>
+			<string>1C7681D76C485F8B5156AB1F2B16C57A</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -3264,6 +2877,127 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>9B9DDBDEED62A16E27519F5FFDDA22D9</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2446CD37E8D336FD868A2A37AEBAEE1E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>9BAF085CC5B7E402E03AE84C0B78A69F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSRequestContextExtended.m</string>
+			<key>path</key>
+			<string>Classes/Networking/RequestContext/VSSRequestContextExtended.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9BEDC8F9277B96D3B414DDD18CA0A9E6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5E4A9B1C6AAD514E667E4B3A1184D390</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Private</string>
+				</array>
+			</dict>
+		</dict>
+		<key>9C2641AF72B5B0106A18B9A83B8DEE15</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9E2A719203C782C9603A06BE18CC7112</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>9C2E9B5076E15A294A79109AC6B9ACD2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>VirgilSDK-prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9E0D01C0500A40D88E0836AE5899BA4B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSClient.m</string>
+			<key>path</key>
+			<string>Classes/Networking/Client/VSSClient.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9E2A719203C782C9603A06BE18CC7112</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSServiceConfig.h</string>
+			<key>path</key>
+			<string>Classes/Networking/Client/VSSServiceConfig.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9EB21FF5413ABDA98739FD157ED82A0D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>XAsync-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9F0415DB09059491E0A7AC63EC786A81</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSStorePrivateKeyRequest.m</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/PrivateKeys/VSSStorePrivateKeyRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>9F3EB84D49E3BD6C8F460605BA68A10A</key>
 		<dict>
@@ -3294,59 +3028,25 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>A057B6CDF70DF414E8214BA4E60E24FB</key>
-		<dict>
-			<key>fileRef</key>
-			<string>C46018C8C8526683C64C83144F8A38C4</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>A258237FEC309772E16AC7F5DA020BA5</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>8CB3FD4E85974F1943E4C6F6EBAF2E3D</string>
-				<string>7DFA212C83DAB8A03C6823C455D50317</string>
-				<string>2A9FBD74935177D4DB040B60D1B33CF9</string>
-				<string>F66D35B5ECB3C0C1008C6B34FCF0DE30</string>
-				<string>4E9AEF7FC2B80F6B5A58458267B16A9C</string>
-				<string>1FD9768313172428AAA70BF28EA6C11D</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Support Files</string>
-			<key>path</key>
-			<string>../Target Support Files/XAsync</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>A325E8FA4DC1673336DD049016A2A13F</key>
+		<key>A026EC25FAA2A120CBAEB333FE4D57EA</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
+			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>VSSJSONRequestExtended.h</string>
+			<string>VSSIdentity.m</string>
 			<key>path</key>
-			<string>Classes/Networking/Requests/VSSJSONRequestExtended.h</string>
+			<string>Classes/Models/VSSIdentity.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>A4D17C6E78165CA4810E60ED86F517F0</key>
+		<key>A041E2BD291F73F16654D6586FD6375C</key>
 		<dict>
 			<key>fileRef</key>
-			<string>9A537C3283CC9184731622F8C349DBF1</string>
+			<string>12057C519A5E2A1BBBB3E32C053915EA</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -3356,6 +3056,64 @@
 					<string>Private</string>
 				</array>
 			</dict>
+		</dict>
+		<key>A15776F2B2A94C2AAD05DEC958A939CB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSClient.h</string>
+			<key>path</key>
+			<string>Classes/Networking/Client/VSSClient.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A1BFB7C7F44E64F97903D15B58E0330C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSCard.h</string>
+			<key>path</key>
+			<string>Classes/Models/VSSCard.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A4016CFC0058B7C97F69BEFD4F3CE5E1</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSSearchAppCardRequest.m</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/Keys/VSSSearchAppCardRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A4D745CDB8162D4B404BA4BEBF011EE9</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>VirgilFoundation.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>A54373668F0DFDFC6DBC8EEF72BB5421</key>
 		<dict>
@@ -3371,7 +3129,48 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>A6767B2ECA6EC7C2DB45F4BCC6A74F99</key>
+		<key>A62387C78C3DA5AC76B42D46F314ECD6</key>
+		<dict>
+			<key>fileRef</key>
+			<string>05E3138156CC0FCD04337B567E6182C8</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Private</string>
+				</array>
+			</dict>
+		</dict>
+		<key>A6624CC79D98230E3BC5E695862E49BD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>750AF932EA64DE41CAAAC4ACB6A95A48</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>A700BA6D97D31AC8451EB5F52ACBB997</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>VSSVirgilVersion.mm</string>
+			<key>path</key>
+			<string>Wrapper/VSSVirgilVersion.mm</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A77D690908BE1E700A037668ED0157F9</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -3380,20 +3179,58 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSJSONRequest.h</string>
+			<string>VSSRequestContextExtended.h</string>
 			<key>path</key>
-			<string>Classes/Networking/Requests/VSSJSONRequest.h</string>
+			<string>Classes/Networking/RequestContext/VSSRequestContextExtended.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>A744123319613337A64C3A21DBA7B889</key>
+		<key>A7CD82EF65E03A547178CE7675005761</key>
 		<dict>
-			<key>fileRef</key>
-			<string>18E38AEE050FA2E807882D63E751D693</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSPublicKey.h</string>
+			<key>path</key>
+			<string>Classes/Models/VSSPublicKey.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
-		<key>A887D690CC3CEE4943A1A776ECAB4B64</key>
+		<key>A888342F14DA8319E3C4D8E1BA438ABA</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSGetCardRequest.h</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/Keys/VSSGetCardRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A9BE1C1E87EC12560FE7A6ED417C1A4B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSSignCardRequest.h</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/Keys/VSSSignCardRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A9F05C87825A4F738CE7DA15568216E5</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -3402,56 +3239,25 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>VSSPublicKey.m</string>
+			<string>VSSPBKDF+Base64.m</string>
 			<key>path</key>
-			<string>Classes/Models/VSSPublicKey.m</string>
+			<string>Classes/Utils/VSSPBKDF+Base64.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>A90B11BC9D48A5FF71D465759230DF19</key>
+		<key>AA0992C2EB2275AA20066BA8AB2EB14D</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>CF47172450D2E46FC86ED42A3ABE11C3</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSGrabPrivateKeyRequest.h</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/PrivateKeys/VSSGrabPrivateKeyRequest.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>A9E82D8A3C515C7372B402C29D320674</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSConfirmIdentityRequest.h</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Identity/VSSConfirmIdentityRequest.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AA24D40238A077992B26C3804CE21869</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSDeleteCardRequest.h</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSDeleteCardRequest.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Private</string>
+				</array>
+			</dict>
 		</dict>
 		<key>AA2B3EFE19C58C81641A26A7098ED457</key>
 		<dict>
@@ -3464,105 +3270,7 @@
 			<key>targetProxy</key>
 			<string>1C111A0A7484AC0AC1458B5BF92A9D68</string>
 		</dict>
-		<key>AAA0FB470FC0BC8E2EE467E7528C13A6</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSSearchAppCardRequest.m</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSSearchAppCardRequest.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AABC066DBB10A2235E2C55A0A6B3FF1F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>VirgilSDK-prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AADC92C02DF22D9B3D92BF2E3C08E6FD</key>
-		<dict>
-			<key>fileRef</key>
-			<string>4E40BDA62B30ACFC7E96A720B5B60D93</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>AB96818513CAB57074E2829E538FB518</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>XAsync.h</string>
-			<key>path</key>
-			<string>Content/XAsync.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>AC22662D7DA3A6B002020637653A5CBE</key>
-		<dict>
-			<key>fileRef</key>
-			<string>79FA021CCB192D106CC79BD94F877C3E</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>AEDDCF5A50D9C699B053E938E40686F9</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>Foundation.framework</string>
-			<key>path</key>
-			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework</string>
-			<key>sourceTree</key>
-			<string>DEVELOPER_DIR</string>
-		</dict>
-		<key>B00A10F2F8988AAD5CBEDD73F062EFDC</key>
-		<dict>
-			<key>fileRef</key>
-			<string>540453DB0714F8F144AC4EBD7628D074</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>B0D5482D0F2184463A3AD7CF5F627603</key>
-		<dict>
-			<key>fileRef</key>
-			<string>268581FBA93AF2892BF7ACD707ECA2DE</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>B0E5160BF747898F45B68CB8185221EE</key>
+		<key>AA82C2B9806E4CF373254A1920374F94</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -3577,66 +3285,37 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>B1814D33EC23F34782E54F8E7DEB8866</key>
+		<key>ACEC64045E4BC3D1AF2A4D81B9663ED4</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>VSSBaseModel.m</string>
+			<string>text.plist.xml</string>
 			<key>path</key>
-			<string>Classes/Models/VSSBaseModel.m</string>
+			<string>Info.plist</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>B1F711E6FABC10EDA5A38905FAF50CFB</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>VSSStreamCryptor.mm</string>
-			<key>path</key>
-			<string>Wrapper/VSSStreamCryptor.mm</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B22284277632AA520AFB075D597968D0</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>VSSCryptor.mm</string>
-			<key>path</key>
-			<string>Wrapper/VSSCryptor.mm</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B3F710106D4373BA63AFC797424E4F86</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSRequestContext.h</string>
-			<key>path</key>
-			<string>Classes/Networking/RequestContext/VSSRequestContext.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>B4227D197641F65F3F94B7C9465CD285</key>
+		<key>ADC17A195141B0C17AB59B1DBAF5E944</key>
 		<dict>
 			<key>fileRef</key>
-			<string>9DB9070051C0181B8CE752FB1C79BC6E</string>
+			<string>EF8B7406718305262D034FB3A4306C40</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>AE494CCF0E442FF43867D09C48BE64A7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>45F4D9AA03460903C720C29157CC2D8B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>AE5C6DD2295972850F0BA186D9808AD9</key>
+		<dict>
+			<key>fileRef</key>
+			<string>EBD5E88DE61DDCE8A7B34F0477BD2F72</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -3647,34 +3326,168 @@
 				</array>
 			</dict>
 		</dict>
-		<key>B50885571C8369A5A923E3CF50B327FF</key>
+		<key>AEDDCF5A50D9C699B053E938E40686F9</key>
 		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>48D65CA7DBDAD3FF81ABBC3672517AFF</string>
-				<string>EC2412FDA6D5C02A9D152DE565254280</string>
-				<string>C67138804597BD410E2CB8631F54CD37</string>
-				<string>30F6212AFF52C2524E50CC561E42C0DE</string>
-				<string>8655058C49B381342DB74451ED346A1B</string>
-				<string>A744123319613337A64C3A21DBA7B889</string>
-				<string>E22934848E8D567130EA66ED4B1CFA07</string>
-				<string>5A04BA12C68CEAB04342DBB439B69D36</string>
-				<string>06D9CFB2E2CF340BDC7A05C522491621</string>
-				<string>4416B828675D37E5A124AD3E6DC67F90</string>
-			</array>
 			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>wrapper.framework</string>
+			<key>name</key>
+			<string>Foundation.framework</string>
+			<key>path</key>
+			<string>Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework</string>
+			<key>sourceTree</key>
+			<string>DEVELOPER_DIR</string>
 		</dict>
-		<key>B6E002160E0E5BA20C3B068E04D79B80</key>
+		<key>AFB8079D27A53F774119740751FCC542</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSUnsignCardRequest.m</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/Keys/VSSUnsignCardRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B018406F2CAF780EB1F8A16F28974CC2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSRequestExtended.m</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/VSSRequestExtended.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B0C0DD7A98F5DE8F766077F7364A95F0</key>
 		<dict>
 			<key>fileRef</key>
-			<string>70928054F3B4D2D4E44BA5D6532860C8</string>
+			<string>BF5BB1720A16F5C405B251F5FEE0C7CE</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>B2B87DC04BB8B257FDB283A4A1567D41</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A7CD82EF65E03A547178CE7675005761</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>B3F81677C9C7E875CFEFF6A927D18363</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSJSONRequest.m</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/VSSJSONRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B49A4FC211443B202233678D5665A79E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>FA8B15C5D9602EA582C1AADC633E261D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B4B611E09EB05655012536A3EB0A1870</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>XAsync.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B5B16DBBA2199C81D025BFF0E2714CD4</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSSignCardRequest.m</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/Keys/VSSSignCardRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B612033DA623BD7B44BAB68C063C2BA7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>791D1FF5B37FBC79F1BB9F00BE80090D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>B737F1EE2D12DC6A1FC2220306E4CD50</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSKeyPair.h</string>
+			<key>path</key>
+			<string>Wrapper/VSSKeyPair.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B7CA1708154CC14854B542DC10E203A0</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E6C510376550D9B706DABFE53D88A1A7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>B83A9D4FEE5293FAFDD6F45B0E4E2B73</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSStreamSigner.h</string>
+			<key>path</key>
+			<string>Wrapper/VSSStreamSigner.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>B8B828995A53C61DC1310BDB1F6F9C85</key>
 		<dict>
@@ -3683,12 +3496,20 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>B8FD87245C93C41D90D2A5845112F4A3</key>
+		<key>B8DAA26BDBD2DF6A37620FCB52A94EB0</key>
 		<dict>
-			<key>fileRef</key>
-			<string>FD26D712EDD069B54D63F25B7BACF983</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSSerializable.h</string>
+			<key>path</key>
+			<string>Classes/Models/VSSSerializable.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>B91B0A68D22FE875D352877C9CDAAC40</key>
 		<dict>
@@ -3702,6 +3523,34 @@
 			<string>Pods-IPMExample-objc-frameworks.sh</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B930D9F6C3E1B5BD15E81B4E049C9625</key>
+		<dict>
+			<key>fileRef</key>
+			<string>1CE417AF17F0AEE1AD3969D88AAEA205</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>B939E1D4F91A64C3721F859E02DFDECE</key>
+		<dict>
+			<key>fileRef</key>
+			<string>50EB5E44D5E55B0BDD7F6B7E13C35B37</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>BA6428E9F66FD5A23C0A2E06ED26CD2F</key>
 		<dict>
@@ -3720,14 +3569,75 @@
 			<key>xcLanguageSpecificationIdentifier</key>
 			<string>xcode.lang.ruby</string>
 		</dict>
-		<key>BB3E538314DC39642AFD70082506FC6D</key>
+		<key>BBF3DFE87880C6B5C68E9135B7B9ABC6</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>VirgilSDK.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BCDA124C1DAA24F7379B611FBA14C2D4</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>VSSStreamSigner.mm</string>
+			<key>path</key>
+			<string>Wrapper/VSSStreamSigner.mm</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BD545482CCD06538E6CD2B0E67774BA0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSConfirmIdentityRequest.m</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/Identity/VSSConfirmIdentityRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BF5BB1720A16F5C405B251F5FEE0C7CE</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSIdentityError.m</string>
+			<key>path</key>
+			<string>Classes/Models/VSSIdentityError.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BF5EA79557A74144C46AF04E88950FBF</key>
 		<dict>
 			<key>fileRef</key>
-			<string>978EFA4C63C5B9EA17A03EF101A49AA4</string>
+			<string>53AC2F8A6A39F0011F9FA6BAB19CF202</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
-		<key>BC371C294C7F5BD8C97B0D814CEF4A85</key>
+		<key>BFCB97CFC523DAA60415C4B365397663</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -3736,25 +3646,11 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSDeletePublicKeyRequest.h</string>
+			<string>VSSRequest_Private.h</string>
 			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSDeletePublicKeyRequest.h</string>
+			<string>Classes/Networking/Requests/VSSRequest_Private.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>BFAAF498665A0BBB616386DFED03D21D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>D5E6F3FE5353B8643A5B1CEBBE18BEA5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Private</string>
-				</array>
-			</dict>
 		</dict>
 		<key>C15191460892BD64DC4EB3E1D9045479</key>
 		<dict>
@@ -3769,18 +3665,53 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>C169452539F7A59B6558F2E2B89F1161</key>
+		<key>C1BB776C2E3A8BA6CEBB79E296F2ED40</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5F19EF5012E51ACDA62CF27EABB2D0E2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>C3D453C92C6744048B51FEC9CE47A5AA</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>CBC6C0E30EB2D09C4892EA12D4AA2288</string>
+				<string>8DB1167F4A47855A741DA1F825A1E61D</string>
+				<string>2E0C8D289EC46E64C49474942C45E3FD</string>
+				<string>461D4D1FD3F36DECFEE9E2320155E1D0</string>
+				<string>73DCD53AAD6BBF982506033F63DF08E2</string>
+				<string>94BC92E4E62AA84AA55D413B98EA2349</string>
+				<string>07BEAD380EAFBE11F52BE273163798D6</string>
+				<string>ADC17A195141B0C17AB59B1DBAF5E944</string>
+				<string>164B35B073E036171012DAE4394CA1A0</string>
+				<string>5B930D3ED7249E00E305F78C75B29736</string>
+				<string>585050970B74ADE6642795C11C79A81F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>C3D59949660CE95DA5FC7CF5E1596F78</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSSigner.h</string>
+			<string>VSSCryptor.mm</string>
 			<key>path</key>
-			<string>Wrapper/VSSSigner.h</string>
+			<string>Wrapper/VSSCryptor.mm</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -3798,22 +3729,28 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>C46018C8C8526683C64C83144F8A38C4</key>
+		<key>C490B40E96C0E55E9B42A297E9E8E0C0</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>40DE38EB14358A04985C714749A11428</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSIdentity.h</string>
-			<key>path</key>
-			<string>Classes/Models/VSSIdentity.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
-		<key>C4A080F6A5EBCCDED5BE6E698376F643</key>
+		<key>C4D5A363F33305E2A208287790C295C7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>BD545482CCD06538E6CD2B0E67774BA0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>C4DC0E35CC94BA1FCB2CF84224266773</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -3822,9 +3759,9 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>VSSIdentity.m</string>
+			<string>VSSKeysError.m</string>
 			<key>path</key>
-			<string>Classes/Models/VSSIdentity.m</string>
+			<string>Classes/Models/VSSKeysError.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -3838,6 +3775,43 @@
 			<string>text.xcconfig</string>
 			<key>path</key>
 			<string>Pods-IPMExample-objc.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C5EA83175220A60BD2986867A7926465</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>5F19EF5012E51ACDA62CF27EABB2D0E2</string>
+				<string>DBDA6732607C010880FA7596F06F084A</string>
+				<string>1DB8B54DDCA060166C60905809E925FA</string>
+				<string>98099AB0794439DD4304EBDFBBAAA992</string>
+				<string>4FB7DCB0A9E0EAFF5A800A77B0ABA41B</string>
+				<string>E00CDBB03583CA06A1C481DA2B398D79</string>
+				<string>C3D59949660CE95DA5FC7CF5E1596F78</string>
+				<string>0630621D41053F9270625369601B21B5</string>
+				<string>F53AF57842BE209BEDAA46CB7FDA95C7</string>
+				<string>B737F1EE2D12DC6A1FC2220306E4CD50</string>
+				<string>FE9B1F6C938A17F3BD32223890EE108A</string>
+				<string>CE5DD675F53670845749077C43AB6FCC</string>
+				<string>CA2F52B6F31EACF18156BCE499F9FB71</string>
+				<string>40DE38EB14358A04985C714749A11428</string>
+				<string>EF8B7406718305262D034FB3A4306C40</string>
+				<string>3625FA25F7C9875C9D8785E1F35B32F4</string>
+				<string>83A4CB624A3AE609C878B7E073004001</string>
+				<string>B83A9D4FEE5293FAFDD6F45B0E4E2B73</string>
+				<string>BCDA124C1DAA24F7379B611FBA14C2D4</string>
+				<string>54462F13ACB8BC9C2BE951F5A3AF7DAA</string>
+				<string>A700BA6D97D31AC8451EB5F52ACBB997</string>
+				<string>F4DB3316918699C6F617E957D7DE59D9</string>
+				<string>4A0F028980907ECCBACBFBF78DB8E72E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>VirgilFoundation</string>
+			<key>path</key>
+			<string>VirgilFoundation</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -3910,38 +3884,40 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>C67138804597BD410E2CB8631F54CD37</key>
+		<key>C6807E256245B10A1A5E933225D6BFEA</key>
 		<dict>
-			<key>fileRef</key>
-			<string>96BD41DE5E3C2566293D9871E7DCAD33</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSJSONRequestExtended.m</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/VSSJSONRequestExtended.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
-		<key>C695750FCCCE7F424232A1FD0E7106E9</key>
+		<key>C88E4E8374C761FBD05E1A10EF3154AF</key>
 		<dict>
-			<key>fileRef</key>
-			<string>AA24D40238A077992B26C3804CE21869</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Private</string>
-				</array>
-			</dict>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSSearchEmailCardRequest.m</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/Keys/VSSSearchEmailCardRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
-		<key>C72B144B447EDB85467FE5EEFF85D4B2</key>
+		<key>C89A5019731416BB2BC62F0BDF7FCB14</key>
 		<dict>
 			<key>fileRef</key>
-			<string>F66D35B5ECB3C0C1008C6B34FCF0DE30</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>C814C7913DB944B946BDE96686A75F3F</key>
-		<dict>
-			<key>fileRef</key>
-			<string>241C5599EB7723F78F1C6A83C75DECC2</string>
+			<string>B83A9D4FEE5293FAFDD6F45B0E4E2B73</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -3951,6 +3927,47 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>C96A8FDB9C1FA6C5FC7D83115D0EC58B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>0D9D8BC42300F18E13D0F345BA685582</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>C9B823F609F9A74B69080CE1CCD4E07C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>54462F13ACB8BC9C2BE951F5A3AF7DAA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>CA2F52B6F31EACF18156BCE499F9FB71</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>VSSPBKDF.mm</string>
+			<key>path</key>
+			<string>Wrapper/VSSPBKDF.mm</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>CA71E9F0BCF82C45410EBCED09B7CE29</key>
 		<dict>
@@ -4020,48 +4037,19 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>CBECF42570CDA91CCD6FFBDBA0349928</key>
+		<key>CBC6C0E30EB2D09C4892EA12D4AA2288</key>
 		<dict>
 			<key>fileRef</key>
-			<string>5884CC5459BF2A19E5C0902D90B38D8C</string>
+			<string>659AD46C418B12F1FB3A860940CE3821</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Private</string>
-				</array>
-			</dict>
 		</dict>
-		<key>CC01110FE95859768F77274BFBA4AE1E</key>
+		<key>CC4EB4A1E9EEBD2C7E6A0217D5ED398E</key>
 		<dict>
 			<key>fileRef</key>
-			<string>AB96818513CAB57074E2829E538FB518</string>
+			<string>43D1735C6AE12EE748F9FAE97881FBC2</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>CC46C21A87433802A9F47739192EDC2B</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSSign.h</string>
-			<key>path</key>
-			<string>Classes/Models/VSSSign.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>CC86146CEA559B4AB0FD407F69ECDC78</key>
 		<dict>
@@ -4076,12 +4064,50 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>CD0CB04BF5E06A1D1360B502525205A9</key>
+		<key>CD275315C127B0F415CF948F90B25C84</key>
 		<dict>
-			<key>fileRef</key>
-			<string>8B4819CC7E36B23C92DA2D68DCC33A42</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSRequestContext.m</string>
+			<key>path</key>
+			<string>Classes/Networking/RequestContext/VSSRequestContext.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>CDEB147C42936B781395E68522B476AD</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSSign.h</string>
+			<key>path</key>
+			<string>Classes/Models/VSSSign.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>CE5DD675F53670845749077C43AB6FCC</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSPBKDF.h</string>
+			<key>path</key>
+			<string>Wrapper/VSSPBKDF.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>CEC15C1EDFE3D0BFC4B8F66BD46FC04E</key>
 		<dict>
@@ -4096,21 +4122,22 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>D058E7A79902D4FC4FB4ACDA7A9392FB</key>
+		<key>CF47172450D2E46FC86ED42A3ABE11C3</key>
 		<dict>
-			<key>fileRef</key>
-			<string>2EF1DBFE07BA19E19416818AEBFBDD3E</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSGrabPrivateKeyRequest.h</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/PrivateKeys/VSSGrabPrivateKeyRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
-		<key>D171D7B159EEBB51324095698801CE03</key>
-		<dict>
-			<key>fileRef</key>
-			<string>6057FF70A361CC39641645C226F39650</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>D17D12013F51A3D77A32B3254F15E6D5</key>
+		<key>D0657B73D7405C365ED9D37B25706A43</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -4119,11 +4146,25 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>VSSGrabPrivateKeyRequest.m</string>
+			<string>VSSServiceConfig.m</string>
 			<key>path</key>
-			<string>Classes/Networking/Requests/PrivateKeys/VSSGrabPrivateKeyRequest.m</string>
+			<string>Classes/Networking/Client/VSSServiceConfig.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D0AC5B3621BD3905FEBC5A54E7974523</key>
+		<dict>
+			<key>fileRef</key>
+			<string>98099AB0794439DD4304EBDFBBAAA992</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>D41D8CD98F00B204E9800998ECF8427E</key>
 		<dict>
@@ -4166,69 +4207,32 @@
 				<string>FA89CC3A4E13CD4F6218B171AE116F3B</string>
 			</array>
 		</dict>
-		<key>D4FF46767DBA1916B0D4BA62FBFE7FAD</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSKeysError.h</string>
-			<key>path</key>
-			<string>Classes/Models/VSSKeysError.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>D5E6F3FE5353B8643A5B1CEBBE18BEA5</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSDeletePrivateKeyRequest.h</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/PrivateKeys/VSSDeletePrivateKeyRequest.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>D6169084E027A853CE803A3531730291</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSIdentityBaseRequest.h</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Identity/VSSIdentityBaseRequest.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>D6EAE81E321342725FA76F7C4B7D8A36</key>
+		<key>D61F5EA26099B7979CFD5B923524E341</key>
 		<dict>
 			<key>fileRef</key>
-			<string>94B4ED53A6ADCB2DE5922445EF4287CB</string>
+			<string>AFB8079D27A53F774119740751FCC542</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>D84E439C737326BD9F872D5B93D88586</key>
+		<key>D6A64CE3FBAC4BC900356E34B42C3068</key>
 		<dict>
-			<key>fileRef</key>
-			<string>487496B19A15C85ABEB60E5A5B32C9FF</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSPrivateKeysError.m</string>
+			<key>path</key>
+			<string>Classes/Models/VSSPrivateKeysError.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
-		<key>D85B6E7174FF2F08A16F5E91978F1762</key>
+		<key>D77BB6B7A516AA879A3A2D63C630748B</key>
 		<dict>
 			<key>fileRef</key>
-			<string>FDE453A1770E265F429B3C20A6732333</string>
+			<string>56442D0C16A7D30F7F41EDC50DFBBF08</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -4239,27 +4243,195 @@
 				</array>
 			</dict>
 		</dict>
-		<key>D89951FCE21B27D114E96F49A234EB3E</key>
+		<key>D7BA96D682064B64A8EC997999A51386</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSPrivateKeysBaseRequest.h</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/PrivateKeys/VSSPrivateKeysBaseRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D7F92590328EB4C1EC6F8E57B1D79673</key>
+		<dict>
+			<key>fileRef</key>
+			<string>52CAF6AB86D927EE29D46453E5AC7FEA</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>D876962A87C32008D8CA7BC9CAACDDE8</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F3E9AE84165B1C703E36AAB6F432559B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>DA5FF1FC649E140BDF707D039F5BF24B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSCreateCardRequest.m</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/Keys/VSSCreateCardRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>DBDA6732607C010880FA7596F06F084A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>VSSBaseCryptor.mm</string>
+			<key>path</key>
+			<string>Wrapper/VSSBaseCryptor.mm</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>DC8CB1D1475B150CAF81CC4EF4D17FAB</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CE5DD675F53670845749077C43AB6FCC</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>DCD2D20591CDB4130E726C14A87EA55B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E8C9082BB7147555B0DD7A9C24374C10</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>DD9DBDBAC5F84E62CB7E8764C91AD9E8</key>
+		<dict>
+			<key>fileRef</key>
+			<string>852B4CECD1E019E9CDF27C220CE54BA6</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>DF716B3A26AE3E9CB03280F3BF231138</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>6BD7BED75291CCA91E6FC27FF42E3200</string>
+				<string>1F00F7D9968E5EC1E1330D9D488007A8</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>DF7F390892E83167069FCF98DAED5781</key>
+		<dict>
+			<key>fileRef</key>
+			<string>7D2F9E846B0CDE3B60ED881CDE17289F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Private</string>
+				</array>
+			</dict>
+		</dict>
+		<key>E00CDBB03583CA06A1C481DA2B398D79</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSCryptor.h</string>
+			<key>path</key>
+			<string>Wrapper/VSSCryptor.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E0361AA2DD4677C0BDE7F0579AD645C1</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>AB96818513CAB57074E2829E538FB518</string>
-				<string>978EFA4C63C5B9EA17A03EF101A49AA4</string>
-				<string>A258237FEC309772E16AC7F5DA020BA5</string>
+				<string>F31C50F9C0F69A3CCAA38C3D48E0C87C</string>
+				<string>BBF3DFE87880C6B5C68E9135B7B9ABC6</string>
+				<string>33D687BC3FBA2AA5450AB13611AB9D3D</string>
+				<string>791D1FF5B37FBC79F1BB9F00BE80090D</string>
+				<string>9C2E9B5076E15A294A79109AC6B9ACD2</string>
+				<string>4CE88BA4170D46D13D2301B4AF3D63E7</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>XAsync</string>
+			<string>Support Files</string>
 			<key>path</key>
-			<string>XAsync</string>
+			<string>../Target Support Files/VirgilSDK</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>DE66F84243E001EB8E3D7C429B180E9E</key>
+		<key>E0C970ED0E4E971C2861176C10312D81</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>VSSPrivateKeysError.h</string>
+			<key>path</key>
+			<string>Classes/Models/VSSPrivateKeysError.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E23490C2C4D4BCCB11E44473D30B66EB</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSDeleteCardRequest.m</string>
+			<key>path</key>
+			<string>Classes/Networking/Requests/Keys/VSSDeleteCardRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E291921AED9010F2A619F47062990AF5</key>
 		<dict>
 			<key>fileRef</key>
-			<string>A6767B2ECA6EC7C2DB45F4BCC6A74F99</string>
+			<string>3625FA25F7C9875C9D8785E1F35B32F4</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -4269,34 +4441,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>E14FA634A4AE946A3AA3FC6CF8AA1C05</key>
-		<dict>
-			<key>fileRef</key>
-			<string>A887D690CC3CEE4943A1A776ECAB4B64</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>E1FB31C14434219FC84D484165C62FEF</key>
-		<dict>
-			<key>fileRef</key>
-			<string>F4C14AB5E24B27F04651D83B991863FC</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>E22934848E8D567130EA66ED4B1CFA07</key>
-		<dict>
-			<key>fileRef</key>
-			<string>7AFEE7AB047CB9A8636CDA2884E04CCB</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>E29DB1A5BB319D42015C5F59208E59E2</key>
 		<dict>
@@ -4327,13 +4471,6 @@
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
-		<key>E3348F6A1B842E6713AAB4CE96EFE313</key>
-		<dict>
-			<key>fileRef</key>
-			<string>943184411B3E7EB49F44BE6C9599D2AC</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>E340DB02D30142A1066B8D8C86A4DD7B</key>
 		<dict>
 			<key>explicitFileType</key>
@@ -4349,92 +4486,7 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
-		<key>E343A93B7FF903A9B6040F875ECF00E8</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSKeysBaseRequest.h</string>
-			<key>path</key>
-			<string>Classes/Networking/Requests/Keys/VSSKeysBaseRequest.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>E4D4FA0D14D1BDBA85E3797B252A396D</key>
-		<dict>
-			<key>fileRef</key>
-			<string>55E2CF8C5DC71ED7AC8E67505D37A838</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>E54D0E557025F9C0891040C9730BA6A1</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>VirgilFoundation-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>E6A2F7CECC1343445C0A1B1F15BD595C</key>
-		<dict>
-			<key>fileRef</key>
-			<string>1FD9768313172428AAA70BF28EA6C11D</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>E6EA5FC202C971C347E418E2261F9CD2</key>
-		<dict>
-			<key>fileRef</key>
-			<string>04CCC021FF227EF6A39A9E838B5E0A91</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>E7C34C938FDFB6D7C69D37C9840199CC</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSClient.h</string>
-			<key>path</key>
-			<string>Classes/Networking/Client/VSSClient.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>E82B5905855DC19A6E0B2EAB08DB11AC</key>
+		<key>E3B433365195D6648DF80772A92D2BD4</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -4443,16 +4495,118 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>VSSError.m</string>
+			<string>VSSValidationTokenGenerator.m</string>
 			<key>path</key>
-			<string>Classes/Models/VSSError.m</string>
+			<string>Classes/Utils/VSSValidationTokenGenerator.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>E903118A8221C7A193883EEB6815CDC0</key>
+		<key>E3DCC0F22D904BCAE1798BA253F19DCE</key>
 		<dict>
 			<key>fileRef</key>
-			<string>39ACA166A5A3F62A33603ADC3780D54A</string>
+			<string>1D8699D731EC86921BF43C7AE788F758</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>E463E5923952F43B4E7093B39966273D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSBaseModel.m</string>
+			<key>path</key>
+			<string>Classes/Models/VSSBaseModel.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E474ACD2F0F3968120B8A48B678962A1</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>22CBEB525E05B734DB1B857206AE2AE0</string>
+				<string>409AD9A6A8EE0ABB8243CA0BC2D1B63F</string>
+				<string>B612033DA623BD7B44BAB68C063C2BA7</string>
+				<string>EDD404A1E44C64EDF7663467B36E5927</string>
+				<string>60939919ED94AF5C435B4656DB29C958</string>
+				<string>332781C7D7D7330346B45154FB31816B</string>
+				<string>70942FFE8D99FADAFBB47B23CD55ACA4</string>
+				<string>C4D5A363F33305E2A208287790C295C7</string>
+				<string>33B4252994C342CC4D5AFFFDFF761750</string>
+				<string>5C4B01F33C19995CBE1A74E8E19F2089</string>
+				<string>698627CEB0650D06386FDCCA5B5EC836</string>
+				<string>DD9DBDBAC5F84E62CB7E8764C91AD9E8</string>
+				<string>D876962A87C32008D8CA7BC9CAACDDE8</string>
+				<string>EA6E46A9F3F34039E4454EFFE1C3EAF1</string>
+				<string>F2E186A4A2E2CB9DFE44538827DF344F</string>
+				<string>5A082E5BB636B468951E96E60E6A9B6F</string>
+				<string>4F05C2163D8BA5FB1E678BB3EF7344D6</string>
+				<string>CC4EB4A1E9EEBD2C7E6A0217D5ED398E</string>
+				<string>B0C0DD7A98F5DE8F766077F7364A95F0</string>
+				<string>9B9DDBDEED62A16E27519F5FFDDA22D9</string>
+				<string>EFE4C9B655AF6CD864C9B81A5D009673</string>
+				<string>240B7E80B43C2FBC62D1733C3A4F814F</string>
+				<string>DCD2D20591CDB4130E726C14A87EA55B</string>
+				<string>2324ACD71B56DA75DF4F06C9F87D6754</string>
+				<string>7160B749A2C0CC01A3E698F58F280013</string>
+				<string>7398D0C49DCD7F08BEE7AED2499FA7B3</string>
+				<string>3E64F8D50D54B55586097B6FE2AA829F</string>
+				<string>8B1DD110BACB31A66B8D35DEAAC47DAD</string>
+				<string>AE494CCF0E442FF43867D09C48BE64A7</string>
+				<string>64E930898C9A1971F8F826101EB5C925</string>
+				<string>0B654DF03E642233F73FB4053C361C69</string>
+				<string>3030D9ECDD75A8DCEBBDDF268DBB89B5</string>
+				<string>414E1C8C13843E370B4A9CD4C6478859</string>
+				<string>1D3D740645CF2101A84E1B75150C32B7</string>
+				<string>80EACB9E7B5CA5E0825841075716829A</string>
+				<string>F6057A36610C59277049BB765FEAB6D7</string>
+				<string>5B0D349227CDDC08C2038B037F1C5201</string>
+				<string>FA381F9854173597FDE60F4F135D70DD</string>
+				<string>201206CF3A20F0F98722C446FDF5DD68</string>
+				<string>52B54EEF810E927A418FD919B73709BC</string>
+				<string>94FC3D33A2ECFE4C7FE1D1628E79C9CA</string>
+				<string>B49A4FC211443B202233678D5665A79E</string>
+				<string>F09B2FEEA28FBEF5AA1CE4C15E7AA947</string>
+				<string>7723B66D0A6A655DB8DF04D549C5CDA8</string>
+				<string>D61F5EA26099B7979CFD5B923524E341</string>
+				<string>14139CA525A5393CDF34ADA03B7A5A21</string>
+				<string>F2DAC7C25265AB1214CED349477C8962</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E4DFC19D3ADE70101DAC84BCFD3318E7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>74BA8461541B9DC8AF7A29595725DAB2</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>E66BF0EF3C932C00A32083056EDF1868</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4DB60E2E2E61D4D318248367DB2FFB53</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -4462,6 +4616,62 @@
 					<string>Private</string>
 				</array>
 			</dict>
+		</dict>
+		<key>E6C510376550D9B706DABFE53D88A1A7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>XAsyncTask.h</string>
+			<key>path</key>
+			<string>Content/XAsyncTask.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E8C01D21031D4A2AB1AA005DEA117270</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>VirgilFoundation-umbrella.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E8C9082BB7147555B0DD7A9C24374C10</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSKeychainValue.m</string>
+			<key>path</key>
+			<string>Classes/Utils/VSSKeychainValue.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E907197A028F5CB87808B849B4E767F8</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>VirgilFoundation-prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>EA284D25B1D8799D09F2C793B72CBAC7</key>
 		<dict>
@@ -4477,7 +4687,14 @@
 				</array>
 			</dict>
 		</dict>
-		<key>EABA74CA1479D697D7460442BAB1D195</key>
+		<key>EA6E46A9F3F34039E4454EFFE1C3EAF1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2B9032608A7C69DE5E3F01C08FE4B764</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>EBD5E88DE61DDCE8A7B34F0477BD2F72</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -4486,59 +4703,31 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSSerializable.h</string>
+			<string>VSSKeychainValue.h</string>
 			<key>path</key>
-			<string>Classes/Models/VSSSerializable.h</string>
+			<string>Classes/Utils/VSSKeychainValue.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>EBB4E8B42202EF090E5EADA91494F646</key>
-		<dict>
-			<key>fileRef</key>
-			<string>B1814D33EC23F34782E54F8E7DEB8866</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>EC2412FDA6D5C02A9D152DE565254280</key>
-		<dict>
-			<key>fileRef</key>
-			<string>1073575750B209A07DE43167A46AD1F0</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>EC800989326D51A418D622F74BF52428</key>
+		<key>EC39AEF64BDA8B5BEFD25E0070E89A4A</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSStorePrivateKeyRequest.m</string>
+			<string>VSSVerifyIdentityRequest.h</string>
 			<key>path</key>
-			<string>Classes/Networking/Requests/PrivateKeys/VSSStorePrivateKeyRequest.m</string>
+			<string>Classes/Networking/Requests/Identity/VSSVerifyIdentityRequest.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>ED0A774B37B79F4B1652E40EF37A96D2</key>
-		<dict>
-			<key>fileRef</key>
-			<string>50D174E8A311349B1EAF1772CFD67C1A</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>ED0F47954FE63304778D6222CA27C9BE</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>1E494CFFF3BFD5C0E911769022BE074D</string>
+			<string>A4D745CDB8162D4B404BA4BEBF011EE9</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -4602,39 +4791,44 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>F16C5A4DBB2A707B0D360A6338529D7D</key>
+		<key>EDD404A1E44C64EDF7663467B36E5927</key>
 		<dict>
 			<key>fileRef</key>
-			<string>2C69642497AC732CEA9F2711ED028A3D</string>
+			<string>1B9207F857E9E805E36893600C7760AD</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
-		<key>F1FF70D8D0EAD2A9818F078CA45E884C</key>
+		<key>EF8B7406718305262D034FB3A4306C40</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>VSSJSONRequestExtended.m</string>
+			<string>VSSSigner.mm</string>
 			<key>path</key>
-			<string>Classes/Networking/Requests/VSSJSONRequestExtended.m</string>
+			<string>Wrapper/VSSSigner.mm</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>EFE4C9B655AF6CD864C9B81A5D009673</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B3F81677C9C7E875CFEFF6A927D18363</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F09B2FEEA28FBEF5AA1CE4C15E7AA947</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B5B16DBBA2199C81D025BFF0E2714CD4</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>F2455DF7C8CAC642C0C4A59B6F88BE0B</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>1E494CFFF3BFD5C0E911769022BE074D</string>
+			<string>A4D745CDB8162D4B404BA4BEBF011EE9</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
@@ -4691,29 +4885,34 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>F3BA0ED7B5B1BCC8AFF3F90FC54253B2</key>
+		<key>F2DAC7C25265AB1214CED349477C8962</key>
 		<dict>
 			<key>fileRef</key>
-			<string>88973CFF7C71F4DFBD11E2A8AA6AA9A5</string>
+			<string>04E5ABF78315B640887CD8F80A367F83</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>F4C14AB5E24B27F04651D83B991863FC</key>
+		<key>F2E186A4A2E2CB9DFE44538827DF344F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>59949514E66D6C29514D9FD35D147828</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F31C50F9C0F69A3CCAA38C3D48E0C87C</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>VSSBaseClient.h</string>
+			<string>text.plist.xml</string>
 			<key>path</key>
-			<string>Classes/Networking/Client/VSSBaseClient.h</string>
+			<string>Info.plist</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>F66D35B5ECB3C0C1008C6B34FCF0DE30</key>
+		<key>F3E9AE84165B1C703E36AAB6F432559B</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -4721,45 +4920,124 @@
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>VSSError.m</string>
 			<key>path</key>
-			<string>XAsync-dummy.m</string>
+			<string>Classes/Models/VSSError.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>F672802B7F18473BE4345E5F9BAA5DFD</key>
+		<key>F4DB3316918699C6F617E957D7DE59D9</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>4ADE7353BEB6856FAA7C8397EAE9DC66</string>
-				<string>30473D61B398B90687E96EB8B3E39527</string>
-				<string>779A42BFD240C9BBBC658CC37356AE0A</string>
-				<string>8A03A801B48CD6837C0FAE0AB87F2308</string>
-				<string>AABC066DBB10A2235E2C55A0A6B3FF1F</string>
-				<string>48076B161BA2F67332330B74EA3EC4B1</string>
+				<string>743BB1DC0C364CF47A6D98A1677DE5B2</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Support Files</string>
-			<key>path</key>
-			<string>../Target Support Files/VirgilSDK</string>
+			<string>Frameworks</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>F98F4B627E21F8C37DED4819D9A560AD</key>
+		<key>F53AF57842BE209BEDAA46CB7FDA95C7</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>VSSIdentityError.m</string>
+			<string>VSSFoundationCommons.mm</string>
 			<key>path</key>
-			<string>Classes/Models/VSSIdentityError.m</string>
+			<string>Wrapper/VSSFoundationCommons.mm</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F6057A36610C59277049BB765FEAB6D7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>9BAF085CC5B7E402E03AE84C0B78A69F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>F70922B3F0BD1E81501946596B55DC23</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>C96A8FDB9C1FA6C5FC7D83115D0EC58B</string>
+				<string>007148EF65D564389C8286BB323CBF91</string>
+				<string>8B0F846023B605C733404DEE08D79D32</string>
+				<string>035A681274D5FA2EF97411173BE5006C</string>
+				<string>B930D9F6C3E1B5BD15E81B4E049C9625</string>
+				<string>50CCA316016F4DD2E6E82258FE6BA507</string>
+				<string>6BCF66DCA9A55E9A957B4E503277BC91</string>
+				<string>A041E2BD291F73F16654D6586FD6375C</string>
+				<string>0DB38CAA17364260D6F837B7AAE1DB5B</string>
+				<string>086A5835BA000589E2811F1EAEA43FC8</string>
+				<string>998C259FB7CA9EF1D917CD0D594625BA</string>
+				<string>A62387C78C3DA5AC76B42D46F314ECD6</string>
+				<string>D77BB6B7A516AA879A3A2D63C630748B</string>
+				<string>542F292CA00756F0C64D31BD59A2DCE6</string>
+				<string>9BEDC8F9277B96D3B414DDD18CA0A9E6</string>
+				<string>AA0992C2EB2275AA20066BA8AB2EB14D</string>
+				<string>E4DFC19D3ADE70101DAC84BCFD3318E7</string>
+				<string>4D70D07CCF236C87789256A681EE2BFD</string>
+				<string>B939E1D4F91A64C3721F859E02DFDECE</string>
+				<string>890726211B31F0E6A207B02A01F0ADBC</string>
+				<string>E3DCC0F22D904BCAE1798BA253F19DCE</string>
+				<string>3B6AF6DCC42544F68BA7926764F46CD2</string>
+				<string>AE5C6DD2295972850F0BA186D9808AD9</string>
+				<string>2DD1F326A41D140E19042B36CEA25959</string>
+				<string>D7F92590328EB4C1EC6F8E57B1D79673</string>
+				<string>74DE1B5F76DB42A3849A46DFD2B3609A</string>
+				<string>6772C17ADBADAAED2C47140CEC7DD672</string>
+				<string>12F233096985F504B750347DD9B4BF70</string>
+				<string>BF5EA79557A74144C46AF04E88950FBF</string>
+				<string>9721314FA29D60870A23A7261C2DAD83</string>
+				<string>921CD2C49FF165FE1639CCA0A87DEE61</string>
+				<string>B2B87DC04BB8B257FDB283A4A1567D41</string>
+				<string>888C0AC90BD014E740E58FB6FD05EA92</string>
+				<string>A6624CC79D98230E3BC5E695862E49BD</string>
+				<string>5045E149E260BFF3A4412319C48D4E70</string>
+				<string>7599B9C12953188A7C74FFBD6DF40D19</string>
+				<string>9269A58DC77A69061C03101B7888FB81</string>
+				<string>29181BE95FE4713E6BBFF0E6650536E2</string>
+				<string>E66BF0EF3C932C00A32083056EDF1868</string>
+				<string>2C891B491F437D76F4B0F783B1542806</string>
+				<string>147F99ACB843DC77B45DB8A41214E584</string>
+				<string>2AFA0876F773A5B619B27859BE3B31BF</string>
+				<string>9C2641AF72B5B0106A18B9A83B8DEE15</string>
+				<string>4BCCEFCA763F2DF560840914E2D6A685</string>
+				<string>7C120A8B89719B46869B19C69C66C4FC</string>
+				<string>9980E81A522E4DC6A89C463479E1692E</string>
+				<string>DF7F390892E83167069FCF98DAED5781</string>
+				<string>2EE4082972D0A7B9A791A0593605DFBE</string>
+				<string>83437635E515599FA39DABE049C56DDA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>F7190E75CDDBA36F1BBC10A800802867</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>VirgilFoundation.modulemap</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FA381F9854173597FDE60F4F135D70DD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A4016CFC0058B7C97F69BEFD4F3CE5E1</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>FA89CC3A4E13CD4F6218B171AE116F3B</key>
 		<dict>
@@ -4767,9 +5045,9 @@
 			<string>206BDD67F2FD11043E8C622533868D9B</string>
 			<key>buildPhases</key>
 			<array>
-				<string>98B6482371A7724C67A7CB1044368ECB</string>
+				<string>DF716B3A26AE3E9CB03280F3BF231138</string>
 				<string>CC86146CEA559B4AB0FD407F69ECDC78</string>
-				<string>0BD54BD1340722091C6175587B96AFB7</string>
+				<string>4DA4CC6313E8C30BEC8ED72B0630A1DD</string>
 			</array>
 			<key>buildRules</key>
 			<array/>
@@ -4786,28 +5064,7 @@
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
-		<key>FAF63FD28FDCF5399F539AD6160517FF</key>
-		<dict>
-			<key>fileRef</key>
-			<string>BC371C294C7F5BD8C97B0D814CEF4A85</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Private</string>
-				</array>
-			</dict>
-		</dict>
-		<key>FCB448ABA0A9B76E14858C5AE50E7AC8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>30E8A9A53F7378BB312B85D9B599B590</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>FD26D712EDD069B54D63F25B7BACF983</key>
+		<key>FA8B15C5D9602EA582C1AADC633E261D</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -4816,28 +5073,28 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>VSSClient.m</string>
+			<string>VSSSign.m</string>
 			<key>path</key>
-			<string>Classes/Networking/Client/VSSClient.m</string>
+			<string>Classes/Models/VSSSign.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>FDB6DD72249905B6402FC4A6DF449322</key>
+		<key>FE285459D0BDDC78DBE2AC051ADBB328</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>sourcecode.c.h</string>
 			<key>name</key>
-			<string>VSSVerifyIdentityRequest.m</string>
+			<string>VSSSearchEmailCardRequest.h</string>
 			<key>path</key>
-			<string>Classes/Networking/Requests/Identity/VSSVerifyIdentityRequest.m</string>
+			<string>Classes/Networking/Requests/Keys/VSSSearchEmailCardRequest.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>FDE453A1770E265F429B3C20A6732333</key>
+		<key>FE98C51E97DF21A407F6FEF00359CE23</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -4852,33 +5109,18 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>FE11606CCDC1630EE5434306B2CBB62F</key>
+		<key>FE9B1F6C938A17F3BD32223890EE108A</key>
 		<dict>
-			<key>fileRef</key>
-			<string>A90B11BC9D48A5FF71D465759230DF19</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Private</string>
-				</array>
-			</dict>
-		</dict>
-		<key>FE5BF30B81A8E232E6DB67321042E630</key>
-		<dict>
-			<key>fileRef</key>
-			<string>52635F630D5F4C0CE9441D63672156C5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>FEF54B3AB15C520167405984DB8DE912</key>
-		<dict>
-			<key>fileRef</key>
-			<string>47F8334ECC715215922AC1C70E6E0855</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>VSSKeyPair.mm</string>
+			<key>path</key>
+			<string>Wrapper/VSSKeyPair.mm</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>FF1F5974B2DDF76781E08A5BE35FF6AE</key>
 		<dict>

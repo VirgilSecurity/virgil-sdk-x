@@ -14,14 +14,12 @@
 
 typedef void (^IPMDataSourceListener)(IPMSecureMessage * _Nonnull message, NSString * _Nonnull sender);
 
-@protocol IPMDataConsumer;
-
 @protocol IPMDataSource <NSObject>
 
 - (void)startListeningWithHandler:(IPMDataSourceListener _Nonnull)handler;
 - (void)stopListening;
 
-- (XAsyncActionResult _Nullable)getParticipants;
-- (XAsyncActionResult _Nullable)sendMessage:(IPMSecureMessage * _Nonnull)message;
+- (NSArray * _Nullable)getParticipants;
+- (NSError * _Nullable)sendMessage:(IPMSecureMessage * _Nonnull)message;
 
 @end

@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithUserId:(NSString *)userId NS_DESIGNATED_INITIALIZER;
 - (instancetype)init NS_UNAVAILABLE;
 
-- (XAsyncActionResult)joinChannelWithName:(NSString *)name channelListener:(IPMDataSourceListener)listener;
+- (NSError * _Nullable)joinChannelWithName:(NSString *)name channelListener:(IPMDataSourceListener)listener;
 - (void)leaveChannel;
 
 @end

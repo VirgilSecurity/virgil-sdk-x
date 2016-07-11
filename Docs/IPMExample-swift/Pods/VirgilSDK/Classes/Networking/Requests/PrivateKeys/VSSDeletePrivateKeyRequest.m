@@ -7,7 +7,6 @@
 //
 
 #import "VSSDeletePrivateKeyRequest.h"
-#import "VSSModelCommons.h"
 #import "NSObject+VSSUtils.h"
 
 @implementation VSSDeletePrivateKeyRequest

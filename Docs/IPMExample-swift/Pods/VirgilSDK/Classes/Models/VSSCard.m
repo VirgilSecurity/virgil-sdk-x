@@ -14,27 +14,27 @@
 
 @interface VSSCard ()
 
-@property (nonatomic, copy, readwrite) NSNumber * __nonnull isConfirmed;
 @property (nonatomic, copy, readwrite) NSString * __nonnull Hash;
 @property (nonatomic, copy, readwrite) VSSIdentity * __nonnull identity;
 @property (nonatomic, copy, readwrite) VSSPublicKey * __nonnull publicKey;
 
 @property (nonatomic, copy, readwrite) NSDictionary * __nullable data;
+@property (nonatomic, copy, readwrite) NSString * __nullable authorizedBy;
 
 @end
 
 @implementation VSSCard
 
-@synthesize isConfirmed = _isConfirmed;
 @synthesize Hash = _Hash;
 @synthesize identity = _identity;
 @synthesize publicKey = _publicKey;
 
 @synthesize data = _data;
+@synthesize authorizedBy = _authorizedBy;
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithId:(GUID *)Id createdAt:(NSDate *)createdAt identity:(VSSIdentity *)identity publicKey:(VSSPublicKey *)publicKey hash:(NSString *)theHash data:(NSDictionary *)data confirmed:(NSNumber *)confirmed {
+- (instancetype)initWithId:(GUID *)Id createdAt:(NSDate *)createdAt identity:(VSSIdentity *)identity publicKey:(VSSPublicKey *)publicKey hash:(NSString *)theHash data:(NSDictionary *)data authorizedBy:(NSString *)authorizedBy {
     self = [super initWithId:Id createdAt:createdAt];
     if (self == nil) {
         return nil;
@@ -43,20 +43,20 @@
     _identity = [identity copy];
     _publicKey = [publicKey copy];
     _Hash = [theHash copy];
-    _isConfirmed = [confirmed copy];
     _data = [data copy];
+    _authorizedBy = [authorizedBy copy];
     
     return self;
 }
 
 - (instancetype)initWithId:(GUID *)Id createdAt:(NSDate *)createdAt {
-    return [self initWithId:Id createdAt:createdAt identity:[[VSSIdentity alloc] initWithId:@"" createdAt:nil] publicKey:[[VSSPublicKey alloc] initWithId:@"" createdAt:nil] hash:@"" data:nil confirmed:@NO];
+    return [self initWithId:Id createdAt:createdAt identity:[[VSSIdentity alloc] initWithId:@"" createdAt:nil] publicKey:[[VSSPublicKey alloc] initWithId:@"" createdAt:nil] hash:@"" data:nil authorizedBy:nil];
 }
 
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    return [(VSSCard *)[[self class] alloc] initWithId:self.Id createdAt:self.createdAt identity:self.identity publicKey:self.publicKey hash:self.Hash data:self.data confirmed:self.isConfirmed];
+    return [(VSSCard *)[[self class] alloc] initWithId:self.Id createdAt:self.createdAt identity:self.identity publicKey:self.publicKey hash:self.Hash data:self.data authorizedBy:self.authorizedBy];
 }
 
 #pragma mark - NSCoding
@@ -68,8 +68,8 @@
     VSSPublicKey *key = [[aDecoder decodeObjectForKey:kVSSModelPublicKey] as:[VSSPublicKey class]];
     NSString *hsh = [[aDecoder decodeObjectForKey:kVSSModelHash] as:[NSString class]];
     NSDictionary *dat = [[aDecoder decodeObjectForKey:kVSSModelData] as:[NSDictionary class]];
-    NSNumber *isConf = [[aDecoder decodeObjectForKey:kVSSModelIsConfirmed] as:[NSNumber class]];
-    return [self initWithId:gid createdAt:cat identity:ident publicKey:key hash:hsh data:dat confirmed:isConf];
+    NSString *auth = [[aDecoder decodeObjectForKey:kVSSModelAuthorizedBy] as:[NSString class]];
+    return [self initWithId:gid createdAt:cat identity:ident publicKey:key hash:hsh data:dat authorizedBy:auth];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
@@ -87,8 +87,8 @@
     if (self.data != nil) {
         [aCoder encodeObject:self.data forKey:kVSSModelData];
     }
-    if (self.isConfirmed != nil) {
-        [aCoder encodeObject:self.isConfirmed forKey:kVSSModelIsConfirmed];
+    if (self.authorizedBy != nil) {
+        [aCoder encodeObject:self.authorizedBy forKey:kVSSModelAuthorizedBy];
     }
 }
 
@@ -118,8 +118,8 @@
     NSDictionary *data = [candidate[kVSSModelData] as:[NSDictionary class]];
     card.data = data;
     
-    NSNumber *confirmed = [candidate[kVSSModelIsConfirmed] as:[NSNumber class]];
-    card.isConfirmed = confirmed;
+    NSString *auth = [candidate[kVSSModelAuthorizedBy] as:[NSString class]];
+    card.authorizedBy = auth;
     
     return card;
 }

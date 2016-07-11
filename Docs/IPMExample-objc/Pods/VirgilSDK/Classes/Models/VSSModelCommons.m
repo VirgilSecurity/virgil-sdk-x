@@ -13,7 +13,7 @@ NSString *const kVSSModelCreatedAt = @"created_at";
 
 NSString *const kVSSModelType = @"type";
 NSString *const kVSSModelValue = @"value";
-NSString *const kVSSModelIsConfirmed = @"is_confirmed";
+NSString *const kVSSModelAuthorizedBy = @"authorized_by";
 
 NSString *const kVSSModelIdentity = @"identity";
 NSString *const kVSSModelHash = @"hash";
@@ -47,7 +47,6 @@ NSString *const kVSSModelExtraFields = @"extra_fields";
 NSString *const kVSSModelError = @"error";
 NSString *const kVSSModelCode = @"code";
 
-NSString *const kVSSIdentityTypeUnknown = @"unknown";
 NSString *const kVSSIdentityTypeEmail = @"email";
 NSString *const kVSSIdentityTypeApplication = @"application";
 

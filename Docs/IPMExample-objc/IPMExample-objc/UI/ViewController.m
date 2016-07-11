@@ -11,6 +11,7 @@
 #import "IPMSecurityManager.h"
 #import "IPMSecureMessage.h"
 #import "LoadingViewController.h"
+#import "IPMConstants.h"
 
 @import VirgilSDK;
 @import XAsync;
@@ -94,12 +95,11 @@ static NSString * _Nonnull const kIPMMessageSender = @"sender";
     
     void (^IPMChannelSetup)(void) = ^(void) {
         self.ipmClient = [[IPMChannelClient alloc] initWithUserId:self.ipmSecurity.identity];
-        NSError *joinError = [XAsync awaitResult:[self.ipmClient joinChannelWithName:@"iOS-IPM-EXAMPLE" channelListener:listener]];
+        NSError *joinError = [self.ipmClient joinChannelWithName:kAppChannelName channelListener:listener];
         if (joinError != nil) {
             NSLog(@"Error joining the channel: %@", [joinError localizedDescription]);
             return;
         }
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             [self dismissViewControllerAnimated:NO completion:nil];
             self.lIdentity.text = self.ipmClient.userId;
@@ -117,57 +117,29 @@ static NSString * _Nonnull const kIPMMessageSender = @"sender";
         if (tf.text.length > 0) {
             [self presentViewController:self.loadingController animated:NO completion:nil];
             self.ipmSecurity = [[IPMSecurityManager alloc] initWithIdentity:tf.text];
-            NSError * __block error = [XAsync awaitResult:[self.ipmSecurity verifyIdentity]];
             [self dismissViewControllerAnimated:NO completion:nil];
-            if (error != nil) {
-                NSLog(@"Error: %@", [error localizedDescription]);
-                return;
-            }
             
-            UIAlertController *confirmation = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Enter a code from email.", @"Enter a code from email.") preferredStyle:UIAlertControllerStyleAlert];
-            [confirmation addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-                textField.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
-                textField.keyboardType = UIKeyboardTypeAlphabet;
-                textField.returnKeyType = UIReturnKeyDone;
-            }];
-            
-            UIAlertAction *proceed = [UIAlertAction actionWithTitle:NSLocalizedString(@"Confirm", @"Confirm") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                UITextField *tf = confirmation.textFields[0];
-                if (tf.text.length > 0) {
-                    [self presentViewController:self.loadingController animated:NO completion:nil];
-                    error = [XAsync awaitResult:[self.ipmSecurity confirmWithCode:tf.text]];
-                    if (error != nil) {
+            NSError *signError = [self.ipmSecurity signin];
+            if (signError != nil) {
+                if (signError.code == -5555) {
+                    /// There is no card found. Need to sign up.
+                    NSError *signupError = [self.ipmSecurity signup];
+                    if (signupError != nil) {
                         [self dismissViewControllerAnimated:NO completion:nil];
-                        NSLog(@"Error: %@", [error localizedDescription]);
-                        return;
-                    }
-                    
-                    error = [XAsync awaitResult:[self.ipmSecurity signin]];
-                    if (error != nil) {
-                        if (error.code == -5555) {
-                            /// There is no card found. Need to sign up.
-                            error = [XAsync awaitResult:[self.ipmSecurity signup]];
-                            if (error != nil) {
-                                [self dismissViewControllerAnimated:NO completion:nil];
-                                NSLog(@"Error: %@", [error localizedDescription]);
-                                return;
-                            }
-                            
-                            IPMChannelSetup();
-                            return;
-                        }
-                        
-                        [self dismissViewControllerAnimated:NO completion:nil];
-                        NSLog(@"Error: %@", [error localizedDescription]);
+                        NSLog(@"Error: %@", [signupError localizedDescription]);
                         return;
                     }
                     
                     IPMChannelSetup();
+                    return;
                 }
-            }];
+                
+                [self dismissViewControllerAnimated:NO completion:nil];
+                NSLog(@"Error: %@", [signError localizedDescription]);
+                return;
+            }
             
-            [confirmation addAction:proceed];
-            [self presentViewController:confirmation animated:YES completion:nil];
+            IPMChannelSetup();
         }
     }];
     [introduce addAction:ok];
@@ -178,14 +150,7 @@ static NSString * _Nonnull const kIPMMessageSender = @"sender";
 
 - (void)sendMessage:(NSString *)message {
     [self presentViewController:self.loadingController animated:NO completion:nil];
-    NSObject *result = [XAsync awaitResult:[self.ipmClient.channel getParticipants]];
-    if ([result as:[NSError class]] != nil) {
-        [self dismissViewControllerAnimated:NO completion:nil];
-        NSLog(@"Error getting the list of channel's participants: %@", [[result as:[NSError class]] localizedDescription]);
-        return;
-    }
-    
-    NSArray *participants = [result as:[NSArray class]];
+    NSArray *participants = [self.ipmClient.channel getParticipants];
     if (participants.count == 0) {
         [self dismissViewControllerAnimated:NO completion:nil];
         NSLog(@"There is no participants on the channel.");
@@ -207,15 +172,33 @@ static NSString * _Nonnull const kIPMMessageSender = @"sender";
     }
     
     IPMSecureMessage *sm = [[IPMSecureMessage alloc] initWithMessage:encrypted signature:signature];
-    NSError *error = [XAsync awaitResult:[self.ipmClient.channel sendMessage:sm]];
-    if (error != nil) {
+    NSError *sendError = [self.ipmClient.channel sendMessage:sm];
+    if (sendError != nil) {
         [self dismissViewControllerAnimated:NO completion:nil];
-        NSLog(@"Error sending the message: %@", [error localizedDescription]);
+        NSLog(@"Error sending the message: %@", [sendError localizedDescription]);
         return;
     }
     
     self.tfMessage.text = @"";
     [self dismissViewControllerAnimated:NO completion:nil];
+//
+//    
+//    BOOL ok = [self.ipmSecurity checkSignature:signature data:encrypted identity:self.ipmSecurity.identity];
+//    if (!ok) {
+//        NSLog(@"<<<<<<<<<<<<<Error verifying sender's signature");
+//        return;
+//    }
+//    NSData *plainData = [self.ipmSecurity decryptData:encrypted];
+//    if (plainData.length == 0) {
+//        NSLog(@"<<<<<<<<<<<<Error decrypting message!");
+//        return;
+//    }
+//    NSString *text = [[NSString alloc] initWithData:plainData encoding:NSUTF8StringEncoding];
+//    if (![text isEqualToString:message]) {
+//        NSLog(@">>>>>>>>>>>>>>FUCKED!");
+//    }
+//    self.tfMessage.text = @"";
+//    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 #pragma mark - UITableViewDataSource

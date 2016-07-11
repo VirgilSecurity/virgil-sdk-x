@@ -7,8 +7,7 @@
 //
 
 #import "VSSVerifyIdentityRequest.h"
-#import "VSSModelCommons.h"
-#import "VSSIdentity.h"
+#import "VSSIdentityInfo.h"
 #import "NSObject+VSSUtils.h"
 
 @interface VSSVerifyIdentityRequest ()
@@ -21,16 +20,15 @@
 
 @synthesize actionId = _actionId;
 
-- (instancetype)initWithContext:(VSSRequestContext *)context type:(VSSIdentityType)type value:(NSString *)value extraFields:(NSDictionary *)extraFields {
+- (instancetype)initWithContext:(VSSRequestContext *)context type:(NSString *)type value:(NSString *)value extraFields:(NSDictionary *)extraFields {
     self = [super initWithContext:context];
     if (self == nil) {
         return nil;
     }
     
     NSMutableDictionary *body = [[NSMutableDictionary alloc] init];
-    NSString *sType = [VSSIdentity stringFromIdentityType:type];
-    if (sType.length > 0) {
-        body[kVSSModelType] = sType;
+    if (type.length > 0) {
+        body[kVSSModelType] = type;
     }
     if (value.length > 0) {
         body[kVSSModelValue] = value;
@@ -43,12 +41,16 @@
     return self;
 }
 
-- (instancetype)initWithContext:(VSSRequestContext *)context type:(VSSIdentityType)type value:(NSString *)value {
+- (instancetype)initWithContext:(VSSRequestContext *)context type:(NSString *)type value:(NSString *)value {
     return [self initWithContext:context type:type value:value extraFields:nil];
 }
 
+- (instancetype)initWithContext:(VSSRequestContext *)context identityInfo:(VSSIdentityInfo *)identityInfo extraFields:(NSDictionary *)extraFields {
+    return [self initWithContext:context type:identityInfo.type value:identityInfo.value extraFields:extraFields];
+}
+
 - (instancetype)initWithContext:(VSSRequestContext *)context {
-    return [self initWithContext:context type:VSSIdentityTypeUnknown value:@""];
+    return [self initWithContext:context type:@"" value:@""];
 }
 
 #pragma mark - Overrides

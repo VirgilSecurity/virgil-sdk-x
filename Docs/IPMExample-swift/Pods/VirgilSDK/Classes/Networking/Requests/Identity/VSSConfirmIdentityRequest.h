@@ -7,14 +7,14 @@
 //
 
 #import "VSSIdentityBaseRequest.h"
-#import "VSSModelTypes.h"
+#import "VSSModelCommons.h"
+
+@class VSSIdentityInfo;
 
 @interface VSSConfirmIdentityRequest : VSSIdentityBaseRequest
 
-@property (nonatomic, assign, readonly) VSSIdentityType type;
-@property (nonatomic, strong, readonly) NSString * __nullable value;
-@property (nonatomic, strong, readonly) NSString * __nullable validationToken;
+@property (nonatomic, strong, readonly) VSSIdentityInfo * __nullable identityInfo;
 
-- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context actionId:(GUID * __nonnull)actionId code:(NSString * __nonnull)code ttl:(NSNumber * __nullable)ttl ctl:(NSNumber * __nullable)ctl NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context actionId:(GUID * __nonnull)actionId code:(NSString * __nonnull)code ttl:(NSUInteger)ttl ctl:(NSUInteger)ctl NS_DESIGNATED_INITIALIZER;
 
 @end

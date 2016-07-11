@@ -7,7 +7,6 @@
 //
 
 #import "VSSGetCardRequest.h"
-#import "VSSModelCommons.h"
 #import "VSSCard.h"
 #import "NSObject+VSSUtils.h"
 

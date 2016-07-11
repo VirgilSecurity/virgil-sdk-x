@@ -4,6 +4,12 @@
 - [Install](#install)
 - [Swift note](#swift-note)
 - [Usage](#usage)
+    - [Wait for completion of a single task](#wait-for-completion-of-a-single-task)
+    - [Wait for completion of a single task with result](#wait-for-completion-of-a-single-task-with-result)
+    - [Wait for completion of a sequence of tasks](#wait-for-completion-of-a-sequence-of-tasks)
+    - [Wait for completion of all tasks from a set](#wait-for-completion-of-all-tasks-from-a-set)
+    - [Wait for completion of any task from a set](#wait-for-completion-of-any-task-from-a-set)
+    - [Wait for a signal raised by a particular task](#wait-for-a-signal-raised-by-a-particular-task)
 - [License](#license)
 - [See also](#see-also)
 
@@ -38,7 +44,7 @@ platform :osx, '10.10'
 use_frameworks!
 
 target '<Put your Xcode target name here>' do
-	pod 'XAsync'
+	pod 'XAsync', '~>2.0'
 end
 ```
 
@@ -73,60 +79,301 @@ You can find more information about using Objective-C and Swift in the same proj
 
 Below you can find a the examples for using XAsync functionality in a synchronous manner.
 
+### Wait for completion of a single task
+
+Waiting for one single task without any results:
+
 ###### Objective-C
 ```objective-c
 //...
 @import XAsync;
 //...
-NSLog(@"About to start async task 1.");
-[XAsync await:^{
+XAsyncTask *t1 = [XAsyncTask taskWithAction:^(XAsyncTask * __weak _Nonnull task) {
     NSLog(@"Task 1 has been started.");
     for (NSInteger i = 0; i < 1000000000; i++) {
     }
     NSLog(@"Task 1 is about to end.");
 }];
+NSLog(@"About to start async task 1.");
+[t1 await];
 NSLog(@"Async task 1 has been done.");
-        
-NSLog(@"About to start async task 2.");
-NSNumber *result = [XAsync awaitResult:^ id _Nullable {
-    NSLog(@"Task 2 has been started.");
-    NSInteger i = 0;
-    for (i = 0; i < 1000000000; i++) {
-    }
-    NSLog(@"Task 2 is about to end.");
-    return [NSNumber numberWithInteger:i];
-}];
-NSLog(@"Async task 2 has been done with result: %@", [result stringValue]);
 //...
 ```
 
 ###### Swift
 ```swift
 //...
-print("About to start async task 1.")
-XAsync.await{
-    print("Task 1 has been started.");
-    for _ in 1...1000000000 {
-        
+let t1 = XAsyncTask { (task) in
+    print("Task 1 has been started.")
+    for _ in 0..<1000000000 {
     }
     print("Task 1 is about to end.")
-    
 }
-print("Async task 1 has been done.")
+print("Task 1 is about to start.")
+t1.await()
+print("Task 1 has been done.")
+//...
+```    
 
-print("About to start async task 2.")
-if let result = XAsync.awaitResult({ () -> AnyObject? in
+### Wait for completion of a single task with result
+
+Example of waiting for the single task which expected to return some result:
+
+###### Objective-C
+```objective-c
+///...
+XAsyncTask *t2 = [XAsyncTask taskWithAction:^(XAsyncTask * __weak _Nonnull task) {
+        NSLog(@"Task 2 has been started.");
+        NSInteger i = 0;
+        for (i = 0; i < 1000000000; i++) {
+        }
+        NSLog(@"Task 2 is about to end.");
+        task.result = [NSNumber numberWithInteger:i];
+}];
+NSLog(@"About to start async task 2.");
+[t2 await];
+NSLog(@"Async task 2 has been done with result: %@", [(NSNumber *)t2.result stringValue]);
+///...
+```    
+
+###### Swift
+```swift
+///...
+let t2 = XAsyncTask { (task) in
     print("Task 2 has been started.")
     var i = 0
-    for _ in 1...1000000000 {
-        i += 1
+    for _ in 0..<1000000000 {
+        i += 1;
     }
     print("Task 2 is about to end.")
-    return i
-}) {
-    print("Async task 2 has been done with result: \(result)")
+    task?.result = i;
 }
-//...
+print("Task 2 is about to start.")
+t2.await()
+print("Task 2 has been done with result: \(t2.result)")
+///...
+```
+
+### Wait for completion of a sequence of tasks
+
+Example below shows how to wait until all tasks from given sequence finished. The tasks will start and finish in the same order as they are given in the initial sequence.
+
+###### Objective-C:
+```objective-c
+///...
+XAsyncTask *one_s = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable task) {
+    NSLog(@"Sequence task 1 has been started.");
+    for (NSInteger i = 0; i < 100000000; i++) {
+    }
+    NSLog(@"Sequence task 1 is about to end.");
+}];
+XAsyncTask *two_s = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable task) {
+    NSLog(@"Sequence task 2 has been started.");
+    for (NSInteger i = 0; i < 100000000; i++) {
+    }
+    NSLog(@"Sequence task 2 is about to end.");
+}];
+XAsyncTask *three_s = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable task) {
+    NSLog(@"Sequence task 3 has been started.");
+    for (NSInteger i = 0; i < 100000000; i++) {
+    }
+    NSLog(@"Sequence task 3 is about to end.");
+}];
+NSLog(@"About to start sequence.");
+[XAsyncTask awaitSequence:@[ one_s, two_s, three_s ]];
+NSLog(@"Sequence has been finished.");
+///...
+```
+
+###### Swift:
+```swift
+///...
+let one_s = XAsyncTask { (task) in
+    print("Sequence task 1 has been started.")
+    for _ in 0..<100000000 {
+    }
+    print("Sequence task 1 is about to end.")
+}
+let two_s = XAsyncTask { (task) in
+    print("Sequence task 2 has been started.")
+    for _ in 0..<100000000 {
+    }
+    print("Sequence task 2 is about to end.")
+}
+let three_s = XAsyncTask { (task) in
+    print("Sequence task 3 has been started.")
+    for _ in 0..<100000000 {
+    }
+    print("Sequence task 3 is about to end.")
+}
+print("About to start sequence.")
+XAsyncTask.awaitSequence([one_s, two_s, three_s])
+print("Sequence has been finished.")
+///...
+```
+
+### Wait for completion of all tasks from a set
+
+There are cases when it is just necessary to complete a number of tasks but execution or finishing order does not matter. What matters is that all tasks are completed. In this situation the following example might come in handy.
+
+###### Objective-C:
+```objective-c
+///...
+XAsyncTask *one_all = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable task) {
+    NSLog(@"Pool task 1 has been started.");
+    for (NSInteger i = 0; i < 100000000; i++) {
+    }
+    NSLog(@"Pool task 1 is about to end.");
+}];
+XAsyncTask *two_all = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable task) {
+    NSLog(@"Pool task 2 has been started.");
+    for (NSInteger i = 0; i < 100000000; i++) {
+    }
+    NSLog(@"Pool task 2 is about to end.");
+}];
+XAsyncTask *three_all = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable task) {
+    NSLog(@"Pool task 3 has been started.");
+    for (NSInteger i = 0; i < 100000000; i++) {
+    }
+    NSLog(@"Pool task 3 is about to end.");
+}];
+NSSet *poolAll = [NSSet setWithObjects:one_all, two_all, three_all, nil];
+NSLog(@"About to start pool of tasks.");
+[XAsyncTask awaitAll:poolAll];
+NSLog(@"All tasks have been finished.");
+///...
+```
+
+###### Swift:
+```swift
+///...
+let one_all = XAsyncTask { (task) in
+    print("Pool task 1 has been started.")
+    for _ in 0..<100000000 {
+    }
+    print("Pool task 1 is about to end.")
+}
+let two_all = XAsyncTask { (task) in
+    print("Pool task 2 has been started.")
+    for _ in 0..<100000000 {
+    }
+    print("Pool task 2 is about to end.")
+}
+let three_all = XAsyncTask { (task) in
+    print("Pool task 3 has been started.")
+    for _ in 0..<100000000 {
+    }
+    print("Pool task 3 is about to end.")
+}
+print("About to start all tasks' pool.")
+XAsyncTask.awaitAll(Set(arrayLiteral: one_all, two_all, three_all))
+print("All tasks have been finished.")
+///...
+```
+
+### Wait for completion of any task from a set
+
+In some cases it is important to wait until at least one task from a particular group has been completed. See example below:
+
+###### Objective-C:
+```objective-c
+///...
+XAsyncTask *one_any = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable task) {
+    NSLog(@"Pool task 1 has been started.");
+    for (NSInteger i = 0; i < 100000000; i++) {
+    }
+    NSLog(@"Pool task 1 is about to end.");
+}];
+XAsyncTask *two_any = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable task) {
+    NSLog(@"Pool task 2 has been started.");
+    for (NSInteger i = 0; i < 100000000; i++) {
+    }
+    NSLog(@"Pool task 2 is about to end.");
+}];
+XAsyncTask *three_any = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable task) {
+    NSLog(@"Pool task 3 has been started.");
+    for (NSInteger i = 0; i < 100000000; i++) {
+    }
+    NSLog(@"Pool task 3 is about to end.");
+}];
+NSSet *poolAny = [NSSet setWithObjects:one_any, two_any, three_any, nil];
+NSLog(@"About to start a pool.");
+[XAsyncTask awaitAny:poolAny];
+NSLog(@"Waiting has been finished.");
+///...
+```
+
+###### Swift:
+```swift
+///...
+let one_any = XAsyncTask { (task) in
+    print("Pool task 1 has been started.")
+    for _ in 0..<100000000 {
+    }
+    print("Pool task 1 is about to end.")
+}
+let two_any = XAsyncTask { (task) in
+    print("Pool task 2 has been started.")
+    for _ in 0..<100000000 {
+    }
+    print("Pool task 2 is about to end.")
+}
+let three_any = XAsyncTask { (task) in
+    print("Pool task 3 has been started.")
+    for _ in 0..<100000000 {
+    }
+    print("Pool task 3 is about to end.")
+}
+print("About to start a pool.")
+XAsyncTask.awaitAny(Set(arrayLiteral: one_all, two_all, three_all))
+print("Waiting has been finished.")
+///...
+```
+
+### Wait for a signal raised by a particular task
+
+What if the task which is necessary to be done is also asynchronous and depends on some other circumstances (e.g. getting response from the service)? The answer is: use awaitSignal method as shown below: 
+
+###### Objective-C:
+```objective-c
+///...
+XAsyncTask *ts = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nonnull task) {
+    NSLog(@"Signal task has been started.");
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        NSInteger i = 0;
+        for (i = 0; i < 1000000000; i++) {
+        }
+        task.result = [NSNumber numberWithInteger:i];
+        [task fireSignal];
+    });
+    NSLog(@"Signal task is about to end.");
+}];
+NSLog(@"About to start signal task.");
+[ts awaitSignal];
+NSLog(@"Signal task has been done: %@", [(NSNumber *)ts.result stringValue]);
+///...
+```
+
+###### Swift:
+```swift
+///...
+let ts = XAsyncTask { (task) in
+    print("Signal task has been started.");
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+        var i = 0;
+        for _ in 0..<1000000000 {
+            i += 1
+        }
+        task?.result = i
+        task?.fireSignal()
+    }
+    print("Signal task is about to end.")
+}
+print("About to start signal task.")
+ts.awaitSignal()
+print("Signal task has been done: \(ts.result)")
+
+///...
 ```
 
 ## License

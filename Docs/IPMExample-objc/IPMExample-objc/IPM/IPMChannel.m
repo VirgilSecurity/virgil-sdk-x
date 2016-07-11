@@ -68,8 +68,8 @@ NS_ASSUME_NONNULL_END
 
 #pragma mark - Class logic 
 
-- (XAsyncActionResult)sendMessage:(IPMSecureMessage *)message {
-    return ^ id {
+- (NSError *)sendMessage:(IPMSecureMessage *)message {
+    XAsyncTask *send = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable async) {
         NSString *urlString = [NSString stringWithFormat:@"%@/channels/%@/messages", kBaseURL, self.name];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
         [request setHTTPMethod:@"POST"];
@@ -77,12 +77,10 @@ NS_ASSUME_NONNULL_END
         [request setValue:self.token forHTTPHeaderField:kIdentityTokenHeader];
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         
-        NSError * __block actionError = nil;
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
         NSURLSessionTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             if (error != nil) {
-                actionError = error;
-                dispatch_semaphore_signal(semaphore);
+                async.result = error;
+                [async fireSignal];
                 return;
             }
             
@@ -99,13 +97,13 @@ NS_ASSUME_NONNULL_END
 #endif
             if (r.statusCode >= 400) {
                 NSError *httpError = [NSError errorWithDomain:@"HTTPError" code:r.statusCode userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString([NSHTTPURLResponse localizedStringForStatusCode:r.statusCode], @"No comments") }];
-                actionError = httpError;
-                dispatch_semaphore_signal(semaphore);
+                async.result = httpError;
+                [async fireSignal];
                 return;
             }
             
-            actionError = nil;
-            dispatch_semaphore_signal(semaphore);
+            async.result = nil;
+            [async fireSignal];
         }];
 #ifdef DEBUG
         NSLog(@"%@: request URL: %@", NSStringFromClass(self.class), request.URL);
@@ -123,26 +121,25 @@ NS_ASSUME_NONNULL_END
         }
 #endif
         [task resume];
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-        return actionError;
-    };
+    }];
+    [send awaitSignal];
+    
+    return send.error;
 }
 
-- (XAsyncActionResult)getParticipants {
-    return ^ id {
+- (NSArray *)getParticipants {
+    XAsyncTask *participants = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable async) {
         NSString *urlString = [NSString stringWithFormat:@"%@/channels/%@/members", kBaseURL, self.name];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
         [request setHTTPMethod:@"GET"];
         [request setValue:self.token forHTTPHeaderField:kIdentityTokenHeader];
         
-        NSError * __block actionError = nil;
-        NSMutableArray * __block members = [[NSMutableArray alloc] init];
+        NSMutableArray *members = [[NSMutableArray alloc] init];
         
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
         NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             if (error != nil) {
-                actionError = error;
-                dispatch_semaphore_signal(semaphore);
+                async.result = error;
+                [async fireSignal];
                 return;
             }
             NSHTTPURLResponse *r = [response as:[NSHTTPURLResponse class]];
@@ -158,23 +155,23 @@ NS_ASSUME_NONNULL_END
 #endif
             if (r.statusCode >= 400) {
                 NSError *httpError = [NSError errorWithDomain:@"HTTPError" code:r.statusCode userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString([NSHTTPURLResponse localizedStringForStatusCode:r.statusCode], @"No comments") }];
-                actionError = httpError;
-                dispatch_semaphore_signal(semaphore);
+                async.result = httpError;
+                [async fireSignal];
                 return;
             }
             
             if (data.length == 0) {
                 /// There is no participants.
-                actionError = nil;
-                dispatch_semaphore_signal(semaphore);
+                async.result = nil;
+                [async fireSignal];
                 return;
             }
             
             NSError *jsonError = nil;
             NSArray <NSDictionary *> *participants = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
             if (jsonError != nil) {
-                actionError = jsonError;
-                dispatch_semaphore_signal(semaphore);
+                async.result = jsonError;
+                [async fireSignal];
                 return;
             }
             
@@ -184,13 +181,18 @@ NS_ASSUME_NONNULL_END
                     [members addObject:sender];
                 }
             }
-            
-            dispatch_semaphore_signal(semaphore);
+            async.result = members;
+            [async fireSignal];
         }];
         [task resume];
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-        return (actionError) ? actionError : members;
-    };
+    }];
+    [participants awaitSignal];
+    
+    if (participants.error != nil) {
+        NSLog(@"Error getting chat participants: %@", [participants.error localizedDescription]);
+        return nil;
+    }
+    return [participants.result as:[NSArray class]];
 }
 
 - (void)startListeningWithHandler:(IPMDataSourceListener)handler {

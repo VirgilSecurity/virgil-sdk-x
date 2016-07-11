@@ -7,25 +7,20 @@
 //
 
 #import "VSSConfirmIdentityRequest.h"
-#import "VSSIdentity.h"
-#import "VSSModelCommons.h"
+#import "VSSIdentityInfo.h"
 #import "NSObject+VSSUtils.h"
 
 @interface VSSConfirmIdentityRequest ()
 
-@property (nonatomic, assign, readwrite) VSSIdentityType type;
-@property (nonatomic, strong, readwrite) NSString * __nullable value;
-@property (nonatomic, strong, readwrite) NSString * __nullable validationToken;
+@property (nonatomic, strong, readwrite) VSSIdentityInfo * __nullable identityInfo;
 
 @end
 
 @implementation VSSConfirmIdentityRequest
 
-@synthesize type = _type;
-@synthesize value = _value;
-@synthesize validationToken = _validationToken;
+@synthesize identityInfo = _identityInfo;
 
-- (instancetype)initWithContext:(VSSRequestContext *)context actionId:(GUID *)actionId code:(NSString *)code ttl:(NSNumber *)ttl ctl:(NSNumber *)ctl {
+- (instancetype)initWithContext:(VSSRequestContext *)context actionId:(GUID *)actionId code:(NSString *)code ttl:(NSUInteger)ttl ctl:(NSUInteger)ctl {
     self = [super initWithContext:context];
     if (self == nil) {
         return nil;
@@ -40,11 +35,11 @@
         body[kVSSModelConfirmationCode] = code;
     }
     NSMutableDictionary *token = [[NSMutableDictionary alloc] init];
-    if (ttl != nil) {
-        token[kVSSModelTTL] = ttl;
+    if (ttl > 0) {
+        token[kVSSModelTTL] = [NSNumber numberWithUnsignedInteger:ttl];
     }
-    if (ctl != nil) {
-        token[kVSSModelCTL] = ctl;
+    if (ctl > 0) {
+        token[kVSSModelCTL] = [NSNumber numberWithUnsignedInteger:ctl];
     }
     if (token.count > 0) {
         body[kVSSModelToken] = token;
@@ -55,7 +50,7 @@
 }
 
 - (instancetype)initWithContext:(VSSRequestContext *)context {
-    return [self initWithContext:context actionId:@"" code:@"" ttl:nil ctl:nil];
+    return [self initWithContext:context actionId:@"" code:@"" ttl:0 ctl:0];
 }
 
 #pragma mark - Overrides
@@ -71,9 +66,7 @@
     }
     
     NSDictionary *confirmed = [candidate as:[NSDictionary class]];
-    self.type = [VSSIdentity identityTypeFromString:[confirmed[kVSSModelType] as:[NSString class]]];
-    self.value = [confirmed[kVSSModelValue] as:[NSString class]];
-    self.validationToken = [confirmed[kVSSModelValidationToken] as:[NSString class]];
+    self.identityInfo = [VSSIdentityInfo deserializeFrom:confirmed];
     return nil;
 }
 

@@ -24,11 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (atomic, assign) BOOL clientSetUp;
 @property (atomic, strong) NSObject *mutex;
 
-@property (nonatomic, strong) NSString *actionId;
-@property (nonatomic, strong) NSString *validationToken;
-
-- (XAsyncActionResult)setup;
-
 @end
 
 NS_ASSUME_NONNULL_END
@@ -43,9 +38,6 @@ NS_ASSUME_NONNULL_END
 @synthesize identity = _identity;
 @synthesize privateKey = _privateKey;
 
-@synthesize actionId = _actionId;
-@synthesize validationToken = _validationToken;
-
 - (instancetype)initWithIdentity:(NSString *)identity {
     self = [super init];
     if (self == nil) {
@@ -59,8 +51,6 @@ NS_ASSUME_NONNULL_END
     _client = [[VSSClient alloc] initWithApplicationToken:kAppToken];
     _clientSetUp = NO;
     _mutex = [[NSObject alloc] init];
-    _actionId = @"";
-    _validationToken = @"";
     return self;
 }
 
@@ -69,19 +59,12 @@ NS_ASSUME_NONNULL_END
 }
 
 - (void)cacheCardForIdentities:(NSArray *)identities {
-    NSError *setupError = [XAsync awaitResult:[self setup]];
-    if (setupError != nil) {
-        NSLog(@"Client setup error: %@", [setupError localizedDescription]);
-        return;
-    }
-    
     if (identities.count == 0) {
         NSLog(@"No identities to cache.");
         return;
     }
     
-    [XAsync await:^{
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    XAsyncTask *cards = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable task) {
         NSInteger __block itemsCount = [identities count];
         for(NSString *identity in identities) {
             VSSCard * __block candidate = nil;
@@ -91,13 +74,13 @@ NS_ASSUME_NONNULL_END
             if (candidate != nil) {
                 --itemsCount;
                 if (itemsCount == 0) {
-                    dispatch_semaphore_signal(semaphore);
+                    [task fireSignal];
                     return;
                 }
                 continue;
             }
             
-            [self.client searchCardWithIdentityValue:identity type:VSSIdentityTypeEmail relations:nil unconfirmed:nil completionHandler:^(NSArray<VSSCard *> * _Nullable cards, NSError * _Nullable error) {
+            [self.client searchCardWithIdentityValue:identity type:kIPMExampleCardType unauthorized:NO completionHandler:^(NSArray<VSSCard *> * _Nullable cards, NSError * _Nullable error) {
                 if (error != nil) {
                     NSLog(@"Error searching cards: %@", [error localizedDescription]);
                 }
@@ -111,20 +94,19 @@ NS_ASSUME_NONNULL_END
                 
                 --itemsCount;
                 if (itemsCount == 0) {
-                    dispatch_semaphore_signal(semaphore);
+                    [task fireSignal];
                     return;
                 }
             }];
         }
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     }];
+    [cards awaitSignal];
 }
 
 - (BOOL)checkSignature:(NSData *)signature data:(NSData *)data identity:(NSString *)identity {
     [self cacheCardForIdentities:@[identity]];
     
-    BOOL __block ok = NO;
-    [XAsync await:^{
+    XAsyncTask *verify = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable task) {
         VSSCard *sender = nil;
         @synchronized (self.mutex) {
             sender = [self.cardCache[identity] as:[VSSCard class]];
@@ -135,15 +117,20 @@ NS_ASSUME_NONNULL_END
         
         VSSSigner *verifier = [[VSSSigner alloc] init];
         NSError *checkError = nil;
-        ok = [verifier verifySignature:signature data:data publicKey:sender.publicKey.key error:&checkError];
+        BOOL ok = [verifier verifySignature:signature data:data publicKey:sender.publicKey.key error:&checkError];
+        if (checkError != nil) {
+            NSLog(@"Error checking signature: %@", [checkError localizedDescription]);
+        }
+        task.result = [NSNumber numberWithBool:ok];
     }];
-    return ok;
+    [verify await];
+    return [[verify.result as:[NSNumber class]] boolValue];
 }
 
 - (NSData * _Nullable)encryptData:(NSData *)data identities:(NSArray *)identities {
     [self cacheCardForIdentities:identities];
     
-    return [XAsync awaitResult:^ id {
+    XAsyncTask *encryptData = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable task) {
         VSSCryptor *cryptor = [[VSSCryptor alloc] init];
         for (NSString *identity in identities) {
             VSSCard *recipient = nil;
@@ -151,140 +138,104 @@ NS_ASSUME_NONNULL_END
                 recipient = [self.cardCache[identity] as:[VSSCard class]];
             }
             if (recipient != nil) {
-                [cryptor addKeyRecipient:recipient.Id publicKey:recipient.publicKey.key];
+                NSError *recError = nil;
+                [cryptor addKeyRecipient:recipient.Id publicKey:recipient.publicKey.key error:&recError];
+                if (recError != nil) {
+                    NSLog(@"Error adding key recipient: %@", [recError localizedDescription]);
+                }
             }
         }
-        
-        return [cryptor encryptData:data embedContentInfo:@YES error:nil];
+        task.result = [cryptor encryptData:data embedContentInfo:YES error:nil];
     }];
+    [encryptData await];
+    return [[encryptData result] as:[NSData class]];
 }
 
 - (NSData * _Nullable)decryptData:(NSData *)data {
     [self cacheCardForIdentities:@[self.identity]];
     
-    return [XAsync awaitResult:^ id {
+    XAsyncTask *decrypt = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable task) {
         VSSCard *recipient = nil;
         @synchronized (self.mutex) {
             recipient = self.cardCache[self.identity];
         }
         if (recipient == nil) {
-            return nil;
+            return;
         }
         
         VSSCryptor *decryptor = [[VSSCryptor alloc] init];
-        return [decryptor decryptData:data recipientId:recipient.Id privateKey:self.privateKey.key keyPassword:self.privateKey.password error:nil];
+        NSError *decryptError = nil;
+        NSData *decrypted = [decryptor decryptData:data recipientId:recipient.Id privateKey:self.privateKey.key keyPassword:self.privateKey.password error:&decryptError];
+        if (decryptError != nil) {
+            NSLog(@"Error decrypting data: %@", [decryptError localizedDescription]);
+        }
+        task.result = decrypted;
     }];
+    [decrypt await];
+    
+    return [decrypt.result as:[NSData class]];
 }
 
 - (NSData * _Nullable)composeSignatureOnData:(NSData *)data {
-    return [XAsync awaitResult:^ id {
+    XAsyncTask *sign = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable task) {
         VSSSigner *signer = [[VSSSigner alloc] init];
-        return [signer signData:data privateKey:self.privateKey.key keyPassword:self.privateKey.password error:nil];
+        NSError *signError = nil;
+        NSData *signature = [signer signData:data privateKey:self.privateKey.key keyPassword:self.privateKey.password error:&signError];
+        if (signError != nil) {
+            NSLog(@"Error composing the signature: %@", [signError localizedDescription]);
+        }
+        task.result = signature;
     }];
+    [sign await];
+    return [sign.result as:[NSData class]];
 }
 
 #pragma mark - Registration/authentication routines
 
-- (XAsyncActionResult)verifyIdentity {
-    return ^ id {
-        NSError * __block actionError = [XAsync awaitResult:[self setup]];
-        if (actionError != nil) {
-            return actionError;
-        }
-        
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        [self.client verifyIdentityWithType:VSSIdentityTypeEmail value:self.identity completionHandler:^(GUID * _Nullable actionId, NSError * _Nullable error) {
-            if (error != nil) {
-                actionError = error;
-                dispatch_semaphore_signal(semaphore);
-                return;
-            }
-            
-            self.actionId = actionId;
-            actionError = nil;
-            dispatch_semaphore_signal(semaphore);
-        }];
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-        return actionError;
-    };
-}
-
-- (XAsyncActionResult)confirmWithCode:(NSString *)code {
-    return ^ id {
-        NSError * __block actionError = [XAsync awaitResult:[self setup]];
-        if (actionError != nil) {
-            return actionError;
-        }
-        
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        [self.client confirmIdentityWithActionId:self.actionId code:code ttl:nil ctl:nil completionHandler:^(VSSIdentityType type, NSString * _Nullable value, NSString * _Nullable validationToken, NSError * _Nullable error) {
-            if (error != nil) {
-                actionError = error;
-                dispatch_semaphore_signal(semaphore);
-                return;
-            }
-            
-            self.validationToken = validationToken;
-            actionError = nil;
-            dispatch_semaphore_signal(semaphore);
-        }];
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-        return actionError;
-    };
-}
-
-- (XAsyncActionResult)signin {
-    return ^ id {
-        NSError * __block actionError = [XAsync awaitResult:[self setup]];
-        if (actionError != nil) {
-            return actionError;
-        }
-        
+- (NSError *)signin {
+    XAsyncTask *signin = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable task) {
         [self cacheCardForIdentities:@[self.identity]];
-        VSSCard * __block card = nil;
+        VSSCard *card = nil;
         @synchronized (self.mutex) {
             card = [self.cardCache[self.identity] as:[VSSCard class]];
         }
         if (card == nil) {
-            return [NSError errorWithDomain:@"ErrorDomain" code:-5555 userInfo:nil];
+            task.result = [NSError errorWithDomain:@"ErrorDomain" code:-5555 userInfo:nil];
+            return;
         }
         
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        NSDictionary *idict = @{ kVSSModelValue: self.identity, kVSSModelType: [VSSIdentity stringFromIdentityType:VSSIdentityTypeEmail], kVSSModelValidationToken: self.validationToken };
-        [self.client grabPrivateKeyWithIdentity:idict cardId:card.Id password:nil completionHandler:^(NSData * _Nullable keyData, GUID * _Nullable cardId, NSError * _Nullable error) {
-            if (error != nil) {
-                actionError = error;
-                dispatch_semaphore_signal(semaphore);
-                return;
-            }
-            
-            self.actionId = @"";
-            self.validationToken = @"";
-            self.privateKey = [[VSSPrivateKey alloc] initWithKey:keyData password:nil];
-            actionError = nil;
-            dispatch_semaphore_signal(semaphore);
-        }];
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-        return actionError;
-    };
+        /// Card has been found. Search for the private key in the keychain
+        VSSKeychainValue *pkey = [[VSSKeychainValue alloc] initWithId:kPrivateKeyStorage accessGroup:nil];
+        self.privateKey = [[pkey objectForKey:card.identity.value] as:[VSSPrivateKey class]];
+        if (self.privateKey == nil) {
+            NSLog(@"There is no private key found in the keychain!");
+            NSAssert(self.privateKey != nil, @"Private key should exist!");
+            task.result = [NSError errorWithDomain:@"ErrorDomain" code:-6660 userInfo:nil];
+            return;
+        }
+    }];
+    [signin await];
+    return signin.error;
 }
 
-- (XAsyncActionResult)signup {
-    return ^ id {
-        NSError * __block actionError = [XAsync awaitResult:[self setup]];
-        if (actionError != nil) {
-            return actionError;
-        }
-        
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        
+- (NSError *)signup {
+    XAsyncTask *signup = [XAsyncTask taskWithAction:^(XAsyncTask *__weak  _Nullable task) {
         VSSKeyPair *pair = [[VSSKeyPair alloc] initWithPassword:nil];
         self.privateKey = [[VSSPrivateKey alloc] initWithKey:pair.privateKey password:nil];
-        NSDictionary *idict = @{ kVSSModelValue: self.identity, kVSSModelType: [VSSIdentity stringFromIdentityType:VSSIdentityTypeEmail], kVSSModelValidationToken: self.validationToken };
-        [self.client createCardWithPublicKey:pair.publicKey identity:idict data:nil signs:nil privateKey:self.privateKey completionHandler:^(VSSCard * _Nullable card, NSError * _Nullable error) {
+        VSSIdentityInfo *info = [[VSSIdentityInfo alloc] initWithType:kIPMExampleCardType value:self.identity];
+        NSError *err = nil;
+        VSSPrivateKey *appKey = [[VSSPrivateKey alloc] initWithKey:[kAppPrivateKey dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO] password:kAppPrivateKeyPassword];
+        [VSSValidationTokenGenerator setValidationTokenForIdentityInfo:info privateKey:appKey error:&err];
+        if (err != nil) {
+            task.result = err;
+            [task fireSignal];
+            return;
+        }
+        
+        [self.client createCardWithPublicKey:pair.publicKey identityInfo:info data:nil privateKey:self.privateKey completionHandler:^(VSSCard * _Nullable card, NSError * _Nullable error) {
             if (error != nil || card == nil) {
-                actionError = error;
-                dispatch_semaphore_signal(semaphore);
+                task.result = error;
+                [task fireSignal];
                 return;
             }
             
@@ -292,46 +243,14 @@ NS_ASSUME_NONNULL_END
                 self.cardCache[self.identity] = card;
             }
             
-            [self.client storePrivateKey:self.privateKey cardId:card.Id completionHandler:^(NSError * _Nullable error) {
-                if (error != nil) {
-                    actionError = error;
-                    dispatch_semaphore_signal(semaphore);
-                    return;
-                }
-                
-                self.actionId = @"";
-                self.validationToken = @"";
-                dispatch_semaphore_signal(semaphore);
-            }];
+            VSSKeychainValue *pkey = [[VSSKeychainValue alloc] initWithId:kPrivateKeyStorage accessGroup:nil];
+            [pkey setObject:self.privateKey forKey:self.identity];
+            [task fireSignal];
         }];
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-        return actionError;
-    };
-}
-
-#pragma mark - Private class logic
-
-- (XAsyncActionResult)setup {
-    return ^ id {
-        if (self.clientSetUp) {
-            return nil;
-        }
         
-        NSError * __block actionError = nil;
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        [self.client setupClientWithCompletionHandler:^(NSError * _Nullable error) {
-            if (error != nil) {
-                actionError = error;
-                dispatch_semaphore_signal(semaphore);
-                return;
-            }
-            
-            self.clientSetUp = YES;
-            dispatch_semaphore_signal(semaphore);
-        }];
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-        return actionError;
-    };
+    }];
+    [signup awaitSignal];
+    return signup.error;
 }
 
 @end

@@ -10,7 +10,6 @@
 #import "VSSModelCommons.h"
 #import "VSSCard.h"
 #import "VSSPublicKey.h"
-#import "VSSIdentity.h"
 #import "NSObject+VSSUtils.h"
 
 @interface VSSSearchCardRequest ()
@@ -25,7 +24,7 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithContext:(VSSRequestContext *)context value:(NSString *)value type:(VSSIdentityType)type relations:(NSArray <GUID *>*)relations unconfirmed:(NSNumber *)unconfirmed {
+- (instancetype)initWithContext:(VSSRequestContext *)context value:(NSString *)value type:(NSString *)type unauthorized:(BOOL)unauthorized {
     self = [super initWithContext:context];
     if (self == nil) {
         return nil;
@@ -35,23 +34,18 @@
     if (value.length > 0) {
         body[kVSSModelValue] = value;
     }
-    if (type != VSSIdentityTypeUnknown) {
-        NSString *str = [VSSIdentity stringFromIdentityType:type];
-        body[kVSSModelType] = str;
+    if (type.length > 0) {
+        body[kVSSModelType] = type;
     }
-    if (relations.count > 0) {
-        body[kVSSModelRelations] = relations;
-    }
-    if (unconfirmed != nil) {
-        NSString *str = ([unconfirmed boolValue]) ? kVSSStringValueTrue : kVSSStringValueFalse;
-        body[kVSSModelIncludeUnconfirmed] = str;
-    }
+    NSString *str = (unauthorized) ? kVSSStringValueTrue : kVSSStringValueFalse;
+    body[kVSSModelIncludeUnconfirmed] = str;
+
     [self setRequestBodyWithObject:body];
     return self;
 }
 
 - (instancetype)initWithContext:(VSSRequestContext *)context {
-    return [self initWithContext:context value:@"" type:VSSIdentityTypeUnknown relations:nil unconfirmed:nil];
+    return [self initWithContext:context value:@"" type:nil unauthorized:NO];
 }
 
 #pragma mark - Overrides

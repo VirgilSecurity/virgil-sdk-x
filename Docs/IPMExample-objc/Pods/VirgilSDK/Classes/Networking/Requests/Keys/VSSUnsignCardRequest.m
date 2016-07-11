@@ -7,7 +7,6 @@
 //
 
 #import "VSSUnsignCardRequest.h"
-#import "VSSModelCommons.h"
 
 @interface VSSUnsignCardRequest ()
 

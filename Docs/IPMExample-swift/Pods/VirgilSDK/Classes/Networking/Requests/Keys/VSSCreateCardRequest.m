@@ -10,6 +10,7 @@
 #import "VSSModelCommons.h"
 #import "VSSPublicKey.h"
 #import "VSSCard.h"
+#import "VSSIdentityInfo.h"
 #import "NSObject+VSSUtils.h"
 
 @interface VSSCreateCardRequest ()
@@ -24,7 +25,7 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithContext:(VSSRequestContext *)context publicKeyId:(GUID *)pkId identity:(NSDictionary *)identity data:(NSDictionary *)data signs:(NSArray <NSDictionary *>*)signs {
+- (instancetype)initWithContext:(VSSRequestContext *)context publicKeyId:(GUID *)pkId identityInfo:(VSSIdentityInfo *)identityInfo data:(NSDictionary *)data {
     self = [super initWithContext:context];
     if (self == nil) {
         return nil;
@@ -34,21 +35,19 @@
     if (pkId.length > 0) {
         body[kVSSModelPublicKeyId] = pkId;
     }
-    if (identity.count > 0) {
-        body[kVSSModelIdentity] = identity;
+    NSDictionary *identityDict = [identityInfo asDictionary];
+    if (identityDict.count > 0) {
+        body[kVSSModelIdentity] = identityDict;
     }
     if (data.count > 0) {
         body[kVSSModelData] = data;
-    }
-    if (signs.count > 0) {
-        body[kVSSModelSigns] = signs;
     }
     [self setRequestBodyWithObject:body];
     
     return self;
 }
 
-- (instancetype)initWithContext:(VSSRequestContext *)context publicKey:(NSData *)publicKey identity:(NSDictionary *)identity data:(NSDictionary *)data signs:(NSArray <NSDictionary *>*)signs {
+- (instancetype)initWithContext:(VSSRequestContext *)context publicKey:(NSData *)publicKey identityInfo:(VSSIdentityInfo *)identityInfo data:(NSDictionary *)data {
     self = [super initWithContext:context];
     if (self == nil) {
         return nil;
@@ -61,14 +60,12 @@
             body[kVSSModelPublicKey] = base64;
         }
     }
-    if (identity.count > 0) {
-        body[kVSSModelIdentity] = identity;
+    NSDictionary *identityDict = [identityInfo asDictionary];
+    if (identityDict.count > 0) {
+        body[kVSSModelIdentity] = identityDict;
     }
     if (data.count > 0) {
         body[kVSSModelData] = data;
-    }
-    if (signs.count > 0) {
-        body[kVSSModelSigns] = signs;
     }
     [self setRequestBodyWithObject:body];
     
@@ -76,7 +73,7 @@
 }
 
 - (instancetype)initWithContext:(VSSRequestContext *)context {
-    return [self initWithContext:context publicKey:[[NSData alloc] init] identity:@{} data:nil signs:@[]];
+    return [self initWithContext:context publicKey:[[NSData alloc] init] identityInfo:[[VSSIdentityInfo alloc] init] data:nil];
 }
 
 #pragma mark - Overrides
