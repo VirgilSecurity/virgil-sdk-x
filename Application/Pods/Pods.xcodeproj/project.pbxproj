@@ -573,7 +573,7 @@
 			<array>
 				<string>F4240E074DE719846545C00DE8D45D16</string>
 				<string>B9C882D8DAB1CD01643B3EC56A370B36</string>
-				<string>8696942B9ACA885D6C20D0BD746721B4</string>
+				<string>3C23D40087691564899C9F20EA2212C3</string>
 				<string>05C9AEB866B10A737B4A1EF9B2F94CDB</string>
 				<string>ECAAFE7802657D86A6B92F6201F10C48</string>
 				<string>3C2E2ED875F1BB0C55B8BFFF2C7CCD3B</string>
@@ -765,6 +765,20 @@
 			<string>PBXHeadersBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
+		</dict>
+		<key>3C23D40087691564899C9F20EA2212C3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A73D863847878ECE4270123F93F3B726</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Private</string>
+				</array>
+			</dict>
 		</dict>
 		<key>3C2E2ED875F1BB0C55B8BFFF2C7CCD3B</key>
 		<dict>
@@ -1554,20 +1568,6 @@
 			<string>E14B1CED53AE92C82ECF1FE155216679</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>8696942B9ACA885D6C20D0BD746721B4</key>
-		<dict>
-			<key>fileRef</key>
-			<string>A73D863847878ECE4270123F93F3B726</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>8770A1BEC08AE36D1FCFEC7D8548429D</key>
 		<dict>

@@ -1,7 +1,6 @@
 #import <UIKit/UIKit.h>
 
 #import "VSSBaseCryptor.h"
-#import "VSSBaseCryptor_Private.h"
 #import "VSSChunkCryptor.h"
 #import "VSSCryptor.h"
 #import "VSSFoundationCommons.h"

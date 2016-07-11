@@ -3,7 +3,7 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'VirgilSDKApp' do
-	pod 'VirgilFoundation', '~> 1.5'
+	pod 'VirgilFoundation', '~> 1.8'
     
     target 'VirgilSDKTests' do
         inherit! :search_paths
@@ -11,7 +11,7 @@ target 'VirgilSDKApp' do
 end
 
 target 'VirgilSDKAppSwift' do
-	pod 'VirgilFoundation', '~> 1.5'
+	pod 'VirgilFoundation', '~> 1.8'
     
     target 'VirgilSDKSwiftTests' do
         inherit! :search_paths
