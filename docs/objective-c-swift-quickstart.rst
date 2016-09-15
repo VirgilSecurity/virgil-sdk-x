@@ -23,7 +23,7 @@ This branch focuses on the Objective-C/Swift library implementation and covers i
 
 Let's go through an encrypted message exchange steps as one of the possible [use cases](#use-case) of Virgil Security Services. 
 
-.. image:: ../../../_images/IPMessaging.png
+.. image:: ../../../images/IPMessaging.png
 
 *********
 Obtaining an Access Token
