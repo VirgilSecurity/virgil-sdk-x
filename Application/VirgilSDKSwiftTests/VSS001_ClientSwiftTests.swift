@@ -20,16 +20,16 @@ let kEstimatedEmailReceivingTime: Int = 2
 
 class VSS001_ClientSwiftTests: XCTestCase {
     
-    private var client: VSSClient! = nil
-    private var mailinator: Mailinator! = nil
+    fileprivate var client: VSSClient! = nil
+    fileprivate var mailinator: Mailinator! = nil
     
-    private var regexp: NSRegularExpression! = nil
+    fileprivate var regexp: NSRegularExpression! = nil
     
-    private var keyPair: VSSKeyPair! = nil
-    private var publicKey: VSSPublicKey! = nil
+    fileprivate var keyPair: VSSKeyPair! = nil
+    fileprivate var publicKey: VSSPublicKey! = nil
     
-    private var card: VSSCard! = nil
-    private var validationToken: String! = nil
+    fileprivate var card: VSSCard! = nil
+    fileprivate var validationToken: String! = nil
     
     override func setUp() {
         super.setUp()
@@ -39,7 +39,7 @@ class VSS001_ClientSwiftTests: XCTestCase {
         // FIXME: Put proper mailinator token
         self.mailinator = Mailinator(applicationToken: "", serviceConfig: MailinatorConfig())
         do {
-            self.regexp = try NSRegularExpression(pattern: "Your confirmation code is.+([A-Z0-9]{6})", options: NSRegularExpressionOptions.CaseInsensitive)
+            self.regexp = try NSRegularExpression(pattern: "Your confirmation code is.+([A-Z0-9]{6})", options: NSRegularExpression.Options.caseInsensitive)
         }
         catch {
             self.regexp = nil
@@ -58,7 +58,7 @@ class VSS001_ClientSwiftTests: XCTestCase {
     }
     
     func test001_createCardAndConfirmIdentity() {
-        weak var ex = self.expectationWithDescription("Public key should be created and user data should be confirmed.")
+        weak var ex = self.expectation(description: "Public key should be created and user data should be confirmed.")
         let numberOfRequests = 6
         let timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceivingTime
         
@@ -69,14 +69,14 @@ class VSS001_ClientSwiftTests: XCTestCase {
             }
             
             XCTAssertNotNil(self.card, "Virgil Card should be created.")
-            XCTAssertNotNil(self.card.Id, "Virgil Card should have ID.")
+            XCTAssertNotNil(self.card.id, "Virgil Card should have ID.")
             XCTAssertNotNil(self.card.authorizedBy, "Virgil Card should be created confirmed.")
             XCTAssertNotNil(self.card.createdAt, "Virgil Card should contain correct date of creation.")
             
             ex?.fulfill()
         }
         
-        self.waitForExpectationsWithTimeout(NSTimeInterval(timeout)) { error in
+        self.waitForExpectations(timeout: TimeInterval(timeout)) { error in
             if error != nil {
                 XCTFail("Expectation failed: \(error!.localizedDescription)")
             }
@@ -84,9 +84,9 @@ class VSS001_ClientSwiftTests: XCTestCase {
     }
     
     func identityValue() -> String {
-        let guid = NSUUID().UUIDString.lowercaseString
-        let candidate = guid.stringByReplacingOccurrencesOfString("-", withString: "")
-        let identity = candidate.substringToIndex(candidate.startIndex.advancedBy(25))
+        let guid = NSUUID().uuidString.lowercased()
+        let candidate = guid.replacingOccurrences(of: "-", with: "")
+        let identity = candidate.substring(to: candidate.characters.index(candidate.startIndex, offsetBy: 25))
         return "\(identity)@mailinator.com"
     }
 
@@ -94,13 +94,13 @@ class VSS001_ClientSwiftTests: XCTestCase {
         return VSSIdentityInfo(type: kVSSIdentityTypeEmail, value: self.identityValue(), validationToken: nil)
     }
 
-    func createConfirmedCardWithConfirmationHandler(handler: ((NSError?) -> Void)?) {
+    func createConfirmedCardWithConfirmationHandler(_ handler: ((NSError?) -> Void)?) {
         let identity = self.identity();
         
-        self.client.verifyEmailIdentityWithValue(identity.value, extraFields: nil) { (actionId, error) in
+        self.client.verifyEmailIdentity(withValue: identity.value, extraFields: nil) { (actionId, error) in
             if error != nil {
                 if handler != nil {
-                    handler!(error!)
+                    handler!(error! as NSError?)
                 }
                 return
             }
@@ -109,13 +109,13 @@ class VSS001_ClientSwiftTests: XCTestCase {
         }
     }
     
-    func confirmIdentity(identity: VSSIdentityInfo, actionId: String, handler:((NSError?) -> Void)?) {
+    func confirmIdentity(_ identity: VSSIdentityInfo, actionId: String, handler:((NSError?) -> Void)?) {
         let value = identity.value as NSString
-        let inbox = value.substringToIndex(value.rangeOfString("@").location)
+        let inbox = value.substring(to: value.range(of: "@").location)
         self.mailinator.getInbox(inbox) { (metadataList, error) -> Void in
             if error != nil {
                 if handler != nil {
-                    handler!(error!)
+                    handler!(error! as NSError?)
                 }
                 return
             }
@@ -131,14 +131,14 @@ class VSS001_ClientSwiftTests: XCTestCase {
             self.mailinator.getEmail(metadata.mid, completionHandler: { (email, error) -> Void in
                 if error != nil {
                     if handler != nil {
-                        handler!(error!)
+                        handler!(error! as NSError?)
                     }
                     return
                 }
                 
                 let bodyPart: MPart = email!.parts[0]
                 // Try to find the actual confirmation code in body
-                let matchResult = self.regexp.firstMatchInString(bodyPart.body, options: .ReportCompletion, range: NSMakeRange(0, bodyPart.body.characters.count))
+                let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.characters.count))
                 if matchResult == nil || matchResult!.range.location == NSNotFound {
                     // There is no match in the email body.
                     // Confirmation code is absent or can not be extracted.
@@ -148,20 +148,20 @@ class VSS001_ClientSwiftTests: XCTestCase {
                     return
                 }
                 // If we have a match
-                let match = (bodyPart.body as NSString).substringWithRange(matchResult!.range)
+                let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
                 // Now match string should contain something like "Your confirmation code is ....."
                 // Actual code is the last 6 charachters.
                 // Extract the code
-                let code = (match as NSString).substringFromIndex(match.characters.count - 6);
-                self.client.confirmEmailIdentityWithActionId(actionId, code: code, tokenTtl: 0, tokenCtl: 10, completionHandler: { (identityInfo, error) in
+                let code = (match as NSString).substring(from: match.characters.count - 6);
+                self.client.confirmEmailIdentity(withActionId: actionId, code: code, tokenTtl: 0, tokenCtl: 10, completionHandler: { (identityInfo, error) in
                     if error != nil {
                         if handler != nil {
-                            handler!(error!)
+                            handler!(error! as NSError?)
                         }
                         return
                     }
                     
-                    if identityInfo == nil || !identity.isEqual(identityInfo!) || identityInfo!.validationToken?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) == 0 {
+                    if identityInfo == nil || !identity.isEqual(identityInfo!) || identityInfo!.validationToken?.lengthOfBytes(using: String.Encoding.utf8) == 0 {
                         if (handler != nil) {
                             handler!(NSError(domain: "TestDomain", code: -3, userInfo: nil))
                         }
@@ -172,11 +172,11 @@ class VSS001_ClientSwiftTests: XCTestCase {
                     identity.validationToken = identityInfo!.validationToken
                     
                     let privateKey = VSSPrivateKey(key: self.keyPair.privateKey(), password: nil)
-                    self.client.createCardWithPublicKey(self.keyPair.publicKey(), identityInfo: identityInfo!, data: nil, privateKey: privateKey) { card, error in
+                    self.client.createCard(withPublicKey: self.keyPair.publicKey(), identityInfo: identityInfo!, data: nil, privateKey: privateKey) { card, error in
                         
                         self.card = card
                         if handler != nil {
-                            handler!(error)
+                            handler!(error as NSError?)
                         }
                         return
                     }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>VirgilSDKApp.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>VirgilSDKAppSwift.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>3606B2821BBB1DC40074B4C1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3606B2961BBB1DC50074B4C1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>361403141BB2E05F002E69CA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3614032D1BB2E05F002E69CA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

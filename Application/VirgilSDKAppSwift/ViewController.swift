@@ -15,9 +15,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let pubBase64 = self.keyPair.publicKey().base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+        let pubBase64 = self.keyPair.publicKey().base64EncodedString(options: .lineLength64Characters)
         print(pubBase64)
-        let privBase64 = self.keyPair.privateKey().base64EncodedStringWithOptions(.Encoding64CharacterLineLength)
+        let privBase64 = self.keyPair.privateKey().base64EncodedString(options: .lineLength64Characters)
         print(privBase64)
     }
     

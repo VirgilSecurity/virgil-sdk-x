@@ -672,12 +672,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3606B2A31BBB1DC50074B4C1 /* Build configuration list for PBXNativeTarget "VirgilSDKAppSwift" */;
 			buildPhases = (
-				DD288A27A1F92FFD2AB4BED1 /* Check Pods Manifest.lock */,
+				DD288A27A1F92FFD2AB4BED1 /* [CP] Check Pods Manifest.lock */,
 				3606B27F1BBB1DC40074B4C1 /* Sources */,
 				3606B2811BBB1DC40074B4C1 /* Resources */,
-				0BFE0B73EC161189C010ACB6 /* Embed Pods Frameworks */,
+				0BFE0B73EC161189C010ACB6 /* [CP] Embed Pods Frameworks */,
 				1091474D4F4595B93B3F40F7 /* Frameworks */,
-				9A23063F5EE66F0DDC9E9201 /* Copy Pods Resources */,
+				9A23063F5EE66F0DDC9E9201 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -692,12 +692,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3606B2A41BBB1DC50074B4C1 /* Build configuration list for PBXNativeTarget "VirgilSDKSwiftTests" */;
 			buildPhases = (
-				841C9F21AA696BED8F2CC7F5 /* Check Pods Manifest.lock */,
+				841C9F21AA696BED8F2CC7F5 /* [CP] Check Pods Manifest.lock */,
 				3606B2931BBB1DC50074B4C1 /* Sources */,
 				3606B2951BBB1DC50074B4C1 /* Resources */,
 				5C3EB6E9AE79BFA8F6E78207 /* Frameworks */,
-				CBA9ED8731851C46DC1151D9 /* Embed Pods Frameworks */,
-				C74565B93E3CA27AD82BB1B2 /* Copy Pods Resources */,
+				CBA9ED8731851C46DC1151D9 /* [CP] Embed Pods Frameworks */,
+				C74565B93E3CA27AD82BB1B2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -713,12 +713,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 361403381BB2E05F002E69CA /* Build configuration list for PBXNativeTarget "VirgilSDKApp" */;
 			buildPhases = (
-				8B4C33BB6BAC3C8CF9723989 /* Check Pods Manifest.lock */,
+				8B4C33BB6BAC3C8CF9723989 /* [CP] Check Pods Manifest.lock */,
 				361403111BB2E05F002E69CA /* Sources */,
 				361403131BB2E05F002E69CA /* Resources */,
-				7F380FA511CC8BA88F2EA273 /* Embed Pods Frameworks */,
+				7F380FA511CC8BA88F2EA273 /* [CP] Embed Pods Frameworks */,
 				EE7E3CFC27C74D27C013AEDB /* Frameworks */,
-				7821D5255EE29F7A1228DE02 /* Copy Pods Resources */,
+				7821D5255EE29F7A1228DE02 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -733,12 +733,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3614033B1BB2E05F002E69CA /* Build configuration list for PBXNativeTarget "VirgilSDKTests" */;
 			buildPhases = (
-				C0F0B1BE53F60287DBE6FA57 /* Check Pods Manifest.lock */,
+				C0F0B1BE53F60287DBE6FA57 /* [CP] Check Pods Manifest.lock */,
 				3614032A1BB2E05F002E69CA /* Sources */,
 				3614032C1BB2E05F002E69CA /* Resources */,
 				241C8D22B73FB9F2EE7DE064 /* Frameworks */,
-				2438D90EEE6CACEFD57166FD /* Embed Pods Frameworks */,
-				C2C1AF65901A4BD4B2B6A50F /* Copy Pods Resources */,
+				2438D90EEE6CACEFD57166FD /* [CP] Embed Pods Frameworks */,
+				C2C1AF65901A4BD4B2B6A50F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -762,16 +762,20 @@
 				TargetAttributes = {
 					3606B2821BBB1DC40074B4C1 = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0800;
 					};
 					3606B2961BBB1DC50074B4C1 = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0800;
 						TestTargetID = 3606B2821BBB1DC40074B4C1;
 					};
 					361403141BB2E05F002E69CA = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0800;
 					};
 					3614032D1BB2E05F002E69CA = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0800;
 						TestTargetID = 361403141BB2E05F002E69CA;
 					};
 				};
@@ -835,14 +839,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0BFE0B73EC161189C010ACB6 /* Embed Pods Frameworks */ = {
+		0BFE0B73EC161189C010ACB6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -850,14 +854,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VirgilSDKAppSwift/Pods-VirgilSDKAppSwift-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2438D90EEE6CACEFD57166FD /* Embed Pods Frameworks */ = {
+		2438D90EEE6CACEFD57166FD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -865,14 +869,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VirgilSDKTests/Pods-VirgilSDKTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7821D5255EE29F7A1228DE02 /* Copy Pods Resources */ = {
+		7821D5255EE29F7A1228DE02 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -880,14 +884,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VirgilSDKApp/Pods-VirgilSDKApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7F380FA511CC8BA88F2EA273 /* Embed Pods Frameworks */ = {
+		7F380FA511CC8BA88F2EA273 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -895,14 +899,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VirgilSDKApp/Pods-VirgilSDKApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		841C9F21AA696BED8F2CC7F5 /* Check Pods Manifest.lock */ = {
+		841C9F21AA696BED8F2CC7F5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -910,14 +914,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		8B4C33BB6BAC3C8CF9723989 /* Check Pods Manifest.lock */ = {
+		8B4C33BB6BAC3C8CF9723989 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -925,14 +929,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		9A23063F5EE66F0DDC9E9201 /* Copy Pods Resources */ = {
+		9A23063F5EE66F0DDC9E9201 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -940,14 +944,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VirgilSDKAppSwift/Pods-VirgilSDKAppSwift-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C0F0B1BE53F60287DBE6FA57 /* Check Pods Manifest.lock */ = {
+		C0F0B1BE53F60287DBE6FA57 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -955,14 +959,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		C2C1AF65901A4BD4B2B6A50F /* Copy Pods Resources */ = {
+		C2C1AF65901A4BD4B2B6A50F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -970,14 +974,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VirgilSDKTests/Pods-VirgilSDKTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C74565B93E3CA27AD82BB1B2 /* Copy Pods Resources */ = {
+		C74565B93E3CA27AD82BB1B2 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -985,14 +989,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VirgilSDKSwiftTests/Pods-VirgilSDKSwiftTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CBA9ED8731851C46DC1151D9 /* Embed Pods Frameworks */ = {
+		CBA9ED8731851C46DC1151D9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1000,14 +1004,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VirgilSDKSwiftTests/Pods-VirgilSDKSwiftTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DD288A27A1F92FFD2AB4BED1 /* Check Pods Manifest.lock */ = {
+		DD288A27A1F92FFD2AB4BED1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1228,6 +1232,7 @@
 				PRODUCT_NAME = VirgilSDK;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1240,6 +1245,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = VirgilSDK;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1257,6 +1263,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = VirgilSDK;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VirgilSDK.app/VirgilSDK";
 			};
 			name = Debug;
@@ -1271,6 +1278,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = VirgilSDK;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VirgilSDK.app/VirgilSDK";
 			};
 			name = Release;
@@ -1367,6 +1375,7 @@
 				INFOPLIST_FILE = VirgilSDKApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = VirgilSDK;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1378,6 +1387,7 @@
 				INFOPLIST_FILE = VirgilSDKApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = VirgilSDK;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1397,6 +1407,7 @@
 				INFOPLIST_FILE = VirgilSDKTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = VirgilSDK;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VirgilSDK.app/VirgilSDK";
 			};
 			name = Debug;
@@ -1413,6 +1424,7 @@
 				INFOPLIST_FILE = VirgilSDKTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = VirgilSDK;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VirgilSDK.app/VirgilSDK";
 			};
 			name = Release;
