@@ -1,6 +1,0 @@
-framework module Pods_VirgilSDKAppSwift {
-  umbrella header "Pods-VirgilSDKAppSwift-umbrella.h"
-
-  export *
-  module * { export * }
-}
