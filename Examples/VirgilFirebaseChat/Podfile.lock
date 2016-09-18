@@ -1,0 +1,47 @@
+PODS:
+  - Firebase/Analytics (3.2.1):
+    - FirebaseAnalytics (= 3.2.0)
+  - Firebase/Database (3.2.1):
+    - Firebase/Analytics (= 3.2.1)
+    - FirebaseDatabase (= 3.0.1)
+  - FirebaseAnalytics (3.2.0):
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleSymbolUtilities (~> 1.1)
+    - GoogleUtilities (~> 1.3)
+  - FirebaseDatabase (3.0.1):
+    - FirebaseAnalytics (~> 3.2)
+  - FirebaseInstanceID (1.0.6)
+  - GoogleInterchangeUtilities (1.2.1):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleSymbolUtilities (1.1.1)
+  - GoogleUtilities (1.3.1):
+    - GoogleSymbolUtilities (~> 1.0)
+  - SlackTextViewController (1.9.3)
+  - VirgilFoundation (1.5.2)
+  - VirgilSDK (3.1.6):
+    - VirgilFoundation (~> 1.5)
+  - XAsync (2.0.1)
+
+DEPENDENCIES:
+  - Firebase/Database
+  - SlackTextViewController
+  - VirgilSDK (~> 3.1)
+  - XAsync (~> 2.0)
+
+SPEC CHECKSUMS:
+  Firebase: 6c80ac28d59d06bfd9152a7b6ea17625ca93183d
+  FirebaseAnalytics: 6f75b04e6bfb8e0b6e9ef298e04c24eea3b13863
+  FirebaseDatabase: 34301d11621a83546f39f670d256477ba6f7fcea
+  FirebaseInstanceID: d014d574053a2fe84478f12f7bae96979e7051bb
+  GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
+  GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
+  GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
+  SlackTextViewController: bd2a34c188d4f7dec93cf42388f38551263fac82
+  VirgilFoundation: f628bdd9d887e11148e64db1b418f2d4b56a6569
+  VirgilSDK: d5f628c7d8b2445ce05f1dfdf762a90730ec5bde
+  XAsync: 60f85d4be40cffdedd7554a48886ee6f74060e69
+
+PODFILE CHECKSUM: eefe25bdfc1e60ad288d3adc402e119e6d1a5948
+
+COCOAPODS: 1.0.0.beta.3

@@ -1,0 +1,404 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3633C97A1D12991B0074E4FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3633C9791D12991B0074E4FF /* GoogleService-Info.plist */; };
+		3633C97C1D14FEA90074E4FF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3633C97B1D14FEA90074E4FF /* Constants.swift */; };
+		3633C97E1D14FFCB0074E4FF /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3633C97D1D14FFCB0074E4FF /* SignInViewController.swift */; };
+		3633C9801D1500070074E4FF /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3633C97F1D1500070074E4FF /* AppState.swift */; };
+		3633C9861D151A320074E4FF /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3633C9851D151A320074E4FF /* ChatViewController.swift */; };
+		3633C9881D167F1E0074E4FF /* Synchronized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3633C9871D167F1E0074E4FF /* Synchronized.swift */; };
+		36E4F9441D128FFD0072090B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4F9431D128FFD0072090B /* AppDelegate.swift */; };
+		36E4F9491D128FFD0072090B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E4F9471D128FFD0072090B /* Main.storyboard */; };
+		36E4F94B1D128FFD0072090B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36E4F94A1D128FFD0072090B /* Assets.xcassets */; };
+		36E4F94E1D128FFD0072090B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36E4F94C1D128FFD0072090B /* LaunchScreen.storyboard */; };
+		B790329D44AA48DC85180365 /* Pods_VirgilFirebaseChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0239DC4B449DB9B2DB85FA92 /* Pods_VirgilFirebaseChat.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0239DC4B449DB9B2DB85FA92 /* Pods_VirgilFirebaseChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirgilFirebaseChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3633C9791D12991B0074E4FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3633C97B1D14FEA90074E4FF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3633C97D1D14FFCB0074E4FF /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		3633C97F1D1500070074E4FF /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		3633C9851D151A320074E4FF /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		3633C9871D167F1E0074E4FF /* Synchronized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Synchronized.swift; sourceTree = "<group>"; };
+		36E4F9401D128FFD0072090B /* VirgilFirebaseChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirgilFirebaseChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		36E4F9431D128FFD0072090B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		36E4F9481D128FFD0072090B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		36E4F94A1D128FFD0072090B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		36E4F94D1D128FFD0072090B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		36E4F94F1D128FFD0072090B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36EDBCD31D17727700379CAE /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		58020B563B75B42C2D8B870B /* Pods-VirgilFirebaseChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirgilFirebaseChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VirgilFirebaseChat/Pods-VirgilFirebaseChat.debug.xcconfig"; sourceTree = "<group>"; };
+		E52AE83E0AB30BC54309B05A /* Pods-VirgilFirebaseChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirgilFirebaseChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-VirgilFirebaseChat/Pods-VirgilFirebaseChat.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		36E4F93D1D128FFD0072090B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B790329D44AA48DC85180365 /* Pods_VirgilFirebaseChat.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		36E4F9371D128FFD0072090B = {
+			isa = PBXGroup;
+			children = (
+				3633C9791D12991B0074E4FF /* GoogleService-Info.plist */,
+				36E4F9421D128FFD0072090B /* VirgilFirebaseChat */,
+				36E4F9411D128FFD0072090B /* Products */,
+				C5944ABBC0590A9371CC95BF /* Pods */,
+				D86CFD42257F48B8F35D7E8F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		36E4F9411D128FFD0072090B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				36E4F9401D128FFD0072090B /* VirgilFirebaseChat.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		36E4F9421D128FFD0072090B /* VirgilFirebaseChat */ = {
+			isa = PBXGroup;
+			children = (
+				36EDBCD31D17727700379CAE /* BridgingHeader.h */,
+				36E4F9431D128FFD0072090B /* AppDelegate.swift */,
+				3633C97B1D14FEA90074E4FF /* Constants.swift */,
+				3633C97F1D1500070074E4FF /* AppState.swift */,
+				3633C97D1D14FFCB0074E4FF /* SignInViewController.swift */,
+				3633C9851D151A320074E4FF /* ChatViewController.swift */,
+				3633C9871D167F1E0074E4FF /* Synchronized.swift */,
+				36E4F9471D128FFD0072090B /* Main.storyboard */,
+				36E4F94A1D128FFD0072090B /* Assets.xcassets */,
+				36E4F94C1D128FFD0072090B /* LaunchScreen.storyboard */,
+				36E4F94F1D128FFD0072090B /* Info.plist */,
+			);
+			path = VirgilFirebaseChat;
+			sourceTree = "<group>";
+		};
+		C5944ABBC0590A9371CC95BF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				58020B563B75B42C2D8B870B /* Pods-VirgilFirebaseChat.debug.xcconfig */,
+				E52AE83E0AB30BC54309B05A /* Pods-VirgilFirebaseChat.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D86CFD42257F48B8F35D7E8F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0239DC4B449DB9B2DB85FA92 /* Pods_VirgilFirebaseChat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		36E4F93F1D128FFD0072090B /* VirgilFirebaseChat */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36E4F9521D128FFD0072090B /* Build configuration list for PBXNativeTarget "VirgilFirebaseChat" */;
+			buildPhases = (
+				9B5D785054AF159BB59134A7 /* Check Pods Manifest.lock */,
+				36E4F93C1D128FFD0072090B /* Sources */,
+				36E4F93D1D128FFD0072090B /* Frameworks */,
+				36E4F93E1D128FFD0072090B /* Resources */,
+				CA167A3F056EE5BD0CACDAAB /* Embed Pods Frameworks */,
+				FEF461F6FD983A1F5A9E9DAE /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VirgilFirebaseChat;
+			productName = VirgilFirebaseChat;
+			productReference = 36E4F9401D128FFD0072090B /* VirgilFirebaseChat.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		36E4F9381D128FFD0072090B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Virgil Security, Inc.";
+				TargetAttributes = {
+					36E4F93F1D128FFD0072090B = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = JWNLQ3HC5A;
+					};
+				};
+			};
+			buildConfigurationList = 36E4F93B1D128FFD0072090B /* Build configuration list for PBXProject "VirgilFirebaseChat" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 36E4F9371D128FFD0072090B;
+			productRefGroup = 36E4F9411D128FFD0072090B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				36E4F93F1D128FFD0072090B /* VirgilFirebaseChat */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		36E4F93E1D128FFD0072090B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36E4F94E1D128FFD0072090B /* LaunchScreen.storyboard in Resources */,
+				3633C97A1D12991B0074E4FF /* GoogleService-Info.plist in Resources */,
+				36E4F94B1D128FFD0072090B /* Assets.xcassets in Resources */,
+				36E4F9491D128FFD0072090B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9B5D785054AF159BB59134A7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CA167A3F056EE5BD0CACDAAB /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VirgilFirebaseChat/Pods-VirgilFirebaseChat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FEF461F6FD983A1F5A9E9DAE /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VirgilFirebaseChat/Pods-VirgilFirebaseChat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		36E4F93C1D128FFD0072090B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3633C97E1D14FFCB0074E4FF /* SignInViewController.swift in Sources */,
+				36E4F9441D128FFD0072090B /* AppDelegate.swift in Sources */,
+				3633C9861D151A320074E4FF /* ChatViewController.swift in Sources */,
+				3633C97C1D14FEA90074E4FF /* Constants.swift in Sources */,
+				3633C9881D167F1E0074E4FF /* Synchronized.swift in Sources */,
+				3633C9801D1500070074E4FF /* AppState.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		36E4F9471D128FFD0072090B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				36E4F9481D128FFD0072090B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		36E4F94C1D128FFD0072090B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				36E4F94D1D128FFD0072090B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		36E4F9501D128FFD0072090B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		36E4F9511D128FFD0072090B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		36E4F9531D128FFD0072090B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58020B563B75B42C2D8B870B /* Pods-VirgilFirebaseChat.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = VirgilFirebaseChat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilFirebaseChat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = VirgilFirebaseChat/BridgingHeader.h;
+			};
+			name = Debug;
+		};
+		36E4F9541D128FFD0072090B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E52AE83E0AB30BC54309B05A /* Pods-VirgilFirebaseChat.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = VirgilFirebaseChat/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilFirebaseChat;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = VirgilFirebaseChat/BridgingHeader.h;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		36E4F93B1D128FFD0072090B /* Build configuration list for PBXProject "VirgilFirebaseChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36E4F9501D128FFD0072090B /* Debug */,
+				36E4F9511D128FFD0072090B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36E4F9521D128FFD0072090B /* Build configuration list for PBXNativeTarget "VirgilFirebaseChat" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36E4F9531D128FFD0072090B /* Debug */,
+				36E4F9541D128FFD0072090B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 36E4F9381D128FFD0072090B /* Project object */;
+}

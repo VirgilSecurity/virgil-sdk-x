@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="VirgilSample" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pMN-cK-vhS">
+                                <rect key="frame" x="20" y="49" width="378" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="6U5-yD-amZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="284-Yj-q6k"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="User:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZd-00-ekH">
+                                <rect key="frame" x="20" y="20" width="50" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="knu-UA-VoY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="&lt;Unknown&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TMp-7D-wGK">
+                                <rect key="frame" x="78" y="20" width="502" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="8lp-ng-yM4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rPc-Sk-CXq">
+                                <rect key="frame" x="406" y="48" width="174" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2sx-a1-l5Y"/>
+                                </constraints>
+                                <state key="normal" title="Get my key"/>
+                                <connections>
+                                    <action selector="getKeyAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XoO-dR-I7f"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter message for encryption" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yVb-lE-Edi">
+                                <rect key="frame" x="20" y="124" width="466" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="4HO-T6-zlD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="PP9-J6-a3g"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nxv-vG-XRc">
+                                <rect key="frame" x="494" y="124" width="86" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Yt7-hy-mdd"/>
+                                </constraints>
+                                <state key="normal" title="Encrypt"/>
+                                <connections>
+                                    <action selector="encryptAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yGD-9B-nd5"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Encrypted message&gt;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="94r-o2-Hk0">
+                                <rect key="frame" x="20" y="162" width="560" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="E8j-YF-56p"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="94r-o2-Hk0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="45j-Qg-BxV"/>
+                            <constraint firstItem="Nxv-vG-XRc" firstAttribute="top" secondItem="rPc-Sk-CXq" secondAttribute="bottom" constant="46" id="Avc-nl-ym6"/>
+                            <constraint firstItem="TMp-7D-wGK" firstAttribute="leading" secondItem="bZd-00-ekH" secondAttribute="trailing" constant="8" id="Bbt-c8-O7P"/>
+                            <constraint firstItem="94r-o2-Hk0" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Czo-6j-etn"/>
+                            <constraint firstItem="bZd-00-ekH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Euz-iX-6BC"/>
+                            <constraint firstItem="Nxv-vG-XRc" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="J6S-xt-aaj"/>
+                            <constraint firstItem="Nxv-vG-XRc" firstAttribute="leading" secondItem="yVb-lE-Edi" secondAttribute="trailing" constant="8" id="KzD-Jf-6FN"/>
+                            <constraint firstItem="pMN-cK-vhS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="PIO-LS-pbJ"/>
+                            <constraint firstItem="rPc-Sk-CXq" firstAttribute="leading" secondItem="pMN-cK-vhS" secondAttribute="trailing" constant="8" id="Rgy-LI-cLC"/>
+                            <constraint firstItem="rPc-Sk-CXq" firstAttribute="leading" secondItem="pMN-cK-vhS" secondAttribute="trailing" constant="8" id="Xq0-Sw-lBE"/>
+                            <constraint firstItem="Nxv-vG-XRc" firstAttribute="leading" secondItem="yVb-lE-Edi" secondAttribute="trailing" constant="8" id="ZqL-Z4-7lf"/>
+                            <constraint firstItem="TMp-7D-wGK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="h3l-2z-up1"/>
+                            <constraint firstItem="bZd-00-ekH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="oNA-xB-B2x"/>
+                            <constraint firstItem="rPc-Sk-CXq" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="psu-dc-tAB"/>
+                            <constraint firstItem="pMN-cK-vhS" firstAttribute="top" secondItem="TMp-7D-wGK" secondAttribute="bottom" constant="8" id="ty7-fa-SKG"/>
+                            <constraint firstItem="rPc-Sk-CXq" firstAttribute="top" secondItem="TMp-7D-wGK" secondAttribute="bottom" constant="7" id="uIT-1O-LfS"/>
+                            <constraint firstItem="yVb-lE-Edi" firstAttribute="top" secondItem="pMN-cK-vhS" secondAttribute="bottom" constant="45" id="wvP-fr-O2N"/>
+                            <constraint firstItem="94r-o2-Hk0" firstAttribute="top" secondItem="Nxv-vG-XRc" secondAttribute="bottom" constant="8" id="yZY-4E-sBF"/>
+                            <constraint firstItem="TMp-7D-wGK" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="yj4-Pg-IV2"/>
+                            <constraint firstItem="yVb-lE-Edi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="zLY-40-6i4"/>
+                            <constraint firstItem="TMp-7D-wGK" firstAttribute="leading" secondItem="bZd-00-ekH" secondAttribute="trailing" constant="8" id="zsy-SE-tcC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bEncrypt" destination="Nxv-vG-XRc" id="lad-a4-JcF"/>
+                        <outlet property="bGetKey" destination="rPc-Sk-CXq" id="cUI-U0-ifs"/>
+                        <outlet property="lEncryptedMessage" destination="94r-o2-Hk0" id="qBw-hQ-Kp9"/>
+                        <outlet property="lUser" destination="bZd-00-ekH" id="ay2-L1-AFr"/>
+                        <outlet property="lUserValue" destination="TMp-7D-wGK" id="tR9-n1-Z6A"/>
+                        <outlet property="tfMessage" destination="yVb-lE-Edi" id="bEx-Ef-iod"/>
+                        <outlet property="tfUserValue" destination="pMN-cK-vhS" id="oVV-sh-zQf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="332" y="362"/>
+        </scene>
+    </scenes>
+</document>

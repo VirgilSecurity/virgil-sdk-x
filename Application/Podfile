@@ -1,6 +1,19 @@
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
-link_with 'VirgilKeys', 'VirgilKeysTests', 'VirgilKeysSwift', 'VirgilKeysSwiftTests'
+use_frameworks!
 
-pod 'VirgilFoundation'
-pod 'VirgilKit'
+target 'VirgilSDKApp' do
+	pod 'VirgilFoundation', '~> 1.8'
+    
+    target 'VirgilSDKTests' do
+        inherit! :search_paths
+    end
+end
+
+target 'VirgilSDKAppSwift' do
+	pod 'VirgilFoundation', '~> 1.8'
+    
+    target 'VirgilSDKSwiftTests' do
+        inherit! :search_paths
+    end
+end

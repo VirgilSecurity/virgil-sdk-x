@@ -1,0 +1,6 @@
+framework module Pods_VirgilFirebaseChat {
+  umbrella header "Pods-VirgilFirebaseChat-umbrella.h"
+
+  export *
+  module * { export * }
+}
