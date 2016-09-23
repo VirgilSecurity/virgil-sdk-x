@@ -1,15 +1,13 @@
 //
-//  VSSSerializable.h
+//  VSSRequestData.h
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 9/23/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#warning add documentation
+#import <Foundation/Foundation.h>
 
-@protocol VSSSerializable <NSObject>
-
-- (NSString * __nonnull)serialize;
+@interface VSSRequestData : NSObject
 
 @end

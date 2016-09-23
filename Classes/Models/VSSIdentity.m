@@ -24,8 +24,8 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithId:(GUID *)Id createdAt:(NSDate *)createdAt type:(NSString *)type value:(NSString *)value {
-    self = [super initWithId:Id createdAt:createdAt];
+- (instancetype)initWithType:(NSString *)type value:(NSString *)value {
+    self = [super init];
     if (self == nil) {
         return nil;
     }
@@ -36,13 +36,13 @@
 }
 
 - (instancetype)initWithId:(GUID *)Id createdAt:(NSDate *)createdAt {
-    return [self initWithId:Id createdAt:createdAt type:@"" value:@""];
+    return [self initWithType:@"" value:@""];
 }
 
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    return [[[self class] alloc] initWithId:self.Id createdAt:self.createdAt type:self.type value:self.value];
+    return [[[self class] alloc] initWithType:self.type value:self.value];
 }
 
 #pragma mark - NSCoding
@@ -52,7 +52,7 @@
     NSDate *cat = [[aDecoder decodeObjectForKey:kVSSModelCreatedAt] as:[NSDate class]];
     NSString *typ = [[aDecoder decodeObjectForKey:kVSSModelType] as:[NSString class]];
     NSString *val = [[aDecoder decodeObjectForKey:kVSSModelValue] as:[NSString class]];
-    return [self initWithId:gid createdAt:cat type:typ value:val];
+    return [self initWithType:typ value:val];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {

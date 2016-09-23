@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VSSBaseModel.h"
+#import "VSSModel.h"
+#import "VSSModelCommons.h"
 
 @class VSSCard;
 
 /**
  * Wrapper class representing the public key of the particular user or owner of the Virgil Card.
  */
-@interface VSSPublicKey : VSSBaseModel
+@interface VSSPublicKey : VSSModel
 
 /**
  * Actual public key's data.
@@ -34,5 +35,5 @@
  *
  * @return Instance of the Virgil Public Key wrapper object.
  */
-- (instancetype __nonnull)initWithId:(GUID * __nonnull)Id createdAt:(NSDate * __nullable)createdAt key:(NSData * __nonnull)key NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithKey:(NSData * __nonnull)key NS_DESIGNATED_INITIALIZER;
 @end

@@ -22,8 +22,8 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithId:(GUID *)Id createdAt:(NSDate *)createdAt key:(NSData *)key {
-    self = [super initWithId:Id createdAt:createdAt];
+- (instancetype)initWithKey:(NSData *)key {
+    self = [super init];
     if (self == nil) {
         return nil;
     }
@@ -32,24 +32,18 @@
     return self;
 }
 
-- (instancetype)initWithId:(GUID *)Id createdAt:(NSDate *)createdAt {
-    return [self initWithId:Id createdAt:createdAt key:[[NSData alloc] init]];
-}
-
 #pragma mark - NSCopying protocol implementation
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    return [(VSSPublicKey *) [[self class] alloc] initWithId:self.Id createdAt:self.createdAt key:self.key];
+    return [(VSSPublicKey *) [[self class] alloc] initWithKey:self.key];
 }
 
 #pragma mark - NSCoding protocol implementation
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    GUID *gid = [[aDecoder decodeObjectForKey:kVSSModelId] as:[GUID class]];
-    NSDate *cat = [[aDecoder decodeObjectForKey:kVSSModelCreatedAt] as:[NSDate class]];
     NSData *key = [[aDecoder decodeObjectForKey:kVSSModelPublicKey] as:[NSData class]];
     
-    return [self initWithId:gid createdAt:cat key:key];
+    return [self initWithKey:key];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {

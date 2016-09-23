@@ -6,7 +6,7 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSBaseModel.h"
+#import "VSSModel.h"
 #import "VSSModelCommons.h"
 
 @class VSSIdentityInfo;
@@ -23,7 +23,7 @@
  * 
  * Each Virgil Identity has type and value (these are the most important fields). 
  */
-@interface VSSIdentity : VSSBaseModel
+@interface VSSIdentity : VSSModel
 
 /**
  * Type of the current identity.
@@ -49,7 +49,7 @@
  *
  * @return Instance of the Virgil Identity.
  */
-- (instancetype __nonnull)initWithId:(GUID * __nonnull)Id createdAt:(NSDate *__nullable)createdAt type:(NSString * __nonnull)type value:(NSString * __nonnull)value NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithType:(NSString * __nonnull)type value:(NSString * __nonnull)value NS_DESIGNATED_INITIALIZER;
 
 ///------------------------------------------
 /// @name Utility

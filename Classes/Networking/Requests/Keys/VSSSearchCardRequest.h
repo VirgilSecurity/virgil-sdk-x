@@ -10,11 +10,12 @@
 
 @class VSSCard;
 @class VSSPublicKey;
+@class VSSSearchCardsCriteria;
 
 @interface VSSSearchCardRequest : VSSKeysBaseRequest
 
 @property (nonatomic, strong, readonly) NSArray <VSSCard *>* __nullable cards;
 
-- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context value:(NSString * __nonnull)value type:(NSString * __nullable)type unauthorized:(BOOL)unauthorized NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context searchCriteria:(VSSSearchCardsCriteria * __nonnull)criteria;
 
 @end

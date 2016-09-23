@@ -6,7 +6,7 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSBaseModel.h"
+#import "VSSModel.h"
 #import "VSSModelCommons.h"
 
 /**
@@ -15,7 +15,7 @@
  * One user might want to explicitly state that he/she trusts another user.
  * In this case the first user signs the other user Virgil Card object.
  */
-@interface VSSSign : VSSBaseModel
+@interface VSSSign : VSSModel
 
 /**
  * Id of the Virgil Card which is marked as trusted.
@@ -53,6 +53,6 @@
  *
  * @return Instance of the Virgil Public Key wrapper object.
  */
-- (instancetype __nonnull)initWithId:(GUID * __nonnull)Id createdAt:(NSDate * __nullable)createdAt signedCardId:(GUID * __nonnull)signedId digest:(NSData * __nonnull)digest signerCardId:(GUID * __nullable)signerId data:(NSDictionary * __nullable)data NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithSignedCardId:(GUID * __nonnull)signedId digest:(NSData * __nonnull)digest signerCardId:(GUID * __nullable)signerId data:(NSDictionary * __nullable)data NS_DESIGNATED_INITIALIZER;
 
 @end

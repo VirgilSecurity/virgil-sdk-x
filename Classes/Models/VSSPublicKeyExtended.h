@@ -35,6 +35,6 @@
  *
  * @return Instance of the Virgil Public Key Extended wrapper object.
  */
-- (instancetype __nonnull)initWithId:(GUID * __nonnull)Id createdAt:(NSDate * __nullable)createdAt key:(NSData * __nonnull)key cards:(NSArray <VSSCard*>* __nonnull)cards NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithKey:(NSData * __nonnull)key cards:(NSArray <VSSCard*>* __nonnull)cards NS_DESIGNATED_INITIALIZER;
 
 @end

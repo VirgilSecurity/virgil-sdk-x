@@ -15,7 +15,6 @@
 		36005FB91C7327B6007E5CBF /* VSSGetCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36005FA81C7327B6007E5CBF /* VSSGetCardRequest.m */; };
 		36005FBA1C7327B6007E5CBF /* VSSGetPublicKeyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36005FAA1C7327B6007E5CBF /* VSSGetPublicKeyRequest.m */; };
 		36005FBB1C7327B6007E5CBF /* VSSKeysBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36005FAC1C7327B6007E5CBF /* VSSKeysBaseRequest.m */; };
-		36005FBC1C7327B6007E5CBF /* VSSSearchAppCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36005FAE1C7327B6007E5CBF /* VSSSearchAppCardRequest.m */; };
 		36005FBD1C7327B6007E5CBF /* VSSSearchCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36005FB01C7327B6007E5CBF /* VSSSearchCardRequest.m */; };
 		36005FBE1C7327B6007E5CBF /* VSSSignCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36005FB21C7327B6007E5CBF /* VSSSignCardRequest.m */; };
 		36005FBF1C7327B6007E5CBF /* VSSUnsignCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36005FB41C7327B6007E5CBF /* VSSUnsignCardRequest.m */; };
@@ -28,11 +27,9 @@
 		36005FD41C73C6D7007E5CBF /* VSSGrabPrivateKeyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36005FD31C73C6D7007E5CBF /* VSSGrabPrivateKeyRequest.m */; };
 		36005FD71C73C6FB007E5CBF /* VSSStorePrivateKeyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36005FD61C73C6FB007E5CBF /* VSSStorePrivateKeyRequest.m */; };
 		36005FDA1C73C70F007E5CBF /* VSSDeletePrivateKeyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36005FD91C73C70F007E5CBF /* VSSDeletePrivateKeyRequest.m */; };
-		3606B2A61BBB1FBF0074B4C1 /* VSSBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 361403431BB2E0FC002E69CA /* VSSBaseModel.m */; };
 		3606B2A71BBB1FBF0074B4C1 /* VSSKeysError.m in Sources */ = {isa = PBXBuildFile; fileRef = 361403451BB2E0FC002E69CA /* VSSKeysError.m */; };
 		3606B2A91BBB1FBF0074B4C1 /* VSSModelCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 361403491BB2E0FC002E69CA /* VSSModelCommons.m */; };
 		3606B2AA1BBB1FBF0074B4C1 /* VSSPublicKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3614034B1BB2E0FC002E69CA /* VSSPublicKey.m */; };
-		3614036D1BB2E0FC002E69CA /* VSSBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 361403431BB2E0FC002E69CA /* VSSBaseModel.m */; };
 		3614036E1BB2E0FC002E69CA /* VSSKeysError.m in Sources */ = {isa = PBXBuildFile; fileRef = 361403451BB2E0FC002E69CA /* VSSKeysError.m */; };
 		361403701BB2E0FC002E69CA /* VSSModelCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 361403491BB2E0FC002E69CA /* VSSModelCommons.m */; };
 		361403711BB2E0FC002E69CA /* VSSPublicKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3614034B1BB2E0FC002E69CA /* VSSPublicKey.m */; };
@@ -82,7 +79,6 @@
 		362CFE581C74C96A002A3E93 /* VSSSignCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36005FB21C7327B6007E5CBF /* VSSSignCardRequest.m */; };
 		362CFE591C74C96D002A3E93 /* VSSUnsignCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36005FB41C7327B6007E5CBF /* VSSUnsignCardRequest.m */; };
 		362CFE5A1C74C971002A3E93 /* VSSSearchCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36005FB01C7327B6007E5CBF /* VSSSearchCardRequest.m */; };
-		362CFE5B1C74C973002A3E93 /* VSSSearchAppCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36005FAE1C7327B6007E5CBF /* VSSSearchAppCardRequest.m */; };
 		362CFE5C1C74C975002A3E93 /* VSSDeleteCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36005FA41C7327B6007E5CBF /* VSSDeleteCardRequest.m */; };
 		362CFE5D1C74C97B002A3E93 /* VSSPrivateKeysBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36005FD01C73C66F007E5CBF /* VSSPrivateKeysBaseRequest.m */; };
 		362CFE5E1C74C97D002A3E93 /* VSSStorePrivateKeyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36005FD61C73C6FB007E5CBF /* VSSStorePrivateKeyRequest.m */; };
@@ -117,8 +113,6 @@
 		36912FAD1CD21C650058BBF8 /* VSSPBKDF+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 36912FAC1CD21C650058BBF8 /* VSSPBKDF+Base64.m */; };
 		36912FAE1CD21C650058BBF8 /* VSSPBKDF+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 36912FAC1CD21C650058BBF8 /* VSSPBKDF+Base64.m */; };
 		36915C711C652EA100DAA563 /* VSSPublicKeyExtended.m in Sources */ = {isa = PBXBuildFile; fileRef = 36915C701C652EA100DAA563 /* VSSPublicKeyExtended.m */; };
-		36C00B751CD7843700738DC1 /* VSSSearchEmailCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C00B741CD7843700738DC1 /* VSSSearchEmailCardRequest.m */; };
-		36C00B761CD80F4D00738DC1 /* VSSSearchEmailCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C00B741CD7843700738DC1 /* VSSSearchEmailCardRequest.m */; };
 		36C1D16D1C6A947E009ED570 /* VSSBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C1D1491C6A947E009ED570 /* VSSBaseClient.m */; };
 		36C1D16E1C6A947E009ED570 /* VSSClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C1D14B1C6A947E009ED570 /* VSSClient.m */; };
 		36C1D1701C6A947E009ED570 /* VSSServiceConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C1D14F1C6A947E009ED570 /* VSSServiceConfig.m */; };
@@ -132,6 +126,11 @@
 		36FF4B8B1C4D7F2F00E901F3 /* VSSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF4B881C4D7F2F00E901F3 /* VSSModel.m */; };
 		36FF4B931C4D7FED00E901F3 /* NSObject+VSSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */; };
 		36FF4B941C4D7FED00E901F3 /* NSString+VSSXMLEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF4B901C4D7FED00E901F3 /* NSString+VSSXMLEscape.m */; };
+		42E9BEFB1D9549FE008759BE /* VSSSearchCardsCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E9BEFA1D9549FE008759BE /* VSSSearchCardsCriteria.m */; };
+		42E9BEFF1D956D95008759BE /* VSSSigningRequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E9BEFE1D956D95008759BE /* VSSSigningRequestData.m */; };
+		42E9BF021D957592008759BE /* VSSRequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E9BF011D957592008759BE /* VSSRequestData.m */; };
+		42E9BF041D957822008759BE /* VSSCreationRequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E9BF031D957822008759BE /* VSSCreationRequestData.m */; };
+		42E9BF091D9585D8008759BE /* VSSBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E9BF081D9585D8008759BE /* VSSBaseModel.m */; };
 		87F653F08EEC399EAE6F82D4 /* Pods_VirgilSDKSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E5DEA2B938856986FAE4532 /* Pods_VirgilSDKSwiftTests.framework */; };
 		9BD6C3BD7557367F90D7AE30 /* Pods_VirgilSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB96634A5451840A9BE5F41E /* Pods_VirgilSDKTests.framework */; };
 /* End PBXBuildFile section */
@@ -168,8 +167,6 @@
 		36005FAA1C7327B6007E5CBF /* VSSGetPublicKeyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSGetPublicKeyRequest.m; sourceTree = "<group>"; };
 		36005FAB1C7327B6007E5CBF /* VSSKeysBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeysBaseRequest.h; sourceTree = "<group>"; };
 		36005FAC1C7327B6007E5CBF /* VSSKeysBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeysBaseRequest.m; sourceTree = "<group>"; };
-		36005FAD1C7327B6007E5CBF /* VSSSearchAppCardRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSSearchAppCardRequest.h; sourceTree = "<group>"; };
-		36005FAE1C7327B6007E5CBF /* VSSSearchAppCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSearchAppCardRequest.m; sourceTree = "<group>"; };
 		36005FAF1C7327B6007E5CBF /* VSSSearchCardRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSSearchCardRequest.h; sourceTree = "<group>"; };
 		36005FB01C7327B6007E5CBF /* VSSSearchCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSearchCardRequest.m; sourceTree = "<group>"; };
 		36005FB11C7327B6007E5CBF /* VSSSignCardRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSSignCardRequest.h; sourceTree = "<group>"; };
@@ -199,8 +196,6 @@
 		3606B2CD1BBB20050074B4C1 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		361403151BB2E05F002E69CA /* VirgilSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirgilSDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3614032E1BB2E05F002E69CA /* VirgilSDK.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirgilSDK.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		361403421BB2E0FC002E69CA /* VSSBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSBaseModel.h; sourceTree = "<group>"; };
-		361403431BB2E0FC002E69CA /* VSSBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSBaseModel.m; sourceTree = "<group>"; };
 		361403441BB2E0FC002E69CA /* VSSKeysError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeysError.h; sourceTree = "<group>"; };
 		361403451BB2E0FC002E69CA /* VSSKeysError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeysError.m; sourceTree = "<group>"; };
 		361403481BB2E0FC002E69CA /* VSSModelCommons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSModelCommons.h; sourceTree = "<group>"; };
@@ -263,8 +258,6 @@
 		36912FAC1CD21C650058BBF8 /* VSSPBKDF+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VSSPBKDF+Base64.m"; sourceTree = "<group>"; };
 		36915C6F1C652EA100DAA563 /* VSSPublicKeyExtended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSPublicKeyExtended.h; sourceTree = "<group>"; };
 		36915C701C652EA100DAA563 /* VSSPublicKeyExtended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSPublicKeyExtended.m; sourceTree = "<group>"; };
-		36C00B731CD7843700738DC1 /* VSSSearchEmailCardRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSSearchEmailCardRequest.h; sourceTree = "<group>"; };
-		36C00B741CD7843700738DC1 /* VSSSearchEmailCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSearchEmailCardRequest.m; sourceTree = "<group>"; };
 		36C1D1481C6A947E009ED570 /* VSSBaseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSBaseClient.h; sourceTree = "<group>"; };
 		36C1D1491C6A947E009ED570 /* VSSBaseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSBaseClient.m; sourceTree = "<group>"; };
 		36C1D14A1C6A947E009ED570 /* VSSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSClient.h; sourceTree = "<group>"; };
@@ -288,14 +281,27 @@
 		36FF4B851C4D7F2600E901F3 /* VSSError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSError.m; sourceTree = "<group>"; };
 		36FF4B871C4D7F2F00E901F3 /* VSSModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSModel.h; sourceTree = "<group>"; };
 		36FF4B881C4D7F2F00E901F3 /* VSSModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSModel.m; sourceTree = "<group>"; };
-		36FF4B891C4D7F2F00E901F3 /* VSSSerializable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSSerializable.h; sourceTree = "<group>"; };
+		36FF4B891C4D7F2F00E901F3 /* VSSDeserializable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSDeserializable.h; sourceTree = "<group>"; };
 		36FF4B8D1C4D7FED00E901F3 /* NSObject+VSSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+VSSUtils.h"; sourceTree = "<group>"; };
 		36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+VSSUtils.m"; sourceTree = "<group>"; };
 		36FF4B8F1C4D7FED00E901F3 /* NSString+VSSXMLEscape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+VSSXMLEscape.h"; sourceTree = "<group>"; };
 		36FF4B901C4D7FED00E901F3 /* NSString+VSSXMLEscape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+VSSXMLEscape.m"; sourceTree = "<group>"; };
 		3C3D179C07D0FDDC8E447912 /* Pods-VirgilSDKAppSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirgilSDKAppSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VirgilSDKAppSwift/Pods-VirgilSDKAppSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		3E5DEA2B938856986FAE4532 /* Pods_VirgilSDKSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirgilSDKSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4282A5521D93D8C400E20C88 /* VSSClientProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSClientProtocol.h; sourceTree = "<group>"; };
 		429F11915E988260A69139D0 /* Pods-VirgilSDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirgilSDKTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VirgilSDKTests/Pods-VirgilSDKTests.debug.xcconfig"; sourceTree = "<group>"; };
+		42E9BEF91D9549FE008759BE /* VSSSearchCardsCriteria.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSSearchCardsCriteria.h; sourceTree = "<group>"; };
+		42E9BEFA1D9549FE008759BE /* VSSSearchCardsCriteria.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSearchCardsCriteria.m; sourceTree = "<group>"; };
+		42E9BEFC1D954A35008759BE /* VSSCreationRequestData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCreationRequestData.h; sourceTree = "<group>"; };
+		42E9BEFD1D954AFD008759BE /* VSSSigningRequestData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSSigningRequestData.h; sourceTree = "<group>"; };
+		42E9BEFE1D956D95008759BE /* VSSSigningRequestData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSigningRequestData.m; sourceTree = "<group>"; };
+		42E9BF001D95751C008759BE /* VSSRequestData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSRequestData.h; sourceTree = "<group>"; };
+		42E9BF011D957592008759BE /* VSSRequestData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRequestData.m; sourceTree = "<group>"; };
+		42E9BF031D957822008759BE /* VSSCreationRequestData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCreationRequestData.m; sourceTree = "<group>"; };
+		42E9BF051D95813F008759BE /* VSSCannonicalRepresentable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCannonicalRepresentable.h; sourceTree = "<group>"; };
+		42E9BF061D958520008759BE /* VSSSerializable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSSerializable.h; sourceTree = "<group>"; };
+		42E9BF071D9585BC008759BE /* VSSBaseModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSBaseModel.h; sourceTree = "<group>"; };
+		42E9BF081D9585D8008759BE /* VSSBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSBaseModel.m; sourceTree = "<group>"; };
 		95B105A59C81F05067FFE1AA /* Pods_VirgilSDKApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirgilSDKApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		961C6E69C3054235AB33B730 /* Pods-VirgilSDKApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirgilSDKApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VirgilSDKApp/Pods-VirgilSDKApp.debug.xcconfig"; sourceTree = "<group>"; };
 		A3D4682A65C10B06A464626B /* Pods_VirgilSDKAppSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirgilSDKAppSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -388,10 +394,6 @@
 				36005FB41C7327B6007E5CBF /* VSSUnsignCardRequest.m */,
 				36005FAF1C7327B6007E5CBF /* VSSSearchCardRequest.h */,
 				36005FB01C7327B6007E5CBF /* VSSSearchCardRequest.m */,
-				36005FAD1C7327B6007E5CBF /* VSSSearchAppCardRequest.h */,
-				36005FAE1C7327B6007E5CBF /* VSSSearchAppCardRequest.m */,
-				36C00B731CD7843700738DC1 /* VSSSearchEmailCardRequest.h */,
-				36C00B741CD7843700738DC1 /* VSSSearchEmailCardRequest.m */,
 				36005FA31C7327B6007E5CBF /* VSSDeleteCardRequest.h */,
 				36005FA41C7327B6007E5CBF /* VSSDeleteCardRequest.m */,
 			);
@@ -453,13 +455,15 @@
 		3614033F1BB2E0FC002E69CA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				42E9BEF81D9549D9008759BE /* RequestDataModels */,
 				361403481BB2E0FC002E69CA /* VSSModelCommons.h */,
 				361403491BB2E0FC002E69CA /* VSSModelCommons.m */,
-				36FF4B891C4D7F2F00E901F3 /* VSSSerializable.h */,
+				42E9BF051D95813F008759BE /* VSSCannonicalRepresentable.h */,
+				36FF4B891C4D7F2F00E901F3 /* VSSDeserializable.h */,
+				42E9BF071D9585BC008759BE /* VSSBaseModel.h */,
+				42E9BF081D9585D8008759BE /* VSSBaseModel.m */,
 				36FF4B871C4D7F2F00E901F3 /* VSSModel.h */,
 				36FF4B881C4D7F2F00E901F3 /* VSSModel.m */,
-				361403421BB2E0FC002E69CA /* VSSBaseModel.h */,
-				361403431BB2E0FC002E69CA /* VSSBaseModel.m */,
 				369033501C502C6200EEA634 /* VSSIdentity.h */,
 				369033511C502C6200EEA634 /* VSSIdentity.m */,
 				368B6BA11C52BCEC00A1C11F /* VSSCard.h */,
@@ -482,6 +486,7 @@
 				36005FCD1C73C010007E5CBF /* VSSPrivateKeysError.m */,
 				36590EF81CD269FC00BE9338 /* VSSIdentityInfo.h */,
 				36590EF91CD269FC00BE9338 /* VSSIdentityInfo.m */,
+				42E9BF061D958520008759BE /* VSSSerializable.h */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -490,7 +495,6 @@
 			isa = PBXGroup;
 			children = (
 				36C1D1471C6A947E009ED570 /* Client */,
-				36C1D1501C6A947E009ED570 /* RequestContext */,
 				36C1D1531C6A947E009ED570 /* Requests */,
 			);
 			path = Networking;
@@ -601,8 +605,10 @@
 				36C1D1491C6A947E009ED570 /* VSSBaseClient.m */,
 				36C1D14A1C6A947E009ED570 /* VSSClient.h */,
 				36C1D14B1C6A947E009ED570 /* VSSClient.m */,
+				4282A5521D93D8C400E20C88 /* VSSClientProtocol.h */,
 				36C1D14E1C6A947E009ED570 /* VSSServiceConfig.h */,
 				36C1D14F1C6A947E009ED570 /* VSSServiceConfig.m */,
+				36C1D1501C6A947E009ED570 /* RequestContext */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -615,7 +621,8 @@
 				36C1D17E1C6A94AA009ED570 /* VSSRequestContextExtended.h */,
 				36C1D17F1C6A94AA009ED570 /* VSSRequestContextExtended.m */,
 			);
-			path = RequestContext;
+			name = RequestContext;
+			path = ../RequestContext;
 			sourceTree = "<group>";
 		};
 		36C1D1531C6A947E009ED570 /* Requests */ = {
@@ -652,6 +659,21 @@
 				36590EF51CD252E400BE9338 /* VSSValidationTokenGenerator.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		42E9BEF81D9549D9008759BE /* RequestDataModels */ = {
+			isa = PBXGroup;
+			children = (
+				42E9BF001D95751C008759BE /* VSSRequestData.h */,
+				42E9BF011D957592008759BE /* VSSRequestData.m */,
+				42E9BEF91D9549FE008759BE /* VSSSearchCardsCriteria.h */,
+				42E9BEFA1D9549FE008759BE /* VSSSearchCardsCriteria.m */,
+				42E9BEFD1D954AFD008759BE /* VSSSigningRequestData.h */,
+				42E9BEFE1D956D95008759BE /* VSSSigningRequestData.m */,
+				42E9BEFC1D954A35008759BE /* VSSCreationRequestData.h */,
+				42E9BF031D957822008759BE /* VSSCreationRequestData.m */,
+			);
+			path = RequestDataModels;
 			sourceTree = "<group>";
 		};
 		ECBE87D3B790F5C27AAB2582 /* Frameworks */ = {
@@ -1036,17 +1058,14 @@
 				362CFE3D1C74C0C2002A3E93 /* ViewController.swift in Sources */,
 				362CFE651C74C99D002A3E93 /* Mailinator.m in Sources */,
 				362CFE671C74C9A4002A3E93 /* MEmail.m in Sources */,
-				362CFE5B1C74C973002A3E93 /* VSSSearchAppCardRequest.m in Sources */,
 				3606B2AA1BBB1FBF0074B4C1 /* VSSPublicKey.m in Sources */,
 				362CFE401C74C8F0002A3E93 /* VSSCard.m in Sources */,
-				3606B2A61BBB1FBF0074B4C1 /* VSSBaseModel.m in Sources */,
 				3606B2A71BBB1FBF0074B4C1 /* VSSKeysError.m in Sources */,
 				362CFE431C74C8FA002A3E93 /* VSSSign.m in Sources */,
 				362CFE4A1C74C916002A3E93 /* VSSRequestContext.m in Sources */,
 				362CFE611C74C988002A3E93 /* VSSKeychainValue.m in Sources */,
 				362CFE511C74C930002A3E93 /* VSSVerifyIdentityRequest.m in Sources */,
 				362CFE481C74C90E002A3E93 /* VSSClient.m in Sources */,
-				36C00B761CD80F4D00738DC1 /* VSSSearchEmailCardRequest.m in Sources */,
 				362CFE501C74C92E002A3E93 /* VSSIdentityBaseRequest.m in Sources */,
 				362CFE571C74C967002A3E93 /* VSSGetCardRequest.m in Sources */,
 				362CFE4B1C74C91A002A3E93 /* VSSRequestContextExtended.m in Sources */,
@@ -1107,16 +1126,15 @@
 				36005FBB1C7327B6007E5CBF /* VSSKeysBaseRequest.m in Sources */,
 				36C1D1831C6A9A41009ED570 /* VSSRequestExtended.m in Sources */,
 				36C1D1801C6A94AA009ED570 /* VSSRequestContextExtended.m in Sources */,
-				3614036D1BB2E0FC002E69CA /* VSSBaseModel.m in Sources */,
 				36FF4B931C4D7FED00E901F3 /* NSObject+VSSUtils.m in Sources */,
-				36C00B751CD7843700738DC1 /* VSSSearchEmailCardRequest.m in Sources */,
 				3644046C1C6D2FCC000EB66D /* VSSJSONRequestExtended.m in Sources */,
 				36C1D1711C6A947E009ED570 /* VSSRequestContext.m in Sources */,
 				36005FDA1C73C70F007E5CBF /* VSSDeletePrivateKeyRequest.m in Sources */,
+				42E9BEFB1D9549FE008759BE /* VSSSearchCardsCriteria.m in Sources */,
 				36F598741C628D95007137B2 /* VSSSign.m in Sources */,
 				36005FD41C73C6D7007E5CBF /* VSSGrabPrivateKeyRequest.m in Sources */,
-				36005FBC1C7327B6007E5CBF /* VSSSearchAppCardRequest.m in Sources */,
 				36005FB81C7327B6007E5CBF /* VSSDeletePublicKeyRequest.m in Sources */,
+				42E9BF091D9585D8008759BE /* VSSBaseModel.m in Sources */,
 				36C1D1791C6A947E009ED570 /* VSSRequest.m in Sources */,
 				36005FD71C73C6FB007E5CBF /* VSSStorePrivateKeyRequest.m in Sources */,
 				369033521C502C6200EEA634 /* VSSIdentity.m in Sources */,
@@ -1127,6 +1145,7 @@
 				362CFE1F1C74C02E002A3E93 /* AppDelegate.m in Sources */,
 				36005FC81C73864F007E5CBF /* VSSVerifyIdentityRequest.m in Sources */,
 				36472ECD1C5C02D200DE096F /* VSSPrivateKey.m in Sources */,
+				42E9BF021D957592008759BE /* VSSRequestData.m in Sources */,
 				36590EFA1CD269FC00BE9338 /* VSSIdentityInfo.m in Sources */,
 				36005FBF1C7327B6007E5CBF /* VSSUnsignCardRequest.m in Sources */,
 				36005FC51C732853007E5CBF /* VSSIdentityError.m in Sources */,
@@ -1140,6 +1159,7 @@
 				36FF4B8B1C4D7F2F00E901F3 /* VSSModel.m in Sources */,
 				362CFE2D1C74C02E002A3E93 /* main.m in Sources */,
 				36FF4B941C4D7FED00E901F3 /* NSString+VSSXMLEscape.m in Sources */,
+				42E9BEFF1D956D95008759BE /* VSSSigningRequestData.m in Sources */,
 				3614036E1BB2E0FC002E69CA /* VSSKeysError.m in Sources */,
 				362CFE241C74C02E002A3E93 /* Mailinator.m in Sources */,
 				36005FBA1C7327B6007E5CBF /* VSSGetPublicKeyRequest.m in Sources */,
@@ -1156,6 +1176,7 @@
 				36FF4B861C4D7F2600E901F3 /* VSSError.m in Sources */,
 				36005FBD1C7327B6007E5CBF /* VSSSearchCardRequest.m in Sources */,
 				362CFE281C74C02E002A3E93 /* MEmailResponse.m in Sources */,
+				42E9BF041D957822008759BE /* VSSCreationRequestData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

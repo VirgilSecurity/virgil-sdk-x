@@ -6,7 +6,9 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSBaseModel.h"
+#import "VSSModel.h"
+#import "VSSCannonicalRepresentable.h"
+#import "VSSSerializable.h"
 
 @class VSSIdentity;
 @class VSSPublicKey;
@@ -37,12 +39,9 @@
  * @see VSSIdentity
  *
  */
-@interface VSSCard : VSSBaseModel
+#warning review documentation
+@interface VSSCard : VSSModel <VSSDeserializable, VSSCannonicalRepresentable>
 
-/**
- * The hash string calculated by the service. 
- */
-@property (nonatomic, copy, readonly) NSString * __nonnull Hash;
 /**
  * The identity object associated with the Virgil card.
  */
@@ -59,9 +58,9 @@
 @property (nonatomic, copy, readonly) NSDictionary * __nullable data;
 
 /**
- * String identifier showing who is responsible for this card's authorization. Might be nil if card is not authorized.
+ * The dictionary with info about device which created the Virgil card.
  */
-@property (nonatomic, copy, readonly) NSString * __nullable authorizedBy;
+@property (nonatomic, copy, readonly) NSDictionary * __nonnull info;
 
 ///------------------------------------------
 /// @name Lifecycle
@@ -70,16 +69,13 @@
 /**
  * Designated constructor.
  *
- * @param Id Unique identifier of the model.
- * @param createdAt Date when model was created.
  * @param identity Identity associated with the card.
  * @param publicKey Public key wrapper representing the public key of the card's owner.
- * @param theHash hash string. In general is calculated and returned by the Virgil Keys Service.
  * @param data dictionary with any custom key-value data.
- * @param authorizedBy String identifier showing who is responsible for this card's authorization. Might be nil if card is not authorized.
+ * @param info dictionary with data that describes device which created the card.
  *
  * @return Instance of the Virgil Card.
  */
-- (instancetype __nonnull)initWithId:(GUID * __nonnull)Id createdAt:(NSDate * __nullable)createdAt identity:(VSSIdentity * __nonnull)identity publicKey:(VSSPublicKey * __nonnull)publicKey hash:(NSString * __nonnull)theHash data:(NSDictionary * __nullable)data authorizedBy:(NSString * __nullable)authorizedBy NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithIdentity:(VSSIdentity * __nonnull)identity publicKey:(VSSPublicKey * __nonnull)publicKey data:(NSDictionary * __nullable)data info:(NSDictionary<NSString *, NSString *> * __nonnull)info NS_DESIGNATED_INITIALIZER;
 
 @end

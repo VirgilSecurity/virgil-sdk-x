@@ -13,7 +13,6 @@
 #import "VSSSerializable.h"
 
 #import "VSSModel.h"
-#import "VSSBaseModel.h"
 #import "VSSIdentity.h"
 #import "VSSIdentityInfo.h"
 #import "VSSCard.h"

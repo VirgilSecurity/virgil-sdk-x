@@ -56,4 +56,8 @@ NSString *const kVSSStringValueFalse = @"false";
 NSString *const kVSSErrorDomain = @"VirgilSecurityServicesErrorDomain";
 NSString *const kVSSUnknownError = @"Virgil Security service unknown error.";
 
+NSString *const kVSSModelCardScope = @"card_scope_id";
+
+NSString *const kVSSModelIdentityType = @"identity_type";
+
 NSInteger const kVSSNoErrorValue = 0;

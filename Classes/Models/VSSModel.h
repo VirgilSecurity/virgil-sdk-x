@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VSSSerializable.h"
+#import "VSSDeserializable.h"
+#import "VSSBaseModel.h"
 
 /**
  * Base class for all Virgil models. 
  */
-@interface VSSModel : NSObject <NSCopying, NSCoding, VSSSerializable>
+@interface VSSModel : VSSBaseModel <NSCopying, NSCoding, VSSDeserializable>
 
 @end

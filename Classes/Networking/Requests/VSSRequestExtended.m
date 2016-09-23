@@ -117,32 +117,33 @@
     return nil;
 }
 
+#warning fixme
 - (NSError *)encrypt {
-    if (self.extendedContext.serviceCard.Id.length == 0 || self.extendedContext.serviceCard.publicKey.key.length == 0 || self.request.HTTPBody.length == 0) {
-        VSSRDLog(@"Impossible to encrypt the request body for the request: request body or/and public key is/are not given.");
-        return [NSError errorWithDomain:kVSSRequestErrorDomain code:-104 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to compose encrypted body for the request: request uuid or/and request body or/and private key is/are not given.", @"Encryption for the request is not possible.") }];
-    }
-    /// Encrypt the request body
-    NSError *error = nil;
-    VSSCryptor *cryptor = [[VSSCryptor alloc] init];
-    if (![cryptor addKeyRecipient:self.extendedContext.serviceCard.Id publicKey:self.extendedContext.serviceCard.publicKey.key error:&error]) {
-        VSSRDLog(@"Error adding key recipient: %@", [error localizedDescription]);
-        return error;
-    }
-    NSData *encryptedBody = [cryptor encryptData:self.request.HTTPBody embedContentInfo:YES error:&error];
-    if (error != nil) {
-        VSSRDLog(@"Encryption of the request body has failed: %@", [error localizedDescription]);
-        return error;
-    }
-    
-    /// Set request body to a proper encrypted and base64 encoded body.
-    NSData *newBodyData = [encryptedBody base64EncodedDataWithOptions:0];
-    if (newBodyData.length == 0) {
-        VSSRDLog(@"Unable to convert encrypted request body into base64 encoded data.");
-        return [NSError errorWithDomain:kVSSRequestErrorDomain code:-107 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to convert encrypted request body into base64 encoded data.", @"Request body can not be properly formed.") }];
-    }
-    
-    [self setRequestBody:newBodyData];
+//    if (self.extendedContext.serviceCard.publicKey.key.length == 0 || self.request.HTTPBody.length == 0) {
+//        VSSRDLog(@"Impossible to encrypt the request body for the request: request body or/and public key is/are not given.");
+//        return [NSError errorWithDomain:kVSSRequestErrorDomain code:-104 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Impossible to compose encrypted body for the request: request uuid or/and request body or/and private key is/are not given.", @"Encryption for the request is not possible.") }];
+//    }
+//    /// Encrypt the request body
+//    NSError *error = nil;
+//    VSSCryptor *cryptor = [[VSSCryptor alloc] init];
+//    if (![cryptor addKeyRecipient:self.extendedContext.serviceCard.Id publicKey:self.extendedContext.serviceCard.publicKey.key error:&error]) {
+//        VSSRDLog(@"Error adding key recipient: %@", [error localizedDescription]);
+//        return error;
+//    }
+//    NSData *encryptedBody = [cryptor encryptData:self.request.HTTPBody embedContentInfo:YES error:&error];
+//    if (error != nil) {
+//        VSSRDLog(@"Encryption of the request body has failed: %@", [error localizedDescription]);
+//        return error;
+//    }
+//    
+//    /// Set request body to a proper encrypted and base64 encoded body.
+//    NSData *newBodyData = [encryptedBody base64EncodedDataWithOptions:0];
+//    if (newBodyData.length == 0) {
+//        VSSRDLog(@"Unable to convert encrypted request body into base64 encoded data.");
+//        return [NSError errorWithDomain:kVSSRequestErrorDomain code:-107 userInfo:@{ NSLocalizedDescriptionKey: NSLocalizedString(@"Unable to convert encrypted request body into base64 encoded data.", @"Request body can not be properly formed.") }];
+//    }
+//    
+//    [self setRequestBody:newBodyData];
     return nil;
 }
 

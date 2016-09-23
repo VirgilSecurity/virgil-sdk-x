@@ -58,4 +58,12 @@ extern NSString * __nonnull const kVSSStringValueFalse;
 extern NSString * __nonnull const kVSSErrorDomain;
 extern NSString * __nonnull const kVSSUnknownError;
 
+extern NSString * __nonnull const kVSSModelCardScope;
+extern NSString * __nonnull const kVSSModelIdentityType;
+
 extern NSInteger const kVSSNoErrorValue;
+
+typedef NS_ENUM(NSInteger, VSSCardScope) {
+    VSSCardScopeApplication,
+    VSSCardScopeGlobal
+};

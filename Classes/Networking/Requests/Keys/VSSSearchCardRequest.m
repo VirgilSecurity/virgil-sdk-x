@@ -11,6 +11,7 @@
 #import "VSSCard.h"
 #import "VSSPublicKey.h"
 #import "NSObject+VSSUtils.h"
+#import "VSSSearchCardsCriteria.h"
 
 @interface VSSSearchCardRequest ()
 
@@ -24,28 +25,27 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithContext:(VSSRequestContext *)context value:(NSString *)value type:(NSString *)type unauthorized:(BOOL)unauthorized {
+- (instancetype)initWithContext:(VSSRequestContext *)context searchCriteria:(VSSSearchCardsCriteria * _Nonnull)criteria {
     self = [super initWithContext:context];
     if (self == nil) {
         return nil;
     }
-    
+
     NSMutableDictionary *body = [[NSMutableDictionary alloc] init];
-    if (value.length > 0) {
-        body[kVSSModelValue] = value;
+    body[@"identities"] = criteria.identities;
+    body[@"identity_type"] = criteria.identityType;
+    
+    switch (criteria.scope) {
+        case VSSCardScopeGlobal:
+            body[@"scope"] = @"global";
+            break;
+            
+        case VSSCardScopeApplication:
+            break;
     }
-    if (type.length > 0) {
-        body[kVSSModelType] = type;
-    }
-    NSString *str = (unauthorized) ? kVSSStringValueTrue : kVSSStringValueFalse;
-    body[kVSSModelIncludeUnconfirmed] = str;
 
     [self setRequestBodyWithObject:body];
     return self;
-}
-
-- (instancetype)initWithContext:(VSSRequestContext *)context {
-    return [self initWithContext:context value:@"" type:nil unauthorized:NO];
 }
 
 #pragma mark - Overrides

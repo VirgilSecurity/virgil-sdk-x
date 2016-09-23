@@ -29,8 +29,8 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithId:(GUID *)Id createdAt:(NSDate *)createdAt signedCardId:(GUID *)signedId digest:(NSData *)digest signerCardId:(GUID *)signerId data:(NSDictionary *)data {
-    self = [super initWithId:Id createdAt:createdAt];
+- (instancetype)initWithSignedCardId:(GUID *)signedId digest:(NSData *)digest signerCardId:(GUID *)signerId data:(NSDictionary *)data {
+    self = [super init];
     if (self == nil) {
         return nil;
     }
@@ -44,26 +44,24 @@
 }
 
 - (instancetype)initWithId:(GUID *)Id createdAt:(NSDate *)createdAt {
-    return [self initWithId:Id createdAt:createdAt signedCardId:@"" digest:[[NSData alloc] init] signerCardId:nil data:nil];
+    return [self initWithSignedCardId:@"" digest:[[NSData alloc] init] signerCardId:nil data:nil];
 }
 
 #pragma mark - NSCopying protocol implementation
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    return [(VSSSign *) [[self class] alloc] initWithId:self.Id createdAt:self.createdAt signedCardId:self.signedCardId digest:self.digest signerCardId:self.signerCardId data:self.data];
+    return [(VSSSign *) [[self class] alloc] initWithSignedCardId:self.signedCardId digest:self.digest signerCardId:self.signerCardId data:self.data];
 }
 
 #pragma mark - NSCoding protocol implementation
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    GUID *gid = [[aDecoder decodeObjectForKey:kVSSModelId] as:[GUID class]];
-    NSDate *cat = [[aDecoder decodeObjectForKey:kVSSModelCreatedAt] as:[NSDate class]];
     GUID *signedId = [[aDecoder decodeObjectForKey:kVSSModelSignedVirgilCardId] as:[GUID class]];
     NSData *digest = [[aDecoder decodeObjectForKey:kVSSModelSignedDigest] as:[NSData class]];
     GUID *signerId = [[aDecoder decodeObjectForKey:kVSSModelSignerVirgilCardId] as:[GUID class]];
     NSDictionary *data = [[aDecoder decodeObjectForKey:kVSSModelData] as:[NSDictionary class]];
     
-    return [self initWithId:gid createdAt:cat signedCardId:signedId digest:digest signerCardId:signerId data:data];
+    return [self initWithSignedCardId:signedId digest:digest signerCardId:signerId data:data];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {

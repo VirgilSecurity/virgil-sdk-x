@@ -25,51 +25,17 @@
 
 @implementation VSSCard
 
-@synthesize Hash = _Hash;
-@synthesize identity = _identity;
-@synthesize publicKey = _publicKey;
-
-@synthesize data = _data;
-@synthesize authorizedBy = _authorizedBy;
-
 #pragma mark - Lifecycle
 
-- (instancetype)initWithId:(GUID *)Id createdAt:(NSDate *)createdAt identity:(VSSIdentity *)identity publicKey:(VSSPublicKey *)publicKey hash:(NSString *)theHash data:(NSDictionary *)data authorizedBy:(NSString *)authorizedBy {
-    self = [super initWithId:Id createdAt:createdAt];
-    if (self == nil) {
-        return nil;
+- (instancetype)initWithIdentity:(VSSIdentity *)identity publicKey:(VSSPublicKey *)publicKey data:(NSDictionary *)data info:(NSDictionary<NSString *,NSString *> *)info {
+    self = [super init];
+    if (self) {
+        _identity = [identity copy];
+        _publicKey = [publicKey copy];
+        _data = [data copy];
+        _info = [info copy];
     }
-    
-    _identity = [identity copy];
-    _publicKey = [publicKey copy];
-    _Hash = [theHash copy];
-    _data = [data copy];
-    _authorizedBy = [authorizedBy copy];
-    
     return self;
-}
-
-- (instancetype)initWithId:(GUID *)Id createdAt:(NSDate *)createdAt {
-    return [self initWithId:Id createdAt:createdAt identity:[[VSSIdentity alloc] initWithId:@"" createdAt:nil] publicKey:[[VSSPublicKey alloc] initWithId:@"" createdAt:nil] hash:@"" data:nil authorizedBy:nil];
-}
-
-#pragma mark - NSCopying
-
-- (instancetype)copyWithZone:(NSZone *)zone {
-    return [(VSSCard *)[[self class] alloc] initWithId:self.Id createdAt:self.createdAt identity:self.identity publicKey:self.publicKey hash:self.Hash data:self.data authorizedBy:self.authorizedBy];
-}
-
-#pragma mark - NSCoding
-
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    GUID *gid = [[aDecoder decodeObjectForKey:kVSSModelId] as:[GUID class]];
-    NSDate *cat = [[aDecoder decodeObjectForKey:kVSSModelCreatedAt] as:[NSDate class]];
-    VSSIdentity *ident = [[aDecoder decodeObjectForKey:kVSSModelIdentity] as:[VSSIdentity class]];
-    VSSPublicKey *key = [[aDecoder decodeObjectForKey:kVSSModelPublicKey] as:[VSSPublicKey class]];
-    NSString *hsh = [[aDecoder decodeObjectForKey:kVSSModelHash] as:[NSString class]];
-    NSDictionary *dat = [[aDecoder decodeObjectForKey:kVSSModelData] as:[NSDictionary class]];
-    NSString *auth = [[aDecoder decodeObjectForKey:kVSSModelAuthorizedBy] as:[NSString class]];
-    return [self initWithId:gid createdAt:cat identity:ident publicKey:key hash:hsh data:dat authorizedBy:auth];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
@@ -105,7 +71,7 @@
         /// This might happen during GET /virgil-card unsigned request.
         /// In this case "public_key": <base64 encoded string with public key data>.
         NSData *key = [[NSData alloc] initWithBase64EncodedString:[keyObject as:[NSString class]] options:0];
-        card.publicKey = [[VSSPublicKey alloc] initWithId:@"" createdAt:nil key:key];
+        card.publicKey = [[VSSPublicKey alloc] initWithKey:key];
     }
     else if ([keyObject isKindOfClass:[NSDictionary class]]) {
         /// This is most common case for GET /virgil-card signed request.
@@ -123,6 +89,9 @@
     
     return card;
 }
+
+#pragma mark - VSSCannonicalRepresentable
+
 
 
 @end

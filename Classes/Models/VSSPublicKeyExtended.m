@@ -21,8 +21,8 @@
 
 @synthesize cards = _cards;
 
-- (instancetype)initWithId:(GUID *)Id createdAt:(NSDate *)createdAt key:(NSData *)key cards:(NSArray <VSSCard *>*) cards {
-    self = [super initWithId:Id createdAt:createdAt key:key];
+- (instancetype)initWithKey:(NSData *)key cards:(NSArray <VSSCard *>*) cards {
+    self = [super initWithKey:key];
     if (self == nil) {
         return nil;
     }
@@ -32,13 +32,13 @@
 }
 
 - (instancetype)initWithId:(GUID *)Id createdAt:(NSDate *)createdAt key:(NSData *)key {
-    return [self initWithId:Id createdAt:createdAt key:key cards:@[]];
+    return [self initWithKey:key cards:@[]];
 }
 
 #pragma mark - NSCopying protocol implementation
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    return [(VSSPublicKeyExtended *) [[self class] alloc] initWithId:self.Id createdAt:self.createdAt key:self.key cards:self.cards];
+    return [(VSSPublicKeyExtended *) [[self class] alloc] initWithKey:self.key cards:self.cards];
 }
 
 #pragma mark - NSCoding protocol implementation
@@ -49,7 +49,7 @@
     NSData *key = [[aDecoder decodeObjectForKey:kVSSModelPublicKey] as:[NSData class]];
     NSArray *cards = [[aDecoder decodeObjectForKey:kVSSModelCards] as:[NSArray class]];
     
-    return [self initWithId:gid createdAt:cat key:key cards:cards];
+    return [self initWithKey:key cards:cards];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
