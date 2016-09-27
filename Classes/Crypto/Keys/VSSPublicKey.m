@@ -15,20 +15,20 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithKey:(NSData *)key {
+- (instancetype)initWithKey:(NSData *)key identifier:(NSData * _Nonnull)identifier {
     self = [super init];
-    if (self == nil) {
-        return nil;
+    if (self) {
+        _key = [key copy];
+        _identifier = [identifier copy];
     }
     
-    _key = [key copy];
     return self;
 }
 
 #pragma mark - NSCopying protocol implementation
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    return [(VSSPublicKey *) [[self class] alloc] initWithKey:self.key];
+    return [(VSSPublicKey *) [[self class] alloc] initWithKey:self.key identifier:self.identifier];
 }
 
 #pragma mark - NSCoding protocol implementation
@@ -36,7 +36,7 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     NSData *key = [[aDecoder decodeObjectForKey:kVSSModelPublicKey] as:[NSData class]];
     
-    return [self initWithKey:key];
+    return [self initWithKey:key identifier:self.identifier];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
@@ -45,18 +45,6 @@
     if (self.key != nil) {
         [aCoder encodeObject:self.key forKey:kVSSModelPublicKey];
     }
-}
-
-#pragma mark - VSSStringRepresentable
-
-+ (instancetype)initWithStringValue:(NSString *)string {
-    VSSPublicKey * publicKey = [[VSSPublicKey alloc] initWithKey:[[NSData alloc] initWithBase64EncodedString:string options:0]];
-    
-    return publicKey;
-}
-
-- (NSString * __nonnull)getStringValue {
-    return [self.key base64EncodedStringWithOptions:0];
 }
 
 @end

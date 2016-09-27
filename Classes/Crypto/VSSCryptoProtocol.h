@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "VSSPrivateKey.h"
 #import "VSSPublicKey.h"
+#import "VSSHashAlgorithm.h"
 
 @protocol VSSCrypto <NSObject>
 
@@ -39,6 +40,6 @@
 
 - (NSString * __nonnull)calculateFingerprintOfData:(NSData * __nonnull)data;
 
-- (NSData * __nonnull)computeHashOfData:(NSData * __nonnull)data withAlgorithm:(NSString * __nonnull)algorithm;
+- (NSData * __nonnull)computeHashOfData:(NSData * __nonnull)data withAlgorithm:(VSSHashAlgorithm)algorithm;
 
 @end

@@ -15,8 +15,6 @@
  */
 @interface VSSPrivateKey : VSSModel
 
-- (VSSPublicKey * __nonnull)getPublicKey;
-
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end

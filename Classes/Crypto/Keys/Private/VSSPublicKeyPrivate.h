@@ -7,12 +7,12 @@
 //
 
 #import "VSSPublicKey.h"
-#import "VSSStringRepresentable.h"
 
-@interface VSSPublicKey () <VSSStringRepresentable, NSCoding, NSCopying>
+@interface VSSPublicKey () <NSCoding, NSCopying>
 
 @property (nonatomic, copy, readonly) NSData * __nonnull key;
+@property (nonatomic, copy, readonly) NSData * __nonnull identifier;
 
-- (instancetype __nonnull)initWithKey:(NSData * __nonnull)key NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithKey:(NSData * __nonnull)key identifier:(NSData * __nonnull)identifier NS_DESIGNATED_INITIALIZER;
 
 @end
