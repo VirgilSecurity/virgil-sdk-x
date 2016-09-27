@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "VSSCardMetaData.h"
-#import "VSSModelCommons.h"
+#import "VSSModelKeys.h"
 #import "NSObject+VSSUtils.h"
 
 @implementation VSSCardMetaData

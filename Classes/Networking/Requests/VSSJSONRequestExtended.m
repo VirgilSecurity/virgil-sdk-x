@@ -12,6 +12,7 @@
 #import "VSSPublicKey.h"
 #import "VSSPrivateKey.h"
 #import "NSObject+VSSUtils.h"
+#import "VSSModelKeys.h"
 
 @implementation VSSJSONRequestExtended
 

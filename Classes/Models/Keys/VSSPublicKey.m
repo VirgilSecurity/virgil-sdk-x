@@ -8,8 +8,8 @@
 
 #import "VSSPublicKey.h"
 #import "VSSPublicKeyPrivate.h"
-#import "VSSModelCommons.h"
 #import "NSObject+VSSUtils.h"
+#import "VSSModelKeys.h"
 
 @implementation VSSPublicKey
 

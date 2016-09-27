@@ -8,6 +8,7 @@
 
 #import "VSSIdentity.h"
 #import "NSObject+VSSUtils.h"
+#import "VSSModelKeys.h"
 
 @implementation VSSIdentity
 

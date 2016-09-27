@@ -8,7 +8,7 @@
 
 #import "VSSPrivateKey.h"
 #import "VSSPrivateKeyPrivate.h"
-#import "VSSModelCommons.h"
+#import "VSSModelKeys.h"
 #import "NSObject+VSSUtils.h"
 
 @implementation VSSPrivateKey

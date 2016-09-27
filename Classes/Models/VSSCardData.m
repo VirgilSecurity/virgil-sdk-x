@@ -10,6 +10,8 @@
 #import "NSObject+VSSUtils.h"
 #import "VSSPublicKey.h"
 #import "VSSPublicKeyPrivate.h"
+#import "VSSModelKeys.h"
+#import "VSSModelCommonsPrivate.h"
 
 @implementation VSSCardData
 

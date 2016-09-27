@@ -10,7 +10,7 @@
 #import "VSSCard.h"
 #import "VSSIdentity.h"
 #import "VSSPublicKey.h"
-#import "VSSModelCommons.h"
+#import "VSSModelKeys.h"
 #import "NSObject+VSSUtils.h"
 
 @interface VSSCard ()

@@ -8,6 +8,8 @@
 
 #import "VSSError.h"
 #import "NSObject+VSSUtils.h"
+#import "VSSModelKeys.h"
+#import "VSSModelCommonsPrivate.h"
 
 @interface VSSError ()
 
