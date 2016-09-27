@@ -7,35 +7,12 @@
 //
 
 #import "VSSClient.h"
-
-#import "VSSPublicKey.h"
-#import "VSSPublicKeyExtended.h"
-#import "VSSPrivateKey.h"
-#import "VSSCard.h"
-#import "VSSIdentityInfo.h"
-#import "VSSSign.h"
-
-#import "VSSRequest.h"
-#import "VSSServiceConfig.h"
-#import "VSSRequestContextExtended.h"
 #import "NSObject+VSSUtils.h"
 
-#import "VSSGetPublicKeyRequest.h"
-#import "VSSDeletePublicKeyRequest.h"
 #import "VSSCreateCardRequest.h"
-#import "VSSGetCardRequest.h"
-#import "VSSSignCardRequest.h"
-#import "VSSUnsignCardRequest.h"
 #import "VSSSearchCardRequest.h"
-#import "VSSDeleteCardRequest.h"
 #import "VSSSearchCardsCriteria.h"
-
-#import "VSSVerifyIdentityRequest.h"
-#import "VSSConfirmIdentityRequest.h"
-
-#import "VSSStorePrivateKeyRequest.h"
-#import "VSSGrabPrivateKeyRequest.h"
-#import "VSSDeletePrivateKeyRequest.h"
+#import "VSSServiceConfig.h"
 
 // for private methods
 @interface VSSClient ()
@@ -62,6 +39,30 @@
         if (callback != nil) {
             VSSSearchCardRequest *r = [request as:[VSSSearchCardRequest class]];
             callback(r.cards, nil);
+        }
+        return;
+    };
+    
+    request.completionHandler = handler;
+    
+    [self send:request];
+}
+
+- (void)createCard:(VSSCard * __nonnull)card completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback {
+    VSSRequestContext *context = [[VSSRequestContext alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys]];
+    VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithContext:context card:card];
+    
+    VSSRequestCompletionHandler handler = ^(VSSRequest *request) {
+        if (request.error != nil) {
+            if (callback != nil) {
+                callback(nil, request.error);
+            }
+            return;
+        }
+        
+        if (callback != nil) {
+            VSSCreateCardRequest *r = [request as:[VSSCreateCardRequest class]];
+            callback(r.card, nil);
         }
         return;
     };

@@ -8,7 +8,6 @@
 
 #import "VSSValidationTokenGenerator.h"
 
-#import "VSSIdentityInfo.h"
 #import "VSSPrivateKey.h"
 
 @import VirgilFoundation;

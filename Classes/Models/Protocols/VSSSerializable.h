@@ -10,6 +10,6 @@
 
 @protocol VSSSerializable <NSObject>
 
-- (NSString * __nonnull)serialize;
+- (NSDictionary * __nonnull)serialize;
 
 @end

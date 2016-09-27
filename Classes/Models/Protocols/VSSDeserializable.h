@@ -23,6 +23,6 @@
  * 
  * @return Instance of VSSModel or its particular descendant.
  */
-+ (instancetype __nonnull)deserializeFrom:(NSDictionary * __nonnull)candidate;
++ (instancetype __nullable)deserializeFrom:(NSDictionary * __nonnull)candidate;
 
 @end

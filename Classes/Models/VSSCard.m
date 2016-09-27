@@ -6,6 +6,7 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
+#import "VSSPublicKey.h"
 #import "VSSCard.h"
 #import "VSSIdentity.h"
 #import "VSSPublicKey.h"
@@ -14,84 +15,77 @@
 
 @interface VSSCard ()
 
-@property (nonatomic, copy, readwrite) NSString * __nonnull Hash;
-@property (nonatomic, copy, readwrite) VSSIdentity * __nonnull identity;
-@property (nonatomic, copy, readwrite) VSSPublicKey * __nonnull publicKey;
-
-@property (nonatomic, copy, readwrite) NSDictionary * __nullable data;
-@property (nonatomic, copy, readwrite) NSString * __nullable authorizedBy;
-
 @end
 
 @implementation VSSCard
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithIdentity:(VSSIdentity *)identity publicKey:(VSSPublicKey *)publicKey data:(NSDictionary *)data info:(NSDictionary<NSString *,NSString *> *)info {
+- (instancetype)initWithCardData:(VSSCardData *)cardData metaData:(VSSCardMetaData *)metaData {
     self = [super init];
     if (self) {
-        _identity = [identity copy];
-        _publicKey = [publicKey copy];
-        _data = [data copy];
-        _info = [info copy];
+        _cardData = cardData;
+        _metaData = metaData;
     }
     return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [super encodeWithCoder:aCoder];
-    
-    if (self.identity != nil) {
-        [aCoder encodeObject:self.identity forKey:kVSSModelIdentity];
-    }
-    if (self.publicKey != nil) {
-        [aCoder encodeObject:self.publicKey forKey:kVSSModelPublicKey];
-    }
-    if (self.Hash != nil) {
-        [aCoder encodeObject:self.Hash forKey:kVSSModelHash];
-    }
-    if (self.data != nil) {
-        [aCoder encodeObject:self.data forKey:kVSSModelData];
-    }
-    if (self.authorizedBy != nil) {
-        [aCoder encodeObject:self.authorizedBy forKey:kVSSModelAuthorizedBy];
-    }
-}
-
 #pragma mark - VSSSerializable
 
-+ (instancetype)deserializeFrom:(NSDictionary *)candidate {
-    VSSCard *card = (VSSCard *) [super deserializeFrom:candidate];
+- (NSDictionary * __nonnull)serialize {
+    NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
     
-    NSDictionary *identCandidate = [candidate[kVSSModelIdentity] as:[NSDictionary class]];
-    card.identity = [VSSIdentity deserializeFrom:identCandidate];
+    dict[kVSSModelContentSnapshot] = [self.cardData getCanonicalForm];
+    dict[kVSSModelMeta] = [self.metaData serialize];
     
-    NSObject *keyObject = candidate[kVSSModelPublicKey];
-    if ([keyObject isKindOfClass:[NSString class]]) {
-        /// This might happen during GET /virgil-card unsigned request.
-        /// In this case "public_key": <base64 encoded string with public key data>.
-        NSData *key = [[NSData alloc] initWithBase64EncodedString:[keyObject as:[NSString class]] options:0];
-        card.publicKey = [[VSSPublicKey alloc] initWithKey:key];
-    }
-    else if ([keyObject isKindOfClass:[NSDictionary class]]) {
-        /// This is most common case for GET /virgil-card signed request.
-        card.publicKey = [VSSPublicKey deserializeFrom:[keyObject as:[NSDictionary class]]];
-    }
-    
-    NSString *hsh = [candidate[kVSSModelHash] as:[NSString class]];
-    card.Hash = hsh;
-    
-    NSDictionary *data = [candidate[kVSSModelData] as:[NSDictionary class]];
-    card.data = data;
-    
-    NSString *auth = [candidate[kVSSModelAuthorizedBy] as:[NSString class]];
-    card.authorizedBy = auth;
-    
-    return card;
+    return dict;
 }
 
-#pragma mark - VSSCannonicalRepresentable
+#pragma mark - VSSDeserializable
 
++ (instancetype)deserializeFrom:(NSDictionary *)candidate {
+    NSString *contentSnapshotStr = [candidate[kVSSModelContentSnapshot] as:[NSString class]];
+    if (contentSnapshotStr == nil || [contentSnapshotStr length] == 0)
+        return nil;
+    
+    VSSCardData *cardData = [VSSCardData createFromCanonicalForm:contentSnapshotStr];
+    
+    if (cardData == nil)
+        return nil;
+    
+    NSDictionary *metaDict = [candidate[kVSSModelMeta] as:[NSDictionary class]];
+    if (metaDict == nil || [metaDict count] == 0)
+        return nil;
+    
+    VSSCardMetaData *metaData = [VSSCardMetaData deserializeFrom:metaDict];
+    
+    if (metaData == nil)
+        return nil;
+    
+    return [[VSSCard alloc] initWithCardData:cardData metaData:metaData];
+}
 
+#pragma mark - VSSCanonicalRepresentable
+
++ (instancetype __nullable)createFromCanonicalForm:(NSString * __nonnull)canonicalForm {
+    NSData *jsonData = [canonicalForm dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *parseError;
+    NSObject *candidate = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&parseError];
+    
+    if (parseError != nil)
+        return nil;
+    
+    if ([candidate isKindOfClass:[NSDictionary class]])
+        return [VSSCard deserializeFrom:(NSDictionary *)candidate];
+    
+    return nil;
+}
+
+- (NSString * __nonnull)getCanonicalForm {
+    NSData *JSONData = [NSJSONSerialization dataWithJSONObject:[self serialize] options:0 error:nil];
+    NSString *base64EncodedJSONString = [JSONData base64EncodedStringWithOptions:0];
+    
+    return base64EncodedJSONString;
+}
 
 @end

@@ -12,14 +12,20 @@ typedef NSString GUID;
 
 extern NSString * __nonnull const kVSSModelId;
 extern NSString * __nonnull const kVSSModelCreatedAt;
+extern NSString * __nonnull const kVSSModelCardVersion;
 
 extern NSString * __nonnull const kVSSModelType;
 extern NSString * __nonnull const kVSSModelValue;
 extern NSString * __nonnull const kVSSModelAuthorizedBy;
 
 extern NSString * __nonnull const kVSSModelIdentity;
-extern NSString * __nonnull const kVSSModelHash;
+extern NSString * __nonnull const kVSSModelCardScope;
+extern NSString * __nonnull const kVSSModelIdentityType;
 extern NSString * __nonnull const kVSSModelData;
+extern NSString * __nonnull const kVSSModelInfo;
+
+extern NSString * __nonnull const kVSSModelContentSnapshot;
+extern NSString * __nonnull const kVSSModelMeta;
 
 extern NSString * __nonnull const kVSSModelPublicKey;
 extern NSString * __nonnull const kVSSModelCards;
@@ -58,12 +64,12 @@ extern NSString * __nonnull const kVSSStringValueFalse;
 extern NSString * __nonnull const kVSSErrorDomain;
 extern NSString * __nonnull const kVSSUnknownError;
 
-extern NSString * __nonnull const kVSSModelCardScope;
-extern NSString * __nonnull const kVSSModelIdentityType;
-
 extern NSInteger const kVSSNoErrorValue;
 
 typedef NS_ENUM(NSInteger, VSSCardScope) {
     VSSCardScopeApplication,
     VSSCardScopeGlobal
 };
+
+NSString * __nonnull vss_getCardScopeString(VSSCardScope scope);
+VSSCardScope vss_getCardScopeFromString(NSString * __nonnull scope);

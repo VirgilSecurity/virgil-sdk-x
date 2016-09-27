@@ -7,18 +7,11 @@
 //
 
 #import "VSSPublicKey.h"
+#import "VSSPublicKeyPrivate.h"
 #import "VSSModelCommons.h"
 #import "NSObject+VSSUtils.h"
 
-@interface VSSPublicKey ()
-
-@property (nonatomic, copy, readwrite) NSData * __nonnull key;
-
-@end
-
 @implementation VSSPublicKey
-
-@synthesize key = _key;
 
 #pragma mark - Lifecycle
 
@@ -54,15 +47,16 @@
     }
 }
 
-#pragma mark - VSSSerializable
+#pragma mark - VSSStringRepresentable
 
-+ (instancetype)deserializeFrom:(NSDictionary *)candidate {
-    VSSPublicKey *pkey = [super deserializeFrom:candidate];
-
-    NSString *keyB64String = [candidate[kVSSModelPublicKey] as:[NSString class]];
-    pkey.key = [[NSData alloc] initWithBase64EncodedString:keyB64String options:0];
++ (instancetype)initWithStringValue:(NSString *)string {
+    VSSPublicKey * publicKey = [[VSSPublicKey alloc] initWithKey:[[NSData alloc] initWithBase64EncodedString:string options:0]];
     
-    return pkey;
+    return publicKey;
+}
+
+- (NSString * __nonnull)getStringValue {
+    return [self.key base64EncodedStringWithOptions:0];
 }
 
 @end

@@ -51,16 +51,16 @@
 
     [self setRequestBody:body];
     [self setRequestHeaders:@{ @"Content-Type": @"application/json" }];
-    
+#warning fixme
     /// If there is a private key given in context
     /// Then request should be signed.
-    if (self.extendedContext.privateKey.key.length > 0) {
-        NSError *error = [self sign];
-        if (error != nil) {
-            VSSRDLog(@"Unable to compose signature for the request body: '%@'", [error localizedDescription]);
-            return;
-        }
-    }
+//    if (self.extendedContext.privateKey.key.length > 0) {
+//        NSError *error = [self sign];
+//        if (error != nil) {
+//            VSSRDLog(@"Unable to compose signature for the request body: '%@'", [error localizedDescription]);
+//            return;
+//        }
+//    }
     
     /// After serialization of the request body
     /// Check if the context require request encryption. In this case

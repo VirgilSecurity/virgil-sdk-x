@@ -30,11 +30,4 @@
     // Nothing to encode.
 }
 
-#pragma mark - VSSSerializable
-
-+ (instancetype)deserializeFrom:(NSDictionary *)candidate {
-#pragma unused(candidate)
-    return [[[self class] alloc] init];
-}
-
 @end

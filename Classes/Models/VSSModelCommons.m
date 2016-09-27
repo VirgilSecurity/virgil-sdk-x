@@ -10,17 +10,21 @@
 
 NSString *const kVSSModelId = @"id";
 NSString *const kVSSModelCreatedAt = @"created_at";
+NSString *const kVSSModelCardVersion = @"card_version";
 
 NSString *const kVSSModelType = @"type";
 NSString *const kVSSModelValue = @"value";
 NSString *const kVSSModelAuthorizedBy = @"authorized_by";
 
 NSString *const kVSSModelIdentity = @"identity";
-NSString *const kVSSModelHash = @"hash";
 NSString *const kVSSModelData = @"data";
+NSString *const kVSSModelInfo = @"data";
 
 NSString *const kVSSModelPublicKey = @"public_key";
 NSString *const kVSSModelCards = @"virgil_cards";
+
+NSString *const kVSSModelContentSnapshot = @"content_snapshot";
+NSString *const kVSSModelMeta = @"meta";
 
 NSString *const kVSSModelPassword = @"password";
 NSString *const kVSSModelPrivateKey = @"private_key";
@@ -56,8 +60,25 @@ NSString *const kVSSStringValueFalse = @"false";
 NSString *const kVSSErrorDomain = @"VirgilSecurityServicesErrorDomain";
 NSString *const kVSSUnknownError = @"Virgil Security service unknown error.";
 
-NSString *const kVSSModelCardScope = @"card_scope_id";
+NSString *const kVSSModelCardScope = @"scope";
 
 NSString *const kVSSModelIdentityType = @"identity_type";
 
 NSInteger const kVSSNoErrorValue = 0;
+
+NSString * __nonnull vss_getCardScopeString(VSSCardScope scope) {
+    switch (scope) {
+        case VSSCardScopeGlobal: return @"global";
+        case VSSCardScopeApplication: return @"application";
+    }
+}
+
+VSSCardScope vss_getCardScopeFromString(NSString * __nonnull scope) {
+    if ([scope isEqualToString:@"global"])
+        return VSSCardScopeGlobal;
+    else if ([scope isEqualToString:@"application"])
+        return VSSCardScopeApplication;
+    
+    // default value
+    return VSSCardScopeApplication;
+}

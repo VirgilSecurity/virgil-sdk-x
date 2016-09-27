@@ -54,24 +54,25 @@
     return @"virgil-card/actions/search";
 }
 
-- (NSError *)handleResponse:(NSObject *)candidate {
-    NSError *error = [super handleResponse:candidate];
-    if (error != nil) {
-        return error;
-    }
-
-    NSMutableArray *cards = [[NSMutableArray alloc] init];
-    for (NSDictionary *item in [candidate as:[NSArray class]]) {
-        /// Deserialize actual card
-        VSSCard *card = [VSSCard deserializeFrom:item];
-        if (card != nil) {
-            [cards addObject:card];
-        }
-    }
-    if (cards.count > 0) {
-        self.cards = cards;
-    }
-    return nil;
-}
+#warning fixme
+//- (NSError *)handleResponse:(NSObject *)candidate {
+//    NSError *error = [super handleResponse:candidate];
+//    if (error != nil) {
+//        return error;
+//    }
+//
+//    NSMutableArray *cards = [[NSMutableArray alloc] init];
+//    for (NSDictionary *item in [candidate as:[NSArray class]]) {
+//        /// Deserialize actual card
+//        VSSCard *card = [VSSCard deserializeFrom:item];
+//        if (card != nil) {
+//            [cards addObject:card];
+//        }
+//    }
+//    if (cards.count > 0) {
+//        self.cards = cards;
+//    }
+//    return nil;
+//}
 
 @end

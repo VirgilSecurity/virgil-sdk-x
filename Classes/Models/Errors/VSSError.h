@@ -12,7 +12,7 @@
 /**
  * Wrapper object for managing errors returned by the Virgil Services.
  */
-@interface VSSError : VSSModel
+@interface VSSError : VSSModel <VSSDeserializable>
 
 /**
  * Error code returned by the Virgil Service.

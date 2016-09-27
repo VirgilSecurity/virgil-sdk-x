@@ -7,42 +7,29 @@
 //
 
 #import "VSSPrivateKey.h"
+#import "VSSPrivateKeyPrivate.h"
 #import "VSSModelCommons.h"
 #import "NSObject+VSSUtils.h"
 
-@interface VSSPrivateKey ()
-
-@property (nonatomic, copy, readwrite) NSData * __nonnull key;
-@property (nonatomic, copy, readwrite) NSString * __nullable password;
-
-@end
-
 @implementation VSSPrivateKey
-
-@synthesize key = _key;
-@synthesize password = _password;
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithKey:(NSData *)key password:(NSString *)password {
+- (instancetype)initWithKey:(NSData *)key password:(NSString *)password publicKey:(VSSPublicKey * __nonnull)publicKey {
     self = [super init];
-    if (self == nil) {
-        return nil;
+    if (self) {
+        _key = [key copy];
+        _password = [password copy];
+        _publicKey = [publicKey copy];
     }
 
-    _key = [key copy];
-    _password = [password copy];
     return self;
-}
-
-- (instancetype)init {
-    return [self initWithKey:[[NSData alloc] init] password:nil];
 }
 
 #pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
-    return [(VSSPrivateKey *)[[self class] alloc] initWithKey:self.key password:self.password];
+    return [(VSSPrivateKey *)[[self class] alloc] initWithKey:self.key password:self.password publicKey:self.publicKey];
 }
 
 #pragma mark - NSCoding
@@ -50,28 +37,30 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
     NSData *key = [[aDecoder decodeObjectForKey:kVSSModelPrivateKey] as:[NSData class]];
     NSString *pass = [[aDecoder decodeObjectForKey:kVSSModelPassword] as:[NSString class]];
+    NSData *publicKey = [[aDecoder decodeObjectForKey:kVSSModelPublicKey] as:[NSString class]];
 
-    return [self initWithKey:key password:pass];
+    return [self initWithKey:key password:pass publicKey:publicKey];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [super encodeWithCoder:aCoder];
 
-    if (self.key != nil) {
-        [aCoder encodeObject:self.key forKey:kVSSModelPrivateKey];
-    }
-    if (self.password != nil) {
+    [aCoder encodeObject:self.key forKey:kVSSModelPrivateKey];
+    
+    if (self.password != nil)
         [aCoder encodeObject:self.password forKey:kVSSModelPassword];
-    }
+    
+    [aCoder encodeObject:self.publicKey forKey:kVSSModelPublicKey];
 }
 
-#pragma mark - VSSSerializable
+#pragma mark - VSSDeserializable
 
 + (instancetype)deserializeFrom:(NSDictionary *)candidate {
+#warning fixme
     NSString *keyB64String = [candidate[kVSSModelPrivateKey] as:[NSString class]];
     NSData *key = [[NSData alloc] initWithBase64EncodedString:keyB64String options:0];
 
-    return [[self alloc] initWithKey:key password:nil];
+    return [[self alloc] initWithKey:key password:nil publicKey:nil];
 }
 
 @end

@@ -29,7 +29,7 @@
 - (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria * __nonnull)criteria completion:(void (^ __nonnull)(NSArray<VSSCard *>* __nullable, NSError * __nullable))callback;
 
 #warning Add documentation
-- (void)createCardWithRequest:(VSSCreationRequest * __nonnull)request completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback;
+- (void)createCard:(VSSCard * __nonnull)card completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback;
 
 - (void)beginGlobalCardCreationWithRequest:(VSSCreationRequest * __nonnull)request completion:(void (^ __nonnull)(VSSCreationRequest * __nullable, NSError * __nullable))callback;
 

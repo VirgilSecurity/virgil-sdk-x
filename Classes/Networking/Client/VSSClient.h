@@ -12,11 +12,8 @@
 #import "VSSClientProtocol.h"
 
 @class VSSPublicKey;
-@class VSSPublicKeyExtended;
 @class VSSPrivateKey;
 @class VSSCard;
-@class VSSSign;
-@class VSSIdentityInfo;
 
 /**
  * The Virgil Service Client handles all the interactions with the Virgil Services.

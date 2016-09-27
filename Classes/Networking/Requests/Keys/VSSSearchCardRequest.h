@@ -7,10 +7,9 @@
 //
 
 #import "VSSKeysBaseRequest.h"
-
-@class VSSCard;
-@class VSSPublicKey;
-@class VSSSearchCardsCriteria;
+#import "VSSRequestContext.h"
+#import "VSSSearchCardsCriteria.h"
+#import "VSSCard.h"
 
 @interface VSSSearchCardRequest : VSSKeysBaseRequest
 

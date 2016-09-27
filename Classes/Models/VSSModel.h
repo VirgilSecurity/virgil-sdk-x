@@ -13,6 +13,6 @@
 /**
  * Base class for all Virgil models. 
  */
-@interface VSSModel : VSSBaseModel <NSCopying, NSCoding, VSSDeserializable>
+@interface VSSModel : VSSBaseModel <NSCopying, NSCoding>
 
 @end

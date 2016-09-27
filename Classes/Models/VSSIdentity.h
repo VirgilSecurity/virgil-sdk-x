@@ -9,8 +9,6 @@
 #import "VSSModel.h"
 #import "VSSModelCommons.h"
 
-@class VSSIdentityInfo;
-
 /**
  * Class representing the Virgil Identity.
  *
@@ -51,16 +49,6 @@
  */
 - (instancetype __nonnull)initWithType:(NSString * __nonnull)type value:(NSString * __nonnull)value NS_DESIGNATED_INITIALIZER;
 
-///------------------------------------------
-/// @name Utility
-///------------------------------------------
-
-/**
- * Converts current instance to the VSSIdentityInfo
- * which is required by the SDK in most cases.
- *
- * @return Instance of VSSIdentityInfo corresponding the current instance.
- */
-- (VSSIdentityInfo * __nonnull)asIdentityInfo;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end
