@@ -21,12 +21,9 @@
 
 #import "VSSRequest.h"
 #import "VSSRequest_Private.h"
-#import "VSSRequestExtended.h"
 #import "VSSJSONRequest.h"
-#import "VSSJSONRequestExtended.h"
 
 #import "VSSRequestContext.h"
-#import "VSSRequestContextExtended.h"
 
 #import "VSSBaseClient.h"
 #import "VSSClient.h"
@@ -35,7 +32,6 @@
 #import "VSSKeychainValue.h"
 #import "NSObject+VSSUtils.h"
 #import "NSString+VSSXMLEscape.h"
-#import "VSSPBKDF+Base64.h"
 
 //#import "Mailinator.h"
 //#import "MailinatorConfig.h"
@@ -47,7 +43,5 @@
 //#import "MailinatorRequest.h"
 //#import "MailinatorInboxRequest.h"
 //#import "MailinatorEmailRequest.h"
-
-@import VirgilFoundation;
 
 #endif

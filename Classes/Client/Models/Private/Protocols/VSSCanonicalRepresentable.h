@@ -9,8 +9,8 @@
 #warning add documentation
 @protocol VSSCanonicalRepresentable <NSObject>
 
-+ (instancetype __nullable)createFromCanonicalForm:(NSString * __nonnull)canonicalForm;
++ (instancetype __nullable)createFromCanonicalForm:(NSData * __nonnull)canonicalForm;
 
-- (NSString * __nonnull)getCanonicalForm;
+- (NSData * __nonnull)getCanonicalForm;
 
 @end

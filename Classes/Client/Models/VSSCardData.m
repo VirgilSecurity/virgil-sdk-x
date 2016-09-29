@@ -105,13 +105,12 @@
 
 #pragma mark - VSSCanonicalRepresentable
 
-+ (instancetype)createFromCanonicalForm:(NSString *)canonicalForm {
++ (instancetype)createFromCanonicalForm:(NSData *)canonicalForm {
     if (canonicalForm == nil || [canonicalForm length] == 0)
         return nil;
     
-    NSData *jsonData = [canonicalForm dataUsingEncoding:NSUTF8StringEncoding];
     NSError *parseError;
-    NSObject *candidate = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&parseError];
+    NSObject *candidate = [NSJSONSerialization JSONObjectWithData:canonicalForm options:NSJSONReadingAllowFragments error:&parseError];
     
     if (parseError != nil)
         return nil;
@@ -123,11 +122,10 @@
     return nil;
 }
 
-- (NSString *)getCanonicalForm {
+- (NSData *)getCanonicalForm {
     NSData *JSONData = [NSJSONSerialization dataWithJSONObject:[self serialize] options:0 error:nil];
-    NSString *base64EncodedJSONString = [JSONData base64EncodedStringWithOptions:0];
     
-    return base64EncodedJSONString;
+    return JSONData;
 }
 
 @end

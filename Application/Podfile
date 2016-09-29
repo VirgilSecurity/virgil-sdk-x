@@ -1,17 +1,17 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
+platform :ios, '9.0'
 use_frameworks!
 
 target 'VirgilSDKApp' do
-	pod 'VirgilFoundation', '~> 1.8'
-    
+	pod 'VirgilFoundation', :git => 'https://github.com/VirgilSecurity/virgil-foundation-x.git', :branch => '2.0.0-beta1'
+
     target 'VirgilSDKTests' do
         inherit! :search_paths
     end
 end
 
 target 'VirgilSDKAppSwift' do
-	pod 'VirgilFoundation', '~> 1.8'
+	pod 'VirgilFoundation', :git => 'https://github.com/VirgilSecurity/virgil-foundation-x.git', :branch => '2.0.0-beta1'
     
     target 'VirgilSDKSwiftTests' do
         inherit! :search_paths

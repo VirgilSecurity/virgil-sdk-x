@@ -17,8 +17,6 @@
 		362CFE621C74C98B002A3E93 /* NSObject+VSSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */; };
 		362CFE631C74C98E002A3E93 /* NSString+VSSXMLEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF4B901C4D7FED00E901F3 /* NSString+VSSXMLEscape.m */; };
 		364782C91C5AA44500165778 /* VSSKeychainValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 364782C81C5AA44500165778 /* VSSKeychainValue.m */; };
-		36912FAD1CD21C650058BBF8 /* VSSPBKDF+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 36912FAC1CD21C650058BBF8 /* VSSPBKDF+Base64.m */; };
-		36912FAE1CD21C650058BBF8 /* VSSPBKDF+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 36912FAC1CD21C650058BBF8 /* VSSPBKDF+Base64.m */; };
 		36FF4B931C4D7FED00E901F3 /* NSObject+VSSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */; };
 		36FF4B941C4D7FED00E901F3 /* NSString+VSSXMLEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF4B901C4D7FED00E901F3 /* NSString+VSSXMLEscape.m */; };
 		42E75B751D991D7700750C52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E75B541D991D7700750C52 /* AppDelegate.m */; };
@@ -42,19 +40,17 @@
 		42F0AB8E1D9ABF2200747799 /* VSSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB431D9ABF2200747799 /* VSSModel.m */; };
 		42F0AB8F1D9ABF2200747799 /* VSSModelCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB451D9ABF2200747799 /* VSSModelCommons.m */; };
 		42F0AB931D9ABF2200747799 /* VSSRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB511D9ABF2200747799 /* VSSRequestContext.m */; };
-		42F0AB941D9ABF2200747799 /* VSSRequestContextExtended.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB531D9ABF2200747799 /* VSSRequestContextExtended.m */; };
 		42F0AB981D9ABF2200747799 /* VSSCreateCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB5E1D9ABF2200747799 /* VSSCreateCardRequest.m */; };
 		42F0AB9D1D9ABF2200747799 /* VSSKeysBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB681D9ABF2200747799 /* VSSKeysBaseRequest.m */; };
 		42F0AB9E1D9ABF2200747799 /* VSSSearchCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB6A1D9ABF2200747799 /* VSSSearchCardRequest.m */; };
 		42F0ABA51D9ABF2200747799 /* VSSJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB791D9ABF2200747799 /* VSSJSONRequest.m */; };
-		42F0ABA61D9ABF2200747799 /* VSSJSONRequestExtended.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB7B1D9ABF2200747799 /* VSSJSONRequestExtended.m */; };
 		42F0ABA71D9ABF2200747799 /* VSSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB7D1D9ABF2200747799 /* VSSRequest.m */; };
-		42F0ABA81D9ABF2200747799 /* VSSRequestExtended.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB801D9ABF2200747799 /* VSSRequestExtended.m */; };
 		42F0ABB01D9ABFAC00747799 /* VSSBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABAA1D9ABFAC00747799 /* VSSBaseClient.m */; };
 		42F0ABB11D9ABFAC00747799 /* VSSClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABAC1D9ABFAC00747799 /* VSSClient.m */; };
 		42F0ABB21D9ABFAC00747799 /* VSSServiceConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABAF1D9ABFAC00747799 /* VSSServiceConfig.m */; };
 		42F0ABBE1D9BEEB300747799 /* VSSSignedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABBD1D9BEEB300747799 /* VSSSignedData.m */; };
 		42F0ABC71D9D04C400747799 /* VSSCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABC61D9D04C400747799 /* VSSCardModel.m */; };
+		42F0ABCB1D9D13BC00747799 /* VSSCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABCA1D9D13BC00747799 /* VSSCrypto.m */; };
 		87F653F08EEC399EAE6F82D4 /* Pods_VirgilSDKSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E5DEA2B938856986FAE4532 /* Pods_VirgilSDKSwiftTests.framework */; };
 		9BD6C3BD7557367F90D7AE30 /* Pods_VirgilSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB96634A5451840A9BE5F41E /* Pods_VirgilSDKTests.framework */; };
 /* End PBXBuildFile section */
@@ -103,8 +99,6 @@
 		362CFE1E1C74C02E002A3E93 /* VSS001_ClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS001_ClientTests.m; sourceTree = "<group>"; };
 		364782C71C5AA44500165778 /* VSSKeychainValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeychainValue.h; sourceTree = "<group>"; };
 		364782C81C5AA44500165778 /* VSSKeychainValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeychainValue.m; sourceTree = "<group>"; };
-		36912FAB1CD21C650058BBF8 /* VSSPBKDF+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VSSPBKDF+Base64.h"; sourceTree = "<group>"; };
-		36912FAC1CD21C650058BBF8 /* VSSPBKDF+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VSSPBKDF+Base64.m"; sourceTree = "<group>"; };
 		36FF4B8D1C4D7FED00E901F3 /* NSObject+VSSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+VSSUtils.h"; sourceTree = "<group>"; };
 		36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+VSSUtils.m"; sourceTree = "<group>"; };
 		36FF4B8F1C4D7FED00E901F3 /* NSString+VSSXMLEscape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+VSSXMLEscape.h"; sourceTree = "<group>"; };
@@ -161,8 +155,6 @@
 		42F0AB451D9ABF2200747799 /* VSSModelCommons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSModelCommons.m; sourceTree = "<group>"; };
 		42F0AB501D9ABF2200747799 /* VSSRequestContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSRequestContext.h; sourceTree = "<group>"; };
 		42F0AB511D9ABF2200747799 /* VSSRequestContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRequestContext.m; sourceTree = "<group>"; };
-		42F0AB521D9ABF2200747799 /* VSSRequestContextExtended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSRequestContextExtended.h; sourceTree = "<group>"; };
-		42F0AB531D9ABF2200747799 /* VSSRequestContextExtended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRequestContextExtended.m; sourceTree = "<group>"; };
 		42F0AB5D1D9ABF2200747799 /* VSSCreateCardRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSCreateCardRequest.h; sourceTree = "<group>"; };
 		42F0AB5E1D9ABF2200747799 /* VSSCreateCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCreateCardRequest.m; sourceTree = "<group>"; };
 		42F0AB671D9ABF2200747799 /* VSSKeysBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeysBaseRequest.h; sourceTree = "<group>"; };
@@ -171,13 +163,9 @@
 		42F0AB6A1D9ABF2200747799 /* VSSSearchCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSearchCardRequest.m; sourceTree = "<group>"; };
 		42F0AB781D9ABF2200747799 /* VSSJSONRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSJSONRequest.h; sourceTree = "<group>"; };
 		42F0AB791D9ABF2200747799 /* VSSJSONRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSJSONRequest.m; sourceTree = "<group>"; };
-		42F0AB7A1D9ABF2200747799 /* VSSJSONRequestExtended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSJSONRequestExtended.h; sourceTree = "<group>"; };
-		42F0AB7B1D9ABF2200747799 /* VSSJSONRequestExtended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSJSONRequestExtended.m; sourceTree = "<group>"; };
 		42F0AB7C1D9ABF2200747799 /* VSSRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSRequest.h; sourceTree = "<group>"; };
 		42F0AB7D1D9ABF2200747799 /* VSSRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRequest.m; sourceTree = "<group>"; };
 		42F0AB7E1D9ABF2200747799 /* VSSRequest_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSRequest_Private.h; sourceTree = "<group>"; };
-		42F0AB7F1D9ABF2200747799 /* VSSRequestExtended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSRequestExtended.h; sourceTree = "<group>"; };
-		42F0AB801D9ABF2200747799 /* VSSRequestExtended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRequestExtended.m; sourceTree = "<group>"; };
 		42F0ABA91D9ABFAC00747799 /* VSSBaseClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSBaseClient.h; sourceTree = "<group>"; };
 		42F0ABAA1D9ABFAC00747799 /* VSSBaseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSBaseClient.m; sourceTree = "<group>"; };
 		42F0ABAB1D9ABFAC00747799 /* VSSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSClient.h; sourceTree = "<group>"; };
@@ -195,6 +183,8 @@
 		42F0ABC51D9D045D00747799 /* VSSCardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCardModel.h; sourceTree = "<group>"; };
 		42F0ABC61D9D04C400747799 /* VSSCardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCardModel.m; sourceTree = "<group>"; };
 		42F0ABC81D9D054300747799 /* VSSCardModelPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCardModelPrivate.h; sourceTree = "<group>"; };
+		42F0ABC91D9D13B100747799 /* VSSCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCrypto.h; sourceTree = "<group>"; };
+		42F0ABCA1D9D13BC00747799 /* VSSCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCrypto.m; sourceTree = "<group>"; };
 		95B105A59C81F05067FFE1AA /* Pods_VirgilSDKApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirgilSDKApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		961C6E69C3054235AB33B730 /* Pods-VirgilSDKApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirgilSDKApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VirgilSDKApp/Pods-VirgilSDKApp.debug.xcconfig"; sourceTree = "<group>"; };
 		A3D4682A65C10B06A464626B /* Pods_VirgilSDKAppSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirgilSDKAppSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -340,8 +330,6 @@
 				36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */,
 				36FF4B8F1C4D7FED00E901F3 /* NSString+VSSXMLEscape.h */,
 				36FF4B901C4D7FED00E901F3 /* NSString+VSSXMLEscape.m */,
-				36912FAB1CD21C650058BBF8 /* VSSPBKDF+Base64.h */,
-				36912FAC1CD21C650058BBF8 /* VSSPBKDF+Base64.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -367,6 +355,8 @@
 			children = (
 				42F0AB0C1D9ABF1500747799 /* Keys */,
 				42F0AB181D9ABF1500747799 /* VSSCryptoProtocol.h */,
+				42F0ABC91D9D13B100747799 /* VSSCrypto.h */,
+				42F0ABCA1D9D13BC00747799 /* VSSCrypto.m */,
 			);
 			path = Crypto;
 			sourceTree = "<group>";
@@ -500,8 +490,6 @@
 			children = (
 				42F0AB501D9ABF2200747799 /* VSSRequestContext.h */,
 				42F0AB511D9ABF2200747799 /* VSSRequestContext.m */,
-				42F0AB521D9ABF2200747799 /* VSSRequestContextExtended.h */,
-				42F0AB531D9ABF2200747799 /* VSSRequestContextExtended.m */,
 			);
 			path = RequestContext;
 			sourceTree = "<group>";
@@ -512,13 +500,9 @@
 				42F0AB5C1D9ABF2200747799 /* Keys */,
 				42F0AB781D9ABF2200747799 /* VSSJSONRequest.h */,
 				42F0AB791D9ABF2200747799 /* VSSJSONRequest.m */,
-				42F0AB7A1D9ABF2200747799 /* VSSJSONRequestExtended.h */,
-				42F0AB7B1D9ABF2200747799 /* VSSJSONRequestExtended.m */,
 				42F0AB7C1D9ABF2200747799 /* VSSRequest.h */,
 				42F0AB7D1D9ABF2200747799 /* VSSRequest.m */,
 				42F0AB7E1D9ABF2200747799 /* VSSRequest_Private.h */,
-				42F0AB7F1D9ABF2200747799 /* VSSRequestExtended.h */,
-				42F0AB801D9ABF2200747799 /* VSSRequestExtended.m */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -838,7 +822,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8B4C33BB6BAC3C8CF9723989 /* [CP] Check Pods Manifest.lock */ = {
@@ -853,7 +837,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		9A23063F5EE66F0DDC9E9201 /* [CP] Copy Pods Resources */ = {
@@ -883,7 +867,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C2C1AF65901A4BD4B2B6A50F /* [CP] Copy Pods Resources */ = {
@@ -943,7 +927,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -956,7 +940,6 @@
 				362CFE3D1C74C0C2002A3E93 /* ViewController.swift in Sources */,
 				362CFE611C74C988002A3E93 /* VSSKeychainValue.m in Sources */,
 				362CFE3C1C74C0BE002A3E93 /* AppDelegate.swift in Sources */,
-				36912FAE1CD21C650058BBF8 /* VSSPBKDF+Base64.m in Sources */,
 				362CFE631C74C98E002A3E93 /* NSString+VSSXMLEscape.m in Sources */,
 				362CFE621C74C98B002A3E93 /* NSObject+VSSUtils.m in Sources */,
 			);
@@ -991,24 +974,21 @@
 				42F0ABBE1D9BEEB300747799 /* VSSSignedData.m in Sources */,
 				42F0AB821D9ABF2200747799 /* VSSIdentityError.m in Sources */,
 				42F0AB871D9ABF2200747799 /* VSSRequestData.m in Sources */,
-				42F0ABA81D9ABF2200747799 /* VSSRequestExtended.m in Sources */,
 				42F0ABB11D9ABFAC00747799 /* VSSClient.m in Sources */,
 				42F0AB1B1D9ABF1500747799 /* VSSPublicKey.m in Sources */,
 				42F0ABB21D9ABFAC00747799 /* VSSServiceConfig.m in Sources */,
-				36912FAD1CD21C650058BBF8 /* VSSPBKDF+Base64.m in Sources */,
 				42F0ABB01D9ABFAC00747799 /* VSSBaseClient.m in Sources */,
 				42F0AB841D9ABF2200747799 /* VSSPrivateKeysError.m in Sources */,
 				364782C91C5AA44500165778 /* VSSKeychainValue.m in Sources */,
-				42F0ABA61D9ABF2200747799 /* VSSJSONRequestExtended.m in Sources */,
 				42F0AB811D9ABF2200747799 /* VSSError.m in Sources */,
 				42F0AB851D9ABF2200747799 /* VSSModelKeys.m in Sources */,
 				42F0AB8A1D9ABF2200747799 /* VSSBaseModel.m in Sources */,
 				42F0ABC71D9D04C400747799 /* VSSCardModel.m in Sources */,
 				42E75B831D991D7700750C52 /* main.m in Sources */,
+				42F0ABCB1D9D13BC00747799 /* VSSCrypto.m in Sources */,
 				42F0AB931D9ABF2200747799 /* VSSRequestContext.m in Sources */,
 				42E75B751D991D7700750C52 /* AppDelegate.m in Sources */,
 				42F0AB9E1D9ABF2200747799 /* VSSSearchCardRequest.m in Sources */,
-				42F0AB941D9ABF2200747799 /* VSSRequestContextExtended.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1192,7 +1172,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1233,7 +1213,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

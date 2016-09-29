@@ -6,8 +6,8 @@
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSJSONRequestExtended.h"
+#import "VSSJSONRequest.h"
 
-@interface VSSKeysBaseRequest : VSSJSONRequestExtended
+@interface VSSKeysBaseRequest : VSSJSONRequest
 
 @end

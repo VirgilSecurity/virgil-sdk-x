@@ -9,7 +9,6 @@
 #import "ViewController.h"
 #import "BridgingHeader.h"
 
-@import VirgilFoundation;
 
 @interface ViewController ()
 
@@ -20,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"%@", [[[VSSVirgilVersion alloc] init] versionString]);
+//    NSLog(@"%@", [[[VSSVirgilVersion alloc] init] versionString]);
 }
 
 @end

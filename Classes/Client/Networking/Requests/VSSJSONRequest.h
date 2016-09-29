@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSRequestExtended.h"
+#import "VSSRequest.h"
 
 /**
  * Class which manages the JSON-based requests.
  * Takes care about the serialization/deserialization and proper content-type header.
  */
-@interface VSSJSONRequest : VSSRequestExtended
+@interface VSSJSONRequest : VSSRequest
 
 /**
  * Serializes the given object to the request data.
