@@ -9,10 +9,6 @@
 #import "VSSRequestExtended.h"
 #import "VSSRequest_Private.h"
 #import "VSSRequestContextExtended.h"
-
-#import "VSSCard.h"
-#import "VSSPublicKey.h"
-#import "VSSPrivateKey.h"
 #import "NSObject+VSSUtils.h"
 
 @import VirgilFoundation;

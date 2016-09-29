@@ -12,9 +12,6 @@
 #import "VSSModelCommons.h"
 #import "VSSSerializable.h"
 
-#import "VSSModel.h"
-#import "VSSIdentity.h"
-#import "VSSCard.h"
 #import "VSSPublicKey.h"
 #import "VSSPrivateKey.h"
 #import "VSSError.h"

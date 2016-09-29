@@ -9,11 +9,11 @@
 #import "VSSKeysBaseRequest.h"
 #import "VSSRequestContext.h"
 #import "VSSSearchCardsCriteria.h"
-#import "VSSCard.h"
+#import "VSSCardData.h"
 
 @interface VSSSearchCardRequest : VSSKeysBaseRequest
 
-@property (nonatomic, strong, readonly) NSArray <VSSCard *>* __nullable cards;
+@property (nonatomic, strong, readonly) NSArray <VSSCardData *>* __nullable cards;
 
 - (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context searchCriteria:(VSSSearchCardsCriteria * __nonnull)criteria;
 

@@ -35,34 +35,17 @@
 		42F0AB831D9ABF2200747799 /* VSSKeysError.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB241D9ABF2200747799 /* VSSKeysError.m */; };
 		42F0AB841D9ABF2200747799 /* VSSPrivateKeysError.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB261D9ABF2200747799 /* VSSPrivateKeysError.m */; };
 		42F0AB851D9ABF2200747799 /* VSSModelKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB301D9ABF2200747799 /* VSSModelKeys.m */; };
-		42F0AB861D9ABF2200747799 /* VSSCardMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB331D9ABF2200747799 /* VSSCardMetaData.m */; };
 		42F0AB871D9ABF2200747799 /* VSSRequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB351D9ABF2200747799 /* VSSRequestData.m */; };
 		42F0AB881D9ABF2200747799 /* VSSSearchCardsCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB371D9ABF2200747799 /* VSSSearchCardsCriteria.m */; };
-		42F0AB891D9ABF2200747799 /* VSSSigningData.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB391D9ABF2200747799 /* VSSSigningData.m */; };
 		42F0AB8A1D9ABF2200747799 /* VSSBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB3B1D9ABF2200747799 /* VSSBaseModel.m */; };
-		42F0AB8B1D9ABF2200747799 /* VSSCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB3D1D9ABF2200747799 /* VSSCard.m */; };
 		42F0AB8C1D9ABF2200747799 /* VSSCardData.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB3F1D9ABF2200747799 /* VSSCardData.m */; };
-		42F0AB8D1D9ABF2200747799 /* VSSIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB411D9ABF2200747799 /* VSSIdentity.m */; };
 		42F0AB8E1D9ABF2200747799 /* VSSModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB431D9ABF2200747799 /* VSSModel.m */; };
 		42F0AB8F1D9ABF2200747799 /* VSSModelCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB451D9ABF2200747799 /* VSSModelCommons.m */; };
 		42F0AB931D9ABF2200747799 /* VSSRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB511D9ABF2200747799 /* VSSRequestContext.m */; };
 		42F0AB941D9ABF2200747799 /* VSSRequestContextExtended.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB531D9ABF2200747799 /* VSSRequestContextExtended.m */; };
-		42F0AB951D9ABF2200747799 /* VSSConfirmIdentityRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB571D9ABF2200747799 /* VSSConfirmIdentityRequest.m */; };
-		42F0AB961D9ABF2200747799 /* VSSIdentityBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB591D9ABF2200747799 /* VSSIdentityBaseRequest.m */; };
-		42F0AB971D9ABF2200747799 /* VSSVerifyIdentityRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB5B1D9ABF2200747799 /* VSSVerifyIdentityRequest.m */; };
 		42F0AB981D9ABF2200747799 /* VSSCreateCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB5E1D9ABF2200747799 /* VSSCreateCardRequest.m */; };
-		42F0AB991D9ABF2200747799 /* VSSDeleteCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB601D9ABF2200747799 /* VSSDeleteCardRequest.m */; };
-		42F0AB9A1D9ABF2200747799 /* VSSDeletePublicKeyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB621D9ABF2200747799 /* VSSDeletePublicKeyRequest.m */; };
-		42F0AB9B1D9ABF2200747799 /* VSSGetCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB641D9ABF2200747799 /* VSSGetCardRequest.m */; };
-		42F0AB9C1D9ABF2200747799 /* VSSGetPublicKeyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB661D9ABF2200747799 /* VSSGetPublicKeyRequest.m */; };
 		42F0AB9D1D9ABF2200747799 /* VSSKeysBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB681D9ABF2200747799 /* VSSKeysBaseRequest.m */; };
 		42F0AB9E1D9ABF2200747799 /* VSSSearchCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB6A1D9ABF2200747799 /* VSSSearchCardRequest.m */; };
-		42F0AB9F1D9ABF2200747799 /* VSSSignCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB6C1D9ABF2200747799 /* VSSSignCardRequest.m */; };
-		42F0ABA01D9ABF2200747799 /* VSSUnsignCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB6E1D9ABF2200747799 /* VSSUnsignCardRequest.m */; };
-		42F0ABA11D9ABF2200747799 /* VSSDeletePrivateKeyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB711D9ABF2200747799 /* VSSDeletePrivateKeyRequest.m */; };
-		42F0ABA21D9ABF2200747799 /* VSSGrabPrivateKeyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB731D9ABF2200747799 /* VSSGrabPrivateKeyRequest.m */; };
-		42F0ABA31D9ABF2200747799 /* VSSPrivateKeysBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB751D9ABF2200747799 /* VSSPrivateKeysBaseRequest.m */; };
-		42F0ABA41D9ABF2200747799 /* VSSStorePrivateKeyRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB771D9ABF2200747799 /* VSSStorePrivateKeyRequest.m */; };
 		42F0ABA51D9ABF2200747799 /* VSSJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB791D9ABF2200747799 /* VSSJSONRequest.m */; };
 		42F0ABA61D9ABF2200747799 /* VSSJSONRequestExtended.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB7B1D9ABF2200747799 /* VSSJSONRequestExtended.m */; };
 		42F0ABA71D9ABF2200747799 /* VSSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB7D1D9ABF2200747799 /* VSSRequest.m */; };
@@ -70,6 +53,8 @@
 		42F0ABB01D9ABFAC00747799 /* VSSBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABAA1D9ABFAC00747799 /* VSSBaseClient.m */; };
 		42F0ABB11D9ABFAC00747799 /* VSSClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABAC1D9ABFAC00747799 /* VSSClient.m */; };
 		42F0ABB21D9ABFAC00747799 /* VSSServiceConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABAF1D9ABFAC00747799 /* VSSServiceConfig.m */; };
+		42F0ABBE1D9BEEB300747799 /* VSSSignedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABBD1D9BEEB300747799 /* VSSSignedData.m */; };
+		42F0ABC71D9D04C400747799 /* VSSCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABC61D9D04C400747799 /* VSSCardModel.m */; };
 		87F653F08EEC399EAE6F82D4 /* Pods_VirgilSDKSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E5DEA2B938856986FAE4532 /* Pods_VirgilSDKSwiftTests.framework */; };
 		9BD6C3BD7557367F90D7AE30 /* Pods_VirgilSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB96634A5451840A9BE5F41E /* Pods_VirgilSDKTests.framework */; };
 /* End PBXBuildFile section */
@@ -156,29 +141,20 @@
 		42F0AB241D9ABF2200747799 /* VSSKeysError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeysError.m; sourceTree = "<group>"; };
 		42F0AB251D9ABF2200747799 /* VSSPrivateKeysError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSPrivateKeysError.h; sourceTree = "<group>"; };
 		42F0AB261D9ABF2200747799 /* VSSPrivateKeysError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSPrivateKeysError.m; sourceTree = "<group>"; };
-		42F0AB2A1D9ABF2200747799 /* VSSCanonicalRepresentable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSCanonicalRepresentable.h; sourceTree = "<group>"; };
 		42F0AB2B1D9ABF2200747799 /* VSSDeserializable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSDeserializable.h; sourceTree = "<group>"; };
 		42F0AB2C1D9ABF2200747799 /* VSSSerializable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSSerializable.h; sourceTree = "<group>"; };
 		42F0AB2D1D9ABF2200747799 /* VSSStringRepresentable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSStringRepresentable.h; sourceTree = "<group>"; };
 		42F0AB2E1D9ABF2200747799 /* VSSModelCommonsPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSModelCommonsPrivate.h; sourceTree = "<group>"; };
 		42F0AB2F1D9ABF2200747799 /* VSSModelKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSModelKeys.h; sourceTree = "<group>"; };
-		42F0AB301D9ABF2200747799 /* VSSModelKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSModelKeys.m; sourceTree = "<group>"; };
-		42F0AB321D9ABF2200747799 /* VSSCardMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSCardMetaData.h; sourceTree = "<group>"; };
-		42F0AB331D9ABF2200747799 /* VSSCardMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCardMetaData.m; sourceTree = "<group>"; };
+		42F0AB301D9ABF2200747799 /* VSSModelKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VSSModelKeys.m; path = Private/VSSModelKeys.m; sourceTree = "<group>"; };
 		42F0AB341D9ABF2200747799 /* VSSRequestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSRequestData.h; sourceTree = "<group>"; };
 		42F0AB351D9ABF2200747799 /* VSSRequestData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRequestData.m; sourceTree = "<group>"; };
 		42F0AB361D9ABF2200747799 /* VSSSearchCardsCriteria.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSSearchCardsCriteria.h; sourceTree = "<group>"; };
 		42F0AB371D9ABF2200747799 /* VSSSearchCardsCriteria.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSearchCardsCriteria.m; sourceTree = "<group>"; };
-		42F0AB381D9ABF2200747799 /* VSSSigningData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSSigningData.h; sourceTree = "<group>"; };
-		42F0AB391D9ABF2200747799 /* VSSSigningData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSigningData.m; sourceTree = "<group>"; };
 		42F0AB3A1D9ABF2200747799 /* VSSBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSBaseModel.h; sourceTree = "<group>"; };
 		42F0AB3B1D9ABF2200747799 /* VSSBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSBaseModel.m; sourceTree = "<group>"; };
-		42F0AB3C1D9ABF2200747799 /* VSSCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSCard.h; sourceTree = "<group>"; };
-		42F0AB3D1D9ABF2200747799 /* VSSCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCard.m; sourceTree = "<group>"; };
 		42F0AB3E1D9ABF2200747799 /* VSSCardData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSCardData.h; sourceTree = "<group>"; };
 		42F0AB3F1D9ABF2200747799 /* VSSCardData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCardData.m; sourceTree = "<group>"; };
-		42F0AB401D9ABF2200747799 /* VSSIdentity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSIdentity.h; sourceTree = "<group>"; };
-		42F0AB411D9ABF2200747799 /* VSSIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSIdentity.m; sourceTree = "<group>"; };
 		42F0AB421D9ABF2200747799 /* VSSModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSModel.h; sourceTree = "<group>"; };
 		42F0AB431D9ABF2200747799 /* VSSModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSModel.m; sourceTree = "<group>"; };
 		42F0AB441D9ABF2200747799 /* VSSModelCommons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSModelCommons.h; sourceTree = "<group>"; };
@@ -187,38 +163,12 @@
 		42F0AB511D9ABF2200747799 /* VSSRequestContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRequestContext.m; sourceTree = "<group>"; };
 		42F0AB521D9ABF2200747799 /* VSSRequestContextExtended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSRequestContextExtended.h; sourceTree = "<group>"; };
 		42F0AB531D9ABF2200747799 /* VSSRequestContextExtended.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRequestContextExtended.m; sourceTree = "<group>"; };
-		42F0AB561D9ABF2200747799 /* VSSConfirmIdentityRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSConfirmIdentityRequest.h; sourceTree = "<group>"; };
-		42F0AB571D9ABF2200747799 /* VSSConfirmIdentityRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSConfirmIdentityRequest.m; sourceTree = "<group>"; };
-		42F0AB581D9ABF2200747799 /* VSSIdentityBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSIdentityBaseRequest.h; sourceTree = "<group>"; };
-		42F0AB591D9ABF2200747799 /* VSSIdentityBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSIdentityBaseRequest.m; sourceTree = "<group>"; };
-		42F0AB5A1D9ABF2200747799 /* VSSVerifyIdentityRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSVerifyIdentityRequest.h; sourceTree = "<group>"; };
-		42F0AB5B1D9ABF2200747799 /* VSSVerifyIdentityRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSVerifyIdentityRequest.m; sourceTree = "<group>"; };
 		42F0AB5D1D9ABF2200747799 /* VSSCreateCardRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSCreateCardRequest.h; sourceTree = "<group>"; };
 		42F0AB5E1D9ABF2200747799 /* VSSCreateCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCreateCardRequest.m; sourceTree = "<group>"; };
-		42F0AB5F1D9ABF2200747799 /* VSSDeleteCardRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSDeleteCardRequest.h; sourceTree = "<group>"; };
-		42F0AB601D9ABF2200747799 /* VSSDeleteCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSDeleteCardRequest.m; sourceTree = "<group>"; };
-		42F0AB611D9ABF2200747799 /* VSSDeletePublicKeyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSDeletePublicKeyRequest.h; sourceTree = "<group>"; };
-		42F0AB621D9ABF2200747799 /* VSSDeletePublicKeyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSDeletePublicKeyRequest.m; sourceTree = "<group>"; };
-		42F0AB631D9ABF2200747799 /* VSSGetCardRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSGetCardRequest.h; sourceTree = "<group>"; };
-		42F0AB641D9ABF2200747799 /* VSSGetCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSGetCardRequest.m; sourceTree = "<group>"; };
-		42F0AB651D9ABF2200747799 /* VSSGetPublicKeyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSGetPublicKeyRequest.h; sourceTree = "<group>"; };
-		42F0AB661D9ABF2200747799 /* VSSGetPublicKeyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSGetPublicKeyRequest.m; sourceTree = "<group>"; };
 		42F0AB671D9ABF2200747799 /* VSSKeysBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeysBaseRequest.h; sourceTree = "<group>"; };
 		42F0AB681D9ABF2200747799 /* VSSKeysBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeysBaseRequest.m; sourceTree = "<group>"; };
 		42F0AB691D9ABF2200747799 /* VSSSearchCardRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSSearchCardRequest.h; sourceTree = "<group>"; };
 		42F0AB6A1D9ABF2200747799 /* VSSSearchCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSearchCardRequest.m; sourceTree = "<group>"; };
-		42F0AB6B1D9ABF2200747799 /* VSSSignCardRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSSignCardRequest.h; sourceTree = "<group>"; };
-		42F0AB6C1D9ABF2200747799 /* VSSSignCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSignCardRequest.m; sourceTree = "<group>"; };
-		42F0AB6D1D9ABF2200747799 /* VSSUnsignCardRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSUnsignCardRequest.h; sourceTree = "<group>"; };
-		42F0AB6E1D9ABF2200747799 /* VSSUnsignCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSUnsignCardRequest.m; sourceTree = "<group>"; };
-		42F0AB701D9ABF2200747799 /* VSSDeletePrivateKeyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSDeletePrivateKeyRequest.h; sourceTree = "<group>"; };
-		42F0AB711D9ABF2200747799 /* VSSDeletePrivateKeyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSDeletePrivateKeyRequest.m; sourceTree = "<group>"; };
-		42F0AB721D9ABF2200747799 /* VSSGrabPrivateKeyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSGrabPrivateKeyRequest.h; sourceTree = "<group>"; };
-		42F0AB731D9ABF2200747799 /* VSSGrabPrivateKeyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSGrabPrivateKeyRequest.m; sourceTree = "<group>"; };
-		42F0AB741D9ABF2200747799 /* VSSPrivateKeysBaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSPrivateKeysBaseRequest.h; sourceTree = "<group>"; };
-		42F0AB751D9ABF2200747799 /* VSSPrivateKeysBaseRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSPrivateKeysBaseRequest.m; sourceTree = "<group>"; };
-		42F0AB761D9ABF2200747799 /* VSSStorePrivateKeyRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSStorePrivateKeyRequest.h; sourceTree = "<group>"; };
-		42F0AB771D9ABF2200747799 /* VSSStorePrivateKeyRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSStorePrivateKeyRequest.m; sourceTree = "<group>"; };
 		42F0AB781D9ABF2200747799 /* VSSJSONRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSJSONRequest.h; sourceTree = "<group>"; };
 		42F0AB791D9ABF2200747799 /* VSSJSONRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSJSONRequest.m; sourceTree = "<group>"; };
 		42F0AB7A1D9ABF2200747799 /* VSSJSONRequestExtended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSJSONRequestExtended.h; sourceTree = "<group>"; };
@@ -235,6 +185,16 @@
 		42F0ABAD1D9ABFAC00747799 /* VSSClientProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSClientProtocol.h; sourceTree = "<group>"; };
 		42F0ABAE1D9ABFAC00747799 /* VSSServiceConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSServiceConfig.h; sourceTree = "<group>"; };
 		42F0ABAF1D9ABFAC00747799 /* VSSServiceConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSServiceConfig.m; sourceTree = "<group>"; };
+		42F0ABB51D9ACAAB00747799 /* VSSCreateCardDataPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCreateCardDataPrivate.h; sourceTree = "<group>"; };
+		42F0ABBC1D9BEEB300747799 /* VSSSignedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSSignedData.h; sourceTree = "<group>"; };
+		42F0ABBD1D9BEEB300747799 /* VSSSignedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSignedData.m; sourceTree = "<group>"; };
+		42F0ABBF1D9BEF1400747799 /* VSSSignedDataPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSSignedDataPrivate.h; sourceTree = "<group>"; };
+		42F0ABC01D9BF02500747799 /* VSSCardDataPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCardDataPrivate.h; sourceTree = "<group>"; };
+		42F0ABC21D9C0EC800747799 /* VSSCreateCardRequestPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCreateCardRequestPrivate.h; sourceTree = "<group>"; };
+		42F0ABC31D9C12F500747799 /* VSSCanonicalRepresentable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSCanonicalRepresentable.h; sourceTree = "<group>"; };
+		42F0ABC51D9D045D00747799 /* VSSCardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCardModel.h; sourceTree = "<group>"; };
+		42F0ABC61D9D04C400747799 /* VSSCardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCardModel.m; sourceTree = "<group>"; };
+		42F0ABC81D9D054300747799 /* VSSCardModelPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCardModelPrivate.h; sourceTree = "<group>"; };
 		95B105A59C81F05067FFE1AA /* Pods_VirgilSDKApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirgilSDKApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		961C6E69C3054235AB33B730 /* Pods-VirgilSDKApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirgilSDKApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VirgilSDKApp/Pods-VirgilSDKApp.debug.xcconfig"; sourceTree = "<group>"; };
 		A3D4682A65C10B06A464626B /* Pods_VirgilSDKAppSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirgilSDKAppSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -455,21 +415,22 @@
 		42F0AB1D1D9ABF2200747799 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				42F0AB311D9ABF2200747799 /* RequestDataModels */,
 				42F0AB1E1D9ABF2200747799 /* Errors */,
 				42F0AB281D9ABF2200747799 /* Private */,
-				42F0AB311D9ABF2200747799 /* RequestDataModels */,
 				42F0AB3A1D9ABF2200747799 /* VSSBaseModel.h */,
+				42F0AB301D9ABF2200747799 /* VSSModelKeys.m */,
 				42F0AB3B1D9ABF2200747799 /* VSSBaseModel.m */,
-				42F0AB3C1D9ABF2200747799 /* VSSCard.h */,
-				42F0AB3D1D9ABF2200747799 /* VSSCard.m */,
+				42F0ABBC1D9BEEB300747799 /* VSSSignedData.h */,
+				42F0ABBD1D9BEEB300747799 /* VSSSignedData.m */,
 				42F0AB3E1D9ABF2200747799 /* VSSCardData.h */,
 				42F0AB3F1D9ABF2200747799 /* VSSCardData.m */,
-				42F0AB401D9ABF2200747799 /* VSSIdentity.h */,
-				42F0AB411D9ABF2200747799 /* VSSIdentity.m */,
 				42F0AB421D9ABF2200747799 /* VSSModel.h */,
 				42F0AB431D9ABF2200747799 /* VSSModel.m */,
 				42F0AB441D9ABF2200747799 /* VSSModelCommons.h */,
 				42F0AB451D9ABF2200747799 /* VSSModelCommons.m */,
+				42F0ABC51D9D045D00747799 /* VSSCardModel.h */,
+				42F0ABC61D9D04C400747799 /* VSSCardModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -493,9 +454,11 @@
 			isa = PBXGroup;
 			children = (
 				42F0AB291D9ABF2200747799 /* Protocols */,
+				42F0ABBF1D9BEF1400747799 /* VSSSignedDataPrivate.h */,
 				42F0AB2E1D9ABF2200747799 /* VSSModelCommonsPrivate.h */,
 				42F0AB2F1D9ABF2200747799 /* VSSModelKeys.h */,
-				42F0AB301D9ABF2200747799 /* VSSModelKeys.m */,
+				42F0ABC01D9BF02500747799 /* VSSCardDataPrivate.h */,
+				42F0ABC81D9D054300747799 /* VSSCardModelPrivate.h */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -503,7 +466,7 @@
 		42F0AB291D9ABF2200747799 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				42F0AB2A1D9ABF2200747799 /* VSSCanonicalRepresentable.h */,
+				42F0ABC31D9C12F500747799 /* VSSCanonicalRepresentable.h */,
 				42F0AB2B1D9ABF2200747799 /* VSSDeserializable.h */,
 				42F0AB2C1D9ABF2200747799 /* VSSSerializable.h */,
 				42F0AB2D1D9ABF2200747799 /* VSSStringRepresentable.h */,
@@ -514,14 +477,11 @@
 		42F0AB311D9ABF2200747799 /* RequestDataModels */ = {
 			isa = PBXGroup;
 			children = (
-				42F0AB321D9ABF2200747799 /* VSSCardMetaData.h */,
-				42F0AB331D9ABF2200747799 /* VSSCardMetaData.m */,
+				42F0ABB41D9ACA9D00747799 /* Private */,
 				42F0AB341D9ABF2200747799 /* VSSRequestData.h */,
 				42F0AB351D9ABF2200747799 /* VSSRequestData.m */,
 				42F0AB361D9ABF2200747799 /* VSSSearchCardsCriteria.h */,
 				42F0AB371D9ABF2200747799 /* VSSSearchCardsCriteria.m */,
-				42F0AB381D9ABF2200747799 /* VSSSigningData.h */,
-				42F0AB391D9ABF2200747799 /* VSSSigningData.m */,
 			);
 			path = RequestDataModels;
 			sourceTree = "<group>";
@@ -549,9 +509,7 @@
 		42F0AB541D9ABF2200747799 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				42F0AB551D9ABF2200747799 /* Identity */,
 				42F0AB5C1D9ABF2200747799 /* Keys */,
-				42F0AB6F1D9ABF2200747799 /* PrivateKeys */,
 				42F0AB781D9ABF2200747799 /* VSSJSONRequest.h */,
 				42F0AB791D9ABF2200747799 /* VSSJSONRequest.m */,
 				42F0AB7A1D9ABF2200747799 /* VSSJSONRequestExtended.h */,
@@ -565,57 +523,34 @@
 			path = Requests;
 			sourceTree = "<group>";
 		};
-		42F0AB551D9ABF2200747799 /* Identity */ = {
-			isa = PBXGroup;
-			children = (
-				42F0AB561D9ABF2200747799 /* VSSConfirmIdentityRequest.h */,
-				42F0AB571D9ABF2200747799 /* VSSConfirmIdentityRequest.m */,
-				42F0AB581D9ABF2200747799 /* VSSIdentityBaseRequest.h */,
-				42F0AB591D9ABF2200747799 /* VSSIdentityBaseRequest.m */,
-				42F0AB5A1D9ABF2200747799 /* VSSVerifyIdentityRequest.h */,
-				42F0AB5B1D9ABF2200747799 /* VSSVerifyIdentityRequest.m */,
-			);
-			path = Identity;
-			sourceTree = "<group>";
-		};
 		42F0AB5C1D9ABF2200747799 /* Keys */ = {
 			isa = PBXGroup;
 			children = (
-				42F0AB5D1D9ABF2200747799 /* VSSCreateCardRequest.h */,
-				42F0AB5E1D9ABF2200747799 /* VSSCreateCardRequest.m */,
-				42F0AB5F1D9ABF2200747799 /* VSSDeleteCardRequest.h */,
-				42F0AB601D9ABF2200747799 /* VSSDeleteCardRequest.m */,
-				42F0AB611D9ABF2200747799 /* VSSDeletePublicKeyRequest.h */,
-				42F0AB621D9ABF2200747799 /* VSSDeletePublicKeyRequest.m */,
-				42F0AB631D9ABF2200747799 /* VSSGetCardRequest.h */,
-				42F0AB641D9ABF2200747799 /* VSSGetCardRequest.m */,
-				42F0AB651D9ABF2200747799 /* VSSGetPublicKeyRequest.h */,
-				42F0AB661D9ABF2200747799 /* VSSGetPublicKeyRequest.m */,
+				42F0ABC11D9C0EBC00747799 /* Private */,
 				42F0AB671D9ABF2200747799 /* VSSKeysBaseRequest.h */,
 				42F0AB681D9ABF2200747799 /* VSSKeysBaseRequest.m */,
+				42F0AB5D1D9ABF2200747799 /* VSSCreateCardRequest.h */,
+				42F0AB5E1D9ABF2200747799 /* VSSCreateCardRequest.m */,
 				42F0AB691D9ABF2200747799 /* VSSSearchCardRequest.h */,
 				42F0AB6A1D9ABF2200747799 /* VSSSearchCardRequest.m */,
-				42F0AB6B1D9ABF2200747799 /* VSSSignCardRequest.h */,
-				42F0AB6C1D9ABF2200747799 /* VSSSignCardRequest.m */,
-				42F0AB6D1D9ABF2200747799 /* VSSUnsignCardRequest.h */,
-				42F0AB6E1D9ABF2200747799 /* VSSUnsignCardRequest.m */,
 			);
 			path = Keys;
 			sourceTree = "<group>";
 		};
-		42F0AB6F1D9ABF2200747799 /* PrivateKeys */ = {
+		42F0ABB41D9ACA9D00747799 /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				42F0AB701D9ABF2200747799 /* VSSDeletePrivateKeyRequest.h */,
-				42F0AB711D9ABF2200747799 /* VSSDeletePrivateKeyRequest.m */,
-				42F0AB721D9ABF2200747799 /* VSSGrabPrivateKeyRequest.h */,
-				42F0AB731D9ABF2200747799 /* VSSGrabPrivateKeyRequest.m */,
-				42F0AB741D9ABF2200747799 /* VSSPrivateKeysBaseRequest.h */,
-				42F0AB751D9ABF2200747799 /* VSSPrivateKeysBaseRequest.m */,
-				42F0AB761D9ABF2200747799 /* VSSStorePrivateKeyRequest.h */,
-				42F0AB771D9ABF2200747799 /* VSSStorePrivateKeyRequest.m */,
+				42F0ABB51D9ACAAB00747799 /* VSSCreateCardDataPrivate.h */,
 			);
-			path = PrivateKeys;
+			path = Private;
+			sourceTree = "<group>";
+		};
+		42F0ABC11D9C0EBC00747799 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				42F0ABC21D9C0EC800747799 /* VSSCreateCardRequestPrivate.h */,
+			);
+			path = Private;
 			sourceTree = "<group>";
 		};
 		ECBE87D3B790F5C27AAB2582 /* Frameworks */ = {
@@ -1046,46 +981,31 @@
 				42F0AB191D9ABF1500747799 /* VSSKeyPair.m in Sources */,
 				42E75B841D991D7700750C52 /* ViewController.m in Sources */,
 				36FF4B931C4D7FED00E901F3 /* NSObject+VSSUtils.m in Sources */,
-				42F0AB861D9ABF2200747799 /* VSSCardMetaData.m in Sources */,
 				42F0AB1A1D9ABF1500747799 /* VSSPrivateKey.m in Sources */,
-				42F0ABA11D9ABF2200747799 /* VSSDeletePrivateKeyRequest.m in Sources */,
-				42F0AB8B1D9ABF2200747799 /* VSSCard.m in Sources */,
-				42F0ABA21D9ABF2200747799 /* VSSGrabPrivateKeyRequest.m in Sources */,
 				42F0AB881D9ABF2200747799 /* VSSSearchCardsCriteria.m in Sources */,
-				42F0AB8D1D9ABF2200747799 /* VSSIdentity.m in Sources */,
 				36FF4B941C4D7FED00E901F3 /* NSString+VSSXMLEscape.m in Sources */,
 				42F0AB8E1D9ABF2200747799 /* VSSModel.m in Sources */,
-				42F0AB891D9ABF2200747799 /* VSSSigningData.m in Sources */,
-				42F0AB9C1D9ABF2200747799 /* VSSGetPublicKeyRequest.m in Sources */,
 				42F0AB981D9ABF2200747799 /* VSSCreateCardRequest.m in Sources */,
 				42F0AB9D1D9ABF2200747799 /* VSSKeysBaseRequest.m in Sources */,
 				42F0AB831D9ABF2200747799 /* VSSKeysError.m in Sources */,
+				42F0ABBE1D9BEEB300747799 /* VSSSignedData.m in Sources */,
 				42F0AB821D9ABF2200747799 /* VSSIdentityError.m in Sources */,
 				42F0AB871D9ABF2200747799 /* VSSRequestData.m in Sources */,
 				42F0ABA81D9ABF2200747799 /* VSSRequestExtended.m in Sources */,
-				42F0AB9B1D9ABF2200747799 /* VSSGetCardRequest.m in Sources */,
-				42F0ABA41D9ABF2200747799 /* VSSStorePrivateKeyRequest.m in Sources */,
 				42F0ABB11D9ABFAC00747799 /* VSSClient.m in Sources */,
 				42F0AB1B1D9ABF1500747799 /* VSSPublicKey.m in Sources */,
 				42F0ABB21D9ABFAC00747799 /* VSSServiceConfig.m in Sources */,
-				42F0AB991D9ABF2200747799 /* VSSDeleteCardRequest.m in Sources */,
-				42F0AB971D9ABF2200747799 /* VSSVerifyIdentityRequest.m in Sources */,
-				42F0ABA31D9ABF2200747799 /* VSSPrivateKeysBaseRequest.m in Sources */,
-				42F0AB9A1D9ABF2200747799 /* VSSDeletePublicKeyRequest.m in Sources */,
 				36912FAD1CD21C650058BBF8 /* VSSPBKDF+Base64.m in Sources */,
 				42F0ABB01D9ABFAC00747799 /* VSSBaseClient.m in Sources */,
 				42F0AB841D9ABF2200747799 /* VSSPrivateKeysError.m in Sources */,
 				364782C91C5AA44500165778 /* VSSKeychainValue.m in Sources */,
 				42F0ABA61D9ABF2200747799 /* VSSJSONRequestExtended.m in Sources */,
 				42F0AB811D9ABF2200747799 /* VSSError.m in Sources */,
-				42F0AB951D9ABF2200747799 /* VSSConfirmIdentityRequest.m in Sources */,
 				42F0AB851D9ABF2200747799 /* VSSModelKeys.m in Sources */,
 				42F0AB8A1D9ABF2200747799 /* VSSBaseModel.m in Sources */,
+				42F0ABC71D9D04C400747799 /* VSSCardModel.m in Sources */,
 				42E75B831D991D7700750C52 /* main.m in Sources */,
 				42F0AB931D9ABF2200747799 /* VSSRequestContext.m in Sources */,
-				42F0ABA01D9ABF2200747799 /* VSSUnsignCardRequest.m in Sources */,
-				42F0AB961D9ABF2200747799 /* VSSIdentityBaseRequest.m in Sources */,
-				42F0AB9F1D9ABF2200747799 /* VSSSignCardRequest.m in Sources */,
 				42E75B751D991D7700750C52 /* AppDelegate.m in Sources */,
 				42F0AB9E1D9ABF2200747799 /* VSSSearchCardRequest.m in Sources */,
 				42F0AB941D9ABF2200747799 /* VSSRequestContextExtended.m in Sources */,

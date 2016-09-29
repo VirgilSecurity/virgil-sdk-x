@@ -9,10 +9,9 @@
 #ifndef VSSClientProtocol_h
 #define VSSClientProtocol_h
 
-@class VSSSearchCardsCriteria;
-@class VSSRegistrationDetails;
-@class VSSRevocationRequest;
-@class VSSCreationRequest;
+#import "VSSSearchCardsCriteria.h"
+#import "VSSCardData.h"
+#import "VSSCardModel.h"
 
 /**
  * Protocol for all interactions with Virgil Services.
@@ -26,18 +25,18 @@
  * @param criteria VSSSearchCardsCriteria search criteria.
  * @param completionHandler Callback handler which will be called after request completed.
  */
-- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria * __nonnull)criteria completion:(void (^ __nonnull)(NSArray<VSSCard *>* __nullable, NSError * __nullable))callback;
+- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria * __nonnull)criteria completion:(void (^ __nonnull)(NSArray<VSSCardData *>* __nullable, NSError * __nullable))callback;
 
 #warning Add documentation
-- (void)createCard:(VSSCard * __nonnull)card completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback;
+- (void)createCardWithData:(VSSCardData * __nonnull)data completion:(void (^ __nonnull)(VSSCardModel * __nullable, NSError * __nullable))callback;
 
-- (void)beginGlobalCardCreationWithRequest:(VSSCreationRequest * __nonnull)request completion:(void (^ __nonnull)(VSSCreationRequest * __nullable, NSError * __nullable))callback;
+//- (void)beginGlobalCardCreationWithRequest:(VSSCreationRequest * __nonnull)request completion:(void (^ __nonnull)(VSSCreationRequest * __nullable, NSError * __nullable))callback;
 
-- (void)completeGlobalCardCreationWithDetails:(VSSRegistrationDetails * __nonnull)details andConfirmation: (NSString * __nonnull)string completion:(void (^ __nonnull)())callback;
+//- (void)completeGlobalCardCreationWithDetails:(VSSRegistrationDetails * __nonnull)details andConfirmation: (NSString * __nonnull)string completion:(void (^ __nonnull)())callback;
 
-- (void)revokeCardWithRequest:(VSSRevocationRequest * __nonnull)request completion:(void (^ __nonnull)())callback;
+//- (void)revokeCardWithRequest:(VSSRevocationRequest * __nonnull)request completion:(void (^ __nonnull)())callback;
 
-- (void)getCardWithId:(NSString * __nonnull)cardId completion:(void (^ __nonnull)())callback;
+//- (void)getCardWithId:(NSString * __nonnull)cardId completion:(void (^ __nonnull)())callback;
 
 @end
 

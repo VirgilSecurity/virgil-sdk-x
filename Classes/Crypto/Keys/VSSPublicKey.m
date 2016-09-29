@@ -15,7 +15,7 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithKey:(NSData *)key identifier:(NSData * _Nonnull)identifier {
+- (instancetype)initWithKey:(NSData *)key identifier:(NSData * __nonnull)identifier {
     self = [super init];
     if (self) {
         _key = [key copy];

@@ -24,7 +24,7 @@
 
 #pragma mark - Implementation of VSSClient protocol
 
-- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria *)criteria completion:(void (^)(NSArray<VSSCard *> *, NSError *))callback {
+- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria *)criteria completion:(void (^)(NSArray<VSSCardData *> *, NSError *))callback {
     VSSRequestContext * __nonnull context = [[VSSRequestContext alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys]];
     VSSSearchCardRequest * request = [[VSSSearchCardRequest alloc] initWithContext:context searchCriteria:criteria];
     
@@ -48,9 +48,9 @@
     [self send:request];
 }
 
-- (void)createCard:(VSSCard * __nonnull)card completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback {
+- (void)createCardWithData:(VSSCardData * __nonnull)data completion:(void (^ __nonnull)(VSSCardModel * __nullable, NSError * __nullable))callback {
     VSSRequestContext *context = [[VSSRequestContext alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys]];
-    VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithContext:context card:card];
+    VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithContext:context card:data];
     
     VSSRequestCompletionHandler handler = ^(VSSRequest *request) {
         if (request.error != nil) {
@@ -62,7 +62,7 @@
         
         if (callback != nil) {
             VSSCreateCardRequest *r = [request as:[VSSCreateCardRequest class]];
-            callback(r.card, nil);
+            callback(r.cardModel, nil);
         }
         return;
     };

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "VSSModelCommons.h"
 
 extern NSInteger const kVSSNoErrorValue;
 

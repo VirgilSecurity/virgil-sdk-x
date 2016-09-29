@@ -6,15 +6,15 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSRequestData.h"
-#import "VSSSerializable.h"
-#import "VSSDeserializable.h"
+#import "VSSBaseModel.h"
 
-@interface VSSSigningData : VSSRequestData <VSSSerializable, VSSDeserializable>
+@interface VSSSignedData : VSSBaseModel
 
 @property (nonatomic, copy, readonly) NSDictionary * __nonnull signatures;
+@property (nonatomic, copy, readonly) NSString * __nullable cardVersion;
+@property (nonatomic, copy, readonly) NSDate * __nullable createdAt;
 
-- (instancetype __nonnull)initWithSignatures:(NSDictionary * __nullable)signatures NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 - (void)addSignature:(NSString * __nonnull)signature forFingerprint:(NSString * __nonnull)fingerprint;
 

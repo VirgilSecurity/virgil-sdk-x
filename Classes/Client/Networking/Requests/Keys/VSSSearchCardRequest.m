@@ -8,14 +8,13 @@
 
 #import "VSSSearchCardRequest.h"
 #import "VSSModelCommons.h"
-#import "VSSCard.h"
-#import "VSSPublicKey.h"
 #import "NSObject+VSSUtils.h"
 #import "VSSSearchCardsCriteria.h"
+#import "VSSCardData.h"
 
 @interface VSSSearchCardRequest ()
 
-@property (nonatomic, strong, readwrite) NSArray <VSSCard *>* __nullable cards;
+@property (nonatomic, strong, readwrite) NSArray <VSSCardData *>* __nullable cards;
 
 @end
 
@@ -25,7 +24,7 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithContext:(VSSRequestContext *)context searchCriteria:(VSSSearchCardsCriteria * _Nonnull)criteria {
+- (instancetype)initWithContext:(VSSRequestContext *)context searchCriteria:(VSSSearchCardsCriteria *)criteria {
     self = [super initWithContext:context];
     if (self == nil) {
         return nil;

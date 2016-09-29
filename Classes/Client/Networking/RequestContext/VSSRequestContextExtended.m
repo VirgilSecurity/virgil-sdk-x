@@ -7,9 +7,6 @@
 //
 
 #import "VSSRequestContextExtended.h"
-#import "VSSCard.h"
-#import "VSSPrivateKey.h"
-#import "VSSPublicKey.h"
 
 @interface VSSRequestContextExtended ()
 

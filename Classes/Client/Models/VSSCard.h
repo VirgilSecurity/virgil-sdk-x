@@ -11,7 +11,6 @@
 #import "VSSSerializable.h"
 #import "VSSModelCommons.h"
 #import "VSSCardData.h"
-#import "VSSCardMetaData.h"
 
 @interface VSSCard : VSSBaseModel <VSSCanonicalRepresentable, VSSSerializable>
 

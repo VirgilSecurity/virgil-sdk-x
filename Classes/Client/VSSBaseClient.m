@@ -8,8 +8,6 @@
 
 #import "VSSBaseClient.h"
 #import "VSSRequest.h"
-#import "VSSCard.h"
-#import "VSSPrivateKey.h"
 #import "VSSRequest_Private.h"
 #import "NSObject+VSSUtils.h"
 

@@ -7,16 +7,17 @@
 //
 
 #import "VSSCreateCardRequest.h"
+#import "VSSCreateCardRequestPrivate.h"
 #import "VSSModelCommons.h"
-#import "VSSPublicKey.h"
-#import "VSSCard.h"
+#import "VSSCardData.h"
+#import "VSSCardDataPrivate.h"
 #import "NSObject+VSSUtils.h"
 
 @implementation VSSCreateCardRequest
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithContext:(VSSRequestContext *)context card:(VSSCard *)card {
+- (instancetype)initWithContext:(VSSRequestContext *)context card:(VSSCardData *)card {
     self = [super initWithContext:context];
     if (self == nil) {
         return nil;
@@ -35,17 +36,16 @@
     return @"virgil-card";
 }
 
-#warning fixme
-//- (NSError *)handleResponse:(NSObject *)candidate {
-//    NSError *error = [super handleResponse:candidate];
-//    if (error != nil) {
-//        return error;
-//    }
-//    
-//    /// Deserialize actual card
-//    self.card = [VSSCard deserializeFrom:[candidate as:[NSDictionary class]]];
-//    return nil;
-//}
+- (NSError *)handleResponse:(NSObject *)candidate {
+    NSError *error = [super handleResponse:candidate];
+    if (error != nil) {
+        return error;
+    }
+    
+    /// Deserialize actual card
+    self.card = [VSSCardData deserializeFrom:[candidate as:[NSDictionary class]]];
+    return nil;
+}
 
 
 @end

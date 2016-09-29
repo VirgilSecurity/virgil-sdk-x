@@ -8,7 +8,6 @@
 
 #import "VSSGetPublicKeyRequest.h"
 #import "VSSRequest.h"
-#import "VSSPublicKeyExtended.h"
 #import "NSObject+VSSUtils.h"
 
 @interface VSSGetPublicKeyRequest ()
