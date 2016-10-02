@@ -34,7 +34,7 @@ NSString *const kVSSModelSignerVirgilCardId = @"signer_virgil_card_id";
 NSString *const kVSSModelSignedVirgilCardId = @"signed_virgil_card_id";
 NSString *const kVSSModelSignedDigest = @"signed_digest";
 NSString *const kVSSModelRelations = @"relations";
-NSString *const kVSSModelIncludeUnconfirmed = @"include_unconfirmed";
+NSString *const kVSSModelIncludeUnconfirmed = @"include_unauthorized";
 NSString *const kVSSModelResponsePassword = @"response_password";
 
 NSString *const kVSSModelActionId = @"action_id";
