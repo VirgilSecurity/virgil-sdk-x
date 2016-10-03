@@ -24,13 +24,13 @@ NSString *const kVSSServiceIDIdentity = @"VSSServiceIDIdentity";
 
 - (NSString *)serviceURLForServiceID:(NSString *)serviceID {
     if ([serviceID isEqualToString:kVSSServiceIDKeys]) {
-        return @"https://keys-stg.virgilsecurity.com/v3";
+        return @"https://keys.virgilsecurity.com/v3";
     }
     else if ([serviceID isEqualToString:kVSSServiceIDPrivateKeys]) {
-        return @"https://keys-private-stg.virgilsecurity.com/v3";
+        return @"https://keys-private.virgilsecurity.com/v3";
     }
     else if ([serviceID isEqualToString:kVSSServiceIDIdentity]) {
-        return @"https://identity-stg.virgilsecurity.com/v1";
+        return @"https://identity.virgilsecurity.com/v1";
     }
     
     return @"";
