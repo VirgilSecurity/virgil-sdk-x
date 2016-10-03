@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NSString GUID;
-
 typedef NS_ENUM(NSInteger, VSSCardScope) {
     VSSCardScopeApplication,
     VSSCardScopeGlobal

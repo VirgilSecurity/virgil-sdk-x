@@ -82,7 +82,7 @@
 
 + (instancetype)deserializeFrom:(NSDictionary *)candidate {
     NSDictionary *signedDict = [candidate[kVSSModelMeta] as:[NSDictionary class]];
-    if (signedDict == nil || [signedDict count] == 0)
+    if ([signedDict count] == 0)
         return nil;
     
     VSSSignedData *signedData = [super deserializeFrom:signedDict];
@@ -90,7 +90,7 @@
         return nil;
     
     NSString *snapshotStr = [candidate[kVSSModelContentSnapshot] as:[NSString class]];
-    if (snapshotStr == nil || [snapshotStr length] == 0)
+    if ([snapshotStr length] == 0)
         return nil;
     
     NSData *snapshot = [[NSData alloc] initWithBase64EncodedString:snapshotStr options:0];

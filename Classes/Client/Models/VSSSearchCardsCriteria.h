@@ -6,10 +6,10 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSRequestData.h"
 #import "VSSModelCommons.h"
+#import "VSSBaseModel.h"
 
-@interface VSSSearchCardsCriteria : VSSRequestData
+@interface VSSSearchCardsCriteria : VSSBaseModel
 
 @property (nonatomic, readonly) VSSCardScope scope;
 @property (nonatomic, copy, readonly) NSString * __nonnull identityType;

@@ -13,7 +13,7 @@
 
 @interface VSSCreateCardRequest : VSSKeysBaseRequest
 
-@property (nonatomic, strong, readonly) VSSCardModel * __nullable cardModel;
+@property (nonatomic) VSSCardModel * __nullable cardModel;
 
 - (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context card:(VSSCardData * __nonnull)card NS_DESIGNATED_INITIALIZER;
 

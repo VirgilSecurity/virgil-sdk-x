@@ -6,7 +6,6 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#warning add documentation
 @protocol VSSCanonicalRepresentable <NSObject>
 
 + (instancetype __nullable)createFromCanonicalForm:(NSData * __nonnull)canonicalForm;

@@ -6,8 +6,6 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#warning add documentation
-
 @protocol VSSSerializable <NSObject>
 
 - (NSDictionary * __nonnull)serialize;

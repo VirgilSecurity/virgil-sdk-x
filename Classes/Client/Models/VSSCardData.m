@@ -33,7 +33,7 @@
 }
 
 + (instancetype)createWithIdentity:(NSString *)identity identityType:(NSString *)identityType scope:(VSSCardScope)scope publicKey:(NSData *)publicKey data:(NSDictionary *)data {
-#warning fixme
+    // todo
     NSDictionary *info = [[NSDictionary alloc] init];
     
     return [[VSSCardData alloc] initWithIdentity:identity identityType:identityType scope:scope publicKey:publicKey data:data info:info];
@@ -79,17 +79,17 @@
 + (instancetype)deserializeFrom:(NSDictionary *)candidate {
     NSString *identityTypeStr = [candidate[kVSSModelIdentity] as:[NSString class]];
     NSString *identityValueStr = [candidate[kVSSModelIdentity] as:[NSString class]];
-    if (identityTypeStr == nil || [identityTypeStr length] == 0 || identityValueStr == nil || [identityValueStr length] == 0)
+    if ([identityTypeStr length] == 0 || [identityValueStr length] == 0)
         return nil;
     
     NSString * scopeStr = [candidate[kVSSModelCardScope] as:[NSString class]];
-    if (scopeStr == nil || [scopeStr length] == 0)
+    if ([scopeStr length] == 0)
         return nil;
     
     VSSCardScope scope = vss_getCardScopeFromString(scopeStr);
     
     NSString * publicKeyStr = [candidate[kVSSModelPublicKey] as:[NSString class]];
-    if (publicKeyStr == nil && [publicKeyStr length] == 0)
+    if ([publicKeyStr length] == 0)
         return nil;
     
     NSData *publicKey = [[NSData alloc]initWithBase64EncodedString:publicKeyStr options:0];
@@ -106,7 +106,7 @@
 #pragma mark - VSSCanonicalRepresentable
 
 + (instancetype)createFromCanonicalForm:(NSData *)canonicalForm {
-    if (canonicalForm == nil || [canonicalForm length] == 0)
+    if ([canonicalForm length] == 0)
         return nil;
     
     NSError *parseError;

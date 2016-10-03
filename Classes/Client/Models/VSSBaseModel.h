@@ -6,7 +6,8 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#warning add documentation
+#import <Foundation/Foundation.h>
+
 @interface VSSBaseModel : NSObject
 
 @end

@@ -6,31 +6,20 @@
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSModel.h"
+#import "VSSBaseModel.h"
 #import "VSSModelCommons.h"
 
 /**
  * Wrapper object for managing errors returned by the Virgil Services.
  */
-@interface VSSError : VSSModel <VSSDeserializable>
+@interface VSSError : VSSBaseModel
+
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 /**
  * Error code returned by the Virgil Service.
  */
-@property (nonatomic, assign, readonly) NSInteger code;
-
-///------------------------------------------
-/// @name Lifecycle
-///------------------------------------------
-
-/**
- * Designated constructor.
- *
- * @param code Error code.
- * 
- * @return Instance of the Virgil Error wrapper.
- */
-- (instancetype __nonnull)initWithCode:(NSInteger)code NS_DESIGNATED_INITIALIZER;
+@property (nonatomic, readonly) NSInteger code;
 
 ///------------------------------------------
 /// @name Utility

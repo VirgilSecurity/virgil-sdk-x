@@ -9,6 +9,7 @@
 #import "VSSKeysBaseRequest.h"
 #import "VSSKeysError.h"
 #import "NSObject+VSSUtils.h"
+#import "VSSErrorPrivate.h"
 
 @implementation VSSKeysBaseRequest
 

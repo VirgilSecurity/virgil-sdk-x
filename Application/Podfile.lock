@@ -1,22 +1,22 @@
 PODS:
-  - VirgilFoundation (2.0.0-beta1)
+  - VirgilFoundation (2.0.0-beta4)
 
 DEPENDENCIES:
-  - VirgilFoundation (from `https://github.com/VirgilSecurity/virgil-foundation-x.git`, branch `2.0.0-beta1`)
+  - VirgilFoundation (from `https://github.com/VirgilSecurity/virgil-foundation-x.git`, branch `2.0.0-beta4`)
 
 EXTERNAL SOURCES:
   VirgilFoundation:
-    :branch: 2.0.0-beta1
+    :branch: 2.0.0-beta4
     :git: https://github.com/VirgilSecurity/virgil-foundation-x.git
 
 CHECKOUT OPTIONS:
   VirgilFoundation:
-    :commit: 3424e1cb87b0d35e62fcb248b32ad10dc14be044
+    :commit: d03eb3eb771be75a560c957d87d0ed780c9cad08
     :git: https://github.com/VirgilSecurity/virgil-foundation-x.git
 
 SPEC CHECKSUMS:
-  VirgilFoundation: a40d16b24ebc87d506fb3838358a29e35706bb4b
+  VirgilFoundation: 976573f1fb5637d2a8f04211fc770ed18ffdec10
 
-PODFILE CHECKSUM: 97000912ca0f56f052d7138b1974e856384707d5
+PODFILE CHECKSUM: 8b0083f957c77e6f00511846b4006818adf48b8a
 
 COCOAPODS: 1.1.0.rc.2

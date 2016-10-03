@@ -7,10 +7,11 @@
 //
 
 #import "VSSCreateCardRequest.h"
-#import "VSSCreateCardRequestPrivate.h"
 #import "VSSModelCommons.h"
 #import "VSSCardData.h"
 #import "VSSCardDataPrivate.h"
+#import "VSSCardModel.h"
+#import "VSSCardModelPrivate.h"
 #import "NSObject+VSSUtils.h"
 
 @implementation VSSCreateCardRequest
@@ -43,9 +44,8 @@
     }
     
     /// Deserialize actual card
-    self.card = [VSSCardData deserializeFrom:[candidate as:[NSDictionary class]]];
+    self.cardModel = [VSSCardModel deserializeFrom:[candidate as:[NSDictionary class]]];
     return nil;
 }
-
 
 @end

@@ -13,13 +13,13 @@
 #import "VSSSearchCardRequest.h"
 #import "VSSSearchCardsCriteria.h"
 #import "VSSServiceConfig.h"
+#import "VSSBaseClientPrivate.h"
 
 // for private methods
 @interface VSSClient ()
 
 @end
 
-#warning implement protocol
 @implementation VSSClient
 
 #pragma mark - Implementation of VSSClient protocol
@@ -118,7 +118,7 @@
 - (void)send:(VSSRequest *)request {
     /// Before sending any request set proper token value into correspondent header field:
     if (self.token.length > 0) {
-        [request setRequestHeaders:@{ kVSSAccessTokenHeader: self.token }];
+        [request setRequestHeaders:@{ kVSSAccessTokenHeader: [NSString stringWithFormat:@"Virgil %@", self.token]}];
     }
     
     [super send:request];

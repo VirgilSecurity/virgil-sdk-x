@@ -20,7 +20,6 @@
 #import "VSSPrivateKeysError.h"
 
 #import "VSSRequest.h"
-#import "VSSRequest_Private.h"
 #import "VSSJSONRequest.h"
 
 #import "VSSRequestContext.h"

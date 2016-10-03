@@ -8,19 +8,17 @@
 
 #import "VSSBaseClient.h"
 #import "VSSRequest.h"
-#import "VSSRequest_Private.h"
+#import "VSSRequestPrivate.h"
 #import "NSObject+VSSUtils.h"
-
+#import "VSSBaseClientPrivate.h"
 #import "VSSServiceConfig.h"
 
 NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
 
 @interface VSSBaseClient ()
 
-@property (nonatomic, strong, readwrite) NSString * __nonnull token;
-@property (nonatomic, strong) VSSServiceConfig * __nonnull serviceConfig;
-@property (nonatomic, strong) NSOperationQueue * __nonnull queue;
-@property (nonatomic, strong) NSURLSession * __nonnull urlSession;
+@property (nonatomic) NSOperationQueue * __nonnull queue;
+@property (nonatomic) NSURLSession * __nonnull urlSession;
 
 @end
 

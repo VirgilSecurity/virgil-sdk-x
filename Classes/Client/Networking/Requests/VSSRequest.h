@@ -19,8 +19,7 @@
 #  define VSSRDLog(...) /* nothing to log */
 #endif
 
-@class VSSRequest;
-@class VSSRequestContext;
+#import "VSSRequestContext.h"
 
 /**
  * Enum for HTTP Request methods.
@@ -32,10 +31,11 @@ typedef NS_ENUM(NSUInteger, HTTPRequestMethod) {
     POST,
     /// HTTP method PUT.
     PUT,
-    /// HTTP mrthod DELETE.
+    /// HTTP method DELETE.
     DELETE
 };
 
+@class VSSRequest;
 /**
  * Callback for operation completion.
  */
@@ -57,49 +57,9 @@ extern NSString * __nonnull const kVSSRequestDefaultMethod;
 extern NSString * __nonnull const kVSSRequestErrorDomain;
 
 /**
- * Error code for generic errors from the Virgil Client.
- */
-extern const NSInteger kVSSRequestClientErrorCode;
-
-/**
- * Code for indicating of cancelled HTTP request.
- */
-extern const NSInteger kVSSRequestCancelledErrorCode;
-
-/**
- * String description of cancelled HTTP request.
- */
-extern NSString * __nonnull const kVSSRequestCancelledErrorDescription;
-
-/**
  * Header name for the Access token.
  */
 extern NSString * __nonnull const kVSSAccessTokenHeader;
-
-/**
- * Header name for the request unique ID.
- */
-extern NSString * __nonnull const kVSSRequestIDHeader;
-
-/**
- * Token header for the signature of the request.
- */
-extern NSString * __nonnull const kVSSRequestSignHeader;
-
-/**
- * Token header for the Card Identifier.
- */
-extern NSString * __nonnull const kVSSRequestSignCardIDHeader;
-
-/**
- * Token header for the response signature.
- */
-extern NSString * __nonnull const kVSSResponseSignHeader;
-
-/**
- * Token header for the response unique ID.
- */
-extern NSString * __nonnull const kVSSResponseIDHeader;
 
 /**
  * Base wrapper class for HTTP requests.

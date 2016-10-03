@@ -18,26 +18,22 @@
 
 - (VSSPrivateKey * __nullable)importPrivateKey:(NSData * __nonnull)keyData password:(NSString * __nullable)password;
 - (VSSPublicKey * __nullable)importPublicKey:(NSData * __nonnull)keyData;
+- (VSSPublicKey * __nonnull)extractPublicKeyFromPrivateKey:(VSSPrivateKey * __nonnull)privateKey;
 
 - (NSData * __nonnull)exportPrivateKey:(VSSPrivateKey * __nonnull)privateKey password:(NSString * __nullable)password;
 - (NSData * __nonnull)exportPublicKey:(VSSPublicKey * __nonnull)publicKey;
 
-- (NSData * __nonnull)encryptData:(NSData * __nonnull)data forRecipients:(NSArray<VSSPublicKey *> * __nonnull)recipients;
-- (void)encryptStream:(NSInputStream * __nonnull)stream outputStream:(NSOutputStream * __nonnull)outputStream forRecipients:(NSArray<VSSPublicKey *> * __nonnull)recipients;
+- (NSData * __nullable)encryptData:(NSData * __nonnull)data forRecipients:(NSArray<VSSPublicKey *> * __nonnull)recipients error:(NSError * __nullable * __nullable)errorPtr;
+- (void)encryptStream:(NSInputStream * __nonnull)stream outputStream:(NSOutputStream * __nonnull)outputStream forRecipients:(NSArray<VSSPublicKey *> * __nonnull)recipients error:(NSError * __nullable * __nullable)errorPtr;
 
-- (bool)verifyData:(NSData * __nonnull)data signature:(NSData * __nonnull)signature signer:(VSSPublicKey * __nonnull)signer;
-- (bool)verifyStream:(NSInputStream * __nonnull)inputStream signature:(NSData * __nonnull)signature signer:(VSSPublicKey * __nonnull)signer;
-- (bool)verifyFingerprint:(NSString * __nonnull)fingerprint signature:(NSData * __nonnull)signature signer:(VSSPublicKey * __nonnull)signer;
+- (bool)verifyData:(NSData * __nonnull)data signature:(NSData * __nonnull)signature signerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr;
+- (bool)verifyStream:(NSInputStream * __nonnull)inputStream signature:(NSData * __nonnull)signature signerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr;
 
-- (NSData * __nonnull)decryptData:(NSData * __nonnull)data privateKey:(VSSPrivateKey * __nonnull)privateKey;
-- (void)decryptStream:(NSInputStream * __nonnull)inputStream outputStream:(NSOutputStream * __nonnull)outputStream privateKey:(VSSPrivateKey * __nonnull)privateKey;
+- (NSData * __nullable)decryptData:(NSData * __nonnull)data privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
+- (void)decryptStream:(NSInputStream * __nonnull)inputStream outputStream:(NSOutputStream * __nonnull)outputStream privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
 
-- (NSData * __nonnull)signData:(NSData * __nonnull)data privateKey:(VSSPrivateKey * __nonnull)privateKey;
-- (NSData * __nonnull)signStream:(NSInputStream * __nonnull)stream privateKey:(VSSPrivateKey * __nonnull)privateKey;
-- (NSData * __nonnull)signFingerprint:(NSString * __nonnull)fingerprint privateKey:(VSSPrivateKey * __nonnull)privateKey;
-
-- (NSData * __nonnull)signAndEncryptData:(NSData * __nonnull)data privateKey:(VSSPrivateKey * __nonnull)privatekey forRecipients:(NSArray<VSSPublicKey *> * __nonnull)recipients;
-- (NSData * __nonnull)descryptAndVerifyData:(NSData * __nonnull)data privateKey:(VSSPrivateKey * __nonnull)privateKey publicKey:(VSSPublicKey * __nonnull)publicKey;
+- (NSData * __nullable)signData:(NSData * __nonnull)data privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
+- (NSData * __nullable)signStream:(NSInputStream * __nonnull)stream privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
 
 - (NSString * __nonnull)calculateFingerprintOfData:(NSData * __nonnull)data;
 

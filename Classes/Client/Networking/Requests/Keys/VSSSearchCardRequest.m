@@ -53,7 +53,6 @@
     return @"virgil-card/actions/search";
 }
 
-#warning fixme
 //- (NSError *)handleResponse:(NSObject *)candidate {
 //    NSError *error = [super handleResponse:candidate];
 //    if (error != nil) {

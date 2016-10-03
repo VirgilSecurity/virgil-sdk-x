@@ -54,7 +54,7 @@
     NSString *cardVersion = [candidate[kVSSModelCardVersion] as:[NSString class]];
     
     NSDictionary *signingDataDict = [candidate[kVSSModelSigns] as:[NSDictionary class]];
-    if (signingDataDict == nil || [signingDataDict count] == 0)
+    if ([signingDataDict count] == 0)
         return nil;
     
     return [[VSSSignedData alloc] initWithSignatures:signatures cardVersion:cardVersion createdAt:createdAt];

@@ -1,5 +1,5 @@
 //
-//  VSSRequest_Private.h
+//  VSSRequestPrivate.h
 //  VirgilSDK
 //
 //  Created by Pavel Gorb on 1/12/16.
@@ -17,21 +17,21 @@
 /**
  * Underlying HTTP request.
  */
-@property (nonatomic, strong) NSURLRequest * __nonnull request;
+@property (nonatomic) NSURLRequest * __nonnull request;
 
 /**
  * Underlying HTTP service response.
  */
-@property (nonatomic, strong) NSHTTPURLResponse * __nullable response;
+@property (nonatomic) NSHTTPURLResponse * __nullable response;
 
 /**
  * Error object when some error happen or nil.
  */
-@property (nonatomic, strong) NSError * __nullable error;
+@property (nonatomic) NSError * __nullable error;
 
 /**
  * Actual response body.
  */
-@property (nonatomic, strong) NSData * __nullable responseBody;
+@property (nonatomic) NSData * __nullable responseBody;
 
 @end

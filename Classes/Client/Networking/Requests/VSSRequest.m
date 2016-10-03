@@ -7,7 +7,7 @@
 //
 
 #import "VSSRequest.h"
-#import "VSSRequest_Private.h"
+#import "VSSRequestPrivate.h"
 #import "VSSRequestContext.h"
 #import "NSString+VSSXMLEscape.h"
 #import "NSObject+VSSUtils.h"
@@ -15,17 +15,8 @@
 const NSTimeInterval kVSSRequestDefaultTimeout = 45.0f;
 NSString *const kVSSRequestDefaultMethod = @"POST";
 NSString *const kVSSRequestErrorDomain = @"VSSRequestErrorDomain";
-const NSInteger kVSSRequestClientErrorCode = -9090;
-const NSInteger kVSSRequestCancelledErrorCode = -1000;
-NSString *const kVSSRequestCancelledErrorDescription = @"Cancelled";
 
-NSString *const kVSSAccessTokenHeader = @"X-VIRGIL-ACCESS-TOKEN";
-NSString *const kVSSRequestIDHeader = @"X-VIRGIL-REQUEST-ID";
-NSString *const kVSSRequestSignHeader = @"X-VIRGIL-REQUEST-SIGN";
-NSString *const kVSSRequestSignCardIDHeader = @"X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID";
-
-NSString *const kVSSResponseSignHeader = @"X-VIRGIL-RESPONSE-SIGN";
-NSString *const kVSSResponseIDHeader = @"X-VIRGIL-RESPONSE-ID";
+NSString *const kVSSAccessTokenHeader = @"Authorization";
 
 @interface VSSRequest ()
 
@@ -36,10 +27,6 @@ NSString *const kVSSResponseIDHeader = @"X-VIRGIL-RESPONSE-ID";
 
 @implementation VSSRequest
 
-@synthesize request = _request;
-@synthesize response = _response;
-@synthesize error = _error;
-@synthesize responseBody = _responseBody;
 @synthesize completionHandler = _completionHandler;
 
 #pragma mark - Getters/Setters implementation

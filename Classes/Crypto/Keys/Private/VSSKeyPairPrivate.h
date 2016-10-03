@@ -11,6 +11,6 @@
 
 @interface VSSKeyPair ()
 
-- (instancetype __nonnull)initWithPrivateKey:(VSSPrivateKey * __nonnull)privateKey andPublicKey:(VSSPublicKey * __nonnull)publicKey;
+- (instancetype __nonnull)initWithPrivateKey:(VSSPrivateKey * __nonnull)privateKey publicKey:(VSSPublicKey * __nonnull)publicKey;
 
 @end

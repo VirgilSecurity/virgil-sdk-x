@@ -24,11 +24,8 @@
  */
 extern NSString * __nonnull const kVSSClientErrorDomain;
 
-@class VSSRequest;
-@class VSSCard;
-@class VSSPrivateKey;
-
 #import "VSSServiceConfig.h"
+#import "VSSRequest.h"
 
 /**
  * Base class for the Virgil Services client.
@@ -40,12 +37,12 @@ extern NSString * __nonnull const kVSSClientErrorDomain;
 /**
  * String token which might be required by the service.
  */
-@property (nonatomic, strong, readonly) NSString * __nonnull token;
+@property (nonatomic, copy, readonly) NSString * __nonnull token;
 
 /**
  * Service configuration object, which contains the information about the service URLs and/or service identifiers.
  */
-@property (nonatomic, strong, readonly) VSSServiceConfig * __nonnull serviceConfig;
+@property (nonatomic, copy, readonly) VSSServiceConfig * __nonnull serviceConfig;
 
 ///------------------------------------------
 /// @name Lifecycle
@@ -85,16 +82,5 @@ extern NSString * __nonnull const kVSSClientErrorDomain;
  * @param completionHandler Callback to call when setup is done.
  */
 - (void)setupClientWithCompletionHandler:(void(^ __nullable)(NSError * __nullable))completionHandler;
-
-///------------------------------------------
-/// @name Utility
-///------------------------------------------
-
-/**
- * Adds given request to the execution queue and sends it to service.
- *
- * @param request The particular request to be performed.
- */
-- (void)send:(VSSRequest * __nonnull)request;
 
 @end
