@@ -11,6 +11,7 @@
 #import "VSSPublicKey.h"
 #import "VSSKeyPair.h"
 #import "VSSHashAlgorithm.h"
+#import "VSSFingerprint.h"
 
 @protocol VSSCrypto <NSObject>
 
@@ -35,7 +36,7 @@
 - (NSData * __nullable)signData:(NSData * __nonnull)data privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
 - (NSData * __nullable)signStream:(NSInputStream * __nonnull)stream privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
 
-- (NSString * __nonnull)calculateFingerprintOfData:(NSData * __nonnull)data;
+- (VSSFingerprint * __nonnull)calculateFingerprintOfData:(NSData * __nonnull)data;
 
 - (NSData * __nonnull)computeHashOfData:(NSData * __nonnull)data withAlgorithm:(VSSHashAlgorithm)algorithm;
 

@@ -35,9 +35,8 @@
 }
 
 - (instancetype)initWithSnapshot:(NSData *)snapshot cardData:(VSSCardData *)cardData signatures:(NSDictionary *)signatures cardVersion:(NSString *)cardVersion createdAt:(NSDate *)createdAt {
-    self = [super initWithSignatures:signatures cardVersion:cardVersion createdAt:createdAt];
+    self = [super initWithSnapshot:snapshot signatures:signatures cardVersion:cardVersion createdAt:createdAt];
     if (self) {
-        _snapshot = [snapshot copy];
         _data = cardData;
     }
     
@@ -66,38 +65,18 @@
     return [self initWithSnapshot:snapshot signatures:nil cardVersion:nil createdAt:nil];
 }
 
-
-#pragma mark - VSSSerializable
-
-- (NSDictionary * __nonnull)serialize {
-    NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
-    
-    dict[kVSSModelContentSnapshot] = [self.snapshot base64EncodedStringWithOptions:0];
-    dict[kVSSModelMeta] = [super serialize];
-    
-    return dict;
-}
-
 #pragma mark - VSSDeserializable
 
-+ (instancetype)deserializeFrom:(NSDictionary *)candidate {
-    NSDictionary *signedDict = [candidate[kVSSModelMeta] as:[NSDictionary class]];
-    if ([signedDict count] == 0)
-        return nil;
+- (instancetype)initWithDict:(NSDictionary *)candidate {
+    self = [super initWithDict:candidate];
+    if (self) {
+        VSSCardData *cardData = [VSSCardData createFromCanonicalForm:self.snapshot];
+        if (cardData == nil)
+            return nil;
+        _data = cardData;
+    }
     
-    VSSSignedData *signedData = [super deserializeFrom:signedDict];
-    if (signedData == nil)
-        return nil;
-    
-    NSString *snapshotStr = [candidate[kVSSModelContentSnapshot] as:[NSString class]];
-    if ([snapshotStr length] == 0)
-        return nil;
-    
-    NSData *snapshot = [[NSData alloc] initWithBase64EncodedString:snapshotStr options:0];
-    if (snapshot == nil)
-        return nil;
-    
-    return [[VSSCardModel alloc] initWithSnapshot:snapshot signatures:signedData.signatures cardVersion:signedData.cardVersion createdAt:signedData.createdAt];
+    return self;
 }
 
 @end

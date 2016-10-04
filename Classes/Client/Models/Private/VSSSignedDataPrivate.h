@@ -12,6 +12,6 @@
 
 @interface VSSSignedData () <VSSSerializable, VSSDeserializable>
 
-- (instancetype __nonnull)initWithSignatures:(NSDictionary * __nullable)signatures cardVersion:(NSString * __nullable)cardVersion createdAt:(NSDate * __nullable)createdAt NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithSnapshot:(NSData * __nonnull)snapshot signatures:(NSDictionary * __nullable)signatures cardVersion:(NSString * __nullable)cardVersion createdAt:(NSDate * __nullable)createdAt;
 
 @end

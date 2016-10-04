@@ -10,8 +10,6 @@
 
 @protocol VSSDeserializable <NSObject>
 
-@required
-
-+ (instancetype __nullable)deserializeFrom:(NSDictionary * __nonnull)candidate;
+- (instancetype __nullable)initWithDict:(NSDictionary * __nonnull)candidate;
 
 @end

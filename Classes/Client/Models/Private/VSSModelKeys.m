@@ -18,7 +18,9 @@ NSString *const kVSSModelAuthorizedBy = @"authorized_by";
 
 NSString *const kVSSModelIdentity = @"identity";
 NSString *const kVSSModelData = @"data";
-NSString *const kVSSModelInfo = @"data";
+NSString *const kVSSModelInfo = @"info";
+NSString *const kVSSModelDevice = @"device";
+NSString *const kVSSModelDeviceName = @"device_name";
 
 NSString *const kVSSModelPublicKey = @"public_key";
 NSString *const kVSSModelCards = @"virgil_cards";

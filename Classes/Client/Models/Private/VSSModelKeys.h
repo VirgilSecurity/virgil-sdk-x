@@ -21,6 +21,8 @@ extern NSString * __nonnull const kVSSModelCardScope;
 extern NSString * __nonnull const kVSSModelIdentityType;
 extern NSString * __nonnull const kVSSModelData;
 extern NSString * __nonnull const kVSSModelInfo;
+extern NSString * __nonnull const kVSSModelDevice;
+extern NSString * __nonnull const kVSSModelDeviceName;
 
 extern NSString * __nonnull const kVSSModelContentSnapshot;
 extern NSString * __nonnull const kVSSModelMeta;

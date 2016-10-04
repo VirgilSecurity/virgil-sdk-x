@@ -1,5 +1,5 @@
 //
-//  VSSKeysClient.m
+//  VSSClient.m
 //  VirgilSDK
 //
 //  Created by Pavel Gorb on 9/11/15.
@@ -25,7 +25,7 @@
 #pragma mark - Implementation of VSSClient protocol
 
 - (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria *)criteria completion:(void (^)(NSArray<VSSCardData *> *, NSError *))callback {
-    VSSRequestContext * __nonnull context = [[VSSRequestContext alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys]];
+    VSSRequestContext * __nonnull context = [[VSSRequestContext alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDCards]];
     VSSSearchCardRequest * request = [[VSSSearchCardRequest alloc] initWithContext:context searchCriteria:criteria];
     
     VSSRequestCompletionHandler handler = ^(VSSRequest *request) {
@@ -48,9 +48,9 @@
     [self send:request];
 }
 
-- (void)createCardWithData:(VSSCardData * __nonnull)data completion:(void (^ __nonnull)(VSSCardModel * __nullable, NSError * __nullable))callback {
-    VSSRequestContext *context = [[VSSRequestContext alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDKeys]];
-    VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithContext:context card:data];
+- (void)createCardWithModel:(VSSCardModel * __nonnull)model completion:(void (^ __nonnull)(VSSCardModel * __nullable, NSError * __nullable))callback {
+    VSSRequestContext *context = [[VSSRequestContext alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDCards]];
+    VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithContext:context cardModel:model];
     
     VSSRequestCompletionHandler handler = ^(VSSRequest *request) {
         if (request.error != nil) {
@@ -118,7 +118,7 @@
 - (void)send:(VSSRequest *)request {
     /// Before sending any request set proper token value into correspondent header field:
     if (self.token.length > 0) {
-        [request setRequestHeaders:@{ kVSSAccessTokenHeader: [NSString stringWithFormat:@"Virgil %@", self.token]}];
+        [request setRequestHeaders:@{ kVSSAccessTokenHeader: [NSString stringWithFormat:@"VIRGIL %@", self.token]}];
     }
     
     [super send:request];

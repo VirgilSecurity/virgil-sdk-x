@@ -11,17 +11,7 @@
 /**
  * The string identifier for the Virgil Keys Service.
  */
-extern NSString * __nonnull const kVSSServiceIDKeys;
-
-/**
- * The string identifier for the Virgil Private Keys Service.
- */
-extern NSString * __nonnull const kVSSServiceIDPrivateKeys;
-
-/**
- * The string identifier for the Virgil Identity Service.
- */
-extern NSString * __nonnull const kVSSServiceIDIdentity;
+extern NSString * __nonnull const kVSSServiceIDCards;
 
 /**
  * Helper class for services configuration.
@@ -48,15 +38,5 @@ extern NSString * __nonnull const kVSSServiceIDIdentity;
  * @return String with base URL for the given service.
  */
 - (NSString * __nonnull)serviceURLForServiceID:(NSString * __nonnull)serviceID;
-
-/**
- * Returns service card's identity value which might be used to search the actual Virgil Card
- * on the Virgil Keys Service.
- *
- * @param serviceID Identifier of the service.
- *
- * @return String containing identity value which can be used to search for the Virgil Card.
- */
-- (NSString * __nonnull)serviceCardValueForServiceID:(NSString * __nonnull)serviceID;
 
 @end

@@ -13,6 +13,7 @@
 #import "VSSSignedDataPrivate.h"
 #import "VSSCardData.h"
 #import "VSSCardDataPrivate.h"
+#import "VSSDeviceInfoUtils.h"
 
 @implementation VSSCardData
 
@@ -34,7 +35,10 @@
 
 + (instancetype)createWithIdentity:(NSString *)identity identityType:(NSString *)identityType scope:(VSSCardScope)scope publicKey:(NSData *)publicKey data:(NSDictionary *)data {
     // todo
-    NSDictionary *info = [[NSDictionary alloc] init];
+    NSDictionary *info = @{
+        kVSSModelDevice: [VSSDeviceInfoUtils getDeviceModel],
+        kVSSModelDeviceName: [VSSDeviceInfoUtils getDeviceName]
+    };
     
     return [[VSSCardData alloc] initWithIdentity:identity identityType:identityType scope:scope publicKey:publicKey data:data info:info];
 }
@@ -65,7 +69,7 @@
     dict[kVSSModelIdentity] = self.identity;
     dict[kVSSModelCardScope] = vss_getCardScopeString(self.scope);
     
-    if (self.data != nil && [self.data count] > 0) {
+    if ([self.data count] > 0) {
         dict[kVSSModelData] = self.data;
     }
     
@@ -76,7 +80,7 @@
 
 #pragma mark - VSSDeserializable
 
-+ (instancetype)deserializeFrom:(NSDictionary *)candidate {
+- (instancetype)initWithDict:(NSDictionary *)candidate {
     NSString *identityTypeStr = [candidate[kVSSModelIdentity] as:[NSString class]];
     NSString *identityValueStr = [candidate[kVSSModelIdentity] as:[NSString class]];
     if ([identityTypeStr length] == 0 || [identityValueStr length] == 0)
@@ -100,7 +104,7 @@
     if (info == nil)
         return nil;
     
-    return [[VSSCardData alloc] initWithIdentity:identityValueStr identityType:identityTypeStr scope:scope publicKey:publicKey data:data info:info];
+    return [self initWithIdentity:identityValueStr identityType:identityTypeStr scope:scope publicKey:publicKey data:data info:info];
 }
 
 #pragma mark - VSSCanonicalRepresentable
@@ -116,7 +120,7 @@
         return nil;
     
     if ([candidate isKindOfClass:[NSDictionary class]]) {
-        return [VSSCardData deserializeFrom:(NSDictionary *)candidate];
+        return [[VSSCardData alloc]initWithDict:(NSDictionary *)candidate];
     }
     
     return nil;

@@ -15,9 +15,7 @@
 #import "VSSPublicKey.h"
 #import "VSSPrivateKey.h"
 #import "VSSError.h"
-#import "VSSKeysError.h"
-#import "VSSIdentityError.h"
-#import "VSSPrivateKeysError.h"
+#import "VSSCardsError.h"
 
 #import "VSSRequest.h"
 #import "VSSJSONRequest.h"

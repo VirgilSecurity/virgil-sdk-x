@@ -7,6 +7,7 @@
 //
 
 #import "VSSError.h"
+#import "VSSErrorPrivate.h"
 #import "NSObject+VSSUtils.h"
 #import "VSSModelKeys.h"
 #import "VSSModelCommonsPrivate.h"
@@ -53,14 +54,14 @@
     return [NSError errorWithDomain:kVSSErrorDomain code:self.code userInfo:@{ NSLocalizedDescriptionKey : descr }];
 }
 
-#pragma mark - VSSSerialization
+#pragma mark - VSSDeserializable
 
-+ (instancetype)deserializeFrom:(NSDictionary *)candidate {
+- (instancetype)initWithDict:(NSDictionary *)candidate {
     NSNumber *code = [candidate[kVSSModelCode] as:[NSNumber class]];
     if (code == nil)
         return nil;
     
-    return [[self alloc] initWithCode:[code integerValue]];
+    return [self initWithCode:[code integerValue]];
 }
 
 @end

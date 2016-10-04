@@ -6,12 +6,12 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSKeysBaseRequest.h"
+#import "VSSCardsBaseRequest.h"
 #import "VSSRequestContext.h"
 #import "VSSSearchCardsCriteria.h"
 #import "VSSCardData.h"
 
-@interface VSSSearchCardRequest : VSSKeysBaseRequest
+@interface VSSSearchCardRequest : VSSCardsBaseRequest
 
 @property (nonatomic, strong, readonly) NSArray <VSSCardData *>* __nullable cards;
 

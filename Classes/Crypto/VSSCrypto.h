@@ -8,7 +8,7 @@
 
 #import "VSSCryptoProtocol.h"
 
-@import VirgilFoundation;
+@import VirgilCrypto;
 
 @interface VSSCrypto : NSObject <VSSCrypto>
 

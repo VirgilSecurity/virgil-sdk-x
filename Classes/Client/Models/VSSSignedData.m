@@ -14,9 +14,11 @@
 
 @implementation VSSSignedData
 
-- (instancetype)initWithSignatures:(NSDictionary * _Nullable)signatures cardVersion:(NSString * _Nullable)cardVersion createdAt:(NSDate * _Nullable)createdAt {
+- (instancetype)initWithSnapshot:(NSData *)snapshot signatures:(NSDictionary *)signatures cardVersion:(NSString *)cardVersion createdAt:(NSDate *)createdAt {
     self = [super init];
     if (self) {
+        _snapshot = [snapshot copy];
+        
         if (signatures != nil)
             _signatures = [signatures copy];
         else
@@ -25,39 +27,68 @@
     return self;
 }
 
-- (void)addSignature:(NSString *)signature forFingerprint:(NSString *)fingerprint {
+- (void)addSignature:(NSData *)signature forFingerprint:(NSString *)fingerprint {
     ((NSMutableDictionary *)_signatures)[fingerprint] = signature;
 }
 
 - (NSDictionary *)serialize {
-    NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *metaDict = [[NSMutableDictionary alloc] init];
+
+    NSMutableDictionary *signaturesDict = [[NSMutableDictionary alloc] init];
+    for (NSString *key in self.signatures.allKeys) {
+        signaturesDict[key] = [((NSData *)self.signatures[key]) base64EncodedStringWithOptions:0];
+    }
     
-    dict[kVSSModelSigns] = [self.signatures copy];
+    metaDict[kVSSModelSigns] = signaturesDict;
+    dict[kVSSModelMeta] = metaDict;
     
+    dict[kVSSModelContentSnapshot] = [self.snapshot base64EncodedStringWithOptions:0];
+
     return dict;
 }
 
-+ (instancetype __nullable)deserializeFrom:(NSDictionary * __nonnull)candidate {
-    NSDictionary *signatures = [candidate[kVSSModelSigns] as:[NSDictionary class]];
+- (instancetype)initWithDict:(NSDictionary *)candidate {
+    self = [super init];
     
-    NSDate *createdAt = nil;
-    NSString *createdAtStr = [candidate[kVSSModelCreatedAt] as:[NSString class]];
-    if (createdAtStr != nil && [createdAtStr length] != 0) {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
-        [dateFormatter setLocale:enUSPOSIXLocale];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
-        createdAt = [dateFormatter dateFromString:createdAtStr];
-        return nil;
+    if (self) {
+        NSString *snapshotStr = [candidate[kVSSModelContentSnapshot] as:[NSString class]];
+        if ([snapshotStr length] == 0)
+            return nil;
+        
+        NSData *snapshot = [[NSData alloc] initWithBase64EncodedString:snapshotStr options:0];
+        if ([snapshot length] == 0)
+            return nil;
+        
+        _snapshot = snapshot;
+
+        NSDictionary *metaCandidate = [candidate[kVSSModelMeta] as:[NSDictionary class]];
+        if ([metaCandidate count] == 0)
+            return nil;
+
+        NSMutableDictionary *signaturesDict = [[NSMutableDictionary alloc] init];
+        NSDictionary *signatures = [candidate[kVSSModelSigns] as:[NSDictionary class]];
+        for (NSString *key in signatures.allKeys) {
+            signaturesDict[key] = [[NSData alloc] initWithBase64EncodedString:signatures[key] options:0];
+        }
+        _signatures = signaturesDict;
+
+        NSDate *createdAt = nil;
+        NSString *createdAtStr = [candidate[kVSSModelCreatedAt] as:[NSString class]];
+        if (createdAtStr != nil && [createdAtStr length] != 0) {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+            [dateFormatter setLocale:enUSPOSIXLocale];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+            createdAt = [dateFormatter dateFromString:createdAtStr];
+            _createdAt = [createdAt copy];
+        }
+
+        NSString *cardVersion = [candidate[kVSSModelCardVersion] as:[NSString class]];
+        _cardVersion = [cardVersion copy];
     }
-    
-    NSString *cardVersion = [candidate[kVSSModelCardVersion] as:[NSString class]];
-    
-    NSDictionary *signingDataDict = [candidate[kVSSModelSigns] as:[NSDictionary class]];
-    if ([signingDataDict count] == 0)
-        return nil;
-    
-    return [[VSSSignedData alloc] initWithSignatures:signatures cardVersion:cardVersion createdAt:createdAt];
+
+    return self;
 }
 
 @end

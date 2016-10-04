@@ -14,8 +14,10 @@
 @property (nonatomic, copy, readonly) NSString * __nullable cardVersion;
 @property (nonatomic, copy, readonly) NSDate * __nullable createdAt;
 
+@property (nonatomic, copy, readonly) NSData * __nonnull snapshot;
+
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 
-- (void)addSignature:(NSString * __nonnull)signature forFingerprint:(NSString * __nonnull)fingerprint;
+- (void)addSignature:(NSData * __nonnull)signature forFingerprint:(NSString * __nonnull)fingerprint;
 
 @end

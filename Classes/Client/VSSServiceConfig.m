@@ -8,9 +8,7 @@
 
 #import "VSSServiceConfig.h"
 
-NSString *const kVSSServiceIDKeys = @"VSSServiceIDKeys";
-NSString *const kVSSServiceIDPrivateKeys = @"VSSServiceIDPrivateKeys";
-NSString *const kVSSServiceIDIdentity = @"VSSServiceIDIdentity";
+NSString *const kVSSServiceIDCards = @"VSSServiceIDCards";
 
 @implementation VSSServiceConfig
 
@@ -19,32 +17,12 @@ NSString *const kVSSServiceIDIdentity = @"VSSServiceIDIdentity";
 }
 
 - (NSArray <NSString *>*)serviceIDList {
-    return @[ kVSSServiceIDKeys, kVSSServiceIDPrivateKeys, kVSSServiceIDIdentity];
+    return @[ kVSSServiceIDCards];
 }
 
 - (NSString *)serviceURLForServiceID:(NSString *)serviceID {
-    if ([serviceID isEqualToString:kVSSServiceIDKeys]) {
-        return @"https://keys.virgilsecurity.com/v3";
-    }
-    else if ([serviceID isEqualToString:kVSSServiceIDPrivateKeys]) {
-        return @"https://keys-private.virgilsecurity.com/v3";
-    }
-    else if ([serviceID isEqualToString:kVSSServiceIDIdentity]) {
-        return @"https://identity.virgilsecurity.com/v1";
-    }
-    
-    return @"";
-}
-
-- (NSString *)serviceCardValueForServiceID:(NSString *)serviceID {
-    if ([serviceID isEqualToString:kVSSServiceIDKeys]) {
-        return @"com.virgilsecurity.keys";
-    }
-    else if ([serviceID isEqualToString:kVSSServiceIDPrivateKeys]) {
-        return @"com.virgilsecurity.private-keys";
-    }
-    else if ([serviceID isEqualToString:kVSSServiceIDIdentity]) {
-        return @"com.virgilsecurity.identity";
+    if ([serviceID isEqualToString:kVSSServiceIDCards]) {
+        return @"https://cards.virgilsecurity.com/v4";
     }
     
     return @"";

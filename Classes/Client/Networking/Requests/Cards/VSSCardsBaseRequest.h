@@ -1,5 +1,5 @@
 //
-//  VSSKeysBaseRequest.h
+//  VSSCardsBaseRequest.h
 //  VirgilSDK
 //
 //  Created by Pavel Gorb on 9/12/15.
@@ -8,6 +8,6 @@
 
 #import "VSSJSONRequest.h"
 
-@interface VSSKeysBaseRequest : VSSJSONRequest
+@interface VSSCardsBaseRequest : VSSJSONRequest
 
 @end

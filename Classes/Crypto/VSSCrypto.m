@@ -13,7 +13,7 @@
 #import "VSSPublicKeyPrivate.h"
 #import "VSSPrivateKeyPrivate.h"
 
-@import VirgilFoundation;
+@import VirgilCrypto;
 
 @implementation VSSCrypto
 
@@ -38,9 +38,7 @@
     if ([privateKeyData length] == 0)
         return nil;
 
-    // fixme
-    // [VSCKeyPair extractPublicKey]
-    NSData *publicKey = [[NSData alloc] init];
+    NSData *publicKey = [VSCKeyPair extractPublicKeyWithPrivateKey:privateKeyData privateKeyPassword:nil];
     if ([publicKey length] == 0)
         return nil;
 
@@ -87,9 +85,9 @@
 }
 
 - (VSSPublicKey *)extractPublicKeyFromPrivateKey:(VSSPrivateKey *)privateKey {
-//    [VSCKeyPair extractPublicKey]
-    // fixme
-    NSData *publicKeyData = [[NSData alloc] init];
+    NSData *publicKeyData = [VSCKeyPair extractPublicKeyWithPrivateKey:privateKey.key privateKeyPassword:nil];
+    if ([publicKeyData length] == 0)
+        return nil;
     
     NSData *exportedPublicKey = [VSCKeyPair publicKeyToDER:publicKeyData];
     if ([exportedPublicKey length] == 0)
@@ -105,9 +103,7 @@
     
     NSError *error;
     for (VSSPublicKey *publicKey in recipients) {
-        // fixme: what with errors?
-        // fixme insert publicKeyIdentifier
-        [cipher addKeyRecipient:@"" publicKey:publicKey.key error:&error];
+        [cipher addKeyRecipient:publicKey.identifier publicKey:publicKey.key error:&error];
         
         if (error != nil) {
             if (errorPtr != nil)
@@ -131,18 +127,20 @@
 
     NSError *error;
     for (VSSPublicKey *publicKey in recipients) {
-        // fixme: what with errors?
-        // fixme insert publicKeyIdentifier
-        [cipher addKeyRecipient:@"" publicKey:publicKey.key error:&error];
+        [cipher addKeyRecipient:publicKey.identifier publicKey:publicKey.key error:&error];
         if (error != nil) {
             if (errorPtr != nil)
                 *errorPtr = error;
             return;
         }
     }
-    
-    // fixme
-//    [cipher encryptDataFromStream:stream toStream:outputStream];
+
+    [cipher encryptDataFromStream:stream toStream:outputStream error:&error];
+    if (error != nil) {
+        if (errorPtr != nil)
+            *errorPtr = error;
+        return;
+    }
 }
 
 - (bool)verifyData:(NSData *)data signature:(NSData *)signature signerPublicKey:(VSSPublicKey *)signerPublicKey error:(NSError **)errorPtr {
@@ -178,10 +176,8 @@
 - (NSData *)decryptData:(NSData *)data privateKey:(VSSPrivateKey *)privateKey error:(NSError **)errorPtr {
     VSCCryptor *cipher = [[VSCCryptor alloc] init];
 
-    // fixme insert recipientId
-//    return [cipher decryptData:data recipientId:privateKey.identifier privateKey:privateKey.key keyPassword:nil error:nil];
     NSError *error;
-    NSData *decryptedData = [cipher decryptData:data recipientId:@"" privateKey:privateKey.key keyPassword:nil error:&error];
+    NSData *decryptedData = [cipher decryptData:data recipientId:privateKey.identifier privateKey:privateKey.key keyPassword:nil error:&error];
     
     if (error != nil) {
         if (errorPtr != nil)
@@ -195,10 +191,8 @@
 - (void)decryptStream:(NSInputStream * __nonnull)inputStream outputStream:(NSOutputStream * __nonnull)outputStream privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError **)errorPtr {
     VSCChunkCryptor *cipher = [[VSCChunkCryptor alloc] init];
 
-    // fixme
-//    [cipher decryptFromStream:inputStream toStream:outputStream recipientId:privateKey.identifier privateKey:privateKey.key keyPassword:nil error:nil];
     NSError *error;
-    [cipher decryptFromStream:inputStream toStream:outputStream recipientId:@"" privateKey:privateKey.key keyPassword:nil error:&error];
+    [cipher decryptFromStream:inputStream toStream:outputStream recipientId:privateKey.identifier privateKey:privateKey.key keyPassword:nil error:&error];
     
     if (error != nil) {
         if (errorPtr != nil)
@@ -236,9 +230,9 @@
     return signature;
 }
 
-- (NSString * __nonnull)calculateFingerprintOfData:(NSData * __nonnull)data {
+- (VSSFingerprint * __nonnull)calculateFingerprintOfData:(NSData * __nonnull)data {
     //fixme
-    return @"";
+    return [[VSSFingerprint alloc] initWithHex:@""];
 //    
 //    var sha256 = new VirgilHash(VirgilHash.Algorithm.SHA256);
 //    var hash = sha256.Hash(content);

@@ -18,13 +18,13 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithContext:(VSSRequestContext *)context card:(VSSCardData *)card {
+- (instancetype)initWithContext:(VSSRequestContext *)context cardModel:(VSSCardModel *)model {
     self = [super initWithContext:context];
     if (self == nil) {
         return nil;
     }
     
-    NSDictionary *body = [card serialize];
+    NSDictionary *body = [model serialize];
     
     [self setRequestBodyWithObject:body];
     
@@ -34,7 +34,7 @@
 #pragma mark - Overrides
 
 - (NSString *)methodPath {
-    return @"virgil-card";
+    return @"card";
 }
 
 - (NSError *)handleResponse:(NSObject *)candidate {
@@ -44,7 +44,7 @@
     }
     
     /// Deserialize actual card
-    self.cardModel = [VSSCardModel deserializeFrom:[candidate as:[NSDictionary class]]];
+    self.cardModel = [[VSSCardModel alloc] initWithDict:[candidate as:[NSDictionary class]]];
     return nil;
 }
 
