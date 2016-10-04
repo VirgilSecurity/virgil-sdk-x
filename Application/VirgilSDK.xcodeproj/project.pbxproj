@@ -10,7 +10,6 @@
 		0C56C2870564179E32599309 /* Pods_VirgilSDKApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B105A59C81F05067FFE1AA /* Pods_VirgilSDKApp.framework */; };
 		1AC352B3DA5D4765116220EB /* Pods_VirgilSDKAppSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D4682A65C10B06A464626B /* Pods_VirgilSDKAppSwift.framework */; };
 		362CFE3A1C74C0AB002A3E93 /* VSS001_ClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 362CFE1E1C74C02E002A3E93 /* VSS001_ClientTests.m */; };
-		362CFE3B1C74C0B1002A3E93 /* VSS001_ClientSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFE1B1C74C02E002A3E93 /* VSS001_ClientSwiftTests.swift */; };
 		362CFE3C1C74C0BE002A3E93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFE111C74C02E002A3E93 /* AppDelegate.swift */; };
 		362CFE3D1C74C0C2002A3E93 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362CFE181C74C02E002A3E93 /* ViewController.swift */; };
 		362CFE611C74C988002A3E93 /* VSSKeychainValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 364782C81C5AA44500165778 /* VSSKeychainValue.m */; };
@@ -51,18 +50,10 @@
 		42FA965B1DA3E9560092D5DB /* VSSCreateCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FA964E1DA3E9560092D5DB /* VSSCreateCardRequest.m */; };
 		42FA96601DA3E9560092D5DB /* VSSCardsBaseRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FA96581DA3E9560092D5DB /* VSSCardsBaseRequest.m */; };
 		42FA96611DA3E9560092D5DB /* VSSSearchCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FA965A1DA3E9560092D5DB /* VSSSearchCardRequest.m */; };
-		87F653F08EEC399EAE6F82D4 /* Pods_VirgilSDKSwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E5DEA2B938856986FAE4532 /* Pods_VirgilSDKSwiftTests.framework */; };
 		9BD6C3BD7557367F90D7AE30 /* Pods_VirgilSDKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB96634A5451840A9BE5F41E /* Pods_VirgilSDKTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3606B2981BBB1DC50074B4C1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3606B2821BBB1DC40074B4C1;
-			remoteInfo = VirgilKeysSwift;
-		};
 		3614032F1BB2E05F002E69CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
@@ -70,20 +61,12 @@
 			remoteGlobalIDString = 361403141BB2E05F002E69CA;
 			remoteInfo = VirgilKeys;
 		};
-		42BD4F021D99812D008AFD5A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 361403141BB2E05F002E69CA;
-			remoteInfo = VirgilSDKApp;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		18F4F225FB9F730BB6C213CB /* Pods-VirgilSDKApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirgilSDKApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-VirgilSDKApp/Pods-VirgilSDKApp.release.xcconfig"; sourceTree = "<group>"; };
 		1CDB296A0E446BCEAFAF1197 /* Pods-VirgilSDKAppSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirgilSDKAppSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-VirgilSDKAppSwift/Pods-VirgilSDKAppSwift.release.xcconfig"; sourceTree = "<group>"; };
 		3606B2831BBB1DC40074B4C1 /* VirgilSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirgilSDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3606B2971BBB1DC50074B4C1 /* VirgilSDK.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirgilSDK.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3606B2CD1BBB20050074B4C1 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		361403151BB2E05F002E69CA /* VirgilSDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirgilSDK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3614032E1BB2E05F002E69CA /* VirgilSDK.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirgilSDK.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,8 +76,6 @@
 		362CFE161C74C02E002A3E93 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		362CFE171C74C02E002A3E93 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		362CFE181C74C02E002A3E93 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		362CFE1A1C74C02E002A3E93 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		362CFE1B1C74C02E002A3E93 /* VSS001_ClientSwiftTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS001_ClientSwiftTests.swift; sourceTree = "<group>"; };
 		362CFE1D1C74C02E002A3E93 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		362CFE1E1C74C02E002A3E93 /* VSS001_ClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS001_ClientTests.m; sourceTree = "<group>"; };
 		364782C71C5AA44500165778 /* VSSKeychainValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeychainValue.h; sourceTree = "<group>"; };
@@ -106,7 +87,6 @@
 		3C3D179C07D0FDDC8E447912 /* Pods-VirgilSDKAppSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirgilSDKAppSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VirgilSDKAppSwift/Pods-VirgilSDKAppSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		3E5DEA2B938856986FAE4532 /* Pods_VirgilSDKSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirgilSDKSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		429F11915E988260A69139D0 /* Pods-VirgilSDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirgilSDKTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VirgilSDKTests/Pods-VirgilSDKTests.debug.xcconfig"; sourceTree = "<group>"; };
-		42BD4EFD1D99812D008AFD5A /* VirgilSDKTestsSwift.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirgilSDKTestsSwift.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		42E75B531D991D7700750C52 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		42E75B541D991D7700750C52 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		42E75B561D991D7700750C52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -212,21 +192,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		42BD4EFA1D99812D008AFD5A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5C3EB6E9AE79BFA8F6E78207 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				87F653F08EEC399EAE6F82D4 /* Pods_VirgilSDKSwiftTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EE7E3CFC27C74D27C013AEDB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -261,7 +226,6 @@
 				3614033E1BB2E0FC002E69CA /* VirgilSDK Pod Content */,
 				362CFE101C74C02E002A3E93 /* VirgilSDKAppSwift */,
 				362CFE1C1C74C02E002A3E93 /* VirgilSDKTests */,
-				362CFE191C74C02E002A3E93 /* VirgilSDKSwiftTests */,
 				361403161BB2E05F002E69CA /* Products */,
 				135818864A783A82717F3A7B /* Pods */,
 				ECBE87D3B790F5C27AAB2582 /* Frameworks */,
@@ -274,8 +238,6 @@
 				361403151BB2E05F002E69CA /* VirgilSDK.app */,
 				3614032E1BB2E05F002E69CA /* VirgilSDK.xctest */,
 				3606B2831BBB1DC40074B4C1 /* VirgilSDK.app */,
-				3606B2971BBB1DC50074B4C1 /* VirgilSDK.xctest */,
-				42BD4EFD1D99812D008AFD5A /* VirgilSDKTestsSwift.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -302,15 +264,6 @@
 				362CFE171C74C02E002A3E93 /* Info.plist */,
 			);
 			path = VirgilSDKAppSwift;
-			sourceTree = "<group>";
-		};
-		362CFE191C74C02E002A3E93 /* VirgilSDKSwiftTests */ = {
-			isa = PBXGroup;
-			children = (
-				362CFE1B1C74C02E002A3E93 /* VSS001_ClientSwiftTests.swift */,
-				362CFE1A1C74C02E002A3E93 /* Info.plist */,
-			);
-			path = VirgilSDKSwiftTests;
 			sourceTree = "<group>";
 		};
 		362CFE1C1C74C02E002A3E93 /* VirgilSDKTests */ = {
@@ -573,27 +526,6 @@
 			productReference = 3606B2831BBB1DC40074B4C1 /* VirgilSDK.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3606B2961BBB1DC50074B4C1 /* VirgilSDKSwiftTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3606B2A41BBB1DC50074B4C1 /* Build configuration list for PBXNativeTarget "VirgilSDKSwiftTests" */;
-			buildPhases = (
-				841C9F21AA696BED8F2CC7F5 /* [CP] Check Pods Manifest.lock */,
-				3606B2931BBB1DC50074B4C1 /* Sources */,
-				3606B2951BBB1DC50074B4C1 /* Resources */,
-				5C3EB6E9AE79BFA8F6E78207 /* Frameworks */,
-				CBA9ED8731851C46DC1151D9 /* [CP] Embed Pods Frameworks */,
-				C74565B93E3CA27AD82BB1B2 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3606B2991BBB1DC50074B4C1 /* PBXTargetDependency */,
-			);
-			name = VirgilSDKSwiftTests;
-			productName = VirgilKeysSwiftTests;
-			productReference = 3606B2971BBB1DC50074B4C1 /* VirgilSDK.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		361403141BB2E05F002E69CA /* VirgilSDKApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 361403381BB2E05F002E69CA /* Build configuration list for PBXNativeTarget "VirgilSDKApp" */;
@@ -635,24 +567,6 @@
 			productReference = 3614032E1BB2E05F002E69CA /* VirgilSDK.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		42BD4EFC1D99812D008AFD5A /* VirgilSDKTestsSwift */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 42BD4F041D99812D008AFD5A /* Build configuration list for PBXNativeTarget "VirgilSDKTestsSwift" */;
-			buildPhases = (
-				42BD4EF91D99812D008AFD5A /* Sources */,
-				42BD4EFA1D99812D008AFD5A /* Frameworks */,
-				42BD4EFB1D99812D008AFD5A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				42BD4F031D99812D008AFD5A /* PBXTargetDependency */,
-			);
-			name = VirgilSDKTestsSwift;
-			productName = VirgilSDKTestsSwift;
-			productReference = 42BD4EFD1D99812D008AFD5A /* VirgilSDKTestsSwift.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -667,11 +581,6 @@
 						CreatedOnToolsVersion = 6.4;
 						LastSwiftMigration = 0800;
 					};
-					3606B2961BBB1DC50074B4C1 = {
-						CreatedOnToolsVersion = 6.4;
-						LastSwiftMigration = 0800;
-						TestTargetID = 3606B2821BBB1DC40074B4C1;
-					};
 					361403141BB2E05F002E69CA = {
 						CreatedOnToolsVersion = 6.4;
 						LastSwiftMigration = 0800;
@@ -679,11 +588,6 @@
 					3614032D1BB2E05F002E69CA = {
 						CreatedOnToolsVersion = 6.4;
 						LastSwiftMigration = 0800;
-						TestTargetID = 361403141BB2E05F002E69CA;
-					};
-					42BD4EFC1D99812D008AFD5A = {
-						CreatedOnToolsVersion = 8.0;
-						ProvisioningStyle = Automatic;
 						TestTargetID = 361403141BB2E05F002E69CA;
 					};
 				};
@@ -704,21 +608,12 @@
 				361403141BB2E05F002E69CA /* VirgilSDKApp */,
 				3614032D1BB2E05F002E69CA /* VirgilSDKTests */,
 				3606B2821BBB1DC40074B4C1 /* VirgilSDKAppSwift */,
-				3606B2961BBB1DC50074B4C1 /* VirgilSDKSwiftTests */,
-				42BD4EFC1D99812D008AFD5A /* VirgilSDKTestsSwift */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3606B2811BBB1DC40074B4C1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3606B2951BBB1DC50074B4C1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -736,13 +631,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3614032C1BB2E05F002E69CA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		42BD4EFB1D99812D008AFD5A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -812,21 +700,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VirgilSDKApp/Pods-VirgilSDKApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		841C9F21AA696BED8F2CC7F5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		8B4C33BB6BAC3C8CF9723989 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -887,36 +760,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VirgilSDKTests/Pods-VirgilSDKTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C74565B93E3CA27AD82BB1B2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VirgilSDKSwiftTests/Pods-VirgilSDKSwiftTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CBA9ED8731851C46DC1151D9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VirgilSDKSwiftTests/Pods-VirgilSDKSwiftTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		DD288A27A1F92FFD2AB4BED1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -944,14 +787,6 @@
 				362CFE3C1C74C0BE002A3E93 /* AppDelegate.swift in Sources */,
 				362CFE631C74C98E002A3E93 /* NSString+VSSXMLEscape.m in Sources */,
 				362CFE621C74C98B002A3E93 /* NSObject+VSSUtils.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3606B2931BBB1DC50074B4C1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				362CFE3B1C74C0B1002A3E93 /* VSS001_ClientSwiftTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1002,30 +837,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		42BD4EF91D99812D008AFD5A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3606B2991BBB1DC50074B4C1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3606B2821BBB1DC40074B4C1 /* VirgilSDKAppSwift */;
-			targetProxy = 3606B2981BBB1DC50074B4C1 /* PBXContainerItemProxy */;
-		};
 		361403301BB2E05F002E69CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 361403141BB2E05F002E69CA /* VirgilSDKApp */;
 			targetProxy = 3614032F1BB2E05F002E69CA /* PBXContainerItemProxy */;
-		};
-		42BD4F031D99812D008AFD5A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 361403141BB2E05F002E69CA /* VirgilSDKApp */;
-			targetProxy = 42BD4F021D99812D008AFD5A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1095,42 +913,6 @@
 				PRODUCT_NAME = VirgilSDK;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
 				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		3606B2A11BBB1DC50074B4C1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F3C659A616F6A54B72034232 /* Pods-VirgilSDKSwiftTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = VirgilSDKSwiftTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = VirgilSDK;
-				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VirgilSDK.app/VirgilSDK";
-			};
-			name = Debug;
-		};
-		3606B2A21BBB1DC50074B4C1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = DAEF81E992B2EC8F1B7DD5AA /* Pods-VirgilSDKSwiftTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = VirgilSDKSwiftTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = VirgilSDK;
-				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VirgilSDK.app/VirgilSDK";
 			};
 			name = Release;
 		};
@@ -1284,43 +1066,6 @@
 			};
 			name = Release;
 		};
-		42BD4F051D99812D008AFD5A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = VirgilSDKTestsSwift/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.test.VirgilSDKTestsSwift;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VirgilSDK.app/VirgilSDK";
-			};
-			name = Debug;
-		};
-		42BD4F061D99812D008AFD5A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				INFOPLIST_FILE = VirgilSDKTestsSwift/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.test.VirgilSDKTestsSwift;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VirgilSDK.app/VirgilSDK";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1329,15 +1074,6 @@
 			buildConfigurations = (
 				3606B29F1BBB1DC50074B4C1 /* Debug */,
 				3606B2A01BBB1DC50074B4C1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3606B2A41BBB1DC50074B4C1 /* Build configuration list for PBXNativeTarget "VirgilSDKSwiftTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3606B2A11BBB1DC50074B4C1 /* Debug */,
-				3606B2A21BBB1DC50074B4C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1365,15 +1101,6 @@
 			buildConfigurations = (
 				3614033C1BB2E05F002E69CA /* Debug */,
 				3614033D1BB2E05F002E69CA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		42BD4F041D99812D008AFD5A /* Build configuration list for PBXNativeTarget "VirgilSDKTestsSwift" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				42BD4F051D99812D008AFD5A /* Debug */,
-				42BD4F061D99812D008AFD5A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
