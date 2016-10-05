@@ -12,6 +12,8 @@
 
 @implementation VSSFingerprint
 
+@dynamic hexValue;
+
 - (instancetype)initWithValue:(NSData *)value {
     self = [super init];
     if (self) {
@@ -30,7 +32,7 @@
     return self;
 }
 
-- (NSString *)getHexValue {
+- (NSString *)hexValue {
     return [VSCByteArrayUtils hexStringFromData:self.value];
 }
 

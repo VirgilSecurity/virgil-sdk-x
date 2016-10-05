@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#include <CommonCrypto/CommonDigest.h>
 #import "VSSCrypto.h"
 #import "VSSCryptoPrivate.h"
 #import "VSSKeyPairPrivate.h"
 #import "VSSPublicKeyPrivate.h"
 #import "VSSPrivateKeyPrivate.h"
+
 
 @import VirgilCrypto;
 
@@ -21,6 +23,8 @@
     VSCKeyPair *keyPair = [[VSCKeyPair alloc] init];
     
     NSData *keyPairId = [self computeHashForPublicKey:keyPair.publicKey];
+    if ([keyPairId length] == 0)
+        return nil;
     
     VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:keyPair.privateKey identifier:keyPairId];
     VSSPublicKey *publicKey = [[VSSPublicKey alloc] initWithKey:keyPair.publicKey identifier:keyPairId];
@@ -231,18 +235,25 @@
 }
 
 - (VSSFingerprint * __nonnull)calculateFingerprintOfData:(NSData * __nonnull)data {
-    //fixme
-    return [[VSSFingerprint alloc] initWithHex:@""];
-//    
-//    var sha256 = new VirgilHash(VirgilHash.Algorithm.SHA256);
-//    var hash = sha256.Hash(content);
-//    
-//    return new Fingerprint(hash);
+    NSData *hash = [self computeHashOfData:data withAlgorithm:VSSHashAlgorithmSHA256];
+    return [[VSSFingerprint alloc] initWithValue:hash];
+}
+
+- (NSData *)SHA256_HASHForData:(NSData * __nonnull)data {
+    NSMutableData *macOut = [[NSMutableData alloc] initWithLength:CC_SHA256_DIGEST_LENGTH];
+    CC_SHA256(data.bytes, (CC_LONG)data.length, macOut.mutableBytes);
+    return macOut;
 }
 
 - (NSData * __nonnull)computeHashOfData:(NSData * __nonnull)data withAlgorithm:(VSSHashAlgorithm)algorithm {
     // fixme
-    return [[NSData alloc] init];
+    if (algorithm == VSSHashAlgorithmSHA256) {
+        return [self SHA256_HASHForData:data];
+    }
+    else
+        return nil;
+//    return [@"testId" dataUsingEncoding:NSUTF8StringEncoding];
+//    return [[NSData alloc] init];
 }
 
 - (NSData *)computeHashForPublicKey:(NSData *)publicKey {

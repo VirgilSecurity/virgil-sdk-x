@@ -9,20 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
-#import "BridgingHeader.h"
-#import "VSSRequestSigner.h"
-#import "VSSPublicKeyPrivate.h"
+#import "VirgilSDK.h"
 
-#import "VSSPrivateKeyPrivate.h"
-#import "VSSCardModel.h"
-#import "VSSCrypto.h"
-
-/// Virgil Application Token for testing applications
-//static NSString *const kApplicationToken = <#NSString: Application Access Token#>;
-//static NSString *const kApplicationPublicKey = <# NSString: Application Public Key #>;
-//static NSString *const kApplicationPrivateKey = <# NSString: Application Private Key #>;
-//static NSString *const kApplicationId = <#NSString: Application Id#>;
-
+static NSString *const kApplicationToken = <#NSString: Application Access Token#>;
+static NSString *const kApplicationPublicKey = <# NSString: Application Public Key #>;
+static NSString *const kApplicationPrivateKeyBase64 = <#NSString: Application Private Key in base64#>;
+static NSString *const kApplicationId = <#NSString: Application Id#>;
 
 
 /// Each request should be done less than or equal this number of seconds.
@@ -33,11 +25,6 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 @property (nonatomic) VSSClient *client;
 @property (nonatomic) VSSCrypto *crypto;
 @property (nonatomic) VSSRequestSigner *requestSigner;
-
-@property (nonatomic, strong) VSSKeyPair *keyPair;
-@property (nonatomic, strong) VSSPublicKey *publicKey;
-
-@property (nonatomic, strong) NSString *validationToken;
 
 @end
 
@@ -62,33 +49,34 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 }
 
 - (void)test001_CreateCard {
-    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created unconfirmed."];
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created."];
 
     NSUInteger numberOfRequests = 1;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
     
-    VSSCrypto *crypto = [[VSSCrypto alloc] init];
-    VSSClient *client = [[VSSClient alloc] initWithApplicationToken:kApplicationToken];
+    VSSKeyPair *keyPair = [self.crypto generateKey];
+    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
     
-    VSSKeyPair *keyPair = [crypto generateKey];
+    // some random value
+    NSString *identityValue = [[NSUUID UUID] UUIDString];
+    NSString *identityType = @"test";
+    VSSCardModel *cardModel = [VSSCardModel createWithIdentity:identityValue identityType:identityType publicKey:exportedPublicKey];
+
+    NSData *privateAppKeyData = [[NSData alloc] initWithBase64EncodedString:kApplicationPrivateKeyBase64 options:0];
     
-    NSData *publicKey = [crypto exportPublicKey:keyPair.publicKey];
-    VSSCardModel *cardModel = [VSSCardModel createWithIdentity:@"test" identityType:@"test" publicKey:publicKey];
-    
-    VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:crypto];
-    
-    NSData *privateAppKeyData = [kApplicationPrivateKey dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *appIdData = [kApplicationId dataUsingEncoding:NSUTF8StringEncoding];
-    
-    VSSPrivateKey *appPrivateKey = [[VSSPrivateKey alloc] initWithKey:privateAppKeyData identifier:appIdData];
+    VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKey:privateAppKeyData password:@"test"];
     
     NSError *error;
-    [signer applicationSignRequest:cardModel withPrivateKey:keyPair.privateKey error:&error];
-    [signer authoritySignRequest:cardModel appId:kApplicationId withPrivateKey:appPrivateKey error:&error];
+    [self.requestSigner applicationSignRequest:cardModel withPrivateKey:keyPair.privateKey error:&error];
+    [self.requestSigner authoritySignRequest:cardModel appId:kApplicationId withPrivateKey:appPrivateKey error:&error];
     
-    [client createCardWithModel:cardModel completion:^(VSSCardModel *card, NSError *error) {
-        if (error == nil)
-            [ex fulfill];
+    [self.client createCardWithModel:cardModel completion:^(VSSCardModel *card, NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
+        
+        XCTAssert([card.data.identity isEqualToString:identityValue]);
+        XCTAssert([card.data.identityType isEqualToString:identityType]);
+        [ex fulfill];
     }];
 
     [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {

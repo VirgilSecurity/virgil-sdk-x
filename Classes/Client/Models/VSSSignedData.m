@@ -67,24 +67,24 @@
             return nil;
 
         NSMutableDictionary *signaturesDict = [[NSMutableDictionary alloc] init];
-        NSDictionary *signatures = [candidate[kVSSModelSigns] as:[NSDictionary class]];
+        NSDictionary *signatures = [metaCandidate[kVSSModelSigns] as:[NSDictionary class]];
         for (NSString *key in signatures.allKeys) {
             signaturesDict[key] = [[NSData alloc] initWithBase64EncodedString:signatures[key] options:0];
         }
         _signatures = signaturesDict;
 
         NSDate *createdAt = nil;
-        NSString *createdAtStr = [candidate[kVSSModelCreatedAt] as:[NSString class]];
+        NSString *createdAtStr = [metaCandidate[kVSSModelCreatedAt] as:[NSString class]];
         if (createdAtStr != nil && [createdAtStr length] != 0) {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
             [dateFormatter setLocale:enUSPOSIXLocale];
-            [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
             createdAt = [dateFormatter dateFromString:createdAtStr];
-            _createdAt = [createdAt copy];
+            _createdAt = createdAt;
         }
 
-        NSString *cardVersion = [candidate[kVSSModelCardVersion] as:[NSString class]];
+        NSString *cardVersion = [metaCandidate[kVSSModelCardVersion] as:[NSString class]];
         _cardVersion = [cardVersion copy];
     }
 

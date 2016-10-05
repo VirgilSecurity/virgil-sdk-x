@@ -81,7 +81,7 @@
 #pragma mark - VSSDeserializable
 
 - (instancetype)initWithDict:(NSDictionary *)candidate {
-    NSString *identityTypeStr = [candidate[kVSSModelIdentity] as:[NSString class]];
+    NSString *identityTypeStr = [candidate[kVSSModelIdentityType] as:[NSString class]];
     NSString *identityValueStr = [candidate[kVSSModelIdentity] as:[NSString class]];
     if ([identityTypeStr length] == 0 || [identityValueStr length] == 0)
         return nil;
