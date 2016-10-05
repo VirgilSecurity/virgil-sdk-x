@@ -14,9 +14,9 @@
 
 @interface VSSRequestSigner : NSObject
 
-@property (nonatomic, readonly) NSObject<VSSCrypto> * __nonnull crypto;
+@property (nonatomic, readonly) id<VSSCrypto> __nonnull crypto;
 
-- (instancetype __nonnull)initWithCrypto:(NSObject<VSSCrypto> * __nonnull)crypto;
+- (instancetype __nonnull)initWithCrypto:(id<VSSCrypto> __nonnull)crypto;
 
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 

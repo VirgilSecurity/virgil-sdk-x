@@ -12,7 +12,7 @@
 #import "VirgilSDK.h"
 
 static NSString *const kApplicationToken = <#NSString: Application Access Token#>;
-static NSString *const kApplicationPublicKey = <# NSString: Application Public Key #>;
+static NSString *const kApplicationPublicKeyBase64 = <# NSString: Application Public Key #>;
 static NSString *const kApplicationPrivateKeyBase64 = <#NSString: Application Private Key in base64#>;
 static NSString *const kApplicationId = <#NSString: Application Id#>;
 
@@ -76,6 +76,14 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
         
         XCTAssert([card.data.identity isEqualToString:identityValue]);
         XCTAssert([card.data.identityType isEqualToString:identityType]);
+        
+        VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.crypto];
+        [validator addVerifierWithId:kApplicationId publicKey:[[NSData alloc] initWithBase64EncodedString:kApplicationPublicKeyBase64 options:0]];
+        
+        BOOL isValid = [validator validateCard:card];
+
+        XCTAssert(isValid);
+        
         [ex fulfill];
     }];
 
@@ -86,6 +94,5 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
         }
     }];
 }
-
 
 @end

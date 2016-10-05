@@ -9,3 +9,4 @@
 #import "VSSClient.h"
 #import "VSSCrypto.h"
 #import "VSSRequestSigner.h"
+#import "VSSCardValidator.h"

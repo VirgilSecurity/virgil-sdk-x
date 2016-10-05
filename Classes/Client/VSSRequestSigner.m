@@ -10,7 +10,7 @@
 
 @implementation VSSRequestSigner
 
-- (instancetype)initWithCrypto:(NSObject<VSSCrypto> *)crypto {
+- (instancetype)initWithCrypto:(id<VSSCrypto>)crypto {
     self = [super init];
     if (self) {
         _crypto = crypto;
