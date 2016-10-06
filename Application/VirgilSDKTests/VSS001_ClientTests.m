@@ -54,32 +54,18 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     NSUInteger numberOfRequests = 1;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
     
-    VSSKeyPair *keyPair = [self.crypto generateKey];
-    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
+    VSSCardModel *instantiatedCardModel = [self instantiateCardModel];
     
-    // some random value
-    NSString *identityValue = [[NSUUID UUID] UUIDString];
-    NSString *identityType = @"test";
-    VSSCardModel *cardModel = [VSSCardModel createWithIdentity:identityValue identityType:identityType publicKey:exportedPublicKey];
-
-    NSData *privateAppKeyData = [[NSData alloc] initWithBase64EncodedString:kApplicationPrivateKeyBase64 options:0];
-    
-    VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKey:privateAppKeyData password:@"test"];
-    
-    NSError *error;
-    [self.requestSigner applicationSignRequest:cardModel withPrivateKey:keyPair.privateKey error:&error];
-    [self.requestSigner authoritySignRequest:cardModel appId:kApplicationId withPrivateKey:appPrivateKey error:&error];
-    
-    [self.client createCardWithModel:cardModel completion:^(VSSCardModel *card, NSError *error) {
+    [self.client createCardWithModel:instantiatedCardModel completion:^(VSSCardModel *card, NSError *error) {
         if (error != nil)
             XCTFail(@"Expectation failed: %@", error);
         
-        XCTAssert([card.data.identity isEqualToString:identityValue]);
-        XCTAssert([card.data.identityType isEqualToString:identityType]);
+        XCTAssert([card.identifier length] > 0);
+        XCTAssert([self checkCard:instantiatedCardModel isEqualToCard:card]);
         
         VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.crypto];
         [validator addVerifierWithId:kApplicationId publicKey:[[NSData alloc] initWithBase64EncodedString:kApplicationPublicKeyBase64 options:0]];
-        
+
         BOOL isValid = [validator validateCard:card];
 
         XCTAssert(isValid);

@@ -1,22 +1,22 @@
 PODS:
-  - VirgilCrypto (2.0.0-beta6)
+  - VirgilCrypto (2.0.0-beta9)
 
 DEPENDENCIES:
-  - VirgilCrypto (from `https://github.com/VirgilSecurity/virgil-foundation-x.git`, branch `2.0.0-beta6`)
+  - VirgilCrypto (from `https://github.com/VirgilSecurity/virgil-foundation-x.git`, branch `2.0.0-beta9`)
 
 EXTERNAL SOURCES:
   VirgilCrypto:
-    :branch: 2.0.0-beta6
+    :branch: 2.0.0-beta9
     :git: https://github.com/VirgilSecurity/virgil-foundation-x.git
 
 CHECKOUT OPTIONS:
   VirgilCrypto:
-    :commit: 9d9b45ef1ce59c74fd08c4fd4e551ef50c95fbb5
+    :commit: 8b39157a765a8d390d306c45e8fd1b4ac0a36f4a
     :git: https://github.com/VirgilSecurity/virgil-foundation-x.git
 
 SPEC CHECKSUMS:
-  VirgilCrypto: ae81b8ee3902565de733b4b751a9c14e5d71628b
+  VirgilCrypto: 8f8439ef68f171b0658c586f844184f321725fc3
 
-PODFILE CHECKSUM: 6f1ef14e49621b93d83adff958d4148649c7a691
+PODFILE CHECKSUM: f2a8ad78b1cc065baaa877cf50eb45325f4cc0b5
 
 COCOAPODS: 1.1.0.rc.2

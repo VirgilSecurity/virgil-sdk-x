@@ -25,7 +25,7 @@
  * @param criteria VSSSearchCardsCriteria search criteria.
  * @param completionHandler Callback handler which will be called after request completed.
  */
-- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria * __nonnull)criteria completion:(void (^ __nonnull)(NSArray<VSSCardData *>* __nullable, NSError * __nullable))callback;
+- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria * __nonnull)criteria completion:(void (^ __nonnull)(NSArray<VSSCardModel *>* __nullable, NSError * __nullable))callback;
 
 - (void)createCardWithModel:(VSSCardModel * __nonnull)model completion:(void (^ __nonnull)(VSSCardModel * __nullable, NSError * __nullable))callback;
 

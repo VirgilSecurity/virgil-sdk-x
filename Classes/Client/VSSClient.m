@@ -24,9 +24,9 @@
 
 #pragma mark - Implementation of VSSClient protocol
 
-- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria *)criteria completion:(void (^)(NSArray<VSSCardData *> *, NSError *))callback {
-    VSSRequestContext * __nonnull context = [[VSSRequestContext alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDCards]];
-    VSSSearchCardRequest * request = [[VSSSearchCardRequest alloc] initWithContext:context searchCriteria:criteria];
+- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria *)criteria completion:(void (^)(NSArray<VSSCardModel *> *, NSError *))callback {
+    VSSRequestContext *context = [[VSSRequestContext alloc] initWithServiceUrl:[self.serviceConfig serviceURLForServiceID:kVSSServiceIDCards]];
+    VSSSearchCardRequest *request = [[VSSSearchCardRequest alloc] initWithContext:context searchCriteria:criteria];
     
     VSSRequestCompletionHandler handler = ^(VSSRequest *request) {
         if (request.error != nil) {

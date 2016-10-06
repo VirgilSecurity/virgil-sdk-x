@@ -38,6 +38,6 @@
 
 - (VSSFingerprint * __nonnull)calculateFingerprintOfData:(NSData * __nonnull)data;
 
-- (NSData * __nonnull)computeHashOfData:(NSData * __nonnull)data withAlgorithm:(VSSHashAlgorithm)algorithm;
+- (NSData * __nonnull)computeHashForData:(NSData * __nonnull)data withAlgorithm:(VSSHashAlgorithm)algorithm;
 
 @end

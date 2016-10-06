@@ -14,6 +14,8 @@
 @property (nonatomic, copy, readonly) NSString * __nullable cardVersion;
 @property (nonatomic, copy, readonly) NSDate * __nullable createdAt;
 
+@property (nonatomic, copy, readonly) NSString * __nullable identifier;
+
 @property (nonatomic, copy, readonly) NSData * __nonnull snapshot;
 
 - (instancetype __nonnull)init NS_UNAVAILABLE;

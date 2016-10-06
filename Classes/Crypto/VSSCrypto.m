@@ -7,13 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#include <CommonCrypto/CommonDigest.h>
 #import "VSSCrypto.h"
 #import "VSSCryptoPrivate.h"
 #import "VSSKeyPairPrivate.h"
 #import "VSSPublicKeyPrivate.h"
 #import "VSSPrivateKeyPrivate.h"
-
 
 @import VirgilCrypto;
 
@@ -235,30 +233,27 @@
 }
 
 - (VSSFingerprint * __nonnull)calculateFingerprintOfData:(NSData * __nonnull)data {
-    NSData *hash = [self computeHashOfData:data withAlgorithm:VSSHashAlgorithmSHA256];
+    NSData *hash = [self computeHashForData:data withAlgorithm:VSSHashAlgorithmSHA256];
     return [[VSSFingerprint alloc] initWithValue:hash];
 }
 
-- (NSData *)SHA256_HASHForData:(NSData * __nonnull)data {
-    NSMutableData *macOut = [[NSMutableData alloc] initWithLength:CC_SHA256_DIGEST_LENGTH];
-    CC_SHA256(data.bytes, (CC_LONG)data.length, macOut.mutableBytes);
-    return macOut;
-}
-
-- (NSData * __nonnull)computeHashOfData:(NSData * __nonnull)data withAlgorithm:(VSSHashAlgorithm)algorithm {
-    // fixme
-    if (algorithm == VSSHashAlgorithmSHA256) {
-        return [self SHA256_HASHForData:data];
+- (NSData * __nonnull)computeHashForData:(NSData * __nonnull)data withAlgorithm:(VSSHashAlgorithm)algorithm {
+    VSCAlgorithm cryptoAlgorithm;
+    switch (algorithm) {
+        case VSSHashAlgorithmMD5: cryptoAlgorithm = VSCAlgorithmMD5; break;
+        case VSSHashAlgorithmSHA1: cryptoAlgorithm = VSCAlgorithmSHA1; break;
+        case VSSHashAlgorithmSHA224: cryptoAlgorithm = VSCAlgorithmSHA224; break;
+        case VSSHashAlgorithmSHA256: cryptoAlgorithm = VSCAlgorithmSHA256; break;
+        case VSSHashAlgorithmSHA384: cryptoAlgorithm = VSCAlgorithmSHA384; break;
+        case VSSHashAlgorithmSHA512: cryptoAlgorithm = VSCAlgorithmSHA512; break;
     }
-    else
-        return nil;
-//    return [@"testId" dataUsingEncoding:NSUTF8StringEncoding];
-//    return [[NSData alloc] init];
+    VSCHash *hash = [[VSCHash alloc] initWithAlgorithm:cryptoAlgorithm];
+    return [hash hash:data];
 }
 
 - (NSData *)computeHashForPublicKey:(NSData *)publicKey {
     NSData *publicKeyDER = [VSCKeyPair publicKeyToDER:publicKey];
-    return [self computeHashOfData:publicKeyDER withAlgorithm:VSSHashAlgorithmSHA256];
+    return [self computeHashForData:publicKeyDER withAlgorithm:VSSHashAlgorithmSHA256];
 }
 
 @end

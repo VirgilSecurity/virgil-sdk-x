@@ -14,9 +14,10 @@
 
 @implementation VSSSignedData
 
-- (instancetype)initWithSnapshot:(NSData *)snapshot signatures:(NSDictionary *)signatures cardVersion:(NSString *)cardVersion createdAt:(NSDate *)createdAt {
+- (instancetype)initWithSnapshot:(NSData *)snapshot identifier:(NSString *)identifier signatures:(NSDictionary *)signatures cardVersion:(NSString *)cardVersion createdAt:(NSDate *)createdAt {
     self = [super init];
     if (self) {
+        _identifier = [identifier copy];
         _snapshot = [snapshot copy];
         
         if (signatures != nil)
@@ -27,11 +28,17 @@
     return self;
 }
 
+- (instancetype)initWithSnapshot:(NSData *)snapshot signatures:(NSDictionary *)signatures cardVersion:(NSString *)cardVersion createdAt:(NSDate *)createdAt {
+    return [self initWithSnapshot:snapshot identifier:nil signatures:signatures cardVersion:cardVersion createdAt:createdAt];
+}
+
 - (void)addSignature:(NSData *)signature forFingerprint:(NSString *)fingerprint {
     ((NSMutableDictionary *)_signatures)[fingerprint] = signature;
 }
 
 - (NSDictionary *)serialize {
+    // Doesn't include createdAt, cardVerion and Identifier
+    
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *metaDict = [[NSMutableDictionary alloc] init];
 
@@ -61,6 +68,12 @@
             return nil;
         
         _snapshot = snapshot;
+        
+        NSString *identifier = [candidate[kVSSModelId] as:[NSString class]];
+        if ([identifier length] == 0)
+            return nil;
+        
+        _identifier = [identifier copy];
 
         NSDictionary *metaCandidate = [candidate[kVSSModelMeta] as:[NSDictionary class]];
         if ([metaCandidate count] == 0)

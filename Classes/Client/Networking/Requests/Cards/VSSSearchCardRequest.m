@@ -10,11 +10,11 @@
 #import "VSSModelCommons.h"
 #import "NSObject+VSSUtils.h"
 #import "VSSSearchCardsCriteria.h"
-#import "VSSCardData.h"
+#import "VSSCardModelPrivate.h"
 
 @interface VSSSearchCardRequest ()
 
-@property (nonatomic, strong, readwrite) NSArray <VSSCardData *>* __nullable cards;
+@property (nonatomic, readwrite) NSArray <VSSCardModel *>* __nullable cards;
 
 @end
 
@@ -50,27 +50,27 @@
 #pragma mark - Overrides
 
 - (NSString *)methodPath {
-    return @"virgil-card/actions/search";
+    return @"card/actions/search";
 }
 
-//- (NSError *)handleResponse:(NSObject *)candidate {
-//    NSError *error = [super handleResponse:candidate];
-//    if (error != nil) {
-//        return error;
-//    }
-//
-//    NSMutableArray *cards = [[NSMutableArray alloc] init];
-//    for (NSDictionary *item in [candidate as:[NSArray class]]) {
-//        /// Deserialize actual card
-//        VSSCard *card = [VSSCard deserializeFrom:item];
-//        if (card != nil) {
-//            [cards addObject:card];
-//        }
-//    }
-//    if (cards.count > 0) {
-//        self.cards = cards;
-//    }
-//    return nil;
-//}
+- (NSError *)handleResponse:(NSObject *)candidate {
+    NSError *error = [super handleResponse:candidate];
+    if (error != nil) {
+        return error;
+    }
+
+    NSMutableArray *cards = [[NSMutableArray alloc] init];
+    for (NSDictionary *item in [candidate as:[NSArray class]]) {
+        /// Deserialize actual card
+        VSSCardModel *card = [[VSSCardModel alloc] initWithDict:item];
+        if (card != nil) {
+            [cards addObject:card];
+        }
+    }
+    if (cards.count > 0) {
+        self.cards = cards;
+    }
+    return nil;
+}
 
 @end
