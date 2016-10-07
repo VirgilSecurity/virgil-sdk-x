@@ -25,7 +25,6 @@
 extern NSString * __nonnull const kVSSClientErrorDomain;
 
 #import "VSSServiceConfig.h"
-#import "VSSRequest.h"
 
 /**
  * Base class for the Virgil Services client.
