@@ -2,11 +2,11 @@ PODS:
   - VirgilCrypto (2.0.0-beta9)
 
 DEPENDENCIES:
-  - VirgilCrypto (~> 2.0.0-beta9)
+  - VirgilCrypto (= 2.0.0-beta9)
 
 SPEC CHECKSUMS:
   VirgilCrypto: 8f8439ef68f171b0658c586f844184f321725fc3
 
-PODFILE CHECKSUM: c29cb18bd8c9e455c4e9b0d4d4a2bdf053187895
+PODFILE CHECKSUM: 98b0ebffd4da8eb6387d09ab0b2a2d5002612b03
 
 COCOAPODS: 1.1.0.rc.2

@@ -12,6 +12,7 @@
 #import "VSSKeyPairPrivate.h"
 #import "VSSPublicKeyPrivate.h"
 #import "VSSPrivateKeyPrivate.h"
+#import "VSCHash.h"
 
 @import VirgilCrypto;
 
@@ -238,14 +239,14 @@
 }
 
 - (NSData * __nonnull)computeHashForData:(NSData * __nonnull)data withAlgorithm:(VSSHashAlgorithm)algorithm {
-    VSCAlgorithm cryptoAlgorithm;
+    VSCHashAlgorithm cryptoAlgorithm;
     switch (algorithm) {
-        case VSSHashAlgorithmMD5: cryptoAlgorithm = VSCAlgorithmMD5; break;
-        case VSSHashAlgorithmSHA1: cryptoAlgorithm = VSCAlgorithmSHA1; break;
-        case VSSHashAlgorithmSHA224: cryptoAlgorithm = VSCAlgorithmSHA224; break;
-        case VSSHashAlgorithmSHA256: cryptoAlgorithm = VSCAlgorithmSHA256; break;
-        case VSSHashAlgorithmSHA384: cryptoAlgorithm = VSCAlgorithmSHA384; break;
-        case VSSHashAlgorithmSHA512: cryptoAlgorithm = VSCAlgorithmSHA512; break;
+        case VSSHashAlgorithmMD5: cryptoAlgorithm = VSCHashAlgorithmMD5; break;
+        case VSSHashAlgorithmSHA1: cryptoAlgorithm = VSCHashAlgorithmSHA1; break;
+        case VSSHashAlgorithmSHA224: cryptoAlgorithm = VSCHashAlgorithmSHA224; break;
+        case VSSHashAlgorithmSHA256: cryptoAlgorithm = VSCHashAlgorithmSHA256; break;
+        case VSSHashAlgorithmSHA384: cryptoAlgorithm = VSCHashAlgorithmSHA384; break;
+        case VSSHashAlgorithmSHA512: cryptoAlgorithm = VSCHashAlgorithmSHA512; break;
     }
     VSCHash *hash = [[VSCHash alloc] initWithAlgorithm:cryptoAlgorithm];
     return [hash hash:data];
