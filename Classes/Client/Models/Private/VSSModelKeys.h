@@ -26,15 +26,11 @@ extern NSString * __nonnull const kVSSModelPublicKey;
 extern NSString * __nonnull const kVSSModelSigns;
 extern NSString * __nonnull const kVSSModelCardId;
 extern NSString * __nonnull const kVSSModelRevocationReason;
+extern NSString * __nonnull const kVSSModelIdentities;
+extern NSString * __nonnull const kVSSIdentityTypeEmail;
 
 extern NSString * __nonnull const kVSSModelError;
 extern NSString * __nonnull const kVSSModelCode;
-
-extern NSString * __nonnull const kVSSIdentityTypeEmail;
-extern NSString * __nonnull const kVSSIdentityTypeApplication;
-
-extern NSString * __nonnull const kVSSStringValueTrue;
-extern NSString * __nonnull const kVSSStringValueFalse;
 
 extern NSString * __nonnull const kVSSErrorDomain;
 extern NSString * __nonnull const kVSSUnknownError;

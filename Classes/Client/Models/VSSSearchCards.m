@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "VSSSearchCardsPrivate.h"
 #import "NSObject+VSSUtils.h"
+#import "VSSModelKeys.h"
+#import "VSSModelCommonsPrivate.h"
 
 @implementation VSSSearchCards
 
@@ -30,12 +32,12 @@
 
 - (NSDictionary *)serialize {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    dict[@"identities"] = [self.identities copy];
-    dict[@"identity_type"] = [self.identityType copy];
+    dict[kVSSModelIdentities] = [self.identities copy];
+    dict[kVSSModelIdentityType] = [self.identityType copy];
     
     switch (self.scope) {
         case VSSCardScopeGlobal:
-            dict[@"scope"] = @"global";
+            dict[kVSSModelCardScope] = vss_getCardScopeString(VSSCardScopeGlobal);
             break;
             
         case VSSCardScopeApplication:

@@ -26,15 +26,11 @@ NSString *const kVSSModelIdentityType = @"identity_type";
 NSString *const kVSSModelSigns = @"signs";
 NSString *const kVSSModelCardId = @"card_id";
 NSString *const kVSSModelRevocationReason = @"revocation_reason";
+NSString *const kVSSModelIdentities = @"identities";
+NSString *const kVSSIdentityTypeEmail = @"email";
 
 NSString *const kVSSModelError = @"error";
 NSString *const kVSSModelCode = @"code";
-
-NSString *const kVSSIdentityTypeEmail = @"email";
-NSString *const kVSSIdentityTypeApplication = @"application";
-
-NSString *const kVSSStringValueTrue = @"true";
-NSString *const kVSSStringValueFalse = @"false";
 
 NSString *const kVSSErrorDomain = @"VirgilSecurityServicesErrorDomain";
 NSString *const kVSSUnknownError = @"Virgil Security service unknown error.";
