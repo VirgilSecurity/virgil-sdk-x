@@ -56,7 +56,7 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
     if ([card.cardVersion isEqualToString:@"3.0"])
         return YES;
     
-    VSSFingerprint *fingerprint = [self.crypto calculateFingerprintOfData:card.snapshot];
+    VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:card.snapshot];
     
     NSMutableDictionary *verifiers = [self.verifiers mutableCopy];
     VSSPublicKey *creatorPublicKey = [self.crypto importPublicKey:card.data.publicKey];

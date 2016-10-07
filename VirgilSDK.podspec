@@ -12,5 +12,5 @@ Pod::Spec.new do |s|
   s.source_files          = "Classes/**/*"
   s.private_header_files  = "Classes/Client/Networking/**/*.h", "Classes/Client/Private/**/*.h", "Classes/Client/Models/Private/**/*.h", "Classes/Client/Models/Errors/Private/**/*.h", "Classes/Crypto/Private/**/*.h", "Classes/Crypto/Keys/Private/**/*.h", "Classes/Utils/**/*.h"
   s.requires_arc          = true
-  s.dependency "VirgilFoundation", "~> 2.0.0-beta9"
+  s.dependency "VirgilCrypto", "~> 2.0.0-beta9"
 end

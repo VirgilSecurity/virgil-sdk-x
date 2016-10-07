@@ -232,7 +232,7 @@
     return signature;
 }
 
-- (VSSFingerprint * __nonnull)calculateFingerprintOfData:(NSData * __nonnull)data {
+- (VSSFingerprint * __nonnull)calculateFingerprintForData:(NSData * __nonnull)data {
     NSData *hash = [self computeHashForData:data withAlgorithm:VSSHashAlgorithmSHA256];
     return [[VSSFingerprint alloc] initWithValue:hash];
 }
