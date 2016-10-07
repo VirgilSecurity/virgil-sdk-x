@@ -7,6 +7,7 @@
 //
 
 #import "VSSBaseClient.h"
+#import "VSSRequest.h"
 
 @interface VSSBaseClient ()
 
