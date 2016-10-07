@@ -8,7 +8,7 @@
 
 #import "VSSPublicKey.h"
 
-@interface VSSPublicKey () <NSCoding, NSCopying>
+@interface VSSPublicKey () <NSCopying>
 
 @property (nonatomic, copy, readonly) NSData * __nonnull key;
 @property (nonatomic, copy, readonly) NSData * __nonnull identifier;

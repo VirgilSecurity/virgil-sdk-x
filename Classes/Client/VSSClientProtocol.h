@@ -9,14 +9,18 @@
 #ifndef VSSClientProtocol_h
 #define VSSClientProtocol_h
 
-#import "VSSSearchCardsCriteria.h"
-#import "VSSCardData.h"
-#import "VSSCardModel.h"
+#import "VSSSearchCards.h"
+#import "VSSCard.h"
+#import "VSSRevokeCard.h"
 
 /**
  * Protocol for all interactions with Virgil Services.
  */
 @protocol VSSClient <NSObject>
+
+- (void)createCard:(VSSCard * __nonnull)card completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback;
+
+- (void)getCardWithId:(NSString * __nonnull)cardId completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback;
 
 /**
  * Performs search of cards only using search criteria on the Virgil Keys Service.
@@ -25,17 +29,9 @@
  * @param criteria VSSSearchCardsCriteria search criteria.
  * @param completionHandler Callback handler which will be called after request completed.
  */
-- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria * __nonnull)criteria completion:(void (^ __nonnull)(NSArray<VSSCardModel *>* __nullable, NSError * __nullable))callback;
+- (void)searchCards:(VSSSearchCards * __nonnull)searchCards completion:(void (^ __nonnull)(NSArray<VSSCard *>* __nullable, NSError * __nullable))callback;
 
-- (void)createCardWithModel:(VSSCardModel * __nonnull)model completion:(void (^ __nonnull)(VSSCardModel * __nullable, NSError * __nullable))callback;
-
-//- (void)beginGlobalCardCreationWithRequest:(VSSCreationRequest * __nonnull)request completion:(void (^ __nonnull)(VSSCreationRequest * __nullable, NSError * __nullable))callback;
-
-//- (void)completeGlobalCardCreationWithDetails:(VSSRegistrationDetails * __nonnull)details andConfirmation: (NSString * __nonnull)string completion:(void (^ __nonnull)())callback;
-
-//- (void)revokeCardWithRequest:(VSSRevocationRequest * __nonnull)request completion:(void (^ __nonnull)())callback;
-
-//- (void)getCardWithId:(NSString * __nonnull)cardId completion:(void (^ __nonnull)())callback;
+- (void)revokeCard:(VSSRevokeCard * __nonnull)revokeCard completion:(void (^ __nonnull)(NSError * __nullable))callback;
 
 @end
 

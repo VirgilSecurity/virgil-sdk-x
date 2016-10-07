@@ -6,11 +6,11 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSModel.h"
+#import "VSSBaseModel.h"
 #import "VSSPublicKey.h"
 #import "VSSPrivateKey.h"
 
-@interface VSSKeyPair : VSSModel
+@interface VSSKeyPair : VSSBaseModel
 
 @property (nonatomic, copy, readonly) VSSPublicKey * __nonnull publicKey;
 @property (nonatomic, copy, readonly) VSSPrivateKey * __nonnull privateKey;

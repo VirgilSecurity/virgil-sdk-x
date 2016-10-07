@@ -1,32 +1,36 @@
 //
-//  VSSGetCardRequest.m
+//  VSSRevokeCardRequest.m
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 10/6/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSGetCardRequest.h"
-#import "VSSCardPrivate.h"
-#import "NSObject+VSSUtils.h"
+#import "VSSRevokeCardRequest.h"
+#import "VSSRevokeCard.h"
+#import "VSSRevokeCardPrivate.h"
+#import "VSSSignedDataPrivate.h"
 
-@interface VSSGetCardRequest ()
+@interface VSSRevokeCardRequest ()
 
 @property (nonatomic, copy, readonly) NSString * __nonnull cardId;
 
-@property (nonatomic, readwrite) VSSCard * __nullable card;
-
 @end
 
-@implementation VSSGetCardRequest
+@implementation VSSRevokeCardRequest
 
-- (instancetype)initWithContext:(VSSRequestContext *)context cardId:(NSString *)cardId {
+- (instancetype __nonnull)initWithContext:(VSSRequestContext *)context revokeCard:(VSSRevokeCard *)revokeCard {
     self = [super initWithContext:context];
     if (self) {
-        _cardId = [cardId copy];
+        _cardId = [revokeCard.data.cardId copy];
         
-        [self setRequestMethod:GET];
+        NSDictionary *body = [revokeCard serialize];
+        
+        [self setRequestMethod:DELETE];
+        
+        [self setRequestBodyWithObject:body];
     }
+    
     return self;
 }
 
@@ -41,11 +45,9 @@
     if (error != nil) {
         return error;
     }
-
-    /// Deserialize actual card
-    self.card = [[VSSCard alloc] initWithDict:[candidate as:[NSDictionary class]]];
     
     return nil;
 }
+
 
 @end

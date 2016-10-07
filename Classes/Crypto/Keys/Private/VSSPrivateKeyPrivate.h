@@ -8,7 +8,7 @@
 
 #import "VSSPrivateKey.h"
 
-@interface VSSPrivateKey () <NSCoding, NSCopying>
+@interface VSSPrivateKey () <NSCopying>
 
 @property (nonatomic, copy, readonly) NSData * __nonnull key;
 @property (nonatomic, copy, readonly) NSData * __nonnull identifier;

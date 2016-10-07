@@ -10,23 +10,21 @@
 #import "VSSModelCommons.h"
 #import "VSSCardData.h"
 #import "VSSCardDataPrivate.h"
-#import "VSSCardModel.h"
-#import "VSSCardModelPrivate.h"
+#import "VSSCard.h"
+#import "VSSCardPrivate.h"
 #import "NSObject+VSSUtils.h"
 
 @implementation VSSCreateCardRequest
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithContext:(VSSRequestContext *)context cardModel:(VSSCardModel *)model {
+- (instancetype)initWithContext:(VSSRequestContext *)context card:(VSSCard *)card {
     self = [super initWithContext:context];
-    if (self == nil) {
-        return nil;
+    if (self) {
+        NSDictionary *body = [card serialize];
+        
+        [self setRequestBodyWithObject:body];
     }
-    
-    NSDictionary *body = [model serialize];
-    
-    [self setRequestBodyWithObject:body];
     
     return self;
 }
@@ -44,7 +42,7 @@
     }
     
     /// Deserialize actual card
-    self.cardModel = [[VSSCardModel alloc] initWithDict:[candidate as:[NSDictionary class]]];
+    self.card = [[VSSCard alloc] initWithDict:[candidate as:[NSDictionary class]]];
     return nil;
 }
 

@@ -8,13 +8,13 @@
 
 #import "VSSCardsBaseRequest.h"
 #import "VSSModelCommons.h"
-#import "VSSCardModel.h"
+#import "VSSCard.h"
 
 @interface VSSCreateCardRequest : VSSCardsBaseRequest
 
-@property (nonatomic) VSSCardModel * __nullable cardModel;
+@property (nonatomic) VSSCard * __nullable card;
 
-- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context cardModel:(VSSCardModel * __nonnull)model NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context card:(VSSCard * __nonnull)card NS_DESIGNATED_INITIALIZER;
 
 - (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context NS_UNAVAILABLE;
 

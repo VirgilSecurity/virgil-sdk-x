@@ -6,10 +6,10 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSCardModel.h"
+#import "VSSCard.h"
 
 @protocol VSSCardValidator <NSObject>
 
-- (BOOL)validateCard:(VSSCardModel * __nonnull)card;
+- (BOOL)validateCard:(VSSCard * __nonnull)card;
 
 @end

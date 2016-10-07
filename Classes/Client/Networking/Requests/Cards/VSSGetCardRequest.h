@@ -2,19 +2,18 @@
 //  VSSGetCardRequest.h
 //  VirgilSDK
 //
-//  Created by Pavel Gorb on 2/3/16.
+//  Created by Oleksandr Deundiak on 10/6/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSKeysBaseRequest.h"
+#import "VSSCardsBaseRequest.h"
 #import "VSSModelCommons.h"
+#import "VSSCard.h"
 
-@class VSSCard;
+@interface VSSGetCardRequest : VSSCardsBaseRequest
 
-@interface VSSGetCardRequest : VSSKeysBaseRequest
+@property (nonatomic, readonly) VSSCard * __nullable card;
 
-@property (nonatomic, strong, readonly) VSSCard * __nullable card;
-
-- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context cardId:(GUID * __nonnull)cardId NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context cardId:(NSString * __nonnull)cardId NS_DESIGNATED_INITIALIZER;
 
 @end

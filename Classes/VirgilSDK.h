@@ -10,3 +10,4 @@
 #import "VSSCrypto.h"
 #import "VSSRequestSigner.h"
 #import "VSSCardValidator.h"
+#import "VSSError.h"

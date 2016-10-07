@@ -51,7 +51,7 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
     ((NSMutableDictionary *)_verifiers)[verifierId] = importedPublicKey;
 }
 
-- (BOOL)validateCard:(VSSCardModel *)card {
+- (BOOL)validateCard:(VSSCard *)card {
     // Support for legacy Cards.
     if ([card.cardVersion isEqualToString:@"3.0"])
         return YES;

@@ -25,26 +25,10 @@
     return self;
 }
 
-#pragma mark - NSCopying protocol implementation
+#pragma mark - NSCopying
 
 - (instancetype)copyWithZone:(NSZone *)zone {
     return [(VSSPublicKey *) [[self class] alloc] initWithKey:self.key identifier:self.identifier];
-}
-
-#pragma mark - NSCoding protocol implementation
-
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-    NSData *key = [[aDecoder decodeObjectForKey:kVSSModelPublicKey] as:[NSData class]];
-    
-    return [self initWithKey:key identifier:self.identifier];
-}
-
-- (void)encodeWithCoder:(NSCoder *)aCoder {
-    [super encodeWithCoder:aCoder];
-    
-    if (self.key != nil) {
-        [aCoder encodeObject:self.key forKey:kVSSModelPublicKey];
-    }
 }
 
 @end

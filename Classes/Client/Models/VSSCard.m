@@ -1,5 +1,5 @@
 //
-//  VSSCardModel.m
+//  VSSCard.m
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 9/29/16.
@@ -7,31 +7,31 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VSSCardModel.h"
-#import "VSSCardModelPrivate.h"
+#import "VSSCard.h"
+#import "VSSCardPrivate.h"
 #import "VSSSignedDataPrivate.h"
 #import "VSSCardDataPrivate.h"
 #import "VSSModelKeys.h"
 #import "NSObject+VSSUtils.h"
 
-@implementation VSSCardModel
+@implementation VSSCard
 
 + (instancetype)createWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey data:(NSDictionary *)data {
     VSSCardData *cardData = [VSSCardData createWithIdentity:identity identityType:identityType publicKey:publicKey data:data];
-    return [[VSSCardModel alloc] initWithCardData:cardData];
+    return [[VSSCard alloc] initWithCardData:cardData];
 }
 
 + (instancetype)createWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey {
-    return [VSSCardModel createWithIdentity:identity identityType:identityType publicKey:publicKey data:nil];
+    return [VSSCard createWithIdentity:identity identityType:identityType publicKey:publicKey data:nil];
 }
 
 + (instancetype)createGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey data:(NSDictionary *)data {
     VSSCardData *cardData = [VSSCardData createGlobalWithIdentity:identity publicKey:publicKey data:data];
-    return [[VSSCardModel alloc] initWithCardData:cardData];
+    return [[VSSCard alloc] initWithCardData:cardData];
 }
 
 + (instancetype)createGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey {
-    return [VSSCardModel createGlobalWithIdentity:identity publicKey:publicKey data:nil];
+    return [VSSCard createGlobalWithIdentity:identity publicKey:publicKey data:nil];
 }
 
 - (instancetype)initWithSnapshot:(NSData *)snapshot cardData:(VSSCardData *)cardData signatures:(NSDictionary *)signatures cardVersion:(NSString *)cardVersion createdAt:(NSDate *)createdAt {

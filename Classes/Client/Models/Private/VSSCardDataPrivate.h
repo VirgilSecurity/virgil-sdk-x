@@ -7,14 +7,21 @@
 //
 
 #import "VSSCardData.h"
-#import "VSSCanonicalRepresentable.h"
+#import "VSSCanonicalSerializable.h"
+#import "VSSCanonicalDeserializable.h"
 #import "VSSSerializable.h"
 #import "VSSDeserializable.h"
 
-@interface VSSCardData () <VSSSerializable, VSSDeserializable, VSSCanonicalRepresentable>
+@interface VSSCardData () <VSSSerializable, VSSDeserializable, VSSCanonicalSerializable, VSSCanonicalDeserializable>
 
 + (instancetype __nullable)createWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType scope:(VSSCardScope)scope publicKey:(NSData * __nonnull)publicKey data:(NSDictionary * __nullable)data;
 
 - (instancetype __nullable)initWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType scope:(VSSCardScope)scope publicKey:(NSData * __nonnull)publicKey data:(NSDictionary * __nullable)data info:(NSDictionary * __nonnull)info;
+
++ (instancetype __nullable)createWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKey:(NSData * __nonnull)publicKey data:(NSDictionary * __nullable)data;
++ (instancetype __nullable)createWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKey:(NSData * __nonnull)publicKey;
+
++ (instancetype __nullable)createGlobalWithIdentity:(NSString * __nonnull)identity publicKey:(NSData * __nonnull)publicKey;
++ (instancetype __nullable)createGlobalWithIdentity:(NSString * __nonnull)identity publicKey:(NSData * __nonnull)publicKey data:(NSDictionary * __nullable)data;
 
 @end

@@ -65,15 +65,15 @@
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
     
     dict[kVSSModelPublicKey] = [self.publicKey base64EncodedStringWithOptions:0];
-    dict[kVSSModelIdentityType] = self.identityType;
-    dict[kVSSModelIdentity] = self.identity;
+    dict[kVSSModelIdentityType] = [self.identityType copy];
+    dict[kVSSModelIdentity] = [self.identity copy];
     dict[kVSSModelCardScope] = vss_getCardScopeString(self.scope);
     
     if ([self.data count] > 0) {
-        dict[kVSSModelData] = self.data;
+        dict[kVSSModelData] = [self.data copy];
     }
     
-    dict[kVSSModelInfo] = self.info;
+    dict[kVSSModelInfo] = [self.info copy];
     
     return dict;
 }

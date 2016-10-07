@@ -110,6 +110,8 @@ extern NSString * __nonnull const kVSSAccessTokenHeader;
  */
 - (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context;
 
+- (instancetype __nonnull)init NS_UNAVAILABLE;
+
 ///------------------------------------------
 /// @name Setup
 ///------------------------------------------

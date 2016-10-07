@@ -26,3 +26,10 @@ VSSCardScope vss_getCardScopeFromString(NSString * __nonnull scope) {
     // default value
     return VSSCardScopeApplication;
 }
+
+NSString * __nonnull vss_getRevocationReasonString(VSSCardRevocationReason reason) {
+    switch (reason) {
+        case VSSCardRevocationReasonCompromised: return @"compromised";
+        case VSSCardRevocationReasonUnspecified: return @"unspecified";
+    }
+}

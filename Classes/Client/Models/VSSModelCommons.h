@@ -12,3 +12,8 @@ typedef NS_ENUM(NSInteger, VSSCardScope) {
     VSSCardScopeApplication,
     VSSCardScopeGlobal
 };
+
+typedef NS_ENUM(NSInteger, VSSCardRevocationReason) {
+    VSSCardRevocationReasonUnspecified,
+    VSSCardRevocationReasonCompromised
+};

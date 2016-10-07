@@ -19,12 +19,6 @@
 @property (nonatomic, readonly) VSSCardScope scope;
 @property (nonatomic, copy, readonly) NSDictionary * __nonnull info;
 
-+ (instancetype __nullable)createWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKey:(NSData * __nonnull)publicKey data:(NSDictionary * __nullable)data;
-+ (instancetype __nullable)createWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKey:(NSData * __nonnull)publicKey;
-
-+ (instancetype __nullable)createGlobalWithIdentity:(NSString * __nonnull)identity publicKey:(NSData * __nonnull)publicKey;
-+ (instancetype __nullable)createGlobalWithIdentity:(NSString * __nonnull)identity publicKey:(NSData * __nonnull)publicKey data:(NSDictionary * __nullable)data;
-
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end

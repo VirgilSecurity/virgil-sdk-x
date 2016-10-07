@@ -8,7 +8,6 @@
 
 #import "VSSBaseClient.h"
 #import "VSSRequest.h"
-#import "VSSRequestPrivate.h"
 #import "NSObject+VSSUtils.h"
 #import "VSSBaseClientPrivate.h"
 #import "VSSServiceConfig.h"
