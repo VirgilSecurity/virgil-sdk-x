@@ -11,3 +11,4 @@
 #import "VSSRequestSigner.h"
 #import "VSSCardValidator.h"
 #import "VSSError.h"
+#import "VSSCardsError.h"

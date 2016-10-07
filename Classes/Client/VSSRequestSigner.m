@@ -20,7 +20,7 @@
 }
 
 - (void)applicationSignRequest:(VSSSignedData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError **)errorPtr {
-    VSSFingerprint *fingerprint = [self.crypto calculateFingerprintOfData:data.snapshot];
+    VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:data.snapshot];
     
     NSError *error;
     NSData *signature = [self.crypto signData:fingerprint.value privateKey:privateKey error:&error];
@@ -35,7 +35,7 @@
 }
 
 - (void)authoritySignRequest:(VSSSignedData * __nonnull)data appId:(NSString * __nonnull)appId withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError **)errorPtr {
-    VSSFingerprint *fingerprint = [self.crypto calculateFingerprintOfData:data.snapshot];
+    VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:data.snapshot];
     
     NSError *error;
     NSData *signature = [self.crypto signData:fingerprint.value privateKey:privateKey error:&error];

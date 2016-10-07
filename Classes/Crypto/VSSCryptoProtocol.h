@@ -36,7 +36,7 @@
 - (NSData * __nullable)signData:(NSData * __nonnull)data privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
 - (NSData * __nullable)signStream:(NSInputStream * __nonnull)stream privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
 
-- (VSSFingerprint * __nonnull)calculateFingerprintOfData:(NSData * __nonnull)data;
+- (VSSFingerprint * __nonnull)calculateFingerprintForData:(NSData * __nonnull)data;
 
 - (NSData * __nonnull)computeHashForData:(NSData * __nonnull)data withAlgorithm:(VSSHashAlgorithm)algorithm;
 
