@@ -11,174 +11,107 @@
 /// HTTP 500. Server error status is returned on internal application errors
 const NSInteger kVSSCardsInternalError                               = 10000;
 
-/// HTTP 401. Auth error status is returned on authorization errors
-const NSInteger kVSSCardsIdHeaderDuplicationError                    = 20100;
-const NSInteger kVSSCardsIdHeaderInvalidError                        = 20101;
-const NSInteger kVSSCardsSignHeaderNotFoundError                     = 20200;
-const NSInteger kVSSCardsCardIdHeaderInvalidError                    = 20201;
-const NSInteger kVSSCardsSignHeaderInvalidError                      = 20202;
-const NSInteger kVSSCardsPublicKeyValueNotFoundError                 = 20203;
-const NSInteger kVSSCardsPublicKeyValueEncodingError                 = 20204;
-const NSInteger kVSSCardsPublicKeyIdsMatchError                      = 20205;
-const NSInteger kVSSCardsPublicKeyIdInvalidError                     = 20206;
-const NSInteger kVSSCardsCardIdsMatchError                           = 20208;
-const NSInteger kVSSCardsApplicationTokenInvalidError                = 20300;
-const NSInteger kVSSCardsStatisticsError                             = 20301;
+/// HTTP 401. Authorization errors
+const NSInteger kVSSCardsTokenMissingOrInvalidError                  = 20300;
+const NSInteger kVSSCardsAuthenticatorError                          = 20301;
+const NSInteger kVSSCardsAccessTokenValidationError                  = 20302;
+const NSInteger kVSSCardsApplicationNotFoundError                    = 20303;
+const NSInteger kVSSCardsRequestSignMissingOrInvalid                 = 20400;
+const NSInteger kVSSCardsRequestSignHeaderMissingError               = 20401;
+
+/// HTTP 403. Forbidden
+const NSInteger kVSSCardsCardNotAvailableError                       = 20500;
 
 /// HTTP 400. Request error status is returned on request data validation errors
 const NSInteger kVSSCardsJSONError                                   = 30000;
-const NSInteger kVSSCardsPublicKeyIdError                            = 30100;
-const NSInteger kVSSCardsPublicKeyLengthError                        = 30101;
-const NSInteger kVSSCardsPublicKeyEncodingError                      = 30102;
-const NSInteger kVSSCardsIdentityTypeError                           = 30201;
-const NSInteger kVSSCardsIdentityEmailError                          = 30202;
-const NSInteger kVSSCardsIdentityUnconfirmedApplicationError         = 30203;
-const NSInteger kVSSCardsIdentityApplicationValueError               = 30204;
-const NSInteger kVSSCardsCardNotFoundError                           = 30300;
-const NSInteger kVSSCardsCardSignsListInvalidError                   = 30301;
-const NSInteger kVSSCardsCardSignedDigestInvalidError                = 30302;
-const NSInteger kVSSCardsCardDataFormatInvalidError                  = 30303;
-const NSInteger kVSSCardsCardDataArrayFormatInvalidError             = 30304;
-const NSInteger kVSSCardsCardDataLengthInvalidError                  = 30305;
-const NSInteger kVSSCardsSignNotFoundError                           = 30400;
-const NSInteger kVSSCardsSignedDigestInvalidError                    = 30402;
-const NSInteger kVSSCardsSignedDigestEncodingError                   = 30403;
-const NSInteger kVSSCardsSignDuplicationError                        = 30404;
-const NSInteger kVSSCardsSearchValueInvalidError                     = 31000;
-const NSInteger kVSSCardsApplicationSearchValueInvalidError          = 31010;
-const NSInteger kVSSCardsCardSignsFormatError                        = 31020;
-const NSInteger kVSSCardsIdentityTokenInvalidError                   = 31030;
-const NSInteger kVSSCardsCardRevocationMatchError                    = 31040;
-const NSInteger kVSSCardsIdentityServiceError                        = 31050;
-const NSInteger kVSSCardsIdentitiesInvalidError                      = 31060;
-const NSInteger kVSSCardsIdentityInvalidError                        = 31070;
+const NSInteger kVSSCardsDataInconsistencyEror                       = 30010;
+const NSInteger kVSSCardsGlobalCardIdentityTypeError                 = 30100;
+const NSInteger kVSSCardsCardScopeError                              = 30101;
+const NSInteger kVSSCardsCardIdValidationFailedError                 = 30102;
+const NSInteger kVSSCardsCardDataTooBigError                         = 30103;
+const NSInteger kVSSCardsCardInfoParameterEmptyError                 = 30104;
+const NSInteger kVSSCardsCardInfoParameterTooBigError                = 30105;
+const NSInteger kVSSCardsCardDataParameterError                      = 30106;
+const NSInteger kVSSCardsCSRParameterMissingOrInvalidError           = 30107;
+const NSInteger kVSSCardsIdentitiesError                             = 30111;
+const NSInteger kVSSCardsIdentityTypeError                           = 30113;
+const NSInteger kVSSCardsSegregatedIdentityError                     = 30114;
+const NSInteger kVSSCardsIdentityEmailError                          = 30115;
+const NSInteger kVSSCardsIdentityApplicationError                    = 30116;
+const NSInteger kVSSCardsPublicKeyLengthError                        = 30117;
+const NSInteger kVSSCardsPublicKeyFormatError                        = 30118;
+const NSInteger kVSSCardsCardDataParameterKVError                    = 30119;
+const NSInteger kVSSCardsCardDataParameterStrError                   = 30120;
+
+const NSInteger kVSSCardsDataTooBigError                             = 30121;
+const NSInteger kVSSCardsValidationTokenError                        = 30122;
+const NSInteger kVSSCardsCSRSignsMissingOrInvalidError               = 30123;
+const NSInteger kVSSCardsCSRIdIrrelevantError                        = 30126;
+const NSInteger kVSSCardsCSRInvalidForVirgilCardPublicKeyError       = 30127;
+const NSInteger kVSSCardsCSRDigestMissingOrInvalidError              = 30128;
+const NSInteger kVSSCardsCardIdMismatchError                         = 30131;
+const NSInteger kVSSCardsCardDataKeysError                           = 30134;
+const NSInteger kVSSCardsTokenObjectError                            = 30135;
+const NSInteger kVSSCardsCSRSignForIdentityServiceError              = 30136;
+const NSInteger kVSSCardsGlobalCardUnconfirmedError                  = 30137;
+const NSInteger kVSSCardsDuplicateFingerprintError                   = 30138;
+const NSInteger kVSSCardsRevocationReasonMissingOrInvalidError       = 30139;
 
 @implementation VSSCardsError
 
 - (NSString *)message {
     NSString *message = nil;
-    switch (self.code) {
-        case kVSSCardsInternalError:
-            message = @"Internal service error.";
-            break;
-        case kVSSCardsIdHeaderDuplicationError:
-            message = @"The request ID header was used already.";
-            break;
-        case kVSSCardsIdHeaderInvalidError:
-            message = @"The request ID header is invalid.";
-            break;
-        case kVSSCardsSignHeaderNotFoundError:
-            message = @"The request sign header not found.";
-            break;
-        case kVSSCardsCardIdHeaderInvalidError:
-            message = @"The Virgil Card ID header not specified or incorrect.";
-            break;
-        case kVSSCardsSignHeaderInvalidError:
-            message = @" The request sign header is invalid.";
-            break;
-        case kVSSCardsPublicKeyValueNotFoundError:
-            message = @"Public Key value is required in request body.";
-            break;
-        case kVSSCardsPublicKeyValueEncodingError:
-            message = @"Public Key value in request body must be base64 encoded value.";
-            break;
-        case kVSSCardsPublicKeyIdsMatchError:
-            message = @"Public Key IDs in URL part and public key for the Virgil Card retrieved from X-VIRGIL-REQUEST-SIGN-VIRGIL-CARD-ID header must match.";
-            break;
-        case kVSSCardsPublicKeyIdInvalidError:
-            message = @"The public key id in the request body is invalid.";
-            break;
-        case kVSSCardsCardIdsMatchError:
-            message = @"Virgil card ids in url and authentication header must match.";
-            break;
-        case kVSSCardsApplicationTokenInvalidError:
-            message = @"The Virgil application token was not specified or invalid.";
-            break;
-        case kVSSCardsStatisticsError:
-            message = @"The Virgil statistics application error.";
-            break;
-        case kVSSCardsJSONError:
-            message = @"JSON specified as a request body is invalid.";
-            break;
-        case kVSSCardsPublicKeyIdError:
-            message = @"Public Key ID is invalid.";
-            break;
-        case kVSSCardsPublicKeyLengthError:
-            message = @"Public key length invalid.";
-            break;
-        case kVSSCardsPublicKeyEncodingError:
-            message = @"Public key must be base64-encoded string.";
-            break;
-        case kVSSCardsIdentityTypeError:
-            message = @"Identity type is invalid. Valid types are: 'email', 'application'.";
-            break;
-        case kVSSCardsIdentityEmailError:
-            message = @"Email value specified for the email identity is invalid.";
-            break;
-        case kVSSCardsIdentityUnconfirmedApplicationError:
-            message = @"Cannot create unconfirmed application identity.";
-            break;
-        case kVSSCardsIdentityApplicationValueError:
-            message = @"Application value specified for the application identity is invalid.";
-            break;
-        case kVSSCardsCardNotFoundError:
-            message = @"Signed Virgil Card not found by UUID provided.";
-            break;
-        case kVSSCardsCardSignsListInvalidError:
-            message = @"Virgil Card's signs list contains an item with invalid signed_id value.";
-            break;
-        case kVSSCardsCardSignedDigestInvalidError:
-            message = @"Virgil Card's one of sined digests is invalid.";
-            break;
-        case kVSSCardsCardDataFormatInvalidError:
-            message = @"Virgil Card's data parameters must be strings.";
-            break;
-        case kVSSCardsCardDataArrayFormatInvalidError:
-            message = @"Virgil Card's data parameters must be an array of strings.";
-            break;
-        case kVSSCardsCardDataLengthInvalidError:
-            message = @"Virgil Card custom data entry value length validation failed.";
-            break;
-        case kVSSCardsSignNotFoundError:
-            message = @"Sign object not found for id specified.";
-            break;
-        case kVSSCardsSignedDigestInvalidError:
-            message = @"The signed digest value is invalid.";
-            break;
-        case kVSSCardsSignedDigestEncodingError:
-            message = @"Sign Signed digest must be base64 encoded string.";
-            break;
-        case kVSSCardsSignDuplicationError:
-            message = @"Cannot save the Sign because it exists already.";
-            break;
-        case kVSSCardsSearchValueInvalidError:
-            message = @"Value search parameter is mandatory.";
-            break;
-        case kVSSCardsApplicationSearchValueInvalidError:
-            message = @"Search value parameter is mandatory for the application search.";
-            break;
-        case kVSSCardsCardSignsFormatError:
-            message = @"Virgil Card's signs parameter must be an array.";
-            break;
-        case kVSSCardsIdentityTokenInvalidError:
-            message = @"Identity validation token is invalid.";
-            break;
-        case kVSSCardsCardRevocationMatchError:
-            message = @"Virgil Card revokation parameters do not match Virgil Card's identity.";
-            break;
-        case kVSSCardsIdentityServiceError:
-            message = @"Virgil Identity service error.";
-            break;
-        case kVSSCardsIdentitiesInvalidError:
-            message = @"Identities parameter is invalid.";
-            break;
-        case kVSSCardsIdentityInvalidError:
-            message = @"Identity validation failed.";
-            break;
-        default:
-            break;
-    }
     
+    switch (self.code) {
+        case kVSSCardsInternalError: message = @"Internal application error. You know, shit happens, so do internal server errors. Just take a deep breath and try harder."; break;
+        
+        /// HTTP 401. Authorization errors
+        case kVSSCardsTokenMissingOrInvalidError: message = @"The Virgil access token or token header was not specified or is invalid"; break;
+        case kVSSCardsAuthenticatorError: message = @"The Virgil authenticator service responded with an error"; break;
+        case kVSSCardsAccessTokenValidationError: message = @"The Virgil access token validation has failed on the Virgil Authenticator service"; break;
+        case kVSSCardsApplicationNotFoundError: message = @"The application was not found for the access token"; break;
+        case kVSSCardsRequestSignMissingOrInvalid: message = @"Request sign is invalid or missing"; break;
+        case kVSSCardsRequestSignHeaderMissingError: message = @"Request sign header is missing"; break;
+        
+        /// HTTP 401. Authorization errors
+        case kVSSCardsCardNotAvailableError: message = @"The Virgil Card is not available in this application"; break;
+        
+        /// HTTP 400. Request error status is returned on request data validation errors
+        case kVSSCardsJSONError: message = @"JSON specified as a request is invalid"; break;
+        case kVSSCardsDataInconsistencyEror: message = @"A data inconsistency error"; break;
+        case kVSSCardsGlobalCardIdentityTypeError: message = @"Global Virgil Card identity type is invalid, because it can be only an 'email'"; break;
+        case kVSSCardsCardScopeError: message = @"Virgil Card scope must be either 'global' or 'application'"; break;
+        case kVSSCardsCardIdValidationFailedError: message = @"Virgil Card id validation failed"; break;
+        case kVSSCardsCardDataTooBigError: message = @"Virgil Card data parameter cannot contain more than 16 entries"; break;
+        case kVSSCardsCardInfoParameterEmptyError: message = @"Virgil Card info parameter cannot be empty if specified and must contain 'device' and/or 'device_name' key"; break;
+        case kVSSCardsCardInfoParameterTooBigError: message = @"Virgil Card info parameters length validation failed. The length cannot exceed 256 characters"; break;
+        case kVSSCardsCardDataParameterError: message = @"Virgil Card data parameter must be an associative array (https://en.wikipedia.org/wiki/Associative_array)"; break;
+        case kVSSCardsCSRParameterMissingOrInvalidError: message = @"A CSR parameter (content_snapshot) parameter is missing or is incorrect"; break;
+        case kVSSCardsIdentitiesError: message = @"Virgil Card identities passed to search endpoint must be a list of non-empty strings"; break;
+        case kVSSCardsIdentityTypeError: message = @"Virgil Card identity type is invalid"; break;
+        case kVSSCardsSegregatedIdentityError: message = @"Segregated Virgil Card custom identity value must be a not empty string"; break;
+        case kVSSCardsIdentityEmailError: message = @"Virgil Card identity email is invalid"; break;
+        case kVSSCardsIdentityApplicationError: message = @"Virgil Card identity application is invalid"; break;
+        case kVSSCardsPublicKeyLengthError: message = @"Public key length is invalid. It goes from 16 to 2048 bytes"; break;
+        case kVSSCardsPublicKeyFormatError: message = @"Public key must be base64-encoded string"; break;
+        case kVSSCardsCardDataParameterKVError: message = @"Virgil Card data parameter must be a key/value list of strings"; break;
+        case kVSSCardsCardDataParameterStrError: message = @"Virgil Card data parameters must be strings"; break;
+        
+        case kVSSCardsDataTooBigError: message = @"Virgil Card custom data entry value length validation failed. It mustn't exceed 256 characters"; break;
+        case kVSSCardsValidationTokenError: message = @"Identity validation token is invalid"; break;
+        case kVSSCardsCSRSignsMissingOrInvalidError: message = @"SCR signs list parameter is missing or is invalid"; break;
+        case kVSSCardsCSRIdIrrelevantError: message = @"SCR sign item signer card id is irrelevant and doesn't match Virgil Card id or Application Id"; break;
+        case kVSSCardsCSRInvalidForVirgilCardPublicKeyError: message = @"SCR sign item signed digest is invalid for the Virgil Card public key"; break;
+        case kVSSCardsCSRDigestMissingOrInvalidError: message = @"SCR sign item signed digest is invalid or missing for the application"; break;
+        case kVSSCardsCardIdMismatchError: message = @"Virgil Card id specified in the request body must match with the one passed in the URL"; break;
+        case kVSSCardsCardDataKeysError: message = @"Virgil Card data parameters key must be alphanumerical"; break;
+        case kVSSCardsTokenObjectError: message = @"Virgil Card validation token must be an object with value parameter"; break;
+        case kVSSCardsCSRSignForIdentityServiceError: message = @"SCR sign item signed digest is invalid for the virgil identity service"; break;
+        case kVSSCardsGlobalCardUnconfirmedError: message = @"Global Virigl Card cannot be created unconfirmed (which means that Virgil Identity service sign is mandatory)"; break;
+        case kVSSCardsDuplicateFingerprintError: message = @"Virigl Card with the same fingerprint exists already"; break;
+        case kVSSCardsRevocationReasonMissingOrInvalidError: message = @"Virigl Card revocation reason isn't specified or is invalid"; break;
+    }
+
     return message;
 }
 

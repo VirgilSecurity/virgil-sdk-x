@@ -11,47 +11,51 @@
 /// HTTP 500. Server error status is returned on internal application errors
 extern const NSInteger kVSSCardsInternalError;
 
-/// HTTP 401. Auth error status is returned on authorization errors
-extern const NSInteger kVSSCardsIdHeaderDuplicationError;
-extern const NSInteger kVSSCardsIdHeaderInvalidError;
-extern const NSInteger kVSSCardsSignHeaderNotFoundError;
-extern const NSInteger kVSSCardsCardIdHeaderInvalidError;
-extern const NSInteger kVSSCardsSignHeaderInvalidError;
-extern const NSInteger kVSSCardsPublicKeyValueNotFoundError;
-extern const NSInteger kVSSCardsPublicKeyValueEncodingError;
-extern const NSInteger kVSSCardsPublicKeyIdsMatchError;
-extern const NSInteger kVSSCardsPublicKeyIdInvalidError;
-extern const NSInteger kVSSCardsCardIdsMatchError;
-extern const NSInteger kVSSCardsApplicationTokenInvalidError;
-extern const NSInteger kVSSCardsStatisticsError;
+/// HTTP 401. Authorization errors
+extern const NSInteger kVSSCardsTokenMissingOrInvalidError;
+extern const NSInteger kVSSCardsAuthenticatorError;
+extern const NSInteger kVSSCardsAccessTokenValidationError;
+extern const NSInteger kVSSCardsApplicationNotFoundError;
+extern const NSInteger kVSSCardsRequestSignMissingOrInvalid;
+extern const NSInteger kVSSCardsRequestSignHeaderMissingError;
+
+/// HTTP 403. Forbidden
+extern const NSInteger kVSSCardsCardNotAvailableError;
 
 /// HTTP 400. Request error status is returned on request data validation errors
 extern const NSInteger kVSSCardsJSONError;
-extern const NSInteger kVSSCardsPublicKeyIdError;
-extern const NSInteger kVSSCardsPublicKeyLengthError;
-extern const NSInteger kVSSCardsPublicKeyEncodingError;
+extern const NSInteger kVSSCardsDataInconsistencyEror;
+extern const NSInteger kVSSCardsGlobalCardIdentityTypeError;
+extern const NSInteger kVSSCardsCardScopeError;
+extern const NSInteger kVSSCardsCardIdValidationFailedError;
+extern const NSInteger kVSSCardsCardDataTooBigError;
+extern const NSInteger kVSSCardsCardInfoParameterEmptyError;
+extern const NSInteger kVSSCardsCardInfoParameterTooBigError;
+extern const NSInteger kVSSCardsCardDataParameterError;
+extern const NSInteger kVSSCardsCSRParameterMissingOrInvalidError;
+extern const NSInteger kVSSCardsIdentitiesError;
 extern const NSInteger kVSSCardsIdentityTypeError;
+extern const NSInteger kVSSCardsSegregatedIdentityError;
 extern const NSInteger kVSSCardsIdentityEmailError;
-extern const NSInteger kVSSCardsIdentityUnconfirmedApplicationError;
-extern const NSInteger kVSSCardsIdentityApplicationValueError;
-extern const NSInteger kVSSCardsCardNotFoundError;
-extern const NSInteger kVSSCardsCardSignsListInvalidError;
-extern const NSInteger kVSSCardsCardSignedDigestInvalidError;
-extern const NSInteger kVSSCardsCardDataFormatInvalidError;
-extern const NSInteger kVSSCardsCardDataArrayFormatInvalidError;
-extern const NSInteger kVSSCardsCardDataLengthInvalidError;
-extern const NSInteger kVSSCardsSignNotFoundError;
-extern const NSInteger kVSSCardsSignedDigestInvalidError;
-extern const NSInteger kVSSCardsSignedDigestEncodingError;
-extern const NSInteger kVSSCardsSignDuplicationError;
-extern const NSInteger kVSSCardsSearchValueInvalidError;
-extern const NSInteger kVSSCardsApplicationSearchValueInvalidError;
-extern const NSInteger kVSSCardsCardSignsFormatError;
-extern const NSInteger kVSSCardsIdentityTokenInvalidError;
-extern const NSInteger kVSSCardsCardRevocationMatchError;
-extern const NSInteger kVSSCardsIdentityServiceError;
-extern const NSInteger kVSSCardsIdentitiesInvalidError;
-extern const NSInteger kVSSCardsIdentityInvalidError;
+extern const NSInteger kVSSCardsIdentityApplicationError;
+extern const NSInteger kVSSCardsPublicKeyLengthError;
+extern const NSInteger kVSSCardsPublicKeyFormatError;
+extern const NSInteger kVSSCardsCardDataParameterKVError;
+extern const NSInteger kVSSCardsCardDataParameterStrError;
+
+extern const NSInteger kVSSCardsDataTooBigError;
+extern const NSInteger kVSSCardsValidationTokenError;
+extern const NSInteger kVSSCardsCSRSignsMissingOrInvalidError;
+extern const NSInteger kVSSCardsCSRIdIrrelevantError;
+extern const NSInteger kVSSCardsCSRInvalidForVirgilCardPublicKeyError;
+extern const NSInteger kVSSCardsCSRDigestMissingOrInvalidError;
+extern const NSInteger kVSSCardsCardIdMismatchError;
+extern const NSInteger kVSSCardsCardDataKeysError;
+extern const NSInteger kVSSCardsTokenObjectError;
+extern const NSInteger kVSSCardsCSRSignForIdentityServiceError;
+extern const NSInteger kVSSCardsGlobalCardUnconfirmedError;
+extern const NSInteger kVSSCardsDuplicateFingerprintError;
+extern const NSInteger kVSSCardsRevocationReasonMissingOrInvalidError;
 
 /**
  * Concrete subclass representing the errors returning by the Virgil Keys Service.

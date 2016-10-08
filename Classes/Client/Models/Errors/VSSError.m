@@ -7,7 +7,6 @@
 //
 
 #import "VSSError.h"
-#import "VSSErrorPrivate.h"
 #import "NSObject+VSSUtils.h"
 #import "VSSModelKeys.h"
 #import "VSSModelCommonsPrivate.h"

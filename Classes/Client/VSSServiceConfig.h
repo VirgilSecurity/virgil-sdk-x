@@ -24,13 +24,6 @@ extern NSString * __nonnull const kVSSServiceIDCards;
 + (VSSServiceConfig * __nonnull)serviceConfig;
 
 /**
- * Returns list of the service IDs which can be used to get the particular info about each service.
- * 
- * @return Array of the service ids.
- */
-- (NSArray <NSString *>* __nonnull)serviceIDList;
-
-/**
  * Returns the base URL for each service by the service ID.
  *
  * @param serviceID Identifier of the service.

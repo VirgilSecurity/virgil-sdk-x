@@ -16,10 +16,6 @@ NSString *const kVSSServiceIDCards = @"VSSServiceIDCards";
     return [[self alloc] init];
 }
 
-- (NSArray <NSString *>*)serviceIDList {
-    return @[ kVSSServiceIDCards];
-}
-
 - (NSString *)serviceURLForServiceID:(NSString *)serviceID {
     if ([serviceID isEqualToString:kVSSServiceIDCards]) {
         return @"https://cards.virgilsecurity.com/v4";

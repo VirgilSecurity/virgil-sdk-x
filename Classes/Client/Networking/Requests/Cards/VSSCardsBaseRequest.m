@@ -9,7 +9,7 @@
 #import "VSSCardsBaseRequest.h"
 #import "VSSCardsError.h"
 #import "NSObject+VSSUtils.h"
-#import "VSSErrorPrivate.h"
+#import "VSSError.h"
 
 @implementation VSSCardsBaseRequest
 

@@ -19,11 +19,6 @@
 #  define VSSCLDLog(...) /* nothing to log */
 #endif
 
-/**
- * Error domain for all the errors of the Virgil client.
- */
-extern NSString * __nonnull const kVSSClientErrorDomain;
-
 #import "VSSServiceConfig.h"
 
 /**

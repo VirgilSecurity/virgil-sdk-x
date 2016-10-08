@@ -12,8 +12,6 @@
 #import "VSSBaseClientPrivate.h"
 #import "VSSServiceConfig.h"
 
-NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
-
 @interface VSSBaseClient ()
 
 @property (nonatomic) NSOperationQueue * __nonnull queue;

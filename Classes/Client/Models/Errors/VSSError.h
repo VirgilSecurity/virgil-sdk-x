@@ -8,11 +8,14 @@
 
 #import "VSSBaseModel.h"
 #import "VSSModelCommons.h"
+#import "VSSDeserializable.h"
 
 /**
  * Wrapper object for managing errors returned by the Virgil Services.
  */
-@interface VSSError : VSSBaseModel
+@interface VSSError : VSSBaseModel <VSSDeserializable>
+
+- (instancetype __nonnull)initWithCode:(NSInteger)code NS_DESIGNATED_INITIALIZER;
 
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 

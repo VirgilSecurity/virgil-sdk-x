@@ -34,7 +34,7 @@
 }
 
 + (instancetype)createWithIdentity:(NSString *)identity identityType:(NSString *)identityType scope:(VSSCardScope)scope publicKey:(NSData *)publicKey data:(NSDictionary *)data {
-    // todo
+
     NSDictionary *info = @{
         kVSSModelDevice: [VSSDeviceInfoUtils getDeviceModel],
         kVSSModelDeviceName: [VSSDeviceInfoUtils getDeviceName]

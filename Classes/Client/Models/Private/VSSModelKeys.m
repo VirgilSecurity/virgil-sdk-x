@@ -29,7 +29,6 @@ NSString *const kVSSModelRevocationReason = @"revocation_reason";
 NSString *const kVSSModelIdentities = @"identities";
 NSString *const kVSSIdentityTypeEmail = @"email";
 
-NSString *const kVSSModelError = @"error";
 NSString *const kVSSModelCode = @"code";
 
 NSString *const kVSSErrorDomain = @"VirgilSecurityServicesErrorDomain";
