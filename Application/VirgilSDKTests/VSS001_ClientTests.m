@@ -1,9 +1,9 @@
 //
-//  VK001_KeysClientTests.m
-//  VirgilKeys
+//  VSS001_ClientTests.m
+//  VirgilSDK
 //
-//  Created by Pavel Gorb on 9/23/15.
-//  Copyright (c) 2015 VirgilSecurity. All rights reserved.
+//  Created by Oleksandr Deundiak on 10/8/16.
+//  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -36,7 +36,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 
 - (void)setUp {
     [super setUp];
-
+    
     self.client = [[VSSClient alloc] initWithApplicationToken:kApplicationToken];
     self.crypto = [[VSSCrypto alloc] init];
     self.continueAfterFailure = NO;
@@ -51,7 +51,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 
 - (void)test001_CreateCard {
     XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created."];
-
+    
     NSUInteger numberOfRequests = 1;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
     
@@ -66,14 +66,14 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
         
         VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.crypto];
         [validator addVerifierWithId:kApplicationId publicKey:[[NSData alloc] initWithBase64EncodedString:kApplicationPublicKeyBase64 options:0]];
-
+        
         BOOL isValid = [validator validateCard:card];
-
+        
         XCTAssert(isValid);
         
         [ex fulfill];
     }];
-
+    
     [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
         if (error != nil)
             XCTFail(@"Expectation failed: %@", error);
@@ -154,7 +154,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
             XCTFail(@"Expectation failed: %@", error);
         
         VSSRevokeCard *revokeCard = [self instantiateRevokeCardForCard:card];
-
+        
         [self.client revokeCard:revokeCard completion:^(NSError *error) {
             if (error != nil)
                 XCTFail(@"Expectation failed: %@", error);
@@ -217,7 +217,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     BOOL equals = [card1.snapshot isEqualToData:card2.snapshot]
         && [card1.data.identityType isEqualToString:card2.data.identityType]
         && [card1.data.identity isEqualToString:card2.data.identity];
-
+    
     return equals;
 }
 
