@@ -9,14 +9,16 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
-#import "VirgilSDK.h"
-
 static NSString *const kApplicationToken = <#NSString: Application Access Token#>;
 static NSString *const kApplicationPublicKeyBase64 = <# NSString: Application Public Key #>;
 static NSString *const kApplicationPrivateKeyBase64 = <#NSString: Application Private Key in base64#>;
 static NSString *const kApplicationPrivateKeyPassword = <#NSString: Application Private Key password#>;
 static NSString *const kApplicationId = <#NSString: Application Id#>;
 
+#import "VSSClient.h"
+#import "VSSCrypto.h"
+#import "VSSCardValidator.h"
+#import "VSSRequestSigner.h"
 
 /// Each request should be done less than or equal this number of seconds.
 static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
@@ -158,12 +160,10 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
                 XCTFail(@"Expectation failed: %@", error);
             
             [self.client getCardWithId:card.identifier completion:^(VSSCard *foundCard, NSError *error) {
-                XCTAssert(error != nil);
                 XCTAssert(foundCard == nil);
                 
-                VSSError *vssError = (VSSError *)error;
-                XCTAssert(vssError != nil);
-                XCTAssert(vssError.code == 404);
+                XCTAssert(error != nil);
+                XCTAssert(error.code == 404);
                 
                 [ex fulfill];
             }];
