@@ -10,25 +10,16 @@
 #define VirgilKeys_BridgingHeader_h
 
 #import "VSSModelCommons.h"
-#import "VSSSerializable.h"
 
 #import "VSSPublicKey.h"
 #import "VSSPrivateKey.h"
-#import "VSSError.h"
-#import "VSSCardsError.h"
 
-#import "VSSRequest.h"
-#import "VSSJSONRequest.h"
-
-#import "VSSRequestContext.h"
-
-#import "VSSBaseClient.h"
 #import "VSSClient.h"
+#import "VSSCrypto.h"
 #import "VSSServiceConfig.h"
 
-#import "VSSKeychainValue.h"
-#import "NSObject+VSSUtils.h"
-#import "NSString+VSSXMLEscape.h"
+#import "VSSCardValidator.h"
+#import "VSSRequestSigner.h"
 
 //#import "Mailinator.h"
 //#import "MailinatorConfig.h"

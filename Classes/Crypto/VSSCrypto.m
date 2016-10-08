@@ -18,7 +18,9 @@
 
 @implementation VSSCrypto
 
-- (VSSKeyPair *)generateKey {
+#pragma mark - Key processing
+
+- (VSSKeyPair *)generateKeyPair {
     VSCKeyPair *keyPair = [[VSCKeyPair alloc] init];
     
     NSData *keyPairId = [self computeHashForPublicKey:keyPair.publicKey];
@@ -100,6 +102,8 @@
     
     return publicKey;
 }
+
+#pragma mark - Data processing
 
 - (NSData *)encryptData:(NSData *)data forRecipients:(NSArray<VSSPublicKey *> *)recipients error:(NSError **)errorPtr {
     VSCCryptor *cipher = [[VSCCryptor alloc] init];

@@ -8,6 +8,10 @@ target 'VirgilSDKApp' do
     target 'VirgilSDKTests' do
         inherit! :search_paths
     end
+
+    target 'VirgilSDKTestsSwift' do
+        inherit! :search_paths
+    end
 end
 
 target 'VirgilSDKAppSwift' do

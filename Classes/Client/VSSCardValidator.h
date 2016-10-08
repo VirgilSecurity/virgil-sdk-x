@@ -14,6 +14,8 @@
 
 - (instancetype __nonnull)initWithCrypto:(id<VSSCrypto> __nonnull)crypto;
 
+- (instancetype __nonnull)init NS_UNAVAILABLE;
+
 - (void)addVerifierWithId:(NSString * __nonnull)verifierId publicKey:(NSData * __nonnull)publicKey;
 
 @end

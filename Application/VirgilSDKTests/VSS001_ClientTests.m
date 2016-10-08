@@ -9,16 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
-static NSString *const kApplicationToken = <#NSString: Application Access Token#>;
-static NSString *const kApplicationPublicKeyBase64 = <# NSString: Application Public Key #>;
-static NSString *const kApplicationPrivateKeyBase64 = <#NSString: Application Private Key in base64#>;
-static NSString *const kApplicationPrivateKeyPassword = <#NSString: Application Private Key password#>;
-static NSString *const kApplicationId = <#NSString: Application Id#>;
-
 #import "VSSClient.h"
 #import "VSSCrypto.h"
 #import "VSSCardValidator.h"
 #import "VSSRequestSigner.h"
+
+static NSString *const kApplicationToken = <#NSString: Application Access Token#>;
+static NSString *const kApplicationPublicKeyBase64 = <# NSString: Application Public Key #>;
+static NSString *const kApplicationPrivateKeyBase64 = <#NSString: Application Private Key in base64#>;
+static NSString *const kApplicationPrivateKeyPassword = <#NSString: Application Private Key password#>;
+static NSString *const kApplicationIdentityType = <#NSString: Application Identity Type#>;
+static NSString *const kApplicationId = <#NSString: Application Id#>;
+
 
 /// Each request should be done less than or equal this number of seconds.
 static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
@@ -181,12 +183,12 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 #pragma mark - Private logic
 
 - (VSSCard * __nonnull)instantiateCard {
-    VSSKeyPair *keyPair = [self.crypto generateKey];
+    VSSKeyPair *keyPair = [self.crypto generateKeyPair];
     NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
     
     // some random value
     NSString *identityValue = [[NSUUID UUID] UUIDString];
-    NSString *identityType = kApplicationPrivateKeyPassword;
+    NSString *identityType = kApplicationIdentityType;
     VSSCard *card = [VSSCard createWithIdentity:identityValue identityType:identityType publicKey:exportedPublicKey];
     
     NSData *privateAppKeyData = [[NSData alloc] initWithBase64EncodedString:kApplicationPrivateKeyBase64 options:0];

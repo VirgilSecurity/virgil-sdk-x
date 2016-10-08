@@ -15,7 +15,7 @@
 
 @protocol VSSCrypto <NSObject>
 
-- (VSSKeyPair * __nonnull)generateKey;
+- (VSSKeyPair * __nonnull)generateKeyPair;
 
 - (VSSPrivateKey * __nullable)importPrivateKey:(NSData * __nonnull)keyData password:(NSString * __nullable)password;
 - (VSSPublicKey * __nullable)importPublicKey:(NSData * __nonnull)keyData;
