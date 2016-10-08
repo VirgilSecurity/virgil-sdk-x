@@ -49,6 +49,8 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     [super tearDown];
 }
 
+#pragma mark - Tests
+
 - (void)test001_CreateCard {
     XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created."];
     
@@ -175,6 +177,8 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
             XCTFail(@"Expectation failed: %@", error);
     }];
 }
+
+#pragma mark - Private logic
 
 - (VSSCard * __nonnull)instantiateCard {
     VSSKeyPair *keyPair = [self.crypto generateKey];
