@@ -62,8 +62,10 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     VSSCard *instantiatedCard = [self instantiateCard];
     
     [self.client createCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
-        if (error != nil)
+        if (error != nil) {
             XCTFail(@"Expectation failed: %@", error);
+            return;
+        }
         
         XCTAssert([card.identifier length] > 0);
         XCTAssert([self checkCard:instantiatedCard isEqualToCard:card]);
@@ -93,14 +95,18 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     VSSCard *instantiatedCard = [self instantiateCard];
     
     [self.client createCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
-        if (error != nil)
+        if (error != nil) {
             XCTFail(@"Expectation failed: %@", error);
+            return;
+        }
         
         VSSSearchCards *searchCards = [VSSSearchCards createWithScope:VSSCardScopeApplication identityType:card.data.identityType identities:@[card.data.identity]];
         
         [self.client searchCards:searchCards completion:^(NSArray<VSSCard *>* cards, NSError *error) {
-            if (error != nil)
+            if (error != nil) {
                 XCTFail(@"Expectation failed: %@", error);
+                return;
+            }
             
             XCTAssert([cards count] == 1);
             XCTAssert([self checkCard:cards[0] isEqualToCard:card]);
@@ -124,12 +130,16 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     VSSCard *instantiatedCard = [self instantiateCard];
     
     [self.client createCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
-        if (error != nil)
+        if (error != nil) {
             XCTFail(@"Expectation failed: %@", error);
+            return;
+        }
         
         [self.client getCardWithId:card.identifier completion:^(VSSCard *foundCard, NSError *error) {
-            if (error != nil)
+            if (error != nil) {
                 XCTFail(@"Expectation failed: %@", error);
+                return;
+            }
             
             XCTAssert(foundCard != nil);
             XCTAssert([foundCard.identifier isEqualToString:card.identifier]);
@@ -154,14 +164,18 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     VSSCard *instantiatedCard = [self instantiateCard];
     
     [self.client createCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
-        if (error != nil)
+        if (error != nil) {
             XCTFail(@"Expectation failed: %@", error);
+            return;
+        }
         
         VSSRevokeCard *revokeCard = [self instantiateRevokeCardForCard:card];
         
         [self.client revokeCard:revokeCard completion:^(NSError *error) {
-            if (error != nil)
+            if (error != nil) {
                 XCTFail(@"Expectation failed: %@", error);
+                return;
+            }
             
             [self.client getCardWithId:card.identifier completion:^(VSSCard *foundCard, NSError *error) {
                 XCTAssert(foundCard == nil);
