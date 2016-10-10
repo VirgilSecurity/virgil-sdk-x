@@ -33,7 +33,7 @@
     return self;
 }
 
-+ (instancetype)createWithIdentity:(NSString *)identity identityType:(NSString *)identityType scope:(VSSCardScope)scope publicKey:(NSData *)publicKey data:(NSDictionary *)data {
++ (instancetype)cardDataWithIdentity:(NSString *)identity identityType:(NSString *)identityType scope:(VSSCardScope)scope publicKey:(NSData *)publicKey data:(NSDictionary *)data {
 
     NSDictionary *info = @{
         kVSSModelDevice: [VSSDeviceInfoUtils getDeviceModel],
@@ -43,20 +43,20 @@
     return [[VSSCardData alloc] initWithIdentity:identity identityType:identityType scope:scope publicKey:publicKey data:data info:info];
 }
 
-+ (instancetype)createWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey data:(NSDictionary *)data {
-    return [VSSCardData createWithIdentity:identity identityType:identityType scope:VSSCardScopeApplication publicKey:publicKey data:data];
++ (instancetype)cardDataWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey data:(NSDictionary *)data {
+    return [VSSCardData cardDataWithIdentity:identity identityType:identityType scope:VSSCardScopeApplication publicKey:publicKey data:data];
 }
 
-+ (instancetype)createWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey {
-    return [VSSCardData createWithIdentity:identity identityType:identityType publicKey:publicKey data:nil];
++ (instancetype)cardDataWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey {
+    return [VSSCardData cardDataWithIdentity:identity identityType:identityType publicKey:publicKey data:nil];
 }
 
-+ (instancetype)createGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey {
-    return [VSSCardData createGlobalWithIdentity:identity publicKey:publicKey data:nil];
++ (instancetype)cardDataGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey {
+    return [VSSCardData cardDataGlobalWithIdentity:identity publicKey:publicKey data:nil];
 }
 
-+ (instancetype)createGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey data:(NSDictionary *)data {
-    return [VSSCardData createWithIdentity:identity identityType:kVSSIdentityTypeEmail scope:VSSCardScopeGlobal publicKey:publicKey data:data];
++ (instancetype)cardDataGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey data:(NSDictionary *)data {
+    return [VSSCardData cardDataWithIdentity:identity identityType:kVSSIdentityTypeEmail scope:VSSCardScopeGlobal publicKey:publicKey data:data];
 }
 
 #pragma mark - VSSSerializable

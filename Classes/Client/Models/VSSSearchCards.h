@@ -15,6 +15,8 @@
 @property (nonatomic, copy, readonly) NSString * __nonnull identityType;
 @property (nonatomic, copy, readonly) NSArray<NSString *>* __nonnull identities;
 
-+ (instancetype __nonnull)createWithScope:(VSSCardScope)scope identityType:(NSString * __nonnull)identityType identities:(NSArray<NSString *>* __nonnull)indentities;
++ (instancetype __nonnull)searchCardsWithScope:(VSSCardScope)scope identityType:(NSString * __nonnull)identityType identities:(NSArray<NSString *>* __nonnull)indentities;
+
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end

@@ -14,7 +14,7 @@
 
 @implementation VSSSearchCards
 
-+ (instancetype __nonnull)createWithScope:(VSSCardScope)scope identityType:(NSString *)identityType identities:(NSArray<NSString *> *)identities {
++ (instancetype __nonnull)searchCardsWithScope:(VSSCardScope)scope identityType:(NSString *)identityType identities:(NSArray<NSString *> *)identities {
     return [[VSSSearchCards alloc] initWithScope:scope identityType:identityType identities:identities];
 }
 

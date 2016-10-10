@@ -16,22 +16,22 @@
 
 @implementation VSSCard
 
-+ (instancetype)createWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey data:(NSDictionary *)data {
-    VSSCardData *cardData = [VSSCardData createWithIdentity:identity identityType:identityType publicKey:publicKey data:data];
++ (instancetype)cardWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey data:(NSDictionary *)data {
+    VSSCardData *cardData = [VSSCardData cardDataWithIdentity:identity identityType:identityType publicKey:publicKey data:data];
     return [[VSSCard alloc] initWithCardData:cardData];
 }
 
-+ (instancetype)createWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey {
-    return [VSSCard createWithIdentity:identity identityType:identityType publicKey:publicKey data:nil];
++ (instancetype)cardWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey {
+    return [VSSCard cardWithIdentity:identity identityType:identityType publicKey:publicKey data:nil];
 }
 
-+ (instancetype)createGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey data:(NSDictionary *)data {
-    VSSCardData *cardData = [VSSCardData createGlobalWithIdentity:identity publicKey:publicKey data:data];
++ (instancetype)cardGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey data:(NSDictionary *)data {
+    VSSCardData *cardData = [VSSCardData cardDataGlobalWithIdentity:identity publicKey:publicKey data:data];
     return [[VSSCard alloc] initWithCardData:cardData];
 }
 
-+ (instancetype)createGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey {
-    return [VSSCard createGlobalWithIdentity:identity publicKey:publicKey data:nil];
++ (instancetype)cardGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey {
+    return [VSSCard cardGlobalWithIdentity:identity publicKey:publicKey data:nil];
 }
 
 - (instancetype)initWithSnapshot:(NSData *)snapshot cardData:(VSSCardData *)cardData signatures:(NSDictionary *)signatures cardVersion:(NSString *)cardVersion createdAt:(NSDate *)createdAt {

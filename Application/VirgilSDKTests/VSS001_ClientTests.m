@@ -100,7 +100,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
             return;
         }
         
-        VSSSearchCards *searchCards = [VSSSearchCards createWithScope:VSSCardScopeApplication identityType:card.data.identityType identities:@[card.data.identity]];
+        VSSSearchCards *searchCards = [VSSSearchCards searchCardsWithScope:VSSCardScopeApplication identityType:card.data.identityType identities:@[card.data.identity]];
         
         [self.client searchCards:searchCards completion:^(NSArray<VSSCard *>* cards, NSError *error) {
             if (error != nil) {
@@ -203,7 +203,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     // some random value
     NSString *identityValue = [[NSUUID UUID] UUIDString];
     NSString *identityType = kApplicationIdentityType;
-    VSSCard *card = [VSSCard createWithIdentity:identityValue identityType:identityType publicKey:exportedPublicKey];
+    VSSCard *card = [VSSCard cardWithIdentity:identityValue identityType:identityType publicKey:exportedPublicKey];
     
     NSData *privateAppKeyData = [[NSData alloc] initWithBase64EncodedString:kApplicationPrivateKeyBase64 options:0];
     
@@ -219,7 +219,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 }
 
 - (VSSRevokeCard * __nonnull)instantiateRevokeCardForCard:(VSSCard * __nonnull)card {
-    VSSRevokeCard *revokeCard = [VSSRevokeCard createWithCardId:card.identifier reason:VSSCardRevocationReasonUnspecified];
+    VSSRevokeCard *revokeCard = [VSSRevokeCard revokeCardWithId:card.identifier reason:VSSCardRevocationReasonUnspecified];
     
     VSSRequestSigner *requestSigner = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
     
