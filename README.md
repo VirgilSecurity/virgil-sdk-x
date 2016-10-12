@@ -495,6 +495,7 @@ BOOL isVerified = [self.crypto verifyData:data signature:signature signerPublicK
 ###### Swift
 ```swift
 let isVerified = try? self.crypto.verifyData(data, signature: signature, signerPublicKey: aliceKeys.publicKey)
+```
 
 *Stream*
 ```objective-c
