@@ -51,6 +51,7 @@
 		42F0ABC71D9D04C400747799 /* VSSCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABC61D9D04C400747799 /* VSSCard.m */; };
 		42F0ABCB1D9D13BC00747799 /* VSSCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABCA1D9D13BC00747799 /* VSSCrypto.m */; };
 		42F0ABD61D9E8D5E00747799 /* VSSSearchCards.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABD51D9E8D5E00747799 /* VSSSearchCards.m */; };
+		42F8886D1DAE8AFF004D321A /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42F8886C1DAE8AFF004D321A /* testData.txt */; };
 		42FA96441DA29E5B0092D5DB /* VSSRequestSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FA96431DA29E5B0092D5DB /* VSSRequestSigner.m */; };
 		42FA96471DA3C0B60092D5DB /* VSSFingerprint.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FA96461DA3C0B60092D5DB /* VSSFingerprint.m */; };
 		42FA964A1DA3E0320092D5DB /* VSSDeviceInfoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FA96491DA3E0320092D5DB /* VSSDeviceInfoUtils.m */; };
@@ -184,6 +185,7 @@
 		42F0ABD31D9E883B00747799 /* VSSRequestPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSRequestPrivate.h; sourceTree = "<group>"; };
 		42F0ABD41D9E8D5E00747799 /* VSSSearchCards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSSearchCards.h; sourceTree = "<group>"; };
 		42F0ABD51D9E8D5E00747799 /* VSSSearchCards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSearchCards.m; sourceTree = "<group>"; };
+		42F8886C1DAE8AFF004D321A /* testData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testData.txt; sourceTree = "<group>"; };
 		42FA96411DA2624B0092D5DB /* VSSCryptoPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCryptoPrivate.h; sourceTree = "<group>"; };
 		42FA96421DA29E2A0092D5DB /* VSSRequestSigner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSRequestSigner.h; sourceTree = "<group>"; };
 		42FA96431DA29E5B0092D5DB /* VSSRequestSigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRequestSigner.m; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 		362CFE1C1C74C02E002A3E93 /* VirgilSDKTests */ = {
 			isa = PBXGroup;
 			children = (
+				42F8886C1DAE8AFF004D321A /* testData.txt */,
 				423B09E61DA8FB4300A63E5B /* VSS001_ClientTests.m */,
 				423B09E81DA8FBAC00A63E5B /* VSS002_CryptoTests.m */,
 				362CFE1D1C74C02E002A3E93 /* Info.plist */,
@@ -701,6 +704,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42F8886D1DAE8AFF004D321A /* testData.txt in Resources */,
 				42E75B781D991D7700750C52 /* Images.xcassets in Resources */,
 				42E75B761D991D7700750C52 /* LaunchScreen.xib in Resources */,
 				42E75B771D991D7700750C52 /* Main.storyboard in Resources */,

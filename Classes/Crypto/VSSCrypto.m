@@ -33,12 +33,12 @@
     return [[VSSKeyPair alloc] initWithPrivateKey:privateKey publicKey:publicKey];
 }
 
-- (VSSPrivateKey *)importPrivateKey:(NSData *)keyData password:(NSString *)password {
-    if ([keyData length] == 0)
+- (VSSPrivateKey *)importPrivateKey:(NSData *)privateKey password:(NSString *)password {
+    if ([privateKey length] == 0)
         return nil;
 
     NSData *privateKeyData = ([password length] == 0) ?
-        [VSCKeyPair privateKeyToDER:keyData] : [VSCKeyPair decryptPrivateKey:keyData privateKeyPassword:password];
+        [VSCKeyPair privateKeyToDER:privateKey] : [VSCKeyPair decryptPrivateKey:privateKey privateKeyPassword:password];
     
     if ([privateKeyData length] == 0)
         return nil;
@@ -55,25 +55,25 @@
     if ([exportedPrivateKeyData length] == 0)
         return nil;
     
-    VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:exportedPrivateKeyData identifier:keyIdentifier];
+    VSSPrivateKey *prKey = [[VSSPrivateKey alloc] initWithKey:exportedPrivateKeyData identifier:keyIdentifier];
     
-    return privateKey;
+    return prKey;
 }
 
-- (VSSPublicKey *)importPublicKey:(NSData *)keyData {
-    NSData *keyIdentifier = [self computeHashForPublicKey:keyData];
-    if ([keyData length] == 0)
+- (VSSPublicKey *)importPublicKey:(NSData *)publicKey {
+    NSData *keyIdentifier = [self computeHashForPublicKey:publicKey];
+    if ([publicKey length] == 0)
         return nil;
 
-    NSData *exportedPublicKey = [VSCKeyPair publicKeyToDER:keyData];
+    NSData *exportedPublicKey = [VSCKeyPair publicKeyToDER:publicKey];
     if ([exportedPublicKey length] == 0)
         return nil;
     
-    VSSPublicKey *publicKey = [[VSSPublicKey alloc] initWithKey:exportedPublicKey identifier:keyIdentifier];
+    VSSPublicKey *pubKey = [[VSSPublicKey alloc] initWithKey:exportedPublicKey identifier:keyIdentifier];
     if (publicKey == nil)
         return nil;
     
-    return publicKey;
+    return pubKey;
 }
 
 - (NSData *)exportPrivateKey:(VSSPrivateKey *)privateKey password:(NSString *)password {
@@ -129,7 +129,7 @@
     return encryptedData;
 }
 
-- (void)encryptStream:(NSInputStream *)stream outputStream:(NSOutputStream *)outputStream forRecipients:(NSArray<VSSPublicKey *> *)recipients error:(NSError **)errorPtr {
+- (BOOL)encryptStream:(NSInputStream *)stream outputStream:(NSOutputStream *)outputStream forRecipients:(NSArray<VSSPublicKey *> *)recipients error:(NSError **)errorPtr {
     VSCChunkCryptor *cipher = [[VSCChunkCryptor alloc] init];
 
     NSError *error;
@@ -138,7 +138,7 @@
         if (error != nil) {
             if (errorPtr != nil)
                 *errorPtr = error;
-            return;
+            return NO;
         }
     }
 
@@ -146,11 +146,13 @@
     if (error != nil) {
         if (errorPtr != nil)
             *errorPtr = error;
-        return;
+        return NO;
     }
+    
+    return YES;
 }
 
-- (bool)verifyData:(NSData *)data signature:(NSData *)signature signerPublicKey:(VSSPublicKey *)signerPublicKey error:(NSError **)errorPtr {
+- (BOOL)verifyData:(NSData *)data signature:(NSData *)signature signerPublicKey:(VSSPublicKey *)signerPublicKey error:(NSError **)errorPtr {
     VSCSigner *signer = [[VSCSigner alloc] init];
     
     NSError *error;
@@ -165,11 +167,11 @@
     return verified;
 }
 
-- (bool)verifyStream:(NSInputStream *)inputStream signature:(NSData *)signature signerPublicKey:(VSSPublicKey *)signerPublicKey error:(NSError **)errorPtr {
+- (BOOL)verifyStream:(NSInputStream *)stream signature:(NSData *)signature signerPublicKey:(VSSPublicKey *)signerPublicKey error:(NSError **)errorPtr {
     VSCStreamSigner *signer = [[VSCStreamSigner alloc] init];
     
     NSError *error;
-    BOOL verified = [signer verifySignature:signature fromStream:inputStream publicKey:signerPublicKey.key error:&error];
+    BOOL verified = [signer verifySignature:signature fromStream:stream publicKey:signerPublicKey.key error:&error];
     
     if (error != nil) {
         if (errorPtr != nil)
@@ -195,16 +197,19 @@
     return decryptedData;
 }
 
-- (void)decryptStream:(NSInputStream * __nonnull)inputStream outputStream:(NSOutputStream * __nonnull)outputStream privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError **)errorPtr {
+- (BOOL)decryptStream:(NSInputStream *)stream outputStream:(NSOutputStream *)outputStream privateKey:(VSSPrivateKey *)privateKey error:(NSError **)errorPtr {
     VSCChunkCryptor *cipher = [[VSCChunkCryptor alloc] init];
 
     NSError *error;
-    [cipher decryptFromStream:inputStream toStream:outputStream recipientId:privateKey.identifier privateKey:privateKey.key keyPassword:nil error:&error];
+    [cipher decryptFromStream:stream toStream:outputStream recipientId:privateKey.identifier privateKey:privateKey.key keyPassword:nil error:&error];
     
     if (error != nil) {
         if (errorPtr != nil)
             *errorPtr = error;
+        return NO;
     }
+    
+    return YES;
 }
 
 - (NSData *)signData:(NSData *)data privateKey:(VSSPrivateKey *)privateKey error:(NSError **)errorPtr {

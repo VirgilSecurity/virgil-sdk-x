@@ -47,11 +47,11 @@ class VSS001_ClientTests: XCTestCase {
         let numberOfRequests = 1
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
         
-        let instantiatedCard = self.instantiateCard()
+        let instantiatedCard = self.instantiateCard()!
         
         self.client.createCard(instantiatedCard, completion: { (card, error) in
             guard error == nil else {
-                XCTFail("Expectation failed: " + error!.localizedDescription)
+                XCTFail("Failed: " + error!.localizedDescription)
                 return
             }
             
@@ -78,25 +78,69 @@ class VSS001_ClientTests: XCTestCase {
         })
     }
     
-    // MARK: Private logic
+    func test002_SearchCards() {
+        let testFileURL = Bundle.main.url(forResource: "testData", withExtension: "txt")!
+        let inputStreamForEncryption = InputStream(url: testFileURL)!
+        let outputStreamForEncryption = OutputStream.toMemory()
+        
+        do {
+            try self.crypto.encryptStream(inputStreamForEncryption, outputStream: outputStreamForEncryption, forRecipients: [self.crypto.generateKeyPair().publicKey])
+        }
+        catch let error as Error {
+            XCTFail("Failed: " + error.localizedDescription)
+        }
+
+        let ex = self.expectation(description: "Virgil Card should be created. Search should return 1 card that is equal to created card");
+        
+        let numberOfRequests = 2
+        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
+        
+        let instantiatedCard = self.instantiateCard()!
+        
+        self.client.createCard(instantiatedCard, completion: { (card, error) in
+            guard error == nil else {
+                XCTFail("Failed: " + error!.localizedDescription)
+                return
+            }
+            
+            let searchCards = VSSSearchCards(scope: .application, identityType: "username", identities: ["alice", "bob"])
+            self.client.searchCards(searchCards, completion: { cards, error in
+                
+            })
+            
+            ex.fulfill()
+        })
+        
+        self.waitForExpectations(timeout: timeout, handler: { error in
+            guard error == nil else {
+                XCTFail("Expectation failed: " + error!.localizedDescription)
+                return
+            }
+        })
+    }
     
-    private func instantiateCard() -> VSSCard {
+    // MARK: Private logic
+    private func instantiateCard() -> VSSCard? {
         let keyPair = self.crypto.generateKeyPair()
         let exportedPublicKey = self.crypto.export(keyPair.publicKey)
-        
+
         // some random value
         let identityValue = UUID().uuidString
         let identityType = kApplicationIdentityType
-        let card = VSSCard.create(withIdentity: identityValue, identityType: identityType, publicKey: exportedPublicKey)
+        let card = VSSCard(identity: identityValue, identityType: identityType, publicKey: exportedPublicKey)
 
         let privateAppKeyData = Data(base64Encoded: kApplicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
         let appPrivateKey = self.crypto.importPrivateKey(privateAppKeyData, password: kApplicationPrivateKeyPassword)!
         
         let requestSigner = VSSRequestSigner(crypto: self.crypto)
 
-        var error: NSError?
-        requestSigner.applicationSignRequest(card, with: keyPair.privateKey, error: &error)
-        requestSigner.authoritySignRequest(card, appId: kApplicationId, with: appPrivateKey, error: &error)
+        do {
+            try requestSigner.applicationSignRequest(card, with: keyPair.privateKey)
+            try requestSigner.authoritySignRequest(card, appId: kApplicationId, with: appPrivateKey)
+        }
+        catch _ {
+            return nil
+        }
         
         return card;
     }

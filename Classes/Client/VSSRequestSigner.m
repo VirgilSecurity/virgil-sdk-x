@@ -19,7 +19,7 @@
     return self;
 }
 
-- (void)applicationSignRequest:(VSSSignedData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError **)errorPtr {
+- (BOOL)applicationSignRequest:(VSSSignedData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError **)errorPtr {
     VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:data.snapshot];
     
     NSError *error;
@@ -28,13 +28,15 @@
     if (error != nil) {
         if (errorPtr != nil)
             *errorPtr = error;
-        return;
+        return NO;
     }
     
     [data addSignature:signature forFingerprint:fingerprint.hexValue];
+    
+    return YES;
 }
 
-- (void)authoritySignRequest:(VSSSignedData * __nonnull)data appId:(NSString * __nonnull)appId withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError **)errorPtr {
+- (BOOL)authoritySignRequest:(VSSSignedData * __nonnull)data appId:(NSString * __nonnull)appId withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError **)errorPtr {
     VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:data.snapshot];
     
     NSError *error;
@@ -43,10 +45,11 @@
     if (error != nil) {
         if (errorPtr != nil)
             *errorPtr = error;
-        return;
+        return NO;
     }
     
     [data addSignature:signature forFingerprint:appId];
+    return YES;
 }
 
 @end
