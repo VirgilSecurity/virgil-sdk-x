@@ -70,10 +70,8 @@
         _snapshot = snapshot;
         
         NSString *identifier = [candidate[kVSSModelId] as:[NSString class]];
-        if ([identifier length] == 0)
-            return nil;
-        
-        _identifier = [identifier copy];
+        if ([identifier length] > 0)
+            _identifier = [identifier copy];
 
         NSDictionary *metaCandidate = [candidate[kVSSModelMeta] as:[NSDictionary class]];
         if ([metaCandidate count] == 0)
@@ -98,10 +96,29 @@
         }
 
         NSString *cardVersion = [metaCandidate[kVSSModelCardVersion] as:[NSString class]];
-        _cardVersion = [cardVersion copy];
+        if ([cardVersion length] > 0) {
+            _cardVersion = [cardVersion copy];
+        }
     }
 
     return self;
+}
+
+- (instancetype)initWithData:(NSString *)data {
+    NSData *jsonData = [[NSData alloc] initWithBase64EncodedString:data options:0];
+    
+    NSError *error;
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+    
+    if (error != nil || dict == nil)
+        return nil;
+
+    return [[self.class alloc] initWithDict:dict];
+}
+
+- (NSString *)exportData {
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[self serialize] options:0 error:nil];
+    return [jsonData base64EncodedStringWithOptions:0];
 }
 
 @end

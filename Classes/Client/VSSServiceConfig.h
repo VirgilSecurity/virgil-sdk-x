@@ -7,29 +7,32 @@
 //
 
 #import <Foundation/Foundation.h>
-
-/**
- * The string identifier for the Virgil Keys Service.
- */
-extern NSString * __nonnull const kVSSServiceIDCards;
+#import "VSSCardValidator.h"
 
 /**
  * Helper class for services configuration.
  */
-@interface VSSServiceConfig : NSObject
+@interface VSSServiceConfig : NSObject <NSCopying>
 
 /**
  * Convenient constructor.
  */
-+ (VSSServiceConfig * __nonnull)serviceConfig;
++ (VSSServiceConfig * __nonnull)serviceConfigWithDefaultValues;
 
 /**
- * Returns the base URL for each service by the service ID.
- *
- * @param serviceID Identifier of the service.
- *
- * @return String with base URL for the given service.
+ Base URL for the Cards Service (Read/Write)
  */
-- (NSString * __nonnull)serviceURLForServiceID:(NSString * __nonnull)serviceID;
+@property (nonatomic, copy) NSURL * __nonnull cardsServiceURL;
+
+/**
+ Base URL for the Cards Service (Read only)
+ */
+@property (nonatomic, copy) NSURL * __nonnull cardsServiceROURL;
+
+/**
+ Validator object that validates Virgil Card genuineness
+ Default value is nil
+ */
+@property (nonatomic, copy) VSSCardValidator * __nullable cardValidator;
 
 @end

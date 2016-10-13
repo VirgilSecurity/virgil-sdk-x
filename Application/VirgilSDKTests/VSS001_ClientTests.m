@@ -14,13 +14,7 @@
 #import "VSSCardValidator.h"
 #import "VSSRequestSigner.h"
 
-static NSString *const kApplicationToken = <#NSString: Application Access Token#>;
-static NSString *const kApplicationPublicKeyBase64 = <# NSString: Application Public Key #>;
-static NSString *const kApplicationPrivateKeyBase64 = <#NSString: Application Private Key in base64#>;
-static NSString *const kApplicationPrivateKeyPassword = <#NSString: Application Private Key password#>;
-static NSString *const kApplicationIdentityType = <#NSString: Application Identity Type#>;
-static NSString *const kApplicationId = <#NSString: Application Id#>;
-
+#import "VSSTestsUtils.h"
 
 /// Each request should be done less than or equal this number of seconds.
 static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
@@ -29,6 +23,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 
 @property (nonatomic) VSSClient *client;
 @property (nonatomic) VSSCrypto *crypto;
+@property (nonatomic) VSSTestsUtils *utils;
 
 @end
 
@@ -41,7 +36,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     
     self.client = [[VSSClient alloc] initWithApplicationToken:kApplicationToken];
     self.crypto = [[VSSCrypto alloc] init];
-    self.continueAfterFailure = NO;
+    self.utils = [[VSSTestsUtils alloc] initWithCrypto:self.crypto];
 }
 
 - (void)tearDown {
@@ -59,7 +54,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     NSUInteger numberOfRequests = 1;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
     
-    VSSCard *instantiatedCard = [self instantiateCard];
+    VSSCard *instantiatedCard = [self.utils instantiateCard];
     
     [self.client createCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
         if (error != nil) {
@@ -68,7 +63,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
         }
         
         XCTAssert([card.identifier length] > 0);
-        XCTAssert([self checkCard:instantiatedCard isEqualToCard:card]);
+        XCTAssert([self.utils checkCard:instantiatedCard isEqualToCard:card]);
         
         VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.crypto];
         [validator addVerifierWithId:kApplicationId publicKey:[[NSData alloc] initWithBase64EncodedString:kApplicationPublicKeyBase64 options:0]];
@@ -92,7 +87,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     NSUInteger numberOfRequests = 2;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
     
-    VSSCard *instantiatedCard = [self instantiateCard];
+    VSSCard *instantiatedCard = [self.utils instantiateCard];
     
     [self.client createCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
         if (error != nil) {
@@ -109,7 +104,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
             }
             
             XCTAssert([cards count] == 1);
-            XCTAssert([self checkCard:cards[0] isEqualToCard:card]);
+            XCTAssert([self.utils checkCard:cards[0] isEqualToCard:card]);
             
             [ex fulfill];
         }];
@@ -127,7 +122,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     NSUInteger numberOfRequests = 2;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
     
-    VSSCard *instantiatedCard = [self instantiateCard];
+    VSSCard *instantiatedCard = [self.utils instantiateCard];
     
     [self.client createCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
         if (error != nil) {
@@ -143,7 +138,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
             
             XCTAssert(foundCard != nil);
             XCTAssert([foundCard.identifier isEqualToString:card.identifier]);
-            XCTAssert([self checkCard:foundCard isEqualToCard:card]);
+            XCTAssert([self.utils checkCard:foundCard isEqualToCard:card]);
             
             [ex fulfill];
         }];
@@ -161,7 +156,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     NSUInteger numberOfRequests = 3;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
     
-    VSSCard *instantiatedCard = [self instantiateCard];
+    VSSCard *instantiatedCard = [self.utils instantiateCard];
     
     [self.client createCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
         if (error != nil) {
@@ -169,7 +164,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
             return;
         }
         
-        VSSRevokeCard *revokeCard = [self instantiateRevokeCardForCard:card];
+        VSSRevokeCard *revokeCard = [self.utils instantiateRevokeCardForCard:card];
         
         [self.client revokeCard:revokeCard completion:^(NSError *error) {
             if (error != nil) {
@@ -192,53 +187,6 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
         if (error != nil)
             XCTFail(@"Expectation failed: %@", error);
     }];
-}
-
-#pragma mark - Private logic
-
-- (VSSCard * __nonnull)instantiateCard {
-    VSSKeyPair *keyPair = [self.crypto generateKeyPair];
-    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
-    
-    // some random value
-    NSString *identityValue = [[NSUUID UUID] UUIDString];
-    NSString *identityType = kApplicationIdentityType;
-    VSSCard *card = [VSSCard cardWithIdentity:identityValue identityType:identityType publicKey:exportedPublicKey];
-    
-    NSData *privateAppKeyData = [[NSData alloc] initWithBase64EncodedString:kApplicationPrivateKeyBase64 options:0];
-    
-    VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKey:privateAppKeyData password:kApplicationPrivateKeyPassword];
-    
-    VSSRequestSigner *requestSigner = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
-    
-    NSError *error;
-    [requestSigner applicationSignRequest:card withPrivateKey:keyPair.privateKey error:&error];
-    [requestSigner authoritySignRequest:card appId:kApplicationId withPrivateKey:appPrivateKey error:&error];
-    
-    return card;
-}
-
-- (VSSRevokeCard * __nonnull)instantiateRevokeCardForCard:(VSSCard * __nonnull)card {
-    VSSRevokeCard *revokeCard = [VSSRevokeCard revokeCardWithId:card.identifier reason:VSSCardRevocationReasonUnspecified];
-    
-    VSSRequestSigner *requestSigner = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
-    
-    NSData *privateAppKeyData = [[NSData alloc] initWithBase64EncodedString:kApplicationPrivateKeyBase64 options:0];
-    
-    VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKey:privateAppKeyData password:kApplicationPrivateKeyPassword];
-    
-    NSError *error;
-    [requestSigner authoritySignRequest:revokeCard appId:kApplicationId withPrivateKey:appPrivateKey error:&error];
-    
-    return revokeCard;
-}
-
-- (BOOL)checkCard:(VSSCard * __nonnull)card1 isEqualToCard:(VSSCard * __nonnull)card2 {
-    BOOL equals = [card1.snapshot isEqualToData:card2.snapshot]
-        && [card1.data.identityType isEqualToString:card2.data.identityType]
-        && [card1.data.identity isEqualToString:card2.data.identity];
-    
-    return equals;
 }
 
 @end

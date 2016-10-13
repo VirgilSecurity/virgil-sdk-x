@@ -8,20 +8,28 @@
 
 #import "VSSServiceConfig.h"
 
-NSString *const kVSSServiceIDCards = @"VSSServiceIDCards";
-
 @implementation VSSServiceConfig
 
-+ (VSSServiceConfig *)serviceConfig {
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _cardsServiceURL = [[NSURL alloc] initWithString:@"https://cards.virgilsecurity.com/v4/"];;
+        _cardsServiceROURL = [[NSURL alloc] initWithString:@"https://cards-ro.virgilsecurity.com/v4/"];
+    }
+    return self;
+}
+
++ (VSSServiceConfig *)serviceConfigWithDefaultValues {
     return [[self alloc] init];
 }
 
-- (NSString *)serviceURLForServiceID:(NSString *)serviceID {
-    if ([serviceID isEqualToString:kVSSServiceIDCards]) {
-        return @"https://cards.virgilsecurity.com/v4";
-    }
+- (id)copyWithZone:(nullable NSZone *)zone {
+    VSSServiceConfig *copy = [VSSServiceConfig serviceConfigWithDefaultValues];
+    copy.cardsServiceURL = self.cardsServiceURL;
+    copy.cardsServiceROURL = self.cardsServiceROURL;
+    copy.cardValidator = self.cardValidator;
     
-    return @"";
+    return copy;
 }
 
 @end

@@ -14,12 +14,27 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
 
 @interface VSSCardValidator ()
 
-@property (nonatomic, readonly) id<VSSCrypto> __nonnull crypto;
-@property (nonatomic, copy, readonly) NSDictionary * __nonnull verifiers;
+@property (nonatomic, readwrite) id<VSSCrypto> __nonnull crypto;
+@property (nonatomic, copy, readwrite) NSDictionary * __nonnull verifiers;
+
+- (void)addVerifierWithId:(NSString * __nonnull)verifierId vssPublicKey:(VSSPublicKey * __nonnull)publicKey;
 
 @end
 
 @implementation VSSCardValidator
+
+- (id)copyWithZone:(NSZone *)zone {
+    VSSCardValidator *copy = [[VSSCardValidator alloc] initWithCrypto:self.crypto];
+    
+    for (NSString *cardId in self.verifiers) {
+        if ([cardId isEqualToString:kVSSServiceCardId])
+            continue;
+        
+        [copy addVerifierWithId:cardId publicKey:self.verifiers[cardId]];
+    }
+    
+    return copy;
+}
 
 - (instancetype)initWithCrypto:(id<VSSCrypto>)crypto {
     self = [super init];
@@ -47,16 +62,23 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
     VSSPublicKey *importedPublicKey = [self.crypto importPublicKey:publicKey];
     if (importedPublicKey == nil)
         return;
-    
-    ((NSMutableDictionary *)_verifiers)[verifierId] = importedPublicKey;
+
+    [self addVerifierWithId:verifierId vssPublicKey:importedPublicKey];
+}
+
+- (void)addVerifierWithId:(NSString *)verifierId vssPublicKey:(VSSPublicKey *)publicKey {
+    ((NSMutableDictionary *)_verifiers)[verifierId] = publicKey;
 }
 
 - (BOOL)validateCard:(VSSCard *)card {
     // Support for legacy Cards.
     if ([card.cardVersion isEqualToString:@"3.0"])
         return YES;
-    
+
     VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:card.snapshot];
+    
+    if (![card.identifier isEqualToString:fingerprint.hexValue])
+        return NO;
     
     NSMutableDictionary *verifiers = [self.verifiers mutableCopy];
     VSSPublicKey *creatorPublicKey = [self.crypto importPublicKey:card.data.publicKey];
@@ -69,7 +91,7 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
         
         NSError *error;
         BOOL isValid = [self.crypto verifyData:fingerprint.value signature:signature signerPublicKey:self.verifiers[verifierId] error:&error];
-        
+
         if (!isValid)
             return NO;
     }

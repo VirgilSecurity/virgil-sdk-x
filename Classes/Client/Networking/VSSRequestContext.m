@@ -10,17 +10,14 @@
 
 @interface VSSRequestContext ()
 
-@property (nonatomic, strong, readwrite) NSString * __nonnull uuid;
-@property (nonatomic, strong, readwrite) NSString * __nonnull serviceUrl;
+@property (nonatomic, readwrite) NSString * __nonnull uuid;
+@property (nonatomic, readwrite) NSURL * __nonnull serviceUrl;
 
 @end
 
 @implementation VSSRequestContext
 
-@synthesize uuid = _uuid;
-@synthesize serviceUrl = _serviceUrl;
-
-- (instancetype)initWithServiceUrl:(NSString *)serviceUrl {
+- (instancetype)initWithServiceUrl:(NSURL *)serviceUrl {
     self = [super init];
     if (self == nil) {
         return nil;
@@ -30,10 +27,6 @@
     _serviceUrl = serviceUrl;
     
     return self;
-}
-
-- (instancetype)init {
-    return [self initWithServiceUrl:@""];
 }
 
 @end

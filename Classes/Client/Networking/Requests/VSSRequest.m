@@ -36,17 +36,15 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
         return _request;
     }
     
-    NSString *serviceURL = [self.context serviceUrl];
-    if (![serviceURL hasSuffix:@"/"]) {
-        serviceURL = [NSString stringWithFormat:@"%@/", serviceURL];
-    }
+    NSURL *serviceURL = [self.context serviceUrl];
+
     NSString *methodPath = [self methodPath];
     if ([methodPath hasPrefix:@"/"]) {
         methodPath = [methodPath substringFromIndex:1];
     }
     
-    NSURL *url = [NSURL URLWithString:[serviceURL stringByAppendingString:methodPath]];
-
+    NSURL *url = [NSURL URLWithString:methodPath relativeToURL:serviceURL];
+    
     NSMutableURLRequest* r = [NSMutableURLRequest requestWithURL:url];
     [r setTimeoutInterval:kVSSRequestDefaultTimeout];
     [r setHTTPMethod:kVSSRequestDefaultMethod];

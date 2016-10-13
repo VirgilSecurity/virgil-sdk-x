@@ -30,4 +30,16 @@
     return self;
 }
 
+- (instancetype)initWithDict:(NSDictionary *)candidate {
+    self = [super initWithDict:candidate];
+    if (self) {
+        VSSRevokeCardData *revokeCardData = [VSSRevokeCardData createFromCanonicalForm:self.snapshot];
+        if (revokeCardData == nil)
+            return nil;
+        _data = revokeCardData;
+    }
+    
+    return self;
+}
+
 @end

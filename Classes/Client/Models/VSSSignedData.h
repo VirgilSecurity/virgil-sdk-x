@@ -7,8 +7,10 @@
 //
 
 #import "VSSBaseModel.h"
+#import "VSSImportable.h"
+#import "VSSExportable.h"
 
-@interface VSSSignedData : VSSBaseModel
+@interface VSSSignedData : VSSBaseModel <VSSImportable, VSSExportable>
 
 @property (nonatomic, copy, readonly) NSDictionary * __nonnull signatures;
 @property (nonatomic, copy, readonly) NSString * __nullable cardVersion;

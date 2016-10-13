@@ -33,3 +33,13 @@ NSString * __nonnull vss_getRevocationReasonString(VSSCardRevocationReason reaso
         case VSSCardRevocationReasonUnspecified: return @"unspecified";
     }
 }
+
+VSSCardRevocationReason vss_getCardRevocationReasonFromString(NSString * __nonnull scope) {
+    if ([scope isEqualToString:@"compromised"])
+        return VSSCardRevocationReasonCompromised;
+    else if ([scope isEqualToString:@"unspecified"])
+        return VSSCardRevocationReasonUnspecified;
+    
+    // default value
+    return VSSCardRevocationReasonUnspecified;
+}

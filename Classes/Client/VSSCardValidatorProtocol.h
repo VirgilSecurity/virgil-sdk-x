@@ -8,7 +8,7 @@
 
 #import "VSSCard.h"
 
-@protocol VSSCardValidator <NSObject>
+@protocol VSSCardValidator <NSObject, NSCopying>
 
 - (BOOL)validateCard:(VSSCard * __nonnull)card;
 

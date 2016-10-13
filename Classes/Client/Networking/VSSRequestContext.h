@@ -18,12 +18,12 @@
 /**
  * Unique identifier which might be used by the request. This identifier is generated automatically when context is created.
  */
-@property (nonatomic, strong, readonly) NSString * __nonnull uuid;
+@property (nonatomic, readonly) NSString * __nonnull uuid;
 
 /**
  * Contains base (service) url which will be used by the request.
  */
-@property (nonatomic, strong, readonly) NSString * __nonnull serviceUrl;
+@property (nonatomic, readonly) NSURL * __nonnull serviceUrl;
 
 ///------------------------------------------
 /// @name Lifecycle
@@ -36,6 +36,8 @@
  *
  * @return Instance of the Request context wrapper object.
  */
-- (instancetype __nonnull)initWithServiceUrl:(NSString * __nonnull)serviceUrl NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithServiceUrl:(NSURL * __nonnull)serviceUrl NS_DESIGNATED_INITIALIZER;
+
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end

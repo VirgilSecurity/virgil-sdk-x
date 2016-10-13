@@ -14,3 +14,4 @@ extern NSInteger const kVSSNoErrorValue;
 NSString * __nonnull vss_getCardScopeString(VSSCardScope scope);
 VSSCardScope vss_getCardScopeFromString(NSString * __nonnull scope);
 NSString * __nonnull vss_getRevocationReasonString(VSSCardRevocationReason reason);
+VSSCardRevocationReason vss_getCardRevocationReasonFromString(NSString * __nonnull scope);
