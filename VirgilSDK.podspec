@@ -14,6 +14,7 @@ Pod::Spec.new do |s|
   s.source_files          = 'Classes/**/*.{h,m}'
   s.public_header_files   = 'Classes/Client/*.{h}',
                             'Classes/Client/Models/*.{h}',
+                            'Classes/Client/Models/Protocols/*.{h}',
                             'Classes/Crypto/*.{h}',
                             'Classes/Crypto/Keys/*.{h}'
   s.requires_arc          = true
