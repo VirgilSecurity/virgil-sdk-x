@@ -270,7 +270,7 @@
     VSSKeyPair *keyPair = [self.crypto generateKeyPair];
 
     NSError *error;
-    NSData *signature = [self.crypto signData:data privateKey:keyPair.privateKey error:&error];
+    NSData *signature = [self.crypto signatureForData:data privateKey:keyPair.privateKey error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;
@@ -292,7 +292,7 @@
     VSSKeyPair *wrongKeyPair = [self.crypto generateKeyPair];
     
     NSError *error;
-    NSData *signature = [self.crypto signData:data privateKey:keyPair.privateKey error:&error];
+    NSData *signature = [self.crypto signatureForData:data privateKey:keyPair.privateKey error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;

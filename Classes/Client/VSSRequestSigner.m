@@ -23,7 +23,7 @@
     VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:data.snapshot];
     
     NSError *error;
-    NSData *signature = [self.crypto signData:fingerprint.value privateKey:privateKey error:&error];
+    NSData *signature = [self.crypto signatureForData:fingerprint.value privateKey:privateKey error:&error];
     
     if (error != nil) {
         if (errorPtr != nil)
@@ -40,7 +40,7 @@
     VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:data.snapshot];
     
     NSError *error;
-    NSData *signature = [self.crypto signData:fingerprint.value privateKey:privateKey error:&error];
+    NSData *signature = [self.crypto signatureForData:fingerprint.value privateKey:privateKey error:&error];
     
     if (error != nil) {
         if (errorPtr != nil)

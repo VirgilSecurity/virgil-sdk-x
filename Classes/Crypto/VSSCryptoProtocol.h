@@ -33,8 +33,8 @@
 - (NSData * __nullable)decryptData:(NSData * __nonnull)data privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)error;
 - (BOOL)decryptStream:(NSInputStream * __nonnull)stream outputStream:(NSOutputStream * __nonnull)outputStream privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
 
-- (NSData * __nullable)signData:(NSData * __nonnull)data privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
-- (NSData * __nullable)signStream:(NSInputStream * __nonnull)stream privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
+- (NSData * __nullable)signatureForData:(NSData * __nonnull)data privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
+- (NSData * __nullable)signatureForStream:(NSInputStream * __nonnull)stream privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
 
 - (VSSFingerprint * __nonnull)calculateFingerprintForData:(NSData * __nonnull)data;
 

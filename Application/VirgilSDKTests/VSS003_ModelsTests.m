@@ -14,7 +14,7 @@
 
 @interface VSS003_ModelsTests : XCTestCase
 
-@property (nonatomic, readonly) VSSTestsUtils * __nonnull utils;
+@property (nonatomic) VSSTestsUtils * __nonnull utils;
 
 @end
 
@@ -25,7 +25,7 @@
 - (void)setUp {
     [super setUp];
     
-    _utils = [[VSSTestsUtils alloc] initWithCrypto:[[VSSCrypto alloc] init]];
+    self.utils = [[VSSTestsUtils alloc] initWithCrypto:[[VSSCrypto alloc] init]];
 }
 
 - (void)tearDown {

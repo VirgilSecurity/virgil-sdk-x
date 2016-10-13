@@ -212,7 +212,7 @@
     return YES;
 }
 
-- (NSData *)signData:(NSData *)data privateKey:(VSSPrivateKey *)privateKey error:(NSError **)errorPtr {
+- (NSData *)signatureForData:(NSData *)data privateKey:(VSSPrivateKey *)privateKey error:(NSError **)errorPtr {
     VSCSigner *signer = [[VSCSigner alloc] init];
     
     NSError *error;
@@ -227,7 +227,7 @@
     return signature;
 }
 
-- (NSData *)signStream:(NSInputStream *)stream privateKey:(VSSPrivateKey *)privateKey error:(NSError **)errorPtr {
+- (NSData *)signatureForStream:(NSInputStream *)stream privateKey:(VSSPrivateKey *)privateKey error:(NSError **)errorPtr {
     VSCStreamSigner *signer = [[VSCStreamSigner alloc] init];
     
     NSError *error;
