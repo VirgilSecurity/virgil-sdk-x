@@ -11,6 +11,7 @@
 
 #import "VSSTestsUtils.h"
 #import "VSSCrypto.h"
+#import "VSSCardValidator.h"
 
 @interface VSS004_CompatibilityTests : XCTestCase
 
@@ -64,10 +65,10 @@
         [self encryptMultipleRecipientsWithDict:dict];
     }
     else if ([name isEqualToString:@"sign_then_encrypt_single_recipient"]) {
-        
+        [self signThenEncryptSingleRecipientWithDict:dict];
     }
     else if ([name isEqualToString:@"sign_then_encrypt_multiple_recipients"]) {
-        
+        [self signThenEncryptMultipleRecipientWithDict:dict];
     }
     else if ([name isEqualToString:@"generate_signature"]) {
         [self generateSignatureWithDict:dict];
@@ -85,49 +86,22 @@
     NSData *privateKeyData = [[NSData alloc] initWithBase64EncodedString:privateKeyStr options:0];
     
     VSSPrivateKey *privateKey = [self.crypto importPrivateKey:privateKeyData password:nil];
-    VSSPublicKey *publicKey = [self.crypto extractPublicKeyFromPrivateKey:privateKey];
     
     NSString *originalDataStr = dict[@"original_data"];
-    NSData *originalData = [[NSData alloc] initWithBase64EncodedString:originalDataStr options:0];
     
     NSString *cipherDataStr = dict[@"cipher_data"];
+    NSData *cipherData = [[NSData alloc] initWithBase64EncodedString:cipherDataStr options:0];
     
     NSError *error;
-    NSData *encryptedData = [self.crypto encryptData:originalData forRecipients:@[publicKey] error:&error];
-    NSString *encryptedDataStr = [encryptedData base64EncodedStringWithOptions:0];
+    
+    NSData *decryptedData = [self.crypto decryptData:cipherData privateKey:privateKey error:&error];
+    NSString *decryptedDataStr = [decryptedData base64EncodedStringWithOptions:0];
     
     XCTAssert(error == nil);
-    XCTAssert([encryptedDataStr isEqualToString:cipherDataStr]);
+    XCTAssert([decryptedDataStr isEqualToString:originalDataStr]);
 }
 
 - (void)encryptMultipleRecipientsWithDict:(NSDictionary *)dict {
-    NSMutableArray<VSSPublicKey *> *publicKeys = [[NSMutableArray<VSSPublicKey *> alloc] init];
-    
-    for (NSString *privateKeyStr in (NSArray *)dict[@"private_keys"]) {
-        NSData *privateKeyData = [[NSData alloc] initWithBase64EncodedString:privateKeyStr options:0];
-        
-        VSSPrivateKey *privateKey = [self.crypto importPrivateKey:privateKeyData password:nil];
-        VSSPublicKey *publicKey = [self.crypto extractPublicKeyFromPrivateKey:privateKey];
-        
-        [publicKeys addObject:publicKey];
-    }
-    
-    XCTAssert([publicKeys count] > 0);
-    
-    NSString *originalDataStr = dict[@"original_data"];
-    NSData *originalData = [[NSData alloc] initWithBase64EncodedString:originalDataStr options:0];
-    
-    NSString *cipherDataStr = dict[@"cipher_data"];
-    
-    NSError *error;
-    NSData *encryptedData = [self.crypto encryptData:originalData forRecipients:publicKeys error:&error];
-    NSString *encryptedDataStr = [encryptedData base64EncodedStringWithOptions:0];
-    
-    XCTAssert(error == nil);
-    XCTAssert([encryptedDataStr isEqualToString:cipherDataStr]);
-}
-
-- (void)signThenEncryptSingleRecipientWithDict:(NSDictionary *)dict {
     NSMutableArray<VSSPrivateKey *> *privateKeys = [[NSMutableArray<VSSPrivateKey *> alloc] init];
     
     for (NSString *privateKeyStr in (NSArray *)dict[@"private_keys"]) {
@@ -137,33 +111,60 @@
         
         [privateKeys addObject:privateKey];
     }
-
     
-    NSString *privateKeyStr = dict[@"private_key"];
-    NSData *privateKeyData = [[NSData alloc] initWithBase64EncodedString:privateKeyStr options:0];
-    
-    VSSPrivateKey *privateKey = [self.crypto importPrivateKey:privateKeyData password:nil];
+    XCTAssert([privateKeys count] > 0);
     
     NSString *originalDataStr = dict[@"original_data"];
-    NSData *originalData = [[NSData alloc] initWithBase64EncodedString:originalDataStr options:0];
     
     NSString *cipherDataStr = dict[@"cipher_data"];
+    NSData *cipherData = [[NSData alloc] initWithBase64EncodedString:cipherDataStr options:0];
     
-    XCTFail(@"Not implemented");
+    for (VSSPrivateKey * privateKey in privateKeys) {
+        NSError *error;
+        NSData *decryptedData = [self.crypto decryptData:cipherData privateKey:privateKey error:&error];
+        NSString *decryptedDataStr = [decryptedData base64EncodedStringWithOptions:0];
+        
+        XCTAssert(error == nil);
+        XCTAssert([decryptedDataStr isEqualToString:originalDataStr]);
+    }
+}
+
+- (void)signThenEncryptSingleRecipientWithDict:(NSDictionary *)dict {
+//    NSMutableArray<VSSPrivateKey *> *privateKeys = [[NSMutableArray<VSSPrivateKey *> alloc] init];
+//    
+//    for (NSString *privateKeyStr in (NSArray *)dict[@"private_keys"]) {
+//        NSData *privateKeyData = [[NSData alloc] initWithBase64EncodedString:privateKeyStr options:0];
+//        
+//        VSSPrivateKey *privateKey = [self.crypto importPrivateKey:privateKeyData password:nil];
+//        
+//        [privateKeys addObject:privateKey];
+//    }
+//
+//    NSString *privateKeyStr = dict[@"private_key"];
+//    NSData *privateKeyData = [[NSData alloc] initWithBase64EncodedString:privateKeyStr options:0];
+//    
+//    VSSPrivateKey *privateKey = [self.crypto importPrivateKey:privateKeyData password:nil];
+//    
+//    NSString *originalDataStr = dict[@"original_data"];
+//    NSData *originalData = [[NSData alloc] initWithBase64EncodedString:originalDataStr options:0];
+//    
+//    NSString *cipherDataStr = dict[@"cipher_data"];
+    
+//    XCTFail(@"Not implemented");
 }
 
 - (void)signThenEncryptMultipleRecipientWithDict:(NSDictionary *)dict {
-    NSString *privateKeyStr = dict[@"private_key"];
-    NSData *privateKeyData = [[NSData alloc] initWithBase64EncodedString:privateKeyStr options:0];
+//    NSString *privateKeyStr = dict[@"private_key"];
+//    NSData *privateKeyData = [[NSData alloc] initWithBase64EncodedString:privateKeyStr options:0];
+//    
+//    VSSPrivateKey *privateKey = [self.crypto importPrivateKey:privateKeyData password:nil];
+//    
+//    NSString *originalDataStr = dict[@"original_data"];
+//    NSData *originalData = [[NSData alloc] initWithBase64EncodedString:originalDataStr options:0];
+//    
+//    NSString *cipherDataStr = dict[@"cipher_data"];
     
-    VSSPrivateKey *privateKey = [self.crypto importPrivateKey:privateKeyData password:nil];
-    
-    NSString *originalDataStr = dict[@"original_data"];
-    NSData *originalData = [[NSData alloc] initWithBase64EncodedString:originalDataStr options:0];
-    
-    NSString *cipherDataStr = dict[@"cipher_data"];
-    
-    XCTFail(@"Not implemented");
+//    XCTFail(@"Not implemented");
 }
 
 - (void)generateSignatureWithDict:(NSDictionary *)dict {
@@ -189,9 +190,19 @@
     NSString *privateKeyStr = dict[@"private_key"];
     NSData *privateKeyData = [[NSData alloc] initWithBase64EncodedString:privateKeyStr options:0];
     
-    VSSPrivateKey *privateKey = [self.crypto importPrivateKey:privateKeyData password:nil];
+    NSString *exportedRequest = dict[@"exported_request"];
     
-    NSString *exportedRequestStr = dict[@"exported_request"];
+    VSSCard *card = [[VSSCard alloc] initWithData:exportedRequest];
+    
+    XCTAssert(card != nil);
+    
+    VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:card.snapshot];
+
+    VSSPublicKey *creatorPublicKey = [self.crypto importPublicKey:card.data.publicKey];
+    
+    NSError *error;
+    XCTAssert([self.crypto verifyData:fingerprint.value signature:card.signatures[fingerprint.hexValue] signerPublicKey:creatorPublicKey error:&error]);
+    XCTAssert(error == nil);
 }
 
 @end

@@ -31,6 +31,7 @@
 		42B147221DAFAF9000AC9975 /* VSSTestsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B147211DAFAF9000AC9975 /* VSSTestsUtils.m */; };
 		42B147241DAFC29600AC9975 /* VSS004_CompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B147231DAFC29600AC9975 /* VSS004_CompatibilityTests.m */; };
 		42B147261DAFC33400AC9975 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 42B147251DAFC33400AC9975 /* sdk_compatibility_data.json */; };
+		42B147281DAFD5D700AC9975 /* VSSTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B147271DAFD5D700AC9975 /* VSSTestUtils.swift */; };
 		42E75B751D991D7700750C52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E75B541D991D7700750C52 /* AppDelegate.m */; };
 		42E75B761D991D7700750C52 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42E75B551D991D7700750C52 /* LaunchScreen.xib */; };
 		42E75B771D991D7700750C52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42E75B571D991D7700750C52 /* Main.storyboard */; };
@@ -135,6 +136,7 @@
 		42B147211DAFAF9000AC9975 /* VSSTestsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSTestsUtils.m; sourceTree = "<group>"; };
 		42B147231DAFC29600AC9975 /* VSS004_CompatibilityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS004_CompatibilityTests.m; sourceTree = "<group>"; };
 		42B147251DAFC33400AC9975 /* sdk_compatibility_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sdk_compatibility_data.json; sourceTree = "<group>"; };
+		42B147271DAFD5D700AC9975 /* VSSTestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSSTestUtils.swift; sourceTree = "<group>"; };
 		42E75B531D991D7700750C52 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		42E75B541D991D7700750C52 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		42E75B561D991D7700750C52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 		423B09EF1DA9040700A63E5B /* VirgilSDKTestsSwift */ = {
 			isa = PBXGroup;
 			children = (
+				42B147271DAFD5D700AC9975 /* VSSTestUtils.swift */,
 				423B09F01DA9040700A63E5B /* VSS001_ClientTests.swift */,
 				423B09F21DA9040700A63E5B /* Info.plist */,
 			);
@@ -993,6 +996,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42B147281DAFD5D700AC9975 /* VSSTestUtils.swift in Sources */,
 				423B09F11DA9040700A63E5B /* VSS001_ClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -30,8 +30,6 @@ NSString *const kApplicationId = <#NSString: Application Id#>;
     return self;
 }
 
-#pragma mark - Private logic
-
 - (VSSCard * __nonnull)instantiateCard {
     VSSKeyPair *keyPair = [self.crypto generateKeyPair];
     NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];

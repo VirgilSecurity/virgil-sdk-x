@@ -8,13 +8,6 @@
 
 import XCTest
 
-let kApplicationToken = <#String: Application Access Token#>
-let kApplicationPublicKeyBase64 = <#String: Application Public Key#>
-let kApplicationPrivateKeyBase64 = <#String: Application Private Key in base64#>
-let kApplicationPrivateKeyPassword = <#String: Application Private Key password#>
-let kApplicationIdentityType = String: <#Application Identity Type#>
-let kApplicationId = <#String: Application Id#>
-
 /// Each request should be done less than or equal this number of seconds.
 let kEstimatedRequestCompletionTime = 5
 
@@ -22,6 +15,7 @@ class VSS001_ClientTests: XCTestCase {
     
     private var client: VSSClient!
     private var crypto: VSSCrypto!
+    private var utils: VSSTestUtils!
     
     // MARK: Setup
     
@@ -30,12 +24,14 @@ class VSS001_ClientTests: XCTestCase {
         
         self.client = VSSClient(applicationToken: kApplicationToken)
         self.crypto = VSSCrypto()
+        self.utils = VSSTestUtils(crypto: self.crypto)
         self.continueAfterFailure = false
     }
     
     override func tearDown() {
         self.client = nil
         self.crypto = nil
+        self.utils = nil
         
         super.tearDown()
     }
@@ -47,7 +43,7 @@ class VSS001_ClientTests: XCTestCase {
         let numberOfRequests = 1
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
         
-        let instantiatedCard = self.instantiateCard()!
+        let instantiatedCard = self.utils.instantiateCard()!
         
         self.client.createCard(instantiatedCard, completion: { (card, error) in
             guard error == nil else {
@@ -61,7 +57,7 @@ class VSS001_ClientTests: XCTestCase {
             }
             
             XCTAssert(!createdCard.identifier!.isEmpty)
-            XCTAssert(self.check(card: instantiatedCard, isEqualToCard: createdCard))
+            XCTAssert(self.utils.check(card: instantiatedCard, isEqualToCard: createdCard))
             let validator = VSSCardValidator(crypto: self.crypto)
             validator.addVerifier(withId: kApplicationId, publicKey: Data(base64Encoded: kApplicationPublicKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!)
             
@@ -79,23 +75,12 @@ class VSS001_ClientTests: XCTestCase {
     }
     
     func test002_SearchCards() {
-        let testFileURL = Bundle.main.url(forResource: "testData", withExtension: "txt")!
-        let inputStreamForEncryption = InputStream(url: testFileURL)!
-        let outputStreamForEncryption = OutputStream.toMemory()
-        
-        do {
-            try self.crypto.encryptStream(inputStreamForEncryption, outputStream: outputStreamForEncryption, forRecipients: [self.crypto.generateKeyPair().publicKey])
-        }
-        catch let error as Error {
-            XCTFail("Failed: " + error.localizedDescription)
-        }
-
         let ex = self.expectation(description: "Virgil Card should be created. Search should return 1 card that is equal to created card");
         
         let numberOfRequests = 2
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
         
-        let instantiatedCard = self.instantiateCard()!
+        let instantiatedCard = self.utils.instantiateCard()!
         
         self.client.createCard(instantiatedCard, completion: { (card, error) in
             guard error == nil else {
@@ -103,12 +88,23 @@ class VSS001_ClientTests: XCTestCase {
                 return
             }
             
-            let searchCards = VSSSearchCards(scope: .application, identityType: "username", identities: ["alice", "bob"])
+            let searchCards = VSSSearchCards(scope: .application, identityType: card!.data.identityType, identities: [card!.data.identity])
             self.client.searchCards(searchCards, completion: { cards, error in
+                guard error == nil else {
+                    XCTFail("Failed: " + error!.localizedDescription)
+                    return
+                }
                 
+                guard let foundCards = cards else {
+                    XCTFail("Found card == nil")
+                    return
+                }
+                
+                XCTAssert(foundCards.count == 1);
+                XCTAssert(self.utils.check(card: foundCards[0], isEqualToCard: card!))
+                
+                ex.fulfill()
             })
-            
-            ex.fulfill()
         })
         
         self.waitForExpectations(timeout: timeout, handler: { error in
@@ -119,37 +115,45 @@ class VSS001_ClientTests: XCTestCase {
         })
     }
     
-    // MARK: Private logic
-    private func instantiateCard() -> VSSCard? {
-        let keyPair = self.crypto.generateKeyPair()
-        let exportedPublicKey = self.crypto.export(keyPair.publicKey)
-
-        // some random value
-        let identityValue = UUID().uuidString
-        let identityType = kApplicationIdentityType
-        let card = VSSCard(identity: identityValue, identityType: identityType, publicKey: exportedPublicKey)
-
-        let privateAppKeyData = Data(base64Encoded: kApplicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
-        let appPrivateKey = self.crypto.importPrivateKey(privateAppKeyData, password: kApplicationPrivateKeyPassword)!
+    func test003_GetCard() {
+        let ex = self.expectation(description: "Virgil Card should be created. Get card request should return 1 card that is equal to created card");
         
-        let requestSigner = VSSRequestSigner(crypto: self.crypto)
-
-        do {
-            try requestSigner.applicationSignRequest(card, with: keyPair.privateKey)
-            try requestSigner.authoritySignRequest(card, appId: kApplicationId, with: appPrivateKey)
-        }
-        catch _ {
-            return nil
-        }
+        let numberOfRequests = 2
+        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
         
-        return card;
+        let instantiatedCard = self.utils.instantiateCard()!
+        
+        self.client.createCard(instantiatedCard, completion: { (newCard, error) in
+            guard error == nil else {
+                XCTFail("Failed: " + error!.localizedDescription)
+                return
+            }
+            
+            self.client.getCardWithId(newCard!.identifier!, completion: { card, error in
+                guard error == nil else {
+                    XCTFail("Failed: " + error!.localizedDescription)
+                    return
+                }
+                
+                guard let foundCard = card else {
+                    XCTFail("Found card == nil")
+                    return
+                }
+                
+                XCTAssert(foundCard.identifier == newCard!.identifier!)
+                XCTAssert(self.utils.check(card: foundCard, isEqualToCard: newCard!))
+                
+                ex.fulfill()
+            })
+        })
+        
+        self.waitForExpectations(timeout: timeout, handler: { error in
+            guard error == nil else {
+                XCTFail("Expectation failed: " + error!.localizedDescription)
+                return
+            }
+        })
     }
-    
-    private func check(card card1: VSSCard, isEqualToCard card2: VSSCard) -> Bool {
-        let equals = card1.snapshot == card2.snapshot
-            && card1.data.identityType == card2.data.identityType
-            && card1.data.identity == card2.data.identity
-        
-        return equals
-    }
+
+    // todo: Revoke card
 }
