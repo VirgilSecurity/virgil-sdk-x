@@ -48,7 +48,7 @@
         return;
     }
 
-    NSData *decryptedData = [self.crypto decryptData:encryptedData privateKey:keyPair.privateKey error:&error];
+    NSData *decryptedData = [self.crypto decryptData:encryptedData withPrivateKey:keyPair.privateKey error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;
@@ -70,7 +70,7 @@
         return;
     }
     
-    NSData *decryptedData = [self.crypto decryptData:encryptedData privateKey:keyPair.privateKey error:&error];
+    NSData *decryptedData = [self.crypto decryptData:encryptedData withPrivateKey:keyPair.privateKey error:&error];
     XCTAssert(decryptedData == nil);
     XCTAssert(error != nil);
 }
@@ -88,7 +88,7 @@
         return;
     }
     
-    NSData *decryptedData1 = [self.crypto decryptData:encryptedData privateKey:keyPair1.privateKey error:&error];
+    NSData *decryptedData1 = [self.crypto decryptData:encryptedData withPrivateKey:keyPair1.privateKey error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;
@@ -96,7 +96,7 @@
     
     XCTAssert([decryptedData1 isEqualToData:data]);
     
-    NSData *decryptedData2 = [self.crypto decryptData:encryptedData privateKey:keyPair2.privateKey error:&error];
+    NSData *decryptedData2 = [self.crypto decryptData:encryptedData withPrivateKey:keyPair2.privateKey error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;
@@ -114,7 +114,7 @@
     NSOutputStream *outputStreamForEncryption = [[NSOutputStream alloc] initToMemory];
     
     NSError *error;
-    [self.crypto encryptStream:inputStreamForEncryption outputStream:outputStreamForEncryption forRecipients: @[keyPair.publicKey] error:&error];
+    [self.crypto encryptStream:inputStreamForEncryption toOutputStream:outputStreamForEncryption forRecipients: @[keyPair.publicKey] error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;
@@ -126,7 +126,7 @@
     NSInputStream *inputStreamForDecryption = [[NSInputStream alloc] initWithData:encryptedData];
     NSOutputStream *outputStreamForDecryption = [[NSOutputStream alloc] initToMemory];
 
-    [self.crypto decryptStream:inputStreamForDecryption outputStream:outputStreamForDecryption privateKey:keyPair.privateKey error:&error];
+    [self.crypto decryptStream:inputStreamForDecryption toOutputStream:outputStreamForDecryption withPrivateKey:keyPair.privateKey error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;
@@ -154,7 +154,7 @@
     NSOutputStream *outputStreamForEncrypt = [[NSOutputStream alloc] initToMemory];
     
     NSError *error;
-    [self.crypto encryptStream:inputStreamForEncrypt outputStream:outputStreamForEncrypt forRecipients: @[keyPair.publicKey] error:&error];
+    [self.crypto encryptStream:inputStreamForEncrypt toOutputStream:outputStreamForEncrypt forRecipients: @[keyPair.publicKey] error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;
@@ -166,7 +166,7 @@
     NSInputStream *inputStreamForDecrypt = [[NSInputStream alloc] initWithData:encryptedData];
     NSOutputStream *outputStreamForDecrypt = [[NSOutputStream alloc] initToMemory];
     
-    [self.crypto decryptStream:inputStreamForDecrypt outputStream:outputStreamForDecrypt privateKey:wrongKeyPair.privateKey error:&error];
+    [self.crypto decryptStream:inputStreamForDecrypt toOutputStream:outputStreamForDecrypt withPrivateKey:wrongKeyPair.privateKey error:&error];
     NSData *decryptedData = [outputStreamForDecrypt propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
     
     XCTAssert([decryptedData length] == 0);
@@ -189,7 +189,7 @@
     NSOutputStream *outputStreamForEncryption = [[NSOutputStream alloc] initToMemory];
     
     NSError *error;
-    [self.crypto encryptStream:inputStreamForEncryption outputStream:outputStreamForEncryption forRecipients: @[keyPair1.publicKey, keyPair2.publicKey] error:&error];
+    [self.crypto encryptStream:inputStreamForEncryption toOutputStream:outputStreamForEncryption forRecipients: @[keyPair1.publicKey, keyPair2.publicKey] error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;
@@ -201,7 +201,7 @@
     NSInputStream *inputStreamForDecryption1 = [[NSInputStream alloc] initWithData:encryptedData];
     NSOutputStream *outputStreamForDecryption1 = [[NSOutputStream alloc] initToMemory];
     
-    [self.crypto decryptStream:inputStreamForDecryption1 outputStream:outputStreamForDecryption1 privateKey:keyPair1.privateKey error:&error];
+    [self.crypto decryptStream:inputStreamForDecryption1 toOutputStream:outputStreamForDecryption1 withPrivateKey:keyPair1.privateKey error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;
@@ -215,7 +215,7 @@
     NSInputStream *inputStreamForDecryption2 = [[NSInputStream alloc] initWithData:encryptedData];
     NSOutputStream *outputStreamForDecryption2 = [[NSOutputStream alloc] initToMemory];
     
-    [self.crypto decryptStream:inputStreamForDecryption2 outputStream:outputStreamForDecryption2 privateKey:keyPair2.privateKey error:&error];
+    [self.crypto decryptStream:inputStreamForDecryption2 toOutputStream:outputStreamForDecryption2 withPrivateKey:keyPair2.privateKey error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;
@@ -236,7 +236,7 @@
     NSOutputStream *outputStreamForEncryption = [[NSOutputStream alloc] initToMemory];
     
     NSError *error;
-    [self.crypto encryptStream:inputStreamForEncryption outputStream:outputStreamForEncryption forRecipients: @[keyPair.publicKey] error:&error];
+    [self.crypto encryptStream:inputStreamForEncryption toOutputStream:outputStreamForEncryption forRecipients: @[keyPair.publicKey] error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;
@@ -248,7 +248,7 @@
     NSInputStream *inputStreamForDecryption = [[NSInputStream alloc] initWithData:encryptedData];
     NSOutputStream *outputStreamForDecryption = [[NSOutputStream alloc] initToMemory];
     
-    [self.crypto decryptStream:inputStreamForDecryption outputStream:outputStreamForDecryption privateKey:keyPair.privateKey error:&error];
+    [self.crypto decryptStream:inputStreamForDecryption toOutputStream:outputStreamForDecryption withPrivateKey:keyPair.privateKey error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;
@@ -307,47 +307,27 @@
     XCTAssert(!verified);
 }
 
-//- (void)testSS001_SignRandomDataStream_CorrectKeys_ShouldValidate {
-//    NSData *data = [[[NSUUID UUID] UUIDString] dataUsingEncoding:NSUTF8StringEncoding];
-//    
-//    VSSKeyPair *keyPair = [self.crypto generateKeyPair];
-//    
-//    NSError *error;
-//    NSData *signature = [self.crypto signData:data privateKey:keyPair.privateKey error:&error];
-//    if (error != nil) {
-//        XCTFail(@"Expectation failed: %@", error);
-//        return;
-//    }
-//    
-//    BOOL verified = [self.crypto verifyData:data signature:signature signerPublicKey:keyPair.publicKey error:&error];
-//    if (error != nil) {
-//        XCTFail(@"Expectation failed: %@", error);
-//        return;
-//    }
-//    
-//    XCTAssert(verified);
-//}
-//
-//- (void)testSS002_SignRandomDataStream_KeysDoesntMatch_ShouldNotValidate {
-//    NSData *data = [[[NSUUID UUID] UUIDString] dataUsingEncoding:NSUTF8StringEncoding];
-//    
-//    VSSKeyPair *keyPair = [self.crypto generateKeyPair];
-//    VSSKeyPair *wrongKeyPair = [self.crypto generateKeyPair];
-//    
-//    NSError *error;
-//    NSData *signature = [self.crypto signData:data privateKey:keyPair.privateKey error:&error];
-//    if (error != nil) {
-//        XCTFail(@"Expectation failed: %@", error);
-//        return;
-//    }
-//    
-//    BOOL verified = [self.crypto verifyData:data signature:signature signerPublicKey:wrongKeyPair.publicKey error:&error];
-//    if (error != nil) {
-//        XCTFail(@"Expectation failed: %@", error);
-//        return;
-//    }
-//    
-//    XCTAssert(!verified);
-//}
+- (void)testESD001_SignAndEncryptRandomData_CorrectKeys_ShouldDecryptValidate {
+    NSData *data = [[[NSUUID UUID] UUIDString] dataUsingEncoding:NSUTF8StringEncoding];
+    
+    VSSKeyPair *senderKeyPair = [self.crypto generateKeyPair];
+    VSSKeyPair *receiverKeyPair = [self.crypto generateKeyPair];
+    
+    NSError *error;
+    NSData *signedAndEcnryptedData = [self.crypto signAndEncryptData:data withPrivateKey:senderKeyPair.privateKey forRecipients:@[receiverKeyPair.publicKey] error:&error];
+    
+    if (error != nil) {
+        XCTFail(@"Expectation failed: %@", error);
+        return;
+    }
+    
+    NSData *decryptedAndVerifiedData = [self.crypto decryptAndVerifyData:signedAndEcnryptedData withPrivateKey:receiverKeyPair.privateKey signerPublicKey:senderKeyPair.publicKey error:&error];
+    if (error != nil) {
+        XCTFail(@"Expectation failed: %@", error);
+        return;
+    }
+    
+    XCTAssert([data isEqualToData:decryptedAndVerifiedData]);
+}
 
 @end

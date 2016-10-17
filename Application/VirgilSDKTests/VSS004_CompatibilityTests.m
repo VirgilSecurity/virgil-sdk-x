@@ -94,7 +94,7 @@
     
     NSError *error;
     
-    NSData *decryptedData = [self.crypto decryptData:cipherData privateKey:privateKey error:&error];
+    NSData *decryptedData = [self.crypto decryptData:cipherData withPrivateKey:privateKey error:&error];
     NSString *decryptedDataStr = [decryptedData base64EncodedStringWithOptions:0];
     
     XCTAssert(error == nil);
@@ -121,7 +121,7 @@
     
     for (VSSPrivateKey * privateKey in privateKeys) {
         NSError *error;
-        NSData *decryptedData = [self.crypto decryptData:cipherData privateKey:privateKey error:&error];
+        NSData *decryptedData = [self.crypto decryptData:cipherData withPrivateKey:privateKey error:&error];
         NSString *decryptedDataStr = [decryptedData base64EncodedStringWithOptions:0];
         
         XCTAssert(error == nil);

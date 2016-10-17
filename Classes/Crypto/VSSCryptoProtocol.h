@@ -25,13 +25,16 @@
 - (NSData * __nonnull)exportPublicKey:(VSSPublicKey * __nonnull)publicKey;
 
 - (NSData * __nullable)encryptData:(NSData * __nonnull)data forRecipients:(NSArray<VSSPublicKey *> * __nonnull)recipients error:(NSError * __nullable * __nullable)errorPtr;
-- (BOOL)encryptStream:(NSInputStream * __nonnull)stream outputStream:(NSOutputStream * __nonnull)outputStream forRecipients:(NSArray<VSSPublicKey *> * __nonnull)recipients error:(NSError * __nullable * __nullable)errorPtr;
+- (BOOL)encryptStream:(NSInputStream * __nonnull)stream toOutputStream:(NSOutputStream * __nonnull)outputStream forRecipients:(NSArray<VSSPublicKey *> * __nonnull)recipients error:(NSError * __nullable * __nullable)errorPtr;
 
 - (BOOL)verifyData:(NSData * __nonnull)data signature:(NSData * __nonnull)signature signerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr;
 - (BOOL)verifyStream:(NSInputStream * __nonnull)stream signature:(NSData * __nonnull)signature signerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr;
 
-- (NSData * __nullable)decryptData:(NSData * __nonnull)data privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)error;
-- (BOOL)decryptStream:(NSInputStream * __nonnull)stream outputStream:(NSOutputStream * __nonnull)outputStream privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
+- (NSData * __nullable)decryptData:(NSData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
+- (BOOL)decryptStream:(NSInputStream * __nonnull)stream toOutputStream:(NSOutputStream * __nonnull)outputStream withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
+
+- (NSData * __nullable)signAndEncryptData:(NSData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey forRecipients:(NSArray<VSSPublicKey *> * __nonnull)recipients error:(NSError * __nullable * __nullable)errorPtr;
+- (NSData * __nullable)decryptAndVerifyData:(NSData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey signerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr;
 
 - (NSData * __nullable)signatureForData:(NSData * __nonnull)data privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
 - (NSData * __nullable)signatureForStream:(NSInputStream * __nonnull)stream privateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;

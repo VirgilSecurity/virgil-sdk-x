@@ -12,7 +12,10 @@
 #import "VSSKeyPairPrivate.h"
 #import "VSSPublicKeyPrivate.h"
 #import "VSSPrivateKeyPrivate.h"
-#import "VSCHash.h"
+#import "VSSSigner.h"
+#import "VSCCryptor.h"
+
+static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
 
 @import VirgilCrypto;
 
@@ -110,7 +113,8 @@
     
     NSError *error;
     for (VSSPublicKey *publicKey in recipients) {
-        [cipher addKeyRecipient:publicKey.identifier publicKey:publicKey.key error:&error];
+        NSData *publicKeyData = [self exportPublicKey:publicKey];
+        [cipher addKeyRecipient:publicKey.identifier publicKey:publicKeyData error:&error];
         
         if (error != nil) {
             if (errorPtr != nil)
@@ -129,12 +133,13 @@
     return encryptedData;
 }
 
-- (BOOL)encryptStream:(NSInputStream *)stream outputStream:(NSOutputStream *)outputStream forRecipients:(NSArray<VSSPublicKey *> *)recipients error:(NSError **)errorPtr {
+- (BOOL)encryptStream:(NSInputStream *)stream toOutputStream:(NSOutputStream *)outputStream forRecipients:(NSArray<VSSPublicKey *> *)recipients error:(NSError **)errorPtr {
     VSCChunkCryptor *cipher = [[VSCChunkCryptor alloc] init];
 
     NSError *error;
     for (VSSPublicKey *publicKey in recipients) {
-        [cipher addKeyRecipient:publicKey.identifier publicKey:publicKey.key error:&error];
+        NSData *publicKeyData = [self exportPublicKey:publicKey];
+        [cipher addKeyRecipient:publicKey.identifier publicKey:publicKeyData error:&error];
         if (error != nil) {
             if (errorPtr != nil)
                 *errorPtr = error;
@@ -156,7 +161,8 @@
     VSCSigner *signer = [[VSCSigner alloc] init];
     
     NSError *error;
-    BOOL verified = [signer verifySignature:signature data:data publicKey:signerPublicKey.key error:&error];
+    NSData *signerPublicKeyData = [self exportPublicKey:signerPublicKey];
+    BOOL verified = [signer verifySignature:signature data:data publicKey:signerPublicKeyData error:&error];
     
     if (error != nil) {
         if (errorPtr != nil)
@@ -171,7 +177,8 @@
     VSCStreamSigner *signer = [[VSCStreamSigner alloc] init];
     
     NSError *error;
-    BOOL verified = [signer verifySignature:signature fromStream:stream publicKey:signerPublicKey.key error:&error];
+    NSData *signerPublicKeyData = [self exportPublicKey:signerPublicKey];
+    BOOL verified = [signer verifySignature:signature fromStream:stream publicKey:signerPublicKeyData error:&error];
     
     if (error != nil) {
         if (errorPtr != nil)
@@ -182,11 +189,12 @@
     return verified;
 }
 
-- (NSData *)decryptData:(NSData *)data privateKey:(VSSPrivateKey *)privateKey error:(NSError **)errorPtr {
+- (NSData *)decryptData:(NSData *)data withPrivateKey:(VSSPrivateKey *)privateKey error:(NSError **)errorPtr {
     VSCCryptor *cipher = [[VSCCryptor alloc] init];
 
     NSError *error;
-    NSData *decryptedData = [cipher decryptData:data recipientId:privateKey.identifier privateKey:privateKey.key keyPassword:nil error:&error];
+    NSData *privateKeyData = [self exportPrivateKey:privateKey password:nil];
+    NSData *decryptedData = [cipher decryptData:data recipientId:privateKey.identifier privateKey:privateKeyData keyPassword:nil error:&error];
     
     if (error != nil) {
         if (errorPtr != nil)
@@ -197,11 +205,12 @@
     return decryptedData;
 }
 
-- (BOOL)decryptStream:(NSInputStream *)stream outputStream:(NSOutputStream *)outputStream privateKey:(VSSPrivateKey *)privateKey error:(NSError **)errorPtr {
+- (BOOL)decryptStream:(NSInputStream *)stream toOutputStream:(NSOutputStream *)outputStream withPrivateKey:(VSSPrivateKey *)privateKey error:(NSError **)errorPtr {
     VSCChunkCryptor *cipher = [[VSCChunkCryptor alloc] init];
 
     NSError *error;
-    [cipher decryptFromStream:stream toStream:outputStream recipientId:privateKey.identifier privateKey:privateKey.key keyPassword:nil error:&error];
+    NSData *privateKeyData = [self exportPrivateKey:privateKey password:nil];
+    [cipher decryptFromStream:stream toStream:outputStream recipientId:privateKey.identifier privateKey:privateKeyData keyPassword:nil error:&error];
     
     if (error != nil) {
         if (errorPtr != nil)
@@ -211,6 +220,86 @@
     
     return YES;
 }
+
+- (NSData *)signAndEncryptData:(NSData *)data withPrivateKey:(VSSPrivateKey *)privateKey forRecipients:(NSArray<VSSPublicKey *> *)recipients error:(NSError **)errorPtr {
+    VSCSigner *signer = [[VSCSigner alloc] init];
+    
+    NSData *privateKeyData = [self exportPrivateKey:privateKey password:nil];
+    
+    NSError *error;
+    
+    NSData *signature = [signer signData:data privateKey:privateKeyData keyPassword:nil error:&error];
+    if (error != nil) {
+        if (errorPtr != nil)
+            *errorPtr = error;
+        return nil;
+    }
+    
+    VSCCryptor *cryptor = [[VSCCryptor alloc] init];
+
+    [cryptor setData:signature forKey:kVSSCustomParamKeySignature error:&error];
+    if (error != nil) {
+        if (errorPtr != nil)
+            *errorPtr = error;
+        return nil;
+    }
+    
+    for (VSSPublicKey *publicKey in recipients) {
+        NSData *publicKeyData = [self exportPublicKey:publicKey];
+        NSError *error;
+        [cryptor addKeyRecipient:publicKey.identifier publicKey:publicKeyData error:&error];
+        if (error != nil) {
+            if (errorPtr != nil)
+                *errorPtr = error;
+            return nil;
+        }
+    }
+    
+    NSData *encryptedData = [cryptor encryptData:data embedContentInfo:YES error:&error];
+    if (error != nil) {
+        if (errorPtr != nil)
+            *errorPtr = error;
+        return nil;
+    }
+    
+    return encryptedData;
+}
+
+- (NSData *)decryptAndVerifyData:(NSData *)data withPrivateKey:(VSSPrivateKey *)privateKey signerPublicKey:(VSSPublicKey *)signerPublicKey error:(NSError **)errorPtr {
+    VSCCryptor *cryptor = [[VSCCryptor alloc] init];
+    
+    NSError *error;
+    NSData *privateKeyData = [self exportPrivateKey:privateKey password:nil];
+    NSData *decryptedData = [cryptor decryptData:data recipientId:privateKey.identifier privateKey:privateKeyData keyPassword:nil error:&error];
+    if (error != nil) {
+        if (errorPtr != nil)
+            *errorPtr = error;
+        return nil;
+    }
+    
+    NSData *signature = [cryptor dataForKey:kVSSCustomParamKeySignature error:&error];
+    if (error != nil) {
+        if (errorPtr != nil)
+            *errorPtr = error;
+        return nil;
+    }
+    
+    VSCSigner *signer = [[VSCSigner alloc] init];
+    NSData *publicKeyData = [self exportPublicKey:signerPublicKey];
+    BOOL isVerified = [signer verifySignature:signature data:decryptedData publicKey:publicKeyData error:&error];
+    if (error != nil) {
+        if (errorPtr != nil)
+            *errorPtr = error;
+        return nil;
+    }
+    
+    if (!isVerified)
+        return nil;
+    
+    return decryptedData;
+}
+
+#pragma mark - Signatures
 
 - (NSData *)signatureForData:(NSData *)data privateKey:(VSSPrivateKey *)privateKey error:(NSError **)errorPtr {
     VSCSigner *signer = [[VSCSigner alloc] init];

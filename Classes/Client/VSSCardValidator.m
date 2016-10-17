@@ -90,9 +90,9 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
             return NO;
         
         NSError *error;
-        BOOL isValid = [self.crypto verifyData:fingerprint.value signature:signature signerPublicKey:self.verifiers[verifierId] error:&error];
+        BOOL isVerified = [self.crypto verifyData:fingerprint.value signature:signature signerPublicKey:self.verifiers[verifierId] error:&error];
 
-        if (!isValid)
+        if (!isVerified)
             return NO;
     }
 
