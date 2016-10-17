@@ -22,10 +22,14 @@ class VSS001_ClientTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        self.client = VSSClient(applicationToken: kApplicationToken)
         self.crypto = VSSCrypto()
+        
+        let validator = VSSCardValidator(crypto: self.crypto)
+        let config = VSSServiceConfig()
+        config.cardValidator = validator
+        self.client = VSSClient(applicationToken: kApplicationToken, serviceConfig: config)
+        
         self.utils = VSSTestUtils(crypto: self.crypto)
-        self.continueAfterFailure = false
     }
     
     override func tearDown() {
@@ -45,7 +49,7 @@ class VSS001_ClientTests: XCTestCase {
         
         let instantiatedCard = self.utils.instantiateCard()!
         
-        self.client.createCard(instantiatedCard, completion: { (card, error) in
+        self.client.createCard(instantiatedCard) { (card, error) in
             guard error == nil else {
                 XCTFail("Failed: " + error!.localizedDescription)
                 return
@@ -64,14 +68,14 @@ class VSS001_ClientTests: XCTestCase {
             XCTAssert(validator.validate(createdCard))
             
             ex.fulfill()
-        })
+        }
         
-        self.waitForExpectations(timeout: timeout, handler: { error in
+        self.waitForExpectations(timeout: timeout) { error in
             guard error == nil else {
                 XCTFail("Expectation failed: " + error!.localizedDescription)
                 return
             }
-        })
+        }
     }
     
     func test002_SearchCards() {
@@ -82,14 +86,14 @@ class VSS001_ClientTests: XCTestCase {
         
         let instantiatedCard = self.utils.instantiateCard()!
         
-        self.client.createCard(instantiatedCard, completion: { (card, error) in
+        self.client.createCard(instantiatedCard) { (card, error) in
             guard error == nil else {
                 XCTFail("Failed: " + error!.localizedDescription)
                 return
             }
             
             let searchCards = VSSSearchCards(scope: .application, identityType: card!.data.identityType, identities: [card!.data.identity])
-            self.client.searchCards(searchCards, completion: { cards, error in
+            self.client.searchCards(searchCards) { cards, error in
                 guard error == nil else {
                     XCTFail("Failed: " + error!.localizedDescription)
                     return
@@ -104,15 +108,15 @@ class VSS001_ClientTests: XCTestCase {
                 XCTAssert(self.utils.check(card: foundCards[0], isEqualToCard: card!))
                 
                 ex.fulfill()
-            })
-        })
+            }
+        }
         
-        self.waitForExpectations(timeout: timeout, handler: { error in
+        self.waitForExpectations(timeout: timeout) { error in
             guard error == nil else {
                 XCTFail("Expectation failed: " + error!.localizedDescription)
                 return
             }
-        })
+        }
     }
     
     func test003_GetCard() {
@@ -123,13 +127,13 @@ class VSS001_ClientTests: XCTestCase {
         
         let instantiatedCard = self.utils.instantiateCard()!
         
-        self.client.createCard(instantiatedCard, completion: { (newCard, error) in
+        self.client.createCard(instantiatedCard) { (newCard, error) in
             guard error == nil else {
                 XCTFail("Failed: " + error!.localizedDescription)
                 return
             }
             
-            self.client.getCardWithId(newCard!.identifier!, completion: { card, error in
+            self.client.getCardWithId(newCard!.identifier!) { card, error in
                 guard error == nil else {
                     XCTFail("Failed: " + error!.localizedDescription)
                     return
@@ -144,16 +148,48 @@ class VSS001_ClientTests: XCTestCase {
                 XCTAssert(self.utils.check(card: foundCard, isEqualToCard: newCard!))
                 
                 ex.fulfill()
-            })
-        })
+            }
+        }
         
-        self.waitForExpectations(timeout: timeout, handler: { error in
+        self.waitForExpectations(timeout: timeout) { error in
             guard error == nil else {
                 XCTFail("Expectation failed: " + error!.localizedDescription)
                 return
             }
-        })
+        }
     }
-
-    // todo: Revoke card
+    
+    func test004_RevokeCard() {
+        let ex = self.expectation(description: "Virgil Card should be created. Virgil card should be revoked");
+        
+        let numberOfRequests = 2
+        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
+        
+        let instantiatedCard = self.utils.instantiateCard()!
+        
+        self.client.createCard(instantiatedCard) { (newCard, error) in
+            guard error == nil else {
+                XCTFail("Failed: " + error!.localizedDescription)
+                return
+            }
+            
+            let revokeCard = self.utils.instantiateRevokeCardFor(card: newCard!)
+            
+            self.client.revokeCard(revokeCard) { error in
+                guard error == nil else {
+                    XCTFail("Failed: " + error!.localizedDescription)
+                    return
+                }
+                
+                ex.fulfill()
+            }
+        }
+        
+        self.waitForExpectations(timeout: timeout) { error in
+            guard error == nil else {
+                XCTFail("Expectation failed: " + error!.localizedDescription)
+                return
+            }
+        }
+    }
 }

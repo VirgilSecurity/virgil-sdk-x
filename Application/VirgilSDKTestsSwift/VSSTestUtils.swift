@@ -62,7 +62,7 @@ class VSSTestUtils {
         
         let privateAppKeyData = Data(base64Encoded: kApplicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
         
-        let appPrivateKey = self.crypto.importPrivateKey(privateAppKeyData, password: nil)!
+        let appPrivateKey = self.crypto.importPrivateKey(privateAppKeyData, password: kApplicationPrivateKeyPassword)!
         
         do {
             try signer.authoritySign(revokeCard, appId: kApplicationId, with: appPrivateKey)
