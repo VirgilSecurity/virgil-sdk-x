@@ -10,7 +10,7 @@
 #import "VSSTestsUtils.h"
 #import "VSSKeyPair.h"
 #import "VSSPrivateKey.h"
-#import "VSSRequestSigner.h"
+#import "VSSSigner.h"
 
 NSString *const kApplicationToken = <#NSString: Application Access Token#>;
 NSString *const kApplicationPublicKeyBase64 = <# NSString: Application Public Key #>;
@@ -43,11 +43,11 @@ NSString *const kApplicationId = <#NSString: Application Id#>;
     
     VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKey:privateAppKeyData password:kApplicationPrivateKeyPassword];
     
-    VSSRequestSigner *requestSigner = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
+    VSSSigner *signer = [[VSSSigner alloc] initWithCrypto:self.crypto];
     
     NSError *error;
-    [requestSigner applicationSignRequest:card withPrivateKey:keyPair.privateKey error:&error];
-    [requestSigner authoritySignRequest:card appId:kApplicationId withPrivateKey:appPrivateKey error:&error];
+    [signer applicationSignData:card withPrivateKey:keyPair.privateKey error:&error];
+    [signer authoritySignData:card appId:kApplicationId withPrivateKey:appPrivateKey error:&error];
     
     return card;
 }
@@ -55,14 +55,14 @@ NSString *const kApplicationId = <#NSString: Application Id#>;
 - (VSSRevokeCard * __nonnull)instantiateRevokeCardForCard:(VSSCard * __nonnull)card {
     VSSRevokeCard *revokeCard = [VSSRevokeCard revokeCardWithId:card.identifier reason:VSSCardRevocationReasonUnspecified];
     
-    VSSRequestSigner *requestSigner = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
+    VSSSigner *signer = [[VSSSigner alloc] initWithCrypto:self.crypto];
     
     NSData *privateAppKeyData = [[NSData alloc] initWithBase64EncodedString:kApplicationPrivateKeyBase64 options:0];
     
     VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKey:privateAppKeyData password:kApplicationPrivateKeyPassword];
     
     NSError *error;
-    [requestSigner authoritySignRequest:revokeCard appId:kApplicationId withPrivateKey:appPrivateKey error:&error];
+    [signer authoritySignData:revokeCard appId:kApplicationId withPrivateKey:appPrivateKey error:&error];
     
     return revokeCard;
 }

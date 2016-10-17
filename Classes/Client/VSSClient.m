@@ -129,7 +129,7 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
             
             if (self.serviceConfig.cardValidator != nil) {
                 if (![self.serviceConfig.cardValidator validateCard:card]) {
-                    callback(nil, [[NSError alloc] initWithDomain:kVSSClientErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"Error validation card signatures" }]);
+                    callback(nil, [[NSError alloc] initWithDomain:kVSSClientErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"Error validating card signatures" }]);
                     return;
                 }
             }

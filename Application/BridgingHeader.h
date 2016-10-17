@@ -19,7 +19,7 @@
 #import "VSSServiceConfig.h"
 
 #import "VSSCardValidator.h"
-#import "VSSRequestSigner.h"
+#import "VSSSigner.h"
 
 //#import "Mailinator.h"
 //#import "MailinatorConfig.h"

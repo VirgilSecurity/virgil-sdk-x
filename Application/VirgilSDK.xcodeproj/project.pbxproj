@@ -56,7 +56,7 @@
 		42F0ABCB1D9D13BC00747799 /* VSSCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABCA1D9D13BC00747799 /* VSSCrypto.m */; };
 		42F0ABD61D9E8D5E00747799 /* VSSSearchCards.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABD51D9E8D5E00747799 /* VSSSearchCards.m */; };
 		42F8886D1DAE8AFF004D321A /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42F8886C1DAE8AFF004D321A /* testData.txt */; };
-		42FA96441DA29E5B0092D5DB /* VSSRequestSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FA96431DA29E5B0092D5DB /* VSSRequestSigner.m */; };
+		42FA96441DA29E5B0092D5DB /* VSSSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FA96431DA29E5B0092D5DB /* VSSSigner.m */; };
 		42FA96471DA3C0B60092D5DB /* VSSFingerprint.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FA96461DA3C0B60092D5DB /* VSSFingerprint.m */; };
 		42FA964A1DA3E0320092D5DB /* VSSDeviceInfoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FA96491DA3E0320092D5DB /* VSSDeviceInfoUtils.m */; };
 		42FA965B1DA3E9560092D5DB /* VSSCreateCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FA964E1DA3E9560092D5DB /* VSSCreateCardRequest.m */; };
@@ -196,8 +196,8 @@
 		42F0ABD51D9E8D5E00747799 /* VSSSearchCards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSearchCards.m; sourceTree = "<group>"; };
 		42F8886C1DAE8AFF004D321A /* testData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testData.txt; sourceTree = "<group>"; };
 		42FA96411DA2624B0092D5DB /* VSSCryptoPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCryptoPrivate.h; sourceTree = "<group>"; };
-		42FA96421DA29E2A0092D5DB /* VSSRequestSigner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSRequestSigner.h; sourceTree = "<group>"; };
-		42FA96431DA29E5B0092D5DB /* VSSRequestSigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRequestSigner.m; sourceTree = "<group>"; };
+		42FA96421DA29E2A0092D5DB /* VSSSigner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSSigner.h; sourceTree = "<group>"; };
+		42FA96431DA29E5B0092D5DB /* VSSSigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSigner.m; sourceTree = "<group>"; };
 		42FA96451DA3C09B0092D5DB /* VSSFingerprint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSFingerprint.h; sourceTree = "<group>"; };
 		42FA96461DA3C0B60092D5DB /* VSSFingerprint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSFingerprint.m; sourceTree = "<group>"; };
 		42FA96481DA3E0080092D5DB /* VSSDeviceInfoUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSDeviceInfoUtils.h; sourceTree = "<group>"; };
@@ -436,8 +436,8 @@
 				42F0ABAD1D9ABFAC00747799 /* VSSClientProtocol.h */,
 				42F0ABAE1D9ABFAC00747799 /* VSSServiceConfig.h */,
 				42F0ABAF1D9ABFAC00747799 /* VSSServiceConfig.m */,
-				42FA96421DA29E2A0092D5DB /* VSSRequestSigner.h */,
-				42FA96431DA29E5B0092D5DB /* VSSRequestSigner.m */,
+				42FA96421DA29E2A0092D5DB /* VSSSigner.h */,
+				42FA96431DA29E5B0092D5DB /* VSSSigner.m */,
 				423B09AB1DA52D7500A63E5B /* VSSCardValidatorProtocol.h */,
 				423B09AA1DA52D6400A63E5B /* VSSCardValidator.h */,
 				423B09AC1DA534A800A63E5B /* VSSCardValidator.m */,
@@ -972,7 +972,7 @@
 				42F0AB8A1D9ABF2200747799 /* VSSBaseModel.m in Sources */,
 				42F0ABC71D9D04C400747799 /* VSSCard.m in Sources */,
 				42E75B831D991D7700750C52 /* main.m in Sources */,
-				42FA96441DA29E5B0092D5DB /* VSSRequestSigner.m in Sources */,
+				42FA96441DA29E5B0092D5DB /* VSSSigner.m in Sources */,
 				42F0ABCB1D9D13BC00747799 /* VSSCrypto.m in Sources */,
 				42E75B751D991D7700750C52 /* AppDelegate.m in Sources */,
 				42F0ABD61D9E8D5E00747799 /* VSSSearchCards.m in Sources */,

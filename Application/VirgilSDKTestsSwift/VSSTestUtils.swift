@@ -34,11 +34,11 @@ class VSSTestUtils {
         let privateAppKeyData = Data(base64Encoded: kApplicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
         let appPrivateKey = self.crypto.importPrivateKey(privateAppKeyData, password: kApplicationPrivateKeyPassword)!
         
-        let requestSigner = VSSRequestSigner(crypto: self.crypto)
+        let signer = VSSSigner(crypto: self.crypto)
         
         do {
-            try requestSigner.applicationSignRequest(card, with: keyPair.privateKey)
-            try requestSigner.authoritySignRequest(card, appId: kApplicationId, with: appPrivateKey)
+            try signer.applicationSignRequest(card, with: keyPair.privateKey)
+            try signer.authoritySignRequest(card, appId: kApplicationId, with: appPrivateKey)
         }
         catch _ {
             return nil
@@ -58,14 +58,14 @@ class VSSTestUtils {
     func instantiateRevokeCardFor(card: VSSCard) -> VSSRevokeCard {
         let revokeCard = VSSRevokeCard(id: card.identifier!, reason: .unspecified)
         
-        let requestSigner = VSSRequestSigner(crypto: self.crypto)
+        let signer = VSSSigner(crypto: self.crypto)
         
         let privateAppKeyData = Data(base64Encoded: kApplicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
         
         let appPrivateKey = self.crypto.importPrivateKey(privateAppKeyData, password: nil)!
         
         do {
-            try requestSigner.authoritySignRequest(revokeCard, appId: kApplicationId, with: appPrivateKey)
+            try signer.authoritySignRequest(revokeCard, appId: kApplicationId, with: appPrivateKey)
         }
         catch {}
         

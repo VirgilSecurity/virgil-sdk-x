@@ -12,7 +12,7 @@
 #import "VSSClient.h"
 #import "VSSCrypto.h"
 #import "VSSCardValidator.h"
-#import "VSSRequestSigner.h"
+#import "VSSSigner.h"
 
 #import "VSSTestsUtils.h"
 
