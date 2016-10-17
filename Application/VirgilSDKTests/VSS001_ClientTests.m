@@ -34,8 +34,14 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 - (void)setUp {
     [super setUp];
     
-    self.client = [[VSSClient alloc] initWithApplicationToken:kApplicationToken];
+    VSSServiceConfig *config = [VSSServiceConfig serviceConfigWithDefaultValues];
     self.crypto = [[VSSCrypto alloc] init];
+    VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.crypto];
+    [validator addVerifierWithId:kApplicationId publicKey:[[NSData alloc] initWithBase64EncodedString:kApplicationPublicKeyBase64 options:0]];
+    
+    config.cardValidator = validator;
+    
+    self.client = [[VSSClient alloc] initWithApplicationToken:kApplicationToken serviceConfig:config];
     self.utils = [[VSSTestsUtils alloc] initWithCrypto:self.crypto];
 }
 
@@ -64,13 +70,6 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
         
         XCTAssert([card.identifier length] > 0);
         XCTAssert([self.utils checkCard:instantiatedCard isEqualToCard:card]);
-        
-        VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.crypto];
-        [validator addVerifierWithId:kApplicationId publicKey:[[NSData alloc] initWithBase64EncodedString:kApplicationPublicKeyBase64 options:0]];
-        
-        BOOL isValid = [validator validateCard:card];
-        
-        XCTAssert(isValid);
         
         [ex fulfill];
     }];

@@ -30,7 +30,7 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
         if ([cardId isEqualToString:kVSSServiceCardId])
             continue;
         
-        [copy addVerifierWithId:cardId publicKey:self.verifiers[cardId]];
+        [copy addVerifierWithId:cardId vssPublicKey:self.verifiers[cardId]];
     }
     
     return copy;
