@@ -57,20 +57,20 @@
     XCTAssert([decryptedData isEqualToData:data]);
 }
 
-- (void)testED002_EncryptRandomData_SingleIncorrect_ShouldNotDecrypt {
+- (void)testED002_EncryptRandomData_SingleIncorrectKey_ShouldNotDecrypt {
     NSData *data = [[[NSUUID UUID] UUIDString] dataUsingEncoding:NSUTF8StringEncoding];
     
     VSSKeyPair *keyPair = [self.crypto generateKeyPair];
     VSSKeyPair *wrongKeyPair = [self.crypto generateKeyPair];
     
     NSError *error;
-    NSData *encryptedData = [self.crypto encryptData:data forRecipients:@[wrongKeyPair.publicKey] error:&error];
+    NSData *encryptedData = [self.crypto encryptData:data forRecipients:@[keyPair.publicKey] error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;
     }
     
-    NSData *decryptedData = [self.crypto decryptData:encryptedData withPrivateKey:keyPair.privateKey error:&error];
+    NSData *decryptedData = [self.crypto decryptData:encryptedData withPrivateKey:wrongKeyPair.privateKey error:&error];
     XCTAssert(decryptedData == nil);
     XCTAssert(error != nil);
 }
@@ -138,14 +138,8 @@
     XCTAssert([decryptedData isEqualToData:data]);
 }
 
-- (void)testES002_EncryptRandomDataStream_KeysDoesntMatch_ShouldNotDecrypt {
-    NSMutableData *mutableData = [[NSMutableData alloc] initWithCapacity:2 * 1024 * 1024];
-    
-    for (int i = 0; i < 40; i++) {
-        [mutableData appendData:[[[NSUUID UUID] UUIDString] dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    
-    NSData *data = mutableData;
+- (void)testES002_EncryptRandomDataStream_SingleIncorrectKey_ShouldNotDecrypt {
+    NSData *data = [[[NSUUID UUID] UUIDString] dataUsingEncoding:NSUTF8StringEncoding];
     
     VSSKeyPair *keyPair = [self.crypto generateKeyPair];
     VSSKeyPair *wrongKeyPair = [self.crypto generateKeyPair];
@@ -174,13 +168,7 @@
 }
 
 - (void)testES003_EncryptRandomDataStream_TwoCorrectKeys_ShouldDecrypt {
-    NSMutableData *mutableData = [[NSMutableData alloc] initWithCapacity:2 * 1024 * 1024];
-    
-    for (int i = 0; i < 40; i++) {
-        [mutableData appendData:[[[NSUUID UUID] UUIDString] dataUsingEncoding:NSUTF8StringEncoding]];
-    }
-    
-    NSData *data = mutableData;
+    NSData *data = [[[NSUUID UUID] UUIDString] dataUsingEncoding:NSUTF8StringEncoding];
     
     VSSKeyPair *keyPair1 = [self.crypto generateKeyPair];
     VSSKeyPair *keyPair2 = [self.crypto generateKeyPair];
@@ -285,7 +273,7 @@
     XCTAssert(verified);
 }
 
-- (void)testSD002_SignRandomData_KeysDoesntMatch_ShouldNotValidate {
+- (void)testSD002_SignRandomData_IncorrectKeys_ShouldNotValidate {
     NSData *data = [[[NSUUID UUID] UUIDString] dataUsingEncoding:NSUTF8StringEncoding];
     
     VSSKeyPair *keyPair = [self.crypto generateKeyPair];

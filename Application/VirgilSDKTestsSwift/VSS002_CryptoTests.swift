@@ -1,0 +1,266 @@
+//
+//  VSS002_CryptoTests.swift
+//  VirgilSDK
+//
+//  Created by Oleksandr Deundiak on 10/17/16.
+//  Copyright © 2016 VirgilSecurity. All rights reserved.
+//
+
+import Foundation
+import XCTest
+
+class VSS002_CryptoTests: XCTestCase {
+    private var crypto: VSSCrypto!
+    
+    // MARK: Setup
+    
+    override func setUp() {
+        super.setUp()
+        
+        self.crypto = VSSCrypto()
+    }
+    
+    override func tearDown() {
+        self.crypto = nil
+        
+        super.tearDown()
+    }
+    
+    // MARK: Encryption tests
+    
+    func testED001_EncryptRandomData_SingleCorrectKey_ShouldDecrypt() {
+        let data = UUID().uuidString.data(using: String.Encoding.utf8)!
+        
+        let keyPair = self.crypto.generateKeyPair()
+        
+        let encryptedData = try! self.crypto.encryptData(data, forRecipients: [keyPair.publicKey])
+        
+        let decryptedData = try! self.crypto.decryptData(encryptedData, with: keyPair.privateKey)
+        
+        XCTAssert(data == decryptedData)
+    }
+    
+    func testED002_EncryptRandomData_SingleIncorrectKey_ShouldNotDecrypt() {
+        let data = UUID().uuidString.data(using: String.Encoding.utf8)!
+        
+        let keyPair = self.crypto.generateKeyPair()
+        let wrongKeyPair = self.crypto.generateKeyPair()
+        
+        let encryptedData = try! self.crypto.encryptData(data, forRecipients: [keyPair.publicKey])
+        
+        let decryptedData = try? self.crypto.decryptData(encryptedData, with: wrongKeyPair.privateKey)
+        
+        XCTAssert(decryptedData == nil)
+    }
+    
+    func testED003_EncryptRandomData_TwoCorrectKeys_ShouldDecrypt() {
+        let data = UUID().uuidString.data(using: String.Encoding.utf8)!
+        
+        let keyPair1 = self.crypto.generateKeyPair()
+        let keyPair2 = self.crypto.generateKeyPair()
+        
+        let encryptedData = try! self.crypto.encryptData(data, forRecipients: [keyPair1.publicKey, keyPair2.publicKey])
+        
+        let decryptedData1 = try! self.crypto.decryptData(encryptedData, with: keyPair1.privateKey)
+        let decryptedData2 = try! self.crypto.decryptData(encryptedData, with: keyPair2.privateKey)
+        
+        XCTAssert(data == decryptedData1)
+        XCTAssert(data == decryptedData2)
+    }
+    
+    func testES001_EncryptRandomDataStream_SingleCorrectKey_ShouldDecrypt() {
+        let data = UUID().uuidString.data(using: String.Encoding.utf8)!
+        
+        let keyPair = self.crypto.generateKeyPair()
+        
+        let inputStreamForEncryption = InputStream(data: data)
+        let outputStreamForEncryption = OutputStream.toMemory()
+        
+        try! self.crypto.encryptStream(inputStreamForEncryption, to: outputStreamForEncryption, forRecipients: [keyPair.publicKey])
+        
+        let encryptedDataProperty = outputStreamForEncryption.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey)
+        
+        guard let encryptedData = encryptedDataProperty as? Data else {
+            XCTFail("No encrypted data")
+            return
+        }
+        
+        let inputStreamForDecryption = InputStream(data: encryptedData)
+        let outputStreamForDecryption = OutputStream.toMemory()
+        
+        try! self.crypto.decryptStream(inputStreamForDecryption, to: outputStreamForDecryption, with: keyPair.privateKey)
+        
+        let decryptedDataProperty = outputStreamForDecryption.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey)
+        
+        guard let decryptedData = decryptedDataProperty as? Data else {
+            XCTFail("No decrypted data")
+            return
+        }
+        
+        XCTAssert(data == decryptedData)
+    }
+    
+    func testES002_EncryptRandomDataStream_SingleIncorrectKey_ShouldNotDecrypt() {
+        let data = UUID().uuidString.data(using: String.Encoding.utf8)!
+        
+        let keyPair = self.crypto.generateKeyPair()
+        let wrongKeyPair = self.crypto.generateKeyPair()
+        
+        let inputStreamForEncryption = InputStream(data: data)
+        let outputStreamForEncryption = OutputStream.toMemory()
+        
+        try! self.crypto.encryptStream(inputStreamForEncryption, to: outputStreamForEncryption, forRecipients: [keyPair.publicKey])
+        
+        let encryptedDataProperty = outputStreamForEncryption.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey)
+        
+        guard let encryptedData = encryptedDataProperty as? Data else {
+            XCTFail("No encrypted data")
+            return
+        }
+        
+        let inputStreamForDecryption = InputStream(data: encryptedData)
+        let outputStreamForDecryption = OutputStream.toMemory()
+        
+        var errorWasThrown = false
+        do {
+            try self.crypto.decryptStream(inputStreamForDecryption, to: outputStreamForDecryption, with: wrongKeyPair.privateKey)
+        }
+        catch _ {
+            errorWasThrown = true
+        }
+        
+        XCTAssert(errorWasThrown)
+        
+        let decryptedDataProperty = outputStreamForDecryption.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey)
+        
+        guard let decryptedData = decryptedDataProperty as? Data else {
+            XCTFail("No decrypted data")
+            return
+        }
+        
+        XCTAssert(decryptedData.count == 0)
+    }
+    
+    func testES003_EncryptRandomDataStream_TwoCorrectKeys_ShouldDecrypt() {
+        let data = UUID().uuidString.data(using: String.Encoding.utf8)!
+        
+        let keyPair1 = self.crypto.generateKeyPair()
+        let keyPair2 = self.crypto.generateKeyPair()
+        
+        let inputStreamForEncryption = InputStream(data: data)
+        let outputStreamForEncryption = OutputStream.toMemory()
+        
+        try! self.crypto.encryptStream(inputStreamForEncryption, to: outputStreamForEncryption, forRecipients: [keyPair1.publicKey, keyPair2.publicKey])
+        
+        let encryptedDataProperty = outputStreamForEncryption.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey)
+        
+        guard let encryptedData = encryptedDataProperty as? Data else {
+            XCTFail("No encrypted data")
+            return
+        }
+        
+        let inputStreamForDecryption1 = InputStream(data: encryptedData)
+        let outputStreamForDecryption1 = OutputStream.toMemory()
+        
+        try! self.crypto.decryptStream(inputStreamForDecryption1, to: outputStreamForDecryption1, with: keyPair1.privateKey)
+        
+        let decryptedDataProperty1 = outputStreamForDecryption1.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey)
+        
+        guard let decryptedData1 = decryptedDataProperty1 as? Data else {
+            XCTFail("No decrypted data")
+            return
+        }
+        
+        XCTAssert(data == decryptedData1)
+        
+        let inputStreamForDecryption2 = InputStream(data: encryptedData)
+        let outputStreamForDecryption2 = OutputStream.toMemory()
+        
+        try! self.crypto.decryptStream(inputStreamForDecryption2, to: outputStreamForDecryption2, with: keyPair2.privateKey)
+        
+        let decryptedDataProperty2 = outputStreamForDecryption2.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey)
+        
+        guard let decryptedData2 = decryptedDataProperty2 as? Data else {
+            XCTFail("No decrypted data")
+            return
+        }
+        
+        XCTAssert(data == decryptedData2)
+    }
+    
+    func testES004_EncryptFileDataStream_SingleCorrectKey_ShouldDecrypt() {
+        let testFileURL = Bundle.main.url(forResource: "testData", withExtension: "txt")!
+        let inputStreamForEncryption = InputStream(url: testFileURL)!
+        
+        let keyPair = self.crypto.generateKeyPair()
+        
+        let outputStreamForEncryption = OutputStream.toMemory()
+        
+        try! self.crypto.encryptStream(inputStreamForEncryption, to: outputStreamForEncryption, forRecipients: [keyPair.publicKey])
+        
+        let encryptedDataProperty = outputStreamForEncryption.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey)
+        
+        guard let encryptedData = encryptedDataProperty as? Data else {
+            XCTFail("No encrypted data")
+            return
+        }
+        
+        let inputStreamForDecryption = InputStream(data: encryptedData)
+        let outputStreamForDecryption = OutputStream.toMemory()
+        
+        try! self.crypto.decryptStream(inputStreamForDecryption, to: outputStreamForDecryption, with: keyPair.privateKey)
+        
+        let decryptedDataProperty = outputStreamForDecryption.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey)
+        
+        guard let decryptedData = decryptedDataProperty as? Data else {
+            XCTFail("No decrypted data")
+            return
+        }
+        
+        let decryptedString = String(data: decryptedData, encoding: String.Encoding.utf8)
+        
+        XCTAssert(decryptedString == "Hello, Bob!")
+    }
+    
+    // MARK: Signatures tests
+    func testSD001_SignRandomData_CorrectKeys_ShouldValidate() {
+        let data = UUID().uuidString.data(using: String.Encoding.utf8)!
+
+        let keyPair = self.crypto.generateKeyPair()
+        
+        let signature = try! self.crypto.signature(for: data, privateKey: keyPair.privateKey)
+        
+        try! self.crypto.verifyData(data, signature: signature, signerPublicKey: keyPair.publicKey)
+    }
+    
+    func testSD002_SignRandomData_IncorrectKeys_ShouldNotValidate() {
+        let data = UUID().uuidString.data(using: String.Encoding.utf8)!
+        
+        let keyPair = self.crypto.generateKeyPair()
+        let wrongKeyPair = self.crypto.generateKeyPair()
+        
+        let signature = try! self.crypto.signature(for: data, privateKey: keyPair.privateKey)
+        
+        var errorWasThrown = false
+        do {
+            try self.crypto.verifyData(data, signature: signature, signerPublicKey: wrongKeyPair.publicKey)
+        }
+        catch _ {
+            errorWasThrown = true
+        }
+        XCTAssert(errorWasThrown)
+    }
+    
+    func testESD001_SignAndEncryptRandomData_CorrectKeys_ShouldDecryptValidate() {
+        let data = UUID().uuidString.data(using: String.Encoding.utf8)!
+        
+        let senderKeyPair = self.crypto.generateKeyPair()
+        let receiverKeyPair = self.crypto.generateKeyPair()
+        
+        let signedAndEcryptedData = try! self.crypto.signAndEncryptData(data, with: senderKeyPair.privateKey, forRecipients: [receiverKeyPair.publicKey])
+        
+        let decryptedAndVerifiedData = try! self.crypto.decryptAndVerifyData(signedAndEcryptedData, with: receiverKeyPair.privateKey, signerPublicKey: senderKeyPair.publicKey)
+        
+        XCTAssert(data == decryptedAndVerifiedData)
+    }
+}
