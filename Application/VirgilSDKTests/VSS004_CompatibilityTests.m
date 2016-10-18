@@ -34,7 +34,7 @@
     NSURL *testFileURL = [[NSBundle mainBundle] URLForResource:@"sdk_compatibility_data" withExtension:@"json"];
     NSData *testFileData = [[NSData alloc] initWithContentsOfURL:testFileURL];
     
-    self.testDict = [NSJSONSerialization JSONObjectWithData:testFileData options:0 error:nil];;
+    self.testDict = [NSJSONSerialization JSONObjectWithData:testFileData options:0 error:nil];
 }
 
 - (void)tearDown {
@@ -125,7 +125,7 @@
     XCTAssert([originalStr isEqualToString:decryptedStr]);
 }
 
-- (void)test005_DecryptAndVerifyMultipleRecipients_ShouldDecryptAndVerigy {
+- (void)test005_DecryptAndVerifyMultipleRecipients_ShouldDecryptAndVerify {
     NSDictionary *dict = self.testDict[@"sign_then_encrypt_multiple_recipients"];
 
     NSMutableArray<VSSPrivateKey *> *privateKeys = [[NSMutableArray<VSSPrivateKey *> alloc] init];
@@ -182,7 +182,6 @@
     NSDictionary *dict = self.testDict[@"export_signable_request"];
     
     NSString *privateKeyStr = dict[@"private_key"];
-    NSData *privateKeyData = [[NSData alloc] initWithBase64EncodedString:privateKeyStr options:0];
     
     NSString *exportedRequest = dict[@"exported_request"];
     
