@@ -108,7 +108,7 @@ extern NSString * __nonnull const kVSSAccessTokenHeader;
  *
  * @return Instance of particular network operation.
  */
-- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context;
+- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context NS_DESIGNATED_INITIALIZER;
 
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 
@@ -150,7 +150,7 @@ extern NSString * __nonnull const kVSSAccessTokenHeader;
  *
  * @return service method name (path to it) which should be called related to service base url.
  */
-- (NSString * __nonnull)methodPath;
+@property (nonatomic, readonly, copy) NSString * _Nonnull methodPath;
 
 /**
  * This method is called when underlying request has been done by url session. It returns the object which is derived from the response data.

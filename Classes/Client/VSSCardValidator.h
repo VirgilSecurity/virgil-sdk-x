@@ -14,7 +14,7 @@
 
 @property (nonatomic, copy, readonly) NSDictionary * __nonnull verifiers;
 
-- (instancetype __nonnull)initWithCrypto:(id<VSSCrypto> __nonnull)crypto;
+- (instancetype __nonnull)initWithCrypto:(id<VSSCrypto> __nonnull)crypto NS_DESIGNATED_INITIALIZER;
 
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 

@@ -15,7 +15,7 @@
 
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 
-- (instancetype __nonnull)initWithValue:(NSData * __nonnull)value;
-- (instancetype __nonnull)initWithHex:(NSString * __nonnull)hex;
+- (instancetype __nonnull)initWithValue:(NSData * __nonnull)value NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithHex:(NSString * __nonnull)hex NS_DESIGNATED_INITIALIZER;
 
 @end

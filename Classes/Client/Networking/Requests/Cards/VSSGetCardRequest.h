@@ -16,4 +16,6 @@
 
 - (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context cardId:(NSString * __nonnull)cardId NS_DESIGNATED_INITIALIZER;
 
+- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context NS_UNAVAILABLE;
+
 @end

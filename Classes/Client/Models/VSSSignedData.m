@@ -60,21 +60,21 @@
     
     if (self) {
         NSString *snapshotStr = [candidate[kVSSModelContentSnapshot] as:[NSString class]];
-        if ([snapshotStr length] == 0)
+        if (snapshotStr.length == 0)
             return nil;
         
         NSData *snapshot = [[NSData alloc] initWithBase64EncodedString:snapshotStr options:0];
-        if ([snapshot length] == 0)
+        if (snapshot.length == 0)
             return nil;
         
         _snapshot = snapshot;
         
         NSString *identifier = [candidate[kVSSModelId] as:[NSString class]];
-        if ([identifier length] > 0)
+        if (identifier.length > 0)
             _identifier = [identifier copy];
 
         NSDictionary *metaCandidate = [candidate[kVSSModelMeta] as:[NSDictionary class]];
-        if ([metaCandidate count] == 0)
+        if (metaCandidate.count == 0)
             return nil;
 
         NSMutableDictionary *signaturesDict = [[NSMutableDictionary alloc] init];
@@ -86,17 +86,17 @@
 
         NSDate *createdAt = nil;
         NSString *createdAtStr = [metaCandidate[kVSSModelCreatedAt] as:[NSString class]];
-        if (createdAtStr != nil && [createdAtStr length] != 0) {
+        if (createdAtStr != nil && createdAtStr.length != 0) {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
-            [dateFormatter setLocale:enUSPOSIXLocale];
-            [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+            dateFormatter.locale = enUSPOSIXLocale;
+            dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZ";
             createdAt = [dateFormatter dateFromString:createdAtStr];
             _createdAt = createdAt;
         }
 
         NSString *cardVersion = [metaCandidate[kVSSModelCardVersion] as:[NSString class]];
-        if ([cardVersion length] > 0) {
+        if (cardVersion.length > 0) {
             _cardVersion = [cardVersion copy];
         }
     }

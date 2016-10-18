@@ -11,7 +11,7 @@
 
 @implementation VSSKeyPair
 
-- (instancetype __nonnull)initWithPrivateKey:(VSSPrivateKey * __nonnull)privateKey publicKey:(VSSPublicKey * __nonnull)publicKey {
+- (instancetype)initWithPrivateKey:(VSSPrivateKey * __nonnull)privateKey publicKey:(VSSPublicKey * __nonnull)publicKey {
     self = [super init];
     if (self) {
         _publicKey = publicKey;

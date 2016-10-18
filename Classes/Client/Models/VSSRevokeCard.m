@@ -21,7 +21,7 @@
     return [self initWithRevokeCardData:data];
 }
 
-- (instancetype __nonnull)initWithRevokeCardData:(VSSRevokeCardData * __nonnull)data {
+- (instancetype)initWithRevokeCardData:(VSSRevokeCardData *)data {
     self = [super initWithSnapshot:[data getCanonicalForm] signatures:nil cardVersion:nil createdAt:nil];
     if (self) {
         _data = data;

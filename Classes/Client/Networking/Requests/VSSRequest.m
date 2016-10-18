@@ -36,7 +36,7 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
         return _request;
     }
     
-    NSURL *serviceURL = [self.context serviceUrl];
+    NSURL *serviceURL = (self.context).serviceUrl;
 
     NSString *methodPath = [self methodPath];
     if ([methodPath hasPrefix:@"/"]) {
@@ -46,8 +46,8 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
     NSURL *url = [NSURL URLWithString:methodPath relativeToURL:serviceURL];
     
     NSMutableURLRequest* r = [NSMutableURLRequest requestWithURL:url];
-    [r setTimeoutInterval:kVSSRequestDefaultTimeout];
-    [r setHTTPMethod:kVSSRequestDefaultMethod];
+    r.timeoutInterval = kVSSRequestDefaultTimeout;
+    r.HTTPMethod = kVSSRequestDefaultMethod;
     _request = r;
     return _request;
 }
@@ -108,7 +108,7 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
 }
 
 - (void)setRequestHeaders:(NSDictionary *)headers {
-    for (NSString *header in [headers allKeys]) {
+    for (NSString *header in headers.allKeys) {
         NSString *value = [headers[header] as:[NSString class]];
         if (value != nil) {
             NSMutableURLRequest *r = [self.request as:[NSMutableURLRequest class]];
@@ -130,7 +130,7 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
     }
     
     NSMutableString *queryString = [[NSMutableString alloc] init];
-    for (NSString *name in [params allKeys]) {
+    for (NSString *name in params.allKeys) {
         NSString *value = [params[name] as:[NSString class]];
         if (value != nil) {
             [queryString appendFormat:@"&%@=%@", name, value];

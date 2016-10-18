@@ -16,11 +16,6 @@
 @interface VSSRequestContext : NSObject
 
 /**
- * Unique identifier which might be used by the request. This identifier is generated automatically when context is created.
- */
-@property (nonatomic, readonly) NSString * __nonnull uuid;
-
-/**
  * Contains base (service) url which will be used by the request.
  */
 @property (nonatomic, readonly) NSURL * __nonnull serviceUrl;

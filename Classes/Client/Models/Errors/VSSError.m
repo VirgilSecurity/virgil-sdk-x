@@ -60,7 +60,7 @@
     if (code == nil)
         return nil;
     
-    return [self initWithCode:[code integerValue]];
+    return [self initWithCode:code.integerValue];
 }
 
 @end

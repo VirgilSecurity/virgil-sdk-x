@@ -18,7 +18,7 @@ extern NSString * __nonnull const kVSSSignerErrorDomain;
 
 @property (nonatomic, readonly) id<VSSCrypto> __nonnull crypto;
 
-- (instancetype __nonnull)initWithCrypto:(id<VSSCrypto> __nonnull)crypto;
+- (instancetype __nonnull)initWithCrypto:(id<VSSCrypto> __nonnull)crypto NS_DESIGNATED_INITIALIZER;
 
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 

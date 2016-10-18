@@ -23,7 +23,7 @@
         return nil;
     }
     
-    NSString *result = [srcString stringByRemovingPercentEncoding];
+    NSString *result = srcString.stringByRemovingPercentEncoding;
     return result;
 }
 

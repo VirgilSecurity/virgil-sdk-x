@@ -85,7 +85,7 @@ NSString *const kVSSServiceName = @"VirgilSecurityServices";
         [self.value removeObjectForKey:aKey];
     }
     else {
-        [self.value setObject:candidate forKey:aKey];
+        (self.value)[aKey] = candidate;
     }
     
     [self write];

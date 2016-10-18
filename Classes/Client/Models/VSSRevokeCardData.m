@@ -27,7 +27,7 @@
 }
 
 + (instancetype)createFromCanonicalForm:(NSData *)canonicalForm {
-    if ([canonicalForm length] == 0)
+    if (canonicalForm.length == 0)
         return nil;
     
     NSError *parseError;
@@ -45,11 +45,11 @@
 
 - (instancetype)initWithDict:(NSDictionary *)candidate {
     NSString *cardId = [candidate[kVSSModelCardId] as:[NSString class]];
-    if ([cardId length] == 0)
+    if (cardId.length == 0)
         return nil;
     
     NSString *revocationReasonStr = [candidate[kVSSModelRevocationReason] as:[NSString class]];
-    if ([revocationReasonStr length] == 0)
+    if (revocationReasonStr.length == 0)
         return nil;
     
     VSSCardRevocationReason reason = vss_getCardRevocationReasonFromString(revocationReasonStr);

@@ -17,4 +17,6 @@
 
 - (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context searchCards:(VSSSearchCards * __nonnull)searchCards NS_DESIGNATED_INITIALIZER;
 
+- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context NS_UNAVAILABLE;
+
 @end

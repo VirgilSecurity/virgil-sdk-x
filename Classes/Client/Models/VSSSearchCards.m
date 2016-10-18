@@ -14,11 +14,11 @@
 
 @implementation VSSSearchCards
 
-+ (instancetype __nonnull)searchCardsWithScope:(VSSCardScope)scope identityType:(NSString *)identityType identities:(NSArray<NSString *> *)identities {
++ (instancetype)searchCardsWithScope:(VSSCardScope)scope identityType:(NSString *)identityType identities:(NSArray<NSString *> *)identities {
     return [[VSSSearchCards alloc] initWithScope:scope identityType:identityType identities:identities];
 }
 
-- (instancetype __nonnull)initWithScope:(VSSCardScope)scope identityType:(NSString *)identityType identities:(NSArray<NSString *> *)identities {
+- (instancetype)initWithScope:(VSSCardScope)scope identityType:(NSString *)identityType identities:(NSArray<NSString *> *)identities {
     self = [super init];
 
     if (self) {

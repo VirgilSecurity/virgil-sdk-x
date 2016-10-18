@@ -10,7 +10,6 @@
 
 @interface VSSRequestContext ()
 
-@property (nonatomic, readwrite) NSString * __nonnull uuid;
 @property (nonatomic, readwrite) NSURL * __nonnull serviceUrl;
 
 @end
@@ -23,7 +22,6 @@
         return nil;
     }
     
-    _uuid = [[[NSUUID UUID] UUIDString] lowercaseString];
     _serviceUrl = serviceUrl;
     
     return self;

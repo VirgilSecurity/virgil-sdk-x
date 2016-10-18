@@ -69,7 +69,7 @@
     dict[kVSSModelIdentity] = [self.identity copy];
     dict[kVSSModelCardScope] = vss_getCardScopeString(self.scope);
     
-    if ([self.data count] > 0) {
+    if ((self.data).count > 0) {
         dict[kVSSModelData] = [self.data copy];
     }
     
@@ -83,17 +83,17 @@
 - (instancetype)initWithDict:(NSDictionary *)candidate {
     NSString *identityTypeStr = [candidate[kVSSModelIdentityType] as:[NSString class]];
     NSString *identityValueStr = [candidate[kVSSModelIdentity] as:[NSString class]];
-    if ([identityTypeStr length] == 0 || [identityValueStr length] == 0)
+    if (identityTypeStr.length == 0 || identityValueStr.length == 0)
         return nil;
     
     NSString * scopeStr = [candidate[kVSSModelCardScope] as:[NSString class]];
-    if ([scopeStr length] == 0)
+    if (scopeStr.length == 0)
         return nil;
     
     VSSCardScope scope = vss_getCardScopeFromString(scopeStr);
     
     NSString * publicKeyStr = [candidate[kVSSModelPublicKey] as:[NSString class]];
-    if ([publicKeyStr length] == 0)
+    if (publicKeyStr.length == 0)
         return nil;
     
     NSData *publicKey = [[NSData alloc]initWithBase64EncodedString:publicKeyStr options:0];
@@ -110,7 +110,7 @@
 #pragma mark - VSSCanonicalRepresentable
 
 + (instancetype)createFromCanonicalForm:(NSData *)canonicalForm {
-    if ([canonicalForm length] == 0)
+    if (canonicalForm.length == 0)
         return nil;
     
     NSError *parseError;

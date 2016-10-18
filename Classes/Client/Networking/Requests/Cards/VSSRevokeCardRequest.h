@@ -14,4 +14,6 @@
 
 - (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context revokeCard:(VSSRevokeCard * __nonnull)revokeCard NS_DESIGNATED_INITIALIZER;
 
+- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context NS_UNAVAILABLE;
+
 @end

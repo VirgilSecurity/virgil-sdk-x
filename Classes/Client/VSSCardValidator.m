@@ -56,7 +56,7 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
 }
 
 - (void)addVerifierWithId:(NSString *)verifierId publicKey:(NSData *)publicKey {
-    if ([publicKey length] == 0)
+    if (publicKey.length == 0)
         return;
 
     VSSPublicKey *importedPublicKey = [self.crypto importPublicKey:publicKey];
