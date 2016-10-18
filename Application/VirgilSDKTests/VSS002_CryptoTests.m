@@ -264,13 +264,13 @@
         return;
     }
 
-    BOOL verified = [self.crypto verifyData:data signature:signature signerPublicKey:keyPair.publicKey error:&error];
+    BOOL isVerified = [self.crypto verifyData:data withSignature:signature signerPublicKey:keyPair.publicKey error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;
     }
 
-    XCTAssert(verified);
+    XCTAssert(isVerified);
 }
 
 - (void)testSD002_SignRandomData_IncorrectKeys_ShouldNotValidate {
@@ -286,7 +286,7 @@
         return;
     }
     
-    BOOL verified = [self.crypto verifyData:data signature:signature signerPublicKey:wrongKeyPair.publicKey error:&error];
+    BOOL verified = [self.crypto verifyData:data withSignature:signature signerPublicKey:wrongKeyPair.publicKey error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;

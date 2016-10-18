@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "VSSCardValidatorProtocol.h"
-#import "VSSCrypto.h"
+#import "VSSCryptoProtocol.h"
 
 @interface VSSCardValidator : NSObject <VSSCardValidator>
 

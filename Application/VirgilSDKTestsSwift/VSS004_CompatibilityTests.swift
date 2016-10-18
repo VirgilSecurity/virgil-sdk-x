@@ -54,7 +54,7 @@ class VSS004_CompatibilityTests: XCTestCase {
         let cipherDataStr = dict["cipher_data"]!
         let cipherData = Data(base64Encoded: cipherDataStr)!
         
-        let decryptedData = try! self.crypto.decryptData(cipherData, with: privateKey)
+        let decryptedData = try! self.crypto.decrypt(cipherData, with: privateKey)
         let decryptedDataStr = decryptedData.base64EncodedString()
         
         XCTAssert(decryptedDataStr == originalDataStr)
@@ -81,7 +81,7 @@ class VSS004_CompatibilityTests: XCTestCase {
         let cipherData = Data(base64Encoded: cipherDataStr)!
         
         for privateKey in privateKeys {
-            let decryptedData = try! self.crypto.decryptData(cipherData, with: privateKey)
+            let decryptedData = try! self.crypto.decrypt(cipherData, with: privateKey)
             let decrypteDataStr = decryptedData.base64EncodedString()
             
             XCTAssert(decrypteDataStr == originalDataStr)
@@ -96,7 +96,7 @@ class VSS004_CompatibilityTests: XCTestCase {
         
         let privateKey = self.crypto.importPrivateKey(privateKeyData, password: nil)!
         
-        let publicKey = self.crypto.extractPublicKey(from: privateKey)
+        let publicKey = self.crypto.extract(from: privateKey)
         
         let originalDataStr = dict["original_data"]!
         let originalData = Data(base64Encoded: originalDataStr)!
@@ -105,7 +105,7 @@ class VSS004_CompatibilityTests: XCTestCase {
         let cipherDataStr = dict["cipher_data"]!
         let cipherData = Data(base64Encoded: cipherDataStr)!
         
-        let decryptedData = try! self.crypto.decryptAndVerifyData(cipherData, with: privateKey, signerPublicKey: publicKey)
+        let decryptedData = try! self.crypto.decryptAndVerify(cipherData, with: privateKey, using: publicKey)
         
         let decryptedStr = String(data: decryptedData, encoding: String.Encoding.utf8)!
         
@@ -132,10 +132,10 @@ class VSS004_CompatibilityTests: XCTestCase {
         let cipherDataStr = dict["cipher_data"] as! String
         let cipherData = Data(base64Encoded: cipherDataStr)!
         
-        let signerPublicKey = self.crypto.extractPublicKey(from: privateKeys[0])
+        let signerPublicKey = self.crypto.extract(from: privateKeys[0])
         
         for privateKey in privateKeys {
-            let decryptedData = try! self.crypto.decryptAndVerifyData(cipherData, with: privateKey, signerPublicKey: signerPublicKey)
+            let decryptedData = try! self.crypto.decryptAndVerify(cipherData, with: privateKey, using: signerPublicKey)
             let decrypteDataStr = decryptedData.base64EncodedString()
             
             XCTAssert(decrypteDataStr == originalDataStr)
@@ -172,6 +172,6 @@ class VSS004_CompatibilityTests: XCTestCase {
         
         let creatorPublicKey = self.crypto.importPublicKey(card.data.publicKey)!
         
-        try! self.crypto.verifyData(fingerprint.value, signature: card.signatures[fingerprint.hexValue]!, signerPublicKey: creatorPublicKey)
+        try! self.crypto.verifyData(fingerprint.value, with: card.signatures[fingerprint.hexValue]!, using: creatorPublicKey)
     }
 }

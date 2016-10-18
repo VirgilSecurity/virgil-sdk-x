@@ -157,11 +157,11 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
     return YES;
 }
 
-- (BOOL)verifyData:(NSData *)data signature:(NSData *)signature signerPublicKey:(VSSPublicKey *)signerPublicKey error:(NSError **)errorPtr {
+- (BOOL)verifyData:(NSData *)data withSignature:(NSData *)signature signerPublicKey:(VSSPublicKey *)publicKey error:(NSError **)errorPtr {
     VSCSigner *signer = [[VSCSigner alloc] init];
     
     NSError *error;
-    NSData *signerPublicKeyData = [self exportPublicKey:signerPublicKey];
+    NSData *signerPublicKeyData = [self exportPublicKey:publicKey];
     BOOL verified = [signer verifySignature:signature data:data publicKey:signerPublicKeyData error:&error];
     
     if (error != nil) {

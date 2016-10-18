@@ -181,8 +181,6 @@
 - (void)test007_ExportSignableData_ShouldBeEqual {
     NSDictionary *dict = self.testDict[@"export_signable_request"];
     
-    NSString *privateKeyStr = dict[@"private_key"];
-    
     NSString *exportedRequest = dict[@"exported_request"];
     
     VSSCard *card = [[VSSCard alloc] initWithData:exportedRequest];
@@ -194,7 +192,7 @@
     VSSPublicKey *creatorPublicKey = [self.crypto importPublicKey:card.data.publicKey];
     
     NSError *error;
-    XCTAssert([self.crypto verifyData:fingerprint.value signature:card.signatures[fingerprint.hexValue] signerPublicKey:creatorPublicKey error:&error]);
+    XCTAssert([self.crypto verifyData:fingerprint.value withSignature:card.signatures[fingerprint.hexValue] signerPublicKey:creatorPublicKey error:&error]);
     XCTAssert(error == nil);
 }
 
