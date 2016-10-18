@@ -12,7 +12,7 @@
 
 @interface VSSSignedData : VSSBaseModel <VSSImportable, VSSExportable>
 
-@property (nonatomic, copy, readonly) NSDictionary * __nonnull signatures;
+@property (nonatomic, copy, readonly) NSDictionary<NSString *, NSData *> * __nonnull signatures;
 @property (nonatomic, copy, readonly) NSString * __nullable cardVersion;
 @property (nonatomic, copy, readonly) NSDate * __nullable createdAt;
 

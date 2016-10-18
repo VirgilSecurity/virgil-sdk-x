@@ -16,7 +16,7 @@
 
 @implementation VSSCard
 
-+ (instancetype)cardWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey data:(NSDictionary *)data {
++ (instancetype)cardWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSData *> *)data {
     VSSCardData *cardData = [VSSCardData cardDataWithIdentity:identity identityType:identityType publicKey:publicKey data:data];
     return [[VSSCard alloc] initWithCardData:cardData];
 }
@@ -25,7 +25,7 @@
     return [VSSCard cardWithIdentity:identity identityType:identityType publicKey:publicKey data:nil];
 }
 
-+ (instancetype)cardGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey data:(NSDictionary *)data {
++ (instancetype)cardGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSData *> *)data {
     VSSCardData *cardData = [VSSCardData cardDataGlobalWithIdentity:identity publicKey:publicKey data:data];
     return [[VSSCard alloc] initWithCardData:cardData];
 }
@@ -34,7 +34,7 @@
     return [VSSCard cardGlobalWithIdentity:identity publicKey:publicKey data:nil];
 }
 
-- (instancetype)initWithSnapshot:(NSData *)snapshot cardData:(VSSCardData *)cardData signatures:(NSDictionary *)signatures cardVersion:(NSString *)cardVersion createdAt:(NSDate *)createdAt {
+- (instancetype)initWithSnapshot:(NSData *)snapshot cardData:(VSSCardData *)cardData signatures:(NSDictionary<NSString *, NSData *> *)signatures cardVersion:(NSString *)cardVersion createdAt:(NSDate *)createdAt {
     self = [super initWithSnapshot:snapshot signatures:signatures cardVersion:cardVersion createdAt:createdAt];
     if (self) {
         _data = cardData;
@@ -47,7 +47,7 @@
     return [self initWithSnapshot:snapshot cardData:cardData signatures:nil cardVersion:nil createdAt:nil];
 }
 
-- (instancetype)initWithCardData:(VSSCardData *)cardData signatures:(NSDictionary *)signatures cardVersion:(NSString *)cardVersion createdAt:(NSDate *)createdAt {
+- (instancetype)initWithCardData:(VSSCardData *)cardData signatures:(NSDictionary<NSString *, NSData *> *)signatures cardVersion:(NSString *)cardVersion createdAt:(NSDate *)createdAt {
     NSData *snapshot = [cardData getCanonicalForm];
     return [self initWithSnapshot:snapshot cardData:cardData signatures:signatures cardVersion:cardVersion createdAt:createdAt];
 }
@@ -56,7 +56,7 @@
     return [self initWithCardData:cardData signatures:nil cardVersion:nil createdAt:nil];
 }
 
-- (instancetype)initWithSnapshot:(NSData *)snapshot signatures:(NSDictionary *)signatures cardVersion:(NSString *)cardVersion createdAt:(NSDate *)createdAt {
+- (instancetype)initWithSnapshot:(NSData *)snapshot signatures:(NSDictionary<NSString *, NSData *> *)signatures cardVersion:(NSString *)cardVersion createdAt:(NSDate *)createdAt {
     VSSCardData *cardData = [VSSCardData createFromCanonicalForm:snapshot];
     return [self initWithSnapshot:snapshot cardData:cardData signatures:signatures cardVersion:cardVersion createdAt:createdAt];
 }

@@ -172,6 +172,6 @@ class VSS004_CompatibilityTests: XCTestCase {
         
         let creatorPublicKey = self.crypto.importPublicKey(card.data.publicKey)!
         
-        try! self.crypto.verifyData(fingerprint.value, signature: card.signatures[fingerprint.hexValue] as! Data, signerPublicKey: creatorPublicKey)
+        try! self.crypto.verifyData(fingerprint.value, signature: card.signatures[fingerprint.hexValue]!, signerPublicKey: creatorPublicKey)
     }
 }

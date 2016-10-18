@@ -15,7 +15,7 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
 @interface VSSCardValidator ()
 
 @property (nonatomic, readwrite) id<VSSCrypto> __nonnull crypto;
-@property (nonatomic, copy, readwrite) NSDictionary * __nonnull verifiers;
+@property (nonatomic, copy, readwrite) NSDictionary<NSString *, VSSPublicKey *> * __nonnull verifiers;
 
 - (void)addVerifierWithId:(NSString * __nonnull)verifierId vssPublicKey:(VSSPublicKey * __nonnull)publicKey;
 

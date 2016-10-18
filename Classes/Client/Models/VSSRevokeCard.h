@@ -16,6 +16,6 @@
 
 + (instancetype __nonnull)revokeCardWithId:(NSString * __nonnull)cardId reason:(VSSCardRevocationReason)reason;
 
-- (instancetype __nonnull)initWithSignatures:(NSDictionary * __nullable)signatures cardVersion:(NSString * __nullable)cardVersion createdAt:(NSDate * __nullable)createdAt NS_UNAVAILABLE;
+- (instancetype __nonnull)initWithSignatures:(NSDictionary<NSString *, NSData *> * __nullable)signatures cardVersion:(NSString * __nullable)cardVersion createdAt:(NSDate * __nullable)createdAt NS_UNAVAILABLE;
 
 @end

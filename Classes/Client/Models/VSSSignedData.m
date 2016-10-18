@@ -14,7 +14,7 @@
 
 @implementation VSSSignedData
 
-- (instancetype)initWithSnapshot:(NSData *)snapshot identifier:(NSString *)identifier signatures:(NSDictionary *)signatures cardVersion:(NSString *)cardVersion createdAt:(NSDate *)createdAt {
+- (instancetype)initWithSnapshot:(NSData *)snapshot identifier:(NSString *)identifier signatures:(NSDictionary<NSString *, NSData *> *)signatures cardVersion:(NSString *)cardVersion createdAt:(NSDate *)createdAt {
     self = [super init];
     if (self) {
         _identifier = [identifier copy];
@@ -28,7 +28,7 @@
     return self;
 }
 
-- (instancetype)initWithSnapshot:(NSData *)snapshot signatures:(NSDictionary *)signatures cardVersion:(NSString *)cardVersion createdAt:(NSDate *)createdAt {
+- (instancetype)initWithSnapshot:(NSData *)snapshot signatures:(NSDictionary<NSString *, NSData *> *)signatures cardVersion:(NSString *)cardVersion createdAt:(NSDate *)createdAt {
     return [self initWithSnapshot:snapshot identifier:nil signatures:signatures cardVersion:cardVersion createdAt:createdAt];
 }
 

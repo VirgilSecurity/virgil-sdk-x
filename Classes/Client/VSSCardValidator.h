@@ -12,7 +12,7 @@
 
 @interface VSSCardValidator : NSObject <VSSCardValidator>
 
-@property (nonatomic, copy, readonly) NSDictionary * __nonnull verifiers;
+@property (nonatomic, copy, readonly) NSDictionary<NSString *, VSSPublicKey *> * __nonnull verifiers;
 
 - (instancetype __nonnull)initWithCrypto:(id<VSSCrypto> __nonnull)crypto NS_DESIGNATED_INITIALIZER;
 
