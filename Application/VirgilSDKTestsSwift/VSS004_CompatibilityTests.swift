@@ -47,7 +47,7 @@ class VSS004_CompatibilityTests: XCTestCase {
         let privateKeyStr = dict["private_key"]!
         let privateKeyData = Data(base64Encoded: privateKeyStr)!
         
-        let privateKey = self.crypto.importPrivateKey(from: privateKeyData, password: nil)!
+        let privateKey = self.crypto.importPrivateKey(from: privateKeyData)!
         
         let originalDataStr = dict["original_data"]!
         
@@ -68,7 +68,7 @@ class VSS004_CompatibilityTests: XCTestCase {
         for privateKeyStr in dict["private_keys"] as! Array<String> {
             let privateKeyData = Data(base64Encoded: privateKeyStr)!
             
-            let privateKey = self.crypto.importPrivateKey(from: privateKeyData, password: nil)!
+            let privateKey = self.crypto.importPrivateKey(from: privateKeyData)!
             
             privateKeys.append(privateKey)
         }
@@ -94,7 +94,7 @@ class VSS004_CompatibilityTests: XCTestCase {
         let privateKeyStr = dict["private_key"]!
         let privateKeyData = Data(base64Encoded: privateKeyStr)!
         
-        let privateKey = self.crypto.importPrivateKey(from: privateKeyData, password: nil)!
+        let privateKey = self.crypto.importPrivateKey(from: privateKeyData)!
         
         let publicKey = self.crypto.extractPublicKey(from: privateKey)
         
@@ -120,7 +120,7 @@ class VSS004_CompatibilityTests: XCTestCase {
         for privateKeyStr in dict["private_keys"] as! Array<String> {
             let privateKeyData = Data(base64Encoded: privateKeyStr)!
             
-            let privateKey = self.crypto.importPrivateKey(from: privateKeyData, password: nil)!
+            let privateKey = self.crypto.importPrivateKey(from: privateKeyData, withPassword: nil)!
             
             privateKeys.append(privateKey)
         }
@@ -148,7 +148,7 @@ class VSS004_CompatibilityTests: XCTestCase {
         let privateKeyStr = dict["private_key"]!
         let privateKeyData = Data(base64Encoded: privateKeyStr)!
         
-        let privateKey = self.crypto.importPrivateKey(from: privateKeyData, password: nil)!
+        let privateKey = self.crypto.importPrivateKey(from: privateKeyData, withPassword: nil)!
 
         let originalDataStr = dict["original_data"]!
         let originalData = Data(base64Encoded: originalDataStr)!

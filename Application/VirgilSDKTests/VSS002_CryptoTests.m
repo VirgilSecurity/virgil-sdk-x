@@ -264,7 +264,7 @@
         return;
     }
 
-    BOOL isVerified = [self.crypto verifyData:data withSignature:signature signerPublicKey:keyPair.publicKey error:&error];
+    BOOL isVerified = [self.crypto verifyData:data withSignature:signature usingSignerPublicKey:keyPair.publicKey error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;
@@ -286,7 +286,7 @@
         return;
     }
     
-    BOOL verified = [self.crypto verifyData:data withSignature:signature signerPublicKey:wrongKeyPair.publicKey error:&error];
+    BOOL verified = [self.crypto verifyData:data withSignature:signature usingSignerPublicKey:wrongKeyPair.publicKey error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;
@@ -309,7 +309,7 @@
         return;
     }
     
-    NSData *decryptedAndVerifiedData = [self.crypto decryptAndVerifyData:signedAndEcnryptedData withPrivateKey:receiverKeyPair.privateKey signerPublicKey:senderKeyPair.publicKey error:&error];
+    NSData *decryptedAndVerifiedData = [self.crypto decryptAndVerifyData:signedAndEcnryptedData withPrivateKey:receiverKeyPair.privateKey usingSignerPublicKey:senderKeyPair.publicKey error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;

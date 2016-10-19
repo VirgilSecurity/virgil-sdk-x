@@ -53,7 +53,7 @@
     NSString *privateKeyStr = dict[@"private_key"];
     NSData *privateKeyData = [[NSData alloc] initWithBase64EncodedString:privateKeyStr options:0];
     
-    VSSPrivateKey *privateKey = [self.crypto importPrivateKeyFromData:privateKeyData password:nil];
+    VSSPrivateKey *privateKey = [self.crypto importPrivateKeyFromData:privateKeyData withPassword:nil];
     
     NSString *originalDataStr = dict[@"original_data"];
     
@@ -77,7 +77,7 @@
     for (NSString *privateKeyStr in (NSArray *)dict[@"private_keys"]) {
         NSData *privateKeyData = [[NSData alloc] initWithBase64EncodedString:privateKeyStr options:0];
         
-        VSSPrivateKey *privateKey = [self.crypto importPrivateKeyFromData:privateKeyData password:nil];
+        VSSPrivateKey *privateKey = [self.crypto importPrivateKeyFromData:privateKeyData withPassword:nil];
         
         [privateKeys addObject:privateKey];
     }
@@ -105,14 +105,14 @@
     NSString *privateKeyStr = dict[@"private_key"];
     NSData *privateKeyData = [[NSData alloc] initWithBase64EncodedString:privateKeyStr options:0];
     
-    VSSPrivateKey *privateKey = [self.crypto importPrivateKeyFromData:privateKeyData password:nil];
+    VSSPrivateKey *privateKey = [self.crypto importPrivateKeyFromData:privateKeyData withPassword:nil];
     
     NSString *cipherDataStr = dict[@"cipher_data"];
     NSData *cipherData = [[NSData alloc] initWithBase64EncodedString:cipherDataStr options:0];
     
     NSError *error;
     VSSPublicKey *publicKey = [self.crypto extractPublicKeyFromPrivateKey:privateKey];
-    NSData *decryptedData = [self.crypto decryptAndVerifyData:cipherData withPrivateKey:privateKey signerPublicKey:publicKey error:&error];
+    NSData *decryptedData = [self.crypto decryptAndVerifyData:cipherData withPrivateKey:privateKey usingSignerPublicKey:publicKey error:&error];
     
     XCTAssert(error == nil);
     
@@ -133,7 +133,7 @@
     for (NSString *privateKeyStr in (NSArray *)dict[@"private_keys"]) {
         NSData *privateKeyData = [[NSData alloc] initWithBase64EncodedString:privateKeyStr options:0];
         
-        VSSPrivateKey *privateKey = [self.crypto importPrivateKeyFromData:privateKeyData password:nil];
+        VSSPrivateKey *privateKey = [self.crypto importPrivateKeyFromData:privateKeyData withPassword:nil];
         
         [privateKeys addObject:privateKey];
     }
@@ -149,7 +149,7 @@
     
     for (VSSPrivateKey * privateKey in privateKeys) {
         NSError *error;
-        NSData *decryptedData = [self.crypto decryptAndVerifyData:cipherData withPrivateKey:privateKey signerPublicKey:signerPublicKey error:&error];
+        NSData *decryptedData = [self.crypto decryptAndVerifyData:cipherData withPrivateKey:privateKey usingSignerPublicKey:signerPublicKey error:&error];
         NSString *decryptedDataStr = [decryptedData base64EncodedStringWithOptions:0];
         
         XCTAssert(error == nil);
@@ -163,7 +163,7 @@
     NSString *privateKeyStr = dict[@"private_key"];
     NSData *privateKeyData = [[NSData alloc] initWithBase64EncodedString:privateKeyStr options:0];
     
-    VSSPrivateKey *privateKey = [self.crypto importPrivateKeyFromData:privateKeyData password:nil];
+    VSSPrivateKey *privateKey = [self.crypto importPrivateKeyFromData:privateKeyData withPassword:nil];
     
     NSString *originalDataStr = dict[@"original_data"];
     NSData *originalData = [[NSData alloc] initWithBase64EncodedString:originalDataStr options:0];
@@ -192,7 +192,7 @@
     VSSPublicKey *creatorPublicKey = [self.crypto importPublicKeyFromData:card.data.publicKey];
     
     NSError *error;
-    XCTAssert([self.crypto verifyData:fingerprint.value withSignature:card.signatures[fingerprint.hexValue] signerPublicKey:creatorPublicKey error:&error]);
+    XCTAssert([self.crypto verifyData:fingerprint.value withSignature:card.signatures[fingerprint.hexValue] usingSignerPublicKey:creatorPublicKey error:&error]);
     XCTAssert(error == nil);
 }
 

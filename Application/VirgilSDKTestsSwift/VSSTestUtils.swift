@@ -32,7 +32,7 @@ class VSSTestUtils {
         let card = VSSCard(identity: identityValue, identityType: identityType, publicKey: exportedPublicKey)
         
         let privateAppKeyData = Data(base64Encoded: kApplicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
-        let appPrivateKey = self.crypto.importPrivateKey(from: privateAppKeyData, password: kApplicationPrivateKeyPassword)!
+        let appPrivateKey = self.crypto.importPrivateKey(from: privateAppKeyData, withPassword: kApplicationPrivateKeyPassword)!
         
         let signer = VSSSigner(crypto: self.crypto)
         
@@ -62,7 +62,7 @@ class VSSTestUtils {
         
         let privateAppKeyData = Data(base64Encoded: kApplicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
         
-        let appPrivateKey = self.crypto.importPrivateKey(from: privateAppKeyData, password: kApplicationPrivateKeyPassword)!
+        let appPrivateKey = self.crypto.importPrivateKey(from: privateAppKeyData, withPassword: kApplicationPrivateKeyPassword)!
         
         do {
             try signer.authoritySign(revokeCard, appId: kApplicationId, with: appPrivateKey)
