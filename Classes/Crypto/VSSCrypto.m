@@ -36,12 +36,12 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
     return [[VSSKeyPair alloc] initWithPrivateKey:privateKey publicKey:publicKey];
 }
 
-- (VSSPrivateKey *)importPrivateKey:(NSData *)privateKey password:(NSString *)password {
-    if (privateKey.length == 0)
+- (VSSPrivateKey *)importPrivateKeyFromData:(NSData *)data password:(NSString *)password {
+    if (data.length == 0)
         return nil;
 
     NSData *privateKeyData = (password.length == 0) ?
-        [VSCKeyPair privateKeyToDER:privateKey] : [VSCKeyPair decryptPrivateKey:privateKey privateKeyPassword:password];
+        [VSCKeyPair privateKeyToDER:data] : [VSCKeyPair decryptPrivateKey:data privateKeyPassword:password];
     
     if (privateKeyData.length == 0)
         return nil;
@@ -58,25 +58,24 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
     if (exportedPrivateKeyData.length == 0)
         return nil;
     
-    VSSPrivateKey *prKey = [[VSSPrivateKey alloc] initWithKey:exportedPrivateKeyData identifier:keyIdentifier];
+    VSSPrivateKey *privateKey = [[VSSPrivateKey alloc] initWithKey:exportedPrivateKeyData identifier:keyIdentifier];
     
-    return prKey;
+    return privateKey;
 }
 
-- (VSSPublicKey *)importPublicKey:(NSData *)publicKey {
-    NSData *keyIdentifier = [self computeHashForPublicKey:publicKey];
-    if (publicKey.length == 0)
+- (VSSPublicKey *)importPublicKeyFromData:(NSData *)data {
+    if (data.length == 0)
         return nil;
+    
+    NSData *keyIdentifier = [self computeHashForPublicKey:data];
 
-    NSData *exportedPublicKey = [VSCKeyPair publicKeyToDER:publicKey];
+    NSData *exportedPublicKey = [VSCKeyPair publicKeyToDER:data];
     if (exportedPublicKey.length == 0)
         return nil;
     
-    VSSPublicKey *pubKey = [[VSSPublicKey alloc] initWithKey:exportedPublicKey identifier:keyIdentifier];
-    if (publicKey == nil)
-        return nil;
+    VSSPublicKey *publicKey = [[VSSPublicKey alloc] initWithKey:exportedPublicKey identifier:keyIdentifier];
     
-    return pubKey;
+    return publicKey;
 }
 
 - (NSData *)exportPrivateKey:(VSSPrivateKey *)privateKey password:(NSString *)password {

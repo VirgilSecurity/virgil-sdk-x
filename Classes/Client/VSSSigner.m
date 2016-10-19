@@ -52,7 +52,7 @@ NSString *const kVSSSignerErrorDomain = @"VSSSignerErrorDomain";
         
         if (ownerSignature != nil) {
             NSError *error;
-            VSSPublicKey *publicKey = [self.crypto importPublicKey:card.data.publicKey];
+            VSSPublicKey *publicKey = [self.crypto importPublicKeyFromData:card.data.publicKey];
             BOOL isVerified = [self.crypto verifyData:fingerprint.value withSignature:ownerSignature signerPublicKey:publicKey error:&error];
             
             if (error != nil) {

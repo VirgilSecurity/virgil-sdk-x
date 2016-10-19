@@ -42,7 +42,7 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
         _crypto = crypto;
         
         NSData *servicePublicKeyData = [[NSData alloc] initWithBase64EncodedString:kVSSServicePublicKey options:0];
-        VSSPublicKey *servicePublicKey = [crypto importPublicKey:servicePublicKeyData];
+        VSSPublicKey *servicePublicKey = [crypto importPublicKeyFromData:servicePublicKeyData];
         if (servicePublicKey == nil)
             return nil;
         
@@ -59,7 +59,7 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
     if (publicKey.length == 0)
         return;
 
-    VSSPublicKey *importedPublicKey = [self.crypto importPublicKey:publicKey];
+    VSSPublicKey *importedPublicKey = [self.crypto importPublicKeyFromData:publicKey];
     if (importedPublicKey == nil)
         return;
 
@@ -81,7 +81,7 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
         return NO;
     
     NSMutableDictionary *verifiers = [self.verifiers mutableCopy];
-    VSSPublicKey *creatorPublicKey = [self.crypto importPublicKey:card.data.publicKey];
+    VSSPublicKey *creatorPublicKey = [self.crypto importPublicKeyFromData:card.data.publicKey];
     verifiers[fingerprint.hexValue] = creatorPublicKey;
 
     for (NSString *verifierId in self.verifiers.allKeys) {

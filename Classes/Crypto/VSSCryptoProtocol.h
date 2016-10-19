@@ -17,8 +17,8 @@
 
 - (VSSKeyPair * __nonnull)generateKeyPair;
 
-- (VSSPrivateKey * __nullable)importPrivateKey:(NSData * __nonnull)privateKey password:(NSString * __nullable)password;
-- (VSSPublicKey * __nullable)importPublicKey:(NSData * __nonnull)publicKey;
+- (VSSPrivateKey * __nullable)importPrivateKeyFromData:(NSData * __nonnull)data password:(NSString * __nullable)password;
+- (VSSPublicKey * __nullable)importPublicKeyFromData:(NSData * __nonnull)data;
 - (VSSPublicKey * __nonnull)extractPublicKeyFromPrivateKey:(VSSPrivateKey * __nonnull)privateKey NS_SWIFT_NAME(extractPublicKey(from:));
 
 - (NSData * __nonnull)exportPrivateKey:(VSSPrivateKey * __nonnull)privateKey password:(NSString * __nullable)password;
