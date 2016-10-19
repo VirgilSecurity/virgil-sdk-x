@@ -13,6 +13,7 @@ In this guide you will find code for every task you need to implement in order t
 * [Creating a Virgil Card](#creating-a-virgil-card)
 * [Search for Virgil Cards](#search-for-virgil-cards)
 * [Validating Virgil Cards](#validating-virgil-cards)
+* [Get a Virgil Card](#get-a-virgil-card)
 * [Revoking a Virgil Card](#revoking-a-virgil-card)
 * [Operations with Crypto Keys](#operations-with-crypto-keys)
 * [Generate Keys](#generate-keys)
@@ -96,9 +97,6 @@ To create an instance of *VSSClient* class, just call its constructor with your 
 
 ###### Objective-C
 ```objective-c
-@import VirgilCrypto;
-@import VirgilSDK;
-
 //...
 @property (nonatomic) VSSClient * __nonnull client;
 //...
@@ -120,9 +118,6 @@ The *VSSCrypto* class provides cryptographic operations in applications, such as
 
 ###### Objective-C
 ```objective-c
-@import VirgilCrypto;
-@import VirgilSDK;
-
 //...
 @property (nonatomic) VSSCrypto * __nonnull crypto;
 //...
@@ -152,7 +147,7 @@ NSString *appKeyPassword = <#Your app key password#>;
 NSURL *appKeyDataURL = [[NSBundle mainBundle] URLForResource:<#Your app key name#> withExtension:@"virgilkey"];
 NSData *appKeyData = [NSData dataWithContentsOfURL:appKeyDataURL];
 
-VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKey:appKeyData password:appKeyPassword];
+VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKeyFromData:appKeyData withPassword:appKeyPassword];
 ```
 
 ###### Swift
@@ -160,9 +155,9 @@ VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKey:appKeyData password
 let appId = <#T##String: Your appId#>
 let appKeyPassword = <#T##String: You app key password#>
 let path = Bundle.main.url(forResource: <#Your app key name#>, withExtension: "virgilkey")
-let keyData = try? Data(contentsOf: path!)
+let keyData = try! Data(contentsOf: path!)
 
-let appPrivateKey = self.crypto.importPrivateKey(keyData!, password: appKeyPassword)!
+let appPrivateKey = self.crypto.importPrivateKey(from: keyData, withPassword: appKeyPassword)!
 ```
 
 Generate a new Public/Private keypair using *VSSCrypto* class. 
@@ -193,23 +188,23 @@ let card = VSSCard(identity: "alice", identityType: "username", publicKey: expor
 then, use *VSSRequestSigner* class to sign request with owner and app keys.
 ###### Objective-C
 ```objective-c
-VSSRequestSigner *requestSigner = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
+VSSSigner *signer = [[VSSSigner alloc] initWithCrypto:self.crypto];
 
 NSError *error1;
-[requestSigner applicationSignRequest:card withPrivateKey:aliceKeys.privateKey error:&error1];
+[signer applicationSign:card withPrivateKey:aliceKeys.privateKey error:&error1];
 NSError *error2;
-[requestSigner authoritySignRequest:card appId:appId withPrivateKey:appPrivateKey error:&error2];
+[signer authoritySign:card forAppId:appId withPrivateKey:appPrivateKey error:&error2];
 ```
 
 ###### Swift
 ```swift
-let requestSigner = VSSRequestSigner(crypto: self.crypto)
+let signer = VSSSigner(crypto: self.crypto)
 
 do {
-    try requestSigner.applicationSignRequest(card, with: keyPair.privateKey)
-	try requestSigner.authoritySignRequest(card, appId: kApplicationId, with: appPrivateKey)
+    try signer.applicationSign(card, with: keyPair.privateKey)
+	try signer.authoritySign(card, forAppId: kApplicationId, with: appPrivateKey)
 }
-catch let error as Error {
+catch {
 	//...
 }
 ```
@@ -217,14 +212,14 @@ catch let error as Error {
 Publish a Virgil Card
 ###### Objective-C
 ```objective-c
-[self.client createCard:card completion:^(VSSCard *card, NSError *error) {
+[self.client registerCard:card completion:^(VSSCard *registeredCard, NSError *error) {
     //...
 }];
 ```
 
 ###### Swift
 ```swift
-self.client.createCard(card) { card, error in
+self.client.register(card) { registeredCard, error in
 	//...
 }
 ```
@@ -237,23 +232,22 @@ Performs the `Virgil Card`s search by criteria:
 
 ###### Objective-C
 ```objective-c
-VSSSearchCards *searchCards = [VSSSearchCards searchCardsWithScope:VSSCardScopeApplication identityType:@"username" identities:@[@"alice", @"bob"]];
-[self.client searchCards:searchCards completion:^(NSArray<VSSCard *>* cards, NSError *error) {
+VSSSearchCardsCritera *critera = [VSSSearchCardsCriteria searchCardsCriteriaWithScope:VSSCardScopeApplication identityType:@"username" identities:@[@"alice", @"bob"]];
+[self.client searchCardsUsingCriteria:searchCards completion:^(NSArray<VSSCard *>* foundCards, NSError *error) {
 	//...
 }];
 ```
 
 ###### Swift
 ```swift
-let searchCards = VSSSearchCards(scope: .application, identityType: "username", identities: ["alice", "bob"])
-self.client.searchCards(searchCards) { cards, error in
+let criteria = VSSSearchCardsCriteria(scope: .application, identityType: "username", identities: ["alice", "bob"])
+self.client.searchCards(using: criteria) { foundCards, error in
 	//...                
 }
 ```
 
 ## Validating Virgil Cards
 This sample uses *built-in* ```VSSCardValidator``` to validate cards. By default ```VSSCardValidator``` validates only *Cards Service* signature. 
-
 
 ###### Objective-C
 ```objective-c
@@ -275,33 +269,78 @@ let validator = VSSCardValidator(crypto: self.crypto)
 let isValid = validator.validate(card)
 ```
 
+For convenience you can embed validator into the client and all cards received from the Virgil service will be automatically validated for you.
+If validation process failes during client queries, error will be generated.
+
+
+###### Objective-C
+```objective-c
+self.crypto = [[VSSCrypto alloc] init];
+
+VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.crypto];
+[validator addVerifierWithId:<#Verifier card id#> publicKey:<#Verifier public key#>];
+
+VSSServiceConfig *config = [VSSServiceConfig serviceConfigWithToken:kApplicationToken];
+config.cardValidator = validator;
+
+self.client = [[VSSClient alloc] initWithServiceConfig:config];
+```
+
+###### Swift
+```swift
+self.crypto = VSSCrypto()
+
+let validator = VSSCardValidator(crypto: self.crypto)
+validator.addVerifier(withId: <#Verifier card id#>, publicKey: <#Verifier public key#>)
+
+let config = VSSServiceConfig(token: kApplicationToken)
+config.cardValidator = validator
+
+self.client = VSSClient(serviceConfig: config)
+```
+
+## Get a Virgil Card
+###### Objective-C
+```objective-c
+[self.client getCardWithId:cardIdentifier completion:^(VSSCard *foundCard, NSError *error) {
+    //...
+}];
+```
+
+###### Swift
+```swift
+self.client.getCard(withId: cardIdentifier) { card, error in
+    //...
+}
+```
+
 ## Revoking a Virgil Card
 ###### Objective-C
 ```objective-c
-VSSRevokeCard *revokeCard = [VSSRevokeCard revokeCardWithId:<#Your cardId#> reason:VSSCardRevocationReasonUnspecified];
+VSSRevokeCard *card = [VSSRevokeCard revokeCardWithCardId:<#Your cardId#> reason:VSSCardRevocationReasonUnspecified];
 
-VSSRequestSigner *requestSigner = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
+VSSSigner *signer = [[VSSSigner alloc] initWithCrypto:self.crypto];
 NSError *error;
-[requestSigner authoritySignRequest:revokeCard appId:appId withPrivateKey:appPrivateKey error:&error];
+[signer authoritySign:card forAppId:appId withPrivateKey:appPrivateKey error:&error];
 
-[self.client revokeCard:revokeCard completion:^(NSError *error) {
+[self.client revokeCard:card completion:^(NSError *error) {
 	//...
 }];
 ```
 
 ###### Swift
 ```swift
-let revokeCard = VSSRevokeCard(id: <#Your cardId#>, reason: .unspecified)
+let card = VSSRevokeCard(cardId: <#Your cardId#>, reason: .unspecified)
 
-let requestSigner = VSSRequestSigner(crypto: self.crypto)
+let signer = VSSSigner(crypto: self.crypto)
 do {
-	try requestSigner.authoritySignRequest(revokeCard, appId: appId, with: appPrivateKey)
+	try signer.authoritySign(card, forAppId: appId, with: appPrivateKey)
 }
-catch let error as Error {
+catch {
 	// ...
 }
 
-self.client.revokeCard(revokeCard) { error in
+self.client.revoke(card) { error in
 	//...
 }
 ```
@@ -328,28 +367,28 @@ To export Public/Private keys, simply call one of the Export methods:
 
 ###### Objective-C
 ```objective-c
-NSData *exportedPrivateKey = [self.crypto exportPrivateKey:aliceKeys.privateKey password:nil];
-NSData *exportedPublicKey = [self.crypto exportPublicKey:aliceKeys.privateKey];
+NSData *alicePrivateKey = [self.crypto exportPrivateKey:aliceKeys.privateKey withPassword:nil];
+NSData *alicePublicKey = [self.crypto exportPublicKey:aliceKeys.publicKey];
 ```
 
 ###### Swift
 ```swift
-let exportedPrivateKey = self.crypto.export(aliceKeys.privateKey, password: nil)
-let exportedPublicKey = self.crypto.export(aliceKeys.publicKey)
+let alicePrivateKeyData = self.crypto.export(aliceKeys.privateKey, withPassword: nil)
+let alicePublicKeyData = self.crypto.export(aliceKeys.publicKey)
 ```
 
 To import Public/Private keys, simply call one of the Import methods:
 
 ###### Objective-C
 ```objective-c
-VSSPrivateKey *privateKey = [self.crypto importPrivateKey:exportedPrivateKey password:nil];
-VSSPublicKey *publicKey = [self.crypto importPublicKey:exportedPublicKey];
+VSSPrivateKey *alicePrivateKey = [self.crypto importPrivateKeyFromData:alicePrivateKeyData withPassword:nil];
+VSSPublicKey *alicePublicKey = [self.crypto importPublicKeyFromData:alicePublicKey];
 ```
 
 ###### Swift
 ```swift
-let privateKey = self.crypto.import(exportedPrivateKey, password: nil)
-let publicKey = self.crypto.export(aliceKeys.publicKey)
+let alicePrivateKey = self.crypto.import(from: alicePrivateKeyData, password: nil)
+let alicePublicKey = self.crypto.import(from: alicePublicKeyData)
 ```
 
 ## Encryption and Decryption
@@ -381,8 +420,8 @@ NSData *encryptedData = [self.crypto encryptData:plainText forRecipients:@[alice
 
 ###### Swift
 ```swift
-let plainText = "Hello, Bob!".data(using: String.Encoding.utf8)
-let encryptedData = try? crypto.encryptData(plainText, forRecipients: [aliceKeys.publicKey])
+let plainTextData = "Hello, Bob!".data(using: .utf8)
+let encryptedData = try? crypto.encrypt(plainTextData, for: [aliceKeys.publicKey])
 ```
 
 *Stream*
@@ -392,7 +431,7 @@ NSInputStream *inputStreamForEncryption = [[NSInputStream alloc] initWithURL:fil
 NSOutputStream *outputStreamForEncryption = [[NSOutputStream alloc] initToMemory];
 
 NSError *error;
-[self.crypto encryptStream:inputStreamForEncryption outputStream:outputStreamForEncryption forRecipients: @[aliceKeys.publicKey] error:&error];
+[self.crypto encryptStream:inputStreamForEncryption toOutputStream:outputStreamForEncryption forRecipients: @[aliceKeys.publicKey] error:&error];
 ```
 
 ###### Swift
@@ -402,9 +441,9 @@ let inputStreamForEncryption = InputStream(url: fileURL)!
 let outputStreamForEncryption = OutputStream.toMemory()
 
 do {
-	try self.crypto.encryptStream(inputStreamForEncryption, outputStream: outputStreamForEncryption, forRecipients: [aliceKeys.publicKey])
+	try self.crypto.encrypt(inputStreamForEncryption, to: outputStreamForEncryption, for: [aliceKeys.publicKey])
 }
-catch let error as Error {
+catch {
 	//...            
 }
 ```
@@ -415,12 +454,12 @@ You can decrypt either stream or data using your private key
 *Data*
 ```objective-c
 NSError *error;
-NSData *decryptedData = [self.crypto decryptData:encryptedData privateKey:aliceKeys.privateKey error:&error];
+NSData *decryptedData = [self.crypto decryptData:encryptedData withPrivateKey:aliceKeys.privateKey error:&error];
 ```
 
 ###### Swift
 ```swift
-let decrytedData = try? self.crypto.decryptData(encryptedDta, privateKey: aliceKeys.privateKey)
+let decrytedData = try? self.crypto.decrypt(encryptedData, with: aliceKeys.privateKey)
 ```
 
 *Stream*
@@ -431,7 +470,7 @@ NSInputStream *inputStreamForDecryption = [[NSInputStream alloc] initWithURL:fil
 NSOutputStream *outputStreamForDecryption = [[NSOutputStream alloc] initToMemory];
 
 NSError *error;
-[self.crypto decryptStream:inputStreamForDecryption outputStream:outputStreamForDecryption privateKey:aliceKeys.privateKey error:&error];
+[self.crypto decryptStream:inputStreamForDecryption toOutputStream:outputStreamForDecryption withPrivateKey:aliceKeys.privateKey error:&error];
 ```
 
 ###### Swift
@@ -441,9 +480,9 @@ let inputStreamForDecryption = InputStream(url: fileURL)!
 let outputStreamForDecryption = OutputStream.toMemory()
 
 do {
-	try self.crypto.decryptStream(inputStreamForDecryption, outputStream: outputStreamForDecryption, privateKey: aliceKeys.privateKey)
+	try self.crypto.decrypt(inputStreamForDecryption, to: outputStreamForDecryption, with: aliceKeys.privateKey)
 }
-catch let error as Error {
+catch {
 	//...            
 }
 ```
@@ -457,29 +496,29 @@ Sign the SHA-384 fingerprint of either stream or data using your private key. To
 
 *Data*
 ```objective-c
-NSData *plainText = [@"Hello, Bob!" dataUsingEncoding:NSUTF8StringEncoding];
+NSData *plainTextData = [@"Hello, Bob!" dataUsingEncoding:NSUTF8StringEncoding];
 NSError *error;
-NSData *signature = [self.crypto signData:data privateKey:keyPair.privateKey error:&error];
+NSData *signature = [self.crypto generateSignatureForData:plainTextData withPrivateKey:keyPair.privateKey error:&error];
 ```
 
 ###### Swift
 ```swift
-let plainText = "Hello, Bob!".data(using: String.Encoding.utf8)
-let signature = try? self.crypto.sign(plainText, privateKey: aliceKeys.privateKey)
+let plainTextData = "Hello, Bob!".data(using: .utf8)!
+let signature = try? self.crypto.generateSignature(for: plainTextData, with: aliceKeys.privateKey)
 ```
 
 *Stream*
 ```objective-c
 NSURL *fileURL = [[NSBundle mainBundle] URLForResource:<#Your data file name#> withExtension:<#Your data file extension#>];
 NSInputStream *inputStreamForEncryption = [[NSInputStream alloc] initWithURL:fileURL];
-NSData *signature = [self.crypto signStream:inputStreamForEncryption privateKey:aliceKeys.privateKey error:&error];
+NSData *signature = [self.crypto generateSignatureForStream:inputStreamForEncryption withPrivateKey:aliceKeys.privateKey error:&error];
 ```
 
 ###### Swift
 ```swift
 let fileURL = Bundle.main.url(forResource: <#Your data file name#>, withExtension: <#Your data file extension#>)!
 let inputStreamForSignature = InputStream(url: fileURL)!
-let signature = try? self.crypto.sign(inputStreamForSignature, privateKey: aliceKeys.privateKey)
+let signature = try? self.crypto.generateSignature(for: inputStreamForSignature, with: aliceKeys.privateKey)
 ```
 
 ### Verifying a Signature
@@ -489,23 +528,23 @@ Verify the signature of the SHA-384 fingerprint of either stream or a data using
 *Data*
 ```objective-c
 NSError *error;
-BOOL isVerified = [self.crypto verifyData:data signature:signature signerPublicKey:aliceKeys.publicKey error:&error];
+BOOL isVerified = [self.crypto verifyData:data withSignature:signature usingSignerPublicKey:aliceKeys.publicKey error:&error];
 ```
 
 ###### Swift
 ```swift
-let isVerified = try? self.crypto.verifyData(data, signature: signature, signerPublicKey: aliceKeys.publicKey)
+let isVerified = try? self.crypto.verifyData(data, withSignature: signature, usingSignerPublicKey: aliceKeys.publicKey)
 ```
 
 *Stream*
 ```objective-c
 NSError *error;
-BOOL isVerified = [self.crypto verifyStream:strean signature:signature signerPublicKey:aliceKeys.publicKey error:&error];
+BOOL isVerified = [self.crypto verifyStream:strean withSignature:signature usingSignerPublicKey:aliceKeys.publicKey error:&error];
 ```
 
 ###### Swift
 ```swift
-let isVerified = try? self.crypto.verifyStream(stream, signature: signature, signerPublicKey: aliceKeys.publicKey)
+let isVerified = try? self.crypto.verifyStream(stream, withSignature: signature, usingSignerPublicKey: aliceKeys.publicKey)
 ```
 
 ## Fingerprint Generation
