@@ -228,7 +228,7 @@ class VSS002_CryptoTests: XCTestCase {
 
         let keyPair = self.crypto.generateKeyPair()
         
-        let signature = try! self.crypto.signature(for: data, privateKey: keyPair.privateKey)
+        let signature = try! self.crypto.generateSignature(for: data, with: keyPair.privateKey)
         
         try! self.crypto.verifyData(data, with: signature, using: keyPair.publicKey)
     }
@@ -239,7 +239,7 @@ class VSS002_CryptoTests: XCTestCase {
         let keyPair = self.crypto.generateKeyPair()
         let wrongKeyPair = self.crypto.generateKeyPair()
         
-        let signature = try! self.crypto.signature(for: data, privateKey: keyPair.privateKey)
+        let signature = try! self.crypto.generateSignature(for: data, with: keyPair.privateKey)
         
         var errorWasThrown = false
         do {

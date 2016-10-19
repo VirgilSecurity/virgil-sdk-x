@@ -25,9 +25,9 @@ class VSS001_ClientTests: XCTestCase {
         self.crypto = VSSCrypto()
         
         let validator = VSSCardValidator(crypto: self.crypto)
-        let config = VSSServiceConfig()
+        let config = VSSServiceConfig(token: kApplicationToken)
         config.cardValidator = validator
-        self.client = VSSClient(applicationToken: kApplicationToken, serviceConfig: config)
+        self.client = VSSClient(serviceConfig: config)
         
         self.utils = VSSTestUtils(crypto: self.crypto)
     }
@@ -49,23 +49,19 @@ class VSS001_ClientTests: XCTestCase {
         
         let instantiatedCard = self.utils.instantiateCard()!
         
-        self.client.createCard(instantiatedCard) { (card, error) in
+        self.client.register(instantiatedCard) { (registeredCard, error) in
             guard error == nil else {
                 XCTFail("Failed: " + error!.localizedDescription)
                 return
             }
             
-            guard let createdCard = card else {
+            guard let card = registeredCard else {
                 XCTFail("Card is nil")
                 return
             }
             
-            XCTAssert(!createdCard.identifier!.isEmpty)
-            XCTAssert(self.utils.check(card: instantiatedCard, isEqualToCard: createdCard))
-            let validator = VSSCardValidator(crypto: self.crypto)
-            validator.addVerifier(withId: kApplicationId, publicKey: Data(base64Encoded: kApplicationPublicKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!)
-            
-            XCTAssert(validator.validate(createdCard))
+            XCTAssert(!card.identifier!.isEmpty)
+            XCTAssert(self.utils.check(card: card, isEqualToCard: instantiatedCard))
             
             ex.fulfill()
         }
@@ -86,14 +82,14 @@ class VSS001_ClientTests: XCTestCase {
         
         let instantiatedCard = self.utils.instantiateCard()!
         
-        self.client.createCard(instantiatedCard) { (card, error) in
+        self.client.register(instantiatedCard) { (registeredCard, error) in
             guard error == nil else {
                 XCTFail("Failed: " + error!.localizedDescription)
                 return
             }
             
-            let searchCards = VSSSearchCards(scope: .application, identityType: card!.data.identityType, identities: [card!.data.identity])
-            self.client.searchCards(searchCards) { cards, error in
+            let criteria = VSSSearchCardsCriteria(scope: .application, identityType: registeredCard!.data.identityType, identities: [registeredCard!.data.identity])
+            self.client.searchCards(using: criteria) { cards, error in
                 guard error == nil else {
                     XCTFail("Failed: " + error!.localizedDescription)
                     return
@@ -105,7 +101,7 @@ class VSS001_ClientTests: XCTestCase {
                 }
                 
                 XCTAssert(foundCards.count == 1);
-                XCTAssert(self.utils.check(card: foundCards[0], isEqualToCard: card!))
+                XCTAssert(self.utils.check(card: foundCards[0], isEqualToCard: registeredCard!))
                 
                 ex.fulfill()
             }
@@ -127,13 +123,13 @@ class VSS001_ClientTests: XCTestCase {
         
         let instantiatedCard = self.utils.instantiateCard()!
         
-        self.client.createCard(instantiatedCard) { (newCard, error) in
+        self.client.register(instantiatedCard) { (registeredCard, error) in
             guard error == nil else {
                 XCTFail("Failed: " + error!.localizedDescription)
                 return
             }
             
-            self.client.getCardWithId(newCard!.identifier!) { card, error in
+            self.client.getCard(withId: registeredCard!.identifier!) { card, error in
                 guard error == nil else {
                     XCTFail("Failed: " + error!.localizedDescription)
                     return
@@ -144,8 +140,8 @@ class VSS001_ClientTests: XCTestCase {
                     return
                 }
                 
-                XCTAssert(foundCard.identifier == newCard!.identifier!)
-                XCTAssert(self.utils.check(card: foundCard, isEqualToCard: newCard!))
+                XCTAssert(foundCard.identifier == registeredCard!.identifier!)
+                XCTAssert(self.utils.check(card: foundCard, isEqualToCard: registeredCard!))
                 
                 ex.fulfill()
             }
@@ -167,15 +163,15 @@ class VSS001_ClientTests: XCTestCase {
         
         let instantiatedCard = self.utils.instantiateCard()!
         
-        self.client.createCard(instantiatedCard) { (newCard, error) in
+        self.client.register(instantiatedCard) { (registeredCard, error) in
             guard error == nil else {
                 XCTFail("Failed: " + error!.localizedDescription)
                 return
             }
             
-            let revokeCard = self.utils.instantiateRevokeCardFor(card: newCard!)
+            let card = self.utils.instantiateRevokeCardFor(card: registeredCard!)
             
-            self.client.revokeCard(revokeCard) { error in
+            self.client.revoke(card) { error in
                 guard error == nil else {
                     XCTFail("Failed: " + error!.localizedDescription)
                     return

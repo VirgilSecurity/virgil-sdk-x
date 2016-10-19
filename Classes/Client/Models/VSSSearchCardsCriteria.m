@@ -1,5 +1,5 @@
 //
-//  VSSSearchCards.m
+//  VSSSearchCardsCriteria.m
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 9/22/16.
@@ -7,15 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VSSSearchCardsPrivate.h"
+#import "VSSSearchCardsCriteriaPrivate.h"
 #import "NSObject+VSSUtils.h"
 #import "VSSModelKeys.h"
 #import "VSSModelCommonsPrivate.h"
 
-@implementation VSSSearchCards
+@implementation VSSSearchCardsCriteria
 
-+ (instancetype)searchCardsWithScope:(VSSCardScope)scope identityType:(NSString *)identityType identities:(NSArray<NSString *> *)identities {
-    return [[VSSSearchCards alloc] initWithScope:scope identityType:identityType identities:identities];
++ (instancetype)searchCardsCriteriaWithScope:(VSSCardScope)scope identityType:(NSString *)identityType identities:(NSArray<NSString *> *)identities {
+    return [[VSSSearchCardsCriteria alloc] initWithScope:scope identityType:identityType identities:identities];
 }
 
 - (instancetype)initWithScope:(VSSCardScope)scope identityType:(NSString *)identityType identities:(NSArray<NSString *> *)identities {

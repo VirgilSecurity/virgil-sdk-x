@@ -301,7 +301,7 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
 
 #pragma mark - Signatures
 
-- (NSData *)signatureForData:(NSData *)data privateKey:(VSSPrivateKey *)privateKey error:(NSError **)errorPtr {
+- (NSData *)generateSignatureForData:(NSData *)data withPrivateKey:(VSSPrivateKey *)privateKey error:(NSError **)errorPtr {
     VSCSigner *signer = [[VSCSigner alloc] init];
     
     NSError *error;
@@ -316,7 +316,7 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
     return signature;
 }
 
-- (NSData *)signatureForStream:(NSInputStream *)stream privateKey:(VSSPrivateKey *)privateKey error:(NSError **)errorPtr {
+- (NSData *)generateSignatureForStream:(NSInputStream *)stream withPrivateKey:(VSSPrivateKey *)privateKey error:(NSError **)errorPtr {
     VSCStreamSigner *signer = [[VSCStreamSigner alloc] init];
     
     NSError *error;

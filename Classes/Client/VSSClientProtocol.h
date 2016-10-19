@@ -9,7 +9,7 @@
 #ifndef VSSClientProtocol_h
 #define VSSClientProtocol_h
 
-#import "VSSSearchCards.h"
+#import "VSSSearchCardsCriteria.h"
 #import "VSSCard.h"
 #import "VSSRevokeCard.h"
 
@@ -18,9 +18,9 @@
  */
 @protocol VSSClient <NSObject>
 
-- (void)createCard:(VSSCard * __nonnull)card completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback;
+- (void)registerCard:(VSSCard * __nonnull)card completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback NS_SWIFT_NAME(register(_:completion:));
 
-- (void)getCardWithId:(NSString * __nonnull)cardId completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback;
+- (void)getCardWithId:(NSString * __nonnull)cardId completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback NS_SWIFT_NAME(getCard(withId:completion:));
 
 /**
  * Performs search of cards only using search criteria on the Virgil Keys Service.
@@ -29,9 +29,9 @@
  * @param criteria VSSSearchCardsCriteria search criteria.
  * @param completionHandler Callback handler which will be called after request completed.
  */
-- (void)searchCards:(VSSSearchCards * __nonnull)searchCards completion:(void (^ __nonnull)(NSArray<VSSCard *>* __nullable, NSError * __nullable))callback;
+- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria * __nonnull)criteria completion:(void (^ __nonnull)(NSArray<VSSCard *>* __nullable, NSError * __nullable))callback NS_SWIFT_NAME(searchCards(using:completion:));
 
-- (void)revokeCard:(VSSRevokeCard * __nonnull)revokeCard completion:(void (^ __nonnull)(NSError * __nullable))callback;
+- (void)revokeCard:(VSSRevokeCard * __nonnull)revokeCard completion:(void (^ __nonnull)(NSError * __nullable))callback NS_SWIFT_NAME(revoke(_:completion:));
 
 @end
 

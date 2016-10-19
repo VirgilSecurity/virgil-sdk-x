@@ -31,11 +31,6 @@ extern NSString * __nonnull const kVSSClientErrorDomain;
 @interface VSSClient : NSObject <VSSClient>
 
 /**
- * String token which might be required by the service.
- */
-@property (nonatomic, copy, readonly) NSString * __nonnull token;
-
-/**
  * Service configuration object, which contains the information about the service URLs and/or service identifiers.
  */
 @property (nonatomic, copy, readonly) VSSServiceConfig * __nonnull serviceConfig;
@@ -53,7 +48,7 @@ extern NSString * __nonnull const kVSSClientErrorDomain;
  *
  * @return Instance of the Virgil client.
  */
-- (instancetype __nonnull)initWithApplicationToken:(NSString * __nonnull)token serviceConfig:(VSSServiceConfig * __nullable)serviceConfig NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithServiceConfig:(VSSServiceConfig * __nonnull)serviceConfig NS_DESIGNATED_INITIALIZER;
 
 /**
  * Convenient constructor.
@@ -65,5 +60,7 @@ extern NSString * __nonnull const kVSSClientErrorDomain;
  * @return Instance of the Virgil client.
  */
 - (instancetype __nonnull)initWithApplicationToken:(NSString * __nonnull)token;
+
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end

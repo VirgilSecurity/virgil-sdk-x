@@ -34,14 +34,14 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 - (void)setUp {
     [super setUp];
     
-    VSSServiceConfig *config = [VSSServiceConfig serviceConfigWithDefaultValues];
+    VSSServiceConfig *config = [VSSServiceConfig serviceConfigWithToken:kApplicationToken];
     self.crypto = [[VSSCrypto alloc] init];
     VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.crypto];
     [validator addVerifierWithId:kApplicationId publicKey:[[NSData alloc] initWithBase64EncodedString:kApplicationPublicKeyBase64 options:0]];
     
     config.cardValidator = validator;
     
-    self.client = [[VSSClient alloc] initWithApplicationToken:kApplicationToken serviceConfig:config];
+    self.client = [[VSSClient alloc] initWithServiceConfig:config];
     self.utils = [[VSSTestsUtils alloc] initWithCrypto:self.crypto];
 }
 
@@ -62,7 +62,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     
     VSSCard *instantiatedCard = [self.utils instantiateCard];
     
-    [self.client createCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
+    [self.client registerCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
         if (error != nil) {
             XCTFail(@"Expectation failed: %@", error);
             return;
@@ -88,15 +88,15 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     
     VSSCard *instantiatedCard = [self.utils instantiateCard];
     
-    [self.client createCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
+    [self.client registerCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
         if (error != nil) {
             XCTFail(@"Expectation failed: %@", error);
             return;
         }
         
-        VSSSearchCards *searchCards = [VSSSearchCards searchCardsWithScope:VSSCardScopeApplication identityType:card.data.identityType identities:@[card.data.identity]];
+        VSSSearchCardsCriteria *searchCardsCriteria = [VSSSearchCardsCriteria searchCardsCriteriaWithScope:VSSCardScopeApplication identityType:card.data.identityType identities:@[card.data.identity]];
         
-        [self.client searchCards:searchCards completion:^(NSArray<VSSCard *>* cards, NSError *error) {
+        [self.client searchCardsUsingCriteria:searchCardsCriteria completion:^(NSArray<VSSCard *>* cards, NSError *error) {
             if (error != nil) {
                 XCTFail(@"Expectation failed: %@", error);
                 return;
@@ -123,7 +123,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     
     VSSCard *instantiatedCard = [self.utils instantiateCard];
     
-    [self.client createCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
+    [self.client registerCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
         if (error != nil) {
             XCTFail(@"Expectation failed: %@", error);
             return;
@@ -157,7 +157,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     
     VSSCard *instantiatedCard = [self.utils instantiateCard];
     
-    [self.client createCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
+    [self.client registerCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
         if (error != nil) {
             XCTFail(@"Expectation failed: %@", error);
             return;

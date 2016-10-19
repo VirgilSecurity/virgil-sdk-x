@@ -57,7 +57,7 @@
 		42F0ABBE1D9BEEB300747799 /* VSSSignedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABBD1D9BEEB300747799 /* VSSSignedData.m */; };
 		42F0ABC71D9D04C400747799 /* VSSCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABC61D9D04C400747799 /* VSSCard.m */; };
 		42F0ABCB1D9D13BC00747799 /* VSSCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABCA1D9D13BC00747799 /* VSSCrypto.m */; };
-		42F0ABD61D9E8D5E00747799 /* VSSSearchCards.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABD51D9E8D5E00747799 /* VSSSearchCards.m */; };
+		42F0ABD61D9E8D5E00747799 /* VSSSearchCardsCriteria.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABD51D9E8D5E00747799 /* VSSSearchCardsCriteria.m */; };
 		42F8886D1DAE8AFF004D321A /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42F8886C1DAE8AFF004D321A /* testData.txt */; };
 		42FA96441DA29E5B0092D5DB /* VSSSigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FA96431DA29E5B0092D5DB /* VSSSigner.m */; };
 		42FA96471DA3C0B60092D5DB /* VSSFingerprint.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FA96461DA3C0B60092D5DB /* VSSFingerprint.m */; };
@@ -123,7 +123,7 @@
 		423B09BF1DA7C77300A63E5B /* VSSRevokeCardData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRevokeCardData.m; sourceTree = "<group>"; };
 		423B09C11DA7CD9100A63E5B /* VSSRevokeCardPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSRevokeCardPrivate.h; sourceTree = "<group>"; };
 		423B09C21DA7D0C700A63E5B /* VSSCanonicalDeserializable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCanonicalDeserializable.h; sourceTree = "<group>"; };
-		423B09C31DA7DF3400A63E5B /* VSSSearchCardsPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSSearchCardsPrivate.h; sourceTree = "<group>"; };
+		423B09C31DA7DF3400A63E5B /* VSSSearchCardsCriteriaPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSSearchCardsCriteriaPrivate.h; sourceTree = "<group>"; };
 		423B09C41DA7E50B00A63E5B /* VSSRequestContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSRequestContext.h; sourceTree = "<group>"; };
 		423B09C51DA7E50B00A63E5B /* VSSRequestContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRequestContext.m; sourceTree = "<group>"; };
 		423B09E61DA8FB4300A63E5B /* VSS001_ClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS001_ClientTests.m; sourceTree = "<group>"; };
@@ -198,8 +198,8 @@
 		42F0ABC91D9D13B100747799 /* VSSCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCrypto.h; sourceTree = "<group>"; };
 		42F0ABCA1D9D13BC00747799 /* VSSCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCrypto.m; sourceTree = "<group>"; };
 		42F0ABD31D9E883B00747799 /* VSSRequestPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSRequestPrivate.h; sourceTree = "<group>"; };
-		42F0ABD41D9E8D5E00747799 /* VSSSearchCards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSSearchCards.h; sourceTree = "<group>"; };
-		42F0ABD51D9E8D5E00747799 /* VSSSearchCards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSearchCards.m; sourceTree = "<group>"; };
+		42F0ABD41D9E8D5E00747799 /* VSSSearchCardsCriteria.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSSearchCardsCriteria.h; sourceTree = "<group>"; };
+		42F0ABD51D9E8D5E00747799 /* VSSSearchCardsCriteria.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSearchCardsCriteria.m; sourceTree = "<group>"; };
 		42F8886C1DAE8AFF004D321A /* testData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testData.txt; sourceTree = "<group>"; };
 		42FA96411DA2624B0092D5DB /* VSSCryptoPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCryptoPrivate.h; sourceTree = "<group>"; };
 		42FA96421DA29E2A0092D5DB /* VSSSigner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSSigner.h; sourceTree = "<group>"; };
@@ -471,8 +471,8 @@
 				42F0AB3F1D9ABF2200747799 /* VSSCardData.m */,
 				42F0ABC51D9D045D00747799 /* VSSCard.h */,
 				42F0ABC61D9D04C400747799 /* VSSCard.m */,
-				42F0ABD41D9E8D5E00747799 /* VSSSearchCards.h */,
-				42F0ABD51D9E8D5E00747799 /* VSSSearchCards.m */,
+				42F0ABD41D9E8D5E00747799 /* VSSSearchCardsCriteria.h */,
+				42F0ABD51D9E8D5E00747799 /* VSSSearchCardsCriteria.m */,
 				423B09BB1DA7C6F600A63E5B /* VSSRevokeCardData.h */,
 				423B09BF1DA7C77300A63E5B /* VSSRevokeCardData.m */,
 				423B09B81DA6E18100A63E5B /* VSSRevokeCard.h */,
@@ -503,7 +503,7 @@
 				42F0ABC81D9D054300747799 /* VSSCardPrivate.h */,
 				423B09BC1DA7C72300A63E5B /* VSSRevokeCardDataPrivate.h */,
 				423B09C11DA7CD9100A63E5B /* VSSRevokeCardPrivate.h */,
-				423B09C31DA7DF3400A63E5B /* VSSSearchCardsPrivate.h */,
+				423B09C31DA7DF3400A63E5B /* VSSSearchCardsCriteriaPrivate.h */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -984,7 +984,7 @@
 				42FA96441DA29E5B0092D5DB /* VSSSigner.m in Sources */,
 				42F0ABCB1D9D13BC00747799 /* VSSCrypto.m in Sources */,
 				42E75B751D991D7700750C52 /* AppDelegate.m in Sources */,
-				42F0ABD61D9E8D5E00747799 /* VSSSearchCards.m in Sources */,
+				42F0ABD61D9E8D5E00747799 /* VSSSearchCardsCriteria.m in Sources */,
 				42FA96471DA3C0B60092D5DB /* VSSFingerprint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

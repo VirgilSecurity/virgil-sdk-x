@@ -14,11 +14,7 @@
  */
 @interface VSSServiceConfig : NSObject <NSCopying>
 
-/**
- * Convenient constructor.
- */
-+ (VSSServiceConfig * __nonnull)serviceConfigWithDefaultValues;
-
+@property (nonatomic, copy) NSString * __nonnull token;
 /**
  Base URL for the Cards Service (Read/Write)
  */
@@ -34,5 +30,12 @@
  Default value is nil
  */
 @property (nonatomic, copy) VSSCardValidator * __nullable cardValidator;
+
+/**
+ * Convenient constructor.
+ */
++ (VSSServiceConfig * __nonnull)serviceConfigWithToken:(NSString * __nonnull)token;
+
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end

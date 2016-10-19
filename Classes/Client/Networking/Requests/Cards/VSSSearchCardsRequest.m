@@ -1,5 +1,5 @@
 //
-//  VSSSearchCardsRequest.m
+//  VSSSearchCardsCriteriaRequest.m
 //  VirgilSDK
 //
 //  Created by Pavel Gorb on 2/4/16.
@@ -9,7 +9,7 @@
 #import "VSSSearchCardsRequest.h"
 #import "VSSModelCommons.h"
 #import "NSObject+VSSUtils.h"
-#import "VSSSearchCardsPrivate.h"
+#import "VSSSearchCardsCriteriaPrivate.h"
 #import "VSSCardPrivate.h"
 
 @interface VSSSearchCardsRequest ()
@@ -22,11 +22,10 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithContext:(VSSRequestContext *)context searchCards:(VSSSearchCards *)searchCards {
+- (instancetype)initWithContext:(VSSRequestContext *)context searchCardsCriteria:(VSSSearchCardsCriteria *)criteria {
     self = [super initWithContext:context];
     if (self) {
-        
-        [self setRequestBodyWithObject:[searchCards serialize]];
+        [self setRequestBodyWithObject:[criteria serialize]];
     }
     return self;
 }

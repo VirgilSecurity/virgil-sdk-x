@@ -96,7 +96,7 @@ class VSS004_CompatibilityTests: XCTestCase {
         
         let privateKey = self.crypto.importPrivateKey(privateKeyData, password: nil)!
         
-        let publicKey = self.crypto.extract(from: privateKey)
+        let publicKey = self.crypto.extractPublicKey(from: privateKey)
         
         let originalDataStr = dict["original_data"]!
         let originalData = Data(base64Encoded: originalDataStr)!
@@ -132,7 +132,7 @@ class VSS004_CompatibilityTests: XCTestCase {
         let cipherDataStr = dict["cipher_data"] as! String
         let cipherData = Data(base64Encoded: cipherDataStr)!
         
-        let signerPublicKey = self.crypto.extract(from: privateKeys[0])
+        let signerPublicKey = self.crypto.extractPublicKey(from: privateKeys[0])
         
         for privateKey in privateKeys {
             let decryptedData = try! self.crypto.decryptAndVerify(cipherData, with: privateKey, using: signerPublicKey)
@@ -153,7 +153,7 @@ class VSS004_CompatibilityTests: XCTestCase {
         let originalDataStr = dict["original_data"]!
         let originalData = Data(base64Encoded: originalDataStr)!
         
-        let signature = try! self.crypto.signature(for: originalData, privateKey: privateKey)
+        let signature = try! self.crypto.generateSignature(for: originalData, with: privateKey)
         let signatureStr = signature.base64EncodedString()
         
         let originalSignatureStr = dict["signature"]

@@ -169,7 +169,7 @@
     NSData *originalData = [[NSData alloc] initWithBase64EncodedString:originalDataStr options:0];
     
     NSError *error;
-    NSData *signature = [self.crypto signatureForData:originalData privateKey:privateKey error:&error];
+    NSData *signature = [self.crypto generateSignatureForData:originalData withPrivateKey:privateKey error:&error];
     NSString *signatureStr = [signature base64EncodedStringWithOptions:0];
     
     NSString *originalSignatureStr = dict[@"signature"];

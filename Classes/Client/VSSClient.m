@@ -9,7 +9,7 @@
 #import "VSSClient.h"
 #import "NSObject+VSSUtils.h"
 
-#import "VSSSearchCards.h"
+#import "VSSSearchCardsCriteria.h"
 #import "VSSServiceConfig.h"
 
 #import "VSSCreateCardRequest.h"
@@ -30,35 +30,23 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithApplicationToken:(NSString *)token serviceConfig:(VSSServiceConfig *)serviceConfig {
+- (instancetype)initWithServiceConfig:(VSSServiceConfig *)serviceConfig {
     self = [super init];
-    if (self == nil) {
-        return nil;
-    }
-    
-    _token = [token copy];
-    if (serviceConfig == nil) {
-        _serviceConfig = [VSSServiceConfig serviceConfigWithDefaultValues];
-    }
-    else {
+    if (self) {
         _serviceConfig = [serviceConfig copy];
+    
+        _queue = [[NSOperationQueue alloc] init];
+        _queue.maxConcurrentOperationCount = 10;
+        
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+        _urlSession = [NSURLSession sessionWithConfiguration:config delegate:nil delegateQueue:_queue];
     }
-    
-    _queue = [[NSOperationQueue alloc] init];
-    _queue.maxConcurrentOperationCount = 10;
-    
-    NSURLSessionConfiguration *config = [NSURLSessionConfiguration ephemeralSessionConfiguration];
-    _urlSession = [NSURLSession sessionWithConfiguration:config delegate:nil delegateQueue:_queue];
     
     return self;
 }
 
 - (instancetype)initWithApplicationToken:(NSString *)token {
-    return [self initWithApplicationToken:token serviceConfig:nil];
-}
-
-- (instancetype)init {
-    return [self initWithApplicationToken:@"" serviceConfig:nil];
+    return [self initWithServiceConfig:[VSSServiceConfig serviceConfigWithToken:token]];
 }
 
 - (void)dealloc {
@@ -83,8 +71,8 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     }
     
     /// Before sending any request set proper token value into corresponding header field:
-    if (self.token.length > 0) {
-        [request setRequestHeaders:@{ kVSSAccessTokenHeader: [NSString stringWithFormat:@"VIRGIL %@", self.token]}];
+    if (self.serviceConfig.token.length > 0) {
+        [request setRequestHeaders:@{ kVSSAccessTokenHeader: [NSString stringWithFormat:@"VIRGIL %@", self.serviceConfig.token]}];
     }
     
 #if USE_SERVICE_REQUEST_DEBUG
@@ -111,7 +99,7 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
 
 #pragma mark - Implementation of VSSClient protocol
 
-- (void)createCard:(VSSCard *)card completion:(void (^)(VSSCard *, NSError *))callback {
+- (void)registerCard:(VSSCard *)card completion:(void (^)(VSSCard *, NSError *))callback {
     VSSRequestContext *context = [[VSSRequestContext alloc] initWithServiceUrl:self.serviceConfig.cardsServiceURL];
     VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithContext:context card:card];
     
@@ -168,9 +156,9 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     [self send:request];
 }
 
-- (void)searchCards:(VSSSearchCards *)searchCards completion:(void (^)(NSArray<VSSCard *> *, NSError *))callback {
+- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria *)criteria completion:(void (^)(NSArray<VSSCard *> *, NSError *))callback {
     VSSRequestContext *context = [[VSSRequestContext alloc] initWithServiceUrl:self.serviceConfig.cardsServiceROURL];
-    VSSSearchCardsRequest *request = [[VSSSearchCardsRequest alloc] initWithContext:context searchCards:searchCards];
+    VSSSearchCardsRequest *request = [[VSSSearchCardsRequest alloc] initWithContext:context searchCardsCriteria:criteria];
     
     VSSRequestCompletionHandler handler = ^(VSSRequest *request) {
         if (request.error != nil) {

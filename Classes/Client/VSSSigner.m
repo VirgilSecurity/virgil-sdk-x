@@ -27,7 +27,7 @@ NSString *const kVSSSignerErrorDomain = @"VSSSignerErrorDomain";
     VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:data.snapshot];
     
     NSError *error;
-    NSData *signature = [self.crypto signatureForData:fingerprint.value privateKey:privateKey error:&error];
+    NSData *signature = [self.crypto generateSignatureForData:fingerprint.value withPrivateKey:privateKey error:&error];
     
     if (error != nil) {
         if (errorPtr != nil)
@@ -77,7 +77,7 @@ NSString *const kVSSSignerErrorDomain = @"VSSSignerErrorDomain";
     }
 
     NSError *error;
-    NSData *signature = [self.crypto signatureForData:fingerprint.value privateKey:privateKey error:&error];
+    NSData *signature = [self.crypto generateSignatureForData:fingerprint.value withPrivateKey:privateKey error:&error];
     
     if (error != nil) {
         if (errorPtr != nil)
