@@ -36,13 +36,8 @@ class VSSTestUtils {
         
         let signer = VSSSigner(crypto: self.crypto)
         
-        do {
-            try signer.applicationSign(card, with: keyPair.privateKey)
-            try signer.authoritySign(card, forAppId: kApplicationId, with: appPrivateKey)
-        }
-        catch _ {
-            return nil
-        }
+        try! signer.applicationSign(card, with: keyPair.privateKey)
+        try! signer.authoritySign(card, forAppId: kApplicationId, with: appPrivateKey)
         
         return card;
     }
@@ -64,10 +59,7 @@ class VSSTestUtils {
         
         let appPrivateKey = self.crypto.importPrivateKey(from: privateAppKeyData, withPassword: kApplicationPrivateKeyPassword)!
         
-        do {
-            try signer.authoritySign(revokeCard, forAppId: kApplicationId, with: appPrivateKey)
-        }
-        catch {}
+        try! signer.authoritySign(revokeCard, forAppId: kApplicationId, with: appPrivateKey)
         
         return revokeCard
     }
