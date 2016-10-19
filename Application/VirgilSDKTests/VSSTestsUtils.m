@@ -53,7 +53,7 @@ NSString *const kApplicationId = <#NSString: Application Id#>;
 }
 
 - (VSSRevokeCard * __nonnull)instantiateRevokeCardForCard:(VSSCard * __nonnull)card {
-    VSSRevokeCard *revokeCard = [VSSRevokeCard revokeCardWithId:card.identifier reason:VSSCardRevocationReasonUnspecified];
+    VSSRevokeCard *revokeCard = [VSSRevokeCard revokeCardWithCardId:card.identifier reason:VSSCardRevocationReasonUnspecified];
     
     VSSSigner *signer = [[VSSSigner alloc] initWithCrypto:self.crypto];
     

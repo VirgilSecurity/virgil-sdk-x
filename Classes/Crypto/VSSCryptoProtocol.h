@@ -29,8 +29,8 @@
 - (BOOL)encryptStream:(NSInputStream * __nonnull)stream toOutputStream:(NSOutputStream * __nonnull)outputStream forRecipients:(NSArray<VSSPublicKey *> * __nonnull)recipients error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(encrypt(_:to:for:));
 
     // verify is defined in <usr/include/AssertMacros.h> thus can't be used as base name in NS_SWIFT_NAME
-- (BOOL)verifyData:(NSData * __nonnull)data withSignature:(NSData * __nonnull)signature usingSignerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(verifyData(_:with:using:));
-- (BOOL)verifyStream:(NSInputStream * __nonnull)stream signature:(NSData * __nonnull)signature usingSignerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(verifyStream(_:with:using:));
+- (BOOL)verifyData:(NSData * __nonnull)data withSignature:(NSData * __nonnull)signature usingSignerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(verifyData(_:withSignature:using:));
+- (BOOL)verifyStream:(NSInputStream * __nonnull)stream signature:(NSData * __nonnull)signature usingSignerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(verifyStream(_:withSignature:using:));
 
 - (NSData * __nullable)decryptData:(NSData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(decrypt(_:with:));
 - (BOOL)decryptStream:(NSInputStream * __nonnull)stream toOutputStream:(NSOutputStream * __nonnull)outputStream withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(decrypt(_:to:with:));

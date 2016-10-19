@@ -14,7 +14,7 @@
 
 @property (nonatomic, copy, readonly) VSSRevokeCardData * __nonnull data;
 
-+ (instancetype __nonnull)revokeCardWithId:(NSString * __nonnull)cardId reason:(VSSCardRevocationReason)reason;
++ (instancetype __nonnull)revokeCardWithCardId:(NSString * __nonnull)cardId reason:(VSSCardRevocationReason)reason;
 
 - (instancetype __nonnull)initWithSignatures:(NSDictionary<NSString *, NSData *> * __nullable)signatures cardVersion:(NSString * __nullable)cardVersion createdAt:(NSDate * __nullable)createdAt NS_UNAVAILABLE;
 

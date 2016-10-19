@@ -29,7 +29,7 @@ class VSS002_CryptoTests: XCTestCase {
     // MARK: Encryption tests
     
     func testED001_EncryptRandomData_SingleCorrectKey_ShouldDecrypt() {
-        let data = UUID().uuidString.data(using: String.Encoding.utf8)!
+        let data = UUID().uuidString.data(using: .utf8)!
         
         let keyPair = self.crypto.generateKeyPair()
         
@@ -41,7 +41,7 @@ class VSS002_CryptoTests: XCTestCase {
     }
     
     func testED002_EncryptRandomData_SingleIncorrectKey_ShouldNotDecrypt() {
-        let data = UUID().uuidString.data(using: String.Encoding.utf8)!
+        let data = UUID().uuidString.data(using: .utf8)!
         
         let keyPair = self.crypto.generateKeyPair()
         let wrongKeyPair = self.crypto.generateKeyPair()
@@ -54,7 +54,7 @@ class VSS002_CryptoTests: XCTestCase {
     }
     
     func testED003_EncryptRandomData_TwoCorrectKeys_ShouldDecrypt() {
-        let data = UUID().uuidString.data(using: String.Encoding.utf8)!
+        let data = UUID().uuidString.data(using: .utf8)!
         
         let keyPair1 = self.crypto.generateKeyPair()
         let keyPair2 = self.crypto.generateKeyPair()
@@ -69,7 +69,7 @@ class VSS002_CryptoTests: XCTestCase {
     }
     
     func testES001_EncryptRandomDataStream_SingleCorrectKey_ShouldDecrypt() {
-        let data = UUID().uuidString.data(using: String.Encoding.utf8)!
+        let data = UUID().uuidString.data(using: .utf8)!
         
         let keyPair = self.crypto.generateKeyPair()
         
@@ -101,7 +101,7 @@ class VSS002_CryptoTests: XCTestCase {
     }
     
     func testES002_EncryptRandomDataStream_SingleIncorrectKey_ShouldNotDecrypt() {
-        let data = UUID().uuidString.data(using: String.Encoding.utf8)!
+        let data = UUID().uuidString.data(using: .utf8)!
         
         let keyPair = self.crypto.generateKeyPair()
         let wrongKeyPair = self.crypto.generateKeyPair()
@@ -142,7 +142,7 @@ class VSS002_CryptoTests: XCTestCase {
     }
     
     func testES003_EncryptRandomDataStream_TwoCorrectKeys_ShouldDecrypt() {
-        let data = UUID().uuidString.data(using: String.Encoding.utf8)!
+        let data = UUID().uuidString.data(using: .utf8)!
         
         let keyPair1 = self.crypto.generateKeyPair()
         let keyPair2 = self.crypto.generateKeyPair()
@@ -217,24 +217,24 @@ class VSS002_CryptoTests: XCTestCase {
             return
         }
         
-        let decryptedString = String(data: decryptedData, encoding: String.Encoding.utf8)
+        let decryptedString = String(data: decryptedData, encoding: .utf8)
         
         XCTAssert(decryptedString == "Hello, Bob!")
     }
     
     // MARK: Signatures tests
     func testSD001_SignRandomData_CorrectKeys_ShouldValidate() {
-        let data = UUID().uuidString.data(using: String.Encoding.utf8)!
+        let data = UUID().uuidString.data(using: .utf8)!
 
         let keyPair = self.crypto.generateKeyPair()
         
         let signature = try! self.crypto.generateSignature(for: data, with: keyPair.privateKey)
         
-        try! self.crypto.verifyData(data, with: signature, using: keyPair.publicKey)
+        try! self.crypto.verifyData(data, withSignature: signature, using: keyPair.publicKey)
     }
     
     func testSD002_SignRandomData_IncorrectKeys_ShouldNotValidate() {
-        let data = UUID().uuidString.data(using: String.Encoding.utf8)!
+        let data = UUID().uuidString.data(using: .utf8)!
         
         let keyPair = self.crypto.generateKeyPair()
         let wrongKeyPair = self.crypto.generateKeyPair()
@@ -243,7 +243,7 @@ class VSS002_CryptoTests: XCTestCase {
         
         var errorWasThrown = false
         do {
-            try self.crypto.verifyData(data, with: signature, using: wrongKeyPair.publicKey)
+            try self.crypto.verifyData(data, withSignature: signature, using: wrongKeyPair.publicKey)
         }
         catch _ {
             errorWasThrown = true
@@ -252,7 +252,7 @@ class VSS002_CryptoTests: XCTestCase {
     }
     
     func testESD001_SignAndEncryptRandomData_CorrectKeys_ShouldDecryptValidate() {
-        let data = UUID().uuidString.data(using: String.Encoding.utf8)!
+        let data = UUID().uuidString.data(using: .utf8)!
         
         let senderKeyPair = self.crypto.generateKeyPair()
         let receiverKeyPair = self.crypto.generateKeyPair()

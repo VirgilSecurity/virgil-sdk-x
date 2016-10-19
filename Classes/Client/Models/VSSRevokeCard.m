@@ -12,7 +12,7 @@
 
 @implementation VSSRevokeCard
 
-+ (instancetype)revokeCardWithId:(NSString *)cardId reason:(VSSCardRevocationReason)reason {
++ (instancetype)revokeCardWithCardId:(NSString *)cardId reason:(VSSCardRevocationReason)reason {
     return [[VSSRevokeCard alloc] initWithCardId:cardId reason:reason];
 }
 

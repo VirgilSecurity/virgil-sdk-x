@@ -37,7 +37,7 @@ class VSS003_ModelsTests: XCTestCase {
     }
 
     func test002_RevokeCardImportExport() {
-        let revokeCard = VSSRevokeCard(id: "testId", reason: .unspecified)
+        let revokeCard = VSSRevokeCard(cardId: "testId", reason: .unspecified)
         
         let exportedData = revokeCard.exportData()
         

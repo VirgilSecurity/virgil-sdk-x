@@ -100,14 +100,14 @@ class VSS004_CompatibilityTests: XCTestCase {
         
         let originalDataStr = dict["original_data"]!
         let originalData = Data(base64Encoded: originalDataStr)!
-        let originalStr = String(data: originalData, encoding: String.Encoding.utf8)!
+        let originalStr = String(data: originalData, encoding: .utf8)!
         
         let cipherDataStr = dict["cipher_data"]!
         let cipherData = Data(base64Encoded: cipherDataStr)!
         
         let decryptedData = try! self.crypto.decryptAndVerify(cipherData, with: privateKey, using: publicKey)
         
-        let decryptedStr = String(data: decryptedData, encoding: String.Encoding.utf8)!
+        let decryptedStr = String(data: decryptedData, encoding: .utf8)!
         
         XCTAssert(originalStr == decryptedStr)
     }
@@ -172,6 +172,6 @@ class VSS004_CompatibilityTests: XCTestCase {
         
         let creatorPublicKey = self.crypto.importPublicKey(from: card.data.publicKey)!
         
-        try! self.crypto.verifyData(fingerprint.value, with: card.signatures[fingerprint.hexValue]!, using: creatorPublicKey)
+        try! self.crypto.verifyData(fingerprint.value, withSignature: card.signatures[fingerprint.hexValue]!, using: creatorPublicKey)
     }
 }

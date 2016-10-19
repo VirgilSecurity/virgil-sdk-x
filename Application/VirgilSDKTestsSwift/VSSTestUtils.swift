@@ -51,7 +51,7 @@ class VSSTestUtils {
     }
     
     func instantiateRevokeCardFor(card: VSSCard) -> VSSRevokeCard {
-        let revokeCard = VSSRevokeCard(id: card.identifier!, reason: .unspecified)
+        let revokeCard = VSSRevokeCard(cardId: card.identifier!, reason: .unspecified)
         
         let signer = VSSSigner(crypto: self.crypto)
         
