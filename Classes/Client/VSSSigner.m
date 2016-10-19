@@ -40,7 +40,7 @@ NSString *const kVSSSignerErrorDomain = @"VSSSignerErrorDomain";
     return YES;
 }
 
-- (BOOL)authoritySignData:(VSSSignedData * __nonnull)data appId:(NSString * __nonnull)appId withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError **)errorPtr {
+- (BOOL)authoritySignData:(VSSSignedData * __nonnull)data forAppId:(NSString * __nonnull)appId withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError **)errorPtr {
     VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:data.snapshot];
     
     // FIXME: We need to check owner Signature for VSSCard

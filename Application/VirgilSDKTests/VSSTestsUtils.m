@@ -47,7 +47,7 @@ NSString *const kApplicationId = <#NSString: Application Id#>;
     
     NSError *error;
     [signer applicationSignData:card withPrivateKey:keyPair.privateKey error:&error];
-    [signer authoritySignData:card appId:kApplicationId withPrivateKey:appPrivateKey error:&error];
+    [signer authoritySignData:card forAppId:kApplicationId withPrivateKey:appPrivateKey error:&error];
     
     return card;
 }
@@ -62,7 +62,7 @@ NSString *const kApplicationId = <#NSString: Application Id#>;
     VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKeyFromData:privateAppKeyData withPassword:kApplicationPrivateKeyPassword];
     
     NSError *error;
-    [signer authoritySignData:revokeCard appId:kApplicationId withPrivateKey:appPrivateKey error:&error];
+    [signer authoritySignData:revokeCard forAppId:kApplicationId withPrivateKey:appPrivateKey error:&error];
     
     return revokeCard;
 }

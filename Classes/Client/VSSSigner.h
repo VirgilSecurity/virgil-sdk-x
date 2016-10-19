@@ -24,6 +24,6 @@ extern NSString * __nonnull const kVSSSignerErrorDomain;
 
 - (BOOL)applicationSignData:(VSSSignedData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
 
-- (BOOL)authoritySignData:(VSSSignedData * __nonnull)data appId:(NSString * __nonnull)appId withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
+- (BOOL)authoritySignData:(VSSSignedData * __nonnull)data forAppId:(NSString * __nonnull)appId withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
 
 @end
