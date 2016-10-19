@@ -64,7 +64,9 @@ $ pod install
 ## Swift note
 
 Although VirgilSDK pod is using Objective-C as its primary language it might be quite easily used in a Swift application.
-After pod is installed as described above it is necessary to perform the following:
+All public API is available from Swift and is bridged using NS_SWIFT_NAME where needed.
+
+If you want to use VirgilSDK from swift it is necessary to perform the following:
 
 - Create a new header file in the Swift project.
 - Name it something like *BridgingHeader.h*
