@@ -427,6 +427,7 @@ let encryptedData = try? crypto.encrypt(plainTextData, for: [aliceKeys.publicKey
 ```
 
 *Stream*
+###### Objective-C
 ```objective-c
 NSURL *fileURL = [[NSBundle mainBundle] URLForResource:<#Your data file name#> withExtension:<#Your data file extension#>];
 NSInputStream *inputStreamForEncryption = [[NSInputStream alloc] initWithURL:fileURL];
@@ -454,6 +455,7 @@ catch {
 You can decrypt either stream or data using your private key
 
 *Data*
+###### Objective-C
 ```objective-c
 NSError *error;
 NSData *decryptedData = [self.crypto decryptData:encryptedData withPrivateKey:aliceKeys.privateKey error:&error];
@@ -465,7 +467,7 @@ let decrytedData = try? self.crypto.decrypt(encryptedData, with: aliceKeys.priva
 ```
 
 *Stream*
-
+###### Objective-C
 ```objective-c
 NSURL *fileURL = [[NSBundle mainBundle] URLForResource:<#Your encrypted data file name#> withExtension:<#Your encrypted data file extension#>];
 NSInputStream *inputStreamForDecryption = [[NSInputStream alloc] initWithURL:fileURL];
@@ -497,6 +499,7 @@ This section walks you through the steps necessary to use the *VirgilCrypto* to 
 Sign the SHA-384 fingerprint of either stream or data using your private key. To generate the signature, simply call one of the sign methods:
 
 *Data*
+###### Objective-C
 ```objective-c
 NSData *plainTextData = [@"Hello, Bob!" dataUsingEncoding:NSUTF8StringEncoding];
 NSError *error;
@@ -510,6 +513,7 @@ let signature = try? self.crypto.generateSignature(for: plainTextData, with: ali
 ```
 
 *Stream*
+###### Objective-C
 ```objective-c
 NSURL *fileURL = [[NSBundle mainBundle] URLForResource:<#Your data file name#> withExtension:<#Your data file extension#>];
 NSInputStream *inputStreamForEncryption = [[NSInputStream alloc] initWithURL:fileURL];
@@ -528,6 +532,7 @@ let signature = try? self.crypto.generateSignature(for: inputStreamForSignature,
 Verify the signature of the SHA-384 fingerprint of either stream or a data using Public key. The signature can now be verified by calling the verify method:
 
 *Data*
+###### Objective-C
 ```objective-c
 NSError *error;
 BOOL isVerified = [self.crypto verifyData:data withSignature:signature usingSignerPublicKey:aliceKeys.publicKey error:&error];
@@ -539,9 +544,10 @@ let isVerified = try? self.crypto.verifyData(data, withSignature: signature, usi
 ```
 
 *Stream*
+###### Objective-C
 ```objective-c
 NSError *error;
-BOOL isVerified = [self.crypto verifyStream:strean withSignature:signature usingSignerPublicKey:aliceKeys.publicKey error:&error];
+BOOL isVerified = [self.crypto verifyStream:stream withSignature:signature usingSignerPublicKey:aliceKeys.publicKey error:&error];
 ```
 
 ###### Swift
@@ -551,6 +557,7 @@ let isVerified = try? self.crypto.verifyStream(stream, withSignature: signature,
 
 ## Fingerprint Generation
 The default Fingerprint algorithm is SHA-256.
+###### Objective-C
 ```objective-c
 VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:data];
 ```
