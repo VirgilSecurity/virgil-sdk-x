@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = "VirgilSDK"
-  s.version               = "4.0.0-beta5"
+  s.version               = "4.0.0-beta6"
   s.summary               = "Virgil SDK for Apple devices and languages."
   s.cocoapods_version     = ">= 0.36"
   s.homepage              = "https://github.com/VirgilSecurity/virgil-sdk-x/tree/v4"
@@ -11,12 +11,13 @@ Pod::Spec.new do |s|
                               :tag => s.version }
   s.weak_frameworks       = 'Foundation'
   s.module_name           = 'VirgilSDK'
-  s.source_files          = 'Classes/**/*.{h,m}'
-  s.public_header_files   = 'Classes/Client/*.{h}',
-                            'Classes/Client/Models/*.{h}',
-                            'Classes/Client/Models/Protocols/*.{h}',
-                            'Classes/Crypto/*.{h}',
-                            'Classes/Crypto/Keys/*.{h}'
+  s.source_files          = 'Source/**/*.{h,m}'
+  s.public_header_files   = 'Source/*.{h}',
+                            'Source/Client/*.{h}',
+                            'Source/Client/Models/*.{h}',
+                            'Source/Client/Models/Protocols/*.{h}',
+                            'Source/Crypto/*.{h}',
+                            'Source/Crypto/Keys/*.{h}'
   s.requires_arc          = true
   s.dependency "VirgilCrypto", "~> 2.0"
 end
