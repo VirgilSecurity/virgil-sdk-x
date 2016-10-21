@@ -16,7 +16,7 @@
 
 @implementation VSSCard
 
-+ (instancetype)cardWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSData *> *)data {
++ (instancetype)cardWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSString *> *)data {
     VSSCardData *cardData = [VSSCardData cardDataWithIdentity:identity identityType:identityType publicKey:publicKey data:data];
     return [[VSSCard alloc] initWithCardData:cardData];
 }
@@ -25,7 +25,7 @@
     return [VSSCard cardWithIdentity:identity identityType:identityType publicKey:publicKey data:nil];
 }
 
-+ (instancetype)cardGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSData *> *)data {
++ (instancetype)cardGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSString *> *)data {
     VSSCardData *cardData = [VSSCardData cardDataGlobalWithIdentity:identity publicKey:publicKey data:data];
     return [[VSSCard alloc] initWithCardData:cardData];
 }

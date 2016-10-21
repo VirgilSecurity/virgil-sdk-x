@@ -11,10 +11,14 @@
 #import "VSSModelCommons.h"
 
 /**
- * Wrapper class representing the public key of the particular user or owner of the Virgil Card.
+ Container for public key which is used for crypto operations.
+ You can import/export VSSPublicKey from/to raw represenation. See VSSCrypto protocol.
  */
-@interface VSSPublicKey : VSSBaseModel
+@interface VSSPublicKey : NSObject
 
+/**
+ Unavailable no-argument initializer inherited from NSObject
+ */
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end

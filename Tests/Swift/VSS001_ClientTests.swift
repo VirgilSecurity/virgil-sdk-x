@@ -77,7 +77,7 @@ class VSS001_ClientTests: XCTestCase {
     }
     
     func test002_SearchCards() {
-        let ex = self.expectation(description: "Virgil Card should be created. Search should return 1 card that is equal to created card");
+        let ex = self.expectation(description: "Virgil Card should be created. Search should return 1 card which is equal to created card");
         
         let numberOfRequests = 2
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
@@ -118,7 +118,7 @@ class VSS001_ClientTests: XCTestCase {
     }
     
     func test003_GetCard() {
-        let ex = self.expectation(description: "Virgil Card should be created. Get card request should return 1 card that is equal to created card");
+        let ex = self.expectation(description: "Virgil Card should be created. Get card request should return 1 card which is equal to created card");
         
         let numberOfRequests = 2
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)

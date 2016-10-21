@@ -81,7 +81,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 }
 
 - (void)test002_SearchCards {
-    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created. Search should return 1 card that is equal to created card"];
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created. Search should return 1 card which is equal to created card"];
     
     NSUInteger numberOfRequests = 2;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
@@ -116,7 +116,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 }
 
 - (void)test003_GetCard {
-    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created. Get card request should return 1 card that is equal to created card"];
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created. Get card request should return 1 card which is equal to created card"];
     
     NSUInteger numberOfRequests = 2;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;

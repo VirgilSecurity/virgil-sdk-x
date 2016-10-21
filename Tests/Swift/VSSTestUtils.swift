@@ -37,7 +37,7 @@ class VSSTestUtils {
         
         let signer = VSSSigner(crypto: self.crypto)
         
-        try! signer.applicationSign(card, with: keyPair.privateKey)
+        try! signer.ownerSign(card, with: keyPair.privateKey)
         try! signer.authoritySign(card, forAppId: kApplicationId, with: appPrivateKey)
         
         return card;

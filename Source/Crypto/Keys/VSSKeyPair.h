@@ -10,11 +10,25 @@
 #import "VSSPublicKey.h"
 #import "VSSPrivateKey.h"
 
-@interface VSSKeyPair : VSSBaseModel
+/**
+ Class which wraps pair of VSSPublicKey and VSSPrivateKey.
+ See VSSPublicKey, VSSPrivateKey.
+ */
+@interface VSSKeyPair : NSObject
 
+/**
+ VSSPublicKey of key pair
+ */
 @property (nonatomic, copy, readonly) VSSPublicKey * __nonnull publicKey;
+
+/**
+ VSSPrivateKey of key pair
+ */
 @property (nonatomic, copy, readonly) VSSPrivateKey * __nonnull privateKey;
 
+/**
+ Unavailable no-argument initializer inherited from NSObject
+ */
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end

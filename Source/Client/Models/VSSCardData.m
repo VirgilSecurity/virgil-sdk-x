@@ -19,7 +19,7 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithIdentity:(NSString *)identity identityType:(NSString *)identityType scope:(VSSCardScope)scope publicKey:(NSData *)publicKey data:(NSDictionary *)data info:(NSDictionary *)info {
+- (instancetype)initWithIdentity:(NSString *)identity identityType:(NSString *)identityType scope:(VSSCardScope)scope publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSString *> *)data info:(NSDictionary<NSString *, NSString *> *)info {
     self = [super init];
     if (self) {
         _identity = [identity copy];
@@ -33,7 +33,7 @@
     return self;
 }
 
-+ (instancetype)cardDataWithIdentity:(NSString *)identity identityType:(NSString *)identityType scope:(VSSCardScope)scope publicKey:(NSData *)publicKey data:(NSDictionary *)data {
++ (instancetype)cardDataWithIdentity:(NSString *)identity identityType:(NSString *)identityType scope:(VSSCardScope)scope publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSString *> *)data {
 
     NSDictionary *info = @{
         kVSSModelDevice: [VSSDeviceInfoUtils getDeviceModel],
@@ -43,7 +43,7 @@
     return [[VSSCardData alloc] initWithIdentity:identity identityType:identityType scope:scope publicKey:publicKey data:data info:info];
 }
 
-+ (instancetype)cardDataWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey data:(NSDictionary *)data {
++ (instancetype)cardDataWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSString *> *)data {
     return [VSSCardData cardDataWithIdentity:identity identityType:identityType scope:VSSCardScopeApplication publicKey:publicKey data:data];
 }
 
@@ -55,7 +55,7 @@
     return [VSSCardData cardDataGlobalWithIdentity:identity publicKey:publicKey data:nil];
 }
 
-+ (instancetype)cardDataGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey data:(NSDictionary *)data {
++ (instancetype)cardDataGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSString *> *)data {
     return [VSSCardData cardDataWithIdentity:identity identityType:kVSSIdentityTypeEmail scope:VSSCardScopeGlobal publicKey:publicKey data:data];
 }
 

@@ -46,7 +46,7 @@ NSString *const kApplicationId = <#NSString: Application Id#>;
     VSSSigner *signer = [[VSSSigner alloc] initWithCrypto:self.crypto];
     
     NSError *error;
-    [signer applicationSignData:card withPrivateKey:keyPair.privateKey error:&error];
+    [signer ownerSignData:card withPrivateKey:keyPair.privateKey error:&error];
     [signer authoritySignData:card forAppId:kApplicationId withPrivateKey:appPrivateKey error:&error];
     
     return card;

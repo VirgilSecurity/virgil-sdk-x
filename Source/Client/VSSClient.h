@@ -23,44 +23,43 @@
 
 #import "VSSServiceConfig.h"
 
+/**
+  NSString with Error Domain used for VSSClient-related errors (Card Validation for example)
+  */
 extern NSString * __nonnull const kVSSClientErrorDomain;
 
 /**
- * The Virgil Service Client handles all the interactions with the Virgil Services.
+ Default implementation of VSSClient protocol used for all interactions with Virgil Services.
  */
 @interface VSSClient : NSObject <VSSClient>
 
 /**
- * Service configuration object, which contains the information about the service URLs and/or service identifiers.
+ VSSServiceConfig instance, which contains the information needed to interract with Virgil Services such as service URLs, token, CardValidator.
  */
 @property (nonatomic, copy, readonly) VSSServiceConfig * __nonnull serviceConfig;
 
-///------------------------------------------
-/// @name Lifecycle
-///------------------------------------------
-
 /**
- * Designated constructor.
- * Creates instance of VSSClient particular class.
- *
- * @param token NSString containing application token received from https://developer.virgilsecurity.com/dashboard/
- * @param serviceConfig Object containing the service configuration. When nil - the default Virgil Service configuration will be used.
- *
- * @return Instance of the Virgil client.
+ Designated constructor.
+
+ @param serviceConfig VSSServiceConfig instance containing the service configuration.
+
+ @return initialized VSSClient instance
  */
 - (instancetype __nonnull)initWithServiceConfig:(VSSServiceConfig * __nonnull)serviceConfig NS_DESIGNATED_INITIALIZER;
 
 /**
- * Convenient constructor.
- * Creates instance of VSSClient particular class.
- * Call to this method is a shortcut for the initWithApplicationToken:serviceConfig: when serviceConfig is nil.
- *
- * @param token NSString containing application token received from https://developer.virgilsecurity.com/dashboard/
- *
- * @return Instance of the Virgil client.
+ Convenient constructor.
+ This constructor initialized VSSClient instance with given token and default VSSServiceConfig value (default service urls, no Card Validator).
+
+ @param token NSString containing application token received from https://developer.virgilsecurity.com/dashboard/
+
+ @return initialized VSSClient instance
  */
 - (instancetype __nonnull)initWithApplicationToken:(NSString * __nonnull)token;
 
+/**
+ Unavailable no-argument initializer inherited from NSObject.
+ */
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end

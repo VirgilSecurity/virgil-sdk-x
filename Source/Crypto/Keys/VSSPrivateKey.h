@@ -10,11 +10,14 @@
 #import "VSSPublicKey.h"
 
 /**
- * Wrapper object for user's private key. Similarly to VSSPublicKey contains actual private key data.
- * Also might contain the password which was used to protect the private key.
+ Container for private key which is used for crypto operations.
+ You can import/export VSSPrivateKey from/to raw represenation. See VSSCrypto protocol.
  */
-@interface VSSPrivateKey : VSSBaseModel
+@interface VSSPrivateKey : NSObject
 
+/**
+ Unavailable no-argument initializer inherited from NSObject
+ */
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end

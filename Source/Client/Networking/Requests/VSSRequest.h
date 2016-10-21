@@ -127,7 +127,7 @@ extern NSString * __nonnull const kVSSAccessTokenHeader;
  * Sets the HTTP headers with header name-value pairs derived from the dictionary. 
  * Existing headers are overwritten.
  *
- * @param dict String to String dictionary with key-value pars for the header names and values.
+ * @param headers String to String dictionary with key-value pars for the header names and values.
  */
 - (void)setRequestHeaders:(NSDictionary * __nonnull)headers;
 
@@ -139,7 +139,7 @@ extern NSString * __nonnull const kVSSAccessTokenHeader;
 /**
  * Sets the HTTP query string using key-value pairs derived from the dictionary.
  *
- * @param dict String to String dictionary with key-value pars for the request query string.
+ * @param params String to String dictionary with key-value pars for the request query string.
  */
 - (void)setRequestQuery:(NSDictionary * __nonnull)params;
 

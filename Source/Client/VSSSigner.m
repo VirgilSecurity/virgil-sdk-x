@@ -23,7 +23,7 @@ NSString *const kVSSSignerErrorDomain = @"VSSSignerErrorDomain";
     return self;
 }
 
-- (BOOL)applicationSignData:(VSSSignedData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError **)errorPtr {
+- (BOOL)ownerSignData:(VSSSignedData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError **)errorPtr {
     VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:data.snapshot];
     
     NSError *error;

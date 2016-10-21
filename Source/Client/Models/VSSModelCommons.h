@@ -8,11 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Enum which represents VSSCard scope.
+
+ - VSSCardScopeApplication: Scope visible only inside application
+ - VSSCardScopeGlobal:      Scope visible to all after designated confirmation process
+ */
 typedef NS_ENUM(NSInteger, VSSCardScope) {
     VSSCardScopeApplication,
     VSSCardScopeGlobal
 };
 
+/**
+ Enum which represents reason of VSSCard revocation.
+
+ - VSSCardRevocationReasonUnspecified: No reason was specified
+ - VSSCardRevocationReasonCompromised: Private Key of the card was compromised
+ */
 typedef NS_ENUM(NSInteger, VSSCardRevocationReason) {
     VSSCardRevocationReasonUnspecified,
     VSSCardRevocationReasonCompromised

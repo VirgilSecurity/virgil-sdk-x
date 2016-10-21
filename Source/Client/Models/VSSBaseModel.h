@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Base class for all Virgil Models
+ */
 @interface VSSBaseModel : NSObject
 
 @end
