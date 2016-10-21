@@ -9,7 +9,6 @@
 #import "VSSRequest.h"
 #import "VSSRequestPrivate.h"
 #import "VSSRequestContext.h"
-#import "NSString+VSSXMLEscape.h"
 #import "NSObject+VSSUtils.h"
 
 const NSTimeInterval kVSSRequestDefaultTimeout = 45.0f;

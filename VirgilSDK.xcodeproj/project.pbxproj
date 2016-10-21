@@ -112,9 +112,7 @@
 		42EB31341DB8EC33001DF4C0 /* VSSPublicKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB171D9ABF1500747799 /* VSSPublicKey.m */; };
 		42EB31371DB8EC33001DF4C0 /* VSSCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABCA1D9D13BC00747799 /* VSSCrypto.m */; };
 		42EB31391DB8EC33001DF4C0 /* VSSFingerprint.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FA96461DA3C0B60092D5DB /* VSSFingerprint.m */; };
-		42EB313B1DB8EC33001DF4C0 /* VSSKeychainValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 364782C81C5AA44500165778 /* VSSKeychainValue.m */; };
 		42EB313D1DB8EC33001DF4C0 /* NSObject+VSSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */; };
-		42EB313F1DB8EC33001DF4C0 /* NSString+VSSXMLEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF4B901C4D7FED00E901F3 /* NSString+VSSXMLEscape.m */; };
 		42EB31411DB8EC33001DF4C0 /* VSSDeviceInfoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FA96491DA3E0320092D5DB /* VSSDeviceInfoUtils.m */; };
 		42EB31471DB8ECC3001DF4C0 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB31461DB8ECC3001DF4C0 /* VirgilCrypto.framework */; };
 		81374270D92A7892BFE9B933 /* Pods_VirgilSDK_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 517DCFAC79CAB739295BEA31 /* Pods_VirgilSDK_iOS.framework */; };
@@ -142,12 +140,10 @@
 /* Begin PBXFileReference section */
 		02C00C567571547AAEC526A1 /* Pods-VirgilSDK iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirgilSDK iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-VirgilSDK iOS/Pods-VirgilSDK iOS.release.xcconfig"; sourceTree = "<group>"; };
 		21E357B35118A8749AA80055 /* Pods-VirgilSDK iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirgilSDK iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VirgilSDK iOS/Pods-VirgilSDK iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		364782C71C5AA44500165778 /* VSSKeychainValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeychainValue.h; sourceTree = "<group>"; };
-		364782C81C5AA44500165778 /* VSSKeychainValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeychainValue.m; sourceTree = "<group>"; };
+		364782C71C5AA44500165778 /* VSSKeychainValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VSSKeychainValue.h; path = "/Users/sanjo/sources/virgil-sdk-x/Source/Utils/VSSKeychainValue.h"; sourceTree = "<absolute>"; };
 		36FF4B8D1C4D7FED00E901F3 /* NSObject+VSSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+VSSUtils.h"; sourceTree = "<group>"; };
 		36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+VSSUtils.m"; sourceTree = "<group>"; };
-		36FF4B8F1C4D7FED00E901F3 /* NSString+VSSXMLEscape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+VSSXMLEscape.h"; sourceTree = "<group>"; };
-		36FF4B901C4D7FED00E901F3 /* NSString+VSSXMLEscape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+VSSXMLEscape.m"; sourceTree = "<group>"; };
+		36FF4B8F1C4D7FED00E901F3 /* NSString+VSSXMLEscape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+VSSXMLEscape.h"; path = "/Users/sanjo/sources/virgil-sdk-x/Source/Utils/NSString+VSSXMLEscape.h"; sourceTree = "<absolute>"; };
 		3E5DEA2B938856986FAE4532 /* Pods_VirgilSDKSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirgilSDKSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		423B09AA1DA52D6400A63E5B /* VSSCardValidator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCardValidator.h; sourceTree = "<group>"; };
 		423B09AB1DA52D7500A63E5B /* VSSCardValidatorProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCardValidatorProtocol.h; sourceTree = "<group>"; };
@@ -354,12 +350,8 @@
 		36FF4B8C1C4D7FED00E901F3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				364782C71C5AA44500165778 /* VSSKeychainValue.h */,
-				364782C81C5AA44500165778 /* VSSKeychainValue.m */,
 				36FF4B8D1C4D7FED00E901F3 /* NSObject+VSSUtils.h */,
 				36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */,
-				36FF4B8F1C4D7FED00E901F3 /* NSString+VSSXMLEscape.h */,
-				36FF4B901C4D7FED00E901F3 /* NSString+VSSXMLEscape.m */,
 				42FA96481DA3E0080092D5DB /* VSSDeviceInfoUtils.h */,
 				42FA96491DA3E0320092D5DB /* VSSDeviceInfoUtils.m */,
 			);
@@ -981,9 +973,7 @@
 				42EB31341DB8EC33001DF4C0 /* VSSPublicKey.m in Sources */,
 				42EB31371DB8EC33001DF4C0 /* VSSCrypto.m in Sources */,
 				42EB31391DB8EC33001DF4C0 /* VSSFingerprint.m in Sources */,
-				42EB313B1DB8EC33001DF4C0 /* VSSKeychainValue.m in Sources */,
 				42EB313D1DB8EC33001DF4C0 /* NSObject+VSSUtils.m in Sources */,
-				42EB313F1DB8EC33001DF4C0 /* NSString+VSSXMLEscape.m in Sources */,
 				42EB31411DB8EC33001DF4C0 /* VSSDeviceInfoUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
