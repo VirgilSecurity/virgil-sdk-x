@@ -1,6 +1,6 @@
-# Objective C/Swift SDK Programming Guide
+# Objective-C/Swift SDK Programming Guide
 
-Welcome to the SDK Programming Guide. This guide is a practical introduction to creating apps for the iOS platform that make use of Virgil Security features. The code examples in this guide are written in both Objective C and Swift.
+Welcome to the SDK Programming Guide. This guide is a practical introduction to creating apps for the iOS platform that make use of Virgil Security features. The code examples in this guide are written in both Objective-C and Swift.
 
 In this guide you will find code for every task you need to implement in order to create an application using Virgil Security. It also includes a description of the main classes and methods. The aim of this guide is to get you up and running quickly. You should be able to copy and paste the code provided into your own apps and use it with minumal changes.
 
@@ -154,8 +154,8 @@ VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKeyFromData:appKeyData 
 
 ###### Swift
 ```swift
-let appId = <#T##String: Your appId#>
-let appKeyPassword = <#T##String: You app key password#>
+let appId = <#String: Your appId#>
+let appKeyPassword = <#String: You app key password#>
 let path = Bundle.main.url(forResource: <#Your app key name#>, withExtension: "virgilkey")
 let keyData = try! Data(contentsOf: path!)
 
@@ -187,13 +187,13 @@ let exportedPublicKey = self.crypto.export(publicKey: aliceKeys.publicKey)
 let card = VSSCard(identity: "alice", identityType: "username", publicKey: exportedPublicKey)
 ```
 
-then, use *VSSRequestSigner* class to sign request with owner and app keys.
+then, use *VSSSigner* class to sign request with owner and app keys.
 ###### Objective-C
 ```objective-c
 VSSSigner *signer = [[VSSSigner alloc] initWithCrypto:self.crypto];
 
 NSError *error1;
-[signer applicationSign:card withPrivateKey:aliceKeys.privateKey error:&error1];
+[signer ownerSign:card withPrivateKey:aliceKeys.privateKey error:&error1];
 NSError *error2;
 [signer authoritySign:card forAppId:appId withPrivateKey:appPrivateKey error:&error2];
 ```
@@ -203,7 +203,7 @@ NSError *error2;
 let signer = VSSSigner(crypto: self.crypto)
 
 do {
-    try signer.applicationSign(card, with: keyPair.privateKey)
+    try signer.ownerSign(card, with: keyPair.privateKey)
 	try signer.authoritySign(card, forAppId: kApplicationId, with: appPrivateKey)
 }
 catch {
@@ -249,7 +249,7 @@ self.client.searchCards(using: criteria) { foundCards, error in
 ```
 
 ## Validating Virgil Cards
-This sample uses *built-in* ```VSSCardValidator``` to validate cards. By default ```VSSCardValidator``` validates only *Cards Service* signature. 
+This sample uses *built-in* ```VSSCardValidator``` to validate cards. Default ```VSSCardValidator``` validates only *Cards Service* signature. 
 
 ###### Objective-C
 ```objective-c
