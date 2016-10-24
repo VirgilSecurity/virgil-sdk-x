@@ -11,11 +11,9 @@ env:
     - DESTINATION="OS=10.0,name=iPhone 7 Plus"     SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" POD_LINT="YES"
     # - DESTINATION="OS=9.0,name=iPhone 5"           SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" POD_LINT="NO"
 
+before_install:
+  - pod repo update
 script:
-  # - set -o pipefail
-  # - xcodebuild -version
-  # - xcodebuild -showsdks
-
   # Build Framework in Debug and Run Tests if specified
   - if [ $RUN_TESTS == "YES" ]; then
       xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty;
