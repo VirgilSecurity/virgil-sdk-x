@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+//In order to make it work, add appropriate values to environment variable
 @interface VSSTestsConst : NSObject
 
 @property (nonatomic, readonly) NSString * __nonnull applicationToken;
