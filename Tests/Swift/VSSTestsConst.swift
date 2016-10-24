@@ -8,7 +8,7 @@
 
 import Foundation
 
-//In order to make it work, add appropriate values to environment variable
+//In order to make this work, substitute appropriate values
 class VSSTestsConst {
     var applicationToken: String {
         return ProcessInfo.processInfo.environment["kApplicationToken"]!
