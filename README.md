@@ -1,3 +1,8 @@
+![VirgilSDK](https://cloud.githubusercontent.com/assets/6513916/19643783/bfbf78be-99f4-11e6-8d5a-a43394f2b9b2.png)
+
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilSDK.svg)](https://img.shields.io/cocoapods/v/VirgilSDK.svg)
+[![Platform](https://img.shields.io/cocoapods/p/VirgilSDK.svg?style=flat)](http://cocoadocs.org/docsets/VirgilSDK)
+
 # Objective-C/Swift SDK Programming Guide
 
 Welcome to the SDK Programming Guide. This guide is a practical introduction to creating apps for the iOS platform that make use of Virgil Security features. The code examples in this guide are written in both Objective-C and Swift.
