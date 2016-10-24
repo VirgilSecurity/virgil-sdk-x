@@ -21,7 +21,7 @@ class VSS004_CompatibilityTests: XCTestCase {
         super.setUp()
         
         self.crypto = VSSCrypto()
-        self.utils = VSSTestUtils(crypto: self.crypto)
+        self.utils = VSSTestUtils(crypto: self.crypto, consts: VSSTestsConst())
         
         let testFileURL = Bundle(for: type(of: self)).url(forResource: "sdk_compatibility_data", withExtension: "json")!
         let testFileData = try! Data(contentsOf: testFileURL)

@@ -15,6 +15,7 @@
 #import "VSSSigner.h"
 
 #import "VSSTestsUtils.h"
+#import "VSSTestsConst.h"
 
 /// Each request should be done less than or equal this number of seconds.
 static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
@@ -24,6 +25,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 @property (nonatomic) VSSClient *client;
 @property (nonatomic) VSSCrypto *crypto;
 @property (nonatomic) VSSTestsUtils *utils;
+@property (nonatomic) VSSTestsConst *consts;
 
 @end
 
@@ -34,20 +36,23 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 - (void)setUp {
     [super setUp];
     
-    VSSServiceConfig *config = [VSSServiceConfig serviceConfigWithToken:kApplicationToken];
+    self.consts = [[VSSTestsConst alloc] init];
+    
+    VSSServiceConfig *config = [VSSServiceConfig serviceConfigWithToken:self.consts.applicationToken];
     self.crypto = [[VSSCrypto alloc] init];
     VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.crypto];
-    [validator addVerifierWithId:kApplicationId publicKey:[[NSData alloc] initWithBase64EncodedString:kApplicationPublicKeyBase64 options:0]];
+    [validator addVerifierWithId:self.consts.applicationId publicKey:[[NSData alloc] initWithBase64EncodedString:self.consts.applicationPublicKeyBase64 options:0]];
     
     config.cardValidator = validator;
     
     self.client = [[VSSClient alloc] initWithServiceConfig:config];
-    self.utils = [[VSSTestsUtils alloc] initWithCrypto:self.crypto];
+    self.utils = [[VSSTestsUtils alloc] initWithCrypto:self.crypto consts:self.consts];
 }
 
 - (void)tearDown {
     self.client = nil;
     self.crypto = nil;
+    self.consts = nil;
     
     [super tearDown];
 }

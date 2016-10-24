@@ -18,7 +18,7 @@ class VSS003_ModelsTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        self.utils = VSSTestUtils(crypto: VSSCrypto())
+        self.utils = VSSTestUtils(crypto: VSSCrypto(), consts: VSSTestsConst())
     }
     
     override func tearDown() {

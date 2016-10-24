@@ -12,19 +12,13 @@
 #import "VSSPrivateKey.h"
 #import "VSSSigner.h"
 
-NSString *const kApplicationToken = <#NSString: Application Access Token#>;
-NSString *const kApplicationPublicKeyBase64 = <# NSString: Application Public Key #>;
-NSString *const kApplicationPrivateKeyBase64 = <#NSString: Application Private Key in base64#>;
-NSString *const kApplicationPrivateKeyPassword = <#NSString: Application Private Key password#>;
-NSString *const kApplicationIdentityType = <#NSString: Application Identity Type#>;
-NSString *const kApplicationId = <#NSString: Application Id#>;
-
 @implementation VSSTestsUtils
 
-- (instancetype)initWithCrypto:(VSSCrypto *)crypto {
+- (instancetype)initWithCrypto:(VSSCrypto *)crypto consts:(VSSTestsConst *)consts {
     self = [super init];
     if (self) {
         _crypto = crypto;
+        _consts = consts;
     }
     
     return self;
@@ -36,18 +30,18 @@ NSString *const kApplicationId = <#NSString: Application Id#>;
     
     // some random value
     NSString *identityValue = [[NSUUID UUID] UUIDString];
-    NSString *identityType = kApplicationIdentityType;
+    NSString *identityType = self.consts.applicationIdentityType;
     VSSCard *card = [VSSCard cardWithIdentity:identityValue identityType:identityType publicKey:exportedPublicKey];
     
-    NSData *privateAppKeyData = [[NSData alloc] initWithBase64EncodedString:kApplicationPrivateKeyBase64 options:0];
+    NSData *privateAppKeyData = [[NSData alloc] initWithBase64EncodedString:self.consts.applicationPrivateKeyBase64 options:0];
     
-    VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKeyFromData:privateAppKeyData withPassword:kApplicationPrivateKeyPassword];
+    VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKeyFromData:privateAppKeyData withPassword:self.consts.applicationPrivateKeyPassword];
     
     VSSSigner *signer = [[VSSSigner alloc] initWithCrypto:self.crypto];
     
     NSError *error;
     [signer ownerSignData:card withPrivateKey:keyPair.privateKey error:&error];
-    [signer authoritySignData:card forAppId:kApplicationId withPrivateKey:appPrivateKey error:&error];
+    [signer authoritySignData:card forAppId:self.consts.applicationId withPrivateKey:appPrivateKey error:&error];
     
     return card;
 }
@@ -57,12 +51,12 @@ NSString *const kApplicationId = <#NSString: Application Id#>;
     
     VSSSigner *signer = [[VSSSigner alloc] initWithCrypto:self.crypto];
     
-    NSData *privateAppKeyData = [[NSData alloc] initWithBase64EncodedString:kApplicationPrivateKeyBase64 options:0];
+    NSData *privateAppKeyData = [[NSData alloc] initWithBase64EncodedString:self.consts.applicationPrivateKeyBase64 options:0];
     
-    VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKeyFromData:privateAppKeyData withPassword:kApplicationPrivateKeyPassword];
+    VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKeyFromData:privateAppKeyData withPassword:self.consts.applicationPrivateKeyPassword];
     
     NSError *error;
-    [signer authoritySignData:revokeCard forAppId:kApplicationId withPrivateKey:appPrivateKey error:&error];
+    [signer authoritySignData:revokeCard forAppId:self.consts.applicationId withPrivateKey:appPrivateKey error:&error];
     
     return revokeCard;
 }

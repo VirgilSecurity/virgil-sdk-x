@@ -17,27 +17,30 @@ class VSS001_ClientTests: XCTestCase {
     private var client: VSSClient!
     private var crypto: VSSCrypto!
     private var utils: VSSTestUtils!
+    private var consts: VSSTestsConst!
     
     // MARK: Setup
     
     override func setUp() {
         super.setUp()
         
+        self.consts = VSSTestsConst()
         self.crypto = VSSCrypto()
 
         let validator = VSSCardValidator(crypto: self.crypto)
-        validator.addVerifier(withId: kApplicationId, publicKey: Data(base64Encoded: kApplicationPublicKeyBase64)!)
-        let config = VSSServiceConfig(token: kApplicationToken)
+        validator.addVerifier(withId: self.consts.applicationId, publicKey: Data(base64Encoded: self.consts.applicationPublicKeyBase64)!)
+        let config = VSSServiceConfig(token: self.consts.applicationToken)
         config.cardValidator = validator
         self.client = VSSClient(serviceConfig: config)
         
-        self.utils = VSSTestUtils(crypto: self.crypto)
+        self.utils = VSSTestUtils(crypto: self.crypto, consts: self.consts)
     }
     
     override func tearDown() {
         self.client = nil
         self.crypto = nil
         self.utils = nil
+        self.consts = nil
         
         super.tearDown()
     }

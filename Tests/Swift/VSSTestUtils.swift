@@ -9,18 +9,13 @@
 import Foundation
 import VirgilSDK
 
-let kApplicationToken = <#String: Application Access Token#>
-let kApplicationPublicKeyBase64 = <#String: Application Public Key#>
-let kApplicationPrivateKeyBase64 = <#String: Application Private Key in base64#>
-let kApplicationPrivateKeyPassword = <#String: Application Private Key password#>
-let kApplicationIdentityType = String: <#Application Identity Type#>
-let kApplicationId = <#String: Application Id#>
-
 class VSSTestUtils {
     private var crypto: VSSCrypto
+    private var consts: VSSTestsConst
     
-    init(crypto: VSSCrypto) {
+    init(crypto: VSSCrypto, consts: VSSTestsConst) {
         self.crypto = crypto
+        self.consts = consts
     }
     
     func instantiateCard() -> VSSCard? {
@@ -29,16 +24,16 @@ class VSSTestUtils {
         
         // some random value
         let identityValue = UUID().uuidString
-        let identityType = kApplicationIdentityType
+        let identityType = self.consts.applicationIdentityType
         let card = VSSCard(identity: identityValue, identityType: identityType, publicKey: exportedPublicKey)
         
-        let privateAppKeyData = Data(base64Encoded: kApplicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
-        let appPrivateKey = self.crypto.importPrivateKey(from: privateAppKeyData, withPassword: kApplicationPrivateKeyPassword)!
+        let privateAppKeyData = Data(base64Encoded: self.consts.applicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
+        let appPrivateKey = self.crypto.importPrivateKey(from: privateAppKeyData, withPassword: self.consts.applicationPrivateKeyPassword)!
         
         let signer = VSSSigner(crypto: self.crypto)
         
         try! signer.ownerSign(card, with: keyPair.privateKey)
-        try! signer.authoritySign(card, forAppId: kApplicationId, with: appPrivateKey)
+        try! signer.authoritySign(card, forAppId: self.consts.applicationId, with: appPrivateKey)
         
         return card;
     }
@@ -56,11 +51,11 @@ class VSSTestUtils {
         
         let signer = VSSSigner(crypto: self.crypto)
         
-        let privateAppKeyData = Data(base64Encoded: kApplicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
+        let privateAppKeyData = Data(base64Encoded: self.consts.applicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
         
-        let appPrivateKey = self.crypto.importPrivateKey(from: privateAppKeyData, withPassword: kApplicationPrivateKeyPassword)!
+        let appPrivateKey = self.crypto.importPrivateKey(from: privateAppKeyData, withPassword: self.consts.applicationPrivateKeyPassword)!
         
-        try! signer.authoritySign(revokeCard, forAppId: kApplicationId, with: appPrivateKey)
+        try! signer.authoritySign(revokeCard, forAppId: self.consts.applicationId, with: appPrivateKey)
         
         return revokeCard
     }

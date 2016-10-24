@@ -29,7 +29,7 @@
     [super setUp];
     
     self.crypto = [[VSSCrypto alloc] init];
-    self.utils = [[VSSTestsUtils alloc] initWithCrypto:self.crypto];
+    self.utils = [[VSSTestsUtils alloc] initWithCrypto:self.crypto consts:[[VSSTestsConst alloc] init]];
     
     NSURL *testFileURL = [[NSBundle bundleForClass:self.class] URLForResource:@"sdk_compatibility_data" withExtension:@"json"];
     NSData *testFileData = [[NSData alloc] initWithContentsOfURL:testFileURL];

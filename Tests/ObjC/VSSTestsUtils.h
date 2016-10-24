@@ -10,17 +10,12 @@
 #import "VSSCard.h"
 #import "VSSRevokeCard.h"
 #import "VSSCrypto.h"
-
-extern NSString *__nonnull const kApplicationToken;
-extern NSString *__nonnull const kApplicationPublicKeyBase64;
-extern NSString *__nonnull const kApplicationPrivateKeyBase64;
-extern NSString *__nonnull const kApplicationPrivateKeyPassword;
-extern NSString *__nonnull const kApplicationIdentityType;
-extern NSString *__nonnull const kApplicationId;
+#import "VSSTestsConst.h"
 
 @interface VSSTestsUtils : NSObject
 
 @property (nonatomic, readonly) VSSCrypto * __nonnull crypto;
+@property (nonatomic, readonly) VSSTestsConst * __nonnull consts;
 
 - (VSSCard * __nonnull)instantiateCard;
 - (VSSRevokeCard * __nonnull)instantiateRevokeCardForCard:(VSSCard * __nonnull)card;
@@ -29,6 +24,6 @@ extern NSString *__nonnull const kApplicationId;
 
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 
-- (instancetype __nonnull)initWithCrypto:(VSSCrypto * __nonnull)crypto;
+- (instancetype __nonnull)initWithCrypto:(VSSCrypto * __nonnull)crypto consts:(VSSTestsConst * __nonnull)consts;
 
 @end

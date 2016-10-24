@@ -25,7 +25,7 @@
 - (void)setUp {
     [super setUp];
     
-    self.utils = [[VSSTestsUtils alloc] initWithCrypto:[[VSSCrypto alloc] init]];
+    self.utils = [[VSSTestsUtils alloc] initWithCrypto:[[VSSCrypto alloc] init] consts:[[VSSTestsConst alloc] init]];
 }
 
 - (void)tearDown {
