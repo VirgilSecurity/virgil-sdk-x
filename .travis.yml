@@ -12,7 +12,11 @@ env:
     - DESTINATION="OS=9.0,name=iPhone 5"           SCHEME="$IOS_FRAMEWORK_SCHEME"     SDK="$IOS_SDK"     RUN_TESTS="YES" POD_LINT="NO"
 
 before_install:
+  - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
   - pod repo update
+  - set -o pipefail
+  - xcodebuild -version
+  - xcodebuild -showsdks
 script:
   # Build Framework in Release and Run Tests if specified
   - if [ $RUN_TESTS == "YES" ]; then
