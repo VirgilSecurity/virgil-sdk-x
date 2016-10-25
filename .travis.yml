@@ -30,7 +30,7 @@ script:
           APPLICATION_PRIVATE_KEY_BASE64="$APPLICATION_PRIVATE_KEY_BASE64"\
           APPLICATION_PUBLIC_KEY_BASE64="$APPLICATION_PUBLIC_KEY_BASE64"\
           APPLICATION_TOKEN="$APPLICATION_TOKEN"\
-          test | xcpretty
+          test | xcpretty;
     else
         xcodebuild\
           -workspace "$WORKSPACE"\
@@ -45,7 +45,7 @@ script:
           APPLICATION_PRIVATE_KEY_BASE64="$APPLICATION_PRIVATE_KEY_BASE64"\
           APPLICATION_PUBLIC_KEY_BASE64="$APPLICATION_PUBLIC_KEY_BASE64"\
           APPLICATION_TOKEN="$APPLICATION_TOKEN"\
-          test | xcpretty
+          test | xcpretty;
     fi
 
   # Build Framework in Release and Run Tests if specified
@@ -64,7 +64,7 @@ script:
           APPLICATION_PRIVATE_KEY_BASE64="$APPLICATION_PRIVATE_KEY_BASE64"\
           APPLICATION_PUBLIC_KEY_BASE64="$APPLICATION_PUBLIC_KEY_BASE64"\
           APPLICATION_TOKEN="$APPLICATION_TOKEN"\
-          test | xcpretty
+          test | xcpretty;
     else
       xcodebuild\
           -workspace "$WORKSPACE"\
@@ -79,10 +79,10 @@ script:
           APPLICATION_PRIVATE_KEY_BASE64="$APPLICATION_PRIVATE_KEY_BASE64"\
           APPLICATION_PUBLIC_KEY_BASE64="$APPLICATION_PUBLIC_KEY_BASE64"\
           APPLICATION_TOKEN="$APPLICATION_TOKEN"\
-          build | xcpretty
+          build | xcpretty;
     fi
 
   # Run `pod lib lint` if specified
-  - if [ $POD_LINT == "YES" ]; then
-      pod lib lint;
-    fi
+  # - if [ $POD_LINT == "YES" ]; then
+  #     pod lib lint;
+  #   fi
