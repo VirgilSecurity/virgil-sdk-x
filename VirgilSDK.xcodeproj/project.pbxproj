@@ -73,14 +73,12 @@
 		427A636D1DB9096C00A33661 /* NSString+VSSXMLEscape.h in Headers */ = {isa = PBXBuildFile; fileRef = 36FF4B8F1C4D7FED00E901F3 /* NSString+VSSXMLEscape.h */; };
 		427A636F1DB9096C00A33661 /* VSSDeviceInfoUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 42FA96481DA3E0080092D5DB /* VSSDeviceInfoUtils.h */; };
 		42B7E3461DB8F62400D70C12 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
-		42B7E34C1DB8F64800D70C12 /* VSSTestsUtils.h in Sources */ = {isa = PBXBuildFile; fileRef = 42B147201DAFAF1800AC9975 /* VSSTestsUtils.h */; };
 		42B7E3551DB8F6E400D70C12 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C181DB8E6A700E5E2AE /* sdk_compatibility_data.json */; };
 		42B7E3561DB8F6E800D70C12 /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C191DB8E6A700E5E2AE /* testData.txt */; };
 		42B7E3601DB8F72200D70C12 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
 		42B7E3661DB8F7D100D70C12 /* VSSTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B147271DAFD5D700AC9975 /* VSSTestUtils.swift */; };
 		42B7E36B1DB8F81F00D70C12 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C181DB8E6A700E5E2AE /* sdk_compatibility_data.json */; };
 		42B7E36C1DB8F81F00D70C12 /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C191DB8E6A700E5E2AE /* testData.txt */; };
-		42B7E3731DB9028A00D70C12 /* VirgilSDK.h in Sources */ = {isa = PBXBuildFile; fileRef = 42B7E3721DB9023400D70C12 /* VirgilSDK.h */; };
 		42EB30EF1DB8EC33001DF4C0 /* VSSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB201D9ABF2200747799 /* VSSError.m */; };
 		42EB30F11DB8EC33001DF4C0 /* VSSCardsError.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB241D9ABF2200747799 /* VSSCardsError.m */; };
 		42EB30FF1DB8EC33001DF4C0 /* VSSModelCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB451D9ABF2200747799 /* VSSModelCommons.m */; };
@@ -939,9 +937,7 @@
 				425B09B81DBF63E4005531DC /* VSS002_CryptoTests.m in Sources */,
 				425B09BA1DBF63E4005531DC /* VSS004_CompatibilityTests.m in Sources */,
 				42F6C2021DBF5D1D0030C21D /* VSS001_ClientTests.m in Sources */,
-				42B7E3731DB9028A00D70C12 /* VirgilSDK.h in Sources */,
 				42F6C1FE1DBE4DD30030C21D /* VSSTestsUtils.m in Sources */,
-				42B7E34C1DB8F64800D70C12 /* VSSTestsUtils.h in Sources */,
 				42F6C20A1DBF5F680030C21D /* VSSTestsConst.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

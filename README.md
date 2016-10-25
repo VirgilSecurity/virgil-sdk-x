@@ -3,6 +3,7 @@
 [![Build Status](https://travis-ci.org/VirgilSecurity/virgil-sdk-x.svg?branch=v4)](https://travis-ci.org/VirgilSecurity/virgil-sdk-x)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilSDK.svg)](https://img.shields.io/cocoapods/v/VirgilSDK.svg)
 [![Platform](https://img.shields.io/cocoapods/p/VirgilSDK.svg?style=flat)](http://cocoadocs.org/docsets/VirgilSDK)
+[![codecov.io](https://codecov.io/github/VirgilSecurity/virgil-sdk-x/coverage.svg?branch=v4)]
 
 # Objective-C/Swift SDK Programming Guide
 

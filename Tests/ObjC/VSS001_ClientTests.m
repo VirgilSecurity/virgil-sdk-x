@@ -101,6 +101,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
         
         VSSSearchCardsCriteria *searchCardsCriteria = [VSSSearchCardsCriteria searchCardsCriteriaWithScope:VSSCardScopeApplication identityType:card.data.identityType identities:@[card.data.identity]];
         
+        sleep(1);
         [self.client searchCardsUsingCriteria:searchCardsCriteria completion:^(NSArray<VSSCard *>* cards, NSError *error) {
             if (error != nil) {
                 XCTFail(@"Expectation failed: %@", error);
@@ -134,6 +135,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
             return;
         }
         
+        sleep(1);
         [self.client getCardWithId:card.identifier completion:^(VSSCard *foundCard, NSError *error) {
             if (error != nil) {
                 XCTFail(@"Expectation failed: %@", error);
@@ -170,6 +172,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
         
         VSSRevokeCard *revokeCard = [self.utils instantiateRevokeCardForCard:card];
         
+        sleep(1);
         [self.client revokeCard:revokeCard completion:^(NSError *error) {
             if (error != nil) {
                 XCTFail(@"Expectation failed: %@", error);
