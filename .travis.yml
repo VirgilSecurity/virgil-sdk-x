@@ -16,16 +16,70 @@ before_install:
 script:
   # Build Framework in Debug and Run Tests if specified
   - if [ $RUN_TESTS == "YES" ]; then
-      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty;
+        xcodebuild\
+          -workspace "$WORKSPACE"\
+          -scheme "$SCHEME"\
+          -sdk "$SDK"\
+          -destination "$DESTINATION"\
+          -configuration Debug\
+          ONLY_ACTIVE_ARCH=NO\
+          ENABLE_TESTABILITY=YES\
+          APPLICATION_IDENTITY_TYPE="$APPLICATION_IDENTITY_TYPE"\
+          APPLICATION_ID="$APPLICATION_ID"\
+          APPLICATION_PRIVATE_KEY_PASSWORD="$APPLICATION_PRIVATE_KEY_PASSWORD"\
+          APPLICATION_PRIVATE_KEY_BASE64="$APPLICATION_PRIVATE_KEY_BASE64"\
+          APPLICATION_PUBLIC_KEY_BASE64="$APPLICATION_PUBLIC_KEY_BASE64"\
+          APPLICATION_TOKEN="$APPLICATION_TOKEN"\
+          test | xcpretty
     else
-      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty;
+        xcodebuild\
+          -workspace "$WORKSPACE"\
+          -scheme "$SCHEME"\
+          -sdk "$SDK"\
+          -destination "$DESTINATION"\
+          -configuration Debug\
+          ONLY_ACTIVE_ARCH=NO\
+          APPLICATION_IDENTITY_TYPE="$APPLICATION_IDENTITY_TYPE"\
+          APPLICATION_ID="$APPLICATION_ID"\
+          APPLICATION_PRIVATE_KEY_PASSWORD="$APPLICATION_PRIVATE_KEY_PASSWORD"\
+          APPLICATION_PRIVATE_KEY_BASE64="$APPLICATION_PRIVATE_KEY_BASE64"\
+          APPLICATION_PUBLIC_KEY_BASE64="$APPLICATION_PUBLIC_KEY_BASE64"\
+          APPLICATION_TOKEN="$APPLICATION_TOKEN"\
+          test | xcpretty
     fi
 
   # Build Framework in Release and Run Tests if specified
   - if [ $RUN_TESTS == "YES" ]; then
-      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES test | xcpretty;
+      xcodebuild\
+          -workspace "$WORKSPACE"\
+          -scheme "$SCHEME"\
+          -sdk "$SDK"\
+          -destination "$DESTINATION"\
+          -configuration Release\
+          ONLY_ACTIVE_ARCH=NO\
+          ENABLE_TESTABILITY=YES\
+          APPLICATION_IDENTITY_TYPE="$APPLICATION_IDENTITY_TYPE"\
+          APPLICATION_ID="$APPLICATION_ID"\
+          APPLICATION_PRIVATE_KEY_PASSWORD="$APPLICATION_PRIVATE_KEY_PASSWORD"\
+          APPLICATION_PRIVATE_KEY_BASE64="$APPLICATION_PRIVATE_KEY_BASE64"\
+          APPLICATION_PUBLIC_KEY_BASE64="$APPLICATION_PUBLIC_KEY_BASE64"\
+          APPLICATION_TOKEN="$APPLICATION_TOKEN"\
+          test | xcpretty
     else
-      xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO build | xcpretty;
+      xcodebuild\
+          -workspace "$WORKSPACE"\
+          -scheme "$SCHEME"\
+          -sdk "$SDK"\
+          -destination "$DESTINATION"\
+          -configuration Debug\
+          ONLY_ACTIVE_ARCH=NO\
+          APPLICATION_IDENTITY_TYPE="$APPLICATION_IDENTITY_TYPE"\
+          APPLICATION_ID="$APPLICATION_ID"\
+          APPLICATION_PRIVATE_KEY_PASSWORD="$APPLICATION_PRIVATE_KEY_PASSWORD"\
+          APPLICATION_PRIVATE_KEY_BASE64="$APPLICATION_PRIVATE_KEY_BASE64"\
+          APPLICATION_PUBLIC_KEY_BASE64="$APPLICATION_PUBLIC_KEY_BASE64"\
+          APPLICATION_TOKEN="$APPLICATION_TOKEN"\
+          build | xcpretty
     fi
 
   # Run `pod lib lint` if specified
