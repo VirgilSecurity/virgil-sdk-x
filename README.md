@@ -4,7 +4,7 @@
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilSDK.svg)](https://img.shields.io/cocoapods/v/VirgilSDK.svg)
 [![Platform](https://img.shields.io/cocoapods/p/VirgilSDK.svg?style=flat)](http://cocoadocs.org/docsets/VirgilSDK)
 [![codecov.io](https://codecov.io/github/VirgilSecurity/virgil-sdk-x/coverage.svg?branch=v4)](https://codecov.io/github/VirgilSecurity/virgil-sdk-x/branch/v4)
-[![GitHub license](https://img.shields.io/badge/license-BSD3-lightgrey.svg)](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE) [![GitHub release]
+[![GitHub license](https://img.shields.io/badge/license-BSD3-lightgrey.svg)](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE)
 
 # Objective-C/Swift SDK Programming Guide
 
