@@ -56,15 +56,6 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
 
 #pragma mark - Public class logic
 
-- (void)setupClientWithCompletionHandler:(void(^ __nullable)(NSError * __nullable))completionHandler {
-    /// Parent implementation just calls completionHandler with no error asynchronously.
-    if (completionHandler != nil) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            completionHandler(nil);
-        });
-    }
-}
-
 - (void)send:(VSSRequest *)request {
     if (request == nil) {
         return;

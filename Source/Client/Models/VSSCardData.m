@@ -51,13 +51,13 @@
     return [VSSCardData cardDataWithIdentity:identity identityType:identityType publicKey:publicKey data:nil];
 }
 
-+ (instancetype)cardDataGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey {
-    return [VSSCardData cardDataGlobalWithIdentity:identity publicKey:publicKey data:nil];
-}
-
-+ (instancetype)cardDataGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSString *> *)data {
-    return [VSSCardData cardDataWithIdentity:identity identityType:kVSSIdentityTypeEmail scope:VSSCardScopeGlobal publicKey:publicKey data:data];
-}
+//+ (instancetype)cardDataGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey {
+//    return [VSSCardData cardDataGlobalWithIdentity:identity publicKey:publicKey data:nil];
+//}
+//
+//+ (instancetype)cardDataGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSString *> *)data {
+//    return [VSSCardData cardDataWithIdentity:identity identityType:kVSSIdentityTypeEmail scope:VSSCardScopeGlobal publicKey:publicKey data:data];
+//}
 
 #pragma mark - VSSSerializable
 

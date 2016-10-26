@@ -25,14 +25,14 @@
     return [VSSCard cardWithIdentity:identity identityType:identityType publicKey:publicKey data:nil];
 }
 
-+ (instancetype)cardGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSString *> *)data {
-    VSSCardData *cardData = [VSSCardData cardDataGlobalWithIdentity:identity publicKey:publicKey data:data];
-    return [[VSSCard alloc] initWithCardData:cardData];
-}
-
-+ (instancetype)cardGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey {
-    return [VSSCard cardGlobalWithIdentity:identity publicKey:publicKey data:nil];
-}
+//+ (instancetype)cardGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSString *> *)data {
+//    VSSCardData *cardData = [VSSCardData cardDataGlobalWithIdentity:identity publicKey:publicKey data:data];
+//    return [[VSSCard alloc] initWithCardData:cardData];
+//}
+//
+//+ (instancetype)cardGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey {
+//    return [VSSCard cardGlobalWithIdentity:identity publicKey:publicKey data:nil];
+//}
 
 - (instancetype)initWithSnapshot:(NSData *)snapshot cardData:(VSSCardData *)cardData signatures:(NSDictionary<NSString *, NSData *> *)signatures cardVersion:(NSString *)cardVersion createdAt:(NSDate *)createdAt {
     self = [super initWithSnapshot:snapshot signatures:signatures cardVersion:cardVersion createdAt:createdAt];

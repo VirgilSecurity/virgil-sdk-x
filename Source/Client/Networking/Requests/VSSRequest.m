@@ -20,7 +20,6 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
 @interface VSSRequest ()
 
 + (NSString * __nonnull)HTTPMethodNameForMethod:(HTTPRequestMethod)method;
-+ (HTTPRequestMethod)methodForHTTPMethodName:(NSString * __nullable)name;
 
 @end
 
@@ -123,28 +122,6 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
     }
 }
 
-- (void)setRequestQuery:(NSDictionary *)params {
-    if (params == nil) {
-        return;
-    }
-    
-    NSMutableString *queryString = [[NSMutableString alloc] init];
-    for (NSString *name in params.allKeys) {
-        NSString *value = [params[name] as:[NSString class]];
-        if (value != nil) {
-            [queryString appendFormat:@"&%@=%@", name, value];
-        }
-    }
-    NSString *query = [queryString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"& "]];
-    if (query.length == 0) {
-        return;
-    }
-    
-    NSMutableURLRequest *r = [self.request as:[NSMutableURLRequest class]];
-    NSString *url = r.URL.absoluteString;
-    r.URL = [NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", url, query]];
-}
-
 - (NSURLSessionDataTask * __nonnull)taskForSession:(NSURLSession * __nonnull)session {
     NSURLSessionDataTask *task = [session dataTaskWithRequest:self.request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (self.completionHandler != nil) {
@@ -235,21 +212,6 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
             break;
     }
     return name;
-}
-
-+ (HTTPRequestMethod)methodForHTTPMethodName:(NSString *)name {
-    HTTPRequestMethod method = POST;
-    if ([name isEqualToString:@"GET"]) {
-        method = GET;
-    }
-    else if ([name isEqualToString:@"PUT"]) {
-        method = PUT;
-    }
-    else if ([name isEqualToString:@"DELETE"]) {
-        method = DELETE;
-    }
-    
-    return method;
 }
 
 @end

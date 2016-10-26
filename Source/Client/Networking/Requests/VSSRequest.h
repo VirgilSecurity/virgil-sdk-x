@@ -137,13 +137,6 @@ extern NSString * __nonnull const kVSSAccessTokenHeader;
 - (void)setRequestBody:(NSData * __nonnull)body;
 
 /**
- * Sets the HTTP query string using key-value pairs derived from the dictionary.
- *
- * @param params String to String dictionary with key-value pars for the request query string.
- */
-- (void)setRequestQuery:(NSDictionary * __nonnull)params;
-
-/**
  * Returns relative path of the particular request.
  * Root implementation returns empty string.
  * @warning Should be overriden in descendants.

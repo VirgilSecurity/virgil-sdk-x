@@ -96,7 +96,6 @@ const NSInteger kVSSCardsRevocationReasonMissingOrInvalidError       = 30139;
         case kVSSCardsPublicKeyFormatError: message = @"Public key must be base64-encoded string"; break;
         case kVSSCardsCardDataParameterKVError: message = @"Virgil Card data parameter must be a key/value list of strings"; break;
         case kVSSCardsCardDataParameterStrError: message = @"Virgil Card data parameters must be strings"; break;
-        
         case kVSSCardsDataTooBigError: message = @"Virgil Card custom data entry value length validation failed. It mustn't exceed 256 characters"; break;
         case kVSSCardsValidationTokenError: message = @"Identity validation token is invalid"; break;
         case kVSSCardsCSRSignsMissingOrInvalidError: message = @"SCR signs list parameter is missing or is invalid"; break;
