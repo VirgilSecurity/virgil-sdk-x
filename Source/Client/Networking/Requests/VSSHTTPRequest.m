@@ -1,29 +1,29 @@
 //
-//  VSSRequest.m
+//  VSSHTTPRequest.m
 //  VirgilSDK
 //
 //  Created by Pavel Gorb on 9/7/15.
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSRequest.h"
-#import "VSSRequestPrivate.h"
-#import "VSSRequestContext.h"
+#import "VSSHTTPRequest.h"
+#import "VSSHTTPRequestPrivate.h"
+#import "VSSHTTPRequestContext.h"
 #import "NSObject+VSSUtils.h"
 
-const NSTimeInterval kVSSRequestDefaultTimeout = 45.0f;
-NSString *const kVSSRequestDefaultMethod = @"POST";
-NSString *const kVSSRequestErrorDomain = @"VSSRequestErrorDomain";
+const NSTimeInterval kVSSHTTPRequestDefaultTimeout = 45.0f;
+NSString *const kVSSHTTPRequestDefaultMethod = @"POST";
+NSString *const kVSSHTTPRequestErrorDomain = @"VSSHTTPRequestErrorDomain";
 
 NSString *const kVSSAccessTokenHeader = @"Authorization";
 
-@interface VSSRequest ()
+@interface VSSHTTPRequest ()
 
 + (NSString * __nonnull)HTTPMethodNameForMethod:(HTTPRequestMethod)method;
 
 @end
 
-@implementation VSSRequest
+@implementation VSSHTTPRequest
 
 @synthesize completionHandler = _completionHandler;
 
@@ -44,21 +44,21 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
     NSURL *url = [NSURL URLWithString:methodPath relativeToURL:serviceURL];
     
     NSMutableURLRequest* r = [NSMutableURLRequest requestWithURL:url];
-    r.timeoutInterval = kVSSRequestDefaultTimeout;
-    r.HTTPMethod = kVSSRequestDefaultMethod;
+    r.timeoutInterval = kVSSHTTPRequestDefaultTimeout;
+    r.HTTPMethod = kVSSHTTPRequestDefaultMethod;
     _request = r;
     return _request;
 }
 
-- (VSSRequestCompletionHandler)completionHandler {
-    VSSRequestCompletionHandler blk = nil;
+- (VSSHTTPRequestCompletionHandler)completionHandler {
+    VSSHTTPRequestCompletionHandler blk = nil;
     @synchronized(self) {
         blk = [_completionHandler copy];
     }
     return blk;
 }
 
-- (void)setCompletionHandler:(VSSRequestCompletionHandler)completionHandler {
+- (void)setCompletionHandler:(VSSHTTPRequestCompletionHandler)completionHandler {
     @synchronized(self) {
         _completionHandler = [completionHandler copy];
     }
@@ -66,7 +66,7 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
 
 #pragma mark - Initialization and configuration stuff
 
-- (instancetype)initWithContext:(VSSRequestContext *)context; {
+- (instancetype)initWithContext:(VSSHTTPRequestContext *)context; {
     self = [super init];
     if (self == nil) {
         return nil;
@@ -77,7 +77,7 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
 }
 
 - (instancetype)init {
-    return [self initWithContext:[[VSSRequestContext alloc] init]];
+    return [self initWithContext:[[VSSHTTPRequestContext alloc] init]];
 }
 
 #pragma mark - Methods to be overloaded by the descendent classes
@@ -125,7 +125,7 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
 - (NSURLSessionDataTask * __nonnull)taskForSession:(NSURLSession * __nonnull)session {
     NSURLSessionDataTask *task = [session dataTaskWithRequest:self.request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (self.completionHandler != nil) {
-            __weak VSSRequest *weakRequest = self;
+            __weak VSSHTTPRequest *weakRequest = self;
             if (error != nil) {
                 self.error = error;
                 self.completionHandler(weakRequest);
@@ -150,7 +150,7 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
                 case 200:
                     break;
                 default:
-                    self.error = [NSError errorWithDomain:kVSSRequestErrorDomain code:httpResponse.statusCode userInfo:nil];
+                    self.error = [NSError errorWithDomain:kVSSHTTPRequestErrorDomain code:httpResponse.statusCode userInfo:nil];
                     break;
             }
             
@@ -208,7 +208,7 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
             name = @"DELETE";
             break;
         default:
-            name = kVSSRequestDefaultMethod;
+            name = kVSSHTTPRequestDefaultMethod;
             break;
     }
     return name;

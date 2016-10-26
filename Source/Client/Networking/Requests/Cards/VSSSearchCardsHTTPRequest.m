@@ -1,28 +1,28 @@
 //
-//  VSSSearchCardsCriteriaRequest.m
+//  VSSSearchCardsHTTPRequest.m
 //  VirgilSDK
 //
 //  Created by Pavel Gorb on 2/4/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSSearchCardsRequest.h"
+#import "VSSSearchCardsHTTPRequest.h"
 #import "VSSModelCommons.h"
 #import "NSObject+VSSUtils.h"
 #import "VSSSearchCardsCriteriaPrivate.h"
 #import "VSSCardPrivate.h"
 
-@interface VSSSearchCardsRequest ()
+@interface VSSSearchCardsHTTPRequest ()
 
 @property (nonatomic, readwrite) NSArray <VSSCard *>* __nullable cards;
 
 @end
 
-@implementation VSSSearchCardsRequest
+@implementation VSSSearchCardsHTTPRequest
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithContext:(VSSRequestContext *)context searchCardsCriteria:(VSSSearchCardsCriteria *)criteria {
+- (instancetype)initWithContext:(VSSHTTPRequestContext *)context searchCardsCriteria:(VSSSearchCardsCriteria *)criteria {
     self = [super initWithContext:context];
     if (self) {
         [self setRequestBodyWithObject:[criteria serialize]];

@@ -1,5 +1,5 @@
 //
-//  VSSRequest.h
+//  VSSHTTPRequest.h
 //  VirgilSDK
 //
 //  Created by Pavel Gorb on 9/7/15.
@@ -19,7 +19,7 @@
 #  define VSSRDLog(...) /* nothing to log */
 #endif
 
-#import "VSSRequestContext.h"
+#import "VSSHTTPRequestContext.h"
 
 /**
  * Enum for HTTP Request methods.
@@ -35,26 +35,26 @@ typedef NS_ENUM(NSUInteger, HTTPRequestMethod) {
     DELETE
 };
 
-@class VSSRequest;
+@class VSSHTTPRequest;
 /**
  * Callback for operation completion.
  */
-typedef void (^VSSRequestCompletionHandler)(VSSRequest * __nonnull request);
+typedef void (^VSSHTTPRequestCompletionHandler)(VSSHTTPRequest * __nonnull request);
 
 /**
  * Default timeout value for the HTTP operations.
  */
-extern const NSTimeInterval kVSSRequestDefaultTimeout;
+extern const NSTimeInterval kVSSHTTPRequestDefaultTimeout;
 
 /**
  * Default HTTP method for HTTP operations.
  */
-extern NSString * __nonnull const kVSSRequestDefaultMethod;
+extern NSString * __nonnull const kVSSHTTPRequestDefaultMethod;
 
 /**
  * Error domain for the request errors.
  */
-extern NSString * __nonnull const kVSSRequestErrorDomain;
+extern NSString * __nonnull const kVSSHTTPRequestErrorDomain;
 
 /**
  * Header name for the Access token.
@@ -64,12 +64,12 @@ extern NSString * __nonnull const kVSSAccessTokenHeader;
 /**
  * Base wrapper class for HTTP requests.
  */
-@interface VSSRequest : NSObject
+@interface VSSHTTPRequest : NSObject
 
 /**
  * Context for the request.
  */
-@property (nonatomic, strong, readonly) VSSRequestContext * __nonnull context;
+@property (nonatomic, strong, readonly) VSSHTTPRequestContext * __nonnull context;
 
 /**
  * Underlying HTTP request.
@@ -94,7 +94,7 @@ extern NSString * __nonnull const kVSSAccessTokenHeader;
 /** 
  * Callback for request completion. Also called in case of error.
  */
-@property (nonatomic, copy) VSSRequestCompletionHandler __nullable completionHandler;
+@property (nonatomic, copy) VSSHTTPRequestCompletionHandler __nullable completionHandler;
 
 ///------------------------------------------
 /// @name Lifecycle
@@ -108,7 +108,7 @@ extern NSString * __nonnull const kVSSAccessTokenHeader;
  *
  * @return Instance of particular network operation.
  */
-- (instancetype __nonnull)initWithContext:(VSSRequestContext * __nonnull)context NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithContext:(VSSHTTPRequestContext * __nonnull)context NS_DESIGNATED_INITIALIZER;
 
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 

@@ -1,25 +1,25 @@
 //
-//  VSSRevokeCardRequest.m
+//  VSSRevokeCardHTTPRequest.m
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 10/6/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSRevokeCardRequest.h"
+#import "VSSRevokeCardHTTPRequest.h"
 #import "VSSRevokeCard.h"
 #import "VSSRevokeCardPrivate.h"
 #import "VSSSignedDataPrivate.h"
 
-@interface VSSRevokeCardRequest ()
+@interface VSSRevokeCardHTTPRequest ()
 
 @property (nonatomic, copy, readonly) NSString * __nonnull cardId;
 
 @end
 
-@implementation VSSRevokeCardRequest
+@implementation VSSRevokeCardHTTPRequest
 
-- (instancetype __nonnull)initWithContext:(VSSRequestContext *)context revokeCard:(VSSRevokeCard *)revokeCard {
+- (instancetype __nonnull)initWithContext:(VSSHTTPRequestContext *)context revokeCard:(VSSRevokeCard *)revokeCard {
     self = [super initWithContext:context];
     if (self) {
         _cardId = [revokeCard.data.cardId copy];

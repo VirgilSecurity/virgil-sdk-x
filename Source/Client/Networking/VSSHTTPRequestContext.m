@@ -1,20 +1,20 @@
 //
-//  VSSRequestContext.m
+//  VSSHTTPRequestContext.m
 //  VirgilKeys
 //
 //  Created by Pavel Gorb on 2/10/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSRequestContext.h"
+#import "VSSHTTPRequestContext.h"
 
-@interface VSSRequestContext ()
+@interface VSSHTTPRequestContext ()
 
 @property (nonatomic, readwrite) NSURL * __nonnull serviceUrl;
 
 @end
 
-@implementation VSSRequestContext
+@implementation VSSHTTPRequestContext
 
 - (instancetype)initWithServiceUrl:(NSURL *)serviceUrl {
     self = [super init];

@@ -1,12 +1,12 @@
 //
-//  VSSCreateCardRequest.m
+//  VSSCreateCardHTTPRequest.m
 //  VirgilSDK
 //
 //  Created by Pavel Gorb on 2/3/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSCreateCardRequest.h"
+#import "VSSCreateCardHTTPRequest.h"
 #import "VSSModelCommons.h"
 #import "VSSCardData.h"
 #import "VSSCardDataPrivate.h"
@@ -14,11 +14,11 @@
 #import "VSSCardPrivate.h"
 #import "NSObject+VSSUtils.h"
 
-@implementation VSSCreateCardRequest
+@implementation VSSCreateCardHTTPRequest
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithContext:(VSSRequestContext *)context card:(VSSCard *)card {
+- (instancetype)initWithContext:(VSSHTTPRequestContext *)context card:(VSSCard *)card {
     self = [super initWithContext:context];
     if (self) {
         NSDictionary *body = [card serialize];

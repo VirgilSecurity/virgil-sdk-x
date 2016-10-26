@@ -1,16 +1,16 @@
 //
-//  VSSGetCardRequest.m
+//  VSSGetCardHTTPRequest.m
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 10/6/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSGetCardRequest.h"
+#import "VSSGetCardHTTPRequest.h"
 #import "VSSCardPrivate.h"
 #import "NSObject+VSSUtils.h"
 
-@interface VSSGetCardRequest ()
+@interface VSSGetCardHTTPRequest ()
 
 @property (nonatomic, copy, readonly) NSString * __nonnull cardId;
 
@@ -18,9 +18,9 @@
 
 @end
 
-@implementation VSSGetCardRequest
+@implementation VSSGetCardHTTPRequest
 
-- (instancetype)initWithContext:(VSSRequestContext *)context cardId:(NSString *)cardId {
+- (instancetype)initWithContext:(VSSHTTPRequestContext *)context cardId:(NSString *)cardId {
     self = [super initWithContext:context];
     if (self) {
         _cardId = [cardId copy];

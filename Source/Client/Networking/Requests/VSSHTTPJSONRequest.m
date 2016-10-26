@@ -1,15 +1,15 @@
 //
-//  VSSJSONRequest.m
+//  VSSHTTPJSONRequest.m
 //  VirgilSDK
 //
 //  Created by Pavel Gorb on 9/11/15.
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSJSONRequest.h"
+#import "VSSHTTPJSONRequest.h"
 #import "NSObject+VSSUtils.h"
 
-@implementation VSSJSONRequest
+@implementation VSSHTTPJSONRequest
 
 #pragma mark - Class logic
 

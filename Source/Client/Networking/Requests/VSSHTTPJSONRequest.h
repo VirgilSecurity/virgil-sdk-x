@@ -1,18 +1,18 @@
 //
-//  VSSJSONRequest.h
+//  VSSHTTPJSONRequest.h
 //  VirgilSDK
 //
 //  Created by Pavel Gorb on 9/11/15.
 //  Copyright (c) 2015 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSRequest.h"
+#import "VSSHTTPRequest.h"
 
 /**
  * Class which manages the JSON-based requests.
  * Takes care about the serialization/deserialization and proper content-type header.
  */
-@interface VSSJSONRequest : VSSRequest
+@interface VSSHTTPJSONRequest : VSSHTTPRequest
 
 /**
  * Serializes the given object to the request data.

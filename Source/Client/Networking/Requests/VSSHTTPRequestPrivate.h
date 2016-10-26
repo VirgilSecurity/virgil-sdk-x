@@ -1,18 +1,18 @@
 //
-//  VSSRequestPrivate.h
+//  VSSHTTPRequestPrivate.h
 //  VirgilSDK
 //
 //  Created by Pavel Gorb on 1/12/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSRequest.h"
+#import "VSSHTTPRequest.h"
 
 /**
  * Extension for the properties which should not be completely public, but also can not be readonly 
  * due to necessities to change them in descendants.
  */
-@interface VSSRequest ()
+@interface VSSHTTPRequest ()
 
 /**
  * Underlying HTTP request.
