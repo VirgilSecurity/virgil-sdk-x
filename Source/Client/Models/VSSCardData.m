@@ -101,9 +101,6 @@
     NSDictionary *data = [candidate[kVSSModelData] as:[NSDictionary class]];
     NSDictionary *info = [candidate[kVSSModelInfo] as:[NSDictionary class]];
     
-    if (info == nil)
-        return nil;
-    
     return [self initWithIdentity:identityValueStr identityType:identityTypeStr scope:scope publicKey:publicKey data:data info:info];
 }
 
