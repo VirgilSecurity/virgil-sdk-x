@@ -21,7 +21,7 @@
 + (instancetype __nonnull)cardDataWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKey:(NSData * __nonnull)publicKey data:(NSDictionary<NSString *, NSString *> * __nullable)data;
 + (instancetype __nonnull)cardDataWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKey:(NSData * __nonnull)publicKey;
 
-+ (instancetype __nonnull)cardDataGlobalWithIdentity:(NSString * __nonnull)identity publicKey:(NSData * __nonnull)publicKey;
-+ (instancetype __nonnull)cardDataGlobalWithIdentity:(NSString * __nonnull)identity publicKey:(NSData * __nonnull)publicKey data:(NSDictionary<NSString *, NSString *> * __nullable)data;
+//+ (instancetype __nonnull)cardDataGlobalWithIdentity:(NSString * __nonnull)identity publicKey:(NSData * __nonnull)publicKey;
+//+ (instancetype __nonnull)cardDataGlobalWithIdentity:(NSString * __nonnull)identity publicKey:(NSData * __nonnull)publicKey data:(NSDictionary<NSString *, NSString *> * __nullable)data;
 
 @end
