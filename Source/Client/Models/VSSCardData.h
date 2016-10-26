@@ -43,7 +43,7 @@
 /**
  NSDictionary with info representing Device on which VSSCard was created
  */
-@property (nonatomic, copy, readonly) NSDictionary<NSString *, NSString *> * __nonnull info;
+@property (nonatomic, copy, readonly) NSDictionary<NSString *, NSString *> * __nullable info;
 
 /**
  Unavailable no-argument initializer inherited from NSObject

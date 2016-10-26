@@ -16,7 +16,7 @@
 
 + (instancetype __nonnull)cardDataWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType scope:(VSSCardScope)scope publicKey:(NSData * __nonnull)publicKey data:(NSDictionary<NSString *, NSString *> * __nullable)data;
 
-- (instancetype __nonnull)initWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType scope:(VSSCardScope)scope publicKey:(NSData * __nonnull)publicKey data:(NSDictionary<NSString *, NSString *> * __nullable)data info:(NSDictionary<NSString *, NSString *> * __nonnull)info;
+- (instancetype __nonnull)initWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType scope:(VSSCardScope)scope publicKey:(NSData * __nonnull)publicKey data:(NSDictionary<NSString *, NSString *> * __nullable)data info:(NSDictionary<NSString *, NSString *> * __nullable)info;
 
 + (instancetype __nonnull)cardDataWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKey:(NSData * __nonnull)publicKey data:(NSDictionary<NSString *, NSString *> * __nullable)data;
 + (instancetype __nonnull)cardDataWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKey:(NSData * __nonnull)publicKey;

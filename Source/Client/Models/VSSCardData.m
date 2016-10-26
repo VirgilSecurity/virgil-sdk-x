@@ -69,7 +69,7 @@
     dict[kVSSModelIdentity] = [self.identity copy];
     dict[kVSSModelCardScope] = vss_getCardScopeString(self.scope);
     
-    if ((self.data).count > 0) {
+    if (self.data.count > 0) {
         dict[kVSSModelData] = [self.data copy];
     }
     
