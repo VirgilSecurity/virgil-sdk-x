@@ -49,14 +49,6 @@
     return [VSSCreateCardSnapshotModel createCardSnapshotModelWithIdentity:identity identityType:identityType publicKey:publicKey data:nil];
 }
 
-//+ (instancetype)cardDataGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey {
-//    return [VSSCreateCardSnapshotModel cardDataGlobalWithIdentity:identity publicKey:publicKey data:nil];
-//}
-//
-//+ (instancetype)cardDataGlobalWithIdentity:(NSString *)identity publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSString *> *)data {
-//    return [VSSCreateCardSnapshotModel cardDataWithIdentity:identity identityType:kVSSIdentityTypeEmail scope:VSSCardScopeGlobal publicKey:publicKey data:data];
-//}
-
 #pragma mark - VSSSerializable
 
 - (NSDictionary *)serialize {

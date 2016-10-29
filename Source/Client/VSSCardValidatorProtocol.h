@@ -17,7 +17,6 @@
  Validated VSSCardResponse genuineness
 
  @param cardResponse VSSCardResponse to be validated
-
  @return BOOL value which indicates whether validation was successful or failed
  */
 - (BOOL)validateCardResponse:(VSSCardResponse* __nonnull)cardResponse;
