@@ -7,8 +7,9 @@
 //
 
 #import "VSSSearchCardsCriteria.h"
+#import "VSSCreateCardRequest.h"
+#import "VSSRevokeCardRequest.h"
 #import "VSSCard.h"
-#import "VSSRevokeCard.h"
 
 /**
  * Protocol for all interactions with Virgil Services.
@@ -16,40 +17,38 @@
 @protocol VSSClient <NSObject>
 
 /**
- Registers Virgil Card instance on the Virgil Cards Service and associates it with unique identifier.
- Also makes Virgil Cards accessible for search/get/revoke queries from other users.
- VSSCard should be signed at least by Owner (Creator) and Application. Additional signatures may be applied if needed.
- Registered VSSCard will contain all initial signatures and additionaly the Virgil Cards Service's signature.
+ Creates Virgil Card instance on the Virgil Cards Service and associates it with unique identifier.
+ Also makes the Card accessible for search/get/revoke queries from other users.
+ VSSCreateCardRequest should be signed at least by Owner (Creator) and Application. Additional signatures may be applied if needed.
 
- @param card     VSSCard to be registered
+ @param request  VSSCreateCardRequest instance with Card data and signatures
  @param callback callback with registered VSSCard or NSError instance if error occured
  */
-- (void)registerCard:(VSSCard * __nonnull)card completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback NS_SWIFT_NAME(register(_:completion:));
+- (void)createCardWithRequest:(VSSCreateCardRequest* __nonnull)request completion:(void (^ __nonnull)(VSSCard* __nullable, NSError * __nullable))callback NS_SWIFT_NAME(createCardWith(_:completion:));
 
 /**
- Returns Virgil Card with all signatures from the Virgil Cards Service with given ID, if exists.
+ Returns Virgil Card from the Virgil Cards Service with given ID, if exists.
  
- @param cardId   NSString with unique VSSCard identifier
+ @param cardId   NSString with unique Virgil Card identifier
  @param callback callback with VSSCard with given ID or NSError instance if error occured
  */
-- (void)getCardWithId:(NSString * __nonnull)cardId completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback NS_SWIFT_NAME(getCard(withId:completion:));
+- (void)getCardWithId:(NSString * __nonnull)cardId completion:(void (^ __nonnull)(VSSCard* __nullable, NSError * __nullable))callback NS_SWIFT_NAME(getCard(withId:completion:));
 
 /**
  Performs search of Virgil Cards using search criteria on the Virgil Cards Service.
- Returned Virgil Cards will contain all signatures.
 
  @param criteria VSSSearchCardsCriteria instance with criteria for desired cards
- @param callback callback with array of matched VSSCard instances or NSError instance if error occured
+ @param callback callback with array of matched VSSCard instances or NSError if error occured
  */
-- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria * __nonnull)criteria completion:(void (^ __nonnull)(NSArray<VSSCard *>* __nullable, NSError * __nullable))callback NS_SWIFT_NAME(searchCards(using:completion:));
+- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria * __nonnull)criteria completion:(void (^ __nonnull)(NSArray<VSSCard*>* __nullable, NSError * __nullable))callback NS_SWIFT_NAME(searchCards(using:completion:));
 
 /**
- Revokes previously registered cards.
- VSSRevokeCard instance should be signed by Application.
+ Revokes previously registered card.
+ VSSRevokeCardRequest instance should be signed by Application.
 
- @param revokeCard VSSRevokeCard created for specific Virgil Card ID
- @param callback   callback with NSError instance if error occured
+ @param request  VSSRevokeCardRequest created with specific Virgil Card ID
+ @param callback callback with NSError instance if error occured
  */
-- (void)revokeCard:(VSSRevokeCard * __nonnull)revokeCard completion:(void (^ __nonnull)(NSError * __nullable))callback NS_SWIFT_NAME(revoke(_:completion:));
+- (void)revokeCardWithRequest:(VSSRevokeCardRequest* __nonnull)request completion:(void (^ __nonnull)(NSError * __nullable))callback NS_SWIFT_NAME(revokeCardWith(_:completion:));
 
 @end

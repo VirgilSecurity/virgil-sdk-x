@@ -6,20 +6,20 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSCard.h"
+#import "VSSCardResponse.h"
 
 /**
- Protocol designed for validation VSSCard instances (using signatures by default)
+ Protocol designed for validation VSSCreateCardRequestinstances (using signatures by default)
  */
 @protocol VSSCardValidator <NSObject, NSCopying>
 
 /**
- Validated VSSCard genuineness
+ Validated VSSCardResponse genuineness
 
- @param card VSSCard to be validated
+ @param cardResponse VSSCardResponse to be validated
 
  @return BOOL value which indicates whether validation was successful or failed
  */
-- (BOOL)validateCard:(VSSCard * __nonnull)card;
+- (BOOL)validateCardResponse:(VSSCardResponse* __nonnull)cardResponse;
 
 @end

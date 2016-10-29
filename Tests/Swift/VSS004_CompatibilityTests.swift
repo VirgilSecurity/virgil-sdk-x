@@ -167,12 +167,12 @@ class VSS004_CompatibilityTests: XCTestCase {
 
         let exportedRequest = dict["exported_request"]!
         
-        let card = VSSCard(data: exportedRequest)!
+        let request = VSSCreateCardRequest(data: exportedRequest)!
         
-        let fingerprint = self.crypto.calculateFingerprint(for: card.snapshot)
+        let fingerprint = self.crypto.calculateFingerprint(for: request.snapshot)
         
-        let creatorPublicKey = self.crypto.importPublicKey(from: card.data.publicKey)!
+        let creatorPublicKey = self.crypto.importPublicKey(from: request.snapshotModel.publicKey)!
         
-        try! self.crypto.verifyData(fingerprint.value, withSignature: card.signatures[fingerprint.hexValue]!, using: creatorPublicKey)
+        try! self.crypto.verifyData(fingerprint.value, withSignature: request.signatures[fingerprint.hexValue]!, using: creatorPublicKey)
     }
 }

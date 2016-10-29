@@ -35,23 +35,23 @@
 #pragma mark - Tests
 
 - (void)test001_CardImportExport {
-    VSSCard *card = [self.utils instantiateCard];
+    VSSCreateCardRequest *request = [self.utils instantiateCreateCardRequest];
     
-    NSString *exportedData = [card exportData];
+    NSString *exportedData = [request exportData];
     
-    VSSCard *importedCard = [[VSSCard alloc] initWithData:exportedData];
+    VSSCreateCardRequest *importedRequest = [[VSSCreateCardRequest alloc] initWithData:exportedData];
     
-    XCTAssert([self.utils checkCard:card isEqualToCard:importedCard]);
+    XCTAssert([self.utils checkCreateCardRequest:request isEqualToCreateCardRequest:importedRequest]);
 }
 
 - (void)test002_RevokeCardImportExport {
-    VSSRevokeCard *revokeCard = [VSSRevokeCard revokeCardWithCardId:@"testId" reason:VSSCardRevocationReasonUnspecified];
+    VSSRevokeCardRequest *revokeRequest = [VSSRevokeCardRequest revokeCardRequestWithCardId:@"testId" reason:VSSCardRevocationReasonUnspecified];
     
-    NSString *exportedData = [revokeCard exportData];
+    NSString *exportedData = [revokeRequest exportData];
     
-    VSSRevokeCard *importedRevokeCard = [[VSSRevokeCard alloc] initWithData:exportedData];
+    VSSRevokeCardRequest *importedRevokeRequest = [[VSSRevokeCardRequest alloc] initWithData:exportedData];
     
-    XCTAssert([self.utils checkRevokeCard:revokeCard isEqualToRevokeCard:importedRevokeCard]);
+    XCTAssert([self.utils checkRevokeCardRequest:revokeRequest isEqualToRevokeCardRequest:importedRevokeRequest]);
 }
 
 @end

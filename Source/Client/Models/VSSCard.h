@@ -2,53 +2,65 @@
 //  VSSCard.h
 //  VirgilSDK
 //
-//  Created by Oleksandr Deundiak on 9/29/16.
+//  Created by Oleksandr Deundiak on 10/27/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSSignedData.h"
-#import "VSSCardData.h"
+#import "VSSBaseModel.h"
+#import "VSSModelCommons.h"
 
 /**
- Virgil Model representing Virgil Card.
- See VSSCardData. See VSSClient protocol.
+ Model that represents identities on the Virgil Cards Service.
+ Each card has assigned identity of identityType, publicKey (and owner has corresponding private key),
+ info about device on which Card was created, custom payload, version, creation date and scope (global or application)
  */
-@interface VSSCard : VSSSignedData
+@interface VSSCard: VSSBaseModel
+
+@property (nonatomic, copy, readonly) NSString * __nonnull identifier;
 
 /**
- VSSCardData instance with info of the Virgil Card (identity, identity type, public key, etc.).
+ NSString value which represent VSSCreateCardRequestwithin same Identity Type
  */
-@property (nonatomic, copy, readonly) VSSCardData * __nonnull data;
+@property (nonatomic, copy, readonly) NSString * __nonnull identity;
 
 /**
- Factory method which allocates and initalizes VSSCard instance.
-
- @param identity     NSString with Identity that represents Virgil Card within same Identity Type
- @param identityType NSString with Identity Type (such as Email, Username, Phone number, etc.)
- @param publicKey    NSData with Virgil Card public key
- @param data         NSDictionary with custom payload
-
- @return allocated and initialized VSSCard instnace
+ NSString value which represents Identity Type, such as Email, Username, Phone number, etc.
  */
-+ (instancetype __nonnull)cardWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKey:(NSData * __nonnull)publicKey data:(NSDictionary<NSString *, NSData *> * __nullable)data;
+@property (nonatomic, copy, readonly) NSString * __nonnull identityType;
 
 /**
- Factory method which allocates and initalizes VSSCard instance.
-
- @param identity     NSString with Identity that represents Virgil Card within same Identity Type
- @param identityType NSString with Identity Type (such as Email, Username, Phone number, etc.)
- @param publicKey    NSData with Virgil Card public key
-
- @return allocated and initialized VSSCard instnace
+ NSData with public key of VSSCard
  */
-+ (instancetype __nonnull)cardWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKey:(NSData * __nonnull)publicKey;
-
-//+ (instancetype __nullable)cardGlobalWithIdentity:(NSString * __nonnull)identity publicKey:(NSData * __nonnull)publicKey;
-//+ (instancetype __nullable)cardGlobalWithIdentity:(NSString * __nonnull)identity publicKey:(NSData * __nonnull)publicKey data:(NSDictionary * __nullable)data;
+@property (nonatomic, copy, readonly) NSData * __nonnull publicKey;
 
 /**
- Unavailable initializer inherited from VSSSignedData.
+ NSDictionary with any custom payload which will be stored with VSSCard
  */
-- (instancetype __nonnull)initWithSignatures:(NSDictionary<NSString *, NSData *> * __nullable)signatures cardVersion:(NSString * __nullable)cardVersion createdAt:(NSDate * __nullable)createdAt NS_UNAVAILABLE;
+@property (nonatomic, copy, readonly) NSDictionary<NSString *, NSString *> * __nullable data;
+
+/**
+ VSSCreateCardRequestscope. See VSSCardScope
+ */
+@property (nonatomic, readonly) VSSCardScope scope;
+
+/**
+ NSDictionary with info representing Device on which VSSCreateCardRequestwas created
+ */
+@property (nonatomic, copy, readonly) NSDictionary<NSString *, NSString *> * __nullable info;
+
+/**
+ Virgil Card creation date
+ */
+@property (nonatomic, copy, readonly) NSDate * __nonnull createdAt;
+
+/**
+ Virgil card version
+ */
+@property (nonatomic, copy, readonly) NSString * __nonnull cardVersion;
+
+/**
+ Unavailable no-argument initializer inherited from NSObject
+ */
+- (instancetype __nonnull)init NS_UNAVAILABLE;
 
 @end

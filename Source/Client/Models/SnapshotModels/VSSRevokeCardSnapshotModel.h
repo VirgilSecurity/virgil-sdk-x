@@ -1,21 +1,21 @@
 //
-//  VSSRevokeCardData.h
+//  VSSRevokeCardSnapshotModel.h
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 10/7/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSBaseModel.h"
+#import "VSSSnapshotModel.h"
 #import "VSSModelCommons.h"
 
 /**
- Virgil Model that contains all VSSRevokeCard data.
+ Virgil Model that contains all info needed for Virgil Card revocation. See VSSRevokeCardRequest.
  */
-@interface VSSRevokeCardData : VSSBaseModel
+@interface VSSRevokeCardSnapshotModel : VSSSnapshotModel
 
 /**
- Virgil Card Id. See VSSCard
+ Virgil Card unique identifier. See VSSCard
  */
 @property (nonatomic, copy, readonly) NSString * __nonnull cardId;
 

@@ -1,5 +1,5 @@
 //
-//  VSSSigner.h
+//  VSSRequestSigner.h
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 10/3/16.
@@ -10,17 +10,17 @@
 #import "VSSCryptoProtocol.h"
 #import "VSSPrivateKey.h"
 #import "VSSPublicKey.h"
-#import "VSSSignedData.h"
+#import "VSSSignable.h"
 
 /**
- NSString with Error Domain used for VSSSigner-related errors.
+ NSString with Error Domain used for VSSRequestSigner-related errors.
  */
-extern NSString * __nonnull const kVSSSignerErrorDomain;
+extern NSString * __nonnull const kVSSRequestSignerErrorDomain;
 
 /**
- Class used for signing VSSSignedData instances (like VSSCard or VSSRevokeCard).
+ Class used for signing VSSSignableRequest instances (like VSSCreateCardRequest or VSSRevokeCardRequest).
  */
-@interface VSSSigner : NSObject
+@interface VSSRequestSigner : NSObject
 
 /**
  Implementation of VSSCrypto protocol used for calculation signatures.
@@ -32,7 +32,7 @@ extern NSString * __nonnull const kVSSSignerErrorDomain;
 
  @param crypto implementation of VSSCrypto protocol
 
- @return initialized VSSSigner instance
+ @return initialized VSSRequestSigner instance
  */
 - (instancetype __nonnull)initWithCrypto:(id<VSSCrypto> __nonnull)crypto NS_DESIGNATED_INITIALIZER;
 
@@ -42,26 +42,26 @@ extern NSString * __nonnull const kVSSSignerErrorDomain;
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 
 /**
- Adds owner's signature to given VSSSignedData using provided VSSPrivateKey
+ Adds owner's signature to given VSSSignableRequest using provided VSSPrivateKey
 
- @param data       VSSSignedData instance to be signed
+ @param request    VSSSignableRequest instance to be signed
  @param privateKey VSSPrivateKey which represents owner's private key and is used for calculating signature
  @param errorPtr   NSError pointer to return error if needed
 
  @return BOOL value which indicates whether signing succeeded or failed
  */
-- (BOOL)ownerSignData:(VSSSignedData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
+- (BOOL)selfSignRequest:(id<VSSSignable> __nonnull)request withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(selfSign(_:with:));
 
 /**
  Adds Authority signature
 
- @param data       VSSSignedData instance to be signed
+ @param request    VSSSignableRequest instance to be signed
  @param appId      NSString which represents Authority identifier (for example, AppID)
  @param privateKey VSSPrivateKey which represents authority's private key and is used for calculating signature
  @param errorPtr   NSError pointer to return error if needed
 
  @return BOOL value which indicates whether signing succeeded or failed
  */
-- (BOOL)authoritySignData:(VSSSignedData * __nonnull)data forAppId:(NSString * __nonnull)appId withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
+- (BOOL)authoritySignRequest:(id<VSSSignable> __nonnull)request forAppId:(NSString * __nonnull)appId withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(authoritySign(_:forAppId:with:));
 
 @end

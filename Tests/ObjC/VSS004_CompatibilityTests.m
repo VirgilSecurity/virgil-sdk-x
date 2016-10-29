@@ -10,8 +10,6 @@
 #import <XCTest/XCTest.h>
 
 #import "VSSTestsUtils.h"
-#import "VSSCrypto.h"
-#import "VSSCardValidator.h"
 
 @interface VSS004_CompatibilityTests : XCTestCase
 
@@ -183,16 +181,16 @@
     
     NSString *exportedRequest = dict[@"exported_request"];
     
-    VSSCard *card = [[VSSCard alloc] initWithData:exportedRequest];
+    VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithData:exportedRequest];
     
-    XCTAssert(card != nil);
+    XCTAssert(request != nil);
     
-    VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:card.snapshot];
+    VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:request.snapshot];
     
-    VSSPublicKey *creatorPublicKey = [self.crypto importPublicKeyFromData:card.data.publicKey];
+    VSSPublicKey *creatorPublicKey = [self.crypto importPublicKeyFromData:request.snapshotModel.publicKey];
     
     NSError *error;
-    XCTAssert([self.crypto verifyData:fingerprint.value withSignature:card.signatures[fingerprint.hexValue] usingSignerPublicKey:creatorPublicKey error:&error]);
+    XCTAssert([self.crypto verifyData:fingerprint.value withSignature:request.signatures[fingerprint.hexValue] usingSignerPublicKey:creatorPublicKey error:&error]);
     XCTAssert(error == nil);
 }
 

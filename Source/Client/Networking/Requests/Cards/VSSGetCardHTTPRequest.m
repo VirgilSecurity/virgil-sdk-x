@@ -7,14 +7,14 @@
 //
 
 #import "VSSGetCardHTTPRequest.h"
-#import "VSSCardPrivate.h"
+#import "VSSCardResponsePrivate.h"
 #import "NSObject+VSSUtils.h"
 
 @interface VSSGetCardHTTPRequest ()
 
 @property (nonatomic, copy, readonly) NSString * __nonnull cardId;
 
-@property (nonatomic, readwrite) VSSCard * __nullable card;
+@property (nonatomic, readwrite) VSSCardResponse * __nullable cardResponse;
 
 @end
 
@@ -43,7 +43,7 @@
     }
 
     /// Deserialize actual card
-    self.card = [[VSSCard alloc] initWithDict:[candidate as:[NSDictionary class]]];
+    self.cardResponse = [[VSSCardResponse alloc] initWithDict:[candidate as:[NSDictionary class]]];
     
     return nil;
 }

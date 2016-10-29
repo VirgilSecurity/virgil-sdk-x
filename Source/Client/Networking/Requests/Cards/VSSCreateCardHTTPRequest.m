@@ -8,20 +8,20 @@
 
 #import "VSSCreateCardHTTPRequest.h"
 #import "VSSModelCommons.h"
-#import "VSSCardData.h"
-#import "VSSCardDataPrivate.h"
-#import "VSSCard.h"
-#import "VSSCardPrivate.h"
+#import "VSSCreateCardSnapshotModelPrivate.h"
+#import "VSSCreateCardRequest.h"
+#import "VSSSignableRequestPrivate.h"
+#import "VSSCardResponsePrivate.h"
 #import "NSObject+VSSUtils.h"
 
 @implementation VSSCreateCardHTTPRequest
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithContext:(VSSHTTPRequestContext *)context card:(VSSCard *)card {
+- (instancetype)initWithContext:(VSSHTTPRequestContext *)context createCardRequest:(VSSCreateCardRequest *)request {
     self = [super initWithContext:context];
     if (self) {
-        NSDictionary *body = [card serialize];
+        NSDictionary *body = [request serialize];
         
         [self setRequestBodyWithObject:body];
     }
@@ -42,7 +42,7 @@
     }
     
     /// Deserialize actual card
-    self.card = [[VSSCard alloc] initWithDict:[candidate as:[NSDictionary class]]];
+    self.cardResponse = [[VSSCardResponse alloc] initWithDict:[candidate as:[NSDictionary class]]];
     return nil;
 }
 

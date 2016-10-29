@@ -16,7 +16,7 @@
 @interface VSSSearchCardsCriteria : VSSBaseModel
 
 /**
- VSSCard scope. See VSSCardScope.
+ VSSCreateCardRequestscope. See VSSCardScope.
  */
 @property (nonatomic, readonly) VSSCardScope scope;
 
@@ -33,7 +33,7 @@
 /**
  Factory method which allocated and initialized VSSSearchCardsCriteria instance.
 
- @param scope        VSSCard scope. See VSSCardScope
+ @param scope        VSSCreateCardRequestscope. See VSSCardScope
  @param identityType NSString with Identity Type (such as Email, Username, Phone number)
  @param indentities  Array of Identities within Identity Type for desired Virgil Cards
 

@@ -7,9 +7,8 @@
 //
 
 #import "VSSRevokeCardHTTPRequest.h"
-#import "VSSRevokeCard.h"
-#import "VSSRevokeCardPrivate.h"
-#import "VSSSignedDataPrivate.h"
+#import "VSSRevokeCardRequest.h"
+#import "VSSSignableRequestPrivate.h"
 
 @interface VSSRevokeCardHTTPRequest ()
 
@@ -19,12 +18,12 @@
 
 @implementation VSSRevokeCardHTTPRequest
 
-- (instancetype __nonnull)initWithContext:(VSSHTTPRequestContext *)context revokeCard:(VSSRevokeCard *)revokeCard {
+- (instancetype)initWithContext:(VSSHTTPRequestContext *)context revokeCardRequest:(VSSRevokeCardRequest *)request {
     self = [super initWithContext:context];
     if (self) {
-        _cardId = [revokeCard.data.cardId copy];
+        _cardId = [request.snapshotModel.cardId copy];
         
-        NSDictionary *body = [revokeCard serialize];
+        NSDictionary *body = [request serialize];
         
         [self setRequestMethod:DELETE];
         

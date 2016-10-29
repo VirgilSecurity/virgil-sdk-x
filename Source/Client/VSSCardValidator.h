@@ -12,7 +12,7 @@
 
 /**
  Default mplementation of VSSCardValidator protocol.
- By default verifies VSSCard owner signature and Virgil Cards Service signature
+ By default verifies VSSCreateCardRequest owner signature and Virgil Cards Service signature
  */
 @interface VSSCardValidator : NSObject <VSSCardValidator>
 

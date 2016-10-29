@@ -9,11 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
-#import "VSSClient.h"
-#import "VSSCrypto.h"
-#import "VSSCardValidator.h"
-#import "VSSSigner.h"
-
 #import "VSSTestsUtils.h"
 #import "VSSTestsConst.h"
 
@@ -65,16 +60,16 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     NSUInteger numberOfRequests = 1;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
     
-    VSSCard *instantiatedCard = [self.utils instantiateCard];
+    VSSCreateCardRequest *request = [self.utils instantiateCreateCardRequest];
     
-    [self.client registerCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
+    [self.client createCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
         if (error != nil) {
             XCTFail(@"Expectation failed: %@", error);
             return;
         }
         
         XCTAssert([card.identifier length] > 0);
-        XCTAssert([self.utils checkCard:instantiatedCard isEqualToCard:card]);
+        XCTAssert([self.utils checkCard:card isEqualToCreateCardRequest:request]);
         
         [ex fulfill];
     }];
@@ -85,21 +80,49 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     }];
 }
 
-- (void)test002_SearchCards {
-    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created. Search should return 1 card which is equal to created card"];
+- (void)test002_CreateCardWithData {
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card with data should be created."];
     
-    NSUInteger numberOfRequests = 2;
+    NSUInteger numberOfRequests = 1;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
     
-    VSSCard *instantiatedCard = [self.utils instantiateCard];
+    VSSCreateCardRequest *request = [self.utils instantiateCreateCardRequestWithData:@{
+        @"customKey1" : @"customField1",
+        @"customKey2" : @"customField2"}];
     
-    [self.client registerCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
+    [self.client createCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
         if (error != nil) {
             XCTFail(@"Expectation failed: %@", error);
             return;
         }
         
-        VSSSearchCardsCriteria *searchCardsCriteria = [VSSSearchCardsCriteria searchCardsCriteriaWithScope:VSSCardScopeApplication identityType:card.data.identityType identities:@[card.data.identity]];
+        XCTAssert([card.identifier length] > 0);
+        XCTAssert([self.utils checkCard:card isEqualToCreateCardRequest:request]);
+        
+        [ex fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
+    }];
+}
+
+- (void)test003_SearchCards {
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created. Search should return 1 card which is equal to created card"];
+    
+    NSUInteger numberOfRequests = 2;
+    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
+    
+    VSSCreateCardRequest *request = [self.utils instantiateCreateCardRequest];
+    
+    [self.client createCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
+        if (error != nil) {
+            XCTFail(@"Expectation failed: %@", error);
+            return;
+        }
+        
+        VSSSearchCardsCriteria *searchCardsCriteria = [VSSSearchCardsCriteria searchCardsCriteriaWithScope:VSSCardScopeApplication identityType:card.identityType identities:@[card.identity]];
         
         sleep(1);
         [self.client searchCardsUsingCriteria:searchCardsCriteria completion:^(NSArray<VSSCard *>* cards, NSError *error) {
@@ -121,15 +144,15 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     }];
 }
 
-- (void)test003_GetCard {
+- (void)test004_GetCard {
     XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created. Get card request should return 1 card which is equal to created card"];
     
     NSUInteger numberOfRequests = 2;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
     
-    VSSCard *instantiatedCard = [self.utils instantiateCard];
+    VSSCreateCardRequest *request = [self.utils instantiateCreateCardRequest];
     
-    [self.client registerCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
+    [self.client createCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
         if (error != nil) {
             XCTFail(@"Expectation failed: %@", error);
             return;
@@ -144,7 +167,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
             
             XCTAssert(foundCard != nil);
             XCTAssert([foundCard.identifier isEqualToString:card.identifier]);
-            XCTAssert([self.utils checkCard:foundCard isEqualToCard:card]);
+            XCTAssert([self.utils checkCard:foundCard isEqualToCreateCardRequest:request]);
             
             [ex fulfill];
         }];
@@ -156,24 +179,24 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     }];
 }
 
-- (void)test004_RevokeCard {
+- (void)test005_RevokeCard {
     XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created. Virgil card should be revoked"];
     
     NSUInteger numberOfRequests = 3;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
     
-    VSSCard *instantiatedCard = [self.utils instantiateCard];
+    VSSCreateCardRequest *request = [self.utils instantiateCreateCardRequest];
     
-    [self.client registerCard:instantiatedCard completion:^(VSSCard *card, NSError *error) {
+    [self.client createCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
         if (error != nil) {
             XCTFail(@"Expectation failed: %@", error);
             return;
         }
         
-        VSSRevokeCard *revokeCard = [self.utils instantiateRevokeCardForCard:card];
+        VSSRevokeCardRequest *revokeRequest = [self.utils instantiateRevokeCardForCard:card];
         
         sleep(1);
-        [self.client revokeCard:revokeCard completion:^(NSError *error) {
+        [self.client revokeCardWithRequest:revokeRequest completion:^(NSError *error) {
             if (error != nil) {
                 XCTFail(@"Expectation failed: %@", error);
                 return;

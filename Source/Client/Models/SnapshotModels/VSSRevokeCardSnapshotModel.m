@@ -1,20 +1,20 @@
 //
-//  VSSRevokeCardData.m
+//  VSSRevokeCardSnapshotModel.m
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 10/7/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSRevokeCardData.h"
-#import "VSSRevokeCardDataPrivate.h"
+#import "VSSRevokeCardSnapshotModel.h"
+#import "VSSRevokeCardSnapshotModelPrivate.h"
 #import "VSSModelCommons.h"
-#import "VSSSignedDataPrivate.h"
+#import "VSSSignableRequestPrivate.h"
 #import "VSSModelKeys.h"
 #import "VSSModelCommonsPrivate.h"
 #import "NSObject+VSSUtils.h"
 
-@implementation VSSRevokeCardData
+@implementation VSSRevokeCardSnapshotModel
 
 - (instancetype)initWithCardId:(NSString *)cardId revocationReason:(VSSCardRevocationReason)reason {
     self = [super init];
@@ -37,7 +37,7 @@
         return nil;
     
     if ([candidate isKindOfClass:[NSDictionary class]]) {
-        return [[VSSRevokeCardData alloc]initWithDict:(NSDictionary *)candidate];
+        return [[VSSRevokeCardSnapshotModel alloc]initWithDict:(NSDictionary *)candidate];
     }
     
     return nil;

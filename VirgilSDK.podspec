@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = "VirgilSDK"
-  s.version               = "4.0.0-beta9"
+  s.version               = "4.0.0-beta10"
   s.summary               = "Virgil SDK for Apple devices and languages."
   s.cocoapods_version     = ">= 0.36"
   s.homepage              = "https://github.com/VirgilSecurity/virgil-sdk-x/tree/v4"
@@ -15,6 +15,9 @@ Pod::Spec.new do |s|
   s.public_header_files   = 'Source/*.{h}',
                             'Source/Client/*.{h}',
                             'Source/Client/Models/*.{h}',
+                            'Source/Client/Models/Requests/*.{h}',
+                            'Source/Client/Models/Responses/*.{h}',
+                            'Source/Client/Models/SnapshotModels/*.{h}',
                             'Source/Client/Models/Protocols/*.{h}',
                             'Source/Crypto/*.{h}',
                             'Source/Crypto/Keys/*.{h}'

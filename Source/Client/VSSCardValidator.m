@@ -70,22 +70,22 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
     ((NSMutableDictionary *)_verifiers)[verifierId] = publicKey;
 }
 
-- (BOOL)validateCard:(VSSCard *)card {
+- (BOOL)validateCardResponse:(VSSCardResponse *)cardResponse {
     // Support for legacy Cards.
-    if ([card.cardVersion isEqualToString:@"3.0"])
+    if ([cardResponse.cardVersion isEqualToString:@"3.0"])
         return YES;
 
-    VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:card.snapshot];
+    VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:cardResponse.snapshot];
     
-    if (![card.identifier isEqualToString:fingerprint.hexValue])
+    if (![cardResponse.identifier isEqualToString:fingerprint.hexValue])
         return NO;
     
     NSMutableDictionary *verifiers = [self.verifiers mutableCopy];
-    VSSPublicKey *creatorPublicKey = [self.crypto importPublicKeyFromData:card.data.publicKey];
+    VSSPublicKey *creatorPublicKey = [self.crypto importPublicKeyFromData:cardResponse.model.publicKey];
     verifiers[fingerprint.hexValue] = creatorPublicKey;
 
     for (NSString *verifierId in self.verifiers.allKeys) {
-        NSData *signature = card.signatures[verifierId];
+        NSData *signature = cardResponse.signatures[verifierId];
         if (signature == nil)
             return NO;
         

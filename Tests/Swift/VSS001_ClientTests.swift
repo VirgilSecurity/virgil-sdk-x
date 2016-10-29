@@ -52,9 +52,9 @@ class VSS001_ClientTests: XCTestCase {
         let numberOfRequests = 1
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
         
-        let instantiatedCard = self.utils.instantiateCard()!
+        let request = self.utils.instantiateCreateCardRequest()
         
-        self.client.register(instantiatedCard) { (registeredCard, error) in
+        self.client.createCardWith(request) { (registeredCard, error) in
             guard error == nil else {
                 XCTFail("Failed: " + error!.localizedDescription)
                 return
@@ -65,8 +65,7 @@ class VSS001_ClientTests: XCTestCase {
                 return
             }
             
-            XCTAssert(!card.identifier!.isEmpty)
-            XCTAssert(self.utils.check(card: card, isEqualToCard: instantiatedCard))
+            XCTAssert(self.utils.check(card: card, isEqualToCreateCardRequest: request))
             
             ex.fulfill()
         }
@@ -79,21 +78,53 @@ class VSS001_ClientTests: XCTestCase {
         }
     }
     
-    func test002_SearchCards() {
-        let ex = self.expectation(description: "Virgil Card should be created. Search should return 1 card which is equal to created card");
+    func test002_CreateCardWithData() {
+        let ex = self.expectation(description: "Virgil Card with data should be created")
         
-        let numberOfRequests = 2
+        let numberOfRequests = 1
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
         
-        let instantiatedCard = self.utils.instantiateCard()!
+        let request = self.utils.instantiateCreateCardRequest(with: ["custom_key1": "custom_field1", "custom_key2": "custom_field2"])
         
-        self.client.register(instantiatedCard) { (registeredCard, error) in
+        self.client.createCardWith(request) { (registeredCard, error) in
             guard error == nil else {
                 XCTFail("Failed: " + error!.localizedDescription)
                 return
             }
             
-            let criteria = VSSSearchCardsCriteria(scope: .application, identityType: registeredCard!.data.identityType, identities: [registeredCard!.data.identity])
+            guard let card = registeredCard else {
+                XCTFail("Card is nil")
+                return
+            }
+            
+            XCTAssert(self.utils.check(card: card, isEqualToCreateCardRequest: request))
+            
+            ex.fulfill()
+        }
+        
+        self.waitForExpectations(timeout: timeout) { error in
+            guard error == nil else {
+                XCTFail("Expectation failed: " + error!.localizedDescription)
+                return
+            }
+        }
+    }
+    
+    func test003_SearchCards() {
+        let ex = self.expectation(description: "Virgil Card should be created. Search should return 1 card which is equal to created card");
+        
+        let numberOfRequests = 2
+        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
+        
+        let request = self.utils.instantiateCreateCardRequest()
+        
+        self.client.createCardWith(request) { (registeredCard, error) in
+            guard error == nil else {
+                XCTFail("Failed: " + error!.localizedDescription)
+                return
+            }
+            
+            let criteria = VSSSearchCardsCriteria(scope: .application, identityType: registeredCard!.identityType, identities: [registeredCard!.identity])
             
             sleep(1)
             
@@ -123,22 +154,22 @@ class VSS001_ClientTests: XCTestCase {
         }
     }
     
-    func test003_GetCard() {
+    func test004_GetCard() {
         let ex = self.expectation(description: "Virgil Card should be created. Get card request should return 1 card which is equal to created card");
         
         let numberOfRequests = 2
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
         
-        let instantiatedCard = self.utils.instantiateCard()!
+        let request = self.utils.instantiateCreateCardRequest()
         
-        self.client.register(instantiatedCard) { (registeredCard, error) in
+        self.client.createCardWith(request) { (registeredCard, error) in
             guard error == nil else {
                 XCTFail("Failed: " + error!.localizedDescription)
                 return
             }
             
             sleep(1)
-            self.client.getCard(withId: registeredCard!.identifier!) { card, error in
+            self.client.getCard(withId: registeredCard!.identifier) { card, error in
                 guard error == nil else {
                     XCTFail("Failed: " + error!.localizedDescription)
                     return
@@ -149,7 +180,7 @@ class VSS001_ClientTests: XCTestCase {
                     return
                 }
                 
-                XCTAssert(foundCard.identifier == registeredCard!.identifier!)
+                XCTAssert(foundCard.identifier == registeredCard!.identifier)
                 XCTAssert(self.utils.check(card: foundCard, isEqualToCard: registeredCard!))
                 
                 ex.fulfill()
@@ -164,24 +195,24 @@ class VSS001_ClientTests: XCTestCase {
         }
     }
     
-    func test004_RevokeCard() {
+    func test005_RevokeCard() {
         let ex = self.expectation(description: "Virgil Card should be created. Virgil card should be revoked");
         
         let numberOfRequests = 2
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
         
-        let instantiatedCard = self.utils.instantiateCard()!
+        let request = self.utils.instantiateCreateCardRequest()
         
-        self.client.register(instantiatedCard) { (registeredCard, error) in
+        self.client.createCardWith(request) { (registeredCard, error) in
             guard error == nil else {
                 XCTFail("Failed: " + error!.localizedDescription)
                 return
             }
-            
-            let card = self.utils.instantiateRevokeCardFor(card: registeredCard!)
+
+            let revokeRequest = self.utils.instantiateRevokeCardRequestFor(card: registeredCard!)
             
             sleep(1)
-            self.client.revoke(card) { error in
+            self.client.revokeCardWith(revokeRequest) { error in
                 guard error == nil else {
                     XCTFail("Failed: " + error!.localizedDescription)
                     return

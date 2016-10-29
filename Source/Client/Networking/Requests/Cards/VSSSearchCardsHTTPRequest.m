@@ -10,11 +10,12 @@
 #import "VSSModelCommons.h"
 #import "NSObject+VSSUtils.h"
 #import "VSSSearchCardsCriteriaPrivate.h"
-#import "VSSCardPrivate.h"
+#import "VSSCreateCardRequest.h"
+#import "VSSCardResponsePrivate.h"
 
 @interface VSSSearchCardsHTTPRequest ()
 
-@property (nonatomic, readwrite) NSArray <VSSCard *>* __nullable cards;
+@property (nonatomic, readwrite) NSArray <VSSCardResponse *> * __nullable cardResponses;
 
 @end
 
@@ -42,16 +43,16 @@
         return error;
     }
 
-    NSMutableArray *cards = [[NSMutableArray alloc] init];
+    NSMutableArray *cardResponses = [[NSMutableArray alloc] init];
     for (NSDictionary *item in [candidate as:[NSArray class]]) {
         /// Deserialize actual card
-        VSSCard *card = [[VSSCard alloc] initWithDict:item];
-        if (card != nil) {
-            [cards addObject:card];
+        VSSCardResponse *cardResponse = [[VSSCardResponse alloc] initWithDict:item];
+        if (cardResponse != nil) {
+            [cardResponses addObject:cardResponse];
         }
     }
-    if (cards.count > 0) {
-        self.cards = cards;
+    if (cardResponses.count > 0) {
+        self.cardResponses = cardResponses;
     }
     return nil;
 }

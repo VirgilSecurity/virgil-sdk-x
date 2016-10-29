@@ -28,22 +28,22 @@ class VSS003_ModelsTests: XCTestCase {
     }
     
     func test001_CardImportExport() {
-        let card = self.utils.instantiateCard()!
+        let request = self.utils.instantiateCreateCardRequest()
         
-        let exportedData = card.exportData()
+        let exportedData = request.exportData()
         
-        let importedCard = VSSCard(data: exportedData)!
+        let importedRequest = VSSCreateCardRequest(data: exportedData)!
         
-        XCTAssert(self.utils.check(card: card, isEqualToCard: importedCard))
+        XCTAssert(self.utils.check(createCardRequest: request, isEqualToCreateCardRequest: importedRequest))
     }
 
     func test002_RevokeCardImportExport() {
-        let revokeCard = VSSRevokeCard(cardId: "testId", reason: .unspecified)
+        let revokeRequest = VSSRevokeCardRequest(cardId: "testId", reason: .unspecified)
         
-        let exportedData = revokeCard.exportData()
+        let exportedData = revokeRequest.exportData()
         
-        let importedRevokeCard = VSSRevokeCard(data: exportedData)!
+        let importedRevokeRequest = VSSRevokeCardRequest(data: exportedData)!
         
-        XCTAssert(self.utils.check(card: revokeCard, isEqualToCard: importedRevokeCard))
+        XCTAssert(self.utils.check(revokeCardRequest: revokeRequest, isEqualToRevokeCardRequest: importedRevokeRequest))
     }
 }

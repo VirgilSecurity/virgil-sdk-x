@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "VSSTestsUtils.h"
-#import "VSSKeyPair.h"
-#import "VSSPrivateKey.h"
-#import "VSSSigner.h"
+
+#define IsDataEqualOrBothNil(x,y) ((x && [x isEqualToData:y]) || (!x && !y))
+#define IsDictionaryEqualOrBothNil(x,y) ((x && [x isEqualToDictionary:y]) || (!x && !y))
+#define IsStringEqualOrBothNil(x,y) ((x && [x isEqualToString:y]) || (!x && !y))
 
 @implementation VSSTestsUtils
 
@@ -24,56 +26,110 @@
     return self;
 }
 
-- (VSSCard * __nonnull)instantiateCard {
+- (VSSCreateCardRequest *)instantiateCreateCardRequest {
     VSSKeyPair *keyPair = [self.crypto generateKeyPair];
     NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
     
     // some random value
     NSString *identityValue = [[NSUUID UUID] UUIDString];
     NSString *identityType = self.consts.applicationIdentityType;
-    VSSCard *card = [VSSCard cardWithIdentity:identityValue identityType:identityType publicKey:exportedPublicKey];
+    VSSCreateCardRequest *request = [VSSCreateCardRequest createCardRequestWithIdentity:identityValue identityType:identityType publicKey:exportedPublicKey];
     
     NSData *privateAppKeyData = [[NSData alloc] initWithBase64EncodedString:self.consts.applicationPrivateKeyBase64 options:0];
     
     VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKeyFromData:privateAppKeyData withPassword:self.consts.applicationPrivateKeyPassword];
     
-    VSSSigner *signer = [[VSSSigner alloc] initWithCrypto:self.crypto];
+    VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
     
     NSError *error;
-    [signer ownerSignData:card withPrivateKey:keyPair.privateKey error:&error];
-    [signer authoritySignData:card forAppId:self.consts.applicationId withPrivateKey:appPrivateKey error:&error];
+    [signer selfSignRequest:request withPrivateKey:keyPair.privateKey error:&error];
+    [signer authoritySignRequest:request forAppId:self.consts.applicationId withPrivateKey:appPrivateKey error:&error];
     
-    return card;
+    return request;
 }
 
-- (VSSRevokeCard * __nonnull)instantiateRevokeCardForCard:(VSSCard * __nonnull)card {
-    VSSRevokeCard *revokeCard = [VSSRevokeCard revokeCardWithCardId:card.identifier reason:VSSCardRevocationReasonUnspecified];
+- (VSSCreateCardRequest *)instantiateCreateCardRequestWithData:(NSDictionary<NSString *, NSString *> *)data {
+    VSSKeyPair *keyPair = [self.crypto generateKeyPair];
+    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
     
-    VSSSigner *signer = [[VSSSigner alloc] initWithCrypto:self.crypto];
+    // some random value
+    NSString *identityValue = [[NSUUID UUID] UUIDString];
+    NSString *identityType = self.consts.applicationIdentityType;
+    VSSCreateCardRequest *request = [VSSCreateCardRequest createCardRequestWithIdentity:identityValue identityType:identityType publicKey:exportedPublicKey data: data];
+    
+    NSData *privateAppKeyData = [[NSData alloc] initWithBase64EncodedString:self.consts.applicationPrivateKeyBase64 options:0];
+    
+    VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKeyFromData:privateAppKeyData withPassword:self.consts.applicationPrivateKeyPassword];
+    
+    VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
+    
+    NSError *error;
+    [signer selfSignRequest:request withPrivateKey:keyPair.privateKey error:&error];
+    [signer authoritySignRequest:request forAppId:self.consts.applicationId withPrivateKey:appPrivateKey error:&error];
+    
+    return request;
+}
+
+- (VSSRevokeCardRequest *)instantiateRevokeCardForCard:(VSSCard * __nonnull)card {
+    VSSRevokeCardRequest *request = [VSSRevokeCardRequest revokeCardRequestWithCardId:card.identifier reason:VSSCardRevocationReasonUnspecified];
+    
+    VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
     
     NSData *privateAppKeyData = [[NSData alloc] initWithBase64EncodedString:self.consts.applicationPrivateKeyBase64 options:0];
     
     VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKeyFromData:privateAppKeyData withPassword:self.consts.applicationPrivateKeyPassword];
     
     NSError *error;
-    [signer authoritySignData:revokeCard forAppId:self.consts.applicationId withPrivateKey:appPrivateKey error:&error];
+    [signer authoritySignRequest:request forAppId:self.consts.applicationId withPrivateKey:appPrivateKey error:&error];
     
-    return revokeCard;
+    return request;
 }
 
-- (BOOL)checkCard:(VSSCard * __nonnull)card1 isEqualToCard:(VSSCard * __nonnull)card2 {
-    BOOL equals = [card1.snapshot isEqualToData:card2.snapshot]
-        && [card1.data.identityType isEqualToString:card2.data.identityType]
-        && [card1.data.identity isEqualToString:card2.data.identity];
+- (BOOL)checkCard:(VSSCard *)card isEqualToCreateCardRequest:(VSSCreateCardRequest *)request {
+    BOOL equals = [card.identityType isEqualToString:request.snapshotModel.identityType]
+        && [card.identity isEqualToString:request.snapshotModel.identity]
+        && IsDictionaryEqualOrBothNil(card.data, request.snapshotModel.data)
+        && IsDictionaryEqualOrBothNil(card.info, request.snapshotModel.info)
+        && [card.publicKey isEqualToData:request.snapshotModel.publicKey]
+        && card.scope == request.snapshotModel.scope;
     
     return equals;
 }
 
-- (BOOL)checkRevokeCard:(VSSRevokeCard *)revokeCard1 isEqualToRevokeCard:(VSSRevokeCard * __nonnull)revokeCard2 {
-    BOOL equals = [revokeCard1.snapshot isEqualToData:revokeCard2.snapshot]
-        && [revokeCard1.data.cardId isEqualToString:revokeCard2.data.cardId]
-        && revokeCard1.data.revocationReason == revokeCard2.data.revocationReason;
+- (BOOL)checkCard:(VSSCard *)card1 isEqualToCard:(VSSCard *)card2 {
+    BOOL equals = [card1.identityType isEqualToString:card2.identityType]
+        && [card1.identity isEqualToString:card2.identity]
+        && [card1.identifier isEqualToString:card2.identifier]
+        && [card1.createdAt isEqualToDate:card2.createdAt]
+        && [card1.cardVersion isEqualToString:card2.cardVersion]
+        && IsDictionaryEqualOrBothNil(card1.data, card2.data)
+        && IsDictionaryEqualOrBothNil(card1.info, card2.info)
+        && [card1.publicKey isEqualToData:card2.publicKey]
+        && card1.scope == card2.scope;
     
+    return equals;
+}
+
+
+- (BOOL)checkCreateCardRequest:(VSSCreateCardRequest *)request1 isEqualToCreateCardRequest:(VSSCreateCardRequest *)request2 {
+    BOOL equals = [request1.snapshot isEqualToData:request2.snapshot]
+        && [request1.signatures isEqualToDictionary:request2.signatures]
+        && IsDictionaryEqualOrBothNil(request1.snapshotModel.data, request2.snapshotModel.data)
+        && [request1.snapshotModel.identity isEqualToString:request2.snapshotModel.identity]
+        && [request1.snapshotModel.identityType isEqualToString:request2.snapshotModel.identityType]
+        && IsDictionaryEqualOrBothNil(request1.snapshotModel.info, request2.snapshotModel.info)
+        && [request1.snapshotModel.publicKey isEqualToData:request2.snapshotModel.publicKey]
+        && request1.snapshotModel.scope == request2.snapshotModel.scope;
+    
+    return equals;
+}
+
+- (BOOL)checkRevokeCardRequest:(VSSRevokeCardRequest *)request1 isEqualToRevokeCardRequest:(VSSRevokeCardRequest *)request2 {
+    BOOL equals = [request1.snapshot isEqualToData:request2.snapshot]
+        && [request1.signatures isEqualToDictionary:request2.signatures]
+        && [request1.snapshotModel.cardId isEqualToString:request2.snapshotModel.cardId]
+        && request1.snapshotModel.revocationReason == request2.snapshotModel.revocationReason;
+
     return equals;
 }
 

@@ -9,13 +9,14 @@
 // Models
 #import "VSSModelCommons.h"
 #import "VSSBaseModel.h"
-#import "VSSSignedData.h"
-#import "VSSCardData.h"
-#import "VSSCard.h"
 #import "VSSSearchCardsCriteria.h"
-#import "VSSRevokeCardData.h"
-#import "VSSRevokeCard.h"
+#import "VSSCard.h"
+
+#import "VSSSnapshotModelsPublic.h"
+#import "VSSRequestsPublic.h"
+#import "VSSResponsesPublic.h"
 
 // Protocols
 #import "VSSImportable.h"
 #import "VSSExportable.h"
+#import "VSSSignable.h"

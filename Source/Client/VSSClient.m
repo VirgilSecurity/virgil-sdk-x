@@ -16,6 +16,7 @@
 #import "VSSSearchCardsHTTPRequest.h"
 #import "VSSGetCardHTTPRequest.h"
 #import "VSSRevokeCardHTTPRequest.h"
+#import "VSSCardResponsePrivate.h"
 
 NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
 
@@ -90,9 +91,9 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
 
 #pragma mark - Implementation of VSSClient protocol
 
-- (void)registerCard:(VSSCard *)card completion:(void (^)(VSSCard *, NSError *))callback {
+- (void)createCardWithRequest:(VSSCreateCardRequest*)request completion:(void (^)(VSSCard *, NSError *))callback {
     VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.cardsServiceURL];
-    VSSCreateCardHTTPRequest *request = [[VSSCreateCardHTTPRequest alloc] initWithContext:context card:card];
+    VSSCreateCardHTTPRequest *httpRequest = [[VSSCreateCardHTTPRequest alloc] initWithContext:context createCardRequest:request];
     
     VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
         if (request.error != nil) {
@@ -104,23 +105,23 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
         
         if (callback != nil) {
             VSSCreateCardHTTPRequest *r = [request as:[VSSCreateCardHTTPRequest class]];
-            VSSCard *card = r.card;
+            VSSCardResponse *cardResponse = r.cardResponse;
             
             if (self.serviceConfig.cardValidator != nil) {
-                if (![self.serviceConfig.cardValidator validateCard:card]) {
+                if (![self.serviceConfig.cardValidator validateCardResponse:cardResponse]) {
                     callback(nil, [[NSError alloc] initWithDomain:kVSSClientErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"Error validating card signatures" }]);
                     return;
                 }
             }
             
-            callback(card, nil);
+            callback([cardResponse buildCard], nil);
         }
         return;
     };
     
-    request.completionHandler = handler;
+    httpRequest.completionHandler = handler;
     
-    [self send:request];
+    [self send:httpRequest];
 }
 
 - (void)getCardWithId:(NSString *)cardId completion:(void (^)(VSSCard *, NSError *))callback {
@@ -137,7 +138,7 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
         
         if (callback != nil) {
             VSSGetCardHTTPRequest *r = [request as:[VSSGetCardHTTPRequest class]];
-            callback(r.card, nil);
+            callback([r.cardResponse buildCard], nil);
         }
         return;
     };
@@ -147,7 +148,7 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     [self send:request];
 }
 
-- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria *)criteria completion:(void (^)(NSArray<VSSCard *> *, NSError *))callback {
+- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria *)criteria completion:(void (^)(NSArray<VSSCard*> *, NSError *))callback {
     VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.cardsServiceROURL];
     VSSSearchCardsHTTPRequest *request = [[VSSSearchCardsHTTPRequest alloc] initWithContext:context searchCardsCriteria:criteria];
     
@@ -161,7 +162,11 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
         
         if (callback != nil) {
             VSSSearchCardsHTTPRequest *r = [request as:[VSSSearchCardsHTTPRequest class]];
-            callback(r.cards, nil);
+            NSMutableArray<VSSCard *> *cardsArray = [[NSMutableArray alloc] init];
+            for (VSSCardResponse *response in r.cardResponses)
+                [cardsArray addObject:[response buildCard]];
+            
+            callback(cardsArray, nil);
         }
         return;
     };
@@ -171,9 +176,9 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     [self send:request];
 }
 
-- (void)revokeCard:(VSSRevokeCard *)revokeCard completion:(void (^)(NSError *))callback {
+- (void)revokeCardWithRequest:(VSSRevokeCardRequest *)request completion:(void (^)(NSError *))callback {
     VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.cardsServiceURL];
-    VSSRevokeCardHTTPRequest *request = [[VSSRevokeCardHTTPRequest alloc] initWithContext:context revokeCard:revokeCard];
+    VSSRevokeCardHTTPRequest *httpRequest = [[VSSRevokeCardHTTPRequest alloc] initWithContext:context revokeCardRequest: request];
     
     VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
         if (request.error != nil) {
@@ -189,9 +194,9 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
         return;
     };
     
-    request.completionHandler = handler;
+    httpRequest.completionHandler = handler;
     
-    [self send:request];
+    [self send:httpRequest];
 }
 
 @end

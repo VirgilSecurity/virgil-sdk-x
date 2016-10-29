@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VSSCard.h"
-#import "VSSRevokeCard.h"
-#import "VSSCrypto.h"
+
+@import VirgilSDK;
+
 #import "VSSTestsConst.h"
 
 @interface VSSTestsUtils : NSObject
@@ -17,10 +17,13 @@
 @property (nonatomic, readonly) VSSCrypto * __nonnull crypto;
 @property (nonatomic, readonly) VSSTestsConst * __nonnull consts;
 
-- (VSSCard * __nonnull)instantiateCard;
-- (VSSRevokeCard * __nonnull)instantiateRevokeCardForCard:(VSSCard * __nonnull)card;
+- (VSSCreateCardRequest * __nonnull)instantiateCreateCardRequest;
+- (VSSCreateCardRequest * __nonnull)instantiateCreateCardRequestWithData:(NSDictionary<NSString *, NSString *> * __nonnull)data;
+- (VSSRevokeCardRequest * __nonnull)instantiateRevokeCardForCard:(VSSCard * __nonnull)card;
+- (BOOL)checkCard:(VSSCard * __nonnull)card isEqualToCreateCardRequest:(VSSCreateCardRequest * __nonnull)request;
 - (BOOL)checkCard:(VSSCard * __nonnull)card1 isEqualToCard:(VSSCard * __nonnull)card2;
-- (BOOL)checkRevokeCard:(VSSRevokeCard * __nonnull)revokeCard1 isEqualToRevokeCard:(VSSRevokeCard * __nonnull)revokeCard2;
+- (BOOL)checkCreateCardRequest:(VSSCreateCardRequest * __nonnull)request1 isEqualToCreateCardRequest:(VSSCreateCardRequest * __nonnull)request2;
+- (BOOL)checkRevokeCardRequest:(VSSRevokeCardRequest * __nonnull)request1 isEqualToRevokeCardRequest:(VSSRevokeCardRequest * __nonnull)request2;
 
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 

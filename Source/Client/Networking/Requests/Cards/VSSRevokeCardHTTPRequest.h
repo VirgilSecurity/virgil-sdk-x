@@ -8,11 +8,11 @@
 
 #import "VSSCardsBaseHTTPRequest.h"
 #import "VSSModelCommons.h"
-#import "VSSRevokeCard.h"
+#import "VSSRevokeCardRequest.h"
 
 @interface VSSRevokeCardHTTPRequest : VSSCardsBaseHTTPRequest
 
-- (instancetype __nonnull)initWithContext:(VSSHTTPRequestContext * __nonnull)context revokeCard:(VSSRevokeCard * __nonnull)revokeCard NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithContext:(VSSHTTPRequestContext * __nonnull)context revokeCardRequest:(VSSRevokeCardRequest* __nonnull)request NS_DESIGNATED_INITIALIZER;
 
 - (instancetype __nonnull)initWithContext:(VSSHTTPRequestContext * __nonnull)context NS_UNAVAILABLE;
 

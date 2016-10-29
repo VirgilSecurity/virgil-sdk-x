@@ -2,20 +2,14 @@
 //  VSSCardPrivate.h
 //  VirgilSDK
 //
-//  Created by Oleksandr Deundiak on 9/29/16.
+//  Created by Oleksandr Deundiak on 10/27/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
 #import "VSSCard.h"
-#import "VSSSignedData.h"
-#import "VSSSignedDataPrivate.h"
 
-@interface VSSCard () <VSSSerializable, VSSDeserializable>
+@interface VSSCard ()
 
-- (instancetype __nonnull)initWithSnapshot:(NSData * __nonnull)snapshot cardData:(VSSCardData * __nonnull)cardData;
-
-- (instancetype __nonnull)initWithSnapshot:(NSData * __nonnull)snapshot;
-
-- (instancetype __nonnull)initWithCardData:(VSSCardData * __nonnull)cardData;
+- (instancetype __nonnull)initWithIdentifier:(NSString * __nonnull)identifier identity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKey:(NSData * __nonnull)publicKey scope:(VSSCardScope)scope data:(NSDictionary<NSString *, NSString *> * __nullable)data info:(NSDictionary<NSString *, NSString *> * __nullable)info createdAt:(NSDate * __nonnull)createdAt cardVersion:(NSString * __nonnull)cardVersion;
 
 @end

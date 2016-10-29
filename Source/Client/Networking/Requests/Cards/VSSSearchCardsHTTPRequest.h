@@ -9,11 +9,11 @@
 #import "VSSCardsBaseHTTPRequest.h"
 #import "VSSHTTPRequestContext.h"
 #import "VSSSearchCardsCriteria.h"
-#import "VSSCard.h"
+#import "VSSCardResponse.h"
 
 @interface VSSSearchCardsHTTPRequest : VSSCardsBaseHTTPRequest
 
-@property (nonatomic, readonly) NSArray <VSSCard *>* __nullable cards;
+@property (nonatomic, readonly) NSArray <VSSCardResponse *> * __nullable cardResponses;
 
 - (instancetype __nonnull)initWithContext:(VSSHTTPRequestContext * __nonnull)context searchCardsCriteria:(VSSSearchCardsCriteria * __nonnull)criteria NS_DESIGNATED_INITIALIZER;
 

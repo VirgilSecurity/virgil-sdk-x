@@ -11,6 +11,6 @@
 #import "VSSClient.h"
 #import "VSSClientProtocol.h"
 #import "VSSServiceConfig.h"
-#import "VSSSigner.h"
+#import "VSSRequestSigner.h"
 #import "VSSCardValidatorProtocol.h"
 #import "VSSCardValidator.h"
