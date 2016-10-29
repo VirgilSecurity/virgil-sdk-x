@@ -186,33 +186,33 @@ Prepare request
 ###### Objective-C
 ```objective-c
 NSData *exportedPublicKey = [self.crypto exportPublicKey:aliceKeys.publicKey];
-VSSCard *card = [VSSCard cardWithIdentity:@"alice" identityType:@"username" publicKey:exportedPublicKey];
+VSSCreateCardRequest *request = [VSSCreateCardRequest createCardRequestWithIdentity:@"alice" identityType:@"username" publicKey:exportedPublicKey];
 ```
 
 ###### Swift
 ```swift
 let exportedPublicKey = self.crypto.export(publicKey: aliceKeys.publicKey)
-let card = VSSCard(identity: "alice", identityType: "username", publicKey: exportedPublicKey)
+let request = VSSCreateCardRequest(identity: "alice", identityType: "username", publicKey: exportedPublicKey)
 ```
 
-then, use *VSSSigner* class to sign request with owner and app keys.
+then, use *VSSRequestSigner* class to sign request with owner and app keys.
 ###### Objective-C
 ```objective-c
-VSSSigner *signer = [[VSSSigner alloc] initWithCrypto:self.crypto];
+VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
 
 NSError *error1;
-[signer ownerSign:card withPrivateKey:aliceKeys.privateKey error:&error1];
+[signer selfSignRequest:request withPrivateKey:aliceKeys.privateKey error:&error1];
 NSError *error2;
-[signer authoritySign:card forAppId:appId withPrivateKey:appPrivateKey error:&error2];
+[signer authoritySignRequest:request forAppId:appId withPrivateKey:appPrivateKey error:&error2];
 ```
 
 ###### Swift
 ```swift
-let signer = VSSSigner(crypto: self.crypto)
+let signer = VSSRequestSigner(crypto: self.crypto)
 
 do {
-    try signer.ownerSign(card, with: keyPair.privateKey)
-	try signer.authoritySign(card, forAppId: kApplicationId, with: appPrivateKey)
+    try signer.selfSign(request, with: keyPair.privateKey)
+	try signer.authoritySign(request, forAppId: kApplicationId, with: appPrivateKey)
 }
 catch {
 	//...
@@ -222,14 +222,14 @@ catch {
 Publish a Virgil Card
 ###### Objective-C
 ```objective-c
-[self.client registerCard:card completion:^(VSSCard *registeredCard, NSError *error) {
+[self.client createCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
     //...
 }];
 ```
 
 ###### Swift
 ```swift
-self.client.register(card) { registeredCard, error in
+self.client.createCardWith(request) { card, error in
 	//...
 }
 ```
@@ -257,7 +257,7 @@ self.client.searchCards(using: criteria) { foundCards, error in
 ```
 
 ## Validating Virgil Cards
-This sample uses *built-in* ```VSSCardValidator``` to validate cards. Default ```VSSCardValidator``` validates only *Cards Service* signature. 
+This sample uses *built-in* ```VSSCardValidator``` to validate Virgil Service card responses. Default ```VSSCardValidator``` validates only *Cards Service* signature. 
 
 ###### Objective-C
 ```objective-c
@@ -266,7 +266,7 @@ VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.cryp
 // Your can also add another Public Key for verification.
 // [validator addVerifierWithId:<#Verifier card id#> publicKey:<#Verifier public key#>];
 
-BOOL isValid = [validator validateCard:card];
+BOOL isValid = [validator validateCardResponse:response];
 ```
 
 ###### Swift
@@ -276,7 +276,7 @@ let validator = VSSCardValidator(crypto: self.crypto)
 // Your can also add another Public Key for verification.
 // validator.addVerifier(withId: <#Verifier card id#>, publicKey: <#Verifier public key#>)
 
-let isValid = validator.validate(card)
+let isValid = validator.validate(response)
 ```
 
 For convenience you can embed validator into the client and all cards received from the Virgil service will be automatically validated for you.
@@ -325,32 +325,35 @@ self.client.getCard(withId: cardIdentifier) { card, error in
 ```
 
 ## Revoking a Virgil Card
+
+You can make Virgil Card unavailable for further use if its private key was compromised or for any other reason.
+
 ###### Objective-C
 ```objective-c
-VSSRevokeCard *card = [VSSRevokeCard revokeCardWithCardId:<#Your cardId#> reason:VSSCardRevocationReasonUnspecified];
+VSSRevokeCardRequest *revokeRequest = [VSSRevokeCardRequest revokeCardRequestWithCardId:<#Your cardId#> reason:VSSCardRevocationReasonUnspecified];
 
-VSSSigner *signer = [[VSSSigner alloc] initWithCrypto:self.crypto];
+VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
 NSError *error;
-[signer authoritySign:card forAppId:appId withPrivateKey:appPrivateKey error:&error];
+[signer authoritySignRequest:revokeRequest forAppId:appId withPrivateKey:appPrivateKey error:&error];
 
-[self.client revokeCard:card completion:^(NSError *error) {
+[self.client revokeCardWithRequest:revokeRequest completion:^(NSError *error) {
 	//...
 }];
 ```
 
 ###### Swift
 ```swift
-let card = VSSRevokeCard(cardId: <#Your cardId#>, reason: .unspecified)
+let revokeRequest = VSSRevokeCardRequest(cardId: <#Your cardId#>, reason: .unspecified)
 
-let signer = VSSSigner(crypto: self.crypto)
+let signer = VSSRequestSigner(crypto: self.crypto)
 do {
-	try signer.authoritySign(card, forAppId: appId, with: appPrivateKey)
+	try signer.authoritySign(revokeRequest, forAppId: appId, with: appPrivateKey)
 }
 catch {
 	// ...
 }
 
-self.client.revoke(card) { error in
+self.client.revokeCardWithRequest(revokeRequest) { error in
 	//...
 }
 ```
