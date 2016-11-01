@@ -13,7 +13,6 @@
 #import "VSSPublicKeyPrivate.h"
 #import "VSSPrivateKeyPrivate.h"
 #import "VSSRequestSigner.h"
-#import "VSCCryptor.h"
 
 static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
 
