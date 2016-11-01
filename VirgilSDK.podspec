@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name                  = "VirgilSDK"
-  s.version               = "4.0.0-beta10"
+  s.version               = "4.0.0"
   s.summary               = "Virgil SDK for Apple devices and languages."
   s.cocoapods_version     = ">= 0.36"
-  s.homepage              = "https://github.com/VirgilSecurity/virgil-sdk-x/tree/v4"
+  s.homepage              = "https://github.com/VirgilSecurity/virgil-sdk-x/"
   s.license               = { :type => "BSD", :file => "LICENSE" }
   s.author                = { "Oleksandr Deundiak" => "deundiak@gmail.com" }
   s.platforms             = { :ios => "7.0" }
