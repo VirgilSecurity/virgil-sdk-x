@@ -22,5 +22,5 @@ Pod::Spec.new do |s|
                             'Source/Crypto/*.{h}',
                             'Source/Crypto/Keys/*.{h}'
   s.requires_arc          = true
-  s.dependency "VirgilCrypto", "~> 2.0"
+  s.dependency "VirgilCrypto", "~> 2.0.0"
 end
