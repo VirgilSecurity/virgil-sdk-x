@@ -1,9 +1,9 @@
 ![VirgilSDK](https://cloud.githubusercontent.com/assets/6513916/19643783/bfbf78be-99f4-11e6-8d5a-a43394f2b9b2.png)
 
-[![Build Status](https://travis-ci.org/VirgilSecurity/virgil-sdk-x.svg?branch=v4)](https://travis-ci.org/VirgilSecurity/virgil-sdk-x)
+[![Build Status](https://travis-ci.org/VirgilSecurity/virgil-sdk-x.svg)](https://travis-ci.org/VirgilSecurity/virgil-sdk-x)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilSDK.svg)](https://img.shields.io/cocoapods/v/VirgilSDK.svg)
 [![Platform](https://img.shields.io/cocoapods/p/VirgilSDK.svg?style=flat)](http://cocoadocs.org/docsets/VirgilSDK)
-[![codecov.io](https://codecov.io/github/VirgilSecurity/virgil-sdk-x/coverage.svg?branch=v4)](https://codecov.io/github/VirgilSecurity/virgil-sdk-x/branch/v4)
+[![codecov.io](https://codecov.io/github/VirgilSecurity/virgil-sdk-x/coverage.svg)](https://codecov.io/github/VirgilSecurity/virgil-sdk-x/)
 [![GitHub license](https://img.shields.io/badge/license-BSD3-lightgrey.svg)](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE)
 
 # Objective-C/Swift SDK Programming Guide
@@ -32,6 +32,7 @@ In this guide you will find code for every task you need to implement in order t
 * [Generating and Verifying Signatures](#generating-and-verifying-signatures)
 * [Generating a Signature](#generating-a-signature)
 * [Verifying a Signature](#verifying-a-signature)
+* [Combining Encryption and Signing procedures](#combining-encryption-and-signing-procedures)
 * [Fingerprint Generation](#fingerprint-generation)
 * [Release Notes](#release-notes)
 
@@ -57,7 +58,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'VirgilSDK', '~> 4.0'
+    pod 'VirgilSDK', '~> 4.0.0'
 end
 ```
 
@@ -564,6 +565,33 @@ BOOL isVerified = [self.crypto verifyStream:stream withSignature:signature using
 ###### Swift
 ```swift
 let isVerified = try? self.crypto.verifyStream(stream, withSignature: signature, usingSignerPublicKey: aliceKeys.publicKey)
+```
+
+## Combining Encryption and Signing procedures
+Virgil SDK contains convenient API for combining encrypt/decrypt and sign/verify procedures
+
+*Sign and encrypt*
+###### Objective-C
+```objective-c
+NSError *error;
+NSData *signedAndEcnryptedData = [self.crypto signAndEncryptData:data withPrivateKey:senderPrivateKey forRecipients:@[receiverPublicKey] error:&error];
+```
+
+###### Swift
+```swift
+let signedAndEcryptedData = try? self.crypto.signAndEncrypt(data, with: senderPrivateKey, for: [receiverPublicKey])
+```
+
+*Decrypt and verify*
+###### Objective-C
+```objective-c
+NSError *error;
+NSData *decryptedAndVerifiedData = [self.crypto decryptAndVerifyData:signedAndEcnryptedData withPrivateKey:receiverPrivateKey usingSignerPublicKey:senderPublicKey error:&error];
+```
+
+###### Swift
+```swift
+let decryptedAndVerifiedData = try? self.crypto.decryptAndVerify(signedAndEcryptedData, with: receiverPrivateKey, using: senderPublicKey)
 ```
 
 ## Fingerprint Generation
