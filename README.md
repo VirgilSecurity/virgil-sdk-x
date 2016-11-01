@@ -32,7 +32,7 @@ In this guide you will find code for every task you need to implement in order t
 * [Generating and Verifying Signatures](#generating-and-verifying-signatures)
 * [Generating a Signature](#generating-a-signature)
 * [Verifying a Signature](#verifying-a-signature)
-* [Combining Encryption and Signing procedures](#combining-encryption-and-signing-procedures)
+* [Authenticated Encryption](#authenticated-encryption)
 * [Fingerprint Generation](#fingerprint-generation)
 * [Release Notes](#release-notes)
 
@@ -567,7 +567,7 @@ BOOL isVerified = [self.crypto verifyStream:stream withSignature:signature using
 let isVerified = try? self.crypto.verifyStream(stream, withSignature: signature, usingSignerPublicKey: aliceKeys.publicKey)
 ```
 
-## Combining Encryption and Signing procedures
+## Authenticated Encryption
 Virgil SDK contains convenient API for combining encrypt/decrypt and sign/verify procedures
 
 *Sign and encrypt*
