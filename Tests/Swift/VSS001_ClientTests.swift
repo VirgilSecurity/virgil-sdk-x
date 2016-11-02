@@ -126,7 +126,7 @@ class VSS001_ClientTests: XCTestCase {
             
             let criteria = VSSSearchCardsCriteria(scope: .application, identityType: registeredCard!.identityType, identities: [registeredCard!.identity])
             
-            sleep(1)
+            sleep(3)
             
             self.client.searchCards(using: criteria) { cards, error in
                 guard error == nil else {
@@ -168,7 +168,7 @@ class VSS001_ClientTests: XCTestCase {
                 return
             }
             
-            sleep(1)
+            sleep(3)
             self.client.getCard(withId: registeredCard!.identifier) { card, error in
                 guard error == nil else {
                     XCTFail("Failed: " + error!.localizedDescription)
@@ -211,7 +211,7 @@ class VSS001_ClientTests: XCTestCase {
 
             let revokeRequest = self.utils.instantiateRevokeCardRequestFor(card: registeredCard!)
             
-            sleep(1)
+            sleep(3)
             self.client.revokeCardWith(revokeRequest) { error in
                 guard error == nil else {
                     XCTFail("Failed: " + error!.localizedDescription)
