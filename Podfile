@@ -13,3 +13,7 @@ target 'VirgilSDK iOS' do
         inherit! :search_paths
     end
 end
+
+target 'TestSDKApp' do
+	pod 'VirgilSDK', :path => './'
+end
