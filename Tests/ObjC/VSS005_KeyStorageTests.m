@@ -43,7 +43,25 @@
     [super tearDown];
 }
 
-- (void)test001_SaveAndGetKey {
+- (void)test001_StoreKey {
+    NSError *error;
+    BOOL res = [self.storage storeKeyEntry:self.keyEntry error:&error];
+    XCTAssert(res);
+    XCTAssert(error == nil);
+}
+
+- (void)test002_StoreKeyWithDuplicateName {
+    NSError *error;
+    BOOL res = [self.storage storeKeyEntry:self.keyEntry error:&error];
+    XCTAssert(res);
+    XCTAssert(error == nil);
+    
+    res = [self.storage storeKeyEntry:self.keyEntry error:&error];
+    XCTAssert(!res);
+    XCTAssert(error != nil);
+}
+
+- (void)test003_LoadKey {
     NSError *error;
     [self.storage storeKeyEntry:self.keyEntry error:&error];
     XCTAssert(error == nil);

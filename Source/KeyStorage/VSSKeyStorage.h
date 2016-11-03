@@ -17,6 +17,4 @@ extern NSString * __nonnull const kVSSKeyStorageErrorDomain;
 
 - (instancetype __nonnull)initWithConfiguration:(VSSKeyStorageConfiguration * __nonnull)configuration NS_DESIGNATED_INITIALIZER;
 
-- (instancetype __nonnull)initWithApplicationName:(NSString * __nonnull)applicationName;
-
 @end

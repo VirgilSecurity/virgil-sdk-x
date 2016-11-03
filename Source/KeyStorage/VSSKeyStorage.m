@@ -12,7 +12,7 @@
 
 NSString *const kVSSKeyStorageErrorDomain = @"VSSKeyStorageErrorDomain";
 
-static NSString *privateKeyIdentifierFormat = @"com.virgilsecurity.virgilsdk.privatekey.%@.%@\0";
+static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
 
 @interface VSSKeyStorage ()
 
@@ -23,8 +23,8 @@ static NSString *privateKeyIdentifierFormat = @"com.virgilsecurity.virgilsdk.pri
 
 @implementation VSSKeyStorage
 
-- (instancetype)initWithApplicationName:(NSString *)applicationName {
-    VSSKeyStorageConfiguration *configuration = [VSSKeyStorageConfiguration keyStorageConfigurationWithApplicationName:applicationName];
+- (instancetype)init {
+    VSSKeyStorageConfiguration *configuration = [VSSKeyStorageConfiguration keyStorageConfigurationWithDefaultValues];
     
     return [self initWithConfiguration:configuration];
 }
@@ -39,10 +39,16 @@ static NSString *privateKeyIdentifierFormat = @"com.virgilsecurity.virgilsdk.pri
 }
 
 - (BOOL)storeKeyEntry:(VSSKeyEntry *)keyEntry error:(NSError **)errorPtr {
-    NSData *keyEntryData = [NSKeyedArchiver archivedDataWithRootObject:keyEntry];
+    if ([self existsKeyEntryWithName:keyEntry.name]) {
+        if (errorPtr != nil) {
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"Error storing VSSKeyEntry. Entry with this name already exists." }];
+        }
+        return NO;
+    }
     
     NSMutableDictionary *query = [self baseExtendedKeychainQueryForName:keyEntry.name];
     
+    NSData *keyEntryData = [NSKeyedArchiver archivedDataWithRootObject:keyEntry];
     NSMutableDictionary *keySpecificData = [NSMutableDictionary dictionaryWithDictionary:
         @{
           (__bridge id)kSecValueData: keyEntryData,
@@ -86,7 +92,7 @@ static NSString *privateKeyIdentifierFormat = @"com.virgilsecurity.virgilsdk.pri
     
     if (outData == nil) {
         if (errorPtr != nil) {
-            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"No data found." }];
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: @"No data found." }];
         }
         return nil;
     }
@@ -106,7 +112,7 @@ static NSString *privateKeyIdentifierFormat = @"com.virgilsecurity.virgilsdk.pri
 }
 
 - (BOOL)existsKeyEntryWithName:(NSString *)name {
-    return NO;
+    return [self loadKeyEntryWithName:name error:nil] != nil;
 }
 
 - (BOOL)deleteKeyEntryWithName:(NSString *)name error:(NSError **)errorPtr {
@@ -142,9 +148,12 @@ static NSString *privateKeyIdentifierFormat = @"com.virgilsecurity.virgilsdk.pri
             (__bridge id)kSecAttrSynchronizable: (__bridge id)kCFBooleanFalse,
         }];
     
+    // Access groups are not supported in simulator
+#if TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
     if (self.configuration.accessGroup != nil) {
         additional[(__bridge id)kSecAttrAccessGroup] = self.configuration.accessGroup;
     }
+#endif
     
     [query addEntriesFromDictionary:additional];
     
