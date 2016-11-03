@@ -1,8 +1,8 @@
 //
-//  VSS005_KeyStorageTests.m
+//  VSS006_KeyStorageWithAccessGroupTests.m
 //  VirgilSDK
 //
-//  Created by Oleksandr Deundiak on 11/2/16.
+//  Created by Oleksandr Deundiak on 11/3/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 
 #import "VSSTestsUtils.h"
 
-@interface VSS005_KeyStorageTests : XCTestCase
+@interface VSS006_KeyStorageWithAccessGroupTests : XCTestCase
 
 @property (nonatomic) VSSCrypto * __nonnull crypto;
 @property (nonatomic) VSSKeyStorage * __nonnull storage;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation VSS005_KeyStorageTests
+@implementation VSS006_KeyStorageWithAccessGroupTests
 
 #pragma mark - Setup
 
@@ -28,7 +28,9 @@
     [super setUp];
     
     self.crypto = [[VSSCrypto alloc] init];
-    self.storage = [[VSSKeyStorage alloc] init];
+    VSSKeyStorageConfiguration *configuration = [VSSKeyStorageConfiguration keyStorageConfigurationWithAccessibility:(__bridge NSString*)kSecAttrAccessibleWhenUnlocked accessGroup:@"someAccessGroup"];
+    self.storage = [[VSSKeyStorage alloc] initWithConfiguration:configuration];
+    
     VSSKeyPair *keyPair = [self.crypto generateKeyPair];
     
     NSData *privateKeyRawData = [self.crypto exportPrivateKey:keyPair.privateKey withPassword:nil];

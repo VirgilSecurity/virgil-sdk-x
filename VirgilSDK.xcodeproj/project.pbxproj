@@ -54,6 +54,7 @@
 		425B09F71DC262ED005531DC /* VSSCard.h in Headers */ = {isa = PBXBuildFile; fileRef = 425B09F11DC25FD1005531DC /* VSSCard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		425B09FA1DC2676C005531DC /* VSSRequestsPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 425B09F91DC2671A005531DC /* VSSRequestsPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		425B09FB1DC26770005531DC /* VSSResponsesPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 425B09F81DC26703005531DC /* VSSResponsesPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42796BD61DCB97CA000FDDD4 /* VSS006_KeyStorageWithAccessGroupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42796BD41DCB977C000FDDD4 /* VSS006_KeyStorageWithAccessGroupTests.m */; };
 		427A63161DB9091D00A33661 /* VirgilSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7E3721DB9023400D70C12 /* VirgilSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427A63171DB9096C00A33661 /* VSSImportable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B1471C1DAFA8F600AC9975 /* VSSImportable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427A63181DB9096C00A33661 /* VSSExportable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B1471D1DAFA92000AC9975 /* VSSExportable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -231,6 +232,7 @@
 		425B09F81DC26703005531DC /* VSSResponsesPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSResponsesPublic.h; sourceTree = "<group>"; };
 		425B09F91DC2671A005531DC /* VSSRequestsPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSRequestsPublic.h; sourceTree = "<group>"; };
 		42796BD31DCB6281000FDDD4 /* TestSDKApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestSDKApp.entitlements; sourceTree = "<group>"; };
+		42796BD41DCB977C000FDDD4 /* VSS006_KeyStorageWithAccessGroupTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS006_KeyStorageWithAccessGroupTests.m; sourceTree = "<group>"; };
 		429F11915E988260A69139D0 /* Pods-VirgilSDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirgilSDKTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VirgilSDKTests/Pods-VirgilSDKTests.debug.xcconfig"; sourceTree = "<group>"; };
 		42A442A61DC8F1D2000DD54B /* VSSKeyStorageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorageProtocol.h; sourceTree = "<group>"; };
 		42B1471C1DAFA8F600AC9975 /* VSSImportable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSImportable.h; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 				42B1471E1DAFAEB200AC9975 /* VSS003_ModelsTests.m */,
 				42B147231DAFC29600AC9975 /* VSS004_CompatibilityTests.m */,
 				423CEB691DCA93D500CCACB8 /* VSS005_KeyStorageTests.m */,
+				42796BD41DCB977C000FDDD4 /* VSS006_KeyStorageWithAccessGroupTests.m */,
 			);
 			name = Objc;
 			path = ObjC;
@@ -1224,6 +1227,7 @@
 				42F6C2021DBF5D1D0030C21D /* VSS001_ClientTests.m in Sources */,
 				42F6C1FE1DBE4DD30030C21D /* VSSTestsUtils.m in Sources */,
 				42F6C20A1DBF5F680030C21D /* VSSTestsConst.m in Sources */,
+				42796BD61DCB97CA000FDDD4 /* VSS006_KeyStorageWithAccessGroupTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
