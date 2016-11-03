@@ -11,9 +11,11 @@
 
 @interface VSSKeyStorageConfiguration: NSObject <NSCopying>
 
-+ (VSSKeyStorageConfiguration * __nonnull)keyStorageConfigurationWithDefaultValues;
++ (VSSKeyStorageConfiguration * __nonnull)keyStorageConfigurationWithApplicationName:(NSString * __nonnull)applicationName;
++ (VSSKeyStorageConfiguration * __nonnull)keyStorageConfigurationWithApplicationName:(NSString * __nonnull)applicationName accessibility:(NSString * __nonnull)accessibility accessGroup:(NSString * __nullable)accessGroup;
 
 @property (nonatomic, readonly, copy) NSString * __nonnull accessibility;
-@property (nonatomic, readonly, copy) NSString * __nonnull accessGroup;
+@property (nonatomic, readonly, copy) NSString * __nullable accessGroup;
+@property (nonatomic, readonly, copy) NSString * __nonnull applicationName;
 
 @end

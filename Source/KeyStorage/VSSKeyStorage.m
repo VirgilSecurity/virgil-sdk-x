@@ -23,8 +23,10 @@ static NSString *privateKeyIdentifierFormat = @"com.virgilsecurity.virgilsdk.pri
 
 @implementation VSSKeyStorage
 
-- (instancetype)init {
-    return [self initWithConfiguration:[VSSKeyStorageConfiguration keyStorageConfigurationWithDefaultValues]];
+- (instancetype)initWithApplicationName:(NSString *)applicationName {
+    VSSKeyStorageConfiguration *configuration = [VSSKeyStorageConfiguration keyStorageConfigurationWithApplicationName:applicationName];
+    
+    return [self initWithConfiguration:configuration];
 }
 
 - (instancetype)initWithConfiguration:(VSSKeyStorageConfiguration *)configuration {
@@ -128,10 +130,8 @@ static NSString *privateKeyIdentifierFormat = @"com.virgilsecurity.virgilsdk.pri
     NSMutableDictionary *additional = [NSMutableDictionary dictionaryWithDictionary:
         @{
             (__bridge id)kSecAttrAccessible: (__bridge id)kSecAttrAccessibleAfterFirstUnlock,
-//            (__bridge id)kSecAttrAccessControl
-//            (__bridge id)kSecAttrAccessGroup
             (__bridge id)kSecAttrLabel: name,
-//            (__bridge id)kSecAttrIsPermanent
+            (__bridge id)kSecAttrIsPermanent: (__bridge id)kCFBooleanTrue,
             (__bridge id)kSecAttrCanEncrypt: (__bridge id)kCFBooleanTrue,
             (__bridge id)kSecAttrCanDecrypt: (__bridge id)kCFBooleanFalse,
             (__bridge id)kSecAttrCanDerive: (__bridge id)kCFBooleanFalse,
@@ -142,25 +142,25 @@ static NSString *privateKeyIdentifierFormat = @"com.virgilsecurity.virgilsdk.pri
             (__bridge id)kSecAttrSynchronizable: (__bridge id)kCFBooleanFalse,
         }];
     
+    if (self.configuration.accessGroup != nil) {
+        additional[(__bridge id)kSecAttrAccessGroup] = self.configuration.accessGroup;
+    }
+    
     [query addEntriesFromDictionary:additional];
     
     return query;
 }
 
 - (NSMutableDictionary *)baseKeychainQueryForName:(NSString *)name {
-    // FIXME
-    NSString *tag = [[NSString alloc] initWithFormat:privateKeyIdentifierFormat, @"testApp", name];
+    NSString *tag = [[NSString alloc] initWithFormat:privateKeyIdentifierFormat, self.configuration.applicationName, name];
     NSData *tagData = [tag dataUsingEncoding:NSUTF8StringEncoding];
     
     NSMutableDictionary *query = [NSMutableDictionary dictionaryWithDictionary:
         @{
             (__bridge id)kSecClass: (__bridge id)kSecClassKey,
             (__bridge id)kSecAttrKeyClass: (__bridge id)kSecAttrKeyClassPrivate,
-            (__bridge id)kSecAttrApplicationLabel: [name dataUsingEncoding:NSUTF8StringEncoding], //replace with hash
+            (__bridge id)kSecAttrApplicationLabel: [name dataUsingEncoding:NSUTF8StringEncoding],
             (__bridge id)kSecAttrApplicationTag: tagData
-//            (__bridge id)kSecAttrKeyType
-//            (__bridge id)kSecAttrKeySizeInBits
-//            (__bridge id)kSecAttrEffectiveKeySize
         }];
     
     return query;

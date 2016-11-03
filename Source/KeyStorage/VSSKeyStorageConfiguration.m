@@ -8,25 +8,41 @@
 
 #import "VSSKeyStorageConfiguration.h"
 
+@interface VSSKeyStorageConfiguration ()
+
+- (instancetype __nonnull)initWithApplicationName:(NSString * __nonnull)applicationName accessibility:(NSString * __nonnull)accessibility accessGroup:(NSString * __nullable)accessGroup NS_DESIGNATED_INITIALIZER;
+
+- (instancetype __nonnull)initWithApplicationName:(NSString * __nonnull)applicationName;
+
+@end
+
 @implementation VSSKeyStorageConfiguration
 
-- (instancetype)init {
+- (instancetype)initWithApplicationName:(NSString * __nonnull)applicationName {
+    return [self initWithApplicationName:applicationName accessibility:(__bridge NSString*)kSecAttrAccessibleWhenUnlocked accessGroup:nil];
+}
+
+- (instancetype)initWithApplicationName:(NSString *)applicationName accessibility:(NSString *)accessibility accessGroup:(NSString *)accessGroup {
     self = [super init];
     if (self) {
-        _accessibility = (__bridge NSString*)kSecAttrAccessibleWhenUnlocked;
-        _accessGroup = nil;
+        _accessibility = [accessibility copy];
+        _accessGroup = [accessGroup copy];
+        _applicationName = [applicationName copy];
     }
     
     return self;
 }
 
-+ (VSSKeyStorageConfiguration *)keyStorageConfigurationWithDefaultValues {
-    return [[VSSKeyStorageConfiguration alloc] init];
++ (VSSKeyStorageConfiguration *)keyStorageConfigurationWithApplicationName:(NSString *)applicationName {
+    return [[VSSKeyStorageConfiguration alloc] initWithApplicationName:applicationName];
+}
+
++ (VSSKeyStorageConfiguration *)keyStorageConfigurationWithApplicationName:(NSString *)applicationName accessibility:(NSString *)accessibility accessGroup:(NSString *)accessGroup {
+    return [[VSSKeyStorageConfiguration alloc] initWithApplicationName:applicationName accessibility:accessibility accessGroup:accessGroup];
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    // fixme
-    return [[VSSKeyStorageConfiguration alloc] init];
+    return [[VSSKeyStorageConfiguration alloc] initWithApplicationName:self.applicationName accessibility:self.accessibility accessGroup:self.accessGroup];
 }
 
 @end
