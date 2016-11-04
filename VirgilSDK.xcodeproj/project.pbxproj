@@ -55,6 +55,7 @@
 		425B09FA1DC2676C005531DC /* VSSRequestsPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 425B09F91DC2671A005531DC /* VSSRequestsPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		425B09FB1DC26770005531DC /* VSSResponsesPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 425B09F81DC26703005531DC /* VSSResponsesPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42796BD61DCB97CA000FDDD4 /* VSS006_KeyStorageWithAccessGroupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42796BD41DCB977C000FDDD4 /* VSS006_KeyStorageWithAccessGroupTests.m */; };
+		42796BD91DCCA04D000FDDD4 /* VSS005_KeyStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42796BD71DCCA02B000FDDD4 /* VSS005_KeyStorageTests.swift */; };
 		427A63161DB9091D00A33661 /* VirgilSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7E3721DB9023400D70C12 /* VirgilSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427A63171DB9096C00A33661 /* VSSImportable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B1471C1DAFA8F600AC9975 /* VSSImportable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427A63181DB9096C00A33661 /* VSSExportable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B1471D1DAFA92000AC9975 /* VSSExportable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -154,6 +155,13 @@
 			remoteGlobalIDString = 423CEB721DCB518A00CCACB8;
 			remoteInfo = TestSDKApp;
 		};
+		42796BDA1DCCA381000FDDD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 423CEB721DCB518A00CCACB8;
+			remoteInfo = TestSDKApp;
+		};
 		42B7E3471DB8F62400D70C12 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
@@ -233,6 +241,7 @@
 		425B09F91DC2671A005531DC /* VSSRequestsPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSRequestsPublic.h; sourceTree = "<group>"; };
 		42796BD31DCB6281000FDDD4 /* TestSDKApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestSDKApp.entitlements; sourceTree = "<group>"; };
 		42796BD41DCB977C000FDDD4 /* VSS006_KeyStorageWithAccessGroupTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS006_KeyStorageWithAccessGroupTests.m; sourceTree = "<group>"; };
+		42796BD71DCCA02B000FDDD4 /* VSS005_KeyStorageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS005_KeyStorageTests.swift; sourceTree = "<group>"; };
 		429F11915E988260A69139D0 /* Pods-VirgilSDKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VirgilSDKTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VirgilSDKTests/Pods-VirgilSDKTests.debug.xcconfig"; sourceTree = "<group>"; };
 		42A442A61DC8F1D2000DD54B /* VSSKeyStorageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorageProtocol.h; sourceTree = "<group>"; };
 		42B1471C1DAFA8F600AC9975 /* VSSImportable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSImportable.h; sourceTree = "<group>"; };
@@ -443,12 +452,13 @@
 		423B09EF1DA9040700A63E5B /* Swift */ = {
 			isa = PBXGroup;
 			children = (
+				42F6C20C1DBF5FA60030C21D /* BridgingHeader.h */,
 				42B147271DAFD5D700AC9975 /* VSSTestUtils.swift */,
 				423B09F01DA9040700A63E5B /* VSS001_ClientTests.swift */,
 				42B81BDA1DB5013900E5E2AE /* VSS002_CryptoTests.swift */,
 				42B81BDC1DB518FC00E5E2AE /* VSS003_ModelsTests.swift */,
 				42B81BDE1DB51A3500E5E2AE /* VSS004_CompatibilityTests.swift */,
-				42F6C20C1DBF5FA60030C21D /* BridgingHeader.h */,
+				42796BD71DCCA02B000FDDD4 /* VSS005_KeyStorageTests.swift */,
 			);
 			path = Swift;
 			sourceTree = "<group>";
@@ -916,6 +926,7 @@
 			);
 			dependencies = (
 				42B7E3621DB8F72200D70C12 /* PBXTargetDependency */,
+				42796BDB1DCCA381000FDDD4 /* PBXTargetDependency */,
 			);
 			name = VirgilSDKSwiftTests;
 			productName = VirgilSDKSwiftTests;
@@ -971,10 +982,11 @@
 					42B7E35A1DB8F72200D70C12 = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
+						TestTargetID = 423CEB721DCB518A00CCACB8;
 					};
 					42EB30E31DB8EC17001DF4C0 = {
 						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1241,6 +1253,7 @@
 				425B09BC1DBF63E8005531DC /* VSS003_ModelsTests.swift in Sources */,
 				425B09BD1DBF63E8005531DC /* VSS004_CompatibilityTests.swift in Sources */,
 				42F6C2031DBF5EC90030C21D /* VSS001_ClientTests.swift in Sources */,
+				42796BD91DCCA04D000FDDD4 /* VSS005_KeyStorageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1294,6 +1307,11 @@
 			isa = PBXTargetDependency;
 			target = 423CEB721DCB518A00CCACB8 /* TestSDKApp */;
 			targetProxy = 423CEB881DCB592900CCACB8 /* PBXContainerItemProxy */;
+		};
+		42796BDB1DCCA381000FDDD4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 423CEB721DCB518A00CCACB8 /* TestSDKApp */;
+			targetProxy = 42796BDA1DCCA381000FDDD4 /* PBXContainerItemProxy */;
 		};
 		42B7E3481DB8F62400D70C12 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1466,7 +1484,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 429F11915E988260A69139D0 /* Pods-VirgilSDKTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1496,7 +1513,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C33C274E96A393CED6D6C6E3 /* Pods-VirgilSDKTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1547,6 +1563,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = Tests/Swift/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestSDKApp.app/TestSDKApp";
 			};
 			name = Debug;
 		};
@@ -1573,6 +1590,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Tests/Swift/BridgingHeader.h;
 				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestSDKApp.app/TestSDKApp";
 			};
 			name = Release;
 		};
