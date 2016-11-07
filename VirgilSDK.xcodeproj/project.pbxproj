@@ -1601,7 +1601,6 @@
 		42229A331DD05A3C00BE651E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1624,7 +1623,6 @@
 		42229A341DD05A3C00BE651E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -1654,7 +1652,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = TestSDKApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.TestSDKApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1676,7 +1674,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = A59V7K656Y;
 				INFOPLIST_FILE = TestSDKApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.TestSDKApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1873,6 +1871,7 @@
 				42229A211DD059DC00BE651E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		42229A321DD05A3C00BE651E /* Build configuration list for PBXNativeTarget "VirgilSDKKeyStorageSwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -1881,6 +1880,7 @@
 				42229A341DD05A3C00BE651E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		423CEB821DCB518A00CCACB8 /* Build configuration list for PBXNativeTarget "TestSDKApp" */ = {
 			isa = XCConfigurationList;
