@@ -1,12 +1,20 @@
 PODS:
   - VirgilCrypto (2.0.2)
+  - VirgilSDK (4.0.0):
+    - VirgilCrypto (~> 2.0.0)
 
 DEPENDENCIES:
   - VirgilCrypto (~> 2.0.0)
+  - VirgilSDK (from `./`)
+
+EXTERNAL SOURCES:
+  VirgilSDK:
+    :path: "./"
 
 SPEC CHECKSUMS:
   VirgilCrypto: caa7715ad504b4a7ba7a1a24cec030e255fdb138
+  VirgilSDK: 402778e557f357860e0d4ad2ff34a71b8fff79b8
 
-PODFILE CHECKSUM: 15298b3b40bd7e907975bc034a29199c5ef23148
+PODFILE CHECKSUM: 50260eb0c3a05e8f19312688374cab1332a2401e
 
 COCOAPODS: 1.1.1
