@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		36A8E04D9A500621E51B0033 /* Pods_TestSDKApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD623E34F1F6C3B446FFE09A /* Pods_TestSDKApp.framework */; };
+		42229A1D1DD059DC00BE651E /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
+		42229A231DD059E900BE651E /* VSS005_KeyStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB691DCA93D500CCACB8 /* VSS005_KeyStorageTests.m */; };
+		42229A241DD059EE00BE651E /* VSS006_KeyStorageWithAccessGroupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42796BD41DCB977C000FDDD4 /* VSS006_KeyStorageWithAccessGroupTests.m */; };
+		42229A351DD05A4600BE651E /* VSS005_KeyStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42796BD71DCCA02B000FDDD4 /* VSS005_KeyStorageTests.swift */; };
 		423CEB561DCA069900CCACB8 /* VSSKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB551DCA069900CCACB8 /* VSSKeyStorage.m */; };
 		423CEB5A1DCA06C900CCACB8 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
 		423CEB5D1DCA07C200CCACB8 /* VSSKeyStoragePublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -15,7 +19,6 @@
 		423CEB5F1DCA07C200CCACB8 /* VSSKeyEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB541DCA01AF00CCACB8 /* VSSKeyEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423CEB611DCA2B6600CCACB8 /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB601DCA2B1600CCACB8 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423CEB651DCA374700CCACB8 /* VSSKeyStorageConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB641DCA374700CCACB8 /* VSSKeyStorageConfiguration.m */; };
-		423CEB6B1DCA93D800CCACB8 /* VSS005_KeyStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB691DCA93D500CCACB8 /* VSS005_KeyStorageTests.m */; };
 		423CEB6C1DCA948800CCACB8 /* VSSKeyStorageConfigurationPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB681DCA3D1700CCACB8 /* VSSKeyStorageConfigurationPrivate.h */; };
 		423CEB6D1DCA948800CCACB8 /* VSSKeyStorageConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB631DCA371A00CCACB8 /* VSSKeyStorageConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423CEB761DCB518A00CCACB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB751DCB518A00CCACB8 /* AppDelegate.swift */; };
@@ -54,8 +57,6 @@
 		425B09F71DC262ED005531DC /* VSSCard.h in Headers */ = {isa = PBXBuildFile; fileRef = 425B09F11DC25FD1005531DC /* VSSCard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		425B09FA1DC2676C005531DC /* VSSRequestsPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 425B09F91DC2671A005531DC /* VSSRequestsPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		425B09FB1DC26770005531DC /* VSSResponsesPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 425B09F81DC26703005531DC /* VSSResponsesPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42796BD61DCB97CA000FDDD4 /* VSS006_KeyStorageWithAccessGroupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42796BD41DCB977C000FDDD4 /* VSS006_KeyStorageWithAccessGroupTests.m */; };
-		42796BD91DCCA04D000FDDD4 /* VSS005_KeyStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42796BD71DCCA02B000FDDD4 /* VSS005_KeyStorageTests.swift */; };
 		427A63161DB9091D00A33661 /* VirgilSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7E3721DB9023400D70C12 /* VirgilSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427A63171DB9096C00A33661 /* VSSImportable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B1471C1DAFA8F600AC9975 /* VSSImportable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427A63181DB9096C00A33661 /* VSSExportable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B1471D1DAFA92000AC9975 /* VSSExportable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -148,6 +149,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		42229A1E1DD059DC00BE651E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42EB30E31DB8EC17001DF4C0;
+			remoteInfo = "VirgilSDK iOS";
+		};
+		42229A251DD059F400BE651E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 423CEB721DCB518A00CCACB8;
+			remoteInfo = TestSDKApp;
+		};
+		42229A301DD05A3C00BE651E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 423CEB721DCB518A00CCACB8;
+			remoteInfo = TestSDKApp;
+		};
 		423CEB881DCB592900CCACB8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
@@ -184,6 +206,8 @@
 		36FF4B8D1C4D7FED00E901F3 /* NSObject+VSSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+VSSUtils.h"; sourceTree = "<group>"; };
 		36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+VSSUtils.m"; sourceTree = "<group>"; };
 		3E5DEA2B938856986FAE4532 /* Pods_VirgilSDKSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirgilSDKSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		42229A181DD059DC00BE651E /* VirgilSDKKeyStorageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirgilSDKKeyStorageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		42229A2B1DD05A3C00BE651E /* VirgilSDKKeyStorageSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirgilSDKKeyStorageSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		423B09AA1DA52D6400A63E5B /* VSSCardValidator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCardValidator.h; sourceTree = "<group>"; };
 		423B09AB1DA52D7500A63E5B /* VSSCardValidatorProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCardValidatorProtocol.h; sourceTree = "<group>"; };
 		423B09AC1DA534A800A63E5B /* VSSCardValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCardValidator.m; sourceTree = "<group>"; };
@@ -333,6 +357,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		42229A151DD059DC00BE651E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42229A1D1DD059DC00BE651E /* VirgilSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42229A281DD05A3C00BE651E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		423CEB701DCB518A00CCACB8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -406,6 +445,8 @@
 				42B7E3411DB8F62400D70C12 /* VirgilSDKTests.xctest */,
 				42B7E35B1DB8F72200D70C12 /* VirgilSDKSwiftTests.xctest */,
 				423CEB731DCB518A00CCACB8 /* TestSDKApp.app */,
+				42229A181DD059DC00BE651E /* VirgilSDKKeyStorageTests.xctest */,
+				42229A2B1DD05A3C00BE651E /* VirgilSDKKeyStorageSwiftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -869,6 +910,43 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		42229A171DD059DC00BE651E /* VirgilSDKKeyStorageTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42229A221DD059DC00BE651E /* Build configuration list for PBXNativeTarget "VirgilSDKKeyStorageTests" */;
+			buildPhases = (
+				42229A141DD059DC00BE651E /* Sources */,
+				42229A151DD059DC00BE651E /* Frameworks */,
+				42229A161DD059DC00BE651E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				42229A1F1DD059DC00BE651E /* PBXTargetDependency */,
+				42229A261DD059F400BE651E /* PBXTargetDependency */,
+			);
+			name = VirgilSDKKeyStorageTests;
+			productName = VirgilSDKKeyStorageTests;
+			productReference = 42229A181DD059DC00BE651E /* VirgilSDKKeyStorageTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		42229A2A1DD05A3C00BE651E /* VirgilSDKKeyStorageSwiftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42229A321DD05A3C00BE651E /* Build configuration list for PBXNativeTarget "VirgilSDKKeyStorageSwiftTests" */;
+			buildPhases = (
+				42229A271DD05A3C00BE651E /* Sources */,
+				42229A281DD05A3C00BE651E /* Frameworks */,
+				42229A291DD05A3C00BE651E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				42229A311DD05A3C00BE651E /* PBXTargetDependency */,
+			);
+			name = VirgilSDKKeyStorageSwiftTests;
+			productName = VirgilSDKKeyStorageSwiftTests;
+			productReference = 42229A2B1DD05A3C00BE651E /* VirgilSDKKeyStorageSwiftTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		423CEB721DCB518A00CCACB8 /* TestSDKApp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 423CEB821DCB518A00CCACB8 /* Build configuration list for PBXNativeTarget "TestSDKApp" */;
@@ -963,6 +1041,16 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = VirgilSecurity;
 				TargetAttributes = {
+					42229A171DD059DC00BE651E = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 423CEB721DCB518A00CCACB8;
+					};
+					42229A2A1DD05A3C00BE651E = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 423CEB721DCB518A00CCACB8;
+					};
 					423CEB721DCB518A00CCACB8 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = A59V7K656Y;
@@ -975,14 +1063,11 @@
 					};
 					42B7E3401DB8F62400D70C12 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = A59V7K656Y;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 423CEB721DCB518A00CCACB8;
 					};
 					42B7E35A1DB8F72200D70C12 = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 423CEB721DCB518A00CCACB8;
 					};
 					42EB30E31DB8EC17001DF4C0 = {
 						CreatedOnToolsVersion = 8.0;
@@ -1008,11 +1093,27 @@
 				42B7E3401DB8F62400D70C12 /* VirgilSDKTests */,
 				42B7E35A1DB8F72200D70C12 /* VirgilSDKSwiftTests */,
 				423CEB721DCB518A00CCACB8 /* TestSDKApp */,
+				42229A171DD059DC00BE651E /* VirgilSDKKeyStorageTests */,
+				42229A2A1DD05A3C00BE651E /* VirgilSDKKeyStorageSwiftTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		42229A161DD059DC00BE651E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42229A291DD05A3C00BE651E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		423CEB711DCB518A00CCACB8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1219,6 +1320,23 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		42229A141DD059DC00BE651E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42229A231DD059E900BE651E /* VSS005_KeyStorageTests.m in Sources */,
+				42229A241DD059EE00BE651E /* VSS006_KeyStorageWithAccessGroupTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42229A271DD05A3C00BE651E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42229A351DD05A4600BE651E /* VSS005_KeyStorageTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		423CEB6F1DCB518A00CCACB8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1233,13 +1351,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				425B09B91DBF63E4005531DC /* VSS003_ModelsTests.m in Sources */,
-				423CEB6B1DCA93D800CCACB8 /* VSS005_KeyStorageTests.m in Sources */,
 				425B09B81DBF63E4005531DC /* VSS002_CryptoTests.m in Sources */,
 				425B09BA1DBF63E4005531DC /* VSS004_CompatibilityTests.m in Sources */,
 				42F6C2021DBF5D1D0030C21D /* VSS001_ClientTests.m in Sources */,
 				42F6C1FE1DBE4DD30030C21D /* VSSTestsUtils.m in Sources */,
 				42F6C20A1DBF5F680030C21D /* VSSTestsConst.m in Sources */,
-				42796BD61DCB97CA000FDDD4 /* VSS006_KeyStorageWithAccessGroupTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1253,7 +1369,6 @@
 				425B09BC1DBF63E8005531DC /* VSS003_ModelsTests.swift in Sources */,
 				425B09BD1DBF63E8005531DC /* VSS004_CompatibilityTests.swift in Sources */,
 				42F6C2031DBF5EC90030C21D /* VSS001_ClientTests.swift in Sources */,
-				42796BD91DCCA04D000FDDD4 /* VSS005_KeyStorageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1303,6 +1418,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		42229A1F1DD059DC00BE651E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42EB30E31DB8EC17001DF4C0 /* VirgilSDK iOS */;
+			targetProxy = 42229A1E1DD059DC00BE651E /* PBXContainerItemProxy */;
+		};
+		42229A261DD059F400BE651E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 423CEB721DCB518A00CCACB8 /* TestSDKApp */;
+			targetProxy = 42229A251DD059F400BE651E /* PBXContainerItemProxy */;
+		};
+		42229A311DD05A3C00BE651E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 423CEB721DCB518A00CCACB8 /* TestSDKApp */;
+			targetProxy = 42229A301DD05A3C00BE651E /* PBXContainerItemProxy */;
+		};
 		423CEB891DCB592900CCACB8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 423CEB721DCB518A00CCACB8 /* TestSDKApp */;
@@ -1433,6 +1563,80 @@
 			};
 			name = Release;
 		};
+		42229A201DD059DC00BE651E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDKKeyStorageTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestSDKApp.app/TestSDKApp";
+			};
+			name = Debug;
+		};
+		42229A211DD059DC00BE651E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDKKeyStorageTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestSDKApp.app/TestSDKApp";
+			};
+			name = Release;
+		};
+		42229A331DD05A3C00BE651E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDKKeyStorageSwiftTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestSDKApp.app/TestSDKApp";
+			};
+			name = Debug;
+		};
+		42229A341DD05A3C00BE651E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDKKeyStorageSwiftTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestSDKApp.app/TestSDKApp";
+			};
+			name = Release;
+		};
 		423CEB831DCB518A00CCACB8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 459692070DBBDEB54A8F919C /* Pods-TestSDKApp.debug.xcconfig */;
@@ -1489,7 +1693,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = A59V7K656Y;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
@@ -1505,7 +1709,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestSDKApp.app/TestSDKApp";
 			};
 			name = Debug;
 		};
@@ -1517,7 +1720,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = A59V7K656Y;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
@@ -1533,7 +1736,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDKTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestSDKApp.app/TestSDKApp";
 			};
 			name = Release;
 		};
@@ -1544,7 +1746,9 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
@@ -1563,7 +1767,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = Tests/Swift/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestSDKApp.app/TestSDKApp";
 			};
 			name = Debug;
 		};
@@ -1574,6 +1777,8 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"COCOAPODS=1",
@@ -1590,7 +1795,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Tests/Swift/BridgingHeader.h;
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestSDKApp.app/TestSDKApp";
 			};
 			name = Release;
 		};
@@ -1661,6 +1865,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		42229A221DD059DC00BE651E /* Build configuration list for PBXNativeTarget "VirgilSDKKeyStorageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42229A201DD059DC00BE651E /* Debug */,
+				42229A211DD059DC00BE651E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		42229A321DD05A3C00BE651E /* Build configuration list for PBXNativeTarget "VirgilSDKKeyStorageSwiftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42229A331DD05A3C00BE651E /* Debug */,
+				42229A341DD05A3C00BE651E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		423CEB821DCB518A00CCACB8 /* Build configuration list for PBXNativeTarget "TestSDKApp" */ = {
 			isa = XCConfigurationList;

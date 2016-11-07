@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "42B7E3401DB8F62400D70C12"
-               BuildableName = "VirgilSDKTests.xctest"
-               BlueprintName = "VirgilSDKTests"
+               BlueprintIdentifier = "42229A2A1DD05A3C00BE651E"
+               BuildableName = "VirgilSDKKeyStorageSwiftTests.xctest"
+               BlueprintName = "VirgilSDKKeyStorageSwiftTests"
                ReferencedContainer = "container:VirgilSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +42,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "42B7E35A1DB8F72200D70C12"
-               BuildableName = "VirgilSDKSwiftTests.xctest"
-               BlueprintName = "VirgilSDKSwiftTests"
+               BlueprintIdentifier = "42229A171DD059DC00BE651E"
+               BuildableName = "VirgilSDKKeyStorageTests.xctest"
+               BlueprintName = "VirgilSDKKeyStorageTests"
                ReferencedContainer = "container:VirgilSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
