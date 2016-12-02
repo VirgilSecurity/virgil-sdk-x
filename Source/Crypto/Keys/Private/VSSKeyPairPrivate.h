@@ -8,9 +8,8 @@
 
 #import "VSSPrivateKey.h"
 #import "VSSPublicKey.h"
+#import "VSSKeyPair.h"
 
-@interface VSSKeyPair ()
-
-- (instancetype __nonnull)initWithPrivateKey:(VSSPrivateKey * __nonnull)privateKey publicKey:(VSSPublicKey * __nonnull)publicKey;
+@interface VSSKeyPair () <NSCopying>
 
 @end

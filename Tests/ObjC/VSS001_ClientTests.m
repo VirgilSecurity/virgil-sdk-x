@@ -166,8 +166,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
             }
             
             XCTAssert(foundCard != nil);
-            XCTAssert([foundCard.identifier isEqualToString:card.identifier]);
-            XCTAssert([self.utils checkCard:foundCard isEqualToCreateCardRequest:request]);
+            XCTAssert([self.utils checkCard:foundCard isEqualToCard:card]);
             
             [ex fulfill];
         }];

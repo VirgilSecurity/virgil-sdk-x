@@ -112,6 +112,13 @@
 		42B7E3661DB8F7D100D70C12 /* VSSTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B147271DAFD5D700AC9975 /* VSSTestUtils.swift */; };
 		42B7E36B1DB8F81F00D70C12 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C181DB8E6A700E5E2AE /* sdk_compatibility_data.json */; };
 		42B7E36C1DB8F81F00D70C12 /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C191DB8E6A700E5E2AE /* testData.txt */; };
+		42BBF0C31DD1F12E00E19D60 /* VSSRequestSignerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42BBF0C21DD1F12E00E19D60 /* VSSRequestSignerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42BBF0CE1DD3593100E19D60 /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F6C2071DBF5F5E0030C21D /* VSSTestsConst.m */; };
+		42BBF0CF1DD3593200E19D60 /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F6C2071DBF5F5E0030C21D /* VSSTestsConst.m */; };
+		42BBF0DD1DD5DFE600E19D60 /* VSSCryptoCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 42BBF0DB1DD5DF8200E19D60 /* VSSCryptoCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42BBF0DE1DD5DFEC00E19D60 /* VSSCryptoCommonsPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 42BBF0DC1DD5DFE200E19D60 /* VSSCryptoCommonsPrivate.h */; };
+		42BBF0E01DD5E06000E19D60 /* VSSCryptoCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBF0DF1DD5E06000E19D60 /* VSSCryptoCommons.m */; };
+		42BBF0E81DD611DF00E19D60 /* VSSTestsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B147211DAFAF9000AC9975 /* VSSTestsUtils.m */; };
 		42EB30EF1DB8EC33001DF4C0 /* VSSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB201D9ABF2200747799 /* VSSError.m */; };
 		42EB30F11DB8EC33001DF4C0 /* VSSCardsError.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB241D9ABF2200747799 /* VSSCardsError.m */; };
 		42EB30FF1DB8EC33001DF4C0 /* VSSModelCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB451D9ABF2200747799 /* VSSModelCommons.m */; };
@@ -288,6 +295,10 @@
 		42B81BDE1DB51A3500E5E2AE /* VSS004_CompatibilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS004_CompatibilityTests.swift; sourceTree = "<group>"; };
 		42B81C181DB8E6A700E5E2AE /* sdk_compatibility_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sdk_compatibility_data.json; sourceTree = "<group>"; };
 		42B81C191DB8E6A700E5E2AE /* testData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testData.txt; sourceTree = "<group>"; };
+		42BBF0C21DD1F12E00E19D60 /* VSSRequestSignerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSRequestSignerProtocol.h; sourceTree = "<group>"; };
+		42BBF0DB1DD5DF8200E19D60 /* VSSCryptoCommons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCryptoCommons.h; sourceTree = "<group>"; };
+		42BBF0DC1DD5DFE200E19D60 /* VSSCryptoCommonsPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCryptoCommonsPrivate.h; sourceTree = "<group>"; };
+		42BBF0DF1DD5E06000E19D60 /* VSSCryptoCommons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCryptoCommons.m; sourceTree = "<group>"; };
 		42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42EB30E71DB8EC17001DF4C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42EB31461DB8ECC3001DF4C0 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = "../../../Library/Developer/Xcode/DerivedData/VirgilSDK-dbfzxcbjagpubkapyajirhmmqdxn/Build/Products/Debug-iphonesimulator/VirgilCrypto/VirgilCrypto.framework"; sourceTree = "<group>"; };
@@ -645,6 +656,8 @@
 				42FA96401DA2623D0092D5DB /* Private */,
 				42F0AB0C1D9ABF1500747799 /* Keys */,
 				42B7E36F1DB900AF00D70C12 /* VSSCryptoPublic.h */,
+				42BBF0DB1DD5DF8200E19D60 /* VSSCryptoCommons.h */,
+				42BBF0DF1DD5E06000E19D60 /* VSSCryptoCommons.m */,
 				42F0AB181D9ABF1500747799 /* VSSCryptoProtocol.h */,
 				42F0ABC91D9D13B100747799 /* VSSCrypto.h */,
 				42F0ABCA1D9D13BC00747799 /* VSSCrypto.m */,
@@ -691,6 +704,7 @@
 				42F0ABAD1D9ABFAC00747799 /* VSSClientProtocol.h */,
 				42F0ABAE1D9ABFAC00747799 /* VSSServiceConfig.h */,
 				42F0ABAF1D9ABFAC00747799 /* VSSServiceConfig.m */,
+				42BBF0C21DD1F12E00E19D60 /* VSSRequestSignerProtocol.h */,
 				42FA96421DA29E2A0092D5DB /* VSSRequestSigner.h */,
 				42FA96431DA29E5B0092D5DB /* VSSRequestSigner.m */,
 				423B09AB1DA52D7500A63E5B /* VSSCardValidatorProtocol.h */,
@@ -793,6 +807,7 @@
 			isa = PBXGroup;
 			children = (
 				42FA96411DA2624B0092D5DB /* VSSCryptoPrivate.h */,
+				42BBF0DC1DD5DFE200E19D60 /* VSSCryptoCommonsPrivate.h */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -870,6 +885,8 @@
 				423CEB5F1DCA07C200CCACB8 /* VSSKeyEntry.h in Headers */,
 				425B09EF1DC25BF1005531DC /* VSSCardResponsePrivate.h in Headers */,
 				427A63651DB9096C00A33661 /* VSSCrypto.h in Headers */,
+				42BBF0DD1DD5DFE600E19D60 /* VSSCryptoCommons.h in Headers */,
+				42BBF0C31DD1F12E00E19D60 /* VSSRequestSignerProtocol.h in Headers */,
 				423CEB6D1DCA948800CCACB8 /* VSSKeyStorageConfiguration.h in Headers */,
 				425B09F61DC262ED005531DC /* VSSCardPrivate.h in Headers */,
 				425B09F51DC262DE005531DC /* VSSSnapshotModelPrivate.h in Headers */,
@@ -898,6 +915,7 @@
 				427A63481DB9096C00A33661 /* VSSHTTPJSONRequest.h in Headers */,
 				427A634A1DB9096C00A33661 /* VSSHTTPRequestContext.h in Headers */,
 				427A63571DB9096C00A33661 /* VSSCryptoPrivate.h in Headers */,
+				42BBF0DE1DD5DFEC00E19D60 /* VSSCryptoCommonsPrivate.h in Headers */,
 				427A63581DB9096C00A33661 /* VSSKeyPairPrivate.h in Headers */,
 				427A63591DB9096C00A33661 /* VSSPrivateKeyPrivate.h in Headers */,
 				427A635A1DB9096C00A33661 /* VSSPublicKeyPrivate.h in Headers */,
@@ -1324,7 +1342,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42BBF0CE1DD3593100E19D60 /* VSSTestsConst.m in Sources */,
 				42229A231DD059E900BE651E /* VSS005_KeyStorageTests.m in Sources */,
+				42BBF0E81DD611DF00E19D60 /* VSSTestsUtils.m in Sources */,
 				42229A241DD059EE00BE651E /* VSS006_KeyStorageWithAccessGroupTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1333,6 +1353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42BBF0CF1DD3593200E19D60 /* VSSTestsConst.m in Sources */,
 				42229A351DD05A4600BE651E /* VSS005_KeyStorageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1406,6 +1427,7 @@
 				42EB31321DB8EC33001DF4C0 /* VSSPrivateKey.m in Sources */,
 				42EB31341DB8EC33001DF4C0 /* VSSPublicKey.m in Sources */,
 				423CEB561DCA069900CCACB8 /* VSSKeyStorage.m in Sources */,
+				42BBF0E01DD5E06000E19D60 /* VSSCryptoCommons.m in Sources */,
 				42EB31371DB8EC33001DF4C0 /* VSSCrypto.m in Sources */,
 				42EB31391DB8EC33001DF4C0 /* VSSFingerprint.m in Sources */,
 				423CEB5A1DCA06C900CCACB8 /* VSSKeyEntry.m in Sources */,
@@ -1694,13 +1716,8 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					"COCOAPODS=1",
-					"APPLICATION_IDENTITY_TYPE=$(APPLICATION_IDENTITY_TYPE)",
-					"APPLICATION_ID=$(APPLICATION_ID)",
-					"APPLICATION_PRIVATE_KEY_PASSWORD=$(APPLICATION_PRIVATE_KEY_PASSWORD)",
-					"APPLICATION_PRIVATE_KEY_BASE64=$(APPLICATION_PRIVATE_KEY_BASE64)",
-					"APPLICATION_PUBLIC_KEY_BASE64=$(APPLICATION_PUBLIC_KEY_BASE64)",
-					"APPLICATION_TOKEN=$(APPLICATION_TOKEN)",
+					"SECRET_ARG1=$(SECRET_VALUE1)",
+					"SECRET_ARG1=$(SECRET_VALUE2)",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1721,13 +1738,8 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					"COCOAPODS=1",
-					"APPLICATION_IDENTITY_TYPE=$(APPLICATION_IDENTITY_TYPE)",
-					"APPLICATION_ID=$(APPLICATION_ID)",
-					"APPLICATION_PRIVATE_KEY_PASSWORD=$(APPLICATION_PRIVATE_KEY_PASSWORD)",
-					"APPLICATION_PRIVATE_KEY_BASE64=$(APPLICATION_PRIVATE_KEY_BASE64)",
-					"APPLICATION_PUBLIC_KEY_BASE64=$(APPLICATION_PUBLIC_KEY_BASE64)",
-					"APPLICATION_TOKEN=$(APPLICATION_TOKEN)",
+					"SECRET_ARG1=$(SECRET_VALUE1)",
+					"SECRET_ARG1=$(SECRET_VALUE2)",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

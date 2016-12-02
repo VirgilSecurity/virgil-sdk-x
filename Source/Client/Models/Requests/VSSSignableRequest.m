@@ -29,7 +29,7 @@
 }
 
 + (VSSSnapshotModel * __nullable)buildSnapshotModelFromSnapshot:(NSData * __nonnull)snapshot {
-    NSAssert(NO, @"Subclasses need to overwrite this method");
+    NSAssert(NO, @"Subclasses must override this method");
     return nil;
 }
 
@@ -52,7 +52,7 @@
 }
 
 - (instancetype)initWithSnapshotModel:(VSSSnapshotModel *)model {
-    return [self initWithSnapshotModel:model signatures: nil];
+    return [self initWithSnapshotModel:model signatures:nil];
 }
 
 - (void)addSignature:(NSData *)signature forFingerprint:(NSString *)fingerprint {
