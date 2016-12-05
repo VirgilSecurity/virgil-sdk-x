@@ -96,17 +96,6 @@
     return equals;
 }
 
-- (BOOL)checkVirgilCard:(VSSVirgilCard *)card isEqualToCreateCardRequest:(VSSCreateCardRequest *)request {
-    BOOL equals = [card.identityType isEqualToString:request.snapshotModel.identityType]
-        && [card.identity isEqualToString:request.snapshotModel.identity]
-        && IsDictionaryEqualOrBothNil(card.data, request.snapshotModel.data)
-        && IsDictionaryEqualOrBothNil(card.info, request.snapshotModel.info)
-        && [card.publicKey isEqualToData:request.snapshotModel.publicKey]
-        && card.scope == request.snapshotModel.scope;
-    
-    return equals;
-}
-
 - (BOOL)checkCard:(VSSCard *)card1 isEqualToCard:(VSSCard *)card2 {
     BOOL equals = [card1.identityType isEqualToString:card2.identityType]
         && [card1.identity isEqualToString:card2.identity]
