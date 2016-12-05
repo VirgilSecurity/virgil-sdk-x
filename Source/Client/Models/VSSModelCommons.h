@@ -29,3 +29,8 @@ typedef NS_ENUM(NSInteger, VSSCardRevocationReason) {
     VSSCardRevocationReasonUnspecified,
     VSSCardRevocationReasonCompromised
 };
+
+typedef NS_ENUM(NSInteger, VSSGlobalIdentityType) {
+    VSSGlobalIdentityTypeApplication,
+    VSSGlobalIdentityTypeEmail
+};
