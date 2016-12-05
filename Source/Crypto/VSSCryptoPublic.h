@@ -11,3 +11,4 @@
 #import "VSSCryptoProtocol.h"
 #import "VSSCrypto.h"
 #import "VSSFingerprint.h"
+#import "VSSCryptoCommons.h"

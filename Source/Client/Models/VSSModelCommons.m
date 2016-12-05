@@ -43,3 +43,10 @@ VSSCardRevocationReason vss_getCardRevocationReasonFromString(NSString * __nonnu
     // default value
     return VSSCardRevocationReasonUnspecified;
 }
+
+NSString * __nonnull vss_getGlobalIdentityTypeString(VSSGlobalIdentityType type) {
+    switch (type) {
+        case VSSGlobalIdentityTypeEmail: return @"email";
+        case VSSGlobalIdentityTypeApplication: return @"application";
+    }
+}

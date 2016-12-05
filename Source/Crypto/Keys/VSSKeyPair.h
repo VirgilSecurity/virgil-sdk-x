@@ -16,6 +16,8 @@
  */
 @interface VSSKeyPair : NSObject
 
+- (instancetype __nonnull)initWithPrivateKey:(VSSPrivateKey * __nonnull)privateKey publicKey:(VSSPublicKey * __nonnull)publicKey;
+
 /**
  VSSPublicKey of key pair
  */

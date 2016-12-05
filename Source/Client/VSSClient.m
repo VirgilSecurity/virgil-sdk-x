@@ -91,7 +91,7 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
 
 #pragma mark - Implementation of VSSClient protocol
 
-- (void)createCardWithRequest:(VSSCreateCardRequest*)request completion:(void (^)(VSSCard *, NSError *))callback {
+- (void)createCardWithRequest:(VSSCreateCardRequest *)request completion:(void (^)(VSSCard *, NSError *))callback {
     VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.cardsServiceURL];
     VSSCreateCardHTTPRequest *httpRequest = [[VSSCreateCardHTTPRequest alloc] initWithContext:context createCardRequest:request];
     
@@ -138,6 +138,12 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
         
         if (callback != nil) {
             VSSGetCardHTTPRequest *r = [request as:[VSSGetCardHTTPRequest class]];
+            if (self.serviceConfig.cardValidator != nil) {
+                if (![self.serviceConfig.cardValidator validateCardResponse:r.cardResponse]) {
+                    callback(nil, [[NSError alloc] initWithDomain:kVSSClientErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"Error validating card signatures" }]);
+                    return;
+                }
+            }
             callback([r.cardResponse buildCard], nil);
         }
         return;
@@ -148,7 +154,7 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     [self send:request];
 }
 
-- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria *)criteria completion:(void (^)(NSArray<VSSCard*> *, NSError *))callback {
+- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria *)criteria completion:(void (^)(NSArray<VSSCard *> *, NSError *))callback {
     VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.cardsServiceROURL];
     VSSSearchCardsHTTPRequest *request = [[VSSSearchCardsHTTPRequest alloc] initWithContext:context searchCardsCriteria:criteria];
     
@@ -162,9 +168,20 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
         
         if (callback != nil) {
             VSSSearchCardsHTTPRequest *r = [request as:[VSSSearchCardsHTTPRequest class]];
-            NSMutableArray<VSSCard *> *cardsArray = [[NSMutableArray alloc] init];
-            for (VSSCardResponse *response in r.cardResponses)
-                [cardsArray addObject:[response buildCard]];
+            NSMutableArray<VSSCard *> *cardsArray = nil;
+            if (r.cardResponses.count > 0) {
+                cardsArray = [[NSMutableArray alloc] initWithCapacity:r.cardResponses.count];
+                for (VSSCardResponse *response in r.cardResponses) {
+                    if (self.serviceConfig.cardValidator != nil) {
+                        if (![self.serviceConfig.cardValidator validateCardResponse:response]) {
+                            callback(nil, [[NSError alloc] initWithDomain:kVSSClientErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"Error validating card signatures" }]);
+                            return;
+                        }
+                    }
+                    
+                    [cardsArray addObject:[response buildCard]];
+                }
+            }
             
             callback(cardsArray, nil);
         }

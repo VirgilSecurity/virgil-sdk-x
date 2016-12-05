@@ -13,6 +13,7 @@
 #import "VSSPublicKeyPrivate.h"
 #import "VSSPrivateKeyPrivate.h"
 #import "VSSRequestSigner.h"
+#import "VSSCryptoCommonsPrivate.h"
 
 static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
 
@@ -22,9 +23,7 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
 
 #pragma mark - Key processing
 
-- (VSSKeyPair *)generateKeyPair {
-    VSCKeyPair *keyPair = [[VSCKeyPair alloc] init];
-    
+- (VSSKeyPair * __nonnull)wrapCryptoKeyPair:(VSCKeyPair * __nonnull)keyPair {
     NSData *keyPairId = [self computeHashForPublicKey:keyPair.publicKey];
     if (keyPairId.length == 0)
         return nil;
@@ -35,12 +34,21 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
     return [[VSSKeyPair alloc] initWithPrivateKey:privateKey publicKey:publicKey];
 }
 
+- (VSSKeyPair *)generateKeyPair {
+    return [self wrapCryptoKeyPair:[[VSCKeyPair alloc] init]];
+}
+
+- (VSSKeyPair * __nonnull)generateKeyPairOfType:(VSSKeyType)type {
+    VSCKeyType cType = vss_mapKeyType(type);
+    return [self wrapCryptoKeyPair:[[VSCKeyPair alloc] initWithKeyPairType:cType password:nil]];
+}
+
 - (VSSPrivateKey *)importPrivateKeyFromData:(NSData *)data withPassword:(NSString *)password {
     if (data.length == 0)
         return nil;
 
     NSData *privateKeyData = (password.length == 0) ?
-        [VSCKeyPair privateKeyToDER:data] : [VSCKeyPair decryptPrivateKey:data privateKeyPassword:password];
+        data : [VSCKeyPair decryptPrivateKey:data privateKeyPassword:password];
     
     if (privateKeyData.length == 0)
         return nil;
@@ -95,7 +103,8 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
 }
 
 - (VSSPublicKey *)extractPublicKeyFromPrivateKey:(VSSPrivateKey *)privateKey {
-    NSData *publicKeyData = [VSCKeyPair extractPublicKeyWithPrivateKey:privateKey.key privateKeyPassword:nil];
+    NSData *exportedPrivateKey = [self exportPrivateKey:privateKey withPassword:nil];
+    NSData *publicKeyData = [VSCKeyPair extractPublicKeyWithPrivateKey:exportedPrivateKey privateKeyPassword:nil];
     if (publicKeyData.length == 0)
         return nil;
     
@@ -307,7 +316,8 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
     VSCSigner *signer = [[VSCSigner alloc] init];
     
     NSError *error;
-    NSData *signature = [signer signData:data privateKey:privateKey.key keyPassword:nil error:&error];
+    NSData *exportedPrivateKey = [self exportPrivateKey:privateKey withPassword:nil];
+    NSData *signature = [signer signData:data privateKey:exportedPrivateKey keyPassword:nil error:&error];
     
     if (error != nil) {
         if (errorPtr != nil)
@@ -322,7 +332,8 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
     VSCStreamSigner *signer = [[VSCStreamSigner alloc] init];
     
     NSError *error;
-    NSData *signature = [signer signStreamData:stream privateKey:privateKey.key keyPassword:nil error:&error];
+    NSData *exportedPrivateKey = [self exportPrivateKey:privateKey withPassword:nil];
+    NSData *signature = [signer signStreamData:stream privateKey:exportedPrivateKey keyPassword:nil error:&error];
     
     if (error != nil) {
         if (errorPtr != nil)
