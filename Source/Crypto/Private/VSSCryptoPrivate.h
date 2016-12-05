@@ -7,8 +7,11 @@
 //
 
 #import "VSSCrypto.h"
+@import VirgilCrypto;
 
 @interface VSSCrypto ()
+
+- (VSSKeyPair * __nonnull)wrapCryptoKeyPair:(VSCKeyPair * __nonnull)keyPair;
 
 - (NSData * __nonnull)computeHashForPublicKey:(NSData * __nonnull)publicKey;
 

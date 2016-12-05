@@ -7,10 +7,13 @@
 //
 
 #import "VSSCryptoProtocol.h"
+#import "VSSCryptoCommons.h"
 
 /**
  VSSCrypto protocol default implementation. See VSSCrypto protocol.
  */
 @interface VSSCrypto : NSObject <VSSCrypto>
+
+- (VSSKeyPair * __nonnull)generateKeyPairOfType:(VSSKeyType)type;
 
 @end

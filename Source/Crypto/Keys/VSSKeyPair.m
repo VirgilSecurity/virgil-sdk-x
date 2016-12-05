@@ -11,6 +11,8 @@
 
 @implementation VSSKeyPair
 
+#pragma mark - Lifecycle
+
 - (instancetype)initWithPrivateKey:(VSSPrivateKey * __nonnull)privateKey publicKey:(VSSPublicKey * __nonnull)publicKey {
     self = [super init];
     if (self) {
@@ -18,6 +20,12 @@
         _privateKey = privateKey;
     }
     return self;
+}
+
+#pragma mark - NSCopying
+
+- (instancetype)copyWithZone:(NSZone *)zone {
+    return [(VSSKeyPair *)[[self class] alloc] initWithPrivateKey:self.privateKey publicKey:self.publicKey];
 }
 
 @end

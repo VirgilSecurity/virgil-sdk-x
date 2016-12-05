@@ -24,7 +24,7 @@
  @param request VSSCreateCardRequest instance with Card data and signatures
  @param callback callback with registered VSSCard or NSError instance if error occured
  */
-- (void)createCardWithRequest:(VSSCreateCardRequest* __nonnull)request completion:(void (^ __nonnull)(VSSCard* __nullable, NSError * __nullable))callback NS_SWIFT_NAME(createCardWith(_:completion:));
+- (void)createCardWithRequest:(VSSCreateCardRequest * __nonnull)request completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback NS_SWIFT_NAME(createCardWith(_:completion:));
 
 /**
  Returns Virgil Card from the Virgil Cards Service with given ID, if exists.
@@ -32,7 +32,7 @@
  @param cardId   NSString with unique Virgil Card identifier
  @param callback callback with VSSCard with given ID or NSError instance if error occured
  */
-- (void)getCardWithId:(NSString * __nonnull)cardId completion:(void (^ __nonnull)(VSSCard* __nullable, NSError * __nullable))callback NS_SWIFT_NAME(getCard(withId:completion:));
+- (void)getCardWithId:(NSString * __nonnull)cardId completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback NS_SWIFT_NAME(getCard(withId:completion:));
 
 /**
  Performs search of Virgil Cards using search criteria on the Virgil Cards Service.
@@ -40,7 +40,7 @@
  @param criteria VSSSearchCardsCriteria instance with criteria for desired cards
  @param callback callback with array of matched VSSCard instances or NSError if error occured
  */
-- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria * __nonnull)criteria completion:(void (^ __nonnull)(NSArray<VSSCard*>* __nullable, NSError * __nullable))callback NS_SWIFT_NAME(searchCards(using:completion:));
+- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria * __nonnull)criteria completion:(void (^ __nonnull)(NSArray<VSSCard *>* __nullable, NSError * __nullable))callback NS_SWIFT_NAME(searchCards(using:completion:));
 
 /**
  Revokes previously registered card.
