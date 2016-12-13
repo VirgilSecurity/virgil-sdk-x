@@ -50,7 +50,7 @@
 - (VSSPrivateKey * __nullable)importPrivateKeyFromData:(NSData * __nonnull)data;
 
 /**
- Import Public Key from NSData raw representation.
+ Imports Public Key from NSData raw representation.
 
  @param data NSData Public Key raw representation
 
@@ -92,7 +92,7 @@
 
 /**
  Encrypts data.
- Only those, who has VSSPrivateKey corresponding to one of VSSPublicKey in recipients array will be able to decrypt data.
+ Only those, who have VSSPrivateKey corresponding to one of VSSPublicKey in recipients array will be able to decrypt data.
 
  @param data       NSData instance with any sensitive data
  @param recipients NSArray of VSSPublicKey instances corresponding to recipients
@@ -104,7 +104,7 @@
 
 /**
  Encrypts stream.
- Only those, who has VSSPrivateKey corresponding to one of VSSPublicKey in recipients array will be able to decrypt stream.
+ Only those, who have VSSPrivateKey corresponding to one of VSSPublicKey in recipients array will be able to decrypt stream.
  
  @param stream       NSInputStream isntance with incoming data
  @param outputStream NSOutputStream with encrypted data
@@ -215,7 +215,7 @@
 - (NSData * __nullable)generateSignatureForStream:(NSInputStream * __nonnull)stream withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError * __nullable * __nullable)errorPtr;
 
 /**
- Calculated VSSFingerprint for data.
+ Calculates VSSFingerprint for data.
 
  @param data NSData instance with data of which fingerprint will be calculated
 
@@ -224,7 +224,7 @@
 - (VSSFingerprint * __nonnull)calculateFingerprintForData:(NSData * __nonnull)data;
 
 /**
- Computes hash for data using choosed algorithm
+ Computes hash for data using chosen algorithm
 
  @param data      NSData instance with data of which hash will be calculated
  @param algorithm Algorithm used for hash calculation. See VSSHashAlgorithm

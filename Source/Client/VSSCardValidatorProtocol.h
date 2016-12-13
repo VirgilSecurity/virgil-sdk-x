@@ -9,7 +9,7 @@
 #import "VSSCardResponse.h"
 
 /**
- Protocol designed for validation VSSCreateCardRequestinstances (using signatures by default)
+ Protocol designed for validation VSSCreateCardRequest instances (using signatures by default)
  */
 @protocol VSSCardValidator <NSObject, NSCopying>
 
