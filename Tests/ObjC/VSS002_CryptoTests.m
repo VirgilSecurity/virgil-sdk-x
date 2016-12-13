@@ -296,14 +296,14 @@
     XCTAssert(!verified);
 }
 
-- (void)testESD001_SignAndEncryptRandomData_CorrectKeys_ShouldDecryptValidate {
+- (void)testESD001_SignThenEncryptRandomData_CorrectKeys_ShouldDecryptValidate {
     NSData *data = [[[NSUUID UUID] UUIDString] dataUsingEncoding:NSUTF8StringEncoding];
     
     VSSKeyPair *senderKeyPair = [self.crypto generateKeyPair];
     VSSKeyPair *receiverKeyPair = [self.crypto generateKeyPair];
     
     NSError *error;
-    NSData *signedAndEcnryptedData = [self.crypto signAndEncryptData:data withPrivateKey:senderKeyPair.privateKey forRecipients:@[receiverKeyPair.publicKey] error:&error];
+    NSData *signedAndEcnryptedData = [self.crypto signThenEncryptData:data withPrivateKey:senderKeyPair.privateKey forRecipients:@[receiverKeyPair.publicKey] error:&error];
     
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);

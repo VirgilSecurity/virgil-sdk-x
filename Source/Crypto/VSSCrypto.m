@@ -232,7 +232,7 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
     return YES;
 }
 
-- (NSData *)signAndEncryptData:(NSData *)data withPrivateKey:(VSSPrivateKey *)privateKey forRecipients:(NSArray<VSSPublicKey *> *)recipients error:(NSError **)errorPtr {
+- (NSData *)signThenEncryptData:(NSData *)data withPrivateKey:(VSSPrivateKey *)privateKey forRecipients:(NSArray<VSSPublicKey *> *)recipients error:(NSError **)errorPtr {
     VSCSigner *signer = [[VSCSigner alloc] init];
     
     NSData *privateKeyData = [self exportPrivateKey:privateKey withPassword:nil];

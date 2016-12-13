@@ -174,7 +174,7 @@
 
  @return NSData instance with signed and ecrypted data
  */
-- (NSData * __nullable)signAndEncryptData:(NSData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey forRecipients:(NSArray<VSSPublicKey *> * __nonnull)recipients error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(signAndEncrypt(_:with:for:));
+- (NSData * __nullable)signThenEncryptData:(NSData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey forRecipients:(NSArray<VSSPublicKey *> * __nonnull)recipients error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(signThenEncrypt(_:with:for:));
 
 /**
  Decrypts and verifies data.

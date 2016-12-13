@@ -252,13 +252,13 @@ class VSS002_CryptoTests: XCTestCase {
         XCTAssert(errorWasThrown)
     }
     
-    func testESD001_SignAndEncryptRandomData_CorrectKeys_ShouldDecryptValidate() {
+    func testESD001_SignThenEncryptRandomData_CorrectKeys_ShouldDecryptValidate() {
         let data = UUID().uuidString.data(using: .utf8)!
         
         let senderKeyPair = self.crypto.generateKeyPair()
         let receiverKeyPair = self.crypto.generateKeyPair()
         
-        let signedAndEcryptedData = try! self.crypto.signAndEncrypt(data, with: senderKeyPair.privateKey, for: [receiverKeyPair.publicKey])
+        let signedAndEcryptedData = try! self.crypto.signThenEncrypt(data, with: senderKeyPair.privateKey, for: [receiverKeyPair.publicKey])
         
         let decryptedAndVerifiedData = try! self.crypto.decryptAndVerify(signedAndEcryptedData, with: receiverKeyPair.privateKey, using: senderKeyPair.publicKey)
         
