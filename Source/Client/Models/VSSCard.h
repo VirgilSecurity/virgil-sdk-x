@@ -31,7 +31,7 @@
 /**
  NSData with public key of VSSCard
  */
-@property (nonatomic, copy, readonly) NSData * __nonnull publicKey;
+@property (nonatomic, copy, readonly) NSData * __nonnull publicKeyData;
 
 /**
  NSDictionary with any custom payload which will be stored with VSSCard

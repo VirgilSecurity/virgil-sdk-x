@@ -17,7 +17,7 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
 @property (nonatomic, readwrite) id<VSSCrypto> __nonnull crypto;
 @property (nonatomic, copy, readwrite) NSDictionary<NSString *, VSSPublicKey *> * __nonnull verifiers;
 
-- (void)addVerifierWithId:(NSString * __nonnull)verifierId vssPublicKey:(VSSPublicKey * __nonnull)publicKey;
+- (void)addVerifierWithId:(NSString * __nonnull)verifierId publicKey:(VSSPublicKey * __nonnull)publicKey;
 
 @end
 
@@ -30,7 +30,7 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
         if ([cardId isEqualToString:kVSSServiceCardId])
             continue;
         
-        [copy addVerifierWithId:cardId vssPublicKey:self.verifiers[cardId]];
+        [copy addVerifierWithId:cardId publicKey:self.verifiers[cardId]];
     }
     
     return copy;
@@ -55,19 +55,19 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
     return self;
 }
 
-- (BOOL)addVerifierWithId:(NSString *)verifierId publicKey:(NSData *)publicKey {
-    if (publicKey.length == 0)
+- (BOOL)addVerifierWithId:(NSString *)verifierId publicKeyData:(NSData *)publicKeyData {
+    if (publicKeyData.length == 0)
         return NO;
 
-    VSSPublicKey *importedPublicKey = [self.crypto importPublicKeyFromData:publicKey];
-    if (importedPublicKey == nil)
+    VSSPublicKey *publicKey = [self.crypto importPublicKeyFromData:publicKeyData];
+    if (publicKey == nil)
         return NO;
 
-    [self addVerifierWithId:verifierId vssPublicKey:importedPublicKey];
+    [self addVerifierWithId:verifierId publicKey:publicKey];
     return YES;
 }
 
-- (void)addVerifierWithId:(NSString *)verifierId vssPublicKey:(VSSPublicKey *)publicKey {
+- (void)addVerifierWithId:(NSString *)verifierId publicKey:(VSSPublicKey *)publicKey {
     ((NSMutableDictionary *)_verifiers)[verifierId] = publicKey;
 }
 
@@ -82,7 +82,7 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
         return NO;
     
     NSMutableDictionary *verifiers = [self.verifiers mutableCopy];
-    VSSPublicKey *creatorPublicKey = [self.crypto importPublicKeyFromData:cardResponse.model.publicKey];
+    VSSPublicKey *creatorPublicKey = [self.crypto importPublicKeyFromData:cardResponse.model.publicKeyData];
     verifiers[fingerprint.hexValue] = creatorPublicKey;
 
     for (NSString *verifierId in self.verifiers.allKeys) {

@@ -171,7 +171,7 @@ class VSS004_CompatibilityTests: XCTestCase {
         
         let fingerprint = self.crypto.calculateFingerprint(for: request.snapshot)
         
-        let creatorPublicKey = self.crypto.importPublicKey(from: request.snapshotModel.publicKey)!
+        let creatorPublicKey = self.crypto.importPublicKey(from: request.snapshotModel.publicKeyData)!
         
         try! self.crypto.verifyData(fingerprint.value, withSignature: request.signatures[fingerprint.hexValue]!, using: creatorPublicKey)
     }

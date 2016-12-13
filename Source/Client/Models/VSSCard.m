@@ -11,13 +11,13 @@
 
 @implementation VSSCard
 
-- (instancetype)initWithIdentifier:(NSString *)identifier identity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey scope:(VSSCardScope)scope data:(NSDictionary<NSString *,NSString *> *)data info:(NSDictionary<NSString *,NSString *> *)info createdAt:(NSDate *)createdAt cardVersion:(NSString *)cardVersion {
+- (instancetype)initWithIdentifier:(NSString *)identifier identity:(NSString *)identity identityType:(NSString *)identityType publicKeyData:(NSData *)publicKeyData scope:(VSSCardScope)scope data:(NSDictionary<NSString *,NSString *> *)data info:(NSDictionary<NSString *,NSString *> *)info createdAt:(NSDate *)createdAt cardVersion:(NSString *)cardVersion {
     self = [super init];
     if (self) {
         _identifier = [identifier copy];
         _identity = [identity copy];
         _identityType = [identityType copy];
-        _publicKey = [publicKey copy];
+        _publicKeyData = [publicKeyData copy];
         _scope = scope;
         _data = [data copy];
         _info = [info copy];

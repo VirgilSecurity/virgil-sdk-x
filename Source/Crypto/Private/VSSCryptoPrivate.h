@@ -13,6 +13,6 @@
 
 - (VSSKeyPair * __nonnull)wrapCryptoKeyPair:(VSCKeyPair * __nonnull)keyPair;
 
-- (NSData * __nonnull)computeHashForPublicKey:(NSData * __nonnull)publicKey;
+- (NSData * __nonnull)computeHashForPublicKeyData:(NSData * __nonnull)publicKeyData;
 
 @end

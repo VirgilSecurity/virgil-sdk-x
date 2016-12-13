@@ -17,13 +17,13 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithIdentity:(NSString *)identity identityType:(NSString *)identityType scope:(VSSCardScope)scope publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSString *> *)data info:(NSDictionary<NSString *, NSString *> *)info {
+- (instancetype)initWithIdentity:(NSString *)identity identityType:(NSString *)identityType scope:(VSSCardScope)scope publicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data info:(NSDictionary<NSString *, NSString *> *)info {
     self = [super init];
     if (self) {
         _identity = [identity copy];
         _identityType = [identityType copy];
         _scope = scope;
-        _publicKey = [publicKey copy];
+        _publicKeyData = [publicKeyData copy];
         _data = [data copy];
         _info = [info copy];
     }
@@ -31,22 +31,22 @@
     return self;
 }
 
-+ (instancetype)createCardSnapshotModelWithIdentity:(NSString *)identity identityType:(NSString *)identityType scope:(VSSCardScope)scope publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSString *> *)data {
++ (instancetype)createCardSnapshotModelWithIdentity:(NSString *)identity identityType:(NSString *)identityType scope:(VSSCardScope)scope publicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data {
 
     NSDictionary *info = @{
         kVSSModelDevice: [VSSDeviceInfoUtils getDeviceModel],
         kVSSModelDeviceName: [VSSDeviceInfoUtils getDeviceName]
     };
     
-    return [[VSSCreateCardSnapshotModel alloc] initWithIdentity:identity identityType:identityType scope:scope publicKey:publicKey data:data info:info];
+    return [[VSSCreateCardSnapshotModel alloc] initWithIdentity:identity identityType:identityType scope:scope publicKeyData:publicKeyData data:data info:info];
 }
 
-+ (instancetype)createCardSnapshotModelWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSString *> *)data {
-    return [VSSCreateCardSnapshotModel createCardSnapshotModelWithIdentity:identity identityType:identityType scope:VSSCardScopeApplication publicKey:publicKey data:data];
++ (instancetype)createCardSnapshotModelWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data {
+    return [VSSCreateCardSnapshotModel createCardSnapshotModelWithIdentity:identity identityType:identityType scope:VSSCardScopeApplication publicKeyData:publicKeyData data:data];
 }
 
-+ (instancetype)createCardSnapshotModelWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey {
-    return [VSSCreateCardSnapshotModel createCardSnapshotModelWithIdentity:identity identityType:identityType publicKey:publicKey data:nil];
++ (instancetype)createCardSnapshotModelWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKeyData:(NSData *)publicKeyData {
+    return [VSSCreateCardSnapshotModel createCardSnapshotModelWithIdentity:identity identityType:identityType publicKeyData:publicKeyData data:nil];
 }
 
 #pragma mark - VSSSerializable
@@ -54,7 +54,7 @@
 - (NSDictionary *)serialize {
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
     
-    dict[kVSSModelPublicKey] = [self.publicKey base64EncodedStringWithOptions:0];
+    dict[kVSSModelPublicKey] = [self.publicKeyData base64EncodedStringWithOptions:0];
     dict[kVSSModelIdentityType] = [self.identityType copy];
     dict[kVSSModelIdentity] = [self.identity copy];
     dict[kVSSModelCardScope] = vss_getCardScopeString(self.scope);
@@ -86,12 +86,12 @@
     if (publicKeyStr.length == 0)
         return nil;
     
-    NSData *publicKey = [[NSData alloc]initWithBase64EncodedString:publicKeyStr options:0];
+    NSData *publicKeyData = [[NSData alloc]initWithBase64EncodedString:publicKeyStr options:0];
     
     NSDictionary *data = [candidate[kVSSModelData] as:[NSDictionary class]];
     NSDictionary *info = [candidate[kVSSModelInfo] as:[NSDictionary class]];
     
-    return [self initWithIdentity:identityValueStr identityType:identityTypeStr scope:scope publicKey:publicKey data:data info:info];
+    return [self initWithIdentity:identityValueStr identityType:identityTypeStr scope:scope publicKeyData:publicKeyData data:data info:info];
 }
 
 #pragma mark - VSSCanonicalRepresentable

@@ -38,9 +38,9 @@
 /**
  Adds verifier.
 
- @param verifierId NSString which represents verifier ID
- @param publicKey  NSData with verifier Public Key (for example Application Public Key)
+ @param verifierId    NSString which represents verifier ID
+ @param publicKeyData NSData with verifier Public Key (for example Application Public Key)
  */
-- (BOOL)addVerifierWithId:(NSString * __nonnull)verifierId publicKey:(NSData * __nonnull)publicKey;
+- (BOOL)addVerifierWithId:(NSString * __nonnull)verifierId publicKeyData:(NSData * __nonnull)publicKeyData;
 
 @end

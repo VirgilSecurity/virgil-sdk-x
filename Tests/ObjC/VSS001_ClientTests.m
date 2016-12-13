@@ -36,7 +36,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     VSSServiceConfig *config = [VSSServiceConfig serviceConfigWithToken:self.consts.applicationToken];
     self.crypto = [[VSSCrypto alloc] init];
     VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.crypto];
-    XCTAssert([validator addVerifierWithId:self.consts.applicationId publicKey:[[NSData alloc] initWithBase64EncodedString:self.consts.applicationPublicKeyBase64 options:0]]);
+    XCTAssert([validator addVerifierWithId:self.consts.applicationId publicKeyData:[[NSData alloc] initWithBase64EncodedString:self.consts.applicationPublicKeyBase64 options:0]]);
     
     config.cardValidator = validator;
     

@@ -28,7 +28,7 @@ class VSS001_ClientTests: XCTestCase {
         self.crypto = VSSCrypto()
 
         let validator = VSSCardValidator(crypto: self.crypto)
-        XCTAssert(validator.addVerifier(withId: self.consts.applicationId, publicKey: Data(base64Encoded: self.consts.applicationPublicKeyBase64)!))
+        XCTAssert(validator.addVerifier(withId: self.consts.applicationId, publicKeyData: Data(base64Encoded: self.consts.applicationPublicKeyBase64)!))
         let config = VSSServiceConfig(token: self.consts.applicationToken)
         config.cardValidator = validator
         self.client = VSSClient(serviceConfig: config)

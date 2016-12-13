@@ -33,7 +33,7 @@
     // some random value
     NSString *identityValue = [[NSUUID UUID] UUIDString];
     NSString *identityType = self.consts.applicationIdentityType;
-    VSSCreateCardRequest *request = [VSSCreateCardRequest createCardRequestWithIdentity:identityValue identityType:identityType publicKey:exportedPublicKey];
+    VSSCreateCardRequest *request = [VSSCreateCardRequest createCardRequestWithIdentity:identityValue identityType:identityType publicKeyData:exportedPublicKey];
     
     NSData *privateAppKeyData = [[NSData alloc] initWithBase64EncodedString:self.consts.applicationPrivateKeyBase64 options:0];
     
@@ -55,7 +55,7 @@
     // some random value
     NSString *identityValue = [[NSUUID UUID] UUIDString];
     NSString *identityType = self.consts.applicationIdentityType;
-    VSSCreateCardRequest *request = [VSSCreateCardRequest createCardRequestWithIdentity:identityValue identityType:identityType publicKey:exportedPublicKey data: data];
+    VSSCreateCardRequest *request = [VSSCreateCardRequest createCardRequestWithIdentity:identityValue identityType:identityType publicKeyData:exportedPublicKey data: data];
     
     NSData *privateAppKeyData = [[NSData alloc] initWithBase64EncodedString:self.consts.applicationPrivateKeyBase64 options:0];
     
@@ -90,7 +90,7 @@
         && [card.identity isEqualToString:request.snapshotModel.identity]
         && IsDictionaryEqualOrBothNil(card.data, request.snapshotModel.data)
         && IsDictionaryEqualOrBothNil(card.info, request.snapshotModel.info)
-        && [card.publicKey isEqualToData:request.snapshotModel.publicKey]
+        && [card.publicKeyData isEqualToData:request.snapshotModel.publicKeyData]
         && card.scope == request.snapshotModel.scope;
     
     return equals;
@@ -104,7 +104,7 @@
         && [card1.cardVersion isEqualToString:card2.cardVersion]
         && IsDictionaryEqualOrBothNil(card1.data, card2.data)
         && IsDictionaryEqualOrBothNil(card1.info, card2.info)
-        && [card1.publicKey isEqualToData:card2.publicKey]
+        && [card1.publicKeyData isEqualToData:card2.publicKeyData]
         && card1.scope == card2.scope;
     
     return equals;
@@ -118,7 +118,7 @@
         && [request1.snapshotModel.identity isEqualToString:request2.snapshotModel.identity]
         && [request1.snapshotModel.identityType isEqualToString:request2.snapshotModel.identityType]
         && IsDictionaryEqualOrBothNil(request1.snapshotModel.info, request2.snapshotModel.info)
-        && [request1.snapshotModel.publicKey isEqualToData:request2.snapshotModel.publicKey]
+        && [request1.snapshotModel.publicKeyData isEqualToData:request2.snapshotModel.publicKeyData]
         && request1.snapshotModel.scope == request2.snapshotModel.scope;
     
     return equals;

@@ -187,7 +187,7 @@
     
     VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:request.snapshot];
     
-    VSSPublicKey *creatorPublicKey = [self.crypto importPublicKeyFromData:request.snapshotModel.publicKey];
+    VSSPublicKey *creatorPublicKey = [self.crypto importPublicKeyFromData:request.snapshotModel.publicKeyData];
     
     NSError *error;
     XCTAssert([self.crypto verifyData:fingerprint.value withSignature:request.signatures[fingerprint.hexValue] usingSignerPublicKey:creatorPublicKey error:&error]);

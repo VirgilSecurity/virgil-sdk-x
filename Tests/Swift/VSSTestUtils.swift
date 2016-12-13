@@ -25,7 +25,7 @@ class VSSTestUtils {
         // some random value
         let identityValue = UUID().uuidString
         let identityType = self.consts.applicationIdentityType
-        let request = VSSCreateCardRequest(identity: identityValue, identityType: identityType, publicKey: exportedPublicKey)
+        let request = VSSCreateCardRequest(identity: identityValue, identityType: identityType, publicKeyData: exportedPublicKey)
         
         let privateAppKeyData = Data(base64Encoded: self.consts.applicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
         let appPrivateKey = self.crypto.importPrivateKey(from: privateAppKeyData, withPassword: self.consts.applicationPrivateKeyPassword)!
@@ -45,7 +45,7 @@ class VSSTestUtils {
         // some random value
         let identityValue = UUID().uuidString
         let identityType = self.consts.applicationIdentityType
-        let request = VSSCreateCardRequest(identity: identityValue, identityType: identityType, publicKey: exportedPublicKey, data: data)
+        let request = VSSCreateCardRequest(identity: identityValue, identityType: identityType, publicKeyData: exportedPublicKey, data: data)
         
         let privateAppKeyData = Data(base64Encoded: self.consts.applicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
         let appPrivateKey = self.crypto.importPrivateKey(from: privateAppKeyData, withPassword: self.consts.applicationPrivateKeyPassword)!
@@ -63,7 +63,7 @@ class VSSTestUtils {
             && card.identity == request.snapshotModel.identity
             && checkObjectsEqualOrBothNil(left: card.data, right: request.snapshotModel.data)
             && checkObjectsEqualOrBothNil(left: card.info, right: request.snapshotModel.info)
-            && card.publicKey == request.snapshotModel.publicKey
+            && card.publicKeyData == request.snapshotModel.publicKeyData
             && card.scope == request.snapshotModel.scope
         
         return equals
@@ -77,7 +77,7 @@ class VSSTestUtils {
             && card1.cardVersion == card2.cardVersion
             && checkObjectsEqualOrBothNil(left: card1.data, right: card2.data)
             && checkObjectsEqualOrBothNil(left: card1.info, right: card2.info)
-            && card1.publicKey == card2.publicKey
+            && card1.publicKeyData == card2.publicKeyData
             && card1.scope == card2.scope
         
         return equals
@@ -90,7 +90,7 @@ class VSSTestUtils {
             && request1.snapshotModel.identity == request2.snapshotModel.identity
             && request1.snapshotModel.identityType == request2.snapshotModel.identityType
             && checkObjectsEqualOrBothNil(left: request1.snapshotModel.info, right: request2.snapshotModel.info)
-            && request1.snapshotModel.publicKey == request2.snapshotModel.publicKey
+            && request1.snapshotModel.publicKeyData == request2.snapshotModel.publicKeyData
             && request1.snapshotModel.scope == request2.snapshotModel.scope
         
         return equals

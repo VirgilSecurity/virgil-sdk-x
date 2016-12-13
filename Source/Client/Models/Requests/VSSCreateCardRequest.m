@@ -15,13 +15,13 @@
 
 @implementation VSSCreateCardRequest
 
-+ (instancetype)createCardRequestWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey data:(NSDictionary<NSString *, NSString *> *)data {
-    VSSCreateCardSnapshotModel *model = [VSSCreateCardSnapshotModel createCardSnapshotModelWithIdentity:identity identityType:identityType publicKey:publicKey data:data];
++ (instancetype)createCardRequestWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data {
+    VSSCreateCardSnapshotModel *model = [VSSCreateCardSnapshotModel createCardSnapshotModelWithIdentity:identity identityType:identityType publicKeyData:publicKeyData data:data];
     return [[VSSCreateCardRequest alloc] initWithSnapshotModel:model];
 }
 
-+ (instancetype)createCardRequestWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKey:(NSData *)publicKey {
-    return [VSSCreateCardRequest createCardRequestWithIdentity:identity identityType:identityType publicKey:publicKey data:nil];
++ (instancetype)createCardRequestWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKeyData:(NSData *)publicKeyData {
+    return [VSSCreateCardRequest createCardRequestWithIdentity:identity identityType:identityType publicKeyData:publicKeyData data:nil];
 }
 
 + (VSSSnapshotModel * __nullable)buildSnapshotModelFromSnapshot:(NSData * __nonnull)snapshot {

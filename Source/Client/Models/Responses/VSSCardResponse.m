@@ -15,7 +15,7 @@
 @implementation VSSCardResponse
 
 - (VSSCard *)buildCard {
-    return [[VSSCard alloc] initWithIdentifier:self.identifier identity:self.model.identity identityType:self.model.identityType publicKey:self.model.publicKey scope:self.model.scope data:self.model.data info:self.model.info createdAt:self.createdAt cardVersion:self.cardVersion];
+    return [[VSSCard alloc] initWithIdentifier:self.identifier identity:self.model.identity identityType:self.model.identityType publicKeyData:self.model.publicKeyData scope:self.model.scope data:self.model.data info:self.model.info createdAt:self.createdAt cardVersion:self.cardVersion];
 }
 
 #pragma mark - VSSDeserializable

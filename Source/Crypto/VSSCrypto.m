@@ -23,8 +23,8 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
 
 #pragma mark - Key processing
 
-- (VSSKeyPair * __nonnull)wrapCryptoKeyPair:(VSCKeyPair * __nonnull)keyPair {
-    NSData *keyPairId = [self computeHashForPublicKey:keyPair.publicKey];
+- (VSSKeyPair *)wrapCryptoKeyPair:(VSCKeyPair *)keyPair {
+    NSData *keyPairId = [self computeHashForPublicKeyData:keyPair.publicKey];
     if (keyPairId.length == 0)
         return nil;
     
@@ -38,7 +38,7 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
     return [self wrapCryptoKeyPair:[[VSCKeyPair alloc] init]];
 }
 
-- (VSSKeyPair * __nonnull)generateKeyPairOfType:(VSSKeyType)type {
+- (VSSKeyPair *)generateKeyPairOfType:(VSSKeyType)type {
     VSCKeyType cType = vss_mapKeyType(type);
     return [self wrapCryptoKeyPair:[[VSCKeyPair alloc] initWithKeyPairType:cType password:nil]];
 }
@@ -53,11 +53,11 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
     if (privateKeyData.length == 0)
         return nil;
 
-    NSData *publicKey = [VSCKeyPair extractPublicKeyWithPrivateKey:privateKeyData privateKeyPassword:nil];
-    if (publicKey.length == 0)
+    NSData *publicKeyData = [VSCKeyPair extractPublicKeyWithPrivateKey:privateKeyData privateKeyPassword:nil];
+    if (publicKeyData.length == 0)
         return nil;
 
-    NSData *keyIdentifier = [self computeHashForPublicKey:publicKey];
+    NSData *keyIdentifier = [self computeHashForPublicKeyData:publicKeyData];
     if (keyIdentifier.length == 0)
         return nil;
     
@@ -78,7 +78,7 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
     if (data.length == 0)
         return nil;
     
-    NSData *keyIdentifier = [self computeHashForPublicKey:data];
+    NSData *keyIdentifier = [self computeHashForPublicKeyData:data];
 
     NSData *exportedPublicKey = [VSCKeyPair publicKeyToDER:data];
     if (exportedPublicKey.length == 0)
@@ -344,12 +344,12 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
     return signature;
 }
 
-- (VSSFingerprint * __nonnull)calculateFingerprintForData:(NSData * __nonnull)data {
+- (VSSFingerprint *)calculateFingerprintForData:(NSData *)data {
     NSData *hash = [self computeHashForData:data withAlgorithm:VSSHashAlgorithmSHA256];
     return [[VSSFingerprint alloc] initWithValue:hash];
 }
 
-- (NSData * __nonnull)computeHashForData:(NSData * __nonnull)data withAlgorithm:(VSSHashAlgorithm)algorithm {
+- (NSData *)computeHashForData:(NSData *)data withAlgorithm:(VSSHashAlgorithm)algorithm {
     VSCHashAlgorithm cryptoAlgorithm;
     switch (algorithm) {
         case VSSHashAlgorithmMD5: cryptoAlgorithm = VSCHashAlgorithmMD5; break;
@@ -363,8 +363,8 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
     return [hash hash:data];
 }
 
-- (NSData *)computeHashForPublicKey:(NSData *)publicKey {
-    NSData *publicKeyDER = [VSCKeyPair publicKeyToDER:publicKey];
+- (NSData *)computeHashForPublicKeyData:(NSData *)publicKeyData {
+    NSData *publicKeyDER = [VSCKeyPair publicKeyToDER:publicKeyData];
     return [self computeHashForData:publicKeyDER withAlgorithm:VSSHashAlgorithmSHA256];
 }
 
