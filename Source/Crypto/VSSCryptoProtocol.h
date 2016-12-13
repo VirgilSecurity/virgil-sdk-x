@@ -223,14 +223,4 @@
  */
 - (VSSFingerprint * __nonnull)calculateFingerprintForData:(NSData * __nonnull)data;
 
-/**
- Computes hash for data using chosen algorithm
-
- @param data      NSData instance with data of which hash will be calculated
- @param algorithm Algorithm used for hash calculation. See VSSHashAlgorithm
-
- @return NSData instance with hash
- */
-- (NSData * __nonnull)computeHashForData:(NSData * __nonnull)data withAlgorithm:(VSSHashAlgorithm)algorithm;
-
 @end
