@@ -41,6 +41,6 @@
  @param verifierId NSString which represents verifier ID
  @param publicKey  NSData with verifier Public Key (for example Application Public Key)
  */
-- (void)addVerifierWithId:(NSString * __nonnull)verifierId publicKey:(NSData * __nonnull)publicKey;
+- (BOOL)addVerifierWithId:(NSString * __nonnull)verifierId publicKey:(NSData * __nonnull)publicKey;
 
 @end
