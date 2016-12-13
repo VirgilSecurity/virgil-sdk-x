@@ -10,7 +10,7 @@
 #import "VSSBaseModel.h"
 
 /**
- Virgil Model representing Search Criteria while serachign for Virgil Cards.
+ Virgil Model representing Search Criteria while searching for Virgil Cards.
  See VSSClient protocol.
  */
 @interface VSSSearchCardsCriteria : VSSBaseModel
