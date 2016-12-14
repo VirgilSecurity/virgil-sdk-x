@@ -12,7 +12,7 @@
 
 @interface VSSConfirmIdentityRequest : VSSBaseModel <VSSSerializable>
 
-@property (nonatomic, readonly) NSString * __nonnull confirmationCode;
+@property (nonatomic, copy, readonly) NSString * __nonnull confirmationCode;
 @property (nonatomic, copy, readonly) NSString * __nonnull actionId;
 @property (nonatomic, readonly) NSInteger tokenTTL;
 @property (nonatomic, readonly) NSInteger tokenCTL;

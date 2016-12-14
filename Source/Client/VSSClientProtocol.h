@@ -65,4 +65,7 @@
 
 - (void)confirmIdentityWithActionId:(NSString * __nonnull)actionId confirmationCode:(NSString * __nonnull)confirmationCode timeToLive:(NSInteger)timeToLive countToLive:(NSInteger)countToLive completion:(void (^ __nonnull)(VSSConfirmIdentityResponse * __nullable, NSError * __nullable))callback;
 
+- (void)validateIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType validationToken:(NSString * __nonnull)validationToken completion:(void (^ __nonnull)(NSError * __nullable))callback;
+
+
 @end

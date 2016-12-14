@@ -13,7 +13,7 @@
 
 @interface VSSVerifyIdentityRequest : VSSBaseModel <VSSSerializable>
 
-@property (nonatomic, readonly) NSString * __nonnull identity;
+@property (nonatomic, copy, readonly) NSString * __nonnull identity;
 
 @property (nonatomic, copy, readonly) NSString * __nonnull identityType;
 

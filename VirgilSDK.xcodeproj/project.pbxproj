@@ -20,6 +20,8 @@
 		42386C301E019969009E913F /* VSSConfirmIdentityResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 42386C291E0194E2009E913F /* VSSConfirmIdentityResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42386C311E01996F009E913F /* VSSConfirmIdentityResponsePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 42386C2A1E019589009E913F /* VSSConfirmIdentityResponsePrivate.h */; };
 		42386C321E019975009E913F /* VSSConfirmIdentityHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42386C2D1E019810009E913F /* VSSConfirmIdentityHTTPRequest.h */; };
+		42386C351E019C67009E913F /* VSSValidateIdentityHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42386C341E019C67009E913F /* VSSValidateIdentityHTTPRequest.m */; };
+		42386C381E019D67009E913F /* VSSValidateIdentityRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42386C371E019D67009E913F /* VSSValidateIdentityRequest.m */; };
 		423CEB561DCA069900CCACB8 /* VSSKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB551DCA069900CCACB8 /* VSSKeyStorage.m */; };
 		423CEB5A1DCA06C900CCACB8 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
 		423CEB5D1DCA07C200CCACB8 /* VSSKeyStoragePublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -238,6 +240,10 @@
 		42386C2B1E0195C2009E913F /* VSSConfirmIdentityResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSConfirmIdentityResponse.m; sourceTree = "<group>"; };
 		42386C2D1E019810009E913F /* VSSConfirmIdentityHTTPRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSConfirmIdentityHTTPRequest.h; sourceTree = "<group>"; };
 		42386C2E1E019845009E913F /* VSSConfirmIdentityHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSConfirmIdentityHTTPRequest.m; sourceTree = "<group>"; };
+		42386C331E019C22009E913F /* VSSValidateIdentityHTTPRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSValidateIdentityHTTPRequest.h; sourceTree = "<group>"; };
+		42386C341E019C67009E913F /* VSSValidateIdentityHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSValidateIdentityHTTPRequest.m; sourceTree = "<group>"; };
+		42386C361E019CBF009E913F /* VSSValidateIdentityRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSValidateIdentityRequest.h; sourceTree = "<group>"; };
+		42386C371E019D67009E913F /* VSSValidateIdentityRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSValidateIdentityRequest.m; sourceTree = "<group>"; };
 		423B09AA1DA52D6400A63E5B /* VSSCardValidator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCardValidator.h; sourceTree = "<group>"; };
 		423B09AB1DA52D7500A63E5B /* VSSCardValidatorProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCardValidatorProtocol.h; sourceTree = "<group>"; };
 		423B09AC1DA534A800A63E5B /* VSSCardValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCardValidator.m; sourceTree = "<group>"; };
@@ -603,6 +609,7 @@
 				425B09D91DC25374005531DC /* VSSRevokeCardRequest.m */,
 				42F540801E0059D50071FDCF /* VSSVerifyIdentityRequest.m */,
 				42386C271E0190B5009E913F /* VSSConfirmIdentityRequest.m */,
+				42386C371E019D67009E913F /* VSSValidateIdentityRequest.m */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -627,6 +634,7 @@
 				425B09E61DC253B9005531DC /* VSSSignableRequestPrivate.h */,
 				421A74CE1E015CBF007460BA /* VSSVerifyIdentityRequest.h */,
 				42386C261E019017009E913F /* VSSConfirmIdentityRequest.h */,
+				42386C361E019CBF009E913F /* VSSValidateIdentityRequest.h */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -841,6 +849,8 @@
 				42F5407D1E0054C00071FDCF /* VSSVerifyIdentityHTTPRequest.m */,
 				42386C2D1E019810009E913F /* VSSConfirmIdentityHTTPRequest.h */,
 				42386C2E1E019845009E913F /* VSSConfirmIdentityHTTPRequest.m */,
+				42386C331E019C22009E913F /* VSSValidateIdentityHTTPRequest.h */,
+				42386C341E019C67009E913F /* VSSValidateIdentityHTTPRequest.m */,
 			);
 			path = Identity;
 			sourceTree = "<group>";
@@ -1454,12 +1464,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42386C381E019D67009E913F /* VSSValidateIdentityRequest.m in Sources */,
 				42EB30EF1DB8EC33001DF4C0 /* VSSError.m in Sources */,
 				42EB30F11DB8EC33001DF4C0 /* VSSCardsError.m in Sources */,
 				42EB30FF1DB8EC33001DF4C0 /* VSSModelCommons.m in Sources */,
 				42EB31001DB8EC33001DF4C0 /* VSSModelKeys.m in Sources */,
 				425B09DE1DC25374005531DC /* VSSCreateCardRequest.m in Sources */,
 				425B09E21DC25374005531DC /* VSSSignableRequest.m in Sources */,
+				42386C351E019C67009E913F /* VSSValidateIdentityHTTPRequest.m in Sources */,
 				42EB31021DB8EC33001DF4C0 /* VSSBaseModel.m in Sources */,
 				425B09CB1DC245CE005531DC /* VSSRevokeCardSnapshotModel.m in Sources */,
 				42EB310A1DB8EC33001DF4C0 /* VSSSearchCardsCriteria.m in Sources */,

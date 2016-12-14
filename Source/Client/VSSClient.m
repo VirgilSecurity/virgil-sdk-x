@@ -21,6 +21,9 @@
 #import "VSSVerifyIdentityHTTPRequest.h"
 #import "VSSConfirmIdentityRequest.h"
 #import "VSSConfirmIdentityHTTPRequest.h"
+#import "VSSValidateIdentityRequest.h"
+#import "VSSValidateIdentityHTTPRequest.h"
+
 
 NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
 
@@ -261,6 +264,30 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
         if (callback != nil) {
             VSSConfirmIdentityHTTPRequest *r = [request as:[VSSConfirmIdentityHTTPRequest class]];
             callback(r.confirmIdentityResponse, nil);
+        }
+        return;
+    };
+    
+    httpRequest.completionHandler = handler;
+    
+    [self send:httpRequest];
+}
+
+- (void)validateIdentity:(NSString *)identity identityType:(NSString *)identityType validationToken:(NSString *)validationToken completion:(void (^)(NSError *))callback {
+    VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.identityServiceURL];
+    VSSValidateIdentityRequest *request = [[VSSValidateIdentityRequest alloc] initWithIdentityType:identityType identityValue:identity validationToken:validationToken];
+    VSSValidateIdentityHTTPRequest *httpRequest = [[VSSValidateIdentityHTTPRequest alloc] initWithContext:context validateIdentityRequest:request];
+    
+    VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
+        if (request.error != nil) {
+            if (callback != nil) {
+                callback(request.error);
+            }
+            return;
+        }
+        
+        if (callback != nil) {
+            callback(nil);
         }
         return;
     };
