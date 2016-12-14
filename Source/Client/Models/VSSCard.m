@@ -19,8 +19,10 @@
         _identityType = [identityType copy];
         _publicKeyData = [publicKeyData copy];
         _scope = scope;
-        _data = [data copy];
-        _info = [info copy];
+        if (data != nil)
+            _data = [[NSDictionary alloc] initWithDictionary:data copyItems:YES];
+        if (info != nil)
+            _info = [[NSDictionary alloc] initWithDictionary:info copyItems:YES];
         _createdAt = [createdAt copy];
         _cardVersion = [cardVersion copy];
     }

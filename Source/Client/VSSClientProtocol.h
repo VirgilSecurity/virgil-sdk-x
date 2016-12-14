@@ -9,6 +9,7 @@
 #import "VSSSearchCardsCriteria.h"
 #import "VSSCreateCardRequest.h"
 #import "VSSRevokeCardRequest.h"
+#import "VSSConfirmIdentityResponse.h"
 #import "VSSCard.h"
 
 /**
@@ -49,6 +50,19 @@
  @param request VSSRevokeCardRequest created with specific Virgil Card ID
  @param callback callback with NSError instance if error occured
  */
-- (void)revokeCardWithRequest:(VSSRevokeCardRequest* __nonnull)request completion:(void (^ __nonnull)(NSError * __nullable))callback NS_SWIFT_NAME(revokeCardWith(_:completion:));
+- (void)revokeCardWithRequest:(VSSRevokeCardRequest * __nonnull)request completion:(void (^ __nonnull)(NSError * __nullable))callback NS_SWIFT_NAME(revokeCardWith(_:completion:));
+
+
+/**
+ Starts email verification process
+
+ @param identity NSString with identity value
+ @param identityType NSString with identity type
+ @param extraFields NSDictionary with values passed with verification message
+ @param callback callback with NSString with action ID, or NSError instance if error occured
+ */
+- (void)verifyIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType extraFields:(NSDictionary<NSString *, NSString *> * __nullable)extraFields completion:(void (^ __nonnull)(NSString * __nullable, NSError * __nullable))callback;
+
+- (void)confirmIdentityWithActionId:(NSString * __nonnull)actionId confirmationCode:(NSString * __nonnull)confirmationCode timeToLive:(NSInteger)timeToLive countToLive:(NSInteger)countToLive completion:(void (^ __nonnull)(VSSConfirmIdentityResponse * __nullable, NSError * __nullable))callback;
 
 @end

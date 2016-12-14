@@ -54,7 +54,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 
 #pragma mark - Tests
 
-- (void)test001_CreateCard {
+- (void)testC01_CreateCard {
     XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created."];
     
     NSUInteger numberOfRequests = 1;
@@ -80,7 +80,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     }];
 }
 
-- (void)test002_CreateCardWithData {
+- (void)testC02_CreateCardWithData {
     XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card with data should be created."];
     
     NSUInteger numberOfRequests = 1;
@@ -108,7 +108,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     }];
 }
 
-- (void)test003_SearchCards {
+- (void)testC03_SearchCards {
     XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created. Search should return 1 card which is equal to created card"];
     
     NSUInteger numberOfRequests = 2;
@@ -144,7 +144,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     }];
 }
 
-- (void)test004_GetCard {
+- (void)testC04_GetCard {
     XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created. Get card request should return 1 card which is equal to created card"];
     
     NSUInteger numberOfRequests = 2;
@@ -178,7 +178,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     }];
 }
 
-- (void)test005_RevokeCard {
+- (void)testC05_RevokeCard {
     XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created. Virgil card should be revoked"];
     
     NSUInteger numberOfRequests = 3;
@@ -212,6 +212,25 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
         }];
     }];
     
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
+    }];
+}
+
+- (void)testI01_VerifyEmail {
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@""];
+    
+    NSUInteger numberOfRequests = 1;
+    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
+    
+    [self.client verifyIdentity:@"dfsdf@maileme101.com" identityType:@"email" extraFields:nil completion:^(NSString *actionId, NSError *error) {
+        
+        XCTAssert(error == nil);
+        XCTAssert(actionId.length != 0);
+        [ex fulfill];
+    }];
+
     [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
         if (error != nil)
             XCTFail(@"Expectation failed: %@", error);

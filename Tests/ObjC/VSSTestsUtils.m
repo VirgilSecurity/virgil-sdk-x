@@ -55,7 +55,7 @@
     // some random value
     NSString *identityValue = [[NSUUID UUID] UUIDString];
     NSString *identityType = self.consts.applicationIdentityType;
-    VSSCreateCardRequest *request = [VSSCreateCardRequest createCardRequestWithIdentity:identityValue identityType:identityType publicKeyData:exportedPublicKey data: data];
+    VSSCreateCardRequest *request = [VSSCreateCardRequest createCardRequestWithIdentity:identityValue identityType:identityType publicKeyData:exportedPublicKey data:data];
     
     NSData *privateAppKeyData = [[NSData alloc] initWithBase64EncodedString:self.consts.applicationPrivateKeyBase64 options:0];
     

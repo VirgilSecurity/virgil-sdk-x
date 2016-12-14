@@ -28,6 +28,9 @@
  */
 @property (nonatomic, copy) NSURL * __nonnull cardsServiceROURL;
 
+// FIXME
+@property (nonatomic, copy) NSURL * __nonnull identityServiceURL;
+
 /**
  VSSCardValidator instance which validates Virgil Card genuineness on every VSSClient query.
  Default value is nil

@@ -20,7 +20,7 @@
         _snapshotModel = model;
         
         if (signatures != nil)
-            _signatures = [signatures copy];
+            _signatures = [[NSDictionary alloc] initWithDictionary:signatures copyItems:YES];
         else
             _signatures = [[NSMutableDictionary alloc] init];
     }
@@ -68,16 +68,16 @@
         signaturesDict[key] = [((NSData *)self.signatures[key]) base64EncodedStringWithOptions:0];
     }
     
-    metaDict[kVSSModelSigns] = signaturesDict;
-    dict[kVSSModelMeta] = metaDict;
+    metaDict[kVSSCModelSigns] = signaturesDict;
+    dict[kVSSCModelMeta] = metaDict;
     
-    dict[kVSSModelContentSnapshot] = [self.snapshot base64EncodedStringWithOptions:0];
+    dict[kVSSCModelContentSnapshot] = [self.snapshot base64EncodedStringWithOptions:0];
 
     return dict;
 }
 
 - (instancetype)initWithDict:(NSDictionary *)candidate {
-    NSString *snapshotStr = [candidate[kVSSModelContentSnapshot] as:[NSString class]];
+    NSString *snapshotStr = [candidate[kVSSCModelContentSnapshot] as:[NSString class]];
     if (snapshotStr.length == 0)
         return nil;
     
@@ -86,9 +86,9 @@
         return nil;
     
     NSMutableDictionary<NSString *,NSData *> *signatures = [[NSMutableDictionary alloc] init];;
-    NSDictionary *metaDict = [candidate[kVSSModelMeta] as:[NSDictionary class]];
+    NSDictionary *metaDict = [candidate[kVSSCModelMeta] as:[NSDictionary class]];
     if (metaDict.count != 0) {
-        NSDictionary<NSString *,NSString *> *signaturesDict = [metaDict[kVSSModelSigns] as:[NSDictionary class]];
+        NSDictionary<NSString *,NSString *> *signaturesDict = [metaDict[kVSSCModelSigns] as:[NSDictionary class]];
         for (NSString *key in signaturesDict.allKeys) {
             signatures[key] = [[NSData alloc] initWithBase64EncodedString:signaturesDict[key] options:0];
         }

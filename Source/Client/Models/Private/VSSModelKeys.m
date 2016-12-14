@@ -8,28 +8,38 @@
 
 #import "VSSModelKeys.h"
 
-NSString *const kVSSModelId = @"id";
-NSString *const kVSSModelCreatedAt = @"created_at";
-NSString *const kVSSModelCardVersion = @"card_version";
-NSString *const kVSSModelType = @"type";
-NSString *const kVSSModelValue = @"value";
-NSString *const kVSSModelIdentity = @"identity";
-NSString *const kVSSModelData = @"data";
-NSString *const kVSSModelInfo = @"info";
-NSString *const kVSSModelDevice = @"device";
-NSString *const kVSSModelDeviceName = @"device_name";
-NSString *const kVSSModelPublicKey = @"public_key";
-NSString *const kVSSModelContentSnapshot = @"content_snapshot";
-NSString *const kVSSModelMeta = @"meta";
-NSString *const kVSSModelCardScope = @"scope";
-NSString *const kVSSModelIdentityType = @"identity_type";
-NSString *const kVSSModelSigns = @"signs";
-NSString *const kVSSModelCardId = @"card_id";
-NSString *const kVSSModelRevocationReason = @"revocation_reason";
-NSString *const kVSSModelIdentities = @"identities";
-NSString *const kVSSIdentityTypeEmail = @"email";
+NSString *const kVSSCModelId = @"id";
+NSString *const kVSSCModelCreatedAt = @"created_at";
+NSString *const kVSSCModelCardVersion = @"card_version";
+NSString *const kVSSCModelType = @"type";
+NSString *const kVSSCModelValue = @"value";
+NSString *const kVSSCModelIdentity = @"identity";
+NSString *const kVSSCModelData = @"data";
+NSString *const kVSSCModelInfo = @"info";
+NSString *const kVSSCModelDevice = @"device";
+NSString *const kVSSCModelDeviceName = @"device_name";
+NSString *const kVSSCModelPublicKey = @"public_key";
+NSString *const kVSSCModelContentSnapshot = @"content_snapshot";
+NSString *const kVSSCModelMeta = @"meta";
+NSString *const kVSSCModelCardScope = @"scope";
+NSString *const kVSSCModelIdentityType = @"identity_type";
+NSString *const kVSSCModelSigns = @"signs";
+NSString *const kVSSCModelCardId = @"card_id";
+NSString *const kVSSCModelRevocationReason = @"revocation_reason";
+NSString *const kVSSCModelIdentities = @"identities";
+//NSString *const kVSSIdentityTypeEmail = @"email";
 
-NSString *const kVSSModelCode = @"code";
+NSString *const kVSSIModelIdentityType = @"type";
+NSString *const kVSSIModelIdentityValue = @"value";
+NSString *const kVSSIModelExtraFields = @"extra_fields";
+NSString *const kVSSIModelActionId = @"action_id";
+NSString *const kVSSIModelConfirmationCode = @"confirmation_code";
+NSString *const kVSSIModelToken = @"token";
+NSString *const kVSSIModelTTL = @"time_to_live";
+NSString *const kVSSIModelCTL = @"count_to_live";
+NSString *const kVSSIModelValidationToken = @"validation_token";
+
+NSString *const kVSSCModelCode = @"code";
 
 NSString *const kVSSErrorDomain = @"VirgilSecurityServicesErrorDomain";
 NSString *const kVSSUnknownError = @"Virgil Security service unknown error.";

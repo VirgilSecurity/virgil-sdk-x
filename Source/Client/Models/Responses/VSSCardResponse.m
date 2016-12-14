@@ -24,7 +24,7 @@
     self = [super init];
 
     if (self) {
-        NSString *snapshotStr = [candidate[kVSSModelContentSnapshot] as:[NSString class]];
+        NSString *snapshotStr = [candidate[kVSSCModelContentSnapshot] as:[NSString class]];
         if (snapshotStr.length == 0)
             return nil;
 
@@ -39,23 +39,23 @@
             return nil;
         _model = model;
 
-        NSString *identifier = [candidate[kVSSModelId] as:[NSString class]];
+        NSString *identifier = [candidate[kVSSCModelId] as:[NSString class]];
         if (identifier.length > 0)
             _identifier = [identifier copy];
 
-        NSDictionary *metaCandidate = [candidate[kVSSModelMeta] as:[NSDictionary class]];
+        NSDictionary *metaCandidate = [candidate[kVSSCModelMeta] as:[NSDictionary class]];
         if (metaCandidate.count == 0)
             return nil;
 
         NSMutableDictionary *signaturesDict = [[NSMutableDictionary alloc] init];
-        NSDictionary *signatures = [metaCandidate[kVSSModelSigns] as:[NSDictionary class]];
+        NSDictionary *signatures = [metaCandidate[kVSSCModelSigns] as:[NSDictionary class]];
         for (NSString *key in signatures.allKeys) {
             signaturesDict[key] = [[NSData alloc] initWithBase64EncodedString:signatures[key] options:0];
         }
         _signatures = signaturesDict;
 
         NSDate *createdAt = nil;
-        NSString *createdAtStr = [metaCandidate[kVSSModelCreatedAt] as:[NSString class]];
+        NSString *createdAtStr = [metaCandidate[kVSSCModelCreatedAt] as:[NSString class]];
         if (createdAtStr != nil && createdAtStr.length != 0) {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
@@ -65,7 +65,7 @@
             _createdAt = createdAt;
         }
 
-        NSString *cardVersion = [metaCandidate[kVSSModelCardVersion] as:[NSString class]];
+        NSString *cardVersion = [metaCandidate[kVSSCModelCardVersion] as:[NSString class]];
         if (cardVersion.length > 0) {
             _cardVersion = [cardVersion copy];
         }

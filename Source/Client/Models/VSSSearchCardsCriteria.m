@@ -32,12 +32,12 @@
 
 - (NSDictionary *)serialize {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    dict[kVSSModelIdentities] = [self.identities copy];
-    dict[kVSSModelIdentityType] = [self.identityType copy];
+    dict[kVSSCModelIdentities] = [self.identities copy];
+    dict[kVSSCModelIdentityType] = [self.identityType copy];
     
     switch (self.scope) {
         case VSSCardScopeGlobal:
-            dict[kVSSModelCardScope] = vss_getCardScopeString(VSSCardScopeGlobal);
+            dict[kVSSCModelCardScope] = vss_getCardScopeString(VSSCardScopeGlobal);
             break;
             
         case VSSCardScopeApplication:

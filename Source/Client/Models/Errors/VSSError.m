@@ -56,7 +56,7 @@
 #pragma mark - VSSDeserializable
 
 - (instancetype)initWithDict:(NSDictionary *)candidate {
-    NSNumber *code = [candidate[kVSSModelCode] as:[NSNumber class]];
+    NSNumber *code = [candidate[kVSSCModelCode] as:[NSNumber class]];
     if (code == nil)
         return nil;
     

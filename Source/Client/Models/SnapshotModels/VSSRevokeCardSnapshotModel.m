@@ -44,11 +44,11 @@
 }
 
 - (instancetype)initWithDict:(NSDictionary *)candidate {
-    NSString *cardId = [candidate[kVSSModelCardId] as:[NSString class]];
+    NSString *cardId = [candidate[kVSSCModelCardId] as:[NSString class]];
     if (cardId.length == 0)
         return nil;
     
-    NSString *revocationReasonStr = [candidate[kVSSModelRevocationReason] as:[NSString class]];
+    NSString *revocationReasonStr = [candidate[kVSSCModelRevocationReason] as:[NSString class]];
     if (revocationReasonStr.length == 0)
         return nil;
     
@@ -60,8 +60,8 @@
 - (NSDictionary * __nonnull)serialize {
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
     
-    dict[kVSSModelCardId] = [self.cardId copy];
-    dict[kVSSModelRevocationReason] = vss_getRevocationReasonString(self.revocationReason);
+    dict[kVSSCModelCardId] = [self.cardId copy];
+    dict[kVSSCModelRevocationReason] = vss_getRevocationReasonString(self.revocationReason);
     
     return dict;
 }

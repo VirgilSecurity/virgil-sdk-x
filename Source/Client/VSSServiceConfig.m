@@ -16,6 +16,7 @@
         _token = [token copy];
         _cardsServiceURL = [[NSURL alloc] initWithString:@"https://cards.virgilsecurity.com/v4/"];;
         _cardsServiceROURL = [[NSURL alloc] initWithString:@"https://cards-ro.virgilsecurity.com/v4/"];
+        _identityServiceURL = [[NSURL alloc] initWithString:@"https://identity.virgilsecurity.com/v1/"];
     }
     return self;
 }
@@ -29,6 +30,7 @@
     copy.cardsServiceURL = self.cardsServiceURL;
     copy.cardsServiceROURL = self.cardsServiceROURL;
     copy.cardValidator = self.cardValidator;
+    copy.identityServiceURL = self.identityServiceURL;
     
     return copy;
 }

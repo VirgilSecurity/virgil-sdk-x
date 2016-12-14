@@ -17,6 +17,10 @@
 #import "VSSGetCardHTTPRequest.h"
 #import "VSSRevokeCardHTTPRequest.h"
 #import "VSSCardResponsePrivate.h"
+#import "VSSVerifyIdentityRequest.h"
+#import "VSSVerifyIdentityHTTPRequest.h"
+#import "VSSConfirmIdentityRequest.h"
+#import "VSSConfirmIdentityHTTPRequest.h"
 
 NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
 
@@ -195,7 +199,7 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
 
 - (void)revokeCardWithRequest:(VSSRevokeCardRequest *)request completion:(void (^)(NSError *))callback {
     VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.cardsServiceURL];
-    VSSRevokeCardHTTPRequest *httpRequest = [[VSSRevokeCardHTTPRequest alloc] initWithContext:context revokeCardRequest: request];
+    VSSRevokeCardHTTPRequest *httpRequest = [[VSSRevokeCardHTTPRequest alloc] initWithContext:context revokeCardRequest:request];
     
     VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
         if (request.error != nil) {
@@ -215,5 +219,56 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     
     [self send:httpRequest];
 }
+
+- (void)verifyIdentity:(NSString *)identity identityType:(NSString *)identityType extraFields:(NSDictionary<NSString *, NSString *> *)extraFields completion:(void (^)(NSString *, NSError *))callback {
+    VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.identityServiceURL];
+    VSSVerifyIdentityRequest *request = [[VSSVerifyIdentityRequest alloc] initWithIdentity:identity identityType:identityType extraFields:extraFields];
+    VSSVerifyIdentityHTTPRequest *httpRequest = [[VSSVerifyIdentityHTTPRequest alloc] initWithContext:context verifyIdentityRequest:request];
+
+    VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
+        if (request.error != nil) {
+            if (callback != nil) {
+                callback(nil, request.error);
+            }
+            return;
+        }
+        
+        if (callback != nil) {
+            VSSVerifyIdentityHTTPRequest *r = [request as:[VSSVerifyIdentityHTTPRequest class]];
+            callback(r.verifyIdentityResponse.actionId, nil);
+        }
+        return;
+    };
+    
+    httpRequest.completionHandler = handler;
+    
+    [self send:httpRequest];
+}
+
+- (void)confirmIdentityWithActionId:(NSString *)actionId confirmationCode:(NSString *)confirmationCode timeToLive:(NSInteger)timeToLive countToLive:(NSInteger)countToLive completion:(void (^)(VSSConfirmIdentityResponse *, NSError *))callback {
+    VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.identityServiceURL];
+    VSSConfirmIdentityRequest *request = [[VSSConfirmIdentityRequest alloc] initWithConfirmationCode:confirmationCode actionId:actionId tokenTTL:timeToLive tokenCTL:countToLive];
+    VSSConfirmIdentityHTTPRequest *httpRequest = [[VSSConfirmIdentityHTTPRequest alloc] initWithContext:context confirmIdentityRequest:request];
+    
+    VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
+        if (request.error != nil) {
+            if (callback != nil) {
+                callback(nil, request.error);
+            }
+            return;
+        }
+        
+        if (callback != nil) {
+            VSSConfirmIdentityHTTPRequest *r = [request as:[VSSConfirmIdentityHTTPRequest class]];
+            callback(r.confirmIdentityResponse, nil);
+        }
+        return;
+    };
+    
+    httpRequest.completionHandler = handler;
+    
+    [self send:httpRequest];
+}
+
 
 @end
