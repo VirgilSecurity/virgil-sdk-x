@@ -9,6 +9,10 @@
 #import "VSSBaseModel.h"
 #import "VSSCreateCardSnapshotModel.h"
 
+
+/**
+ Response from Virgil Cards Service with Virgil Card details.
+ */
 @interface VSSCardResponse : VSSBaseModel
 
 /**

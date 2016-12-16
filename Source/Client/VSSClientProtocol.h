@@ -52,20 +52,35 @@
  */
 - (void)revokeCardWithRequest:(VSSRevokeCardRequest * __nonnull)request completion:(void (^ __nonnull)(NSError * __nullable))callback NS_SWIFT_NAME(revokeCardWith(_:completion:));
 
-
 /**
- Starts email verification process
+ Sends the request for identity verification, that's will be processed depending of specified type.
 
- @param identity NSString with identity value
- @param identityType NSString with identity type
- @param extraFields NSDictionary with values passed with verification message
+ @param identity NSString unique string that represents identity
+ @param identityType NSString with type of identity
+ @param extraFields NSDictionary with values which will be passed with verification message
  @param callback callback with NSString with action ID, or NSError instance if error occured
  */
 - (void)verifyIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType extraFields:(NSDictionary<NSString *, NSString *> * __nullable)extraFields completion:(void (^ __nonnull)(NSString * __nullable, NSError * __nullable))callback;
 
+/**
+ Confirms the identity using confirmation code, that has been generated to confirm an identity.
+
+ @param actionId NSString action identifier that was obtained on verification step
+ @param confirmationCode NSString confirmation code that was recived on email box
+ @param timeToLive NSInteger TTL is used to limit the lifetime of the token in seconds (maximum value is 60 * 60 * 24 * 365 = 1 year)
+ @param countToLive NSInteger CTL is used to restrict the number of usages (maximum value is 100)
+ @param callback callback with VSSConfirmIdentityResponse object, or NSError instance if error occured
+ */
 - (void)confirmIdentityWithActionId:(NSString * __nonnull)actionId confirmationCode:(NSString * __nonnull)confirmationCode timeToLive:(NSInteger)timeToLive countToLive:(NSInteger)countToLive completion:(void (^ __nonnull)(VSSConfirmIdentityResponse * __nullable, NSError * __nullable))callback;
 
-- (void)validateIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType validationToken:(NSString * __nonnull)validationToken completion:(void (^ __nonnull)(NSError * __nullable))callback;
+/**
+ Returns without error if validation token is valid
 
+ @param identity NSString unique string that represents identity
+ @param identityType NSString with type of identity
+ @param validationToken NSString with validation token obtained during confirmation step
+ @param callback allback with NSError instance if error occured, or nil if validation succeeded
+ */
+- (void)validateIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType validationToken:(NSString * __nonnull)validationToken completion:(void (^ __nonnull)(NSError * __nullable))callback;
 
 @end

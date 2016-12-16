@@ -28,7 +28,10 @@
  */
 @property (nonatomic, copy) NSURL * __nonnull cardsServiceROURL;
 
-// FIXME
+
+/**
+ Base URL for the Virgil Identity Service
+ */
 @property (nonatomic, copy) NSURL * __nonnull identityServiceURL;
 
 /**
