@@ -36,6 +36,7 @@
 		423CEB7B1DCB518A00CCACB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423CEB791DCB518A00CCACB8 /* Main.storyboard */; };
 		423CEB7D1DCB518A00CCACB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 423CEB7C1DCB518A00CCACB8 /* Assets.xcassets */; };
 		423CEB801DCB518A00CCACB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423CEB7E1DCB518A00CCACB8 /* LaunchScreen.storyboard */; };
+		4248B0D11E043A6D000AB44C /* VSSIdentityError.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B0D01E043A6D000AB44C /* VSSIdentityError.m */; };
 		425B09B81DBF63E4005531DC /* VSS002_CryptoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 423B09E81DA8FBAC00A63E5B /* VSS002_CryptoTests.m */; };
 		425B09B91DBF63E4005531DC /* VSS003_ModelsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B1471E1DAFAEB200AC9975 /* VSS003_ModelsTests.m */; };
 		425B09BA1DBF63E4005531DC /* VSS004_CompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B147231DAFC29600AC9975 /* VSS004_CompatibilityTests.m */; };
@@ -274,6 +275,8 @@
 		423CEB7C1DCB518A00CCACB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		423CEB7F1DCB518A00CCACB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		423CEB811DCB518A00CCACB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4248B0CF1E043A60000AB44C /* VSSIdentityError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSIdentityError.h; sourceTree = "<group>"; };
+		4248B0D01E043A6D000AB44C /* VSSIdentityError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSIdentityError.m; sourceTree = "<group>"; };
 		425B09C11DC2453E005531DC /* VSSSnapshotModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSSnapshotModel.h; sourceTree = "<group>"; };
 		425B09C21DC24549005531DC /* VSSSnapshotModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSnapshotModel.m; sourceTree = "<group>"; };
 		425B09C41DC245CE005531DC /* VSSCreateCardSnapshotModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSCreateCardSnapshotModel.h; sourceTree = "<group>"; };
@@ -789,6 +792,8 @@
 				42F0AB201D9ABF2200747799 /* VSSError.m */,
 				42F0AB231D9ABF2200747799 /* VSSCardsError.h */,
 				42F0AB241D9ABF2200747799 /* VSSCardsError.m */,
+				4248B0CF1E043A60000AB44C /* VSSIdentityError.h */,
+				4248B0D01E043A6D000AB44C /* VSSIdentityError.m */,
 			);
 			path = Errors;
 			sourceTree = "<group>";
@@ -1493,6 +1498,7 @@
 				42EB31211DB8EC33001DF4C0 /* VSSClient.m in Sources */,
 				42EB31241DB8EC33001DF4C0 /* VSSServiceConfig.m in Sources */,
 				42EB31261DB8EC33001DF4C0 /* VSSRequestSigner.m in Sources */,
+				4248B0D11E043A6D000AB44C /* VSSIdentityError.m in Sources */,
 				42386C2F1E019845009E913F /* VSSConfirmIdentityHTTPRequest.m in Sources */,
 				42EB31291DB8EC33001DF4C0 /* VSSCardValidator.m in Sources */,
 				425B09C91DC245CE005531DC /* VSSCreateCardSnapshotModel.m in Sources */,

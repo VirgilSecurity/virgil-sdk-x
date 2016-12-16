@@ -7,11 +7,10 @@
 //
 
 #import "VSSIdentityBaseHTTPRequest.h"
-#import "VSSCardsError.h"
+#import "VSSIdentityError.h"
 #import "NSObject+VSSUtils.h"
 #import "VSSError.h"
 
-// FIXME
 @implementation VSSIdentityBaseHTTPRequest
 
 #pragma mark - Overrides
@@ -22,8 +21,8 @@
         return error;
     }
     
-    VSSCardsError *vcError = [[VSSCardsError alloc] initWithDict:[candidate as:[NSDictionary class]]];
-    return vcError.nsError;
+    VSSIdentityError *viError = [[VSSIdentityError alloc] initWithDict:[candidate as:[NSDictionary class]]];
+    return viError.nsError;
 }
 
 @end
