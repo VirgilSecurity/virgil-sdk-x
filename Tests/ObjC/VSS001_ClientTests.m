@@ -11,9 +11,14 @@
 
 #import "VSSTestsUtils.h"
 #import "VSSTestsConst.h"
+#import "Mailinator.h"
+#import "MailinatorConfig.h"
+#import "MEmailMetadata.h"
+#import "MPart.h"
+#import "MEmail.h"
 
 /// Each request should be done less than or equal this number of seconds.
-static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
+static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
 
 @interface VSS001_ClientTests : XCTestCase
 
@@ -21,6 +26,8 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 @property (nonatomic) VSSCrypto *crypto;
 @property (nonatomic) VSSTestsUtils *utils;
 @property (nonatomic) VSSTestsConst *consts;
+@property (nonatomic) Mailinator *mailinator;
+@property (nonatomic) NSRegularExpression *regexp;
 
 @end
 
@@ -42,12 +49,18 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
     
     self.client = [[VSSClient alloc] initWithServiceConfig:config];
     self.utils = [[VSSTestsUtils alloc] initWithCrypto:self.crypto consts:self.consts];
+    
+    self.regexp = [NSRegularExpression regularExpressionWithPattern:@"Your confirmation code is.+([A-Z0-9]{6})" options:NSRegularExpressionCaseInsensitive error:nil];
+    self.mailinator = [[Mailinator alloc] initWithApplicationToken:self.consts.mailinatorToken serviceUrl:[[NSURL alloc] initWithString:@"https://api.mailinator.com/api/"]];
 }
 
 - (void)tearDown {
     self.client = nil;
     self.crypto = nil;
     self.consts = nil;
+    self.mailinator = nil;
+    self.regexp = nil;
+    self.utils = nil;
     
     [super tearDown];
 }
@@ -221,14 +234,123 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 - (void)testI01_VerifyEmail {
     XCTestExpectation * __weak ex = [self expectationWithDescription:@""];
     
-    NSUInteger numberOfRequests = 1;
+    NSUInteger numberOfRequests = 3;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
     
-    [self.client verifyIdentity:@"dfsdf@maileme101.com" identityType:@"email" extraFields:nil completion:^(NSString *actionId, NSError *error) {
-        
+    NSString *identity = [self.utils generateEmail];
+    
+    [self.client verifyIdentity:identity identityType:@"email" extraFields:nil completion:^(NSString *actionId, NSError *error) {
         XCTAssert(error == nil);
         XCTAssert(actionId.length != 0);
-        [ex fulfill];
+        
+        sleep(3);
+        
+        NSString *identityShort = [identity substringToIndex:[identity rangeOfString:@"@"].location];
+        [self.mailinator getInbox:identityShort completionHandler:^(NSArray<MEmailMetadata *> *metadataList, NSError * error) {
+            XCTAssert(error == nil);
+            XCTAssert(metadataList != nil);
+            XCTAssert(metadataList.count == 1);
+            
+            [self.mailinator getEmail:metadataList[0].mid completionHandler:^(MEmail *email, NSError *error) {
+                XCTAssert(error == nil);
+                XCTAssert(email != nil);
+                
+                MPart *bodyPart = (MPart *)email.parts[0];
+                
+                NSTextCheckingResult *matchResult = [self.regexp firstMatchInString:bodyPart.body options:NSMatchingReportCompletion range:NSMakeRange(0, bodyPart.body.length)];
+                
+                XCTAssert(matchResult != nil);
+                XCTAssert(matchResult.range.location != NSNotFound);
+                
+                NSString *match = [bodyPart.body substringWithRange:matchResult.range];
+                
+                NSString *code = [match substringFromIndex:match.length - 6];
+                
+                XCTAssert(code.length == 6);
+                
+                [ex fulfill];
+            }];
+        }];
+    }];
+
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
+    }];
+}
+
+- (void)testI02_ConfirmEmail {
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@""];
+    
+    NSUInteger numberOfRequests = 4;
+    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
+    
+    NSString *identity = [self.utils generateEmail];
+    
+    [self.client verifyIdentity:identity identityType:@"email" extraFields:nil completion:^(NSString *actionId, NSError *error) {
+        sleep(3);
+        
+        NSString *identityShort = [identity substringToIndex:[identity rangeOfString:@"@"].location];
+        [self.mailinator getInbox:identityShort completionHandler:^(NSArray<MEmailMetadata *> *metadataList, NSError * error) {
+            [self.mailinator getEmail:metadataList[0].mid completionHandler:^(MEmail *email, NSError *error) {
+                MPart *bodyPart = (MPart *)email.parts[0];
+                
+                NSTextCheckingResult *matchResult = [self.regexp firstMatchInString:bodyPart.body options:NSMatchingReportCompletion range:NSMakeRange(0, bodyPart.body.length)];
+                
+                NSString *match = [bodyPart.body substringWithRange:matchResult.range];
+                
+                NSString *code = [match substringFromIndex:match.length - 6];
+                
+                [self.client confirmIdentityWithActionId:actionId confirmationCode:code timeToLive:3600 countToLive:12 completion:^(VSSConfirmIdentityResponse *response, NSError *error) {
+                    XCTAssert(error == nil);
+                    XCTAssert(response != nil);
+                    XCTAssert([response.identityType isEqualToString:@"email"]);
+                    XCTAssert([response.identityValue isEqualToString:identity]);
+                    XCTAssert(response.validationToken.length != 0);
+                    
+                    [ex fulfill];
+                }];
+            }];
+        }];
+    }];
+    
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
+    }];
+}
+
+- (void)testI03_ValidateEmail {
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@""];
+    
+    NSUInteger numberOfRequests = 5;
+    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
+    
+    NSString *identity = [self.utils generateEmail];
+    
+    [self.client verifyIdentity:identity identityType:@"email" extraFields:nil completion:^(NSString *actionId, NSError *error) {
+        sleep(3);
+        
+        NSString *identityShort = [identity substringToIndex:[identity rangeOfString:@"@"].location];
+        [self.mailinator getInbox:identityShort completionHandler:^(NSArray<MEmailMetadata *> *metadataList, NSError * error) {
+            [self.mailinator getEmail:metadataList[0].mid completionHandler:^(MEmail *email, NSError *error) {
+                MPart *bodyPart = (MPart *)email.parts[0];
+                
+                NSTextCheckingResult *matchResult = [self.regexp firstMatchInString:bodyPart.body options:NSMatchingReportCompletion range:NSMakeRange(0, bodyPart.body.length)];
+                
+                NSString *match = [bodyPart.body substringWithRange:matchResult.range];
+                
+                NSString *code = [match substringFromIndex:match.length - 6];
+                
+                [self.client confirmIdentityWithActionId:actionId confirmationCode:code timeToLive:3600 countToLive:12 completion:^(VSSConfirmIdentityResponse *response, NSError *error) {
+                    [self.client validateIdentity:identity identityType:@"email" validationToken:response.validationToken completion:^(NSError *error) {
+                        XCTAssert(error == nil);
+                        
+                        [ex fulfill];
+                    }];
+                }];
+            }];
+        }];
     }];
 
     [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {

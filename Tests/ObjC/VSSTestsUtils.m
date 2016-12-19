@@ -133,4 +133,10 @@
     return equals;
 }
 
+- (NSString *)generateEmail {
+    NSString *candidate = [[[NSUUID UUID] UUIDString] lowercaseString];
+    NSString *identity = [[candidate stringByReplacingOccurrencesOfString:@"-" withString:@""] substringToIndex:25];
+    return [NSString stringWithFormat:@"%@@mailinator.com", identity];
+}
+
 @end

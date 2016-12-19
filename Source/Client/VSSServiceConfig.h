@@ -28,7 +28,6 @@
  */
 @property (nonatomic, copy) NSURL * __nonnull cardsServiceROURL;
 
-
 /**
  Base URL for the Virgil Identity Service
  */

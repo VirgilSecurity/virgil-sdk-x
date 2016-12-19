@@ -35,6 +35,9 @@
 
 - (NSString *)applicationId {
     return @STRINGIZE2(APPLICATION_ID);
+
+- (NSString *)mailinatorToken {
+    return @STRINGIZE2(MAILINATOR_TOKEN);
 }
 
 @end

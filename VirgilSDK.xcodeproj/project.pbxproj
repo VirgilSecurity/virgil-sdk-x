@@ -37,6 +37,48 @@
 		423CEB7D1DCB518A00CCACB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 423CEB7C1DCB518A00CCACB8 /* Assets.xcassets */; };
 		423CEB801DCB518A00CCACB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423CEB7E1DCB518A00CCACB8 /* LaunchScreen.storyboard */; };
 		4248B0D11E043A6D000AB44C /* VSSIdentityError.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B0D01E043A6D000AB44C /* VSSIdentityError.m */; };
+		4248B1191E044CE8000AB44C /* Mailinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1051E044CE8000AB44C /* Mailinator.m */; };
+		4248B11A1E044CE8000AB44C /* Mailinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1051E044CE8000AB44C /* Mailinator.m */; };
+		4248B11B1E044CE8000AB44C /* Mailinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1051E044CE8000AB44C /* Mailinator.m */; };
+		4248B11C1E044CE8000AB44C /* Mailinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1051E044CE8000AB44C /* Mailinator.m */; };
+		4248B11D1E044CE8000AB44C /* MailinatorConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1071E044CE8000AB44C /* MailinatorConfig.m */; };
+		4248B11E1E044CE8000AB44C /* MailinatorConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1071E044CE8000AB44C /* MailinatorConfig.m */; };
+		4248B11F1E044CE8000AB44C /* MailinatorConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1071E044CE8000AB44C /* MailinatorConfig.m */; };
+		4248B1201E044CE8000AB44C /* MailinatorConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1071E044CE8000AB44C /* MailinatorConfig.m */; };
+		4248B1211E044CE8000AB44C /* MEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10A1E044CE8000AB44C /* MEmail.m */; };
+		4248B1221E044CE8000AB44C /* MEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10A1E044CE8000AB44C /* MEmail.m */; };
+		4248B1231E044CE8000AB44C /* MEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10A1E044CE8000AB44C /* MEmail.m */; };
+		4248B1241E044CE8000AB44C /* MEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10A1E044CE8000AB44C /* MEmail.m */; };
+		4248B1251E044CE8000AB44C /* MEmailMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10C1E044CE8000AB44C /* MEmailMetadata.m */; };
+		4248B1261E044CE8000AB44C /* MEmailMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10C1E044CE8000AB44C /* MEmailMetadata.m */; };
+		4248B1271E044CE8000AB44C /* MEmailMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10C1E044CE8000AB44C /* MEmailMetadata.m */; };
+		4248B1281E044CE8000AB44C /* MEmailMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10C1E044CE8000AB44C /* MEmailMetadata.m */; };
+		4248B1291E044CE8000AB44C /* MEmailResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10E1E044CE8000AB44C /* MEmailResponse.m */; };
+		4248B12A1E044CE8000AB44C /* MEmailResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10E1E044CE8000AB44C /* MEmailResponse.m */; };
+		4248B12B1E044CE8000AB44C /* MEmailResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10E1E044CE8000AB44C /* MEmailResponse.m */; };
+		4248B12C1E044CE8000AB44C /* MEmailResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10E1E044CE8000AB44C /* MEmailResponse.m */; };
+		4248B12D1E044CE8000AB44C /* MPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1101E044CE8000AB44C /* MPart.m */; };
+		4248B12E1E044CE8000AB44C /* MPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1101E044CE8000AB44C /* MPart.m */; };
+		4248B12F1E044CE8000AB44C /* MPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1101E044CE8000AB44C /* MPart.m */; };
+		4248B1301E044CE8000AB44C /* MPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1101E044CE8000AB44C /* MPart.m */; };
+		4248B1311E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1131E044CE8000AB44C /* MailinatorEmailRequest.m */; };
+		4248B1321E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1131E044CE8000AB44C /* MailinatorEmailRequest.m */; };
+		4248B1331E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1131E044CE8000AB44C /* MailinatorEmailRequest.m */; };
+		4248B1341E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1131E044CE8000AB44C /* MailinatorEmailRequest.m */; };
+		4248B1351E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1151E044CE8000AB44C /* MailinatorInboxRequest.m */; };
+		4248B1361E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1151E044CE8000AB44C /* MailinatorInboxRequest.m */; };
+		4248B1371E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1151E044CE8000AB44C /* MailinatorInboxRequest.m */; };
+		4248B1381E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1151E044CE8000AB44C /* MailinatorInboxRequest.m */; };
+		4248B1391E044CE8000AB44C /* MailinatorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1171E044CE8000AB44C /* MailinatorRequest.m */; };
+		4248B13A1E044CE8000AB44C /* MailinatorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1171E044CE8000AB44C /* MailinatorRequest.m */; };
+		4248B13B1E044CE8000AB44C /* MailinatorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1171E044CE8000AB44C /* MailinatorRequest.m */; };
+		4248B13C1E044CE8000AB44C /* MailinatorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1171E044CE8000AB44C /* MailinatorRequest.m */; };
+		4248B1461E044D6B000AB44C /* VSSHTTPJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1401E044D6B000AB44C /* VSSHTTPJSONRequest.m */; };
+		4248B1471E044D6B000AB44C /* VSSHTTPJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1401E044D6B000AB44C /* VSSHTTPJSONRequest.m */; };
+		4248B1481E044D6B000AB44C /* VSSHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1421E044D6B000AB44C /* VSSHTTPRequest.m */; };
+		4248B1491E044D6B000AB44C /* VSSHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1421E044D6B000AB44C /* VSSHTTPRequest.m */; };
+		4248B14A1E044D6B000AB44C /* VSSHTTPRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1451E044D6B000AB44C /* VSSHTTPRequestContext.m */; };
+		4248B14B1E044D6B000AB44C /* VSSHTTPRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1451E044D6B000AB44C /* VSSHTTPRequestContext.m */; };
 		425B09B81DBF63E4005531DC /* VSS002_CryptoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 423B09E81DA8FBAC00A63E5B /* VSS002_CryptoTests.m */; };
 		425B09B91DBF63E4005531DC /* VSS003_ModelsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B1471E1DAFAEB200AC9975 /* VSS003_ModelsTests.m */; };
 		425B09BA1DBF63E4005531DC /* VSS004_CompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B147231DAFC29600AC9975 /* VSS004_CompatibilityTests.m */; };
@@ -277,6 +319,32 @@
 		423CEB811DCB518A00CCACB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4248B0CF1E043A60000AB44C /* VSSIdentityError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSIdentityError.h; sourceTree = "<group>"; };
 		4248B0D01E043A6D000AB44C /* VSSIdentityError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSIdentityError.m; sourceTree = "<group>"; };
+		4248B1041E044CE8000AB44C /* Mailinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mailinator.h; sourceTree = "<group>"; };
+		4248B1051E044CE8000AB44C /* Mailinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mailinator.m; sourceTree = "<group>"; };
+		4248B1061E044CE8000AB44C /* MailinatorConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailinatorConfig.h; sourceTree = "<group>"; };
+		4248B1071E044CE8000AB44C /* MailinatorConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailinatorConfig.m; sourceTree = "<group>"; };
+		4248B1091E044CE8000AB44C /* MEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEmail.h; sourceTree = "<group>"; };
+		4248B10A1E044CE8000AB44C /* MEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEmail.m; sourceTree = "<group>"; };
+		4248B10B1E044CE8000AB44C /* MEmailMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEmailMetadata.h; sourceTree = "<group>"; };
+		4248B10C1E044CE8000AB44C /* MEmailMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEmailMetadata.m; sourceTree = "<group>"; };
+		4248B10D1E044CE8000AB44C /* MEmailResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEmailResponse.h; sourceTree = "<group>"; };
+		4248B10E1E044CE8000AB44C /* MEmailResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEmailResponse.m; sourceTree = "<group>"; };
+		4248B10F1E044CE8000AB44C /* MPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPart.h; sourceTree = "<group>"; };
+		4248B1101E044CE8000AB44C /* MPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPart.m; sourceTree = "<group>"; };
+		4248B1121E044CE8000AB44C /* MailinatorEmailRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailinatorEmailRequest.h; sourceTree = "<group>"; };
+		4248B1131E044CE8000AB44C /* MailinatorEmailRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailinatorEmailRequest.m; sourceTree = "<group>"; };
+		4248B1141E044CE8000AB44C /* MailinatorInboxRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailinatorInboxRequest.h; sourceTree = "<group>"; };
+		4248B1151E044CE8000AB44C /* MailinatorInboxRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailinatorInboxRequest.m; sourceTree = "<group>"; };
+		4248B1161E044CE8000AB44C /* MailinatorRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailinatorRequest.h; sourceTree = "<group>"; };
+		4248B1171E044CE8000AB44C /* MailinatorRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailinatorRequest.m; sourceTree = "<group>"; };
+		4248B1181E044CE8000AB44C /* MailinatorRequestSettingsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailinatorRequestSettingsProvider.h; sourceTree = "<group>"; };
+		4248B13F1E044D6B000AB44C /* VSSHTTPJSONRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSHTTPJSONRequest.h; sourceTree = "<group>"; };
+		4248B1401E044D6B000AB44C /* VSSHTTPJSONRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSHTTPJSONRequest.m; sourceTree = "<group>"; };
+		4248B1411E044D6B000AB44C /* VSSHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSHTTPRequest.h; sourceTree = "<group>"; };
+		4248B1421E044D6B000AB44C /* VSSHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSHTTPRequest.m; sourceTree = "<group>"; };
+		4248B1431E044D6B000AB44C /* VSSHTTPRequestPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSHTTPRequestPrivate.h; sourceTree = "<group>"; };
+		4248B1441E044D6B000AB44C /* VSSHTTPRequestContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSHTTPRequestContext.h; sourceTree = "<group>"; };
+		4248B1451E044D6B000AB44C /* VSSHTTPRequestContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSHTTPRequestContext.m; sourceTree = "<group>"; };
 		425B09C11DC2453E005531DC /* VSSSnapshotModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSSnapshotModel.h; sourceTree = "<group>"; };
 		425B09C21DC24549005531DC /* VSSSnapshotModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSnapshotModel.m; sourceTree = "<group>"; };
 		425B09C41DC245CE005531DC /* VSSCreateCardSnapshotModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSCreateCardSnapshotModel.h; sourceTree = "<group>"; };
@@ -574,6 +642,78 @@
 			path = TestSDKApp;
 			sourceTree = "<group>";
 		};
+		4248B1021E044CE8000AB44C /* Mailinator */ = {
+			isa = PBXGroup;
+			children = (
+				4248B1031E044CE8000AB44C /* Client */,
+				4248B1081E044CE8000AB44C /* Models */,
+				4248B1111E044CE8000AB44C /* Requests */,
+			);
+			path = Mailinator;
+			sourceTree = "<group>";
+		};
+		4248B1031E044CE8000AB44C /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				4248B1041E044CE8000AB44C /* Mailinator.h */,
+				4248B1051E044CE8000AB44C /* Mailinator.m */,
+				4248B1061E044CE8000AB44C /* MailinatorConfig.h */,
+				4248B1071E044CE8000AB44C /* MailinatorConfig.m */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		4248B1081E044CE8000AB44C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4248B1091E044CE8000AB44C /* MEmail.h */,
+				4248B10A1E044CE8000AB44C /* MEmail.m */,
+				4248B10B1E044CE8000AB44C /* MEmailMetadata.h */,
+				4248B10C1E044CE8000AB44C /* MEmailMetadata.m */,
+				4248B10D1E044CE8000AB44C /* MEmailResponse.h */,
+				4248B10E1E044CE8000AB44C /* MEmailResponse.m */,
+				4248B10F1E044CE8000AB44C /* MPart.h */,
+				4248B1101E044CE8000AB44C /* MPart.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4248B1111E044CE8000AB44C /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				4248B1121E044CE8000AB44C /* MailinatorEmailRequest.h */,
+				4248B1131E044CE8000AB44C /* MailinatorEmailRequest.m */,
+				4248B1141E044CE8000AB44C /* MailinatorInboxRequest.h */,
+				4248B1151E044CE8000AB44C /* MailinatorInboxRequest.m */,
+				4248B1161E044CE8000AB44C /* MailinatorRequest.h */,
+				4248B1171E044CE8000AB44C /* MailinatorRequest.m */,
+				4248B1181E044CE8000AB44C /* MailinatorRequestSettingsProvider.h */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		4248B13D1E044D6B000AB44C /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				4248B13E1E044D6B000AB44C /* Requests */,
+				4248B1441E044D6B000AB44C /* VSSHTTPRequestContext.h */,
+				4248B1451E044D6B000AB44C /* VSSHTTPRequestContext.m */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		4248B13E1E044D6B000AB44C /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				4248B13F1E044D6B000AB44C /* VSSHTTPJSONRequest.h */,
+				4248B1401E044D6B000AB44C /* VSSHTTPJSONRequest.m */,
+				4248B1411E044D6B000AB44C /* VSSHTTPRequest.h */,
+				4248B1421E044D6B000AB44C /* VSSHTTPRequest.m */,
+				4248B1431E044D6B000AB44C /* VSSHTTPRequestPrivate.h */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
 		425B09C01DC24531005531DC /* SnapshotModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -863,6 +1003,8 @@
 		42F6C2051DBF5F3B0030C21D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				4248B13D1E044D6B000AB44C /* Networking */,
+				4248B1021E044CE8000AB44C /* Mailinator */,
 				42F6C2061DBF5F5E0030C21D /* VSSTestsConst.h */,
 				42F6C2071DBF5F5E0030C21D /* VSSTestsConst.m */,
 			);
@@ -1414,10 +1556,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4248B1331E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */,
 				42BBF0CE1DD3593100E19D60 /* VSSTestsConst.m in Sources */,
+				4248B1271E044CE8000AB44C /* MEmailMetadata.m in Sources */,
 				42229A231DD059E900BE651E /* VSS005_KeyStorageTests.m in Sources */,
+				4248B1371E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */,
 				42BBF0E81DD611DF00E19D60 /* VSSTestsUtils.m in Sources */,
+				4248B11F1E044CE8000AB44C /* MailinatorConfig.m in Sources */,
 				42229A241DD059EE00BE651E /* VSS006_KeyStorageWithAccessGroupTests.m in Sources */,
+				4248B11B1E044CE8000AB44C /* Mailinator.m in Sources */,
+				4248B1231E044CE8000AB44C /* MEmail.m in Sources */,
+				4248B13B1E044CE8000AB44C /* MailinatorRequest.m in Sources */,
+				4248B12F1E044CE8000AB44C /* MPart.m in Sources */,
+				4248B12B1E044CE8000AB44C /* MEmailResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1425,8 +1576,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4248B1341E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */,
+				4248B1241E044CE8000AB44C /* MEmail.m in Sources */,
+				4248B1381E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */,
+				4248B1281E044CE8000AB44C /* MEmailMetadata.m in Sources */,
+				4248B12C1E044CE8000AB44C /* MEmailResponse.m in Sources */,
 				42BBF0CF1DD3593200E19D60 /* VSSTestsConst.m in Sources */,
+				4248B13C1E044CE8000AB44C /* MailinatorRequest.m in Sources */,
+				4248B11C1E044CE8000AB44C /* Mailinator.m in Sources */,
 				42229A351DD05A4600BE651E /* VSS005_KeyStorageTests.swift in Sources */,
+				4248B1301E044CE8000AB44C /* MPart.m in Sources */,
+				4248B1201E044CE8000AB44C /* MailinatorConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1444,11 +1604,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				425B09B91DBF63E4005531DC /* VSS003_ModelsTests.m in Sources */,
+				4248B1311E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */,
 				425B09B81DBF63E4005531DC /* VSS002_CryptoTests.m in Sources */,
+				4248B1211E044CE8000AB44C /* MEmail.m in Sources */,
 				425B09BA1DBF63E4005531DC /* VSS004_CompatibilityTests.m in Sources */,
+				4248B1391E044CE8000AB44C /* MailinatorRequest.m in Sources */,
+				4248B14A1E044D6B000AB44C /* VSSHTTPRequestContext.m in Sources */,
+				4248B11D1E044CE8000AB44C /* MailinatorConfig.m in Sources */,
+				4248B1351E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */,
+				4248B1291E044CE8000AB44C /* MEmailResponse.m in Sources */,
+				4248B12D1E044CE8000AB44C /* MPart.m in Sources */,
+				4248B1251E044CE8000AB44C /* MEmailMetadata.m in Sources */,
 				42F6C2021DBF5D1D0030C21D /* VSS001_ClientTests.m in Sources */,
+				4248B1191E044CE8000AB44C /* Mailinator.m in Sources */,
 				42F6C1FE1DBE4DD30030C21D /* VSSTestsUtils.m in Sources */,
+				4248B1461E044D6B000AB44C /* VSSHTTPJSONRequest.m in Sources */,
 				42F6C20A1DBF5F680030C21D /* VSSTestsConst.m in Sources */,
+				4248B1481E044D6B000AB44C /* VSSHTTPRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1457,11 +1629,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				425B09BB1DBF63E8005531DC /* VSS002_CryptoTests.swift in Sources */,
+				4248B1321E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */,
 				42F6C20B1DBF5F690030C21D /* VSSTestsConst.m in Sources */,
+				4248B1221E044CE8000AB44C /* MEmail.m in Sources */,
 				42B7E3661DB8F7D100D70C12 /* VSSTestUtils.swift in Sources */,
+				4248B13A1E044CE8000AB44C /* MailinatorRequest.m in Sources */,
+				4248B14B1E044D6B000AB44C /* VSSHTTPRequestContext.m in Sources */,
+				4248B11E1E044CE8000AB44C /* MailinatorConfig.m in Sources */,
+				4248B1361E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */,
+				4248B12A1E044CE8000AB44C /* MEmailResponse.m in Sources */,
+				4248B12E1E044CE8000AB44C /* MPart.m in Sources */,
+				4248B1261E044CE8000AB44C /* MEmailMetadata.m in Sources */,
 				425B09BC1DBF63E8005531DC /* VSS003_ModelsTests.swift in Sources */,
+				4248B11A1E044CE8000AB44C /* Mailinator.m in Sources */,
 				425B09BD1DBF63E8005531DC /* VSS004_CompatibilityTests.swift in Sources */,
+				4248B1471E044D6B000AB44C /* VSSHTTPJSONRequest.m in Sources */,
 				42F6C2031DBF5EC90030C21D /* VSS001_ClientTests.swift in Sources */,
+				4248B1491E044D6B000AB44C /* VSSHTTPRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,5 +17,6 @@
 @property (nonatomic, readonly) NSString * __nonnull applicationPrivateKeyPassword;
 @property (nonatomic, readonly) NSString * __nonnull applicationIdentityType;
 @property (nonatomic, readonly) NSString * __nonnull applicationId;
+@property (nonatomic, readonly) NSString * __nonnull mailinatorToken;
 
 @end
