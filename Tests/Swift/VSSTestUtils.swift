@@ -118,6 +118,14 @@ class VSSTestUtils {
         
         return equals
     }
+    
+    func generateEmail() -> String {
+        let candidate = UUID().uuidString.lowercased();
+        let identityLong = candidate.replacingOccurrences(of: "-", with: "")
+        let identity = identityLong.substring(to: identityLong.index(identityLong.startIndex, offsetBy: 25))
+        
+        return String(format: "%@@mailinator.com", identity)
+    }
 }
 
 func checkObjectsEqualOrBothNil(left: Dictionary<String, String>?, right: Dictionary<String, String>?) -> Bool {

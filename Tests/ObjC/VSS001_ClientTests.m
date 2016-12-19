@@ -232,7 +232,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
 }
 
 - (void)testI01_VerifyEmail {
-    XCTestExpectation * __weak ex = [self expectationWithDescription:@""];
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Verification code should be sent to email"];
     
     NSUInteger numberOfRequests = 3;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
@@ -280,7 +280,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
 }
 
 - (void)testI02_ConfirmEmail {
-    XCTestExpectation * __weak ex = [self expectationWithDescription:@""];
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Verification code should be sent to email. Validation token should be obtained"];
     
     NSUInteger numberOfRequests = 4;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
@@ -321,7 +321,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
 }
 
 - (void)testI03_ValidateEmail {
-    XCTestExpectation * __weak ex = [self expectationWithDescription:@""];
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Verification code should be sent to email. Validation token should be obtained. Confirmation should pass"];
     
     NSUInteger numberOfRequests = 5;
     NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;

@@ -10,7 +10,7 @@ import XCTest
 import VirgilSDK
 
 /// Each request should be done less than or equal this number of seconds.
-let kEstimatedRequestCompletionTime = 5
+let kEstimatedRequestCompletionTime = 8
 
 class VSS001_ClientTests: XCTestCase {
     
@@ -18,6 +18,8 @@ class VSS001_ClientTests: XCTestCase {
     private var crypto: VSSCrypto!
     private var utils: VSSTestUtils!
     private var consts: VSSTestsConst!
+    private var regexp: NSRegularExpression!
+    private var mailinator: Mailinator!
     
     // MARK: Setup
     
@@ -34,6 +36,10 @@ class VSS001_ClientTests: XCTestCase {
         self.client = VSSClient(serviceConfig: config)
         
         self.utils = VSSTestUtils(crypto: self.crypto, consts: self.consts)
+        
+        self.regexp = try! NSRegularExpression(pattern: "Your confirmation code is.+([A-Z0-9]{6})", options: .caseInsensitive)
+        
+        self.mailinator = Mailinator(applicationToken: self.consts.mailinatorToken, serviceUrl: URL(string: "https://api.mailinator.com/api/")!)
     }
     
     override func tearDown() {
@@ -46,7 +52,7 @@ class VSS001_ClientTests: XCTestCase {
     }
     
     // MARK: Tests
-    func test001_CreateCard() {
+    func testC01_CreateCard() {
         let ex = self.expectation(description: "Virgil Card should be created")
         
         let numberOfRequests = 1
@@ -78,7 +84,7 @@ class VSS001_ClientTests: XCTestCase {
         }
     }
     
-    func test002_CreateCardWithData() {
+    func testC02_CreateCardWithData() {
         let ex = self.expectation(description: "Virgil Card with data should be created")
         
         let numberOfRequests = 1
@@ -110,7 +116,7 @@ class VSS001_ClientTests: XCTestCase {
         }
     }
     
-    func test003_SearchCards() {
+    func testC03_SearchCards() {
         let ex = self.expectation(description: "Virgil Card should be created. Search should return 1 card which is equal to created card");
         
         let numberOfRequests = 2
@@ -154,7 +160,7 @@ class VSS001_ClientTests: XCTestCase {
         }
     }
     
-    func test004_GetCard() {
+    func testC04_GetCard() {
         let ex = self.expectation(description: "Virgil Card should be created. Get card request should return 1 card which is equal to created card");
         
         let numberOfRequests = 2
@@ -195,7 +201,7 @@ class VSS001_ClientTests: XCTestCase {
         }
     }
     
-    func test005_RevokeCard() {
+    func testC05_RevokeCard() {
         let ex = self.expectation(description: "Virgil Card should be created. Virgil card should be revoked");
         
         let numberOfRequests = 2
@@ -220,6 +226,144 @@ class VSS001_ClientTests: XCTestCase {
                 
                 ex.fulfill()
             }
+        }
+        
+        self.waitForExpectations(timeout: timeout) { error in
+            guard error == nil else {
+                XCTFail("Expectation failed: " + error!.localizedDescription)
+                return
+            }
+        }
+    }
+    
+    func testI01_VerifyEmail() {
+        let ex = self.expectation(description: "Verification code should be sent to email");
+        
+        let numberOfRequests = 3
+        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
+        
+        let identity = self.utils.generateEmail()
+        
+        self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
+            XCTAssert(error == nil)
+            XCTAssert(actionId != nil)
+            XCTAssert(actionId!.lengthOfBytes(using: .utf8) != 0)
+            
+            sleep(3)
+            
+            let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
+            
+            self.mailinator.getInbox(identityShort) { metadataList, error in
+                XCTAssert(error == nil)
+                XCTAssert(metadataList != nil)
+                XCTAssert(metadataList!.count == 1)
+                
+                self.mailinator.getEmail(metadataList![0].mid) { email, error in
+                    XCTAssert(error == nil)
+                    XCTAssert(email != nil)
+                    
+                    let bodyPart = email!.parts[0];
+                    
+                    let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
+                    
+                    let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
+                    
+                    let code = String(match.characters.suffix(6))
+                    
+                    XCTAssert(code.lengthOfBytes(using: .utf8) == 6)
+                    
+                    ex.fulfill()
+                }
+            }
+            
+        }
+        
+        self.waitForExpectations(timeout: timeout) { error in
+            guard error == nil else {
+                XCTFail("Expectation failed: " + error!.localizedDescription)
+                return
+            }
+        }
+    }
+    
+    func testI02_ConfirmEmail() {
+        let ex = self.expectation(description: "Verification code should be sent to email. Validation token should be obtained");
+        
+        let numberOfRequests = 4
+        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
+        
+        let identity = self.utils.generateEmail()
+        
+        self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
+            sleep(3)
+            
+            let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
+            
+            self.mailinator.getInbox(identityShort) { metadataList, error in
+                self.mailinator.getEmail(metadataList![0].mid) { email, error in
+                    let bodyPart = email!.parts[0];
+                    
+                    let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
+                    
+                    let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
+                    
+                    let code = String(match.characters.suffix(6))
+                    
+                    self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+                        XCTAssert(error == nil)
+                        XCTAssert(response != nil)
+                        XCTAssert(response!.identityType == "email")
+                        XCTAssert(response!.identityValue == identity)
+                        XCTAssert(response!.validationToken.lengthOfBytes(using: .utf8) != 0)
+                    
+                        ex.fulfill()
+                    }
+                }
+            }
+            
+        }
+        
+        self.waitForExpectations(timeout: timeout) { error in
+            guard error == nil else {
+                XCTFail("Expectation failed: " + error!.localizedDescription)
+                return
+            }
+        }
+    }
+    
+    func testI03_ValidateEmail() {
+        let ex = self.expectation(description: "Verification code should be sent to email. Validation token should be obtained. Confirmation should pass");
+        
+        let numberOfRequests = 5
+        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
+        
+        let identity = self.utils.generateEmail()
+        
+        self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
+            sleep(3)
+            
+            let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
+            
+            self.mailinator.getInbox(identityShort) { metadataList, error in
+                self.mailinator.getEmail(metadataList![0].mid) { email, error in
+                    let bodyPart = email!.parts[0];
+                    
+                    let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
+                    
+                    let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
+                    
+                    let code = String(match.characters.suffix(6))
+                    
+                    self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+                        self.client.validateIdentity(identity, identityType: "email", validationToken: response!.validationToken) { error in
+                            XCTAssert(error == nil)
+                            
+                            ex.fulfill()
+                        }
+                    }
+                }
+            }
+            
         }
         
         self.waitForExpectations(timeout: timeout) { error in
