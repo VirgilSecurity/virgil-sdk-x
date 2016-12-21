@@ -4,13 +4,13 @@
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilSDK.svg)](https://img.shields.io/cocoapods/v/VirgilSDK.svg)
 [![Platform](https://img.shields.io/cocoapods/p/VirgilSDK.svg?style=flat)](http://cocoadocs.org/docsets/VirgilSDK)
 [![codecov.io](https://codecov.io/github/VirgilSecurity/virgil-sdk-x/coverage.svg)](https://codecov.io/github/VirgilSecurity/virgil-sdk-x/)
-[![GitHub license](https://img.shields.io/badge/license-BSD3-lightgrey.svg)](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg)](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE)
 
 # Objective-C/Swift SDK Programming Guide
 
-Welcome to the SDK Programming Guide. This guide is a practical introduction to creating apps for the iOS platform that make use of Virgil Security features. The code examples in this guide are written in both Objective-C and Swift.
+Welcome to the SDK Programming Guide. This guide is a practical introduction to creating apps for the iOS platform with Virgil Security features. The code examples in this guide are written in both Objective-C and Swift.
 
-In this guide you will find code for every task you need to implement in order to create an application using Virgil Security. It also includes a description of the main classes and methods. The aim of this guide is to get you up and running quickly. You should be able to copy and paste the code provided into your own apps and use it with minumal changes.
+In this guide you will find code for every task you need to implement in order to create an application using Virgil Security services. It also includes a description of main classes and methods. The aim of this guide is to get you up and running quickly. You should be able to copy and paste the code provided into your own apps and use it with minumal changes.
 
 ## Table of Contents
 
@@ -96,11 +96,11 @@ You can find more information about using Objective-C and Swift in the same proj
 When you register an application on the Virgil developer's [dashboard](https://developer.virgilsecurity.com/dashboard), we provide you with an *appId*, *appKey* and *accessToken*.
 
 * **appId** uniquely identifies your application in our services, it is also used to identify the Public key generated in a pair with *appKey*, for example: ```af6799a2f26376731abb9abf32b5f2ac0933013f42628498adb6b12702df1a87```
-* **appKey** is a Private key that is used to perform creation and revocation of *Virgil Cards* (Public key) in Virgil services. Also the *appKey* can be used for cryptographic operations to take part in application logic. The *appKey* is generated at the time of creation application and has to be saved in secure place. 
+* **appKey** is a Private key that is used to perform creation and revocation of *Virgil Cards* (Public key) in Virgil services. Also the *appKey* can be used for cryptographic operations to take part in application logic. The *appKey* is generated at the time of application creation and has to be saved in secure place. 
 * **accessToken** is a unique string value that provides an authenticated secure access to the Virgil services and is passed with each API call. The *accessToken* also allows the API to associate your app’s requests with your Virgil developer’s account. 
 
 ## Connecting to Virgil
-Before you can use any Virgil services features in your app, you must first initialize ```VSSClient``` class. You use the ```VSSClient``` object to get access to Create, Revoke and Search for *Virgil Cards* (Public keys). 
+Before you can use any Virgil services features in your app, you must first initialize ```VSSClient``` class. You use the ```VSSClient``` object to get access to Create, Revoke, Get and Search for *Virgil Cards* (Public keys). 
 
 ### Initializing an API Client
 
@@ -212,7 +212,7 @@ NSError *error2;
 let signer = VSSRequestSigner(crypto: self.crypto)
 
 do {
-    try signer.selfSign(request, with: keyPair.privateKey)
+    try signer.selfSign(request, with: aliceKeys.privateKey)
 	try signer.authoritySign(request, forAppId: kApplicationId, with: appPrivateKey)
 }
 catch {
@@ -265,7 +265,7 @@ This sample uses *built-in* ```VSSCardValidator``` to validate Virgil Service ca
 VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.crypto];
 
 // Your can also add another Public Key for verification.
-// [validator addVerifierWithId:<#Verifier card id#> publicKey:<#Verifier public key#>];
+// [validator addVerifierWithId:<#Verifier card id#> publicKey:<#Verifier public key data#>];
 
 BOOL isValid = [validator validateCardResponse:response];
 ```
@@ -275,7 +275,7 @@ BOOL isValid = [validator validateCardResponse:response];
 let validator = VSSCardValidator(crypto: self.crypto)
 
 // Your can also add another Public Key for verification.
-// validator.addVerifier(withId: <#Verifier card id#>, publicKey: <#Verifier public key#>)
+// validator.addVerifier(withId: <#Verifier card id#>, publicKey: <#Verifier public key data#>)
 
 let isValid = validator.validate(response)
 ```
@@ -283,13 +283,12 @@ let isValid = validator.validate(response)
 For convenience you can embed validator into the client and all cards received from the Virgil service will be automatically validated for you.
 If validation process failes during client queries, error will be generated.
 
-
 ###### Objective-C
 ```objective-c
 self.crypto = [[VSSCrypto alloc] init];
 
 VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.crypto];
-[validator addVerifierWithId:<#Verifier card id#> publicKey:<#Verifier public key#>];
+[validator addVerifierWithId:<#Verifier card id#> publicKey:<#Verifier public key data#>];
 
 VSSServiceConfig *config = [VSSServiceConfig serviceConfigWithToken:kApplicationToken];
 config.cardValidator = validator;
@@ -302,7 +301,7 @@ self.client = [[VSSClient alloc] initWithServiceConfig:config];
 self.crypto = VSSCrypto()
 
 let validator = VSSCardValidator(crypto: self.crypto)
-validator.addVerifier(withId: <#Verifier card id#>, publicKey: <#Verifier public key#>)
+validator.addVerifier(withId: <#Verifier card id#>, publicKey: <#Verifier public key data#>)
 
 let config = VSSServiceConfig(token: kApplicationToken)
 config.cardValidator = validator
@@ -313,14 +312,14 @@ self.client = VSSClient(serviceConfig: config)
 ## Get a Virgil Card
 ###### Objective-C
 ```objective-c
-[self.client getCardWithId:cardIdentifier completion:^(VSSCard *foundCard, NSError *error) {
+[self.client getCardWithId:<#Your cardId#> completion:^(VSSCard *foundCard, NSError *error) {
     //...
 }];
 ```
 
 ###### Swift
 ```swift
-self.client.getCard(withId: cardIdentifier) { card, error in
+self.client.getCard(withId: <#Your cardId#>) { card, error in
     //...
 }
 ```
@@ -574,24 +573,24 @@ Virgil SDK contains convenient API for combining encrypt/decrypt and sign/verify
 ###### Objective-C
 ```objective-c
 NSError *error;
-NSData *signedAndEcnryptedData = [self.crypto signAndEncryptData:data withPrivateKey:senderPrivateKey forRecipients:@[receiverPublicKey] error:&error];
+NSData *signedAndEcnryptedData = [self.crypto signThenEncryptData:data withPrivateKey:senderPrivateKey forRecipients:@[receiverPublicKey] error:&error];
 ```
 
 ###### Swift
 ```swift
-let signedAndEcryptedData = try? self.crypto.signAndEncrypt(data, with: senderPrivateKey, for: [receiverPublicKey])
+let signedAndEcryptedData = try? self.crypto.signThenEncrypt(data, with: senderPrivateKey, for: [receiverPublicKey])
 ```
 
 *Decrypt and verify*
 ###### Objective-C
 ```objective-c
 NSError *error;
-NSData *decryptedAndVerifiedData = [self.crypto decryptAndVerifyData:signedAndEcnryptedData withPrivateKey:receiverPrivateKey usingSignerPublicKey:senderPublicKey error:&error];
+NSData *decryptedAndVerifiedData = [self.crypto decryptThenVerifyData:signedAndEcnryptedData withPrivateKey:receiverPrivateKey usingSignerPublicKey:senderPublicKey error:&error];
 ```
 
 ###### Swift
 ```swift
-let decryptedAndVerifiedData = try? self.crypto.decryptAndVerify(signedAndEcryptedData, with: receiverPrivateKey, using: senderPublicKey)
+let decryptedAndVerifiedData = try? self.crypto.decryptThenVerify(signedAndEcryptedData, with: receiverPrivateKey, using: senderPublicKey)
 ```
 
 ## Fingerprint Generation
