@@ -132,7 +132,7 @@
 }
 
 - (NSData *)publicKey {
-    return self.model.publicKey;
+    return self.model.publicKeyData;
 }
 
 - (NSDictionary<NSString *, NSString *> *)info {

@@ -16,9 +16,9 @@
 
 - (NSData * __nullable)decryptData:(NSData * __nonnull)data error:(NSError * __nullable * __nullable)errorPtr;
 
-- (NSData * __nullable)signAndEncryptData:(NSData * __nonnull)data forRecipients:(NSArray<VSSVirgilCard *> * __nonnull)recipients error:(NSError * __nullable * __nullable)errorPtr;
+- (NSData * __nullable)signThenEncryptData:(NSData * __nonnull)data forRecipients:(NSArray<VSSVirgilCard *> * __nonnull)recipients error:(NSError * __nullable * __nullable)errorPtr;
 
-- (NSData * __nullable)decryptAndVerifyData:(NSData * __nonnull)data fromSigner:(VSSVirgilCard * __nonnull)signer error:(NSError * __nullable * __nullable)errorPtr;
+- (NSData * __nullable)decryptThenVerifyData:(NSData * __nonnull)data fromSigner:(VSSVirgilCard * __nonnull)signer error:(NSError * __nullable * __nullable)errorPtr;
 
 /**
  Unavailable no-argument initializer inherited from NSObject

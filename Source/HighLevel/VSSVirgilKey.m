@@ -50,7 +50,7 @@ NSString *const kVSSVirgilKeyErrorDomain = @"VSSVirgilKeyErrorDomain";
     
     NSData *publicKey = [crypto exportPublicKey:self.keyPair.publicKey];
     
-    VSSCreateCardRequest *request = [VSSCreateCardRequest createCardRequestWithIdentity:identity identityType:identityType publicKey:publicKey data:data];
+    VSSCreateCardRequest *request = [VSSCreateCardRequest createCardRequestWithIdentity:identity identityType:identityType publicKeyData:publicKey data:data];
     
     if (![signer selfSignRequest:request withPrivateKey:self.keyPair.privateKey error:errorPtr]) {
         return nil;

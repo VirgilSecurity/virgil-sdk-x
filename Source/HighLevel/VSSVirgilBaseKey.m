@@ -33,7 +33,7 @@
     return [crypto decryptData:data withPrivateKey:self.keyPair.privateKey error:errorPtr];
 }
 
-- (NSData *)signAndEncryptData:(NSData *)data forRecipients:(NSArray<VSSVirgilCard *> *)recipients error:(NSError **)errorPtr {
+- (NSData *)signThenEncryptData:(NSData *)data forRecipients:(NSArray<VSSVirgilCard *> *)recipients error:(NSError **)errorPtr {
     id<VSSCrypto> crypto = VSSVirgilConfig.sharedInstance.crypto;
     
     NSMutableArray<VSSPublicKey *> *publicKeys = [[NSMutableArray alloc] initWithCapacity:recipients.count];
@@ -42,10 +42,10 @@
         [publicKeys addObject:[crypto importPublicKeyFromData:card.publicKey]];
     }
     
-    return [crypto signAndEncryptData:data withPrivateKey:self.keyPair.privateKey forRecipients:publicKeys error:errorPtr];
+    return [crypto signThenEncryptData:data withPrivateKey:self.keyPair.privateKey forRecipients:publicKeys error:errorPtr];
 }
 
-- (NSData *)decryptAndVerifyData:(NSData *)data fromSigner:(VSSVirgilCard *)signer error:(NSError **)errorPtr {
+- (NSData *)decryptThenVerifyData:(NSData *)data fromSigner:(VSSVirgilCard *)signer error:(NSError **)errorPtr {
     id<VSSCrypto> crypto = VSSVirgilConfig.sharedInstance.crypto;
     
     VSSPublicKey *publicKey = [crypto importPublicKeyFromData:signer.publicKey];
