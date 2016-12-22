@@ -16,10 +16,10 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 
 @interface VSS007_HighLevelTests : XCTestCase
 
-@property (nonatomic) VSSTestsConst *consts;
-@property (nonatomic) VSSTestsUtils *utils;
-@property (nonatomic) VSSVirgilKey *key;
-@property (nonatomic) VSSVirgilAuthorityKey *authorityKey;
+//@property (nonatomic) VSSTestsConst *consts;
+//@property (nonatomic) VSSTestsUtils *utils;
+//@property (nonatomic) VSSVirgilKey *key;
+//@property (nonatomic) VSSVirgilAuthorityKey *authorityKey;
 
 @end
 
@@ -27,61 +27,61 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 5.;
 
 #pragma mark - Setup
 
-- (void)setUp {
-    [super setUp];
-    
-    self.consts = [[VSSTestsConst alloc] init];
-    self.utils = [[VSSTestsUtils alloc] initWithCrypto:[[VSSCrypto alloc] init] consts:self.consts];
-    
-    [VSSVirgilConfig initializeWithApplicationToken:self.consts.applicationToken];
-    
-    NSData *appPrivateKey = [[NSData alloc] initWithBase64EncodedString:self.consts.applicationPrivateKeyBase64 options:0];
-    self.authorityKey = [VSSVirgilAuthorityKey virgilAuthorityKeyWithData:appPrivateKey password:self.consts.applicationPrivateKeyPassword forAppId:self.consts.applicationId];
-}
-
-- (void)tearDown {
-    self.consts = nil;
-    self.authorityKey = nil;
-    self.key = nil;
-    
-    [super tearDown];
-}
-
-- (void)test001_CreateCard {
-    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created."];
-    
-    NSUInteger numberOfRequests = 1;
-    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
-    
-    NSString *uuidStr = [[NSUUID UUID] UUIDString];
-    
-    self.key = [VSSVirgilKey virgilKeyWithName:uuidStr];
-    
-    XCTAssert(self.key != nil);
-    
-    NSError *error;
-    VSSCreateCardRequest *request = [self.key buildCreateCardRequestWithIdentity:uuidStr identityType:self.consts.applicationIdentityType data:nil error:&error];
-    XCTAssert(request != nil);
-    XCTAssert(error == nil);
-    
-    [self.authorityKey signRequest:request error:&error];
-    XCTAssert(error == nil);
-    
-    [VSSVirgilCard createCardWithRequest:request completion:^(VSSVirgilCard *card, NSError *error) {
-        XCTAssert(card != nil);
-        XCTAssert(error == nil);
-        
-        XCTAssert([card.identifier length] > 0);
-        XCTAssert([self.utils checkVirgilCard:card isEqualToCreateCardRequest:request]);
-        
-        [ex fulfill];
-    }];
-    
-    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
-        XCTAssert(error == nil);
-    }];
-}
+//- (void)setUp {
+//    [super setUp];
+//    
+//    self.consts = [[VSSTestsConst alloc] init];
+//    self.utils = [[VSSTestsUtils alloc] initWithCrypto:[[VSSCrypto alloc] init] consts:self.consts];
+//    
+//    [VSSVirgilConfig initializeWithApplicationToken:self.consts.applicationToken];
+//    
+//    NSData *appPrivateKey = [[NSData alloc] initWithBase64EncodedString:self.consts.applicationPrivateKeyBase64 options:0];
+//    self.authorityKey = [VSSVirgilAuthorityKey virgilAuthorityKeyWithData:appPrivateKey password:self.consts.applicationPrivateKeyPassword forAppId:self.consts.applicationId];
+//}
 //
+//- (void)tearDown {
+//    self.consts = nil;
+//    self.authorityKey = nil;
+//    self.key = nil;
+//    
+//    [super tearDown];
+//}
+//
+//- (void)test001_CreateCard {
+//    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card should be created."];
+//    
+//    NSUInteger numberOfRequests = 1;
+//    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
+//    
+//    NSString *uuidStr = [[NSUUID UUID] UUIDString];
+//    
+//    self.key = [VSSVirgilKey virgilKeyWithName:uuidStr];
+//    
+//    XCTAssert(self.key != nil);
+//    
+//    NSError *error;
+//    VSSCreateCardRequest *request = [self.key buildCreateCardRequestWithIdentity:uuidStr identityType:self.consts.applicationIdentityType data:nil error:&error];
+//    XCTAssert(request != nil);
+//    XCTAssert(error == nil);
+//    
+//    [self.authorityKey signRequest:request error:&error];
+//    XCTAssert(error == nil);
+//    
+//    [VSSVirgilCard createCardWithRequest:request completion:^(VSSVirgilCard *card, NSError *error) {
+//        XCTAssert(card != nil);
+//        XCTAssert(error == nil);
+//        
+//        XCTAssert([card.identifier length] > 0);
+//        XCTAssert([self.utils checkVirgilCard:card isEqualToCreateCardRequest:request]);
+//        
+//        [ex fulfill];
+//    }];
+//    
+//    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+//        XCTAssert(error == nil);
+//    }];
+//}
+////
 //- (void)test002_CreateCardWithData {
 //    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Virgil Card with data should be created."];
 //    
