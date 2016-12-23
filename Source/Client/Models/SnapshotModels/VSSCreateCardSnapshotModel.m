@@ -11,7 +11,7 @@
 #import "VSSModelCommonsPrivate.h"
 #import "VSSSignableRequestPrivate.h"
 #import "VSSCreateCardSnapshotModelPrivate.h"
-#import "VSSDeviceInfoUtils.h"
+#import "VSSDeviceManager.h"
 
 @implementation VSSCreateCardSnapshotModel
 
@@ -35,9 +35,11 @@
 
 + (instancetype)createCardSnapshotModelWithIdentity:(NSString *)identity identityType:(NSString *)identityType scope:(VSSCardScope)scope publicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data {
 
+    id<VSSDeviceManager> deviceManager = [[VSSDeviceManager alloc] init];
+    
     NSDictionary *info = @{
-        kVSSCModelDevice: [VSSDeviceInfoUtils getDeviceModel],
-        kVSSCModelDeviceName: [VSSDeviceInfoUtils getDeviceName]
+        kVSSCModelDevice: [deviceManager getDeviceModel],
+        kVSSCModelDeviceName: [deviceManager getDeviceName]
     };
     
     return [[VSSCreateCardSnapshotModel alloc] initWithIdentity:identity identityType:identityType scope:scope publicKeyData:publicKeyData data:data info:info];

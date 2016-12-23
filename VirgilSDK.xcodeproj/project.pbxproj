@@ -84,6 +84,9 @@
 		4248B1491E044D6B000AB44C /* VSSHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1421E044D6B000AB44C /* VSSHTTPRequest.m */; };
 		4248B14A1E044D6B000AB44C /* VSSHTTPRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1451E044D6B000AB44C /* VSSHTTPRequestContext.m */; };
 		4248B14B1E044D6B000AB44C /* VSSHTTPRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1451E044D6B000AB44C /* VSSHTTPRequestContext.m */; };
+		424EF9AB1E0D71B1005E8A8B /* VSSDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 424EF9AA1E0D71B1005E8A8B /* VSSDeviceManager.m */; };
+		424EF9AD1E0D76B2005E8A8B /* VSSDeviceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 424EF9AC1E0D71C3005E8A8B /* VSSDeviceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		424EF9AE1E0D76B7005E8A8B /* VSSDeviceManagerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 424EF9A91E0D713D005E8A8B /* VSSDeviceManagerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		425B09B81DBF63E4005531DC /* VSS002_CryptoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 423B09E81DA8FBAC00A63E5B /* VSS002_CryptoTests.m */; };
 		425B09B91DBF63E4005531DC /* VSS003_ModelsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B1471E1DAFAEB200AC9975 /* VSS003_ModelsTests.m */; };
 		425B09BA1DBF63E4005531DC /* VSS004_CompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B147231DAFC29600AC9975 /* VSS004_CompatibilityTests.m */; };
@@ -160,7 +163,6 @@
 		427A63651DB9096C00A33661 /* VSSCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F0ABC91D9D13B100747799 /* VSSCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427A63671DB9096C00A33661 /* VSSFingerprint.h in Headers */ = {isa = PBXBuildFile; fileRef = 42FA96451DA3C09B0092D5DB /* VSSFingerprint.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427A636B1DB9096C00A33661 /* NSObject+VSSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 36FF4B8D1C4D7FED00E901F3 /* NSObject+VSSUtils.h */; };
-		427A636F1DB9096C00A33661 /* VSSDeviceInfoUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 42FA96481DA3E0080092D5DB /* VSSDeviceInfoUtils.h */; };
 		42B33F761DC3A859008A7B78 /* VSSSignable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B33F751DC3A707008A7B78 /* VSSSignable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42B7E3461DB8F62400D70C12 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
 		42B7E3551DB8F6E400D70C12 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C181DB8E6A700E5E2AE /* sdk_compatibility_data.json */; };
@@ -213,7 +215,6 @@
 		42EB31371DB8EC33001DF4C0 /* VSSCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0ABCA1D9D13BC00747799 /* VSSCrypto.m */; };
 		42EB31391DB8EC33001DF4C0 /* VSSFingerprint.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FA96461DA3C0B60092D5DB /* VSSFingerprint.m */; };
 		42EB313D1DB8EC33001DF4C0 /* NSObject+VSSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */; };
-		42EB31411DB8EC33001DF4C0 /* VSSDeviceInfoUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 42FA96491DA3E0320092D5DB /* VSSDeviceInfoUtils.m */; };
 		42EB31471DB8ECC3001DF4C0 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB31461DB8ECC3001DF4C0 /* VirgilCrypto.framework */; };
 		42F5407B1E0048520071FDCF /* VSSIdentityBaseHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F5407A1E0048520071FDCF /* VSSIdentityBaseHTTPRequest.m */; };
 		42F5407E1E0054C00071FDCF /* VSSVerifyIdentityHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F5407D1E0054C00071FDCF /* VSSVerifyIdentityHTTPRequest.m */; };
@@ -367,6 +368,9 @@
 		4248B1431E044D6B000AB44C /* VSSHTTPRequestPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSHTTPRequestPrivate.h; sourceTree = "<group>"; };
 		4248B1441E044D6B000AB44C /* VSSHTTPRequestContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSHTTPRequestContext.h; sourceTree = "<group>"; };
 		4248B1451E044D6B000AB44C /* VSSHTTPRequestContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSHTTPRequestContext.m; sourceTree = "<group>"; };
+		424EF9A91E0D713D005E8A8B /* VSSDeviceManagerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSDeviceManagerProtocol.h; sourceTree = "<group>"; };
+		424EF9AA1E0D71B1005E8A8B /* VSSDeviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSDeviceManager.m; sourceTree = "<group>"; };
+		424EF9AC1E0D71C3005E8A8B /* VSSDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSDeviceManager.h; sourceTree = "<group>"; };
 		425B09C11DC2453E005531DC /* VSSSnapshotModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSSnapshotModel.h; sourceTree = "<group>"; };
 		425B09C21DC24549005531DC /* VSSSnapshotModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSnapshotModel.m; sourceTree = "<group>"; };
 		425B09C41DC245CE005531DC /* VSSCreateCardSnapshotModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSCreateCardSnapshotModel.h; sourceTree = "<group>"; };
@@ -488,8 +492,6 @@
 		42FA96431DA29E5B0092D5DB /* VSSRequestSigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRequestSigner.m; sourceTree = "<group>"; };
 		42FA96451DA3C09B0092D5DB /* VSSFingerprint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSFingerprint.h; sourceTree = "<group>"; };
 		42FA96461DA3C0B60092D5DB /* VSSFingerprint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSFingerprint.m; sourceTree = "<group>"; };
-		42FA96481DA3E0080092D5DB /* VSSDeviceInfoUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSDeviceInfoUtils.h; sourceTree = "<group>"; };
-		42FA96491DA3E0320092D5DB /* VSSDeviceInfoUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSDeviceInfoUtils.m; sourceTree = "<group>"; };
 		42FA964D1DA3E9560092D5DB /* VSSCreateCardHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSCreateCardHTTPRequest.h; sourceTree = "<group>"; };
 		42FA964E1DA3E9560092D5DB /* VSSCreateCardHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCreateCardHTTPRequest.m; sourceTree = "<group>"; };
 		42FA96571DA3E9560092D5DB /* VSSCardsBaseHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSCardsBaseHTTPRequest.h; sourceTree = "<group>"; };
@@ -636,8 +638,6 @@
 			children = (
 				36FF4B8D1C4D7FED00E901F3 /* NSObject+VSSUtils.h */,
 				36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */,
-				42FA96481DA3E0080092D5DB /* VSSDeviceInfoUtils.h */,
-				42FA96491DA3E0320092D5DB /* VSSDeviceInfoUtils.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -965,6 +965,9 @@
 				423B09AB1DA52D7500A63E5B /* VSSCardValidatorProtocol.h */,
 				423B09AA1DA52D6400A63E5B /* VSSCardValidator.h */,
 				423B09AC1DA534A800A63E5B /* VSSCardValidator.m */,
+				424EF9A91E0D713D005E8A8B /* VSSDeviceManagerProtocol.h */,
+				424EF9AC1E0D71C3005E8A8B /* VSSDeviceManager.h */,
+				424EF9AA1E0D71B1005E8A8B /* VSSDeviceManager.m */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -1156,6 +1159,7 @@
 				425B09D11DC246BE005531DC /* VSSSnapshotModel.h in Headers */,
 				427A63641DB9096C00A33661 /* VSSCryptoProtocol.h in Headers */,
 				42BBF0E71DD60CF000E19D60 /* VSSVirgilKeyPrivate.h in Headers */,
+				424EF9AE1E0D76B7005E8A8B /* VSSDeviceManagerProtocol.h in Headers */,
 				42B33F761DC3A859008A7B78 /* VSSSignable.h in Headers */,
 				423CEB5D1DCA07C200CCACB8 /* VSSKeyStoragePublic.h in Headers */,
 				423CEB5E1DCA07C200CCACB8 /* VSSKeyStorageProtocol.h in Headers */,
@@ -1180,6 +1184,7 @@
 				42BBF0C91DD2252A00E19D60 /* VSSVirgilCardPrivate.h in Headers */,
 				423CEB6C1DCA948800CCACB8 /* VSSKeyStorageConfigurationPrivate.h in Headers */,
 				425B09D31DC2475F005531DC /* VSSSnapshotModelsPublic.h in Headers */,
+				424EF9AD1E0D76B2005E8A8B /* VSSDeviceManager.h in Headers */,
 				425B09CA1DC245CE005531DC /* VSSRevokeCardSnapshotModel.h in Headers */,
 				427A63671DB9096C00A33661 /* VSSFingerprint.h in Headers */,
 				427A63291DB9096C00A33661 /* VSSModelsPublic.h in Headers */,
@@ -1212,7 +1217,6 @@
 				427A635A1DB9096C00A33661 /* VSSPublicKeyPrivate.h in Headers */,
 				425B09D01DC24635005531DC /* VSSRevokeCardSnapshotModelPrivate.h in Headers */,
 				427A636B1DB9096C00A33661 /* NSObject+VSSUtils.h in Headers */,
-				427A636F1DB9096C00A33661 /* VSSDeviceInfoUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1760,6 +1764,7 @@
 				42386C281E0190B5009E913F /* VSSConfirmIdentityRequest.m in Sources */,
 				425B09EC1DC253EC005531DC /* VSSCardResponse.m in Sources */,
 				425B09C31DC24549005531DC /* VSSSnapshotModel.m in Sources */,
+				424EF9AB1E0D71B1005E8A8B /* VSSDeviceManager.m in Sources */,
 				42F540811E0059D50071FDCF /* VSSVerifyIdentityRequest.m in Sources */,
 				42EB311F1DB8EC33001DF4C0 /* VSSHTTPRequestContext.m in Sources */,
 				42EB31211DB8EC33001DF4C0 /* VSSClient.m in Sources */,
@@ -1780,7 +1785,6 @@
 				42EB31391DB8EC33001DF4C0 /* VSSFingerprint.m in Sources */,
 				423CEB5A1DCA06C900CCACB8 /* VSSKeyEntry.m in Sources */,
 				42EB313D1DB8EC33001DF4C0 /* NSObject+VSSUtils.m in Sources */,
-				42EB31411DB8EC33001DF4C0 /* VSSDeviceInfoUtils.m in Sources */,
 				42386C2C1E0195C2009E913F /* VSSConfirmIdentityResponse.m in Sources */,
 				425B09F41DC26165005531DC /* VSSCard.m in Sources */,
 				42229A431DD1E92700BE651E /* VSSVirgilConfig.m in Sources */,

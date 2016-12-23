@@ -1,22 +1,22 @@
 //
-//  VSSDeviceInfoUtils.m
+//  VSSDeviceManager.m
 //  VirgilSDK
 //
-//  Created by Oleksandr Deundiak on 10/4/16.
+//  Created by Oleksandr Deundiak on 12/23/16.
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "VSSDeviceInfoUtils.h"
+#import "VSSDeviceManager.h"
 
-@implementation VSSDeviceInfoUtils
+@implementation VSSDeviceManager
 
-+ (NSString *)getDeviceModel {
+- (NSString *)getDeviceModel {
     return [UIDevice currentDevice].model;
 }
 
-+ (NSString *)getDeviceName {
+- (NSString *)getDeviceName {
     return [UIDevice currentDevice].name;
 }
 
