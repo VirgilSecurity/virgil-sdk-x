@@ -16,7 +16,18 @@
 @implementation VSSCreateCardRequest
 
 + (instancetype)createCardRequestWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data {
-    VSSCreateCardSnapshotModel *model = [VSSCreateCardSnapshotModel createCardSnapshotModelWithIdentity:identity identityType:identityType publicKeyData:publicKeyData data:data];
+    VSSCreateCardSnapshotModel *model = [[VSSCreateCardSnapshotModel alloc] initWithIdentity:identity identityType:identityType scope:VSSCardScopeApplication publicKeyData:publicKeyData data:data info:nil];
+    return [[VSSCreateCardRequest alloc] initWithSnapshotModel:model];
+}
+
++ (instancetype)createCardRequestWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data device:(NSString *)device deviceName:(NSString *)deviceName {
+    NSDictionary *info = @{
+        kVSSCModelDevice: [device copy],
+        kVSSCModelDeviceName: [deviceName copy]
+    };
+    
+    VSSCreateCardSnapshotModel *model = [[VSSCreateCardSnapshotModel alloc] initWithIdentity:identity identityType:identityType scope:VSSCardScopeApplication publicKeyData:publicKeyData data:data info:info];
+    
     return [[VSSCreateCardRequest alloc] initWithSnapshotModel:model];
 }
 

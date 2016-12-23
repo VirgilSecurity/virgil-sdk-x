@@ -11,7 +11,6 @@
 #import "VSSModelCommonsPrivate.h"
 #import "VSSSignableRequestPrivate.h"
 #import "VSSCreateCardSnapshotModelPrivate.h"
-#import "VSSDeviceManager.h"
 
 @implementation VSSCreateCardSnapshotModel
 
@@ -31,26 +30,6 @@
     }
     
     return self;
-}
-
-+ (instancetype)createCardSnapshotModelWithIdentity:(NSString *)identity identityType:(NSString *)identityType scope:(VSSCardScope)scope publicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data {
-
-    id<VSSDeviceManager> deviceManager = [[VSSDeviceManager alloc] init];
-    
-    NSDictionary *info = @{
-        kVSSCModelDevice: [deviceManager getDeviceModel],
-        kVSSCModelDeviceName: [deviceManager getDeviceName]
-    };
-    
-    return [[VSSCreateCardSnapshotModel alloc] initWithIdentity:identity identityType:identityType scope:scope publicKeyData:publicKeyData data:data info:info];
-}
-
-+ (instancetype)createCardSnapshotModelWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data {
-    return [VSSCreateCardSnapshotModel createCardSnapshotModelWithIdentity:identity identityType:identityType scope:VSSCardScopeApplication publicKeyData:publicKeyData data:data];
-}
-
-+ (instancetype)createCardSnapshotModelWithIdentity:(NSString *)identity identityType:(NSString *)identityType publicKeyData:(NSData *)publicKeyData {
-    return [VSSCreateCardSnapshotModel createCardSnapshotModelWithIdentity:identity identityType:identityType publicKeyData:publicKeyData data:nil];
 }
 
 #pragma mark - VSSSerializable
