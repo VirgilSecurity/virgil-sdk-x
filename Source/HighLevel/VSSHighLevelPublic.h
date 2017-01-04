@@ -6,6 +6,9 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
+#import "VSSVirgilApi.h"
+#import "VSSCardsManager.h"
+#import "VSSKeysManager.h"
 #import "VSSVirgilBaseKey.h"
 #import "VSSVirgilAuthorityKey.h"
 #import "VSSVirgilKey.h"
