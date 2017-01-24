@@ -11,10 +11,11 @@
 #import "VSSCryptoProtocol.h"
 
 /**
- Default mplementation of VSSCardValidator protocol.
- By default verifies VSSCreateCardRequest owner signature and Virgil Cards Service signature
+ Default implementation of VSSCardValidator protocol.
+ By default verifies VSSCreateCardRequest owner signature and Virgil Cards Service signature.
+ Override NSCopying behaviour if you decided to subclass this interface.
  */
-@interface VSSCardValidator : NSObject <VSSCardValidator>
+@interface VSSCardValidator : NSObject <VSSCardValidator, NSCopying>
 
 /**
  NSDictionary which stores NSString with verifier id as Key and its VSSPublicKey as Value
