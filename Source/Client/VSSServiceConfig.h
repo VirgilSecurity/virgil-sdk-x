@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VSSCardValidator.h"
+#import "VSSCardValidatorProtocol.h"
 
 /**
  Class, which stores configuration for VSSClient default implementation.
@@ -37,7 +37,7 @@
  VSSCardValidator instance which validates Virgil Card genuineness on every VSSClient query.
  Default value is nil
  */
-@property (nonatomic, copy) VSSCardValidator * __nullable cardValidator;
+@property (nonatomic, copy) id<VSSCardValidator> __nullable cardValidator;
 
 /**
  Factory method which allocates and initializes VSSServiceConfig instance with given token and default values (service URLs, no Card Validator).

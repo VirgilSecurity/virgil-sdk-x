@@ -85,13 +85,13 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
     VSSPublicKey *creatorPublicKey = [self.crypto importPublicKeyFromData:cardResponse.model.publicKeyData];
     verifiers[fingerprint.hexValue] = creatorPublicKey;
 
-    for (NSString *verifierId in self.verifiers.allKeys) {
+    for (NSString *verifierId in verifiers.allKeys) {
         NSData *signature = cardResponse.signatures[verifierId];
         if (signature == nil)
             return NO;
         
         NSError *error;
-        BOOL isVerified = [self.crypto verifyData:fingerprint.value withSignature:signature usingSignerPublicKey:self.verifiers[verifierId] error:&error];
+        BOOL isVerified = [self.crypto verifyData:fingerprint.value withSignature:signature usingSignerPublicKey:verifiers[verifierId] error:&error];
 
         if (!isVerified)
             return NO;
