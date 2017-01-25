@@ -1,29 +1,35 @@
 //
-//  VSSRevokeCardHTTPRequest.m
+//  VSSRevokeGlobalCardHTTPRequest.m
 //  VirgilSDK
 //
-//  Created by Oleksandr Deundiak on 10/6/16.
-//  Copyright © 2016 VirgilSecurity. All rights reserved.
+//  Created by Oleksandr Deundiak on 1/25/17.
+//  Copyright © 2017 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSRevokeCardHTTPRequest.h"
-#import "VSSRevokeCardRequest.h"
+#import "VSSRevokeGlobalCardHTTPRequest.h"
+#import "VSSRevokeGlobalCardRequest.h"
 #import "VSSSignableRequestPrivate.h"
+#import "VSSModelKeys.h"
 
-@interface VSSRevokeCardHTTPRequest ()
+@interface VSSRevokeGlobalCardHTTPRequest ()
 
 @property (nonatomic, copy, readonly) NSString * __nonnull cardId;
 
 @end
 
-@implementation VSSRevokeCardHTTPRequest
+@implementation VSSRevokeGlobalCardHTTPRequest
 
-- (instancetype)initWithContext:(VSSHTTPRequestContext *)context revokeCardRequest:(VSSRevokeCardRequest *)request {
+- (instancetype)initWithContext:(VSSHTTPRequestContext *)context revokeCardRequest:(VSSRevokeCardRequest *)request validationToken:(NSString *)validationToken {
     self = [super initWithContext:context];
     if (self) {
         _cardId = [request.snapshotModel.cardId copy];
         
         NSDictionary *body = [request serialize];
+        
+        NSMutableDictionary *metaDict = body[kVSSCModelMeta];
+        metaDict[kVSSCModelValidation] = @{
+                                           kVSSCModelToken: validationToken
+                                           };
         
         [self setRequestMethod:DELETE];
         

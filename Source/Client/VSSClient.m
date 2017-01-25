@@ -13,9 +13,11 @@
 #import "VSSServiceConfig.h"
 
 #import "VSSCreateCardHTTPRequest.h"
+#import "VSSCreateGlobalCardHTTPRequest.h"
 #import "VSSSearchCardsHTTPRequest.h"
 #import "VSSGetCardHTTPRequest.h"
 #import "VSSRevokeCardHTTPRequest.h"
+#import "VSSRevokeGlobalCardHTTPRequest.h"
 #import "VSSCardResponsePrivate.h"
 #import "VSSVerifyIdentityRequest.h"
 #import "VSSVerifyIdentityHTTPRequest.h"
@@ -131,6 +133,39 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     [self send:httpRequest];
 }
 
+- (void)createGlobalCardWithRequest:(VSSCreateGlobalCardRequest *)request validationToken:(NSString *)validationToken completion:(void (^)(VSSCard *, NSError *))callback {
+    VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.registrationAuthorityURL];
+    VSSCreateGlobalCardHTTPRequest *httpRequest = [[VSSCreateGlobalCardHTTPRequest alloc] initWithContext:context createCardRequest:request validationToken:validationToken];
+    
+    VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
+        if (request.error != nil) {
+            if (callback != nil) {
+                callback(nil, request.error);
+            }
+            return;
+        }
+        
+        if (callback != nil) {
+            VSSCreateGlobalCardHTTPRequest *r = [request as:[VSSCreateGlobalCardHTTPRequest class]];
+            VSSCardResponse *cardResponse = r.cardResponse;
+            
+            if (self.serviceConfig.cardValidator != nil) {
+                if (![self.serviceConfig.cardValidator validateCardResponse:cardResponse]) {
+                    callback(nil, [[NSError alloc] initWithDomain:kVSSClientErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"Error validating card signatures" }]);
+                    return;
+                }
+            }
+            
+            callback([cardResponse buildCard], nil);
+        }
+        return;
+    };
+    
+    httpRequest.completionHandler = handler;
+    
+    [self send:httpRequest];
+}
+
 - (void)getCardWithId:(NSString *)cardId completion:(void (^)(VSSCard *, NSError *))callback {
     VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.cardsServiceROURL];
     VSSGetCardHTTPRequest *request = [[VSSGetCardHTTPRequest alloc] initWithContext:context cardId:cardId];
@@ -203,6 +238,29 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
 - (void)revokeCardWithRequest:(VSSRevokeCardRequest *)request completion:(void (^)(NSError *))callback {
     VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.cardsServiceURL];
     VSSRevokeCardHTTPRequest *httpRequest = [[VSSRevokeCardHTTPRequest alloc] initWithContext:context revokeCardRequest:request];
+    
+    VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
+        if (request.error != nil) {
+            if (callback != nil) {
+                callback(request.error);
+            }
+            return;
+        }
+        
+        if (callback != nil) {
+            callback(nil);
+        }
+        return;
+    };
+    
+    httpRequest.completionHandler = handler;
+    
+    [self send:httpRequest];
+}
+
+- (void)revokeGlobalCardWithRequest:(VSSRevokeGlobalCardRequest *)request validationToken:(NSString *)validationToken completion:(void (^)(NSError *))callback {
+    VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.registrationAuthorityURL];
+    VSSRevokeGlobalCardHTTPRequest *httpRequest = [[VSSRevokeGlobalCardHTTPRequest alloc] initWithContext:context revokeCardRequest:request validationToken:validationToken];
     
     VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
         if (request.error != nil) {

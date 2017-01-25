@@ -30,7 +30,10 @@ class VSS001_ClientTests: XCTestCase {
         self.crypto = VSSCrypto()
 
         let validator = VSSCardValidator(crypto: self.crypto)
-        XCTAssert(validator.addVerifier(withId: self.consts.applicationId, publicKeyData: Data(base64Encoded: self.consts.applicationPublicKeyBase64)!))
+        let privateKey = self.crypto.importPrivateKey(from: Data(base64Encoded: self.consts.applicationPrivateKeyBase64)!, withPassword: self.consts.applicationPrivateKeyPassword)!
+        let publicKey = self.crypto.extractPublicKey(from: privateKey)
+        let publicKeyData = self.crypto.export(publicKey)
+        XCTAssert(validator.addVerifier(withId: self.consts.applicationId, publicKeyData: publicKeyData))
         let config = VSSServiceConfig(token: self.consts.applicationToken)
         config.cardValidator = validator
         self.client = VSSClient(serviceConfig: config)
@@ -364,6 +367,114 @@ class VSS001_ClientTests: XCTestCase {
                 }
             }
             
+        }
+        
+        self.waitForExpectations(timeout: timeout) { error in
+            guard error == nil else {
+                XCTFail("Expectation failed: " + error!.localizedDescription)
+                return
+            }
+        }
+    }
+    
+    func testA01_CreateGlobalEmailCard() {
+        let ex = self.expectation(description: "Global Email Virgil Card should be created")
+        
+        let numberOfRequests = 5
+        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
+        
+        let identity = self.utils.generateEmail()
+        
+        self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
+            sleep(3)
+            
+            let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
+            
+            self.mailinator.getInbox(identityShort) { metadataList, error in
+                self.mailinator.getEmail(metadataList![0].mid) { email, error in
+                    let bodyPart = email!.parts[0];
+                    
+                    let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
+                    
+                    let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
+                    
+                    let code = String(match.characters.suffix(6))
+                    
+                    self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+                        
+                        let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity)
+                        
+                        self.client.createGlobalCardWith(request, validationToken: response!.validationToken) { (registeredCard, error) in
+                            guard error == nil else {
+                                XCTFail("Failed: " + error!.localizedDescription)
+                                return
+                            }
+                            
+                            guard let card = registeredCard else {
+                                XCTFail("Card is nil")
+                                return
+                            }
+                            
+                            XCTAssert(self.utils.check(card: card, isEqualToCreateCardRequest: request))
+                            
+                            ex.fulfill()
+                        }
+                    }
+                }
+            }
+        }
+        
+        self.waitForExpectations(timeout: timeout) { error in
+            guard error == nil else {
+                XCTFail("Expectation failed: " + error!.localizedDescription)
+                return
+            }
+        }
+    }
+    
+    func testA02_RevokeGlobalEmailCard() {
+        let ex = self.expectation(description: "Global Email Virgil Card should be created. Global Email Virgil Card should be revoked.")
+        
+        let numberOfRequests = 6
+        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
+        
+        let identity = self.utils.generateEmail()
+        
+        self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
+            sleep(3)
+            
+            let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
+            
+            self.mailinator.getInbox(identityShort) { metadataList, error in
+                self.mailinator.getEmail(metadataList![0].mid) { email, error in
+                    let bodyPart = email!.parts[0];
+                    
+                    let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
+                    
+                    let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
+                    
+                    let code = String(match.characters.suffix(6))
+                    
+                    self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+                        
+                        let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity)
+                        
+                        self.client.createGlobalCardWith(request, validationToken: response!.validationToken) { (registeredCard, error) in
+                            
+                            let revokeRequest = VSSRevokeGlobalCardRequest(cardId: registeredCard!.identifier, reason: .unspecified)
+                            
+                            self.client.revokeGlobalCardWith(revokeRequest, validationToken: response!.validationToken, completion: { error in
+                                guard error != nil else {
+                                    XCTFail("Failed: " + error!.localizedDescription)
+                                    return
+                                }
+                              
+                                ex.fulfill()
+                            })
+                        }
+                    }
+                }
+            }
         }
         
         self.waitForExpectations(timeout: timeout) { error in

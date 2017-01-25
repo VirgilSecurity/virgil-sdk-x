@@ -17,6 +17,7 @@
         _cardsServiceURL = [[NSURL alloc] initWithString:@"https://cards.virgilsecurity.com/v4/"];;
         _cardsServiceROURL = [[NSURL alloc] initWithString:@"https://cards-ro.virgilsecurity.com/v4/"];
         _identityServiceURL = [[NSURL alloc] initWithString:@"https://identity.virgilsecurity.com/v1/"];
+        _registrationAuthorityURL = [[NSURL alloc] initWithString:@"https://vra.virgilsecurity.com/v1/"];
     }
     return self;
 }

@@ -34,6 +34,11 @@
 @property (nonatomic, copy) NSURL * __nonnull identityServiceURL;
 
 /**
+ Base URL for the Virgil Registration Authority Service
+ */
+@property (nonatomic, copy) NSURL * __nonnull registrationAuthorityURL;
+
+/**
  VSSCardValidator instance which validates Virgil Card genuineness on every VSSClient query.
  Default value is nil
  */

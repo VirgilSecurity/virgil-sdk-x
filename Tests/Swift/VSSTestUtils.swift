@@ -38,6 +38,21 @@ class VSSTestUtils {
         return request;
     }
     
+    func instantiateEmailCreateCardRequest(withIdentity identity: String) -> VSSCreateGlobalCardRequest {
+        let keyPair = self.crypto.generateKeyPair()
+        let exportedPublicKey = self.crypto.export(keyPair.publicKey)
+        
+        let identityValue = identity
+        let identityType = "email"
+        let request = VSSCreateGlobalCardRequest(identity: identityValue, identityType: identityType, publicKeyData: exportedPublicKey)
+        
+        let signer = VSSRequestSigner(crypto: self.crypto)
+        
+        try! signer.selfSign(request, with: keyPair.privateKey)
+        
+        return request;
+    }
+    
     func instantiateCreateCardRequest(with data: [String : String]) -> VSSCreateCardRequest {
         let keyPair = self.crypto.generateKeyPair()
         let exportedPublicKey = self.crypto.export(keyPair.publicKey)

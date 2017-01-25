@@ -12,7 +12,6 @@
 @interface VSSTestsConst : NSObject
 
 @property (nonatomic, readonly) NSString * __nonnull applicationToken;
-@property (nonatomic, readonly) NSString * __nonnull applicationPublicKeyBase64;
 @property (nonatomic, readonly) NSString * __nonnull applicationPrivateKeyBase64;
 @property (nonatomic, readonly) NSString * __nonnull applicationPrivateKeyPassword;
 @property (nonatomic, readonly) NSString * __nonnull applicationIdentityType;

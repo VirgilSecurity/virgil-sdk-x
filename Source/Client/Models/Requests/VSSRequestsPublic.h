@@ -9,3 +9,5 @@
 #import "VSSSignableRequest.h"
 #import "VSSCreateCardRequest.h"
 #import "VSSRevokeCardRequest.h"
+#import "VSSCreateGlobalCardRequest.h"
+#import "VSSRevokeGlobalCardRequest.h"

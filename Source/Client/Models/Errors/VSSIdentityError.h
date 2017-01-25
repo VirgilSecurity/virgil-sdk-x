@@ -13,22 +13,22 @@ extern const NSInteger kVSSIdentityInternalError;
 
 /// HTTP 400. Request error status is returned on request data validation errors
 extern const NSInteger kVSSIdentityJSONError;
-extern const NSInteger kVSSIdentityIdentityTypeInvalid;
-extern const NSInteger kVSSIdentityIdentityTTLInvalid;
-extern const NSInteger kVSSIdentityIdentityCTLInvalid;
-extern const NSInteger kVSSIdentityTokenMissing;
-extern const NSInteger kVSSIdentityTokenDoesntMatch;
-extern const NSInteger kVSSIdentityTokenExpired;
-extern const NSInteger kVSSIdentityTokenCannotBeDecrypted;
-extern const NSInteger kVSSIdentityTokenInvalid;
-extern const NSInteger kVSSIdentityIdentityIsNotUnconfirmed;
-extern const NSInteger kVSSIdentityHashInvalid;
-extern const NSInteger kVSSIdentityEmailValueValidationFailed;
-extern const NSInteger kVSSIdentityConfirmationCodeInvalid;
-extern const NSInteger kVSSIdentityApplicationValueInvalid;
-extern const NSInteger kVSSIdentityApplicationSignedMessageInvalid;
-extern const NSInteger kVSSIdentityEntityNotFound;
-extern const NSInteger kVSSIdentityConfirmationPerionHasExpired;
+extern const NSInteger kVSSIdentityIdentityTypeInvalidError;
+extern const NSInteger kVSSIdentityIdentityTTLInvalidError;
+extern const NSInteger kVSSIdentityIdentityCTLInvalidError;
+extern const NSInteger kVSSIdentityTokenMissingError;
+extern const NSInteger kVSSIdentityTokenDoesntMatchError;
+extern const NSInteger kVSSIdentityTokenExpiredError;
+extern const NSInteger kVSSIdentityTokenCannotBeDecryptedError;
+extern const NSInteger kVSSIdentityTokenInvalidError;
+extern const NSInteger kVSSIdentityIdentityIsNotUnconfirmedError;
+extern const NSInteger kVSSIdentityHashInvalidError;
+extern const NSInteger kVSSIdentityEmailValueValidationFailedError;
+extern const NSInteger kVSSIdentityConfirmationCodeInvalidError;
+extern const NSInteger kVSSIdentityApplicationValueInvalidError;
+extern const NSInteger kVSSIdentityApplicationSignedMessageInvalidError;
+extern const NSInteger kVSSIdentityEntityNotFoundError;
+extern const NSInteger kVSSIdentityConfirmationPerionHasExpiredError;
 
 /**
  * Concrete subclass representing the errors returning by the Virgil Identity Service.

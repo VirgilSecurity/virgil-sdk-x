@@ -13,22 +13,22 @@ const NSInteger kVSSIdentityInternalError                               = 10000;
 
 /// HTTP 400. Request error status is returned on request data validation errors
 const NSInteger kVSSIdentityJSONError                                   = 40000;
-const NSInteger kVSSIdentityIdentityTypeInvalid                         = 40100;
-const NSInteger kVSSIdentityIdentityTTLInvalid                          = 40110;
-const NSInteger kVSSIdentityIdentityCTLInvalid                          = 40120;
-const NSInteger kVSSIdentityTokenMissing                                = 40130;
-const NSInteger kVSSIdentityTokenDoesntMatch                            = 40140;
-const NSInteger kVSSIdentityTokenExpired                                = 40150;
-const NSInteger kVSSIdentityTokenCannotBeDecrypted                      = 40160;
-const NSInteger kVSSIdentityTokenInvalid                                = 40170;
-const NSInteger kVSSIdentityIdentityIsNotUnconfirmed                    = 40180;
-const NSInteger kVSSIdentityHashInvalid                                 = 40190;
-const NSInteger kVSSIdentityEmailValueValidationFailed                  = 40200;
-const NSInteger kVSSIdentityConfirmationCodeInvalid                     = 40210;
-const NSInteger kVSSIdentityApplicationValueInvalid                     = 40300;
-const NSInteger kVSSIdentityApplicationSignedMessageInvalid             = 40310;
-const NSInteger kVSSIdentityEntityNotFound                              = 41000;
-const NSInteger kVSSIdentityConfirmationPerionHasExpired                = 41010;
+const NSInteger kVSSIdentityIdentityTypeInvalidError                    = 40100;
+const NSInteger kVSSIdentityIdentityTTLInvalidError                     = 40110;
+const NSInteger kVSSIdentityIdentityCTLInvalidError                     = 40120;
+const NSInteger kVSSIdentityTokenMissingError                           = 40130;
+const NSInteger kVSSIdentityTokenDoesntMatchError                       = 40140;
+const NSInteger kVSSIdentityTokenExpiredError                           = 40150;
+const NSInteger kVSSIdentityTokenCannotBeDecryptedError                 = 40160;
+const NSInteger kVSSIdentityTokenInvalidError                           = 40170;
+const NSInteger kVSSIdentityIdentityIsNotUnconfirmedError               = 40180;
+const NSInteger kVSSIdentityHashInvalidError                            = 40190;
+const NSInteger kVSSIdentityEmailValueValidationFailedError             = 40200;
+const NSInteger kVSSIdentityConfirmationCodeInvalidError                = 40210;
+const NSInteger kVSSIdentityApplicationValueInvalidError                = 40300;
+const NSInteger kVSSIdentityApplicationSignedMessageInvalidError        = 40310;
+const NSInteger kVSSIdentityEntityNotFoundError                         = 41000;
+const NSInteger kVSSIdentityConfirmationPerionHasExpiredError           = 41010;
 
 @implementation VSSIdentityError
 
@@ -40,22 +40,22 @@ const NSInteger kVSSIdentityConfirmationPerionHasExpired                = 41010;
             
         /// HTTP 400. Request error status is returned on request data validation errors
         case kVSSIdentityJSONError: message = @"JSON specified as a request body is invalid"; break;
-        case kVSSIdentityIdentityTypeInvalid: message = @"Identity type is invalid"; break;
-        case kVSSIdentityIdentityTTLInvalid: message = @"Identity's ttl is invalid"; break;
-        case kVSSIdentityIdentityCTLInvalid: message = @"Identity's ctl is invalid"; break;
-        case kVSSIdentityTokenMissing: message = @"Identity's token parameter is missing"; break;
-        case kVSSIdentityTokenDoesntMatch: message = @"Identity's token doesn't match parameters"; break;
-        case kVSSIdentityTokenExpired: message = @"Identity's token has expired"; break;
-        case kVSSIdentityTokenCannotBeDecrypted: message = @"Identity's token cannot be decrypted"; break;
-        case kVSSIdentityTokenInvalid: message = @"Identity's token parameter is invalid"; break;
-        case kVSSIdentityIdentityIsNotUnconfirmed: message = @"Identity is not unconfirmed"; break;
-        case kVSSIdentityHashInvalid: message = @"Hash to be signed parameter is invalid"; break;
-        case kVSSIdentityEmailValueValidationFailed: message = @"Email identity value validation failed"; break;
-        case kVSSIdentityConfirmationCodeInvalid: message = @"Identity's confirmation code is invalid"; break;
-        case kVSSIdentityApplicationValueInvalid: message = @"Application value is invalid"; break;
-        case kVSSIdentityApplicationSignedMessageInvalid: message = @"Application's signed message is invalid"; break;
-        case kVSSIdentityEntityNotFound: message = @"Identity entity was not found"; break;
-        case kVSSIdentityConfirmationPerionHasExpired: message = @"Identity's confirmation period has expired"; break;
+        case kVSSIdentityIdentityTypeInvalidError: message = @"Identity type is invalid"; break;
+        case kVSSIdentityIdentityTTLInvalidError: message = @"Identity's ttl is invalid"; break;
+        case kVSSIdentityIdentityCTLInvalidError: message = @"Identity's ctl is invalid"; break;
+        case kVSSIdentityTokenMissingError: message = @"Identity's token parameter is missing"; break;
+        case kVSSIdentityTokenDoesntMatchError: message = @"Identity's token doesn't match parameters"; break;
+        case kVSSIdentityTokenExpiredError: message = @"Identity's token has expired"; break;
+        case kVSSIdentityTokenCannotBeDecryptedError: message = @"Identity's token cannot be decrypted"; break;
+        case kVSSIdentityTokenInvalidError: message = @"Identity's token parameter is invalid"; break;
+        case kVSSIdentityIdentityIsNotUnconfirmedError: message = @"Identity is not unconfirmed"; break;
+        case kVSSIdentityHashInvalidError: message = @"Hash to be signed parameter is invalid"; break;
+        case kVSSIdentityEmailValueValidationFailedError: message = @"Email identity value validation failed"; break;
+        case kVSSIdentityConfirmationCodeInvalidError: message = @"Identity's confirmation code is invalid"; break;
+        case kVSSIdentityApplicationValueInvalidError: message = @"Application value is invalid"; break;
+        case kVSSIdentityApplicationSignedMessageInvalidError: message = @"Application's signed message is invalid"; break;
+        case kVSSIdentityEntityNotFoundError: message = @"Identity entity was not found"; break;
+        case kVSSIdentityConfirmationPerionHasExpiredError: message = @"Identity's confirmation period has expired"; break;
     }
     
     return message;
