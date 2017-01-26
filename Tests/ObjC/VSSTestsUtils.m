@@ -48,6 +48,23 @@
     return request;
 }
 
+- (VSSCreateGlobalCardRequest *)instantiateEmailCreateCardRequestWithIdentity:(NSString *)identity {
+    VSSKeyPair *keyPair = [self.crypto generateKeyPair];
+    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
+    
+    // some random value
+    NSString *identityValue = identity;
+    NSString *identityType = @"email";
+    VSSCreateGlobalCardRequest *request = [VSSCreateGlobalCardRequest createCardRequestWithIdentity:identityValue identityType:identityType publicKeyData:exportedPublicKey];
+    
+    VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
+    
+    NSError *error;
+    [signer selfSignRequest:request withPrivateKey:keyPair.privateKey error:&error];
+    
+    return request;
+}
+
 - (VSSCreateCardRequest *)instantiateCreateCardRequestWithData:(NSDictionary<NSString *, NSString *> *)data {
     VSSKeyPair *keyPair = [self.crypto generateKeyPair];
     NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];

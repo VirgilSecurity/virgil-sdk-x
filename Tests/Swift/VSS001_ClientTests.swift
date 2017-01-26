@@ -464,7 +464,7 @@ class VSS001_ClientTests: XCTestCase {
                             let revokeRequest = VSSRevokeGlobalCardRequest(cardId: registeredCard!.identifier, reason: .unspecified)
                             
                             self.client.revokeGlobalCardWith(revokeRequest, validationToken: response!.validationToken, completion: { error in
-                                guard error != nil else {
+                                guard error == nil else {
                                     XCTFail("Failed: " + error!.localizedDescription)
                                     return
                                 }
