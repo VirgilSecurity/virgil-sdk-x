@@ -388,7 +388,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
                 
                 [self.client confirmIdentityWithActionId:actionId confirmationCode:code timeToLive:3600 countToLive:12 completion:^(VSSConfirmIdentityResponse *response, NSError *error) {
                     
-                    VSSCreateGlobalCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithIdentity:identity];
+                    VSSCreateGlobalCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithIdentity:identity keyPair:nil];
                     
                     [self.client createGlobalCardWithRequest:request validationToken:response.validationToken completion:^(VSSCard *card, NSError *error) {
                         XCTAssert(error == nil);
@@ -432,11 +432,12 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
                 
                 [self.client confirmIdentityWithActionId:actionId confirmationCode:code timeToLive:3600 countToLive:12 completion:^(VSSConfirmIdentityResponse *response, NSError *error) {
                     
-                    VSSCreateGlobalCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithIdentity:identity];
+                    VSSKeyPair *keyPair = [self.crypto generateKeyPair];
+                    VSSCreateGlobalCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithIdentity:identity keyPair:keyPair];
                     
                     [self.client createGlobalCardWithRequest:request validationToken:response.validationToken completion:^(VSSCard *card, NSError *error) {
-                        
-                        VSSRevokeGlobalCardRequest *revokeRequest = [VSSRevokeGlobalCardRequest revokeCardRequestWithCardId:card.identifier reason:VSSCardRevocationReasonUnspecified];
+                        VSSRevokeGlobalCardRequest *revokeRequest = [self.utils instantiateRevokeGlobalCardForCard:card withPrivateKey:keyPair.privateKey];
+                    
                         [self.client revokeGlobalCardWithRequest:revokeRequest validationToken:response.validationToken completion:^(NSError *error) {
                             XCTAssert(error == nil);
                             

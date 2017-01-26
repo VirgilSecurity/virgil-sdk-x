@@ -22,14 +22,17 @@
         return error;
     }
     
-    VSSVraError *viError = [[VSSVraError alloc] initWithDict:[candidate as:[NSDictionary class]]];
-    if (viError != nil) {
-        error = viError.nsError;
+    VSSVraError *vraError = [[VSSVraError alloc] initWithDict:[candidate as:[NSDictionary class]]];
+    if (vraError.message.length > 0) {
+        error = vraError.nsError;
     }
     else {
-        VSSCardsError *viError = [[VSSCardsError alloc] initWithDict:[candidate as:[NSDictionary class]]];
-        if (viError != nil) {
-            error = viError.nsError;
+        VSSCardsError *cardsError = [[VSSCardsError alloc] initWithDict:[candidate as:[NSDictionary class]]];
+        if (cardsError.message.length > 0) {
+            error = cardsError.nsError;
+        }
+        else {
+            error = vraError.nsError;
         }
     }
     

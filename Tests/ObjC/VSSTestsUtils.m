@@ -49,8 +49,10 @@
     return request;
 }
 
-- (VSSCreateGlobalCardRequest *)instantiateEmailCreateCardRequestWithIdentity:(NSString *)identity {
-    VSSKeyPair *keyPair = [self.crypto generateKeyPair];
+- (VSSCreateGlobalCardRequest *)instantiateEmailCreateCardRequestWithIdentity:(NSString *)identity keyPair:(VSSKeyPair *)keyPair {
+    if (keyPair == nil) {
+        keyPair = [self.crypto generateKeyPair];
+    }
     NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
     
     // some random value
@@ -110,6 +112,17 @@
     
     NSError *error;
     [signer authoritySignRequest:request forAppId:self.consts.applicationId withPrivateKey:appPrivateKey error:&error];
+    
+    return request;
+}
+
+- (VSSRevokeGlobalCardRequest *)instantiateRevokeGlobalCardForCard:(VSSCard *)card withPrivateKey:(VSSPrivateKey *)privateKey {
+    VSSRevokeGlobalCardRequest *request = [VSSRevokeGlobalCardRequest revokeCardRequestWithCardId:card.identifier reason:VSSCardRevocationReasonUnspecified];
+    
+    VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
+    
+    NSError *error;
+    [signer authoritySignRequest:request forAppId:card.identifier withPrivateKey:privateKey error:&error];
     
     return request;
 }

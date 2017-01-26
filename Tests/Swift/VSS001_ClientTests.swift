@@ -402,7 +402,7 @@ class VSS001_ClientTests: XCTestCase {
                     
                     self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
                         
-                        let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity)
+                        let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, keyPair: nil)
                         
                         self.client.createGlobalCardWith(request, validationToken: response!.validationToken) { (registeredCard, error) in
                             guard error == nil else {
@@ -456,12 +456,11 @@ class VSS001_ClientTests: XCTestCase {
                     let code = String(match.characters.suffix(6))
                     
                     self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
-                        
-                        let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity)
+                        let keyPair = self.crypto.generateKeyPair()
+                        let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, keyPair: keyPair)
                         
                         self.client.createGlobalCardWith(request, validationToken: response!.validationToken) { (registeredCard, error) in
-                            
-                            let revokeRequest = VSSRevokeGlobalCardRequest(cardId: registeredCard!.identifier, reason: .unspecified)
+                            let revokeRequest = self.utils.instantiateRevokeGlobalCardRequestFor(card: registeredCard!, privateKey: keyPair.privateKey)
                             
                             self.client.revokeGlobalCardWith(revokeRequest, validationToken: response!.validationToken, completion: { error in
                                 guard error == nil else {
