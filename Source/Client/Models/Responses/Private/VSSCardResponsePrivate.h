@@ -8,9 +8,10 @@
 
 #import "VSSCardResponse.h"
 #import "VSSDeserializable.h"
+#import "VSSSerializable.h"
 #import "VSSCard.h"
 
-@interface VSSCardResponse () <VSSDeserializable>
+@interface VSSCardResponse () <VSSDeserializable, VSSSerializable>
 
 - (VSSCard * __nonnull)buildCard;
 

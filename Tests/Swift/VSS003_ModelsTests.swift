@@ -12,13 +12,17 @@ import XCTest
 
 class VSS003_ModelsTests: XCTestCase {
     private var utils: VSSTestUtils!
+    private var consts: VSSTestsConst!
+    private var crypto: VSSCrypto!
     
     // MARK: Setup
     
     override func setUp() {
         super.setUp()
         
-        self.utils = VSSTestUtils(crypto: VSSCrypto(), consts: VSSTestsConst())
+        self.consts = VSSTestsConst()
+        self.crypto = VSSCrypto()
+        self.utils = VSSTestUtils(crypto: self.crypto, consts: self.consts)
     }
     
     override func tearDown() {
@@ -45,5 +49,23 @@ class VSS003_ModelsTests: XCTestCase {
         let importedRevokeRequest = VSSRevokeCardRequest(data: exportedData)!
         
         XCTAssert(self.utils.check(revokeCardRequest: revokeRequest, isEqualToRevokeCardRequest: importedRevokeRequest))
+    }
+    
+    func test003_CardImportExport() {
+        let card = utils.instantiateCard()
+        
+        let cardStr = card.exportData()
+        
+        let importedCard = VSSCard(data: cardStr)!
+        
+        XCTAssert(self.utils.check(card: card, isEqualToCard: importedCard))
+        
+        let validator = VSSCardValidator(crypto: self.crypto)
+        let privateKey = self.crypto.importPrivateKey(from: Data(base64Encoded: self.consts.applicationPrivateKeyBase64)!, withPassword: self.consts.applicationPrivateKeyPassword)!
+        let publicKey = self.crypto.extractPublicKey(from: privateKey)
+        let publicKeyData = self.crypto.export(publicKey)
+        XCTAssert(validator.addVerifier(withId: self.consts.applicationId, publicKeyData: publicKeyData))
+        
+        XCTAssert(validator.validate(importedCard.cardResponse));
     }
 }

@@ -461,6 +461,7 @@
 		42D414A61E39005E00F59580 /* VSSRevokeGlobalCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRevokeGlobalCardRequest.m; sourceTree = "<group>"; };
 		42D414A91E39016900F59580 /* VSSRevokeGlobalCardHTTPRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSRevokeGlobalCardHTTPRequest.h; sourceTree = "<group>"; };
 		42D414AA1E39018100F59580 /* VSSRevokeGlobalCardHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRevokeGlobalCardHTTPRequest.m; sourceTree = "<group>"; };
+		42D414AD1E3A2EAD00F59580 /* PrivateApiDecl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrivateApiDecl.h; sourceTree = "<group>"; };
 		42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42EB30E71DB8EC17001DF4C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42EB31461DB8ECC3001DF4C0 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = "../../../Library/Developer/Xcode/DerivedData/VirgilSDK-dbfzxcbjagpubkapyajirhmmqdxn/Build/Products/Debug-iphonesimulator/VirgilCrypto/VirgilCrypto.framework"; sourceTree = "<group>"; };
@@ -1121,6 +1122,7 @@
 				4248B1021E044CE8000AB44C /* Mailinator */,
 				42F6C2061DBF5F5E0030C21D /* VSSTestsConst.h */,
 				42F6C2071DBF5F5E0030C21D /* VSSTestsConst.m */,
+				42D414AD1E3A2EAD00F59580 /* PrivateApiDecl.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";

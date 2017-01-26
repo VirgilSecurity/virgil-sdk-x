@@ -73,6 +73,17 @@ class VSSTestUtils {
         return request;
     }
     
+    func instantiateCard() -> VSSCard {
+        let dataStr = "{\"id\": \"9846238f5a5a60c81ae416e7bd8e06e38e6e77fbdbd0b79f695c3ee743e70193\",\"content_snapshot\": \"eyJwdWJsaWNfa2V5IjoiTUNvd0JRWURLMlZ3QXlFQWJcL2xLbU9xUVdnTkR6dktEb1BjY1FYbm9LOTN0UXFcLzl5VDg0bFwveTUrNVU9IiwiaWRlbnRpdHkiOiI3RUU0RTE4Ri01MkQ0LTQ4QzEtODZEQy0yOUY5ODg0MDdGREUiLCJpZGVudGl0eV90eXBlIjoidGVzdCIsInNjb3BlIjoiYXBwbGljYXRpb24ifQ==\",\"meta\": {\"created_at\": \"2017-01-26T15:39:28+0200\",\"card_version\": \"4.0\",\"signs\": {\"3e29d43373348cfb373b7eae189214dc01d7237765e572db685839b64adca853\": \"MFEwDQYJYIZIAWUDBAICBQAEQEwyX32OEO6HKtlMAru6ebQLHcoORId2Qn2nQSxAXJyHs+nZESZW6EKpclYFlptlV6I1NxeAefBJdVg9WObzxQ8=\",\"9846238f5a5a60c81ae416e7bd8e06e38e6e77fbdbd0b79f695c3ee743e70193\": \"MFEwDQYJYIZIAWUDBAICBQAEQDzVWVYU3s+b0FbaIYaiH34G/aJL50ExPz/t3RpE8lmmgoDFM8nTAqYrbnBeNJhhW6th8VboWk0qbIPTg6JsXgQ=\",\"e20830b806e54433950edd67e83578a5a2dadb1edf60300f180cc22eea7ea519\": \"MFEwDQYJYIZIAWUDBAICBQAEQI2un2U3xQa+xU4gMSwp3+6V4huzKKFayhAwAMRvph1fVkT/coP/SSQtgl1xBF1cFH3PdvMXcOmaDeqnhnaFUAg=\"}}}"
+            
+        let data = dataStr.data(using: .utf8)!
+        
+        let jsonObj = try! JSONSerialization.jsonObject(with: data, options: .allowFragments)
+        let cardResponse = VSSCardResponse(dict: jsonObj as! [AnyHashable : Any])!
+        
+        return cardResponse.buildCard();
+    }
+    
     func check(card: VSSCard, isEqualToCreateCardRequest request: VSSCreateCardRequest) -> Bool {
         let equals = card.identityType == request.snapshotModel.identityType
             && card.identity == request.snapshotModel.identity

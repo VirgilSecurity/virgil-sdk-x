@@ -18,6 +18,7 @@
 @property (nonatomic, readonly) VSSTestsConst * __nonnull consts;
 
 - (VSSCreateCardRequest * __nonnull)instantiateCreateCardRequest;
+- (VSSCard * __nonnull)instantiateCard;
 - (VSSCreateGlobalCardRequest * __nonnull)instantiateEmailCreateCardRequestWithIdentity:(NSString * __nonnull)identity;
 - (VSSCreateCardRequest * __nonnull)instantiateCreateCardRequestWithData:(NSDictionary<NSString *, NSString *> * __nonnull)data;
 - (VSSRevokeCardRequest * __nonnull)instantiateRevokeCardForCard:(VSSCard * __nonnull)card;

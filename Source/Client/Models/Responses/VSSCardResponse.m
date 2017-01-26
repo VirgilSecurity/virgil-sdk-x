@@ -15,7 +15,7 @@
 @implementation VSSCardResponse
 
 - (VSSCard *)buildCard {
-    return [[VSSCard alloc] initWithIdentifier:self.identifier identity:self.model.identity identityType:self.model.identityType publicKeyData:self.model.publicKeyData scope:self.model.scope data:self.model.data info:self.model.info createdAt:self.createdAt cardVersion:self.cardVersion];
+    return [[VSSCard alloc] initWithCardResponse:self];
 }
 
 #pragma mark - VSSDeserializable
@@ -73,5 +73,35 @@
 
     return self;
 }
+
+#pragma mark - VSSSerializable
+
+- (NSDictionary * __nonnull)serialize {
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *metaDict = [[NSMutableDictionary alloc] init];
+    
+    NSMutableDictionary *signaturesDict = [[NSMutableDictionary alloc] init];
+    for (NSString *key in self.signatures.allKeys) {
+        signaturesDict[key] = [((NSData *)self.signatures[key]) base64EncodedStringWithOptions:0];
+    }
+    
+    metaDict[kVSSCModelSigns] = signaturesDict;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+    dateFormatter.locale = enUSPOSIXLocale;
+    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZ";
+    NSString *createdAtStr = [dateFormatter stringFromDate:self.createdAt];
+    metaDict[kVSSCModelCreatedAt] = createdAtStr;
+    
+    metaDict[kVSSCModelCardVersion] = self.cardVersion;
+    dict[kVSSCModelMeta] = metaDict;
+    
+    dict[kVSSCModelContentSnapshot] = [self.snapshot base64EncodedStringWithOptions:0];
+    dict[kVSSCModelId] = self.identifier;
+    
+    return dict;
+}
+
 
 @end

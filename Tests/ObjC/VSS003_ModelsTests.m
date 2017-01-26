@@ -15,6 +15,8 @@
 @interface VSS003_ModelsTests : XCTestCase
 
 @property (nonatomic) VSSTestsUtils * __nonnull utils;
+@property (nonatomic) VSSTestsConst * __nonnull consts;
+@property (nonatomic) VSSCrypto * __nonnull crypto;
 
 @end
 
@@ -25,7 +27,9 @@
 - (void)setUp {
     [super setUp];
     
-    self.utils = [[VSSTestsUtils alloc] initWithCrypto:[[VSSCrypto alloc] init] consts:[[VSSTestsConst alloc] init]];
+    self.crypto = [[VSSCrypto alloc] init];
+    self.consts = [[VSSTestsConst alloc] init];
+    self.utils = [[VSSTestsUtils alloc] initWithCrypto:self.crypto consts:self.consts];
 }
 
 - (void)tearDown {
@@ -52,6 +56,26 @@
     VSSRevokeCardRequest *importedRevokeRequest = [[VSSRevokeCardRequest alloc] initWithData:exportedData];
     
     XCTAssert([self.utils checkRevokeCardRequest:revokeRequest isEqualToRevokeCardRequest:importedRevokeRequest]);
+}
+
+- (void)test003_CardImportExport {
+    VSSCard *card = [self.utils instantiateCard];
+    
+    NSString *cardStr = [card exportData];
+    
+    VSSCard *importedCard = [[VSSCard alloc] initWithData:cardStr];
+    
+    XCTAssert([self.utils checkCard:card isEqualToCard:importedCard]);
+    
+    VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.crypto];
+    
+    VSSPrivateKey *privateKey = [self.crypto importPrivateKeyFromData:[[NSData alloc] initWithBase64EncodedString:self.consts.applicationPrivateKeyBase64 options:0] withPassword:self.consts.applicationPrivateKeyPassword];
+    VSSPublicKey *publicKey = [self.crypto extractPublicKeyFromPrivateKey:privateKey];
+    NSData *publicKeyData = [self.crypto exportPublicKey:publicKey];
+    
+    XCTAssert([validator addVerifierWithId:self.consts.applicationId publicKeyData:publicKeyData]);
+    
+    XCTAssert([validator validateCardResponse:importedCard.cardResponse]);
 }
 
 @end
