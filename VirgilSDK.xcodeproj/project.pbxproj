@@ -78,12 +78,6 @@
 		4248B13A1E044CE8000AB44C /* MailinatorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1171E044CE8000AB44C /* MailinatorRequest.m */; };
 		4248B13B1E044CE8000AB44C /* MailinatorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1171E044CE8000AB44C /* MailinatorRequest.m */; };
 		4248B13C1E044CE8000AB44C /* MailinatorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1171E044CE8000AB44C /* MailinatorRequest.m */; };
-		4248B1461E044D6B000AB44C /* VSSHTTPJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1401E044D6B000AB44C /* VSSHTTPJSONRequest.m */; };
-		4248B1471E044D6B000AB44C /* VSSHTTPJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1401E044D6B000AB44C /* VSSHTTPJSONRequest.m */; };
-		4248B1481E044D6B000AB44C /* VSSHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1421E044D6B000AB44C /* VSSHTTPRequest.m */; };
-		4248B1491E044D6B000AB44C /* VSSHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1421E044D6B000AB44C /* VSSHTTPRequest.m */; };
-		4248B14A1E044D6B000AB44C /* VSSHTTPRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1451E044D6B000AB44C /* VSSHTTPRequestContext.m */; };
-		4248B14B1E044D6B000AB44C /* VSSHTTPRequestContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1451E044D6B000AB44C /* VSSHTTPRequestContext.m */; };
 		424EF9AB1E0D71B1005E8A8B /* VSSDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 424EF9AA1E0D71B1005E8A8B /* VSSDeviceManager.m */; };
 		424EF9AD1E0D76B2005E8A8B /* VSSDeviceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 424EF9AC1E0D71C3005E8A8B /* VSSDeviceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		424EF9AE1E0D76B7005E8A8B /* VSSDeviceManagerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 424EF9A91E0D713D005E8A8B /* VSSDeviceManagerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -374,12 +368,9 @@
 		4248B1171E044CE8000AB44C /* MailinatorRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailinatorRequest.m; sourceTree = "<group>"; };
 		4248B1181E044CE8000AB44C /* MailinatorRequestSettingsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailinatorRequestSettingsProvider.h; sourceTree = "<group>"; };
 		4248B13F1E044D6B000AB44C /* VSSHTTPJSONRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSHTTPJSONRequest.h; sourceTree = "<group>"; };
-		4248B1401E044D6B000AB44C /* VSSHTTPJSONRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSHTTPJSONRequest.m; sourceTree = "<group>"; };
 		4248B1411E044D6B000AB44C /* VSSHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSHTTPRequest.h; sourceTree = "<group>"; };
-		4248B1421E044D6B000AB44C /* VSSHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSHTTPRequest.m; sourceTree = "<group>"; };
 		4248B1431E044D6B000AB44C /* VSSHTTPRequestPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSHTTPRequestPrivate.h; sourceTree = "<group>"; };
 		4248B1441E044D6B000AB44C /* VSSHTTPRequestContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSHTTPRequestContext.h; sourceTree = "<group>"; };
-		4248B1451E044D6B000AB44C /* VSSHTTPRequestContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSHTTPRequestContext.m; sourceTree = "<group>"; };
 		424EF9A91E0D713D005E8A8B /* VSSDeviceManagerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSDeviceManagerProtocol.h; sourceTree = "<group>"; };
 		424EF9AA1E0D71B1005E8A8B /* VSSDeviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSDeviceManager.m; sourceTree = "<group>"; };
 		424EF9AC1E0D71C3005E8A8B /* VSSDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSDeviceManager.h; sourceTree = "<group>"; };
@@ -789,7 +780,6 @@
 			children = (
 				4248B13E1E044D6B000AB44C /* Requests */,
 				4248B1441E044D6B000AB44C /* VSSHTTPRequestContext.h */,
-				4248B1451E044D6B000AB44C /* VSSHTTPRequestContext.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -798,9 +788,7 @@
 			isa = PBXGroup;
 			children = (
 				4248B13F1E044D6B000AB44C /* VSSHTTPJSONRequest.h */,
-				4248B1401E044D6B000AB44C /* VSSHTTPJSONRequest.m */,
 				4248B1411E044D6B000AB44C /* VSSHTTPRequest.h */,
-				4248B1421E044D6B000AB44C /* VSSHTTPRequest.m */,
 				4248B1431E044D6B000AB44C /* VSSHTTPRequestPrivate.h */,
 			);
 			path = Requests;
@@ -1743,7 +1731,6 @@
 				4248B1211E044CE8000AB44C /* MEmail.m in Sources */,
 				425B09BA1DBF63E4005531DC /* VSS004_CompatibilityTests.m in Sources */,
 				4248B1391E044CE8000AB44C /* MailinatorRequest.m in Sources */,
-				4248B14A1E044D6B000AB44C /* VSSHTTPRequestContext.m in Sources */,
 				4248B11D1E044CE8000AB44C /* MailinatorConfig.m in Sources */,
 				4248B1351E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */,
 				4248B1291E044CE8000AB44C /* MEmailResponse.m in Sources */,
@@ -1752,9 +1739,7 @@
 				42F6C2021DBF5D1D0030C21D /* VSS001_ClientTests.m in Sources */,
 				4248B1191E044CE8000AB44C /* Mailinator.m in Sources */,
 				42F6C1FE1DBE4DD30030C21D /* VSSTestsUtils.m in Sources */,
-				4248B1461E044D6B000AB44C /* VSSHTTPJSONRequest.m in Sources */,
 				42F6C20A1DBF5F680030C21D /* VSSTestsConst.m in Sources */,
-				4248B1481E044D6B000AB44C /* VSSHTTPRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1768,7 +1753,6 @@
 				4248B1221E044CE8000AB44C /* MEmail.m in Sources */,
 				42B7E3661DB8F7D100D70C12 /* VSSTestUtils.swift in Sources */,
 				4248B13A1E044CE8000AB44C /* MailinatorRequest.m in Sources */,
-				4248B14B1E044D6B000AB44C /* VSSHTTPRequestContext.m in Sources */,
 				4248B11E1E044CE8000AB44C /* MailinatorConfig.m in Sources */,
 				4248B1361E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */,
 				4248B12A1E044CE8000AB44C /* MEmailResponse.m in Sources */,
@@ -1777,9 +1761,7 @@
 				425B09BC1DBF63E8005531DC /* VSS003_ModelsTests.swift in Sources */,
 				4248B11A1E044CE8000AB44C /* Mailinator.m in Sources */,
 				425B09BD1DBF63E8005531DC /* VSS004_CompatibilityTests.swift in Sources */,
-				4248B1471E044D6B000AB44C /* VSSHTTPJSONRequest.m in Sources */,
 				42F6C2031DBF5EC90030C21D /* VSS001_ClientTests.swift in Sources */,
-				4248B1491E044D6B000AB44C /* VSSHTTPRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
