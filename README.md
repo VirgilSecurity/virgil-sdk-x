@@ -566,7 +566,7 @@ try! storage.store(aliceKeyEntry)
 
 You can also Load key from Keychain, check its existance and remove key from Keychain.
 
-1. To load key:
+To load key:
 
 ###### Objective-C
 ```objective-c
@@ -579,7 +579,7 @@ VSSKeyEntry *loadedKeyEntry = [storage loadKeyEntryWithName:@"aliceKey" error:&e
 let loadedKeyEntry = try! storage.loadKeyEntry(withName: "aliceKey")
 ```
 
-2. To check existence
+To check existence
 
 ###### Objective-C
 ```objective-c
@@ -591,7 +591,7 @@ BOOL exists = [storage existsKeyEntryWithName:@"aliceKey"];
 let exists = storage.existsKeyEntry(withName: "alicaKey")
 ```
 
-3. To remove key
+To remove key
 
 ###### Objective-C
 ```objective-c
