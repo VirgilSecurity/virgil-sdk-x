@@ -366,7 +366,7 @@ Virgil Global Card creation consists of 2 steps:
 1. Verifying Identity and obtaining validation token
 2. Creation actual Card
 
-1. At this moment you can create Global Virgil Cards bounded to email address.
+At this moment you can create Global Virgil Cards bounded to email address.
 To confirm that you are owner of specific email address and get validation token you should 
 
 1) Request confirmation code to your email
@@ -404,7 +404,8 @@ self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, tim
 	//...
 }
 ```
-2. Create Global Virgil Card using validation token just like regulare application Card
+
+3) Create Global Virgil Card using validation token just like regulare application Card
 
 ###### Objective-C
 ```objective-c
@@ -538,7 +539,7 @@ To store key to Keychain you can use following snippet
 
 ###### Objective-C
 ```objective-c
-self.storage = [[VSSKeyStorage alloc] init];
+VSSKeyStorage *storage = [[VSSKeyStorage alloc] init];
 VSSKeyPair *aliceKeys = [self.crypto generateKeyPair];
     
 NSData *privateKeyRawData = [self.crypto exportPrivateKey:aliceKeys.privateKey withPassword:nil];
@@ -564,6 +565,7 @@ try! storage.store(aliceKeyEntry)
 ```
 
 You can also Load key from Keychain, check its existance and remove key from Keychain.
+
 1. To load key:
 
 ###### Objective-C
