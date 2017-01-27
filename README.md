@@ -27,6 +27,7 @@ In this guide you will find code for every task you need to implement in order t
 * [Operations with Crypto Keys](#operations-with-crypto-keys)
 * [Generate Keys](#generate-keys)
 * [Import and Export Keys](#import-and-export-keys)
+* [Keys and Keychain](#keys-and-keychain)
 * [Encryption and Decryption](#encryption-and-decryption)
 * [Encrypt Data](#encrypt-data)
 * [Decrypt Data](#decrypt-data)
@@ -528,6 +529,77 @@ VSSPublicKey *alicePublicKey = [self.crypto importPublicKeyFromData:alicePublicK
 ```swift
 let alicePrivateKey = self.crypto.import(from: alicePrivateKeyData, password: nil)
 let alicePublicKey = self.crypto.import(from: alicePublicKeyData)
+```
+
+## Keys and Keychain
+Virgil SDK provides convienient methods to save and retrieve keys to/from Keychain.
+
+To store key to Keychain you can use following snippet
+
+###### Objective-C
+```objective-c
+self.storage = [[VSSKeyStorage alloc] init];
+VSSKeyPair *aliceKeys = [self.crypto generateKeyPair];
+    
+NSData *privateKeyRawData = [self.crypto exportPrivateKey:aliceKeys.privateKey withPassword:nil];
+NSString *privateKeyName = @"aliceKey";
+    
+VSSKeyEntry *aliceKeyEntry = [VSSKeyEntry keyEntryWithName:privateKeyName value:privateKeyRawData];
+
+NSError *error;
+BOOL res = [storage storeKeyEntry:aliceKeyEntry error:&error];
+```
+
+###### Swift
+```swift
+let storage = VSSKeyStorage()
+let aliceKeys = self.crypto.generateKeyPair()
+        
+let privateKeyRawData = self.crypto.export(aliceKeys.privateKey, withPassword: nil)
+let privateKeyName = "aliceKey"
+        
+let aliceKeyEntry = VSSKeyEntry(name: privateKeyName, value: privateKeyRawData)
+
+try! storage.store(aliceKeyEntry)
+```
+
+You can also Load key from Keychain, check its existance and remove key from Keychain.
+1. To load key:
+
+###### Objective-C
+```objective-c
+NSError *error;
+VSSKeyEntry *loadedKeyEntry = [storage loadKeyEntryWithName:@"aliceKey" error:&error];
+```
+
+###### Swift
+```swift
+let loadedKeyEntry = try! storage.loadKeyEntry(withName: "aliceKey")
+```
+
+2. To check existence
+
+###### Objective-C
+```objective-c
+BOOL exists = [storage existsKeyEntryWithName:@"aliceKey"];
+```
+
+###### Swift
+```swift
+let exists = storage.existsKeyEntry(withName: "alicaKey")
+```
+
+3. To remove key
+
+###### Objective-C
+```objective-c
+NSError *error;
+BOOL res = [storage deleteKeyEntryWithName:self.keyEntry.name error:&error];
+```
+
+###### Swift
+```swift
+try! storage.deleteKeyEntry(withName: "aliceKey")
 ```
 
 ## Encryption and Decryption
