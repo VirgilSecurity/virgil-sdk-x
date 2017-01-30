@@ -1,6 +1,6 @@
 PODS:
   - VirgilCrypto (2.0.2)
-  - VirgilSDK (4.1.1):
+  - VirgilSDK (4.1.2):
     - VirgilCrypto (~> 2.0.0)
 
 DEPENDENCIES:
@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   VirgilCrypto: caa7715ad504b4a7ba7a1a24cec030e255fdb138
-  VirgilSDK: 193a9a67bfc505ea3e247e9d4e4953817f74cfc3
+  VirgilSDK: 1e12a9df37d80cc89e9e735049310d26e77d4c0b
 
 PODFILE CHECKSUM: 50260eb0c3a05e8f19312688374cab1332a2401e
 
