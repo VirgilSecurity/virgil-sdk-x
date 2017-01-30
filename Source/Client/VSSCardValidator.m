@@ -12,9 +12,8 @@
 static NSString * const kVSSCardsServiceCardId = @"3e29d43373348cfb373b7eae189214dc01d7237765e572db685839b64adca853";
 static NSString * const kVSSCardsServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUNvd0JRWURLMlZ3QXlFQVlSNTAxa1YxdFVuZTJ1T2RrdzRrRXJSUmJKcmMyU3lhejVWMWZ1RytyVnM9Ci0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQo=";
 
-// FIXME: replace with production values
-static NSString * const kVSSVraServiceCardId = @"9645c0a82ddd2a5a64476d860a1337e71f55c2263bf36105fa49a7e2ef51670d";
-static NSString * const kVSSVraServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUNvd0JRWURLMlZ3QXlFQTBEN2pDcVBDNnJ6TVpYbGM2TEErRENkWGI0ZER6b0FjQ3NmSjhpOWVQQnc9Ci0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQo=";
+static NSString * const kVSSVraServiceCardId = @"67b8ee8e53b4c0c6b65b4bbdda6fa159e8208f58ffc290ec61a72c3fd07ad035";
+static NSString * const kVSSVraServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUNvd0JRWURLMlZ3QXlFQVdwQ25zME5oVzlyWU1VUWJoeXBSNTRGbm1RYTVJZzVqaXBKSzJWaVpzSzg9Ci0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQo=";
 
 @interface VSSCardValidator ()
 
