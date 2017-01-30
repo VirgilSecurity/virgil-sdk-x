@@ -14,6 +14,7 @@ NSString * __nonnull vss_getCardScopeString(VSSCardScope scope) {
     switch (scope) {
         case VSSCardScopeGlobal: return @"global";
         case VSSCardScopeApplication: return @"application";
+        default: return @"";
     }
 }
 
@@ -31,6 +32,7 @@ NSString * __nonnull vss_getRevocationReasonString(VSSCardRevocationReason reaso
     switch (reason) {
         case VSSCardRevocationReasonCompromised: return @"compromised";
         case VSSCardRevocationReasonUnspecified: return @"unspecified";
+        default: return @"";
     }
 }
 
