@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-//#ifdef DEBUG
+#ifdef DEBUG
 #define USE_SERVICE_REQUEST_DEBUG 1
-//#endif
+#endif
 
 /// Debugging macro
 #if USE_SERVICE_REQUEST_DEBUG
