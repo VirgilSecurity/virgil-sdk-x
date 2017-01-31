@@ -161,7 +161,6 @@
 		42B7E36B1DB8F81F00D70C12 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C181DB8E6A700E5E2AE /* sdk_compatibility_data.json */; };
 		42B7E36C1DB8F81F00D70C12 /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C191DB8E6A700E5E2AE /* testData.txt */; };
 		42BBF0C31DD1F12E00E19D60 /* VSSRequestSignerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42BBF0C21DD1F12E00E19D60 /* VSSRequestSignerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42BBF0CD1DD3591100E19D60 /* VSS007_HighLevelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBF0CA1DD3536300E19D60 /* VSS007_HighLevelTests.m */; };
 		42BBF0CE1DD3593100E19D60 /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F6C2071DBF5F5E0030C21D /* VSSTestsConst.m */; };
 		42BBF0CF1DD3593200E19D60 /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F6C2071DBF5F5E0030C21D /* VSSTestsConst.m */; };
 		42BBF0DD1DD5DFE600E19D60 /* VSSCryptoCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 42BBF0DB1DD5DF8200E19D60 /* VSSCryptoCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -404,7 +403,6 @@
 		42B81C181DB8E6A700E5E2AE /* sdk_compatibility_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sdk_compatibility_data.json; sourceTree = "<group>"; };
 		42B81C191DB8E6A700E5E2AE /* testData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testData.txt; sourceTree = "<group>"; };
 		42BBF0C21DD1F12E00E19D60 /* VSSRequestSignerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSRequestSignerProtocol.h; sourceTree = "<group>"; };
-		42BBF0CA1DD3536300E19D60 /* VSS007_HighLevelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS007_HighLevelTests.m; sourceTree = "<group>"; };
 		42BBF0DB1DD5DF8200E19D60 /* VSSCryptoCommons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCryptoCommons.h; sourceTree = "<group>"; };
 		42BBF0DC1DD5DFE200E19D60 /* VSSCryptoCommonsPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCryptoCommonsPrivate.h; sourceTree = "<group>"; };
 		42BBF0DF1DD5E06000E19D60 /* VSSCryptoCommons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCryptoCommons.m; sourceTree = "<group>"; };
@@ -610,7 +608,6 @@
 				42B147231DAFC29600AC9975 /* VSS004_CompatibilityTests.m */,
 				423CEB691DCA93D500CCACB8 /* VSS005_KeyStorageTests.m */,
 				42796BD41DCB977C000FDDD4 /* VSS006_KeyStorageWithAccessGroupTests.m */,
-				42BBF0CA1DD3536300E19D60 /* VSS007_HighLevelTests.m */,
 			);
 			name = Objc;
 			path = ObjC;
@@ -1606,7 +1603,6 @@
 				4248B1331E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */,
 				42BBF0CE1DD3593100E19D60 /* VSSTestsConst.m in Sources */,
 				4248B1271E044CE8000AB44C /* MEmailMetadata.m in Sources */,
-				42BBF0CD1DD3591100E19D60 /* VSS007_HighLevelTests.m in Sources */,
 				42229A231DD059E900BE651E /* VSS005_KeyStorageTests.m in Sources */,
 				4248B1371E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */,
 				42BBF0E81DD611DF00E19D60 /* VSSTestsUtils.m in Sources */,
