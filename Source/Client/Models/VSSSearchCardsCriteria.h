@@ -23,7 +23,7 @@
 /**
  NSString with Identity Type (such as Email, Username, Phone number) which corresponds to desired Virgil Cards.
  */
-@property (nonatomic, copy, readonly) NSString * __nonnull identityType;
+@property (nonatomic, copy, readonly) NSString * __nullable identityType;
 
 /**
  Array of Identities within Identity Type for desired Virgil Cards.
