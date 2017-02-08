@@ -1,5 +1,5 @@
 //
-//  VSS006_KeyStorageWithAccessGroupTests.m
+//  VSS007_KeyStorageWithAccessGroupTests.m
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 11/3/16.
@@ -11,7 +11,7 @@
 
 #import "VSSTestsUtils.h"
 
-@interface VSS006_KeyStorageWithAccessGroupTests : XCTestCase
+@interface VSS007_KeyStorageWithAccessGroupTests : XCTestCase
 
 @property (nonatomic) VSSCrypto * __nonnull crypto;
 @property (nonatomic) VSSKeyStorage * __nonnull storage;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation VSS006_KeyStorageWithAccessGroupTests
+@implementation VSS007_KeyStorageWithAccessGroupTests
 
 #pragma mark - Setup
 

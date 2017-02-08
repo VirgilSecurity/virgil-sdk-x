@@ -1,5 +1,5 @@
 //
-//  VSS004_CompatibilityTests.m
+//  VSS005_CompatibilityTests.m
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 10/13/16.
@@ -11,7 +11,7 @@
 
 #import "VSSTestsUtils.h"
 
-@interface VSS004_CompatibilityTests : XCTestCase
+@interface VSS005_CompatibilityTests : XCTestCase
 
 @property (nonatomic) VSSTestsUtils * __nonnull utils;
 @property (nonatomic) VSSCrypto * __nonnull crypto;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation VSS004_CompatibilityTests
+@implementation VSS005_CompatibilityTests
 
 #pragma mark - Setup
 

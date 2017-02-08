@@ -1,5 +1,5 @@
 //
-//  VSS003_ModelsTests.swift
+//  VSS004_ModelsTests.swift
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 10/17/16.
@@ -10,7 +10,7 @@ import Foundation
 import VirgilSDK
 import XCTest
 
-class VSS003_ModelsTests: XCTestCase {
+class VSS004_ModelsTests: XCTestCase {
     private var utils: VSSTestUtils!
     private var consts: VSSTestsConst!
     private var crypto: VSSCrypto!

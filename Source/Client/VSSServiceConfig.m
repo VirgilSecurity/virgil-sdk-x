@@ -26,6 +26,10 @@
     return [[self alloc] initWithToken:token];
 }
 
++ (VSSServiceConfig *)defaultServiceConfig {
+    return [[self alloc] initWithToken:nil];
+}
+
 - (id)copyWithZone:(nullable NSZone *)zone {
     VSSServiceConfig *copy = [VSSServiceConfig serviceConfigWithToken:self.token];
     copy.cardsServiceURL = self.cardsServiceURL;

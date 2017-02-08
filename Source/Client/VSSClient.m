@@ -59,6 +59,10 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     return [self initWithServiceConfig:[VSSServiceConfig serviceConfigWithToken:token]];
 }
 
+- (instancetype)init {
+    return [self initWithServiceConfig:[VSSServiceConfig defaultServiceConfig]];
+}
+
 - (void)dealloc {
     [_urlSession invalidateAndCancel];
     [_queue cancelAllOperations];

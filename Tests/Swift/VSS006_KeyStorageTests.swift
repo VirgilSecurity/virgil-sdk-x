@@ -1,5 +1,5 @@
 //
-//  VSS005_KeyStorageTests.swift
+//  VSS006_KeyStorageTests.swift
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 11/4/16.
@@ -10,7 +10,7 @@ import Foundation
 import VirgilSDK
 import XCTest
 
-class VSS005_KeyStorageTests: XCTestCase {
+class VSS006_KeyStorageTests: XCTestCase {
     private var crypto: VSSCrypto!
     private var storage: VSSKeyStorage!
     private var keyEntry: VSSKeyEntry!

@@ -1,5 +1,5 @@
 //
-//  VSS004_CompatibilityTests.swift
+//  VSS005_CompatibilityTests.swift
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 10/17/16.
@@ -10,7 +10,7 @@ import Foundation
 import VirgilSDK
 import XCTest
 
-class VSS004_CompatibilityTests: XCTestCase {
+class VSS005_CompatibilityTests: XCTestCase {
     private var utils: VSSTestUtils!
     private var crypto: VSSCrypto!
     private var testsDict: Dictionary<String, Any>!

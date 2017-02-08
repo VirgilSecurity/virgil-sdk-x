@@ -1,5 +1,5 @@
 //
-//  VSS003_ModelsTests.m
+//  VSS004_ModelsTests.m
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 10/13/16.
@@ -12,7 +12,7 @@
 #import "VSSTestsUtils.h"
 #import "VSSCrypto.h"
 
-@interface VSS003_ModelsTests : XCTestCase
+@interface VSS004_ModelsTests : XCTestCase
 
 @property (nonatomic) VSSTestsUtils * __nonnull utils;
 @property (nonatomic) VSSTestsConst * __nonnull consts;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation VSS003_ModelsTests
+@implementation VSS004_ModelsTests
 
 #pragma mark - Setup
 

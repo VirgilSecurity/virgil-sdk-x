@@ -1,5 +1,5 @@
 //
-//  VSS002_CryptoTests.m
+//  VSS003_CryptoTests.m
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 10/8/16.
@@ -12,13 +12,13 @@
 #import "VSSClient.h"
 #import "VSSCrypto.h"
 
-@interface VSS002_CryptoTests: XCTestCase
+@interface VSS003_CryptoTests: XCTestCase
 
 @property (nonatomic) VSSCrypto *crypto;
 
 @end
 
-@implementation VSS002_CryptoTests
+@implementation VSS003_CryptoTests
 
 #pragma mark - Setup
 

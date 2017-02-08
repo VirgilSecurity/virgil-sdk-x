@@ -1,5 +1,5 @@
 //
-//  VSS002_CryptoTests.swift
+//  VSS003_CryptoTests.swift
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 10/17/16.
@@ -10,7 +10,7 @@ import Foundation
 import VirgilSDK
 import XCTest
 
-class VSS002_CryptoTests: XCTestCase {
+class VSS003_CryptoTests: XCTestCase {
     private var crypto: VSSCrypto!
     
     // MARK: Setup

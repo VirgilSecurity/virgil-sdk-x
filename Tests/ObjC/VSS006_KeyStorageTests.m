@@ -1,5 +1,5 @@
 //
-//  VSS005_KeyStorageTests.m
+//  VSS006_KeyStorageTests.m
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 11/2/16.
@@ -11,7 +11,7 @@
 
 #import "VSSTestsUtils.h"
 
-@interface VSS005_KeyStorageTests : XCTestCase
+@interface VSS006_KeyStorageTests : XCTestCase
 
 @property (nonatomic) VSSCrypto * __nonnull crypto;
 @property (nonatomic) VSSKeyStorage * __nonnull storage;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation VSS005_KeyStorageTests
+@implementation VSS006_KeyStorageTests
 
 #pragma mark - Setup
 
