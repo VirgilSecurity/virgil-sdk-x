@@ -49,6 +49,23 @@
     return request;
 }
 
+- (VSSCreateGlobalCardRequest *)instantiateEmailCreateCardRequestWithValidationToken:(NSString *)validationToken {
+    VSSKeyPair *keyPair = [self.crypto generateKeyPair];
+    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
+    
+    // some random value
+    NSString *identityValue = [[NSUUID UUID] UUIDString];
+    NSString *identityType = @"email";
+    VSSCreateGlobalCardRequest *request = [VSSCreateGlobalCardRequest createGlobalCardRequestWithIdentity:identityValue identityType:identityType validationToken:validationToken publicKeyData:exportedPublicKey];
+    
+    VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
+    
+    NSError *error;
+    [signer selfSignRequest:request withPrivateKey:keyPair.privateKey error:&error];
+    
+    return request;
+}
+
 - (VSSCreateGlobalCardRequest *)instantiateEmailCreateCardRequestWithIdentity:(NSString *)identity validationToken:(NSString *)validationToken keyPair:(VSSKeyPair *)keyPair {
     if (keyPair == nil) {
         keyPair = [self.crypto generateKeyPair];
@@ -177,12 +194,36 @@
     return equals;
 }
 
+- (BOOL)checkCreateGlobalCardRequest:(VSSCreateGlobalCardRequest *)request1 isEqualToCreateGlobalCardRequest:(VSSCreateGlobalCardRequest *)request2 {
+    BOOL equals = [request1.snapshot isEqualToData:request2.snapshot]
+        && [request1.signatures isEqualToDictionary:request2.signatures]
+        && IsDictionaryEqualOrBothNil(request1.snapshotModel.data, request2.snapshotModel.data)
+        && [request1.snapshotModel.identity isEqualToString:request2.snapshotModel.identity]
+        && [request1.snapshotModel.identityType isEqualToString:request2.snapshotModel.identityType]
+        && IsDictionaryEqualOrBothNil(request1.snapshotModel.info, request2.snapshotModel.info)
+        && [request1.snapshotModel.publicKeyData isEqualToData:request2.snapshotModel.publicKeyData]
+        && request1.snapshotModel.scope == request2.snapshotModel.scope
+        && [request1.validationToken isEqualToString:request2.validationToken];
+    
+    return equals;
+}
+
 - (BOOL)checkRevokeCardRequest:(VSSRevokeCardRequest *)request1 isEqualToRevokeCardRequest:(VSSRevokeCardRequest *)request2 {
     BOOL equals = [request1.snapshot isEqualToData:request2.snapshot]
         && [request1.signatures isEqualToDictionary:request2.signatures]
         && [request1.snapshotModel.cardId isEqualToString:request2.snapshotModel.cardId]
         && request1.snapshotModel.revocationReason == request2.snapshotModel.revocationReason;
 
+    return equals;
+}
+
+- (BOOL)checkRevokeGlobalCardRequest:(VSSRevokeGlobalCardRequest *)request1 isEqualToRevokeGlobalCardRequest:(VSSRevokeGlobalCardRequest *)request2 {
+    BOOL equals = [request1.snapshot isEqualToData:request2.snapshot]
+        && [request1.signatures isEqualToDictionary:request2.signatures]
+        && [request1.snapshotModel.cardId isEqualToString:request2.snapshotModel.cardId]
+        && request1.snapshotModel.revocationReason == request2.snapshotModel.revocationReason
+        && [request1.validationToken isEqualToString:request2.validationToken];
+    
     return equals;
 }
 

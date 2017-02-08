@@ -31,7 +31,7 @@ class VSS003_ModelsTests: XCTestCase {
         super.tearDown()
     }
     
-    func test001_CardImportExport() {
+    func test001_CreateCardRequestImportExport() {
         let request = self.utils.instantiateCreateCardRequest()
         
         let exportedData = request.exportData()
@@ -40,8 +40,18 @@ class VSS003_ModelsTests: XCTestCase {
         
         XCTAssert(self.utils.check(createCardRequest: request, isEqualToCreateCardRequest: importedRequest))
     }
+    
+    func test002_CreateGlobalCardRequestImportExport() {
+        let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: "testIdentity", validationToken: "testToken", keyPair: nil)
+        
+        let exportedData = request.exportData()
+        
+        let importedRequest = VSSCreateGlobalCardRequest(data: exportedData)!
+        
+        XCTAssert(self.utils.check(createGlobalCardRequest: request, isEqualToCreateGlobalCardRequest: importedRequest))
+    }
 
-    func test002_RevokeCardImportExport() {
+    func test003_RevokeCardRequestImportExport() {
         let revokeRequest = VSSRevokeCardRequest(cardId: "testId", reason: .unspecified)
         
         let exportedData = revokeRequest.exportData()
@@ -51,7 +61,17 @@ class VSS003_ModelsTests: XCTestCase {
         XCTAssert(self.utils.check(revokeCardRequest: revokeRequest, isEqualToRevokeCardRequest: importedRevokeRequest))
     }
     
-    func test003_CardImportExport() {
+    func test004_RevokeGlobalCardRequestImportExport() {
+        let revokeRequest = VSSRevokeGlobalCardRequest(cardId: "testId", validationToken:"@testToken", reason: .unspecified)
+        
+        let exportedData = revokeRequest.exportData()
+        
+        let importedRevokeRequest = VSSRevokeGlobalCardRequest(data: exportedData)!
+        
+        XCTAssert(self.utils.check(revokeGlobalCardRequest: revokeRequest, isEqualToRevokeGlobalCardRequest: importedRevokeRequest))
+    }
+    
+    func test005_CardImportExport() {
         let card = utils.instantiateCard()
         
         let cardStr = card.exportData()

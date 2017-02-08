@@ -19,6 +19,7 @@
 
 - (VSSCreateCardRequest * __nonnull)instantiateCreateCardRequest;
 - (VSSCard * __nonnull)instantiateCard;
+- (VSSCreateGlobalCardRequest * __nonnull)instantiateEmailCreateCardRequestWithValidationToken:(NSString * __nonnull)validationToken;
 - (VSSCreateGlobalCardRequest * __nonnull)instantiateEmailCreateCardRequestWithIdentity:(NSString * __nonnull)identity validationToken:(NSString * __nonnull)validationToken keyPair:(VSSKeyPair * __nullable)keyPair;
 - (VSSCreateCardRequest * __nonnull)instantiateCreateCardRequestWithData:(NSDictionary<NSString *, NSString *> * __nonnull)data;
 - (VSSRevokeCardRequest * __nonnull)instantiateRevokeCardForCard:(VSSCard * __nonnull)card;
@@ -27,7 +28,9 @@
 - (BOOL)checkCard:(VSSCard * __nonnull)card isEqualToCreateGlobalCardRequest:(VSSCreateGlobalCardRequest * __nonnull)request;
 - (BOOL)checkCard:(VSSCard * __nonnull)card1 isEqualToCard:(VSSCard * __nonnull)card2;
 - (BOOL)checkCreateCardRequest:(VSSCreateCardRequest * __nonnull)request1 isEqualToCreateCardRequest:(VSSCreateCardRequest * __nonnull)request2;
+- (BOOL)checkCreateGlobalCardRequest:(VSSCreateGlobalCardRequest * __nonnull)request1 isEqualToCreateGlobalCardRequest:(VSSCreateGlobalCardRequest * __nonnull)request2;
 - (BOOL)checkRevokeCardRequest:(VSSRevokeCardRequest * __nonnull)request1 isEqualToRevokeCardRequest:(VSSRevokeCardRequest * __nonnull)request2;
+- (BOOL)checkRevokeGlobalCardRequest:(VSSRevokeGlobalCardRequest * __nonnull)request1 isEqualToRevokeGlobalCardRequest:(VSSRevokeGlobalCardRequest * __nonnull)request2;
 - (NSString * __nonnull)generateEmail;
 
 

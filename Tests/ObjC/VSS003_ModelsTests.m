@@ -38,7 +38,7 @@
 
 #pragma mark - Tests
 
-- (void)test001_CardImportExport {
+- (void)test001_CreateCardRequestImportExport {
     VSSCreateCardRequest *request = [self.utils instantiateCreateCardRequest];
     
     NSString *exportedData = [request exportData];
@@ -48,7 +48,17 @@
     XCTAssert([self.utils checkCreateCardRequest:request isEqualToCreateCardRequest:importedRequest]);
 }
 
-- (void)test002_RevokeCardImportExport {
+- (void)test002_CreateGlobalCardRequestImportExport {
+    VSSCreateGlobalCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithValidationToken:@"testToken"];
+    
+    NSString *exportedData = [request exportData];
+    
+    VSSCreateGlobalCardRequest *importedRequest = [[VSSCreateGlobalCardRequest alloc] initWithData:exportedData];
+    
+    XCTAssert([self.utils checkCreateGlobalCardRequest:request isEqualToCreateGlobalCardRequest:importedRequest]);
+}
+
+- (void)test003_RevokeCardRequestImportExport {
     VSSRevokeCardRequest *revokeRequest = [VSSRevokeCardRequest revokeCardRequestWithCardId:@"testId" reason:VSSCardRevocationReasonUnspecified];
     
     NSString *exportedData = [revokeRequest exportData];
@@ -58,7 +68,17 @@
     XCTAssert([self.utils checkRevokeCardRequest:revokeRequest isEqualToRevokeCardRequest:importedRevokeRequest]);
 }
 
-- (void)test003_CardImportExport {
+- (void)test004_RevokeGlobalCardRequestImportExport {
+    VSSRevokeGlobalCardRequest *revokeRequest = [VSSRevokeGlobalCardRequest revokeGlobalCardRequestWithCardId:@"testId" validationToken:@"testToken" reason:VSSCardRevocationReasonUnspecified];
+    
+    NSString *exportedData = [revokeRequest exportData];
+    
+    VSSRevokeGlobalCardRequest *importedRevokeRequest = [[VSSRevokeGlobalCardRequest alloc] initWithData:exportedData];
+    
+    XCTAssert([self.utils checkRevokeGlobalCardRequest:revokeRequest isEqualToRevokeGlobalCardRequest:importedRevokeRequest]);
+}
+
+- (void)test005_CardImportExport {
     VSSCard *card = [self.utils instantiateCard];
     
     NSString *cardStr = [card exportData];

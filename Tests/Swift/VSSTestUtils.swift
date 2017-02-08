@@ -133,6 +133,21 @@ class VSSTestUtils {
         return equals
     }
     
+    func check(createGlobalCardRequest request1: VSSCreateGlobalCardRequest, isEqualToCreateGlobalCardRequest request2: VSSCreateGlobalCardRequest) -> Bool {
+        let equals = request1.snapshot == request2.snapshot
+            && request1.signatures == request2.signatures
+            && checkObjectsEqualOrBothNil(left: request1.snapshotModel.data, right: request2.snapshotModel.data)
+            && request1.snapshotModel.identity == request2.snapshotModel.identity
+            && request1.snapshotModel.identityType == request2.snapshotModel.identityType
+            && checkObjectsEqualOrBothNil(left: request1.snapshotModel.info, right: request2.snapshotModel.info)
+            && request1.snapshotModel.publicKeyData == request2.snapshotModel.publicKeyData
+            && request1.snapshotModel.scope == request2.snapshotModel.scope
+            && request1.validationToken == request2.validationToken
+            && !request1.validationToken.isEmpty
+        
+        return equals
+    }
+    
     func instantiateRevokeCardRequestFor(card: VSSCard) -> VSSRevokeCardRequest {
         let revokeCard = VSSRevokeCardRequest(cardId: card.identifier, reason: .unspecified)
         
@@ -162,6 +177,17 @@ class VSSTestUtils {
             && request1.signatures == request2.signatures
             && request1.snapshotModel.cardId == request2.snapshotModel.cardId
             && request1.snapshotModel.revocationReason == request2.snapshotModel.revocationReason
+        
+        return equals
+    }
+    
+    func check(revokeGlobalCardRequest request1: VSSRevokeGlobalCardRequest, isEqualToRevokeGlobalCardRequest request2: VSSRevokeGlobalCardRequest) -> Bool {
+        let equals = request1.snapshot == request2.snapshot
+            && request1.signatures == request2.signatures
+            && request1.snapshotModel.cardId == request2.snapshotModel.cardId
+            && request1.snapshotModel.revocationReason == request2.snapshotModel.revocationReason
+            && request1.validationToken == request2.validationToken
+            && !request1.validationToken.isEmpty
         
         return equals
     }
