@@ -19,7 +19,7 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithContext:(VSSHTTPRequestContext *)context createCardRequest:(VSSCreateCardRequest *)request validationToken:(NSString *)validationToken {
+- (instancetype)initWithContext:(VSSHTTPRequestContext *)context createGlobalCardRequest:(VSSCreateGlobalCardRequest *)request validationToken:(NSString *)validationToken {
     self = [super initWithContext:context];
     if (self) {
         NSMutableDictionary *body = [[request serialize] mutableCopy];

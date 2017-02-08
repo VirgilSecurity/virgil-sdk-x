@@ -58,7 +58,7 @@
     // some random value
     NSString *identityValue = identity;
     NSString *identityType = @"email";
-    VSSCreateGlobalCardRequest *request = [VSSCreateGlobalCardRequest createCardRequestWithIdentity:identityValue identityType:identityType publicKeyData:exportedPublicKey];
+    VSSCreateGlobalCardRequest *request = [VSSCreateGlobalCardRequest createGlobalCardRequestWithIdentity:identityValue identityType:identityType publicKeyData:exportedPublicKey];
     
     VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
     
@@ -134,6 +134,17 @@
         && IsDictionaryEqualOrBothNil(card.info, request.snapshotModel.info)
         && [card.publicKeyData isEqualToData:request.snapshotModel.publicKeyData]
         && card.scope == request.snapshotModel.scope;
+    
+    return equals;
+}
+
+- (BOOL)checkCard:(VSSCard *)card isEqualToCreateGlobalCardRequest:(VSSCreateGlobalCardRequest *)request {
+    BOOL equals = [card.identityType isEqualToString:request.snapshotModel.identityType]
+    && [card.identity isEqualToString:request.snapshotModel.identity]
+    && IsDictionaryEqualOrBothNil(card.data, request.snapshotModel.data)
+    && IsDictionaryEqualOrBothNil(card.info, request.snapshotModel.info)
+    && [card.publicKeyData isEqualToData:request.snapshotModel.publicKeyData]
+    && card.scope == request.snapshotModel.scope;
     
     return equals;
 }

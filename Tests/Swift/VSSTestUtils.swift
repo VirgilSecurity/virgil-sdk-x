@@ -95,6 +95,17 @@ class VSSTestUtils {
         return equals
     }
     
+    func check(card: VSSCard, isEqualToCreateCardRequest request: VSSCreateGlobalCardRequest) -> Bool {
+        let equals = card.identityType == request.snapshotModel.identityType
+            && card.identity == request.snapshotModel.identity
+            && checkObjectsEqualOrBothNil(left: card.data, right: request.snapshotModel.data)
+            && checkObjectsEqualOrBothNil(left: card.info, right: request.snapshotModel.info)
+            && card.publicKeyData == request.snapshotModel.publicKeyData
+            && card.scope == request.snapshotModel.scope
+        
+        return equals
+    }
+    
     func check(card card1: VSSCard, isEqualToCard card2: VSSCard) -> Bool {
         let equals = card1.identityType == card2.identityType
             && card1.identity == card2.identity

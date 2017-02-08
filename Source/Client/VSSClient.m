@@ -135,7 +135,7 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
 
 - (void)createGlobalCardWithRequest:(VSSCreateGlobalCardRequest *)request validationToken:(NSString *)validationToken completion:(void (^)(VSSCard *, NSError *))callback {
     VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.registrationAuthorityURL];
-    VSSCreateGlobalCardHTTPRequest *httpRequest = [[VSSCreateGlobalCardHTTPRequest alloc] initWithContext:context createCardRequest:request validationToken:validationToken];
+    VSSCreateGlobalCardHTTPRequest *httpRequest = [[VSSCreateGlobalCardHTTPRequest alloc] initWithContext:context createGlobalCardRequest:request validationToken:validationToken];
     
     VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
         if (request.error != nil) {

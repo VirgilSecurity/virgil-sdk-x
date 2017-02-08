@@ -393,7 +393,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
                     [self.client createGlobalCardWithRequest:request validationToken:response.validationToken completion:^(VSSCard *card, NSError *error) {
                         XCTAssert(error == nil);
                         
-                        XCTAssert([self.utils checkCard:card isEqualToCreateCardRequest:request]);
+                        XCTAssert([self.utils checkCard:card isEqualToCreateGlobalCardRequest:request]);
                         
                         [ex fulfill];
                     }];

@@ -24,6 +24,7 @@
 - (VSSRevokeCardRequest * __nonnull)instantiateRevokeCardForCard:(VSSCard * __nonnull)card;
 - (VSSRevokeGlobalCardRequest * __nonnull)instantiateRevokeGlobalCardForCard:(VSSCard * __nonnull)card withPrivateKey:(VSSPrivateKey * __nonnull)privateKey;
 - (BOOL)checkCard:(VSSCard * __nonnull)card isEqualToCreateCardRequest:(VSSCreateCardRequest * __nonnull)request;
+- (BOOL)checkCard:(VSSCard * __nonnull)card isEqualToCreateGlobalCardRequest:(VSSCreateGlobalCardRequest * __nonnull)request;
 - (BOOL)checkCard:(VSSCard * __nonnull)card1 isEqualToCard:(VSSCard * __nonnull)card2;
 - (BOOL)checkCreateCardRequest:(VSSCreateCardRequest * __nonnull)request1 isEqualToCreateCardRequest:(VSSCreateCardRequest * __nonnull)request2;
 - (BOOL)checkRevokeCardRequest:(VSSRevokeCardRequest * __nonnull)request1 isEqualToRevokeCardRequest:(VSSRevokeCardRequest * __nonnull)request2;

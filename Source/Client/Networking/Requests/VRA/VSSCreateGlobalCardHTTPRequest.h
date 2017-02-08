@@ -8,14 +8,14 @@
 
 #import "VSSVraBaseHTTPRequest.h"
 #import "VSSModelCommons.h"
-#import "VSSCreateCardRequest.h"
+#import "VSSCreateGlobalCardRequest.h"
 #import "VSSCardResponse.h"
 
 @interface VSSCreateGlobalCardHTTPRequest : VSSVraBaseHTTPRequest
 
 @property (nonatomic) VSSCardResponse * __nullable cardResponse;
 
-- (instancetype __nonnull)initWithContext:(VSSHTTPRequestContext * __nonnull)context createCardRequest:(VSSCreateCardRequest * __nonnull)request validationToken:(NSString * __nonnull)validationToken NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithContext:(VSSHTTPRequestContext * __nonnull)context createGlobalCardRequest:(VSSCreateGlobalCardRequest * __nonnull)request validationToken:(NSString * __nonnull)validationToken NS_DESIGNATED_INITIALIZER;
 
 - (instancetype __nonnull)initWithContext:(VSSHTTPRequestContext * __nonnull)context NS_UNAVAILABLE;
 
