@@ -19,17 +19,12 @@
 
 @implementation VSSRevokeGlobalCardHTTPRequest
 
-- (instancetype)initWithContext:(VSSHTTPRequestContext *)context revokeCardRequest:(VSSRevokeCardRequest *)request validationToken:(NSString *)validationToken {
+- (instancetype)initWithContext:(VSSHTTPRequestContext *)context revokeCardRequest:(VSSRevokeGlobalCardRequest *)request {
     self = [super initWithContext:context];
     if (self) {
         _cardId = [request.snapshotModel.cardId copy];
         
         NSDictionary *body = [request serialize];
-        
-        NSMutableDictionary *metaDict = body[kVSSCModelMeta];
-        metaDict[kVSSCModelValidation] = @{
-                                           kVSSCModelToken: validationToken
-                                           };
         
         [self setRequestMethod:DELETE];
         

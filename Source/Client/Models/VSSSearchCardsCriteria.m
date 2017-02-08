@@ -15,11 +15,11 @@
 @implementation VSSSearchCardsCriteria
 
 + (instancetype)searchCardsCriteriaWithScope:(VSSCardScope)scope identityType:(NSString *)identityType identities:(NSArray<NSString *> *)identities {
-    return [[self.class alloc] initWithScope:scope identityType:identityType identities:identities];
+    return [[VSSSearchCardsCriteria alloc] initWithScope:scope identityType:identityType identities:identities];
 }
 
 + (instancetype)searchCardsCriteriaWithIdentityType:(NSString *)identityType identities:(NSArray<NSString *>*)identities {
-    return [[self.class alloc] initWithScope:(VSSCardScope)-1 identityType:identityType identities:identities];
+    return [[VSSSearchCardsCriteria alloc] initWithScope:(VSSCardScope)-1 identityType:identityType identities:identities];
 }
 
 - (instancetype)initWithScope:(VSSCardScope)scope identityType:(NSString *)identityType identities:(NSArray<NSString *> *)identities {

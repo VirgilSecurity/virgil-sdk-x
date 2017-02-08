@@ -15,7 +15,7 @@
 
 @property (nonatomic) VSSCardResponse * __nullable cardResponse;
 
-- (instancetype __nonnull)initWithContext:(VSSHTTPRequestContext * __nonnull)context createGlobalCardRequest:(VSSCreateGlobalCardRequest * __nonnull)request validationToken:(NSString * __nonnull)validationToken NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithContext:(VSSHTTPRequestContext * __nonnull)context createGlobalCardRequest:(VSSCreateGlobalCardRequest * __nonnull)request NS_DESIGNATED_INITIALIZER;
 
 - (instancetype __nonnull)initWithContext:(VSSHTTPRequestContext * __nonnull)context NS_UNAVAILABLE;
 

@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		36A8E04D9A500621E51B0033 /* Pods_TestSDKApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD623E34F1F6C3B446FFE09A /* Pods_TestSDKApp.framework */; };
+		420FE5ED1E4B55FC005A32D4 /* VSSCreateGlobalCardRequestPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420FE5EC1E4B55FA005A32D4 /* VSSCreateGlobalCardRequestPrivate.h */; };
+		420FE5EE1E4B560D005A32D4 /* VSSConfirmIdentityRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42386C261E019017009E913F /* VSSConfirmIdentityRequest.h */; };
+		420FE5EF1E4B5610005A32D4 /* VSSValidateIdentityRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42386C361E019CBF009E913F /* VSSValidateIdentityRequest.h */; };
+		420FE5F01E4B5620005A32D4 /* VSSVerifyIdentityResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 42386C231E018307009E913F /* VSSVerifyIdentityResponse.h */; };
+		420FE5F11E4B5659005A32D4 /* VSSIdentityError.h in Headers */ = {isa = PBXBuildFile; fileRef = 4248B0CF1E043A60000AB44C /* VSSIdentityError.h */; };
+		420FE5F21E4B5666005A32D4 /* VSSValidateIdentityHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42386C331E019C22009E913F /* VSSValidateIdentityHTTPRequest.h */; };
+		420FE5F41E4B5E83005A32D4 /* VSSRevokeGlobalCardRequestPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420FE5F31E4B5E81005A32D4 /* VSSRevokeGlobalCardRequestPrivate.h */; };
 		421A74CF1E015CBF007460BA /* VSSVerifyIdentityRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 421A74CE1E015CBF007460BA /* VSSVerifyIdentityRequest.h */; };
 		42229A1D1DD059DC00BE651E /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
 		42229A231DD059E900BE651E /* VSS005_KeyStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB691DCA93D500CCACB8 /* VSS005_KeyStorageTests.m */; };
@@ -278,6 +285,8 @@
 		36FF4B8D1C4D7FED00E901F3 /* NSObject+VSSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+VSSUtils.h"; sourceTree = "<group>"; };
 		36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+VSSUtils.m"; sourceTree = "<group>"; };
 		3E5DEA2B938856986FAE4532 /* Pods_VirgilSDKSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VirgilSDKSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		420FE5EC1E4B55FA005A32D4 /* VSSCreateGlobalCardRequestPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCreateGlobalCardRequestPrivate.h; sourceTree = "<group>"; };
+		420FE5F31E4B5E81005A32D4 /* VSSRevokeGlobalCardRequestPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSRevokeGlobalCardRequestPrivate.h; sourceTree = "<group>"; };
 		421A74CE1E015CBF007460BA /* VSSVerifyIdentityRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSVerifyIdentityRequest.h; sourceTree = "<group>"; };
 		42229A181DD059DC00BE651E /* VirgilSDKKeyStorageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirgilSDKKeyStorageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		42229A2B1DD05A3C00BE651E /* VirgilSDKKeyStorageSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirgilSDKKeyStorageSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -795,6 +804,8 @@
 				421A74CE1E015CBF007460BA /* VSSVerifyIdentityRequest.h */,
 				42386C261E019017009E913F /* VSSConfirmIdentityRequest.h */,
 				42386C361E019CBF009E913F /* VSSValidateIdentityRequest.h */,
+				420FE5EC1E4B55FA005A32D4 /* VSSCreateGlobalCardRequestPrivate.h */,
+				420FE5F31E4B5E81005A32D4 /* VSSRevokeGlobalCardRequestPrivate.h */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -1100,6 +1111,7 @@
 				427A63181DB9096C00A33661 /* VSSExportable.h in Headers */,
 				427A632A1DB9096C00A33661 /* VSSModelCommons.h in Headers */,
 				427A632D1DB9096C00A33661 /* VSSBaseModel.h in Headers */,
+				420FE5EF1E4B5610005A32D4 /* VSSValidateIdentityRequest.h in Headers */,
 				427A63351DB9096C00A33661 /* VSSSearchCardsCriteria.h in Headers */,
 				427A634D1DB9096C00A33661 /* VSSClient.h in Headers */,
 				427A634F1DB9096C00A33661 /* VSSClientProtocol.h in Headers */,
@@ -1115,12 +1127,14 @@
 				427A63611DB9096C00A33661 /* VSSPublicKey.h in Headers */,
 				425B09DD1DC25374005531DC /* VSSCreateCardRequest.h in Headers */,
 				427A63631DB9096C00A33661 /* VSSCryptoPublic.h in Headers */,
+				420FE5F01E4B5620005A32D4 /* VSSVerifyIdentityResponse.h in Headers */,
 				425B09E11DC25374005531DC /* VSSSignableRequest.h in Headers */,
 				425B09DF1DC25374005531DC /* VSSRevokeCardRequest.h in Headers */,
 				42D414A41E38E9F200F59580 /* VSSVraError.h in Headers */,
 				425B09F01DC25BF1005531DC /* VSSCardResponse.h in Headers */,
 				42D414971E3796AB00F59580 /* VSSCreateGlobalCardRequest.h in Headers */,
 				42D4149A1E38DF4100F59580 /* VSSVraBaseHTTPRequest.h in Headers */,
+				420FE5EE1E4B560D005A32D4 /* VSSConfirmIdentityRequest.h in Headers */,
 				425B09C81DC245CE005531DC /* VSSCreateCardSnapshotModel.h in Headers */,
 				425B09FB1DC26770005531DC /* VSSResponsesPublic.h in Headers */,
 				425B09F71DC262ED005531DC /* VSSCard.h in Headers */,
@@ -1141,10 +1155,12 @@
 				42F540841E005A100071FDCF /* VSSIdentityBaseHTTPRequest.h in Headers */,
 				427A63651DB9096C00A33661 /* VSSCrypto.h in Headers */,
 				42BBF0DD1DD5DFE600E19D60 /* VSSCryptoCommons.h in Headers */,
+				420FE5ED1E4B55FC005A32D4 /* VSSCreateGlobalCardRequestPrivate.h in Headers */,
 				42BBF0C31DD1F12E00E19D60 /* VSSRequestSignerProtocol.h in Headers */,
 				42F540851E005A140071FDCF /* VSSVerifyIdentityHTTPRequest.h in Headers */,
 				423CEB6D1DCA948800CCACB8 /* VSSKeyStorageConfiguration.h in Headers */,
 				425B09F61DC262ED005531DC /* VSSCardPrivate.h in Headers */,
+				420FE5F11E4B5659005A32D4 /* VSSIdentityError.h in Headers */,
 				425B09F51DC262DE005531DC /* VSSSnapshotModelPrivate.h in Headers */,
 				423CEB6C1DCA948800CCACB8 /* VSSKeyStorageConfigurationPrivate.h in Headers */,
 				425B09D31DC2475F005531DC /* VSSSnapshotModelsPublic.h in Headers */,
@@ -1152,6 +1168,7 @@
 				425B09CA1DC245CE005531DC /* VSSRevokeCardSnapshotModel.h in Headers */,
 				427A63671DB9096C00A33661 /* VSSFingerprint.h in Headers */,
 				427A63291DB9096C00A33661 /* VSSModelsPublic.h in Headers */,
+				420FE5F41E4B5E83005A32D4 /* VSSRevokeGlobalCardRequestPrivate.h in Headers */,
 				427A63191DB9096C00A33661 /* VSSError.h in Headers */,
 				427A631B1DB9096C00A33661 /* VSSCardsError.h in Headers */,
 				427A631D1DB9096C00A33661 /* VSSCanonicalSerializable.h in Headers */,
@@ -1168,6 +1185,7 @@
 				427A63411DB9096C00A33661 /* VSSGetCardHTTPRequest.h in Headers */,
 				427A63431DB9096C00A33661 /* VSSRevokeCardHTTPRequest.h in Headers */,
 				42386C321E019975009E913F /* VSSConfirmIdentityHTTPRequest.h in Headers */,
+				420FE5F21E4B5666005A32D4 /* VSSValidateIdentityHTTPRequest.h in Headers */,
 				427A63451DB9096C00A33661 /* VSSHTTPRequestPrivate.h in Headers */,
 				42386C311E01996F009E913F /* VSSConfirmIdentityResponsePrivate.h in Headers */,
 				427A63461DB9096C00A33661 /* VSSHTTPRequest.h in Headers */,

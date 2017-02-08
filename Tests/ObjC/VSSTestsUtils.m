@@ -49,7 +49,7 @@
     return request;
 }
 
-- (VSSCreateGlobalCardRequest *)instantiateEmailCreateCardRequestWithIdentity:(NSString *)identity keyPair:(VSSKeyPair *)keyPair {
+- (VSSCreateGlobalCardRequest *)instantiateEmailCreateCardRequestWithIdentity:(NSString *)identity validationToken:(NSString *)validationToken keyPair:(VSSKeyPair *)keyPair {
     if (keyPair == nil) {
         keyPair = [self.crypto generateKeyPair];
     }
@@ -58,7 +58,7 @@
     // some random value
     NSString *identityValue = identity;
     NSString *identityType = @"email";
-    VSSCreateGlobalCardRequest *request = [VSSCreateGlobalCardRequest createGlobalCardRequestWithIdentity:identityValue identityType:identityType publicKeyData:exportedPublicKey];
+    VSSCreateGlobalCardRequest *request = [VSSCreateGlobalCardRequest createGlobalCardRequestWithIdentity:identityValue identityType:identityType validationToken:validationToken publicKeyData:exportedPublicKey];
     
     VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
     
@@ -116,8 +116,8 @@
     return request;
 }
 
-- (VSSRevokeGlobalCardRequest *)instantiateRevokeGlobalCardForCard:(VSSCard *)card withPrivateKey:(VSSPrivateKey *)privateKey {
-    VSSRevokeGlobalCardRequest *request = [VSSRevokeGlobalCardRequest revokeCardRequestWithCardId:card.identifier reason:VSSCardRevocationReasonUnspecified];
+- (VSSRevokeGlobalCardRequest *)instantiateRevokeGlobalCardForCard:(VSSCard *)card validationToken:(NSString *)validationToken withPrivateKey:(VSSPrivateKey *)privateKey {
+    VSSRevokeGlobalCardRequest *request = [VSSRevokeGlobalCardRequest revokeGlobalCardRequestWithCardId:card.identifier validationToken:validationToken reason:VSSCardRevocationReasonUnspecified];
     
     VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
     

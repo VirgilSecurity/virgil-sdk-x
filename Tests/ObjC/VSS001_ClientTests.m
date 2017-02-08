@@ -388,9 +388,9 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
                 
                 [self.client confirmIdentityWithActionId:actionId confirmationCode:code timeToLive:3600 countToLive:12 completion:^(VSSConfirmIdentityResponse *response, NSError *error) {
                     
-                    VSSCreateGlobalCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithIdentity:identity keyPair:nil];
+                    VSSCreateGlobalCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithIdentity:identity validationToken:response.validationToken keyPair:nil];
                     
-                    [self.client createGlobalCardWithRequest:request validationToken:response.validationToken completion:^(VSSCard *card, NSError *error) {
+                    [self.client createGlobalCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
                         XCTAssert(error == nil);
                         
                         XCTAssert([self.utils checkCard:card isEqualToCreateGlobalCardRequest:request]);
@@ -433,12 +433,12 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
                 [self.client confirmIdentityWithActionId:actionId confirmationCode:code timeToLive:3600 countToLive:12 completion:^(VSSConfirmIdentityResponse *response, NSError *error) {
                     
                     VSSKeyPair *keyPair = [self.crypto generateKeyPair];
-                    VSSCreateGlobalCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithIdentity:identity keyPair:keyPair];
+                    VSSCreateGlobalCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithIdentity:identity validationToken:response.validationToken keyPair:keyPair];
                     
-                    [self.client createGlobalCardWithRequest:request validationToken:response.validationToken completion:^(VSSCard *card, NSError *error) {
-                        VSSRevokeGlobalCardRequest *revokeRequest = [self.utils instantiateRevokeGlobalCardForCard:card withPrivateKey:keyPair.privateKey];
+                    [self.client createGlobalCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
+                        VSSRevokeGlobalCardRequest *revokeRequest = [self.utils instantiateRevokeGlobalCardForCard:card validationToken:response.validationToken withPrivateKey:keyPair.privateKey];
                     
-                        [self.client revokeGlobalCardWithRequest:revokeRequest validationToken:response.validationToken completion:^(NSError *error) {
+                        [self.client revokeGlobalCardWithRequest:revokeRequest completion:^(NSError *error) {
                             XCTAssert(error == nil);
                             
                             [ex fulfill];

@@ -38,13 +38,13 @@ class VSSTestUtils {
         return request;
     }
     
-    func instantiateEmailCreateCardRequest(withIdentity identity: String, keyPair: VSSKeyPair?) -> VSSCreateGlobalCardRequest {
+    func instantiateEmailCreateCardRequest(withIdentity identity: String, validationToken: String, keyPair: VSSKeyPair?) -> VSSCreateGlobalCardRequest {
         let kp = keyPair ?? self.crypto.generateKeyPair()
         let exportedPublicKey = self.crypto.export(kp.publicKey)
         
         let identityValue = identity
         let identityType = "email"
-        let request = VSSCreateGlobalCardRequest(identity: identityValue, identityType: identityType, publicKeyData: exportedPublicKey)
+        let request = VSSCreateGlobalCardRequest(identity: identityValue, identityType: identityType, validationToken:validationToken, publicKeyData: exportedPublicKey)
         
         let signer = VSSRequestSigner(crypto: self.crypto)
         
@@ -147,8 +147,8 @@ class VSSTestUtils {
         return revokeCard
     }
     
-    func instantiateRevokeGlobalCardRequestFor(card: VSSCard, privateKey: VSSPrivateKey) -> VSSRevokeGlobalCardRequest {
-        let revokeCard = VSSRevokeGlobalCardRequest(cardId: card.identifier, reason: .unspecified)
+    func instantiateRevokeGlobalCardRequestFor(card: VSSCard, validationToken: String, privateKey: VSSPrivateKey) -> VSSRevokeGlobalCardRequest {
+        let revokeCard = VSSRevokeGlobalCardRequest(cardId: card.identifier, validationToken:validationToken, reason: .unspecified)
         
         let signer = VSSRequestSigner(crypto: self.crypto)
         

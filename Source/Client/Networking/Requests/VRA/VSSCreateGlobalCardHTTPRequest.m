@@ -13,21 +13,15 @@
 #import "VSSSignableRequestPrivate.h"
 #import "VSSCardResponsePrivate.h"
 #import "NSObject+VSSUtils.h"
-#import "VSSModelKeys.h"
 
 @implementation VSSCreateGlobalCardHTTPRequest
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithContext:(VSSHTTPRequestContext *)context createGlobalCardRequest:(VSSCreateGlobalCardRequest *)request validationToken:(NSString *)validationToken {
+- (instancetype)initWithContext:(VSSHTTPRequestContext *)context createGlobalCardRequest:(VSSCreateGlobalCardRequest *)request  {
     self = [super initWithContext:context];
     if (self) {
         NSMutableDictionary *body = [[request serialize] mutableCopy];
-        
-        NSMutableDictionary *metaDict = body[kVSSCModelMeta];
-        metaDict[kVSSCModelValidation] = @{
-                                           kVSSCModelToken: validationToken
-                                           };
         
         [self setRequestBodyWithObject:body];
     }

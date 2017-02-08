@@ -12,7 +12,7 @@
 
 @interface VSSRevokeGlobalCardHTTPRequest : VSSVraBaseHTTPRequest
 
-- (instancetype __nonnull)initWithContext:(VSSHTTPRequestContext * __nonnull)context revokeCardRequest:(VSSRevokeGlobalCardRequest* __nonnull)request validationToken:(NSString * __nonnull)validationToken NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithContext:(VSSHTTPRequestContext * __nonnull)context revokeCardRequest:(VSSRevokeGlobalCardRequest* __nonnull)request NS_DESIGNATED_INITIALIZER;
 
 - (instancetype __nonnull)initWithContext:(VSSHTTPRequestContext * __nonnull)context NS_UNAVAILABLE;
 
