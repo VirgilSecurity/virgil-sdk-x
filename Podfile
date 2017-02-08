@@ -3,7 +3,7 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'VirgilSDK iOS' do
-	pod 'VirgilCrypto', '~> 2.0.0'
+	pod 'VirgilCrypto', '~> 2.0.4'
 
     target 'VirgilSDKTests' do
         inherit! :search_paths
