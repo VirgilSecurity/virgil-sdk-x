@@ -16,8 +16,8 @@
 
 #pragma mark - Overrides
 
-- (NSError *)handleError:(NSObject *)candidate {
-    NSError *error = [super handleError:candidate];
+- (NSError *)handleError:(NSObject *)candidate code:(NSInteger)code {
+    NSError *error = [super handleError:candidate code:code];
     if (error != nil) {
         return error;
     }

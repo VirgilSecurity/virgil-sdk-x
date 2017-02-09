@@ -11,6 +11,8 @@
 #import "VSSModelKeys.h"
 #import "VSSModelCommonsPrivate.h"
 
+NSString *const kVSSVirgilServiceErrorDomain = @"VSSVirgilServiceErrorDomain";
+
 @interface VSSError ()
 
 @property (nonatomic, readwrite) NSInteger code;
@@ -50,7 +52,7 @@
         descr = kVSSUnknownError;
     }
     
-    return [NSError errorWithDomain:kVSSErrorDomain code:self.code userInfo:@{ NSLocalizedDescriptionKey : descr }];
+    return [[NSError alloc] initWithDomain:kVSSVirgilServiceErrorDomain code:self.code userInfo:@{ NSLocalizedDescriptionKey : descr }];
 }
 
 #pragma mark - VSSDeserializable

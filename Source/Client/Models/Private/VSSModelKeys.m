@@ -43,5 +43,4 @@ NSString *const kVSSIModelValidationToken = @"validation_token";
 
 NSString *const kVSSCModelCode = @"code";
 
-NSString *const kVSSErrorDomain = @"VirgilSecurityServicesErrorDomain";
 NSString *const kVSSUnknownError = @"Virgil Security service unknown error.";

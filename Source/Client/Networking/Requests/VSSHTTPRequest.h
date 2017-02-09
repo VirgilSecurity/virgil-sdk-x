@@ -162,9 +162,11 @@ extern NSString * __nonnull const kVSSAccessTokenHeader;
  *
  * @param candidate NSObject received by call to parseResponse method.\
  *
+ * @param code NSInteger http error code
+ *
  * @return NSError in case of any errors inside response data or during the parsing. Otherwise returns nil.
  */
-- (NSError * __nullable)handleError:(NSObject * __nullable)candidate;
+- (NSError * __nullable)handleError:(NSObject * __nullable)candidate code:(NSInteger)code;
 
 /**
  * This method is called when underlying request has been done by url session, after parseResponse and after handleError. 

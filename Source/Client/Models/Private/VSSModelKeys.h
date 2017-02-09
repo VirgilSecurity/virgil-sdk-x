@@ -42,5 +42,4 @@ extern NSString * __nonnull const kVSSIModelValidationToken;
 
 extern NSString * __nonnull const kVSSCModelCode;
 
-extern NSString * __nonnull const kVSSErrorDomain;
 extern NSString * __nonnull const kVSSUnknownError;
