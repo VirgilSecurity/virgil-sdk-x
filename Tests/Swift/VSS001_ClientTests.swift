@@ -10,7 +10,7 @@ import XCTest
 import VirgilSDK
 
 /// Each request should be done less than or equal this number of seconds.
-let kEstimatedRequestCompletionTime = 8
+let kEstimatedRequestCompletionTime = 12
 
 class VSS001_ClientTests: XCTestCase {
     
@@ -252,7 +252,7 @@ class VSS001_ClientTests: XCTestCase {
             XCTAssert(actionId != nil)
             XCTAssert(actionId!.lengthOfBytes(using: .utf8) != 0)
             
-            sleep(3)
+            sleep(10)
             
             let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
             
@@ -298,7 +298,7 @@ class VSS001_ClientTests: XCTestCase {
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(5)
+            sleep(10)
             
             let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
             
@@ -343,7 +343,7 @@ class VSS001_ClientTests: XCTestCase {
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(5)
+            sleep(10)
             
             let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
             
@@ -386,7 +386,7 @@ class VSS001_ClientTests: XCTestCase {
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(5)
+            sleep(10)
             
             let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
             
@@ -441,7 +441,7 @@ class VSS001_ClientTests: XCTestCase {
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(5)
+            sleep(10)
             
             let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
             

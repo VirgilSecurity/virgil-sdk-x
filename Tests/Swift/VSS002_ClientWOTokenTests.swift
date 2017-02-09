@@ -65,7 +65,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
             XCTAssert(actionId != nil)
             XCTAssert(actionId!.lengthOfBytes(using: .utf8) != 0)
             
-            sleep(3)
+            sleep(10)
             
             let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
             
@@ -111,7 +111,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(5)
+            sleep(10)
             
             let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
             
@@ -156,7 +156,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(5)
+            sleep(10)
             
             let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
             
@@ -199,7 +199,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(5)
+            sleep(10)
             
             let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
             
@@ -254,7 +254,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(5)
+            sleep(10)
             
             let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
             
