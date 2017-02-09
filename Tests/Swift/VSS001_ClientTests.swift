@@ -298,7 +298,7 @@ class VSS001_ClientTests: XCTestCase {
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(3)
+            sleep(5)
             
             let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
             
