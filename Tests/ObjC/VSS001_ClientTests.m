@@ -334,7 +334,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
     NSString *identity = [self.utils generateEmail];
     
     [self.client verifyIdentity:identity identityType:@"email" extraFields:nil completion:^(NSString *actionId, NSError *error) {
-        sleep(3);
+        sleep(5);
         
         NSString *identityShort = [identity substringToIndex:[identity rangeOfString:@"@"].location];
         [self.mailinator getInbox:identityShort completionHandler:^(NSArray<MEmailMetadata *> *metadataList, NSError * error) {
@@ -373,7 +373,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
     NSString *identity = [self.utils generateEmail];
     
     [self.client verifyIdentity:identity identityType:@"email" extraFields:nil completion:^(NSString *actionId, NSError *error) {
-        sleep(3);
+        sleep(5);
         
         NSString *identityShort = [identity substringToIndex:[identity rangeOfString:@"@"].location];
         [self.mailinator getInbox:identityShort completionHandler:^(NSArray<MEmailMetadata *> *metadataList, NSError * error) {
@@ -417,7 +417,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
     NSString *identity = [self.utils generateEmail];
     
     [self.client verifyIdentity:identity identityType:@"email" extraFields:nil completion:^(NSString *actionId, NSError *error) {
-        sleep(3);
+        sleep(5);
         
         NSString *identityShort = [identity substringToIndex:[identity rangeOfString:@"@"].location];
         [self.mailinator getInbox:identityShort completionHandler:^(NSArray<MEmailMetadata *> *metadataList, NSError * error) {
