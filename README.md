@@ -72,6 +72,12 @@ $ pod install
 
 > CocoaPods 0.36+ is required to build VirgilSDK 4.0.0+.
 
+### Carthage
+
+As of version 4.2.0 VirgilSDK is available for integration using Carthage.
+Information on how to use Carthage can be found here:
+https://github.com/Carthage/Carthage
+
 ## Swift note
 
 Although VirgilSDK pod is using Objective-C as its primary language it might be quite easily used in a Swift application.
