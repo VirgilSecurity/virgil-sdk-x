@@ -56,7 +56,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let ex = self.expectation(description: "Verification code should be sent to email");
         
         let numberOfRequests = 3
-        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
+        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
         let identity = self.utils.generateEmail()
         
@@ -65,7 +65,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
             XCTAssert(actionId != nil)
             XCTAssert(actionId!.lengthOfBytes(using: .utf8) != 0)
             
-            sleep(10)
+            sleep(UInt32(kEstimatedEmailReceiveTime))
             
             let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
             
@@ -106,12 +106,12 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let ex = self.expectation(description: "Verification code should be sent to email. Validation token should be obtained");
         
         let numberOfRequests = 4
-        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
+        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(10)
+            sleep(UInt32(kEstimatedEmailReceiveTime))
             
             let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
             
@@ -151,12 +151,12 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let ex = self.expectation(description: "Verification code should be sent to email. Validation token should be obtained. Confirmation should pass");
         
         let numberOfRequests = 5
-        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
+        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(10)
+            sleep(UInt32(kEstimatedEmailReceiveTime))
             
             let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
             
@@ -194,12 +194,12 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let ex = self.expectation(description: "Global Email Virgil Card should be created")
         
         let numberOfRequests = 5
-        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
+        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(10)
+            sleep(UInt32(kEstimatedEmailReceiveTime))
             
             let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
             
@@ -249,12 +249,12 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let ex = self.expectation(description: "Global Email Virgil Card should be created. Global Email Virgil Card should be revoked.")
         
         let numberOfRequests = 6
-        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
+        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(10)
+            sleep(UInt32(kEstimatedEmailReceiveTime))
             
             let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
             
