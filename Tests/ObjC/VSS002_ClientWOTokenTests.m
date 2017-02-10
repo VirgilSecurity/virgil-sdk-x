@@ -19,7 +19,7 @@
 
 /// Each request should be done less than or equal this number of seconds.
 static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
-static const NSTimeInterval kEstimatedEmailReceiveTime = 15.;
+static const NSTimeInterval kEstimatedEmailReceiveTime = 30.;
 
 @interface VSS002_ClientWOTokenTests : XCTestCase
 
