@@ -370,7 +370,7 @@ self.client.revokeCardWithRequest(revokeRequest) { error in
 Global Virgil Cards are not bounded to specific application, but instead are verified using Virgil Registration Authority.
 Virgil Global Card creation consists of 2 steps:
 1. Verifying Identity and obtaining validation token
-2. Creation actual Card
+2. Creating actual Card
 
 At this moment you can create Global Virgil Cards bounded to email address.
 To confirm that you are owner of specific email address and get validation token you should 
@@ -411,21 +411,21 @@ self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, tim
 }
 ```
 
-3) Create Global Virgil Card using validation token just like regulare application Card
+3) Create Global Virgil Card using validation token just like regular application Card
 
 ###### Objective-C
 ```objective-c
 VSSKeyPair *aliceKeys = [self.crypto generateKeyPair];
 
 NSData *exportedPublicKey = [self.crypto exportPublicKey:aliceKeys.publicKey];
-VSSCreateGlobalCardRequest *request = [VSSCreateGlobalCardRequest createCardRequestWithIdentity:@"alice" identityType:@"email" publicKey:exportedPublicKey];
+VSSCreateGlobalCardRequest *request = [VSSCreateGlobalCardRequest createGlobalCardRequestWithIdentity:@"alice" identityType:@"email" validationToken: response.validationToken publicKey:exportedPublicKey];
 
 VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
 
 NSError *error;
 [signer selfSignRequest:request withPrivateKey:aliceKeys.privateKey error:&error];
                     
-[self.client createGlobalCardWithRequest:request validationToken:response.validationToken completion:^(VSSCard *card, NSError *error) {
+[self.client createGlobalCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
 	//...
 }];
 ```
@@ -435,7 +435,7 @@ NSError *error;
 let aliceKeys = self.crypto.generateKeyPair()
 
 let exportedPublicKey = self.crypto.export(publicKey: aliceKeys.publicKey)
-let request = VSSCreateCardRequest(identity: "alice", identityType: "email", publicKey: exportedPublicKey)
+let request = VSSCreateCardRequest(identity: "alice", identityType: "email", validationToken: response!.validationToken, publicKey: exportedPublicKey)
 
 let signer = VSSRequestSigner(crypto: self.crypto)
 
@@ -446,7 +446,7 @@ catch {
 	//...
 }
         
-self.client.createGlobalCardWith(request, validationToken: response!.validationToken) { (registeredCard, error) in
+self.client.createGlobalCardWith(request) { (registeredCard, error) in
     //...
 }
 ```
@@ -459,14 +459,14 @@ NSString *identity = @"alice@email.com";
 [self.client verifyIdentity:identity identityType:@"email" extraFields:nil completion:^(NSString *actionId, NSError *error) {
 	NSString *code = @"AAABBB"; // Confirmation code from your email
 	[self.client confirmIdentityWithActionId:actionId confirmationCode:code timeToLive:3600 countToLive:12 completion:^(VSSConfirmIdentityResponse *response, NSError *error) {
-		VSSRevokeGlobalCardRequest *revokeRequest = [VSSRevokeGlobalCardRequest revokeCardRequestWithCardId:card.identifier reason:VSSCardRevocationReasonUnspecified];
+		VSSRevokeGlobalCardRequest *revokeRequest = [VSSRevokeGlobalCardRequest revokeGlobalCardRequestWithCardId:card.identifier validationToken:response.validationToken reason:VSSCardRevocationReasonUnspecified];
 	    
 	    VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
 	    
 	    NSError *error;
 	    [signer authoritySignRequest:revokeRequest forAppId:card.identifier withPrivateKey:aliceKeys.privateKey error:&error];
 		                    
-		[self.client revokeGlobalCardWithRequest:revokeRequest validationToken:response.validationToken completion:^(NSError *error) {
+		[self.client revokeGlobalCardWithRequest:revokeRequest completion:^(NSError *error) {
 			//...
         }];
 	}];
@@ -479,15 +479,15 @@ let identity = "alice@email.com"
 self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
 	let code = = "AAABBB" // Confirmation code from your email
 	self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
-		let revokeRequest = VSSRevokeGlobalCardRequest(cardId: card.identifier, reason: .unspecified)
+		let revokeRequest = VSSRevokeGlobalCardRequest(cardId: card.identifier, validationToken: response!.validationToken, reason: .unspecified)
         
         let signer = VSSRequestSigner(crypto: self.crypto)
         
         try! signer.authoritySign(revokeRequest, forAppId: card.identifier, with: aliceKeys.privateKey)
         
-        self.client.revokeGlobalCardWith(revokeRequest, validationToken: response!.validationToken, completion: { error in
+        self.client.revokeGlobalCardWith(revokeRequest) { error in
             //...
-        })
+        }
 	}
 }
 ```
