@@ -10,6 +10,8 @@
 #import "VSSModelCommons.h"
 #import "VSSDeserializable.h"
 
+extern NSString * __nonnull const kVSSVirgilServiceErrorDomain;
+
 /**
  * Wrapper object for managing errors returned by the Virgil Services.
  */

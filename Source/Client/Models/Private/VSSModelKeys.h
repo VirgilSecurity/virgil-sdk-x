@@ -22,6 +22,8 @@ extern NSString * __nonnull const kVSSCModelDevice;
 extern NSString * __nonnull const kVSSCModelDeviceName;
 extern NSString * __nonnull const kVSSCModelContentSnapshot;
 extern NSString * __nonnull const kVSSCModelMeta;
+extern NSString * __nonnull const kVSSCModelValidation;
+extern NSString * __nonnull const kVSSCModelToken;
 extern NSString * __nonnull const kVSSCModelPublicKey;
 extern NSString * __nonnull const kVSSCModelSigns;
 extern NSString * __nonnull const kVSSCModelCardId;
@@ -40,5 +42,4 @@ extern NSString * __nonnull const kVSSIModelValidationToken;
 
 extern NSString * __nonnull const kVSSCModelCode;
 
-extern NSString * __nonnull const kVSSErrorDomain;
 extern NSString * __nonnull const kVSSUnknownError;

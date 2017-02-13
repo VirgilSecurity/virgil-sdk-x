@@ -1,3 +1,4 @@
+# CocoaPods
 Pods
 
 # Xcode
@@ -23,3 +24,7 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+
+# Carthage
+#
+Carthage/*

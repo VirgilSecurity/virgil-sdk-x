@@ -2,6 +2,7 @@
 
 [![Build Status](https://api.travis-ci.org/VirgilSecurity/virgil-sdk-x.svg?branch=master)](https://travis-ci.org/VirgilSecurity/virgil-sdk-x)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilSDK.svg)](https://img.shields.io/cocoapods/v/VirgilSDK.svg)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/VirgilSDK.svg?style=flat)](http://cocoadocs.org/docsets/VirgilSDK)
 [![codecov.io](https://codecov.io/github/VirgilSecurity/virgil-sdk-x/coverage.svg)](https://codecov.io/github/VirgilSecurity/virgil-sdk-x/)
 [![GitHub license](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg)](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE)
@@ -23,9 +24,11 @@ In this guide you will find code for every task you need to implement in order t
 * [Validating Virgil Cards](#validating-virgil-cards)
 * [Get a Virgil Card](#get-a-virgil-card)
 * [Revoking a Virgil Card](#revoking-a-virgil-card)
+* [Global Virgil Cards](#global-virgil-cards)
 * [Operations with Crypto Keys](#operations-with-crypto-keys)
 * [Generate Keys](#generate-keys)
 * [Import and Export Keys](#import-and-export-keys)
+* [Keys and Keychain](#keys-and-keychain)
 * [Encryption and Decryption](#encryption-and-decryption)
 * [Encrypt Data](#encrypt-data)
 * [Decrypt Data](#decrypt-data)
@@ -69,6 +72,12 @@ $ pod install
 ```
 
 > CocoaPods 0.36+ is required to build VirgilSDK 4.0.0+.
+
+### Carthage
+
+As of version 4.2.0 VirgilSDK is available for integration using Carthage.
+Information on how to use Carthage can be found here:
+https://github.com/Carthage/Carthage
 
 ## Swift note
 
@@ -350,11 +359,137 @@ do {
 	try signer.authoritySign(revokeRequest, forAppId: appId, with: appPrivateKey)
 }
 catch {
-	// ...
+	//...
 }
 
 self.client.revokeCardWithRequest(revokeRequest) { error in
 	//...
+}
+```
+
+## Global Virgil Cards
+Global Virgil Cards are not bounded to specific application, but instead are verified using Virgil Registration Authority.
+Virgil Global Card creation consists of 2 steps:
+1. Verifying Identity and obtaining validation token
+2. Creating actual Card
+
+At this moment you can create Global Virgil Cards bounded to email address.
+To confirm that you are owner of specific email address and get validation token you should 
+
+1) Request confirmation code to your email
+
+###### Objective-C
+```objective-c
+NSString *identity = @"alice@email.com";
+[self.client verifyIdentity:identity identityType:@"email" extraFields:nil completion:^(NSString *actionId, NSError *error) {
+	//...
+}];
+```
+
+###### Swift
+```swift
+let identity = "alice@email.com"
+self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
+	//...
+}
+```
+
+2) Get validation token using confirmation code
+
+###### Objective-C
+```objective-c
+NSString *code = @"AAABBB"; // Confirmation code from your email
+[self.client confirmIdentityWithActionId:actionId confirmationCode:code timeToLive:3600 countToLive:12 completion:^(VSSConfirmIdentityResponse *response, NSError *error) {
+	//...
+}];
+```
+
+###### Swift
+```swift
+let code = = "AAABBB" // Confirmation code from your email
+self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+	//...
+}
+```
+
+3) Create Global Virgil Card using validation token just like regular application Card
+
+###### Objective-C
+```objective-c
+VSSKeyPair *aliceKeys = [self.crypto generateKeyPair];
+
+NSData *exportedPublicKey = [self.crypto exportPublicKey:aliceKeys.publicKey];
+VSSCreateGlobalCardRequest *request = [VSSCreateGlobalCardRequest createGlobalCardRequestWithIdentity:@"alice" identityType:@"email" validationToken: response.validationToken publicKey:exportedPublicKey];
+
+VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
+
+NSError *error;
+[signer selfSignRequest:request withPrivateKey:aliceKeys.privateKey error:&error];
+                    
+[self.client createGlobalCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
+	//...
+}];
+```
+
+###### Swift
+```swift
+let aliceKeys = self.crypto.generateKeyPair()
+
+let exportedPublicKey = self.crypto.export(publicKey: aliceKeys.publicKey)
+let request = VSSCreateCardRequest(identity: "alice", identityType: "email", validationToken: response!.validationToken, publicKey: exportedPublicKey)
+
+let signer = VSSRequestSigner(crypto: self.crypto)
+
+do {
+    try signer.selfSign(request, with: aliceKeys.privateKey)
+}
+catch {
+	//...
+}
+        
+self.client.createGlobalCardWith(request) { (registeredCard, error) in
+    //...
+}
+```
+
+Global Card Revocation process combines Revocation process of application Virgil Cards and Identity confirmation just like during Card creation.
+
+###### Objective-C
+```objective-c
+NSString *identity = @"alice@email.com";
+[self.client verifyIdentity:identity identityType:@"email" extraFields:nil completion:^(NSString *actionId, NSError *error) {
+	NSString *code = @"AAABBB"; // Confirmation code from your email
+	[self.client confirmIdentityWithActionId:actionId confirmationCode:code timeToLive:3600 countToLive:12 completion:^(VSSConfirmIdentityResponse *response, NSError *error) {
+		VSSRevokeGlobalCardRequest *revokeRequest = [VSSRevokeGlobalCardRequest revokeGlobalCardRequestWithCardId:card.identifier validationToken:response.validationToken reason:VSSCardRevocationReasonUnspecified];
+	    
+	    VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
+	    
+	    NSError *error;
+	    [signer authoritySignRequest:revokeRequest forAppId:card.identifier withPrivateKey:aliceKeys.privateKey error:&error];
+		                    
+		[self.client revokeGlobalCardWithRequest:revokeRequest completion:^(NSError *error) {
+			//...
+        }];
+	}];
+}];
+```
+
+###### Swift
+```swift
+let identity = "alice@email.com"
+self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
+	let code = = "AAABBB" // Confirmation code from your email
+	self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+		let revokeRequest = VSSRevokeGlobalCardRequest(cardId: card.identifier, validationToken: response!.validationToken, reason: .unspecified)
+        
+        let signer = VSSRequestSigner(crypto: self.crypto)
+        
+        try! signer.authoritySign(revokeRequest, forAppId: card.identifier, with: aliceKeys.privateKey)
+        
+        self.client.revokeGlobalCardWith(revokeRequest) { error in
+            //...
+        }
+	}
 }
 ```
 
@@ -402,6 +537,78 @@ VSSPublicKey *alicePublicKey = [self.crypto importPublicKeyFromData:alicePublicK
 ```swift
 let alicePrivateKey = self.crypto.import(from: alicePrivateKeyData, password: nil)
 let alicePublicKey = self.crypto.import(from: alicePublicKeyData)
+```
+
+## Keys and Keychain
+Virgil SDK provides convienient methods to save and retrieve keys to/from Keychain.
+
+To store key to Keychain you can use following snippet
+
+###### Objective-C
+```objective-c
+VSSKeyStorage *storage = [[VSSKeyStorage alloc] init];
+VSSKeyPair *aliceKeys = [self.crypto generateKeyPair];
+    
+NSData *privateKeyRawData = [self.crypto exportPrivateKey:aliceKeys.privateKey withPassword:nil];
+NSString *privateKeyName = @"aliceKey";
+    
+VSSKeyEntry *aliceKeyEntry = [VSSKeyEntry keyEntryWithName:privateKeyName value:privateKeyRawData];
+
+NSError *error;
+BOOL res = [storage storeKeyEntry:aliceKeyEntry error:&error];
+```
+
+###### Swift
+```swift
+let storage = VSSKeyStorage()
+let aliceKeys = self.crypto.generateKeyPair()
+        
+let privateKeyRawData = self.crypto.export(aliceKeys.privateKey, withPassword: nil)
+let privateKeyName = "aliceKey"
+        
+let aliceKeyEntry = VSSKeyEntry(name: privateKeyName, value: privateKeyRawData)
+
+try! storage.store(aliceKeyEntry)
+```
+
+You can also Load key from Keychain, check its existance and remove key from Keychain.
+
+To load key:
+
+###### Objective-C
+```objective-c
+NSError *error;
+VSSKeyEntry *loadedKeyEntry = [storage loadKeyEntryWithName:@"aliceKey" error:&error];
+```
+
+###### Swift
+```swift
+let loadedKeyEntry = try! storage.loadKeyEntry(withName: "aliceKey")
+```
+
+To check existence
+
+###### Objective-C
+```objective-c
+BOOL exists = [storage existsKeyEntryWithName:@"aliceKey"];
+```
+
+###### Swift
+```swift
+let exists = storage.existsKeyEntry(withName: "alicaKey")
+```
+
+To remove key
+
+###### Objective-C
+```objective-c
+NSError *error;
+BOOL res = [storage deleteKeyEntryWithName:self.keyEntry.name error:&error];
+```
+
+###### Swift
+```swift
+try! storage.deleteKeyEntry(withName: "aliceKey")
 ```
 
 ## Encryption and Decryption

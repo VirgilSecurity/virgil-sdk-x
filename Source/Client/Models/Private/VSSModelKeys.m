@@ -21,6 +21,8 @@ NSString *const kVSSCModelDeviceName = @"device_name";
 NSString *const kVSSCModelPublicKey = @"public_key";
 NSString *const kVSSCModelContentSnapshot = @"content_snapshot";
 NSString *const kVSSCModelMeta = @"meta";
+NSString *const kVSSCModelValidation = @"validation";
+NSString *const kVSSCModelToken = @"token";
 NSString *const kVSSCModelCardScope = @"scope";
 NSString *const kVSSCModelIdentityType = @"identity_type";
 NSString *const kVSSCModelSigns = @"signs";
@@ -41,5 +43,4 @@ NSString *const kVSSIModelValidationToken = @"validation_token";
 
 NSString *const kVSSCModelCode = @"code";
 
-NSString *const kVSSErrorDomain = @"VirgilSecurityServicesErrorDomain";
 NSString *const kVSSUnknownError = @"Virgil Security service unknown error.";

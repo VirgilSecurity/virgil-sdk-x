@@ -10,6 +10,6 @@
 
 @interface VSSCard ()
 
-- (instancetype __nonnull)initWithIdentifier:(NSString * __nonnull)identifier identity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKeyData:(NSData * __nonnull)publicKeyData scope:(VSSCardScope)scope data:(NSDictionary<NSString *, NSString *> * __nullable)data info:(NSDictionary<NSString *, NSString *> * __nullable)info createdAt:(NSDate * __nonnull)createdAt cardVersion:(NSString * __nonnull)cardVersion;
+- (instancetype __nonnull)initWithCardResponse:(VSSCardResponse * __nonnull)cardResponse;
 
 @end

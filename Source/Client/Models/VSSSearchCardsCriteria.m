@@ -18,6 +18,10 @@
     return [[VSSSearchCardsCriteria alloc] initWithScope:scope identityType:identityType identities:identities];
 }
 
++ (instancetype)searchCardsCriteriaWithIdentityType:(NSString *)identityType identities:(NSArray<NSString *>*)identities {
+    return [[VSSSearchCardsCriteria alloc] initWithScope:(VSSCardScope)-1 identityType:identityType identities:identities];
+}
+
 - (instancetype)initWithScope:(VSSCardScope)scope identityType:(NSString *)identityType identities:(NSArray<NSString *> *)identities {
     self = [super init];
 
@@ -33,14 +37,16 @@
 - (NSDictionary *)serialize {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     dict[kVSSCModelIdentities] = [self.identities copy];
-    dict[kVSSCModelIdentityType] = [self.identityType copy];
+    if (self.identityType != nil)
+        dict[kVSSCModelIdentityType] = [self.identityType copy];
     
     switch (self.scope) {
         case VSSCardScopeGlobal:
-            dict[kVSSCModelCardScope] = vss_getCardScopeString(VSSCardScopeGlobal);
+            dict[kVSSCModelCardScope] = vss_getCardScopeString(self.scope);
             break;
             
         case VSSCardScopeApplication:
+            dict[kVSSCModelCardScope] = vss_getCardScopeString(self.scope);
             break;
     }
     

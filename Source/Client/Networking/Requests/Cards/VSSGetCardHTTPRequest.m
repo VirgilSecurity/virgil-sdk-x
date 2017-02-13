@@ -6,6 +6,7 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
+#import "VSSError.h"
 #import "VSSGetCardHTTPRequest.h"
 #import "VSSCardResponsePrivate.h"
 #import "NSObject+VSSUtils.h"
@@ -34,6 +35,19 @@
 
 - (NSString *)methodPath {
     return [[NSString alloc] initWithFormat:@"card/%@", self.cardId];
+}
+
+- (NSError *)handleError:(NSObject *)candidate code:(NSInteger)code {
+    NSError *error = [super handleError:candidate code:code];
+    if (error != nil) {
+        return error;
+    }
+    
+
+    if (code == 404) {
+        return [[NSError alloc] initWithDomain:kVSSVirgilServiceErrorDomain code:404 userInfo:@{ NSLocalizedDescriptionKey: @"Card not found" }];
+    }
+    return nil;
 }
 
 - (NSError *)handleResponse:(NSObject *)candidate {

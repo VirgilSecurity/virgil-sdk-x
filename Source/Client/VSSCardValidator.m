@@ -9,8 +9,11 @@
 #import "VSSCardValidator.h"
 #import "VSSFingerPrint.h"
 
-static NSString * const kVSSServiceCardId = @"3e29d43373348cfb373b7eae189214dc01d7237765e572db685839b64adca853";
-static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUNvd0JRWURLMlZ3QXlFQVlSNTAxa1YxdFVuZTJ1T2RrdzRrRXJSUmJKcmMyU3lhejVWMWZ1RytyVnM9Ci0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQo=";
+static NSString * const kVSSCardsServiceCardId = @"3e29d43373348cfb373b7eae189214dc01d7237765e572db685839b64adca853";
+static NSString * const kVSSCardsServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUNvd0JRWURLMlZ3QXlFQVlSNTAxa1YxdFVuZTJ1T2RrdzRrRXJSUmJKcmMyU3lhejVWMWZ1RytyVnM9Ci0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQo=";
+
+static NSString * const kVSSVraServiceCardId = @"67b8ee8e53b4c0c6b65b4bbdda6fa159e8208f58ffc290ec61a72c3fd07ad035";
+static NSString * const kVSSVraServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUNvd0JRWURLMlZ3QXlFQVdwQ25zME5oVzlyWU1VUWJoeXBSNTRGbm1RYTVJZzVqaXBKSzJWaVpzSzg9Ci0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQo=";
 
 @interface VSSCardValidator ()
 
@@ -27,7 +30,7 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
     VSSCardValidator *copy = [[VSSCardValidator alloc] initWithCrypto:self.crypto];
     
     for (NSString *cardId in self.verifiers) {
-        if ([cardId isEqualToString:kVSSServiceCardId])
+        if ([cardId isEqualToString:kVSSCardsServiceCardId] || [cardId isEqualToString:kVSSVraServiceCardId])
             continue;
         
         [copy addVerifierWithId:cardId publicKey:self.verifiers[cardId]];
@@ -41,13 +44,19 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
     if (self) {
         _crypto = crypto;
         
-        NSData *servicePublicKeyData = [[NSData alloc] initWithBase64EncodedString:kVSSServicePublicKey options:0];
-        VSSPublicKey *servicePublicKey = [crypto importPublicKeyFromData:servicePublicKeyData];
-        if (servicePublicKey == nil)
+        NSData *cardsServicePublicKeyData = [[NSData alloc] initWithBase64EncodedString:kVSSCardsServicePublicKey options:0];
+        VSSPublicKey *cardsServicePublicKey = [crypto importPublicKeyFromData:cardsServicePublicKeyData];
+        if (cardsServicePublicKey == nil)
+            return nil;
+        
+        NSData *vraServicePublicKeyData = [[NSData alloc] initWithBase64EncodedString:kVSSVraServicePublicKey options:0];
+        VSSPublicKey *vraServicePublicKey = [crypto importPublicKeyFromData:vraServicePublicKeyData];
+        if (vraServicePublicKey == nil)
             return nil;
         
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-        dict[kVSSServiceCardId] = servicePublicKey;
+        dict[kVSSCardsServiceCardId] = cardsServicePublicKey;
+        dict[kVSSVraServiceCardId] = vraServicePublicKey;
         
         _verifiers = dict;
     }
@@ -78,14 +87,31 @@ static NSString * const kVSSServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0
 
     VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:cardResponse.snapshot];
     
-    if (![cardResponse.identifier isEqualToString:fingerprint.hexValue])
+    NSString *cardId = fingerprint.hexValue;
+    if (![cardResponse.identifier isEqualToString:cardId])
         return NO;
     
     NSMutableDictionary *verifiers = [self.verifiers mutableCopy];
     VSSPublicKey *creatorPublicKey = [self.crypto importPublicKeyFromData:cardResponse.model.publicKeyData];
-    verifiers[fingerprint.hexValue] = creatorPublicKey;
+    verifiers[cardId] = creatorPublicKey;
 
     for (NSString *verifierId in verifiers.allKeys) {
+        switch (cardResponse.model.scope) {
+            case VSSCardScopeGlobal:
+                if (![verifierId isEqualToString:kVSSVraServiceCardId]
+                    && ![verifierId isEqualToString:kVSSCardsServiceCardId]
+                    && ![verifierId isEqualToString:cardId]) {
+                    continue;
+                }
+                break;
+                
+            case VSSCardScopeApplication:
+                if ([verifierId isEqualToString:kVSSVraServiceCardId]) {
+                    continue;
+                }
+                break;
+        }
+        
         NSData *signature = cardResponse.signatures[verifierId];
         if (signature == nil)
             return NO;

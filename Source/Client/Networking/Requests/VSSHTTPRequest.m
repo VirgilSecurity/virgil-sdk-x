@@ -90,7 +90,7 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
     return nil;
 }
 
-- (NSError *)handleError:(NSObject *)candidate {
+- (NSError *)handleError:(NSObject *)candidate code:(NSInteger)code {
     return [candidate as:[NSError class]];
 }
 
@@ -150,7 +150,7 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
                 case 200:
                     break;
                 default:
-                    self.error = [NSError errorWithDomain:kVSSHTTPRequestErrorDomain code:httpResponse.statusCode userInfo:nil];
+                    self.error = [[NSError alloc] initWithDomain:kVSSHTTPRequestErrorDomain code:httpResponse.statusCode userInfo:nil];
                     break;
             }
             
@@ -159,7 +159,7 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
             /// or whatever.
             NSObject *parsedResponse = [self parseResponse];
             // In any case we should check if response object contains some kind of service error.
-            NSError *logicError = [self handleError:parsedResponse];
+            NSError *logicError = [self handleError:parsedResponse code:httpResponse.statusCode];
             if (logicError != nil) {
                 /// Prioritize logic error over the HTTP Status code.
                 self.error = logicError;

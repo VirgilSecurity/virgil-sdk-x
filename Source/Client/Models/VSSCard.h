@@ -8,13 +8,18 @@
 
 #import "VSSBaseModel.h"
 #import "VSSModelCommons.h"
+#import "VSSCardResponse.h"
+#import "VSSImportable.h"
+#import "VSSExportable.h"
 
 /**
  Model that represents identities on the Virgil Cards Service.
  Each card has assigned identity of identityType, publicKey (and owner has corresponding private key),
  info about device on which Card was created, custom payload, version, creation date and scope (global or application)
+ WARNING: If you're using VSSImportable and VSSExportable interfaces, you are responsible for validating cardResponse
+ using VSSCardValidator after import!
  */
-@interface VSSCard: VSSBaseModel
+@interface VSSCard: VSSBaseModel <VSSImportable, VSSExportable>
 
 @property (nonatomic, copy, readonly) NSString * __nonnull identifier;
 
@@ -57,6 +62,11 @@
  Virgil card version
  */
 @property (nonatomic, copy, readonly) NSString * __nonnull cardVersion;
+
+/**
+ Original response from Virgil Service from which Card was created
+ */
+@property (nonatomic, copy, readonly) VSSCardResponse * __nonnull cardResponse;
 
 /**
  Unavailable no-argument initializer inherited from NSObject

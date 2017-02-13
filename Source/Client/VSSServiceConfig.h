@@ -17,7 +17,7 @@
 /**
  NSString containing application token received from https://developer.virgilsecurity.com/dashboard/
  */
-@property (nonatomic, copy) NSString * __nonnull token;
+@property (nonatomic, copy) NSString * __nullable token;
 /**
  Base URL for the Virgil Cards Service (for Read/Write queries).
  */
@@ -34,6 +34,11 @@
 @property (nonatomic, copy) NSURL * __nonnull identityServiceURL;
 
 /**
+ Base URL for the Virgil Registration Authority Service
+ */
+@property (nonatomic, copy) NSURL * __nonnull registrationAuthorityURL;
+
+/**
  VSSCardValidator instance which validates Virgil Card genuineness on every VSSClient query.
  Default value is nil
  */
@@ -46,7 +51,14 @@
 
  @return Allocated and Initialized VSSServiceConfig instance
  */
-+ (VSSServiceConfig * __nonnull)serviceConfigWithToken:(NSString * __nonnull)token;
++ (VSSServiceConfig * __nonnull)serviceConfigWithToken:(NSString * __nullable)token;
+
+/**
+ Factory method which allocates and initializes VSSServiceConfig instance with default values (default service URLs, no token, no Card Validator).
+ 
+ @return Allocated and Initialized VSSServiceConfig instance
+ */
++ (VSSServiceConfig * __nonnull)defaultServiceConfig;
 
 /**
  Unavailable no-argument initializer inherited from NSObject

@@ -17,12 +17,17 @@
         _cardsServiceURL = [[NSURL alloc] initWithString:@"https://cards.virgilsecurity.com/v4/"];;
         _cardsServiceROURL = [[NSURL alloc] initWithString:@"https://cards-ro.virgilsecurity.com/v4/"];
         _identityServiceURL = [[NSURL alloc] initWithString:@"https://identity.virgilsecurity.com/v1/"];
+        _registrationAuthorityURL = [[NSURL alloc] initWithString:@"https://ra.virgilsecurity.com/v1/"];
     }
     return self;
 }
 
 + (VSSServiceConfig *)serviceConfigWithToken:(NSString *)token {
     return [[self alloc] initWithToken:token];
+}
+
++ (VSSServiceConfig *)defaultServiceConfig {
+    return [[self alloc] initWithToken:nil];
 }
 
 - (id)copyWithZone:(nullable NSZone *)zone {

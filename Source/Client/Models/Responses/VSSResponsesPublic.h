@@ -7,3 +7,4 @@
 //
 
 #import "VSSCardResponse.h"
+#import "VSSConfirmIdentityResponse.h"

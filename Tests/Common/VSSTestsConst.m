@@ -17,10 +17,6 @@
     return @STRINGIZE2(APPLICATION_TOKEN);
 }
 
-- (NSString *)applicationPublicKeyBase64 {
-    return @STRINGIZE2(APPLICATION_PUBLIC_KEY_BASE64);
-}
-
 - (NSString *)applicationPrivateKeyBase64 {
     return @STRINGIZE2(APPLICATION_PRIVATE_KEY_BASE64);
 }

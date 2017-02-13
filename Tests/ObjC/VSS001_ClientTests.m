@@ -19,6 +19,7 @@
 
 /// Each request should be done less than or equal this number of seconds.
 static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
+static const NSTimeInterval kEstimatedEmailReceiveTime = 30.;
 
 @interface VSS001_ClientTests : XCTestCase
 
@@ -43,7 +44,12 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
     VSSServiceConfig *config = [VSSServiceConfig serviceConfigWithToken:self.consts.applicationToken];
     self.crypto = [[VSSCrypto alloc] init];
     VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.crypto];
-    XCTAssert([validator addVerifierWithId:self.consts.applicationId publicKeyData:[[NSData alloc] initWithBase64EncodedString:self.consts.applicationPublicKeyBase64 options:0]]);
+    
+    VSSPrivateKey *privateKey = [self.crypto importPrivateKeyFromData:[[NSData alloc] initWithBase64EncodedString:self.consts.applicationPrivateKeyBase64 options:0] withPassword:self.consts.applicationPrivateKeyPassword];
+    VSSPublicKey *publicKey = [self.crypto extractPublicKeyFromPrivateKey:privateKey];
+    NSData *publicKeyData = [self.crypto exportPublicKey:publicKey];
+    
+    XCTAssert([validator addVerifierWithId:self.consts.applicationId publicKeyData:publicKeyData]);
     
     config.cardValidator = validator;
     
@@ -235,7 +241,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
     XCTestExpectation * __weak ex = [self expectationWithDescription:@"Verification code should be sent to email"];
     
     NSUInteger numberOfRequests = 3;
-    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
+    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime;
     
     NSString *identity = [self.utils generateEmail];
     
@@ -243,7 +249,7 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
         XCTAssert(error == nil);
         XCTAssert(actionId.length != 0);
         
-        sleep(3);
+        sleep(kEstimatedEmailReceiveTime);
         
         NSString *identityShort = [identity substringToIndex:[identity rangeOfString:@"@"].location];
         [self.mailinator getInbox:identityShort completionHandler:^(NSArray<MEmailMetadata *> *metadataList, NSError * error) {
@@ -283,12 +289,12 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
     XCTestExpectation * __weak ex = [self expectationWithDescription:@"Verification code should be sent to email. Validation token should be obtained"];
     
     NSUInteger numberOfRequests = 4;
-    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
+    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime;
     
     NSString *identity = [self.utils generateEmail];
     
     [self.client verifyIdentity:identity identityType:@"email" extraFields:nil completion:^(NSString *actionId, NSError *error) {
-        sleep(3);
+        sleep(kEstimatedEmailReceiveTime);
         
         NSString *identityShort = [identity substringToIndex:[identity rangeOfString:@"@"].location];
         [self.mailinator getInbox:identityShort completionHandler:^(NSArray<MEmailMetadata *> *metadataList, NSError * error) {
@@ -324,12 +330,12 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
     XCTestExpectation * __weak ex = [self expectationWithDescription:@"Verification code should be sent to email. Validation token should be obtained. Confirmation should pass"];
     
     NSUInteger numberOfRequests = 5;
-    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
+    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime;
     
     NSString *identity = [self.utils generateEmail];
     
     [self.client verifyIdentity:identity identityType:@"email" extraFields:nil completion:^(NSString *actionId, NSError *error) {
-        sleep(3);
+        sleep(kEstimatedEmailReceiveTime);
         
         NSString *identityShort = [identity substringToIndex:[identity rangeOfString:@"@"].location];
         [self.mailinator getInbox:identityShort completionHandler:^(NSArray<MEmailMetadata *> *metadataList, NSError * error) {
@@ -353,6 +359,97 @@ static const NSTimeInterval kEstimatedRequestCompletionTime = 8.;
         }];
     }];
 
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
+    }];
+}
+
+- (void) testA01_CreateGlobalEmailCard {
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Global Email Virgil Card should be created"];
+    
+    NSUInteger numberOfRequests = 5;
+    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime;
+    
+    NSString *identity = [self.utils generateEmail];
+    
+    [self.client verifyIdentity:identity identityType:@"email" extraFields:nil completion:^(NSString *actionId, NSError *error) {
+        sleep(kEstimatedEmailReceiveTime);
+        
+        NSString *identityShort = [identity substringToIndex:[identity rangeOfString:@"@"].location];
+        [self.mailinator getInbox:identityShort completionHandler:^(NSArray<MEmailMetadata *> *metadataList, NSError * error) {
+            [self.mailinator getEmail:metadataList[0].mid completionHandler:^(MEmail *email, NSError *error) {
+                MPart *bodyPart = (MPart *)email.parts[0];
+                
+                NSTextCheckingResult *matchResult = [self.regexp firstMatchInString:bodyPart.body options:NSMatchingReportCompletion range:NSMakeRange(0, bodyPart.body.length)];
+                
+                NSString *match = [bodyPart.body substringWithRange:matchResult.range];
+                
+                NSString *code = [match substringFromIndex:match.length - 6];
+                
+                [self.client confirmIdentityWithActionId:actionId confirmationCode:code timeToLive:3600 countToLive:12 completion:^(VSSConfirmIdentityResponse *response, NSError *error) {
+                    
+                    VSSCreateGlobalCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithIdentity:identity validationToken:response.validationToken keyPair:nil];
+                    
+                    [self.client createGlobalCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
+                        XCTAssert(error == nil);
+                        
+                        XCTAssert([self.utils checkCard:card isEqualToCreateGlobalCardRequest:request]);
+                        
+                        [ex fulfill];
+                    }];
+                }];
+            }];
+        }];
+    }];
+    
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
+    }];
+}
+
+- (void) testA02_RevokeGlobalEmailCard {
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"Global Email Virgil Card should be created. Global Email Virgil Card should be revoked."];
+    
+    NSUInteger numberOfRequests = 6;
+    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime;
+    
+    NSString *identity = [self.utils generateEmail];
+    
+    [self.client verifyIdentity:identity identityType:@"email" extraFields:nil completion:^(NSString *actionId, NSError *error) {
+        sleep(kEstimatedEmailReceiveTime);
+        
+        NSString *identityShort = [identity substringToIndex:[identity rangeOfString:@"@"].location];
+        [self.mailinator getInbox:identityShort completionHandler:^(NSArray<MEmailMetadata *> *metadataList, NSError * error) {
+            [self.mailinator getEmail:metadataList[0].mid completionHandler:^(MEmail *email, NSError *error) {
+                MPart *bodyPart = (MPart *)email.parts[0];
+                
+                NSTextCheckingResult *matchResult = [self.regexp firstMatchInString:bodyPart.body options:NSMatchingReportCompletion range:NSMakeRange(0, bodyPart.body.length)];
+                
+                NSString *match = [bodyPart.body substringWithRange:matchResult.range];
+                
+                NSString *code = [match substringFromIndex:match.length - 6];
+                
+                [self.client confirmIdentityWithActionId:actionId confirmationCode:code timeToLive:3600 countToLive:12 completion:^(VSSConfirmIdentityResponse *response, NSError *error) {
+                    
+                    VSSKeyPair *keyPair = [self.crypto generateKeyPair];
+                    VSSCreateGlobalCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithIdentity:identity validationToken:response.validationToken keyPair:keyPair];
+                    
+                    [self.client createGlobalCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
+                        VSSRevokeGlobalCardRequest *revokeRequest = [self.utils instantiateRevokeGlobalCardForCard:card validationToken:response.validationToken withPrivateKey:keyPair.privateKey];
+                    
+                        [self.client revokeGlobalCardWithRequest:revokeRequest completion:^(NSError *error) {
+                            XCTAssert(error == nil);
+                            
+                            [ex fulfill];
+                        }];
+                    }];
+                }];
+            }];
+        }];
+    }];
+    
     [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
         if (error != nil)
             XCTFail(@"Expectation failed: %@", error);

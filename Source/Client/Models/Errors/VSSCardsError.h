@@ -16,8 +16,6 @@ extern const NSInteger kVSSCardsTokenMissingOrInvalidError;
 extern const NSInteger kVSSCardsAuthenticatorError;
 extern const NSInteger kVSSCardsAccessTokenValidationError;
 extern const NSInteger kVSSCardsApplicationNotFoundError;
-extern const NSInteger kVSSCardsRequestSignMissingOrInvalid;
-extern const NSInteger kVSSCardsRequestSignHeaderMissingError;
 
 /// HTTP 403. Forbidden
 extern const NSInteger kVSSCardsCardNotAvailableError;
@@ -42,20 +40,18 @@ extern const NSInteger kVSSCardsPublicKeyLengthError;
 extern const NSInteger kVSSCardsPublicKeyFormatError;
 extern const NSInteger kVSSCardsCardDataParameterKVError;
 extern const NSInteger kVSSCardsCardDataParameterStrError;
-
 extern const NSInteger kVSSCardsDataTooBigError;
-extern const NSInteger kVSSCardsValidationTokenError;
 extern const NSInteger kVSSCardsCSRSignsMissingOrInvalidError;
-extern const NSInteger kVSSCardsCSRIdIrrelevantError;
-extern const NSInteger kVSSCardsCSRInvalidForVirgilCardPublicKeyError;
 extern const NSInteger kVSSCardsCSRDigestMissingOrInvalidError;
 extern const NSInteger kVSSCardsCardIdMismatchError;
-extern const NSInteger kVSSCardsCardDataKeysError;
-extern const NSInteger kVSSCardsTokenObjectError;
 extern const NSInteger kVSSCardsCSRSignForIdentityServiceError;
 extern const NSInteger kVSSCardsGlobalCardUnconfirmedError;
 extern const NSInteger kVSSCardsDuplicateFingerprintError;
 extern const NSInteger kVSSCardsRevocationReasonMissingOrInvalidError;
+extern const NSInteger kVSSCardsSCRValidationFailed;
+extern const NSInteger kVSSCardsSCROneOfSignersNotFound;
+extern const NSInteger kVSSCardsSCRSignItemInvalidOrMissingClient;
+extern const NSInteger kVSSCardsSCRSignItemInvalidOrMissingVRA;
 
 /**
  * Concrete subclass representing the errors returning by the Virgil Keys Service.

@@ -16,9 +16,6 @@ const NSInteger kVSSCardsTokenMissingOrInvalidError                  = 20300;
 const NSInteger kVSSCardsAuthenticatorError                          = 20301;
 const NSInteger kVSSCardsAccessTokenValidationError                  = 20302;
 const NSInteger kVSSCardsApplicationNotFoundError                    = 20303;
-const NSInteger kVSSCardsRequestSignMissingOrInvalid                 = 20400;
-const NSInteger kVSSCardsRequestSignHeaderMissingError               = 20401;
-
 /// HTTP 403. Forbidden
 const NSInteger kVSSCardsCardNotAvailableError                       = 20500;
 
@@ -42,20 +39,18 @@ const NSInteger kVSSCardsPublicKeyLengthError                        = 30117;
 const NSInteger kVSSCardsPublicKeyFormatError                        = 30118;
 const NSInteger kVSSCardsCardDataParameterKVError                    = 30119;
 const NSInteger kVSSCardsCardDataParameterStrError                   = 30120;
-
 const NSInteger kVSSCardsDataTooBigError                             = 30121;
-const NSInteger kVSSCardsValidationTokenError                        = 30122;
 const NSInteger kVSSCardsCSRSignsMissingOrInvalidError               = 30123;
-const NSInteger kVSSCardsCSRIdIrrelevantError                        = 30126;
-const NSInteger kVSSCardsCSRInvalidForVirgilCardPublicKeyError       = 30127;
 const NSInteger kVSSCardsCSRDigestMissingOrInvalidError              = 30128;
 const NSInteger kVSSCardsCardIdMismatchError                         = 30131;
 const NSInteger kVSSCardsCardDataKeysError                           = 30134;
-const NSInteger kVSSCardsTokenObjectError                            = 30135;
-const NSInteger kVSSCardsCSRSignForIdentityServiceError              = 30136;
 const NSInteger kVSSCardsGlobalCardUnconfirmedError                  = 30137;
 const NSInteger kVSSCardsDuplicateFingerprintError                   = 30138;
 const NSInteger kVSSCardsRevocationReasonMissingOrInvalidError       = 30139;
+const NSInteger kVSSCardsSCRValidationFailedError                    = 30140;
+const NSInteger kVSSCardsSCROneOfSignersNotFoundError                = 30141;
+const NSInteger kVSSCardsSCRSignItemInvalidOrMissingClientError      = 30142;
+const NSInteger kVSSCardsSCRSignItemInvalidOrMissingVRAError         = 30143;
 
 @implementation VSSCardsError
 
@@ -70,8 +65,6 @@ const NSInteger kVSSCardsRevocationReasonMissingOrInvalidError       = 30139;
         case kVSSCardsAuthenticatorError: message = @"The Virgil authenticator service responded with an error"; break;
         case kVSSCardsAccessTokenValidationError: message = @"The Virgil access token validation has failed on the Virgil Authenticator service"; break;
         case kVSSCardsApplicationNotFoundError: message = @"The application was not found for the access token"; break;
-        case kVSSCardsRequestSignMissingOrInvalid: message = @"Request sign is invalid or missing"; break;
-        case kVSSCardsRequestSignHeaderMissingError: message = @"Request sign header is missing"; break;
         
         /// HTTP 401. Authorization errors
         case kVSSCardsCardNotAvailableError: message = @"The Virgil Card is not available in this application"; break;
@@ -97,18 +90,17 @@ const NSInteger kVSSCardsRevocationReasonMissingOrInvalidError       = 30139;
         case kVSSCardsCardDataParameterKVError: message = @"Virgil Card data parameter must be a key/value list of strings"; break;
         case kVSSCardsCardDataParameterStrError: message = @"Virgil Card data parameters must be strings"; break;
         case kVSSCardsDataTooBigError: message = @"Virgil Card custom data entry value length validation failed. It mustn't exceed 256 characters"; break;
-        case kVSSCardsValidationTokenError: message = @"Identity validation token is invalid"; break;
         case kVSSCardsCSRSignsMissingOrInvalidError: message = @"SCR signs list parameter is missing or is invalid"; break;
-        case kVSSCardsCSRIdIrrelevantError: message = @"SCR sign item signer card id is irrelevant and doesn't match Virgil Card id or Application Id"; break;
-        case kVSSCardsCSRInvalidForVirgilCardPublicKeyError: message = @"SCR sign item signed digest is invalid for the Virgil Card public key"; break;
         case kVSSCardsCSRDigestMissingOrInvalidError: message = @"SCR sign item signed digest is invalid or missing for the application"; break;
         case kVSSCardsCardIdMismatchError: message = @"Virgil Card id specified in the request body must match with the one passed in the URL"; break;
         case kVSSCardsCardDataKeysError: message = @"Virgil Card data parameters key must be alphanumerical"; break;
-        case kVSSCardsTokenObjectError: message = @"Virgil Card validation token must be an object with value parameter"; break;
-        case kVSSCardsCSRSignForIdentityServiceError: message = @"SCR sign item signed digest is invalid for the virgil identity service"; break;
         case kVSSCardsGlobalCardUnconfirmedError: message = @"Global Virigl Card cannot be created unconfirmed (which means that Virgil Identity service sign is mandatory)"; break;
         case kVSSCardsDuplicateFingerprintError: message = @"Virigl Card with the same fingerprint exists already"; break;
         case kVSSCardsRevocationReasonMissingOrInvalidError: message = @"Virigl Card revocation reason isn't specified or is invalid"; break;
+        case kVSSCardsSCRValidationFailedError: message = @"SCR sign validation failed";
+        case kVSSCardsSCROneOfSignersNotFoundError: message = @"SCR one of signers Virgil Cards is not found";
+        case kVSSCardsSCRSignItemInvalidOrMissingClientError: message = @"SCR sign item is invalid or missing for the Client";
+        case kVSSCardsSCRSignItemInvalidOrMissingVRAError: message = @"SCR sign item is invalid or missing for the Virgil Registration Authority service";
     }
 
     return message;

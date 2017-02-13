@@ -13,9 +13,11 @@
 #import "VSSServiceConfig.h"
 
 #import "VSSCreateCardHTTPRequest.h"
+#import "VSSCreateGlobalCardHTTPRequest.h"
 #import "VSSSearchCardsHTTPRequest.h"
 #import "VSSGetCardHTTPRequest.h"
 #import "VSSRevokeCardHTTPRequest.h"
+#import "VSSRevokeGlobalCardHTTPRequest.h"
 #import "VSSCardResponsePrivate.h"
 #import "VSSVerifyIdentityRequest.h"
 #import "VSSVerifyIdentityHTTPRequest.h"
@@ -57,6 +59,10 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     return [self initWithServiceConfig:[VSSServiceConfig serviceConfigWithToken:token]];
 }
 
+- (instancetype)init {
+    return [self initWithServiceConfig:[VSSServiceConfig defaultServiceConfig]];
+}
+
 - (void)dealloc {
     [_urlSession invalidateAndCancel];
     [_queue cancelAllOperations];
@@ -64,14 +70,16 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
 
 #pragma mark - Public class logic
 
-- (void)send:(VSSHTTPRequest *)request {
+- (void)send:(VSSHTTPRequest *)request requiresAccessToken:(BOOL)requiresAccessToken {
     if (request == nil) {
         return;
     }
     
     /// Before sending any request set proper token value into corresponding header field:
-    if (self.serviceConfig.token.length > 0) {
-        [request setRequestHeaders:@{ kVSSAccessTokenHeader: [NSString stringWithFormat:@"VIRGIL %@", self.serviceConfig.token]}];
+    if (requiresAccessToken) {
+        if (self.serviceConfig.token.length > 0) {
+            [request setRequestHeaders:@{ kVSSAccessTokenHeader: [NSString stringWithFormat:@"VIRGIL %@", self.serviceConfig.token]}];
+        }
     }
     
 #if USE_SERVICE_REQUEST_DEBUG
@@ -128,12 +136,45 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     
     httpRequest.completionHandler = handler;
     
-    [self send:httpRequest];
+    [self send:httpRequest requiresAccessToken:YES];
+}
+
+- (void)createGlobalCardWithRequest:(VSSCreateGlobalCardRequest *)request completion:(void (^)(VSSCard *, NSError *))callback {
+    VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.registrationAuthorityURL];
+    VSSCreateGlobalCardHTTPRequest *httpRequest = [[VSSCreateGlobalCardHTTPRequest alloc] initWithContext:context createGlobalCardRequest:request];
+    
+    VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
+        if (request.error != nil) {
+            if (callback != nil) {
+                callback(nil, request.error);
+            }
+            return;
+        }
+        
+        if (callback != nil) {
+            VSSCreateGlobalCardHTTPRequest *r = [request as:[VSSCreateGlobalCardHTTPRequest class]];
+            VSSCardResponse *cardResponse = r.cardResponse;
+            
+            if (self.serviceConfig.cardValidator != nil) {
+                if (![self.serviceConfig.cardValidator validateCardResponse:cardResponse]) {
+                    callback(nil, [[NSError alloc] initWithDomain:kVSSClientErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"Error validating card signatures" }]);
+                    return;
+                }
+            }
+            
+            callback([cardResponse buildCard], nil);
+        }
+        return;
+    };
+    
+    httpRequest.completionHandler = handler;
+    
+    [self send:httpRequest requiresAccessToken:NO];
 }
 
 - (void)getCardWithId:(NSString *)cardId completion:(void (^)(VSSCard *, NSError *))callback {
     VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.cardsServiceROURL];
-    VSSGetCardHTTPRequest *request = [[VSSGetCardHTTPRequest alloc] initWithContext:context cardId:cardId];
+    VSSGetCardHTTPRequest *httpRequest = [[VSSGetCardHTTPRequest alloc] initWithContext:context cardId:cardId];
     
     VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
         if (request.error != nil) {
@@ -156,14 +197,14 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
         return;
     };
     
-    request.completionHandler = handler;
+    httpRequest.completionHandler = handler;
     
-    [self send:request];
+    [self send:httpRequest requiresAccessToken:YES];
 }
 
 - (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria *)criteria completion:(void (^)(NSArray<VSSCard *> *, NSError *))callback {
     VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.cardsServiceROURL];
-    VSSSearchCardsHTTPRequest *request = [[VSSSearchCardsHTTPRequest alloc] initWithContext:context searchCardsCriteria:criteria];
+    VSSSearchCardsHTTPRequest *httpRequest = [[VSSSearchCardsHTTPRequest alloc] initWithContext:context searchCardsCriteria:criteria];
     
     VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
         if (request.error != nil) {
@@ -195,9 +236,9 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
         return;
     };
     
-    request.completionHandler = handler;
+    httpRequest.completionHandler = handler;
     
-    [self send:request];
+    [self send:httpRequest requiresAccessToken:YES];
 }
 
 - (void)revokeCardWithRequest:(VSSRevokeCardRequest *)request completion:(void (^)(NSError *))callback {
@@ -220,7 +261,30 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     
     httpRequest.completionHandler = handler;
     
-    [self send:httpRequest];
+    [self send:httpRequest requiresAccessToken:YES];
+}
+
+- (void)revokeGlobalCardWithRequest:(VSSRevokeGlobalCardRequest *)request completion:(void (^)(NSError *))callback {
+    VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.registrationAuthorityURL];
+    VSSRevokeGlobalCardHTTPRequest *httpRequest = [[VSSRevokeGlobalCardHTTPRequest alloc] initWithContext:context revokeCardRequest:request];
+    
+    VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
+        if (request.error != nil) {
+            if (callback != nil) {
+                callback(request.error);
+            }
+            return;
+        }
+        
+        if (callback != nil) {
+            callback(nil);
+        }
+        return;
+    };
+    
+    httpRequest.completionHandler = handler;
+    
+    [self send:httpRequest requiresAccessToken:NO];
 }
 
 - (void)verifyIdentity:(NSString *)identity identityType:(NSString *)identityType extraFields:(NSDictionary<NSString *, NSString *> *)extraFields completion:(void (^)(NSString *, NSError *))callback {
@@ -245,7 +309,7 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     
     httpRequest.completionHandler = handler;
     
-    [self send:httpRequest];
+    [self send:httpRequest requiresAccessToken:NO];
 }
 
 - (void)confirmIdentityWithActionId:(NSString *)actionId confirmationCode:(NSString *)confirmationCode timeToLive:(NSInteger)timeToLive countToLive:(NSInteger)countToLive completion:(void (^)(VSSConfirmIdentityResponse *, NSError *))callback {
@@ -270,7 +334,7 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     
     httpRequest.completionHandler = handler;
     
-    [self send:httpRequest];
+    [self send:httpRequest requiresAccessToken:NO];
 }
 
 - (void)validateIdentity:(NSString *)identity identityType:(NSString *)identityType validationToken:(NSString *)validationToken completion:(void (^)(NSError *))callback {
@@ -294,8 +358,7 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     
     httpRequest.completionHandler = handler;
     
-    [self send:httpRequest];
+    [self send:httpRequest requiresAccessToken:NO];
 }
-
 
 @end

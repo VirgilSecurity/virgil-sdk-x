@@ -58,8 +58,11 @@ extern NSString * __nonnull const kVSSClientErrorDomain;
 - (instancetype __nonnull)initWithApplicationToken:(NSString * __nonnull)token;
 
 /**
- Unavailable no-argument initializer inherited from NSObject.
+ Convenient constructor.
+ This constructor initialized VSSClient instance with given token and default VSSServiceConfig value (default service urls, no token, no Card Validator).
+ 
+ @return initialized VSSClient instance
  */
-- (instancetype __nonnull)init NS_UNAVAILABLE;
+- (instancetype __nonnull)init;
 
 @end

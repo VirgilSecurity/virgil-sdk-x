@@ -29,4 +29,9 @@
  */
 @property (nonatomic, copy, readonly) NSString * __nonnull validationToken;
 
+/**
+ Unavailable no-argument initializer inherited from NSObject
+ */
+- (instancetype __nonnull)init NS_UNAVAILABLE;
+
 @end
