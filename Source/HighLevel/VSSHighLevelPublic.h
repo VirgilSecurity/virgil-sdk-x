@@ -7,11 +7,8 @@
 //
 
 #import "VSSVirgilApi.h"
-#import "VSSCardsManager.h"
-#import "VSSKeysManager.h"
-#import "VSSVirgilBaseKey.h"
-#import "VSSVirgilAuthorityKey.h"
-#import "VSSVirgilKey.h"
-#import "VSSPersistentVirgilKey.h"
 #import "VSSVirgilCard.h"
-#import "VSSVirgilConfig.h"
+#import "VSSVirgilApiContext.h"
+#import "VSSCardsManagerProtocol.h"
+#import "VSSKeysManagerProtocol.h"
+#import "VSSVirgilApiProtocol.h"

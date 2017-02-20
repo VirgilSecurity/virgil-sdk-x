@@ -6,12 +6,8 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSCardsManager.h"
-#import "VSSKeysManager.h"
+#import "VSSVirgilApiProtocol.h"
 
-@interface VSSVirgilApi : NSObject
-
-@property (nonatomic, readonly) VSSCardsManager * __nonnull Cards;
-@property (nonatomic, readonly) VSSKeysManager * __nonnull Keys;
+@interface VSSVirgilApi : NSObject <VSSVirgilApi>
 
 @end

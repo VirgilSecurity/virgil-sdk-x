@@ -6,6 +6,8 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-@interface VSSCardsManager : NSObject
+#import "VSSCardsManagerProtocol.h"
+
+@interface VSSCardsManager : NSObject <VSSCardsManager>
 
 @end
