@@ -97,7 +97,7 @@
     }
 }
 
-- (void)test004_DecryptAndVerifySingleRecipient_ShouldDecryptAndVerify {
+- (void)test004_DecryptThenVerifySingleRecipient_ShouldDecryptThenVerify {
     NSDictionary *dict = self.testDict[@"sign_then_encrypt_single_recipient"];
     
     NSString *privateKeyStr = dict[@"private_key"];
@@ -110,7 +110,7 @@
     
     NSError *error;
     VSSPublicKey *publicKey = [self.crypto extractPublicKeyFromPrivateKey:privateKey];
-    NSData *decryptedData = [self.crypto decryptAndVerifyData:cipherData withPrivateKey:privateKey usingSignerPublicKey:publicKey error:&error];
+    NSData *decryptedData = [self.crypto decryptThenVerifyData:cipherData withPrivateKey:privateKey usingSignerPublicKey:publicKey error:&error];
     
     XCTAssert(error == nil);
     
@@ -123,7 +123,7 @@
     XCTAssert([originalStr isEqualToString:decryptedStr]);
 }
 
-- (void)test005_DecryptAndVerifyMultipleRecipients_ShouldDecryptAndVerify {
+- (void)test005_DecryptThenVerifyMultipleRecipients_ShouldDecryptThenVerify {
     NSDictionary *dict = self.testDict[@"sign_then_encrypt_multiple_recipients"];
 
     NSMutableArray<VSSPrivateKey *> *privateKeys = [[NSMutableArray<VSSPrivateKey *> alloc] init];
@@ -147,7 +147,7 @@
     
     for (VSSPrivateKey * privateKey in privateKeys) {
         NSError *error;
-        NSData *decryptedData = [self.crypto decryptAndVerifyData:cipherData withPrivateKey:privateKey usingSignerPublicKey:signerPublicKey error:&error];
+        NSData *decryptedData = [self.crypto decryptThenVerifyData:cipherData withPrivateKey:privateKey usingSignerPublicKey:signerPublicKey error:&error];
         NSString *decryptedDataStr = [decryptedData base64EncodedStringWithOptions:0];
         
         XCTAssert(error == nil);

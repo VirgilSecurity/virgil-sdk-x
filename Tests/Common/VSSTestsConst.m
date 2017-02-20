@@ -14,27 +14,27 @@
 @implementation VSSTestsConst
 
 - (NSString *)applicationToken {
-    return @STRINGIZE2(APPLICATION_TOKEN);
+    return @"AT.20a4afadaed1a064c0d15bec087289fb7d7300f9851a5c2dc4144ba322257384";
 }
 
 - (NSString *)applicationPrivateKeyBase64 {
-    return @STRINGIZE2(APPLICATION_PRIVATE_KEY_BASE64);
+    return @"MIGhMF0GCSqGSIb3DQEFDTBQMC8GCSqGSIb3DQEFDDAiBBDMThWe8pZspEFuh466dCgBAgIYMzAKBggqhkiG9w0CCjAdBglghkgBZQMEASoEENRkuERpBeuflVUikAvr6EIEQLl47XxKoGWZqzyo8HvYMQum915mYDjDVsHpcrZ1hv0AzS8oti+zpYAG9aRjKfOOX3ebLZunc3zfbOOJwg0bPa0=";
 }
 
 - (NSString *)applicationPrivateKeyPassword {
-    return @STRINGIZE2(APPLICATION_PRIVATE_KEY_PASSWORD);
+    return @"test";
 }
 
 - (NSString *)applicationIdentityType {
-    return @STRINGIZE2(APPLICATION_IDENTITY_TYPE);
+    return @"test";
 }
 
 - (NSString *)applicationId {
-    return @STRINGIZE2(APPLICATION_ID);
+    return @"e20830b806e54433950edd67e83578a5a2dadb1edf60300f180cc22eea7ea519";
 }
 
 - (NSString *)mailinatorToken {
-    return @STRINGIZE2(MAILINATOR_TOKEN);
+    return @"168ef865218147e99192ec8d7fe7e4b5";
 }
 
 @end
