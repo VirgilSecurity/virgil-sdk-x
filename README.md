@@ -25,6 +25,7 @@ In this guide you will find code for every task you need to implement in order t
 * [Get a Virgil Card](#get-a-virgil-card)
 * [Revoking a Virgil Card](#revoking-a-virgil-card)
 * [Global Virgil Cards](#global-virgil-cards)
+* [Card relations](#card-relations)
 * [Operations with Crypto Keys](#operations-with-crypto-keys)
 * [Generate Keys](#generate-keys)
 * [Import and Export Keys](#import-and-export-keys)
@@ -491,6 +492,78 @@ self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { 
         }
 	}
 }
+```
+
+## Card relations
+
+The relation entity describes a trusted one-way relation between the source Virgil Card specified and the destination Virgil Card.
+Card relations is an implementation of Web of trust concept.
+
+### Checking for card's relations
+Existing card's relations are available in a form of array with ids of virgil cards that are trusted.
+
+###### Objective-C
+```objective-c
+[self.client getCardWithId:card1.identifier completion:^(VSSCard *card, NSError *error) {
+    // card.relations
+}];
+```
+
+###### Swift
+self.client.getCard(withId: registeredCard1!.identifier, completion: { card, error in
+	// card!.relations
+})
+```swift
+
+### Creating a relation
+To create card relation from card1 to card2 (meaning that card1 trusts card2) use following code snippet:
+
+###### Objective-C
+```objective-c
+VSSSignedCardRequest *signedCardRequest = [VSSSignedCardRequest signedCardRequestWithSnapshotModel:card2.cardResponse.model];
+VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
+[signer authoritySignRequest:signedCardRequest forAppId:card1.identifier withPrivateKey:<#Card1 private key#> error:nil];
+
+[self.client createCardRelationForCardWithId:card1.identifier withSignedCardRequest:signedCardRequest completion:^(NSError *error) {
+    //...
+}];
+```
+
+###### Swift
+```swift
+let signedCardRequest = VSSSignedCardRequest(snapshotModel: card2.cardResponse.model)
+let signer = VSSRequestSigner(crypto: self.crypto)
+try! signer.authoritySign(signedCardRequest, forAppId: card1.identifier, with: <#Card1 private key#>)
+
+self.client.createCardRelation(forCardWithId: card1.identifier, with: signedCardRequest, completion: { error in
+    //...
+})
+```
+
+### Removing card relation
+To remove card relation from card1 to card2 use following code snippet:
+
+###### Objective-C
+```objective-c
+VSSRemoveCardRelationRequest *request = [VSSRemoveCardRelationRequest removeCardRelationRequestWithCardId:card2.identifier reason:VSSCardRevocationReasonCompromised];
+VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
+[signer authoritySignRequest:request forAppId:card1.identifier withPrivateKey:<#Card1 private key#> error:nil];
+
+[self.client removeCardRelationWithRequest:request cardId:card1.identifier completion:^(NSError *error) {
+	//...
+}];
+
+```
+
+###### Swift
+```swift
+let request = VSSRemoveCardRelationRequest(cardId: registeredCard2!.identifier, reason: .unspecified)
+let signer = VSSRequestSigner(crypto: self.crypto)
+try! signer.authoritySign(request, forAppId: card1.identifier, with: <#Card1 private key#>)
+
+self.client.removeCardRelation(with: request, cardId: card1.identifier, completion: { error in
+    //...
+})
 ```
 
 ## Operations with Crypto Keys
