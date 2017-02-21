@@ -14,9 +14,8 @@ const NSInteger kVSSVraInternalError                                    = 10000;
 /// HTTP 400. This status is returned on request data errors.
 const NSInteger kVSSVraDevelopmentPortalSignNotFoundError               = 30300;
 const NSInteger kVSSVraDevelopmentPortalSignInvalidError                = 30301;
-const NSInteger kVSSVraDevelopmentPortalCardNotFoundError               = 30302;
-const NSInteger kVSSVraIdentityValidationTokenInvalidOrExpiredError     = 30303;
-const NSInteger kVSSVraProvidedCardNotFoundOrIvalidError                = 30304;
+const NSInteger kVSSVraIdentityValidationTokenInvalidOrExpiredError     = 30302;
+const NSInteger kVSSVraProvidedCardNotFoundOrIvalidError                = 30303;
 
 /// HTTP 404. This status is returned in case of routing error.
 const NSInteger kVSSVraRequestRouteNotFoundError                        = 50010;
@@ -33,7 +32,6 @@ const NSInteger kVSSVraRequestRouteNotFoundError                        = 50010;
         /// HTTP 400. This status is returned on request data errors.
         case kVSSVraDevelopmentPortalSignNotFoundError: message = @"Development Portal sign was not found inside the meta.signs property"; break;
         case kVSSVraDevelopmentPortalSignInvalidError: message = @"Development Portal sign is invalid"; break;
-        case kVSSVraDevelopmentPortalCardNotFoundError: message = @"Development Portal Virgil Card was not found on Cards service"; break;
         case kVSSVraIdentityValidationTokenInvalidOrExpiredError: message = @"Identity Validation Token is invalid or has expired"; break;
         case kVSSVraProvidedCardNotFoundOrIvalidError: message = @"Provided Virgil Card was not found or invalid"; break;
         
