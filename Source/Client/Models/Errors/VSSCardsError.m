@@ -51,6 +51,11 @@ const NSInteger kVSSCardsSCRValidationFailedError                    = 30140;
 const NSInteger kVSSCardsSCROneOfSignersNotFoundError                = 30141;
 const NSInteger kVSSCardsSCRSignItemInvalidOrMissingClientError      = 30142;
 const NSInteger kVSSCardsSCRSignItemInvalidOrMissingVRAError         = 30143;
+const NSInteger kVSSCardsRelationSignInvalid                         = 30200;
+const NSInteger kVSSCardsRelationSignNotFound                        = 30201;
+const NSInteger kVSSCardsRelatedSnapshotNotFound                     = 30202;
+const NSInteger kVSSCardsRelationAlreadyExists                       = 30203;
+const NSInteger kVSSCardsCardNotFoundForCSR                          = 30204;
 
 @implementation VSSCardsError
 
@@ -97,10 +102,16 @@ const NSInteger kVSSCardsSCRSignItemInvalidOrMissingVRAError         = 30143;
         case kVSSCardsGlobalCardUnconfirmedError: message = @"Global Virigl Card cannot be created unconfirmed (which means that Virgil Identity service sign is mandatory)"; break;
         case kVSSCardsDuplicateFingerprintError: message = @"Virigl Card with the same fingerprint exists already"; break;
         case kVSSCardsRevocationReasonMissingOrInvalidError: message = @"Virigl Card revocation reason isn't specified or is invalid"; break;
-        case kVSSCardsSCRValidationFailedError: message = @"SCR sign validation failed";
-        case kVSSCardsSCROneOfSignersNotFoundError: message = @"SCR one of signers Virgil Cards is not found";
-        case kVSSCardsSCRSignItemInvalidOrMissingClientError: message = @"SCR sign item is invalid or missing for the Client";
-        case kVSSCardsSCRSignItemInvalidOrMissingVRAError: message = @"SCR sign item is invalid or missing for the Virgil Registration Authority service";
+        case kVSSCardsSCRValidationFailedError: message = @"SCR sign validation failed"; break;
+        case kVSSCardsSCROneOfSignersNotFoundError: message = @"SCR one of signers Virgil Cards is not found"; break;
+        case kVSSCardsSCRSignItemInvalidOrMissingClientError: message = @"SCR sign item is invalid or missing for the Client"; break;
+        case kVSSCardsSCRSignItemInvalidOrMissingVRAError: message = @"SCR sign item is invalid or missing for the Virgil Registration Authority service"; break;
+            
+        case kVSSCardsRelationSignInvalid: message = @"Virgil Card relation sign is invalid"; break;
+        case kVSSCardsRelationSignNotFound: message = @"Virgil Card relation sign by the source Virgil Card was not found";
+        case kVSSCardsRelatedSnapshotNotFound: message = @"Related Virgil content snapshot parameter was not found"; break;
+        case kVSSCardsRelationAlreadyExists: message = @"The relation with this Virgil Card exists already"; break;
+        case kVSSCardsCardNotFoundForCSR: message = @"The related Virgil Card was not found for the provided CSR"; break;
     }
 
     return message;

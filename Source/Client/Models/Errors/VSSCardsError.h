@@ -52,6 +52,11 @@ extern const NSInteger kVSSCardsSCRValidationFailed;
 extern const NSInteger kVSSCardsSCROneOfSignersNotFound;
 extern const NSInteger kVSSCardsSCRSignItemInvalidOrMissingClient;
 extern const NSInteger kVSSCardsSCRSignItemInvalidOrMissingVRA;
+extern const NSInteger kVSSCardsRelationSignInvalid;
+extern const NSInteger kVSSCardsRelationSignNotFound;
+extern const NSInteger kVSSCardsRelatedSnapshotNotFound;
+extern const NSInteger kVSSCardsRelationAlreadyExists;
+extern const NSInteger kVSSCardsCardNotFoundForCSR;
 
 /**
  * Concrete subclass representing the errors returning by the Virgil Keys Service.
