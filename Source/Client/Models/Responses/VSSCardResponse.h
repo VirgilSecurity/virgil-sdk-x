@@ -16,9 +16,14 @@
 @interface VSSCardResponse : VSSBaseModel
 
 /**
- NSDictionary with NSString Key representing Signature id and NSData Value with Signature.
+ NSDictionary with NSString Key representing Virgil Card Id and NSData Value with Signature.
  */
 @property (nonatomic, copy, readonly) NSDictionary<NSString *, NSData *> * __nonnull signatures;
+
+/**
+ NSDictionary with NSString Key representing Virgil Card Id and NSData Value with Signature.
+ */
+@property (nonatomic, copy, readonly) NSDictionary<NSString *, NSData *> * __nonnull relations;
 
 /**
  NSData with Snapshot - raw serialized representation of payload (VSSCard/VSSRevokeCard) which remains unchanged from the moment of creation
