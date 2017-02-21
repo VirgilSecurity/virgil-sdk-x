@@ -27,6 +27,29 @@
     return self;
 }
 
+- (VSSCreateCardRequest *)instantiateCreateCardRequestWithKeyPair:(VSSKeyPair *)keyPair {
+    if (keyPair == nil)
+        keyPair = [self.crypto generateKeyPair];
+    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
+    
+    // some random value
+    NSString *identityValue = [[NSUUID UUID] UUIDString];
+    NSString *identityType = self.consts.applicationIdentityType;
+    VSSCreateCardRequest *request = [VSSCreateCardRequest createCardRequestWithIdentity:identityValue identityType:identityType publicKeyData:exportedPublicKey];
+    
+    NSData *privateAppKeyData = [[NSData alloc] initWithBase64EncodedString:self.consts.applicationPrivateKeyBase64 options:0];
+    
+    VSSPrivateKey *appPrivateKey = [self.crypto importPrivateKeyFromData:privateAppKeyData withPassword:self.consts.applicationPrivateKeyPassword];
+    
+    VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
+    
+    NSError *error;
+    [signer selfSignRequest:request withPrivateKey:keyPair.privateKey error:&error];
+    [signer authoritySignRequest:request forAppId:self.consts.applicationId withPrivateKey:appPrivateKey error:&error];
+    
+    return request;
+}
+
 - (VSSCreateCardRequest *)instantiateCreateCardRequest {
     VSSKeyPair *keyPair = [self.crypto generateKeyPair];
     NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];

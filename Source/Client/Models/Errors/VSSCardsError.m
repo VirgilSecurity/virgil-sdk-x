@@ -56,6 +56,7 @@ const NSInteger kVSSCardsRelationSignNotFound                        = 30201;
 const NSInteger kVSSCardsRelatedSnapshotNotFound                     = 30202;
 const NSInteger kVSSCardsRelationAlreadyExists                       = 30203;
 const NSInteger kVSSCardsCardNotFoundForCSR                          = 30204;
+const NSInteger kVSSCardsRelationDoesntExist                         = 30205;
 
 @implementation VSSCardsError
 
@@ -108,10 +109,11 @@ const NSInteger kVSSCardsCardNotFoundForCSR                          = 30204;
         case kVSSCardsSCRSignItemInvalidOrMissingVRAError: message = @"SCR sign item is invalid or missing for the Virgil Registration Authority service"; break;
             
         case kVSSCardsRelationSignInvalid: message = @"Virgil Card relation sign is invalid"; break;
-        case kVSSCardsRelationSignNotFound: message = @"Virgil Card relation sign by the source Virgil Card was not found";
+        case kVSSCardsRelationSignNotFound: message = @"Virgil Card relation sign by the source Virgil Card was not found"; break;
         case kVSSCardsRelatedSnapshotNotFound: message = @"Related Virgil content snapshot parameter was not found"; break;
         case kVSSCardsRelationAlreadyExists: message = @"The relation with this Virgil Card exists already"; break;
         case kVSSCardsCardNotFoundForCSR: message = @"The related Virgil Card was not found for the provided CSR"; break;
+        case kVSSCardsRelationDoesntExist: message = @"The Virgil Card relation doesn't exist"; break;
     }
 
     return message;

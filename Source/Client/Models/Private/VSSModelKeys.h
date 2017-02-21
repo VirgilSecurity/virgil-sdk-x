@@ -26,6 +26,7 @@ extern NSString * __nonnull const kVSSCModelValidation;
 extern NSString * __nonnull const kVSSCModelToken;
 extern NSString * __nonnull const kVSSCModelPublicKey;
 extern NSString * __nonnull const kVSSCModelSigns;
+extern NSString * __nonnull const kVSSCModelRelations;
 extern NSString * __nonnull const kVSSCModelCardId;
 extern NSString * __nonnull const kVSSCModelRevocationReason;
 extern NSString * __nonnull const kVSSCModelIdentities;

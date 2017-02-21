@@ -53,6 +53,13 @@
             signaturesDict[key] = [[NSData alloc] initWithBase64EncodedString:signatures[key] options:0];
         }
         _signatures = signaturesDict;
+        
+        NSMutableDictionary *relationsDict = [[NSMutableDictionary alloc] init];
+        NSDictionary *relations = [metaCandidate[kVSSCModelRelations] as:[NSDictionary class]];
+        for (NSString *key in relations.allKeys) {
+            relationsDict[key] = [[NSData alloc] initWithBase64EncodedString:relations[key] options:0];
+        }
+        _relations = relationsDict;
 
         NSDate *createdAt = nil;
         NSString *createdAtStr = [metaCandidate[kVSSCModelCreatedAt] as:[NSString class]];
@@ -84,8 +91,13 @@
     for (NSString *key in self.signatures.allKeys) {
         signaturesDict[key] = [((NSData *)self.signatures[key]) base64EncodedStringWithOptions:0];
     }
-    
     metaDict[kVSSCModelSigns] = signaturesDict;
+    
+    NSMutableDictionary *relationsDict = [[NSMutableDictionary alloc] init];
+    for (NSString *key in self.relations.allKeys) {
+        relationsDict[key] = [((NSData *)self.relations[key]) base64EncodedStringWithOptions:0];
+    }
+    metaDict[kVSSCModelRelations] = relationsDict;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];

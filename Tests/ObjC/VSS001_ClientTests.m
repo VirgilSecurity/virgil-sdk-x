@@ -237,6 +237,111 @@ static const NSTimeInterval kEstimatedEmailReceiveTime = 30.;
     }];
 }
 
+- (void)testC06_CreateCardRelation {
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"2 Virgil Cards should be created. Virgil card relation should be created."];
+    
+    NSUInteger numberOfRequests = 4;
+    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
+    
+    VSSKeyPair *keyPair1 = [self.crypto generateKeyPair];
+    VSSCreateCardRequest *request1 = [self.utils instantiateCreateCardRequestWithKeyPair:keyPair1];
+    
+    [self.client createCardWithRequest:request1 completion:^(VSSCard *card1, NSError *error) {
+        if (error != nil) {
+            XCTFail(@"Expectation failed: %@", error);
+            return;
+        }
+    
+        VSSCreateCardRequest *request2 = [self.utils instantiateCreateCardRequest];
+        [self.client createCardWithRequest:request2 completion:^(VSSCard *card2, NSError *error) {
+            if (error != nil) {
+                XCTFail(@"Expectation failed: %@", error);
+                return;
+            }
+            
+            VSSSignedCardRequest *signedCardRequest = [VSSSignedCardRequest signedCardRequestWithSnapshotModel:card2.cardResponse.model];
+            VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
+            [signer authoritySignRequest:signedCardRequest forAppId:card1.identifier withPrivateKey:keyPair1.privateKey error:nil];
+            
+            [self.client createCardRelationForCardWithId:card1.identifier withSignedCardRequest:signedCardRequest completion:^(NSError *error) {
+                if (error != nil) {
+                    XCTFail(@"Expectation failed: %@", error);
+                    return;
+                }
+                
+                [self.client getCardWithId:card1.identifier completion:^(VSSCard *card, NSError *error) {
+                    XCTAssert(card.relations.count == 1);
+                    XCTAssert([card.relations[0] isEqualToString:card2.identifier]);
+                    
+                    [ex fulfill];
+                }];
+            }];
+        }];
+    }];
+    
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
+    }];
+}
+
+- (void)testC07_RemoveCardRelation {
+    XCTestExpectation * __weak ex = [self expectationWithDescription:@"2 Virgil Cards should be created. Virgil card relation should be created. Virgil card relation should be removed."];
+    
+    NSUInteger numberOfRequests = 4;
+    NSTimeInterval timeout = numberOfRequests * kEstimatedRequestCompletionTime;
+    
+    VSSKeyPair *keyPair1 = [self.crypto generateKeyPair];
+    VSSCreateCardRequest *request1 = [self.utils instantiateCreateCardRequestWithKeyPair:keyPair1];
+    
+    [self.client createCardWithRequest:request1 completion:^(VSSCard *card1, NSError *error) {
+        if (error != nil) {
+            XCTFail(@"Expectation failed: %@", error);
+            return;
+        }
+        
+        VSSCreateCardRequest *request2 = [self.utils instantiateCreateCardRequest];
+        [self.client createCardWithRequest:request2 completion:^(VSSCard *card2, NSError *error) {
+            if (error != nil) {
+                XCTFail(@"Expectation failed: %@", error);
+                return;
+            }
+            
+            VSSSignedCardRequest *signedCardRequest = [VSSSignedCardRequest signedCardRequestWithSnapshotModel:card2.cardResponse.model];
+            VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
+            [signer authoritySignRequest:signedCardRequest forAppId:card1.identifier withPrivateKey:keyPair1.privateKey error:nil];
+            
+            [self.client createCardRelationForCardWithId:card1.identifier withSignedCardRequest:signedCardRequest completion:^(NSError *error) {
+                if (error != nil) {
+                    XCTFail(@"Expectation failed: %@", error);
+                    return;
+                }
+                
+                VSSRemoveCardRelationRequest *request = [VSSRemoveCardRelationRequest removeCardRelationRequestWithCardId:card2.identifier reason:VSSCardRevocationReasonCompromised];
+                [signer authoritySignRequest:request forAppId:card1.identifier withPrivateKey:keyPair1.privateKey error:nil];
+                
+                [self.client removeCardRelationWithRequest:request cardId:card1.identifier completion:^(NSError *error) {
+                    if (error != nil) {
+                        XCTFail(@"Expectation failed: %@", error);
+                        return;
+                    }
+                    
+                    [self.client getCardWithId:card1.identifier completion:^(VSSCard *card, NSError *error) {
+                        XCTAssert(card.relations.count == 0);
+                        
+                        [ex fulfill];
+                    }];
+                }];
+            }];
+        }];
+    }];
+    
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
+    }];
+}
+
 - (void)testI01_VerifyEmail {
     XCTestExpectation * __weak ex = [self expectationWithDescription:@"Verification code should be sent to email"];
     

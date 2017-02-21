@@ -57,6 +57,7 @@ extern const NSInteger kVSSCardsRelationSignNotFound;
 extern const NSInteger kVSSCardsRelatedSnapshotNotFound;
 extern const NSInteger kVSSCardsRelationAlreadyExists;
 extern const NSInteger kVSSCardsCardNotFoundForCSR;
+extern const NSInteger kVSSCardsRelationDoesntExist;
 
 /**
  * Concrete subclass representing the errors returning by the Virgil Keys Service.

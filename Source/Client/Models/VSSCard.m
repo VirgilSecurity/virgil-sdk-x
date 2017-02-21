@@ -26,6 +26,7 @@
             _info = [[NSDictionary alloc] initWithDictionary:cardResponse.model.info copyItems:YES];
         _createdAt = [cardResponse.createdAt copy];
         _cardVersion = [cardResponse.cardVersion copy];
+        _relations = [[NSArray alloc] initWithArray:cardResponse.relations.allKeys copyItems:YES];
         _cardResponse = cardResponse;
     }
     
