@@ -23,4 +23,12 @@
  */
 + (instancetype __nonnull)signedCardRequestWithSnapshotModel:(VSSCreateCardSnapshotModel * __nonnull)snapshotModel;
 
+/**
+ Overriden function. VSSSignedCardRequest must contain only one signature.
+
+ @param signature NSData with Signature
+ @param fingerprint NSString which identifies Signature
+ */
+- (BOOL)addSignature:(NSData * __nonnull)signature forFingerprint:(NSString * __nonnull)fingerprint;
+
 @end

@@ -263,7 +263,7 @@ static const NSTimeInterval kEstimatedEmailReceiveTime = 30.;
             VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
             [signer authoritySignRequest:signedCardRequest forAppId:card1.identifier withPrivateKey:keyPair1.privateKey error:nil];
             
-            [self.client createCardRelationForCardWithId:card1.identifier withSignedCardRequest:signedCardRequest completion:^(NSError *error) {
+            [self.client createCardRelationWithSignedCardRequest:signedCardRequest completion:^(NSError *error) {
                 if (error != nil) {
                     XCTFail(@"Expectation failed: %@", error);
                     return;
@@ -311,7 +311,7 @@ static const NSTimeInterval kEstimatedEmailReceiveTime = 30.;
             VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
             [signer authoritySignRequest:signedCardRequest forAppId:card1.identifier withPrivateKey:keyPair1.privateKey error:nil];
             
-            [self.client createCardRelationForCardWithId:card1.identifier withSignedCardRequest:signedCardRequest completion:^(NSError *error) {
+            [self.client createCardRelationWithSignedCardRequest:signedCardRequest completion:^(NSError *error) {
                 if (error != nil) {
                     XCTFail(@"Expectation failed: %@", error);
                     return;
@@ -320,7 +320,7 @@ static const NSTimeInterval kEstimatedEmailReceiveTime = 30.;
                 VSSRemoveCardRelationRequest *request = [VSSRemoveCardRelationRequest removeCardRelationRequestWithCardId:card2.identifier reason:VSSCardRevocationReasonCompromised];
                 [signer authoritySignRequest:request forAppId:card1.identifier withPrivateKey:keyPair1.privateKey error:nil];
                 
-                [self.client removeCardRelationWithRequest:request cardId:card1.identifier completion:^(NSError *error) {
+                [self.client removeCardRelationWithRequest:request completion:^(NSError *error) {
                     if (error != nil) {
                         XCTFail(@"Expectation failed: %@", error);
                         return;

@@ -174,7 +174,14 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     [self send:httpRequest requiresAccessToken:NO];
 }
 
-- (void)createCardRelationForCardWithId:(NSString *)cardId withSignedCardRequest:(VSSSignedCardRequest *)request completion:(void (^)(NSError * __nullable))callback {
+- (void)createCardRelationWithSignedCardRequest:(VSSSignedCardRequest *)request completion:(void (^)(NSError *))callback {
+    if (request.signatures.count != 1) {
+        callback([[NSError alloc] initWithDomain:kVSSClientErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: @"VSSSignedCardRequest should contain 1 signature" }]);
+        return;
+    }
+    
+    NSString *cardId = request.signatures.allKeys[0];
+    
     VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.cardsServiceURL];
     VSSCreateCardRelationHTTPRequest *httpRequest = [[VSSCreateCardRelationHTTPRequest alloc] initWithContext:context cardId:cardId signedCardRequest:request];
     
@@ -197,7 +204,14 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     [self send:httpRequest requiresAccessToken:YES];
 }
 
-- (void)removeCardRelationWithRequest:(VSSRemoveCardRelationRequest *)request cardId:(NSString * __nonnull)cardId completion:(void (^)(NSError *))callback {
+- (void)removeCardRelationWithRequest:(VSSRemoveCardRelationRequest *)request completion:(void (^)(NSError *))callback {
+    if (request.signatures.count != 1) {
+        callback([[NSError alloc] initWithDomain:kVSSClientErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: @"VSSSignedCardRequest should contain 1 signature" }]);
+        return;
+    }
+    
+    NSString *cardId = request.signatures.allKeys[0];
+    
     VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.cardsServiceURL];
     VSSRemoveCardRelationHTTPRequest *httpRequest = [[VSSRemoveCardRelationHTTPRequest alloc] initWithContext:context cardId:cardId removeCardRelationRequest:request];
     

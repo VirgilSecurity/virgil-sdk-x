@@ -17,11 +17,12 @@
 @property (nonatomic, copy, readonly) NSData * __nonnull snapshot;
 
 /**
- Adds signature to data.
- 
- @param signature   NSData with Signature
+ Adds signature of snapshot.
+
+ @param signature NSData with Signature
  @param fingerprint NSString which identifies Signature
+ @return YES if succeeded, NO otherwise
  */
-- (void)addSignature:(NSData * __nonnull)signature forFingerprint:(NSString * __nonnull)fingerprint;
+- (BOOL)addSignature:(NSData * __nonnull)signature forFingerprint:(NSString * __nonnull)fingerprint;
 
 @end

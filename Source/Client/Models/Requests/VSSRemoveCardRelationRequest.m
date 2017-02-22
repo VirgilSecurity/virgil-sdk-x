@@ -21,4 +21,12 @@
     return [VSSRevokeCardSnapshotModel createFromCanonicalForm:snapshot];
 }
 
+- (BOOL)addSignature:(NSData *)signature forFingerprint:(NSString *)fingerprint {
+    if (self.signatures.count != 0) {
+        return NO;
+    }
+    
+    return [super addSignature:signature forFingerprint:fingerprint];
+}
+
 @end

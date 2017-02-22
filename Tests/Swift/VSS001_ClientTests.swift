@@ -266,7 +266,7 @@ class VSS001_ClientTests: XCTestCase {
                 let signer = VSSRequestSigner(crypto: self.crypto)
                 try! signer.authoritySign(signedCardRequest, forAppId: registeredCard1!.identifier, with: keyPair1.privateKey)
                 
-                self.client.createCardRelation(forCardWithId: registeredCard1!.identifier, with: signedCardRequest, completion: { error in
+                self.client.createCardRelation(with: signedCardRequest, completion: { error in
                     guard error == nil else {
                         XCTFail("Failed: " + error!.localizedDescription)
                         return
@@ -316,11 +316,11 @@ class VSS001_ClientTests: XCTestCase {
                 let signer = VSSRequestSigner(crypto: self.crypto)
                 try! signer.authoritySign(signedCardRequest, forAppId: registeredCard1!.identifier, with: keyPair1.privateKey)
                 
-                self.client.createCardRelation(forCardWithId: registeredCard1!.identifier, with: signedCardRequest, completion: { error in
+                self.client.createCardRelation(with: signedCardRequest, completion: { error in
                     let request = VSSRemoveCardRelationRequest(cardId: registeredCard2!.identifier, reason: .unspecified)
                     try! signer.authoritySign(request, forAppId: registeredCard1!.identifier, with: keyPair1.privateKey)
                     
-                    self.client.removeCardRelation(with: request, cardId: registeredCard1!.identifier, completion: { error in
+                    self.client.removeCardRelation(with: request, completion: { error in
                         guard error == nil else {
                             XCTFail("Failed: " + error!.localizedDescription)
                             return

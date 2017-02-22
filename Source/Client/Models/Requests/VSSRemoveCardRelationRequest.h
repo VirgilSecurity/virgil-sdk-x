@@ -26,4 +26,13 @@
  */
 + (instancetype __nonnull)removeCardRelationRequestWithCardId:(NSString * __nonnull)cardId reason:(VSSCardRevocationReason)reason;
 
+/**
+ Overriden function. VSSSignedCardRequest must contain only one signature.
+ 
+ @param signature NSData with Signature
+ @param fingerprint NSString which identifies Signature
+ @return YES if succeeded, NO otherwise
+ */
+- (BOOL)addSignature:(NSData * __nonnull)signature forFingerprint:(NSString * __nonnull)fingerprint;
+
 @end

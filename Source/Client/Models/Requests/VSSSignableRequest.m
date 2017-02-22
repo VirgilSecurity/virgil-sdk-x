@@ -55,8 +55,9 @@
     return [self initWithSnapshotModel:model signatures:nil];
 }
 
-- (void)addSignature:(NSData *)signature forFingerprint:(NSString *)fingerprint {
+- (BOOL)addSignature:(NSData *)signature forFingerprint:(NSString *)fingerprint {
     ((NSMutableDictionary *)_signatures)[fingerprint] = signature;
+    return YES;
 }
 
 - (NSDictionary *)serialize {
