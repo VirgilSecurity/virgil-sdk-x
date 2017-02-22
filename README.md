@@ -520,7 +520,7 @@ To create card relation from card1 to card2 (meaning that card1 trusts card2) us
 
 ###### Objective-C
 ```objective-c
-VSSSignedCardRequest *signedCardRequest = [VSSSignedCardRequest signedCardRequestWithSnapshotModel:card2.cardResponse.model];
+VSSSignedCardRequest *signedCardRequest = [VSSSignedCardRequest signedCardRequestWithSnapshot:card2.cardResponse.snapshot];
 VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
 [signer authoritySignRequest:signedCardRequest forAppId:card1.identifier withPrivateKey:<#Card1 private key#> error:nil];
 
@@ -531,7 +531,7 @@ VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto]
 
 ###### Swift
 ```swift
-let signedCardRequest = VSSSignedCardRequest(snapshotModel: card2.cardResponse.model)
+let signedCardRequest = VSSSignedCardRequest(snapshot: card2.cardResponse.snapshot)
 let signer = VSSRequestSigner(crypto: self.crypto)
 try! signer.authoritySign(signedCardRequest, forAppId: card1.identifier, with: <#Card1 private key#>)
 

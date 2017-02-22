@@ -262,7 +262,7 @@ class VSS001_ClientTests: XCTestCase {
                     return
                 }
                 
-                let signedCardRequest = VSSSignedCardRequest(snapshotModel: registeredCard2!.cardResponse.model)
+                let signedCardRequest = VSSSignedCardRequest(snapshot: registeredCard2!.cardResponse.snapshot)
                 let signer = VSSRequestSigner(crypto: self.crypto)
                 try! signer.authoritySign(signedCardRequest, forAppId: registeredCard1!.identifier, with: keyPair1.privateKey)
                 
@@ -312,7 +312,7 @@ class VSS001_ClientTests: XCTestCase {
             
             let request2 = self.utils.instantiateCreateCardRequest()
             self.client.createCardWith(request2) { (registeredCard2, error) in
-                let signedCardRequest = VSSSignedCardRequest(snapshotModel: registeredCard2!.cardResponse.model)
+                let signedCardRequest = VSSSignedCardRequest(snapshot: registeredCard2!.cardResponse.snapshot)
                 let signer = VSSRequestSigner(crypto: self.crypto)
                 try! signer.authoritySign(signedCardRequest, forAppId: registeredCard1!.identifier, with: keyPair1.privateKey)
                 

@@ -259,7 +259,7 @@ static const NSTimeInterval kEstimatedEmailReceiveTime = 30.;
                 return;
             }
             
-            VSSSignedCardRequest *signedCardRequest = [VSSSignedCardRequest signedCardRequestWithSnapshotModel:card2.cardResponse.model];
+            VSSSignedCardRequest *signedCardRequest = [VSSSignedCardRequest signedCardRequestWithSnapshot:card2.cardResponse.snapshot];
             VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
             [signer authoritySignRequest:signedCardRequest forAppId:card1.identifier withPrivateKey:keyPair1.privateKey error:nil];
             
@@ -307,7 +307,7 @@ static const NSTimeInterval kEstimatedEmailReceiveTime = 30.;
                 return;
             }
             
-            VSSSignedCardRequest *signedCardRequest = [VSSSignedCardRequest signedCardRequestWithSnapshotModel:card2.cardResponse.model];
+            VSSSignedCardRequest *signedCardRequest = [VSSSignedCardRequest signedCardRequestWithSnapshot:card2.cardResponse.snapshot];
             VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
             [signer authoritySignRequest:signedCardRequest forAppId:card1.identifier withPrivateKey:keyPair1.privateKey error:nil];
             

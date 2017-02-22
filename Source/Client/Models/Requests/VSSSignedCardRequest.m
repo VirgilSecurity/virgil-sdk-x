@@ -15,8 +15,8 @@
 
 @implementation VSSSignedCardRequest
 
-+ (instancetype)signedCardRequestWithSnapshotModel:(VSSCreateCardSnapshotModel *)snapshotModel {
-    return [[VSSSignedCardRequest alloc] initWithSnapshotModel:snapshotModel];
++ (instancetype)signedCardRequestWithSnapshot:(NSData *)snapshot {
+    return [[VSSSignedCardRequest alloc] initWithSnapshot:snapshot];
 }
 
 + (VSSSnapshotModel * __nullable)buildSnapshotModelFromSnapshot:(NSData * __nonnull)snapshot {

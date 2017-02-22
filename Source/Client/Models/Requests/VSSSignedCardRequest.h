@@ -18,10 +18,10 @@
 /**
  Factory method which allocates and initalizes VSSSignedCardRequest instance.
 
- @param snapshotModel snapshotModel can be obtained from VSSCard using card.response.model getter
+ @param snapshot NSData can be obtained from VSSCard using card.response.snapshot getter
  @return allocated and initialized VSSSignedCardRequest instance
  */
-+ (instancetype __nonnull)signedCardRequestWithSnapshotModel:(VSSCreateCardSnapshotModel * __nonnull)snapshotModel;
++ (instancetype __nonnull)signedCardRequestWithSnapshot:(NSData * __nonnull)snapshot;
 
 /**
  Overriden function. VSSSignedCardRequest must contain only one signature.
