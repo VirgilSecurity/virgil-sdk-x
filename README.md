@@ -524,7 +524,7 @@ VSSSignedCardRequest *signedCardRequest = [VSSSignedCardRequest signedCardReques
 VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
 [signer authoritySignRequest:signedCardRequest forAppId:card1.identifier withPrivateKey:<#Card1 private key#> error:nil];
 
-[self.client createCardRelationForCardWithId:card1.identifier withSignedCardRequest:signedCardRequest completion:^(NSError *error) {
+[self.client createCardRelationWithSignedCardRequest:signedCardRequest completion:^(NSError *error) {
     //...
 }];
 ```
@@ -535,7 +535,7 @@ let signedCardRequest = VSSSignedCardRequest(snapshotModel: card2.cardResponse.m
 let signer = VSSRequestSigner(crypto: self.crypto)
 try! signer.authoritySign(signedCardRequest, forAppId: card1.identifier, with: <#Card1 private key#>)
 
-self.client.createCardRelation(forCardWithId: card1.identifier, with: signedCardRequest, completion: { error in
+self.client.createCardRelation(with: signedCardRequest, completion: { error in
     //...
 })
 ```
@@ -549,7 +549,7 @@ VSSRemoveCardRelationRequest *request = [VSSRemoveCardRelationRequest removeCard
 VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
 [signer authoritySignRequest:request forAppId:card1.identifier withPrivateKey:<#Card1 private key#> error:nil];
 
-[self.client removeCardRelationWithRequest:request cardId:card1.identifier completion:^(NSError *error) {
+[self.client removeCardRelationWithRequest:request completion:^(NSError *error) {
 	//...
 }];
 
@@ -561,7 +561,7 @@ let request = VSSRemoveCardRelationRequest(cardId: registeredCard2!.identifier, 
 let signer = VSSRequestSigner(crypto: self.crypto)
 try! signer.authoritySign(request, forAppId: card1.identifier, with: <#Card1 private key#>)
 
-self.client.removeCardRelation(with: request, cardId: card1.identifier, completion: { error in
+self.client.removeCardRelation(with: request, completion: { error in
     //...
 })
 ```
