@@ -253,8 +253,8 @@ Performs the `Virgil Card`s search by criteria:
 
 ###### Objective-C
 ```objective-c
-VSSSearchCardsCritera *critera = [VSSSearchCardsCriteria searchCardsCriteriaWithScope:VSSCardScopeApplication identityType:@"username" identities:@[@"alice", @"bob"]];
-[self.client searchCardsUsingCriteria:searchCards completion:^(NSArray<VSSCard *>* foundCards, NSError *error) {
+VSSSearchCardsCritera *criteria = [VSSSearchCardsCriteria searchCardsCriteriaWithScope:VSSCardScopeApplication identityType:@"username" identities:@[@"alice", @"bob"]];
+[self.client searchCardsUsingCriteria:criteria completion:^(NSArray<VSSCard *>* foundCards, NSError *error) {
 	//...
 }];
 ```
