@@ -89,15 +89,15 @@ $ brew install carthage
 
 To integrate VirgilSDK into your Xcode project using Carthage, perform following steps:
 
-1. Create a [Cartfile][] in your project's root folder, that lists the frameworks you’d like to use in your project.
-1. Add the following line to your Cartfile
+1. Create an empty file with name `Cartfile` in your project's root folder, that lists the frameworks you’d like to use in your project.
+1. Add the following line to your `Cartfile`
 
   ```ogdl
   github "VirgilSecurity/virgil-sdk-x" ~> 4.2.0
   ```
   
-1. Run `carthage update`. This will fetch dependencies into a [Carthage/Checkouts][] folder, then build each one or download a pre-compiled framework.
-1. On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, add each framework you want to use from the [Carthage/Build][] folder on disk.
+1. Run `carthage update`. This will fetch dependencies into a `Carthage/Checkouts` folder inside your project's folder, then build each one or download a pre-compiled framework.
+1. On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, add each framework you want to use from the `Carthage/Build` folder inside your project's folder.
 1. On your application targets’ “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script in which you specify your shell (ex: `/bin/sh`), add the following contents to the script area below the shell:
 
   ```sh
@@ -108,9 +108,7 @@ To integrate VirgilSDK into your Xcode project using Carthage, perform following
 
   ```
   $(SRCROOT)/Carthage/Build/iOS/VirgilSDK.framework
-  ```
-
-Run `carthage update` to build the framework and drag the built `Alamofire.framework` into your Xcode project.
+  ```e
 
 ## Swift note
 
@@ -299,7 +297,7 @@ self.client.searchCards(using: criteria) { foundCards, error in
 }
 ```
 
-## Validating Virgil Cards
+e## Validating Virgil Cards
 This sample uses *built-in* ```VSSCardValidator``` to validate Virgil Service card responses. Default ```VSSCardValidator``` validates only *Cards Service* signature. 
 
 ###### Objective-C
@@ -309,7 +307,7 @@ VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.cryp
 // Your can also add another Public Key for verification.
 // [validator addVerifierWithId:<#Verifier card id#> publicKey:<#Verifier public key data#>];
 
-BOOL isValid = [validator validateCardResponse:response];
+eBOOL isValid = [validator validateCardResponse:response];
 ```
 
 ###### Swift
