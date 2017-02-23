@@ -62,7 +62,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'VirgilSDK', '~> 4.0.0'
+    pod 'VirgilSDK', '~> 4.2.0'
 end
 ```
 
@@ -77,8 +77,38 @@ $ pod install
 ### Carthage
 
 As of version 4.2.0 VirgilSDK is available for integration using Carthage.
-Information on how to use Carthage can be found here:
-https://github.com/Carthage/Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate VirgilSDK into your Xcode project using Carthage, perform following steps:
+
+1. Create a [Cartfile][] in your project's root folder, that lists the frameworks you’d like to use in your project.
+1. Add following line to your Cartfile
+```ogdl
+github "VirgilSecurity/virgil-sdk-x" ~> 4.2.0
+```
+1. Run `carthage update`. This will fetch dependencies into a [Carthage/Checkouts][] folder, then build each one or download a pre-compiled framework.
+1. On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, add each framework you want to use from the [Carthage/Build][] folder on disk.
+1. On your application targets’ “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script in which you specify your shell (ex: `/bin/sh`), add the following contents to the script area below the shell:
+
+  ```sh
+  /usr/local/bin/carthage copy-frameworks
+  ```
+
+  and add the paths to the frameworks you want to use under “Input Files”, e.g.:
+
+  ```
+  $(SRCROOT)/Carthage/Build/iOS/VirgilSDK.framework
+  ```
+
+Run `carthage update` to build the framework and drag the built `Alamofire.framework` into your Xcode project.
 
 ## Swift note
 
