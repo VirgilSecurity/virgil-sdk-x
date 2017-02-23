@@ -108,7 +108,7 @@ To integrate VirgilSDK into your Xcode project using Carthage, perform following
 
   ```
   $(SRCROOT)/Carthage/Build/iOS/VirgilSDK.framework
-  ```e
+  ```
 
 ## Swift note
 
