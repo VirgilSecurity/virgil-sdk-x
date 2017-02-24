@@ -310,13 +310,13 @@
         return;
     }
     
-    NSData *decryptedAndVerifiedData = [self.crypto decryptAndVerifyData:signedAndEcnryptedData withPrivateKey:receiverKeyPair.privateKey usingSignerPublicKey:senderKeyPair.publicKey error:&error];
+    NSData *decryptedThenVerifiedData = [self.crypto decryptThenVerifyData:signedAndEcnryptedData withPrivateKey:receiverKeyPair.privateKey usingSignerPublicKey:senderKeyPair.publicKey error:&error];
     if (error != nil) {
         XCTFail(@"Expectation failed: %@", error);
         return;
     }
     
-    XCTAssert([data isEqualToData:decryptedAndVerifiedData]);
+    XCTAssert([data isEqualToData:decryptedThenVerifiedData]);
 }
 
 @end

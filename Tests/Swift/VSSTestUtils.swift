@@ -18,9 +18,9 @@ class VSSTestUtils {
         self.consts = consts
     }
     
-    func instantiateCreateCardRequest() -> VSSCreateCardRequest {
-        let keyPair = self.crypto.generateKeyPair()
-        let exportedPublicKey = self.crypto.export(keyPair.publicKey)
+    func instantiateCreateCardRequest(keyPair: VSSKeyPair? = nil) -> VSSCreateCardRequest {
+        let kp = keyPair ?? self.crypto.generateKeyPair()
+        let exportedPublicKey = self.crypto.export(kp.publicKey)
         
         // some random value
         let identityValue = UUID().uuidString
@@ -32,7 +32,7 @@ class VSSTestUtils {
         
         let signer = VSSRequestSigner(crypto: self.crypto)
         
-        try! signer.selfSign(request, with: keyPair.privateKey)
+        try! signer.selfSign(request, with: kp.privateKey)
         try! signer.authoritySign(request, forAppId: self.consts.applicationId, with: appPrivateKey)
         
         return request;

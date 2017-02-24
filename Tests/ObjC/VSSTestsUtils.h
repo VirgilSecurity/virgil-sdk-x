@@ -17,6 +17,7 @@
 @property (nonatomic, readonly) VSSCrypto * __nonnull crypto;
 @property (nonatomic, readonly) VSSTestsConst * __nonnull consts;
 
+- (VSSCreateCardRequest * __nonnull)instantiateCreateCardRequestWithKeyPair:(VSSKeyPair * __nonnull)keyPair;
 - (VSSCreateCardRequest * __nonnull)instantiateCreateCardRequest;
 - (VSSCard * __nonnull)instantiateCard;
 - (VSSCreateGlobalCardRequest * __nonnull)instantiateEmailCreateCardRequestWithValidationToken:(NSString * __nonnull)validationToken;

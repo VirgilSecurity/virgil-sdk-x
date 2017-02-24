@@ -260,8 +260,8 @@ class VSS003_CryptoTests: XCTestCase {
         
         let signedAndEcryptedData = try! self.crypto.signThenEncrypt(data, with: senderKeyPair.privateKey, for: [receiverKeyPair.publicKey])
         
-        let decryptedAndVerifiedData = try! self.crypto.decryptAndVerify(signedAndEcryptedData, with: receiverKeyPair.privateKey, using: senderKeyPair.publicKey)
+        let decryptedThenVerifiedData = try! self.crypto.decryptThenVerify(signedAndEcryptedData, with: receiverKeyPair.privateKey, using: senderKeyPair.publicKey)
         
-        XCTAssert(data == decryptedAndVerifiedData)
+        XCTAssert(data == decryptedThenVerifiedData)
     }
 }

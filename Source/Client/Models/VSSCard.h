@@ -64,6 +64,11 @@
 @property (nonatomic, copy, readonly) NSString * __nonnull cardVersion;
 
 /**
+ Virgil card ids from relations
+ */
+@property (nonatomic, copy, readonly) NSArray<NSString *> * __nonnull relations;
+
+/**
  Original response from Virgil Service from which Card was created
  */
 @property (nonatomic, copy, readonly) VSSCardResponse * __nonnull cardResponse;

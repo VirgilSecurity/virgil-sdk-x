@@ -182,12 +182,20 @@
 		427A63651DB9096C00A33661 /* VSSCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F0ABC91D9D13B100747799 /* VSSCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427A63671DB9096C00A33661 /* VSSFingerprint.h in Headers */ = {isa = PBXBuildFile; fileRef = 42FA96451DA3C09B0092D5DB /* VSSFingerprint.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427A636B1DB9096C00A33661 /* NSObject+VSSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 36FF4B8D1C4D7FED00E901F3 /* NSObject+VSSUtils.h */; };
+		427C40571E5B32550017C2A9 /* VSSCreateCardRelationHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 427C40561E5B32520017C2A9 /* VSSCreateCardRelationHTTPRequest.h */; };
+		427C40591E5B32640017C2A9 /* VSSCreateCardRelationHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C40581E5B32640017C2A9 /* VSSCreateCardRelationHTTPRequest.m */; };
+		427C405C1E5B33FE0017C2A9 /* VSSSignedCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C405B1E5B33FE0017C2A9 /* VSSSignedCardRequest.m */; };
+		427C405D1E5B34010017C2A9 /* VSSSignedCardRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 427C405A1E5B33EE0017C2A9 /* VSSSignedCardRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		427C40601E5B3A380017C2A9 /* VSSTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427C405E1E5B3A280017C2A9 /* VSSTestUtils.swift */; };
+		427C40611E5B3A3F0017C2A9 /* VSSTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427C405E1E5B3A280017C2A9 /* VSSTestUtils.swift */; };
+		427C40661E5C78290017C2A9 /* VSSRemoveCardRelationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C40651E5C78290017C2A9 /* VSSRemoveCardRelationRequest.m */; };
+		427C40671E5C78770017C2A9 /* VSSRemoveCardRelationRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 427C40641E5C77BC0017C2A9 /* VSSRemoveCardRelationRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		427C406A1E5C78CE0017C2A9 /* VSSRemoveCardRelationHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C40691E5C78CE0017C2A9 /* VSSRemoveCardRelationHTTPRequest.m */; };
 		42B33F761DC3A859008A7B78 /* VSSSignable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B33F751DC3A707008A7B78 /* VSSSignable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42B7E3461DB8F62400D70C12 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
 		42B7E3551DB8F6E400D70C12 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C181DB8E6A700E5E2AE /* sdk_compatibility_data.json */; };
 		42B7E3561DB8F6E800D70C12 /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C191DB8E6A700E5E2AE /* testData.txt */; };
 		42B7E3601DB8F72200D70C12 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
-		42B7E3661DB8F7D100D70C12 /* VSSTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B147271DAFD5D700AC9975 /* VSSTestUtils.swift */; };
 		42B7E36B1DB8F81F00D70C12 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C181DB8E6A700E5E2AE /* sdk_compatibility_data.json */; };
 		42B7E36C1DB8F81F00D70C12 /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C191DB8E6A700E5E2AE /* testData.txt */; };
 		42BBF0C31DD1F12E00E19D60 /* VSSRequestSignerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42BBF0C21DD1F12E00E19D60 /* VSSRequestSignerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -428,6 +436,15 @@
 		42796BD31DCB6281000FDDD4 /* TestSDKApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestSDKApp.entitlements; sourceTree = "<group>"; };
 		42796BD41DCB977C000FDDD4 /* VSS007_KeyStorageWithAccessGroupTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS007_KeyStorageWithAccessGroupTests.m; sourceTree = "<group>"; };
 		42796BD71DCCA02B000FDDD4 /* VSS006_KeyStorageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS006_KeyStorageTests.swift; sourceTree = "<group>"; };
+		427C40561E5B32520017C2A9 /* VSSCreateCardRelationHTTPRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCreateCardRelationHTTPRequest.h; sourceTree = "<group>"; };
+		427C40581E5B32640017C2A9 /* VSSCreateCardRelationHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCreateCardRelationHTTPRequest.m; sourceTree = "<group>"; };
+		427C405A1E5B33EE0017C2A9 /* VSSSignedCardRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSSignedCardRequest.h; sourceTree = "<group>"; };
+		427C405B1E5B33FE0017C2A9 /* VSSSignedCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSignedCardRequest.m; sourceTree = "<group>"; };
+		427C405E1E5B3A280017C2A9 /* VSSTestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSSTestUtils.swift; sourceTree = "<group>"; };
+		427C40641E5C77BC0017C2A9 /* VSSRemoveCardRelationRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSRemoveCardRelationRequest.h; sourceTree = "<group>"; };
+		427C40651E5C78290017C2A9 /* VSSRemoveCardRelationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRemoveCardRelationRequest.m; sourceTree = "<group>"; };
+		427C40681E5C78970017C2A9 /* VSSRemoveCardRelationHTTPRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSRemoveCardRelationHTTPRequest.h; sourceTree = "<group>"; };
+		427C40691E5C78CE0017C2A9 /* VSSRemoveCardRelationHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRemoveCardRelationHTTPRequest.m; sourceTree = "<group>"; };
 		42A442A61DC8F1D2000DD54B /* VSSKeyStorageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorageProtocol.h; sourceTree = "<group>"; };
 		42B1471C1DAFA8F600AC9975 /* VSSImportable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSImportable.h; sourceTree = "<group>"; };
 		42B1471D1DAFA92000AC9975 /* VSSExportable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSExportable.h; sourceTree = "<group>"; };
@@ -435,7 +452,6 @@
 		42B147201DAFAF1800AC9975 /* VSSTestsUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSTestsUtils.h; sourceTree = "<group>"; };
 		42B147211DAFAF9000AC9975 /* VSSTestsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSTestsUtils.m; sourceTree = "<group>"; };
 		42B147231DAFC29600AC9975 /* VSS005_CompatibilityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS005_CompatibilityTests.m; sourceTree = "<group>"; };
-		42B147271DAFD5D700AC9975 /* VSSTestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSSTestUtils.swift; sourceTree = "<group>"; };
 		42B33F751DC3A707008A7B78 /* VSSSignable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSSignable.h; sourceTree = "<group>"; };
 		42B7E3411DB8F62400D70C12 /* VirgilSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirgilSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		42B7E35B1DB8F72200D70C12 /* VirgilSDKSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirgilSDKSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -681,8 +697,8 @@
 		423B09EF1DA9040700A63E5B /* Swift */ = {
 			isa = PBXGroup;
 			children = (
+				427C405E1E5B3A280017C2A9 /* VSSTestUtils.swift */,
 				42F6C20C1DBF5FA60030C21D /* BridgingHeader.h */,
-				42B147271DAFD5D700AC9975 /* VSSTestUtils.swift */,
 				423B09F01DA9040700A63E5B /* VSS001_ClientTests.swift */,
 				420FE5F51E4B75FE005A32D4 /* VSS002_ClientWOTokenTests.swift */,
 				42B81BDA1DB5013900E5E2AE /* VSS003_CryptoTests.swift */,
@@ -827,6 +843,10 @@
 				42F540801E0059D50071FDCF /* VSSVerifyIdentityRequest.m */,
 				42386C271E0190B5009E913F /* VSSConfirmIdentityRequest.m */,
 				42386C371E019D67009E913F /* VSSValidateIdentityRequest.m */,
+				427C405A1E5B33EE0017C2A9 /* VSSSignedCardRequest.h */,
+				427C405B1E5B33FE0017C2A9 /* VSSSignedCardRequest.m */,
+				427C40641E5C77BC0017C2A9 /* VSSRemoveCardRelationRequest.h */,
+				427C40651E5C78290017C2A9 /* VSSRemoveCardRelationRequest.m */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -1129,6 +1149,10 @@
 				423B09B21DA6DA7600A63E5B /* VSSGetCardHTTPRequest.m */,
 				423B09B51DA6DFCD00A63E5B /* VSSRevokeCardHTTPRequest.h */,
 				423B09B61DA6E11D00A63E5B /* VSSRevokeCardHTTPRequest.m */,
+				427C40561E5B32520017C2A9 /* VSSCreateCardRelationHTTPRequest.h */,
+				427C40581E5B32640017C2A9 /* VSSCreateCardRelationHTTPRequest.m */,
+				427C40681E5C78970017C2A9 /* VSSRemoveCardRelationHTTPRequest.h */,
+				427C40691E5C78CE0017C2A9 /* VSSRemoveCardRelationHTTPRequest.m */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -1154,6 +1178,7 @@
 				42D414AC1E39021E00F59580 /* VSSRevokeGlobalCardHTTPRequest.h in Headers */,
 				420FE66C1E534EEE005A32D4 /* VSSVirgilKey.h in Headers */,
 				427A63181DB9096C00A33661 /* VSSExportable.h in Headers */,
+				427C405D1E5B34010017C2A9 /* VSSSignedCardRequest.h in Headers */,
 				427A632A1DB9096C00A33661 /* VSSModelCommons.h in Headers */,
 				420FE65D1E51FFF2005A32D4 /* VSSKeysManagerProtocol.h in Headers */,
 				427A632D1DB9096C00A33661 /* VSSBaseModel.h in Headers */,
@@ -1217,6 +1242,7 @@
 				425B09D31DC2475F005531DC /* VSSSnapshotModelsPublic.h in Headers */,
 				424EF9AD1E0D76B2005E8A8B /* VSSDeviceManager.h in Headers */,
 				425B09CA1DC245CE005531DC /* VSSRevokeCardSnapshotModel.h in Headers */,
+				427C40671E5C78770017C2A9 /* VSSRemoveCardRelationRequest.h in Headers */,
 				427A63671DB9096C00A33661 /* VSSFingerprint.h in Headers */,
 				427A63291DB9096C00A33661 /* VSSModelsPublic.h in Headers */,
 				420FE5F41E4B5E83005A32D4 /* VSSRevokeGlobalCardRequestPrivate.h in Headers */,
@@ -1254,6 +1280,7 @@
 				427A635A1DB9096C00A33661 /* VSSPublicKeyPrivate.h in Headers */,
 				420FE64C1E51C955005A32D4 /* VSSVirgilApiContext.h in Headers */,
 				425B09D01DC24635005531DC /* VSSRevokeCardSnapshotModelPrivate.h in Headers */,
+				427C40571E5B32550017C2A9 /* VSSCreateCardRelationHTTPRequest.h in Headers */,
 				427A636B1DB9096C00A33661 /* NSObject+VSSUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1412,7 +1439,7 @@
 					};
 					42EB30E31DB8EC17001DF4C0 = {
 						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1536,6 +1563,7 @@
 			files = (
 				4248B1341E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */,
 				4248B1241E044CE8000AB44C /* MEmail.m in Sources */,
+				427C40611E5B3A3F0017C2A9 /* VSSTestUtils.swift in Sources */,
 				4248B1381E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */,
 				4248B1281E044CE8000AB44C /* MEmailMetadata.m in Sources */,
 				4248B12C1E044CE8000AB44C /* MEmailResponse.m in Sources */,
@@ -1589,12 +1617,12 @@
 				4248B1321E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */,
 				42F6C20B1DBF5F690030C21D /* VSSTestsConst.m in Sources */,
 				4248B1221E044CE8000AB44C /* MEmail.m in Sources */,
-				42B7E3661DB8F7D100D70C12 /* VSSTestUtils.swift in Sources */,
 				4248B13A1E044CE8000AB44C /* MailinatorRequest.m in Sources */,
 				4248B11E1E044CE8000AB44C /* MailinatorConfig.m in Sources */,
 				4248B1361E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */,
 				4248B12A1E044CE8000AB44C /* MEmailResponse.m in Sources */,
 				4248B12E1E044CE8000AB44C /* MPart.m in Sources */,
+				427C40601E5B3A380017C2A9 /* VSSTestUtils.swift in Sources */,
 				4248B1261E044CE8000AB44C /* MEmailMetadata.m in Sources */,
 				425B09BC1DBF63E8005531DC /* VSS004_ModelsTests.swift in Sources */,
 				4248B11A1E044CE8000AB44C /* Mailinator.m in Sources */,
@@ -1631,6 +1659,7 @@
 				42D414961E37880F00F59580 /* VSSCreateGlobalCardRequest.m in Sources */,
 				420FE6471E51C955005A32D4 /* VSSKeysManager.m in Sources */,
 				42EB31181DB8EC33001DF4C0 /* VSSRevokeCardHTTPRequest.m in Sources */,
+				427C40661E5C78290017C2A9 /* VSSRemoveCardRelationRequest.m in Sources */,
 				42386C251E0183FC009E913F /* VSSVerifyIdentityResponse.m in Sources */,
 				42EB311B1DB8EC33001DF4C0 /* VSSHTTPRequest.m in Sources */,
 				42D414A71E39005E00F59580 /* VSSRevokeGlobalCardRequest.m in Sources */,
@@ -1653,13 +1682,16 @@
 				42386C2F1E019845009E913F /* VSSConfirmIdentityHTTPRequest.m in Sources */,
 				42EB31291DB8EC33001DF4C0 /* VSSCardValidator.m in Sources */,
 				425B09C91DC245CE005531DC /* VSSCreateCardSnapshotModel.m in Sources */,
+				427C405C1E5B33FE0017C2A9 /* VSSSignedCardRequest.m in Sources */,
 				42EB31301DB8EC33001DF4C0 /* VSSKeyPair.m in Sources */,
 				420FE6671E532C36005A32D4 /* VSSVirgilConfig.m in Sources */,
 				42F5407B1E0048520071FDCF /* VSSIdentityBaseHTTPRequest.m in Sources */,
 				42F5407E1E0054C00071FDCF /* VSSVerifyIdentityHTTPRequest.m in Sources */,
 				42EB31321DB8EC33001DF4C0 /* VSSPrivateKey.m in Sources */,
 				42EB31341DB8EC33001DF4C0 /* VSSPublicKey.m in Sources */,
+				427C406A1E5C78CE0017C2A9 /* VSSRemoveCardRelationHTTPRequest.m in Sources */,
 				423CEB561DCA069900CCACB8 /* VSSKeyStorage.m in Sources */,
+				427C40591E5B32640017C2A9 /* VSSCreateCardRelationHTTPRequest.m in Sources */,
 				42BBF0E01DD5E06000E19D60 /* VSSCryptoCommons.m in Sources */,
 				42EB31371DB8EC33001DF4C0 /* VSSCrypto.m in Sources */,
 				42EB31391DB8EC33001DF4C0 /* VSSFingerprint.m in Sources */,
@@ -1759,7 +1791,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -1899,10 +1931,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = A59V7K656Y;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = TestSDKApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

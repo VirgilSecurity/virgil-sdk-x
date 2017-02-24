@@ -23,7 +23,7 @@
  @param publicKeyData NSData with Virgil Card public key
  @param data          NSDictionary with custom payload
 
- @return allocated and initialized VSSCreateCardRequest instnace
+ @return allocated and initialized VSSCreateCardRequest instance
  */
 + (instancetype __nonnull)createCardRequestWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKeyData:(NSData * __nonnull)publicKeyData data:(NSDictionary<NSString *, NSString *> * __nullable)data;
 
@@ -37,7 +37,7 @@
  @param device        NSString with device type
  @param deviceName    NSString with device name
  
- @return allocated and initialized VSSCreateCardRequest instnace
+ @return allocated and initialized VSSCreateCardRequest instance
  */
 + (instancetype __nonnull)createCardRequestWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKeyData:(NSData * __nonnull)publicKeyData data:(NSDictionary<NSString *, NSString *> * __nullable)data device:(NSString * __nonnull)device deviceName:(NSString * __nonnull)deviceName;
 
@@ -48,7 +48,7 @@
  @param identityType  NSString with Identity Type (such as Email, Username, Phone number, etc.)
  @param publicKeyData NSData with Virgil Card public key
 
- @return allocated and initialized VSSCreateCardRequest instnace
+ @return allocated and initialized VSSCreateCardRequest instance
  */
 + (instancetype __nonnull)createCardRequestWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKeyData:(NSData * __nonnull)publicKeyData;
 

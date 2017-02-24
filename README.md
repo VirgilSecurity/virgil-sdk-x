@@ -25,6 +25,7 @@ In this guide you will find code for every task you need to implement in order t
 * [Get a Virgil Card](#get-a-virgil-card)
 * [Revoking a Virgil Card](#revoking-a-virgil-card)
 * [Global Virgil Cards](#global-virgil-cards)
+* [Card relations](#card-relations)
 * [Operations with Crypto Keys](#operations-with-crypto-keys)
 * [Generate Keys](#generate-keys)
 * [Import and Export Keys](#import-and-export-keys)
@@ -61,7 +62,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'VirgilSDK', '~> 4.0.0'
+    pod 'VirgilSDK', '~> 4.2.0'
 end
 ```
 
@@ -76,8 +77,38 @@ $ pod install
 ### Carthage
 
 As of version 4.2.0 VirgilSDK is available for integration using Carthage.
-Information on how to use Carthage can be found here:
-https://github.com/Carthage/Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate VirgilSDK into your Xcode project using Carthage, perform following steps:
+
+1. Create an empty file with name `Cartfile` in your project's root folder, that lists the frameworks you’d like to use in your project.
+1. Add the following line to your `Cartfile`
+
+  ```ogdl
+  github "VirgilSecurity/virgil-sdk-x" ~> 4.2.0
+  ```
+  
+1. Run `carthage update`. This will fetch dependencies into a `Carthage/Checkouts` folder inside your project's folder, then build each one or download a pre-compiled framework.
+1. On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, add each framework you want to use from the `Carthage/Build` folder inside your project's folder.
+1. On your application targets’ “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script in which you specify your shell (ex: `/bin/sh`), add the following contents to the script area below the shell:
+
+  ```sh
+  /usr/local/bin/carthage copy-frameworks
+  ```
+
+  and add the paths to the frameworks you want to use under “Input Files”, e.g.:
+
+  ```
+  $(SRCROOT)/Carthage/Build/iOS/VirgilSDK.framework
+  ```
 
 ## Swift note
 
@@ -252,8 +283,8 @@ Performs the `Virgil Card`s search by criteria:
 
 ###### Objective-C
 ```objective-c
-VSSSearchCardsCritera *critera = [VSSSearchCardsCriteria searchCardsCriteriaWithScope:VSSCardScopeApplication identityType:@"username" identities:@[@"alice", @"bob"]];
-[self.client searchCardsUsingCriteria:searchCards completion:^(NSArray<VSSCard *>* foundCards, NSError *error) {
+VSSSearchCardsCritera *criteria = [VSSSearchCardsCriteria searchCardsCriteriaWithScope:VSSCardScopeApplication identityType:@"username" identities:@[@"alice", @"bob"]];
+[self.client searchCardsUsingCriteria:criteria completion:^(NSArray<VSSCard *>* foundCards, NSError *error) {
 	//...
 }];
 ```
@@ -266,7 +297,7 @@ self.client.searchCards(using: criteria) { foundCards, error in
 }
 ```
 
-## Validating Virgil Cards
+e## Validating Virgil Cards
 This sample uses *built-in* ```VSSCardValidator``` to validate Virgil Service card responses. Default ```VSSCardValidator``` validates only *Cards Service* signature. 
 
 ###### Objective-C
@@ -276,7 +307,7 @@ VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:self.cryp
 // Your can also add another Public Key for verification.
 // [validator addVerifierWithId:<#Verifier card id#> publicKey:<#Verifier public key data#>];
 
-BOOL isValid = [validator validateCardResponse:response];
+eBOOL isValid = [validator validateCardResponse:response];
 ```
 
 ###### Swift
@@ -491,6 +522,78 @@ self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { 
         }
 	}
 }
+```
+
+## Card relations
+
+The relation entity describes a trusted one-way relation between the source Virgil Card specified and the destination Virgil Card.
+Card relations is an implementation of Web of trust concept.
+
+### Checking for card's relations
+Existing card's relations are available in a form of array with ids of virgil cards that are trusted.
+
+###### Objective-C
+```objective-c
+[self.client getCardWithId:card1.identifier completion:^(VSSCard *card, NSError *error) {
+    // card.relations
+}];
+```
+
+###### Swift
+self.client.getCard(withId: registeredCard1!.identifier, completion: { card, error in
+	// card!.relations
+})
+```swift
+
+### Creating a relation
+To create card relation from card1 to card2 (meaning that card1 trusts card2) use following code snippet:
+
+###### Objective-C
+```objective-c
+VSSSignedCardRequest *signedCardRequest = [VSSSignedCardRequest signedCardRequestWithSnapshot:card2.cardResponse.snapshot];
+VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
+[signer authoritySignRequest:signedCardRequest forAppId:card1.identifier withPrivateKey:<#Card1 private key#> error:nil];
+
+[self.client createCardRelationWithSignedCardRequest:signedCardRequest completion:^(NSError *error) {
+    //...
+}];
+```
+
+###### Swift
+```swift
+let signedCardRequest = VSSSignedCardRequest(snapshot: card2.cardResponse.snapshot)
+let signer = VSSRequestSigner(crypto: self.crypto)
+try! signer.authoritySign(signedCardRequest, forAppId: card1.identifier, with: <#Card1 private key#>)
+
+self.client.createCardRelation(with: signedCardRequest, completion: { error in
+    //...
+})
+```
+
+### Removing card relation
+To remove card relation from card1 to card2 use following code snippet:
+
+###### Objective-C
+```objective-c
+VSSRemoveCardRelationRequest *request = [VSSRemoveCardRelationRequest removeCardRelationRequestWithCardId:card2.identifier reason:VSSCardRevocationReasonCompromised];
+VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
+[signer authoritySignRequest:request forAppId:card1.identifier withPrivateKey:<#Card1 private key#> error:nil];
+
+[self.client removeCardRelationWithRequest:request completion:^(NSError *error) {
+	//...
+}];
+
+```
+
+###### Swift
+```swift
+let request = VSSRemoveCardRelationRequest(cardId: registeredCard2!.identifier, reason: .unspecified)
+let signer = VSSRequestSigner(crypto: self.crypto)
+try! signer.authoritySign(request, forAppId: card1.identifier, with: <#Card1 private key#>)
+
+self.client.removeCardRelation(with: request, completion: { error in
+    //...
+})
 ```
 
 ## Operations with Crypto Keys

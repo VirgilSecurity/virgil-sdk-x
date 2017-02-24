@@ -8,6 +8,8 @@
 
 #import "VSSSearchCardsCriteria.h"
 #import "VSSCreateCardRequest.h"
+#import "VSSSignedCardRequest.h"
+#import "VSSRemoveCardRelationRequest.h"
 #import "VSSCreateGlobalCardRequest.h"
 #import "VSSRevokeCardRequest.h"
 #import "VSSRevokeGlobalCardRequest.h"
@@ -38,6 +40,22 @@
  @param callback callback with registered VSSCard or NSError instance if error occured
  */
 - (void)createGlobalCardWithRequest:(VSSCreateGlobalCardRequest * __nonnull)request completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback NS_SWIFT_NAME(createGlobalCardWith(_:completion:));
+
+/**
+ Creates trusted one-way relation between two virgil cards.
+
+ @param request VSSSignedRequest with snapshot of card that is trusted and signed by card that trusts
+ @param callback callback with NSError instance if error occured
+ */
+- (void)createCardRelationWithSignedCardRequest:(VSSSignedCardRequest * __nonnull)request completion:(void (^ __nonnull)(NSError * __nullable))callback;
+
+/**
+ Removes relation from one card to another.
+
+ @param request VSSRemoveCardRelationRequest created for card which is removing from relation
+ @param callback callback with NSError instance if error occured
+ */
+- (void)removeCardRelationWithRequest:(VSSRemoveCardRelationRequest * __nonnull)request completion:(void (^ __nonnull)(NSError * __nullable))callback;
 
 /**
  Returns Virgil Card from the Virgil Cards Service with given ID, if exists.

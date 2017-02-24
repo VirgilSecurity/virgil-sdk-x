@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, VSSCardScope) {
 };
 
 /**
- Enum which represents reason of VSSCreateCardRequestrevocation.
+ Enum which represents reason of Virgil Card revocation.
 
  - VSSCardRevocationReasonUnspecified: No reason was specified
  - VSSCardRevocationReasonCompromised: Private Key of the card was compromised

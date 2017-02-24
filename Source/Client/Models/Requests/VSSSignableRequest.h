@@ -44,6 +44,6 @@
  @param signature   NSData with Signature
  @param fingerprint NSString which identifies Signature
  */
-- (void)addSignature:(NSData * __nonnull)signature forFingerprint:(NSString * __nonnull)fingerprint;
+- (BOOL)addSignature:(NSData * __nonnull)signature forFingerprint:(NSString * __nonnull)fingerprint;
 
 @end

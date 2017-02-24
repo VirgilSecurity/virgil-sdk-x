@@ -35,9 +35,7 @@ NSString *const kVSSRequestSignerErrorDomain = @"VSSRequestSignerErrorDomain";
         return NO;
     }
     
-    [request addSignature:signature forFingerprint:fingerprint.hexValue];
-    
-    return YES;
+    return [request addSignature:signature forFingerprint:fingerprint.hexValue];
 }
 
 - (BOOL)authoritySignRequest:(id<VSSSignable> __nonnull)request forAppId:(NSString * __nonnull)appId withPrivateKey:(VSSPrivateKey * __nonnull)privateKey error:(NSError **)errorPtr {
@@ -52,8 +50,7 @@ NSString *const kVSSRequestSignerErrorDomain = @"VSSRequestSignerErrorDomain";
         return NO;
     }
     
-    [request addSignature:signature forFingerprint:appId];
-    return YES;
+    return [request addSignature:signature forFingerprint:appId];
 }
 
 @end

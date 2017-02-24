@@ -186,7 +186,7 @@
 
  @return NSData instance with encrypted and verified data
  */
-- (NSData * __nullable)decryptAndVerifyData:(NSData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey usingSignerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(decryptAndVerify(_:with:using:));
+- (NSData * __nullable)decryptThenVerifyData:(NSData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey usingSignerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(decryptThenVerify(_:with:using:));
 
 ///------------------------------------------
 /// @name Hash-related functionality

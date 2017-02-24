@@ -89,7 +89,7 @@ class VSS005_CompatibilityTests: XCTestCase {
         }
     }
     
-    func test004_DecryptAndVerifySingleRecipient_ShouldDecryptAndVerify() {
+    func test004_DecryptThenVerifySingleRecipient_ShouldDecryptThenVerify() {
         let dict = self.testsDict["sign_then_encrypt_single_recipient"] as! Dictionary<String, String>
         
         let privateKeyStr = dict["private_key"]!
@@ -106,14 +106,14 @@ class VSS005_CompatibilityTests: XCTestCase {
         let cipherDataStr = dict["cipher_data"]!
         let cipherData = Data(base64Encoded: cipherDataStr)!
         
-        let decryptedData = try! self.crypto.decryptAndVerify(cipherData, with: privateKey, using: publicKey)
+        let decryptedData = try! self.crypto.decryptThenVerify(cipherData, with: privateKey, using: publicKey)
         
         let decryptedStr = String(data: decryptedData, encoding: .utf8)!
         
         XCTAssert(originalStr == decryptedStr)
     }
     
-    func test005_DecryptAndVerifyMultipleRecipients_ShouldDecryptAndVerify() {
+    func test005_DecryptThenVerifyMultipleRecipients_ShouldDecryptThenVerify() {
         let dict = self.testsDict["sign_then_encrypt_multiple_recipients"] as! Dictionary<String, Any>
         
         var privateKeys = Array<VSSPrivateKey>()
@@ -136,7 +136,7 @@ class VSS005_CompatibilityTests: XCTestCase {
         let signerPublicKey = self.crypto.extractPublicKey(from: privateKeys[0])
         
         for privateKey in privateKeys {
-            let decryptedData = try! self.crypto.decryptAndVerify(cipherData, with: privateKey, using: signerPublicKey)
+            let decryptedData = try! self.crypto.decryptThenVerify(cipherData, with: privateKey, using: signerPublicKey)
             let decrypteDataStr = decryptedData.base64EncodedString()
             
             XCTAssert(decrypteDataStr == originalDataStr)

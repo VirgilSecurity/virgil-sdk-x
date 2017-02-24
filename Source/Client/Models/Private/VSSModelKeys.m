@@ -26,6 +26,7 @@ NSString *const kVSSCModelToken = @"token";
 NSString *const kVSSCModelCardScope = @"scope";
 NSString *const kVSSCModelIdentityType = @"identity_type";
 NSString *const kVSSCModelSigns = @"signs";
+NSString *const kVSSCModelRelations = @"relations";
 NSString *const kVSSCModelCardId = @"card_id";
 NSString *const kVSSCModelRevocationReason = @"revocation_reason";
 NSString *const kVSSCModelIdentities = @"identities";

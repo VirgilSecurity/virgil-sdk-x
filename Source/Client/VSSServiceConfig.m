@@ -36,6 +36,7 @@
     copy.cardsServiceROURL = self.cardsServiceROURL;
     copy.cardValidator = self.cardValidator;
     copy.identityServiceURL = self.identityServiceURL;
+    copy.registrationAuthorityURL = self.registrationAuthorityURL;
     
     return copy;
 }

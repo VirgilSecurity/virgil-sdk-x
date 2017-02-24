@@ -16,6 +16,8 @@
 #import "VSSCreateGlobalCardHTTPRequest.h"
 #import "VSSSearchCardsHTTPRequest.h"
 #import "VSSGetCardHTTPRequest.h"
+#import "VSSCreateCardRelationHTTPRequest.h"
+#import "VSSRemoveCardRelationHTTPRequest.h"
 #import "VSSRevokeCardHTTPRequest.h"
 #import "VSSRevokeGlobalCardHTTPRequest.h"
 #import "VSSCardResponsePrivate.h"
@@ -170,6 +172,66 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     httpRequest.completionHandler = handler;
     
     [self send:httpRequest requiresAccessToken:NO];
+}
+
+- (void)createCardRelationWithSignedCardRequest:(VSSSignedCardRequest *)request completion:(void (^)(NSError *))callback {
+    if (request.signatures.count != 1) {
+        callback([[NSError alloc] initWithDomain:kVSSClientErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: @"VSSSignedCardRequest should contain 1 signature" }]);
+        return;
+    }
+    
+    NSString *cardId = request.signatures.allKeys[0];
+    
+    VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.cardsServiceURL];
+    VSSCreateCardRelationHTTPRequest *httpRequest = [[VSSCreateCardRelationHTTPRequest alloc] initWithContext:context cardId:cardId signedCardRequest:request];
+    
+    VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
+        if (request.error != nil) {
+            if (callback != nil) {
+                callback(request.error);
+            }
+            return;
+        }
+        
+        if (callback != nil) {
+            callback(nil);
+        }
+        return;
+    };
+    
+    httpRequest.completionHandler = handler;
+    
+    [self send:httpRequest requiresAccessToken:YES];
+}
+
+- (void)removeCardRelationWithRequest:(VSSRemoveCardRelationRequest *)request completion:(void (^)(NSError *))callback {
+    if (request.signatures.count != 1) {
+        callback([[NSError alloc] initWithDomain:kVSSClientErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: @"VSSSignedCardRequest should contain 1 signature" }]);
+        return;
+    }
+    
+    NSString *cardId = request.signatures.allKeys[0];
+    
+    VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.cardsServiceURL];
+    VSSRemoveCardRelationHTTPRequest *httpRequest = [[VSSRemoveCardRelationHTTPRequest alloc] initWithContext:context cardId:cardId removeCardRelationRequest:request];
+    
+    VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
+        if (request.error != nil) {
+            if (callback != nil) {
+                callback(request.error);
+            }
+            return;
+        }
+        
+        if (callback != nil) {
+            callback(nil);
+        }
+        return;
+    };
+    
+    httpRequest.completionHandler = handler;
+    
+    [self send:httpRequest requiresAccessToken:YES];
 }
 
 - (void)getCardWithId:(NSString *)cardId completion:(void (^)(VSSCard *, NSError *))callback {
