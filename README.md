@@ -540,11 +540,11 @@ Existing card's relations are available in a form of array with ids of virgil ca
 ```
 
 ###### Swift
-```
+```swift
 self.client.getCard(withId: registeredCard1!.identifier, completion: { card, error in
 	// card!.relations
 })
-```swift
+```
 
 ### Creating a relation
 To create card relation from card1 to card2 (meaning that card1 trusts card2) use following code snippet:
