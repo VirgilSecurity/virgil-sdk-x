@@ -540,6 +540,7 @@ Existing card's relations are available in a form of array with ids of virgil ca
 ```
 
 ###### Swift
+```
 self.client.getCard(withId: registeredCard1!.identifier, completion: { card, error in
 	// card!.relations
 })
