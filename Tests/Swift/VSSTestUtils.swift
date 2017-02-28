@@ -25,7 +25,7 @@ class VSSTestUtils {
         // some random value
         let identityValue = UUID().uuidString
         let identityType = self.consts.applicationIdentityType
-        let request = VSSCreateCardRequest(identity: identityValue, identityType: identityType, publicKeyData: exportedPublicKey)
+        let request = VSSCreateApplicationCardRequest(identity: identityValue, identityType: identityType, publicKeyData: exportedPublicKey)
         
         let privateAppKeyData = Data(base64Encoded: self.consts.applicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
         let appPrivateKey = self.crypto.importPrivateKey(from: privateAppKeyData, withPassword: self.consts.applicationPrivateKeyPassword)!
@@ -60,7 +60,7 @@ class VSSTestUtils {
         // some random value
         let identityValue = UUID().uuidString
         let identityType = self.consts.applicationIdentityType
-        let request = VSSCreateCardRequest(identity: identityValue, identityType: identityType, publicKeyData: exportedPublicKey, data: data)
+        let request = VSSCreateApplicationCardRequest(identity: identityValue, identityType: identityType, publicKeyData: exportedPublicKey, data: data)
         
         let privateAppKeyData = Data(base64Encoded: self.consts.applicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
         let appPrivateKey = self.crypto.importPrivateKey(from: privateAppKeyData, withPassword: self.consts.applicationPrivateKeyPassword)!
@@ -148,8 +148,8 @@ class VSSTestUtils {
         return equals
     }
     
-    func instantiateRevokeCardRequestFor(card: VSSCard) -> VSSRevokeCardRequest {
-        let revokeCard = VSSRevokeCardRequest(cardId: card.identifier, reason: .unspecified)
+    func instantiateRevokeCardRequestFor(card: VSSCard) -> VSSRevokeApplicationCardRequest {
+        let revokeCard = VSSRevokeApplicationCardRequest(cardId: card.identifier, reason: .unspecified)
         
         let signer = VSSRequestSigner(crypto: self.crypto)
         

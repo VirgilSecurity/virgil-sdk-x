@@ -6,14 +6,14 @@
 //  Copyright © 2017 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSSignableRequest.h"
+#import "VSSCreateCardRequest.h"
 #import "VSSCreateCardSnapshotModel.h"
 
 /**
  Virgil Model representing request for Virgil Global Card creation.
  See VSSSignableRequest, VSSCreateCardSnapshotModel. See VSSClient protocol.
  */
-@interface VSSCreateGlobalCardRequest : VSSSignableRequest<VSSCreateCardSnapshotModel *>
+@interface VSSCreateGlobalCardRequest : VSSCreateCardRequest
 
 /**
  Validation token obtained from Virgil Authority Service.

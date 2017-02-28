@@ -6,20 +6,20 @@
 //  Copyright © 2017 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSRevokeGlobalCardHTTPRequest.h"
-#import "VSSRevokeGlobalCardRequest.h"
+#import "VSSRevokeCardHTTPRequest.h"
+#import "VSSRevokeCardRequest.h"
 #import "VSSSignableRequestPrivate.h"
 #import "VSSModelKeys.h"
 
-@interface VSSRevokeGlobalCardHTTPRequest ()
+@interface VSSRevokeCardHTTPRequest ()
 
 @property (nonatomic, copy, readonly) NSString * __nonnull cardId;
 
 @end
 
-@implementation VSSRevokeGlobalCardHTTPRequest
+@implementation VSSRevokeCardHTTPRequest
 
-- (instancetype)initWithContext:(VSSHTTPRequestContext *)context revokeCardRequest:(VSSRevokeGlobalCardRequest *)request {
+- (instancetype)initWithContext:(VSSHTTPRequestContext *)context revokeCardRequest:(VSSRevokeCardRequest *)request {
     self = [super initWithContext:context];
     if (self) {
         _cardId = [request.snapshotModel.cardId copy];

@@ -496,7 +496,7 @@ static const NSTimeInterval kEstimatedEmailReceiveTime = 30.;
                     
                     VSSCreateGlobalCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithIdentity:identity validationToken:response.validationToken keyPair:nil];
                     
-                    [self.client createGlobalCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
+                    [self.client createCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
                         XCTAssert(error == nil);
                         
                         XCTAssert([self.utils checkCard:card isEqualToCreateGlobalCardRequest:request]);
@@ -541,10 +541,10 @@ static const NSTimeInterval kEstimatedEmailReceiveTime = 30.;
                     VSSKeyPair *keyPair = [self.crypto generateKeyPair];
                     VSSCreateGlobalCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithIdentity:identity validationToken:response.validationToken keyPair:keyPair];
                     
-                    [self.client createGlobalCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
+                    [self.client createCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
                         VSSRevokeGlobalCardRequest *revokeRequest = [self.utils instantiateRevokeGlobalCardForCard:card validationToken:response.validationToken withPrivateKey:keyPair.privateKey];
                     
-                        [self.client revokeGlobalCardWithRequest:revokeRequest completion:^(NSError *error) {
+                        [self.client revokeCardWithRequest:revokeRequest completion:^(NSError *error) {
                             XCTAssert(error == nil);
                             
                             [ex fulfill];

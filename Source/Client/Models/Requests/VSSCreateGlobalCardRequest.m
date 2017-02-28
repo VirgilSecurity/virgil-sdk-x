@@ -36,10 +36,6 @@
     return [VSSCreateGlobalCardRequest createGlobalCardRequestWithIdentity:identity identityType:identityType validationToken:validationToken publicKeyData:publicKeyData data:nil];
 }
 
-+ (VSSCreateCardSnapshotModel * __nullable)buildSnapshotModelFromSnapshot:(NSData * __nonnull)snapshot {
-    return [VSSCreateCardSnapshotModel createFromCanonicalForm:snapshot];
-}
-
 - (instancetype)initWithSnapshot:(NSData *)snapshot snapshotModel:(VSSCreateCardSnapshotModel *)model signatures:(NSDictionary<NSString *, NSData *> *)signatures validationToken:(NSString *)validationToken {
     self = [super initWithSnapshot:snapshot snapshotModel:model signatures:signatures];
     if (self) {
