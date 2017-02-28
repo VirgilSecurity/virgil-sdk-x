@@ -62,7 +62,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'VirgilSDK', '~> 4.2.0'
+    pod 'VirgilSDK', '~> 4.3.0'
 end
 ```
 
@@ -93,7 +93,7 @@ To integrate VirgilSDK into your Xcode project using Carthage, perform following
 1. Add the following line to your `Cartfile`
 
   ```ogdl
-  github "VirgilSecurity/virgil-sdk-x" ~> 4.2.0
+  github "VirgilSecurity/virgil-sdk-x" ~> 4.3.0
   ```
   
 1. Run `carthage update`. This will fetch dependencies into a `Carthage/Checkouts` folder inside your project's folder, then build each one or download a pre-compiled framework.
@@ -540,10 +540,11 @@ Existing card's relations are available in a form of array with ids of virgil ca
 ```
 
 ###### Swift
+```swift
 self.client.getCard(withId: registeredCard1!.identifier, completion: { card, error in
 	// card!.relations
 })
-```swift
+```
 
 ### Creating a relation
 To create card relation from card1 to card2 (meaning that card1 trusts card2) use following code snippet:
