@@ -1,5 +1,5 @@
 //
-//  VSSRevokeGlobalCardHTTPRequest.m
+//  VSSRevokeCardHTTPRequest.m
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 1/25/17.
