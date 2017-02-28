@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "VSSVirgilKey.h"
 #import "VSSVirgilKeyPrivate.h"
+#import "VSSVirgilCardPrivate.h"
 
 @implementation VSSVirgilKey
 
@@ -38,14 +39,17 @@
     
     NSMutableArray<VSSPublicKey *> *recipientPublicKeys = [[NSMutableArray alloc] initWithCapacity:recipients.count];
     for (VSSVirgilCard *card in recipients) {
-        [recipientPublicKeys addObject:card.publicKey];
+        VSSPublicKey *publicKey = [self.context.crypto importPublicKeyFromData:card.publicKey];
+        [recipientPublicKeys addObject:publicKey];
     }
     
     return [self.context.crypto signThenEncryptData:data withPrivateKey:self.privateKey forRecipients:recipientPublicKeys error:errorPtr];
 }
 
 - (NSData *)decryptThenVerifyData:(NSData *)data from:(VSSVirgilCard *)card error:(NSError * __nullable * __nullable)errorPtr {
-    return [self.context.crypto decryptThenVerifyData:data withPrivateKey:self.privateKey usingSignerPublicKey:card.publicKey error:errorPtr];
+    VSSPublicKey *publicKey = [self.context.crypto importPublicKeyFromData:card.publicKey];
+    
+    return [self.context.crypto decryptThenVerifyData:data withPrivateKey:self.privateKey usingSignerPublicKey:publicKey error:errorPtr];
 }
 
 - (BOOL)storeWithName:(NSString *)name password:(NSString *)password error:(NSError **)errorPtr {

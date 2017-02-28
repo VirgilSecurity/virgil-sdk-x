@@ -20,11 +20,10 @@
  */
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 
-@property (nonatomic, readonly) NSString * __nonnull identifier;
+@property (nonatomic, readonly) NSString * __nullable identifier;
 @property (nonatomic, readonly) NSString * __nonnull identity;
 @property (nonatomic, readonly) NSString * __nonnull identityType;
-@property (nonatomic, readonly) NSDictionary<NSString *, NSString *> * __nullable data;
-@property (nonatomic, readonly) NSData * __nonnull publicKey;
+@property (nonatomic, readonly) NSDictionary<NSString *, NSString *> * __nullable customFields;
 @property (nonatomic, readonly) NSDictionary<NSString *, NSString *> * __nullable info;
 @property (nonatomic, readonly) VSSCardScope scope;
 

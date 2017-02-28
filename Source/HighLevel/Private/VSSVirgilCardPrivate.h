@@ -14,10 +14,12 @@
 @interface VSSVirgilCard ()
 
 @property (nonatomic, readonly) VSSVirgilApiContext * __nonnull context;
-@property (nonatomic) NSData * __nonnull publicKey;
-@property (nonatomic, readonly) VSSCard * __nullable model;
-//@property (nonatomic, readonly) VSSCreateCardRequest * __nullable card;
+@property (nonatomic, readonly) VSSCard * __nullable card;
+@property (nonatomic, readonly) VSSCreateCardRequest * __nullable request;
+@property (nonatomic, readonly) NSData * __nonnull publicKey;
 
-- (instancetype __nonnull)initWithContext:(VSSVirgilApiContext * __nonnull)context model:(VSSCard * __nonnull)model NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithContext:(VSSVirgilApiContext * __nonnull)context request:(VSSCreateCardRequest * __nonnull)request NS_DESIGNATED_INITIALIZER;
+
+- (instancetype __nonnull)initWithContext:(VSSVirgilApiContext * __nonnull)context card:(VSSCard * __nonnull)card NS_DESIGNATED_INITIALIZER;
 
 @end

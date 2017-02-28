@@ -11,11 +11,21 @@
 
 @implementation VSSVirgilCard
 
-- (instancetype)initWithContext:(VSSVirgilApiContext * __nonnull)context model:(VSSCard *)model {
+- (instancetype)initWithContext:(VSSVirgilApiContext *)context request:(VSSCreateCardRequest *)request {
     self = [super init];
     if (self) {
         _context = context;
-        _model = model;
+        _request = request;
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithContext:(VSSVirgilApiContext *)context card:(VSSCard *)card {
+    self = [super init];
+    if (self) {
+        _context = context;
+        _card = card;
     }
     
     return self;
@@ -112,31 +122,52 @@
 //}
 
 - (NSString *)identifier {
-    return self.model.identifier;
+    if (self.card != nil)
+        return self.card.identifier;
+    
+    return nil;
 }
 
 - (NSString *)identity {
-    return self.model.identity;
+    if (self.card != nil)
+        return self.card.identity;
+    else
+        return self.request.snapshotModel.identity;
 }
 
 - (NSString *)identityType {
-    return self.model.identityType;
-}
-
-- (NSDictionary<NSString *, NSString *> *)data {
-    return self.model.data;
+    if (self.card != nil)
+        return self.card.identityType;
+    else
+        return self.request.snapshotModel.identityType;
 }
 
 - (NSData *)publicKey {
-    return self.model.publicKeyData;
+    if (self.card != nil)
+        return self.card.publicKeyData;
+    else
+        return self.request.snapshotModel.publicKeyData;
+}
+
+- (NSDictionary<NSString *, NSString *> *)customField {
+    if (self.card != nil)
+        return self.card.data;
+    else
+        return self.request.snapshotModel.data;
 }
 
 - (NSDictionary<NSString *, NSString *> *)info {
-    return self.model.info;
+    if (self.card != nil)
+        return self.card.info;
+    else
+        return self.request.snapshotModel.info;
 }
 
 - (VSSCardScope)scope {
-    return self.model.scope;
+    if (self.card != nil)
+        return self.card.scope;
+    else
+        return self.request.snapshotModel.scope;
 }
 
 @end
