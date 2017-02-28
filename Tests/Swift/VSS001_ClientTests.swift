@@ -240,110 +240,110 @@ class VSS001_ClientTests: XCTestCase {
         }
     }
     
-//    func testC06_CreateCardRelation() {
-//        let ex = self.expectation(description: "2 Virgil Cards should be created. Virgil card relation should be created.");
-//        
-//        let numberOfRequests = 4
-//        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
-//        
-//        let keyPair1 = self.crypto.generateKeyPair()
-//        let request1 = self.utils.instantiateCreateCardRequest(keyPair: keyPair1)
-//        
-//        self.client.createCardWith(request1) { (registeredCard1, error) in
-//            guard error == nil else {
-//                XCTFail("Failed: " + error!.localizedDescription)
-//                return
-//            }
-//            
-//            let request2 = self.utils.instantiateCreateCardRequest()
-//            self.client.createCardWith(request2) { (registeredCard2, error) in
-//                guard error == nil else {
-//                    XCTFail("Failed: " + error!.localizedDescription)
-//                    return
-//                }
-//                
-//                let signedCardRequest = VSSSignedCardRequest(snapshot: registeredCard2!.cardResponse.snapshot)
-//                let signer = VSSRequestSigner(crypto: self.crypto)
-//                try! signer.authoritySign(signedCardRequest, forAppId: registeredCard1!.identifier, with: keyPair1.privateKey)
-//                
-//                self.client.createCardRelation(with: signedCardRequest, completion: { error in
-//                    guard error == nil else {
-//                        XCTFail("Failed: " + error!.localizedDescription)
-//                        return
-//                    }
-//                    
-//                    self.client.getCard(withId: registeredCard1!.identifier, completion: { card, error in
-//                        guard error == nil else {
-//                            XCTFail("Failed: " + error!.localizedDescription)
-//                            return
-//                        }
-//                        
-//                        XCTAssert(card!.relations.count == 1)
-//                        XCTAssert(card!.relations[0] == registeredCard2!.identifier)
-//                        
-//                        ex.fulfill()
-//                    })
-//                })
-//            }
-//        }
-//        
-//        self.waitForExpectations(timeout: timeout) { error in
-//            guard error == nil else {
-//                XCTFail("Expectation failed: " + error!.localizedDescription)
-//                return
-//            }
-//        }
-//    }
-//    
-//    func testC07_RemoveCardRelation() {
-//        let ex = self.expectation(description: "2 Virgil Cards should be created. Virgil card relation should be created. Virgil card relation should be removed.");
-//        
-//        let numberOfRequests = 4
-//        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
-//        
-//        let keyPair1 = self.crypto.generateKeyPair()
-//        let request1 = self.utils.instantiateCreateCardRequest(keyPair: keyPair1)
-//        
-//        self.client.createCardWith(request1) { (registeredCard1, error) in
-//            guard error == nil else {
-//                XCTFail("Failed: " + error!.localizedDescription)
-//                return
-//            }
-//            
-//            let request2 = self.utils.instantiateCreateCardRequest()
-//            self.client.createCardWith(request2) { (registeredCard2, error) in
-//                let signedCardRequest = VSSSignedCardRequest(snapshot: registeredCard2!.cardResponse.snapshot)
-//                let signer = VSSRequestSigner(crypto: self.crypto)
-//                try! signer.authoritySign(signedCardRequest, forAppId: registeredCard1!.identifier, with: keyPair1.privateKey)
-//                
-//                self.client.createCardRelation(with: signedCardRequest, completion: { error in
-//                    let request = VSSRemoveCardRelationRequest(cardId: registeredCard2!.identifier, reason: .unspecified)
-//                    try! signer.authoritySign(request, forAppId: registeredCard1!.identifier, with: keyPair1.privateKey)
-//                    
-//                    self.client.removeCardRelation(with: request, completion: { error in
-//                        guard error == nil else {
-//                            XCTFail("Failed: " + error!.localizedDescription)
-//                            return
-//                        }
-//                        
-//                        self.client.getCard(withId: registeredCard1!.identifier, completion: { card, error in
-//                            
-//                            XCTAssert(card!.relations.count == 0)
-//                            
-//                            ex.fulfill()
-//                        })
-//                    })
-//                })
-//            }
-//        }
-//        
-//        self.waitForExpectations(timeout: timeout) { error in
-//            guard error == nil else {
-//                XCTFail("Expectation failed: " + error!.localizedDescription)
-//                return
-//            }
-//        }
-//    }
+    func testC06_CreateCardRelation() {
+        let ex = self.expectation(description: "2 Virgil Cards should be created. Virgil card relation should be created.");
+        
+        let numberOfRequests = 4
+        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
+        
+        let keyPair1 = self.crypto.generateKeyPair()
+        let request1 = self.utils.instantiateCreateCardRequest(keyPair: keyPair1)
+        
+        self.client.createCardWith(request1) { (registeredCard1, error) in
+            guard error == nil else {
+                XCTFail("Failed: " + error!.localizedDescription)
+                return
+            }
+            
+            let request2 = self.utils.instantiateCreateCardRequest()
+            self.client.createCardWith(request2) { (registeredCard2, error) in
+                guard error == nil else {
+                    XCTFail("Failed: " + error!.localizedDescription)
+                    return
+                }
+                
+                let signedCardRequest = VSSSignedCardRequest(snapshot: registeredCard2!.cardResponse.snapshot)
+                let signer = VSSRequestSigner(crypto: self.crypto)
+                try! signer.authoritySign(signedCardRequest, forAppId: registeredCard1!.identifier, with: keyPair1.privateKey)
+                
+                self.client.createCardRelation(with: signedCardRequest, completion: { error in
+                    guard error == nil else {
+                        XCTFail("Failed: " + error!.localizedDescription)
+                        return
+                    }
+                    
+                    self.client.getCard(withId: registeredCard1!.identifier, completion: { card, error in
+                        guard error == nil else {
+                            XCTFail("Failed: " + error!.localizedDescription)
+                            return
+                        }
+                        
+                        XCTAssert(card!.relations.count == 1)
+                        XCTAssert(card!.relations[0] == registeredCard2!.identifier)
+                        
+                        ex.fulfill()
+                    })
+                })
+            }
+        }
+        
+        self.waitForExpectations(timeout: timeout) { error in
+            guard error == nil else {
+                XCTFail("Expectation failed: " + error!.localizedDescription)
+                return
+            }
+        }
+    }
+    
+    func testC07_RemoveCardRelation() {
+        let ex = self.expectation(description: "2 Virgil Cards should be created. Virgil card relation should be created. Virgil card relation should be removed.");
+        
+        let numberOfRequests = 4
+        let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
+        
+        let keyPair1 = self.crypto.generateKeyPair()
+        let request1 = self.utils.instantiateCreateCardRequest(keyPair: keyPair1)
+        
+        self.client.createCardWith(request1) { (registeredCard1, error) in
+            guard error == nil else {
+                XCTFail("Failed: " + error!.localizedDescription)
+                return
+            }
+            
+            let request2 = self.utils.instantiateCreateCardRequest()
+            self.client.createCardWith(request2) { (registeredCard2, error) in
+                let signedCardRequest = VSSSignedCardRequest(snapshot: registeredCard2!.cardResponse.snapshot)
+                let signer = VSSRequestSigner(crypto: self.crypto)
+                try! signer.authoritySign(signedCardRequest, forAppId: registeredCard1!.identifier, with: keyPair1.privateKey)
+                
+                self.client.createCardRelation(with: signedCardRequest, completion: { error in
+                    let request = VSSRemoveCardRelationRequest(cardId: registeredCard2!.identifier, reason: .unspecified)
+                    try! signer.authoritySign(request, forAppId: registeredCard1!.identifier, with: keyPair1.privateKey)
+                    
+                    self.client.removeCardRelation(with: request, completion: { error in
+                        guard error == nil else {
+                            XCTFail("Failed: " + error!.localizedDescription)
+                            return
+                        }
+                        
+                        self.client.getCard(withId: registeredCard1!.identifier, completion: { card, error in
+                            
+                            XCTAssert(card!.relations.count == 0)
+                            
+                            ex.fulfill()
+                        })
+                    })
+                })
+            }
+        }
+        
+        self.waitForExpectations(timeout: timeout) { error in
+            guard error == nil else {
+                XCTFail("Expectation failed: " + error!.localizedDescription)
+                return
+            }
+        }
+    }
     
     func testI01_VerifyEmail() {
         let ex = self.expectation(description: "Verification code should be sent to email");
