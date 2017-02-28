@@ -1,12 +1,13 @@
 //
-//  VSSCreateGlobalCardHTTPRequest.m
+//  VSSCreateCardHTTPRequest.m
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 1/25/17.
 //  Copyright © 2017 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSCreateGlobalCardHTTPRequest.h"
+#import "VSSCreateGlobalCardRequest.h"
+#import "VSSCreateCardHTTPRequest.h"
 #import "VSSModelCommons.h"
 #import "VSSCreateCardSnapshotModelPrivate.h"
 #import "VSSCreateCardRequest.h"
@@ -14,11 +15,22 @@
 #import "VSSCardResponsePrivate.h"
 #import "NSObject+VSSUtils.h"
 
-@implementation VSSCreateGlobalCardHTTPRequest
+@implementation VSSCreateCardHTTPRequest
 
 #pragma mark - Lifecycle
 
 - (instancetype)initWithContext:(VSSHTTPRequestContext *)context createGlobalCardRequest:(VSSCreateGlobalCardRequest *)request  {
+    self = [super initWithContext:context];
+    if (self) {
+        NSMutableDictionary *body = [[request serialize] mutableCopy];
+        
+        [self setRequestBodyWithObject:body];
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithContext:(VSSHTTPRequestContext *)context createCardRequest:(VSSCreateCardRequest *)request  {
     self = [super initWithContext:context];
     if (self) {
         NSMutableDictionary *body = [[request serialize] mutableCopy];

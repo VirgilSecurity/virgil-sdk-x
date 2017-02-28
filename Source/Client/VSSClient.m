@@ -13,7 +13,6 @@
 #import "VSSServiceConfig.h"
 
 #import "VSSCreateCardHTTPRequest.h"
-#import "VSSCreateGlobalCardHTTPRequest.h"
 #import "VSSSearchCardsHTTPRequest.h"
 #import "VSSGetCardHTTPRequest.h"
 #import "VSSCreateCardRelationHTTPRequest.h"
@@ -109,7 +108,7 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
 #pragma mark - Implementation of VSSClient protocol
 
 - (void)createCardWithRequest:(VSSCreateCardRequest *)request completion:(void (^)(VSSCard *, NSError *))callback {
-    VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.cardsServiceURL];
+    VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.registrationAuthorityURL];
     VSSCreateCardHTTPRequest *httpRequest = [[VSSCreateCardHTTPRequest alloc] initWithContext:context createCardRequest:request];
     
     VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
@@ -143,7 +142,7 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
 
 - (void)createGlobalCardWithRequest:(VSSCreateGlobalCardRequest *)request completion:(void (^)(VSSCard *, NSError *))callback {
     VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.registrationAuthorityURL];
-    VSSCreateGlobalCardHTTPRequest *httpRequest = [[VSSCreateGlobalCardHTTPRequest alloc] initWithContext:context createGlobalCardRequest:request];
+    VSSCreateCardHTTPRequest *httpRequest = [[VSSCreateCardHTTPRequest alloc] initWithContext:context createGlobalCardRequest:request];
     
     VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
         if (request.error != nil) {
@@ -154,7 +153,7 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
         }
         
         if (callback != nil) {
-            VSSCreateGlobalCardHTTPRequest *r = [request as:[VSSCreateGlobalCardHTTPRequest class]];
+            VSSCreateCardHTTPRequest *r = [request as:[VSSCreateCardHTTPRequest class]];
             VSSCardResponse *cardResponse = r.cardResponse;
             
             if (self.serviceConfig.cardValidator != nil) {
