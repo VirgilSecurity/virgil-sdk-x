@@ -52,11 +52,11 @@ class VSS004_ModelsTests: XCTestCase {
     }
 
     func test003_RevokeCardRequestImportExport() {
-        let revokeRequest = VSSRevokeCardRequest(cardId: "testId", reason: .unspecified)
+        let revokeRequest = VSSRevokeApplicationCardRequest(cardId: "testId", reason: .unspecified)
         
         let exportedData = revokeRequest.exportData()
         
-        let importedRevokeRequest = VSSRevokeCardRequest(data: exportedData)!
+        let importedRevokeRequest = VSSRevokeApplicationCardRequest(data: exportedData)!
         
         XCTAssert(self.utils.check(revokeCardRequest: revokeRequest, isEqualToRevokeCardRequest: importedRevokeRequest))
     }

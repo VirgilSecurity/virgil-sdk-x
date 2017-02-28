@@ -29,6 +29,4 @@
 
 - (instancetype __nonnull)initWithSnapshotModel:(VSSCreateCardSnapshotModel * __nonnull)model validationToken:(NSString * __nonnull)validationToken;
 
-+ (VSSCreateCardSnapshotModel * __nullable)buildSnapshotModelFromSnapshot:(NSData * __nonnull)snapshot;
-
 @end

@@ -16,14 +16,4 @@
  */
 @interface VSSRevokeCardRequest: VSSSignableRequest<VSSRevokeCardSnapshotModel *>
 
-/**
- Factory method which allocates and initalized VSSRevokeCardRequest instance.
- 
- @param cardId Virgil Card unique id. See VSSCard
- @param reason Revocation reason. See VSSCardRevocationReason
-
- @return allocated and initialized VSSRevokeCardRequest instance
- */
-+ (instancetype __nonnull)revokeCardRequestWithCardId:(NSString * __nonnull)cardId reason:(VSSCardRevocationReason)reason;
-
 @end

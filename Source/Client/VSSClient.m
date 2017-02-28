@@ -18,7 +18,6 @@
 #import "VSSCreateCardRelationHTTPRequest.h"
 #import "VSSRemoveCardRelationHTTPRequest.h"
 #import "VSSRevokeCardHTTPRequest.h"
-#import "VSSRevokeGlobalCardHTTPRequest.h"
 #import "VSSCardResponsePrivate.h"
 #import "VSSVerifyIdentityRequest.h"
 #import "VSSVerifyIdentityHTTPRequest.h"
@@ -142,7 +141,7 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
 
 - (void)createGlobalCardWithRequest:(VSSCreateGlobalCardRequest *)request completion:(void (^)(VSSCard *, NSError *))callback {
     VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.registrationAuthorityURL];
-    VSSCreateCardHTTPRequest *httpRequest = [[VSSCreateCardHTTPRequest alloc] initWithContext:context createGlobalCardRequest:request];
+    VSSCreateCardHTTPRequest *httpRequest = [[VSSCreateCardHTTPRequest alloc] initWithContext:context createCardRequest:request];
     
     VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
         if (request.error != nil) {
@@ -303,7 +302,7 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
 }
 
 - (void)revokeCardWithRequest:(VSSRevokeCardRequest *)request completion:(void (^)(NSError *))callback {
-    VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.cardsServiceURL];
+    VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.registrationAuthorityURL];
     VSSRevokeCardHTTPRequest *httpRequest = [[VSSRevokeCardHTTPRequest alloc] initWithContext:context revokeCardRequest:request];
     
     VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
@@ -323,29 +322,6 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     httpRequest.completionHandler = handler;
     
     [self send:httpRequest requiresAccessToken:YES];
-}
-
-- (void)revokeGlobalCardWithRequest:(VSSRevokeGlobalCardRequest *)request completion:(void (^)(NSError *))callback {
-    VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.registrationAuthorityURL];
-    VSSRevokeGlobalCardHTTPRequest *httpRequest = [[VSSRevokeGlobalCardHTTPRequest alloc] initWithContext:context revokeCardRequest:request];
-    
-    VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
-        if (request.error != nil) {
-            if (callback != nil) {
-                callback(request.error);
-            }
-            return;
-        }
-        
-        if (callback != nil) {
-            callback(nil);
-        }
-        return;
-    };
-    
-    httpRequest.completionHandler = handler;
-    
-    [self send:httpRequest requiresAccessToken:NO];
 }
 
 - (void)verifyIdentity:(NSString *)identity identityType:(NSString *)identityType extraFields:(NSDictionary<NSString *, NSString *> *)extraFields completion:(void (^)(NSString *, NSError *))callback {

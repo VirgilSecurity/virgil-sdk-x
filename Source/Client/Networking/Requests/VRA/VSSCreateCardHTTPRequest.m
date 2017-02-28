@@ -19,17 +19,6 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithContext:(VSSHTTPRequestContext *)context createGlobalCardRequest:(VSSCreateGlobalCardRequest *)request  {
-    self = [super initWithContext:context];
-    if (self) {
-        NSMutableDictionary *body = [[request serialize] mutableCopy];
-        
-        [self setRequestBodyWithObject:body];
-    }
-    
-    return self;
-}
-
 - (instancetype)initWithContext:(VSSHTTPRequestContext *)context createCardRequest:(VSSCreateCardRequest *)request  {
     self = [super initWithContext:context];
     if (self) {

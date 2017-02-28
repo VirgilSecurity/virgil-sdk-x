@@ -59,7 +59,7 @@
 }
 
 - (void)test003_RevokeCardRequestImportExport {
-    VSSRevokeCardRequest *revokeRequest = [VSSRevokeCardRequest revokeCardRequestWithCardId:@"testId" reason:VSSCardRevocationReasonUnspecified];
+    VSSRevokeApplicationCardRequest *revokeRequest = [VSSRevokeApplicationCardRequest revokeApplicationCardRequestWithCardId:@"testId" reason:VSSCardRevocationReasonUnspecified];
     
     NSString *exportedData = [revokeRequest exportData];
     

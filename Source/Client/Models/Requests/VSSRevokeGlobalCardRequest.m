@@ -55,9 +55,5 @@
     return self;
 }
 
-+ (VSSRevokeCardSnapshotModel * __nullable)buildSnapshotModelFromSnapshot:(NSData * __nonnull)snapshot {
-    return [VSSRevokeCardSnapshotModel createFromCanonicalForm:snapshot];
-}
-
 @end
 

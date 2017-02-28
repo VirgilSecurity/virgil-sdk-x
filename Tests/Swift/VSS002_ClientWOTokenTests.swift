@@ -217,7 +217,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
                         
                         let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: nil)
                         
-                        self.client.createGlobalCardWith(request) { (registeredCard, error) in
+                        self.client.createCardWith(request) { (registeredCard, error) in
                             guard error == nil else {
                                 XCTFail("Failed: " + error!.localizedDescription)
                                 return
@@ -272,10 +272,10 @@ class VSS002_ClientWOTokenTests: XCTestCase {
                         let keyPair = self.crypto.generateKeyPair()
                         let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                         
-                        self.client.createGlobalCardWith(request) { (registeredCard, error) in
+                        self.client.createCardWith(request) { (registeredCard, error) in
                             let revokeRequest = self.utils.instantiateRevokeGlobalCardRequestFor(card: registeredCard!, validationToken:response!.validationToken, privateKey: keyPair.privateKey)
                             
-                            self.client.revokeGlobalCardWith(revokeRequest, completion: { error in
+                            self.client.revokeCardWith(revokeRequest, completion: { error in
                                 guard error == nil else {
                                     XCTFail("Failed: " + error!.localizedDescription)
                                     return

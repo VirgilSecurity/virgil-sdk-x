@@ -2,15 +2,15 @@
 //  VSSRevokeCardHTTPRequest.h
 //  VirgilSDK
 //
-//  Created by Oleksandr Deundiak on 10/6/16.
-//  Copyright © 2016 VirgilSecurity. All rights reserved.
+//  Created by Oleksandr Deundiak on 1/25/17.
+//  Copyright © 2017 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSCardsBaseHTTPRequest.h"
+#import "VSSVraBaseHTTPRequest.h"
 #import "VSSModelCommons.h"
 #import "VSSRevokeCardRequest.h"
 
-@interface VSSRevokeCardHTTPRequest : VSSCardsBaseHTTPRequest
+@interface VSSRevokeCardHTTPRequest : VSSVraBaseHTTPRequest
 
 - (instancetype __nonnull)initWithContext:(VSSHTTPRequestContext * __nonnull)context revokeCardRequest:(VSSRevokeCardRequest* __nonnull)request NS_DESIGNATED_INITIALIZER;
 

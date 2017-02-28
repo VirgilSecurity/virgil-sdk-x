@@ -32,16 +32,6 @@
 - (void)createCardWithRequest:(VSSCreateCardRequest * __nonnull)request completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback NS_SWIFT_NAME(createCardWith(_:completion:));
 
 /**
- Creates Global Virgil Card instance on the Virgil Cards Service and associates it with unique identifier.
- Also makes the Card accessible for search/get/revoke queries from other users.
- VSSCreateCardRequest should be signed at least by Owner (Creator) and Application. Additional signatures may be applied if needed.
- 
- @param request VSSCreateCardRequest instance with Card data and signatures
- @param callback callback with registered VSSCard or NSError instance if error occured
- */
-- (void)createGlobalCardWithRequest:(VSSCreateGlobalCardRequest * __nonnull)request completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback NS_SWIFT_NAME(createGlobalCardWith(_:completion:));
-
-/**
  Creates trusted one-way relation between two virgil cards.
 
  @param request VSSSignedRequest with snapshot of card that is trusted and signed by card that trusts
@@ -81,15 +71,6 @@
  @param callback callback with NSError instance if error occured
  */
 - (void)revokeCardWithRequest:(VSSRevokeCardRequest * __nonnull)request completion:(void (^ __nonnull)(NSError * __nullable))callback NS_SWIFT_NAME(revokeCardWith(_:completion:));
-
-/**
- Revokes previously registered card.
- VSSRevokeCardRequest instance should be signed by Application.
- 
- @param request VSSRevokeCardRequest created with specific Virgil Card ID
- @param callback callback with NSError instance if error occured
- */
-- (void)revokeGlobalCardWithRequest:(VSSRevokeGlobalCardRequest * __nonnull)request completion:(void (^ __nonnull)(NSError * __nullable))callback NS_SWIFT_NAME(revokeGlobalCardWith(_:completion:));
 
 /**
  Sends the request for identity verification, that's will be processed depending of specified type.

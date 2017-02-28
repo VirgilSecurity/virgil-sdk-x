@@ -6,7 +6,7 @@
 //  Copyright © 2017 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSSignableRequest.h"
+#import "VSSRevokeCardRequest.h"
 #import "VSSModelCommons.h"
 #import "VSSRevokeCardSnapshotModel.h"
 
@@ -14,7 +14,7 @@
  Virgil Model used for revocation of Global Virgil Cards.
  See VSSRevokeCardSnapshotModel. See VSSClient protocol.
  */
-@interface VSSRevokeGlobalCardRequest : VSSSignableRequest<VSSRevokeCardSnapshotModel *>
+@interface VSSRevokeGlobalCardRequest : VSSRevokeCardRequest
 
 /**
  Validation token obtained from Virgil Authority Service.
