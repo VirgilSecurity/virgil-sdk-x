@@ -7,14 +7,14 @@
 //
 
 #import "VSSVirgilCardPrivate.h"
-#import "VSSVirgilConfig.h"
 #import "VSSModelCommonsPrivate.h"
 
 @implementation VSSVirgilCard
 
-- (instancetype)initWithModel:(VSSCard *)model {
+- (instancetype)initWithContext:(VSSVirgilApiContext * __nonnull)context model:(VSSCard *)model {
     self = [super init];
     if (self) {
+        _context = context;
         _model = model;
     }
     
@@ -22,98 +22,94 @@
 }
 
 - (NSData *)encryptData:(NSData *)data error:(NSError **)errorPtr {
-    id<VSSCrypto> crypto = VSSVirgilConfig.sharedInstance.crypto;
-    VSSPublicKey *publicKey = [crypto importPublicKeyFromData:self.publicKey];
+    VSSPublicKey *publicKey = [self.context.crypto importPublicKeyFromData:self.publicKey];
     
-    return [crypto encryptData:data forRecipients:@[publicKey] error:errorPtr];
+    return [self.context.crypto encryptData:data forRecipients:@[publicKey] error:errorPtr];
 }
 
 - (BOOL)verifyData:(NSData *)data withSignature:(NSData *)signature error:(NSError **)errorPtr {
-    id<VSSCrypto> crypto = VSSVirgilConfig.sharedInstance.crypto;
-    VSSPublicKey *publicKey = [crypto importPublicKeyFromData:self.publicKey];
+    VSSPublicKey *publicKey = [self.context.crypto importPublicKeyFromData:self.publicKey];
     
-    return [crypto verifyData:data withSignature:signature usingSignerPublicKey:publicKey error:errorPtr];
+    return [self.context.crypto verifyData:data withSignature:signature usingSignerPublicKey:publicKey error:errorPtr];
 }
 
-+ (void)getCardWithId:(NSString *)cardId completion:(void (^)(VSSVirgilCard*, NSError *))callback {
-    id<VSSClient> client = VSSVirgilConfig.sharedInstance.client;
-    
-    [client getCardWithId:cardId completion:^(VSSCard *foundCard, NSError *error) {
-        VSSVirgilCard *virgilCard = nil;
-        if (foundCard != nil) {
-            virgilCard = [[VSSVirgilCard alloc] initWithModel:foundCard];
-        }
-        
-        callback(virgilCard, error);
-    }];
-}
-
-+ (void)searchGlobalCardsWithIdentity:(NSString *)identity identityType:(VSSGlobalIdentityType)type completion:(void (^)(NSArray<VSSVirgilCard *> *, NSError *))callback {
-    return [self searchGlobalCardsWithIdentities:@[identity] identityType:type completion:callback];
-}
-
-+ (void)searchGlobalCardsWithIdentities:(NSArray<NSString *> *)identities identityType:(VSSGlobalIdentityType)type completion:(void (^)(NSArray<VSSVirgilCard *>*, NSError *))callback {
-    id<VSSClient> client = VSSVirgilConfig.sharedInstance.client;
-    
-    VSSSearchCardsCriteria *criteria = [VSSSearchCardsCriteria searchCardsCriteriaWithScope:VSSCardScopeGlobal identityType:vss_getGlobalIdentityTypeString(type) identities:identities];
-    
-    [client searchCardsUsingCriteria:criteria completion:^(NSArray<VSSCard *> *cards, NSError *error) {
-        NSMutableArray<VSSVirgilCard *> *virgilCards = nil;
-        
-        if (cards.count > 0) {
-            virgilCards = [[NSMutableArray alloc] initWithCapacity:cards.count];
-            
-            for (VSSCard *card in cards) {
-                [virgilCards addObject:[[VSSVirgilCard alloc] initWithModel:card]];
-            }
-        }
-        
-        callback(virgilCards, error);
-    }];
-}
-
-+ (void)searchCardsWithIdentity:(NSString *)identity identityType:(NSString *)type completion:(void (^)(NSArray<VSSVirgilCard *> *, NSError *))callback {
-    [self searchCardsWithIdentities:@[identity] identityType:type completion:callback];
-}
-
-+ (void)searchCardsWithIdentities:(NSArray<NSString *> *)identities identityType:(NSString *)type completion:(void (^)(NSArray<VSSVirgilCard *> *, NSError *))callback {
-    id<VSSClient> client = VSSVirgilConfig.sharedInstance.client;
-    
-    VSSSearchCardsCriteria *criteria = [VSSSearchCardsCriteria searchCardsCriteriaWithScope:VSSCardScopeApplication identityType:type identities:identities];
-    
-    [client searchCardsUsingCriteria:criteria completion:^(NSArray<VSSCard *> *cards, NSError *error) {
-        NSMutableArray<VSSVirgilCard *> *virgilCards = nil;
-        
-        if (cards.count > 0) {
-            virgilCards = [[NSMutableArray alloc] initWithCapacity:cards.count];
-            
-            for (VSSCard *card in cards) {
-                [virgilCards addObject:[[VSSVirgilCard alloc] initWithModel:card]];
-            }
-        }
-        
-        callback(virgilCards, error);
-    }];
-}
-
-+ (void)createCardWithRequest:(VSSCreateCardRequest *)request completion:(void (^)(VSSVirgilCard *, NSError *))callback {
-    id<VSSClient> client = VSSVirgilConfig.sharedInstance.client;
-    
-    [client createCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
-        VSSVirgilCard *virgilCard = nil;
-        if (card != nil) {
-            virgilCard = [[VSSVirgilCard alloc] initWithModel:card];
-        }
-        
-        callback(virgilCard, error);
-    }];
-}
-
-+ (void)revokeCardWithRequest:(VSSRevokeCardRequest *)request completion:(void (^)(NSError *))callback {
-    id<VSSClient> client = VSSVirgilConfig.sharedInstance.client;
-    
-    [client revokeCardWithRequest:request completion:callback];
-}
+//+ (void)getCardWithId:(NSString *)cardId completion:(void (^)(VSSVirgilCard*, NSError *))callback {
+//    [self.context.client getCardWithId:cardId completion:^(VSSCard *foundCard, NSError *error) {
+//        VSSVirgilCard *virgilCard = nil;
+//        if (foundCard != nil) {
+//            virgilCard = [[VSSVirgilCard alloc] initWithModel:foundCard];
+//        }
+//        
+//        callback(virgilCard, error);
+//    }];
+//}
+//
+//+ (void)searchGlobalCardsWithIdentity:(NSString *)identity identityType:(VSSGlobalIdentityType)type completion:(void (^)(NSArray<VSSVirgilCard *> *, NSError *))callback {
+//    return [self searchGlobalCardsWithIdentities:@[identity] identityType:type completion:callback];
+//}
+//
+//+ (void)searchGlobalCardsWithIdentities:(NSArray<NSString *> *)identities identityType:(VSSGlobalIdentityType)type completion:(void (^)(NSArray<VSSVirgilCard *>*, NSError *))callback {
+//    id<VSSClient> client = VSSVirgilConfig.sharedInstance.client;
+//    
+//    VSSSearchCardsCriteria *criteria = [VSSSearchCardsCriteria searchCardsCriteriaWithScope:VSSCardScopeGlobal identityType:vss_getGlobalIdentityTypeString(type) identities:identities];
+//    
+//    [client searchCardsUsingCriteria:criteria completion:^(NSArray<VSSCard *> *cards, NSError *error) {
+//        NSMutableArray<VSSVirgilCard *> *virgilCards = nil;
+//        
+//        if (cards.count > 0) {
+//            virgilCards = [[NSMutableArray alloc] initWithCapacity:cards.count];
+//            
+//            for (VSSCard *card in cards) {
+//                [virgilCards addObject:[[VSSVirgilCard alloc] initWithModel:card]];
+//            }
+//        }
+//        
+//        callback(virgilCards, error);
+//    }];
+//}
+//
+//+ (void)searchCardsWithIdentity:(NSString *)identity identityType:(NSString *)type completion:(void (^)(NSArray<VSSVirgilCard *> *, NSError *))callback {
+//    [self searchCardsWithIdentities:@[identity] identityType:type completion:callback];
+//}
+//
+//+ (void)searchCardsWithIdentities:(NSArray<NSString *> *)identities identityType:(NSString *)type completion:(void (^)(NSArray<VSSVirgilCard *> *, NSError *))callback {
+//    id<VSSClient> client = VSSVirgilConfig.sharedInstance.client;
+//    
+//    VSSSearchCardsCriteria *criteria = [VSSSearchCardsCriteria searchCardsCriteriaWithScope:VSSCardScopeApplication identityType:type identities:identities];
+//    
+//    [client searchCardsUsingCriteria:criteria completion:^(NSArray<VSSCard *> *cards, NSError *error) {
+//        NSMutableArray<VSSVirgilCard *> *virgilCards = nil;
+//        
+//        if (cards.count > 0) {
+//            virgilCards = [[NSMutableArray alloc] initWithCapacity:cards.count];
+//            
+//            for (VSSCard *card in cards) {
+//                [virgilCards addObject:[[VSSVirgilCard alloc] initWithModel:card]];
+//            }
+//        }
+//        
+//        callback(virgilCards, error);
+//    }];
+//}
+//
+//+ (void)createCardWithRequest:(VSSCreateCardRequest *)request completion:(void (^)(VSSVirgilCard *, NSError *))callback {
+//    id<VSSClient> client = VSSVirgilConfig.sharedInstance.client;
+//    
+//    [client createCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
+//        VSSVirgilCard *virgilCard = nil;
+//        if (card != nil) {
+//            virgilCard = [[VSSVirgilCard alloc] initWithModel:card];
+//        }
+//        
+//        callback(virgilCard, error);
+//    }];
+//}
+//
+//+ (void)revokeCardWithRequest:(VSSRevokeCardRequest *)request completion:(void (^)(NSError *))callback {
+//    id<VSSClient> client = VSSVirgilConfig.sharedInstance.client;
+//    
+//    [client revokeCardWithRequest:request completion:callback];
+//}
 
 - (NSString *)identifier {
     return self.model.identifier;

@@ -10,21 +10,12 @@
 
 @protocol VSSKeysManager <NSObject>
 
-//VirgilKey Generate();
+- (VSSVirgilKey * __nonnull)generateKey;
 
-/// <summary>
-/// Loads the <see cref="VirgilKey"/> from current storage by specified key name.
-/// </summary>
-/// <param name="keyName">The name of the Key.</param>
-/// <param name="keyPassword">The Key password.</param>
-/// <returns>An instance of <see cref="VirgilKey"/> class.</returns>
-/// <exception cref="ArgumentException"></exception>
-/// <exception cref="VirgilKeyIsNotFoundException"></exception>
-//VirgilKey Load(string keyName, string keyPassword = null);
+- (VSSVirgilKey * __nullable)loadKeyWithName:(NSString * __nonnull)name password:(NSString * __nullable)password error:(NSError * __nullable * __nullable)errorPtr;
 
-/// <summary>
-/// Removes the <see cref="VirgilKey"/> from the storage.
-/// </summary>
-//void Destroy(string keyName);
+- (VSSVirgilKey * __nullable)importKeyFromData:(NSData * __nonnull)data password:(NSString * __nullable)password;
+
+- (BOOL)destroyKeyWithName:(NSString * __nonnull)name error:(NSError * __nullable * __nullable)errorPtr;
 
 @end

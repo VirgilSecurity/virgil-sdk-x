@@ -8,13 +8,16 @@
 
 #import "VSSVirgilCard.h"
 #import "VSSCard.h"
+#import "VSSCreateCardRequest.h"
+#import "VSSVirgilApiContext.h"
 
 @interface VSSVirgilCard ()
 
+@property (nonatomic, readonly) VSSVirgilApiContext * __nonnull context;
 @property (nonatomic) NSData * __nonnull publicKey;
+@property (nonatomic, readonly) VSSCard * __nullable model;
+//@property (nonatomic, readonly) VSSCreateCardRequest * __nullable card;
 
-@property (nonatomic, readonly) VSSCard * __nonnull model;
-
-- (instancetype __nonnull)initWithModel:(VSSCard * __nonnull)model;
+- (instancetype __nonnull)initWithContext:(VSSVirgilApiContext * __nonnull)context model:(VSSCard * __nonnull)model NS_DESIGNATED_INITIALIZER;
 
 @end

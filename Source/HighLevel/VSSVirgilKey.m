@@ -12,7 +12,7 @@
 
 @implementation VSSVirgilKey
 
-- (instancetype __nonnull)initWithContext:(VSSVirgilApiContext * __nonnull)context privateKey:(VSSPrivateKey * __nonnull)privateKey {
+- (instancetype)initWithContext:(VSSVirgilApiContext *)context privateKey:(VSSPrivateKey *)privateKey {
     self = [super init];
     if (self) {
         _context = context;
