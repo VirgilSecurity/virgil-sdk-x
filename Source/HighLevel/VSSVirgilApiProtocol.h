@@ -8,9 +8,11 @@
 
 #import "VSSCardsManagerProtocol.h"
 #import "VSSKeysManagerProtocol.h"
+#import "VSSIdentitiesManagerProtocol.h"
 
 @protocol VSSVirgilApi <NSObject>
 
+@property (nonatomic, readonly) id<VSSIdentitiesManager> __nonnull Identities;
 @property (nonatomic, readonly) id<VSSCardsManager> __nonnull Cards;
 @property (nonatomic, readonly) id<VSSKeysManager> __nonnull Keys;
 

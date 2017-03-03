@@ -8,6 +8,8 @@
 
 #import "VSSVirgilCardPrivate.h"
 #import "VSSModelCommonsPrivate.h"
+#import "VSSVirgilApi.h"
+#import "VSSRequestSigner.h"
 
 @implementation VSSVirgilCard
 
@@ -29,6 +31,10 @@
     }
     
     return self;
+}
+
+- (BOOL)isPublished {
+    return self.card != nil;
 }
 
 - (NSData *)encryptData:(NSData *)data error:(NSError **)errorPtr {
@@ -121,6 +127,44 @@
 //    [client revokeCardWithRequest:request completion:callback];
 //}
 
+- (void)publishWithCompletion:(void (^)(NSError *))callback {
+    if (self.isPublished) {
+        callback([[NSError alloc] initWithDomain:kVSSVirgilApiErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"This card is already published" }]);
+        return;
+    }
+    
+    switch (self.scope) {
+        case VSSCardScopeGlobal: break;
+        case VSSCardScopeApplication: {
+            if (self.context.credentials == nil) {
+                callback([[NSError alloc] initWithDomain:kVSSVirgilApiErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"To create Application card you need to provide Credentials to VirgilApiContext" }]);
+                return;
+            }
+            NSString *appId = self.context.credentials.appId;
+            VSSPrivateKey *appKey = self.context.credentials.appKey;
+            VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.context.crypto];
+            NSError *error;
+            [signer authoritySignRequest:self.request forAppId:appId withPrivateKey:appKey error:&error];
+            if (error != nil) {
+                callback(error);
+                return;
+            }
+                
+            break;
+        }
+    }
+    
+    [self.context.client createCardWithRequest:self.request completion:^(VSSCard *card, NSError *error) {
+        if (error != nil) {
+            callback(error);
+            return;
+        }
+        
+        self.card = card;
+        callback(nil);
+    }];
+}
+
 - (NSString *)identifier {
     if (self.card != nil)
         return self.card.identifier;
@@ -149,7 +193,7 @@
         return self.request.snapshotModel.publicKeyData;
 }
 
-- (NSDictionary<NSString *, NSString *> *)customField {
+- (NSDictionary<NSString *, NSString *> *)customFields {
     if (self.card != nil)
         return self.card.data;
     else

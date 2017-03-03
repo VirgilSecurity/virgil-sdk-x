@@ -26,6 +26,7 @@
 @property (nonatomic, readonly) NSDictionary<NSString *, NSString *> * __nullable customFields;
 @property (nonatomic, readonly) NSDictionary<NSString *, NSString *> * __nullable info;
 @property (nonatomic, readonly) VSSCardScope scope;
+@property (nonatomic, readonly) BOOL isPublished;
 
 - (NSData * __nonnull)encryptData:(NSData * __nonnull)data error:(NSError * __nullable * __nullable)errorPtr;
 

@@ -506,7 +506,7 @@ class VSS001_ClientTests: XCTestCase {
                     
                     let code = String(match.characters.suffix(6))
                     
-                    self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+                    self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 1) { response, error in
                         
                         let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: nil)
                         

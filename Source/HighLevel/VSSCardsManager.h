@@ -10,4 +10,9 @@
 
 @interface VSSCardsManager : NSObject <VSSCardsManager>
 
+/**
+ Unavailable no-argument initializer inherited from NSObject
+ */
+- (instancetype __nonnull)init NS_UNAVAILABLE;
+
 @end

@@ -14,15 +14,17 @@
 
 @implementation VSSVirgilApiContext
 
-- (instancetype)init
-{
+- (instancetype)initWithToken:(NSString *)token {
     self = [super init];
     if (self) {
-        _client = [[VSSClient alloc] init];
+        _credentials = nil;
+        _token = [token copy];
+        _client = [[VSSClient alloc] initWithApplicationToken:token];
         _crypto = [[VSSCrypto alloc] init];
         _deviceManager = [[VSSDeviceManager alloc] init];
         _keyStorage = [[VSSKeyStorage alloc] init];
     }
+    
     return self;
 }
 
