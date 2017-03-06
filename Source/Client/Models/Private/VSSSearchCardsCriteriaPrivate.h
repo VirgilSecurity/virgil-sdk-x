@@ -11,6 +11,6 @@
 
 @interface VSSSearchCardsCriteria () <VSSSerializable>
 
-- (instancetype __nonnull)initWithScope:(VSSCardScope)scope identityType:(NSString * __nonnull)identityType identities:(NSArray<NSString *>* __nonnull)indentities;
+- (instancetype __nonnull)initWithScope:(VSSCardScope)scope identityType:(NSString * __nullable)identityType identities:(NSArray<NSString *>* __nonnull)indentities;
 
 @end
