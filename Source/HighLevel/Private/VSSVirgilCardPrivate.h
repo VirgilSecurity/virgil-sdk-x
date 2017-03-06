@@ -22,6 +22,8 @@
 
 - (instancetype __nonnull)initWithContext:(VSSVirgilApiContext * __nonnull)context card:(VSSCard * __nonnull)card NS_DESIGNATED_INITIALIZER;
 
+- (instancetype __nullable)initWithContext:(VSSVirgilApiContext * __nonnull)context data:(NSString * __nonnull)data;
+
 - (void)publishWithCompletion:(void (^ __nonnull)(NSError * __nullable))callback;
 
 @end

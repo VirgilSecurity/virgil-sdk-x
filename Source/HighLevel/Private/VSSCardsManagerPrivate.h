@@ -15,4 +15,6 @@
 
 - (instancetype __nonnull)initWithContext:(VSSVirgilApiContext * __nonnull)context NS_DESIGNATED_INITIALIZER;
 
+- (void)searchCardsUsingCriteria:(VSSSearchCardsCriteria * __nonnull)criteria completion:(void (^ __nonnull)(NSArray<VSSVirgilCard *>* __nullable, NSError * __nullable))callback;
+
 @end
