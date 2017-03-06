@@ -18,8 +18,28 @@
     return [[VSSSearchCardsCriteria alloc] initWithScope:scope identityType:identityType identities:identities];
 }
 
++ (instancetype)searchCardsCriteriaWithScope:(VSSCardScope)scope identityType:(NSString *)identityType identity:(NSString *)identity {
+    return [[VSSSearchCardsCriteria alloc] initWithScope:scope identityType:identityType identities:@[identity]];
+}
+
 + (instancetype)searchCardsCriteriaWithIdentityType:(NSString *)identityType identities:(NSArray<NSString *>*)identities {
-    return [[VSSSearchCardsCriteria alloc] initWithScope:(VSSCardScope)-1 identityType:identityType identities:identities];
+    return [[VSSSearchCardsCriteria alloc] initWithScope:VSSCardScopeApplication identityType:identityType identities:identities];
+}
+
++ (instancetype)searchCardsCriteriaWithIdentityType:(NSString *)identityType identity:(NSString *)identity {
+    return [[VSSSearchCardsCriteria alloc] initWithScope:VSSCardScopeApplication identityType:identityType identities:@[identity]];
+}
+
++ (instancetype)searchCardsCriteriaWithIdentities:(NSArray<NSString *>*)identities {
+    return [[VSSSearchCardsCriteria alloc] initWithScope:VSSCardScopeApplication identityType:nil identities:identities];
+}
+
++ (instancetype)searchCardsCriteriaWithIdentity:(NSString *)identity {
+    return [[VSSSearchCardsCriteria alloc] initWithScope:VSSCardScopeApplication identityType:nil identities:@[identity]];
+}
+
++ (instancetype)searchCardsCriteriaWithAppBundleName:(NSString *)appBundleName {
+    return [[VSSSearchCardsCriteria alloc] initWithScope:VSSCardScopeGlobal identityType:@"application" identities:@[appBundleName]];
 }
 
 - (instancetype)initWithScope:(VSSCardScope)scope identityType:(NSString *)identityType identities:(NSArray<NSString *> *)identities {
