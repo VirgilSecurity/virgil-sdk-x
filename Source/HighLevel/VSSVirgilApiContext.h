@@ -7,16 +7,17 @@
 //
 
 #import "VSSCredentialsProtocol.h"
-#import "VSSClientProtocol.h"
+#import "VSSClient.h"
 #import "VSSCryptoProtocol.h"
 #import "VSSDeviceManagerProtocol.h"
 #import "VSSKeyStorageProtocol.h"
 #import "VSSRequestSignerProtocol.h"
+#import "VSSCardVerifierInfo.h"
 
 @interface VSSVirgilApiContext : NSObject
 
 @property (nonatomic) id<VSSCredentials> __nullable credentials;
-@property (nonatomic) id<VSSClient> __nonnull client;
+@property (nonatomic) VSSClient * __nonnull client;
 @property (nonatomic) id<VSSCrypto> __nonnull crypto;
 @property (nonatomic) id<VSSDeviceManager> __nonnull deviceManager;
 @property (nonatomic) id<VSSKeyStorage> __nonnull keyStorage;
@@ -24,6 +25,6 @@
 
 - (instancetype __nonnull)initWithToken:(NSString * __nullable)token;
 
-- (instancetype __nonnull)initWithToken:(NSString * __nullable)token credentials:(id<VSSCredentials> __nullable)credentials NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithToken:(NSString * __nullable)token credentials:(id<VSSCredentials> __nullable)credentials cardVerifiers:(NSArray<VSSCardVerifierInfo *> * __nullable)cardVerifiers NS_DESIGNATED_INITIALIZER;
 
 @end

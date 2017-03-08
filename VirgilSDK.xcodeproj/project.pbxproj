@@ -68,6 +68,8 @@
 		423CEB7B1DCB518A00CCACB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423CEB791DCB518A00CCACB8 /* Main.storyboard */; };
 		423CEB7D1DCB518A00CCACB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 423CEB7C1DCB518A00CCACB8 /* Assets.xcassets */; };
 		423CEB801DCB518A00CCACB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423CEB7E1DCB518A00CCACB8 /* LaunchScreen.storyboard */; };
+		423FFFB01E708AEB00CC98A3 /* VSSCardVerifierInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 423FFFAF1E708AD800CC98A3 /* VSSCardVerifierInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		423FFFB21E708B5800CC98A3 /* VSSCardVerifierInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 423FFFB11E708B5800CC98A3 /* VSSCardVerifierInfo.m */; };
 		4248B0D11E043A6D000AB44C /* VSSIdentityError.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B0D01E043A6D000AB44C /* VSSIdentityError.m */; };
 		4248B1191E044CE8000AB44C /* Mailinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1051E044CE8000AB44C /* Mailinator.m */; };
 		4248B11A1E044CE8000AB44C /* Mailinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1051E044CE8000AB44C /* Mailinator.m */; };
@@ -394,6 +396,8 @@
 		423CEB7C1DCB518A00CCACB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		423CEB7F1DCB518A00CCACB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		423CEB811DCB518A00CCACB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		423FFFAF1E708AD800CC98A3 /* VSSCardVerifierInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCardVerifierInfo.h; sourceTree = "<group>"; };
+		423FFFB11E708B5800CC98A3 /* VSSCardVerifierInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCardVerifierInfo.m; sourceTree = "<group>"; };
 		4248B0CF1E043A60000AB44C /* VSSIdentityError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSIdentityError.h; sourceTree = "<group>"; };
 		4248B0D01E043A6D000AB44C /* VSSIdentityError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSIdentityError.m; sourceTree = "<group>"; };
 		4248B1041E044CE8000AB44C /* Mailinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mailinator.h; sourceTree = "<group>"; };
@@ -717,6 +721,8 @@
 				420FE63B1E51C955005A32D4 /* VSSVirgilCard.m */,
 				420FE6681E534904005A32D4 /* VSSVirgilKey.h */,
 				420FE6691E53490D005A32D4 /* VSSVirgilKey.m */,
+				423FFFAF1E708AD800CC98A3 /* VSSCardVerifierInfo.h */,
+				423FFFB11E708B5800CC98A3 /* VSSCardVerifierInfo.m */,
 			);
 			path = HighLevel;
 			sourceTree = "<group>";
@@ -1299,6 +1305,7 @@
 				420FE5F41E4B5E83005A32D4 /* VSSRevokeGlobalCardRequestPrivate.h in Headers */,
 				427A63191DB9096C00A33661 /* VSSError.h in Headers */,
 				427A631B1DB9096C00A33661 /* VSSCardsError.h in Headers */,
+				423FFFB01E708AEB00CC98A3 /* VSSCardVerifierInfo.h in Headers */,
 				42F7B34B1E69C50F004E579C /* VSSIdentitiesManagerProtocol.h in Headers */,
 				427A631D1DB9096C00A33661 /* VSSCanonicalSerializable.h in Headers */,
 				427A631E1DB9096C00A33661 /* VSSCanonicalDeserializable.h in Headers */,
@@ -1739,6 +1746,7 @@
 				42EB31291DB8EC33001DF4C0 /* VSSCardValidator.m in Sources */,
 				425B09C91DC245CE005531DC /* VSSCreateCardSnapshotModel.m in Sources */,
 				427C405C1E5B33FE0017C2A9 /* VSSSignedCardRequest.m in Sources */,
+				423FFFB21E708B5800CC98A3 /* VSSCardVerifierInfo.m in Sources */,
 				42EB31301DB8EC33001DF4C0 /* VSSKeyPair.m in Sources */,
 				42F5407B1E0048520071FDCF /* VSSIdentityBaseHTTPRequest.m in Sources */,
 				42F5407E1E0054C00071FDCF /* VSSVerifyIdentityHTTPRequest.m in Sources */,

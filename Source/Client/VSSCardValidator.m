@@ -36,6 +36,8 @@ static NSString * const kVSSVraServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZ
         [copy addVerifierWithId:cardId publicKey:self.verifiers[cardId]];
     }
     
+    copy.useVirgilServiceVerifiers = self.useVirgilServiceVerifiers;
+    
     return copy;
 }
 
@@ -43,6 +45,7 @@ static NSString * const kVSSVraServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZ
     self = [super init];
     if (self) {
         _crypto = crypto;
+        self.useVirgilServiceVerifiers = YES;
         
         NSData *cardsServicePublicKeyData = [[NSData alloc] initWithBase64EncodedString:kVSSCardsServicePublicKey options:0];
         VSSPublicKey *cardsServicePublicKey = [crypto importPublicKeyFromData:cardsServicePublicKeyData];
@@ -96,17 +99,28 @@ static NSString * const kVSSVraServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZ
     verifiers[cardId] = creatorPublicKey;
 
     for (NSString *verifierId in verifiers.allKeys) {
+        BOOL isVraSignature = [verifierId isEqualToString:kVSSVraServiceCardId];
+        BOOL isCardsServiceSignature = [verifierId isEqualToString:kVSSCardsServiceCardId];
+        BOOL isSelfSignature = [verifierId isEqualToString:cardId];
+
+        // Don't verify with BuiltIn verifiers
+        if (!self.useVirgilServiceVerifiers && (isVraSignature || isCardsServiceSignature)) {
+            continue;
+        }
+        
         switch (cardResponse.model.scope) {
             case VSSCardScopeGlobal:
-                if (![verifierId isEqualToString:kVSSVraServiceCardId]
-                    && ![verifierId isEqualToString:kVSSCardsServiceCardId]
-                    && ![verifierId isEqualToString:cardId]) {
+                // For Global cards only Vra, Cards Servive and Self signatures are verified
+                if (!isVraSignature
+                    && !isCardsServiceSignature
+                    && !isSelfSignature) {
                     continue;
                 }
                 break;
                 
             case VSSCardScopeApplication:
-                if ([verifierId isEqualToString:kVSSVraServiceCardId]) {
+                //  Don't verify Vra signature for non-global cards
+                if (isVraSignature) {
                     continue;
                 }
                 break;

@@ -20,3 +20,4 @@
 #import "VSSVirgilGlobalIdentity.h"
 #import "VSSVirgilCard.h"
 #import "VSSVirgilKey.h"
+#import "VSSCardVerifierInfo.h"

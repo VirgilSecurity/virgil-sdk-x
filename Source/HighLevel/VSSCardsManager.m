@@ -123,7 +123,17 @@
 }
 
 - (VSSVirgilCard *)importVirgilCardFromData:(NSString *)data {
-    return [[VSSVirgilCard alloc] initWithContext:self.context data:data];
+    VSSVirgilCard *card = [[VSSVirgilCard alloc] initWithContext:self.context data:data];
+    
+    // Validate card if it's published
+    if (card.isPublished) {
+        BOOL verified = [self.context.client.serviceConfig.cardValidator validateCardResponse:card.card.cardResponse];
+        
+        if (!verified)
+            return nil;
+    }
+    
+    return card;
 }
 
 - (void)revokeCard:(VSSVirgilCard *)card completion:(void (^)(NSError *))callback {

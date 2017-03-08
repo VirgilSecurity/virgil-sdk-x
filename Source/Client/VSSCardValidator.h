@@ -18,6 +18,12 @@
 @interface VSSCardValidator : NSObject <VSSCardValidator, NSCopying>
 
 /**
+ BOOL value which indicates whether cards will also be verified with BuiltIn VirgilService public keys.
+ Default value is YES.
+ */
+@property (nonatomic) BOOL useVirgilServiceVerifiers;
+
+/**
  NSDictionary which stores NSString with verifier id as Key and its VSSPublicKey as Value
  */
 @property (nonatomic, copy, readonly) NSDictionary<NSString *, VSSPublicKey *> * __nonnull verifiers;
