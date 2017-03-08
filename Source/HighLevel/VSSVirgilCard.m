@@ -9,7 +9,6 @@
 #import "VSSVirgilCardPrivate.h"
 #import "VSSModelCommonsPrivate.h"
 #import "VSSVirgilApi.h"
-#import "VSSRequestSigner.h"
 
 @implementation VSSVirgilCard
 
@@ -79,9 +78,8 @@
             }
             NSString *appId = self.context.credentials.appId;
             VSSPrivateKey *appKey = self.context.credentials.appKey;
-            VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.context.crypto];
             NSError *error;
-            [signer authoritySignRequest:self.request forAppId:appId withPrivateKey:appKey error:&error];
+            [self.context.requestSigner authoritySignRequest:self.request forAppId:appId withPrivateKey:appKey error:&error];
             if (error != nil) {
                 callback(error);
                 return;

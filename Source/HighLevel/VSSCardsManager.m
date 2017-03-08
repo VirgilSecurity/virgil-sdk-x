@@ -13,7 +13,6 @@
 #import "VSSCreateApplicationCardRequest.h"
 #import "VSSCreateGlobalCardRequest.h"
 #import "VSSModelCommonsPrivate.h"
-#import "VSSRequestSigner.h"
 #import "VSSVirgilKeyPrivate.h"
 #import "VSSVirgilIdentityPrivate.h"
 #import "VSSVirgilGlobalIdentityPrivate.h"
@@ -55,8 +54,7 @@
         request = [VSSCreateApplicationCardRequest createApplicationCardRequestWithIdentity:identity.value identityType:identity.type publicKeyData:publicKeyData data:data device:device deviceName:deviceName];
     }
     
-    VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.context.crypto];
-    if (!([signer selfSignRequest:request withPrivateKey:ownerKey.privateKey error:errorPtr]))
+    if (!([self.context.requestSigner selfSignRequest:request withPrivateKey:ownerKey.privateKey error:errorPtr]))
         return nil;
     
     return [[VSSVirgilCard alloc] initWithContext:self.context request:request];
@@ -142,9 +140,8 @@
     }
     NSString *appId = self.context.credentials.appId;
     VSSPrivateKey *appKey = self.context.credentials.appKey;
-    VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.context.crypto];
     NSError *error;
-    [signer authoritySignRequest:request forAppId:appId withPrivateKey:appKey error:&error];
+    [self.context.requestSigner authoritySignRequest:request forAppId:appId withPrivateKey:appKey error:&error];
     if (error != nil) {
         callback(error);
         return;
@@ -166,9 +163,8 @@
     
     VSSRevokeCardRequest *request = [VSSRevokeGlobalCardRequest revokeGlobalCardRequestWithCardId:card.identifier validationToken:identity.token reason:VSSCardRevocationReasonUnspecified];
 
-    VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.context.crypto];
     NSError *error;
-    [signer authoritySignRequest:request forAppId:card.identifier withPrivateKey:ownerKey.privateKey error:&error];
+    [self.context.requestSigner authoritySignRequest:request forAppId:card.identifier withPrivateKey:ownerKey.privateKey error:&error];
     if (error != nil) {
         callback(error);
         return;

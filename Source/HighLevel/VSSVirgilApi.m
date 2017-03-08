@@ -20,7 +20,11 @@ NSString *const kVSSVirgilApiErrorDomain = @"VSSVirgilApiErrorDomain";
 @synthesize Cards = _Cards;
 @synthesize Keys = _Keys;
 
-- (instancetype __nonnull)initWithContext:(VSSVirgilApiContext * __nonnull)context {
+- (instancetype)init {
+    return [self initWithToken:nil];
+}
+
+- (instancetype)initWithContext:(VSSVirgilApiContext *)context {
     self = [super init];
     if (self) {
         _Identities = [[VSSIdentitiesManager alloc] initWithContext:context];
@@ -29,6 +33,11 @@ NSString *const kVSSVirgilApiErrorDomain = @"VSSVirgilApiErrorDomain";
     }
     
     return self;
+}
+
+- (instancetype)initWithToken:(NSString *)token {
+    VSSVirgilApiContext *context = [[VSSVirgilApiContext alloc] initWithToken:token];
+    return [self initWithContext:context];
 }
 
 @end

@@ -16,11 +16,8 @@ extern NSString * __nonnull const kVSSVirgilApiErrorDomain;
 
 @interface VSSVirgilApi : NSObject <VSSVirgilApi>
 
-/**
- Unavailable no-argument initializer inherited from NSObject
- */
-- (instancetype __nonnull)init NS_UNAVAILABLE;
-
 - (instancetype __nonnull)initWithContext:(VSSVirgilApiContext * __nonnull)context NS_DESIGNATED_INITIALIZER;
+
+- (instancetype __nonnull)initWithToken:(NSString * __nullable)token;
 
 @end
