@@ -16,7 +16,6 @@ class VSS007_HighLevelTests: XCTestCase {
     private var api: VSSVirgilApi!
     
     // MARK: Setup
-    
     override func setUp() {
         super.setUp()
         
@@ -24,7 +23,7 @@ class VSS007_HighLevelTests: XCTestCase {
         
         let credentials = VSSCredentials(crypto: VSSCrypto(), appKeyData: Data(base64Encoded: self.consts.applicationPrivateKeyBase64)!, appKeyPassword: self.consts.applicationPrivateKeyPassword, appId: self.consts.applicationId)
         
-        let context = VSSVirgilApiContext(token: self.consts.applicationToken, credentials: credentials)
+        let context = VSSVirgilApiContext(token: self.consts.applicationToken, credentials: credentials, cardVerifiers: [])
         
         self.api = VSSVirgilApi(context: context)
         
