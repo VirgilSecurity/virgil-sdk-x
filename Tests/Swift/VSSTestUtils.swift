@@ -12,10 +12,12 @@ import VirgilSDK
 class VSSTestUtils {
     private var crypto: VSSCrypto
     private var consts: VSSTestsConst
+    private var regexp: NSRegularExpression
     
     init(crypto: VSSCrypto, consts: VSSTestsConst) {
         self.crypto = crypto
         self.consts = consts
+        self.regexp = try! NSRegularExpression(pattern: "Your confirmation code is.+([A-Z0-9]{6})", options: .caseInsensitive)
     }
     
     func instantiateCreateCardRequest(keyPair: VSSKeyPair? = nil) -> VSSCreateCardRequest {
@@ -95,17 +97,6 @@ class VSSTestUtils {
         return equals
     }
     
-    func check(card: VSSCard, isEqualToCreateCardRequest request: VSSCreateGlobalCardRequest) -> Bool {
-        let equals = card.identityType == request.snapshotModel.identityType
-            && card.identity == request.snapshotModel.identity
-            && checkObjectsEqualOrBothNil(left: card.data, right: request.snapshotModel.data)
-            && checkObjectsEqualOrBothNil(left: card.info, right: request.snapshotModel.info)
-            && card.publicKeyData == request.snapshotModel.publicKeyData
-            && card.scope == request.snapshotModel.scope
-        
-        return equals
-    }
-    
     func check(card card1: VSSCard, isEqualToCard card2: VSSCard) -> Bool {
         let equals = card1.identityType == card2.identityType
             && card1.identity == card2.identity
@@ -134,14 +125,7 @@ class VSSTestUtils {
     }
     
     func check(createGlobalCardRequest request1: VSSCreateGlobalCardRequest, isEqualToCreateGlobalCardRequest request2: VSSCreateGlobalCardRequest) -> Bool {
-        let equals = request1.snapshot == request2.snapshot
-            && request1.signatures == request2.signatures
-            && checkObjectsEqualOrBothNil(left: request1.snapshotModel.data, right: request2.snapshotModel.data)
-            && request1.snapshotModel.identity == request2.snapshotModel.identity
-            && request1.snapshotModel.identityType == request2.snapshotModel.identityType
-            && checkObjectsEqualOrBothNil(left: request1.snapshotModel.info, right: request2.snapshotModel.info)
-            && request1.snapshotModel.publicKeyData == request2.snapshotModel.publicKeyData
-            && request1.snapshotModel.scope == request2.snapshotModel.scope
+        let equals = self.check(createCardRequest: request1, isEqualToCreateCardRequest: request2)
             && request1.validationToken == request2.validationToken
             && !request1.validationToken.isEmpty
         
@@ -198,6 +182,37 @@ class VSSTestUtils {
         let identity = identityLong.substring(to: identityLong.index(identityLong.startIndex, offsetBy: 25))
         
         return String(format: "%@@mailinator.com", identity)
+    }
+    
+    func checkHighLevelCardIsValid(card: VSSVirgilCard) -> Bool {
+        let valid = card.isPublished
+            && self.check(card: card.card!, isEqualToCreateCardRequest: card.request!)
+        
+        return valid
+    }
+    
+    func check(card card1: VSSVirgilCard, isEqualToCard card2: VSSVirgilCard) -> Bool {
+        let equals = self.check(card: card1.card!, isEqualToCard: card2.card!)
+        
+        return equals
+    }
+
+    func getConfirmationCode(emailNumber: Int = 0, identityValue: String, mailinator: Mailinator, completion: @escaping (String)->()) {
+        let identityShort = identityValue.substring(to: identityValue.range(of: "@")!.lowerBound)
+        
+        mailinator.getInbox(identityShort) { metadataList, error in
+            mailinator.getEmail(metadataList![emailNumber].mid) { email, error in
+                let bodyPart = email!.parts[0];
+                
+                let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
+                
+                let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
+                
+                let code = String(match.characters.suffix(6))
+                
+                completion(code)
+            }
+        }
     }
 }
 

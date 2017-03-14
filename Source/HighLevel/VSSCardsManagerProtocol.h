@@ -17,7 +17,7 @@
 
 - (VSSVirgilCard * __nullable)createCardWithIdentity:(VSSVirgilIdentity * __nonnull)identity ownerKey:(VSSVirgilKey * __nonnull)ownerKey error:(NSError * __nullable * __nullable)errorPtr;
 
-- (void)publishCard:(VSSVirgilCard * __nonnull)card completion:(void (^ __nonnull)(NSError * __nullable))callback;
+- (void)publishCard:(VSSVirgilCard * __nonnull)card completion:(void (^ __nonnull)(NSError * __nullable))callback NS_SWIFT_NAME(publish(_:completion:));
 
 - (void)searchCardsWithIdentities:(NSArray<NSString *> * __nonnull)identities completion:(void (^ __nonnull)(NSArray<VSSVirgilCard *> * __nullable, NSError * __nullable))callback;
 
@@ -31,8 +31,8 @@
 
 - (VSSVirgilCard * __nullable)importVirgilCardFromData:(NSString * __nonnull)data;
 
-- (void)revokeCard:(VSSVirgilCard * __nonnull)card completion:(void (^ __nonnull)(NSError * __nullable))callback;
+- (void)revokeCard:(VSSVirgilCard * __nonnull)card completion:(void (^ __nonnull)(NSError * __nullable))callback NS_SWIFT_NAME(revoke(_:completion:));
 
-- (void)revokeGlobalCard:(VSSVirgilCard * __nonnull)card identity:(VSSVirgilGlobalIdentity * __nonnull)identity ownerKey:(VSSVirgilKey * __nonnull)ownerKey completion:(void (^ __nonnull)(NSError * __nullable))callback;
+- (void)revokeGlobalCard:(VSSVirgilCard * __nonnull)card identity:(VSSVirgilGlobalIdentity * __nonnull)identity ownerKey:(VSSVirgilKey * __nonnull)ownerKey completion:(void (^ __nonnull)(NSError * __nullable))callback NS_SWIFT_NAME(revokeGlobal(_:identity:ownerKey:completion:));
 
 @end
