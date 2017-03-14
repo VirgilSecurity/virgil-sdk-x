@@ -14,20 +14,36 @@
 #import "VSSRequestSigner.h"
 #import "VSSCardValidator.h"
 
+@interface VSSVirgilApiContext ()
+
+@property (nonatomic) NSString * __nullable token;
+@property (nonatomic) id<VSSCardValidator> __nullable cardValidator;
+
+@end
+
 @implementation VSSVirgilApiContext
+
+@synthesize client = _client;
+@synthesize deviceManager = _deviceManager;
+@synthesize keyStorage = _keyStorage;
+@synthesize requestSigner = _requestSigner;
 
 - (instancetype)init {
     return [self initWithToken:nil];
 }
 
-- (instancetype)initWithToken:(NSString *)token credentials:(id<VSSCredentials>)credentials cardVerifiers:(NSArray<VSSCardVerifierInfo *> *)cardVerifiers {
+- (instancetype)initWithCrypto:(id<VSSCrypto>)crypto token:(NSString *)token credentials:(id<VSSCredentials>)credentials cardVerifiers:(NSArray<VSSCardVerifierInfo *> *)cardVerifiers {
     self = [super init];
     
     if (self) {
-        _credentials = credentials;
-        VSSCrypto *crypto = [[VSSCrypto alloc] init];
+        if (crypto == nil) {
+            crypto = [[VSSCrypto alloc] init];
+        }
+        _crypto = crypto;
         
-        VSSServiceConfig *serviceConfig = [VSSServiceConfig serviceConfigWithToken:token];
+        _credentials = credentials;
+        _token = [token copy];
+        
         VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:crypto];
         // FIXME (cardVerrfiers = nil)
         for (VSSCardVerifierInfo *info in cardVerifiers) {
@@ -35,20 +51,81 @@
             if (!success)
                 return nil;
         }
-        serviceConfig.cardValidator = validator;
-        
-        _client = [[VSSClient alloc] initWithServiceConfig:serviceConfig];
-        _crypto = crypto;
-        _deviceManager = [[VSSDeviceManager alloc] init];
-        _keyStorage = [[VSSKeyStorage alloc] init];
-        _requestSigner = [[VSSRequestSigner alloc] initWithCrypto:crypto];
+        _cardValidator = validator;
     }
     
     return self;
 }
 
 - (instancetype)initWithToken:(NSString *)token {
-    return [self initWithToken:token credentials:nil cardVerifiers:nil];
+    return [self initWithCrypto:[[VSSCrypto alloc] init] token:token credentials:nil cardVerifiers:nil];
+}
+
+- (VSSClient *)client {
+    @synchronized (self) {
+        if (_client == nil) {
+            VSSServiceConfig *serviceConfig = [VSSServiceConfig serviceConfigWithToken:self.token];
+            serviceConfig.cardValidator = self.cardValidator;
+            
+            _client = [[VSSClient alloc] initWithServiceConfig:serviceConfig];
+        }
+        
+        return _client;
+    }
+}
+
+- (void)setClient:(VSSClient *)client {
+    @synchronized (self) {
+        _client = client;
+    }
+}
+
+- (id<VSSDeviceManager>)deviceManager {
+    @synchronized (self) {
+        if (_deviceManager == nil) {
+            _deviceManager = [[VSSDeviceManager alloc] init];
+        }
+        
+        return _deviceManager;
+    }
+}
+
+- (void)setDeviceManager:(id<VSSDeviceManager>)deviceManager {
+    @synchronized (self) {
+        _deviceManager = deviceManager;
+    }
+}
+
+- (id<VSSKeyStorage>)keyStorage {
+    @synchronized (self) {
+        if (_keyStorage == nil) {
+            _keyStorage = [[VSSKeyStorage alloc] init];
+        }
+        
+        return _keyStorage;
+    }
+}
+
+- (void)setKeyStorage:(id<VSSKeyStorage>)keyStorage {
+    @synchronized (self) {
+        _keyStorage = keyStorage;
+    }
+}
+
+- (id<VSSRequestSigner>)requestSigner {
+    @synchronized (self) {
+        if (_requestSigner == nil) {
+            _requestSigner = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
+        }
+        
+        return _requestSigner;
+    }
+}
+
+- (void)setRequestSigner:(id<VSSRequestSigner>)requestSigner {
+    @synchronized (self) {
+        _requestSigner = requestSigner;
+    }
 }
 
 @end

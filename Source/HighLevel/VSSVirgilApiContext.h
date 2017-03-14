@@ -16,15 +16,15 @@
 
 @interface VSSVirgilApiContext : NSObject
 
+@property (nonatomic, readonly) id<VSSCrypto> __nonnull crypto;
 @property (nonatomic) id<VSSCredentials> __nullable credentials;
 @property (nonatomic) VSSClient * __nonnull client;
-@property (nonatomic) id<VSSCrypto> __nonnull crypto;
 @property (nonatomic) id<VSSDeviceManager> __nonnull deviceManager;
 @property (nonatomic) id<VSSKeyStorage> __nonnull keyStorage;
 @property (nonatomic) id<VSSRequestSigner> __nonnull requestSigner;
 
 - (instancetype __nonnull)initWithToken:(NSString * __nullable)token;
 
-- (instancetype __nonnull)initWithToken:(NSString * __nullable)token credentials:(id<VSSCredentials> __nullable)credentials cardVerifiers:(NSArray<VSSCardVerifierInfo *> * __nullable)cardVerifiers NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithCrypto:(id<VSSCrypto> __nullable)crypto token:(NSString * __nullable)token credentials:(id<VSSCredentials> __nullable)credentials cardVerifiers:(NSArray<VSSCardVerifierInfo *> * __nullable)cardVerifiers NS_DESIGNATED_INITIALIZER;
 
 @end

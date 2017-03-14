@@ -23,7 +23,7 @@ class VSS007_HighLevelTests: XCTestCase {
         
         let credentials = VSSCredentials(crypto: VSSCrypto(), appKeyData: Data(base64Encoded: self.consts.applicationPrivateKeyBase64)!, appKeyPassword: self.consts.applicationPrivateKeyPassword, appId: self.consts.applicationId)
         
-        let context = VSSVirgilApiContext(token: self.consts.applicationToken, credentials: credentials, cardVerifiers: [])
+        let context = VSSVirgilApiContext(crypto: VSSCrypto(), token: self.consts.applicationToken, credentials: credentials, cardVerifiers: [])
         
         self.api = VSSVirgilApi(context: context)
         
