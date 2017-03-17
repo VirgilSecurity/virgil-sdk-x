@@ -12,8 +12,9 @@
 
 #import "VSSCreateCardRequest.h"
 #import "VSSRevokeCardRequest.h"
+#import "VSSExportable.h"
 
-@interface VSSVirgilCard : NSObject
+@interface VSSVirgilCard : NSObject <VSSExportable>
 
 /**
  Unavailable no-argument initializer inherited from NSObject
@@ -31,7 +32,5 @@
 - (NSData * __nonnull)encryptData:(NSData * __nonnull)data error:(NSError * __nullable * __nullable)errorPtr;
 
 - (BOOL)verifyData:(NSData * __nonnull)data withSignature:(NSData * __nonnull)signature error:(NSError * __nullable * __nullable)errorPtr;
-
-//public string Export()
 
 @end

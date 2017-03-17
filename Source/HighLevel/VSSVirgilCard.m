@@ -9,6 +9,7 @@
 #import "VSSVirgilCardPrivate.h"
 #import "VSSModelCommonsPrivate.h"
 #import "VSSVirgilApi.h"
+#import "VSSCardResponsePrivate.h"
 
 @implementation VSSVirgilCard
 
@@ -150,6 +151,25 @@
         return self.card.scope;
     else
         return self.request.snapshotModel.scope;
+}
+
+- (instancetype)initWitContext:(VSSVirgilApiContext *)context data:(NSString *)data {
+    VSSCard *card = [[VSSCard alloc] initWithData:data];
+    if (card != nil)
+        return [self initWithContext:context card:card];
+    
+    VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithData:data];
+    if (request != nil)
+        return [self initWithContext:context request:request];
+    
+    return nil;
+}
+
+- (NSString *)exportData {
+    if (self.card != nil)
+        return [self.card exportData];
+    else
+        return [self.request exportData];
 }
 
 @end
