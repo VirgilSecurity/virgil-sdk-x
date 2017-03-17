@@ -42,7 +42,7 @@
 #pragma mark - Tests
 
 - (void)test001_CheckNumberOfTestsInJSON {
-    XCTAssert([self.testDict count] == 6);
+    XCTAssert([self.testDict count] == 8);
 }
 
 - (void)test002_DecryptFromSingleRecipient_ShouldDecrypt {
@@ -192,6 +192,28 @@
     NSError *error;
     XCTAssert([self.crypto verifyData:fingerprint.value withSignature:request.signatures[fingerprint.hexValue] usingSignerPublicKey:creatorPublicKey error:&error]);
     XCTAssert(error == nil);
+}
+
+- (void)test008_ExportPublishedGlobalCard_ShouldBeEqual {
+    NSDictionary *dict = self.testDict[@"export_published_global_virgil_card"];
+    
+    NSString *id = dict[@"card_id"];
+    NSString *exportedCard = dict[@"exported_card"];
+    
+    VSSCard *card = [[VSSCard alloc] initWithData:exportedCard];
+    XCTAssert([card.identifier isEqualToString:id]);
+}
+
+- (void)test009_ExportUnpublishedLocalCard_ShouldBeEqual {
+    NSDictionary *dict = self.testDict[@"export_unpublished_local_virgil_card"];
+    
+    NSString *id = dict[@"card_id"];
+    NSString *exportedRequest = dict[@"exported_card"];
+    
+    VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithData:exportedRequest];
+    VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:request.snapshot];
+    
+    XCTAssert([fingerprint.hexValue isEqualToString:id]);
 }
 
 @end

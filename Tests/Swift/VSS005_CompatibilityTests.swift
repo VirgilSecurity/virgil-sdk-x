@@ -39,7 +39,7 @@ class VSS005_CompatibilityTests: XCTestCase {
     // MARK: Tests
     
     func test001_CheckNumberOfTestsInJSON() {
-        XCTAssert(self.testsDict.count == 6)
+        XCTAssert(self.testsDict.count == 8)
     }
     
     func test002_DecryptFromSingleRecipient_ShouldDecrypt() {
@@ -174,5 +174,27 @@ class VSS005_CompatibilityTests: XCTestCase {
         let creatorPublicKey = self.crypto.importPublicKey(from: request.snapshotModel.publicKeyData)!
         
         try! self.crypto.verifyData(fingerprint.value, withSignature: request.signatures[fingerprint.hexValue]!, using: creatorPublicKey)
+    }
+    
+    func test008_ExportPublishedGlobalCard_ShouldBeEqual() {
+        let dict = self.testsDict["export_published_global_virgil_card"] as! Dictionary<String, String>
+        
+        let id = dict["card_id"]!
+        let exportedCard = dict["exported_card"]!
+        
+        let card = VSSCard(data: exportedCard)!
+        XCTAssert(card.identifier == id)
+    }
+    
+    func test009_ExportUnpublishedLocalCard_ShouldBeEqual() {
+        let dict = self.testsDict["export_unpublished_local_virgil_card"] as! Dictionary<String, String>
+        
+        let id = dict["card_id"]!
+        let exportedCard = dict["exported_card"]!
+        
+        let request = VSSCreateCardRequest(data: exportedCard)!
+        let fingerprint = self.crypto.calculateFingerprint(for: request.snapshot)
+        
+        XCTAssert(fingerprint.hexValue == id)
     }
 }
