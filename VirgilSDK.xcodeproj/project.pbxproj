@@ -193,6 +193,7 @@
 		427C40661E5C78290017C2A9 /* VSSRemoveCardRelationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C40651E5C78290017C2A9 /* VSSRemoveCardRelationRequest.m */; };
 		427C40671E5C78770017C2A9 /* VSSRemoveCardRelationRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 427C40641E5C77BC0017C2A9 /* VSSRemoveCardRelationRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427C406A1E5C78CE0017C2A9 /* VSSRemoveCardRelationHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C40691E5C78CE0017C2A9 /* VSSRemoveCardRelationHTTPRequest.m */; };
+		4296B0D21E7C18AE00703356 /* VSSRevokeCardHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D414A91E39016900F59580 /* VSSRevokeCardHTTPRequest.h */; };
 		42B33F761DC3A859008A7B78 /* VSSSignable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B33F751DC3A707008A7B78 /* VSSSignable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42B7E3461DB8F62400D70C12 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
 		42B7E3551DB8F6E400D70C12 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C181DB8E6A700E5E2AE /* sdk_compatibility_data.json */; };
@@ -218,7 +219,6 @@
 		42D414A71E39005E00F59580 /* VSSRevokeGlobalCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D414A61E39005E00F59580 /* VSSRevokeGlobalCardRequest.m */; };
 		42D414A81E3900FB00F59580 /* VSSRevokeGlobalCardRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D414A51E39005300F59580 /* VSSRevokeGlobalCardRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42D414AB1E39018100F59580 /* VSSRevokeCardHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D414AA1E39018100F59580 /* VSSRevokeCardHTTPRequest.m */; };
-		42D414AC1E39021E00F59580 /* VSSRevokeCardHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D414A91E39016900F59580 /* VSSRevokeCardHTTPRequest.h */; };
 		42E983031E0C2E0100FAA473 /* VSSCardResponsePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 425B09EE1DC25490005531DC /* VSSCardResponsePrivate.h */; };
 		42EB30EF1DB8EC33001DF4C0 /* VSSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB201D9ABF2200747799 /* VSSError.m */; };
 		42EB30F11DB8EC33001DF4C0 /* VSSCardsError.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB241D9ABF2200747799 /* VSSCardsError.m */; };
@@ -1223,9 +1223,8 @@
 				427A63161DB9091D00A33661 /* VirgilSDK.h in Headers */,
 				427A634C1DB9096C00A33661 /* VSSClientPublic.h in Headers */,
 				427A63171DB9096C00A33661 /* VSSImportable.h in Headers */,
-				42D414AC1E39021E00F59580 /* VSSRevokeCardHTTPRequest.h in Headers */,
+				4296B0D21E7C18AE00703356 /* VSSRevokeCardHTTPRequest.h in Headers */,
 				420FE66C1E534EEE005A32D4 /* VSSVirgilKey.h in Headers */,
-				42D414AC1E39021E00F59580 /* VSSRevokeCardHTTPRequest.h in Headers */,
 				427A63181DB9096C00A33661 /* VSSExportable.h in Headers */,
 				427C405D1E5B34010017C2A9 /* VSSSignedCardRequest.h in Headers */,
 				427A632A1DB9096C00A33661 /* VSSModelCommons.h in Headers */,
@@ -1466,7 +1465,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = VirgilSecurity;
 				TargetAttributes = {
 					42229A171DD059DC00BE651E = {
