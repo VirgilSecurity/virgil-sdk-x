@@ -14,6 +14,13 @@
  */
 @interface VSSCrypto : NSObject <VSSCrypto>
 
+/**
+ Initializes VSSCrypto instances and sets default key type for generated keys.
+
+ @param keyType see VSSKeyType
+ @return initialized instance
+ */
+- (instancetype __nonnull)initWithDefaultKeyType:(VSSKeyType)keyType;
 
 /**
  Generates key pair of chosen type

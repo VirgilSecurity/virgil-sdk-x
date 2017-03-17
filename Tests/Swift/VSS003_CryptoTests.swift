@@ -18,7 +18,7 @@ class VSS003_CryptoTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        self.crypto = VSSCrypto()
+        self.crypto = VSSCrypto(defaultKeyType: .EC_BP512R1)
     }
     
     override func tearDown() {

@@ -21,6 +21,25 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
 
 @implementation VSSCrypto
 
+- (instancetype)initWithDefaultKeyType:(VSSKeyType)keyType {
+    self = [super init];
+    if (self) {
+        _defaultKeyType = keyType;
+        _hasDefaultKeyType = YES;
+    }
+    
+    return self;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _hasDefaultKeyType = NO;
+    }
+    
+    return self;
+}
+
 #pragma mark - Key processing
 
 - (VSSKeyPair *)wrapCryptoKeyPair:(VSCKeyPair *)keyPair {
@@ -35,7 +54,16 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
 }
 
 - (VSSKeyPair *)generateKeyPair {
-    return [self wrapCryptoKeyPair:[[VSCKeyPair alloc] init]];
+    VSCKeyPair *vscKeyPair = nil;
+    if (self.hasDefaultKeyType) {
+        VSCKeyType cType = vss_mapKeyType(self.defaultKeyType);
+        vscKeyPair = [[VSCKeyPair alloc] initWithKeyPairType:cType password:nil];
+    }
+    else {
+        vscKeyPair = [[VSCKeyPair alloc] init];
+    }
+    
+    return [self wrapCryptoKeyPair:vscKeyPair];
 }
 
 - (VSSKeyPair *)generateKeyPairOfType:(VSSKeyType)type {
