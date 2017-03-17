@@ -45,7 +45,6 @@
         _token = [token copy];
         
         VSSCardValidator *validator = [[VSSCardValidator alloc] initWithCrypto:crypto];
-        // FIXME (cardVerrfiers = nil)
         for (VSSCardVerifierInfo *info in cardVerifiers) {
             BOOL success = [validator addVerifierWithId:info.cardId publicKeyData:info.publicKeyData];
             if (!success)

@@ -20,7 +20,7 @@
  */
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 
-@property (nonatomic, readonly) NSString * __nullable identifier;
+@property (nonatomic, readonly) NSString * __nonnull identifier;
 @property (nonatomic, readonly) NSString * __nonnull identity;
 @property (nonatomic, readonly) NSString * __nonnull identityType;
 @property (nonatomic, readonly) NSDictionary<NSString *, NSString *> * __nullable customFields;

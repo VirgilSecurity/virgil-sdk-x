@@ -22,9 +22,17 @@ class VSS007_HighLevelTests: XCTestCase {
         
         self.consts = VSSTestsConst()
         
-        let credentials = VSSCredentials(crypto: VSSCrypto(), appKeyData: Data(base64Encoded: self.consts.applicationPrivateKeyBase64)!, appKeyPassword: self.consts.applicationPrivateKeyPassword, appId: self.consts.applicationId)
+        let appPrivateKeyData = Data(base64Encoded: self.consts.applicationPrivateKeyBase64)!
+        let credentials = VSSCredentials(crypto: VSSCrypto(), appKeyData: appPrivateKeyData, appKeyPassword: self.consts.applicationPrivateKeyPassword, appId: self.consts.applicationId)
         
-        let context = VSSVirgilApiContext(crypto: VSSCrypto(), token: self.consts.applicationToken, credentials: credentials, cardVerifiers: [])
+        let crypto = VSSCrypto()
+        
+        let appPrivateKey = crypto.importPrivateKey(from: appPrivateKeyData, withPassword: self.consts.applicationPrivateKeyPassword)!
+        let appPublicKey = crypto.extractPublicKey(from: appPrivateKey)
+        let appPublicKeyData = crypto.export(appPublicKey)
+        
+        let appVerifier = VSSCardVerifierInfo(cardId: self.consts.applicationId, publicKeyData: appPublicKeyData)
+        let context = VSSVirgilApiContext(crypto: VSSCrypto(), token: self.consts.applicationToken, credentials: credentials, cardVerifiers: [appVerifier])
         
         self.api = VSSVirgilApi(context: context)
         
@@ -139,7 +147,7 @@ class VSS007_HighLevelTests: XCTestCase {
         self.api.cards.publish(card) { (error) in
             sleep(3)
             
-            self.api.cards.getCardWithId(card.identifier!) { foundCard, error in
+            self.api.cards.getCardWithId(card.identifier) { foundCard, error in
                 XCTAssert(error == nil)
                 XCTAssert(foundCard != nil)
                 

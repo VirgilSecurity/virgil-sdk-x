@@ -17,6 +17,9 @@
     if (self) {
         _context = context;
         _request = request;
+        
+        VSSFingerprint *fingerprint = [context.crypto calculateFingerprintForData:request.snapshot];
+        _calculatedIdentifier = [fingerprint hexValue];
     }
     
     return self;
@@ -103,8 +106,8 @@
 - (NSString *)identifier {
     if (self.card != nil)
         return self.card.identifier;
-    
-    return nil;
+    else
+        return self.calculatedIdentifier;
 }
 
 - (NSString *)identity {
