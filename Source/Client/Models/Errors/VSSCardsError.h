@@ -22,7 +22,7 @@ extern const NSInteger kVSSCardsCardNotAvailableError;
 
 /// HTTP 400. Request error status is returned on request data validation errors
 extern const NSInteger kVSSCardsJSONError;
-extern const NSInteger kVSSCardsDataInconsistencyEror;
+extern const NSInteger kVSSCardsDataInconsistencyError;
 extern const NSInteger kVSSCardsGlobalCardIdentityTypeError;
 extern const NSInteger kVSSCardsCardScopeError;
 extern const NSInteger kVSSCardsCardIdValidationFailedError;
@@ -48,16 +48,16 @@ extern const NSInteger kVSSCardsCSRSignForIdentityServiceError;
 extern const NSInteger kVSSCardsGlobalCardUnconfirmedError;
 extern const NSInteger kVSSCardsDuplicateFingerprintError;
 extern const NSInteger kVSSCardsRevocationReasonMissingOrInvalidError;
-extern const NSInteger kVSSCardsSCRValidationFailed;
-extern const NSInteger kVSSCardsSCROneOfSignersNotFound;
-extern const NSInteger kVSSCardsSCRSignItemInvalidOrMissingClient;
-extern const NSInteger kVSSCardsSCRSignItemInvalidOrMissingVRA;
-extern const NSInteger kVSSCardsRelationSignInvalid;
-extern const NSInteger kVSSCardsRelationSignNotFound;
-extern const NSInteger kVSSCardsRelatedSnapshotNotFound;
-extern const NSInteger kVSSCardsRelationAlreadyExists;
-extern const NSInteger kVSSCardsCardNotFoundForCSR;
-extern const NSInteger kVSSCardsRelationDoesntExist;
+extern const NSInteger kVSSCardsSCRValidationFailedError;
+extern const NSInteger kVSSCardsSCROneOfSignersNotFoundError;
+extern const NSInteger kVSSCardsSCRSignItemInvalidOrMissingClientError;
+extern const NSInteger kVSSCardsSCRSignItemInvalidOrMissingVRAError;
+extern const NSInteger kVSSCardsRelationSignInvalidError;
+extern const NSInteger kVSSCardsRelationSignNotFoundError;
+extern const NSInteger kVSSCardsRelatedSnapshotNotFoundError;
+extern const NSInteger kVSSCardsRelationAlreadyExistsError;
+extern const NSInteger kVSSCardsCardNotFoundForCSRError;
+extern const NSInteger kVSSCardsRelationDoesntExistError;
 
 /**
  * Concrete subclass representing the errors returning by the Virgil Keys Service.

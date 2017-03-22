@@ -21,7 +21,7 @@ const NSInteger kVSSCardsCardNotAvailableError                       = 20500;
 
 /// HTTP 400. Request error status is returned on request data validation errors
 const NSInteger kVSSCardsJSONError                                   = 30000;
-const NSInteger kVSSCardsDataInconsistencyEror                       = 30010;
+const NSInteger kVSSCardsDataInconsistencyError                      = 30010;
 const NSInteger kVSSCardsGlobalCardIdentityTypeError                 = 30100;
 const NSInteger kVSSCardsCardScopeError                              = 30101;
 const NSInteger kVSSCardsCardIdValidationFailedError                 = 30102;
@@ -51,12 +51,12 @@ const NSInteger kVSSCardsSCRValidationFailedError                    = 30140;
 const NSInteger kVSSCardsSCROneOfSignersNotFoundError                = 30141;
 const NSInteger kVSSCardsSCRSignItemInvalidOrMissingClientError      = 30142;
 const NSInteger kVSSCardsSCRSignItemInvalidOrMissingVRAError         = 30143;
-const NSInteger kVSSCardsRelationSignInvalid                         = 30200;
-const NSInteger kVSSCardsRelationSignNotFound                        = 30201;
-const NSInteger kVSSCardsRelatedSnapshotNotFound                     = 30202;
-const NSInteger kVSSCardsRelationAlreadyExists                       = 30203;
-const NSInteger kVSSCardsCardNotFoundForCSR                          = 30204;
-const NSInteger kVSSCardsRelationDoesntExist                         = 30205;
+const NSInteger kVSSCardsRelationSignInvalidError                    = 30200;
+const NSInteger kVSSCardsRelationSignNotFoundError                   = 30201;
+const NSInteger kVSSCardsRelatedSnapshotNotFoundError                = 30202;
+const NSInteger kVSSCardsRelationAlreadyExistsError                  = 30203;
+const NSInteger kVSSCardsCardNotFoundForCSRError                     = 30204;
+const NSInteger kVSSCardsRelationDoesntExistError                    = 30205;
 
 @implementation VSSCardsError
 
@@ -77,7 +77,7 @@ const NSInteger kVSSCardsRelationDoesntExist                         = 30205;
         
         /// HTTP 400. Request error status is returned on request data validation errors
         case kVSSCardsJSONError: message = @"JSON specified as a request is invalid"; break;
-        case kVSSCardsDataInconsistencyEror: message = @"A data inconsistency error"; break;
+        case kVSSCardsDataInconsistencyError: message = @"A data inconsistency error"; break;
         case kVSSCardsGlobalCardIdentityTypeError: message = @"Global Virgil Card identity type is invalid, because it can be only an 'email'"; break;
         case kVSSCardsCardScopeError: message = @"Virgil Card scope must be either 'global' or 'application'"; break;
         case kVSSCardsCardIdValidationFailedError: message = @"Virgil Card id validation failed"; break;
@@ -108,12 +108,12 @@ const NSInteger kVSSCardsRelationDoesntExist                         = 30205;
         case kVSSCardsSCRSignItemInvalidOrMissingClientError: message = @"SCR sign item is invalid or missing for the Client"; break;
         case kVSSCardsSCRSignItemInvalidOrMissingVRAError: message = @"SCR sign item is invalid or missing for the Virgil Registration Authority service"; break;
             
-        case kVSSCardsRelationSignInvalid: message = @"Virgil Card relation sign is invalid"; break;
-        case kVSSCardsRelationSignNotFound: message = @"Virgil Card relation sign by the source Virgil Card was not found"; break;
-        case kVSSCardsRelatedSnapshotNotFound: message = @"Related Virgil content snapshot parameter was not found"; break;
-        case kVSSCardsRelationAlreadyExists: message = @"The relation with this Virgil Card exists already"; break;
-        case kVSSCardsCardNotFoundForCSR: message = @"The related Virgil Card was not found for the provided CSR"; break;
-        case kVSSCardsRelationDoesntExist: message = @"The Virgil Card relation doesn't exist"; break;
+        case kVSSCardsRelationSignInvalidError: message = @"Virgil Card relation sign is invalid"; break;
+        case kVSSCardsRelationSignNotFoundError: message = @"Virgil Card relation sign by the source Virgil Card was not found"; break;
+        case kVSSCardsRelatedSnapshotNotFoundError: message = @"Related Virgil content snapshot parameter was not found"; break;
+        case kVSSCardsRelationAlreadyExistsError: message = @"The relation with this Virgil Card exists already"; break;
+        case kVSSCardsCardNotFoundForCSRError: message = @"The related Virgil Card was not found for the provided CSR"; break;
+        case kVSSCardsRelationDoesntExistError: message = @"The Virgil Card relation doesn't exist"; break;
     }
 
     return message;
