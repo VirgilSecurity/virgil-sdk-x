@@ -7,7 +7,6 @@
 //
 
 #import "VSSBaseModel.h"
-#import "VSSCreateCardSnapshotModel.h"
 
 /**
  Response from Virgil Identity Service after confirmation step.

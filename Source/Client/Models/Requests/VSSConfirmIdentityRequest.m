@@ -25,8 +25,8 @@
 
 - (NSDictionary * __nonnull)serialize {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    dict[kVSSIModelConfirmationCode] = [self.confirmationCode copy];
-    dict[kVSSIModelActionId] = [self.actionId copy];
+    dict[kVSSIModelConfirmationCode] = self.confirmationCode;
+    dict[kVSSIModelActionId] = self.actionId;
     
     NSMutableDictionary *tokenDict = [[NSMutableDictionary alloc] init];
     tokenDict[kVSSIModelCTL] = [[NSNumber alloc] initWithInteger:self.tokenCTL];

@@ -22,7 +22,7 @@
 - (instancetype)initWithContext:(VSSHTTPRequestContext *)context createCardRequest:(VSSCreateCardRequest *)request  {
     self = [super initWithContext:context];
     if (self) {
-        NSMutableDictionary *body = [[request serialize] mutableCopy];
+        NSDictionary *body = [request serialize];
         
         [self setRequestBodyWithObject:body];
     }

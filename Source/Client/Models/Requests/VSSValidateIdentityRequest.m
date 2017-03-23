@@ -24,9 +24,9 @@
 
 - (NSDictionary * __nonnull)serialize {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    dict[kVSSIModelIdentityType] = [self.identityType copy];
-    dict[kVSSIModelIdentityValue] = [self.identityValue copy];
-    dict[kVSSIModelValidationToken] = [self.validationToken copy];
+    dict[kVSSIModelIdentityType] = self.identityType;
+    dict[kVSSIModelIdentityValue] = self.identityValue;
+    dict[kVSSIModelValidationToken] = self.validationToken;
     
     return dict;
 }

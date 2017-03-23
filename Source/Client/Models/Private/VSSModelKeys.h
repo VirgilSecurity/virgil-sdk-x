@@ -30,6 +30,7 @@ extern NSString * __nonnull const kVSSCModelRelations;
 extern NSString * __nonnull const kVSSCModelCardId;
 extern NSString * __nonnull const kVSSCModelRevocationReason;
 extern NSString * __nonnull const kVSSCModelIdentities;
+extern NSString * __nonnull const kVSSCModelCode;
 
 extern NSString * __nonnull const kVSSIModelIdentityType;
 extern NSString * __nonnull const kVSSIModelIdentityValue;
@@ -41,6 +42,14 @@ extern NSString * __nonnull const kVSSIModelTTL;
 extern NSString * __nonnull const kVSSIModelCTL;
 extern NSString * __nonnull const kVSSIModelValidationToken;
 
-extern NSString * __nonnull const kVSSCModelCode;
+extern NSString * __nonnull const kVSSAModelResourceOwnerCardId;
+extern NSString * __nonnull const kVSSAModelAuthGrantId;
+extern NSString * __nonnull const kVSSAModelEncryptedMessage;
+extern NSString * __nonnull const kVSSAModelCode;
+extern NSString * __nonnull const kVSSAModelGrantType;
+extern NSString * __nonnull const kVSSAModelAccessToken;
+extern NSString * __nonnull const kVSSAModelRefreshToken;
+extern NSString * __nonnull const kVSSAModelExpiresIn;
+extern NSString * __nonnull const kVSSAModelTokenType;
 
 extern NSString * __nonnull const kVSSUnknownError;

@@ -25,11 +25,11 @@
 
 - (NSDictionary * __nonnull)serialize {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    dict[kVSSIModelIdentityType] = [self.identityType copy];
-    dict[kVSSIModelIdentityValue] = [self.identity copy];
+    dict[kVSSIModelIdentityType] = self.identityType;
+    dict[kVSSIModelIdentityValue] = self.identity;
     
     if (self.extraFields != nil) {
-        dict[kVSSIModelExtraFields] = [self.extraFields copy];
+        dict[kVSSIModelExtraFields] = self.extraFields;
     }
     
     return dict;

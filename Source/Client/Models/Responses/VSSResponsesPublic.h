@@ -8,3 +8,6 @@
 
 #import "VSSCardResponse.h"
 #import "VSSConfirmIdentityResponse.h"
+#import "VSSChallengeMessageResponse.h"
+#import "VSSObtainTokenResponse.h"
+#import "VSSTokenResponse.h"

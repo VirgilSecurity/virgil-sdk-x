@@ -42,6 +42,16 @@ NSString *const kVSSIModelTTL = @"time_to_live";
 NSString *const kVSSIModelCTL = @"count_to_live";
 NSString *const kVSSIModelValidationToken = @"validation_token";
 
+NSString *const kVSSAModelResourceOwnerCardId = @"resource_owner_virgil_card_id";
+NSString *const kVSSAModelAuthGrantId = @"authorization_grant_id";
+NSString *const kVSSAModelEncryptedMessage = @"encrypted_message";
+NSString *const kVSSAModelCode = @"code";
+NSString *const kVSSAModelGrantType = @"grant_type";
+NSString *const kVSSAModelAccessToken = @"access_token";
+NSString *const kVSSAModelRefreshToken = @"refresh_token";
+NSString *const kVSSAModelExpiresIn = @"expires_in";
+NSString *const kVSSAModelTokenType = @"token_type";
+
 NSString *const kVSSCModelCode = @"code";
 
 NSString *const kVSSUnknownError = @"Virgil Security service unknown error.";
