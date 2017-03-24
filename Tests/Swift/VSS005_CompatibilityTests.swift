@@ -39,7 +39,7 @@ class VSS005_CompatibilityTests: XCTestCase {
     // MARK: Tests
     
     func test001_CheckNumberOfTestsInJSON() {
-        XCTAssert(self.testsDict.count == 6)
+        XCTAssert(self.testsDict.count == 7)
     }
     
     func test002_DecryptFromSingleRecipient_ShouldDecrypt() {
@@ -174,5 +174,34 @@ class VSS005_CompatibilityTests: XCTestCase {
         let creatorPublicKey = self.crypto.importPublicKey(from: request.snapshotModel.publicKeyData)!
         
         try! self.crypto.verifyData(fingerprint.value, withSignature: request.signatures[fingerprint.hexValue]!, using: creatorPublicKey)
+    }
+    
+    func test008_DecryptThenVerifyMultipleSigners_ShouldDecryptThenVerify() {
+        let dict = self.testsDict["sign_then_encrypt_multiple_signers"] as! Dictionary<String, Any>
+        
+        let privateKeyStr = dict["private_key"] as! String
+        let privateKeyData = Data(base64Encoded: privateKeyStr)!
+        
+        let privateKey = self.crypto.importPrivateKey(from: privateKeyData, withPassword: nil)!
+        
+        var publicKeys = Array<VSSPublicKey>()
+        
+        for publicKeyStr in dict["public_keys"] as! Array<String> {
+            let publicKeyData = Data(base64Encoded: publicKeyStr)!
+            
+            let publicKey = self.crypto.importPublicKey(from: publicKeyData)!
+            
+            publicKeys.append(publicKey)
+        }
+        
+        let originalDataStr = dict["original_data"] as! String
+        
+        let cipherDataStr = dict["cipher_data"] as! String
+        let cipherData = Data(base64Encoded: cipherDataStr)!
+        
+        let decryptedData = try! self.crypto.decryptThenVerify(cipherData, with: privateKey, usingOneOf: publicKeys)
+        let decrypteDataStr = decryptedData.base64EncodedString()
+        
+        XCTAssert(decrypteDataStr == originalDataStr)
     }
 }

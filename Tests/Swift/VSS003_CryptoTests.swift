@@ -126,7 +126,7 @@ class VSS003_CryptoTests: XCTestCase {
         do {
             try self.crypto.decrypt(inputStreamForDecryption, to: outputStreamForDecryption, with: wrongKeyPair.privateKey)
         }
-        catch _ {
+        catch {
             errorWasThrown = true
         }
         
@@ -246,7 +246,7 @@ class VSS003_CryptoTests: XCTestCase {
         do {
             try self.crypto.verifyData(data, withSignature: signature, using: wrongKeyPair.publicKey)
         }
-        catch _ {
+        catch {
             errorWasThrown = true
         }
         XCTAssert(errorWasThrown)
@@ -263,5 +263,39 @@ class VSS003_CryptoTests: XCTestCase {
         let decryptedThenVerifiedData = try! self.crypto.decryptThenVerify(signedAndEcryptedData, with: receiverKeyPair.privateKey, using: senderKeyPair.publicKey)
         
         XCTAssert(data == decryptedThenVerifiedData)
+    }
+    
+    func testESD002_SignThenEncryptRandomData_TwoKeys_ShouldDecryptValidate() {
+        let data = UUID().uuidString.data(using: .utf8)!
+        
+        let senderKeyPair = self.crypto.generateKeyPair()
+        let oneMoreKeyPair = self.crypto.generateKeyPair()
+        let receiverKeyPair = self.crypto.generateKeyPair()
+        
+        let signedAndEcryptedData = try! self.crypto.signThenEncrypt(data, with: senderKeyPair.privateKey, for: [receiverKeyPair.publicKey])
+        
+        let decryptedThenVerifiedData = try! self.crypto.decryptThenVerify(signedAndEcryptedData, with: receiverKeyPair.privateKey, usingOneOf: [oneMoreKeyPair.publicKey, senderKeyPair.publicKey])
+        
+        XCTAssert(data == decryptedThenVerifiedData)
+    }
+    
+    func testESD003_SignThenEncryptRandomData_NoSenderKeys_ShouldNotValidate() {
+        let data = UUID().uuidString.data(using: .utf8)!
+        
+        let senderKeyPair = self.crypto.generateKeyPair()
+        let oneMoreKeyPair = self.crypto.generateKeyPair()
+        let receiverKeyPair = self.crypto.generateKeyPair()
+        
+        let signedAndEcryptedData = try! self.crypto.signThenEncrypt(data, with: senderKeyPair.privateKey, for: [receiverKeyPair.publicKey])
+        
+        var errorWasThrown = false
+        do {
+            try self.crypto.decryptThenVerify(signedAndEcryptedData, with: receiverKeyPair.privateKey, usingOneOf: [oneMoreKeyPair.publicKey])
+        }
+        catch {
+            errorWasThrown = true
+        }
+        
+        XCTAssert(errorWasThrown)
     }
 }
