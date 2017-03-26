@@ -179,13 +179,25 @@
 /**
  Decrypts and verifies data.
 
- @param data            NSData instance with encrypted and signed data
- @param privateKey      VSSPrivateKey isntance of data recipient
- @param signerPublicKey VSSPublicKey instance with data signer's Public Key
- @param errorPtr        NSError pointer to return error if needed
+ @param data              NSData instance with encrypted and signed data
+ @param privateKey        VSSPrivateKey isntance of data recipient
+ @param signersPublicKeys Array of VSSPublicKey instances of possible signers
+ @param errorPtr          NSError pointer to return error if needed
 
  @return NSData instance with encrypted and verified data
  */
+- (NSData * __nullable)decryptThenVerifyData:(NSData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey usingOneOfSignersPublicKeys:(NSArray<VSSPublicKey *> * __nonnull)signersPublicKeys error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(decryptThenVerify(_:with:usingOneOf:));
+    
+    /**
+     Decrypts and verifies data.
+     
+     @param data            NSData instance with encrypted and signed data
+     @param privateKey      VSSPrivateKey isntance of data recipient
+     @param signerPublicKey VSSPublicKey instance with data signer's Public Key
+     @param errorPtr        NSError pointer to return error if needed
+     
+     @return NSData instance with encrypted and verified data
+     */
 - (NSData * __nullable)decryptThenVerifyData:(NSData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey usingSignerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(decryptThenVerify(_:with:using:));
 
 ///------------------------------------------
