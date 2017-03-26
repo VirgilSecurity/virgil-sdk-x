@@ -14,6 +14,7 @@ const NSInteger kVSSAuthInternalError                                   = 10000;
 /// HTTP 400. Request error status is returned on request data validation errors
 const NSInteger kVSSAuthResourceOwnerUuidValidationError                = 53000;
 const NSInteger kVSSAuthVirgilCardNotFoundError                         = 53010;
+const NSInteger kVSSAuthVirgilCardNotAccessibleError                    = 53011;
 const NSInteger kVSSAuthEncryptedMessageValidationFailedError           = 53020;
 const NSInteger kVSSAuthAuthAttemptExpiredError                         = 53030;
 const NSInteger kVSSAuthGrantTypeNotSupportedError                      = 53040;
@@ -36,6 +37,7 @@ const NSInteger kVSSAuthResourceOwnerVirgilCardNotVerifiedError         = 53100;
             /// HTTP 400. This status is returned on request data errors.
         case kVSSAuthResourceOwnerUuidValidationError: message = @"The resource owner uuid validation failed"; break;
         case kVSSAuthVirgilCardNotFoundError: message = @"The Virgil card specified by Uuid doesn't exist on the Virgil Keys service"; break;
+        case kVSSAuthVirgilCardNotAccessibleError: message = @"The Auth service cannot get access to the Virgil card specified by id. The card in application scope and can't be retrieved"; break;
         case kVSSAuthEncryptedMessageValidationFailedError: message = @"Encrypted message validation failed"; break;
         case kVSSAuthAuthAttemptExpiredError: message = @"The authentication attempt instance has expired already"; break;
         case kVSSAuthGrantTypeNotSupportedError: message = @"Grant type is not supported as it is outside of the list: ['authorization_code']"; break;

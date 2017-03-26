@@ -348,7 +348,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
     func testAU02_AckChallengeMessage() {
         let ex = self.expectation(description: "Global Email Virgil Card should be created. Challenge message for this card should be received. Acknowledge should return access code.")
         
-        let numberOfRequests = 6
+        let numberOfRequests = 7
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
         let identity = self.utils.generateEmail()
@@ -409,7 +409,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
     func testAU03_ObtainAccessToken() {
         let ex = self.expectation(description: "Global Email Virgil Card should be created. Challenge message for this card should be received. Acknowledge should return access code. Token should be received.")
         
-        let numberOfRequests = 6
+        let numberOfRequests = 8
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
         let identity = self.utils.generateEmail()
@@ -475,7 +475,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
     func testAU04_RefreshAccessToken() {
         let ex = self.expectation(description: "Global Email Virgil Card should be created. Challenge message for this card should be received. Acknowledge should return access code. Token should be received. Token should be refreshed.")
         
-        let numberOfRequests = 6
+        let numberOfRequests = 9
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
         let identity = self.utils.generateEmail()
@@ -541,7 +541,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
     func testAU05_VerifyAccessToken() {
         let ex = self.expectation(description: "Global Email Virgil Card should be created. Challenge message for this card should be received. Acknowledge should return access code. Token should be received. Token should be verified.")
         
-        let numberOfRequests = 6
+        let numberOfRequests = 9
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
         let identity = self.utils.generateEmail()

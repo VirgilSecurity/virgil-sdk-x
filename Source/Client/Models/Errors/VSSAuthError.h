@@ -14,6 +14,7 @@ extern const NSInteger kVSSAuthInternalError;
 /// HTTP 400. Request error status is returned on request data validation errors
 extern const NSInteger kVSSAuthResourceOwnerUuidValidationError;
 extern const NSInteger kVSSAuthVirgilCardNotFoundError;
+extern const NSInteger kVSSAuthVirgilCardNotAccessibleError;
 extern const NSInteger kVSSAuthEncryptedMessageValidationFailedError;
 extern const NSInteger kVSSAuthAuthAttemptExpiredError;
 extern const NSInteger kVSSAuthGrantTypeNotSupportedError;
