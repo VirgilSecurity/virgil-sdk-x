@@ -25,7 +25,7 @@ class VSSTestUtils {
         // some random value
         let identityValue = UUID().uuidString
         let identityType = self.consts.applicationIdentityType
-        let request = VSSCreateApplicationCardRequest(identity: identityValue, identityType: identityType, publicKeyData: exportedPublicKey)
+        let request = VSSCreateUserCardRequest(identity: identityValue, identityType: identityType, publicKeyData: exportedPublicKey)
         
         let privateAppKeyData = Data(base64Encoded: self.consts.applicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
         let appPrivateKey = self.crypto.importPrivateKey(from: privateAppKeyData, withPassword: self.consts.applicationPrivateKeyPassword)!
@@ -60,7 +60,7 @@ class VSSTestUtils {
         // some random value
         let identityValue = UUID().uuidString
         let identityType = self.consts.applicationIdentityType
-        let request = VSSCreateApplicationCardRequest(identity: identityValue, identityType: identityType, publicKeyData: exportedPublicKey, data: data)
+        let request = VSSCreateUserCardRequest(identity: identityValue, identityType: identityType, publicKeyData: exportedPublicKey, data: data)
         
         let privateAppKeyData = Data(base64Encoded: self.consts.applicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
         let appPrivateKey = self.crypto.importPrivateKey(from: privateAppKeyData, withPassword: self.consts.applicationPrivateKeyPassword)!

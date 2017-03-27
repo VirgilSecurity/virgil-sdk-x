@@ -23,8 +23,8 @@
 		42229A231DD059E900BE651E /* VSS006_KeyStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB691DCA93D500CCACB8 /* VSS006_KeyStorageTests.m */; };
 		42229A241DD059EE00BE651E /* VSS007_KeyStorageWithAccessGroupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42796BD41DCB977C000FDDD4 /* VSS007_KeyStorageWithAccessGroupTests.m */; };
 		42229A351DD05A4600BE651E /* VSS006_KeyStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42796BD71DCCA02B000FDDD4 /* VSS006_KeyStorageTests.swift */; };
-		4233CDDB1E6588AD006D78C3 /* VSSCreateApplicationCardRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 4233CDDA1E6588A9006D78C3 /* VSSCreateApplicationCardRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4233CDDD1E6588C2006D78C3 /* VSSCreateApplicationCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4233CDDC1E6588C2006D78C3 /* VSSCreateApplicationCardRequest.m */; };
+		4233CDDB1E6588AD006D78C3 /* VSSCreateUserCardRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 4233CDDA1E6588A9006D78C3 /* VSSCreateUserCardRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4233CDDD1E6588C2006D78C3 /* VSSCreateUserCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4233CDDC1E6588C2006D78C3 /* VSSCreateUserCardRequest.m */; };
 		4233CDE01E658C44006D78C3 /* VSSRevokeApplicationCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4233CDDF1E658C44006D78C3 /* VSSRevokeApplicationCardRequest.m */; };
 		4233CDE11E658C86006D78C3 /* VSSRevokeApplicationCardRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 4233CDDE1E658C2A006D78C3 /* VSSRevokeApplicationCardRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42386C251E0183FC009E913F /* VSSVerifyIdentityResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 42386C241E0183FC009E913F /* VSSVerifyIdentityResponse.m */; };
@@ -297,8 +297,8 @@
 		421A74CE1E015CBF007460BA /* VSSVerifyIdentityRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSVerifyIdentityRequest.h; sourceTree = "<group>"; };
 		42229A181DD059DC00BE651E /* VirgilSDKKeyStorageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirgilSDKKeyStorageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		42229A2B1DD05A3C00BE651E /* VirgilSDKKeyStorageSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirgilSDKKeyStorageSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4233CDDA1E6588A9006D78C3 /* VSSCreateApplicationCardRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCreateApplicationCardRequest.h; sourceTree = "<group>"; };
-		4233CDDC1E6588C2006D78C3 /* VSSCreateApplicationCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCreateApplicationCardRequest.m; sourceTree = "<group>"; };
+		4233CDDA1E6588A9006D78C3 /* VSSCreateUserCardRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCreateUserCardRequest.h; sourceTree = "<group>"; };
+		4233CDDC1E6588C2006D78C3 /* VSSCreateUserCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCreateUserCardRequest.m; sourceTree = "<group>"; };
 		4233CDDE1E658C2A006D78C3 /* VSSRevokeApplicationCardRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSRevokeApplicationCardRequest.h; sourceTree = "<group>"; };
 		4233CDDF1E658C44006D78C3 /* VSSRevokeApplicationCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRevokeApplicationCardRequest.m; sourceTree = "<group>"; };
 		42386C231E018307009E913F /* VSSVerifyIdentityResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSVerifyIdentityResponse.h; sourceTree = "<group>"; };
@@ -758,8 +758,8 @@
 				425B09DB1DC25374005531DC /* VSSSignableRequest.m */,
 				425B09D61DC25374005531DC /* VSSCreateCardRequest.h */,
 				425B09D71DC25374005531DC /* VSSCreateCardRequest.m */,
-				4233CDDA1E6588A9006D78C3 /* VSSCreateApplicationCardRequest.h */,
-				4233CDDC1E6588C2006D78C3 /* VSSCreateApplicationCardRequest.m */,
+				4233CDDA1E6588A9006D78C3 /* VSSCreateUserCardRequest.h */,
+				4233CDDC1E6588C2006D78C3 /* VSSCreateUserCardRequest.m */,
 				42D414941E3787E200F59580 /* VSSCreateGlobalCardRequest.h */,
 				42D414951E37880F00F59580 /* VSSCreateGlobalCardRequest.m */,
 				425B09D81DC25374005531DC /* VSSRevokeCardRequest.h */,
@@ -1147,7 +1147,7 @@
 				42386C301E019969009E913F /* VSSConfirmIdentityResponse.h in Headers */,
 				42D414A81E3900FB00F59580 /* VSSRevokeGlobalCardRequest.h in Headers */,
 				42F540841E005A100071FDCF /* VSSIdentityBaseHTTPRequest.h in Headers */,
-				4233CDDB1E6588AD006D78C3 /* VSSCreateApplicationCardRequest.h in Headers */,
+				4233CDDB1E6588AD006D78C3 /* VSSCreateUserCardRequest.h in Headers */,
 				427A63651DB9096C00A33661 /* VSSCrypto.h in Headers */,
 				42BBF0DD1DD5DFE600E19D60 /* VSSCryptoCommons.h in Headers */,
 				420FE5ED1E4B55FC005A32D4 /* VSSCreateGlobalCardRequestPrivate.h in Headers */,
@@ -1599,7 +1599,7 @@
 				42EB31371DB8EC33001DF4C0 /* VSSCrypto.m in Sources */,
 				42EB31391DB8EC33001DF4C0 /* VSSFingerprint.m in Sources */,
 				423CEB5A1DCA06C900CCACB8 /* VSSKeyEntry.m in Sources */,
-				4233CDDD1E6588C2006D78C3 /* VSSCreateApplicationCardRequest.m in Sources */,
+				4233CDDD1E6588C2006D78C3 /* VSSCreateUserCardRequest.m in Sources */,
 				42EB313D1DB8EC33001DF4C0 /* NSObject+VSSUtils.m in Sources */,
 				42386C2C1E0195C2009E913F /* VSSConfirmIdentityResponse.m in Sources */,
 				425B09F41DC26165005531DC /* VSSCard.m in Sources */,
