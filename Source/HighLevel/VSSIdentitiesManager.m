@@ -11,6 +11,7 @@
 #import "VSSIdentitiesManagerPrivate.h"
 #import "VSSVirgilIdentityPrivate.h"
 #import "VSSModelCommonsPrivate.h"
+#import "VSSCreateApplicationGlobalCardRequest.h"
 
 @implementation VSSIdentitiesManager
 
@@ -28,7 +29,11 @@
 }
 
 - (VSSEmailIdentity *)createEmailIdentityWithEmail:(NSString *)email {
-    return [[VSSEmailIdentity alloc] initWithContext:self.context value:email type:@"email"];
+    return [[VSSEmailIdentity alloc] initWithContext:self.context value:email type:kVSSCardIdentityTypeEmail];
+}
+
+- (VSSApplicationIdentity *)createApplicationIdentityWithName:(NSString *)name {
+    return [[VSSApplicationIdentity alloc] initWithContext:self.context value:name type:kVSSCardIdentityTypeApplication];
 }
 
 @end

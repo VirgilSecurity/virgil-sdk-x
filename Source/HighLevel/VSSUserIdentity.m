@@ -8,7 +8,7 @@
 
 #import "VSSVirgilIdentityPrivate.h"
 #import "VSSUserIdentity.h"
-#import "VSSCreateApplicationCardRequest.h"
+#import "VSSCreateUserCardRequest.h"
 
 @implementation VSSUserIdentity
 
@@ -17,7 +17,7 @@
 }
     
 - (VSSCreateCardRequest *)generateRequestWithPublicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data device:(NSString *)device deviceName:(NSString *)deviceName {
-    return [VSSCreateApplicationCardRequest createApplicationCardRequestWithIdentity:self.value identityType:self.type publicKeyData:publicKeyData data:data device:device deviceName:deviceName];
+    return [VSSCreateUserCardRequest createUserCardRequestWithIdentity:self.value identityType:self.type publicKeyData:publicKeyData data:data device:device deviceName:deviceName];
 }
 
 @end

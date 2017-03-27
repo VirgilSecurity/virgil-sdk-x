@@ -46,27 +46,27 @@ class VSS004_ModelsTests: XCTestCase {
         
         let exportedData = request.exportData()
         
-        let importedRequest = VSSCreateGlobalCardRequest(data: exportedData)!
+        let importedRequest = VSSCreateEmailCardRequest(data: exportedData)!
         
         XCTAssert(self.utils.check(createGlobalCardRequest: request, isEqualToCreateGlobalCardRequest: importedRequest))
     }
 
     func test003_RevokeCardRequestImportExport() {
-        let revokeRequest = VSSRevokeApplicationCardRequest(cardId: "testId", reason: .unspecified)
+        let revokeRequest = VSSRevokeUserCardRequest(cardId: "testId", reason: .unspecified)
         
         let exportedData = revokeRequest.exportData()
         
-        let importedRevokeRequest = VSSRevokeApplicationCardRequest(data: exportedData)!
+        let importedRevokeRequest = VSSRevokeUserCardRequest(data: exportedData)!
         
         XCTAssert(self.utils.check(revokeCardRequest: revokeRequest, isEqualToRevokeCardRequest: importedRevokeRequest))
     }
     
     func test004_RevokeGlobalCardRequestImportExport() {
-        let revokeRequest = VSSRevokeGlobalCardRequest(cardId: "testId", validationToken:"@testToken", reason: .unspecified)
+        let revokeRequest = VSSRevokeEmailCardRequest(cardId: "testId", validationToken:"@testToken", reason: .unspecified)
         
         let exportedData = revokeRequest.exportData()
         
-        let importedRevokeRequest = VSSRevokeGlobalCardRequest(data: exportedData)!
+        let importedRevokeRequest = VSSRevokeEmailCardRequest(data: exportedData)!
         
         XCTAssert(self.utils.check(revokeGlobalCardRequest: revokeRequest, isEqualToRevokeGlobalCardRequest: importedRevokeRequest))
     }

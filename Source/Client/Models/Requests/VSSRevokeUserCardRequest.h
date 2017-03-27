@@ -1,5 +1,5 @@
 //
-//  VSSRevokeApplicationCardRequest.h
+//  VSSRevokeUserCardRequest.h
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 2/28/17.
@@ -11,10 +11,10 @@
 #import "VSSRevokeCardSnapshotModel.h"
 
 /**
- Virgil Model used for revocation of Virgil Cards.
+ Virgil Model used for revocation of Virgil Cards in application scope.
  See VSSRevokeCardSnapshotModel. See VSSClient protocol.
  */
-@interface VSSRevokeApplicationCardRequest: VSSRevokeCardRequest
+@interface VSSRevokeUserCardRequest: VSSRevokeCardRequest
 
 /**
  Factory method which allocates and initalized VSSRevokeCardRequest instance.
@@ -24,6 +24,6 @@
  
  @return allocated and initialized VSSRevokeCardRequest instance
  */
-+ (instancetype __nonnull)revokeApplicationCardRequestWithCardId:(NSString * __nonnull)cardId reason:(VSSCardRevocationReason)reason;
++ (instancetype __nonnull)revokeUserCardRequestWithCardId:(NSString * __nonnull)cardId reason:(VSSCardRevocationReason)reason;
 
 @end

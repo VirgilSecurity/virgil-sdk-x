@@ -69,7 +69,7 @@
 }
     
 - (VSSCreateCardRequest *)generateRequestWithPublicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data device:(NSString *)device deviceName:(NSString *)deviceName {
-    return [VSSCreateGlobalCardRequest createGlobalCardRequestWithIdentity:self.value identityType:self.type validationToken:self.token publicKeyData:publicKeyData data:data device:device deviceName:deviceName];
+    return [VSSCreateEmailCardRequest createEmailCardRequestWithIdentity:self.value validationToken:self.token publicKeyData:publicKeyData data:data device:device deviceName:deviceName];
 }
 
 @end

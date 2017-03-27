@@ -30,7 +30,6 @@ NSString *const kVSSCModelRelations = @"relations";
 NSString *const kVSSCModelCardId = @"card_id";
 NSString *const kVSSCModelRevocationReason = @"revocation_reason";
 NSString *const kVSSCModelIdentities = @"identities";
-//NSString *const kVSSIdentityTypeEmail = @"email";
 
 NSString *const kVSSIModelIdentityType = @"type";
 NSString *const kVSSIModelIdentityValue = @"value";

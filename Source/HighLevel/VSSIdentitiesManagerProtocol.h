@@ -16,4 +16,6 @@
 
 - (VSSEmailIdentity * __nonnull)createEmailIdentityWithEmail:(NSString * __nonnull)email;
 
+- (VSSApplicationIdentity * __nonnull)createApplicationIdentityWithName:(NSString * __nonnull)name;
+
 @end

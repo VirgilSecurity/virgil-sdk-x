@@ -139,39 +139,6 @@ NSString *const kVSSClientErrorDomain = @"VSSClientErrorDomain";
     [self send:httpRequest requiresAccessToken:YES];
 }
 
-- (void)createGlobalCardWithRequest:(VSSCreateGlobalCardRequest *)request completion:(void (^)(VSSCard *, NSError *))callback {
-    VSSHTTPRequestContext *context = [[VSSHTTPRequestContext alloc] initWithServiceUrl:self.serviceConfig.registrationAuthorityURL];
-    VSSCreateCardHTTPRequest *httpRequest = [[VSSCreateCardHTTPRequest alloc] initWithContext:context createCardRequest:request];
-    
-    VSSHTTPRequestCompletionHandler handler = ^(VSSHTTPRequest *request) {
-        if (request.error != nil) {
-            if (callback != nil) {
-                callback(nil, request.error);
-            }
-            return;
-        }
-        
-        if (callback != nil) {
-            VSSCreateCardHTTPRequest *r = [request as:[VSSCreateCardHTTPRequest class]];
-            VSSCardResponse *cardResponse = r.cardResponse;
-            
-            if (self.serviceConfig.cardValidator != nil) {
-                if (![self.serviceConfig.cardValidator validateCardResponse:cardResponse]) {
-                    callback(nil, [[NSError alloc] initWithDomain:kVSSClientErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"Error validating card signatures" }]);
-                    return;
-                }
-            }
-            
-            callback([cardResponse buildCard], nil);
-        }
-        return;
-    };
-    
-    httpRequest.completionHandler = handler;
-    
-    [self send:httpRequest requiresAccessToken:NO];
-}
-
 - (void)createCardRelationWithSignedCardRequest:(VSSSignedCardRequest *)request completion:(void (^)(NSError *))callback {
     if (request.signatures.count != 1) {
         callback([[NSError alloc] initWithDomain:kVSSClientErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: @"VSSSignedCardRequest should contain 1 signature" }]);

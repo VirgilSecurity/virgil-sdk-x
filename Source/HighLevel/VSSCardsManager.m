@@ -10,14 +10,11 @@
 #import "VSSCardsManager.h"
 #import "VSSVirgilCardPrivate.h"
 #import "VSSCardsManagerPrivate.h"
-#import "VSSCreateApplicationCardRequest.h"
-#import "VSSCreateGlobalCardRequest.h"
 #import "VSSModelCommonsPrivate.h"
+#import "VSSRevokeUserCardRequest.h"
 #import "VSSVirgilKeyPrivate.h"
 #import "VSSVirgilIdentityPrivate.h"
 #import "VSSEmailIdentityPrivate.h"
-#import "VSSRevokeApplicationCardRequest.h"
-#import "VSSRevokeGlobalCardRequest.h"
 #import "VSSVirgilApi.h"
 #import "NSObject+VSSUtils.h"
 
@@ -131,11 +128,11 @@
 
 - (void)revokeCard:(VSSVirgilCard *)card completion:(void (^)(NSError *))callback {
     if (card.scope != VSSCardScopeApplication) {
-        callback([[NSError alloc] initWithDomain:kVSSVirgilApiErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"To revoke Application card call revokeGlobalCard method" }]);
+        callback([[NSError alloc] initWithDomain:kVSSVirgilApiErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"To revoke Email card call revokeEmailCard method" }]);
         return;
     }
     
-    VSSRevokeCardRequest *request = [VSSRevokeApplicationCardRequest revokeApplicationCardRequestWithCardId:card.identifier reason:VSSCardRevocationReasonUnspecified];
+    VSSRevokeCardRequest *request = [VSSRevokeUserCardRequest revokeUserCardRequestWithCardId:card.identifier reason:VSSCardRevocationReasonUnspecified];
     
     if (self.context.credentials == nil) {
         callback([[NSError alloc] initWithDomain:kVSSVirgilApiErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"To revoke Application card you need to provide Credentials to VirgilApiContext" }]);
@@ -164,7 +161,7 @@
         return;
     }
     
-    VSSRevokeCardRequest *request = [VSSRevokeGlobalCardRequest revokeGlobalCardRequestWithCardId:card.identifier validationToken:identity.token reason:VSSCardRevocationReasonUnspecified];
+    VSSRevokeCardRequest *request = [VSSRevokeEmailCardRequest revokeEmailCardRequestWithCardId:card.identifier validationToken:identity.token reason:VSSCardRevocationReasonUnspecified];
 
     NSError *error;
     [self.context.requestSigner authoritySignRequest:request forAppId:card.identifier withPrivateKey:ownerKey.privateKey error:&error];

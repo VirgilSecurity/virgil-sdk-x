@@ -11,6 +11,7 @@
 #import "NSObject+VSSUtils.h"
 #import "VSSModelKeys.h"
 #import "VSSModelCommonsPrivate.h"
+#import "VSSCreateApplicationGlobalCardRequest.h"
 
 @implementation VSSSearchCardsCriteria
 
@@ -39,7 +40,7 @@
 }
 
 + (instancetype)searchCardsCriteriaWithAppBundleName:(NSString *)appBundleName {
-    return [[VSSSearchCardsCriteria alloc] initWithScope:VSSCardScopeGlobal identityType:@"application" identities:@[appBundleName]];
+    return [[VSSSearchCardsCriteria alloc] initWithScope:VSSCardScopeGlobal identityType:kVSSCardIdentityTypeApplication identities:@[appBundleName]];
 }
 
 - (instancetype)initWithScope:(VSSCardScope)scope identityType:(NSString *)identityType identities:(NSArray<NSString *> *)identities {

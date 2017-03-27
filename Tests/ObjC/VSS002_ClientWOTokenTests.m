@@ -224,7 +224,7 @@ static const NSTimeInterval kEstimatedEmailReceiveTime = 30.;
                 
                 [self.client confirmIdentityWithActionId:actionId confirmationCode:code timeToLive:3600 countToLive:12 completion:^(VSSConfirmIdentityResponse *response, NSError *error) {
                     
-                    VSSCreateGlobalCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithIdentity:identity validationToken:response.validationToken keyPair:nil];
+                    VSSCreateEmailCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithIdentity:identity validationToken:response.validationToken keyPair:nil];
                     
                     [self.client createCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
                         XCTAssert(error == nil);
@@ -269,10 +269,10 @@ static const NSTimeInterval kEstimatedEmailReceiveTime = 30.;
                 [self.client confirmIdentityWithActionId:actionId confirmationCode:code timeToLive:3600 countToLive:12 completion:^(VSSConfirmIdentityResponse *response, NSError *error) {
                     
                     VSSKeyPair *keyPair = [self.crypto generateKeyPair];
-                    VSSCreateGlobalCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithIdentity:identity validationToken:response.validationToken keyPair:keyPair];
+                    VSSCreateEmailCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithIdentity:identity validationToken:response.validationToken keyPair:keyPair];
                     
                     [self.client createCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
-                        VSSRevokeGlobalCardRequest *revokeRequest = [self.utils instantiateRevokeGlobalCardForCard:card validationToken:response.validationToken withPrivateKey:keyPair.privateKey];
+                        VSSRevokeEmailCardRequest *revokeRequest = [self.utils instantiateRevokeGlobalCardForCard:card validationToken:response.validationToken withPrivateKey:keyPair.privateKey];
                         
                         [self.client revokeCardWithRequest:revokeRequest completion:^(NSError *error) {
                             XCTAssert(error == nil);
