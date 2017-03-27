@@ -1,5 +1,5 @@
 //
-//  VSSVirgilGlobalIdentityPrivate.h
+//  VSSEmailIdentityPrivate.h
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 3/3/17.
@@ -7,9 +7,9 @@
 //
 
 #import "VSSVirgilIdentityPrivate.h"
-#import "VSSVirgilGlobalIdentity.h"
+#import "VSSEmailIdentity.h"
 
-@interface VSSVirgilGlobalIdentity ()
+@interface VSSEmailIdentity ()
 
 @property (nonatomic) NSString * __nullable actionId;
 @property (nonatomic) NSString * __nullable token;

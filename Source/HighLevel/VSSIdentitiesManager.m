@@ -23,13 +23,12 @@
     return self;
 }
 
-- (VSSVirgilIdentity *)createIdentityWithValue:(NSString *)value type:(NSString *)type {
-    return [[VSSVirgilIdentity alloc] initWithContext:self.context value:value type:type];
+- (VSSUserIdentity *)createUserIdentityWithValue:(NSString *)value type:(NSString *)type {
+    return [[VSSUserIdentity alloc] initWithContext:self.context value:value type:type];
 }
 
-- (VSSVirgilGlobalIdentity *)createGlobalIdentityWithValue:(NSString *)value type:(VSSGlobalIdentityType)type {
-    NSString *identityType = vss_getGlobalIdentityTypeString(type);
-    return [[VSSVirgilGlobalIdentity alloc] initWithContext:self.context value:value type:identityType];
+- (VSSEmailIdentity *)createEmailIdentityWithEmail:(NSString *)email {
+    return [[VSSEmailIdentity alloc] initWithContext:self.context value:email type:@"email"];
 }
 
 @end

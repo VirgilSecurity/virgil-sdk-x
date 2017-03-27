@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "VSSVirgilApi.h"
-#import "VSSVirgilGlobalIdentity.h"
-#import "VSSVirgilGlobalIdentityPrivate.h"
+#import "VSSEmailIdentity.h"
+#import "VSSEmailIdentityPrivate.h"
 #import "VSSVirgilIdentityPrivate.h"
 #import "VSSModelCommonsPrivate.h"
 
-@implementation VSSVirgilGlobalIdentity
+@implementation VSSEmailIdentity
 
 - (instancetype)initWithContext:(VSSVirgilApiContext *)context value:(NSString *)value type:(NSString *)type {
     self = [super initWithContext:context value:value type:type];
@@ -65,7 +65,11 @@
 }
 
 - (BOOL)isConfimed {
-    return self.token.length > 0 || [self.type isEqualToString:vss_getGlobalIdentityTypeString(VSSGlobalIdentityTypeApplication)];
+    return self.token.length > 0;
+}
+    
+- (VSSCreateCardRequest *)generateRequestWithPublicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data device:(NSString *)device deviceName:(NSString *)deviceName {
+    return [VSSCreateGlobalCardRequest createGlobalCardRequestWithIdentity:self.value identityType:self.type validationToken:self.token publicKeyData:publicKeyData data:data device:device deviceName:deviceName];
 }
 
 @end

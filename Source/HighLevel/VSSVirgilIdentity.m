@@ -22,9 +22,13 @@
     
     return self;
 }
-
+    
 - (BOOL)isConfimed {
-    return YES;
+    return NO;
+}
+    
+- (VSSCreateCardRequest *)generateRequestWithPublicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data device:(NSString *)device deviceName:(NSString *)deviceName {
+    return nil;
 }
 
 @end

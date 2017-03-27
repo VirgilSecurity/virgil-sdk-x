@@ -57,7 +57,7 @@ class VSS007_HighLevelTests: XCTestCase {
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
         
         let identityValue = NSUUID().uuidString
-        let identity = self.api.identities.createIdentity(withValue: identityValue, type: "test")
+        let identity = self.api.identities.createUserIdentity(withValue: identityValue, type: "test")
         let key = self.api.keys.generateKey()
         let card = try! self.api.cards.createCard(with: identity, ownerKey: key)
         self.api.cards.publish(card) { (error) in
@@ -82,7 +82,7 @@ class VSS007_HighLevelTests: XCTestCase {
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
         
         let identityValue = NSUUID().uuidString
-        let identity = self.api.identities.createIdentity(withValue: identityValue, type: "test")
+        let identity = self.api.identities.createUserIdentity(withValue: identityValue, type: "test")
         let key = self.api.keys.generateKey()
         
         let card = try! self.api.cards.createCard(with: identity, ownerKey: key, data: ["custom_key1": "custom_field1", "custom_key2": "custom_field2"])
@@ -108,7 +108,7 @@ class VSS007_HighLevelTests: XCTestCase {
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
         
         let identityValue = NSUUID().uuidString
-        let identity = self.api.identities.createIdentity(withValue: identityValue, type: "test")
+        let identity = self.api.identities.createUserIdentity(withValue: identityValue, type: "test")
         let key = self.api.keys.generateKey()
         
         let card = try! self.api.cards.createCard(with: identity, ownerKey: key)
@@ -140,7 +140,7 @@ class VSS007_HighLevelTests: XCTestCase {
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
         
         let identityValue = NSUUID().uuidString
-        let identity = self.api.identities.createIdentity(withValue: identityValue, type: "test")
+        let identity = self.api.identities.createUserIdentity(withValue: identityValue, type: "test")
         let key = self.api.keys.generateKey()
         
         let card = try! self.api.cards.createCard(with: identity, ownerKey: key)
@@ -172,7 +172,7 @@ class VSS007_HighLevelTests: XCTestCase {
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime)
         
         let identityValue = NSUUID().uuidString
-        let identity = self.api.identities.createIdentity(withValue: identityValue, type: "test")
+        let identity = self.api.identities.createUserIdentity(withValue: identityValue, type: "test")
         let key = self.api.keys.generateKey()
         
         let card = try! self.api.cards.createCard(with: identity, ownerKey: key)
@@ -200,7 +200,7 @@ class VSS007_HighLevelTests: XCTestCase {
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
         let identityValue = self.utils.generateEmail()
-        let identity = self.api.identities.createGlobalIdentity(withValue: identityValue, type: .email)
+        let identity = self.api.identities.createEmailIdentity(withEmail: identityValue)
         
         identity.check(options: nil) { error in
             sleep(UInt32(kEstimatedEmailReceiveTime))
@@ -235,7 +235,7 @@ class VSS007_HighLevelTests: XCTestCase {
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + 2 * kEstimatedEmailReceiveTime)
         
         let identityValue = self.utils.generateEmail()
-        let identity = self.api.identities.createGlobalIdentity(withValue: identityValue, type: .email)
+        let identity = self.api.identities.createEmailIdentity(withEmail: identityValue)
         
         identity.check(options: nil) { error in
             sleep(UInt32(kEstimatedEmailReceiveTime))
@@ -245,13 +245,13 @@ class VSS007_HighLevelTests: XCTestCase {
                     
                     let card = try! self.api.cards.createCard(with: identity, ownerKey: key)
                     self.api.cards.publish(card) { (error) in
-                        let identity = self.api.identities.createGlobalIdentity(withValue: identityValue, type: .email)
+                        let identity = self.api.identities.createEmailIdentity(withEmail: identityValue)
                         
                         identity.check(options: nil) { error in
                             sleep(UInt32(kEstimatedEmailReceiveTime))
                             self.utils.getConfirmationCode(emailNumber: 1, identityValue: identityValue, mailinator: self.mailinator) { confirmationCode in
                                 identity.confirm(withConfirmationCode: confirmationCode) { error in
-                                    self.api.cards.revokeGlobal(card, identity: identity, ownerKey: key) { error in
+                                    self.api.cards.revokeEmail(card, identity: identity, ownerKey: key) { error in
                                         XCTAssert(error == nil)
                                         
                                         ex.fulfill()

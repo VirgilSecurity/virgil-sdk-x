@@ -9,7 +9,7 @@
 #import "VSSVirgilCard.h"
 #import "VSSVirgilKey.h"
 #import "VSSVirgilIdentity.h"
-#import "VSSVirgilGlobalIdentity.h"
+#import "VSSEmailIdentity.h"
 
 @protocol VSSCardsManager <NSObject>
 
@@ -33,6 +33,6 @@
 
 - (void)revokeCard:(VSSVirgilCard * __nonnull)card completion:(void (^ __nonnull)(NSError * __nullable))callback NS_SWIFT_NAME(revoke(_:completion:));
 
-- (void)revokeGlobalCard:(VSSVirgilCard * __nonnull)card identity:(VSSVirgilGlobalIdentity * __nonnull)identity ownerKey:(VSSVirgilKey * __nonnull)ownerKey completion:(void (^ __nonnull)(NSError * __nullable))callback NS_SWIFT_NAME(revokeGlobal(_:identity:ownerKey:completion:));
+- (void)revokeEmailCard:(VSSVirgilCard * __nonnull)card identity:(VSSEmailIdentity * __nonnull)identity ownerKey:(VSSVirgilKey * __nonnull)ownerKey completion:(void (^ __nonnull)(NSError * __nullable))callback NS_SWIFT_NAME(revokeEmail(_:identity:ownerKey:completion:));
 
 @end

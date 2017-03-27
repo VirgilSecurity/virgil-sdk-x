@@ -15,7 +15,7 @@
 #import "VSSModelCommonsPrivate.h"
 #import "VSSVirgilKeyPrivate.h"
 #import "VSSVirgilIdentityPrivate.h"
-#import "VSSVirgilGlobalIdentityPrivate.h"
+#import "VSSEmailIdentityPrivate.h"
 #import "VSSRevokeApplicationCardRequest.h"
 #import "VSSRevokeGlobalCardRequest.h"
 #import "VSSVirgilApi.h"
@@ -37,21 +37,14 @@
     NSString *deviceName = [self.context.deviceManager getDeviceName];
     NSData *publicKeyData = [ownerKey exportPublicKey];
     
-    if (!identity.isConfimed) {
+    
+    
+    VSSCreateCardRequest *request = [identity generateRequestWithPublicKeyData:publicKeyData data:data device:device deviceName:deviceName];
+    if (request == nil) {
         if (errorPtr != nil) {
             *errorPtr = [[NSError alloc] initWithDomain:kVSSVirgilApiErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"Identity passed to createCard method should be confirmed. Confirm Identity first." }];
         }
         return nil;
-    }
-    
-    VSSCreateCardRequest *request;
-    VSSVirgilGlobalIdentity *globalIdentity = [identity as:[VSSVirgilGlobalIdentity class]];
-    
-    if (globalIdentity != nil) {
-        request = [VSSCreateGlobalCardRequest createGlobalCardRequestWithIdentity:identity.value identityType:identity.type validationToken:globalIdentity.token publicKeyData:publicKeyData data:data device:device deviceName:deviceName];
-    }
-    else {
-        request = [VSSCreateApplicationCardRequest createApplicationCardRequestWithIdentity:identity.value identityType:identity.type publicKeyData:publicKeyData data:data device:device deviceName:deviceName];
     }
     
     if (!([self.context.requestSigner selfSignRequest:request withPrivateKey:ownerKey.privateKey error:errorPtr]))
@@ -160,7 +153,7 @@
     [self.context.client revokeCardWithRequest:request completion:callback];
 }
 
-- (void)revokeGlobalCard:(VSSVirgilCard *)card identity:(VSSVirgilGlobalIdentity *)identity ownerKey:(VSSVirgilKey *)ownerKey completion:(void (^)(NSError *))callback {
+- (void)revokeEmailCard:(VSSVirgilCard *)card identity:(VSSEmailIdentity *)identity ownerKey:(VSSVirgilKey *)ownerKey completion:(void (^)(NSError *))callback {
     if (card.scope != VSSCardScopeGlobal) {
         callback([[NSError alloc] initWithDomain:kVSSVirgilApiErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"To revoke Global card call revokeCard method" }]);
         return;

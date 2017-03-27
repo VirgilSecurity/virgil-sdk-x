@@ -1,5 +1,5 @@
 //
-//  VSSVirgilGlobalIdentity.h
+//  VSSEmailIdentity.h
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 3/3/17.
@@ -8,7 +8,7 @@
 
 #import "VSSVirgilIdentity.h"
 
-@interface VSSVirgilGlobalIdentity : VSSVirgilIdentity
+@interface VSSEmailIdentity : VSSVirgilIdentity
 
 - (void)checkWithOptions:(NSDictionary<NSString *, NSString *> * __nullable)options completion:(void (^ __nonnull)(NSError * __nullable))callback;
 
