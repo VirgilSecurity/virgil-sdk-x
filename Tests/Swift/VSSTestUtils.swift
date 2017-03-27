@@ -148,8 +148,8 @@ class VSSTestUtils {
         return equals
     }
     
-    func instantiateRevokeCardRequestFor(card: VSSCard) -> VSSRevokeApplicationCardRequest {
-        let revokeCard = VSSRevokeApplicationCardRequest(cardId: card.identifier, reason: .unspecified)
+    func instantiateRevokeCardRequestFor(card: VSSCard) -> VSSRevokeUserCardRequest {
+        let revokeCard = VSSRevokeUserCardRequest(cardId: card.identifier, reason: .unspecified)
         
         let signer = VSSRequestSigner(crypto: self.crypto)
         

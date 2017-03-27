@@ -141,8 +141,8 @@
     return request;
 }
 
-- (VSSRevokeApplicationCardRequest *)instantiateRevokeCardForCard:(VSSCard * __nonnull)card {
-    VSSRevokeApplicationCardRequest *request = [VSSRevokeApplicationCardRequest revokeApplicationCardRequestWithCardId:card.identifier reason:VSSCardRevocationReasonUnspecified];
+- (VSSRevokeUserCardRequest *)instantiateRevokeCardForCard:(VSSCard * __nonnull)card {
+    VSSRevokeUserCardRequest *request = [VSSRevokeUserCardRequest revokeUserCardRequestWithCardId:card.identifier reason:VSSCardRevocationReasonUnspecified];
     
     VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
     
