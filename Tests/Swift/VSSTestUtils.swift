@@ -162,8 +162,8 @@ class VSSTestUtils {
         return revokeCard
     }
     
-    func instantiateRevokeGlobalCardRequestFor(card: VSSCard, validationToken: String, privateKey: VSSPrivateKey) -> VSSRevokeGlobalCardRequest {
-        let revokeCard = VSSRevokeGlobalCardRequest(cardId: card.identifier, validationToken:validationToken, reason: .unspecified)
+    func instantiateRevokeGlobalCardRequestFor(card: VSSCard, validationToken: String, privateKey: VSSPrivateKey) -> VSSRevokeEmailCardRequest {
+        let revokeCard = VSSRevokeEmailCardRequest(cardId: card.identifier, validationToken:validationToken, reason: .unspecified)
         
         let signer = VSSRequestSigner(crypto: self.crypto)
         
@@ -181,7 +181,7 @@ class VSSTestUtils {
         return equals
     }
     
-    func check(revokeGlobalCardRequest request1: VSSRevokeGlobalCardRequest, isEqualToRevokeGlobalCardRequest request2: VSSRevokeGlobalCardRequest) -> Bool {
+    func check(revokeGlobalCardRequest request1: VSSRevokeEmailCardRequest, isEqualToRevokeGlobalCardRequest request2: VSSRevokeEmailCardRequest) -> Bool {
         let equals = request1.snapshot == request2.snapshot
             && request1.signatures == request2.signatures
             && request1.snapshotModel.cardId == request2.snapshotModel.cardId

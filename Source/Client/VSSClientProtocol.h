@@ -12,7 +12,7 @@
 #import "VSSRemoveCardRelationRequest.h"
 #import "VSSCreateEmailCardRequest.h"
 #import "VSSRevokeCardRequest.h"
-#import "VSSRevokeGlobalCardRequest.h"
+#import "VSSRevokeEmailCardRequest.h"
 #import "VSSConfirmIdentityResponse.h"
 #import "VSSCard.h"
 

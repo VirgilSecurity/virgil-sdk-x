@@ -156,8 +156,8 @@
     return request;
 }
 
-- (VSSRevokeGlobalCardRequest *)instantiateRevokeGlobalCardForCard:(VSSCard *)card validationToken:(NSString *)validationToken withPrivateKey:(VSSPrivateKey *)privateKey {
-    VSSRevokeGlobalCardRequest *request = [VSSRevokeGlobalCardRequest revokeGlobalCardRequestWithCardId:card.identifier validationToken:validationToken reason:VSSCardRevocationReasonUnspecified];
+- (VSSRevokeEmailCardRequest *)instantiateRevokeGlobalCardForCard:(VSSCard *)card validationToken:(NSString *)validationToken withPrivateKey:(VSSPrivateKey *)privateKey {
+    VSSRevokeEmailCardRequest *request = [VSSRevokeEmailCardRequest revokeEmailCardRequestWithCardId:card.identifier validationToken:validationToken reason:VSSCardRevocationReasonUnspecified];
     
     VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
     
@@ -240,7 +240,7 @@
     return equals;
 }
 
-- (BOOL)checkRevokeGlobalCardRequest:(VSSRevokeGlobalCardRequest *)request1 isEqualToRevokeGlobalCardRequest:(VSSRevokeGlobalCardRequest *)request2 {
+- (BOOL)checkRevokeGlobalCardRequest:(VSSRevokeEmailCardRequest *)request1 isEqualToRevokeGlobalCardRequest:(VSSRevokeEmailCardRequest *)request2 {
     BOOL equals = [request1.snapshot isEqualToData:request2.snapshot]
         && [request1.signatures isEqualToDictionary:request2.signatures]
         && [request1.snapshotModel.cardId isEqualToString:request2.snapshotModel.cardId]

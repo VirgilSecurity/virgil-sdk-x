@@ -272,7 +272,7 @@ static const NSTimeInterval kEstimatedEmailReceiveTime = 30.;
                     VSSCreateEmailCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithIdentity:identity validationToken:response.validationToken keyPair:keyPair];
                     
                     [self.client createCardWithRequest:request completion:^(VSSCard *card, NSError *error) {
-                        VSSRevokeGlobalCardRequest *revokeRequest = [self.utils instantiateRevokeGlobalCardForCard:card validationToken:response.validationToken withPrivateKey:keyPair.privateKey];
+                        VSSRevokeEmailCardRequest *revokeRequest = [self.utils instantiateRevokeGlobalCardForCard:card validationToken:response.validationToken withPrivateKey:keyPair.privateKey];
                         
                         [self.client revokeCardWithRequest:revokeRequest completion:^(NSError *error) {
                             XCTAssert(error == nil);

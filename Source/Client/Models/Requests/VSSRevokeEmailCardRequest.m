@@ -1,22 +1,22 @@
 //
-//  VSSRevokeGlobalCardRequest.m
+//  VSSRevokeEmailCardRequest.m
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 1/25/17.
 //  Copyright © 2017 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSRevokeGlobalCardRequest.h"
+#import "VSSRevokeEmailCardRequest.h"
 #import "VSSSignableRequestPrivate.h"
 #import "VSSRevokeCardSnapshotModelPrivate.h"
 #import "VSSModelKeys.h"
 #import "NSObject+VSSUtils.h"
 
-@implementation VSSRevokeGlobalCardRequest
+@implementation VSSRevokeEmailCardRequest
 
-+ (instancetype)revokeGlobalCardRequestWithCardId:(NSString *)cardId validationToken:(NSString *)validationToken reason:(VSSCardRevocationReason)reason {
++ (instancetype)revokeEmailCardRequestWithCardId:(NSString *)cardId validationToken:(NSString *)validationToken reason:(VSSCardRevocationReason)reason {
     VSSRevokeCardSnapshotModel *model = [[VSSRevokeCardSnapshotModel alloc] initWithCardId:cardId revocationReason:reason];
-    return [[VSSRevokeGlobalCardRequest alloc] initWithSnapshotModel:model validationToken:validationToken];
+    return [[VSSRevokeEmailCardRequest alloc] initWithSnapshotModel:model validationToken:validationToken];
 }
 
 - (instancetype)initWithSnapshotModel:(VSSRevokeCardSnapshotModel *)model validationToken:(NSString *)validationToken {

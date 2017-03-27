@@ -69,11 +69,11 @@
 }
 
 - (void)test004_RevokeGlobalCardRequestImportExport {
-    VSSRevokeGlobalCardRequest *revokeRequest = [VSSRevokeGlobalCardRequest revokeGlobalCardRequestWithCardId:@"testId" validationToken:@"testToken" reason:VSSCardRevocationReasonUnspecified];
+    VSSRevokeEmailCardRequest *revokeRequest = [VSSRevokeEmailCardRequest revokeEmailCardRequestWithCardId:@"testId" validationToken:@"testToken" reason:VSSCardRevocationReasonUnspecified];
     
     NSString *exportedData = [revokeRequest exportData];
     
-    VSSRevokeGlobalCardRequest *importedRevokeRequest = [[VSSRevokeGlobalCardRequest alloc] initWithData:exportedData];
+    VSSRevokeEmailCardRequest *importedRevokeRequest = [[VSSRevokeEmailCardRequest alloc] initWithData:exportedData];
     
     XCTAssert([self.utils checkRevokeGlobalCardRequest:revokeRequest isEqualToRevokeGlobalCardRequest:importedRevokeRequest]);
 }
