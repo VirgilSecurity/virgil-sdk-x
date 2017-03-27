@@ -30,7 +30,9 @@
 @property (nonatomic, readonly) BOOL isPublished;
 
 - (NSData * __nonnull)encryptData:(NSData * __nonnull)data error:(NSError * __nullable * __nullable)errorPtr;
+- (NSData * __nonnull)encryptString:(NSString * __nonnull)string error:(NSError * __nullable * __nullable)errorPtr;
 
 - (BOOL)verifyData:(NSData * __nonnull)data withSignature:(NSData * __nonnull)signature error:(NSError * __nullable * __nullable)errorPtr;
+- (BOOL)verifyString:(NSString * __nonnull)string withSignature:(NSData * __nonnull)signature error:(NSError * __nullable * __nullable)errorPtr;
 
 @end

@@ -61,8 +61,23 @@
     return [self.context.crypto encryptData:data forRecipients:@[publicKey] error:errorPtr];
 }
 
+- (NSData *)encryptString:(NSString *)string error:(NSError **)errorPtr {
+    VSSPublicKey *publicKey = [self.context.crypto importPublicKeyFromData:self.publicKey];
+    
+    NSData *strData = [string dataUsingEncoding:NSUTF8StringEncoding];
+    
+    return [self.context.crypto encryptData:strData forRecipients:@[publicKey] error:errorPtr];
+}
+
 - (BOOL)verifyData:(NSData *)data withSignature:(NSData *)signature error:(NSError **)errorPtr {
     VSSPublicKey *publicKey = [self.context.crypto importPublicKeyFromData:self.publicKey];
+    
+    return [self.context.crypto verifyData:data withSignature:signature usingSignerPublicKey:publicKey error:errorPtr];
+}
+
+- (BOOL)verifyString:(NSString *)string withSignature:(NSData *)signature error:(NSError **)errorPtr {
+    VSSPublicKey *publicKey = [self.context.crypto importPublicKeyFromData:self.publicKey];
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
     
     return [self.context.crypto verifyData:data withSignature:signature usingSignerPublicKey:publicKey error:errorPtr];
 }
