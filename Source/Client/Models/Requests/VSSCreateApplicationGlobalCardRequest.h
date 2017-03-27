@@ -9,6 +9,8 @@
 #import "VSSCreateCardRequest.h"
 #import "VSSCreateCardSnapshotModel.h"
 
+extern NSString * __nonnull const kVSSCardIdentityTypeApplication;
+
 /**
  Virgil Model representing request for Virgil Card creation for applications.
  See VSSSignableRequest, VSSCreateCardSnapshotModel. See VSSClient protocol.

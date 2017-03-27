@@ -43,8 +43,7 @@ class VSSTestUtils {
         let exportedPublicKey = self.crypto.export(kp.publicKey)
         
         let identityValue = identity
-        let identityType = "email"
-        let request = VSSCreateEmailCardRequest(identity: identityValue, identityType: identityType, validationToken:validationToken, publicKeyData: exportedPublicKey)
+        let request = VSSCreateEmailCardRequest(identity: identityValue, validationToken:validationToken, publicKeyData: exportedPublicKey)
         
         let signer = VSSRequestSigner(crypto: self.crypto)
         

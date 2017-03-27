@@ -14,26 +14,28 @@
 #import "VSSModelKeys.h"
 #import "NSObject+VSSUtils.h"
 
+NSString *const kVSSCardIdentityTypeEmail = @"email";
+
 @implementation VSSCreateEmailCardRequest
 
-+ (instancetype)createEmailCardRequestWithIdentity:(NSString *)identity identityType:(NSString *)identityType validationToken:(NSString *)validationToken publicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data {
-    VSSCreateCardSnapshotModel *model = [[VSSCreateCardSnapshotModel alloc] initWithIdentity:identity identityType:identityType scope:VSSCardScopeGlobal publicKeyData:publicKeyData data:data info:nil];
++ (instancetype)createEmailCardRequestWithIdentity:(NSString *)identity validationToken:(NSString *)validationToken publicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data {
+    VSSCreateCardSnapshotModel *model = [[VSSCreateCardSnapshotModel alloc] initWithIdentity:identity identityType:kVSSCardIdentityTypeEmail scope:VSSCardScopeGlobal publicKeyData:publicKeyData data:data info:nil];
     return [[VSSCreateEmailCardRequest alloc] initWithSnapshotModel:model validationToken:validationToken];
 }
 
-+ (instancetype)createEmailCardRequestWithIdentity:(NSString *)identity identityType:(NSString *)identityType validationToken:(NSString *)validationToken publicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data device:(NSString *)device deviceName:(NSString *)deviceName {
++ (instancetype)createEmailCardRequestWithIdentity:(NSString *)identity validationToken:(NSString *)validationToken publicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data device:(NSString *)device deviceName:(NSString *)deviceName {
     NSDictionary *info = @{
         kVSSCModelDevice: [device copy],
         kVSSCModelDeviceName: [deviceName copy]
     };
     
-    VSSCreateCardSnapshotModel *model = [[VSSCreateCardSnapshotModel alloc] initWithIdentity:identity identityType:identityType scope:VSSCardScopeGlobal publicKeyData:publicKeyData data:data info:info];
+    VSSCreateCardSnapshotModel *model = [[VSSCreateCardSnapshotModel alloc] initWithIdentity:identity identityType:kVSSCardIdentityTypeEmail scope:VSSCardScopeGlobal publicKeyData:publicKeyData data:data info:info];
     
     return [[VSSCreateEmailCardRequest alloc] initWithSnapshotModel:model validationToken:validationToken];
 }
 
-+ (instancetype)createEmailCardRequestWithIdentity:(NSString *)identity identityType:(NSString *)identityType validationToken:(NSString *)validationToken publicKeyData:(NSData *)publicKeyData {
-    return [VSSCreateEmailCardRequest createEmailCardRequestWithIdentity:identity identityType:identityType validationToken:validationToken publicKeyData:publicKeyData data:nil];
++ (instancetype)createEmailCardRequestWithIdentity:(NSString *)identity validationToken:(NSString *)validationToken publicKeyData:(NSData *)publicKeyData {
+    return [VSSCreateEmailCardRequest createEmailCardRequestWithIdentity:identity validationToken:validationToken publicKeyData:publicKeyData data:nil];
 }
 
 - (instancetype)initWithSnapshot:(NSData *)snapshot snapshotModel:(VSSCreateCardSnapshotModel *)model signatures:(NSDictionary<NSString *, NSData *> *)signatures validationToken:(NSString *)validationToken {

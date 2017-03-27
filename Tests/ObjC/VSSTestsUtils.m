@@ -78,8 +78,7 @@
     
     // some random value
     NSString *identityValue = [[NSUUID UUID] UUIDString];
-    NSString *identityType = @"email";
-    VSSCreateEmailCardRequest *request = [VSSCreateEmailCardRequest createEmailCardRequestWithIdentity:identityValue identityType:identityType validationToken:validationToken publicKeyData:exportedPublicKey];
+    VSSCreateEmailCardRequest *request = [VSSCreateEmailCardRequest createEmailCardRequestWithIdentity:identityValue validationToken:validationToken publicKeyData:exportedPublicKey];
     
     VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
     
@@ -97,8 +96,7 @@
     
     // some random value
     NSString *identityValue = identity;
-    NSString *identityType = @"email";
-    VSSCreateEmailCardRequest *request = [VSSCreateEmailCardRequest createEmailCardRequestWithIdentity:identityValue identityType:identityType validationToken:validationToken publicKeyData:exportedPublicKey];
+    VSSCreateEmailCardRequest *request = [VSSCreateEmailCardRequest createEmailCardRequestWithIdentity:identityValue validationToken:validationToken publicKeyData:exportedPublicKey];
     
     VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
     
