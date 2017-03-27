@@ -6,7 +6,7 @@
 //  Copyright © 2017 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSCreateGlobalCardRequest.h"
+#import "VSSCreateEmailCardRequest.h"
 #import "VSSCreateCardHTTPRequest.h"
 #import "VSSModelCommons.h"
 #import "VSSCreateCardSnapshotModelPrivate.h"

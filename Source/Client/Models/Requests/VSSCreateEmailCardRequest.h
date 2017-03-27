@@ -1,5 +1,5 @@
 //
-//  VSSCreateGlobalCardRequest.h
+//  VSSCreateEmailCardRequest.h
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 1/24/17.
@@ -10,10 +10,10 @@
 #import "VSSCreateCardSnapshotModel.h"
 
 /**
- Virgil Model representing request for Virgil Global Card creation.
+ Virgil Model representing request for Virgil Global Card creation. This Card is issued to email.
  See VSSSignableRequest, VSSCreateCardSnapshotModel. See VSSClient protocol.
  */
-@interface VSSCreateGlobalCardRequest : VSSCreateCardRequest
+@interface VSSCreateEmailCardRequest : VSSCreateCardRequest
 
 /**
  Validation token obtained from Virgil Authority Service.
@@ -30,7 +30,7 @@
  @param data NSDictionary with custom payload
  @return allocated and initialized VSSCreateCardRequest instance
  */
-+ (instancetype __nonnull)createGlobalCardRequestWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType validationToken:(NSString * __nonnull)validationToken publicKeyData:(NSData * __nonnull)publicKeyData data:(NSDictionary<NSString *, NSString *> * __nullable)data;
++ (instancetype __nonnull)createEmailCardRequestWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType validationToken:(NSString * __nonnull)validationToken publicKeyData:(NSData * __nonnull)publicKeyData data:(NSDictionary<NSString *, NSString *> * __nullable)data;
 
 /**
  Factory method which allocates and initalizes VSSCreateCardRequest instance.
@@ -44,7 +44,7 @@
  @param deviceName NSString with device name
  @return allocated and initialized VSSCreateCardRequest instance
  */
-+ (instancetype __nonnull)createGlobalCardRequestWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType validationToken:(NSString * __nonnull)validationToken publicKeyData:(NSData * __nonnull)publicKeyData data:(NSDictionary<NSString *, NSString *> * __nullable)data device:(NSString * __nonnull)device deviceName:(NSString * __nonnull)deviceName;
++ (instancetype __nonnull)createEmailCardRequestWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType validationToken:(NSString * __nonnull)validationToken publicKeyData:(NSData * __nonnull)publicKeyData data:(NSDictionary<NSString *, NSString *> * __nullable)data device:(NSString * __nonnull)device deviceName:(NSString * __nonnull)deviceName;
 
 /**
  Factory method which allocates and initalizes VSSCreateCardRequest instance.
@@ -55,6 +55,6 @@
  @param publicKeyData NSData with Virgil Card public key
  @return allocated and initialized VSSCreateCardRequest instance
  */
-+ (instancetype __nonnull)createGlobalCardRequestWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType validationToken:(NSString * __nonnull)validationToken publicKeyData:(NSData * __nonnull)publicKeyData;
++ (instancetype __nonnull)createEmailCardRequestWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType validationToken:(NSString * __nonnull)validationToken publicKeyData:(NSData * __nonnull)publicKeyData;
 
 @end

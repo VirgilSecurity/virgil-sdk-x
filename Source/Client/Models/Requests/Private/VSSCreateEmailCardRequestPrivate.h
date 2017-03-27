@@ -1,5 +1,5 @@
 //
-//  VSSCreateGlobalCardRequestPrivate.h
+//  VSSCreateEmailCardRequestPrivate.h
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 2/8/17.
@@ -7,9 +7,9 @@
 //
 
 #import "VSSSignableRequestPrivate.h"
-#import "VSSCreateGlobalCardRequest.h"
+#import "VSSCreateEmailCardRequest.h"
 
-@interface VSSCreateGlobalCardRequest ()
+@interface VSSCreateEmailCardRequest ()
 
 - (instancetype __nonnull)initWithSnapshot:(NSData * __nonnull)snapshot snapshotModel:(VSSCreateCardSnapshotModel * __nonnull)model signatures:(NSDictionary<NSString *, NSData *> * __nullable)signatures NS_UNAVAILABLE;
 

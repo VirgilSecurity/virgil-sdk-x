@@ -11,7 +11,7 @@
 #import "VSSRevokeCardRequest.h"
 #import "VSSRevokeApplicationCardRequest.h"
 #import "VSSRevokeGlobalCardRequest.h"
-#import "VSSCreateGlobalCardRequest.h"
+#import "VSSCreateEmailCardRequest.h"
 #import "VSSCreateUserCardRequest.h"
 #import "VSSSignedCardRequest.h"
 #import "VSSRemoveCardRelationRequest.h"

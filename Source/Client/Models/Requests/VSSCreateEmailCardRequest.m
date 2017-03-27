@@ -1,5 +1,5 @@
 //
-//  VSSCreateGlobalCardRequest.m
+//  VSSCreateEmailCardRequest.h
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 1/24/17.
@@ -8,20 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "VSSModelKeys.h"
-#import "VSSCreateGlobalCardRequestPrivate.h"
+#import "VSSCreateEmailCardRequestPrivate.h"
 #import "VSSSignableRequestPrivate.h"
 #import "VSSCreateCardSnapshotModelPrivate.h"
 #import "VSSModelKeys.h"
 #import "NSObject+VSSUtils.h"
 
-@implementation VSSCreateGlobalCardRequest
+@implementation VSSCreateEmailCardRequest
 
-+ (instancetype)createGlobalCardRequestWithIdentity:(NSString *)identity identityType:(NSString *)identityType validationToken:(NSString *)validationToken publicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data {
++ (instancetype)createEmailCardRequestWithIdentity:(NSString *)identity identityType:(NSString *)identityType validationToken:(NSString *)validationToken publicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data {
     VSSCreateCardSnapshotModel *model = [[VSSCreateCardSnapshotModel alloc] initWithIdentity:identity identityType:identityType scope:VSSCardScopeGlobal publicKeyData:publicKeyData data:data info:nil];
-    return [[VSSCreateGlobalCardRequest alloc] initWithSnapshotModel:model validationToken:validationToken];
+    return [[VSSCreateEmailCardRequest alloc] initWithSnapshotModel:model validationToken:validationToken];
 }
 
-+ (instancetype)createGlobalCardRequestWithIdentity:(NSString *)identity identityType:(NSString *)identityType validationToken:(NSString *)validationToken publicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data device:(NSString *)device deviceName:(NSString *)deviceName {
++ (instancetype)createEmailCardRequestWithIdentity:(NSString *)identity identityType:(NSString *)identityType validationToken:(NSString *)validationToken publicKeyData:(NSData *)publicKeyData data:(NSDictionary<NSString *, NSString *> *)data device:(NSString *)device deviceName:(NSString *)deviceName {
     NSDictionary *info = @{
         kVSSCModelDevice: [device copy],
         kVSSCModelDeviceName: [deviceName copy]
@@ -29,11 +29,11 @@
     
     VSSCreateCardSnapshotModel *model = [[VSSCreateCardSnapshotModel alloc] initWithIdentity:identity identityType:identityType scope:VSSCardScopeGlobal publicKeyData:publicKeyData data:data info:info];
     
-    return [[VSSCreateGlobalCardRequest alloc] initWithSnapshotModel:model validationToken:validationToken];
+    return [[VSSCreateEmailCardRequest alloc] initWithSnapshotModel:model validationToken:validationToken];
 }
 
-+ (instancetype)createGlobalCardRequestWithIdentity:(NSString *)identity identityType:(NSString *)identityType validationToken:(NSString *)validationToken publicKeyData:(NSData *)publicKeyData {
-    return [VSSCreateGlobalCardRequest createGlobalCardRequestWithIdentity:identity identityType:identityType validationToken:validationToken publicKeyData:publicKeyData data:nil];
++ (instancetype)createEmailCardRequestWithIdentity:(NSString *)identity identityType:(NSString *)identityType validationToken:(NSString *)validationToken publicKeyData:(NSData *)publicKeyData {
+    return [VSSCreateEmailCardRequest createEmailCardRequestWithIdentity:identity identityType:identityType validationToken:validationToken publicKeyData:publicKeyData data:nil];
 }
 
 - (instancetype)initWithSnapshot:(NSData *)snapshot snapshotModel:(VSSCreateCardSnapshotModel *)model signatures:(NSDictionary<NSString *, NSData *> *)signatures validationToken:(NSString *)validationToken {

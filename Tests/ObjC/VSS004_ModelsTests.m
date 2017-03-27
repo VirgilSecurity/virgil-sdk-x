@@ -49,11 +49,11 @@
 }
 
 - (void)test002_CreateGlobalCardRequestImportExport {
-    VSSCreateGlobalCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithValidationToken:@"testToken"];
+    VSSCreateEmailCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithValidationToken:@"testToken"];
     
     NSString *exportedData = [request exportData];
     
-    VSSCreateGlobalCardRequest *importedRequest = [[VSSCreateGlobalCardRequest alloc] initWithData:exportedData];
+    VSSCreateEmailCardRequest *importedRequest = [[VSSCreateEmailCardRequest alloc] initWithData:exportedData];
     
     XCTAssert([self.utils checkCreateGlobalCardRequest:request isEqualToCreateGlobalCardRequest:importedRequest]);
 }

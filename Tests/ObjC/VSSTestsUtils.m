@@ -72,14 +72,14 @@
     return request;
 }
 
-- (VSSCreateGlobalCardRequest *)instantiateEmailCreateCardRequestWithValidationToken:(NSString *)validationToken {
+- (VSSCreateEmailCardRequest *)instantiateEmailCreateCardRequestWithValidationToken:(NSString *)validationToken {
     VSSKeyPair *keyPair = [self.crypto generateKeyPair];
     NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
     
     // some random value
     NSString *identityValue = [[NSUUID UUID] UUIDString];
     NSString *identityType = @"email";
-    VSSCreateGlobalCardRequest *request = [VSSCreateGlobalCardRequest createGlobalCardRequestWithIdentity:identityValue identityType:identityType validationToken:validationToken publicKeyData:exportedPublicKey];
+    VSSCreateEmailCardRequest *request = [VSSCreateEmailCardRequest createEmailCardRequestWithIdentity:identityValue identityType:identityType validationToken:validationToken publicKeyData:exportedPublicKey];
     
     VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
     
@@ -89,7 +89,7 @@
     return request;
 }
 
-- (VSSCreateGlobalCardRequest *)instantiateEmailCreateCardRequestWithIdentity:(NSString *)identity validationToken:(NSString *)validationToken keyPair:(VSSKeyPair *)keyPair {
+- (VSSCreateEmailCardRequest *)instantiateEmailCreateCardRequestWithIdentity:(NSString *)identity validationToken:(NSString *)validationToken keyPair:(VSSKeyPair *)keyPair {
     if (keyPair == nil) {
         keyPair = [self.crypto generateKeyPair];
     }
@@ -98,7 +98,7 @@
     // some random value
     NSString *identityValue = identity;
     NSString *identityType = @"email";
-    VSSCreateGlobalCardRequest *request = [VSSCreateGlobalCardRequest createGlobalCardRequestWithIdentity:identityValue identityType:identityType validationToken:validationToken publicKeyData:exportedPublicKey];
+    VSSCreateEmailCardRequest *request = [VSSCreateEmailCardRequest createEmailCardRequestWithIdentity:identityValue identityType:identityType validationToken:validationToken publicKeyData:exportedPublicKey];
     
     VSSRequestSigner *signer = [[VSSRequestSigner alloc] initWithCrypto:self.crypto];
     
@@ -178,7 +178,7 @@
     return equals;
 }
 
-- (BOOL)checkCard:(VSSCard *)card isEqualToCreateGlobalCardRequest:(VSSCreateGlobalCardRequest *)request {
+- (BOOL)checkCard:(VSSCard *)card isEqualToCreateGlobalCardRequest:(VSSCreateEmailCardRequest *)request {
     BOOL equals = [card.identityType isEqualToString:request.snapshotModel.identityType]
     && [card.identity isEqualToString:request.snapshotModel.identity]
     && IsDictionaryEqualOrBothNil(card.data, request.snapshotModel.data)
@@ -217,7 +217,7 @@
     return equals;
 }
 
-- (BOOL)checkCreateGlobalCardRequest:(VSSCreateGlobalCardRequest *)request1 isEqualToCreateGlobalCardRequest:(VSSCreateGlobalCardRequest *)request2 {
+- (BOOL)checkCreateGlobalCardRequest:(VSSCreateEmailCardRequest *)request1 isEqualToCreateGlobalCardRequest:(VSSCreateEmailCardRequest *)request2 {
     BOOL equals = [request1.snapshot isEqualToData:request2.snapshot]
         && [request1.signatures isEqualToDictionary:request2.signatures]
         && IsDictionaryEqualOrBothNil(request1.snapshotModel.data, request2.snapshotModel.data)

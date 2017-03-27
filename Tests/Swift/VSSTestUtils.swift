@@ -38,13 +38,13 @@ class VSSTestUtils {
         return request;
     }
     
-    func instantiateEmailCreateCardRequest(withIdentity identity: String, validationToken: String, keyPair: VSSKeyPair?) -> VSSCreateGlobalCardRequest {
+    func instantiateEmailCreateCardRequest(withIdentity identity: String, validationToken: String, keyPair: VSSKeyPair?) -> VSSCreateEmailCardRequest {
         let kp = keyPair ?? self.crypto.generateKeyPair()
         let exportedPublicKey = self.crypto.export(kp.publicKey)
         
         let identityValue = identity
         let identityType = "email"
-        let request = VSSCreateGlobalCardRequest(identity: identityValue, identityType: identityType, validationToken:validationToken, publicKeyData: exportedPublicKey)
+        let request = VSSCreateEmailCardRequest(identity: identityValue, identityType: identityType, validationToken:validationToken, publicKeyData: exportedPublicKey)
         
         let signer = VSSRequestSigner(crypto: self.crypto)
         
@@ -95,7 +95,7 @@ class VSSTestUtils {
         return equals
     }
     
-    func check(card: VSSCard, isEqualToCreateCardRequest request: VSSCreateGlobalCardRequest) -> Bool {
+    func check(card: VSSCard, isEqualToCreateCardRequest request: VSSCreateEmailCardRequest) -> Bool {
         let equals = card.identityType == request.snapshotModel.identityType
             && card.identity == request.snapshotModel.identity
             && checkObjectsEqualOrBothNil(left: card.data, right: request.snapshotModel.data)
@@ -133,7 +133,7 @@ class VSSTestUtils {
         return equals
     }
     
-    func check(createGlobalCardRequest request1: VSSCreateGlobalCardRequest, isEqualToCreateGlobalCardRequest request2: VSSCreateGlobalCardRequest) -> Bool {
+    func check(createGlobalCardRequest request1: VSSCreateEmailCardRequest, isEqualToCreateGlobalCardRequest request2: VSSCreateEmailCardRequest) -> Bool {
         let equals = request1.snapshot == request2.snapshot
             && request1.signatures == request2.signatures
             && checkObjectsEqualOrBothNil(left: request1.snapshotModel.data, right: request2.snapshotModel.data)

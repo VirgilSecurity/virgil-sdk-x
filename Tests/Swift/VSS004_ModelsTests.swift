@@ -46,7 +46,7 @@ class VSS004_ModelsTests: XCTestCase {
         
         let exportedData = request.exportData()
         
-        let importedRequest = VSSCreateGlobalCardRequest(data: exportedData)!
+        let importedRequest = VSSCreateEmailCardRequest(data: exportedData)!
         
         XCTAssert(self.utils.check(createGlobalCardRequest: request, isEqualToCreateGlobalCardRequest: importedRequest))
     }
