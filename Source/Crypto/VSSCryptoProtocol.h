@@ -13,6 +13,8 @@
 #import "VSSHashAlgorithm.h"
 #import "VSSFingerprint.h"
 
+#undef verify
+
 /**
  Protocol for all cryptographic operations.
  */
@@ -117,7 +119,6 @@
 
 /**
  Verifies data for genuineness.
- NOTE: verify is defined in <usr/include/AssertMacros.h> thus can't be used as base name in NS_SWIFT_NAME
  
  @param data            NSData instance with data to be verified
  @param signature       NSData instance with corresponding signature
@@ -126,11 +127,10 @@
 
  @return BOOL value which indicates whether data was successfully verified or verification failed
  */
-- (BOOL)verifyData:(NSData * __nonnull)data withSignature:(NSData * __nonnull)signature usingSignerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(verifyData(_:withSignature:using:));
+- (BOOL)verifyData:(NSData * __nonnull)data withSignature:(NSData * __nonnull)signature usingSignerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(verify(_:withSignature:using:));
 
 /**
  Verifies stream for genuineness.
- NOTE: verify is defined in <usr/include/AssertMacros.h> thus can't be used as base name in NS_SWIFT_NAME
 
  @param stream          NSInputStream instance with data to be verified
  @param signature       NSData instance with corresponding signature
@@ -139,7 +139,7 @@
 
  @return BOOL value which indicates whether stream was successfully verified or verification failed
  */
-- (BOOL)verifyStream:(NSInputStream * __nonnull)stream signature:(NSData * __nonnull)signature usingSignerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(verifyStream(_:withSignature:using:));
+- (BOOL)verifyStream:(NSInputStream * __nonnull)stream signature:(NSData * __nonnull)signature usingSignerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(verify(_:withSignature:using:));
 
 /**
  Decrypts data.

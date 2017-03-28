@@ -173,7 +173,7 @@ class VSS005_CompatibilityTests: XCTestCase {
         
         let creatorPublicKey = self.crypto.importPublicKey(from: request.snapshotModel.publicKeyData)!
         
-        try! self.crypto.verifyData(fingerprint.value, withSignature: request.signatures[fingerprint.hexValue]!, using: creatorPublicKey)
+        try! self.crypto.verify(fingerprint.value, withSignature: request.signatures[fingerprint.hexValue]!, using: creatorPublicKey)
     }
     
     func test008_DecryptThenVerifyMultipleSigners_ShouldDecryptThenVerify() {
