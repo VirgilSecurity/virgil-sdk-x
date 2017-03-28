@@ -12,7 +12,7 @@
 
 /**
  Entry point for all interactions with VirgilSDK.
- See default implementation in @interface VSSVirgilApi.
+ See default implementation in interface VSSVirgilApi.
  */
 @protocol VSSVirgilApi <NSObject>
 

@@ -9,26 +9,31 @@
 #import <Foundation/Foundation.h>
 #import "VSSCredentials.h"
 
+@interface VSSCredentials ()
+
+@property (nonatomic, readonly) NSString * __nonnull password;
+@property (nonatomic, readonly) NSData * __nonnull appKeyData;
+
+@end
+
 @implementation VSSCredentials
 
 @synthesize appId = _appId;
-@synthesize appKey = _appKey;
 
 - (NSString *)getAppId {
     return self.appId;
 }
 
-- (VSSPrivateKey *)getAppKey {
-    return self.appKey;
+- (VSSPrivateKey *)getAppKeyUsingCrypto:(id<VSSCrypto>)crypto {
+    VSSPrivateKey *privateKey = [crypto importPrivateKeyFromData:self.appKeyData withPassword:self.password];
+    return privateKey;
 }
 
-- (instancetype __nullable)initWithCrypto:(id<VSSCrypto>)crypto appKeyData:(NSData *)appKeyData appKeyPassword:(NSString *)password appId:(NSString *)appId {
+- (instancetype)initWithAppKeyData:(NSData *)appKeyData appKeyPassword:(NSString *)password appId:(NSString *)appId {
     self = [super init];
     if (self) {
-        VSSPrivateKey *privateKey = [crypto importPrivateKeyFromData:appKeyData withPassword:password];
-        if (privateKey == nil)
-            return nil;
-        _appKey = privateKey;
+        _password = [password copy];
+        _appKeyData = [appKeyData copy];
         _appId = [appId copy];
     }
     

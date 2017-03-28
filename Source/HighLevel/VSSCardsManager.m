@@ -139,7 +139,8 @@
         return;
     }
     NSString *appId = self.context.credentials.appId;
-    VSSPrivateKey *appKey = self.context.credentials.appKey;
+    VSSPrivateKey *appKey = [self.context.credentials getAppKeyUsingCrypto:self.context.crypto];
+    //FIXME
     NSError *error;
     [self.context.requestSigner authoritySignRequest:request forAppId:appId withPrivateKey:appKey error:&error];
     if (error != nil) {
