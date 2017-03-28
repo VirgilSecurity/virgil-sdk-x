@@ -44,6 +44,9 @@
     
     VSSCardResponse *cardResponse = [[VSSCardResponse alloc] initWithDict:dict];
     
+    if (cardResponse == nil)
+        return nil;
+    
     return [[self.class alloc] initWithCardResponse:cardResponse];
 }
 
