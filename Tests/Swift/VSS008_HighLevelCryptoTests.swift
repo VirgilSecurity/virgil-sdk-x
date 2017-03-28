@@ -50,6 +50,14 @@ class VSS008_HighLevelCryptoTests: XCTestCase {
         XCTAssert(data == decryptedData)
     }
     
+    func testHEB001_EncryptRandomData_SingleCorrectKey_ShouldDecryptFromBase64() {
+        let encryptedData = try! self.card1.encrypt(self.data)
+        let encryptedDataBase64 = encryptedData.base64EncodedString()
+        let decryptedData = try! self.key1.decrypt(base64: encryptedDataBase64)
+        
+        XCTAssert(data == decryptedData)
+    }
+    
     func testHED002_EncryptRandomData_SingleIncorrectKey_ShouldNotDecrypt() {
         let encryptedData = try! self.card1.encrypt(self.data)
         let decryptedData = try? self.key2.decrypt(encryptedData)
@@ -127,45 +135,63 @@ class VSS008_HighLevelCryptoTests: XCTestCase {
     }
     
     func testHESD001_SignThenEncryptRandomData_CorrectKeys_ShouldDecryptValidate() {
-        let signedThenEcryptedData = try! self.key1.signThenEncrypt(self.data, for: [self.card2])
+        let signedThenEncryptedData = try! self.key1.signThenEncrypt(self.data, for: [self.card2])
         
-        let decryptedThenVerifiedData = try! self.key2.decryptThenVerify(signedThenEcryptedData, from: self.card1)
+        let decryptedThenVerifiedData = try! self.key2.decryptThenVerify(signedThenEncryptedData, from: self.card1)
+        
+        XCTAssert(self.data == decryptedThenVerifiedData)
+    }
+    
+    func testHEBD001_SignThenEncryptRandomData_CorrectKeys_ShouldDecryptFromBase64Validate() {
+        let signedThenEncryptedData = try! self.key1.signThenEncrypt(self.data, for: [self.card2])
+        let signedThenEncryptedDataBase64 = signedThenEncryptedData.base64EncodedString()
+        
+        let decryptedThenVerifiedData = try! self.key2.decryptThenVerify(base64: signedThenEncryptedDataBase64, from: self.card1)
         
         XCTAssert(self.data == decryptedThenVerifiedData)
     }
     
     func testHESS001_SignThenEncryptRandomString_CorrectKeys_ShouldDecryptValidate() {
-        let signedThenEcryptedData = try! self.key1.signThenEncrypt(self.str, for: [self.card2])
+        let signedThenEncryptedData = try! self.key1.signThenEncrypt(self.str, for: [self.card2])
         
-        let decryptedThenVerifiedData = try! self.key2.decryptThenVerify(signedThenEcryptedData, from: self.card1)
+        let decryptedThenVerifiedData = try! self.key2.decryptThenVerify(signedThenEncryptedData, from: self.card1)
         let decryptedThenVerifiedStr = String(data: decryptedThenVerifiedData, encoding: .utf8)!
         
         XCTAssert(self.str == decryptedThenVerifiedStr)
     }
 
     func testHESD002_SignThenEncryptRandomData_TwoKeys_ShouldDecryptValidate() {
-        let signedThenEcryptedData = try! self.key1.signThenEncrypt(self.data, for: [self.card2])
+        let signedThenEncryptedData = try! self.key1.signThenEncrypt(self.data, for: [self.card2])
         
-        let decryptedThenVerifiedData = try! self.key2.decryptThenVerify(signedThenEcryptedData, fromOneOf: [self.card3, self.card1])
+        let decryptedThenVerifiedData = try! self.key2.decryptThenVerify(signedThenEncryptedData, fromOneOf: [self.card3, self.card1])
+        
+        XCTAssert(self.data == decryptedThenVerifiedData)
+    }
+    
+    func testHEDD002_SignThenEncryptRandomData_TwoKeys_ShouldDecryptFromBase64Validate() {
+        let signedThenEncryptedData = try! self.key1.signThenEncrypt(self.data, for: [self.card2])
+        let signedThenEncryptedDataBase64 = signedThenEncryptedData.base64EncodedString()
+        
+        let decryptedThenVerifiedData = try! self.key2.decryptThenVerify(base64: signedThenEncryptedDataBase64, fromOneOf: [self.card3, self.card1])
         
         XCTAssert(self.data == decryptedThenVerifiedData)
     }
     
     func testHESS002_SignThenEncryptRandomString_TwoKeys_ShouldDecryptValidate() {
-        let signedThenEcryptedData = try! self.key1.signThenEncrypt(self.str, for: [self.card2])
+        let signedThenEncryptedData = try! self.key1.signThenEncrypt(self.str, for: [self.card2])
         
-        let decryptedThenVerifiedData = try! self.key2.decryptThenVerify(signedThenEcryptedData, fromOneOf: [self.card3, self.card1])
+        let decryptedThenVerifiedData = try! self.key2.decryptThenVerify(signedThenEncryptedData, fromOneOf: [self.card3, self.card1])
         let decryptedThenVerifiedStr = String(data: decryptedThenVerifiedData, encoding: .utf8)!
         
         XCTAssert(self.str == decryptedThenVerifiedStr)
     }
 
     func testHESD003_SignThenEncryptRandomData_NoSenderKeys_ShouldNotValidate() {
-        let signedThenEcryptedData = try! self.key1.signThenEncrypt(self.data, for: [self.card2])
+        let signedThenEncryptedData = try! self.key1.signThenEncrypt(self.data, for: [self.card2])
         
         var errorWasThrown = false
         do {
-            try self.key2.decryptThenVerify(signedThenEcryptedData, fromOneOf: [self.card3])
+            try self.key2.decryptThenVerify(signedThenEncryptedData, fromOneOf: [self.card3])
         }
         catch {
             errorWasThrown = true
@@ -175,11 +201,11 @@ class VSS008_HighLevelCryptoTests: XCTestCase {
     }
     
     func testHESS003_SignThenEncryptRandomString_NoSenderKeys_ShouldNotValidate() {
-        let signedThenEcryptedData = try! self.key1.signThenEncrypt(self.str, for: [self.card2])
+        let signedThenEncryptedData = try! self.key1.signThenEncrypt(self.str, for: [self.card2])
         
         var errorWasThrown = false
         do {
-            try self.key2.decryptThenVerify(signedThenEcryptedData, fromOneOf: [self.card3])
+            try self.key2.decryptThenVerify(signedThenEncryptedData, fromOneOf: [self.card3])
         }
         catch {
             errorWasThrown = true
