@@ -258,9 +258,9 @@ class VSS003_CryptoTests: XCTestCase {
         let senderKeyPair = self.crypto.generateKeyPair()
         let receiverKeyPair = self.crypto.generateKeyPair()
         
-        let signedAndEcryptedData = try! self.crypto.signThenEncrypt(data, with: senderKeyPair.privateKey, for: [receiverKeyPair.publicKey])
+        let signedThenEncryptedData = try! self.crypto.signThenEncrypt(data, with: senderKeyPair.privateKey, for: [receiverKeyPair.publicKey])
         
-        let decryptedThenVerifiedData = try! self.crypto.decryptThenVerify(signedAndEcryptedData, with: receiverKeyPair.privateKey, using: senderKeyPair.publicKey)
+        let decryptedThenVerifiedData = try! self.crypto.decryptThenVerify(signedThenEncryptedData, with: receiverKeyPair.privateKey, using: senderKeyPair.publicKey)
         
         XCTAssert(data == decryptedThenVerifiedData)
     }
@@ -272,9 +272,9 @@ class VSS003_CryptoTests: XCTestCase {
         let oneMoreKeyPair = self.crypto.generateKeyPair()
         let receiverKeyPair = self.crypto.generateKeyPair()
         
-        let signedAndEcryptedData = try! self.crypto.signThenEncrypt(data, with: senderKeyPair.privateKey, for: [receiverKeyPair.publicKey])
+        let signedThenEncryptedData = try! self.crypto.signThenEncrypt(data, with: senderKeyPair.privateKey, for: [receiverKeyPair.publicKey])
         
-        let decryptedThenVerifiedData = try! self.crypto.decryptThenVerify(signedAndEcryptedData, with: receiverKeyPair.privateKey, usingOneOf: [oneMoreKeyPair.publicKey, senderKeyPair.publicKey])
+        let decryptedThenVerifiedData = try! self.crypto.decryptThenVerify(signedThenEncryptedData, with: receiverKeyPair.privateKey, usingOneOf: [oneMoreKeyPair.publicKey, senderKeyPair.publicKey])
         
         XCTAssert(data == decryptedThenVerifiedData)
     }
@@ -286,11 +286,11 @@ class VSS003_CryptoTests: XCTestCase {
         let oneMoreKeyPair = self.crypto.generateKeyPair()
         let receiverKeyPair = self.crypto.generateKeyPair()
         
-        let signedAndEcryptedData = try! self.crypto.signThenEncrypt(data, with: senderKeyPair.privateKey, for: [receiverKeyPair.publicKey])
+        let signedThenEncryptedData = try! self.crypto.signThenEncrypt(data, with: senderKeyPair.privateKey, for: [receiverKeyPair.publicKey])
         
         var errorWasThrown = false
         do {
-            try self.crypto.decryptThenVerify(signedAndEcryptedData, with: receiverKeyPair.privateKey, usingOneOf: [oneMoreKeyPair.publicKey])
+            try self.crypto.decryptThenVerify(signedThenEncryptedData, with: receiverKeyPair.privateKey, usingOneOf: [oneMoreKeyPair.publicKey])
         }
         catch {
             errorWasThrown = true
