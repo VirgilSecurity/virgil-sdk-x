@@ -40,8 +40,9 @@
         _model = model;
 
         NSString *identifier = [candidate[kVSSCModelId] as:[NSString class]];
-        if (identifier.length > 0)
-            _identifier = [identifier copy];
+        if (identifier.length == 0)
+            return nil;
+        _identifier = [identifier copy];
 
         NSDictionary *metaCandidate = [candidate[kVSSCModelMeta] as:[NSDictionary class]];
         if (metaCandidate.count == 0)
