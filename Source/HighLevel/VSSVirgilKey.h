@@ -15,7 +15,7 @@
 
 - (NSData * __nullable)generateSignatureForData:(NSData * __nonnull)data error:(NSError * __nullable * __nullable)errorPtr;
 
-- (NSData * __nullable)generateSignatureForBase64String:(NSString * __nonnull)base64String error:(NSError * __nullable * __nullable)errorPtr;
+- (NSData * __nullable)generateSignatureForString:(NSString * __nonnull)string error:(NSError * __nullable * __nullable)errorPtr;
 
 - (NSData * __nullable)decryptData:(NSData * __nonnull)data error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(decrypt(_:));
 

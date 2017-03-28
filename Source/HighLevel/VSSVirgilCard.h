@@ -14,6 +14,8 @@
 #import "VSSRevokeCardRequest.h"
 #import "VSSExportable.h"
 
+#undef verify
+
 @interface VSSVirgilCard : NSObject <VSSExportable>
 
 /**
@@ -29,10 +31,10 @@
 @property (nonatomic, readonly) VSSCardScope scope;
 @property (nonatomic, readonly) BOOL isPublished;
 
-- (NSData * __nonnull)encryptData:(NSData * __nonnull)data error:(NSError * __nullable * __nullable)errorPtr;
-- (NSData * __nonnull)encryptString:(NSString * __nonnull)string error:(NSError * __nullable * __nullable)errorPtr;
+- (NSData * __nullable)encryptData:(NSData * __nonnull)data error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(encrypt(_:));
+- (NSData * __nullable)encryptString:(NSString * __nonnull)string error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(encrypt(_:));
 
-- (BOOL)verifyData:(NSData * __nonnull)data withSignature:(NSData * __nonnull)signature error:(NSError * __nullable * __nullable)errorPtr;
-- (BOOL)verifyString:(NSString * __nonnull)string withSignature:(NSData * __nonnull)signature error:(NSError * __nullable * __nullable)errorPtr;
+- (BOOL)verifyData:(NSData * __nonnull)data withSignature:(NSData * __nonnull)signature error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(verify(_:withSignature:));
+- (BOOL)verifyString:(NSString * __nonnull)string withSignature:(NSData * __nonnull)signature error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(verify(_:withSignature:));
 
 @end

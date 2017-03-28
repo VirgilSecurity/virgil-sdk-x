@@ -31,8 +31,8 @@
     return [self.context.crypto generateSignatureForData:data withPrivateKey:self.privateKey error:errorPtr];
 }
 
-- (NSData *)generateSignatureForBase64String:(NSString *)base64String error:(NSError **)errorPtr {
-    NSData *data = [[NSData alloc] initWithBase64EncodedString:base64String options:0];
+- (NSData *)generateSignatureForString:(NSString *)string error:(NSError **)errorPtr {
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
     
     return [self generateSignatureForData:data error:errorPtr];
 }

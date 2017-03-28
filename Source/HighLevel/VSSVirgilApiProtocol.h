@@ -16,4 +16,7 @@
 @property (nonatomic, readonly) id<VSSCardsManager> __nonnull Cards;
 @property (nonatomic, readonly) id<VSSKeysManager> __nonnull Keys;
 
+- (NSData * __nullable)encryptData:(NSData * __nonnull)data for:(NSArray<VSSVirgilCard *> * __nonnull)cards error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(encrypt(_:for:));
+- (NSData * __nullable)encryptString:(NSString * __nonnull)string for:(NSArray<VSSVirgilCard *> * __nonnull)cards error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(encrypt(_:for:));
+
 @end

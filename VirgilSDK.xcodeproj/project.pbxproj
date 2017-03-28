@@ -43,9 +43,9 @@
 		422536B81E8946DE00A9C345 /* VSSApplicationIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 422536B71E8946DE00A9C345 /* VSSApplicationIdentity.m */; };
 		422536B91E89474B00A9C345 /* VSSUserIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 422536B31E8946B700A9C345 /* VSSUserIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		422536BA1E89475200A9C345 /* VSSApplicationIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 422536B61E8946D300A9C345 /* VSSApplicationIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4233CDD91E657358006D78C3 /* VSSKeysManagerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4233CDD81E65731F006D78C3 /* VSSKeysManagerPrivate.h */; };
 		422536BD1E895E3D00A9C345 /* VSSCreateApplicationGlobalCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 422536BC1E895E3D00A9C345 /* VSSCreateApplicationGlobalCardRequest.m */; };
 		422536BE1E895E5D00A9C345 /* VSSCreateApplicationGlobalCardRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 422536BB1E895E2A00A9C345 /* VSSCreateApplicationGlobalCardRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4233CDD91E657358006D78C3 /* VSSKeysManagerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4233CDD81E65731F006D78C3 /* VSSKeysManagerPrivate.h */; };
 		4233CDDB1E6588AD006D78C3 /* VSSCreateUserCardRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 4233CDDA1E6588A9006D78C3 /* VSSCreateUserCardRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4233CDDD1E6588C2006D78C3 /* VSSCreateUserCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4233CDDC1E6588C2006D78C3 /* VSSCreateUserCardRequest.m */; };
 		4233CDE01E658C44006D78C3 /* VSSRevokeUserCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4233CDDF1E658C44006D78C3 /* VSSRevokeUserCardRequest.m */; };
@@ -199,6 +199,7 @@
 		427C40671E5C78770017C2A9 /* VSSRemoveCardRelationRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 427C40641E5C77BC0017C2A9 /* VSSRemoveCardRelationRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427C406A1E5C78CE0017C2A9 /* VSSRemoveCardRelationHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C40691E5C78CE0017C2A9 /* VSSRemoveCardRelationHTTPRequest.m */; };
 		4296B0D21E7C18AE00703356 /* VSSRevokeCardHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D414A91E39016900F59580 /* VSSRevokeCardHTTPRequest.h */; };
+		429F1CB61E8A6D8B00317FB7 /* VSS008_HighLevelCryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429F1CB41E8A6D7700317FB7 /* VSS008_HighLevelCryptoTests.swift */; };
 		42B33F761DC3A859008A7B78 /* VSSSignable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B33F751DC3A707008A7B78 /* VSSSignable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42B7E3461DB8F62400D70C12 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
 		42B7E3551DB8F6E400D70C12 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C181DB8E6A700E5E2AE /* sdk_compatibility_data.json */; };
@@ -358,9 +359,9 @@
 		422536B41E8946C500A9C345 /* VSSUserIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSUserIdentity.m; sourceTree = "<group>"; };
 		422536B61E8946D300A9C345 /* VSSApplicationIdentity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSApplicationIdentity.h; sourceTree = "<group>"; };
 		422536B71E8946DE00A9C345 /* VSSApplicationIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSApplicationIdentity.m; sourceTree = "<group>"; };
-		4233CDD81E65731F006D78C3 /* VSSKeysManagerPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeysManagerPrivate.h; sourceTree = "<group>"; };
 		422536BB1E895E2A00A9C345 /* VSSCreateApplicationGlobalCardRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCreateApplicationGlobalCardRequest.h; sourceTree = "<group>"; };
 		422536BC1E895E3D00A9C345 /* VSSCreateApplicationGlobalCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCreateApplicationGlobalCardRequest.m; sourceTree = "<group>"; };
+		4233CDD81E65731F006D78C3 /* VSSKeysManagerPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeysManagerPrivate.h; sourceTree = "<group>"; };
 		4233CDDA1E6588A9006D78C3 /* VSSCreateUserCardRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCreateUserCardRequest.h; sourceTree = "<group>"; };
 		4233CDDC1E6588C2006D78C3 /* VSSCreateUserCardRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCreateUserCardRequest.m; sourceTree = "<group>"; };
 		4233CDDE1E658C2A006D78C3 /* VSSRevokeUserCardRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSRevokeUserCardRequest.h; sourceTree = "<group>"; };
@@ -473,6 +474,7 @@
 		427C40651E5C78290017C2A9 /* VSSRemoveCardRelationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRemoveCardRelationRequest.m; sourceTree = "<group>"; };
 		427C40681E5C78970017C2A9 /* VSSRemoveCardRelationHTTPRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSRemoveCardRelationHTTPRequest.h; sourceTree = "<group>"; };
 		427C40691E5C78CE0017C2A9 /* VSSRemoveCardRelationHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRemoveCardRelationHTTPRequest.m; sourceTree = "<group>"; };
+		429F1CB41E8A6D7700317FB7 /* VSS008_HighLevelCryptoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS008_HighLevelCryptoTests.swift; sourceTree = "<group>"; };
 		42A442A61DC8F1D2000DD54B /* VSSKeyStorageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorageProtocol.h; sourceTree = "<group>"; };
 		42B1471C1DAFA8F600AC9975 /* VSSImportable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSImportable.h; sourceTree = "<group>"; };
 		42B1471D1DAFA92000AC9975 /* VSSExportable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSExportable.h; sourceTree = "<group>"; };
@@ -767,6 +769,7 @@
 				42B81BDE1DB51A3500E5E2AE /* VSS005_CompatibilityTests.swift */,
 				42796BD71DCCA02B000FDDD4 /* VSS006_KeyStorageTests.swift */,
 				42F7B34C1E69C765004E579C /* VSS007_HighLevelTests.swift */,
+				429F1CB41E8A6D7700317FB7 /* VSS008_HighLevelCryptoTests.swift */,
 			);
 			path = Swift;
 			sourceTree = "<group>";
@@ -1697,6 +1700,7 @@
 				4248B13A1E044CE8000AB44C /* MailinatorRequest.m in Sources */,
 				4248B11E1E044CE8000AB44C /* MailinatorConfig.m in Sources */,
 				4248B1361E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */,
+				429F1CB61E8A6D8B00317FB7 /* VSS008_HighLevelCryptoTests.swift in Sources */,
 				4248B12A1E044CE8000AB44C /* MEmailResponse.m in Sources */,
 				4248B12E1E044CE8000AB44C /* MPart.m in Sources */,
 				427C40601E5B3A380017C2A9 /* VSSTestUtils.swift in Sources */,

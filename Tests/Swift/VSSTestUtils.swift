@@ -96,8 +96,6 @@ class VSSTestUtils {
         return equals
     }
     
-<<<<<<< HEAD
-=======
     func check(card: VSSCard, isEqualToCreateCardRequest request: VSSCreateEmailCardRequest) -> Bool {
         let equals = card.identityType == request.snapshotModel.identityType
             && card.identity == request.snapshotModel.identity
@@ -109,7 +107,6 @@ class VSSTestUtils {
         return equals
     }
     
->>>>>>> develop
     func check(card card1: VSSCard, isEqualToCard card2: VSSCard) -> Bool {
         let equals = card1.identityType == card2.identityType
             && card1.identity == card2.identity
@@ -137,10 +134,6 @@ class VSSTestUtils {
         return equals
     }
     
-<<<<<<< HEAD
-    func check(createGlobalCardRequest request1: VSSCreateGlobalCardRequest, isEqualToCreateGlobalCardRequest request2: VSSCreateGlobalCardRequest) -> Bool {
-        let equals = self.check(createCardRequest: request1, isEqualToCreateCardRequest: request2)
-=======
     func check(createGlobalCardRequest request1: VSSCreateEmailCardRequest, isEqualToCreateGlobalCardRequest request2: VSSCreateEmailCardRequest) -> Bool {
         let equals = request1.snapshot == request2.snapshot
             && request1.signatures == request2.signatures
@@ -150,7 +143,6 @@ class VSSTestUtils {
             && checkObjectsEqualOrBothNil(left: request1.snapshotModel.info, right: request2.snapshotModel.info)
             && request1.snapshotModel.publicKeyData == request2.snapshotModel.publicKeyData
             && request1.snapshotModel.scope == request2.snapshotModel.scope
->>>>>>> develop
             && request1.validationToken == request2.validationToken
             && !request1.validationToken.isEmpty
         
