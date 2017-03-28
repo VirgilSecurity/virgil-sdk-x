@@ -84,13 +84,16 @@
     switch (self.scope) {
         case VSSCardScopeGlobal: break;
         case VSSCardScopeApplication: {
-            if (self.context.credentials == nil) {
-                callback([[NSError alloc] initWithDomain:kVSSVirgilApiErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"To create Application card you need to provide Credentials to VirgilApiContext" }]);
+            VSSPrivateKey *appKey = [self.context.credentials getAppKeyUsingCrypto:self.context.crypto];
+            if (appKey == nil) {
+                callback([[NSError alloc] initWithDomain:kVSSVirgilApiErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"To revoke Application card you need to provide Credentials with correct private key to VirgilApiContext" }]);
                 return;
             }
             NSString *appId = self.context.credentials.appId;
-            VSSPrivateKey *appKey = [self.context.credentials getAppKeyUsingCrypto:self.context.crypto];
-            // FIXME
+            if (appId.length == 0) {
+                callback([[NSError alloc] initWithDomain:kVSSVirgilApiErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"To revoke Application card you need to provide Credentials with correct app id to VirgilApiContext" }]);
+                return;
+            }
             NSError *error;
             [self.context.requestSigner authoritySignRequest:self.request forAppId:appId withPrivateKey:appKey error:&error];
             if (error != nil) {
