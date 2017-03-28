@@ -14,6 +14,7 @@ class VSS005_CompatibilityTests: XCTestCase {
     private var utils: VSSTestUtils!
     private var crypto: VSSCrypto!
     private var testsDict: Dictionary<String, Any>!
+    private var api: VSSVirgilApi!
     
     // MARK: Setup
     
@@ -22,6 +23,8 @@ class VSS005_CompatibilityTests: XCTestCase {
         
         self.crypto = VSSCrypto()
         self.utils = VSSTestUtils(crypto: self.crypto, consts: VSSTestsConst())
+        
+        self.api = VSSVirgilApi()
         
         let testFileURL = Bundle(for: type(of: self)).url(forResource: "sdk_compatibility_data", withExtension: "json")!
         let testFileData = try! Data(contentsOf: testFileURL)
@@ -224,6 +227,30 @@ class VSS005_CompatibilityTests: XCTestCase {
         let request = VSSCreateCardRequest(data: exportedCard)!
         let fingerprint = self.crypto.calculateFingerprint(for: request.snapshot)
         
+        XCTAssert(fingerprint.hexValue == id)
+    }
+    
+    func test011_ExportPublishedGlobalHLCard_ShouldBeEqual() {
+        let dict = self.testsDict["export_published_global_virgil_card"] as! Dictionary<String, String>
+        
+        let id = dict["card_id"]!
+        let exportedCard = dict["exported_card"]!
+        
+        let card = self.api.cards.importVirgilCard(fromData: exportedCard)!
+        XCTAssert(card.isPublished)
+        XCTAssert(card.identifier == id)
+    }
+    
+    func test012_ExportUnpublishedLocalHLCard_ShouldBeEqual() {
+        let dict = self.testsDict["export_unpublished_local_virgil_card"] as! Dictionary<String, String>
+        
+        let id = dict["card_id"]!
+        let exportedCard = dict["exported_card"]!
+        
+        let card = self.api.cards.importVirgilCard(fromData: exportedCard)!
+        let fingerprint = self.crypto.calculateFingerprint(for: card.request!.snapshot)
+        
+        XCTAssert(!card.isPublished)
         XCTAssert(fingerprint.hexValue == id)
     }
 }
