@@ -56,30 +56,23 @@
 }
 
 - (NSData *)encryptData:(NSData *)data error:(NSError **)errorPtr {
-    VSSPublicKey *publicKey = [self.context.crypto importPublicKeyFromData:self.publicKey];
-    
-    return [self.context.crypto encryptData:data forRecipients:@[publicKey] error:errorPtr];
+    return [self.context.crypto encryptData:data forRecipients:@[self.publicKey] error:errorPtr];
 }
 
 - (NSData *)encryptString:(NSString *)string error:(NSError **)errorPtr {
-    VSSPublicKey *publicKey = [self.context.crypto importPublicKeyFromData:self.publicKey];
+    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
     
-    NSData *strData = [string dataUsingEncoding:NSUTF8StringEncoding];
-    
-    return [self.context.crypto encryptData:strData forRecipients:@[publicKey] error:errorPtr];
+    return [self encryptData:data error:errorPtr];
 }
 
 - (BOOL)verifyData:(NSData *)data withSignature:(NSData *)signature error:(NSError **)errorPtr {
-    VSSPublicKey *publicKey = [self.context.crypto importPublicKeyFromData:self.publicKey];
-    
-    return [self.context.crypto verifyData:data withSignature:signature usingSignerPublicKey:publicKey error:errorPtr];
+    return [self.context.crypto verifyData:data withSignature:signature usingSignerPublicKey:self.publicKey error:errorPtr];
 }
 
 - (BOOL)verifyString:(NSString *)string withSignature:(NSData *)signature error:(NSError **)errorPtr {
-    VSSPublicKey *publicKey = [self.context.crypto importPublicKeyFromData:self.publicKey];
     NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
     
-    return [self.context.crypto verifyData:data withSignature:signature usingSignerPublicKey:publicKey error:errorPtr];
+    return [self verifyData:data withSignature:signature error:errorPtr];
 }
 
 - (void)publishWithCompletion:(void (^)(NSError *))callback {
@@ -140,11 +133,10 @@
         return self.request.snapshotModel.identityType;
 }
 
-- (NSData *)publicKey {
-    if (self.card != nil)
-        return self.card.publicKeyData;
-    else
-        return self.request.snapshotModel.publicKeyData;
+- (VSSPublicKey *)publicKey {
+    NSData *publicKeyData = self.card != nil ? self.card.publicKeyData : self.request.snapshotModel.publicKeyData;
+    
+    return [self.context.crypto importPublicKeyFromData:publicKeyData];
 }
 
 - (NSDictionary<NSString *, NSString *> *)customFields {

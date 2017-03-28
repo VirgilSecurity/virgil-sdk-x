@@ -27,7 +27,11 @@
 
 - (NSData * __nullable)decryptThenVerifyData:(NSData * __nonnull)data from:(VSSVirgilCard * __nonnull)card error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(decryptThenVerify(_:from:));
 
+- (NSData * __nullable)decryptThenVerifyData:(NSData * __nonnull)data fromOneOf:(NSArray<VSSVirgilCard *> * __nonnull)cards error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(decryptThenVerify(_:fromOneOf:));
+
 - (NSData * __nullable)decryptThenVerifyBase64String:(NSString * __nonnull)base64String from:(VSSVirgilCard * __nonnull)card error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(decryptThenVerify(base64String:from:));
+
+- (NSData * __nullable)decryptThenVerifyBase64String:(NSString * __nonnull)base64String fromOneOf:(NSArray<VSSVirgilCard *> * __nonnull)cards error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(decryptThenVerify(base64String:fromOneOf:));
 
 - (BOOL)storeWithName:(NSString * __nonnull)name password:(NSString * __nullable)password error:(NSError * __nullable * __nullable)errorPtr;
 
