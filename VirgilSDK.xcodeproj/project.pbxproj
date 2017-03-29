@@ -14,7 +14,6 @@
 		420FE5F11E4B5659005A32D4 /* VSSIdentityError.h in Headers */ = {isa = PBXBuildFile; fileRef = 4248B0CF1E043A60000AB44C /* VSSIdentityError.h */; };
 		420FE5F21E4B5666005A32D4 /* VSSValidateIdentityHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42386C331E019C22009E913F /* VSSValidateIdentityHTTPRequest.h */; };
 		420FE5F81E4B761E005A32D4 /* VSS002_ClientWOTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420FE5F51E4B75FE005A32D4 /* VSS002_ClientWOTokenTests.swift */; };
-		420FE5FB1E4B77E3005A32D4 /* VSS002_ClientWOTokenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 420FE5F91E4B777A005A32D4 /* VSS002_ClientWOTokenTests.m */; };
 		420FE6201E4CB1E1005A32D4 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */; };
 		420FE6231E4CB274005A32D4 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
 		420FE6431E51C955005A32D4 /* VSSCardsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 420FE62B1E51C955005A32D4 /* VSSCardsManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -36,8 +35,6 @@
 		420FE66D1E534EF2005A32D4 /* VSSVirgilKeyPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420FE66B1E53494A005A32D4 /* VSSVirgilKeyPrivate.h */; };
 		421A74CF1E015CBF007460BA /* VSSVerifyIdentityRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 421A74CE1E015CBF007460BA /* VSSVerifyIdentityRequest.h */; };
 		42229A1D1DD059DC00BE651E /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
-		42229A231DD059E900BE651E /* VSS006_KeyStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB691DCA93D500CCACB8 /* VSS006_KeyStorageTests.m */; };
-		42229A241DD059EE00BE651E /* VSS007_KeyStorageWithAccessGroupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42796BD41DCB977C000FDDD4 /* VSS007_KeyStorageWithAccessGroupTests.m */; };
 		42229A351DD05A4600BE651E /* VSS006_KeyStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42796BD71DCCA02B000FDDD4 /* VSS006_KeyStorageTests.swift */; };
 		422536B51E8946C500A9C345 /* VSSUserIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 422536B41E8946C500A9C345 /* VSSUserIdentity.m */; };
 		422536B81E8946DE00A9C345 /* VSSApplicationIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 422536B71E8946DE00A9C345 /* VSSApplicationIdentity.m */; };
@@ -115,9 +112,6 @@
 		424EF9AB1E0D71B1005E8A8B /* VSSDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 424EF9AA1E0D71B1005E8A8B /* VSSDeviceManager.m */; };
 		424EF9AD1E0D76B2005E8A8B /* VSSDeviceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 424EF9AC1E0D71C3005E8A8B /* VSSDeviceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		424EF9AE1E0D76B7005E8A8B /* VSSDeviceManagerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 424EF9A91E0D713D005E8A8B /* VSSDeviceManagerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		425B09B81DBF63E4005531DC /* VSS003_CryptoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 423B09E81DA8FBAC00A63E5B /* VSS003_CryptoTests.m */; };
-		425B09B91DBF63E4005531DC /* VSS004_ModelsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B1471E1DAFAEB200AC9975 /* VSS004_ModelsTests.m */; };
-		425B09BA1DBF63E4005531DC /* VSS005_CompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B147231DAFC29600AC9975 /* VSS005_CompatibilityTests.m */; };
 		425B09BB1DBF63E8005531DC /* VSS003_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B81BDA1DB5013900E5E2AE /* VSS003_CryptoTests.swift */; };
 		425B09BC1DBF63E8005531DC /* VSS004_ModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B81BDC1DB518FC00E5E2AE /* VSS004_ModelsTests.swift */; };
 		425B09BD1DBF63E8005531DC /* VSS005_CompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B81BDE1DB51A3500E5E2AE /* VSS005_CompatibilityTests.swift */; };
@@ -225,6 +219,7 @@
 		42D414A71E39005E00F59580 /* VSSRevokeEmailCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D414A61E39005E00F59580 /* VSSRevokeEmailCardRequest.m */; };
 		42D414A81E3900FB00F59580 /* VSSRevokeEmailCardRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D414A51E39005300F59580 /* VSSRevokeEmailCardRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42D414AB1E39018100F59580 /* VSSRevokeCardHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D414AA1E39018100F59580 /* VSSRevokeCardHTTPRequest.m */; };
+		42DF01E51E8C3144005CA7DD /* VSS007_KeyStorageWithAccessGroupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42796BD41DCB977C000FDDD4 /* VSS007_KeyStorageWithAccessGroupTests.m */; };
 		42E983031E0C2E0100FAA473 /* VSSCardResponsePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 425B09EE1DC25490005531DC /* VSSCardResponsePrivate.h */; };
 		42EB30EF1DB8EC33001DF4C0 /* VSSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB201D9ABF2200747799 /* VSSError.m */; };
 		42EB30F11DB8EC33001DF4C0 /* VSSCardsError.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB241D9ABF2200747799 /* VSSCardsError.m */; };
@@ -254,7 +249,6 @@
 		42F540841E005A100071FDCF /* VSSIdentityBaseHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F540791E0047AA0071FDCF /* VSSIdentityBaseHTTPRequest.h */; };
 		42F540851E005A140071FDCF /* VSSVerifyIdentityHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F5407C1E0048790071FDCF /* VSSVerifyIdentityHTTPRequest.h */; };
 		42F6C1FE1DBE4DD30030C21D /* VSSTestsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B147211DAFAF9000AC9975 /* VSSTestsUtils.m */; };
-		42F6C2021DBF5D1D0030C21D /* VSS001_ClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 423B09E61DA8FB4300A63E5B /* VSS001_ClientTests.m */; };
 		42F6C2031DBF5EC90030C21D /* VSS001_ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423B09F01DA9040700A63E5B /* VSS001_ClientTests.swift */; };
 		42F6C20A1DBF5F680030C21D /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F6C2071DBF5F5E0030C21D /* VSSTestsConst.m */; };
 		42F6C20B1DBF5F690030C21D /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F6C2071DBF5F5E0030C21D /* VSSTestsConst.m */; };
@@ -1620,14 +1614,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42DF01E51E8C3144005CA7DD /* VSS007_KeyStorageWithAccessGroupTests.m in Sources */,
 				4248B1331E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */,
 				42BBF0CE1DD3593100E19D60 /* VSSTestsConst.m in Sources */,
 				4248B1271E044CE8000AB44C /* MEmailMetadata.m in Sources */,
-				42229A231DD059E900BE651E /* VSS006_KeyStorageTests.m in Sources */,
 				4248B1371E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */,
 				42BBF0E81DD611DF00E19D60 /* VSSTestsUtils.m in Sources */,
 				4248B11F1E044CE8000AB44C /* MailinatorConfig.m in Sources */,
-				42229A241DD059EE00BE651E /* VSS007_KeyStorageWithAccessGroupTests.m in Sources */,
 				4248B11B1E044CE8000AB44C /* Mailinator.m in Sources */,
 				4248B1231E044CE8000AB44C /* MEmail.m in Sources */,
 				4248B13B1E044CE8000AB44C /* MailinatorRequest.m in Sources */,
@@ -1668,19 +1661,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				425B09B91DBF63E4005531DC /* VSS004_ModelsTests.m in Sources */,
 				4248B1311E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */,
-				425B09B81DBF63E4005531DC /* VSS003_CryptoTests.m in Sources */,
 				4248B1211E044CE8000AB44C /* MEmail.m in Sources */,
-				425B09BA1DBF63E4005531DC /* VSS005_CompatibilityTests.m in Sources */,
 				4248B1391E044CE8000AB44C /* MailinatorRequest.m in Sources */,
 				4248B11D1E044CE8000AB44C /* MailinatorConfig.m in Sources */,
 				4248B1351E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */,
 				4248B1291E044CE8000AB44C /* MEmailResponse.m in Sources */,
 				4248B12D1E044CE8000AB44C /* MPart.m in Sources */,
 				4248B1251E044CE8000AB44C /* MEmailMetadata.m in Sources */,
-				42F6C2021DBF5D1D0030C21D /* VSS001_ClientTests.m in Sources */,
-				420FE5FB1E4B77E3005A32D4 /* VSS002_ClientWOTokenTests.m in Sources */,
 				4248B1191E044CE8000AB44C /* Mailinator.m in Sources */,
 				42F6C1FE1DBE4DD30030C21D /* VSSTestsUtils.m in Sources */,
 				42F6C20A1DBF5F680030C21D /* VSSTestsConst.m in Sources */,
