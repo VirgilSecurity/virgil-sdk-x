@@ -213,4 +213,27 @@ class VSS008_HighLevelCryptoTests: XCTestCase {
         
         XCTAssert(errorWasThrown)
     }
+    
+    func testK001_ExportImportPrivateKey_ShouldImport() {
+        let exportedKey = self.key1.export(withPassword: "test")
+        let _ = self.api.keys.importKey(from: exportedKey, password: "test")!
+    }
+    
+    func testK002_ExportPublicKey_ShouldBeNotEmpty() {
+        let exportedPublicKey = self.key1.exportPublicKey()
+        XCTAssert(exportedPublicKey.count > 0)
+    }
+    
+    func testK003_StoreKey_ShouldLoad_ShouldDestroy() {
+        let keyName = "testKey"
+        let keyPassword = "test"
+        
+        try? self.api.keys.destroyKey(withName: keyName)
+        
+        try! self.key1.store(withName: keyName, password: keyPassword)
+        
+        let _ = try! self.api.keys.loadKey(withName: keyName, password: keyPassword)
+        
+        try! self.api.keys.destroyKey(withName: keyName)
+    }
 }
