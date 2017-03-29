@@ -181,9 +181,9 @@ This library is released under the [3-clause BSD License](LICENSE.md).
 
 ## Support
 
-Our developer support team is here to help you. You can find us on [Twitter](https://twitter.com/virgilsecurity) and [email](__support).
+Our developer support team is here to help you. You can find us on [Twitter](https://twitter.com/virgilsecurity) or send us email support@virgilsecurity.com
 
-[__support]: mailto:support@virgilsecurity.com
+[__support_email]: https://google.com.ua/
 [_getstarted_root]: https://developer.virgilsecurity.com/docs/swift/get-started
 [_getstarted]: https://developer.virgilsecurity.com/docs/swift/guides
 [_getstarted_encryption]: https://developer.virgilsecurity.com/docs/swift/get-started/encrypted-communication
