@@ -150,7 +150,7 @@ let virgil = VSSVirgilApi(token: "[ACCESS_TOKEN]")
 To initialize the SDK on the server side we will need the __access token__, __app id__ and the __App Key__ you created on the [Developer Dashboard](https://developer.virgilsecurity.com/).
 
 ```swift
-let url = Bundle.main.url(forResource: "[YOUR_APP_KEY_FILENAME_HERE], withExtension: nil)!
+let url = Bundle.main.url(forResource: "[YOUR_APP_KEY_FILENAME_HERE]", withExtension: nil)!
 let appPrivateKeyData = try! Data(contentsOf: url)
 let credentials = VSSCredentials(appKeyData: appPrivateKeyData, appKeyPassword: "[YOUR_APP_KEY_PASSWORD_HERE]", appId: "[YOUR_APP_ID_HERE]")
 
