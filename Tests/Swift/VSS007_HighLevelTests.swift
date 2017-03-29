@@ -23,7 +23,7 @@ class VSS007_HighLevelTests: XCTestCase {
         self.consts = VSSTestsConst()
         
         let appPrivateKeyData = Data(base64Encoded: self.consts.applicationPrivateKeyBase64)!
-        let credentials = VSSCredentials(crypto: VSSCrypto(), appKeyData: appPrivateKeyData, appKeyPassword: self.consts.applicationPrivateKeyPassword, appId: self.consts.applicationId)
+        let credentials = VSSCredentials(appKeyData: appPrivateKeyData, appKeyPassword: self.consts.applicationPrivateKeyPassword, appId: self.consts.applicationId)
         
         let crypto = VSSCrypto()
         
@@ -85,7 +85,7 @@ class VSS007_HighLevelTests: XCTestCase {
         let identity = self.api.identities.createUserIdentity(withValue: identityValue, type: "test")
         let key = self.api.keys.generateKey()
         
-        let card = try! self.api.cards.createCard(with: identity, ownerKey: key, data: ["custom_key1": "custom_field1", "custom_key2": "custom_field2"])
+        let card = try! self.api.cards.createCard(with: identity, ownerKey: key, customFields: ["custom_key1": "custom_field1", "custom_key2": "custom_field2"])
         self.api.cards.publish(card) { (error) in
             XCTAssert(error == nil)
             XCTAssert(self.utils.checkHighLevelCardIsValid(card: card))
