@@ -15,7 +15,6 @@
 		420FE5F21E4B5666005A32D4 /* VSSValidateIdentityHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42386C331E019C22009E913F /* VSSValidateIdentityHTTPRequest.h */; };
 		420FE5F81E4B761E005A32D4 /* VSS002_ClientWOTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420FE5F51E4B75FE005A32D4 /* VSS002_ClientWOTokenTests.swift */; };
 		420FE6201E4CB1E1005A32D4 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */; };
-		420FE6231E4CB274005A32D4 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
 		420FE6431E51C955005A32D4 /* VSSCardsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 420FE62B1E51C955005A32D4 /* VSSCardsManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		420FE6441E51C955005A32D4 /* VSSCardsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 420FE62C1E51C955005A32D4 /* VSSCardsManager.m */; };
 		420FE6451E51C955005A32D4 /* VSSHighLevelPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 420FE62D1E51C955005A32D4 /* VSSHighLevelPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -34,8 +33,6 @@
 		420FE66C1E534EEE005A32D4 /* VSSVirgilKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 420FE6681E534904005A32D4 /* VSSVirgilKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		420FE66D1E534EF2005A32D4 /* VSSVirgilKeyPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420FE66B1E53494A005A32D4 /* VSSVirgilKeyPrivate.h */; };
 		421A74CF1E015CBF007460BA /* VSSVerifyIdentityRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 421A74CE1E015CBF007460BA /* VSSVerifyIdentityRequest.h */; };
-		42229A1D1DD059DC00BE651E /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
-		42229A351DD05A4600BE651E /* VSS006_KeyStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42796BD71DCCA02B000FDDD4 /* VSS006_KeyStorageTests.swift */; };
 		422536B51E8946C500A9C345 /* VSSUserIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 422536B41E8946C500A9C345 /* VSSUserIdentity.m */; };
 		422536B81E8946DE00A9C345 /* VSSApplicationIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 422536B71E8946DE00A9C345 /* VSSApplicationIdentity.m */; };
 		422536B91E89474B00A9C345 /* VSSUserIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 422536B31E8946B700A9C345 /* VSSUserIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -65,11 +62,6 @@
 		423CEB651DCA374700CCACB8 /* VSSKeyStorageConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB641DCA374700CCACB8 /* VSSKeyStorageConfiguration.m */; };
 		423CEB6C1DCA948800CCACB8 /* VSSKeyStorageConfigurationPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB681DCA3D1700CCACB8 /* VSSKeyStorageConfigurationPrivate.h */; };
 		423CEB6D1DCA948800CCACB8 /* VSSKeyStorageConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB631DCA371A00CCACB8 /* VSSKeyStorageConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		423CEB761DCB518A00CCACB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB751DCB518A00CCACB8 /* AppDelegate.swift */; };
-		423CEB781DCB518A00CCACB8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB771DCB518A00CCACB8 /* ViewController.swift */; };
-		423CEB7B1DCB518A00CCACB8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423CEB791DCB518A00CCACB8 /* Main.storyboard */; };
-		423CEB7D1DCB518A00CCACB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 423CEB7C1DCB518A00CCACB8 /* Assets.xcassets */; };
-		423CEB801DCB518A00CCACB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423CEB7E1DCB518A00CCACB8 /* LaunchScreen.storyboard */; };
 		423FFFB01E708AEB00CC98A3 /* VSSCardVerifierInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 423FFFAF1E708AD800CC98A3 /* VSSCardVerifierInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423FFFB21E708B5800CC98A3 /* VSSCardVerifierInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 423FFFB11E708B5800CC98A3 /* VSSCardVerifierInfo.m */; };
 		42406F921E83D68700C3DE1E /* VSSGetChallengeMessageHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42406F911E83D68700C3DE1E /* VSSGetChallengeMessageHTTPRequest.m */; };
@@ -107,42 +99,18 @@
 		42406FDA1E84050000C3DE1E /* VSSRemoveCardRelationHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 427C40681E5C78970017C2A9 /* VSSRemoveCardRelationHTTPRequest.h */; };
 		42406FDB1E84050B00C3DE1E /* VSSObtainTokenHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42406FAE1E83E73800C3DE1E /* VSSObtainTokenHTTPRequest.h */; };
 		4248B0D11E043A6D000AB44C /* VSSIdentityError.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B0D01E043A6D000AB44C /* VSSIdentityError.m */; };
-		4248B1191E044CE8000AB44C /* Mailinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1051E044CE8000AB44C /* Mailinator.m */; };
 		4248B11A1E044CE8000AB44C /* Mailinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1051E044CE8000AB44C /* Mailinator.m */; };
-		4248B11B1E044CE8000AB44C /* Mailinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1051E044CE8000AB44C /* Mailinator.m */; };
-		4248B11C1E044CE8000AB44C /* Mailinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1051E044CE8000AB44C /* Mailinator.m */; };
-		4248B11D1E044CE8000AB44C /* MailinatorConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1071E044CE8000AB44C /* MailinatorConfig.m */; };
 		4248B11E1E044CE8000AB44C /* MailinatorConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1071E044CE8000AB44C /* MailinatorConfig.m */; };
-		4248B11F1E044CE8000AB44C /* MailinatorConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1071E044CE8000AB44C /* MailinatorConfig.m */; };
-		4248B1201E044CE8000AB44C /* MailinatorConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1071E044CE8000AB44C /* MailinatorConfig.m */; };
-		4248B1211E044CE8000AB44C /* MEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10A1E044CE8000AB44C /* MEmail.m */; };
 		4248B1221E044CE8000AB44C /* MEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10A1E044CE8000AB44C /* MEmail.m */; };
-		4248B1231E044CE8000AB44C /* MEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10A1E044CE8000AB44C /* MEmail.m */; };
-		4248B1241E044CE8000AB44C /* MEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10A1E044CE8000AB44C /* MEmail.m */; };
-		4248B1251E044CE8000AB44C /* MEmailMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10C1E044CE8000AB44C /* MEmailMetadata.m */; };
 		4248B1261E044CE8000AB44C /* MEmailMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10C1E044CE8000AB44C /* MEmailMetadata.m */; };
-		4248B1271E044CE8000AB44C /* MEmailMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10C1E044CE8000AB44C /* MEmailMetadata.m */; };
-		4248B1281E044CE8000AB44C /* MEmailMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10C1E044CE8000AB44C /* MEmailMetadata.m */; };
-		4248B1291E044CE8000AB44C /* MEmailResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10E1E044CE8000AB44C /* MEmailResponse.m */; };
 		4248B12A1E044CE8000AB44C /* MEmailResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10E1E044CE8000AB44C /* MEmailResponse.m */; };
-		4248B12B1E044CE8000AB44C /* MEmailResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10E1E044CE8000AB44C /* MEmailResponse.m */; };
-		4248B12C1E044CE8000AB44C /* MEmailResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10E1E044CE8000AB44C /* MEmailResponse.m */; };
-		4248B12D1E044CE8000AB44C /* MPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1101E044CE8000AB44C /* MPart.m */; };
 		4248B12E1E044CE8000AB44C /* MPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1101E044CE8000AB44C /* MPart.m */; };
-		4248B12F1E044CE8000AB44C /* MPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1101E044CE8000AB44C /* MPart.m */; };
-		4248B1301E044CE8000AB44C /* MPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1101E044CE8000AB44C /* MPart.m */; };
-		4248B1311E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1131E044CE8000AB44C /* MailinatorEmailRequest.m */; };
 		4248B1321E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1131E044CE8000AB44C /* MailinatorEmailRequest.m */; };
-		4248B1331E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1131E044CE8000AB44C /* MailinatorEmailRequest.m */; };
-		4248B1341E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1131E044CE8000AB44C /* MailinatorEmailRequest.m */; };
-		4248B1351E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1151E044CE8000AB44C /* MailinatorInboxRequest.m */; };
 		4248B1361E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1151E044CE8000AB44C /* MailinatorInboxRequest.m */; };
-		4248B1371E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1151E044CE8000AB44C /* MailinatorInboxRequest.m */; };
-		4248B1381E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1151E044CE8000AB44C /* MailinatorInboxRequest.m */; };
-		4248B1391E044CE8000AB44C /* MailinatorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1171E044CE8000AB44C /* MailinatorRequest.m */; };
 		4248B13A1E044CE8000AB44C /* MailinatorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1171E044CE8000AB44C /* MailinatorRequest.m */; };
 		4248B13B1E044CE8000AB44C /* MailinatorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1171E044CE8000AB44C /* MailinatorRequest.m */; };
 		4248B13C1E044CE8000AB44C /* MailinatorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1171E044CE8000AB44C /* MailinatorRequest.m */; };
+		424EF9AB1E0D71B1005E8A8B /* VSSDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 424EF9AA1E0D71B1005E8A8B /* VSSDeviceManager.m */; };
 		424EF9AD1E0D76B2005E8A8B /* VSSDeviceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 424EF9AC1E0D71C3005E8A8B /* VSSDeviceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		424EF9AE1E0D76B7005E8A8B /* VSSDeviceManagerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 424EF9A91E0D713D005E8A8B /* VSSDeviceManagerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		425B09BB1DBF63E8005531DC /* VSS003_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B81BDA1DB5013900E5E2AE /* VSS003_CryptoTests.swift */; };
@@ -223,26 +191,19 @@
 		427C405C1E5B33FE0017C2A9 /* VSSSignedCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C405B1E5B33FE0017C2A9 /* VSSSignedCardRequest.m */; };
 		427C405D1E5B34010017C2A9 /* VSSSignedCardRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 427C405A1E5B33EE0017C2A9 /* VSSSignedCardRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427C40601E5B3A380017C2A9 /* VSSTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427C405E1E5B3A280017C2A9 /* VSSTestUtils.swift */; };
-		427C40611E5B3A3F0017C2A9 /* VSSTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427C405E1E5B3A280017C2A9 /* VSSTestUtils.swift */; };
 		427C40661E5C78290017C2A9 /* VSSRemoveCardRelationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C40651E5C78290017C2A9 /* VSSRemoveCardRelationRequest.m */; };
 		427C40671E5C78770017C2A9 /* VSSRemoveCardRelationRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 427C40641E5C77BC0017C2A9 /* VSSRemoveCardRelationRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427C406A1E5C78CE0017C2A9 /* VSSRemoveCardRelationHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C40691E5C78CE0017C2A9 /* VSSRemoveCardRelationHTTPRequest.m */; };
 		4296B0D21E7C18AE00703356 /* VSSRevokeCardHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D414A91E39016900F59580 /* VSSRevokeCardHTTPRequest.h */; };
 		429F1CB61E8A6D8B00317FB7 /* VSS008_HighLevelCryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429F1CB41E8A6D7700317FB7 /* VSS008_HighLevelCryptoTests.swift */; };
 		42B33F761DC3A859008A7B78 /* VSSSignable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B33F751DC3A707008A7B78 /* VSSSignable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42B7E3461DB8F62400D70C12 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
-		42B7E3551DB8F6E400D70C12 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C181DB8E6A700E5E2AE /* sdk_compatibility_data.json */; };
-		42B7E3561DB8F6E800D70C12 /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C191DB8E6A700E5E2AE /* testData.txt */; };
 		42B7E3601DB8F72200D70C12 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
 		42B7E36B1DB8F81F00D70C12 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C181DB8E6A700E5E2AE /* sdk_compatibility_data.json */; };
 		42B7E36C1DB8F81F00D70C12 /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C191DB8E6A700E5E2AE /* testData.txt */; };
 		42BBF0C31DD1F12E00E19D60 /* VSSRequestSignerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42BBF0C21DD1F12E00E19D60 /* VSSRequestSignerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42BBF0CE1DD3593100E19D60 /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F6C2071DBF5F5E0030C21D /* VSSTestsConst.m */; };
-		42BBF0CF1DD3593200E19D60 /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F6C2071DBF5F5E0030C21D /* VSSTestsConst.m */; };
 		42BBF0DD1DD5DFE600E19D60 /* VSSCryptoCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 42BBF0DB1DD5DF8200E19D60 /* VSSCryptoCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42BBF0DE1DD5DFEC00E19D60 /* VSSCryptoCommonsPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 42BBF0DC1DD5DFE200E19D60 /* VSSCryptoCommonsPrivate.h */; };
 		42BBF0E01DD5E06000E19D60 /* VSSCryptoCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 42BBF0DF1DD5E06000E19D60 /* VSSCryptoCommons.m */; };
-		42BBF0E81DD611DF00E19D60 /* VSSTestsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B147211DAFAF9000AC9975 /* VSSTestsUtils.m */; };
 		42D414961E37880F00F59580 /* VSSCreateEmailCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D414951E37880F00F59580 /* VSSCreateEmailCardRequest.m */; };
 		42D414971E3796AB00F59580 /* VSSCreateEmailCardRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D414941E3787E200F59580 /* VSSCreateEmailCardRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42D4149A1E38DF4100F59580 /* VSSVraBaseHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D414991E38DF3E00F59580 /* VSSVraBaseHTTPRequest.h */; };
@@ -257,6 +218,7 @@
 		42DF01E61E8C52BE005CA7DD /* VSSVerifyIdentityRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F540801E0059D50071FDCF /* VSSVerifyIdentityRequest.m */; };
 		42DF01E71E8C52BE005CA7DD /* VSSDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 424EF9AA1E0D71B1005E8A8B /* VSSDeviceManager.m */; };
 		42DF01E81E8C52BE005CA7DD /* VSSVraError.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D4149E1E38E03400F59580 /* VSSVraError.m */; };
+		42DF01E91E8C5606005CA7DD /* VSS006_KeyStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42796BD71DCCA02B000FDDD4 /* VSS006_KeyStorageTests.swift */; };
 		42E983031E0C2E0100FAA473 /* VSSCardResponsePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 425B09EE1DC25490005531DC /* VSSCardResponsePrivate.h */; };
 		42EB30EF1DB8EC33001DF4C0 /* VSSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB201D9ABF2200747799 /* VSSError.m */; };
 		42EB30F11DB8EC33001DF4C0 /* VSSCardsError.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F0AB241D9ABF2200747799 /* VSSCardsError.m */; };
@@ -284,9 +246,7 @@
 		42F5407E1E0054C00071FDCF /* VSSVerifyIdentityHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F5407D1E0054C00071FDCF /* VSSVerifyIdentityHTTPRequest.m */; };
 		42F540841E005A100071FDCF /* VSSIdentityBaseHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F540791E0047AA0071FDCF /* VSSIdentityBaseHTTPRequest.h */; };
 		42F540851E005A140071FDCF /* VSSVerifyIdentityHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F5407C1E0048790071FDCF /* VSSVerifyIdentityHTTPRequest.h */; };
-		42F6C1FE1DBE4DD30030C21D /* VSSTestsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 42B147211DAFAF9000AC9975 /* VSSTestsUtils.m */; };
 		42F6C2031DBF5EC90030C21D /* VSS001_ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423B09F01DA9040700A63E5B /* VSS001_ClientTests.swift */; };
-		42F6C20A1DBF5F680030C21D /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F6C2071DBF5F5E0030C21D /* VSSTestsConst.m */; };
 		42F6C20B1DBF5F690030C21D /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F6C2071DBF5F5E0030C21D /* VSSTestsConst.m */; };
 		42F7B32D1E697A57004E579C /* VSSCardsManagerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F7B32C1E697A3F004E579C /* VSSCardsManagerPrivate.h */; };
 		42F7B3311E6998DC004E579C /* VSSVirgilIdentityPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F7B3301E6998DA004E579C /* VSSVirgilIdentityPrivate.h */; };
@@ -307,48 +267,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		42229A1E1DD059DC00BE651E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 42EB30E31DB8EC17001DF4C0;
-			remoteInfo = "VirgilSDK iOS";
-		};
-		42229A251DD059F400BE651E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 423CEB721DCB518A00CCACB8;
-			remoteInfo = TestSDKApp;
-		};
-		42229A301DD05A3C00BE651E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 423CEB721DCB518A00CCACB8;
-			remoteInfo = TestSDKApp;
-		};
-		423CEB881DCB592900CCACB8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 423CEB721DCB518A00CCACB8;
-			remoteInfo = TestSDKApp;
-		};
-		42796BDA1DCCA381000FDDD4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 423CEB721DCB518A00CCACB8;
-			remoteInfo = TestSDKApp;
-		};
-		42B7E3471DB8F62400D70C12 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 42EB30E31DB8EC17001DF4C0;
-			remoteInfo = "VirgilSDK iOS";
-		};
 		42B7E3611DB8F72200D70C12 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
@@ -363,7 +281,6 @@
 		36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+VSSUtils.m"; sourceTree = "<group>"; };
 		420FE5EC1E4B55FA005A32D4 /* VSSCreateEmailCardRequestPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCreateEmailCardRequestPrivate.h; sourceTree = "<group>"; };
 		420FE5F51E4B75FE005A32D4 /* VSS002_ClientWOTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS002_ClientWOTokenTests.swift; sourceTree = "<group>"; };
-		420FE5F91E4B777A005A32D4 /* VSS002_ClientWOTokenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS002_ClientWOTokenTests.m; sourceTree = "<group>"; };
 		420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = Carthage/Build/iOS/VirgilCrypto.framework; sourceTree = "<group>"; };
 		420FE62B1E51C955005A32D4 /* VSSCardsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSCardsManager.h; sourceTree = "<group>"; };
 		420FE62C1E51C955005A32D4 /* VSSCardsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCardsManager.m; sourceTree = "<group>"; };
@@ -383,8 +300,6 @@
 		420FE6691E53490D005A32D4 /* VSSVirgilKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSVirgilKey.m; sourceTree = "<group>"; };
 		420FE66B1E53494A005A32D4 /* VSSVirgilKeyPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSVirgilKeyPrivate.h; sourceTree = "<group>"; };
 		421A74CE1E015CBF007460BA /* VSSVerifyIdentityRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSVerifyIdentityRequest.h; sourceTree = "<group>"; };
-		42229A181DD059DC00BE651E /* VirgilSDKKeyStorageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirgilSDKKeyStorageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		42229A2B1DD05A3C00BE651E /* VirgilSDKKeyStorageSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirgilSDKKeyStorageSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		422536B31E8946B700A9C345 /* VSSUserIdentity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSUserIdentity.h; sourceTree = "<group>"; };
 		422536B41E8946C500A9C345 /* VSSUserIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSUserIdentity.m; sourceTree = "<group>"; };
 		422536B61E8946D300A9C345 /* VSSApplicationIdentity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSApplicationIdentity.h; sourceTree = "<group>"; };
@@ -418,8 +333,6 @@
 		423B09C31DA7DF3400A63E5B /* VSSSearchCardsCriteriaPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSSearchCardsCriteriaPrivate.h; sourceTree = "<group>"; };
 		423B09C41DA7E50B00A63E5B /* VSSHTTPRequestContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSHTTPRequestContext.h; sourceTree = "<group>"; };
 		423B09C51DA7E50B00A63E5B /* VSSHTTPRequestContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSHTTPRequestContext.m; sourceTree = "<group>"; };
-		423B09E61DA8FB4300A63E5B /* VSS001_ClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS001_ClientTests.m; sourceTree = "<group>"; };
-		423B09E81DA8FBAC00A63E5B /* VSS003_CryptoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS003_CryptoTests.m; sourceTree = "<group>"; };
 		423B09F01DA9040700A63E5B /* VSS001_ClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSS001_ClientTests.swift; sourceTree = "<group>"; };
 		423CEB541DCA01AF00CCACB8 /* VSSKeyEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyEntry.h; sourceTree = "<group>"; };
 		423CEB551DCA069900CCACB8 /* VSSKeyStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeyStorage.m; sourceTree = "<group>"; };
@@ -429,8 +342,6 @@
 		423CEB631DCA371A00CCACB8 /* VSSKeyStorageConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorageConfiguration.h; sourceTree = "<group>"; };
 		423CEB641DCA374700CCACB8 /* VSSKeyStorageConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeyStorageConfiguration.m; sourceTree = "<group>"; };
 		423CEB681DCA3D1700CCACB8 /* VSSKeyStorageConfigurationPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorageConfigurationPrivate.h; sourceTree = "<group>"; };
-		423CEB691DCA93D500CCACB8 /* VSS006_KeyStorageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS006_KeyStorageTests.m; sourceTree = "<group>"; };
-		423CEB731DCB518A00CCACB8 /* TestSDKApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestSDKApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		423CEB751DCB518A00CCACB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		423CEB771DCB518A00CCACB8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		423CEB7A1DCB518A00CCACB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -529,7 +440,6 @@
 		426345931E82C041003D5467 /* VSSAuthError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSAuthError.h; sourceTree = "<group>"; };
 		426345941E82C082003D5467 /* VSSAuthError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSAuthError.m; sourceTree = "<group>"; };
 		42796BD31DCB6281000FDDD4 /* TestSDKApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestSDKApp.entitlements; sourceTree = "<group>"; };
-		42796BD41DCB977C000FDDD4 /* VSS007_KeyStorageWithAccessGroupTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS007_KeyStorageWithAccessGroupTests.m; sourceTree = "<group>"; };
 		42796BD71DCCA02B000FDDD4 /* VSS006_KeyStorageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS006_KeyStorageTests.swift; sourceTree = "<group>"; };
 		427C40561E5B32520017C2A9 /* VSSCreateCardRelationHTTPRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCreateCardRelationHTTPRequest.h; sourceTree = "<group>"; };
 		427C40581E5B32640017C2A9 /* VSSCreateCardRelationHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCreateCardRelationHTTPRequest.m; sourceTree = "<group>"; };
@@ -544,12 +454,7 @@
 		42A442A61DC8F1D2000DD54B /* VSSKeyStorageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorageProtocol.h; sourceTree = "<group>"; };
 		42B1471C1DAFA8F600AC9975 /* VSSImportable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSImportable.h; sourceTree = "<group>"; };
 		42B1471D1DAFA92000AC9975 /* VSSExportable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSExportable.h; sourceTree = "<group>"; };
-		42B1471E1DAFAEB200AC9975 /* VSS004_ModelsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS004_ModelsTests.m; sourceTree = "<group>"; };
-		42B147201DAFAF1800AC9975 /* VSSTestsUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSTestsUtils.h; sourceTree = "<group>"; };
-		42B147211DAFAF9000AC9975 /* VSSTestsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSTestsUtils.m; sourceTree = "<group>"; };
-		42B147231DAFC29600AC9975 /* VSS005_CompatibilityTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS005_CompatibilityTests.m; sourceTree = "<group>"; };
 		42B33F751DC3A707008A7B78 /* VSSSignable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSSignable.h; sourceTree = "<group>"; };
-		42B7E3411DB8F62400D70C12 /* VirgilSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirgilSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		42B7E35B1DB8F72200D70C12 /* VirgilSDKSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirgilSDKSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		42B7E36D1DB8FF4C00D70C12 /* VSSModelsPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSModelsPublic.h; sourceTree = "<group>"; };
 		42B7E36E1DB9003100D70C12 /* VSSClientPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSClientPublic.h; sourceTree = "<group>"; };
@@ -655,37 +560,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		42229A151DD059DC00BE651E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				42229A1D1DD059DC00BE651E /* VirgilSDK.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		42229A281DD05A3C00BE651E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		423CEB701DCB518A00CCACB8 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				420FE6231E4CB274005A32D4 /* VirgilSDK.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		42B7E33E1DB8F62400D70C12 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				42B7E3461DB8F62400D70C12 /* VirgilSDK.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		42B7E3581DB8F72200D70C12 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -721,11 +595,7 @@
 			isa = PBXGroup;
 			children = (
 				42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */,
-				42B7E3411DB8F62400D70C12 /* VirgilSDKTests.xctest */,
 				42B7E35B1DB8F72200D70C12 /* VirgilSDKSwiftTests.xctest */,
-				423CEB731DCB518A00CCACB8 /* TestSDKApp.app */,
-				42229A181DD059DC00BE651E /* VirgilSDKKeyStorageTests.xctest */,
-				42229A2B1DD05A3C00BE651E /* VirgilSDKKeyStorageSwiftTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -741,23 +611,6 @@
 				36FF4B8C1C4D7FED00E901F3 /* Utils */,
 			);
 			path = Source;
-			sourceTree = "<group>";
-		};
-		362CFE1C1C74C02E002A3E93 /* Objc */ = {
-			isa = PBXGroup;
-			children = (
-				42B147201DAFAF1800AC9975 /* VSSTestsUtils.h */,
-				42B147211DAFAF9000AC9975 /* VSSTestsUtils.m */,
-				423B09E61DA8FB4300A63E5B /* VSS001_ClientTests.m */,
-				420FE5F91E4B777A005A32D4 /* VSS002_ClientWOTokenTests.m */,
-				423B09E81DA8FBAC00A63E5B /* VSS003_CryptoTests.m */,
-				42B1471E1DAFAEB200AC9975 /* VSS004_ModelsTests.m */,
-				42B147231DAFC29600AC9975 /* VSS005_CompatibilityTests.m */,
-				423CEB691DCA93D500CCACB8 /* VSS006_KeyStorageTests.m */,
-				42796BD41DCB977C000FDDD4 /* VSS007_KeyStorageWithAccessGroupTests.m */,
-			);
-			name = Objc;
-			path = ObjC;
 			sourceTree = "<group>";
 		};
 		36FF4B8C1C4D7FED00E901F3 /* Utils */ = {
@@ -1095,7 +948,6 @@
 			isa = PBXGroup;
 			children = (
 				42F6C2051DBF5F3B0030C21D /* Common */,
-				362CFE1C1C74C02E002A3E93 /* Objc */,
 				423B09EF1DA9040700A63E5B /* Swift */,
 				42B81C181DB8E6A700E5E2AE /* sdk_compatibility_data.json */,
 				42B81C191DB8E6A700E5E2AE /* testData.txt */,
@@ -1496,79 +1348,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		42229A171DD059DC00BE651E /* VirgilSDKKeyStorageTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 42229A221DD059DC00BE651E /* Build configuration list for PBXNativeTarget "VirgilSDKKeyStorageTests" */;
-			buildPhases = (
-				42229A141DD059DC00BE651E /* Sources */,
-				42229A151DD059DC00BE651E /* Frameworks */,
-				42229A161DD059DC00BE651E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				42229A1F1DD059DC00BE651E /* PBXTargetDependency */,
-				42229A261DD059F400BE651E /* PBXTargetDependency */,
-			);
-			name = VirgilSDKKeyStorageTests;
-			productName = VirgilSDKKeyStorageTests;
-			productReference = 42229A181DD059DC00BE651E /* VirgilSDKKeyStorageTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		42229A2A1DD05A3C00BE651E /* VirgilSDKKeyStorageSwiftTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 42229A321DD05A3C00BE651E /* Build configuration list for PBXNativeTarget "VirgilSDKKeyStorageSwiftTests" */;
-			buildPhases = (
-				42229A271DD05A3C00BE651E /* Sources */,
-				42229A281DD05A3C00BE651E /* Frameworks */,
-				42229A291DD05A3C00BE651E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				42229A311DD05A3C00BE651E /* PBXTargetDependency */,
-			);
-			name = VirgilSDKKeyStorageSwiftTests;
-			productName = VirgilSDKKeyStorageSwiftTests;
-			productReference = 42229A2B1DD05A3C00BE651E /* VirgilSDKKeyStorageSwiftTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		423CEB721DCB518A00CCACB8 /* TestSDKApp */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 423CEB821DCB518A00CCACB8 /* Build configuration list for PBXNativeTarget "TestSDKApp" */;
-			buildPhases = (
-				423CEB6F1DCB518A00CCACB8 /* Sources */,
-				423CEB701DCB518A00CCACB8 /* Frameworks */,
-				423CEB711DCB518A00CCACB8 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TestSDKApp;
-			productName = TestSDKApp;
-			productReference = 423CEB731DCB518A00CCACB8 /* TestSDKApp.app */;
-			productType = "com.apple.product-type.application";
-		};
-		42B7E3401DB8F62400D70C12 /* VirgilSDKTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 42B7E3491DB8F62400D70C12 /* Build configuration list for PBXNativeTarget "VirgilSDKTests" */;
-			buildPhases = (
-				42B7E33D1DB8F62400D70C12 /* Sources */,
-				42B7E33E1DB8F62400D70C12 /* Frameworks */,
-				42B7E33F1DB8F62400D70C12 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				42B7E3481DB8F62400D70C12 /* PBXTargetDependency */,
-				423CEB891DCB592900CCACB8 /* PBXTargetDependency */,
-			);
-			name = VirgilSDKTests;
-			productName = VirgilSDKTests;
-			productReference = 42B7E3411DB8F62400D70C12 /* VirgilSDKTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		42B7E35A1DB8F72200D70C12 /* VirgilSDKSwiftTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 42B7E3631DB8F72200D70C12 /* Build configuration list for PBXNativeTarget "VirgilSDKSwiftTests" */;
@@ -1581,7 +1360,6 @@
 			);
 			dependencies = (
 				42B7E3621DB8F72200D70C12 /* PBXTargetDependency */,
-				42796BDB1DCCA381000FDDD4 /* PBXTargetDependency */,
 			);
 			name = VirgilSDKSwiftTests;
 			productName = VirgilSDKSwiftTests;
@@ -1617,30 +1395,6 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = VirgilSecurity;
 				TargetAttributes = {
-					42229A171DD059DC00BE651E = {
-						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 423CEB721DCB518A00CCACB8;
-					};
-					42229A2A1DD05A3C00BE651E = {
-						CreatedOnToolsVersion = 8.1;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 423CEB721DCB518A00CCACB8;
-					};
-					423CEB721DCB518A00CCACB8 = {
-						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = A59V7K656Y;
-						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.Keychain = {
-								enabled = 1;
-							};
-						};
-					};
-					42B7E3401DB8F62400D70C12 = {
-						CreatedOnToolsVersion = 8.0;
-						ProvisioningStyle = Automatic;
-					};
 					42B7E35A1DB8F72200D70C12 = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
@@ -1666,49 +1420,12 @@
 			projectRoot = "";
 			targets = (
 				42EB30E31DB8EC17001DF4C0 /* VirgilSDK iOS */,
-				42B7E3401DB8F62400D70C12 /* VirgilSDKTests */,
 				42B7E35A1DB8F72200D70C12 /* VirgilSDKSwiftTests */,
-				423CEB721DCB518A00CCACB8 /* TestSDKApp */,
-				42229A171DD059DC00BE651E /* VirgilSDKKeyStorageTests */,
-				42229A2A1DD05A3C00BE651E /* VirgilSDKKeyStorageSwiftTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		42229A161DD059DC00BE651E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		42229A291DD05A3C00BE651E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		423CEB711DCB518A00CCACB8 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				423CEB801DCB518A00CCACB8 /* LaunchScreen.storyboard in Resources */,
-				423CEB7D1DCB518A00CCACB8 /* Assets.xcassets in Resources */,
-				423CEB7B1DCB518A00CCACB8 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		42B7E33F1DB8F62400D70C12 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				42B7E3561DB8F6E800D70C12 /* testData.txt in Resources */,
-				42B7E3551DB8F6E400D70C12 /* sdk_compatibility_data.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		42B7E3591DB8F72200D70C12 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1745,71 +1462,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		42229A141DD059DC00BE651E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				42DF01E51E8C3144005CA7DD /* VSS007_KeyStorageWithAccessGroupTests.m in Sources */,
-				4248B1331E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */,
-				42BBF0CE1DD3593100E19D60 /* VSSTestsConst.m in Sources */,
-				4248B1271E044CE8000AB44C /* MEmailMetadata.m in Sources */,
-				4248B1371E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */,
-				42BBF0E81DD611DF00E19D60 /* VSSTestsUtils.m in Sources */,
-				4248B11F1E044CE8000AB44C /* MailinatorConfig.m in Sources */,
-				4248B11B1E044CE8000AB44C /* Mailinator.m in Sources */,
-				4248B1231E044CE8000AB44C /* MEmail.m in Sources */,
-				4248B13B1E044CE8000AB44C /* MailinatorRequest.m in Sources */,
-				4248B12F1E044CE8000AB44C /* MPart.m in Sources */,
-				4248B12B1E044CE8000AB44C /* MEmailResponse.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		42229A271DD05A3C00BE651E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4248B1341E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */,
-				4248B1241E044CE8000AB44C /* MEmail.m in Sources */,
-				427C40611E5B3A3F0017C2A9 /* VSSTestUtils.swift in Sources */,
-				4248B1381E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */,
-				4248B1281E044CE8000AB44C /* MEmailMetadata.m in Sources */,
-				4248B12C1E044CE8000AB44C /* MEmailResponse.m in Sources */,
-				42BBF0CF1DD3593200E19D60 /* VSSTestsConst.m in Sources */,
-				4248B13C1E044CE8000AB44C /* MailinatorRequest.m in Sources */,
-				4248B11C1E044CE8000AB44C /* Mailinator.m in Sources */,
-				42229A351DD05A4600BE651E /* VSS006_KeyStorageTests.swift in Sources */,
-				4248B1301E044CE8000AB44C /* MPart.m in Sources */,
-				4248B1201E044CE8000AB44C /* MailinatorConfig.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		423CEB6F1DCB518A00CCACB8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				423CEB781DCB518A00CCACB8 /* ViewController.swift in Sources */,
-				423CEB761DCB518A00CCACB8 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		42B7E33D1DB8F62400D70C12 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4248B1311E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */,
-				4248B1211E044CE8000AB44C /* MEmail.m in Sources */,
-				4248B1391E044CE8000AB44C /* MailinatorRequest.m in Sources */,
-				4248B11D1E044CE8000AB44C /* MailinatorConfig.m in Sources */,
-				4248B1351E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */,
-				4248B1291E044CE8000AB44C /* MEmailResponse.m in Sources */,
-				4248B12D1E044CE8000AB44C /* MPart.m in Sources */,
-				4248B1251E044CE8000AB44C /* MEmailMetadata.m in Sources */,
-				4248B1191E044CE8000AB44C /* Mailinator.m in Sources */,
-				42F6C1FE1DBE4DD30030C21D /* VSSTestsUtils.m in Sources */,
-				42F6C20A1DBF5F680030C21D /* VSSTestsConst.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		42B7E3571DB8F72200D70C12 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1821,6 +1473,7 @@
 				42F6C20B1DBF5F690030C21D /* VSSTestsConst.m in Sources */,
 				4248B1221E044CE8000AB44C /* MEmail.m in Sources */,
 				4248B13A1E044CE8000AB44C /* MailinatorRequest.m in Sources */,
+				42DF01E91E8C5606005CA7DD /* VSS006_KeyStorageTests.swift in Sources */,
 				4248B11E1E044CE8000AB44C /* MailinatorConfig.m in Sources */,
 				4248B1361E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */,
 				429F1CB61E8A6D8B00317FB7 /* VSS008_HighLevelCryptoTests.swift in Sources */,
@@ -1933,36 +1586,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		42229A1F1DD059DC00BE651E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 42EB30E31DB8EC17001DF4C0 /* VirgilSDK iOS */;
-			targetProxy = 42229A1E1DD059DC00BE651E /* PBXContainerItemProxy */;
-		};
-		42229A261DD059F400BE651E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 423CEB721DCB518A00CCACB8 /* TestSDKApp */;
-			targetProxy = 42229A251DD059F400BE651E /* PBXContainerItemProxy */;
-		};
-		42229A311DD05A3C00BE651E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 423CEB721DCB518A00CCACB8 /* TestSDKApp */;
-			targetProxy = 42229A301DD05A3C00BE651E /* PBXContainerItemProxy */;
-		};
-		423CEB891DCB592900CCACB8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 423CEB721DCB518A00CCACB8 /* TestSDKApp */;
-			targetProxy = 423CEB881DCB592900CCACB8 /* PBXContainerItemProxy */;
-		};
-		42796BDB1DCCA381000FDDD4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 423CEB721DCB518A00CCACB8 /* TestSDKApp */;
-			targetProxy = 42796BDA1DCCA381000FDDD4 /* PBXContainerItemProxy */;
-		};
-		42B7E3481DB8F62400D70C12 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 42EB30E31DB8EC17001DF4C0 /* VirgilSDK iOS */;
-			targetProxy = 42B7E3471DB8F62400D70C12 /* PBXContainerItemProxy */;
-		};
 		42B7E3621DB8F72200D70C12 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 42EB30E31DB8EC17001DF4C0 /* VirgilSDK iOS */;
@@ -2075,175 +1698,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		42229A201DD059DC00BE651E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDKKeyStorageTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestSDKApp.app/TestSDKApp";
-			};
-			name = Debug;
-		};
-		42229A211DD059DC00BE651E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDKKeyStorageTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestSDKApp.app/TestSDKApp";
-			};
-			name = Release;
-		};
-		42229A331DD05A3C00BE651E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDKKeyStorageSwiftTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = Tests/Swift/BridgingHeader.h;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestSDKApp.app/TestSDKApp";
-			};
-			name = Debug;
-		};
-		42229A341DD05A3C00BE651E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDKKeyStorageSwiftTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = Tests/Swift/BridgingHeader.h;
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestSDKApp.app/TestSDKApp";
-			};
-			name = Release;
-		};
-		423CEB831DCB518A00CCACB8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CODE_SIGN_ENTITLEMENTS = TestSDKApp/TestSDKApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = A59V7K656Y;
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
-				INFOPLIST_FILE = TestSDKApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.TestSDKApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		423CEB841DCB518A00CCACB8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CODE_SIGN_ENTITLEMENTS = TestSDKApp/TestSDKApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = A59V7K656Y;
-				INFOPLIST_FILE = TestSDKApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.TestSDKApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		42B7E34A1DB8F62400D70C12 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"COCOAPODS=1",
-					"APPLICATION_IDENTITY_TYPE=$(APPLICATION_IDENTITY_TYPE)",
-					"APPLICATION_ID=$(APPLICATION_ID)",
-					"APPLICATION_PRIVATE_KEY_PASSWORD=$(APPLICATION_PRIVATE_KEY_PASSWORD)",
-					"APPLICATION_PRIVATE_KEY_BASE64=$(APPLICATION_PRIVATE_KEY_BASE64)",
-					"APPLICATION_PUBLIC_KEY_BASE64=$(APPLICATION_PUBLIC_KEY_BASE64)",
-					"APPLICATION_TOKEN=$(APPLICATION_TOKEN)",
-					"MAILINATOR_TOKEN=$(MAILINATOR_TOKEN)",
-				);
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDKTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		42B7E34B1DB8F62400D70C12 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"COCOAPODS=1",
-					"APPLICATION_IDENTITY_TYPE=$(APPLICATION_IDENTITY_TYPE)",
-					"APPLICATION_ID=$(APPLICATION_ID)",
-					"APPLICATION_PRIVATE_KEY_PASSWORD=$(APPLICATION_PRIVATE_KEY_PASSWORD)",
-					"APPLICATION_PRIVATE_KEY_BASE64=$(APPLICATION_PRIVATE_KEY_BASE64)",
-					"APPLICATION_PUBLIC_KEY_BASE64=$(APPLICATION_PUBLIC_KEY_BASE64)",
-					"APPLICATION_TOKEN=$(APPLICATION_TOKEN)",
-					"MAILINATOR_TOKEN=$(MAILINATOR_TOKEN)",
-				);
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDKTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -2378,42 +1832,6 @@
 			buildConfigurations = (
 				361403361BB2E05F002E69CA /* Debug */,
 				361403371BB2E05F002E69CA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		42229A221DD059DC00BE651E /* Build configuration list for PBXNativeTarget "VirgilSDKKeyStorageTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				42229A201DD059DC00BE651E /* Debug */,
-				42229A211DD059DC00BE651E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		42229A321DD05A3C00BE651E /* Build configuration list for PBXNativeTarget "VirgilSDKKeyStorageSwiftTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				42229A331DD05A3C00BE651E /* Debug */,
-				42229A341DD05A3C00BE651E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		423CEB821DCB518A00CCACB8 /* Build configuration list for PBXNativeTarget "TestSDKApp" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				423CEB831DCB518A00CCACB8 /* Debug */,
-				423CEB841DCB518A00CCACB8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		42B7E3491DB8F62400D70C12 /* Build configuration list for PBXNativeTarget "VirgilSDKTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				42B7E34A1DB8F62400D70C12 /* Debug */,
-				42B7E34B1DB8F62400D70C12 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
