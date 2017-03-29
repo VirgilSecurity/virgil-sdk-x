@@ -6,7 +6,7 @@
 //  Copyright © 2017 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSModelCommons.h"
+#import <Foundation/Foundation.h>
 
 /**
  Base class used to represent card owner's identity.

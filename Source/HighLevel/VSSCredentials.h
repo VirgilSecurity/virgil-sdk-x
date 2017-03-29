@@ -6,8 +6,8 @@
 //  Copyright © 2017 VirgilSecurity. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "VSSCredentialsProtocol.h"
-#import "VSSCryptoProtocol.h"
 
 /**
  Default implementation of VSSCredentials protocol.

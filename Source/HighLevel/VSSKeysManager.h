@@ -6,6 +6,7 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "VSSKeysManagerProtocol.h"
 
 /**

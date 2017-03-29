@@ -6,6 +6,7 @@
 //  Copyright © 2017 VirgilSecurity. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "VSSVirgilCard.h"
 #import "VSSVirgilKey.h"
 #import "VSSVirgilIdentity.h"
