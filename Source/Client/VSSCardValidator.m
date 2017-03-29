@@ -7,7 +7,7 @@
 //
 
 #import "VSSCardValidator.h"
-#import "VSSFingerPrint.h"
+#import "VSSFingerprint.h"
 
 static NSString * const kVSSCardsServiceCardId = @"3e29d43373348cfb373b7eae189214dc01d7237765e572db685839b64adca853";
 static NSString * const kVSSCardsServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUNvd0JRWURLMlZ3QXlFQVlSNTAxa1YxdFVuZTJ1T2RrdzRrRXJSUmJKcmMyU3lhejVWMWZ1RytyVnM9Ci0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQo=";

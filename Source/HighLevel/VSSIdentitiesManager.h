@@ -8,6 +8,10 @@
 
 #import "VSSIdentitiesManagerProtocol.h"
 
+/**
+ Implementation of VSSIdentitiesManager protocol.
+ VSSIdentitiesManager should not be created by user and is accessible only using VSSVirgilApi.
+ */
 @interface VSSIdentitiesManager : NSObject<VSSIdentitiesManager>
 
 /**

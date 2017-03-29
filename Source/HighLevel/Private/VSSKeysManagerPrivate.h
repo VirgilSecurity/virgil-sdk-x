@@ -7,7 +7,7 @@
 //
 
 #import "VSSKeysManager.h"
-#import "VSSVIrgilApiContext.h"
+#import "VSSVirgilApiContext.h"
 
 @interface VSSKeysManager ()
 
