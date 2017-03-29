@@ -217,8 +217,9 @@ class VSSTestUtils {
     func getConfirmationCode(emailNumber: Int = 0, identityValue: String, mailinator: Mailinator, completion: @escaping (String)->()) {
         let identityShort = identityValue.substring(to: identityValue.range(of: "@")!.lowerBound)
         
-        mailinator.getInbox(identityShort) { metadataList, error in
-            mailinator.getEmail(metadataList![emailNumber].mid) { email, error in
+        let metadataReceivedCallback = { (metadataList: [MEmailMetadata]) in
+            sleep(10)
+            mailinator.getEmail(metadataList[emailNumber].mid) { email, error in
                 let bodyPart = email!.parts[0];
                 
                 let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
@@ -228,6 +229,32 @@ class VSSTestUtils {
                 let code = String(match.characters.suffix(6))
                 
                 completion(code)
+            }
+        }
+        
+        let checkInbox = { (completion: @escaping ([MEmailMetadata]?, Error?) -> ()) in
+            mailinator.getInbox(identityShort) { metadataList, error in
+                completion(metadataList, error)
+            }
+        }
+        
+        var counter = 0
+        var received = false
+        
+        while counter < 23 && !received {
+            sleep(10)
+            guard !received else {
+                return
+            }
+            checkInbox() { metadataList, error in
+                guard error == nil, let mList = metadataList, mList.count > emailNumber else {
+                    counter += 1
+                    return
+                }
+                
+                received = true
+                metadataReceivedCallback(mList)
+                return
             }
         }
     }

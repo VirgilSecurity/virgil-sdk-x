@@ -203,8 +203,6 @@ class VSS007_HighLevelTests: XCTestCase {
         let identity = self.api.identities.createEmailIdentity(withEmail: identityValue)
         
         identity.check(options: nil) { error in
-            sleep(UInt32(kEstimatedEmailReceiveTime))
-            
             self.utils.getConfirmationCode(identityValue: identityValue, mailinator: self.mailinator) { confirmationCode in
                 identity.confirm(withConfirmationCode: confirmationCode) { error in
                     let key = self.api.keys.generateKey()
@@ -238,7 +236,6 @@ class VSS007_HighLevelTests: XCTestCase {
         let identity = self.api.identities.createEmailIdentity(withEmail: identityValue)
         
         identity.check(options: nil) { error in
-            sleep(UInt32(kEstimatedEmailReceiveTime))
             self.utils.getConfirmationCode(identityValue: identityValue, mailinator: self.mailinator) { confirmationCode in
                 identity.confirm(withConfirmationCode: confirmationCode) { error in
                     let key = self.api.keys.generateKey()
@@ -248,7 +245,6 @@ class VSS007_HighLevelTests: XCTestCase {
                         let identity = self.api.identities.createEmailIdentity(withEmail: identityValue)
                         
                         identity.check(options: nil) { error in
-                            sleep(UInt32(kEstimatedEmailReceiveTime))
                             self.utils.getConfirmationCode(emailNumber: 1, identityValue: identityValue, mailinator: self.mailinator) { confirmationCode in
                                 identity.confirm(withConfirmationCode: confirmationCode) { error in
                                     self.api.cards.revokeEmail(card, identity: identity, ownerKey: key) { error in
