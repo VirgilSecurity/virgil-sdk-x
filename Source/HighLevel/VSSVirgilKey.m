@@ -87,9 +87,10 @@
     return [self decryptThenVerifyData:data fromOneOf:cards error:errorPtr];
 }
 
-- (BOOL)storeWithName:(NSString *)name password:(NSString *)password error:(NSError **)errorPtr {
+- (BOOL)storeWithName:(NSString *)name password:(NSString *)password meta:(NSDictionary<NSString *, NSString *> *)meta error:(NSError **)errorPtr {
     NSData *exportedPrivateKey = [self.context.crypto exportPrivateKey:self.privateKey withPassword:password];
-    VSSKeyEntry *keyEntry = [VSSKeyEntry keyEntryWithName:name value:exportedPrivateKey];
+    
+    VSSKeyEntry *keyEntry = [VSSKeyEntry keyEntryWithName:name value:exportedPrivateKey meta:meta];
     
     return [self.context.keyStorage storeKeyEntry:keyEntry error:errorPtr];
 }
