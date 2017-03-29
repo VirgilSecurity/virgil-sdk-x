@@ -8,6 +8,10 @@
 
 #import "VSSVirgilIdentity.h"
 
+/**
+ VSSVirgilIdentity subclass used for Virgil Cards corresponding to application in Global Scope.
+ NOTE: These Identities require confirmation and currently can be confirmed using SDK.
+ */
 @interface VSSApplicationIdentity : VSSVirgilIdentity
 
 @end
