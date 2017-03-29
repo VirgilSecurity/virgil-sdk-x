@@ -64,7 +64,7 @@ class VSS001_ClientTests: XCTestCase {
         
         let request = self.utils.instantiateCreateCardRequest()
         
-        self.client.createCardWith(request) { (registeredCard, error) in
+        self.client.createCard(with: request) { (registeredCard, error) in
             guard error == nil else {
                 XCTFail("Failed: " + error!.localizedDescription)
                 return
@@ -96,7 +96,7 @@ class VSS001_ClientTests: XCTestCase {
         
         let request = self.utils.instantiateCreateCardRequest(with: ["custom_key1": "custom_field1", "custom_key2": "custom_field2"])
         
-        self.client.createCardWith(request) { (registeredCard, error) in
+        self.client.createCard(with: request) { (registeredCard, error) in
             guard error == nil else {
                 XCTFail("Failed: " + error!.localizedDescription)
                 return
@@ -128,7 +128,7 @@ class VSS001_ClientTests: XCTestCase {
         
         let request = self.utils.instantiateCreateCardRequest()
         
-        self.client.createCardWith(request) { (registeredCard, error) in
+        self.client.createCard(with: request) { (registeredCard, error) in
             guard error == nil else {
                 XCTFail("Failed: " + error!.localizedDescription)
                 return
@@ -172,7 +172,7 @@ class VSS001_ClientTests: XCTestCase {
         
         let request = self.utils.instantiateCreateCardRequest()
         
-        self.client.createCardWith(request) { (registeredCard, error) in
+        self.client.createCard(with: request) { (registeredCard, error) in
             guard error == nil else {
                 XCTFail("Failed: " + error!.localizedDescription)
                 return
@@ -213,7 +213,7 @@ class VSS001_ClientTests: XCTestCase {
         
         let request = self.utils.instantiateCreateCardRequest()
         
-        self.client.createCardWith(request) { (registeredCard, error) in
+        self.client.createCard(with: request) { (registeredCard, error) in
             guard error == nil else {
                 XCTFail("Failed: " + error!.localizedDescription)
                 return
@@ -249,14 +249,14 @@ class VSS001_ClientTests: XCTestCase {
         let keyPair1 = self.crypto.generateKeyPair()
         let request1 = self.utils.instantiateCreateCardRequest(keyPair: keyPair1)
         
-        self.client.createCardWith(request1) { (registeredCard1, error) in
+        self.client.createCard(with: request1) { (registeredCard1, error) in
             guard error == nil else {
                 XCTFail("Failed: " + error!.localizedDescription)
                 return
             }
             
             let request2 = self.utils.instantiateCreateCardRequest()
-            self.client.createCardWith(request2) { (registeredCard2, error) in
+            self.client.createCard(with: request2) { (registeredCard2, error) in
                 guard error == nil else {
                     XCTFail("Failed: " + error!.localizedDescription)
                     return
@@ -304,14 +304,14 @@ class VSS001_ClientTests: XCTestCase {
         let keyPair1 = self.crypto.generateKeyPair()
         let request1 = self.utils.instantiateCreateCardRequest(keyPair: keyPair1)
         
-        self.client.createCardWith(request1) { (registeredCard1, error) in
+        self.client.createCard(with: request1) { (registeredCard1, error) in
             guard error == nil else {
                 XCTFail("Failed: " + error!.localizedDescription)
                 return
             }
             
             let request2 = self.utils.instantiateCreateCardRequest()
-            self.client.createCardWith(request2) { (registeredCard2, error) in
+            self.client.createCard(with: request2) { (registeredCard2, error) in
                 let signedCardRequest = VSSSignedCardRequest(snapshot: registeredCard2!.cardResponse.snapshot)
                 let signer = VSSRequestSigner(crypto: self.crypto)
                 try! signer.authoritySign(signedCardRequest, forAppId: registeredCard1!.identifier, with: keyPair1.privateKey)
@@ -510,7 +510,7 @@ class VSS001_ClientTests: XCTestCase {
                         
                         let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: nil)
                         
-                        self.client.createCardWith(request) { (registeredCard, error) in
+                        self.client.createCard(with: request) { (registeredCard, error) in
                             guard error == nil else {
                                 XCTFail("Failed: " + error!.localizedDescription)
                                 return
@@ -565,7 +565,7 @@ class VSS001_ClientTests: XCTestCase {
                         let keyPair = self.crypto.generateKeyPair()
                         let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                         
-                        self.client.createCardWith(request) { (registeredCard, error) in
+                        self.client.createCard(with: request) { (registeredCard, error) in
                             let revokeRequest = self.utils.instantiateRevokeGlobalCardRequestFor(card: registeredCard!, validationToken:response!.validationToken, privateKey: keyPair.privateKey)
                             
                             self.client.revokeCardWith(revokeRequest, completion: { error in

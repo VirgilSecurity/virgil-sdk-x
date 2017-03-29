@@ -147,7 +147,7 @@ class VSS007_HighLevelTests: XCTestCase {
         self.api.cards.publish(card) { (error) in
             sleep(3)
             
-            self.api.cards.getCardWithId(card.identifier) { foundCard, error in
+            self.api.cards.getCard(withId: card.identifier) { foundCard, error in
                 XCTAssert(error == nil)
                 XCTAssert(foundCard != nil)
                 

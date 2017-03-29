@@ -99,7 +99,7 @@
  @param cardId NSString with Virgil Card identifier
  @param callback callback with VSSVirgilCard instance, or NSError instance if error occured
  */
-- (void)getCardWithId:(NSString * __nonnull)cardId completion:(void (^ __nonnull)(VSSVirgilCard * __nullable, NSError * __nullable))callback;
+- (void)getCardWithId:(NSString * __nonnull)cardId completion:(void (^ __nonnull)(VSSVirgilCard * __nullable, NSError * __nullable))callback NS_SWIFT_NAME(getCard(withId:completion:));
 
 /**
  Revokes Virgil Card.
