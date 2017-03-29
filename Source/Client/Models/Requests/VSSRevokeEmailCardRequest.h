@@ -1,5 +1,5 @@
 //
-//  VSSRevokeGlobalCardRequest.h
+//  VSSRevokeEmailCardRequest.h
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 1/25/17.
@@ -14,7 +14,7 @@
  Virgil Model used for revocation of Global Virgil Cards.
  See VSSRevokeCardSnapshotModel. See VSSClient protocol.
  */
-@interface VSSRevokeGlobalCardRequest : VSSRevokeCardRequest
+@interface VSSRevokeEmailCardRequest : VSSRevokeCardRequest
 
 /**
  Validation token obtained from Virgil Authority Service.
@@ -29,6 +29,6 @@
  
  @return allocated and initialized VSSRevokeCardRequest instance
  */
-+ (instancetype __nonnull)revokeGlobalCardRequestWithCardId:(NSString * __nonnull)cardId validationToken:(NSString * __nonnull)validationToken reason:(VSSCardRevocationReason)reason;
++ (instancetype __nonnull)revokeEmailCardRequestWithCardId:(NSString * __nonnull)cardId validationToken:(NSString * __nonnull)validationToken reason:(VSSCardRevocationReason)reason;
 
 @end

@@ -65,33 +65,11 @@ class VSS002_ClientWOTokenTests: XCTestCase {
             XCTAssert(actionId != nil)
             XCTAssert(actionId!.lengthOfBytes(using: .utf8) != 0)
             
-            sleep(UInt32(kEstimatedEmailReceiveTime))
-            
-            let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
-            
-            self.mailinator.getInbox(identityShort) { metadataList, error in
-                XCTAssert(error == nil)
-                XCTAssert(metadataList != nil)
-                XCTAssert(metadataList!.count == 1)
+            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                XCTAssert(code.lengthOfBytes(using: .utf8) == 6)
                 
-                self.mailinator.getEmail(metadataList![0].mid) { email, error in
-                    XCTAssert(error == nil)
-                    XCTAssert(email != nil)
-                    
-                    let bodyPart = email!.parts[0];
-                    
-                    let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
-                    
-                    let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
-                    
-                    let code = String(match.characters.suffix(6))
-                    
-                    XCTAssert(code.lengthOfBytes(using: .utf8) == 6)
-                    
-                    ex.fulfill()
-                }
+                ex.fulfill()
             }
-            
         }
         
         self.waitForExpectations(timeout: timeout) { error in
@@ -111,32 +89,17 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(UInt32(kEstimatedEmailReceiveTime))
-            
-            let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
-            
-            self.mailinator.getInbox(identityShort) { metadataList, error in
-                self.mailinator.getEmail(metadataList![0].mid) { email, error in
-                    let bodyPart = email!.parts[0];
+            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+                    XCTAssert(error == nil)
+                    XCTAssert(response != nil)
+                    XCTAssert(response!.identityType == "email")
+                    XCTAssert(response!.identityValue == identity)
+                    XCTAssert(response!.validationToken.lengthOfBytes(using: .utf8) != 0)
                     
-                    let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
-                    
-                    let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
-                    
-                    let code = String(match.characters.suffix(6))
-                    
-                    self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
-                        XCTAssert(error == nil)
-                        XCTAssert(response != nil)
-                        XCTAssert(response!.identityType == "email")
-                        XCTAssert(response!.identityValue == identity)
-                        XCTAssert(response!.validationToken.lengthOfBytes(using: .utf8) != 0)
-                        
-                        ex.fulfill()
-                    }
+                    ex.fulfill()
                 }
             }
-            
         }
         
         self.waitForExpectations(timeout: timeout) { error in
@@ -156,30 +119,15 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(UInt32(kEstimatedEmailReceiveTime))
-            
-            let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
-            
-            self.mailinator.getInbox(identityShort) { metadataList, error in
-                self.mailinator.getEmail(metadataList![0].mid) { email, error in
-                    let bodyPart = email!.parts[0];
-                    
-                    let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
-                    
-                    let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
-                    
-                    let code = String(match.characters.suffix(6))
-                    
-                    self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
-                        self.client.validateIdentity(identity, identityType: "email", validationToken: response!.validationToken) { error in
-                            XCTAssert(error == nil)
-                            
-                            ex.fulfill()
-                        }
+            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+                    self.client.validateIdentity(identity, identityType: "email", validationToken: response!.validationToken) { error in
+                        XCTAssert(error == nil)
+                        
+                        ex.fulfill()
                     }
                 }
             }
-            
         }
         
         self.waitForExpectations(timeout: timeout) { error in
@@ -199,39 +147,25 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(UInt32(kEstimatedEmailReceiveTime))
-            
-            let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
-            
-            self.mailinator.getInbox(identityShort) { metadataList, error in
-                self.mailinator.getEmail(metadataList![0].mid) { email, error in
-                    let bodyPart = email!.parts[0];
+            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
                     
-                    let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
+                    let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: nil)
                     
-                    let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
-                    
-                    let code = String(match.characters.suffix(6))
-                    
-                    self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
-                        
-                        let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: nil)
-                        
-                        self.client.createCardWith(request) { (registeredCard, error) in
-                            guard error == nil else {
-                                XCTFail("Failed: " + error!.localizedDescription)
-                                return
-                            }
-                            
-                            guard let card = registeredCard else {
-                                XCTFail("Card is nil")
-                                return
-                            }
-                            
-                            XCTAssert(self.utils.check(card: card, isEqualToCreateCardRequest: request))
-                            
-                            ex.fulfill()
+                    self.client.createCard(with: request) { (registeredCard, error) in
+                        guard error == nil else {
+                            XCTFail("Failed: " + error!.localizedDescription)
+                            return
                         }
+                        
+                        guard let card = registeredCard else {
+                            XCTFail("Card is nil")
+                            return
+                        }
+                        
+                        XCTAssert(self.utils.check(card: card, isEqualToCreateCardRequest: request))
+                        
+                        ex.fulfill()
                     }
                 }
             }
@@ -254,36 +188,22 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(UInt32(kEstimatedEmailReceiveTime))
-            
-            let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
-            
-            self.mailinator.getInbox(identityShort) { metadataList, error in
-                self.mailinator.getEmail(metadataList![0].mid) { email, error in
-                    let bodyPart = email!.parts[0];
+            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+                    let keyPair = self.crypto.generateKeyPair()
+                    let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                     
-                    let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
-                    
-                    let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
-                    
-                    let code = String(match.characters.suffix(6))
-                    
-                    self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
-                        let keyPair = self.crypto.generateKeyPair()
-                        let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
+                    self.client.createCard(with: request) { (registeredCard, error) in
+                        let revokeRequest = self.utils.instantiateRevokeGlobalCardRequestFor(card: registeredCard!, validationToken:response!.validationToken, privateKey: keyPair.privateKey)
                         
-                        self.client.createCardWith(request) { (registeredCard, error) in
-                            let revokeRequest = self.utils.instantiateRevokeGlobalCardRequestFor(card: registeredCard!, validationToken:response!.validationToken, privateKey: keyPair.privateKey)
+                        self.client.revokeCardWith(revokeRequest, completion: { error in
+                            guard error == nil else {
+                                XCTFail("Failed: " + error!.localizedDescription)
+                                return
+                            }
                             
-                            self.client.revokeCardWith(revokeRequest, completion: { error in
-                                guard error == nil else {
-                                    XCTFail("Failed: " + error!.localizedDescription)
-                                    return
-                                }
-                                
-                                ex.fulfill()
-                            })
-                        }
+                            ex.fulfill()
+                        })
                     }
                 }
             }
@@ -306,31 +226,17 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(UInt32(kEstimatedEmailReceiveTime))
-            
-            let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
-            
-            self.mailinator.getInbox(identityShort) { metadataList, error in
-                self.mailinator.getEmail(metadataList![0].mid) { email, error in
-                    let bodyPart = email!.parts[0];
+            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+                    let keyPair = self.crypto.generateKeyPair()
+                    let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                     
-                    let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
-                    
-                    let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
-                    
-                    let code = String(match.characters.suffix(6))
-                    
-                    self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
-                        let keyPair = self.crypto.generateKeyPair()
-                        let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
-                        
-                        self.client.createCardWith(request) { (registeredCard, error) in
-                            self.client.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
-                                XCTAssert(error == nil && response != nil)
-                                XCTAssert(!response!.authGrantId.isEmpty && !response!.encryptedMessage.isEmpty)
-                                
-                                ex.fulfill()
-                            }
+                    self.client.createCard(with: request) { (registeredCard, error) in
+                        self.client.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
+                            XCTAssert(error == nil && response != nil)
+                            XCTAssert(!response!.authGrantId.isEmpty && !response!.encryptedMessage.isEmpty)
+                            
+                            ex.fulfill()
                         }
                     }
                 }
@@ -354,43 +260,29 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(UInt32(kEstimatedEmailReceiveTime))
-            
-            let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
-            
-            self.mailinator.getInbox(identityShort) { metadataList, error in
-                self.mailinator.getEmail(metadataList![0].mid) { email, error in
-                    let bodyPart = email!.parts[0];
+            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+                    let keyPair = self.crypto.generateKeyPair()
+                    let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                     
-                    let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
-                    
-                    let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
-                    
-                    let code = String(match.characters.suffix(6))
-                    
-                    self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
-                        let keyPair = self.crypto.generateKeyPair()
-                        let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
-                        
-                        self.client.createCardWith(request) { (registeredCard, error) in
-                            self.client.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
-                                XCTAssert(error == nil)
-                                XCTAssert(response != nil)
-                                XCTAssert(!response!.authGrantId.isEmpty && !response!.encryptedMessage.isEmpty)
+                    self.client.createCard(with: request) { (registeredCard, error) in
+                        self.client.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
+                            XCTAssert(error == nil)
+                            XCTAssert(response != nil)
+                            XCTAssert(!response!.authGrantId.isEmpty && !response!.encryptedMessage.isEmpty)
+                            
+                            let message = try! self.crypto.decrypt(response!.encryptedMessage, with: keyPair.privateKey)
+                            
+                            
+                            let virgilAuthPublicKeyData = Data(base64Encoded: kVSSAuthServicePublicKeyInBase64)!
+                            let virgilAuthPublicKey = self.crypto.importPublicKey(from: virgilAuthPublicKeyData)!
+                            let encryptedMessage = try! self.crypto.encrypt(message, for: [virgilAuthPublicKey])
+                            
+                            self.client.ackChallengeMessage(withAuthGrantId: response!.authGrantId, encryptedMessage: encryptedMessage) { code, error in
+                                XCTAssert(error == nil && code != nil)
+                                XCTAssert(!code!.isEmpty)
                                 
-                                let message = try! self.crypto.decrypt(response!.encryptedMessage, with: keyPair.privateKey)
-                                
-                                
-                                let virgilAuthPublicKeyData = Data(base64Encoded: kVSSAuthServicePublicKeyInBase64)!
-                                let virgilAuthPublicKey = self.crypto.importPublicKey(from: virgilAuthPublicKeyData)!
-                                let encryptedMessage = try! self.crypto.encrypt(message, for: [virgilAuthPublicKey])
-                                
-                                self.client.ackChallengeMessage(withAuthGrantId: response!.authGrantId, encryptedMessage: encryptedMessage) { code, error in
-                                    XCTAssert(error == nil && code != nil)
-                                    XCTAssert(!code!.isEmpty)
-                                    
-                                    ex.fulfill()
-                                }
+                                ex.fulfill()
                             }
                         }
                     }
@@ -415,47 +307,33 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(UInt32(kEstimatedEmailReceiveTime))
-            
-            let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
-            
-            self.mailinator.getInbox(identityShort) { metadataList, error in
-                self.mailinator.getEmail(metadataList![0].mid) { email, error in
-                    let bodyPart = email!.parts[0];
+            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+                    let keyPair = self.crypto.generateKeyPair()
+                    let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                     
-                    let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
-                    
-                    let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
-                    
-                    let code = String(match.characters.suffix(6))
-                    
-                    self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
-                        let keyPair = self.crypto.generateKeyPair()
-                        let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
-                        
-                        self.client.createCardWith(request) { (registeredCard, error) in
-                            self.client.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
-                                XCTAssert(error == nil && response != nil)
-                                XCTAssert(!response!.authGrantId.isEmpty && !response!.encryptedMessage.isEmpty)
-                                
-                                let message = try! self.crypto.decrypt(response!.encryptedMessage, with: keyPair.privateKey)
-                                
-                                
-                                let virgilAuthPublicKeyData = Data(base64Encoded: kVSSAuthServicePublicKeyInBase64)!
-                                let virgilAuthPublicKey = self.crypto.importPublicKey(from: virgilAuthPublicKeyData)!
-                                let encryptedMessage = try! self.crypto.encrypt(message, for: [virgilAuthPublicKey])
-                                
-                                self.client.ackChallengeMessage(withAuthGrantId: response!.authGrantId, encryptedMessage: encryptedMessage) { code, error in
-                                    self.client.obtainAccessToken(withAccessCode: code!) { response, error in
-                                        XCTAssert(error == nil)
-                                        XCTAssert(response != nil)
-                                        XCTAssert(!response!.refreshToken.isEmpty)
-                                        XCTAssert(!response!.accessToken.isEmpty)
-                                        XCTAssert(!response!.tokenType.isEmpty)
-                                        XCTAssert(response!.expiresIn != 0)
-                                        
-                                        ex.fulfill()
-                                    }
+                    self.client.createCard(with: request) { (registeredCard, error) in
+                        self.client.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
+                            XCTAssert(error == nil && response != nil)
+                            XCTAssert(!response!.authGrantId.isEmpty && !response!.encryptedMessage.isEmpty)
+                            
+                            let message = try! self.crypto.decrypt(response!.encryptedMessage, with: keyPair.privateKey)
+                            
+                            
+                            let virgilAuthPublicKeyData = Data(base64Encoded: kVSSAuthServicePublicKeyInBase64)!
+                            let virgilAuthPublicKey = self.crypto.importPublicKey(from: virgilAuthPublicKeyData)!
+                            let encryptedMessage = try! self.crypto.encrypt(message, for: [virgilAuthPublicKey])
+                            
+                            self.client.ackChallengeMessage(withAuthGrantId: response!.authGrantId, encryptedMessage: encryptedMessage) { code, error in
+                                self.client.obtainAccessToken(withAccessCode: code!) { response, error in
+                                    XCTAssert(error == nil)
+                                    XCTAssert(response != nil)
+                                    XCTAssert(!response!.refreshToken.isEmpty)
+                                    XCTAssert(!response!.accessToken.isEmpty)
+                                    XCTAssert(!response!.tokenType.isEmpty)
+                                    XCTAssert(response!.expiresIn != 0)
+                                    
+                                    ex.fulfill()
                                 }
                             }
                         }
@@ -481,46 +359,32 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(UInt32(kEstimatedEmailReceiveTime))
-            
-            let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
-            
-            self.mailinator.getInbox(identityShort) { metadataList, error in
-                self.mailinator.getEmail(metadataList![0].mid) { email, error in
-                    let bodyPart = email!.parts[0];
+            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+                    let keyPair = self.crypto.generateKeyPair()
+                    let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                     
-                    let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
-                    
-                    let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
-                    
-                    let code = String(match.characters.suffix(6))
-                    
-                    self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
-                        let keyPair = self.crypto.generateKeyPair()
-                        let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
-                        
-                        self.client.createCardWith(request) { (registeredCard, error) in
-                            self.client.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
-                                XCTAssert(error == nil && response != nil)
-                                XCTAssert(!response!.authGrantId.isEmpty && !response!.encryptedMessage.isEmpty)
-                                
-                                let message = try! self.crypto.decrypt(response!.encryptedMessage, with: keyPair.privateKey)
-                                
-                                
-                                let virgilAuthPublicKeyData = Data(base64Encoded: kVSSAuthServicePublicKeyInBase64)!
-                                let virgilAuthPublicKey = self.crypto.importPublicKey(from: virgilAuthPublicKeyData)!
-                                let encryptedMessage = try! self.crypto.encrypt(message, for: [virgilAuthPublicKey])
-                                
-                                self.client.ackChallengeMessage(withAuthGrantId: response!.authGrantId, encryptedMessage: encryptedMessage) { code, error in
-                                    self.client.obtainAccessToken(withAccessCode: code!) { response, error in
-                                        self.client.refreshAccessToken(withRefreshToken: response!.refreshToken) { response, error in
-                                            XCTAssert(error == nil)
-                                            XCTAssert(response != nil)
-                                            XCTAssert(!response!.accessToken.isEmpty)
-                                            XCTAssert(response!.expiresIn != 0)
-                                            
-                                            ex.fulfill()
-                                        }
+                    self.client.createCard(with: request) { (registeredCard, error) in
+                        self.client.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
+                            XCTAssert(error == nil && response != nil)
+                            XCTAssert(!response!.authGrantId.isEmpty && !response!.encryptedMessage.isEmpty)
+                            
+                            let message = try! self.crypto.decrypt(response!.encryptedMessage, with: keyPair.privateKey)
+                            
+                            
+                            let virgilAuthPublicKeyData = Data(base64Encoded: kVSSAuthServicePublicKeyInBase64)!
+                            let virgilAuthPublicKey = self.crypto.importPublicKey(from: virgilAuthPublicKeyData)!
+                            let encryptedMessage = try! self.crypto.encrypt(message, for: [virgilAuthPublicKey])
+                            
+                            self.client.ackChallengeMessage(withAuthGrantId: response!.authGrantId, encryptedMessage: encryptedMessage) { code, error in
+                                self.client.obtainAccessToken(withAccessCode: code!) { response, error in
+                                    self.client.refreshAccessToken(withRefreshToken: response!.refreshToken) { response, error in
+                                        XCTAssert(error == nil)
+                                        XCTAssert(response != nil)
+                                        XCTAssert(!response!.accessToken.isEmpty)
+                                        XCTAssert(response!.expiresIn != 0)
+                                        
+                                        ex.fulfill()
                                     }
                                 }
                             }
@@ -547,44 +411,30 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let identity = self.utils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            sleep(UInt32(kEstimatedEmailReceiveTime))
-            
-            let identityShort = identity.substring(to: identity.range(of: "@")!.lowerBound)
-            
-            self.mailinator.getInbox(identityShort) { metadataList, error in
-                self.mailinator.getEmail(metadataList![0].mid) { email, error in
-                    let bodyPart = email!.parts[0];
+            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+                    let keyPair = self.crypto.generateKeyPair()
+                    let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                     
-                    let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
-                    
-                    let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
-                    
-                    let code = String(match.characters.suffix(6))
-                    
-                    self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
-                        let keyPair = self.crypto.generateKeyPair()
-                        let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
-                        
-                        self.client.createCardWith(request) { (registeredCard, error) in
-                            self.client.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
-                                XCTAssert(error == nil && response != nil)
-                                XCTAssert(!response!.authGrantId.isEmpty && !response!.encryptedMessage.isEmpty)
-                                
-                                let message = try! self.crypto.decrypt(response!.encryptedMessage, with: keyPair.privateKey)
-                                
-                                
-                                let virgilAuthPublicKeyData = Data(base64Encoded: kVSSAuthServicePublicKeyInBase64)!
-                                let virgilAuthPublicKey = self.crypto.importPublicKey(from: virgilAuthPublicKeyData)!
-                                let encryptedMessage = try! self.crypto.encrypt(message, for: [virgilAuthPublicKey])
-                                
-                                self.client.ackChallengeMessage(withAuthGrantId: response!.authGrantId, encryptedMessage: encryptedMessage) { code, error in
-                                    self.client.obtainAccessToken(withAccessCode: code!) { response, error in
-                                        self.client.verifyAccessToken(response!.accessToken) { cardId, error in
-                                            XCTAssert(error == nil)
-                                            XCTAssert(cardId! == registeredCard!.identifier)
-                                            
-                                            ex.fulfill()
-                                        }
+                    self.client.createCard(with: request) { (registeredCard, error) in
+                        self.client.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
+                            XCTAssert(error == nil && response != nil)
+                            XCTAssert(!response!.authGrantId.isEmpty && !response!.encryptedMessage.isEmpty)
+                            
+                            let message = try! self.crypto.decrypt(response!.encryptedMessage, with: keyPair.privateKey)
+                            
+                            
+                            let virgilAuthPublicKeyData = Data(base64Encoded: kVSSAuthServicePublicKeyInBase64)!
+                            let virgilAuthPublicKey = self.crypto.importPublicKey(from: virgilAuthPublicKeyData)!
+                            let encryptedMessage = try! self.crypto.encrypt(message, for: [virgilAuthPublicKey])
+                            
+                            self.client.ackChallengeMessage(withAuthGrantId: response!.authGrantId, encryptedMessage: encryptedMessage) { code, error in
+                                self.client.obtainAccessToken(withAccessCode: code!) { response, error in
+                                    self.client.verifyAccessToken(response!.accessToken) { cardId, error in
+                                        XCTAssert(error == nil)
+                                        XCTAssert(cardId! == registeredCard!.identifier)
+                                        
+                                        ex.fulfill()
                                     }
                                 }
                             }

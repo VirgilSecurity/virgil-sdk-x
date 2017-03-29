@@ -49,17 +49,17 @@
 }
 
 - (void)test002_CreateGlobalCardRequestImportExport {
-    VSSCreateGlobalCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithValidationToken:@"testToken"];
+    VSSCreateEmailCardRequest *request = [self.utils instantiateEmailCreateCardRequestWithValidationToken:@"testToken"];
     
     NSString *exportedData = [request exportData];
     
-    VSSCreateGlobalCardRequest *importedRequest = [[VSSCreateGlobalCardRequest alloc] initWithData:exportedData];
+    VSSCreateEmailCardRequest *importedRequest = [[VSSCreateEmailCardRequest alloc] initWithData:exportedData];
     
     XCTAssert([self.utils checkCreateGlobalCardRequest:request isEqualToCreateGlobalCardRequest:importedRequest]);
 }
 
 - (void)test003_RevokeCardRequestImportExport {
-    VSSRevokeApplicationCardRequest *revokeRequest = [VSSRevokeApplicationCardRequest revokeApplicationCardRequestWithCardId:@"testId" reason:VSSCardRevocationReasonUnspecified];
+    VSSRevokeUserCardRequest *revokeRequest = [VSSRevokeUserCardRequest revokeUserCardRequestWithCardId:@"testId" reason:VSSCardRevocationReasonUnspecified];
     
     NSString *exportedData = [revokeRequest exportData];
     
@@ -69,11 +69,11 @@
 }
 
 - (void)test004_RevokeGlobalCardRequestImportExport {
-    VSSRevokeGlobalCardRequest *revokeRequest = [VSSRevokeGlobalCardRequest revokeGlobalCardRequestWithCardId:@"testId" validationToken:@"testToken" reason:VSSCardRevocationReasonUnspecified];
+    VSSRevokeEmailCardRequest *revokeRequest = [VSSRevokeEmailCardRequest revokeEmailCardRequestWithCardId:@"testId" validationToken:@"testToken" reason:VSSCardRevocationReasonUnspecified];
     
     NSString *exportedData = [revokeRequest exportData];
     
-    VSSRevokeGlobalCardRequest *importedRevokeRequest = [[VSSRevokeGlobalCardRequest alloc] initWithData:exportedData];
+    VSSRevokeEmailCardRequest *importedRevokeRequest = [[VSSRevokeEmailCardRequest alloc] initWithData:exportedData];
     
     XCTAssert([self.utils checkRevokeGlobalCardRequest:revokeRequest isEqualToRevokeGlobalCardRequest:importedRevokeRequest]);
 }

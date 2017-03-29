@@ -1,5 +1,5 @@
 //
-//  VSSRevokeApplicationRequest.m
+//  VSSRevokeUserCardRequest.m
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 2/28/17.
@@ -7,14 +7,14 @@
 //
 
 #import "VSSSignableRequestPrivate.h"
-#import "VSSRevokeApplicationCardRequest.h"
+#import "VSSRevokeUserCardRequest.h"
 #import "VSSRevokeCardSnapshotModelPrivate.h"
 
-@implementation VSSRevokeApplicationCardRequest
+@implementation VSSRevokeUserCardRequest
 
-+ (instancetype)revokeApplicationCardRequestWithCardId:(NSString *)cardId reason:(VSSCardRevocationReason)reason {
++ (instancetype)revokeUserCardRequestWithCardId:(NSString *)cardId reason:(VSSCardRevocationReason)reason {
     VSSRevokeCardSnapshotModel *model = [[VSSRevokeCardSnapshotModel alloc] initWithCardId:cardId revocationReason:reason];
-    return [[VSSRevokeApplicationCardRequest alloc] initWithSnapshotModel:model];
+    return [[VSSRevokeUserCardRequest alloc] initWithSnapshotModel:model];
 }
 
 @end

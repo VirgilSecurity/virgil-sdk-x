@@ -1,5 +1,5 @@
 //
-//  VSSCreateApplicationCardRequest.h
+//  VSSCreateUserCardRequest.h
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 2/28/17.
@@ -10,10 +10,10 @@
 #import "VSSCreateCardSnapshotModel.h"
 
 /**
- Virgil Model representing request for Virgil Card creation.
+ Virgil Model representing request for Virgil Card creation in application scope.
  See VSSSignableRequest, VSSCreateCardSnapshotModel. See VSSClient protocol.
  */
-@interface VSSCreateApplicationCardRequest: VSSCreateCardRequest
+@interface VSSCreateUserCardRequest: VSSCreateCardRequest
 
 /**
  Factory method which allocates and initalizes VSSCreateCardRequest instance.
@@ -25,7 +25,7 @@
  
  @return allocated and initialized VSSCreateCardRequest instance
  */
-+ (instancetype __nonnull)createApplicationCardRequestWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKeyData:(NSData * __nonnull)publicKeyData data:(NSDictionary<NSString *, NSString *> * __nullable)data;
++ (instancetype __nonnull)createUserCardRequestWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKeyData:(NSData * __nonnull)publicKeyData data:(NSDictionary<NSString *, NSString *> * __nullable)data;
 
 /**
  Factory method which allocates and initalizes VSSCreateCardRequest instance.
@@ -39,7 +39,7 @@
  
  @return allocated and initialized VSSCreateCardRequest instance
  */
-+ (instancetype __nonnull)createApplicationCardRequestWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKeyData:(NSData * __nonnull)publicKeyData data:(NSDictionary<NSString *, NSString *> * __nullable)data device:(NSString * __nonnull)device deviceName:(NSString * __nonnull)deviceName;
++ (instancetype __nonnull)createUserCardRequestWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKeyData:(NSData * __nonnull)publicKeyData data:(NSDictionary<NSString *, NSString *> * __nullable)data device:(NSString * __nonnull)device deviceName:(NSString * __nonnull)deviceName;
 
 /**
  Factory method which allocates and initalizes VSSCreateCardRequest instance.
@@ -50,6 +50,6 @@
  
  @return allocated and initialized VSSCreateCardRequest instance
  */
-+ (instancetype __nonnull)createApplicationCardRequestWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKeyData:(NSData * __nonnull)publicKeyData;
++ (instancetype __nonnull)createUserCardRequestWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType publicKeyData:(NSData * __nonnull)publicKeyData;
 
 @end

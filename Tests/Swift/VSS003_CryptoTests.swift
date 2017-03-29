@@ -18,7 +18,7 @@ class VSS003_CryptoTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        self.crypto = VSSCrypto()
+        self.crypto = VSSCrypto(defaultKeyType: .EC_BP512R1)
     }
     
     override func tearDown() {
@@ -126,7 +126,7 @@ class VSS003_CryptoTests: XCTestCase {
         do {
             try self.crypto.decrypt(inputStreamForDecryption, to: outputStreamForDecryption, with: wrongKeyPair.privateKey)
         }
-        catch _ {
+        catch {
             errorWasThrown = true
         }
         
@@ -231,7 +231,7 @@ class VSS003_CryptoTests: XCTestCase {
         
         let signature = try! self.crypto.generateSignature(for: data, with: keyPair.privateKey)
         
-        try! self.crypto.verifyData(data, withSignature: signature, using: keyPair.publicKey)
+        try! self.crypto.verify(data, withSignature: signature, using: keyPair.publicKey)
     }
     
     func testSD002_SignRandomData_IncorrectKeys_ShouldNotValidate() {
@@ -244,9 +244,9 @@ class VSS003_CryptoTests: XCTestCase {
         
         var errorWasThrown = false
         do {
-            try self.crypto.verifyData(data, withSignature: signature, using: wrongKeyPair.publicKey)
+            try self.crypto.verify(data, withSignature: signature, using: wrongKeyPair.publicKey)
         }
-        catch _ {
+        catch {
             errorWasThrown = true
         }
         XCTAssert(errorWasThrown)
@@ -258,10 +258,44 @@ class VSS003_CryptoTests: XCTestCase {
         let senderKeyPair = self.crypto.generateKeyPair()
         let receiverKeyPair = self.crypto.generateKeyPair()
         
-        let signedAndEcryptedData = try! self.crypto.signThenEncrypt(data, with: senderKeyPair.privateKey, for: [receiverKeyPair.publicKey])
+        let signedThenEncryptedData = try! self.crypto.signThenEncrypt(data, with: senderKeyPair.privateKey, for: [receiverKeyPair.publicKey])
         
-        let decryptedThenVerifiedData = try! self.crypto.decryptThenVerify(signedAndEcryptedData, with: receiverKeyPair.privateKey, using: senderKeyPair.publicKey)
+        let decryptedThenVerifiedData = try! self.crypto.decryptThenVerify(signedThenEncryptedData, with: receiverKeyPair.privateKey, using: senderKeyPair.publicKey)
         
         XCTAssert(data == decryptedThenVerifiedData)
+    }
+    
+    func testESD002_SignThenEncryptRandomData_TwoKeys_ShouldDecryptValidate() {
+        let data = UUID().uuidString.data(using: .utf8)!
+        
+        let senderKeyPair = self.crypto.generateKeyPair()
+        let oneMoreKeyPair = self.crypto.generateKeyPair()
+        let receiverKeyPair = self.crypto.generateKeyPair()
+        
+        let signedThenEncryptedData = try! self.crypto.signThenEncrypt(data, with: senderKeyPair.privateKey, for: [receiverKeyPair.publicKey])
+        
+        let decryptedThenVerifiedData = try! self.crypto.decryptThenVerify(signedThenEncryptedData, with: receiverKeyPair.privateKey, usingOneOf: [oneMoreKeyPair.publicKey, senderKeyPair.publicKey])
+        
+        XCTAssert(data == decryptedThenVerifiedData)
+    }
+    
+    func testESD003_SignThenEncryptRandomData_NoSenderKeys_ShouldNotValidate() {
+        let data = UUID().uuidString.data(using: .utf8)!
+        
+        let senderKeyPair = self.crypto.generateKeyPair()
+        let oneMoreKeyPair = self.crypto.generateKeyPair()
+        let receiverKeyPair = self.crypto.generateKeyPair()
+        
+        let signedThenEncryptedData = try! self.crypto.signThenEncrypt(data, with: senderKeyPair.privateKey, for: [receiverKeyPair.publicKey])
+        
+        var errorWasThrown = false
+        do {
+            try self.crypto.decryptThenVerify(signedThenEncryptedData, with: receiverKeyPair.privateKey, usingOneOf: [oneMoreKeyPair.publicKey])
+        }
+        catch {
+            errorWasThrown = true
+        }
+        
+        XCTAssert(errorWasThrown)
     }
 }

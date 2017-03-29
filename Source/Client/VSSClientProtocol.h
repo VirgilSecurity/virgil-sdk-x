@@ -10,9 +10,9 @@
 #import "VSSCreateCardRequest.h"
 #import "VSSSignedCardRequest.h"
 #import "VSSRemoveCardRelationRequest.h"
-#import "VSSCreateGlobalCardRequest.h"
+#import "VSSCreateEmailCardRequest.h"
 #import "VSSRevokeCardRequest.h"
-#import "VSSRevokeGlobalCardRequest.h"
+#import "VSSRevokeEmailCardRequest.h"
 #import "VSSConfirmIdentityResponse.h"
 #import "VSSChallengeMessageResponse.h"
 #import "VSSObtainTokenResponse.h"
@@ -31,7 +31,7 @@
  @param request VSSCreateCardRequest instance with Card data and signatures
  @param callback callback with registered VSSCard or NSError instance if error occured
  */
-- (void)createCardWithRequest:(VSSCreateCardRequest * __nonnull)request completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback NS_SWIFT_NAME(createCardWith(_:completion:));
+- (void)createCardWithRequest:(VSSCreateCardRequest * __nonnull)request completion:(void (^ __nonnull)(VSSCard * __nullable, NSError * __nullable))callback NS_SWIFT_NAME(createCard(with:completion:));
 
 /**
  Creates trusted one-way relation between two virgil cards.

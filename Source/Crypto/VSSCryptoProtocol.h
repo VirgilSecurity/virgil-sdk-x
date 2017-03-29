@@ -13,6 +13,8 @@
 #import "VSSHashAlgorithm.h"
 #import "VSSFingerprint.h"
 
+#undef verify
+
 /**
  Protocol for all cryptographic operations.
  */
@@ -117,7 +119,6 @@
 
 /**
  Verifies data for genuineness.
- NOTE: verify is defined in <usr/include/AssertMacros.h> thus can't be used as base name in NS_SWIFT_NAME
  
  @param data            NSData instance with data to be verified
  @param signature       NSData instance with corresponding signature
@@ -126,11 +127,10 @@
 
  @return BOOL value which indicates whether data was successfully verified or verification failed
  */
-- (BOOL)verifyData:(NSData * __nonnull)data withSignature:(NSData * __nonnull)signature usingSignerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(verifyData(_:withSignature:using:));
+- (BOOL)verifyData:(NSData * __nonnull)data withSignature:(NSData * __nonnull)signature usingSignerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(verify(_:withSignature:using:));
 
 /**
  Verifies stream for genuineness.
- NOTE: verify is defined in <usr/include/AssertMacros.h> thus can't be used as base name in NS_SWIFT_NAME
 
  @param stream          NSInputStream instance with data to be verified
  @param signature       NSData instance with corresponding signature
@@ -139,7 +139,7 @@
 
  @return BOOL value which indicates whether stream was successfully verified or verification failed
  */
-- (BOOL)verifyStream:(NSInputStream * __nonnull)stream signature:(NSData * __nonnull)signature usingSignerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(verifyStream(_:withSignature:using:));
+- (BOOL)verifyStream:(NSInputStream * __nonnull)stream signature:(NSData * __nonnull)signature usingSignerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(verify(_:withSignature:using:));
 
 /**
  Decrypts data.
@@ -179,13 +179,25 @@
 /**
  Decrypts and verifies data.
 
- @param data            NSData instance with encrypted and signed data
- @param privateKey      VSSPrivateKey isntance of data recipient
- @param signerPublicKey VSSPublicKey instance with data signer's Public Key
- @param errorPtr        NSError pointer to return error if needed
+ @param data              NSData instance with encrypted and signed data
+ @param privateKey        VSSPrivateKey isntance of data recipient
+ @param signersPublicKeys Array of VSSPublicKey instances of possible signers
+ @param errorPtr          NSError pointer to return error if needed
 
  @return NSData instance with encrypted and verified data
  */
+- (NSData * __nullable)decryptThenVerifyData:(NSData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey usingOneOfSignersPublicKeys:(NSArray<VSSPublicKey *> * __nonnull)signersPublicKeys error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(decryptThenVerify(_:with:usingOneOf:));
+    
+    /**
+     Decrypts and verifies data.
+     
+     @param data            NSData instance with encrypted and signed data
+     @param privateKey      VSSPrivateKey isntance of data recipient
+     @param signerPublicKey VSSPublicKey instance with data signer's Public Key
+     @param errorPtr        NSError pointer to return error if needed
+     
+     @return NSData instance with encrypted and verified data
+     */
 - (NSData * __nullable)decryptThenVerifyData:(NSData * __nonnull)data withPrivateKey:(VSSPrivateKey * __nonnull)privateKey usingSignerPublicKey:(VSSPublicKey * __nonnull)signerPublicKey error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(decryptThenVerify(_:with:using:));
 
 ///------------------------------------------
@@ -222,5 +234,15 @@
  @return VSSFingerprint instance corresponding to data
  */
 - (VSSFingerprint * __nonnull)calculateFingerprintForData:(NSData * __nonnull)data;
+
+/**
+ Computes hash for data using chosen algorithm
+ 
+ @param data      NSData instance with data of which hash will be calculated
+ @param algorithm Algorithm used for hash calculation. See VSSHashAlgorithm
+ 
+ @return NSData instance with hash
+ */
+- (NSData * __nonnull)computeHashForData:(NSData * __nonnull)data withAlgorithm:(VSSHashAlgorithm)algorithm;
 
 @end

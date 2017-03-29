@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = "VirgilSDK"
-  s.version               = "4.3.1"
+  s.version               = "4.4.0"
   s.summary               = "Virgil SDK for Apple devices and languages."
   s.cocoapods_version     = ">= 0.36"
   s.homepage              = "https://github.com/VirgilSecurity/virgil-sdk-x/"
@@ -21,7 +21,8 @@ Pod::Spec.new do |s|
                             'Source/Client/Models/Protocols/*.{h}',
                             'Source/Crypto/*.{h}',
                             'Source/Crypto/Keys/*.{h}',
-                            'Source/KeyStorage/*.{h}'
+                            'Source/KeyStorage/*.{h}',
+                            'Source/HighLevel/*.{h}'
   s.requires_arc          = true
-  s.dependency "VirgilCrypto", "~> 2.0.5"
+  s.dependency "VirgilCrypto", "~> 2.0.8"
 end

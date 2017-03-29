@@ -12,10 +12,12 @@ import VirgilSDK
 class VSSTestUtils {
     private var crypto: VSSCrypto
     private var consts: VSSTestsConst
+    private var regexp: NSRegularExpression
     
     init(crypto: VSSCrypto, consts: VSSTestsConst) {
         self.crypto = crypto
         self.consts = consts
+        self.regexp = try! NSRegularExpression(pattern: "Your confirmation code is.+([A-Z0-9]{6})", options: .caseInsensitive)
     }
     
     func instantiateCreateCardRequest(keyPair: VSSKeyPair? = nil) -> VSSCreateCardRequest {
@@ -25,7 +27,7 @@ class VSSTestUtils {
         // some random value
         let identityValue = UUID().uuidString
         let identityType = self.consts.applicationIdentityType
-        let request = VSSCreateApplicationCardRequest(identity: identityValue, identityType: identityType, publicKeyData: exportedPublicKey)
+        let request = VSSCreateUserCardRequest(identity: identityValue, identityType: identityType, publicKeyData: exportedPublicKey)
         
         let privateAppKeyData = Data(base64Encoded: self.consts.applicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
         let appPrivateKey = self.crypto.importPrivateKey(from: privateAppKeyData, withPassword: self.consts.applicationPrivateKeyPassword)!
@@ -38,13 +40,12 @@ class VSSTestUtils {
         return request;
     }
     
-    func instantiateEmailCreateCardRequest(withIdentity identity: String, validationToken: String, keyPair: VSSKeyPair?) -> VSSCreateGlobalCardRequest {
+    func instantiateEmailCreateCardRequest(withIdentity identity: String, validationToken: String, keyPair: VSSKeyPair?) -> VSSCreateEmailCardRequest {
         let kp = keyPair ?? self.crypto.generateKeyPair()
         let exportedPublicKey = self.crypto.export(kp.publicKey)
         
         let identityValue = identity
-        let identityType = "email"
-        let request = VSSCreateGlobalCardRequest(identity: identityValue, identityType: identityType, validationToken:validationToken, publicKeyData: exportedPublicKey)
+        let request = VSSCreateEmailCardRequest(identity: identityValue, validationToken:validationToken, publicKeyData: exportedPublicKey)
         
         let signer = VSSRequestSigner(crypto: self.crypto)
         
@@ -60,7 +61,7 @@ class VSSTestUtils {
         // some random value
         let identityValue = UUID().uuidString
         let identityType = self.consts.applicationIdentityType
-        let request = VSSCreateApplicationCardRequest(identity: identityValue, identityType: identityType, publicKeyData: exportedPublicKey, data: data)
+        let request = VSSCreateUserCardRequest(identity: identityValue, identityType: identityType, publicKeyData: exportedPublicKey, data: data)
         
         let privateAppKeyData = Data(base64Encoded: self.consts.applicationPrivateKeyBase64, options: Data.Base64DecodingOptions(rawValue: 0))!
         let appPrivateKey = self.crypto.importPrivateKey(from: privateAppKeyData, withPassword: self.consts.applicationPrivateKeyPassword)!
@@ -95,7 +96,7 @@ class VSSTestUtils {
         return equals
     }
     
-    func check(card: VSSCard, isEqualToCreateCardRequest request: VSSCreateGlobalCardRequest) -> Bool {
+    func check(card: VSSCard, isEqualToCreateCardRequest request: VSSCreateEmailCardRequest) -> Bool {
         let equals = card.identityType == request.snapshotModel.identityType
             && card.identity == request.snapshotModel.identity
             && checkObjectsEqualOrBothNil(left: card.data, right: request.snapshotModel.data)
@@ -133,7 +134,7 @@ class VSSTestUtils {
         return equals
     }
     
-    func check(createGlobalCardRequest request1: VSSCreateGlobalCardRequest, isEqualToCreateGlobalCardRequest request2: VSSCreateGlobalCardRequest) -> Bool {
+    func check(createGlobalCardRequest request1: VSSCreateEmailCardRequest, isEqualToCreateGlobalCardRequest request2: VSSCreateEmailCardRequest) -> Bool {
         let equals = request1.snapshot == request2.snapshot
             && request1.signatures == request2.signatures
             && checkObjectsEqualOrBothNil(left: request1.snapshotModel.data, right: request2.snapshotModel.data)
@@ -148,8 +149,8 @@ class VSSTestUtils {
         return equals
     }
     
-    func instantiateRevokeCardRequestFor(card: VSSCard) -> VSSRevokeApplicationCardRequest {
-        let revokeCard = VSSRevokeApplicationCardRequest(cardId: card.identifier, reason: .unspecified)
+    func instantiateRevokeCardRequestFor(card: VSSCard) -> VSSRevokeUserCardRequest {
+        let revokeCard = VSSRevokeUserCardRequest(cardId: card.identifier, reason: .unspecified)
         
         let signer = VSSRequestSigner(crypto: self.crypto)
         
@@ -162,8 +163,8 @@ class VSSTestUtils {
         return revokeCard
     }
     
-    func instantiateRevokeGlobalCardRequestFor(card: VSSCard, validationToken: String, privateKey: VSSPrivateKey) -> VSSRevokeGlobalCardRequest {
-        let revokeCard = VSSRevokeGlobalCardRequest(cardId: card.identifier, validationToken:validationToken, reason: .unspecified)
+    func instantiateRevokeGlobalCardRequestFor(card: VSSCard, validationToken: String, privateKey: VSSPrivateKey) -> VSSRevokeEmailCardRequest {
+        let revokeCard = VSSRevokeEmailCardRequest(cardId: card.identifier, validationToken:validationToken, reason: .unspecified)
         
         let signer = VSSRequestSigner(crypto: self.crypto)
         
@@ -181,7 +182,7 @@ class VSSTestUtils {
         return equals
     }
     
-    func check(revokeGlobalCardRequest request1: VSSRevokeGlobalCardRequest, isEqualToRevokeGlobalCardRequest request2: VSSRevokeGlobalCardRequest) -> Bool {
+    func check(revokeGlobalCardRequest request1: VSSRevokeEmailCardRequest, isEqualToRevokeGlobalCardRequest request2: VSSRevokeEmailCardRequest) -> Bool {
         let equals = request1.snapshot == request2.snapshot
             && request1.signatures == request2.signatures
             && request1.snapshotModel.cardId == request2.snapshotModel.cardId
@@ -198,6 +199,64 @@ class VSSTestUtils {
         let identity = identityLong.substring(to: identityLong.index(identityLong.startIndex, offsetBy: 25))
         
         return String(format: "%@@mailinator.com", identity)
+    }
+    
+    func checkHighLevelCardIsValid(card: VSSVirgilCard) -> Bool {
+        let valid = card.isPublished
+            && self.check(card: card.card!, isEqualToCreateCardRequest: card.request!)
+        
+        return valid
+    }
+    
+    func check(card card1: VSSVirgilCard, isEqualToCard card2: VSSVirgilCard) -> Bool {
+        let equals = self.check(card: card1.card!, isEqualToCard: card2.card!)
+        
+        return equals
+    }
+
+    func getConfirmationCode(emailNumber: Int = 0, identityValue: String, mailinator: Mailinator, completion: @escaping (String)->()) {
+        let identityShort = identityValue.substring(to: identityValue.range(of: "@")!.lowerBound)
+        
+        let metadataReceivedCallback = { (metadataList: [MEmailMetadata]) in
+            sleep(10)
+            mailinator.getEmail(metadataList[emailNumber].mid) { email, error in
+                let bodyPart = email!.parts[0];
+                
+                let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
+                
+                let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
+                
+                let code = String(match.characters.suffix(6))
+                
+                completion(code)
+            }
+        }
+        
+        let checkInbox = { (completion: @escaping ([MEmailMetadata]?, Error?) -> ()) in
+            mailinator.getInbox(identityShort) { metadataList, error in
+                completion(metadataList, error)
+            }
+        }
+        
+        var counter = 0
+        var received = false
+        
+        while counter < 23 && !received {
+            sleep(10)
+            guard !received else {
+                return
+            }
+            checkInbox() { metadataList, error in
+                guard error == nil, let mList = metadataList, mList.count > emailNumber else {
+                    counter += 1
+                    return
+                }
+                
+                received = true
+                metadataReceivedCallback(mList)
+                return
+            }
+        }
     }
 }
 

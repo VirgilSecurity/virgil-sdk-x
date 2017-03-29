@@ -14,6 +14,7 @@ class VSS005_CompatibilityTests: XCTestCase {
     private var utils: VSSTestUtils!
     private var crypto: VSSCrypto!
     private var testsDict: Dictionary<String, Any>!
+    private var api: VSSVirgilApi!
     
     // MARK: Setup
     
@@ -22,6 +23,8 @@ class VSS005_CompatibilityTests: XCTestCase {
         
         self.crypto = VSSCrypto()
         self.utils = VSSTestUtils(crypto: self.crypto, consts: VSSTestsConst())
+        
+        self.api = VSSVirgilApi()
         
         let testFileURL = Bundle(for: type(of: self)).url(forResource: "sdk_compatibility_data", withExtension: "json")!
         let testFileData = try! Data(contentsOf: testFileURL)
@@ -39,7 +42,7 @@ class VSS005_CompatibilityTests: XCTestCase {
     // MARK: Tests
     
     func test001_CheckNumberOfTestsInJSON() {
-        XCTAssert(self.testsDict.count == 6)
+        XCTAssert(self.testsDict.count == 9)
     }
     
     func test002_DecryptFromSingleRecipient_ShouldDecrypt() {
@@ -173,6 +176,81 @@ class VSS005_CompatibilityTests: XCTestCase {
         
         let creatorPublicKey = self.crypto.importPublicKey(from: request.snapshotModel.publicKeyData)!
         
-        try! self.crypto.verifyData(fingerprint.value, withSignature: request.signatures[fingerprint.hexValue]!, using: creatorPublicKey)
+        try! self.crypto.verify(fingerprint.value, withSignature: request.signatures[fingerprint.hexValue]!, using: creatorPublicKey)
+    }
+    
+    func test008_DecryptThenVerifyMultipleSigners_ShouldDecryptThenVerify() {
+        let dict = self.testsDict["sign_then_encrypt_multiple_signers"] as! Dictionary<String, Any>
+        
+        let privateKeyStr = dict["private_key"] as! String
+        let privateKeyData = Data(base64Encoded: privateKeyStr)!
+        
+        let privateKey = self.crypto.importPrivateKey(from: privateKeyData, withPassword: nil)!
+        
+        var publicKeys = Array<VSSPublicKey>()
+        
+        for publicKeyStr in dict["public_keys"] as! Array<String> {
+            let publicKeyData = Data(base64Encoded: publicKeyStr)!
+            
+            let publicKey = self.crypto.importPublicKey(from: publicKeyData)!
+            
+            publicKeys.append(publicKey)
+        }
+        
+        let originalDataStr = dict["original_data"] as! String
+        
+        let cipherDataStr = dict["cipher_data"] as! String
+        let cipherData = Data(base64Encoded: cipherDataStr)!
+        
+        let decryptedData = try! self.crypto.decryptThenVerify(cipherData, with: privateKey, usingOneOf: publicKeys)
+        let decrypteDataStr = decryptedData.base64EncodedString()
+        
+        XCTAssert(decrypteDataStr == originalDataStr)
+    }
+    
+    func test009_ExportPublishedGlobalCard_ShouldBeEqual() {
+        let dict = self.testsDict["export_published_global_virgil_card"] as! Dictionary<String, String>
+        
+        let id = dict["card_id"]!
+        let exportedCard = dict["exported_card"]!
+        
+        let card = VSSCard(data: exportedCard)!
+        XCTAssert(card.identifier == id)
+    }
+    
+    func test010_ExportUnpublishedLocalCard_ShouldBeEqual() {
+        let dict = self.testsDict["export_unpublished_local_virgil_card"] as! Dictionary<String, String>
+        
+        let id = dict["card_id"]!
+        let exportedCard = dict["exported_card"]!
+        
+        let request = VSSCreateCardRequest(data: exportedCard)!
+        let fingerprint = self.crypto.calculateFingerprint(for: request.snapshot)
+        
+        XCTAssert(fingerprint.hexValue == id)
+    }
+    
+    func test011_ExportPublishedGlobalHLCard_ShouldBeEqual() {
+        let dict = self.testsDict["export_published_global_virgil_card"] as! Dictionary<String, String>
+        
+        let id = dict["card_id"]!
+        let exportedCard = dict["exported_card"]!
+        
+        let card = self.api.cards.importVirgilCard(fromData: exportedCard)!
+        XCTAssert(card.isPublished)
+        XCTAssert(card.identifier == id)
+    }
+    
+    func test012_ExportUnpublishedLocalHLCard_ShouldBeEqual() {
+        let dict = self.testsDict["export_unpublished_local_virgil_card"] as! Dictionary<String, String>
+        
+        let id = dict["card_id"]!
+        let exportedCard = dict["exported_card"]!
+        
+        let card = self.api.cards.importVirgilCard(fromData: exportedCard)!
+        let fingerprint = self.crypto.calculateFingerprint(for: card.request!.snapshot)
+        
+        XCTAssert(!card.isPublished)
+        XCTAssert(fingerprint.hexValue == id)
     }
 }

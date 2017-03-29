@@ -16,10 +16,30 @@
 #import "VSSCryptoCommonsPrivate.h"
 
 static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
+static NSString * const kVSSCustomParamKeySignerId = @"VIRGIL-DATA-SIGNER-ID";
 
 @import VirgilCrypto;
 
 @implementation VSSCrypto
+
+- (instancetype)initWithDefaultKeyType:(VSSKeyType)keyType {
+    self = [super init];
+    if (self) {
+        _defaultKeyType = keyType;
+        _hasDefaultKeyType = YES;
+    }
+    
+    return self;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _hasDefaultKeyType = NO;
+    }
+    
+    return self;
+}
 
 #pragma mark - Key processing
 
@@ -35,7 +55,16 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
 }
 
 - (VSSKeyPair *)generateKeyPair {
-    return [self wrapCryptoKeyPair:[[VSCKeyPair alloc] init]];
+    VSCKeyPair *vscKeyPair = nil;
+    if (self.hasDefaultKeyType) {
+        VSCKeyType cType = vss_mapKeyType(self.defaultKeyType);
+        vscKeyPair = [[VSCKeyPair alloc] initWithKeyPairType:cType password:nil];
+    }
+    else {
+        vscKeyPair = [[VSCKeyPair alloc] init];
+    }
+    
+    return [self wrapCryptoKeyPair:vscKeyPair];
 }
 
 - (VSSKeyPair *)generateKeyPairOfType:(VSSKeyType)type {
@@ -255,6 +284,15 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
         return nil;
     }
     
+    VSSPublicKey *publicKey = [self extractPublicKeyFromPrivateKey:privateKey];
+    NSData *signerId = publicKey.identifier;
+    [cryptor setData:signerId forKey:kVSSCustomParamKeySignerId error:&error];
+    if (error != nil) {
+        if (errorPtr != nil)
+            *errorPtr = error;
+        return nil;
+    }
+    
     for (VSSPublicKey *publicKey in recipients) {
         NSData *publicKeyData = [self exportPublicKey:publicKey];
         NSError *error;
@@ -292,6 +330,60 @@ static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
     if (error != nil) {
         if (errorPtr != nil)
             *errorPtr = error;
+        return nil;
+    }
+    
+    VSCSigner *signer = [[VSCSigner alloc] init];
+    NSData *publicKeyData = [self exportPublicKey:signerPublicKey];
+    BOOL isVerified = [signer verifySignature:signature data:decryptedData publicKey:publicKeyData error:&error];
+    if (error != nil) {
+        if (errorPtr != nil)
+            *errorPtr = error;
+        return nil;
+    }
+    
+    if (!isVerified)
+        return nil;
+    
+    return decryptedData;
+}
+    
+- (NSData *)decryptThenVerifyData:(NSData *)data withPrivateKey:(VSSPrivateKey *)privateKey usingOneOfSignersPublicKeys:(NSArray<VSSPublicKey *> *)signersPublicKeys error:(NSError **)errorPtr  {
+    VSCCryptor *cryptor = [[VSCCryptor alloc] init];
+    
+    NSError *error;
+    NSData *privateKeyData = [self exportPrivateKey:privateKey withPassword:nil];
+    NSData *decryptedData = [cryptor decryptData:data recipientId:privateKey.identifier privateKey:privateKeyData keyPassword:nil error:&error];
+    if (error != nil) {
+        if (errorPtr != nil)
+        *errorPtr = error;
+        return nil;
+    }
+    
+    NSData *signature = [cryptor dataForKey:kVSSCustomParamKeySignature error:&error];
+    if (error != nil) {
+        if (errorPtr != nil)
+            *errorPtr = error;
+        return nil;
+    }
+    
+    NSData *signerId = [cryptor dataForKey:kVSSCustomParamKeySignerId error:&error];
+    if (error != nil) {
+        if (errorPtr != nil)
+            *errorPtr = error;
+        return nil;
+    }
+    
+    VSSPublicKey *signerPublicKey;
+    for (VSSPublicKey *publicKey in signersPublicKeys) {
+        if ([publicKey.identifier isEqualToData:signerId]) {
+            signerPublicKey = publicKey;
+            break;
+        }
+    }
+    
+    // Signer not found
+    if (signerPublicKey == nil) {
         return nil;
     }
     

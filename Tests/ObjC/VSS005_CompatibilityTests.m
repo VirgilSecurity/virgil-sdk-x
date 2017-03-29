@@ -42,7 +42,7 @@
 #pragma mark - Tests
 
 - (void)test001_CheckNumberOfTestsInJSON {
-    XCTAssert([self.testDict count] == 6);
+    XCTAssert([self.testDict count] == 9);
 }
 
 - (void)test002_DecryptFromSingleRecipient_ShouldDecrypt {
@@ -192,6 +192,59 @@
     NSError *error;
     XCTAssert([self.crypto verifyData:fingerprint.value withSignature:request.signatures[fingerprint.hexValue] usingSignerPublicKey:creatorPublicKey error:&error]);
     XCTAssert(error == nil);
+}
+    
+- (void)test008_DecryptThenVerifyMultipleSigners_ShouldDecryptThenVerify {
+    NSDictionary *dict = self.testDict[@"sign_then_encrypt_multiple_signers"];
+    
+    NSMutableArray<VSSPublicKey *> *publicKeys = [[NSMutableArray<VSSPublicKey *> alloc] init];
+    
+    for (NSString *publicKeyStr in (NSArray *)dict[@"public_keys"]) {
+        NSData *publicKeyData = [[NSData alloc] initWithBase64EncodedString:publicKeyStr options:0];
+        
+        VSSPublicKey *publicKey = [self.crypto importPublicKeyFromData:publicKeyData];
+        
+        [publicKeys addObject:publicKey];
+    }
+    
+    NSString *cipherDataStr = dict[@"cipher_data"];
+    NSData *cipherData = [[NSData alloc] initWithBase64EncodedString:cipherDataStr options:0];
+    
+    NSString *originalDataStr = dict[@"original_data"];
+    
+    NSString *privateKeyStr = dict[@"private_key"];
+    NSData *privateKeyData = [[NSData alloc] initWithBase64EncodedString:privateKeyStr options:0];
+    
+    VSSPrivateKey *privateKey = [self.crypto importPrivateKeyFromData:privateKeyData withPassword:nil];
+    
+    NSError *error;
+    NSData *decryptedData = [self.crypto decryptThenVerifyData:cipherData withPrivateKey:privateKey usingOneOfSignersPublicKeys:publicKeys error:&error];
+    NSString *decryptedDataStr = [decryptedData base64EncodedStringWithOptions:0];
+    
+    XCTAssert(error == nil);
+    XCTAssert([decryptedDataStr isEqualToString:originalDataStr]);
+}
+
+- (void)test009_ExportPublishedGlobalCard_ShouldBeEqual {
+    NSDictionary *dict = self.testDict[@"export_published_global_virgil_card"];
+    
+    NSString *id = dict[@"card_id"];
+    NSString *exportedCard = dict[@"exported_card"];
+    
+    VSSCard *card = [[VSSCard alloc] initWithData:exportedCard];
+    XCTAssert([card.identifier isEqualToString:id]);
+}
+
+- (void)test010_ExportUnpublishedLocalCard_ShouldBeEqual {
+    NSDictionary *dict = self.testDict[@"export_unpublished_local_virgil_card"];
+    
+    NSString *id = dict[@"card_id"];
+    NSString *exportedRequest = dict[@"exported_card"];
+    
+    VSSCreateCardRequest *request = [[VSSCreateCardRequest alloc] initWithData:exportedRequest];
+    VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:request.snapshot];
+    
+    XCTAssert([fingerprint.hexValue isEqualToString:id]);
 }
 
 @end

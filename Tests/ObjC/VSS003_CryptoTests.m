@@ -318,5 +318,54 @@
     
     XCTAssert([data isEqualToData:decryptedThenVerifiedData]);
 }
+    
+- (void)testESD002_SignThenEncryptRandomData_TwoKeys_ShouldDecryptValidate {
+    NSData *data = [[[NSUUID UUID] UUIDString] dataUsingEncoding:NSUTF8StringEncoding];
+    
+    VSSKeyPair *senderKeyPair = [self.crypto generateKeyPair];
+    VSSKeyPair *oneMoreKeyPair = [self.crypto generateKeyPair];
+    VSSKeyPair *receiverKeyPair = [self.crypto generateKeyPair];
+    
+    NSError *error;
+    NSData *signedAndEcnryptedData = [self.crypto signThenEncryptData:data withPrivateKey:senderKeyPair.privateKey forRecipients:@[receiverKeyPair.publicKey] error:&error];
+    
+    if (error != nil) {
+        XCTFail(@"Expectation failed: %@", error);
+        return;
+    }
+    
+    NSData *decryptedThenVerifiedData = [self.crypto decryptThenVerifyData:signedAndEcnryptedData withPrivateKey:receiverKeyPair.privateKey usingOneOfSignersPublicKeys:@[oneMoreKeyPair.publicKey, senderKeyPair.publicKey] error:&error];
+    if (error != nil) {
+        XCTFail(@"Expectation failed: %@", error);
+        return;
+    }
+    
+    XCTAssert([data isEqualToData:decryptedThenVerifiedData]);
+}
+
+- (void)testESD003_SignThenEncryptRandomData_NoSenderKeys_ShouldNotValidate {
+    NSData *data = [[[NSUUID UUID] UUIDString] dataUsingEncoding:NSUTF8StringEncoding];
+    
+    VSSKeyPair *senderKeyPair = [self.crypto generateKeyPair];
+    VSSKeyPair *oneMoreKeyPair = [self.crypto generateKeyPair];
+    VSSKeyPair *receiverKeyPair = [self.crypto generateKeyPair];
+    
+    NSError *error;
+    NSData *signedAndEcnryptedData = [self.crypto signThenEncryptData:data withPrivateKey:senderKeyPair.privateKey forRecipients:@[receiverKeyPair.publicKey] error:&error];
+    
+    if (error != nil) {
+        XCTFail(@"Expectation failed: %@", error);
+        return;
+    }
+    
+    NSData *decryptedThenVerifiedData = [self.crypto decryptThenVerifyData:signedAndEcnryptedData withPrivateKey:receiverKeyPair.privateKey usingOneOfSignersPublicKeys:@[oneMoreKeyPair.publicKey] error:&error];
+    if (error != nil) {
+        XCTFail(@"Expectation failed: %@", error);
+        return;
+    }
+    
+    XCTAssert(decryptedThenVerifiedData == nil);
+}
+
 
 @end
