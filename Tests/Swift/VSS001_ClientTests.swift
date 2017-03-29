@@ -11,7 +11,7 @@ import VirgilSDK
 
 /// Each request should be done less than or equal this number of seconds.
 let kEstimatedRequestCompletionTime = 8
-let kEstimatedEmailReceiveTime = 45
+let kEstimatedEmailReceiveTime = 60
 
 class VSS001_ClientTests: XCTestCase {
     
