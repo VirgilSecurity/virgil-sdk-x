@@ -34,8 +34,6 @@
     NSString *deviceName = [self.context.deviceManager getDeviceName];
     NSData *publicKeyData = [ownerKey exportPublicKey];
     
-    
-    
     VSSCreateCardRequest *request = [identity generateRequestWithPublicKeyData:publicKeyData data:data device:device deviceName:deviceName];
     if (request == nil) {
         if (errorPtr != nil) {

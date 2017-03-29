@@ -8,6 +8,10 @@
 
 #import "VSSCardsManagerProtocol.h"
 
+/**
+ Implementation of VSSCardsManager protocol.
+ VSSCardsManager should not be created by user and is accessible only using VSSVirgilApi.
+ */
 @interface VSSCardsManager : NSObject <VSSCardsManager>
 
 /**
