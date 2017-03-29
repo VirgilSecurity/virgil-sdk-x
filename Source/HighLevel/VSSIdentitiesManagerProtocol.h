@@ -26,7 +26,8 @@
 
 /**
  Creates Email Identity corresponding to specific email needed to create Virgil Cards in Global scope.
- NOTE: email identities should be confirmed before use, see VSSEmailIdentity interface for details.
+ NOTE1: email identities should be confirmed before use, see VSSEmailIdentity interface for details.
+ NOTE2: confirmed email identities are for one time usage. User should create and confirm new identity for each create, revoke or any other operation.
 
  @param email NSString with email
  @return allocated and initialized VSSEmailIdentity instance
