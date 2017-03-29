@@ -95,6 +95,10 @@
     return [self.context.keyStorage storeKeyEntry:keyEntry error:errorPtr];
 }
 
+- (BOOL)storeWithName:(NSString *)name password:(NSString *)password error:(NSError **)errorPtr {
+    return [self storeWithName:name password:password meta:nil error:errorPtr];
+}
+
 - (NSData *)exportPublicKey {
     VSSPublicKey *publicKey = [self.context.crypto extractPublicKeyFromPrivateKey:self.privateKey];
     

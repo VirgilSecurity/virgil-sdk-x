@@ -124,6 +124,16 @@
 - (BOOL)storeWithName:(NSString * __nonnull)name password:(NSString * __nullable)password meta:(NSDictionary<NSString *, NSString *> * __nullable)meta error:(NSError * __nullable * __nullable)errorPtr;
 
 /**
+ Stores key in storage.
+ 
+ @param name NSString with key name
+ @param password NSString with key password
+ @param errorPtr NSError pointer to return error if needed
+ @return YES if succeeded, NO otherwise.
+ */
+- (BOOL)storeWithName:(NSString * __nonnull)name password:(NSString * __nullable)password error:(NSError * __nullable * __nullable)errorPtr;
+
+/**
  Exports public key.
 
  @return NSData with exported public key
