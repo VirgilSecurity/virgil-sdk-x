@@ -28,7 +28,6 @@
 }
 
 - (VSSVirgilKey *)loadKeyWithName:(NSString *)name password:(NSString *)password error:(NSError **)errorPtr {
-    // FIXME
     if (![self.context.keyStorage existsKeyEntryWithName:name])
         return nil;
     
