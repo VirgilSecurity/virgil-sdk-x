@@ -21,11 +21,11 @@
 
  @param identity confirmed VSSVirgilIdentity instance describing identity of Virgil Card owner. See VSSIdentitiesManager.
  @param ownerKey VSSVirgilKey instance with Virgil Card owner's key
- @param data NSDictionary with custom payload if needed
+ @param customFields NSDictionary with custom payload if needed
  @param errorPtr NSError pointer to return error if needed
  @return allocated and initialized VSSVirgilCard instance
  */
-- (VSSVirgilCard * __nullable)createCardWithIdentity:(VSSVirgilIdentity * __nonnull)identity ownerKey:(VSSVirgilKey * __nonnull)ownerKey data:(NSDictionary<NSString *, NSString *> * __nullable)data error:(NSError * __nullable * __nullable)errorPtr;
+- (VSSVirgilCard * __nullable)createCardWithIdentity:(VSSVirgilIdentity * __nonnull)identity ownerKey:(VSSVirgilKey * __nonnull)ownerKey customFields:(NSDictionary<NSString *, NSString *> * __nullable)customFields error:(NSError * __nullable * __nullable)errorPtr;
 
 /**
  Creates (but doesn't publish) new Virgil Card.

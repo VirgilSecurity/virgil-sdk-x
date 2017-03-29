@@ -29,12 +29,12 @@
     return self;
 }
 
-- (VSSVirgilCard *)createCardWithIdentity:(VSSVirgilIdentity *)identity ownerKey:(VSSVirgilKey *)ownerKey data:(NSDictionary<NSString *, NSString *> *)data error:(NSError **)errorPtr {
+- (VSSVirgilCard *)createCardWithIdentity:(VSSVirgilIdentity *)identity ownerKey:(VSSVirgilKey *)ownerKey customFields:(NSDictionary<NSString *, NSString *> *)customFields error:(NSError **)errorPtr {
     NSString *device = [self.context.deviceManager getDeviceModel];
     NSString *deviceName = [self.context.deviceManager getDeviceName];
     NSData *publicKeyData = [ownerKey exportPublicKey];
     
-    VSSCreateCardRequest *request = [identity generateRequestWithPublicKeyData:publicKeyData data:data device:device deviceName:deviceName];
+    VSSCreateCardRequest *request = [identity generateRequestWithPublicKeyData:publicKeyData data:customFields device:device deviceName:deviceName];
     if (request == nil) {
         if (errorPtr != nil) {
             *errorPtr = [[NSError alloc] initWithDomain:kVSSVirgilApiErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"Identity passed to createCard method should be confirmed. Confirm Identity first." }];
@@ -49,7 +49,7 @@
 }
 
 - (VSSVirgilCard *)createCardWithIdentity:(VSSVirgilIdentity *)identity ownerKey:(VSSVirgilKey *)ownerKey error:(NSError **)errorPtr {
-    return [self createCardWithIdentity:identity ownerKey:ownerKey data:nil error:errorPtr];
+    return [self createCardWithIdentity:identity ownerKey:ownerKey customFields:nil error:errorPtr];
 }
 
 - (void)publishCard:(VSSVirgilCard *)card completion:(void (^)(NSError *))callback; {
