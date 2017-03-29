@@ -8,6 +8,10 @@
 
 #import "VSSKeysManagerProtocol.h"
 
+/**
+ Implementation of VSSKeysManager protocol.
+ VSSKeysManager should not be created by user and is accessible only using VSSVirgilApi.
+ */
 @interface VSSKeysManager : NSObject<VSSKeysManager>
 
 /**
