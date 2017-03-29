@@ -22,7 +22,7 @@
  @param appId NSString with id of your application (Id of Virgil Card of your application)
  @return initialized VSSCredentials instance
  */
-- (instancetype __nonnull)initWithAppKeyData:(NSData * __nonnull)appKeyData appKeyPassword:(NSString * __nonnull)password appId:(NSString * __nonnull)appId;
+- (instancetype __nonnull)initWithAppKeyData:(NSData * __nonnull)appKeyData appKeyPassword:(NSString * __nonnull)password appId:(NSString * __nonnull)appId NS_DESIGNATED_INITIALIZER;
 
 /**
  Unavailable no-argument initializer inherited from NSObject
