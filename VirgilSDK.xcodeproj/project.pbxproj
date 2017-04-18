@@ -302,12 +302,6 @@
 		423CEB631DCA371A00CCACB8 /* VSSKeyStorageConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorageConfiguration.h; sourceTree = "<group>"; };
 		423CEB641DCA374700CCACB8 /* VSSKeyStorageConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeyStorageConfiguration.m; sourceTree = "<group>"; };
 		423CEB681DCA3D1700CCACB8 /* VSSKeyStorageConfigurationPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorageConfigurationPrivate.h; sourceTree = "<group>"; };
-		423CEB751DCB518A00CCACB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		423CEB771DCB518A00CCACB8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		423CEB7A1DCB518A00CCACB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		423CEB7C1DCB518A00CCACB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		423CEB7F1DCB518A00CCACB8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		423CEB811DCB518A00CCACB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		423FFFAF1E708AD800CC98A3 /* VSSCardVerifierInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCardVerifierInfo.h; sourceTree = "<group>"; };
 		423FFFB11E708B5800CC98A3 /* VSSCardVerifierInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCardVerifierInfo.m; sourceTree = "<group>"; };
 		4248B0CF1E043A60000AB44C /* VSSIdentityError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSIdentityError.h; sourceTree = "<group>"; };
@@ -363,7 +357,6 @@
 		425B09F31DC26165005531DC /* VSSCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCard.m; sourceTree = "<group>"; };
 		425B09F81DC26703005531DC /* VSSResponsesPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSResponsesPublic.h; sourceTree = "<group>"; };
 		425B09F91DC2671A005531DC /* VSSRequestsPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSRequestsPublic.h; sourceTree = "<group>"; };
-		42796BD31DCB6281000FDDD4 /* TestSDKApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestSDKApp.entitlements; sourceTree = "<group>"; };
 		42796BD71DCCA02B000FDDD4 /* VSS006_KeyStorageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS006_KeyStorageTests.swift; sourceTree = "<group>"; };
 		427C40561E5B32520017C2A9 /* VSSCreateCardRelationHTTPRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCreateCardRelationHTTPRequest.h; sourceTree = "<group>"; };
 		427C40581E5B32640017C2A9 /* VSSCreateCardRelationHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCreateCardRelationHTTPRequest.m; sourceTree = "<group>"; };
@@ -509,7 +502,6 @@
 				42EB30E51DB8EC17001DF4C0 /* VirgilSDK */,
 				3614033E1BB2E0FC002E69CA /* Source */,
 				42B81C171DB8E5FB00E5E2AE /* Tests */,
-				423CEB741DCB518A00CCACB8 /* TestSDKApp */,
 				361403161BB2E05F002E69CA /* Products */,
 				ECBE87D3B790F5C27AAB2582 /* Frameworks */,
 			);
@@ -623,20 +615,6 @@
 				423CEB681DCA3D1700CCACB8 /* VSSKeyStorageConfigurationPrivate.h */,
 			);
 			path = Private;
-			sourceTree = "<group>";
-		};
-		423CEB741DCB518A00CCACB8 /* TestSDKApp */ = {
-			isa = PBXGroup;
-			children = (
-				42796BD31DCB6281000FDDD4 /* TestSDKApp.entitlements */,
-				423CEB751DCB518A00CCACB8 /* AppDelegate.swift */,
-				423CEB771DCB518A00CCACB8 /* ViewController.swift */,
-				423CEB791DCB518A00CCACB8 /* Main.storyboard */,
-				423CEB7C1DCB518A00CCACB8 /* Assets.xcassets */,
-				423CEB7E1DCB518A00CCACB8 /* LaunchScreen.storyboard */,
-				423CEB811DCB518A00CCACB8 /* Info.plist */,
-			);
-			path = TestSDKApp;
 			sourceTree = "<group>";
 		};
 		4248B1021E044CE8000AB44C /* Mailinator */ = {
@@ -1436,25 +1414,6 @@
 			targetProxy = 42B7E3611DB8F72200D70C12 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		423CEB791DCB518A00CCACB8 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				423CEB7A1DCB518A00CCACB8 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		423CEB7E1DCB518A00CCACB8 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				423CEB7F1DCB518A00CCACB8 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		361403361BB2E05F002E69CA /* Debug */ = {
