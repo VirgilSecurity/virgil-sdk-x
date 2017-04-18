@@ -35,3 +35,68 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 
+set -ev
+
+if [ "${PUBLISH_DOCS}" != "ON" ] || [ "${TRAVIS_BRANCH}" != "${DOC_BRANCH}" ] || [[ "${CC}" != "gcc"* ]]; then exit; fi
+
+# Settings
+REPO_PATH=git@github.com:VirgilSecurity/virgil-sdk-x.git
+HTML_PATH_DST="${TRAVIS_BUILD_DIR}/${BUILD_DIR_NAME}/docs"
+COMMIT_USER="Travis CI documentation builder."
+COMMIT_EMAIL="deundiak@gmail.com"
+CHANGESET=$(git rev-parse --verify HEAD)
+
+# Get a clean version of the HTML documentation repo.
+rm -rf ${HTML_PATH_DST}
+mkdir -p ${HTML_PATH_DST}
+git clone -b gh-pages "${REPO_PATH}" --single-branch ${HTML_PATH_DST}
+
+$INFOPLIST_FILE_PATH="${TRAVIS_BUILD_DIR}/${BUILD_DIR_NAME}/VirgilSDK/Info.plist"
+
+# Define SDK versions
+VIRGIL_SDK_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "$INFOPLIST_FILE_PATH")
+VIRGIL_SDK_HTML_PATH_DST="${HTML_PATH_DST}/${VIRGIL_SDK_VERSION}"
+
+# Generate the HTML documentation.
+./generate-docs.sh
+
+# Generate root HTML file
+function get_dir_names {
+    local DIRS=`find "$1" -maxdepth 1 -type d -name "$2"`
+    local DIR_NAMES=()
+    for dir in ${DIRS}; do
+        DIR_NAMES+=("${dir#${1}/}")
+    done
+    echo ${DIR_NAMES[*]}
+}
+
+cat >"${HTML_PATH_DST}/index.html" <<EOL
+<!DOCTYPE HTML>
+<html>
+   <head>
+        <meta charset="utf-8">
+        <title>Virgil Security iOS SDK</title>
+   </head>
+   <body>
+        Virgil Security iOS SDK
+        <ul>
+EOL
+
+for dir in `get_dir_names "${VIRGIL_SDK_HTML_PATH_DST}/.." "v*"`; do
+    echo "<li><p><a href=\"${dir}/index.html\">${dir}</a></p></li>" >> "${HTML_PATH_DST}/index.html"
+done
+
+cat >>"${HTML_PATH_DST}/index.html" <<EOL
+        </ul>
+   </body>
+</html>
+EOL
+
+# Create and commit the documentation repo.
+cd ${HTML_PATH_DST}
+git add .
+git config user.name "${COMMIT_USER}"
+git config user.email "${COMMIT_EMAIL}"
+git commit -m "Automated documentation build for changeset ${CHANGESET}."
+git push origin gh-pages
+cd -
