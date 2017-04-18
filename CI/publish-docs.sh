@@ -52,6 +52,9 @@ mkdir -p ${HTML_PATH_DST}
 git clone -b gh-pages "${REPO_PATH}" --single-branch ${HTML_PATH_DST}
 
 ls
+pwd
+echo $TRAVIS_BUILD_DIR
+echo $BUILD_DIR_NAME
 $INFOPLIST_FILE_PATH="${TRAVIS_BUILD_DIR}/${BUILD_DIR_NAME}virgil-sdk-x/VirgilSDK/Info.plist"
 
 # Define SDK versions
