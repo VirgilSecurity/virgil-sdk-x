@@ -51,7 +51,8 @@ rm -rf ${HTML_PATH_DST}
 mkdir -p ${HTML_PATH_DST}
 git clone -b gh-pages "${REPO_PATH}" --single-branch ${HTML_PATH_DST}
 
-$INFOPLIST_FILE_PATH="${TRAVIS_BUILD_DIR}/${BUILD_DIR_NAME}VirgilSDK/Info.plist"
+ls
+$INFOPLIST_FILE_PATH="${TRAVIS_BUILD_DIR}/${BUILD_DIR_NAME}virgil-sdk-x/VirgilSDK/Info.plist"
 
 # Define SDK versions
 VIRGIL_SDK_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "$INFOPLIST_FILE_PATH")
