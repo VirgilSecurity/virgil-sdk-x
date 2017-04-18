@@ -5,7 +5,7 @@
 # Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 #
 # All rights reserved.
-#
+#PUBLISH_DOCS
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
 # met:
@@ -37,7 +37,7 @@
 
 set -ev
 
-if [ "${PUBLISH_DOCS}" != "YES" ] || [ "${TRAVIS_BRANCH}" != "${DOC_BRANCH}" ] || [[ "${CC}" != "gcc"* ]]; then exit; fi
+if [ "${PUBLISH_DOCS}" != "YES" ] || [ "${TRAVIS_BRANCH}" != "${DOC_BRANCH}" ]; then exit; fi
 
 # Settings
 REPO_PATH=git@github.com:VirgilSecurity/virgil-sdk-x.git
