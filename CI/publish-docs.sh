@@ -40,8 +40,8 @@ set -ev
 if [ "${PUBLISH_DOCS}" != "YES" ] || [ "${TRAVIS_BRANCH}" != "${DOC_BRANCH}" ]; then exit; fi
 
 # Settings
-REPO_PATH=git@github.com:VirgilSecurity/virgil-sdk-x.git
-HTML_PATH_DST="${TRAVIS_BUILD_DIR}/${BUILD_DIR_NAME}/docs"
+REPO_PATH=https://github.com/VirgilSecurity/virgil-sdk-x.git
+HTML_PATH_DST="${TRAVIS_BUILD_DIR}/${BUILD_DIR_NAME}docs"
 COMMIT_USER="Travis CI documentation builder."
 COMMIT_EMAIL="deundiak@gmail.com"
 CHANGESET=$(git rev-parse --verify HEAD)
