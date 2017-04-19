@@ -21,5 +21,5 @@ appledoc \
 --clean-output \
 "${TRAVIS_BUILD_DIR}/Source";
 
-mv "${VIRGIL_SDK_HTML_PATH_DST}/html"/* "${VIRGIL_SDK_HTML_PATH_DST}";
+mv ${VIRGIL_SDK_HTML_PATH_DST}/html/* ${VIRGIL_SDK_HTML_PATH_DST};
 rm -r ${VIRGIL_SDK_HTML_PATH_DST}/html;

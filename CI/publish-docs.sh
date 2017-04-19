@@ -58,7 +58,7 @@ VIRGIL_SDK_HTML_PATH_DST="${HTML_PATH_DST}/${VIRGIL_SDK_VERSION}"
 echo $VIRGIL_SDK_VERSION
 
 # Generate the HTML documentation.
-./CI/generate-docs.sh
+VIRGIL_SDK_HTML_PATH_DST=${VIRGIL_SDK_HTML_PATH_DST} ./CI/generate-docs.sh
 
 # Generate root HTML file
 function get_dir_names {
