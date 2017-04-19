@@ -1,5 +1,7 @@
 language: objective-c
 osx_image: xcode8.3
+ruby:
+  - 2.3.4
 env:
   global:
   - DOC_BRANCH=doc-generation
