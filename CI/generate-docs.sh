@@ -5,9 +5,10 @@ companyID="com.virgilsecurity";
 companyURL="https://virgilsecurity.com/";
 target="iphoneos";
 outputPath="${VIRGIL_SDK_HTML_PATH_DST}";
+projectName="VirgilSDK"
 # End constants
 /usr/local/bin/appledoc \
---project-name "${PROJECT_NAME}" \
+--project-name "${projectName}" \
 --project-company "${company}" \
 --company-id "${companyID}" \
 --output "${outputPath}" \
@@ -18,4 +19,7 @@ outputPath="${VIRGIL_SDK_HTML_PATH_DST}";
 --exit-threshold 2 \
 --no-create-docset \
 --clean-output \
-"${PROJECT_DIR}/Source"
+"${TRAVIS_BUILD_DIR}/Source";
+
+mv "${VIRGIL_SDK_HTML_PATH_DST}/html"/* "${VIRGIL_SDK_HTML_PATH_DST}";
+rm -r ${VIRGIL_SDK_HTML_PATH_DST}/html;

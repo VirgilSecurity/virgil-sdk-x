@@ -54,11 +54,10 @@ git clone -b gh-pages "${REPO_PATH}" --single-branch ${HTML_PATH_DST}
 INFOPLIST_FILE_PATH="${TRAVIS_BUILD_DIR}/VirgilSDK/Info.plist"
 
 # Define SDK versions
-VIRGIL_SDK_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${INFOPLIST_FILE_PATH}")
+VIRGIL_SDK_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${INFOPLIST_FILE_PATH}")
 VIRGIL_SDK_HTML_PATH_DST="${HTML_PATH_DST}/${VIRGIL_SDK_VERSION}"
 
 echo $VIRGIL_SDK_VERSION
-echo $VIRGIL_SDK_HTML_PATH_DST
 
 # Generate the HTML documentation.
 ./generate-docs.sh
