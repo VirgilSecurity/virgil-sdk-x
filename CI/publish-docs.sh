@@ -91,12 +91,3 @@ cat >>"${HTML_PATH_DST}/index.html" <<EOL
    </body>
 </html>
 EOL
-
-# Create and commit the documentation repo.
-cd ${HTML_PATH_DST}
-git add .
-git config user.name "${COMMIT_USER}"
-git config user.email "${COMMIT_EMAIL}"
-git commit -m "Automated documentation build for changeset ${CHANGESET}."
-git push origin gh-pages
-cd -
