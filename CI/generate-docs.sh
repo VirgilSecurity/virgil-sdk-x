@@ -7,7 +7,7 @@ target="iphoneos";
 outputPath="${VIRGIL_SDK_HTML_PATH_DST}";
 projectName="VirgilSDK"
 # End constants
-/usr/local/bin/appledoc \
+appledoc \
 --project-name "${projectName}" \
 --project-company "${company}" \
 --company-id "${companyID}" \

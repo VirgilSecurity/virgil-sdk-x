@@ -37,8 +37,6 @@
 
 set -ev
 
-if [ "${PUBLISH_DOCS}" != "YES" ] || [ "${TRAVIS_BRANCH}" != "${DOC_BRANCH}" ]; then exit; fi
-
 # Settings
 REPO_PATH=https://github.com/VirgilSecurity/virgil-sdk-x.git
 HTML_PATH_DST="${TRAVIS_BUILD_DIR}/docs"
