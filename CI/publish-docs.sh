@@ -41,7 +41,7 @@ if [ "${PUBLISH_DOCS}" != "YES" ] || [ "${TRAVIS_BRANCH}" != "${DOC_BRANCH}" ]; 
 
 # Settings
 REPO_PATH=https://github.com/VirgilSecurity/virgil-sdk-x.git
-HTML_PATH_DST="${TRAVIS_BUILD_DIR}/${BUILD_DIR_NAME}docs"
+HTML_PATH_DST="${TRAVIS_BUILD_DIR}docs"
 COMMIT_USER="Travis CI documentation builder."
 COMMIT_EMAIL="deundiak@gmail.com"
 CHANGESET=$(git rev-parse --verify HEAD)
@@ -54,12 +54,16 @@ git clone -b gh-pages "${REPO_PATH}" --single-branch ${HTML_PATH_DST}
 ls
 pwd
 echo $TRAVIS_BUILD_DIR
-echo $BUILD_DIR_NAME
-$INFOPLIST_FILE_PATH="${TRAVIS_BUILD_DIR}/${BUILD_DIR_NAME}virgil-sdk-x/VirgilSDK/Info.plist"
+echo $HTML_PATH_DST
+INFOPLIST_FILE_PATH="${TRAVIS_BUILD_DIR}VirgilSDK/Info.plist"
+echo $INFOPLIST_FILE_PATH
 
 # Define SDK versions
 VIRGIL_SDK_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "$INFOPLIST_FILE_PATH")
 VIRGIL_SDK_HTML_PATH_DST="${HTML_PATH_DST}/${VIRGIL_SDK_VERSION}"
+
+echo $VIRGIL_SDK_VERSION
+echo $VIRGIL_SDK_HTML_PATH_DST
 
 # Generate the HTML documentation.
 ./generate-docs.sh
