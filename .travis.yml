@@ -32,7 +32,7 @@ after_success:
   - if [ "${PUBLISH_DOCS}" == "YES" ] && [ "${TRAVIS_BRANCH}" == "${DOC_BRANCH}" ]; then
       brew update && brew install appledoc;
       ./CI/publish-docs.sh;
-      ls -r;
+      ls -R;
     fi
 deploy:
   provider: pages
