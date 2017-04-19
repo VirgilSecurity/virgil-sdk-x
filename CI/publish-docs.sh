@@ -35,8 +35,6 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 
-set -ev
-
 # Settings
 REPO_PATH=https://github.com/VirgilSecurity/virgil-sdk-x.git
 HTML_PATH_DST="${TRAVIS_BUILD_DIR}/docs"
@@ -52,10 +50,8 @@ git clone -b gh-pages "${REPO_PATH}" --single-branch ${HTML_PATH_DST}
 INFOPLIST_FILE_PATH="${TRAVIS_BUILD_DIR}/VirgilSDK/Info.plist"
 
 # Define SDK versions
-VIRGIL_SDK_VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${INFOPLIST_FILE_PATH}")
+VIRGIL_SDK_VERSION="v"$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${INFOPLIST_FILE_PATH}")
 VIRGIL_SDK_HTML_PATH_DST="${HTML_PATH_DST}/${VIRGIL_SDK_VERSION}"
-
-echo $VIRGIL_SDK_VERSION
 
 # Generate the HTML documentation.
 VIRGIL_SDK_HTML_PATH_DST=${VIRGIL_SDK_HTML_PATH_DST} ./CI/generate-docs.sh
