@@ -28,6 +28,6 @@ after_success:
       bash <(curl -s https://codecov.io/bash);
     fi
   - if [ "${PUBLISH_DOCS}" == "YES" ] && [ "${TRAVIS_BRANCH}" == "${DOC_BRANCH}" ]; then
-      base brew update && brew install appledoc;
+      bash brew update && brew install appledoc;
       bash ./CI/publish-docs.sh;
     fi
