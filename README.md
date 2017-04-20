@@ -174,6 +174,7 @@ Virgil Security has a powerful set of APIs, and the documentation is there to ge
 * [Guides][_guides]
   * [Virgil Cards][_guide_virgil_cards]
   * [Virgil Keys][_guide_virgil_keys]
+* [Reference API][_reference_api]
 
 ## Migration notes
 
@@ -206,3 +207,4 @@ Our developer support team is here to help you. You can find us on [Twitter](htt
 [_guide_virgil_keys]: https://developer.virgilsecurity.com/docs/swift/guides/virgil-key/generating
 [_guide_encryption]: https://developer.virgilsecurity.com/docs/swift/guides/encryption/encrypting
 [_initialize_root]: https://developer.virgilsecurity.com/docs/swift/guides/settings/initialize-sdk-on-client
+[_reference_api]: http://virgilsecurity.github.io/virgil-sdk-x/
