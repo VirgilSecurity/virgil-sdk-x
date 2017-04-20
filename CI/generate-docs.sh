@@ -1,5 +1,6 @@
-# Bug when installing appledoc via Homebrew. Load missing file
-curl -o /usr/local/Cellar/appledoc/2.2.1/Templates/html/css/style.css https://github.com/tomaz/appledoc/blob/master/Templates/html/css/style.css
+# Load appledoc
+mkdir ${TRAVIS_BUILD_DIR}/appledoc;
+curl -sL https://github.com/tomaz/appledoc/releases/download/2.2.1/appledoc-2.2.1.zip | tar xz -C ${TRAVIS_BUILD_DIR}/appledoc;
 
 # Start constants
 company="Virgil Security";
@@ -9,7 +10,7 @@ target="iphoneos";
 outputPath="${VIRGIL_SDK_HTML_PATH_DST}";
 projectName="VirgilSDK"
 # End constants
-appledoc \
+${TRAVIS_BUILD_DIR}/appledoc/appledoc/appledoc \
 --project-name "${projectName}" \
 --project-company "${company}" \
 --company-id "${companyID}" \

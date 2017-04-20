@@ -30,7 +30,6 @@ after_success:
       bash <(curl -s https://codecov.io/bash);
     fi
   - if [ "${PUBLISH_DOCS}" == "YES" ] && [ "${TRAVIS_BRANCH}" == "${DOC_BRANCH}" ]; then
-      brew update && brew install appledoc;
       ./CI/publish-docs.sh;
     fi
 deploy:
