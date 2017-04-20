@@ -1,4 +1,6 @@
-#appledoc Xcode script
+# Bug when installing appledoc via Homebrew. Load missing file
+curl -o ~/.appledoc/html/css/style.css https://github.com/tomaz/appledoc/blob/master/Templates/html/css/style.css
+
 # Start constants
 company="Virgil Security";
 companyID="com.virgilsecurity";
