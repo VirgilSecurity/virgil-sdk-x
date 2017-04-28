@@ -217,17 +217,32 @@ class VSSTestUtils {
     func getConfirmationCode(emailNumber: Int = 0, identityValue: String, mailinator: Mailinator, completion: @escaping (String)->()) {
         let identityShort = identityValue.substring(to: identityValue.range(of: "@")!.lowerBound)
         
+        var received = false
+        let getEmail = { (mid: String, completion: @escaping (MEmail)->()) in
+            while !received {
+                sleep(5)
+                guard !received else {
+                    return
+                }
+                mailinator.getEmail(mid) { email, error in
+                    guard error == nil, let email = email else {
+                        return
+                    }
+                    
+                    received = true
+                    completion(email)
+                }
+            }
+        }
+        
         let metadataReceivedCallback = { (metadataList: [MEmailMetadata]) in
-            sleep(10)
-            
             // find last message
             let lastMetadata = metadataList.min(by: { m1, m2 in
                 return m1.seconds_ago.compare(m2.seconds_ago) == .orderedAscending;
             })!
             
-            
-            mailinator.getEmail(lastMetadata.mid) { email, error in
-                let bodyPart = email!.parts[0];
+            getEmail(lastMetadata.mid) { email in
+                let bodyPart = email.parts[0];
                 
                 let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
                 
@@ -238,30 +253,26 @@ class VSSTestUtils {
                 completion(code)
             }
         }
-        
+
         let checkInbox = { (completion: @escaping ([MEmailMetadata]?, Error?) -> ()) in
             mailinator.getInbox(identityShort) { metadataList, error in
                 completion(metadataList, error)
             }
         }
         
-        var counter = 0
-        var received = false
-        
-        while counter < 23 && !received {
-            sleep(10)
-            guard !received else {
+        var receivedMeta = false
+        while !receivedMeta {
+            sleep(5)
+            guard !receivedMeta else {
                 return
             }
             checkInbox() { metadataList, error in
                 guard error == nil, let mList = metadataList, mList.count > emailNumber else {
-                    counter += 1
                     return
                 }
                 
-                received = true
+                receivedMeta = true
                 metadataReceivedCallback(mList)
-                return
             }
         }
     }
