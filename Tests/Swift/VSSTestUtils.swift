@@ -219,7 +219,14 @@ class VSSTestUtils {
         
         let metadataReceivedCallback = { (metadataList: [MEmailMetadata]) in
             sleep(10)
-            mailinator.getEmail(metadataList[emailNumber].mid) { email, error in
+            
+            // find last message
+            let lastMetadata = metadataList.min(by: { m1, m2 in
+                return m1.seconds_ago.compare(m2.seconds_ago) == .orderedAscending;
+            })!
+            
+            
+            mailinator.getEmail(lastMetadata.mid) { email, error in
                 let bodyPart = email!.parts[0];
                 
                 let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
