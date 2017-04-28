@@ -12,7 +12,7 @@ env:
     - FRAMEWORK_NAME=VirgilSDK
 
 matrix:
-  - DESTINATION="OS=10.3,name=iPhone SE"     SCHEME="$IOS_FRAMEWORK_SCHEME"    SDK="$IOS_SDK"    RUN_TESTS="YES"    PUBLISH_DOCS="NO"
+  - DESTINATION="OS=10.3,name=iPhone SE"     SCHEME="$IOS_FRAMEWORK_SCHEME"    SDK="$IOS_SDK"    RUN_TESTS="YES"
 
 before_install:
   - set -o pipefail
@@ -36,7 +36,7 @@ after_success:
   - if [ $RUN_TESTS == "YES" ]; then
       bash <(curl -s https://codecov.io/bash);
     fi
-  - if [ "${PUBLISH_DOCS}" == "YES" ] && [ "${TRAVIS_BRANCH}" == "${DOC_BRANCH}" ]; then
+  - if [ ! -z "${TRAVIS_TAG}" ]; then
       ./CI/publish-docs.sh;
     fi
 
@@ -50,7 +50,8 @@ deploy:
     github_token: $GITHUB_TOKEN
     local_dir: "${TRAVIS_BUILD_DIR}/docs"
     on:
-      branch: ${DOC_BRANCH}
+      repo: VirgilSecurity/virgil-sdk-x
+      tags: true
 
   - provider: releases
     api_key:
