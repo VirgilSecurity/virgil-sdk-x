@@ -38,19 +38,23 @@
 }
 
 - (NSURL *)cardsServiceURL {
-    return [[NSURL alloc] initWithString:@STRINGIZE2(CARDS_SERVICE_URL)];
+    NSString *str = [@STRINGIZE2(CARDS_SERVICE_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    return [[NSURL alloc] initWithString:str];
 }
 
 - (NSURL *)cardsServiceROURL {
-    return [[NSURL alloc] initWithString:@STRINGIZE2(CARDS_SERVICE_RO_URL)];
+    NSString *str = [@STRINGIZE2(CARDS_SERVICE_RO_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    return [[NSURL alloc] initWithString:str];
 }
 
 - (NSURL *)identityServiceURL {
-    return [[NSURL alloc] initWithString:@STRINGIZE2(IDENTITY_SERVICE_URL)];
+    NSString *str = [@STRINGIZE2(IDENTITY_SERVICE_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    return [[NSURL alloc] initWithString:str];
 }
 
 - (NSURL *)registrationAuthorityURL {
-    return [[NSURL alloc] initWithString:@STRINGIZE2(REGISTRATION_AUTHORITY_URL)];
+    NSString *str = [@STRINGIZE2(REGISTRATION_AUTHORITY_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    return [[NSURL alloc] initWithString:str];
 }
 
 @end
