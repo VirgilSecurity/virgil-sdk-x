@@ -18,4 +18,9 @@
 @property (nonatomic, readonly) NSString * __nonnull applicationId;
 @property (nonatomic, readonly) NSString * __nonnull mailinatorToken;
 
+@property (nonatomic, readonly) NSURL * __nonnull cardsServiceURL;
+@property (nonatomic, readonly) NSURL * __nonnull cardsServiceROURL;
+@property (nonatomic, readonly) NSURL * __nonnull identityServiceURL;
+@property (nonatomic, readonly) NSURL * __nonnull registrationAuthorityURL;
+
 @end

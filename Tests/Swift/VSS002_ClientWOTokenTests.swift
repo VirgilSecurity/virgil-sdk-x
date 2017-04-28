@@ -32,7 +32,15 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let publicKeyData = self.crypto.export(publicKey)
         XCTAssert(validator.addVerifier(withId: self.consts.applicationId, publicKeyData: publicKeyData))
         let config = VSSServiceConfig.default()
+        // FIXME
+        validator.useVirgilServiceVerifiers = false
         config.cardValidator = validator
+        
+        config.cardsServiceURL = self.consts.cardsServiceURL
+        config.cardsServiceROURL = self.consts.cardsServiceROURL
+        config.identityServiceURL = self.consts.identityServiceURL
+        config.registrationAuthorityURL = self.consts.registrationAuthorityURL
+        
         self.client = VSSClient(serviceConfig: config)
         
         self.utils = VSSTestUtils(crypto: self.crypto, consts: self.consts)

@@ -27,12 +27,24 @@ class VSS007_HighLevelTests: XCTestCase {
         
         let crypto = VSSCrypto()
         
-        let appPrivateKey = crypto.importPrivateKey(from: appPrivateKeyData, withPassword: self.consts.applicationPrivateKeyPassword)!
-        let appPublicKey = crypto.extractPublicKey(from: appPrivateKey)
-        let appPublicKeyData = crypto.export(appPublicKey)
+        let context = VSSVirgilApiContext(crypto: VSSCrypto(), token: self.consts.applicationToken, credentials: credentials, cardVerifiers: nil)
+        let validator = VSSCardValidator(crypto: crypto)
+        let privateKey = crypto.importPrivateKey(from: Data(base64Encoded: self.consts.applicationPrivateKeyBase64)!, withPassword: self.consts.applicationPrivateKeyPassword)!
+        let publicKey = crypto.extractPublicKey(from: privateKey)
+        let publicKeyData = crypto.export(publicKey)
+        XCTAssert(validator.addVerifier(withId: self.consts.applicationId, publicKeyData: publicKeyData))
+        // FIXME
+        validator.useVirgilServiceVerifiers = false
+        let config = VSSServiceConfig(token: self.consts.applicationToken)
+        config.cardValidator = validator
         
-        let appVerifier = VSSCardVerifierInfo(cardId: self.consts.applicationId, publicKeyData: appPublicKeyData)
-        let context = VSSVirgilApiContext(crypto: VSSCrypto(), token: self.consts.applicationToken, credentials: credentials, cardVerifiers: [appVerifier])
+        config.cardsServiceURL = self.consts.cardsServiceURL
+        config.cardsServiceROURL = self.consts.cardsServiceROURL
+        config.identityServiceURL = self.consts.identityServiceURL
+        config.registrationAuthorityURL = self.consts.registrationAuthorityURL
+        
+        let client = VSSClient(serviceConfig: config)
+        context.client = client
         
         self.api = VSSVirgilApi(context: context)
         

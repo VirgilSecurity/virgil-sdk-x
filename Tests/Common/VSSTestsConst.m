@@ -37,4 +37,20 @@
     return @STRINGIZE2(MAILINATOR_TOKEN);
 }
 
+- (NSURL *)cardsServiceURL {
+    return [[NSURL alloc] initWithString:@STRINGIZE2(CARDS_SERVICE_URL)];
+}
+
+- (NSURL *)cardsServiceROURL {
+    return [[NSURL alloc] initWithString:@STRINGIZE2(CARDS_SERVICE_RO_URL)];
+}
+
+- (NSURL *)identityServiceURL {
+    return [[NSURL alloc] initWithString:@STRINGIZE2(IDENTITY_SERVICE_URL)];
+}
+
+- (NSURL *)registrationAuthorityURL {
+    return [[NSURL alloc] initWithString:@STRINGIZE2(REGISTRATION_AUTHORITY_URL)];
+}
+
 @end
