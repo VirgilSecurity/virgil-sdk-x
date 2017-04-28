@@ -52,7 +52,7 @@
         return error;
     }
     
-    NSDictionary *emailCandidate = [candidate as:[NSDictionary class]];
+    NSDictionary *emailCandidate = [candidate vss_as:[NSDictionary class]];
     MEmailResponse *response = [MEmailResponse deserializeFrom:emailCandidate];
     self.email = response.email;
     

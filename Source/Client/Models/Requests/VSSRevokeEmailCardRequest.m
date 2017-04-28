@@ -44,7 +44,7 @@
     self = [super initWithDict:candidate];
     
     if (self) {
-        NSString *validationToken = [candidate[kVSSCModelMeta][kVSSCModelValidation][kVSSCModelToken] as:[NSString class]];
+        NSString *validationToken = [candidate[kVSSCModelMeta][kVSSCModelValidation][kVSSCModelToken] vss_as:[NSString class]];
         
         if (validationToken.length == 0)
             return nil;

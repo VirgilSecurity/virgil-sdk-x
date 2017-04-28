@@ -58,9 +58,9 @@ static NSString *const kMEParts = @"parts";
 
 + (instancetype)deserializeFrom:(NSDictionary *)candidate {
     MEmailMetadata *metadata = [MEmailMetadata deserializeFrom:candidate];
-    NSDictionary *headers = [candidate[kMEHeaders] as:[NSDictionary class]];
+    NSDictionary *headers = [candidate[kMEHeaders] vss_as:[NSDictionary class]];
 
-    NSArray *partsCandidates = [candidate[kMEParts] as:[NSArray class]];
+    NSArray *partsCandidates = [candidate[kMEParts] vss_as:[NSArray class]];
     NSMutableArray *parts = [[NSMutableArray alloc] initWithCapacity:[partsCandidates count]];
     for (NSDictionary *partCandidate in partsCandidates) {
         MPart *part = [MPart deserializeFrom:partCandidate];

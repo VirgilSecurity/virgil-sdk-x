@@ -50,8 +50,8 @@ static NSString *const kMPBody = @"body";
 #pragma mark - VFSerializable
 
 + (instancetype)deserializeFrom:(NSDictionary *)candidate {
-    NSDictionary *headers = [candidate[kMPHeaders] as:[NSDictionary class]];
-    NSString *body = [candidate[kMPBody] as:[NSString class]];
+    NSDictionary *headers = [candidate[kMPHeaders] vss_as:[NSDictionary class]];
+    NSString *body = [candidate[kMPBody] vss_as:[NSString class]];
     
     return [[self alloc] initWithHeaders:headers body:body];
 }

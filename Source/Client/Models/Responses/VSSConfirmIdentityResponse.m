@@ -15,15 +15,15 @@
 #pragma mark - VSSDeserializable
 
 - (instancetype)initWithDict:(NSDictionary *)candidate {
-    NSString *identityType = [candidate[kVSSIModelIdentityType] as:[NSString class]];
+    NSString *identityType = [candidate[kVSSIModelIdentityType] vss_as:[NSString class]];
     if (identityType.length == 0)
         return nil;
     
-    NSString *identityValue = [candidate[kVSSIModelIdentityValue] as:[NSString class]];
+    NSString *identityValue = [candidate[kVSSIModelIdentityValue] vss_as:[NSString class]];
     if (identityValue.length == 0)
         return nil;
     
-    NSString *validationToken = [candidate[kVSSIModelValidationToken] as:[NSString class]];
+    NSString *validationToken = [candidate[kVSSIModelValidationToken] vss_as:[NSString class]];
     if (validationToken.length == 0)
         return nil;
     

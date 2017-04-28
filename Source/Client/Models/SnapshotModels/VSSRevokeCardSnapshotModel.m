@@ -44,11 +44,11 @@
 }
 
 - (instancetype)initWithDict:(NSDictionary *)candidate {
-    NSString *cardId = [candidate[kVSSCModelCardId] as:[NSString class]];
+    NSString *cardId = [candidate[kVSSCModelCardId] vss_as:[NSString class]];
     if (cardId.length == 0)
         return nil;
     
-    NSString *revocationReasonStr = [candidate[kVSSCModelRevocationReason] as:[NSString class]];
+    NSString *revocationReasonStr = [candidate[kVSSCModelRevocationReason] vss_as:[NSString class]];
     if (revocationReasonStr.length == 0)
         return nil;
     

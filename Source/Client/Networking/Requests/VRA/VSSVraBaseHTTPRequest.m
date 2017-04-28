@@ -22,12 +22,12 @@
         return error;
     }
     
-    VSSVraError *vraError = [[VSSVraError alloc] initWithDict:[candidate as:[NSDictionary class]]];
+    VSSVraError *vraError = [[VSSVraError alloc] initWithDict:[candidate vss_as:[NSDictionary class]]];
     if (vraError.message.length > 0) {
         error = vraError.nsError;
     }
     else {
-        VSSCardsError *cardsError = [[VSSCardsError alloc] initWithDict:[candidate as:[NSDictionary class]]];
+        VSSCardsError *cardsError = [[VSSCardsError alloc] initWithDict:[candidate vss_as:[NSDictionary class]]];
         if (cardsError.message.length > 0) {
             error = cardsError.nsError;
         }

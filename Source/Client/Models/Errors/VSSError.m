@@ -58,7 +58,7 @@ NSString *const kVSSVirgilServiceErrorDomain = @"VSSVirgilServiceErrorDomain";
 #pragma mark - VSSDeserializable
 
 - (instancetype)initWithDict:(NSDictionary *)candidate {
-    NSNumber *code = [candidate[kVSSCModelCode] as:[NSNumber class]];
+    NSNumber *code = [candidate[kVSSCModelCode] vss_as:[NSNumber class]];
     if (code == nil)
         return nil;
     

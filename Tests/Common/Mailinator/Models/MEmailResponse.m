@@ -60,11 +60,11 @@ static NSString *const kMERForwardsLeft = @"forwardsLeft";
 #pragma mark - VFSerializable
 
 + (instancetype) deserializeFrom:(NSDictionary *)candidate {
-    NSNumber *inboxFetchesLeft = [candidate[kMERApiInboxFetchesLeft] as:[NSNumber class]];
-    NSNumber *emailFetchesLeft = [candidate[kMERApiEmailFetchesLeft] as:[NSNumber class]];
-    NSDictionary *emailCandidate = [candidate[kMERData] as:[NSDictionary class]];
+    NSNumber *inboxFetchesLeft = [candidate[kMERApiInboxFetchesLeft] vss_as:[NSNumber class]];
+    NSNumber *emailFetchesLeft = [candidate[kMERApiEmailFetchesLeft] vss_as:[NSNumber class]];
+    NSDictionary *emailCandidate = [candidate[kMERData] vss_as:[NSDictionary class]];
     MEmail *email = [MEmail deserializeFrom:emailCandidate];
-    NSNumber *forwardsLeft = [candidate[kMERForwardsLeft] as:[NSNumber class]];
+    NSNumber *forwardsLeft = [candidate[kMERForwardsLeft] vss_as:[NSNumber class]];
     
     return [[self alloc] initWithInboxFetchesLeft:inboxFetchesLeft emailFetchesLeft:emailFetchesLeft email:email forwardsLeft:forwardsLeft];
 }

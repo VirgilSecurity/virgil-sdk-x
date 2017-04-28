@@ -21,7 +21,7 @@
         return error;
     }
     
-    VSSIdentityError *viError = [[VSSIdentityError alloc] initWithDict:[candidate as:[NSDictionary class]]];
+    VSSIdentityError *viError = [[VSSIdentityError alloc] initWithDict:[candidate vss_as:[NSDictionary class]]];
     return viError.nsError;
 }
 

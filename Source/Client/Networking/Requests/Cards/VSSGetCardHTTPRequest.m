@@ -57,7 +57,7 @@
     }
 
     /// Deserialize actual card
-    self.cardResponse = [[VSSCardResponse alloc] initWithDict:[candidate as:[NSDictionary class]]];
+    self.cardResponse = [[VSSCardResponse alloc] initWithDict:[candidate vss_as:[NSDictionary class]]];
     
     return nil;
 }
