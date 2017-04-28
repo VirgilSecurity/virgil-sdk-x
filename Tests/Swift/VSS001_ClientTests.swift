@@ -40,10 +40,10 @@ class VSS001_ClientTests: XCTestCase {
         let config = VSSServiceConfig(token: self.consts.applicationToken)
         config.cardValidator = validator
         
-        config.cardsServiceURL = self.consts.cardsServiceURL
-        config.cardsServiceROURL = self.consts.cardsServiceROURL
-        config.identityServiceURL = self.consts.identityServiceURL
-        config.registrationAuthorityURL = self.consts.registrationAuthorityURL
+//        config.cardsServiceURL = self.consts.cardsServiceURL
+//        config.cardsServiceROURL = self.consts.cardsServiceROURL
+//        config.identityServiceURL = self.consts.identityServiceURL
+//        config.registrationAuthorityURL = self.consts.registrationAuthorityURL
         
         self.client = VSSClient(serviceConfig: config)
         
