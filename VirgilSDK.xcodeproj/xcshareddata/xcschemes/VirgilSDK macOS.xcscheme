@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "422499B91EB39B380032F556"
-               BuildableName = "VirgilSDK macOS.framework"
+               BuildableName = "VirgilSDK.framework"
                BlueprintName = "VirgilSDK macOS"
                ReferencedContainer = "container:VirgilSDK.xcodeproj">
             </BuildableReference>
@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "422499C11EB39B380032F556"
-               BuildableName = "VirgilSDK macOSTests.xctest"
-               BlueprintName = "VirgilSDK macOSTests"
+               BuildableName = "VirgilSDK macOS Tests.xctest"
+               BlueprintName = "VirgilSDK macOS Tests"
                ReferencedContainer = "container:VirgilSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "422499B91EB39B380032F556"
-            BuildableName = "VirgilSDK macOS.framework"
+            BuildableName = "VirgilSDK.framework"
             BlueprintName = "VirgilSDK macOS"
             ReferencedContainer = "container:VirgilSDK.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "422499B91EB39B380032F556"
-            BuildableName = "VirgilSDK macOS.framework"
+            BuildableName = "VirgilSDK.framework"
             BlueprintName = "VirgilSDK macOS"
             ReferencedContainer = "container:VirgilSDK.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "422499B91EB39B380032F556"
-            BuildableName = "VirgilSDK macOS.framework"
+            BuildableName = "VirgilSDK.framework"
             BlueprintName = "VirgilSDK macOS"
             ReferencedContainer = "container:VirgilSDK.xcodeproj">
          </BuildableReference>
