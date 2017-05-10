@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		420B3A0F1EC33D3D004C9930 /* VSSDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 420B3A0A1EC33D3D004C9930 /* VSSDeviceManager.m */; };
+		420B3A121EC33D3D004C9930 /* VSSDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 420B3A0C1EC33D3D004C9930 /* VSSDeviceManager.m */; };
+		420B3A131EC33D3D004C9930 /* VSSDeviceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 420B3A0D1EC33D3D004C9930 /* VSSDeviceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420B3A141EC33D3D004C9930 /* VSSDeviceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 420B3A0D1EC33D3D004C9930 /* VSSDeviceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420B3A151EC33D3D004C9930 /* VSSDeviceManagerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 420B3A0E1EC33D3D004C9930 /* VSSDeviceManagerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420B3A161EC33D3D004C9930 /* VSSDeviceManagerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 420B3A0E1EC33D3D004C9930 /* VSSDeviceManagerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420B3A181EC33D6B004C9930 /* VSSDeviceManagerPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 420B3A171EC33D51004C9930 /* VSSDeviceManagerPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420B3A191EC33D6C004C9930 /* VSSDeviceManagerPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 420B3A171EC33D51004C9930 /* VSSDeviceManagerPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		420FE5ED1E4B55FC005A32D4 /* VSSCreateEmailCardRequestPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420FE5EC1E4B55FA005A32D4 /* VSSCreateEmailCardRequestPrivate.h */; };
 		420FE5EE1E4B560D005A32D4 /* VSSConfirmIdentityRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42386C261E019017009E913F /* VSSConfirmIdentityRequest.h */; };
 		420FE5EF1E4B5610005A32D4 /* VSSValidateIdentityRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42386C361E019CBF009E913F /* VSSValidateIdentityRequest.h */; };
@@ -177,8 +185,6 @@
 		42249ADC1EB39EAF0032F556 /* VSSRequestSigner.h in Headers */ = {isa = PBXBuildFile; fileRef = 42FA96421DA29E2A0092D5DB /* VSSRequestSigner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42249ADD1EB39EAF0032F556 /* VSSCardValidatorProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 423B09AB1DA52D7500A63E5B /* VSSCardValidatorProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42249ADE1EB39EAF0032F556 /* VSSCardValidator.h in Headers */ = {isa = PBXBuildFile; fileRef = 423B09AA1DA52D6400A63E5B /* VSSCardValidator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42249ADF1EB39EAF0032F556 /* VSSDeviceManagerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 424EF9A91E0D713D005E8A8B /* VSSDeviceManagerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42249AE01EB39EAF0032F556 /* VSSDeviceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 424EF9AC1E0D71C3005E8A8B /* VSSDeviceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42249AE11EB39EBC0032F556 /* VSSCryptoPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7E36F1DB900AF00D70C12 /* VSSCryptoPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42249AE21EB39EBC0032F556 /* VSSCryptoCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 42BBF0DB1DD5DF8200E19D60 /* VSSCryptoCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42249AE31EB39EBC0032F556 /* VSSCryptoProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F0AB181D9ABF1500747799 /* VSSCryptoProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -224,8 +230,6 @@
 		42249B0E1EB39EF30032F556 /* VSSCardsManagerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F7B32C1E697A3F004E579C /* VSSCardsManagerPrivate.h */; };
 		42249B0F1EB39EF30032F556 /* VSSKeysManagerPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 4233CDD81E65731F006D78C3 /* VSSKeysManagerPrivate.h */; };
 		42249B101EB39EFD0032F556 /* NSObject+VSSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 36FF4B8D1C4D7FED00E901F3 /* NSObject+VSSUtils.h */; };
-		42249B141EB39FC80032F556 /* VSSDeviceManager_Foundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 42249B121EB39FA50032F556 /* VSSDeviceManager_Foundation.m */; };
-		42249B151EB39FD00032F556 /* VSSDeviceManager_UIKIT.m in Sources */ = {isa = PBXBuildFile; fileRef = 424EF9AA1E0D71B1005E8A8B /* VSSDeviceManager_UIKIT.m */; };
 		422536B51E8946C500A9C345 /* VSSUserIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 422536B41E8946C500A9C345 /* VSSUserIdentity.m */; };
 		422536B81E8946DE00A9C345 /* VSSApplicationIdentity.m in Sources */ = {isa = PBXBuildFile; fileRef = 422536B71E8946DE00A9C345 /* VSSApplicationIdentity.m */; };
 		422536B91E89474B00A9C345 /* VSSUserIdentity.h in Headers */ = {isa = PBXBuildFile; fileRef = 422536B31E8946B700A9C345 /* VSSUserIdentity.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -263,8 +267,6 @@
 		4248B1321E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1131E044CE8000AB44C /* MailinatorEmailRequest.m */; };
 		4248B1361E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1151E044CE8000AB44C /* MailinatorInboxRequest.m */; };
 		4248B13A1E044CE8000AB44C /* MailinatorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1171E044CE8000AB44C /* MailinatorRequest.m */; };
-		424EF9AD1E0D76B2005E8A8B /* VSSDeviceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 424EF9AC1E0D71C3005E8A8B /* VSSDeviceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		424EF9AE1E0D76B7005E8A8B /* VSSDeviceManagerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 424EF9A91E0D713D005E8A8B /* VSSDeviceManagerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		425B09BB1DBF63E8005531DC /* VSS003_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B81BDA1DB5013900E5E2AE /* VSS003_CryptoTests.swift */; };
 		425B09BC1DBF63E8005531DC /* VSS004_ModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B81BDC1DB518FC00E5E2AE /* VSS004_ModelsTests.swift */; };
 		425B09BD1DBF63E8005531DC /* VSS005_CompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B81BDE1DB51A3500E5E2AE /* VSS005_CompatibilityTests.swift */; };
@@ -476,6 +478,11 @@
 /* Begin PBXFileReference section */
 		36FF4B8D1C4D7FED00E901F3 /* NSObject+VSSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+VSSUtils.h"; sourceTree = "<group>"; };
 		36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+VSSUtils.m"; sourceTree = "<group>"; };
+		420B3A0A1EC33D3D004C9930 /* VSSDeviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSDeviceManager.m; sourceTree = "<group>"; };
+		420B3A0C1EC33D3D004C9930 /* VSSDeviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSDeviceManager.m; sourceTree = "<group>"; };
+		420B3A0D1EC33D3D004C9930 /* VSSDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSDeviceManager.h; sourceTree = "<group>"; };
+		420B3A0E1EC33D3D004C9930 /* VSSDeviceManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSDeviceManagerProtocol.h; sourceTree = "<group>"; };
+		420B3A171EC33D51004C9930 /* VSSDeviceManagerPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSDeviceManagerPublic.h; sourceTree = "<group>"; };
 		420FE5EC1E4B55FA005A32D4 /* VSSCreateEmailCardRequestPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCreateEmailCardRequestPrivate.h; sourceTree = "<group>"; };
 		420FE5F51E4B75FE005A32D4 /* VSS002_ClientWOTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS002_ClientWOTokenTests.swift; sourceTree = "<group>"; };
 		420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = Carthage/Build/iOS/VirgilCrypto.framework; sourceTree = "<group>"; };
@@ -500,7 +507,6 @@
 		422499BA1EB39B380032F556 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		422499C21EB39B380032F556 /* VirgilSDK macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilSDK macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		422499D11EB39BD50032F556 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = Carthage/Build/Mac/VirgilCrypto.framework; sourceTree = "<group>"; };
-		42249B121EB39FA50032F556 /* VSSDeviceManager_Foundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSDeviceManager_Foundation.m; sourceTree = "<group>"; };
 		422536B31E8946B700A9C345 /* VSSUserIdentity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSUserIdentity.h; sourceTree = "<group>"; };
 		422536B41E8946C500A9C345 /* VSSUserIdentity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSUserIdentity.m; sourceTree = "<group>"; };
 		422536B61E8946D300A9C345 /* VSSApplicationIdentity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSApplicationIdentity.h; sourceTree = "<group>"; };
@@ -566,9 +572,6 @@
 		4248B1411E044D6B000AB44C /* VSSHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSHTTPRequest.h; sourceTree = "<group>"; };
 		4248B1431E044D6B000AB44C /* VSSHTTPRequestPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSHTTPRequestPrivate.h; sourceTree = "<group>"; };
 		4248B1441E044D6B000AB44C /* VSSHTTPRequestContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSHTTPRequestContext.h; sourceTree = "<group>"; };
-		424EF9A91E0D713D005E8A8B /* VSSDeviceManagerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSDeviceManagerProtocol.h; sourceTree = "<group>"; };
-		424EF9AA1E0D71B1005E8A8B /* VSSDeviceManager_UIKIT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSDeviceManager_UIKIT.m; sourceTree = "<group>"; };
-		424EF9AC1E0D71C3005E8A8B /* VSSDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSDeviceManager.h; sourceTree = "<group>"; };
 		425B09C11DC2453E005531DC /* VSSSnapshotModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSSnapshotModel.h; sourceTree = "<group>"; };
 		425B09C21DC24549005531DC /* VSSSnapshotModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSnapshotModel.m; sourceTree = "<group>"; };
 		425B09C41DC245CE005531DC /* VSSCreateCardSnapshotModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSCreateCardSnapshotModel.h; sourceTree = "<group>"; };
@@ -783,6 +786,7 @@
 				42B7E3721DB9023400D70C12 /* VirgilSDK.h */,
 				42F0AB1C1D9ABF2200747799 /* Client */,
 				42F0AB0B1D9ABF1500747799 /* Crypto */,
+				420B3A081EC33D3D004C9930 /* DeviceManager */,
 				42A442A51DC8F1B9000DD54B /* KeyStorage */,
 				420FE6261E51C955005A32D4 /* HighLevel */,
 				36FF4B8C1C4D7FED00E901F3 /* Utils */,
@@ -797,6 +801,34 @@
 				36FF4B8E1C4D7FED00E901F3 /* NSObject+VSSUtils.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		420B3A081EC33D3D004C9930 /* DeviceManager */ = {
+			isa = PBXGroup;
+			children = (
+				420B3A091EC33D3D004C9930 /* iOS */,
+				420B3A0B1EC33D3D004C9930 /* macOS */,
+				420B3A171EC33D51004C9930 /* VSSDeviceManagerPublic.h */,
+				420B3A0E1EC33D3D004C9930 /* VSSDeviceManagerProtocol.h */,
+				420B3A0D1EC33D3D004C9930 /* VSSDeviceManager.h */,
+			);
+			path = DeviceManager;
+			sourceTree = "<group>";
+		};
+		420B3A091EC33D3D004C9930 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				420B3A0A1EC33D3D004C9930 /* VSSDeviceManager.m */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		420B3A0B1EC33D3D004C9930 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				420B3A0C1EC33D3D004C9930 /* VSSDeviceManager.m */,
+			);
+			path = macOS;
 			sourceTree = "<group>";
 		};
 		420FE6261E51C955005A32D4 /* HighLevel */ = {
@@ -1168,10 +1200,6 @@
 				423B09AB1DA52D7500A63E5B /* VSSCardValidatorProtocol.h */,
 				423B09AA1DA52D6400A63E5B /* VSSCardValidator.h */,
 				423B09AC1DA534A800A63E5B /* VSSCardValidator.m */,
-				424EF9A91E0D713D005E8A8B /* VSSDeviceManagerProtocol.h */,
-				424EF9AC1E0D71C3005E8A8B /* VSSDeviceManager.h */,
-				424EF9AA1E0D71B1005E8A8B /* VSSDeviceManager_UIKIT.m */,
-				42249B121EB39FA50032F556 /* VSSDeviceManager_Foundation.m */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -1339,11 +1367,11 @@
 				42249B081EB39EEC0032F556 /* VSSCardVerifierInfo.h in Headers */,
 				42249AA61EB39E4B0032F556 /* VSSSignableRequestPrivate.h in Headers */,
 				42249A9D1EB39E440032F556 /* VSSCreateCardRequest.h in Headers */,
-				42249ADF1EB39EAF0032F556 /* VSSDeviceManagerProtocol.h in Headers */,
 				42249ACD1EB39E9F0032F556 /* VSSRevokeCardHTTPRequest.h in Headers */,
 				42249AEC1EB39EC70032F556 /* VSSPublicKey.h in Headers */,
 				42249A981EB39E200032F556 /* VSSBaseModel.h in Headers */,
 				42249AB91EB39E6F0032F556 /* VSSExportable.h in Headers */,
+				420B3A191EC33D6C004C9930 /* VSSDeviceManagerPublic.h in Headers */,
 				42249AC41EB39E820032F556 /* VSSCanonicalDeserializable.h in Headers */,
 				42249AC31EB39E820032F556 /* VSSCanonicalSerializable.h in Headers */,
 				42249ADB1EB39EAF0032F556 /* VSSRequestSignerProtocol.h in Headers */,
@@ -1393,6 +1421,7 @@
 				42249ABD1EB39E780032F556 /* VSSIdentityError.h in Headers */,
 				42249B001EB39EEC0032F556 /* VSSKeysManagerProtocol.h in Headers */,
 				42249ABB1EB39E780032F556 /* VSSError.h in Headers */,
+				420B3A141EC33D3D004C9930 /* VSSDeviceManager.h in Headers */,
 				42249B0B1EB39EF30032F556 /* VSSVirgilCardPrivate.h in Headers */,
 				42249AD51EB39E9F0032F556 /* VSSCreateCardRelationHTTPRequest.h in Headers */,
 				42249ACB1EB39E9F0032F556 /* VSSVraBaseHTTPRequest.h in Headers */,
@@ -1408,7 +1437,6 @@
 				42249AA91EB39E4B0032F556 /* VSSValidateIdentityRequest.h in Headers */,
 				42249AF71EB39EEC0032F556 /* VSSVirgilApiProtocol.h in Headers */,
 				42249AB11EB39E650032F556 /* VSSSnapshotModelsPublic.h in Headers */,
-				42249AE01EB39EAF0032F556 /* VSSDeviceManager.h in Headers */,
 				42249ACE1EB39E9F0032F556 /* VSSIdentityBaseHTTPRequest.h in Headers */,
 				42249ACA1EB39E920032F556 /* VSSHTTPJSONRequest.h in Headers */,
 				42249B041EB39EEC0032F556 /* VSSEmailIdentity.h in Headers */,
@@ -1431,6 +1459,7 @@
 				42249AE31EB39EBC0032F556 /* VSSCryptoProtocol.h in Headers */,
 				42249ABE1EB39E780032F556 /* VSSVraError.h in Headers */,
 				42249A961EB39E200032F556 /* VSSModelsPublic.h in Headers */,
+				420B3A161EC33D3D004C9930 /* VSSDeviceManagerProtocol.h in Headers */,
 				42249AC51EB39E820032F556 /* VSSDeserializable.h in Headers */,
 				42249B021EB39EEC0032F556 /* VSSVirgilIdentity.h in Headers */,
 				42249AC01EB39E7E0032F556 /* VSSModelKeys.h in Headers */,
@@ -1514,7 +1543,6 @@
 				425B09FA1DC2676C005531DC /* VSSRequestsPublic.h in Headers */,
 				425B09D11DC246BE005531DC /* VSSSnapshotModel.h in Headers */,
 				427A63641DB9096C00A33661 /* VSSCryptoProtocol.h in Headers */,
-				424EF9AE1E0D76B7005E8A8B /* VSSDeviceManagerProtocol.h in Headers */,
 				42B33F761DC3A859008A7B78 /* VSSSignable.h in Headers */,
 				423CEB5D1DCA07C200CCACB8 /* VSSKeyStoragePublic.h in Headers */,
 				423CEB5E1DCA07C200CCACB8 /* VSSKeyStorageProtocol.h in Headers */,
@@ -1539,7 +1567,6 @@
 				425B09F51DC262DE005531DC /* VSSSnapshotModelPrivate.h in Headers */,
 				42F7B3481E69C103004E579C /* VSSCredentials.h in Headers */,
 				425B09D31DC2475F005531DC /* VSSSnapshotModelsPublic.h in Headers */,
-				424EF9AD1E0D76B2005E8A8B /* VSSDeviceManager.h in Headers */,
 				425B09CA1DC245CE005531DC /* VSSRevokeCardSnapshotModel.h in Headers */,
 				427C40671E5C78770017C2A9 /* VSSRemoveCardRelationRequest.h in Headers */,
 				427A63671DB9096C00A33661 /* VSSFingerprint.h in Headers */,
@@ -1547,6 +1574,7 @@
 				427A63191DB9096C00A33661 /* VSSError.h in Headers */,
 				427A631B1DB9096C00A33661 /* VSSCardsError.h in Headers */,
 				423FFFB01E708AEB00CC98A3 /* VSSCardVerifierInfo.h in Headers */,
+				420B3A131EC33D3D004C9930 /* VSSDeviceManager.h in Headers */,
 				42F7B34B1E69C50F004E579C /* VSSIdentitiesManagerProtocol.h in Headers */,
 				427A631D1DB9096C00A33661 /* VSSCanonicalSerializable.h in Headers */,
 				427A631E1DB9096C00A33661 /* VSSCanonicalDeserializable.h in Headers */,
@@ -1555,6 +1583,7 @@
 				427A63221DB9096C00A33661 /* VSSModelCommonsPrivate.h in Headers */,
 				420FE65E1E51FFF6005A32D4 /* VSSCardsManagerProtocol.h in Headers */,
 				420FE64A1E51C955005A32D4 /* VSSVirgilApi.h in Headers */,
+				420B3A181EC33D6B004C9930 /* VSSDeviceManagerPublic.h in Headers */,
 				427A63231DB9096C00A33661 /* VSSModelKeys.h in Headers */,
 				427A63281DB9096C00A33661 /* VSSSearchCardsCriteriaPrivate.h in Headers */,
 				425B09CF1DC24635005531DC /* VSSCreateCardSnapshotModelPrivate.h in Headers */,
@@ -1581,6 +1610,7 @@
 				42F7B3321E6998DE004E579C /* VSSVirgilIdentity.h in Headers */,
 				420FE64C1E51C955005A32D4 /* VSSVirgilApiContext.h in Headers */,
 				425B09D01DC24635005531DC /* VSSRevokeCardSnapshotModelPrivate.h in Headers */,
+				420B3A151EC33D3D004C9930 /* VSSDeviceManagerProtocol.h in Headers */,
 				427C40571E5B32550017C2A9 /* VSSCreateCardRelationHTTPRequest.h in Headers */,
 				427A636B1DB9096C00A33661 /* NSObject+VSSUtils.h in Headers */,
 			);
@@ -1758,6 +1788,7 @@
 				422499DD1EB39D6F0032F556 /* VSSCreateCardRequest.m in Sources */,
 				422499DF1EB39D6F0032F556 /* VSSCreateUserCardRequest.m in Sources */,
 				422499E11EB39D6F0032F556 /* VSSCreateEmailCardRequest.m in Sources */,
+				420B3A121EC33D3D004C9930 /* VSSDeviceManager.m in Sources */,
 				422499E31EB39D6F0032F556 /* VSSCreateApplicationGlobalCardRequest.m in Sources */,
 				422499E51EB39D6F0032F556 /* VSSRevokeCardRequest.m in Sources */,
 				422499E71EB39D6F0032F556 /* VSSRevokeUserCardRequest.m in Sources */,
@@ -1792,7 +1823,6 @@
 				42249A2E1EB39D6F0032F556 /* VSSValidateIdentityHTTPRequest.m in Sources */,
 				42249A301EB39D6F0032F556 /* VSSCardsBaseHTTPRequest.m in Sources */,
 				42249A321EB39D6F0032F556 /* VSSSearchCardsHTTPRequest.m in Sources */,
-				42249B141EB39FC80032F556 /* VSSDeviceManager_Foundation.m in Sources */,
 				42249A341EB39D6F0032F556 /* VSSGetCardHTTPRequest.m in Sources */,
 				42249A361EB39D6F0032F556 /* VSSCreateCardRelationHTTPRequest.m in Sources */,
 				42249A381EB39D6F0032F556 /* VSSRemoveCardRelationHTTPRequest.m in Sources */,
@@ -1907,7 +1937,6 @@
 				42EB31161DB8EC33001DF4C0 /* VSSGetCardHTTPRequest.m in Sources */,
 				420FE66A1E53490D005A32D4 /* VSSVirgilKey.m in Sources */,
 				420FE6531E51C955005A32D4 /* VSSVirgilCard.m in Sources */,
-				42249B151EB39FD00032F556 /* VSSDeviceManager_UIKIT.m in Sources */,
 				420FE6471E51C955005A32D4 /* VSSKeysManager.m in Sources */,
 				422536B81E8946DE00A9C345 /* VSSApplicationIdentity.m in Sources */,
 				42D414961E37880F00F59580 /* VSSCreateEmailCardRequest.m in Sources */,
@@ -1951,6 +1980,7 @@
 				422536BD1E895E3D00A9C345 /* VSSCreateApplicationGlobalCardRequest.m in Sources */,
 				423CEB5A1DCA06C900CCACB8 /* VSSKeyEntry.m in Sources */,
 				4233CDDD1E6588C2006D78C3 /* VSSCreateUserCardRequest.m in Sources */,
+				420B3A0F1EC33D3D004C9930 /* VSSDeviceManager.m in Sources */,
 				42EB313D1DB8EC33001DF4C0 /* NSObject+VSSUtils.m in Sources */,
 				42386C2C1E0195C2009E913F /* VSSConfirmIdentityResponse.m in Sources */,
 				42F7B33C1E69AB3F004E579C /* VSSEmailIdentity.m in Sources */,

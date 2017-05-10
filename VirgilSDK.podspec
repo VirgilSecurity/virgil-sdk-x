@@ -21,6 +21,7 @@ Pod::Spec.new do |s|
                             'Source/Client/Models/Protocols/*.{h}',
                             'Source/Crypto/*.{h}',
                             'Source/Crypto/Keys/*.{h}',
+                            'Source/DeviceManager/*.{h}',
                             'Source/KeyStorage/*.{h}',
                             'Source/HighLevel/*.{h}'
   s.requires_arc          = true
