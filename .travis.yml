@@ -34,6 +34,7 @@ script:
     fi
 
 after_success:
+  - pod lib lint
   - if [ $RUN_TESTS == "YES" && $PUBLISH_COVERAGE == "YES"]; then
       bash <(curl -s https://codecov.io/bash);
     fi
