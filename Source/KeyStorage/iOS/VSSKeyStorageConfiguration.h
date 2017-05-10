@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Security/Security.h>
 
 /**
  Class used to initialize default VSSKeyStorage implementation.
