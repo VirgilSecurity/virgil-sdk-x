@@ -11,17 +11,21 @@
 
 @interface VSSKeyStorageConfiguration ()
 
-- (instancetype __nonnull)initWithAccessibility:(NSString * __nonnull)accessibility accessRef:(SecAccessRef __nullable)accessRef NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithAccessibility:(NSString * __nullable)accessibility trustedApplications:(NSArray<NSString *> * __nullable)trustedApplications NS_DESIGNATED_INITIALIZER;
 
 @end
 
 @implementation VSSKeyStorageConfiguration
 
-- (instancetype)initWithAccessibility:(NSString *)accessibility accessRef:(SecAccessRef)accessRef {
++ (VSSKeyStorageConfiguration *)keyStorageConfigurationWithAccessibility:(NSString *)accessibility trustedApplications:(NSArray<NSString *> *)trustedApplications {
+    return [[VSSKeyStorageConfiguration alloc] initWithAccessibility:accessibility trustedApplications:trustedApplications];
+}
+
+- (instancetype)initWithAccessibility:(NSString *)accessibility trustedApplications:(NSArray<NSString *> *)trustedApplications {
     self = [super init];
     if (self) {
-        _accessibility = [accessibility copy];
-        _accessRef = accessRef;
+        _accessibility = accessibility.length == 0 ? (__bridge NSString*)kSecAttrAccessibleWhenUnlocked : [accessibility copy];
+        _trustedApplications = [trustedApplications copy];
         _applicationName = [NSBundle.mainBundle.bundleIdentifier copy];
     }
     
@@ -33,17 +37,11 @@
 }
 
 - (instancetype)init {
-    return [self initWithAccessibility:(__bridge NSString*)kSecAttrAccessibleWhenUnlocked accessRef:nil];
+    return [self initWithAccessibility:nil trustedApplications:nil];
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    return [[VSSKeyStorageConfiguration alloc] init];
-}
-
--(void)dealloc {
-    if (self.accessRef) {
-        CFRelease(self.accessRef);
-    }
+    return [[VSSKeyStorageConfiguration alloc] initWithAccessibility:self.accessibility trustedApplications:self.trustedApplications];
 }
 
 @end

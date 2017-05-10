@@ -29,7 +29,7 @@
  @param accessGroup see https://developer.apple.com/reference/security/ksecattraccessgroup
  @return allocated and initialized VSSKeyStorageConfiguration instance
  */
-+ (VSSKeyStorageConfiguration * __nonnull)keyStorageConfigurationWithAccessibility:(NSString * __nonnull)accessibility accessGroup:(NSString * __nullable)accessGroup;
++ (VSSKeyStorageConfiguration * __nonnull)keyStorageConfigurationWithAccessibility:(NSString * __nullable)accessibility accessGroup:(NSString * __nullable)accessGroup;
 
 /**
  Accessibility. See https://developer.apple.com/reference/security/keychain_services/keychain_item_accessibility_constants

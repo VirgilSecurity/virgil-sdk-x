@@ -14,6 +14,43 @@ NSString *const kVSSKeyStorageErrorDomain = @"VSSKeyStorageErrorDomain";
 
 static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
 
+SecAccessRef createAccess(NSString *accessLabel, NSArray<NSString *> *trustedApplicationsNames)
+{
+    OSStatus err;
+    
+    // Make an exception list of trusted applications; that is,
+    // applications that are allowed to access the item without
+    // requiring user confirmation:
+    SecTrustedApplicationRef myself;
+    
+    NSMutableArray *trustedApplications = [[NSMutableArray alloc] initWithCapacity:trustedApplicationsNames.count + 1];
+    
+    //Create trusted application references; see SecTrustedApplications.h:
+    err = SecTrustedApplicationCreateFromPath(NULL, &myself);
+    
+    if (err != noErr) return nil;
+    
+    [trustedApplications addObject:(__bridge_transfer id)myself];
+    
+    for (NSString *applicationName in trustedApplicationsNames) {
+        SecTrustedApplicationRef someOther;
+        err = SecTrustedApplicationCreateFromPath([applicationName UTF8String],
+                                                    &someOther);
+        
+        [trustedApplications addObject:(__bridge_transfer id)someOther];
+        
+        if (err != noErr) return nil;
+    }
+    
+    //Create an access object:
+    SecAccessRef access=nil;
+    err = SecAccessCreate((__bridge CFStringRef)accessLabel,
+                                 (__bridge CFArrayRef)trustedApplications, &access);
+    if (err) return nil;
+    
+    return access;
+}
+
 @implementation VSSKeyStorage
 
 - (instancetype)init {
@@ -42,6 +79,13 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
     NSData *keyEntryData = [NSKeyedArchiver archivedDataWithRootObject:keyEntry];
     
     NSMutableDictionary *query = [self baseExtendedKeychainQueryForName:keyEntry.name];
+    
+    if (query == nil) {
+        if (errorPtr != nil) {
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"Error storing VSSKeyEntry. Error during query dict creation. (Probably trusted applications list issue)" }];
+        }
+        return NO;
+    }
 
     NSMutableDictionary *keySpecificData = [NSMutableDictionary dictionaryWithDictionary:
                                             @{
@@ -135,8 +179,12 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
                                          (__bridge id)kSecAttrIsInvisible: (__bridge id)kCFBooleanTrue,
                                          }];
     
-    if (self.configuration.accessRef != nil) {
-        additional[(__bridge id)kSecAttrAccess] = (__bridge id)self.configuration.accessRef;
+    if (self.configuration.trustedApplications.count > 0) {
+        SecAccessRef access = createAccess(name, self.configuration.trustedApplications);
+        if (!access)
+            return nil;
+        
+        [additional setObject:(__bridge id)access forKey:(__bridge id)kSecAttrAccess];
     }
     
     [query addEntriesFromDictionary:additional];

@@ -22,7 +22,19 @@
  */
 + (VSSKeyStorageConfiguration * __nonnull)keyStorageConfigurationWithDefaultValues;
 
-@property (nonatomic, readonly) SecAccessRef __nullable accessRef;
+/**
+ Factory method which allocates and initalizes VSSKeyStorageConfiguration instance.
+ 
+ @param accessibility see https://developer.apple.com/reference/security/keychain_services/keychain_item_accessibility_constants
+ @param trustedApplications needed to set up access. No need to add executing application itself. See https://developer.apple.com/reference/security/secaccess
+ @return allocated and initialized VSSKeyStorageConfiguration instance
+ */
++ (VSSKeyStorageConfiguration * __nonnull)keyStorageConfigurationWithAccessibility:(NSString * __nullable)accessibility trustedApplications:(NSArray<NSString *> * __nullable)trustedApplications;
+
+/**
+ Trusted application to set up access. No need to add executing application itself. See https://developer.apple.com/reference/security/secaccess
+ */
+@property (nonatomic, readonly) NSArray<NSString *> * __nonnull trustedApplications;
 
 /**
  Accessibility. See https://developer.apple.com/reference/security/keychain_services/keychain_item_accessibility_constants

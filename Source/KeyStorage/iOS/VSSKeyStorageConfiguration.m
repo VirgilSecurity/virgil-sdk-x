@@ -10,20 +10,20 @@
 
 @interface VSSKeyStorageConfiguration ()
 
-- (instancetype __nonnull)initWithAccessibility:(NSString * __nonnull)accessibility accessGroup:(NSString * __nullable)accessGroup NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithAccessibility:(NSString * __nullable)accessibility accessGroup:(NSString * __nullable)accessGroup NS_DESIGNATED_INITIALIZER;
 
 @end
 
 @implementation VSSKeyStorageConfiguration
 
 - (instancetype)init {
-    return [self initWithAccessibility:(__bridge NSString*)kSecAttrAccessibleWhenUnlocked accessGroup:nil];
+    return [self initWithAccessibility:nil accessGroup:nil];
 }
 
 - (instancetype)initWithAccessibility:(NSString *)accessibility accessGroup:(NSString *)accessGroup {
     self = [super init];
     if (self) {
-        _accessibility = [accessibility copy];
+        _accessibility = accessibility.length == 0 ? (__bridge NSString*)kSecAttrAccessibleWhenUnlocked : [accessibility copy];
         _accessGroup = [accessGroup copy];
         _applicationName = [NSBundle.mainBundle.bundleIdentifier copy];
     }
