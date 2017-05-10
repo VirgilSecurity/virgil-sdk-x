@@ -35,7 +35,6 @@ class VSS001_ClientTests: XCTestCase {
         let publicKey = self.crypto.extractPublicKey(from: privateKey)
         let publicKeyData = self.crypto.export(publicKey)
         XCTAssert(validator.addVerifier(withId: self.consts.applicationId, publicKeyData: publicKeyData))
-        // FIXME
         validator.useVirgilServiceVerifiers = false
         let config = VSSServiceConfig(token: self.consts.applicationToken)
         config.cardValidator = validator
