@@ -41,6 +41,7 @@ class VSS007_HighLevelTests: XCTestCase {
         config.cardsServiceROURL = self.consts.cardsServiceROURL
         config.identityServiceURL = self.consts.identityServiceURL
         config.registrationAuthorityURL = self.consts.registrationAuthorityURL
+        config.authServiceURL = self.consts.authServiceURL
         
         let client = VSSClient(serviceConfig: config)
         context.client = client

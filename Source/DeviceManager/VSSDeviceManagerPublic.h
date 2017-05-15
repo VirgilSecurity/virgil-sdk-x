@@ -6,8 +6,5 @@
 //  Copyright © 2017 VirgilSecurity. All rights reserved.
 //
 
-#ifndef VSSDeviceManagerPublic_h
-#define VSSDeviceManagerPublic_h
-
-
-#endif /* VSSDeviceManagerPublic_h */
+#import "VSSDeviceManagerProtocol.h"
+#import "VSSDeviceManager.h"

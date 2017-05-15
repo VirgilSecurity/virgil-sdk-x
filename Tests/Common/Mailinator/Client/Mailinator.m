@@ -67,6 +67,10 @@ static NSString *const kMailinatorErrorDomain = @"MailinatorErrorDomain";
         
         if (completionHandler != nil) {
             MailinatorInboxRequest *mrequest = [request vss_as:[MailinatorInboxRequest class]];
+            if (mrequest.metadataList == nil) {
+                completionHandler(nil, [NSError errorWithDomain:kMailinatorErrorDomain code:-103 userInfo:@{ NSLocalizedDescriptionKey: @"Error parsing response" }]);
+                return;
+            }
             completionHandler(mrequest.metadataList, nil);
         }
     };
@@ -97,6 +101,10 @@ static NSString *const kMailinatorErrorDomain = @"MailinatorErrorDomain";
         
         if (completionHandler != nil) {
             MailinatorEmailRequest *mrequest = [request vss_as:[MailinatorEmailRequest class]];
+            if (mrequest.email == nil) {
+                completionHandler(nil, [NSError errorWithDomain:kMailinatorErrorDomain code:-103 userInfo:@{ NSLocalizedDescriptionKey: @"Error parsing response" }]);
+                return;
+            }
             completionHandler(mrequest.email, nil);
         }
     };
