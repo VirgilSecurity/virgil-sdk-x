@@ -57,4 +57,9 @@
     return [[NSURL alloc] initWithString:str];
 }
 
+- (NSURL *)authServiceURL {
+    NSString *str = [@STRINGIZE2(AUTH_SERVICE_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    return [[NSURL alloc] initWithString:str];
+}
+
 @end

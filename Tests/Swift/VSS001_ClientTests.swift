@@ -43,6 +43,7 @@ class VSS001_ClientTests: XCTestCase {
         config.cardsServiceROURL = self.consts.cardsServiceROURL
         config.identityServiceURL = self.consts.identityServiceURL
         config.registrationAuthorityURL = self.consts.registrationAuthorityURL
+        config.authServiceURL = self.consts.authServiceURL
         
         self.client = VSSClient(serviceConfig: config)
         

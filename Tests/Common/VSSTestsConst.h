@@ -22,5 +22,6 @@
 @property (nonatomic, readonly) NSURL * __nonnull cardsServiceROURL;
 @property (nonatomic, readonly) NSURL * __nonnull identityServiceURL;
 @property (nonatomic, readonly) NSURL * __nonnull registrationAuthorityURL;
+@property (nonatomic, readonly) NSURL * __nonnull authServiceURL;
 
 @end
