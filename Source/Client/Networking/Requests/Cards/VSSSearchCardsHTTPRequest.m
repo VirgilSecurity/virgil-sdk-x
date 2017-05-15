@@ -44,7 +44,7 @@
     }
 
     NSMutableArray *cardResponses = [[NSMutableArray alloc] init];
-    for (NSDictionary *item in [candidate as:[NSArray class]]) {
+    for (NSDictionary *item in [candidate vss_as:[NSArray class]]) {
         /// Deserialize actual cards
         VSSCardResponse *cardResponse = [[VSSCardResponse alloc] initWithDict:item];
         if (cardResponse != nil) {

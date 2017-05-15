@@ -14,11 +14,11 @@
 @implementation VSSObtainTokenResponse
 
 - (instancetype)initWithDict:(NSDictionary *)candidate {
-    NSString *refreshToken = [candidate[kVSSAModelRefreshToken] as:[NSString class]];
+    NSString *refreshToken = [candidate[kVSSAModelRefreshToken] vss_as:[NSString class]];
     if (refreshToken.length == 0)
         return nil;
     
-    NSString *tokenType = [candidate[kVSSAModelTokenType] as:[NSString class]];
+    NSString *tokenType = [candidate[kVSSAModelTokenType] vss_as:[NSString class]];
     if (tokenType.length == 0)
         return nil;
     

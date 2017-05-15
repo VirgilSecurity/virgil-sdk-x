@@ -43,7 +43,7 @@
         return error;
     }
     
-    self.confirmIdentityResponse = [[VSSConfirmIdentityResponse alloc] initWithDict:[candidate as:[NSDictionary class]]];
+    self.confirmIdentityResponse = [[VSSConfirmIdentityResponse alloc] initWithDict:[candidate vss_as:[NSDictionary class]]];
     
     return nil;
 }

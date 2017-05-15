@@ -38,7 +38,7 @@
         return error;
     }
     
-    self.challengeMessageResponse = [[VSSChallengeMessageResponse alloc] initWithDict:[candidate as:[NSDictionary class]]];
+    self.challengeMessageResponse = [[VSSChallengeMessageResponse alloc] initWithDict:[candidate vss_as:[NSDictionary class]]];
     return nil;
 }
 

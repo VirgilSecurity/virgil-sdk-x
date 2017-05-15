@@ -15,7 +15,7 @@
 #pragma mark - VSSDeserializable
 
 - (instancetype)initWithDict:(NSDictionary *)candidate {
-    NSString *resourceOwnerVirgilCardId = [candidate[kVSSAModelResourceOwnerCardId] as:[NSString class]];
+    NSString *resourceOwnerVirgilCardId = [candidate[kVSSAModelResourceOwnerCardId] vss_as:[NSString class]];
     if (resourceOwnerVirgilCardId.length == 0)
         return nil;
     

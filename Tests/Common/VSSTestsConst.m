@@ -37,4 +37,24 @@
     return @STRINGIZE2(MAILINATOR_TOKEN);
 }
 
+- (NSURL *)cardsServiceURL {
+    NSString *str = [@STRINGIZE2(CARDS_SERVICE_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    return [[NSURL alloc] initWithString:str];
+}
+
+- (NSURL *)cardsServiceROURL {
+    NSString *str = [@STRINGIZE2(CARDS_SERVICE_RO_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    return [[NSURL alloc] initWithString:str];
+}
+
+- (NSURL *)identityServiceURL {
+    NSString *str = [@STRINGIZE2(IDENTITY_SERVICE_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    return [[NSURL alloc] initWithString:str];
+}
+
+- (NSURL *)registrationAuthorityURL {
+    NSString *str = [@STRINGIZE2(REGISTRATION_AUTHORITY_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    return [[NSURL alloc] initWithString:str];
+}
+
 @end

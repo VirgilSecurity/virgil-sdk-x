@@ -15,11 +15,11 @@
 #pragma mark - VSSDeserializable
 
 - (instancetype)initWithDict:(NSDictionary *)candidate {
-    NSString *accessToken = [candidate[kVSSAModelAccessToken] as:[NSString class]];
+    NSString *accessToken = [candidate[kVSSAModelAccessToken] vss_as:[NSString class]];
     if (accessToken.length == 0)
         return nil;
     
-    NSNumber *expiresInNumber = [candidate[kVSSAModelExpiresIn] as:[NSNumber class]];
+    NSNumber *expiresInNumber = [candidate[kVSSAModelExpiresIn] vss_as:[NSNumber class]];
     if (expiresInNumber == nil)
         return nil;
     

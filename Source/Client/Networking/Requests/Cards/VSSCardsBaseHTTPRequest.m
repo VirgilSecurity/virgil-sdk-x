@@ -21,7 +21,7 @@
         return error;
     }
     
-    VSSCardsError *vcError = [[VSSCardsError alloc] initWithDict:[candidate as:[NSDictionary class]]];
+    VSSCardsError *vcError = [[VSSCardsError alloc] initWithDict:[candidate vss_as:[NSDictionary class]]];
     return vcError.nsError;
 }
 

@@ -9,4 +9,5 @@
 #import "VSSClientPublic.h"
 #import "VSSCryptoPublic.h"
 #import "VSSKeyStoragePublic.h"
+#import "VSSDeviceManagerPublic.h"
 #import "VSSHighLevelPublic.h"

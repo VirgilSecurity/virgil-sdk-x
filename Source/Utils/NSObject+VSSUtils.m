@@ -10,7 +10,7 @@
 
 @implementation NSObject (VSSUtils)
 
-- (id)as:(Class)expectedClass {
+- (id)vss_as:(Class)expectedClass {
     if ([self isKindOfClass:expectedClass]) {
         return self;
     }

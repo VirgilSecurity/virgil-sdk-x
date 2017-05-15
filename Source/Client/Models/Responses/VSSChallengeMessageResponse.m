@@ -15,11 +15,11 @@
 #pragma mark - VSSDeserializable
 
 - (instancetype)initWithDict:(NSDictionary *)candidate {
-    NSString *authGrantId = [candidate[kVSSAModelAuthGrantId] as:[NSString class]];
+    NSString *authGrantId = [candidate[kVSSAModelAuthGrantId] vss_as:[NSString class]];
     if (authGrantId.length == 0)
         return nil;
     
-    NSString *encMessageStr = [candidate[kVSSAModelEncryptedMessage] as:[NSString class]];
+    NSString *encMessageStr = [candidate[kVSSAModelEncryptedMessage] vss_as:[NSString class]];
     if (encMessageStr.length == 0)
         return nil;
     

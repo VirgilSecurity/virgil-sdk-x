@@ -78,7 +78,7 @@
 }
 
 - (instancetype)initWithDict:(NSDictionary *)candidate {
-    NSString *snapshotStr = [candidate[kVSSCModelContentSnapshot] as:[NSString class]];
+    NSString *snapshotStr = [candidate[kVSSCModelContentSnapshot] vss_as:[NSString class]];
     if (snapshotStr.length == 0)
         return nil;
     
@@ -87,9 +87,9 @@
         return nil;
     
     NSMutableDictionary<NSString *,NSData *> *signatures = [[NSMutableDictionary alloc] init];;
-    NSDictionary *metaDict = [candidate[kVSSCModelMeta] as:[NSDictionary class]];
+    NSDictionary *metaDict = [candidate[kVSSCModelMeta] vss_as:[NSDictionary class]];
     if (metaDict.count != 0) {
-        NSDictionary<NSString *,NSString *> *signaturesDict = [metaDict[kVSSCModelSigns] as:[NSDictionary class]];
+        NSDictionary<NSString *,NSString *> *signaturesDict = [metaDict[kVSSCModelSigns] vss_as:[NSDictionary class]];
         for (NSString *key in signaturesDict.allKeys) {
             signatures[key] = [[NSData alloc] initWithBase64EncodedString:signaturesDict[key] options:0];
         }

@@ -15,7 +15,7 @@
 #pragma mark - VSSDeserializable
 
 - (instancetype)initWithDict:(NSDictionary *)candidate {
-    NSString *code = [candidate[kVSSAModelCode] as:[NSString class]];
+    NSString *code = [candidate[kVSSAModelCode] vss_as:[NSString class]];
     if (code.length == 0)
         return nil;
     

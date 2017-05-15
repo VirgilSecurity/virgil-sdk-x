@@ -38,7 +38,7 @@
         return error;
     }
     
-    self.verifyTokenResponse = [[VSSVerifyTokenResponse alloc] initWithDict:[candidate as:[NSDictionary class]]];
+    self.verifyTokenResponse = [[VSSVerifyTokenResponse alloc] initWithDict:[candidate vss_as:[NSDictionary class]]];
     return nil;
 }
 

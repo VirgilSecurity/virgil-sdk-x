@@ -91,25 +91,25 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
 }
 
 - (NSError *)handleError:(NSObject *)candidate code:(NSInteger)code {
-    return [candidate as:[NSError class]];
+    return [candidate vss_as:[NSError class]];
 }
 
 - (NSError *)handleResponse:(NSObject *)candidate {
-    return [candidate as:[NSError class]];
+    return [candidate vss_as:[NSError class]];
 }
 
 #pragma mark - Public class logic
 
 - (void)setRequestMethod:(HTTPRequestMethod)method {
-    NSMutableURLRequest *r = [self.request as:[NSMutableURLRequest class]];
+    NSMutableURLRequest *r = [self.request vss_as:[NSMutableURLRequest class]];
     r.HTTPMethod = [[self class] HTTPMethodNameForMethod:method];
 }
 
 - (void)setRequestHeaders:(NSDictionary *)headers {
     for (NSString *header in headers.allKeys) {
-        NSString *value = [headers[header] as:[NSString class]];
+        NSString *value = [headers[header] vss_as:[NSString class]];
         if (value != nil) {
-            NSMutableURLRequest *r = [self.request as:[NSMutableURLRequest class]];
+            NSMutableURLRequest *r = [self.request vss_as:[NSMutableURLRequest class]];
             [r setValue:value forHTTPHeaderField:header];
         }
     }
@@ -117,7 +117,7 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
 
 - (void)setRequestBody:(NSData *)body {
     if (body != nil) {
-        NSMutableURLRequest *r = [self.request as:[NSMutableURLRequest class]];
+        NSMutableURLRequest *r = [self.request vss_as:[NSMutableURLRequest class]];
         r.HTTPBody = body;
     }
 }
@@ -132,7 +132,7 @@ NSString *const kVSSAccessTokenHeader = @"Authorization";
                 return;
             }
             
-            NSHTTPURLResponse *httpResponse = [response as:[NSHTTPURLResponse class]];
+            NSHTTPURLResponse *httpResponse = [response vss_as:[NSHTTPURLResponse class]];
 #if USE_SERVICE_REQUEST_DEBUG
             VSSRDLog(@"%@: response URL: %@", NSStringFromClass(self.class), httpResponse.URL);
             VSSRDLog(@"%@: response HTTP status code: %ld", NSStringFromClass(self.class), (long)httpResponse.statusCode);

@@ -20,6 +20,6 @@
 
  @return Object of required class or nil.
  */
-- (id __nullable)as:(Class __nonnull)expectedClass;
+- (id __nullable)vss_as:(Class __nonnull)expectedClass;
 
 @end

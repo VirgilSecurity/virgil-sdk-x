@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "423CEB721DCB518A00CCACB8"
-               BuildableName = "TestSDKApp.app"
-               BlueprintName = "TestSDKApp"
+               BlueprintIdentifier = "422499B91EB39B380032F556"
+               BuildableName = "VirgilSDK.framework"
+               BlueprintName = "VirgilSDK macOS"
                ReferencedContainer = "container:VirgilSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,19 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "42229A2A1DD05A3C00BE651E"
-               BuildableName = "VirgilSDKKeyStorageSwiftTests.xctest"
-               BlueprintName = "VirgilSDKKeyStorageSwiftTests"
-               ReferencedContainer = "container:VirgilSDK.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "42229A171DD059DC00BE651E"
-               BuildableName = "VirgilSDKKeyStorageTests.xctest"
-               BlueprintName = "VirgilSDKKeyStorageTests"
+               BlueprintIdentifier = "422499C11EB39B380032F556"
+               BuildableName = "VirgilSDK macOS Tests.xctest"
+               BlueprintName = "VirgilSDK macOS Tests"
                ReferencedContainer = "container:VirgilSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -52,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "423CEB721DCB518A00CCACB8"
-            BuildableName = "TestSDKApp.app"
-            BlueprintName = "TestSDKApp"
+            BlueprintIdentifier = "422499B91EB39B380032F556"
+            BuildableName = "VirgilSDK.framework"
+            BlueprintName = "VirgilSDK macOS"
             ReferencedContainer = "container:VirgilSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -71,16 +61,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "423CEB721DCB518A00CCACB8"
-            BuildableName = "TestSDKApp.app"
-            BlueprintName = "TestSDKApp"
+            BlueprintIdentifier = "422499B91EB39B380032F556"
+            BuildableName = "VirgilSDK.framework"
+            BlueprintName = "VirgilSDK macOS"
             ReferencedContainer = "container:VirgilSDK.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -90,16 +79,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "423CEB721DCB518A00CCACB8"
-            BuildableName = "TestSDKApp.app"
-            BlueprintName = "TestSDKApp"
+            BlueprintIdentifier = "422499B91EB39B380032F556"
+            BuildableName = "VirgilSDK.framework"
+            BlueprintName = "VirgilSDK macOS"
             ReferencedContainer = "container:VirgilSDK.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

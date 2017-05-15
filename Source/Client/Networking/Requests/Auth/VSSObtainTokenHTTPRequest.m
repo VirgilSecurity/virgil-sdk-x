@@ -39,7 +39,7 @@
         return error;
     }
     
-    self.tokenResponse = [[VSSObtainTokenResponse alloc] initWithDict:[candidate as:[NSDictionary class]]];
+    self.tokenResponse = [[VSSObtainTokenResponse alloc] initWithDict:[candidate vss_as:[NSDictionary class]]];
     return nil;
 }
 

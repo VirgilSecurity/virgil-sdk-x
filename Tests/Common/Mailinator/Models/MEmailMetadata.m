@@ -78,15 +78,15 @@ static NSString *const kMIp = @"ip";
 #pragma mark - VFSerializable
 
 + (instancetype)deserializeFrom:(NSDictionary *)candidate {
-    NSNumber *seconds_ago = [candidate[kMSecondsAgo] as:[NSNumber class]];
-    NSString *mid = [candidate[kMId] as:[NSString class]];
-    NSString *to = [candidate[kMTo] as:[NSString class]];
-    NSNumber *time = [candidate[kMTime] as:[NSNumber class]];
-    NSString *subject = [candidate[kMSubject] as:[NSString class]];
-    NSString *fromfull = [candidate[kMFromFull] as:[NSString class]];
-    NSNumber *been_read = [candidate[kMBeenRead] as:[NSNumber class]];
-    NSString *from = [candidate[kMFrom] as:[NSString class]];
-    NSString *ip = [candidate[kMIp] as:[NSString class]];
+    NSNumber *seconds_ago = [candidate[kMSecondsAgo] vss_as:[NSNumber class]];
+    NSString *mid = [candidate[kMId] vss_as:[NSString class]];
+    NSString *to = [candidate[kMTo] vss_as:[NSString class]];
+    NSNumber *time = [candidate[kMTime] vss_as:[NSNumber class]];
+    NSString *subject = [candidate[kMSubject] vss_as:[NSString class]];
+    NSString *fromfull = [candidate[kMFromFull] vss_as:[NSString class]];
+    NSNumber *been_read = [candidate[kMBeenRead] vss_as:[NSNumber class]];
+    NSString *from = [candidate[kMFrom] vss_as:[NSString class]];
+    NSString *ip = [candidate[kMIp] vss_as:[NSString class]];
     
     return [[self alloc] initWithMid:mid subject:subject from:from to:to time:time beenRead:been_read fromfull:fromfull secondsAgo:seconds_ago ip:ip];
 }

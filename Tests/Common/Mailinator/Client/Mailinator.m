@@ -66,7 +66,7 @@ static NSString *const kMailinatorErrorDomain = @"MailinatorErrorDomain";
         }
         
         if (completionHandler != nil) {
-            MailinatorInboxRequest *mrequest = [request as:[MailinatorInboxRequest class]];
+            MailinatorInboxRequest *mrequest = [request vss_as:[MailinatorInboxRequest class]];
             completionHandler(mrequest.metadataList, nil);
         }
     };
@@ -96,7 +96,7 @@ static NSString *const kMailinatorErrorDomain = @"MailinatorErrorDomain";
         }
         
         if (completionHandler != nil) {
-            MailinatorEmailRequest *mrequest = [request as:[MailinatorEmailRequest class]];
+            MailinatorEmailRequest *mrequest = [request vss_as:[MailinatorEmailRequest class]];
             completionHandler(mrequest.email, nil);
         }
     };

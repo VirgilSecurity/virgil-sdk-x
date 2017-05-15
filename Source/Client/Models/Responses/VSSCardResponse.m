@@ -24,7 +24,7 @@
     self = [super init];
 
     if (self) {
-        NSString *snapshotStr = [candidate[kVSSCModelContentSnapshot] as:[NSString class]];
+        NSString *snapshotStr = [candidate[kVSSCModelContentSnapshot] vss_as:[NSString class]];
         if (snapshotStr.length == 0)
             return nil;
 
@@ -39,31 +39,31 @@
             return nil;
         _model = model;
 
-        NSString *identifier = [candidate[kVSSCModelId] as:[NSString class]];
+        NSString *identifier = [candidate[kVSSCModelId] vss_as:[NSString class]];
         if (identifier.length == 0)
             return nil;
         _identifier = [identifier copy];
 
-        NSDictionary *metaCandidate = [candidate[kVSSCModelMeta] as:[NSDictionary class]];
+        NSDictionary *metaCandidate = [candidate[kVSSCModelMeta] vss_as:[NSDictionary class]];
         if (metaCandidate.count == 0)
             return nil;
 
         NSMutableDictionary *signaturesDict = [[NSMutableDictionary alloc] init];
-        NSDictionary *signatures = [metaCandidate[kVSSCModelSigns] as:[NSDictionary class]];
+        NSDictionary *signatures = [metaCandidate[kVSSCModelSigns] vss_as:[NSDictionary class]];
         for (NSString *key in signatures.allKeys) {
             signaturesDict[key] = [[NSData alloc] initWithBase64EncodedString:signatures[key] options:0];
         }
         _signatures = signaturesDict;
         
         NSMutableDictionary *relationsDict = [[NSMutableDictionary alloc] init];
-        NSDictionary *relations = [metaCandidate[kVSSCModelRelations] as:[NSDictionary class]];
+        NSDictionary *relations = [metaCandidate[kVSSCModelRelations] vss_as:[NSDictionary class]];
         for (NSString *key in relations.allKeys) {
             relationsDict[key] = [[NSData alloc] initWithBase64EncodedString:relations[key] options:0];
         }
         _relations = relationsDict;
 
         NSDate *createdAt = nil;
-        NSString *createdAtStr = [metaCandidate[kVSSCModelCreatedAt] as:[NSString class]];
+        NSString *createdAtStr = [metaCandidate[kVSSCModelCreatedAt] vss_as:[NSString class]];
         if (createdAtStr != nil && createdAtStr.length != 0) {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
@@ -73,7 +73,7 @@
             _createdAt = createdAt;
         }
 
-        NSString *cardVersion = [metaCandidate[kVSSCModelCardVersion] as:[NSString class]];
+        NSString *cardVersion = [metaCandidate[kVSSCModelCardVersion] vss_as:[NSString class]];
         if (cardVersion.length > 0) {
             _cardVersion = [cardVersion copy];
         }

@@ -42,7 +42,7 @@
         return error;
     }
     
-    self.verifyIdentityResponse = [[VSSVerifyIdentityResponse alloc] initWithDict:[candidate as:[NSDictionary class]]];
+    self.verifyIdentityResponse = [[VSSVerifyIdentityResponse alloc] initWithDict:[candidate vss_as:[NSDictionary class]]];
     
     return nil;
 }

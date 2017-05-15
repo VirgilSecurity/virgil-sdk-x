@@ -15,5 +15,3 @@
 #import "VSSRequestSigner.h"
 #import "VSSCardValidatorProtocol.h"
 #import "VSSCardValidator.h"
-#import "VSSDeviceManagerProtocol.h"
-#import "VSSDeviceManager.h"

@@ -128,7 +128,7 @@ NSString * const kVSSAuthServicePublicKeyInBase64 = @"LS0tLS1CRUdJTiBQVUJMSUMgS0
         }
         
         if (callback != nil) {
-            VSSCreateCardHTTPRequest *r = [request as:[VSSCreateCardHTTPRequest class]];
+            VSSCreateCardHTTPRequest *r = [request vss_as:[VSSCreateCardHTTPRequest class]];
             VSSCardResponse *cardResponse = r.cardResponse;
             
             if (self.serviceConfig.cardValidator != nil) {
@@ -221,7 +221,7 @@ NSString * const kVSSAuthServicePublicKeyInBase64 = @"LS0tLS1CRUdJTiBQVUJMSUMgS0
         }
         
         if (callback != nil) {
-            VSSGetCardHTTPRequest *r = [request as:[VSSGetCardHTTPRequest class]];
+            VSSGetCardHTTPRequest *r = [request vss_as:[VSSGetCardHTTPRequest class]];
             if (self.serviceConfig.cardValidator != nil) {
                 if (![self.serviceConfig.cardValidator validateCardResponse:r.cardResponse]) {
                     callback(nil, [[NSError alloc] initWithDomain:kVSSClientErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"Error validating card signatures" }]);
@@ -251,7 +251,7 @@ NSString * const kVSSAuthServicePublicKeyInBase64 = @"LS0tLS1CRUdJTiBQVUJMSUMgS0
         }
         
         if (callback != nil) {
-            VSSSearchCardsHTTPRequest *r = [request as:[VSSSearchCardsHTTPRequest class]];
+            VSSSearchCardsHTTPRequest *r = [request vss_as:[VSSSearchCardsHTTPRequest class]];
             NSMutableArray<VSSCard *> *cardsArray = nil;
             if (r.cardResponses.count > 0) {
                 cardsArray = [[NSMutableArray alloc] initWithCapacity:r.cardResponses.count];
@@ -314,7 +314,7 @@ NSString * const kVSSAuthServicePublicKeyInBase64 = @"LS0tLS1CRUdJTiBQVUJMSUMgS0
         }
         
         if (callback != nil) {
-            VSSVerifyIdentityHTTPRequest *r = [request as:[VSSVerifyIdentityHTTPRequest class]];
+            VSSVerifyIdentityHTTPRequest *r = [request vss_as:[VSSVerifyIdentityHTTPRequest class]];
             callback(r.verifyIdentityResponse.actionId, nil);
         }
         return;
@@ -339,7 +339,7 @@ NSString * const kVSSAuthServicePublicKeyInBase64 = @"LS0tLS1CRUdJTiBQVUJMSUMgS0
         }
         
         if (callback != nil) {
-            VSSConfirmIdentityHTTPRequest *r = [request as:[VSSConfirmIdentityHTTPRequest class]];
+            VSSConfirmIdentityHTTPRequest *r = [request vss_as:[VSSConfirmIdentityHTTPRequest class]];
             callback(r.confirmIdentityResponse, nil);
         }
         return;
@@ -388,7 +388,7 @@ NSString * const kVSSAuthServicePublicKeyInBase64 = @"LS0tLS1CRUdJTiBQVUJMSUMgS0
         }
         
         if (callback != nil) {
-            VSSGetChallengeMessageHTTPRequest *r = [request as:[VSSGetChallengeMessageHTTPRequest class]];
+            VSSGetChallengeMessageHTTPRequest *r = [request vss_as:[VSSGetChallengeMessageHTTPRequest class]];
             callback(r.challengeMessageResponse, nil);
         }
         return;
@@ -413,7 +413,7 @@ NSString * const kVSSAuthServicePublicKeyInBase64 = @"LS0tLS1CRUdJTiBQVUJMSUMgS0
         }
         
         if (callback != nil) {
-            VSSAuthAckHTTPRequest *r = [request as:[VSSAuthAckHTTPRequest class]];
+            VSSAuthAckHTTPRequest *r = [request vss_as:[VSSAuthAckHTTPRequest class]];
             callback(r.authAckResponse.code, nil);
         }
         return;
@@ -438,7 +438,7 @@ NSString * const kVSSAuthServicePublicKeyInBase64 = @"LS0tLS1CRUdJTiBQVUJMSUMgS0
         }
         
         if (callback != nil) {
-            VSSObtainTokenHTTPRequest *r = [request as:[VSSObtainTokenHTTPRequest class]];
+            VSSObtainTokenHTTPRequest *r = [request vss_as:[VSSObtainTokenHTTPRequest class]];
             callback(r.tokenResponse, nil);
         }
         return;
@@ -463,7 +463,7 @@ NSString * const kVSSAuthServicePublicKeyInBase64 = @"LS0tLS1CRUdJTiBQVUJMSUMgS0
         }
         
         if (callback != nil) {
-            VSSRefreshTokenHTTPRequest *r = [request as:[VSSRefreshTokenHTTPRequest class]];
+            VSSRefreshTokenHTTPRequest *r = [request vss_as:[VSSRefreshTokenHTTPRequest class]];
             callback(r.tokenResponse, nil);
         }
         return;
@@ -488,7 +488,7 @@ NSString * const kVSSAuthServicePublicKeyInBase64 = @"LS0tLS1CRUdJTiBQVUJMSUMgS0
         }
         
         if (callback != nil) {
-            VSSVerifyTokenHTTPRequest *r = [request as:[VSSVerifyTokenHTTPRequest class]];
+            VSSVerifyTokenHTTPRequest *r = [request vss_as:[VSSVerifyTokenHTTPRequest class]];
             callback(r.verifyTokenResponse.resourceOwnerVirgilCardId, nil);
         }
         return;

@@ -40,7 +40,7 @@
         return error;
     }
     
-    self.authAckResponse = [[VSSAuthAckResponse alloc] initWithDict:[candidate as:[NSDictionary class]]];
+    self.authAckResponse = [[VSSAuthAckResponse alloc] initWithDict:[candidate vss_as:[NSDictionary class]]];
     return nil;
 }
 

@@ -79,13 +79,5 @@ class VSS004_ModelsTests: XCTestCase {
         let importedCard = VSSCard(data: cardStr)!
         
         XCTAssert(self.utils.check(card: card, isEqualToCard: importedCard))
-        
-        let validator = VSSCardValidator(crypto: self.crypto)
-        let privateKey = self.crypto.importPrivateKey(from: Data(base64Encoded: self.consts.applicationPrivateKeyBase64)!, withPassword: self.consts.applicationPrivateKeyPassword)!
-        let publicKey = self.crypto.extractPublicKey(from: privateKey)
-        let publicKeyData = self.crypto.export(publicKey)
-        XCTAssert(validator.addVerifier(withId: self.consts.applicationId, publicKeyData: publicKeyData))
-        
-        XCTAssert(validator.validate(importedCard.cardResponse));
     }
 }

@@ -7,6 +7,6 @@
 //
 
 #import "VSSKeyStorageProtocol.h"
+#import "VSSKeyEntry.h"
 #import "VSSKeyStorage.h"
 #import "VSSKeyStorageConfiguration.h"
-#import "VSSKeyEntry.h"

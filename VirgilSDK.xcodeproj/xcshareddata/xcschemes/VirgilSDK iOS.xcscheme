@@ -32,19 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "42B7E3401DB8F62400D70C12"
-               BuildableName = "VirgilSDKTests.xctest"
-               BlueprintName = "VirgilSDKTests"
-               ReferencedContainer = "container:VirgilSDK.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "42B7E35A1DB8F72200D70C12"
-               BuildableName = "VirgilSDKSwiftTests.xctest"
-               BlueprintName = "VirgilSDKSwiftTests"
+               BuildableName = "VirgilSDK iOS Tests.xctest"
+               BlueprintName = "VirgilSDK iOS Tests"
                ReferencedContainer = "container:VirgilSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>

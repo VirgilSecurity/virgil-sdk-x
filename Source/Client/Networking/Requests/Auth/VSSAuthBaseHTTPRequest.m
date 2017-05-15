@@ -20,7 +20,7 @@
         return error;
     }
     
-    VSSAuthError *authError = [[VSSAuthError alloc] initWithDict:[candidate as:[NSDictionary class]]];
+    VSSAuthError *authError = [[VSSAuthError alloc] initWithDict:[candidate vss_as:[NSDictionary class]]];
     
     return authError.nsError;
 }

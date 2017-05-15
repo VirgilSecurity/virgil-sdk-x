@@ -1,1 +1,1 @@
-github "VirgilSecurity/virgil-foundation-x" >= 2.0.8
+github "VirgilSecurity/virgil-foundation-x" ~> 2.1.0

@@ -55,8 +55,8 @@ static NSString *const kMRMessages = @"messages";
         return error;
     }
     
-    NSDictionary *messages = [candidate as:[NSDictionary class]];
-    NSArray *messagesList = [messages[kMRMessages] as:[NSArray class]];
+    NSDictionary *messages = [candidate vss_as:[NSDictionary class]];
+    NSArray *messagesList = [messages[kMRMessages] vss_as:[NSArray class]];
     
     NSMutableArray<MEmailMetadata *> *metadataList = [[NSMutableArray alloc] initWithCapacity:[messagesList count]];
     for (NSDictionary *message in messagesList) {

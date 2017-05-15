@@ -1,5 +1,5 @@
 //
-//  VSSDeviceManager.m
+//  VSSDeviceManager_UIKIT.m
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 12/23/16.

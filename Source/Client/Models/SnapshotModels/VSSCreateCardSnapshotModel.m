@@ -54,25 +54,25 @@
 #pragma mark - VSSDeserializable
 
 - (instancetype)initWithDict:(NSDictionary *)candidate {
-    NSString *identityTypeStr = [candidate[kVSSCModelIdentityType] as:[NSString class]];
-    NSString *identityValueStr = [candidate[kVSSCModelIdentity] as:[NSString class]];
+    NSString *identityTypeStr = [candidate[kVSSCModelIdentityType] vss_as:[NSString class]];
+    NSString *identityValueStr = [candidate[kVSSCModelIdentity] vss_as:[NSString class]];
     if (identityTypeStr.length == 0 || identityValueStr.length == 0)
         return nil;
     
-    NSString * scopeStr = [candidate[kVSSCModelCardScope] as:[NSString class]];
+    NSString * scopeStr = [candidate[kVSSCModelCardScope] vss_as:[NSString class]];
     if (scopeStr.length == 0)
         return nil;
     
     VSSCardScope scope = vss_getCardScopeFromString(scopeStr);
     
-    NSString * publicKeyStr = [candidate[kVSSCModelPublicKey] as:[NSString class]];
+    NSString * publicKeyStr = [candidate[kVSSCModelPublicKey] vss_as:[NSString class]];
     if (publicKeyStr.length == 0)
         return nil;
     
     NSData *publicKeyData = [[NSData alloc]initWithBase64EncodedString:publicKeyStr options:0];
     
-    NSDictionary *data = [candidate[kVSSCModelData] as:[NSDictionary class]];
-    NSDictionary *info = [candidate[kVSSCModelInfo] as:[NSDictionary class]];
+    NSDictionary *data = [candidate[kVSSCModelData] vss_as:[NSDictionary class]];
+    NSDictionary *info = [candidate[kVSSCModelInfo] vss_as:[NSDictionary class]];
     
     return [self initWithIdentity:identityValueStr identityType:identityTypeStr scope:scope publicKeyData:publicKeyData data:data info:info];
 }
