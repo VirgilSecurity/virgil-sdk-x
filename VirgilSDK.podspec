@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage              = "https://github.com/VirgilSecurity/virgil-sdk-x/"
   s.license               = { :type => "BSD", :file => "LICENSE" }
   s.author                = { "Oleksandr Deundiak" => "deundiak@gmail.com" }
-  s.platforms             = { :ios => "7.0", :osx => "10.10" }
+  s.platforms             = { :ios => "8.0", :osx => "10.10" }
   s.source                = { :git => "https://github.com/VirgilSecurity/virgil-sdk-x.git",
                               :tag => s.version }
   s.weak_frameworks       = 'Foundation'
@@ -27,5 +27,5 @@ Pod::Spec.new do |s|
   s.ios.exclude_files     = "Source/**/macOS/*.{h,m}"
   s.osx.exclude_files     = "Source/**/iOS/*.{h,m}"
   s.requires_arc          = true
-  s.dependency "VirgilCrypto", "~> 2.1"
+  s.dependency "VirgilCrypto", "~> 2.2"
 end
