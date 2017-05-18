@@ -298,6 +298,9 @@
 		4248B13A1E044CE8000AB44C /* MailinatorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1171E044CE8000AB44C /* MailinatorRequest.m */; };
 		424EF9AD1E0D76B2005E8A8B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		424EF9AE1E0D76B7005E8A8B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		42505ED31ECDECF600BCA031 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */; };
+		42505ED41ECDED0200BCA031 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422499D11EB39BD50032F556 /* VirgilCrypto.framework */; };
+		42505EDB1ECDEF8B00BCA031 /* VirgilCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 422499D11EB39BD50032F556 /* VirgilCrypto.framework */; };
 		425B09BB1DBF63E8005531DC /* VSS003_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B81BDA1DB5013900E5E2AE /* VSS003_CryptoTests.swift */; };
 		425B09BC1DBF63E8005531DC /* VSS004_ModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B81BDC1DB518FC00E5E2AE /* VSS004_ModelsTests.swift */; };
 		425B09BD1DBF63E8005531DC /* VSS005_CompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B81BDE1DB51A3500E5E2AE /* VSS005_CompatibilityTests.swift */; };
@@ -536,6 +539,19 @@
 			remoteInfo = "VirgilSDK iOS";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		42505ED71ECDEDE300BCA031 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				42505EDB1ECDEF8B00BCA031 /* VirgilCrypto.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		36FF4B8D1C4D7FED00E901F3 /* NSObject+VSSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+VSSUtils.h"; sourceTree = "<group>"; };
@@ -833,6 +849,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42505ED41ECDED0200BCA031 /* VirgilCrypto.framework in Frameworks */,
 				422499C31EB39B380032F556 /* VirgilSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -841,6 +858,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42505ED31ECDECF600BCA031 /* VirgilCrypto.framework in Frameworks */,
 				42B7E3601DB8F72200D70C12 /* VirgilSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1826,6 +1844,7 @@
 				422499BE1EB39B380032F556 /* Sources */,
 				422499BF1EB39B380032F556 /* Frameworks */,
 				422499C01EB39B380032F556 /* Resources */,
+				42505ED71ECDEDE300BCA031 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1844,6 +1863,7 @@
 				42B7E3571DB8F72200D70C12 /* Sources */,
 				42B7E3581DB8F72200D70C12 /* Frameworks */,
 				42B7E3591DB8F72200D70C12 /* Resources */,
+				42505ED61ECDED4200BCA031 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1942,6 +1962,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		42505ED61ECDED4200BCA031 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/VirgilCrypto.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		422499B51EB39B380032F556 /* Sources */ = {
@@ -2363,6 +2400,10 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"APPLICATION_IDENTITY_TYPE=$(APPLICATION_IDENTITY_TYPE)",
@@ -2399,6 +2440,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"APPLICATION_IDENTITY_TYPE=$(APPLICATION_IDENTITY_TYPE)",
@@ -2435,6 +2480,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"APPLICATION_IDENTITY_TYPE=$(APPLICATION_IDENTITY_TYPE)",
@@ -2471,6 +2520,10 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"APPLICATION_IDENTITY_TYPE=$(APPLICATION_IDENTITY_TYPE)",
