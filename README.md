@@ -19,7 +19,7 @@ For a full overview head over to our Objective-C/Swift [Get Started][_getstarted
 
 The **Virgil SDK** is provided as a framework named **VirgilSDK**. The package is distributed via Carthage and CocoaPods.
 
-The package is available for iOS 7.0 and newer.
+The package is available for iOS 8.0+ and macOS 10.10+.
 
 ### CocoaPods
 
@@ -37,7 +37,7 @@ platform :ios, '10.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'VirgilSDK', '~> 4.4.0'
+    pod 'VirgilSDK', '~> 4.5.0'
 end
 ```
 
@@ -59,12 +59,31 @@ $ brew install carthage
 ```
 
 To integrate VirgilSDK into your Xcode project using Carthage, perform following steps:
+##### If you're building for OS X
+
+1. Create a [Cartfile][] that lists the frameworks you’d like to use in your project.
+1. Add the following line to your `Cartfile`
+
+  ```ogdl
+  github "VirgilSecurity/virgil-sdk-x" ~> 4.5.0
+  ```
+
+1. Run `carthage update`. This will fetch dependencies into a `Carthage/Checkouts` folder inside your project's folder, then build each one or download a pre-compiled framework.
+1. On your application targets’ “General” settings tab, in the “Embedded Binaries” section, drag and drop each framework you want to use from the `Carthage/Build` folder inside your project's folder.
+
+Additionally, you'll need to copy debug symbols for debugging and crash reporting on OS X.
+
+1. On your application target’s “Build Phases” settings tab, click the “+” icon and choose “New Copy Files Phase”.
+1. Click the “Destination” drop-down menu and select “Products Directory”.
+1. For each framework you’re using, drag and drop its corresponding dSYM file.
+
+##### If you're building for iOS
 
 1. Create an empty file with name `Cartfile` in your project's root folder, that lists the frameworks you’d like to use in your project.
 1. Add the following line to your `Cartfile`
 
   ```ogdl
-  github "VirgilSecurity/virgil-sdk-x" ~> 4.4.0
+  github "VirgilSecurity/virgil-sdk-x" ~> 4.5.0
   ```
   
 1. Run `carthage update`. This will fetch dependencies into a `Carthage/Checkouts` folder inside your project's folder, then build each one or download a pre-compiled framework.
@@ -80,6 +99,12 @@ To integrate VirgilSDK into your Xcode project using Carthage, perform following
   ```
   $(SRCROOT)/Carthage/Build/iOS/VirgilSDK.framework
   ```
+
+This script works around an [App Store submission bug](http://www.openradar.me/radar?id=6409498411401216) triggered by universal binaries and ensures that necessary bitcode-related files and dSYMs are copied when archiving.
+
+With the debug information copied into the built products directory, Xcode will be able to symbolicate the stack trace whenever you stop at a breakpoint. This will also enable you to step through third-party code in the debugger.
+
+When archiving your application for submission to the App Store or TestFlight, Xcode will also copy these files into the dSYMs subdirectory of your application’s `.xcarchive` bundle.
 
 ## Swift note
 
