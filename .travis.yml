@@ -34,6 +34,7 @@ script:
     fi
 
   - carthage build --no-skip-current
+  - pod repo update
   - pod lib lint
 
 after_success:
