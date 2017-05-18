@@ -69,7 +69,7 @@ To integrate VirgilSDK into your Xcode project using Carthage, perform following
   ```
 
 1. Run `carthage update`. This will fetch dependencies into a `Carthage/Checkouts` folder inside your project's folder, then build each one or download a pre-compiled framework.
-1. On your application targets’ “General” settings tab, in the “Embedded Binaries” section, drag and drop each framework you want to use from the `Carthage/Build` folder inside your project's folder.
+1. On your application targets’ “General” settings tab, in the “Embedded Binaries” section, drag and drop each framework you want to use from the `Carthage/Build` folder inside your project's folder including VirgilSDK.framework and VirgilCrypto.framework.
 
 Additionally, you'll need to copy debug symbols for debugging and crash reporting on OS X.
 
@@ -98,6 +98,7 @@ Additionally, you'll need to copy debug symbols for debugging and crash reportin
 
   ```
   $(SRCROOT)/Carthage/Build/iOS/VirgilSDK.framework
+  $(SRCROOT)/Carthage/Build/iOS/VirgilCrypto.framework
   ```
 
 This script works around an [App Store submission bug](http://www.openradar.me/radar?id=6409498411401216) triggered by universal binaries and ensures that necessary bitcode-related files and dSYMs are copied when archiving.
