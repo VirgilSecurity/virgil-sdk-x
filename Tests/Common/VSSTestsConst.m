@@ -62,4 +62,8 @@
     return [[NSURL alloc] initWithString:str];
 }
 
+- (NSString *)authServicePublicKeyBase64 {
+    return @STRINGIZE2(AUTH_SERVICE_PUBLIC_KEY_BASE64);
+}
+
 @end

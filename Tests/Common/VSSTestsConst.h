@@ -24,4 +24,6 @@
 @property (nonatomic, readonly) NSURL * __nonnull registrationAuthorityURL;
 @property (nonatomic, readonly) NSURL * __nonnull authServiceURL;
 
+@property (nonatomic, readonly) NSString * __nonnull authServicePublicKeyBase64;
+
 @end

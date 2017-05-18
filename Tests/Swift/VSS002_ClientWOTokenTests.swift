@@ -281,8 +281,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
                             
                             let message = try! self.crypto.decrypt(response!.encryptedMessage, with: keyPair.privateKey)
                             
-                            
-                            let virgilAuthPublicKeyData = Data(base64Encoded: kVSSAuthServicePublicKeyInBase64)!
+                            let virgilAuthPublicKeyData = Data(base64Encoded: self.consts.authServicePublicKeyBase64)!
                             let virgilAuthPublicKey = self.crypto.importPublicKey(from: virgilAuthPublicKeyData)!
                             let encryptedMessage = try! self.crypto.encrypt(message, for: [virgilAuthPublicKey])
                             
@@ -327,8 +326,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
                             
                             let message = try! self.crypto.decrypt(response!.encryptedMessage, with: keyPair.privateKey)
                             
-                            
-                            let virgilAuthPublicKeyData = Data(base64Encoded: kVSSAuthServicePublicKeyInBase64)!
+                            let virgilAuthPublicKeyData = Data(base64Encoded: self.consts.authServicePublicKeyBase64)!
                             let virgilAuthPublicKey = self.crypto.importPublicKey(from: virgilAuthPublicKeyData)!
                             let encryptedMessage = try! self.crypto.encrypt(message, for: [virgilAuthPublicKey])
                             
@@ -379,8 +377,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
                             
                             let message = try! self.crypto.decrypt(response!.encryptedMessage, with: keyPair.privateKey)
                             
-                            
-                            let virgilAuthPublicKeyData = Data(base64Encoded: kVSSAuthServicePublicKeyInBase64)!
+                            let virgilAuthPublicKeyData = Data(base64Encoded: self.consts.authServicePublicKeyBase64)!
                             let virgilAuthPublicKey = self.crypto.importPublicKey(from: virgilAuthPublicKeyData)!
                             let encryptedMessage = try! self.crypto.encrypt(message, for: [virgilAuthPublicKey])
                             
@@ -431,8 +428,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
                             
                             let message = try! self.crypto.decrypt(response!.encryptedMessage, with: keyPair.privateKey)
                             
-                            
-                            let virgilAuthPublicKeyData = Data(base64Encoded: kVSSAuthServicePublicKeyInBase64)!
+                            let virgilAuthPublicKeyData = Data(base64Encoded: self.consts.authServicePublicKeyBase64)!
                             let virgilAuthPublicKey = self.crypto.importPublicKey(from: virgilAuthPublicKeyData)!
                             let encryptedMessage = try! self.crypto.encrypt(message, for: [virgilAuthPublicKey])
                             
