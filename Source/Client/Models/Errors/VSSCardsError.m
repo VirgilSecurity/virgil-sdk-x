@@ -64,7 +64,7 @@ const NSInteger kVSSCardsRelationDoesntExistError                    = 30205;
     NSString *message = nil;
     
     switch (self.code) {
-        case kVSSCardsInternalError: message = @"Internal application error. You know, shit happens, so do internal server errors. Just take a deep breath and try harder."; break;
+        case kVSSCardsInternalError: message = @"Internal application error."; break;
         
         /// HTTP 401. Authorization errors
         case kVSSCardsTokenMissingOrInvalidError: message = @"The Virgil access token or token header was not specified or is invalid"; break;
