@@ -10,6 +10,11 @@
 #import "VSSKeysManagerProtocol.h"
 
 /**
+ NSString with Error Domain used for VSSKeysManager-related errors
+ */
+extern NSString * __nonnull const kVSSKeysManagerErrorDomain;
+
+/**
  Implementation of VSSKeysManager protocol.
  VSSKeysManager should not be created by user and is accessible only using VSSVirgilApi.
  */

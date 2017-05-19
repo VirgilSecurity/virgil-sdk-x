@@ -13,7 +13,7 @@
 #import "VSSKeysManagerPrivate.h"
 #import "VSSIdentitiesManagerPrivate.h"
 
-NSString *const kVSSVirgilApiErrorDomain = @"VSSVirgilApiErrorDomain";
+NSString * const kVSSVirgilApiErrorDomain = @"VSSVirgilApiErrorDomain";
 
 @interface VSSVirgilApi ()
 

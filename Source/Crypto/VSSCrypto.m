@@ -18,6 +18,8 @@
 static NSString * const kVSSCustomParamKeySignature = @"VIRGIL-DATA-SIGNATURE";
 static NSString * const kVSSCustomParamKeySignerId = @"VIRGIL-DATA-SIGNER-ID";
 
+NSString * const kVSSCryptoErrorDomain = @"VSSCryptoErrorDomain";
+
 @import VirgilCrypto;
 
 @implementation VSSCrypto
@@ -151,6 +153,12 @@ static NSString * const kVSSCustomParamKeySignerId = @"VIRGIL-DATA-SIGNER-ID";
 - (NSData *)encryptData:(NSData *)data forRecipients:(NSArray<VSSPublicKey *> *)recipients error:(NSError **)errorPtr {
     VSCCryptor *cipher = [[VSCCryptor alloc] init];
     
+    if (recipients.count == 0) {
+        if (errorPtr != nil)
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSCryptoErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"Recipients array passed to encryptData should not be empty." }];
+        return nil;
+    }
+    
     NSError *error;
     for (VSSPublicKey *publicKey in recipients) {
         NSData *publicKeyData = [self exportPublicKey:publicKey];
@@ -175,6 +183,12 @@ static NSString * const kVSSCustomParamKeySignerId = @"VIRGIL-DATA-SIGNER-ID";
 
 - (BOOL)encryptStream:(NSInputStream *)stream toOutputStream:(NSOutputStream *)outputStream forRecipients:(NSArray<VSSPublicKey *> *)recipients error:(NSError **)errorPtr {
     VSCChunkCryptor *cipher = [[VSCChunkCryptor alloc] init];
+    
+    if (recipients.count == 0) {
+        if (errorPtr != nil)
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSCryptoErrorDomain code:-1001 userInfo:@{ NSLocalizedDescriptionKey: @"Recipients array passed to encryptStream should not be empty." }];
+        return NO;
+    }
 
     NSError *error;
     for (VSSPublicKey *publicKey in recipients) {
@@ -293,6 +307,12 @@ static NSString * const kVSSCustomParamKeySignerId = @"VIRGIL-DATA-SIGNER-ID";
         return nil;
     }
     
+    if (recipients.count == 0) {
+        if (errorPtr != nil)
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSCryptoErrorDomain code:-1002 userInfo:@{ NSLocalizedDescriptionKey: @"Recipients array passed to signThenEncryptData should not be empty." }];
+        return nil;
+    }
+    
     for (VSSPublicKey *publicKey in recipients) {
         NSData *publicKeyData = [self exportPublicKey:publicKey];
         NSError *error;
@@ -329,7 +349,7 @@ static NSString * const kVSSCustomParamKeySignerId = @"VIRGIL-DATA-SIGNER-ID";
     NSData *signature = [cryptor dataForKey:kVSSCustomParamKeySignature error:&error];
     if (error != nil) {
         if (errorPtr != nil)
-            *errorPtr = error;
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSCryptoErrorDomain code:-1003 userInfo:@{ NSLocalizedDescriptionKey: @"Signature not found." }];
         return nil;
     }
     
@@ -342,8 +362,11 @@ static NSString * const kVSSCustomParamKeySignerId = @"VIRGIL-DATA-SIGNER-ID";
         return nil;
     }
     
-    if (!isVerified)
+    if (!isVerified) {
+        if (errorPtr != nil)
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSCryptoErrorDomain code:-1004 userInfo:@{ NSLocalizedDescriptionKey: @"Signature verification failed." }];
         return nil;
+    }
     
     return decryptedData;
 }
@@ -363,14 +386,20 @@ static NSString * const kVSSCustomParamKeySignerId = @"VIRGIL-DATA-SIGNER-ID";
     NSData *signature = [cryptor dataForKey:kVSSCustomParamKeySignature error:&error];
     if (error != nil) {
         if (errorPtr != nil)
-            *errorPtr = error;
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSCryptoErrorDomain code:-1005 userInfo:@{ NSLocalizedDescriptionKey: @"Signature not found." }];
         return nil;
     }
     
     NSData *signerId = [cryptor dataForKey:kVSSCustomParamKeySignerId error:&error];
     if (error != nil) {
         if (errorPtr != nil)
-            *errorPtr = error;
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSCryptoErrorDomain code:-1006 userInfo:@{ NSLocalizedDescriptionKey: @"Signer id not found." }];
+        return nil;
+    }
+    
+    if (signersPublicKeys.count == 0) {
+        if (errorPtr != nil)
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSCryptoErrorDomain code:-1007 userInfo:@{ NSLocalizedDescriptionKey: @"Signers array passed to decryptThenVerifyData should not be empty." }];
         return nil;
     }
     
@@ -384,6 +413,8 @@ static NSString * const kVSSCustomParamKeySignerId = @"VIRGIL-DATA-SIGNER-ID";
     
     // Signer not found
     if (signerPublicKey == nil) {
+        if (errorPtr != nil)
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSCryptoErrorDomain code:-1008 userInfo:@{ NSLocalizedDescriptionKey: @"Original signer was not found in allowed signers array." }];
         return nil;
     }
     
@@ -396,8 +427,11 @@ static NSString * const kVSSCustomParamKeySignerId = @"VIRGIL-DATA-SIGNER-ID";
         return nil;
     }
     
-    if (!isVerified)
+    if (!isVerified) {
+        if (errorPtr != nil)
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSCryptoErrorDomain code:-1009 userInfo:@{ NSLocalizedDescriptionKey: @"Signature verification failed." }];
         return nil;
+    }
     
     return decryptedData;
 }

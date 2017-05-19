@@ -10,6 +10,11 @@
 #import "VSSCryptoCommons.h"
 
 /**
+ NSString with Error Domain used for VSSCrypto-related errors
+ */
+extern NSString * __nonnull const kVSSCryptoErrorDomain;
+
+/**
  VSSCrypto protocol default implementation. See VSSCrypto protocol.
  */
 @interface VSSCrypto : NSObject <VSSCrypto>
