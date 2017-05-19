@@ -17,9 +17,26 @@ For a full overview head over to our Objective-C/Swift [Get Started][_getstarted
 
 ## Installation
 
-The **Virgil SDK** is provided as a framework named **VirgilSDK**. The package is distributed via Carthage and CocoaPods.
+The **Virgil SDK** is provided as module inside framework named **VirgilSDK**. VirgilSDK depends on another Virgil module called VirgilCrypto also packed inside framework named **VirgilCrypto**.
+Both packages are distributed via Carthage and CocoaPods.
 
-The package is available for iOS 8.0+ and macOS 10.10+.
+Packages are available for iOS 8.0+ and macOS 10.10+.
+
+ To import VirgilSDK and VirgilCrypto after linking frameworks to your project add following lines to your source files:
+
+###### Objective-C
+``` objective-c
+@import VirgilCrypto;
+@import VirgilSDK;
+```
+
+###### Swift
+``` swift
+import VirgilCrypto
+import VirgilSDK
+```
+
+To link frameworks to your project follow instructions depending on package manager of your choice:
 
 ### CocoaPods
 
@@ -61,12 +78,12 @@ $ brew install carthage
 To integrate VirgilSDK into your Xcode project using Carthage, perform following steps:
 ##### If you're building for OS X
 
-1. Create a [Cartfile][] that lists the frameworks you’d like to use in your project.
+1. Create an empty file with name `Cartfile` in your project's root folder, that lists the frameworks you’d like to use in your project.
 1. Add the following line to your `Cartfile`
 
-  ```ogdl
-  github "VirgilSecurity/virgil-sdk-x" ~> 4.5.0
-  ```
+    ```ogdl
+    github "VirgilSecurity/virgil-sdk-x" ~> 4.5.0
+    ```
 
 1. Run `carthage update`. This will fetch dependencies into a `Carthage/Checkouts` folder inside your project's folder, then build each one or download a pre-compiled framework.
 1. On your application targets’ “General” settings tab, in the “Embedded Binaries” section, drag and drop each framework you want to use from the `Carthage/Build` folder inside your project's folder including VirgilSDK.framework and VirgilCrypto.framework.
@@ -82,9 +99,9 @@ Additionally, you'll need to copy debug symbols for debugging and crash reportin
 1. Create an empty file with name `Cartfile` in your project's root folder, that lists the frameworks you’d like to use in your project.
 1. Add the following line to your `Cartfile`
 
-  ```ogdl
-  github "VirgilSecurity/virgil-sdk-x" ~> 4.5.0
-  ```
+    ```ogdl
+    github "VirgilSecurity/virgil-sdk-x" ~> 4.5.0
+    ```
   
 1. Run `carthage update`. This will fetch dependencies into a `Carthage/Checkouts` folder inside your project's folder, then build each one or download a pre-compiled framework.
 1. On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, add each framework you want to use from the `Carthage/Build` folder inside your project's folder.
@@ -111,22 +128,6 @@ When archiving your application for submission to the App Store or TestFlight, X
 
 Although VirgilSDK pod is using Objective-C as its primary language it might be quite easily used in a Swift application.
 All public API is available from Swift and is bridged using NS_SWIFT_NAME where needed.
-
-If you want to use VirgilSDK from swift it is necessary to perform the following:
-
-- Create a new header file in the Swift project.
-- Name it something like *BridgingHeader.h*
-- Put there the following lines:
-
-###### Objective-C
-``` objective-c
-@import VirgilCrypto;
-@import VirgilSDK;
-```
-
-- In the Xcode build settings find the setting called *Objective-C Bridging Header* and set the path to your *BridgingHeader.h* file. Be aware that this path is relative to your Xcode project's folder. After adding bridging header setting you should be able to use the SDK.
-
-You can find more information about using Objective-C and Swift in the same project [here](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html).
 
 __Next:__ [Get Started with the Objective-C/Swift SDK][_getstarted].
 
