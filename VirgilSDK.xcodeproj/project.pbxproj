@@ -292,6 +292,7 @@
 		42505ED31ECDECF600BCA031 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */; };
 		42505ED41ECDED0200BCA031 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422499D11EB39BD50032F556 /* VirgilCrypto.framework */; };
 		42505EDB1ECDEF8B00BCA031 /* VirgilCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 422499D11EB39BD50032F556 /* VirgilCrypto.framework */; };
+		42512F751ED302C50007DFCC /* Mailinator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42845F091ED2F883004AED0C /* Mailinator.framework */; };
 		425B09BB1DBF63E8005531DC /* VSS003_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B81BDA1DB5013900E5E2AE /* VSS003_CryptoTests.swift */; };
 		425B09BC1DBF63E8005531DC /* VSS004_ModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B81BDC1DB518FC00E5E2AE /* VSS004_ModelsTests.swift */; };
 		425B09BD1DBF63E8005531DC /* VSS005_CompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B81BDE1DB51A3500E5E2AE /* VSS005_CompatibilityTests.swift */; };
@@ -531,6 +532,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				42512F751ED302C50007DFCC /* Mailinator.framework in CopyFiles */,
 				42505EDB1ECDEF8B00BCA031 /* VirgilCrypto.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
