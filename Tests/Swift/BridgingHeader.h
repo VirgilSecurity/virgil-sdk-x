@@ -7,10 +7,4 @@
 //
 
 #import "VSSTestsConst.h"
-#import "Mailinator.h"
-#import "MailinatorConfig.h"
-#import "MEmailMetadata.h"
-#import "MPart.h"
-#import "MEmail.h"
 #import "PrivateApiDecl.h"
-

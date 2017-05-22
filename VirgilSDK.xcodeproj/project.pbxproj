@@ -287,20 +287,12 @@
 		42406FDA1E84050000C3DE1E /* VSSRemoveCardRelationHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 427C40681E5C78970017C2A9 /* VSSRemoveCardRelationHTTPRequest.h */; };
 		42406FDB1E84050B00C3DE1E /* VSSObtainTokenHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42406FAE1E83E73800C3DE1E /* VSSObtainTokenHTTPRequest.h */; };
 		4248B0D11E043A6D000AB44C /* VSSIdentityError.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B0D01E043A6D000AB44C /* VSSIdentityError.m */; };
-		4248B11A1E044CE8000AB44C /* Mailinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1051E044CE8000AB44C /* Mailinator.m */; };
-		4248B11E1E044CE8000AB44C /* MailinatorConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1071E044CE8000AB44C /* MailinatorConfig.m */; };
-		4248B1221E044CE8000AB44C /* MEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10A1E044CE8000AB44C /* MEmail.m */; };
-		4248B1261E044CE8000AB44C /* MEmailMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10C1E044CE8000AB44C /* MEmailMetadata.m */; };
-		4248B12A1E044CE8000AB44C /* MEmailResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10E1E044CE8000AB44C /* MEmailResponse.m */; };
-		4248B12E1E044CE8000AB44C /* MPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1101E044CE8000AB44C /* MPart.m */; };
-		4248B1321E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1131E044CE8000AB44C /* MailinatorEmailRequest.m */; };
-		4248B1361E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1151E044CE8000AB44C /* MailinatorInboxRequest.m */; };
-		4248B13A1E044CE8000AB44C /* MailinatorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1171E044CE8000AB44C /* MailinatorRequest.m */; };
 		424EF9AD1E0D76B2005E8A8B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		424EF9AE1E0D76B7005E8A8B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		42505ED31ECDECF600BCA031 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */; };
 		42505ED41ECDED0200BCA031 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422499D11EB39BD50032F556 /* VirgilCrypto.framework */; };
 		42505EDB1ECDEF8B00BCA031 /* VirgilCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 422499D11EB39BD50032F556 /* VirgilCrypto.framework */; };
+		42512F701ED2FEEC0007DFCC /* Mailinator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42512F6F1ED2FEEC0007DFCC /* Mailinator.framework */; };
 		425B09BB1DBF63E8005531DC /* VSS003_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B81BDA1DB5013900E5E2AE /* VSS003_CryptoTests.swift */; };
 		425B09BC1DBF63E8005531DC /* VSS004_ModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B81BDC1DB518FC00E5E2AE /* VSS004_ModelsTests.swift */; };
 		425B09BD1DBF63E8005531DC /* VSS005_CompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B81BDE1DB51A3500E5E2AE /* VSS005_CompatibilityTests.swift */; };
@@ -389,6 +381,8 @@
 		427C40661E5C78290017C2A9 /* VSSRemoveCardRelationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C40651E5C78290017C2A9 /* VSSRemoveCardRelationRequest.m */; };
 		427C40671E5C78770017C2A9 /* VSSRemoveCardRelationRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 427C40641E5C77BC0017C2A9 /* VSSRemoveCardRelationRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427C406A1E5C78CE0017C2A9 /* VSSRemoveCardRelationHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C40691E5C78CE0017C2A9 /* VSSRemoveCardRelationHTTPRequest.m */; };
+		42845F061ED2F846004AED0C /* Mailinator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42845F051ED2F846004AED0C /* Mailinator.framework */; };
+		42845F0A1ED2F883004AED0C /* Mailinator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42845F091ED2F883004AED0C /* Mailinator.framework */; };
 		429005A51EB9DB5200030F21 /* VSSTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427C405E1E5B3A280017C2A9 /* VSSTestUtils.swift */; };
 		429005A61EB9DB5700030F21 /* VSS001_ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423B09F01DA9040700A63E5B /* VSS001_ClientTests.swift */; };
 		429005A71EB9DB5A00030F21 /* VSS002_ClientWOTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420FE5F51E4B75FE005A32D4 /* VSS002_ClientWOTokenTests.swift */; };
@@ -401,15 +395,6 @@
 		429005AE1EB9DB6100030F21 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C181DB8E6A700E5E2AE /* sdk_compatibility_data.json */; };
 		429005AF1EB9DB6300030F21 /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C191DB8E6A700E5E2AE /* testData.txt */; };
 		429005B01EB9DB6900030F21 /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F6C2071DBF5F5E0030C21D /* VSSTestsConst.m */; };
-		429005B11EB9DB7300030F21 /* Mailinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1051E044CE8000AB44C /* Mailinator.m */; };
-		429005B21EB9DB7300030F21 /* MailinatorConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1071E044CE8000AB44C /* MailinatorConfig.m */; };
-		429005B31EB9DB7900030F21 /* MEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10A1E044CE8000AB44C /* MEmail.m */; };
-		429005B41EB9DB7900030F21 /* MEmailMetadata.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10C1E044CE8000AB44C /* MEmailMetadata.m */; };
-		429005B51EB9DB7900030F21 /* MEmailResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B10E1E044CE8000AB44C /* MEmailResponse.m */; };
-		429005B61EB9DB7900030F21 /* MPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1101E044CE8000AB44C /* MPart.m */; };
-		429005B71EB9DB7E00030F21 /* MailinatorEmailRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1131E044CE8000AB44C /* MailinatorEmailRequest.m */; };
-		429005B81EB9DB7E00030F21 /* MailinatorInboxRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1151E044CE8000AB44C /* MailinatorInboxRequest.m */; };
-		429005B91EB9DB7E00030F21 /* MailinatorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B1171E044CE8000AB44C /* MailinatorRequest.m */; };
 		4296B0D21E7C18AE00703356 /* VSSRevokeCardHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D414A91E39016900F59580 /* VSSRevokeCardHTTPRequest.h */; };
 		429F1CB61E8A6D8B00317FB7 /* VSS008_HighLevelCryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429F1CB41E8A6D7700317FB7 /* VSS008_HighLevelCryptoTests.swift */; };
 		42B33F761DC3A859008A7B78 /* VSSSignable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B33F751DC3A707008A7B78 /* VSSSignable.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -547,6 +532,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				42512F701ED2FEEC0007DFCC /* Mailinator.framework in CopyFiles */,
 				42505EDB1ECDEF8B00BCA031 /* VirgilCrypto.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -659,29 +645,7 @@
 		42406FD61E84046D00C3DE1E /* VSSVerifyTokenResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSVerifyTokenResponse.h; sourceTree = "<group>"; };
 		4248B0CF1E043A60000AB44C /* VSSIdentityError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSIdentityError.h; sourceTree = "<group>"; };
 		4248B0D01E043A6D000AB44C /* VSSIdentityError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSIdentityError.m; sourceTree = "<group>"; };
-		4248B1041E044CE8000AB44C /* Mailinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mailinator.h; sourceTree = "<group>"; };
-		4248B1051E044CE8000AB44C /* Mailinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mailinator.m; sourceTree = "<group>"; };
-		4248B1061E044CE8000AB44C /* MailinatorConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailinatorConfig.h; sourceTree = "<group>"; };
-		4248B1071E044CE8000AB44C /* MailinatorConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailinatorConfig.m; sourceTree = "<group>"; };
-		4248B1091E044CE8000AB44C /* MEmail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEmail.h; sourceTree = "<group>"; };
-		4248B10A1E044CE8000AB44C /* MEmail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEmail.m; sourceTree = "<group>"; };
-		4248B10B1E044CE8000AB44C /* MEmailMetadata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEmailMetadata.h; sourceTree = "<group>"; };
-		4248B10C1E044CE8000AB44C /* MEmailMetadata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEmailMetadata.m; sourceTree = "<group>"; };
-		4248B10D1E044CE8000AB44C /* MEmailResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MEmailResponse.h; sourceTree = "<group>"; };
-		4248B10E1E044CE8000AB44C /* MEmailResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MEmailResponse.m; sourceTree = "<group>"; };
-		4248B10F1E044CE8000AB44C /* MPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPart.h; sourceTree = "<group>"; };
-		4248B1101E044CE8000AB44C /* MPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPart.m; sourceTree = "<group>"; };
-		4248B1121E044CE8000AB44C /* MailinatorEmailRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailinatorEmailRequest.h; sourceTree = "<group>"; };
-		4248B1131E044CE8000AB44C /* MailinatorEmailRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailinatorEmailRequest.m; sourceTree = "<group>"; };
-		4248B1141E044CE8000AB44C /* MailinatorInboxRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailinatorInboxRequest.h; sourceTree = "<group>"; };
-		4248B1151E044CE8000AB44C /* MailinatorInboxRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailinatorInboxRequest.m; sourceTree = "<group>"; };
-		4248B1161E044CE8000AB44C /* MailinatorRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailinatorRequest.h; sourceTree = "<group>"; };
-		4248B1171E044CE8000AB44C /* MailinatorRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailinatorRequest.m; sourceTree = "<group>"; };
-		4248B1181E044CE8000AB44C /* MailinatorRequestSettingsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailinatorRequestSettingsProvider.h; sourceTree = "<group>"; };
-		4248B13F1E044D6B000AB44C /* VSSHTTPJSONRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSHTTPJSONRequest.h; sourceTree = "<group>"; };
-		4248B1411E044D6B000AB44C /* VSSHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSHTTPRequest.h; sourceTree = "<group>"; };
-		4248B1431E044D6B000AB44C /* VSSHTTPRequestPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSHTTPRequestPrivate.h; sourceTree = "<group>"; };
-		4248B1441E044D6B000AB44C /* VSSHTTPRequestContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSHTTPRequestContext.h; sourceTree = "<group>"; };
+		42512F6F1ED2FEEC0007DFCC /* Mailinator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mailinator.framework; path = Carthage/Build/Mac/Mailinator.framework; sourceTree = "<group>"; };
 		425B09C11DC2453E005531DC /* VSSSnapshotModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSSnapshotModel.h; sourceTree = "<group>"; };
 		425B09C21DC24549005531DC /* VSSSnapshotModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSSnapshotModel.m; sourceTree = "<group>"; };
 		425B09C41DC245CE005531DC /* VSSCreateCardSnapshotModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSCreateCardSnapshotModel.h; sourceTree = "<group>"; };
@@ -727,6 +691,8 @@
 		427C40651E5C78290017C2A9 /* VSSRemoveCardRelationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRemoveCardRelationRequest.m; sourceTree = "<group>"; };
 		427C40681E5C78970017C2A9 /* VSSRemoveCardRelationHTTPRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSRemoveCardRelationHTTPRequest.h; sourceTree = "<group>"; };
 		427C40691E5C78CE0017C2A9 /* VSSRemoveCardRelationHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRemoveCardRelationHTTPRequest.m; sourceTree = "<group>"; };
+		42845F051ED2F846004AED0C /* Mailinator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mailinator.framework; path = Carthage/Build/iOS/Mailinator.framework; sourceTree = "<group>"; };
+		42845F091ED2F883004AED0C /* Mailinator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mailinator.framework; path = Carthage/Build/Mac/Mailinator.framework; sourceTree = "<group>"; };
 		429F1CB41E8A6D7700317FB7 /* VSS008_HighLevelCryptoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS008_HighLevelCryptoTests.swift; sourceTree = "<group>"; };
 		42A442A61DC8F1D2000DD54B /* VSSKeyStorageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorageProtocol.h; sourceTree = "<group>"; };
 		42B1471C1DAFA8F600AC9975 /* VSSImportable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSImportable.h; sourceTree = "<group>"; };
@@ -849,6 +815,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42845F0A1ED2F883004AED0C /* Mailinator.framework in Frameworks */,
 				42505ED41ECDED0200BCA031 /* VirgilCrypto.framework in Frameworks */,
 				422499C31EB39B380032F556 /* VirgilSDK.framework in Frameworks */,
 			);
@@ -858,6 +825,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42845F061ED2F846004AED0C /* Mailinator.framework in Frameworks */,
 				42505ED31ECDECF600BCA031 /* VirgilCrypto.framework in Frameworks */,
 				42B7E3601DB8F72200D70C12 /* VirgilSDK.framework in Frameworks */,
 			);
@@ -877,6 +845,7 @@
 		3614030C1BB2E05F002E69CA = {
 			isa = PBXGroup;
 			children = (
+				42512F6F1ED2FEEC0007DFCC /* Mailinator.framework */,
 				42EB30E51DB8EC17001DF4C0 /* VirgilSDK */,
 				3614033E1BB2E0FC002E69CA /* Source */,
 				42B81C171DB8E5FB00E5E2AE /* Tests */,
@@ -1016,75 +985,6 @@
 				429F1CB41E8A6D7700317FB7 /* VSS008_HighLevelCryptoTests.swift */,
 			);
 			path = Swift;
-			sourceTree = "<group>";
-		};
-		4248B1021E044CE8000AB44C /* Mailinator */ = {
-			isa = PBXGroup;
-			children = (
-				4248B1031E044CE8000AB44C /* Client */,
-				4248B1081E044CE8000AB44C /* Models */,
-				4248B1111E044CE8000AB44C /* Requests */,
-			);
-			path = Mailinator;
-			sourceTree = "<group>";
-		};
-		4248B1031E044CE8000AB44C /* Client */ = {
-			isa = PBXGroup;
-			children = (
-				4248B1041E044CE8000AB44C /* Mailinator.h */,
-				4248B1051E044CE8000AB44C /* Mailinator.m */,
-				4248B1061E044CE8000AB44C /* MailinatorConfig.h */,
-				4248B1071E044CE8000AB44C /* MailinatorConfig.m */,
-			);
-			path = Client;
-			sourceTree = "<group>";
-		};
-		4248B1081E044CE8000AB44C /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				4248B1091E044CE8000AB44C /* MEmail.h */,
-				4248B10A1E044CE8000AB44C /* MEmail.m */,
-				4248B10B1E044CE8000AB44C /* MEmailMetadata.h */,
-				4248B10C1E044CE8000AB44C /* MEmailMetadata.m */,
-				4248B10D1E044CE8000AB44C /* MEmailResponse.h */,
-				4248B10E1E044CE8000AB44C /* MEmailResponse.m */,
-				4248B10F1E044CE8000AB44C /* MPart.h */,
-				4248B1101E044CE8000AB44C /* MPart.m */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		4248B1111E044CE8000AB44C /* Requests */ = {
-			isa = PBXGroup;
-			children = (
-				4248B1121E044CE8000AB44C /* MailinatorEmailRequest.h */,
-				4248B1131E044CE8000AB44C /* MailinatorEmailRequest.m */,
-				4248B1141E044CE8000AB44C /* MailinatorInboxRequest.h */,
-				4248B1151E044CE8000AB44C /* MailinatorInboxRequest.m */,
-				4248B1161E044CE8000AB44C /* MailinatorRequest.h */,
-				4248B1171E044CE8000AB44C /* MailinatorRequest.m */,
-				4248B1181E044CE8000AB44C /* MailinatorRequestSettingsProvider.h */,
-			);
-			path = Requests;
-			sourceTree = "<group>";
-		};
-		4248B13D1E044D6B000AB44C /* Networking */ = {
-			isa = PBXGroup;
-			children = (
-				4248B13E1E044D6B000AB44C /* Requests */,
-				4248B1441E044D6B000AB44C /* VSSHTTPRequestContext.h */,
-			);
-			path = Networking;
-			sourceTree = "<group>";
-		};
-		4248B13E1E044D6B000AB44C /* Requests */ = {
-			isa = PBXGroup;
-			children = (
-				4248B13F1E044D6B000AB44C /* VSSHTTPJSONRequest.h */,
-				4248B1411E044D6B000AB44C /* VSSHTTPRequest.h */,
-				4248B1431E044D6B000AB44C /* VSSHTTPRequestPrivate.h */,
-			);
-			path = Requests;
 			sourceTree = "<group>";
 		};
 		425B09C01DC24531005531DC /* SnapshotModels */ = {
@@ -1468,8 +1368,6 @@
 		42F6C2051DBF5F3B0030C21D /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				4248B13D1E044D6B000AB44C /* Networking */,
-				4248B1021E044CE8000AB44C /* Mailinator */,
 				42F6C2061DBF5F5E0030C21D /* VSSTestsConst.h */,
 				42F6C2071DBF5F5E0030C21D /* VSSTestsConst.m */,
 				42D414AD1E3A2EAD00F59580 /* PrivateApiDecl.h */,
@@ -1506,6 +1404,8 @@
 		ECBE87D3B790F5C27AAB2582 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				42845F091ED2F883004AED0C /* Mailinator.framework */,
+				42845F051ED2F846004AED0C /* Mailinator.framework */,
 				422499D11EB39BD50032F556 /* VirgilCrypto.framework */,
 				420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */,
 			);
@@ -1863,7 +1763,7 @@
 				42B7E3571DB8F72200D70C12 /* Sources */,
 				42B7E3581DB8F72200D70C12 /* Frameworks */,
 				42B7E3591DB8F72200D70C12 /* Resources */,
-				42505ED61ECDED4200BCA031 /* ShellScript */,
+				42512F6E1ED2FD1D0007DFCC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1964,13 +1864,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		42505ED61ECDED4200BCA031 /* ShellScript */ = {
+		42512F6E1ED2FD1D0007DFCC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/VirgilCrypto.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Mailinator.framework",
 			);
 			outputPaths = (
 			);
@@ -2082,22 +1983,13 @@
 			files = (
 				429005AD1EB9DB5D00030F21 /* VSS008_HighLevelCryptoTests.swift in Sources */,
 				429005A91EB9DB5D00030F21 /* VSS004_ModelsTests.swift in Sources */,
-				429005B51EB9DB7900030F21 /* MEmailResponse.m in Sources */,
-				429005B11EB9DB7300030F21 /* Mailinator.m in Sources */,
-				429005B21EB9DB7300030F21 /* MailinatorConfig.m in Sources */,
-				429005B91EB9DB7E00030F21 /* MailinatorRequest.m in Sources */,
 				429005AB1EB9DB5D00030F21 /* VSS006_KeyStorageTests.swift in Sources */,
-				429005B61EB9DB7900030F21 /* MPart.m in Sources */,
 				429005A51EB9DB5200030F21 /* VSSTestUtils.swift in Sources */,
 				429005B01EB9DB6900030F21 /* VSSTestsConst.m in Sources */,
 				429005AC1EB9DB5D00030F21 /* VSS007_HighLevelTests.swift in Sources */,
-				429005B71EB9DB7E00030F21 /* MailinatorEmailRequest.m in Sources */,
 				429005A81EB9DB5D00030F21 /* VSS003_CryptoTests.swift in Sources */,
-				429005B41EB9DB7900030F21 /* MEmailMetadata.m in Sources */,
-				429005B31EB9DB7900030F21 /* MEmail.m in Sources */,
 				429005AA1EB9DB5D00030F21 /* VSS005_CompatibilityTests.swift in Sources */,
 				429005A71EB9DB5A00030F21 /* VSS002_ClientWOTokenTests.swift in Sources */,
-				429005B81EB9DB7E00030F21 /* MailinatorInboxRequest.m in Sources */,
 				429005A61EB9DB5700030F21 /* VSS001_ClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2109,20 +2001,11 @@
 				420FE5F81E4B761E005A32D4 /* VSS002_ClientWOTokenTests.swift in Sources */,
 				42F7B34E1E69C779004E579C /* VSS007_HighLevelTests.swift in Sources */,
 				425B09BB1DBF63E8005531DC /* VSS003_CryptoTests.swift in Sources */,
-				4248B1321E044CE8000AB44C /* MailinatorEmailRequest.m in Sources */,
 				42F6C20B1DBF5F690030C21D /* VSSTestsConst.m in Sources */,
-				4248B1221E044CE8000AB44C /* MEmail.m in Sources */,
-				4248B13A1E044CE8000AB44C /* MailinatorRequest.m in Sources */,
 				42DF01E91E8C5606005CA7DD /* VSS006_KeyStorageTests.swift in Sources */,
-				4248B11E1E044CE8000AB44C /* MailinatorConfig.m in Sources */,
-				4248B1361E044CE8000AB44C /* MailinatorInboxRequest.m in Sources */,
 				429F1CB61E8A6D8B00317FB7 /* VSS008_HighLevelCryptoTests.swift in Sources */,
-				4248B12A1E044CE8000AB44C /* MEmailResponse.m in Sources */,
-				4248B12E1E044CE8000AB44C /* MPart.m in Sources */,
 				427C40601E5B3A380017C2A9 /* VSSTestUtils.swift in Sources */,
-				4248B1261E044CE8000AB44C /* MEmailMetadata.m in Sources */,
 				425B09BC1DBF63E8005531DC /* VSS004_ModelsTests.swift in Sources */,
-				4248B11A1E044CE8000AB44C /* Mailinator.m in Sources */,
 				425B09BD1DBF63E8005531DC /* VSS005_CompatibilityTests.swift in Sources */,
 				42F6C2031DBF5EC90030C21D /* VSS001_ClientTests.swift in Sources */,
 			);

@@ -9,12 +9,13 @@
 import Foundation
 import XCTest
 import VirgilSDK
+import Mailinator
 
 class VSS007_HighLevelTests: XCTestCase {
     private var utils: VSSTestUtils!
     private var consts: VSSTestsConst!
     private var api: VSSVirgilApi!
-    private var mailinator: Mailinator!
+    private var mailinator: VSMMailinator!
     
     // MARK: Setup
     override func setUp() {
@@ -50,7 +51,7 @@ class VSS007_HighLevelTests: XCTestCase {
         
         self.utils = VSSTestUtils(crypto: VSSCrypto(), consts: self.consts)
         
-        self.mailinator = Mailinator(applicationToken: self.consts.mailinatorToken, serviceUrl: URL(string: "https://api.mailinator.com/api/")!)
+        self.mailinator = VSMMailinator(applicationToken: self.consts.mailinatorToken, serviceUrl: URL(string: "https://api.mailinator.com/api/")!)
     }
     
     override func tearDown() {

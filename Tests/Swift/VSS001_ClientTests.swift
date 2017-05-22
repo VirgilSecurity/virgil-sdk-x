@@ -8,6 +8,7 @@
 
 import XCTest
 import VirgilSDK
+import Mailinator
 
 /// Each request should be done less than or equal this number of seconds.
 let kEstimatedRequestCompletionTime = 8
@@ -20,7 +21,7 @@ class VSS001_ClientTests: XCTestCase {
     private var utils: VSSTestUtils!
     private var consts: VSSTestsConst!
     private var regexp: NSRegularExpression!
-    private var mailinator: Mailinator!
+    private var mailinator: VSMMailinator!
     
     // MARK: Setup
     
@@ -51,7 +52,7 @@ class VSS001_ClientTests: XCTestCase {
         
         self.regexp = try! NSRegularExpression(pattern: "Your confirmation code is.+([A-Z0-9]{6})", options: .caseInsensitive)
         
-        self.mailinator = Mailinator(applicationToken: self.consts.mailinatorToken, serviceUrl: URL(string: "https://api.mailinator.com/api/")!)
+        self.mailinator = VSMMailinator(applicationToken: self.consts.mailinatorToken, serviceUrl: URL(string: "https://api.mailinator.com/api/")!)
     }
     
     override func tearDown() {

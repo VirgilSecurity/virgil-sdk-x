@@ -8,6 +8,7 @@
 
 import Foundation
 import VirgilSDK
+import Mailinator
 
 class VSSTestUtils {
     private var crypto: VSSCrypto
@@ -214,11 +215,11 @@ class VSSTestUtils {
         return equals
     }
 
-    func getConfirmationCode(emailNumber: Int = 0, identityValue: String, mailinator: Mailinator, completion: @escaping (String)->()) {
+    func getConfirmationCode(emailNumber: Int = 0, identityValue: String, mailinator: VSMMailinator, completion: @escaping (String)->()) {
         let identityShort = identityValue.substring(to: identityValue.range(of: "@")!.lowerBound)
         
         var received = false
-        let getEmail = { (mid: String, completion: @escaping (MEmail)->()) in
+        let getEmail = { (mid: String, completion: @escaping (VSMEmail)->()) in
             while !received {
                 sleep(5)
                 guard !received else {
@@ -235,7 +236,7 @@ class VSSTestUtils {
             }
         }
         
-        let metadataReceivedCallback = { (metadataList: [MEmailMetadata]) in
+        let metadataReceivedCallback = { (metadataList: [VSMEmailMetadata]) in
             // find last message
             let lastMetadata = metadataList.min(by: { m1, m2 in
                 return m1.seconds_ago.compare(m2.seconds_ago) == .orderedAscending;
@@ -254,7 +255,7 @@ class VSSTestUtils {
             }
         }
 
-        let checkInbox = { (completion: @escaping ([MEmailMetadata]?, Error?) -> ()) in
+        let checkInbox = { (completion: @escaping ([VSMEmailMetadata]?, Error?) -> ()) in
             mailinator.getInbox(identityShort) { metadataList, error in
                 completion(metadataList, error)
             }

@@ -8,6 +8,7 @@
 
 import XCTest
 import VirgilSDK
+import Mailinator
 
 class VSS002_ClientWOTokenTests: XCTestCase {
     
@@ -16,7 +17,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
     private var utils: VSSTestUtils!
     private var consts: VSSTestsConst!
     private var regexp: NSRegularExpression!
-    private var mailinator: Mailinator!
+    private var mailinator: VSMMailinator!
     
     // MARK: Setup
     
@@ -47,7 +48,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         
         self.regexp = try! NSRegularExpression(pattern: "Your confirmation code is.+([A-Z0-9]{6})", options: .caseInsensitive)
         
-        self.mailinator = Mailinator(applicationToken: self.consts.mailinatorToken, serviceUrl: URL(string: "https://api.mailinator.com/api/")!)
+        self.mailinator = VSMMailinator(applicationToken: self.consts.mailinatorToken, serviceUrl: URL(string: "https://api.mailinator.com/api/")!)
     }
     
     override func tearDown() {
