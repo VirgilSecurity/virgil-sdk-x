@@ -11,6 +11,17 @@
 #import "VSSBaseClientPrivate.h"
 #import "VSSHTTPRequest.h"
 
+#ifdef DEBUG
+#define USE_SERVICE_CLIENT_DEBUG 1
+#endif
+
+/// Debugging macro
+#if USE_SERVICE_CLIENT_DEBUG
+#  define VSSCLDLog(...) NSLog(__VA_ARGS__)
+# else
+#  define VSSCLDLog(...) /* nothing to log */
+#endif
+
 @implementation VSSBaseClient
 
 - (instancetype)init {
