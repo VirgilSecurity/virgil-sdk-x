@@ -18,11 +18,6 @@
 extern NSString * __nonnull const kVSSClientErrorDomain;
 
 /**
- NSString with Virgil Auth Service Public Key in Base64 format
- */
-extern NSString * __nonnull const kVSSAuthServicePublicKeyInBase64;
-
-/**
  Default implementation of VSSClient protocol used for all interactions with Virgil Services.
  */
 @interface VSSClient : VSSBaseClient <VSSClient>
