@@ -7,11 +7,10 @@
 //
 
 #import "VSSClient.h"
+#import "VSSBaseClientPrivate.h"
 #import "NSObject+VSSUtils.h"
-
 #import "VSSSearchCardsCriteria.h"
 #import "VSSServiceConfig.h"
-
 #import "VSSCreateCardHTTPRequest.h"
 #import "VSSSearchCardsHTTPRequest.h"
 #import "VSSGetCardHTTPRequest.h"
@@ -38,13 +37,6 @@ static NSString *const kVSSRefreshTokenGrantType = @"refresh_token";
 
 NSString * const kVSSAuthServicePublicKeyInBase64 = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUZzd0ZRWUhLb1pJemowQ0FRWUtLd1lCQkFHWFZRRUZBUU5DQUFRRGNONFR4endIV0VOR00zQmJxb1VuTWFVdQpLbTc4Sk9DWFhKN3I1ejdOalFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUEKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0tCg==";
 
-@interface VSSClient ()
-
-@property (nonatomic) NSOperationQueue * __nonnull queue;
-@property (nonatomic) NSURLSession * __nonnull urlSession;
-
-@end
-
 @implementation VSSClient
 
 #pragma mark - Lifecycle
@@ -53,12 +45,6 @@ NSString * const kVSSAuthServicePublicKeyInBase64 = @"LS0tLS1CRUdJTiBQVUJMSUMgS0
     self = [super init];
     if (self) {
         _serviceConfig = [serviceConfig copy];
-    
-        _queue = [[NSOperationQueue alloc] init];
-        _queue.maxConcurrentOperationCount = 10;
-        
-        NSURLSessionConfiguration *config = [NSURLSessionConfiguration ephemeralSessionConfiguration];
-        _urlSession = [NSURLSession sessionWithConfiguration:config delegate:nil delegateQueue:_queue];
     }
     
     return self;
@@ -72,13 +58,6 @@ NSString * const kVSSAuthServicePublicKeyInBase64 = @"LS0tLS1CRUdJTiBQVUJMSUMgS0
     return [self initWithServiceConfig:[VSSServiceConfig defaultServiceConfig]];
 }
 
-- (void)dealloc {
-    [_urlSession invalidateAndCancel];
-    [_queue cancelAllOperations];
-}
-
-#pragma mark - Public class logic
-
 - (void)send:(VSSHTTPRequest *)request requiresAccessToken:(BOOL)requiresAccessToken {
     if (request == nil) {
         return;
@@ -91,26 +70,7 @@ NSString * const kVSSAuthServicePublicKeyInBase64 = @"LS0tLS1CRUdJTiBQVUJMSUMgS0
         }
     }
     
-#if USE_SERVICE_REQUEST_DEBUG
-    {
-        VSSRDLog(@"%@: request URL: %@", NSStringFromClass(request.class), request.request.URL);
-        VSSRDLog(@"%@: request method: %@", NSStringFromClass(request.class), request.request.HTTPMethod);
-        if (request.request.HTTPBody.length) {
-            NSString *logStr = [[NSString alloc] initWithData:request.request.HTTPBody encoding:NSUTF8StringEncoding];
-            VSSRDLog(@"%@: request body: %@", NSStringFromClass(request.class), logStr);
-        }
-        VSSRDLog(@"%@: request headers: %@", NSStringFromClass(request.class), request.request.allHTTPHeaderFields);
-        
-        NSHTTPCookieStorage *cookieStorage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-        NSArray *cookies = [cookieStorage cookiesForURL:request.request.URL];
-        for (NSHTTPCookie *cookie in cookies) {
-            VSSRDLog(@"*******COOKIE: %@: %@", [cookie name], [cookie value]);
-        }
-    }
-#endif
-    
-    NSURLSessionDataTask *task = [request taskForSession:self.urlSession];
-    [task resume];
+    [self send:request];
 }
 
 #pragma mark - Implementation of VSSClient protocol

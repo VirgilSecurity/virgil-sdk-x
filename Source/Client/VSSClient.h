@@ -9,18 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "VSSModelCommons.h"
 #import "VSSClientProtocol.h"
-
-#ifdef DEBUG
-#define USE_SERVICE_CLIENT_DEBUG 1
-#endif
-
-/// Debugging macro
-#if USE_SERVICE_CLIENT_DEBUG
-#  define VSSCLDLog(...) NSLog(__VA_ARGS__)
-# else
-#  define VSSCLDLog(...) /* nothing to log */
-#endif
-
+#import "VSSBaseClient.h"
 #import "VSSServiceConfig.h"
 
 /**
@@ -36,7 +25,7 @@ extern NSString * __nonnull const kVSSAuthServicePublicKeyInBase64;
 /**
  Default implementation of VSSClient protocol used for all interactions with Virgil Services.
  */
-@interface VSSClient : NSObject <VSSClient>
+@interface VSSClient : VSSBaseClient <VSSClient>
 
 /**
  VSSServiceConfig instance, which contains the information needed to interract with Virgil Services such as service URLs, token, CardValidator.

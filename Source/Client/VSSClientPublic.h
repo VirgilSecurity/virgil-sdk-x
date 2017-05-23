@@ -7,8 +7,8 @@
 //
 
 #import "VSSModelsPublic.h"
-
 #import "VSSClient.h"
+#import "VSSBaseClient.h"
 #import "VSSClientProtocol.h"
 #import "VSSServiceConfig.h"
 #import "VSSRequestSignerProtocol.h"
