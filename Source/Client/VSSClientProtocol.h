@@ -14,8 +14,6 @@
 #import "VSSRevokeCardRequest.h"
 #import "VSSRevokeEmailCardRequest.h"
 #import "VSSConfirmIdentityResponse.h"
-#import "VSSChallengeMessageResponse.h"
-#import "VSSObtainTokenResponse.h"
 #import "VSSCard.h"
 
 /**
@@ -104,46 +102,5 @@
  @param callback callback with NSError instance if error occured, or nil if validation succeeded
  */
 - (void)validateIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType validationToken:(NSString * __nonnull)validationToken completion:(void (^ __nonnull)(NSError * __nullable))callback;
-
-/**
- Requests challenge message from Virgil Auth Service to obtain access token.
-
- @param virgilCardId NSString with id of virgil card for which token will be granted
- @param callback callback with VSSChallengeMessageResponse object, or NSError instance if error occured
- */
-- (void)getChallengeMessageForVirgilCardWithId:(NSString * __nonnull)virgilCardId completion:(void (^ __nonnull)(VSSChallengeMessageResponse * __nullable, NSError * __nullable))callback;
-
-/**
- Acknowledges using auth grant id and reencrypted message. Message should be reencrypted for Virgil Auth Service whose public key can be found in VSSClient.m.
-
- @param authGrantId NSString auth grant id which can be found in VSSChallengeMessageResponse
- @param encryptedMessage Reencrypted for Virgil Auth Service message. Original message can be found inside VSSChallengeMessageResponse
- @param callback callback with access code, or NSError instance if error occured
- */
-- (void)ackChallengeMessageWithAuthGrantId:(NSString * __nonnull)authGrantId encryptedMessage:(NSData * __nonnull)encryptedMessage completion:(void (^ __nonnull)(NSString * __nullable, NSError * __nullable))callback;
-
-/**
- Obtaines access and refresh tokens using access code.
-
- @param accessCode NSString with access code
- @param callback callback with VSSObtainTokenResponse object, or NSError instance if error occured
- */
-- (void)obtainAccessTokenWithAccessCode:(NSString * __nonnull)accessCode completion:(void (^ __nonnull)(VSSObtainTokenResponse * __nullable, NSError * __nullable))callback;
-
-/**
- Refreshes access token using refresh token
-
- @param refreshToken NSString with refresh token
- @param callback callback with VSSTokenResponse object, or NSError instance if error occured
- */
-- (void)refreshAccessTokenWithRefreshToken:(NSString * __nonnull)refreshToken completion:(void (^ __nonnull)(VSSTokenResponse * __nullable, NSError * __nullable))callback;
-
-/**
- Verifies access token.
-
- @param accessToken NSString with access token
- @param callback callback with virgil card id of token owner, or NSError instance if error occured
- */
-- (void)verifyAccessToken:(NSString * __nonnull)accessToken completion:(void (^ __nonnull)(NSString * __nullable, NSError * __nullable))callback;
 
 @end

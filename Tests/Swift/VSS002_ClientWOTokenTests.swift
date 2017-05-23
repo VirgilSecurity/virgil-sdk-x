@@ -13,6 +13,7 @@ import Mailinator
 class VSS002_ClientWOTokenTests: XCTestCase {
     
     private var client: VSSClient!
+    private var authClient: VSSAuthClient!
     private var crypto: VSSCrypto!
     private var utils: VSSTestUtils!
     private var consts: VSSTestsConst!
@@ -40,9 +41,13 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         config.cardsServiceROURL = self.consts.cardsServiceROURL
         config.identityServiceURL = self.consts.identityServiceURL
         config.registrationAuthorityURL = self.consts.registrationAuthorityURL
-        config.authServiceURL = self.consts.authServiceURL
         
         self.client = VSSClient(serviceConfig: config)
+        
+        let virgilAuthPublicKeyData = Data(base64Encoded: self.consts.authServicePublicKeyBase64)!
+        let authConfig = VSSAuthServiceConfig(serviceURL: self.consts.authServiceURL, servicePublicKey: virgilAuthPublicKeyData)
+        
+        self.authClient = VSSAuthClient(authServiceConfig: authConfig)
         
         self.utils = VSSTestUtils(crypto: self.crypto, consts: self.consts)
         
@@ -241,7 +246,7 @@ class VSS002_ClientWOTokenTests: XCTestCase {
                     let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                     
                     self.client.createCard(with: request) { (registeredCard, error) in
-                        self.client.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
+                        self.authClient.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
                             XCTAssert(error == nil && response != nil)
                             XCTAssert(!response!.authGrantId.isEmpty && !response!.encryptedMessage.isEmpty)
                             
@@ -275,18 +280,17 @@ class VSS002_ClientWOTokenTests: XCTestCase {
                     let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                     
                     self.client.createCard(with: request) { (registeredCard, error) in
-                        self.client.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
+                        self.authClient.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
                             XCTAssert(error == nil)
                             XCTAssert(response != nil)
                             XCTAssert(!response!.authGrantId.isEmpty && !response!.encryptedMessage.isEmpty)
                             
                             let message = try! self.crypto.decrypt(response!.encryptedMessage, with: keyPair.privateKey)
                             
-                            let virgilAuthPublicKeyData = Data(base64Encoded: self.consts.authServicePublicKeyBase64)!
-                            let virgilAuthPublicKey = self.crypto.importPublicKey(from: virgilAuthPublicKeyData)!
+                            let virgilAuthPublicKey = self.crypto.importPublicKey(from: self.authClient.serviceConfig.servicePublicKey)!
                             let encryptedMessage = try! self.crypto.encrypt(message, for: [virgilAuthPublicKey])
                             
-                            self.client.ackChallengeMessage(withAuthGrantId: response!.authGrantId, encryptedMessage: encryptedMessage) { code, error in
+                            self.authClient.ackChallengeMessage(withAuthGrantId: response!.authGrantId, encryptedMessage: encryptedMessage) { code, error in
                                 XCTAssert(error == nil && code != nil)
                                 XCTAssert(!code!.isEmpty)
                                 
@@ -321,18 +325,17 @@ class VSS002_ClientWOTokenTests: XCTestCase {
                     let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                     
                     self.client.createCard(with: request) { (registeredCard, error) in
-                        self.client.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
+                        self.authClient.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
                             XCTAssert(error == nil && response != nil)
                             XCTAssert(!response!.authGrantId.isEmpty && !response!.encryptedMessage.isEmpty)
                             
                             let message = try! self.crypto.decrypt(response!.encryptedMessage, with: keyPair.privateKey)
                             
-                            let virgilAuthPublicKeyData = Data(base64Encoded: self.consts.authServicePublicKeyBase64)!
-                            let virgilAuthPublicKey = self.crypto.importPublicKey(from: virgilAuthPublicKeyData)!
+                            let virgilAuthPublicKey = self.crypto.importPublicKey(from: self.authClient.serviceConfig.servicePublicKey)!
                             let encryptedMessage = try! self.crypto.encrypt(message, for: [virgilAuthPublicKey])
                             
-                            self.client.ackChallengeMessage(withAuthGrantId: response!.authGrantId, encryptedMessage: encryptedMessage) { code, error in
-                                self.client.obtainAccessToken(withAccessCode: code!) { response, error in
+                            self.authClient.ackChallengeMessage(withAuthGrantId: response!.authGrantId, encryptedMessage: encryptedMessage) { code, error in
+                                self.authClient.obtainAccessToken(withAccessCode: code!) { response, error in
                                     XCTAssert(error == nil)
                                     XCTAssert(response != nil)
                                     XCTAssert(!response!.refreshToken.isEmpty)
@@ -372,19 +375,18 @@ class VSS002_ClientWOTokenTests: XCTestCase {
                     let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                     
                     self.client.createCard(with: request) { (registeredCard, error) in
-                        self.client.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
+                        self.authClient.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
                             XCTAssert(error == nil && response != nil)
                             XCTAssert(!response!.authGrantId.isEmpty && !response!.encryptedMessage.isEmpty)
                             
                             let message = try! self.crypto.decrypt(response!.encryptedMessage, with: keyPair.privateKey)
                             
-                            let virgilAuthPublicKeyData = Data(base64Encoded: self.consts.authServicePublicKeyBase64)!
-                            let virgilAuthPublicKey = self.crypto.importPublicKey(from: virgilAuthPublicKeyData)!
+                            let virgilAuthPublicKey = self.crypto.importPublicKey(from: self.authClient.serviceConfig.servicePublicKey)!
                             let encryptedMessage = try! self.crypto.encrypt(message, for: [virgilAuthPublicKey])
                             
-                            self.client.ackChallengeMessage(withAuthGrantId: response!.authGrantId, encryptedMessage: encryptedMessage) { code, error in
-                                self.client.obtainAccessToken(withAccessCode: code!) { response, error in
-                                    self.client.refreshAccessToken(withRefreshToken: response!.refreshToken) { response, error in
+                            self.authClient.ackChallengeMessage(withAuthGrantId: response!.authGrantId, encryptedMessage: encryptedMessage) { code, error in
+                                self.authClient.obtainAccessToken(withAccessCode: code!) { response, error in
+                                    self.authClient.refreshAccessToken(withRefreshToken: response!.refreshToken) { response, error in
                                         XCTAssert(error == nil)
                                         XCTAssert(response != nil)
                                         XCTAssert(!response!.accessToken.isEmpty)
@@ -423,19 +425,18 @@ class VSS002_ClientWOTokenTests: XCTestCase {
                     let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                     
                     self.client.createCard(with: request) { (registeredCard, error) in
-                        self.client.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
+                        self.authClient.getChallengeMessageForVirgilCard(withId: registeredCard!.identifier) { response, error in
                             XCTAssert(error == nil && response != nil)
                             XCTAssert(!response!.authGrantId.isEmpty && !response!.encryptedMessage.isEmpty)
                             
                             let message = try! self.crypto.decrypt(response!.encryptedMessage, with: keyPair.privateKey)
                             
-                            let virgilAuthPublicKeyData = Data(base64Encoded: self.consts.authServicePublicKeyBase64)!
-                            let virgilAuthPublicKey = self.crypto.importPublicKey(from: virgilAuthPublicKeyData)!
+                            let virgilAuthPublicKey = self.crypto.importPublicKey(from: self.authClient.serviceConfig.servicePublicKey)!
                             let encryptedMessage = try! self.crypto.encrypt(message, for: [virgilAuthPublicKey])
                             
-                            self.client.ackChallengeMessage(withAuthGrantId: response!.authGrantId, encryptedMessage: encryptedMessage) { code, error in
-                                self.client.obtainAccessToken(withAccessCode: code!) { response, error in
-                                    self.client.verifyAccessToken(response!.accessToken) { cardId, error in
+                            self.authClient.ackChallengeMessage(withAuthGrantId: response!.authGrantId, encryptedMessage: encryptedMessage) { code, error in
+                                self.authClient.obtainAccessToken(withAccessCode: code!) { response, error in
+                                    self.authClient.verifyAccessToken(response!.accessToken) { cardId, error in
                                         XCTAssert(error == nil)
                                         XCTAssert(cardId! == registeredCard!.identifier)
                                         
