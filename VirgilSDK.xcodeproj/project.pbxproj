@@ -6,6 +6,21 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		42745A511ED43D9400C1DEEC /* VirgilSDK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 42745A541ED43D9400C1DEEC /* Build configuration list for PBXAggregateTarget "VirgilSDK" */;
+			buildPhases = (
+			);
+			dependencies = (
+				42745A581ED43D9B00C1DEEC /* PBXTargetDependency */,
+				42745A561ED43D9900C1DEEC /* PBXTargetDependency */,
+			);
+			name = VirgilSDK;
+			productName = VirgilSDK;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		420B3A0F1EC33D3D004C9930 /* VSSDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 420B3A0A1EC33D3D004C9930 /* VSSDeviceManager.m */; };
 		420B3A121EC33D3D004C9930 /* VSSDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 420B3A0C1EC33D3D004C9930 /* VSSDeviceManager.m */; };
@@ -510,6 +525,20 @@
 
 /* Begin PBXContainerItemProxy section */
 		422499C41EB39B380032F556 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 422499B91EB39B380032F556;
+			remoteInfo = "VirgilSDK macOS";
+		};
+		42745A551ED43D9900C1DEEC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42EB30E31DB8EC17001DF4C0;
+			remoteInfo = "VirgilSDK iOS";
+		};
+		42745A571ED43D9B00C1DEEC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
 			proxyType = 1;
@@ -1808,6 +1837,10 @@
 						CreatedOnToolsVersion = 8.3.2;
 						ProvisioningStyle = Automatic;
 					};
+					42745A511ED43D9400C1DEEC = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
 					42B7E35A1DB8F72200D70C12 = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
@@ -1836,6 +1869,7 @@
 				42B7E35A1DB8F72200D70C12 /* VirgilSDK iOS Tests */,
 				422499B91EB39B380032F556 /* VirgilSDK macOS */,
 				422499C11EB39B380032F556 /* VirgilSDK macOS Tests */,
+				42745A511ED43D9400C1DEEC /* VirgilSDK */,
 			);
 		};
 /* End PBXProject section */
@@ -2113,6 +2147,16 @@
 			target = 422499B91EB39B380032F556 /* VirgilSDK macOS */;
 			targetProxy = 422499C41EB39B380032F556 /* PBXContainerItemProxy */;
 		};
+		42745A561ED43D9900C1DEEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42EB30E31DB8EC17001DF4C0 /* VirgilSDK iOS */;
+			targetProxy = 42745A551ED43D9900C1DEEC /* PBXContainerItemProxy */;
+		};
+		42745A581ED43D9B00C1DEEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 422499B91EB39B380032F556 /* VirgilSDK macOS */;
+			targetProxy = 42745A571ED43D9B00C1DEEC /* PBXContainerItemProxy */;
+		};
 		42B7E3621DB8F72200D70C12 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 42EB30E31DB8EC17001DF4C0 /* VirgilSDK iOS */;
@@ -2352,6 +2396,20 @@
 			};
 			name = Release;
 		};
+		42745A521ED43D9400C1DEEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		42745A531ED43D9400C1DEEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		42B7E3641DB8F72200D70C12 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2516,6 +2574,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		42745A541ED43D9400C1DEEC /* Build configuration list for PBXAggregateTarget "VirgilSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42745A521ED43D9400C1DEEC /* Debug */,
+				42745A531ED43D9400C1DEEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		42B7E3631DB8F72200D70C12 /* Build configuration list for PBXNativeTarget "VirgilSDK iOS Tests" */ = {
 			isa = XCConfigurationList;
