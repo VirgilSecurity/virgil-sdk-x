@@ -61,7 +61,7 @@ deploy:
   - provider: pages
     skip_cleanup: true
     github_token: $GITHUB_TOKEN
-    local_dir: "${TRAVIS_BUILD_DIR}/docs"
+    local_dir: "./docs"
     on:
       repo: VirgilSecurity/virgil-sdk-x
       tags: true
