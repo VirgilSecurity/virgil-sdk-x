@@ -87,3 +87,5 @@ cat >>"${HTML_PATH_DST}/index.html" <<EOL
    </body>
 </html>
 EOL
+
+rm -r ${HTML_PATH_DST}/.git
