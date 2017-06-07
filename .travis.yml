@@ -41,8 +41,12 @@ after_success:
   - if [ $RUN_TESTS == "YES" && $PUBLISH_COVERAGE == "YES"]; then
       bash <(curl -s https://codecov.io/bash);
     fi
-  - if [ ! -z "${TRAVIS_TAG}" && $PUBLISH_DOCS == "YES"]; then
+  # - if [ ! -z "${TRAVIS_TAG}" && $PUBLISH_DOCS == "YES"]; then
+  - if [ $PUBLISH_DOCS == "YES"]; then
       ./CI/publish-docs.sh;
+
+      cd "${TRAVIS_BUILD_DIR}/docs";
+      ls -R;
     fi
 
 before_deploy:
@@ -63,4 +67,4 @@ deploy:
     github_token: $GITHUB_TOKEN
     local_dir: "${TRAVIS_BUILD_DIR}/docs"
     on:
-      tags: true
+      branch: docs-fix
