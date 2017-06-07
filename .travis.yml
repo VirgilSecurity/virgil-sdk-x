@@ -48,8 +48,8 @@ after_success:
       ./CI/publish-docs.sh;
 
       cd "${TRAVIS_BUILD_DIR}/docs";
-      ls -R;
     fi
+  - ls -R
 
 before_deploy:
   - carthage archive $FRAMEWORK_NAME
