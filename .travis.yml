@@ -40,11 +40,11 @@ script:
     fi
 
 after_success:
-  - if [ $RUN_TESTS == "YES" && $PUBLISH_COVERAGE == "YES"]; then
+  - if [ $RUN_TESTS == "YES" && $PUBLISH_COVERAGE == "YES" ]; then
       bash <(curl -s https://codecov.io/bash);
     fi
   # - if [ ! -z "${TRAVIS_TAG}" && $PUBLISH_DOCS == "YES"]; then
-  - if [ $PUBLISH_DOCS == "YES"]; then
+  - if [ $PUBLISH_DOCS == "YES" ]; then
       ./CI/publish-docs.sh;
 
       cd "${TRAVIS_BUILD_DIR}/docs";
