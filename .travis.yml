@@ -46,8 +46,6 @@ after_success:
   # - if [ ! -z "${TRAVIS_TAG}" && $PUBLISH_DOCS == "YES"]; then
   - if [ $PUBLISH_DOCS == "YES" ]; then
       ./CI/publish-docs.sh;
-
-      cd "${TRAVIS_BUILD_DIR}/docs";
     fi
   - ls -R
 
