@@ -51,7 +51,7 @@ after_success:
     fi
 
   # Generate and publish docs
-  - if [ ! -z "${TRAVIS_TAG}" && $PUBLISH_DOCS == "YES" ]; then
+  - if [ -n "${TRAVIS_TAG}" ] && [ $PUBLISH_DOCS == "YES" ]; then
       ./CI/publish-docs.sh;
     fi
 
