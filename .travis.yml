@@ -59,7 +59,7 @@ after_success:
 before_deploy:
   # Generate carthage framework
   - if [ $PUBLISH_CARTHAGE == "YES" ]; then
-      carthage archive $FRAMEWORK_NAME
+      carthage archive $FRAMEWORK_NAME;
     fi
 
 deploy:
