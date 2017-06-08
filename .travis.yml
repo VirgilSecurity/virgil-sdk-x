@@ -58,7 +58,9 @@ after_success:
 
 before_deploy:
   # Generate carthage framework
-  - carthage archive $FRAMEWORK_NAME
+  - if [ $PUBLISH_CARTHAGE == "YES" ]; then
+      carthage archive $FRAMEWORK_NAME
+    fi
 
 deploy:
   # Upload framework to gh-releases for carthage
