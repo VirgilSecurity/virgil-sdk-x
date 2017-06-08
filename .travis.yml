@@ -51,8 +51,7 @@ after_success:
     fi
 
   # Generate and publish docs
-  # - if [ ! -z "${TRAVIS_TAG}" && $PUBLISH_DOCS == "YES" ]; then
-  - if [ $PUBLISH_DOCS == "YES" ]; then
+  - if [ ! -z "${TRAVIS_TAG}" && $PUBLISH_DOCS == "YES" ]; then
       ./CI/publish-docs.sh;
     fi
 
@@ -80,5 +79,5 @@ deploy:
     github_token: $GITHUB_TOKEN
     local_dir: "${TRAVIS_BUILD_DIR}/docs"
     on:
-      branch: docs-fix
+      tags: true
       condition: $PUBLISH_DOCS = "YES"
