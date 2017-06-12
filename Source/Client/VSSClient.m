@@ -7,7 +7,7 @@
 //
 
 #import "VSSClient.h"
-#import "VSSBaseClientPrivate.h"
+#import "VSSBaseClient.h"
 #import "NSObject+VSSUtils.h"
 #import "VSSSearchCardsCriteria.h"
 #import "VSSServiceConfig.h"

@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "VSSBaseClient.h"
-#import "VSSBaseClientPrivate.h"
 #import "VSSHTTPRequest.h"
 
 #ifdef DEBUG

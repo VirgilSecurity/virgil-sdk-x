@@ -7,7 +7,6 @@
 //
 
 #import "VSSHTTPRequest.h"
-#import "VSSHTTPRequestPrivate.h"
 #import "VSSHTTPRequestContext.h"
 #import "NSObject+VSSUtils.h"
 

@@ -30,6 +30,10 @@
 		420B3A161EC33D3D004C9930 /* VSSDeviceManagerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 420B3A0E1EC33D3D004C9930 /* VSSDeviceManagerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		420B3A181EC33D6B004C9930 /* VSSDeviceManagerPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 420B3A171EC33D51004C9930 /* VSSDeviceManagerPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		420B3A191EC33D6C004C9930 /* VSSDeviceManagerPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 420B3A171EC33D51004C9930 /* VSSDeviceManagerPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D0B221EEEDE26002A9C22 /* VSSNetworkingPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D0B1F1EEEDDDD002A9C22 /* VSSNetworkingPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D0B241EEEDE27002A9C22 /* VSSNetworkingPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D0B1F1EEEDDDD002A9C22 /* VSSNetworkingPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D0B251EEEDEEA002A9C22 /* VSSHTTPRequestsPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D0B201EEEDDED002A9C22 /* VSSHTTPRequestsPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		420D0B261EEEDEEA002A9C22 /* VSSHTTPRequestsPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 420D0B201EEEDDED002A9C22 /* VSSHTTPRequestsPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		420FE5ED1E4B55FC005A32D4 /* VSSCreateEmailCardRequestPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 420FE5EC1E4B55FA005A32D4 /* VSSCreateEmailCardRequestPrivate.h */; };
 		420FE5EE1E4B560D005A32D4 /* VSSConfirmIdentityRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42386C261E019017009E913F /* VSSConfirmIdentityRequest.h */; };
 		420FE5EF1E4B5610005A32D4 /* VSSValidateIdentityRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42386C361E019CBF009E913F /* VSSValidateIdentityRequest.h */; };
@@ -181,11 +185,11 @@
 		42249ACF1EB39E9F0032F556 /* VSSVerifyIdentityHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F5407C1E0048790071FDCF /* VSSVerifyIdentityHTTPRequest.h */; };
 		42249AD01EB39E9F0032F556 /* VSSConfirmIdentityHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42386C2D1E019810009E913F /* VSSConfirmIdentityHTTPRequest.h */; };
 		42249AD11EB39E9F0032F556 /* VSSValidateIdentityHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42386C331E019C22009E913F /* VSSValidateIdentityHTTPRequest.h */; };
-		42249AD21EB39E9F0032F556 /* VSSCardsBaseHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42FA96571DA3E9560092D5DB /* VSSCardsBaseHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42249AD31EB39E9F0032F556 /* VSSSearchCardsHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42FA96591DA3E9560092D5DB /* VSSSearchCardsHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42249AD41EB39E9F0032F556 /* VSSGetCardHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 423B09B11DA6D9FE00A63E5B /* VSSGetCardHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42249AD51EB39E9F0032F556 /* VSSCreateCardRelationHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 427C40561E5B32520017C2A9 /* VSSCreateCardRelationHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42249AD61EB39E9F0032F556 /* VSSRemoveCardRelationHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 427C40681E5C78970017C2A9 /* VSSRemoveCardRelationHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42249AD21EB39E9F0032F556 /* VSSCardsBaseHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42FA96571DA3E9560092D5DB /* VSSCardsBaseHTTPRequest.h */; };
+		42249AD31EB39E9F0032F556 /* VSSSearchCardsHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42FA96591DA3E9560092D5DB /* VSSSearchCardsHTTPRequest.h */; };
+		42249AD41EB39E9F0032F556 /* VSSGetCardHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 423B09B11DA6D9FE00A63E5B /* VSSGetCardHTTPRequest.h */; };
+		42249AD51EB39E9F0032F556 /* VSSCreateCardRelationHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 427C40561E5B32520017C2A9 /* VSSCreateCardRelationHTTPRequest.h */; };
+		42249AD61EB39E9F0032F556 /* VSSRemoveCardRelationHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 427C40681E5C78970017C2A9 /* VSSRemoveCardRelationHTTPRequest.h */; };
 		42249AD71EB39EAF0032F556 /* VSSClientPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7E36E1DB9003100D70C12 /* VSSClientPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42249AD81EB39EAF0032F556 /* VSSClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F0ABAB1D9ABFAC00747799 /* VSSClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42249AD91EB39EAF0032F556 /* VSSClientProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F0ABAD1D9ABFAC00747799 /* VSSClientProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -586,6 +590,8 @@
 		420B3A0D1EC33D3D004C9930 /* VSSDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSDeviceManager.h; sourceTree = "<group>"; };
 		420B3A0E1EC33D3D004C9930 /* VSSDeviceManagerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSDeviceManagerProtocol.h; sourceTree = "<group>"; };
 		420B3A171EC33D51004C9930 /* VSSDeviceManagerPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSDeviceManagerPublic.h; sourceTree = "<group>"; };
+		420D0B1F1EEEDDDD002A9C22 /* VSSNetworkingPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSNetworkingPublic.h; sourceTree = "<group>"; };
+		420D0B201EEEDDED002A9C22 /* VSSHTTPRequestsPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSHTTPRequestsPublic.h; sourceTree = "<group>"; };
 		420FE5EC1E4B55FA005A32D4 /* VSSCreateEmailCardRequestPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCreateEmailCardRequestPrivate.h; sourceTree = "<group>"; };
 		420FE5F51E4B75FE005A32D4 /* VSS002_ClientWOTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS002_ClientWOTokenTests.swift; sourceTree = "<group>"; };
 		420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = Carthage/Build/iOS/VirgilCrypto.framework; sourceTree = "<group>"; };
@@ -1376,6 +1382,7 @@
 			isa = PBXGroup;
 			children = (
 				42F0AB541D9ABF2200747799 /* Requests */,
+				420D0B1F1EEEDDDD002A9C22 /* VSSNetworkingPublic.h */,
 				423B09C41DA7E50B00A63E5B /* VSSHTTPRequestContext.h */,
 				423B09C51DA7E50B00A63E5B /* VSSHTTPRequestContext.m */,
 			);
@@ -1389,6 +1396,7 @@
 				42D414981E38DF1500F59580 /* VRA */,
 				42F540781E0047850071FDCF /* Identity */,
 				42FA964B1DA3E9560092D5DB /* Cards */,
+				420D0B201EEEDDED002A9C22 /* VSSHTTPRequestsPublic.h */,
 				42F0AB7C1D9ABF2200747799 /* VSSHTTPRequest.h */,
 				42F0AB7D1D9ABF2200747799 /* VSSHTTPRequest.m */,
 				42F0AB781D9ABF2200747799 /* VSSHTTPJSONRequest.h */,
@@ -1480,6 +1488,7 @@
 				42A48C751ED4896400650B25 /* VSSAuthClient.h in Headers */,
 				42249A9D1EB39E440032F556 /* VSSCreateCardRequest.h in Headers */,
 				42249ACD1EB39E9F0032F556 /* VSSRevokeCardHTTPRequest.h in Headers */,
+				420D0B241EEEDE27002A9C22 /* VSSNetworkingPublic.h in Headers */,
 				42249AEC1EB39EC70032F556 /* VSSPublicKey.h in Headers */,
 				42249A981EB39E200032F556 /* VSSBaseModel.h in Headers */,
 				42249AB91EB39E6F0032F556 /* VSSExportable.h in Headers */,
@@ -1487,6 +1496,7 @@
 				42249AC41EB39E820032F556 /* VSSCanonicalDeserializable.h in Headers */,
 				42A48C6F1ED484F300650B25 /* VSSAuthServiceConfig.h in Headers */,
 				42249AC31EB39E820032F556 /* VSSCanonicalSerializable.h in Headers */,
+				420D0B261EEEDEEA002A9C22 /* VSSHTTPRequestsPublic.h in Headers */,
 				42249ADB1EB39EAF0032F556 /* VSSRequestSignerProtocol.h in Headers */,
 				42249AA21EB39E440032F556 /* VSSRevokeUserCardRequest.h in Headers */,
 				42249AC11EB39E7E0032F556 /* VSSSearchCardsCriteriaPrivate.h in Headers */,
@@ -1641,6 +1651,7 @@
 				42A48C741ED4896300650B25 /* VSSAuthClient.h in Headers */,
 				427A63501DB9096C00A33661 /* VSSServiceConfig.h in Headers */,
 				42406F9B1E83E0BF00C3DE1E /* VSSChallengeMessageResponse.h in Headers */,
+				420D0B221EEEDE26002A9C22 /* VSSNetworkingPublic.h in Headers */,
 				427A63521DB9096C00A33661 /* VSSRequestSigner.h in Headers */,
 				42406F991E83DA2500C3DE1E /* VSSGetChallengeMessageHTTPRequest.h in Headers */,
 				42A48C671ED4737400650B25 /* VSSBaseClient.h in Headers */,
@@ -1695,6 +1706,7 @@
 				42E983031E0C2E0100FAA473 /* VSSCardResponsePrivate.h in Headers */,
 				42386C301E019969009E913F /* VSSConfirmIdentityResponse.h in Headers */,
 				42406FD91E8404DD00C3DE1E /* VSSAuthAckRequest.h in Headers */,
+				420D0B251EEEDEEA002A9C22 /* VSSHTTPRequestsPublic.h in Headers */,
 				42D414A81E3900FB00F59580 /* VSSRevokeEmailCardRequest.h in Headers */,
 				42F540841E005A100071FDCF /* VSSIdentityBaseHTTPRequest.h in Headers */,
 				4233CDDB1E6588AD006D78C3 /* VSSCreateUserCardRequest.h in Headers */,

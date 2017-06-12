@@ -17,3 +17,4 @@
 #import "VSSRequestSigner.h"
 #import "VSSCardValidatorProtocol.h"
 #import "VSSCardValidator.h"
+#import "VSSNetworkingPublic.h"

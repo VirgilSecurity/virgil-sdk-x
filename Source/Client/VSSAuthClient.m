@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "VSSAuthClient.h"
-#import "VSSBaseClientPrivate.h"
 #import "NSObject+VSSUtils.h"
 #import "VSSGetChallengeMessageHTTPRequest.h"
 #import "VSSAuthAckHTTPRequest.h"

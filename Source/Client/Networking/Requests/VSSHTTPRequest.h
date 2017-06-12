@@ -74,22 +74,22 @@ extern NSString * __nonnull const kVSSAccessTokenHeader;
 /**
  * Underlying HTTP request.
  */
-@property (nonatomic, strong, readonly) NSURLRequest * __nonnull request;
+@property (nonatomic) NSURLRequest * __nonnull request;
 
 /** 
  * Response for the underlying HTTP request.
  */
-@property (nonatomic, strong, readonly) NSHTTPURLResponse * __nullable response;
+@property (nonatomic) NSHTTPURLResponse * __nullable response;
 
 /** 
  * Error object if one occured.
  */
-@property (nonatomic, strong, readonly) NSError * __nullable error;
+@property (nonatomic) NSError * __nullable error;
 
 /**
  * HTTP response body data.
  */
-@property (nonatomic, strong, readonly) NSData * __nullable responseBody;
+@property (nonatomic) NSData * __nullable responseBody;
 
 /** 
  * Callback for request completion. Also called in case of error.
