@@ -7,6 +7,8 @@
 //
 
 // Models
+#import "VSSErrorPublic.h"
+
 #import "VSSModelCommons.h"
 #import "VSSBaseModel.h"
 #import "VSSSearchCardsCriteria.h"
