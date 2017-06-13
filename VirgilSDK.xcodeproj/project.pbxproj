@@ -163,7 +163,7 @@
 		42249AB81EB39E6F0032F556 /* VSSImportable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B1471C1DAFA8F600AC9975 /* VSSImportable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42249AB91EB39E6F0032F556 /* VSSExportable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B1471D1DAFA92000AC9975 /* VSSExportable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42249ABA1EB39E6F0032F556 /* VSSSignable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B33F751DC3A707008A7B78 /* VSSSignable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42249ABB1EB39E780032F556 /* VSSError.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F0AB1F1D9ABF2200747799 /* VSSError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42249ABB1EB39E780032F556 /* VSSError.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F0AB1F1D9ABF2200747799 /* VSSError.h */; };
 		42249ABC1EB39E780032F556 /* VSSCardsError.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F0AB231D9ABF2200747799 /* VSSCardsError.h */; };
 		42249ABD1EB39E780032F556 /* VSSIdentityError.h in Headers */ = {isa = PBXBuildFile; fileRef = 4248B0CF1E043A60000AB44C /* VSSIdentityError.h */; };
 		42249ABE1EB39E780032F556 /* VSSVraError.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D4149D1E38E02600F59580 /* VSSVraError.h */; };
@@ -350,7 +350,7 @@
 		427A63161DB9091D00A33661 /* VirgilSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7E3721DB9023400D70C12 /* VirgilSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427A63171DB9096C00A33661 /* VSSImportable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B1471C1DAFA8F600AC9975 /* VSSImportable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427A63181DB9096C00A33661 /* VSSExportable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B1471D1DAFA92000AC9975 /* VSSExportable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		427A63191DB9096C00A33661 /* VSSError.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F0AB1F1D9ABF2200747799 /* VSSError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		427A63191DB9096C00A33661 /* VSSError.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F0AB1F1D9ABF2200747799 /* VSSError.h */; };
 		427A631B1DB9096C00A33661 /* VSSCardsError.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F0AB231D9ABF2200747799 /* VSSCardsError.h */; };
 		427A631D1DB9096C00A33661 /* VSSCanonicalSerializable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42F0ABC31D9C12F500747799 /* VSSCanonicalSerializable.h */; };
 		427A631E1DB9096C00A33661 /* VSSCanonicalDeserializable.h in Headers */ = {isa = PBXBuildFile; fileRef = 423B09C21DA7D0C700A63E5B /* VSSCanonicalDeserializable.h */; };
