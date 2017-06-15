@@ -7,7 +7,7 @@
 //
 
 #import "VSSTokenRequest.h"
-#import "VSSModelKeys.h"
+#import "VSSModelKeysPrivate.h"
 
 @implementation VSSTokenRequest
 

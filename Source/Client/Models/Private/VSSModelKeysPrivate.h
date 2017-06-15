@@ -1,5 +1,5 @@
 //
-//  VSSModelKeys.h
+//  VSSModelKeysPrivate.h
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 9/27/16.
@@ -18,8 +18,6 @@ extern NSString * __nonnull const kVSSCModelCardScope;
 extern NSString * __nonnull const kVSSCModelIdentityType;
 extern NSString * __nonnull const kVSSCModelData;
 extern NSString * __nonnull const kVSSCModelInfo;
-extern NSString * __nonnull const kVSSCModelDevice;
-extern NSString * __nonnull const kVSSCModelDeviceName;
 extern NSString * __nonnull const kVSSCModelContentSnapshot;
 extern NSString * __nonnull const kVSSCModelMeta;
 extern NSString * __nonnull const kVSSCModelValidation;

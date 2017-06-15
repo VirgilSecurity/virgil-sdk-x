@@ -7,7 +7,7 @@
 //
 
 #import "VSSConfirmIdentityRequest.h"
-#import "VSSModelKeys.h"
+#import "VSSModelKeysPrivate.h"
 
 @implementation VSSConfirmIdentityRequest
 

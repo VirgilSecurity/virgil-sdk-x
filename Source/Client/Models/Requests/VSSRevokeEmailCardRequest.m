@@ -9,7 +9,7 @@
 #import "VSSRevokeEmailCardRequest.h"
 #import "VSSSignableRequestPrivate.h"
 #import "VSSRevokeCardSnapshotModelPrivate.h"
-#import "VSSModelKeys.h"
+#import "VSSModelKeysPrivate.h"
 #import "NSObject+VSSUtils.h"
 
 @implementation VSSRevokeEmailCardRequest

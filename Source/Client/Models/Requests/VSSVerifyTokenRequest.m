@@ -7,7 +7,7 @@
 //
 
 #import "VSSVerifyTokenRequest.h"
-#import "VSSModelKeys.h"
+#import "VSSModelKeysPrivate.h"
 
 @implementation VSSVerifyTokenRequest
 

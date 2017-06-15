@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "VSSSearchCardsCriteriaPrivate.h"
 #import "NSObject+VSSUtils.h"
-#import "VSSModelKeys.h"
+#import "VSSModelKeysPrivate.h"
 #import "VSSModelCommonsPrivate.h"
 #import "VSSCreateApplicationGlobalCardRequest.h"
 

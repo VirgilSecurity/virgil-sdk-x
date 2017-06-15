@@ -8,7 +8,7 @@
 
 #import "VSSObtainTokenResponse.h"
 #import "VSSTokenResponsePrivate.h"
-#import "VSSModelKeys.h"
+#import "VSSModelKeysPrivate.h"
 #import "NSObject+VSSUtils.h"
 
 @implementation VSSObtainTokenResponse

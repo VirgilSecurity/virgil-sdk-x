@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VSSModelKeys.h"
+#import "VSSModelKeysPrivate.h"
 #import "VSSCreateEmailCardRequestPrivate.h"
 #import "VSSSignableRequestPrivate.h"
 #import "VSSCreateCardSnapshotModelPrivate.h"

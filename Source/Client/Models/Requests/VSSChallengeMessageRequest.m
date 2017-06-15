@@ -7,7 +7,7 @@
 //
 
 #import "VSSChallengeMessageRequest.h"
-#import "VSSModelKeys.h"
+#import "VSSModelKeysPrivate.h"
 
 @implementation VSSChallengeMessageRequest
 

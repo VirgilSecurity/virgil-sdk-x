@@ -7,7 +7,7 @@
 //
 
 #import "VSSRefreshTokenRequest.h"
-#import "VSSModelKeys.h"
+#import "VSSModelKeysPrivate.h"
 
 @implementation VSSRefreshTokenRequest
 

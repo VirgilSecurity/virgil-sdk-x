@@ -16,6 +16,8 @@
 #import "VSSRequestsPublic.h"
 #import "VSSResponsesPublic.h"
 
+#import "VSSModelKeys.h"
+
 // Protocols
 #import "VSSImportable.h"
 #import "VSSExportable.h"

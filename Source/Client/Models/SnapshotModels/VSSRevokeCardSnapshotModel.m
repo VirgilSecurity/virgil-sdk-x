@@ -10,7 +10,7 @@
 #import "VSSRevokeCardSnapshotModelPrivate.h"
 #import "VSSModelCommons.h"
 #import "VSSSignableRequestPrivate.h"
-#import "VSSModelKeys.h"
+#import "VSSModelKeysPrivate.h"
 #import "VSSModelCommonsPrivate.h"
 #import "NSObject+VSSUtils.h"
 

@@ -7,7 +7,7 @@
 //
 
 #import "VSSCardResponse.h"
-#import "VSSModelKeys.h"
+#import "VSSModelKeysPrivate.h"
 #import "VSSCreateCardSnapshotModelPrivate.h"
 #import "VSSCardPrivate.h"
 #import "NSObject+VSSUtils.h"

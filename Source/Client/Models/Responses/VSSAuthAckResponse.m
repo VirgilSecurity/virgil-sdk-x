@@ -7,7 +7,7 @@
 //
 
 #import "VSSAuthAckResponse.h"
-#import "VSSModelKeys.h"
+#import "VSSModelKeysPrivate.h"
 #import "NSObject+VSSUtils.h"
 
 @implementation VSSAuthAckResponse

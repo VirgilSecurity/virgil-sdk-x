@@ -7,7 +7,7 @@
 //
 
 #import "VSSAuthAckRequest.h"
-#import "VSSModelKeys.h"
+#import "VSSModelKeysPrivate.h"
 
 @implementation VSSAuthAckRequest
 

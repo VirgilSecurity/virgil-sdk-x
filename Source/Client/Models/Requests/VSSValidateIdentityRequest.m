@@ -7,7 +7,7 @@
 //
 
 #import "VSSValidateIdentityRequest.h"
-#import "VSSModelKeys.h"
+#import "VSSModelKeysPrivate.h"
 
 @implementation VSSValidateIdentityRequest
 
