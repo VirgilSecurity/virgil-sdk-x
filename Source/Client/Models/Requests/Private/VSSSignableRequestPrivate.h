@@ -25,6 +25,4 @@
 
 - (instancetype __nonnull)initWithSnapshot:(NSData * __nonnull)snapshot;
 
-- (instancetype __nonnull)initWithSnapshotModel:(SnapshotType __nonnull)model;
-
 @end

@@ -38,6 +38,8 @@
  */
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 
+- (instancetype __nonnull)initWithSnapshotModel:(SnapshotType __nonnull)model;
+
 /**
  Adds signature to data.
 
