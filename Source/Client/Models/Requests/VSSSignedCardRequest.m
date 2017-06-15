@@ -19,10 +19,6 @@
     return [[VSSSignedCardRequest alloc] initWithSnapshot:snapshot];
 }
 
-+ (VSSSnapshotModel * __nullable)buildSnapshotModelFromSnapshot:(NSData * __nonnull)snapshot {
-    return [VSSCreateCardSnapshotModel createFromCanonicalForm:snapshot];
-}
-
 - (BOOL)addSignature:(NSData *)signature forFingerprint:(NSString *)fingerprint {
     if (self.signatures.count != 0) {
         return NO;

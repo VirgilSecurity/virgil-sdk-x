@@ -45,6 +45,8 @@
  */
 @property (nonatomic, copy, readonly) NSDictionary<NSString *, NSString *> * __nullable info;
 
+- (instancetype __nonnull)initWithIdentity:(NSString * __nonnull)identity identityType:(NSString * __nonnull)identityType scope:(VSSCardScope)scope publicKeyData:(NSData * __nonnull)publicKeyData data:(NSDictionary<NSString *, NSString *> * __nullable)data info:(NSDictionary<NSString *, NSString *> * __nullable)info;
+
 /**
  Unavailable no-argument initializer inherited from NSObject
  */
