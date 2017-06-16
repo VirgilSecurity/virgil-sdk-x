@@ -38,7 +38,7 @@ class VSSTestUtils {
         try! signer.selfSign(request, with: kp.privateKey)
         try! signer.authoritySign(request, forAppId: self.consts.applicationId, with: appPrivateKey)
         
-        return request;
+        return request
     }
     
     func instantiateEmailCreateCardRequest(withIdentity identity: String, validationToken: String, keyPair: VSSKeyPair?) -> VSSCreateEmailCardRequest {
@@ -52,7 +52,7 @@ class VSSTestUtils {
         
         try! signer.selfSign(request, with: kp.privateKey)
         
-        return request;
+        return request
     }
     
     func instantiateCreateCardRequest(with data: [String : String]) -> VSSCreateCardRequest {
@@ -72,7 +72,7 @@ class VSSTestUtils {
         try! signer.selfSign(request, with: keyPair.privateKey)
         try! signer.authoritySign(request, forAppId: self.consts.applicationId, with: appPrivateKey)
         
-        return request;
+        return request
     }
     
     func instantiateCard() -> VSSCard {
@@ -83,7 +83,7 @@ class VSSTestUtils {
         let jsonObj = try! JSONSerialization.jsonObject(with: data, options: .allowFragments)
         let cardResponse = VSSCardResponse(dict: jsonObj as! [AnyHashable : Any])!
         
-        return cardResponse.buildCard();
+        return cardResponse.buildCard()
     }
     
     func check(card: VSSCard, isEqualToCreateCardRequest request: VSSCreateCardRequest) -> Bool {
@@ -195,7 +195,7 @@ class VSSTestUtils {
     }
     
     func generateEmail() -> String {
-        let candidate = UUID().uuidString.lowercased();
+        let candidate = UUID().uuidString.lowercased()
         let identityLong = candidate.replacingOccurrences(of: "-", with: "")
         let identity = identityLong.substring(to: identityLong.index(identityLong.startIndex, offsetBy: 25))
         
@@ -239,11 +239,11 @@ class VSSTestUtils {
         let metadataReceivedCallback = { (metadataList: [VSMEmailMetadata]) in
             // find last message
             let lastMetadata = metadataList.min(by: { m1, m2 in
-                return m1.seconds_ago.compare(m2.seconds_ago) == .orderedAscending;
+                return m1.seconds_ago.compare(m2.seconds_ago) == .orderedAscending
             })!
             
             getEmail(lastMetadata.mid) { email in
-                let bodyPart = email.parts[0];
+                let bodyPart = email.parts[0]
                 
                 let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
                 
