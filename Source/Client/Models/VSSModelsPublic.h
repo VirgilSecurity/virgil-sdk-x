@@ -15,6 +15,7 @@
 #import "VSSSnapshotModelsPublic.h"
 #import "VSSRequestsPublic.h"
 #import "VSSResponsesPublic.h"
+#import "VSSProtocolsPublic.h"
 
 #import "VSSModelKeys.h"
 

@@ -8,10 +8,8 @@
 
 #import "VSSSignableRequest.h"
 #import "VSSSnapshotModelPrivate.h"
-#import "VSSSerializable.h"
-#import "VSSDeserializable.h"
 
-@interface VSSSignableRequest<__covariant SnapshotType: VSSSnapshotModel *> () <VSSSerializable, VSSDeserializable>
+@interface VSSSignableRequest<__covariant SnapshotType: VSSSnapshotModel *> ()
 
 + (VSSSnapshotModel * __nullable)buildSnapshotModelFromSnapshot:(NSData * __nonnull)snapshot;
 

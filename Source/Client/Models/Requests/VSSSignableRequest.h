@@ -11,12 +11,14 @@
 #import "VSSExportable.h"
 #import "VSSSnapshotModel.h"
 #import "VSSSignable.h"
+#import "VSSSerializable.h"
+#import "VSSDeserializable.h"
 
 /**
  Base class for all Virgil Models that can be Signed, Imported and Exported.
  See VSSBaseModel, VSSImportable, VSSExportable, VSSSignable, VSSSnapshotModel.
  */
-@interface VSSSignableRequest<__covariant SnapshotType: VSSSnapshotModel *> : VSSBaseModel <VSSImportable, VSSExportable, VSSSignable>
+@interface VSSSignableRequest<__covariant SnapshotType: VSSSnapshotModel *> : VSSBaseModel <VSSImportable, VSSExportable, VSSSignable, VSSSerializable, VSSDeserializable>
 
 /**
  NSDictionary with NSString Key representing Signature id and NSData Value with Signature.

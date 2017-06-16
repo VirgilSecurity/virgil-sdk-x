@@ -8,12 +8,12 @@
 
 #import "VSSBaseModel.h"
 #import "VSSCreateCardSnapshotModel.h"
-
+#import "VSSDeserializable.h"
 
 /**
  Response from Virgil Cards Service with Virgil Card details.
  */
-@interface VSSCardResponse : VSSBaseModel
+@interface VSSCardResponse : VSSBaseModel <VSSDeserializable>
 
 /**
  NSDictionary with NSString Key representing Virgil Card Id and NSData Value with Signature.
