@@ -9,5 +9,5 @@
 #import "VSSDeserializable.h"
 #import "VSSSerializable.h"
 #import "VSSImportable.h"
-#import "VSSExportableh.h"
+#import "VSSExportable.h"
 #import "VSSSignable.h"
