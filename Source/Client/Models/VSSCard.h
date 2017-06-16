@@ -11,6 +11,7 @@
 #import "VSSCardResponse.h"
 #import "VSSImportable.h"
 #import "VSSExportable.h"
+#import "VSSDeserializable.h"
 
 /**
  Model that represents identities on the Virgil Cards Service.
@@ -19,7 +20,7 @@
  WARNING: If you're using VSSImportable and VSSExportable interfaces, you are responsible for validating cardResponse
  using VSSCardValidator after import!
  */
-@interface VSSCard: VSSBaseModel <VSSImportable, VSSExportable>
+@interface VSSCard: VSSBaseModel <VSSImportable, VSSExportable, VSSDeserializable>
 
 @property (nonatomic, copy, readonly) NSString * __nonnull identifier;
 

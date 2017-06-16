@@ -12,6 +12,16 @@
 
 @implementation VSSCard
 
+- (instancetype)initWithDict:(NSDictionary *)candidate {
+    VSSCardResponse *response = [[VSSCardResponse alloc] initWithDict:candidate];
+    
+    if (response == nil) {
+        return nil;
+    }
+    
+    return [self initWithCardResponse:response];
+}
+
 - (instancetype)initWithCardResponse:(VSSCardResponse *)cardResponse {
     self = [super init];
     if (self) {
