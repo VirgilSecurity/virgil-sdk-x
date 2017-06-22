@@ -43,4 +43,12 @@ extern NSString * __nonnull const kVSSRequestSignerErrorDomain;
  */
 - (instancetype __nonnull)init NS_UNAVAILABLE;
 
+/**
+ Calculates id for request.
+
+ @param request VSSSignableRequest instance from which id will be calculated
+ @return NSString with calculated id
+ */
+- (NSString * __nonnull)getCardIdForRequest:(id<VSSSignable> __nonnull)request;
+
 @end

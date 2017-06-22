@@ -53,4 +53,10 @@ NSString *const kVSSRequestSignerErrorDomain = @"VSSRequestSignerErrorDomain";
     return [request addSignature:signature forFingerprint:appId];
 }
 
+- (NSString *)getCardIdForRequest:(id<VSSSignable>)request {
+    VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:request.snapshot];
+    
+    return fingerprint.hexValue;
+}
+
 @end
