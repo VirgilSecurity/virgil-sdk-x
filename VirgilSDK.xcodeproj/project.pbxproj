@@ -416,6 +416,8 @@
 		429005AE1EB9DB6100030F21 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C181DB8E6A700E5E2AE /* sdk_compatibility_data.json */; };
 		429005AF1EB9DB6300030F21 /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 42B81C191DB8E6A700E5E2AE /* testData.txt */; };
 		429005B01EB9DB6900030F21 /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F6C2071DBF5F5E0030C21D /* VSSTestsConst.m */; };
+		429623501F0A69AF00284665 /* VSSErrorPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 4296234F1F0A69AB00284665 /* VSSErrorPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		429623511F0A69B000284665 /* VSSErrorPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 4296234F1F0A69AB00284665 /* VSSErrorPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4296B0D21E7C18AE00703356 /* VSSRevokeCardHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D414A91E39016900F59580 /* VSSRevokeCardHTTPRequest.h */; };
 		429F1CB61E8A6D8B00317FB7 /* VSS008_HighLevelCryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429F1CB41E8A6D7700317FB7 /* VSS008_HighLevelCryptoTests.swift */; };
 		42A48C621ED4729B00650B25 /* VSSBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A48C611ED4729B00650B25 /* VSSBaseClient.m */; };
@@ -745,6 +747,7 @@
 		427C40691E5C78CE0017C2A9 /* VSSRemoveCardRelationHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSRemoveCardRelationHTTPRequest.m; sourceTree = "<group>"; };
 		42845F051ED2F846004AED0C /* Mailinator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mailinator.framework; path = Carthage/Build/iOS/Mailinator.framework; sourceTree = "<group>"; };
 		42845F091ED2F883004AED0C /* Mailinator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mailinator.framework; path = Carthage/Build/Mac/Mailinator.framework; sourceTree = "<group>"; };
+		4296234F1F0A69AB00284665 /* VSSErrorPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSErrorPublic.h; sourceTree = "<group>"; };
 		429F1CB41E8A6D7700317FB7 /* VSS008_HighLevelCryptoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS008_HighLevelCryptoTests.swift; sourceTree = "<group>"; };
 		42A442A61DC8F1D2000DD54B /* VSSKeyStorageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorageProtocol.h; sourceTree = "<group>"; };
 		42A48C601ED4728C00650B25 /* VSSBaseClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSBaseClient.h; sourceTree = "<group>"; };
@@ -1351,6 +1354,7 @@
 		42F0AB1E1D9ABF2200747799 /* Errors */ = {
 			isa = PBXGroup;
 			children = (
+				4296234F1F0A69AB00284665 /* VSSErrorPublic.h */,
 				42F0AB1F1D9ABF2200747799 /* VSSError.h */,
 				42F0AB201D9ABF2200747799 /* VSSError.m */,
 				42F0AB231D9ABF2200747799 /* VSSCardsError.h */,
@@ -1525,6 +1529,7 @@
 				42249ACC1EB39E9F0032F556 /* VSSCreateCardHTTPRequest.h in Headers */,
 				42249A971EB39E200032F556 /* VSSModelCommons.h in Headers */,
 				42ED09A11EC9E46C00A89C3D /* VSSChallengeMessageResponse.h in Headers */,
+				429623511F0A69B000284665 /* VSSErrorPublic.h in Headers */,
 				42249AD21EB39E9F0032F556 /* VSSCardsBaseHTTPRequest.h in Headers */,
 				42249B0C1EB39EF30032F556 /* VSSVirgilKeyPrivate.h in Headers */,
 				42ED09971EC9E44300A89C3D /* VSSChallengeMessageRequest.h in Headers */,
@@ -1777,6 +1782,7 @@
 				427A63571DB9096C00A33661 /* VSSCryptoPrivate.h in Headers */,
 				420FE6591E51FF1F005A32D4 /* VSSVirgilCardPrivate.h in Headers */,
 				42BBF0DE1DD5DFEC00E19D60 /* VSSCryptoCommonsPrivate.h in Headers */,
+				429623501F0A69AF00284665 /* VSSErrorPublic.h in Headers */,
 				42406FD81E84046D00C3DE1E /* VSSVerifyTokenResponse.h in Headers */,
 				427A63581DB9096C00A33661 /* VSSKeyPairPrivate.h in Headers */,
 				42406FA01E83E23900C3DE1E /* VSSChallengeMessageResponsePrivate.h in Headers */,

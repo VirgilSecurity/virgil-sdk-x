@@ -18,6 +18,7 @@
 #import "VSSProtocolsPublic.h"
 
 #import "VSSModelKeys.h"
+#import "VSSErrorPublic.h"
 
 // Protocols
 #import "VSSImportable.h"
