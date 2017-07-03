@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
                             'Source/Client/*.{h}',
                             'Source/Client/Models/*.{h}',
                             'Source/Client/Models/Requests/*.{h}',
+                            'Source/Client/Models/Errors/*.{h}',
                             'Source/Client/Models/Responses/*.{h}',
                             'Source/Client/Models/SnapshotModels/*.{h}',
                             'Source/Client/Models/Protocols/*.{h}',
