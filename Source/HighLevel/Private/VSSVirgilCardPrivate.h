@@ -15,7 +15,6 @@
 
 @property (nonatomic, readonly) VSSVirgilApiContext * __nonnull context;
 @property (nonatomic) VSSCard * __nullable card;
-@property (nonatomic, readonly) VSSCreateCardRequest * __nullable request;
 @property (nonatomic, readonly) NSString * __nullable calculatedIdentifier;
 @property (nonatomic, readonly) VSSPublicKey * __nonnull publicKey;
 

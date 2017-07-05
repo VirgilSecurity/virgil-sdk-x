@@ -13,7 +13,6 @@
 @interface VSSVirgilKey ()
 
 @property (nonatomic, readonly) VSSVirgilApiContext * __nonnull context;
-@property (nonatomic, readonly) VSSPrivateKey * __nonnull privateKey;
 
 - (instancetype __nonnull)initWithContext:(VSSVirgilApiContext * __nonnull)context privateKey:(VSSPrivateKey * __nonnull)privateKey NS_DESIGNATED_INITIALIZER;
 

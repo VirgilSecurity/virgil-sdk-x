@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "VSSVirgilCard.h"
+#import "VSSPrivateKey.h"
 
 /**
  Class representing key.
@@ -147,6 +148,11 @@
  @return NSData with exported private key
  */
 - (NSData * __nonnull)exportWithPassword:(NSString * __nullable)password;
+
+/**
+ Getter for underlying low-level api VSSPrivateKey isntance.
+ */
+@property (nonatomic, readonly) VSSPrivateKey * __nonnull privateKey;
 
 /**
  Unavailable no-argument initializer inherited from NSObject

@@ -11,6 +11,7 @@
 #import "VSSCreateCardRequest.h"
 #import "VSSRevokeCardRequest.h"
 #import "VSSExportable.h"
+#import "VSSCard.h"
 
 #undef verify
 
@@ -94,6 +95,16 @@
  @return YES if verification succeeded, NO otherwise
  */
 - (BOOL)verifyString:(NSString * __nonnull)string withSignature:(NSData * __nonnull)signature error:(NSError * __nullable * __nullable)errorPtr NS_SWIFT_NAME(verify(_:withSignature:));
+
+/**
+ Getter for underlying low-level api VSSCard instance.
+ */
+@property (nonatomic, readonly) VSSCard * __nullable card;
+
+/**
+ Getter for underlying low-level api VSSCreateCardRequest isntance.
+ */
+@property (nonatomic, readonly) VSSCreateCardRequest * __nullable request;
 
 /**
  Unavailable no-argument initializer inherited from NSObject
