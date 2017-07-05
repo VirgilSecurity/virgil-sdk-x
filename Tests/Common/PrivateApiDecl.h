@@ -16,9 +16,3 @@
 
 @end
 
-@interface VSSVirgilCard ()
-
-@property (nonatomic) VSSCard * __nullable card;
-@property (nonatomic, readonly) VSSCreateCardRequest * __nullable request;
-
-@end
