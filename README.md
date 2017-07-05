@@ -87,8 +87,14 @@ Additionally, you'll need to copy debug symbols for debugging and crash reportin
 
 ### CocoaPods
 
-<aside class="warning">
-CocoaPods support for versions above 4.5.0 is SUSPENDED. We RECOMMEND using Carthage to integrate VirgilSDK. For versions 4.5.0 and lower you can integrate using CocoaPods without use_frameworks! option in your podfile. The reason for this is that VirgilCrypto framework, which VirgilSDK depends on, includes static library, this creates transitive dependency with static library. More info can be found here: https://github.com/CocoaPods/CocoaPods/issues/6848 and here: https://github.com/CocoaPods/CocoaPods/pull/6811.</aside>
+**CocoaPods support for versions above 4.5.0 is SUSPENDED**.
+We RECOMMEND using Carthage to integrate VirgilSDK. For versions 4.5.0 and lower you can integrate using CocoaPods without use_frameworks! option in your podfile. The reason for this is that VirgilCrypto framework, which VirgilSDK depends on, includes static library, this creates transitive dependency with static library.
+More info can be found here:
+https://github.com/CocoaPods/CocoaPods/issues/6848
+and here:
+https://github.com/CocoaPods/CocoaPods/pull/6811.
+
+
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
 
