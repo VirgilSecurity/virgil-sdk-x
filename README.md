@@ -18,51 +18,11 @@ For a full overview head over to our Objective-C/Swift [Get Started][_getstarted
 ## Installation
 
 The **Virgil SDK** is provided as module inside framework named **VirgilSDK**. VirgilSDK depends on another Virgil module called VirgilCrypto also packed inside framework named **VirgilCrypto**.
-Both packages are distributed via Carthage and CocoaPods.
+Both packages are distributed via Carthage and CocoaPods. Carthage is RECOMMENDED way to integrate VirgilSDK into your projects. Carthage integration is easy, convenient and you can simultaniously use CocoaPods to manage all other dependencies. CocoaPods support for versions above 4.5.0 is SUSPENDED, more info below under CocoaPods section.
 
 Packages are available for iOS 8.0+ and macOS 10.10+.
 
- To import VirgilSDK and VirgilCrypto after linking frameworks to your project add following lines to your source files:
-
-###### Objective-C
-``` objective-c
-@import VirgilCrypto;
-@import VirgilSDK;
-```
-
-###### Swift
-``` swift
-import VirgilCrypto
-import VirgilSDK
-```
-
 To link frameworks to your project follow instructions depending on package manager of your choice:
-
-### CocoaPods
-
-[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
-
-```bash
-$ gem install cocoapods
-```
-
-To integrate VirgilSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
-
-```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '10.0'
-use_frameworks!
-
-target '<Your Target Name>' do
-    pod 'VirgilSDK', '~> 4.5.0'
-end
-```
-
-Then, run the following command:
-
-```bash
-$ pod install
-```
 
 ### Carthage
 
@@ -76,23 +36,6 @@ $ brew install carthage
 ```
 
 To integrate VirgilSDK into your Xcode project using Carthage, perform following steps:
-##### If you're building for OS X
-
-1. Create an empty file with name `Cartfile` in your project's root folder, that lists the frameworks you’d like to use in your project.
-1. Add the following line to your `Cartfile`
-
-    ```ogdl
-    github "VirgilSecurity/virgil-sdk-x" ~> 4.5.0
-    ```
-
-1. Run `carthage update`. This will fetch dependencies into a `Carthage/Checkouts` folder inside your project's folder, then build each one or download a pre-compiled framework.
-1. On your application targets’ “General” settings tab, in the “Embedded Binaries” section, drag and drop each framework you want to use from the `Carthage/Build` folder inside your project's folder including VirgilSDK.framework and VirgilCrypto.framework.
-
-Additionally, you'll need to copy debug symbols for debugging and crash reporting on OS X.
-
-1. On your application target’s “Build Phases” settings tab, click the “+” icon and choose “New Copy Files Phase”.
-1. Click the “Destination” drop-down menu and select “Products Directory”.
-1. For each framework you’re using, drag and drop its corresponding dSYM file.
 
 ##### If you're building for iOS
 
@@ -100,7 +43,7 @@ Additionally, you'll need to copy debug symbols for debugging and crash reportin
 1. Add the following line to your `Cartfile`
 
     ```ogdl
-    github "VirgilSecurity/virgil-sdk-x" ~> 4.5.0
+    github "VirgilSecurity/virgil-sdk-x" ~> 4.6.0
     ```
   
 1. Run `carthage update`. This will fetch dependencies into a `Carthage/Checkouts` folder inside your project's folder, then build each one or download a pre-compiled framework.
@@ -123,6 +66,72 @@ This script works around an [App Store submission bug](http://www.openradar.me/r
 With the debug information copied into the built products directory, Xcode will be able to symbolicate the stack trace whenever you stop at a breakpoint. This will also enable you to step through third-party code in the debugger.
 
 When archiving your application for submission to the App Store or TestFlight, Xcode will also copy these files into the dSYMs subdirectory of your application’s `.xcarchive` bundle.
+
+##### If you're building for macOS
+
+1. Create an empty file with name `Cartfile` in your project's root folder, that lists the frameworks you’d like to use in your project.
+1. Add the following line to your `Cartfile`
+
+    ```ogdl
+    github "VirgilSecurity/virgil-sdk-x" ~> 4.6.0
+    ```
+
+1. Run `carthage update`. This will fetch dependencies into a `Carthage/Checkouts` folder inside your project's folder, then build each one or download a pre-compiled framework.
+1. On your application targets’ “General” settings tab, in the “Embedded Binaries” section, drag and drop each framework you want to use from the `Carthage/Build` folder inside your project's folder including VirgilSDK.framework and VirgilCrypto.framework.
+
+Additionally, you'll need to copy debug symbols for debugging and crash reporting on OS X.
+
+1. On your application target’s “Build Phases” settings tab, click the “+” icon and choose “New Copy Files Phase”.
+1. Click the “Destination” drop-down menu and select “Products Directory”.
+1. For each framework you’re using, drag and drop its corresponding dSYM file.
+
+### CocoaPods
+
+**CocoaPods support for versions above 4.5.0 is SUSPENDED**.
+We RECOMMEND using Carthage to integrate VirgilSDK. For versions 4.5.0 and lower you can integrate using CocoaPods without use_frameworks! option in your podfile. The reason for this is that VirgilCrypto framework, which VirgilSDK depends on, includes static library, this creates transitive dependency with static library.
+More info can be found here:
+https://github.com/CocoaPods/CocoaPods/issues/6848
+and here:
+https://github.com/CocoaPods/CocoaPods/pull/6811.
+
+
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+To integrate VirgilSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '10.0'
+
+target '<Your Target Name>' do
+    pod 'VirgilSDK', '~> 4.5.0'
+end
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
+
+ To import VirgilSDK and VirgilCrypto after linking frameworks to your project add following lines to your source files:
+
+###### Objective-C
+``` objective-c
+@import VirgilCrypto;
+@import VirgilSDK;
+```
+
+###### Swift
+``` swift
+import VirgilCrypto
+import VirgilSDK
+```
 
 ## Swift note
 
