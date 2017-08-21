@@ -164,7 +164,15 @@ SecAccessRef createAccess(NSString *accessLabel, NSArray<NSString *> *trustedApp
 }
 
 - (BOOL)existsKeyEntryWithName:(NSString *)name {
-    return [self loadKeyEntryWithName:name error:nil] != nil;
+    NSMutableDictionary *query = [self baseKeychainQueryForName:name];
+    
+    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, nil);
+    
+    if (status != errSecSuccess) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (BOOL)deleteKeyEntryWithName:(NSString *)name error:(NSError **)errorPtr {
