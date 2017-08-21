@@ -26,90 +26,102 @@
 }
 
 - (NSString *)applicationToken {
-    if (self.config != nil)
-        return self.config[@"AppToken"];
+    NSString *appToken = self.config[@"AppToken"];
+    if (appToken != nil)
+        return appToken;
     
     return @STRINGIZE2(APPLICATION_TOKEN);
 }
 
 - (NSString *)applicationPrivateKeyBase64 {
-    if (self.config != nil)
-        return self.config[@"AppPrivateKey"];
+    NSString *appPrivateKey = self.config[@"AppPrivateKey"];
+    if (appPrivateKey != nil)
+        return appPrivateKey;
     
     return @STRINGIZE2(APPLICATION_PRIVATE_KEY_BASE64);
 }
 
 - (NSString *)applicationPrivateKeyPassword {
-    if (self.config != nil)
-        return self.config[@"AppPrivateKeyPassword"];
+    NSString *appPrivateKeyPassword = self.config[@"AppPrivateKeyPassword"];
+    if (appPrivateKeyPassword != nil)
+        return appPrivateKeyPassword;
     
     return @STRINGIZE2(APPLICATION_PRIVATE_KEY_PASSWORD);
 }
 
 - (NSString *)applicationIdentityType {
-    if (self.config != nil)
-        return self.config[@"AppIdentityType"];
+    NSString *appIdentityType = self.config[@"AppIdentityType"];
+    if (appIdentityType != nil)
+        return appIdentityType;
     
     return @STRINGIZE2(APPLICATION_IDENTITY_TYPE);
 }
 
 - (NSString *)applicationId {
-    if (self.config != nil)
-        return self.config[@"AppId"];
+    NSString *appId = self.config[@"AppId"];
+    if (appId != nil)
+        return appId;
     
     return @STRINGIZE2(APPLICATION_ID);
 }
 
 - (NSString *)mailinatorToken {
-    if (self.config != nil)
-        return self.config[@"MailinatorToken"];
+    NSString *mailinatorToken = self.config[@"MailinatorToken"];
+    if (mailinatorToken != nil)
+        return mailinatorToken;
     
     return @STRINGIZE2(MAILINATOR_TOKEN);
 }
 
 - (NSURL *)cardsServiceURL {
-    if (self.config != nil)
-        return [[NSURL alloc] initWithString:self.config[@"CardsUrl"]];
+    NSString *cardsUrl = self.config[@"CardsUrl"];
+    if (cardsUrl != nil)
+        return [[NSURL alloc] initWithString:cardsUrl];
     
     NSString *str = [@STRINGIZE2(CARDS_SERVICE_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
     return [[NSURL alloc] initWithString:str];
 }
 
 - (NSURL *)cardsServiceROURL {
-    if (self.config != nil)
-        return [[NSURL alloc] initWithString:self.config[@"CardsRoUrl"]];
+    NSString *cardsRoUrl = self.config[@"CardsRoUrl"];
+    if (cardsRoUrl != nil)
+        return [[NSURL alloc] initWithString:cardsRoUrl];
     
     NSString *str = [@STRINGIZE2(CARDS_SERVICE_RO_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
     return [[NSURL alloc] initWithString:str];
 }
 
 - (NSURL *)identityServiceURL {
-    if (self.config != nil)
-        return [[NSURL alloc] initWithString:self.config[@"IdentityUrl"]];
+    NSString *identityUrl = self.config[@"IdentityUrl"];
+    if (identityUrl != nil)
+        return [[NSURL alloc] initWithString:identityUrl];
     
     NSString *str = [@STRINGIZE2(IDENTITY_SERVICE_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
     return [[NSURL alloc] initWithString:str];
 }
 
 - (NSURL *)registrationAuthorityURL {
-    if (self.config != nil)
-        return [[NSURL alloc] initWithString:self.config[@"RaUrl"]];
+    NSString *raUrl = self.config[@"RaUrl"];
+    if (raUrl != nil)
+        return [[NSURL alloc] initWithString:raUrl];
     
     NSString *str = [@STRINGIZE2(REGISTRATION_AUTHORITY_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
     return [[NSURL alloc] initWithString:str];
 }
 
 - (NSURL *)authServiceURL {
-    if (self.config != nil)
-        return [[NSURL alloc] initWithString:self.config[@"AuthUrl"]];
+    NSString *authUrl = self.config[@"AuthUrl"];
+    if (authUrl != nil)
+        return [[NSURL alloc] initWithString:authUrl];
     
     NSString *str = [@STRINGIZE2(AUTH_SERVICE_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
     return [[NSURL alloc] initWithString:str];
 }
 
 - (NSString *)authServicePublicKeyBase64 {
-    if (self.config != nil)
-        return self.config[@"AuthPublicKey"];
+    NSString *authPublicKey = self.config[@"AuthPublicKey"];
+    if (authPublicKey != nil)
+        return authPublicKey;
     
     return @STRINGIZE2(AUTH_SERVICE_PUBLIC_KEY_BASE64);
 }
