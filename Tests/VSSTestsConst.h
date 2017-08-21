@@ -26,4 +26,6 @@
 
 @property (nonatomic, readonly) NSString * __nonnull authServicePublicKeyBase64;
 
+@property (nonatomic, readonly) NSDictionary * __nullable config;
+
 @end

@@ -194,14 +194,6 @@ class VSSTestUtils {
         return equals
     }
     
-    func generateEmail() -> String {
-        let candidate = UUID().uuidString.lowercased()
-        let identityLong = candidate.replacingOccurrences(of: "-", with: "")
-        let identity = identityLong.substring(to: identityLong.index(identityLong.startIndex, offsetBy: 25))
-        
-        return String(format: "%@@mailinator.com", identity)
-    }
-    
     func checkHighLevelCardIsValid(card: VSSVirgilCard) -> Bool {
         let valid = card.isPublished
             && self.check(card: card.card!, isEqualToCreateCardRequest: card.request!)
@@ -213,69 +205,6 @@ class VSSTestUtils {
         let equals = self.check(card: card1.card!, isEqualToCard: card2.card!)
         
         return equals
-    }
-
-    func getConfirmationCode(emailNumber: Int = 0, identityValue: String, mailinator: VSMMailinator, completion: @escaping (String)->()) {
-        let identityShort = identityValue.substring(to: identityValue.range(of: "@")!.lowerBound)
-        
-        var received = false
-        let getEmail = { (mid: String, completion: @escaping (VSMEmail)->()) in
-            while !received {
-                sleep(5)
-                guard !received else {
-                    return
-                }
-                mailinator.getEmail(mid) { email, error in
-                    guard error == nil, let email = email else {
-                        return
-                    }
-                    
-                    received = true
-                    completion(email)
-                }
-            }
-        }
-        
-        let metadataReceivedCallback = { (metadataList: [VSMEmailMetadata]) in
-            // find last message
-            let lastMetadata = metadataList.min(by: { m1, m2 in
-                return m1.seconds_ago.compare(m2.seconds_ago) == .orderedAscending
-            })!
-            
-            getEmail(lastMetadata.mid) { email in
-                let bodyPart = email.parts[0]
-                
-                let matchResult = self.regexp.firstMatch(in: bodyPart.body, options: .reportCompletion, range: NSMakeRange(0, bodyPart.body.lengthOfBytes(using: .utf8)))
-                
-                let match = (bodyPart.body as NSString).substring(with: matchResult!.range)
-                
-                let code = String(match.characters.suffix(6))
-                
-                completion(code)
-            }
-        }
-
-        let checkInbox = { (completion: @escaping ([VSMEmailMetadata]?, Error?) -> ()) in
-            mailinator.getInbox(identityShort) { metadataList, error in
-                completion(metadataList, error)
-            }
-        }
-        
-        var receivedMeta = false
-        while !receivedMeta {
-            sleep(5)
-            guard !receivedMeta else {
-                return
-            }
-            checkInbox() { metadataList, error in
-                guard error == nil, let mList = metadataList, mList.count > emailNumber else {
-                    return
-                }
-                
-                receivedMeta = true
-                metadataReceivedCallback(mList)
-            }
-        }
     }
 }
 
