@@ -425,7 +425,7 @@
 		4291237D1F4B0B3700103BE0 /* VSSTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429123631F4B0B3700103BE0 /* VSSTestUtils.swift */; };
 		4291237F1F4C53E100103BE0 /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4291237E1F4C53E100103BE0 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		429123821F4C540100103BE0 /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 429123801F4C53E700103BE0 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		429123891F4C698B00103BE0 /* VSS009_KeyStorageiOSSpecificTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429123871F4C698600103BE0 /* VSS009_KeyStorageiOSSpecificTests.swift */; };
+		429123861F4C547E00103BE0 /* VSS009_KeyStorageiOSSpecificTests copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429123831F4C544600103BE0 /* VSS009_KeyStorageiOSSpecificTests copy.swift */; };
 		429623501F0A69AF00284665 /* VSSErrorPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 4296234F1F0A69AB00284665 /* VSSErrorPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		429623511F0A69B000284665 /* VSSErrorPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 4296234F1F0A69AB00284665 /* VSSErrorPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4296B0D21E7C18AE00703356 /* VSSRevokeCardHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D414A91E39016900F59580 /* VSSRevokeCardHTTPRequest.h */; };
@@ -763,7 +763,7 @@
 		429123631F4B0B3700103BE0 /* VSSTestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSSTestUtils.swift; sourceTree = "<group>"; };
 		4291237E1F4C53E100103BE0 /* VSSKeyStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorage.h; sourceTree = "<group>"; };
 		429123801F4C53E700103BE0 /* VSSKeyStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorage.h; sourceTree = "<group>"; };
-		429123871F4C698600103BE0 /* VSS009_KeyStorageiOSSpecificTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS009_KeyStorageiOSSpecificTests.swift; sourceTree = "<group>"; };
+		429123831F4C544600103BE0 /* VSS009_KeyStorageiOSSpecificTests copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VSS009_KeyStorageiOSSpecificTests copy.swift"; sourceTree = "<group>"; };
 		4296234F1F0A69AB00284665 /* VSSErrorPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSErrorPublic.h; sourceTree = "<group>"; };
 		42A442A61DC8F1D2000DD54B /* VSSKeyStorageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorageProtocol.h; sourceTree = "<group>"; };
 		42A48C601ED4728C00650B25 /* VSSBaseClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSBaseClient.h; sourceTree = "<group>"; };
@@ -1239,7 +1239,7 @@
 				4291235E1F4B0B3700103BE0 /* VSS006_KeyStorageTests.swift */,
 				4291235F1F4B0B3700103BE0 /* VSS007_HighLevelTests.swift */,
 				429123601F4B0B3700103BE0 /* VSS008_HighLevelCryptoTests.swift */,
-				429123871F4C698600103BE0 /* VSS009_KeyStorageiOSSpecificTests.swift */,
+				429123831F4C544600103BE0 /* VSS009_KeyStorageiOSSpecificTests copy.swift */,
 				429123611F4B0B3700103BE0 /* VSSTestsConst.h */,
 				429123621F4B0B3700103BE0 /* VSSTestsConst.m */,
 				429123631F4B0B3700103BE0 /* VSSTestUtils.swift */,
@@ -2096,11 +2096,11 @@
 				429123761F4B0B3700103BE0 /* VSS007_HighLevelTests.swift in Sources */,
 				429123701F4B0B3700103BE0 /* VSS004_ModelsTests.swift in Sources */,
 				429123741F4B0B3700103BE0 /* VSS006_KeyStorageTests.swift in Sources */,
-				429123891F4C698B00103BE0 /* VSS009_KeyStorageiOSSpecificTests.swift in Sources */,
 				4291237C1F4B0B3700103BE0 /* VSSTestUtils.swift in Sources */,
 				4291236A1F4B0B3700103BE0 /* VSS001_ClientTests.swift in Sources */,
 				4291237A1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
 				4291236E1F4B0B3700103BE0 /* VSS003_CryptoTests.swift in Sources */,
+				429123861F4C547E00103BE0 /* VSS009_KeyStorageiOSSpecificTests copy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
