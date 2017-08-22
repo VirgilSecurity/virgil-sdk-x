@@ -105,9 +105,9 @@ SecAccessRef createAccess(NSString *accessLabel, NSArray<NSString *> *trustedApp
     
     NSData *keyEntryData = [NSKeyedArchiver archivedDataWithRootObject:keyEntry];
     NSMutableDictionary *keySpecificData = [NSMutableDictionary dictionaryWithDictionary:
-                                            @{
-                                              (__bridge id)kSecValueData: keyEntryData,
-                                              }];
+        @{
+          (__bridge id)kSecValueData: keyEntryData,
+          }];
     
     OSStatus status = SecItemUpdate((__bridge CFDictionaryRef)query, (__bridge CFDictionaryRef)keySpecificData);
     
@@ -125,9 +125,9 @@ SecAccessRef createAccess(NSString *accessLabel, NSArray<NSString *> *trustedApp
     NSMutableDictionary *query = [self baseKeychainQueryForName:name];
     
     NSMutableDictionary *additional = [[NSMutableDictionary alloc] initWithDictionary:
-                                       @{
-                                         (__bridge id)kSecReturnData: (__bridge id)kCFBooleanTrue
-                                         }];
+       @{
+         (__bridge id)kSecReturnData: (__bridge id)kCFBooleanTrue
+         }];
     
     [query addEntriesFromDictionary:additional];
     

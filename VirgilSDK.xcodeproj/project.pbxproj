@@ -272,7 +272,6 @@
 		423CEB5D1DCA07C200CCACB8 /* VSSKeyStoragePublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423CEB5E1DCA07C200CCACB8 /* VSSKeyStorageProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42A442A61DC8F1D2000DD54B /* VSSKeyStorageProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423CEB5F1DCA07C200CCACB8 /* VSSKeyEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB541DCA01AF00CCACB8 /* VSSKeyEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		423CEB611DCA2B6600CCACB8 /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB601DCA2B1600CCACB8 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423FFFB01E708AEB00CC98A3 /* VSSCardVerifierInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 423FFFAF1E708AD800CC98A3 /* VSSCardVerifierInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423FFFB21E708B5800CC98A3 /* VSSCardVerifierInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 423FFFB11E708B5800CC98A3 /* VSSCardVerifierInfo.m */; };
 		42406F921E83D68700C3DE1E /* VSSGetChallengeMessageHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42406F911E83D68700C3DE1E /* VSSGetChallengeMessageHTTPRequest.m */; };
@@ -342,7 +341,6 @@
 		425B09FB1DC26770005531DC /* VSSResponsesPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 425B09F81DC26703005531DC /* VSSResponsesPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		426345921E82BFD1003D5467 /* VSSAuthBaseHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 426345911E82BFD1003D5467 /* VSSAuthBaseHTTPRequest.m */; };
 		426345951E82C082003D5467 /* VSSAuthError.m in Sources */ = {isa = PBXBuildFile; fileRef = 426345941E82C082003D5467 /* VSSAuthError.m */; };
-		4263A19B1EBB589B00B13FF1 /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB601DCA2B1600CCACB8 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4263A1F61EBC7FFB00B13FF1 /* VSSKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4263A1F31EBC7FFB00B13FF1 /* VSSKeyStorage.m */; };
 		4263A1F71EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 4263A1F41EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4263A1F81EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4263A1F51EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.m */; };
@@ -425,6 +423,9 @@
 		4291237B1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 429123621F4B0B3700103BE0 /* VSSTestsConst.m */; };
 		4291237C1F4B0B3700103BE0 /* VSSTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429123631F4B0B3700103BE0 /* VSSTestUtils.swift */; };
 		4291237D1F4B0B3700103BE0 /* VSSTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429123631F4B0B3700103BE0 /* VSSTestUtils.swift */; };
+		4291237F1F4C53E100103BE0 /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4291237E1F4C53E100103BE0 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		429123821F4C540100103BE0 /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 429123801F4C53E700103BE0 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		429123861F4C547E00103BE0 /* VSS009_KeyStorageiOSSpecificTests copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429123831F4C544600103BE0 /* VSS009_KeyStorageiOSSpecificTests copy.swift */; };
 		429623501F0A69AF00284665 /* VSSErrorPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 4296234F1F0A69AB00284665 /* VSSErrorPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		429623511F0A69B000284665 /* VSSErrorPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 4296234F1F0A69AB00284665 /* VSSErrorPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4296B0D21E7C18AE00703356 /* VSSRevokeCardHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D414A91E39016900F59580 /* VSSRevokeCardHTTPRequest.h */; };
@@ -663,7 +664,6 @@
 		423CEB541DCA01AF00CCACB8 /* VSSKeyEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyEntry.h; sourceTree = "<group>"; };
 		423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeyEntry.m; sourceTree = "<group>"; };
 		423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStoragePublic.h; sourceTree = "<group>"; };
-		423CEB601DCA2B1600CCACB8 /* VSSKeyStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorage.h; sourceTree = "<group>"; };
 		423FFFAF1E708AD800CC98A3 /* VSSCardVerifierInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSCardVerifierInfo.h; sourceTree = "<group>"; };
 		423FFFB11E708B5800CC98A3 /* VSSCardVerifierInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSCardVerifierInfo.m; sourceTree = "<group>"; };
 		42406F901E83D5BE00C3DE1E /* VSSGetChallengeMessageHTTPRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSGetChallengeMessageHTTPRequest.h; sourceTree = "<group>"; };
@@ -761,6 +761,9 @@
 		429123611F4B0B3700103BE0 /* VSSTestsConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSTestsConst.h; sourceTree = "<group>"; };
 		429123621F4B0B3700103BE0 /* VSSTestsConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSTestsConst.m; sourceTree = "<group>"; };
 		429123631F4B0B3700103BE0 /* VSSTestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSSTestUtils.swift; sourceTree = "<group>"; };
+		4291237E1F4C53E100103BE0 /* VSSKeyStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorage.h; sourceTree = "<group>"; };
+		429123801F4C53E700103BE0 /* VSSKeyStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorage.h; sourceTree = "<group>"; };
+		429123831F4C544600103BE0 /* VSS009_KeyStorageiOSSpecificTests copy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VSS009_KeyStorageiOSSpecificTests copy.swift"; sourceTree = "<group>"; };
 		4296234F1F0A69AB00284665 /* VSSErrorPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSErrorPublic.h; sourceTree = "<group>"; };
 		42A442A61DC8F1D2000DD54B /* VSSKeyStorageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorageProtocol.h; sourceTree = "<group>"; };
 		42A48C601ED4728C00650B25 /* VSSBaseClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSBaseClient.h; sourceTree = "<group>"; };
@@ -1167,9 +1170,10 @@
 		4263A1F11EBC7FC400B13FF1 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				4291237E1F4C53E100103BE0 /* VSSKeyStorage.h */,
+				4263A1F31EBC7FFB00B13FF1 /* VSSKeyStorage.m */,
 				4263A1F41EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.h */,
 				4263A1F51EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.m */,
-				4263A1F31EBC7FFB00B13FF1 /* VSSKeyStorage.m */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -1177,9 +1181,10 @@
 		4263A1F21EBC7FC400B13FF1 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
+				429123801F4C53E700103BE0 /* VSSKeyStorage.h */,
+				4263A1F91EBC800400B13FF1 /* VSSKeyStorage.m */,
 				4263A1FA1EBC800400B13FF1 /* VSSKeyStorageConfiguration.h */,
 				4263A1FB1EBC800400B13FF1 /* VSSKeyStorageConfiguration.m */,
-				4263A1F91EBC800400B13FF1 /* VSSKeyStorage.m */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -1203,7 +1208,6 @@
 				42A442A61DC8F1D2000DD54B /* VSSKeyStorageProtocol.h */,
 				423CEB541DCA01AF00CCACB8 /* VSSKeyEntry.h */,
 				423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */,
-				423CEB601DCA2B1600CCACB8 /* VSSKeyStorage.h */,
 			);
 			path = KeyStorage;
 			sourceTree = "<group>";
@@ -1235,6 +1239,7 @@
 				4291235E1F4B0B3700103BE0 /* VSS006_KeyStorageTests.swift */,
 				4291235F1F4B0B3700103BE0 /* VSS007_HighLevelTests.swift */,
 				429123601F4B0B3700103BE0 /* VSS008_HighLevelCryptoTests.swift */,
+				429123831F4C544600103BE0 /* VSS009_KeyStorageiOSSpecificTests copy.swift */,
 				429123611F4B0B3700103BE0 /* VSSTestsConst.h */,
 				429123621F4B0B3700103BE0 /* VSSTestsConst.m */,
 				429123631F4B0B3700103BE0 /* VSSTestUtils.swift */,
@@ -1597,6 +1602,7 @@
 				42249AF61EB39EEC0032F556 /* VSSHighLevelPublic.h in Headers */,
 				42249ADC1EB39EAF0032F556 /* VSSRequestSigner.h in Headers */,
 				42249AEB1EB39EC70032F556 /* VSSPrivateKey.h in Headers */,
+				429123821F4C540100103BE0 /* VSSKeyStorage.h in Headers */,
 				42249AD71EB39EAF0032F556 /* VSSClientPublic.h in Headers */,
 				42249ADD1EB39EAF0032F556 /* VSSCardValidatorProtocol.h in Headers */,
 				42ED099A1EC9E44300A89C3D /* VSSRefreshTokenRequest.h in Headers */,
@@ -1623,7 +1629,6 @@
 				420D150A1EF3F519002A9C22 /* VSSDeserializable.h in Headers */,
 				42249AB01EB39E5C0032F556 /* VSSConfirmIdentityResponsePrivate.h in Headers */,
 				42249AAE1EB39E5C0032F556 /* VSSCardResponsePrivate.h in Headers */,
-				4263A19B1EBB589B00B13FF1 /* VSSKeyStorage.h in Headers */,
 				42249AE71EB39EC10032F556 /* VSSCryptoCommonsPrivate.h in Headers */,
 				42249AB81EB39E6F0032F556 /* VSSImportable.h in Headers */,
 				42249AD81EB39EAF0032F556 /* VSSClient.h in Headers */,
@@ -1709,7 +1714,6 @@
 				42406FDA1E84050000C3DE1E /* VSSRemoveCardRelationHTTPRequest.h in Headers */,
 				423CEB5D1DCA07C200CCACB8 /* VSSKeyStoragePublic.h in Headers */,
 				423CEB5E1DCA07C200CCACB8 /* VSSKeyStorageProtocol.h in Headers */,
-				423CEB611DCA2B6600CCACB8 /* VSSKeyStorage.h in Headers */,
 				42406FBD1E83EB6A00C3DE1E /* VSSTokenResponse.h in Headers */,
 				423CEB5F1DCA07C200CCACB8 /* VSSKeyEntry.h in Headers */,
 				421A74CF1E015CBF007460BA /* VSSVerifyIdentityRequest.h in Headers */,
@@ -1775,6 +1779,7 @@
 				42F7B3491E69C106004E579C /* VSSCredentialsProtocol.h in Headers */,
 				427A634A1DB9096C00A33661 /* VSSHTTPRequestContext.h in Headers */,
 				42F7B3311E6998DC004E579C /* VSSVirgilIdentityPrivate.h in Headers */,
+				4291237F1F4C53E100103BE0 /* VSSKeyStorage.h in Headers */,
 				427A63571DB9096C00A33661 /* VSSCryptoPrivate.h in Headers */,
 				420FE6591E51FF1F005A32D4 /* VSSVirgilCardPrivate.h in Headers */,
 				42BBF0DE1DD5DFEC00E19D60 /* VSSCryptoCommonsPrivate.h in Headers */,
@@ -2095,6 +2100,7 @@
 				4291236A1F4B0B3700103BE0 /* VSS001_ClientTests.swift in Sources */,
 				4291237A1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
 				4291236E1F4B0B3700103BE0 /* VSS003_CryptoTests.swift in Sources */,
+				429123861F4C547E00103BE0 /* VSS009_KeyStorageiOSSpecificTests copy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
