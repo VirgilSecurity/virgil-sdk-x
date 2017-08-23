@@ -224,6 +224,10 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
     
     OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, (CFTypeRef *)&outData);
     
+    if (status == errSecItemNotFound) {
+        return @[];
+    }
+    
     if (status != errSecSuccess) {
         if (errorPtr != nil) {
             *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:status userInfo:@{ NSLocalizedDescriptionKey: @"Error while getting keys from the keychain. See \"Security Error Codes\" (SecBase.h)." }];
@@ -256,6 +260,10 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
     CFArrayRef outData = nil;
     
     OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, (CFTypeRef *)&outData);
+    
+    if (status == errSecItemNotFound) {
+        return @[];
+    }
     
     if (status != errSecSuccess) {
         if (errorPtr != nil) {
