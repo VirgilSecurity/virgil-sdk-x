@@ -8,6 +8,7 @@
 
 #import "VSSKeyStorageProtocol.h"
 #import "VSSKeyStorageConfiguration.h"
+#import "VSSKeyAttrs.h"
 
 extern NSString * __nonnull const kVSSKeyStorageErrorDomain;
 
@@ -31,6 +32,15 @@ extern NSString * __nonnull const kVSSKeyStorageErrorDomain;
 - (instancetype __nonnull)initWithConfiguration:(VSSKeyStorageConfiguration * __nonnull)configuration NS_DESIGNATED_INITIALIZER;
 
 /**
+ Updates key entry.
+ 
+ @param keyEntry New VSSKeyEntry instance
+ @param errorPtr NSError pointer to return error if needed
+ @return YES if storing succeeded, NO otherwise
+ */
+- (BOOL)updateKeyEntry:(VSSKeyEntry * __nonnull)keyEntry error:(NSError * __nullable * __nullable)errorPtr;
+
+/**
  Returns all keys in the storage.
 
  @param errorPtr NSError pointer to return error if needed
@@ -44,7 +54,7 @@ extern NSString * __nonnull const kVSSKeyStorageErrorDomain;
  @param errorPtr NSError pointer to return error if needed
  @return NSArray with all tags
  */
-- (NSArray<NSData *> * __nullable)getAllKeysTagsWithError:(NSError * __nullable * __nullable)errorPtr;
+- (NSArray<VSSKeyAttrs *> * __nullable)getAllKeysAttrsWithError:(NSError * __nullable * __nullable)errorPtr;
 
 /**
  Stores multiple key entries.

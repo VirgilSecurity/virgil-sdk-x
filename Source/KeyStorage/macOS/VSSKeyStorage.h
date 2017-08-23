@@ -23,11 +23,20 @@ extern NSString * __nonnull const kVSSKeyStorageErrorDomain;
 @property (nonatomic, copy, readonly) VSSKeyStorageConfiguration * __nonnull configuration;
 
 /**
- Initialized
+ Initializer.
 
  @param configuration Configuration
  @return initialized VSSKeyStorage instance
  */
 - (instancetype __nonnull)initWithConfiguration:(VSSKeyStorageConfiguration * __nonnull)configuration NS_DESIGNATED_INITIALIZER;
+
+/**
+ Updates key entry.
+ 
+ @param keyEntry New VSSKeyEntry instance
+ @param errorPtr NSError pointer to return error if needed
+ @return YES if storing succeeded, NO otherwise
+ */
+- (BOOL)updateKeyEntry:(VSSKeyEntry * __nonnull)keyEntry error:(NSError * __nullable * __nullable)errorPtr;
 
 @end

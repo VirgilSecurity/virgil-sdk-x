@@ -25,15 +25,6 @@
 - (BOOL)storeKeyEntry:(VSSKeyEntry * __nonnull)keyEntry error:(NSError * __nullable * __nullable)errorPtr;
 
 /**
- Updates key entry.
-
- @param keyEntry New VSSKeyEntry instance
- @param errorPtr NSError pointer to return error if needed
- @return YES if storing succeeded, NO otherwise
- */
-- (BOOL)updateKeyEntry:(VSSKeyEntry * __nonnull)keyEntry error:(NSError * __nullable * __nullable)errorPtr;
-
-/**
  Loads key entry.
 
  @param name NSString with VSSKeyEntry name
