@@ -8,9 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Class that represents key attributes.
+ */
 @interface VSSKeyAttrs : NSObject
 
+/**
+ Key's name.
+ */
 @property (nonatomic, readonly) NSString * __nonnull name;
+
+/**
+ Creation date of the key.
+ */
 @property (nonatomic, readonly) NSDate * __nonnull creationDate;
 
 /**

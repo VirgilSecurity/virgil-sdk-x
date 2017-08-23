@@ -430,6 +430,7 @@
 		429123AD1F4D726300103BE0 /* VSSKeyAttrs.m in Sources */ = {isa = PBXBuildFile; fileRef = 429123AC1F4D726300103BE0 /* VSSKeyAttrs.m */; };
 		429123B11F4D72DA00103BE0 /* VSSKeyStoragePlatformSpecificPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 429123AF1F4D72D500103BE0 /* VSSKeyStoragePlatformSpecificPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		429123B21F4D72E000103BE0 /* VSSKeyStoragePlatformSpecificPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 429123AE1F4D72AA00103BE0 /* VSSKeyStoragePlatformSpecificPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		429123B51F4D7A4800103BE0 /* VSSKeyAttrsPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 429123B41F4D737F00103BE0 /* VSSKeyAttrsPrivate.h */; };
 		429623501F0A69AF00284665 /* VSSErrorPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 4296234F1F0A69AB00284665 /* VSSErrorPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		429623511F0A69B000284665 /* VSSErrorPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 4296234F1F0A69AB00284665 /* VSSErrorPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4296B0D21E7C18AE00703356 /* VSSRevokeCardHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D414A91E39016900F59580 /* VSSRevokeCardHTTPRequest.h */; };
@@ -1722,6 +1723,7 @@
 				420FE5EE1E4B560D005A32D4 /* VSSConfirmIdentityRequest.h in Headers */,
 				42F7B33F1E69ACD1004E579C /* VSSEmailIdentityPrivate.h in Headers */,
 				420FE66D1E534EF2005A32D4 /* VSSVirgilKeyPrivate.h in Headers */,
+				429123B51F4D7A4800103BE0 /* VSSKeyAttrsPrivate.h in Headers */,
 				425B09C81DC245CE005531DC /* VSSCreateCardSnapshotModel.h in Headers */,
 				425B09FB1DC26770005531DC /* VSSResponsesPublic.h in Headers */,
 				420FE6451E51C955005A32D4 /* VSSHighLevelPublic.h in Headers */,
