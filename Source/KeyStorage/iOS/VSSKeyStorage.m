@@ -18,7 +18,6 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
 @interface VSSKeyStorage ()
 
 - (NSMutableDictionary * __nonnull)baseKeychainQueryForName:(NSString * __nonnull)name;
-- (NSMutableDictionary * __nonnull)baseKeychainQueryForNames:(NSArray<NSString *> * __nonnull)names;
 - (NSMutableDictionary * __nonnull)baseExtendedKeychainQueryForName:(NSString * __nonnull)name;
 
 @end
@@ -254,7 +253,7 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
     
     if (status != errSecSuccess) {
         if (errorPtr != nil) {
-            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:status userInfo:@{ NSLocalizedDescriptionKey: @"Error while getting keys from the keychain. See \"Security Error Codes\" (SecBase.h)." }];
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:status userInfo:@{ NSLocalizedDescriptionKey: @"Error while searching keys in the keychain. See \"Security Error Codes\" (SecBase.h)." }];
         }
         return nil;
     }
@@ -291,7 +290,7 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
     
     if (status != errSecSuccess) {
         if (errorPtr != nil) {
-            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:status userInfo:@{ NSLocalizedDescriptionKey: @"Error while getting keys' tags from the keychain. See \"Security Error Codes\" (SecBase.h)." }];
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:status userInfo:@{ NSLocalizedDescriptionKey: @"Error while searching keys in the keychain. See \"Security Error Codes\" (SecBase.h)." }];
         }
         return nil;
     }
@@ -311,45 +310,6 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
     }
     
     return keysAttrs;
-}
-
-- (NSMutableDictionary *)baseExtendedKeychainQueryForNames:(NSArray<NSString *> * __nonnull)names {
-    NSMutableArray *queries = [[NSMutableArray alloc] initWithCapacity:names.count];
-    
-    for (NSString *name in names) {
-        NSMutableDictionary *query = [self baseKeychainQueryForName:name];
-        
-        NSMutableDictionary *additional = [NSMutableDictionary dictionaryWithDictionary:
-               @{
-                 (__bridge id)kSecAttrAccessible: (__bridge id)kSecAttrAccessibleAfterFirstUnlock,
-                 (__bridge id)kSecAttrLabel: name,
-                 (__bridge id)kSecAttrIsPermanent: (__bridge id)kCFBooleanTrue,
-                 (__bridge id)kSecAttrCanEncrypt: (__bridge id)kCFBooleanTrue,
-                 (__bridge id)kSecAttrCanDecrypt: (__bridge id)kCFBooleanFalse,
-                 (__bridge id)kSecAttrCanDerive: (__bridge id)kCFBooleanFalse,
-                 (__bridge id)kSecAttrCanSign: (__bridge id)kCFBooleanTrue,
-                 (__bridge id)kSecAttrCanVerify: (__bridge id)kCFBooleanFalse,
-                 (__bridge id)kSecAttrCanWrap: (__bridge id)kCFBooleanFalse,
-                 (__bridge id)kSecAttrCanUnwrap: (__bridge id)kCFBooleanFalse,
-                 (__bridge id)kSecAttrSynchronizable: (__bridge id)kCFBooleanFalse,
-                 }];
-        
-        // Access groups are not supported in simulator
-#if TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
-        if (self.configuration.accessGroup != nil) {
-            additional[(__bridge id)kSecAttrAccessGroup] = self.configuration.accessGroup;
-        }
-#endif
-        
-        [query addEntriesFromDictionary:additional];
-        
-        [queries addObject:query];
-    }
-    
-    return [NSMutableDictionary dictionaryWithDictionary:
-        @{
-          (__bridge id)kSecUseItemList: queries
-          }];
 }
 
 - (NSMutableDictionary *)baseExtendedKeychainQueryForName:(NSString *)name {
@@ -380,30 +340,6 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
     [query addEntriesFromDictionary:additional];
     
     return query;
-}
-
-- (NSMutableDictionary *)baseKeychainQueryForNames:(NSArray<NSString *> *)names {
-    NSMutableArray *queries = [[NSMutableArray alloc] initWithCapacity:names.count];
-    
-    for (NSString *name in names) {
-        NSString *tag = [[NSString alloc] initWithFormat:privateKeyIdentifierFormat, self.configuration.applicationName, name];
-        NSData *tagData = [tag dataUsingEncoding:NSUTF8StringEncoding];
-        
-        NSMutableDictionary *query = [NSMutableDictionary dictionaryWithDictionary:
-          @{
-            (__bridge id)kSecClass: (__bridge id)kSecClassKey,
-            (__bridge id)kSecAttrKeyClass: (__bridge id)kSecAttrKeyClassPrivate,
-            (__bridge id)kSecAttrApplicationLabel: [name dataUsingEncoding:NSUTF8StringEncoding],
-            (__bridge id)kSecAttrApplicationTag: tagData
-            }];
-        
-        [queries addObject:query];
-    }
-    
-    return [NSMutableDictionary dictionaryWithDictionary:
-    @{
-      (__bridge id)kSecUseItemList: queries
-      }];
 }
 
 - (NSMutableDictionary *)baseKeychainQueryForName:(NSString *)name {

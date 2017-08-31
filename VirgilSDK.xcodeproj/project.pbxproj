@@ -425,7 +425,6 @@
 		4291237D1F4B0B3700103BE0 /* VSSTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429123631F4B0B3700103BE0 /* VSSTestUtils.swift */; };
 		4291237F1F4C53E100103BE0 /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4291237E1F4C53E100103BE0 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		429123821F4C540100103BE0 /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 429123801F4C53E700103BE0 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		429123891F4C698B00103BE0 /* VSS009_KeyStorageiOSSpecificTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429123871F4C698600103BE0 /* VSS009_KeyStorageiOSSpecificTests.swift */; };
 		429123AB1F4D722000103BE0 /* VSSKeyAttrs.h in Headers */ = {isa = PBXBuildFile; fileRef = 429123AA1F4D722000103BE0 /* VSSKeyAttrs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		429123AD1F4D726300103BE0 /* VSSKeyAttrs.m in Sources */ = {isa = PBXBuildFile; fileRef = 429123AC1F4D726300103BE0 /* VSSKeyAttrs.m */; };
 		429123B11F4D72DA00103BE0 /* VSSKeyStoragePlatformSpecificPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 429123AF1F4D72D500103BE0 /* VSSKeyStoragePlatformSpecificPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -447,6 +446,7 @@
 		42A48C741ED4896300650B25 /* VSSAuthClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 42A48C6A1ED4836200650B25 /* VSSAuthClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42A48C751ED4896400650B25 /* VSSAuthClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 42A48C6A1ED4836200650B25 /* VSSAuthClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42B33F761DC3A859008A7B78 /* VSSSignable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B33F751DC3A707008A7B78 /* VSSSignable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42B6CF6A1F5877240024857B /* VSS009_KeyStorageiOSSpecificTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B6CF681F58771A0024857B /* VSS009_KeyStorageiOSSpecificTests.swift */; };
 		42B7E3601DB8F72200D70C12 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
 		42BBF0C31DD1F12E00E19D60 /* VSSRequestSignerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42BBF0C21DD1F12E00E19D60 /* VSSRequestSignerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42BBF0DD1DD5DFE600E19D60 /* VSSCryptoCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 42BBF0DB1DD5DF8200E19D60 /* VSSCryptoCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -768,7 +768,6 @@
 		429123631F4B0B3700103BE0 /* VSSTestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSSTestUtils.swift; sourceTree = "<group>"; };
 		4291237E1F4C53E100103BE0 /* VSSKeyStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorage.h; sourceTree = "<group>"; };
 		429123801F4C53E700103BE0 /* VSSKeyStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorage.h; sourceTree = "<group>"; };
-		429123871F4C698600103BE0 /* VSS009_KeyStorageiOSSpecificTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS009_KeyStorageiOSSpecificTests.swift; sourceTree = "<group>"; };
 		429123AA1F4D722000103BE0 /* VSSKeyAttrs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeyAttrs.h; sourceTree = "<group>"; };
 		429123AC1F4D726300103BE0 /* VSSKeyAttrs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeyAttrs.m; sourceTree = "<group>"; };
 		429123AE1F4D72AA00103BE0 /* VSSKeyStoragePlatformSpecificPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStoragePlatformSpecificPublic.h; sourceTree = "<group>"; };
@@ -785,6 +784,7 @@
 		42B1471C1DAFA8F600AC9975 /* VSSImportable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSImportable.h; sourceTree = "<group>"; };
 		42B1471D1DAFA92000AC9975 /* VSSExportable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSExportable.h; sourceTree = "<group>"; };
 		42B33F751DC3A707008A7B78 /* VSSSignable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSSignable.h; sourceTree = "<group>"; };
+		42B6CF681F58771A0024857B /* VSS009_KeyStorageiOSSpecificTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS009_KeyStorageiOSSpecificTests.swift; sourceTree = "<group>"; };
 		42B7E35B1DB8F72200D70C12 /* VirgilSDK iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilSDK iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42B7E36D1DB8FF4C00D70C12 /* VSSModelsPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSModelsPublic.h; sourceTree = "<group>"; };
 		42B7E36E1DB9003100D70C12 /* VSSClientPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSClientPublic.h; sourceTree = "<group>"; };
@@ -1262,7 +1262,7 @@
 				4291235E1F4B0B3700103BE0 /* VSS006_KeyStorageTests.swift */,
 				4291235F1F4B0B3700103BE0 /* VSS007_HighLevelTests.swift */,
 				429123601F4B0B3700103BE0 /* VSS008_HighLevelCryptoTests.swift */,
-				429123871F4C698600103BE0 /* VSS009_KeyStorageiOSSpecificTests.swift */,
+				42B6CF681F58771A0024857B /* VSS009_KeyStorageiOSSpecificTests.swift */,
 				429123611F4B0B3700103BE0 /* VSSTestsConst.h */,
 				429123621F4B0B3700103BE0 /* VSSTestsConst.m */,
 				429123631F4B0B3700103BE0 /* VSSTestUtils.swift */,
@@ -2123,7 +2123,7 @@
 				429123761F4B0B3700103BE0 /* VSS007_HighLevelTests.swift in Sources */,
 				429123701F4B0B3700103BE0 /* VSS004_ModelsTests.swift in Sources */,
 				429123741F4B0B3700103BE0 /* VSS006_KeyStorageTests.swift in Sources */,
-				429123891F4C698B00103BE0 /* VSS009_KeyStorageiOSSpecificTests.swift in Sources */,
+				42B6CF6A1F5877240024857B /* VSS009_KeyStorageiOSSpecificTests.swift in Sources */,
 				4291237C1F4B0B3700103BE0 /* VSSTestUtils.swift in Sources */,
 				4291236A1F4B0B3700103BE0 /* VSS001_ClientTests.swift in Sources */,
 				4291237A1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
