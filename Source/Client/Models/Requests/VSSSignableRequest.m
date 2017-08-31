@@ -86,7 +86,7 @@
     if (snapshot.length == 0)
         return nil;
     
-    NSMutableDictionary<NSString *,NSData *> *signatures = [[NSMutableDictionary alloc] init];;
+    NSMutableDictionary<NSString *,NSData *> *signatures = [[NSMutableDictionary alloc] init];
     NSDictionary *metaDict = [candidate[kVSSCModelMeta] vss_as:[NSDictionary class]];
     if (metaDict.count != 0) {
         NSDictionary<NSString *,NSString *> *signaturesDict = [metaDict[kVSSCModelSigns] vss_as:[NSDictionary class]];

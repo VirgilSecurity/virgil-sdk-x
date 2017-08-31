@@ -72,15 +72,15 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let numberOfRequests = 3
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
-        let identity = self.utils.generateEmail()
+        let identity = EmailUtils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
             XCTAssert(error == nil)
             XCTAssert(actionId != nil)
             XCTAssert(actionId!.lengthOfBytes(using: .utf8) != 0)
             
-            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
-                XCTAssert(code.lengthOfBytes(using: .utf8) == 6)
+            EmailUtils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                XCTAssert(code!.lengthOfBytes(using: .utf8) == 6)
                 
                 ex.fulfill()
             }
@@ -100,11 +100,11 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let numberOfRequests = 4
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
-        let identity = self.utils.generateEmail()
+        let identity = EmailUtils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
-                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+            EmailUtils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code!, timeToLive: 3600, countToLive: 12) { response, error in
                     XCTAssert(error == nil)
                     XCTAssert(response != nil)
                     XCTAssert(response!.identityType == "email")
@@ -130,11 +130,11 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let numberOfRequests = 5
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
-        let identity = self.utils.generateEmail()
+        let identity = EmailUtils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
-                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+            EmailUtils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code!, timeToLive: 3600, countToLive: 12) { response, error in
                     self.client.validateIdentity(identity, identityType: "email", validationToken: response!.validationToken) { error in
                         XCTAssert(error == nil)
                         
@@ -158,11 +158,11 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let numberOfRequests = 5
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
-        let identity = self.utils.generateEmail()
+        let identity = EmailUtils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
-                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+            EmailUtils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code!, timeToLive: 3600, countToLive: 12) { response, error in
                     
                     let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: nil)
                     
@@ -199,11 +199,11 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let numberOfRequests = 6
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
-        let identity = self.utils.generateEmail()
+        let identity = EmailUtils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
-                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+            EmailUtils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code!, timeToLive: 3600, countToLive: 12) { response, error in
                     let keyPair = self.crypto.generateKeyPair()
                     let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                     
@@ -237,11 +237,11 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let numberOfRequests = 6
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
-        let identity = self.utils.generateEmail()
+        let identity = EmailUtils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
-                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+            EmailUtils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code!, timeToLive: 3600, countToLive: 12) { response, error in
                     let keyPair = self.crypto.generateKeyPair()
                     let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                     
@@ -271,11 +271,11 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let numberOfRequests = 7
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
-        let identity = self.utils.generateEmail()
+        let identity = EmailUtils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
-                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+            EmailUtils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code!, timeToLive: 3600, countToLive: 12) { response, error in
                     let keyPair = self.crypto.generateKeyPair()
                     let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                     
@@ -316,11 +316,11 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let numberOfRequests = 8
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
-        let identity = self.utils.generateEmail()
+        let identity = EmailUtils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
-                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+            EmailUtils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code!, timeToLive: 3600, countToLive: 12) { response, error in
                     let keyPair = self.crypto.generateKeyPair()
                     let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                     
@@ -366,11 +366,11 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let numberOfRequests = 9
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
-        let identity = self.utils.generateEmail()
+        let identity = EmailUtils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
-                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+            EmailUtils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code!, timeToLive: 3600, countToLive: 12) { response, error in
                     let keyPair = self.crypto.generateKeyPair()
                     let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                     
@@ -416,11 +416,11 @@ class VSS002_ClientWOTokenTests: XCTestCase {
         let numberOfRequests = 9
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
-        let identity = self.utils.generateEmail()
+        let identity = EmailUtils.generateEmail()
         
         self.client.verifyIdentity(identity, identityType: "email", extraFields: nil) { actionId, error in
-            self.utils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
-                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code, timeToLive: 3600, countToLive: 12) { response, error in
+            EmailUtils.getConfirmationCode(identityValue: identity, mailinator: self.mailinator) { code in
+                self.client.confirmIdentity(withActionId: actionId!, confirmationCode: code!, timeToLive: 3600, countToLive: 12) { response, error in
                     let keyPair = self.crypto.generateKeyPair()
                     let request = self.utils.instantiateEmailCreateCardRequest(withIdentity: identity, validationToken: response!.validationToken, keyPair: keyPair)
                     

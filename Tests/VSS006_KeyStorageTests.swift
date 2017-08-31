@@ -49,11 +49,19 @@ class VSS006_KeyStorageTests: XCTestCase {
     func test002_StoreKeyWithDuplicateName() {
         try! self.storage.store(self.keyEntry)
     
+        let keyPair = self.crypto.generateKeyPair()
+        
+        let privateKeyRawData = self.crypto.export(keyPair.privateKey, withPassword: nil)
+        let privateKeyName = self.keyEntry.name
+        
+        let keyEntry = VSSKeyEntry(name: privateKeyName, value: privateKeyRawData)
+        
         var errorWasThrown = false
         do {
-            try self.storage.store(self.keyEntry)
+            try self.storage.store(keyEntry)
         }
         catch {
+            print((error as NSError).code)
             errorWasThrown = true
         }
         
@@ -88,5 +96,23 @@ class VSS006_KeyStorageTests: XCTestCase {
         let exists = self.storage.existsKeyEntry(withName: self.keyEntry.name)
         
         XCTAssert(!exists);
+    }
+    
+    func test006_UpdateKey() {
+        try! self.storage.store(self.keyEntry)
+        
+        let keyPair = self.crypto.generateKeyPair()
+        
+        let privateKeyRawData = self.crypto.export(keyPair.privateKey, withPassword: nil)
+        let privateKeyName = self.keyEntry.name
+        
+        let keyEntry = VSSKeyEntry(name: privateKeyName, value: privateKeyRawData)
+        
+        try! self.storage.update(keyEntry)
+        
+        let newKeyEntry = try! self.storage.loadKeyEntry(withName: privateKeyName)
+        
+        XCTAssert(newKeyEntry.name == privateKeyName)
+        XCTAssert(newKeyEntry.value == privateKeyRawData)
     }
 }

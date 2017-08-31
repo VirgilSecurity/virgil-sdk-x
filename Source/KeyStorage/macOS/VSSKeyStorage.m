@@ -69,13 +69,6 @@ SecAccessRef createAccess(NSString *accessLabel, NSArray<NSString *> *trustedApp
 }
 
 - (BOOL)storeKeyEntry:(VSSKeyEntry *)keyEntry error:(NSError **)errorPtr {
-    if ([self existsKeyEntryWithName:keyEntry.name]) {
-        if (errorPtr != nil) {
-            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"Error storing VSSKeyEntry. Entry with this name already exists." }];
-        }
-        return NO;
-    }
-    
     NSData *keyEntryData = [NSKeyedArchiver archivedDataWithRootObject:keyEntry];
     
     NSMutableDictionary *query = [self baseExtendedKeychainQueryForName:keyEntry.name];
@@ -107,13 +100,34 @@ SecAccessRef createAccess(NSString *accessLabel, NSArray<NSString *> *trustedApp
     return YES;
 }
 
+- (BOOL)updateKeyEntry:(VSSKeyEntry *)keyEntry error:(NSError **)errorPtr {
+    NSMutableDictionary *query = [self baseKeychainQueryForName:keyEntry.name];
+    
+    NSData *keyEntryData = [NSKeyedArchiver archivedDataWithRootObject:keyEntry];
+    NSMutableDictionary *keySpecificData = [NSMutableDictionary dictionaryWithDictionary:
+        @{
+          (__bridge id)kSecValueData: keyEntryData,
+          }];
+    
+    OSStatus status = SecItemUpdate((__bridge CFDictionaryRef)query, (__bridge CFDictionaryRef)keySpecificData);
+    
+    if (status != errSecSuccess) {
+        if (errorPtr != nil) {
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:status userInfo:@{ NSLocalizedDescriptionKey: @"Error while updating key in the keychain. See \"Security Error Codes\" (SecBase.h)." }];
+        }
+        return NO;
+    }
+    
+    return YES;
+}
+
 - (VSSKeyEntry *)loadKeyEntryWithName:(NSString *)name error:(NSError **)errorPtr {
     NSMutableDictionary *query = [self baseKeychainQueryForName:name];
     
     NSMutableDictionary *additional = [[NSMutableDictionary alloc] initWithDictionary:
-                                       @{
-                                         (__bridge id)kSecReturnData: (__bridge id)kCFBooleanTrue
-                                         }];
+       @{
+         (__bridge id)kSecReturnData: (__bridge id)kCFBooleanTrue
+         }];
     
     [query addEntriesFromDictionary:additional];
     
@@ -150,7 +164,15 @@ SecAccessRef createAccess(NSString *accessLabel, NSArray<NSString *> *trustedApp
 }
 
 - (BOOL)existsKeyEntryWithName:(NSString *)name {
-    return [self loadKeyEntryWithName:name error:nil] != nil;
+    NSMutableDictionary *query = [self baseKeychainQueryForName:name];
+    
+    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, nil);
+    
+    if (status != errSecSuccess) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (BOOL)deleteKeyEntryWithName:(NSString *)name error:(NSError **)errorPtr {

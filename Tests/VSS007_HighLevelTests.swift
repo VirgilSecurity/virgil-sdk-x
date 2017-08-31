@@ -211,12 +211,12 @@ class VSS007_HighLevelTests: XCTestCase {
         let numberOfRequests = 5
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + kEstimatedEmailReceiveTime)
         
-        let identityValue = self.utils.generateEmail()
+        let identityValue = EmailUtils.generateEmail()
         let identity = self.api.identities.createEmailIdentity(withEmail: identityValue)
         
         identity.check(options: nil) { error in
-            self.utils.getConfirmationCode(identityValue: identityValue, mailinator: self.mailinator) { confirmationCode in
-                identity.confirm(withConfirmationCode: confirmationCode) { error in
+            EmailUtils.getConfirmationCode(identityValue: identityValue, mailinator: self.mailinator) { confirmationCode in
+                identity.confirm(withConfirmationCode: confirmationCode!) { error in
                     let key = self.api.keys.generateKey()
                     
                     let card = try! self.api.cards.createCard(with: identity, ownerKey: key)
@@ -244,12 +244,12 @@ class VSS007_HighLevelTests: XCTestCase {
         let numberOfRequests = 5
         let timeout = TimeInterval(numberOfRequests * kEstimatedRequestCompletionTime + 2 * kEstimatedEmailReceiveTime)
         
-        let identityValue = self.utils.generateEmail()
+        let identityValue = EmailUtils.generateEmail()
         let identity = self.api.identities.createEmailIdentity(withEmail: identityValue)
         
         identity.check(options: nil) { error in
-            self.utils.getConfirmationCode(identityValue: identityValue, mailinator: self.mailinator) { confirmationCode in
-                identity.confirm(withConfirmationCode: confirmationCode) { error in
+            EmailUtils.getConfirmationCode(identityValue: identityValue, mailinator: self.mailinator) { confirmationCode in
+                identity.confirm(withConfirmationCode: confirmationCode!) { error in
                     let key = self.api.keys.generateKey()
                     
                     let card = try! self.api.cards.createCard(with: identity, ownerKey: key)
@@ -257,8 +257,8 @@ class VSS007_HighLevelTests: XCTestCase {
                         let identity = self.api.identities.createEmailIdentity(withEmail: identityValue)
                         
                         identity.check(options: nil) { error in
-                            self.utils.getConfirmationCode(emailNumber: 1, identityValue: identityValue, mailinator: self.mailinator) { confirmationCode in
-                                identity.confirm(withConfirmationCode: confirmationCode) { error in
+                            EmailUtils.getConfirmationCode(emailNumber: 1, identityValue: identityValue, mailinator: self.mailinator) { confirmationCode in
+                                identity.confirm(withConfirmationCode: confirmationCode!) { error in
                                     self.api.cards.revokeEmail(card, identity: identity, ownerKey: key) { error in
                                         XCTAssert(error == nil)
                                         

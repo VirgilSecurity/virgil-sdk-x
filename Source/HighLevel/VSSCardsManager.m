@@ -87,13 +87,13 @@
 }
 
 - (void)searchGlobalCardsWithIdentities:(NSArray<NSString *> *)identities completion:(void (^)(NSArray<VSSVirgilCard *> *, NSError *))callback {
-    VSSSearchCardsCriteria *criteria = [VSSSearchCardsCriteria searchCardsCriteriaWithScope:VSSCardScopeGlobal identityType:nil identities:identities];;
+    VSSSearchCardsCriteria *criteria = [VSSSearchCardsCriteria searchCardsCriteriaWithScope:VSSCardScopeGlobal identityType:nil identities:identities];
     
     [self searchCardsUsingCriteria:criteria completion:callback];
 }
 
 - (void)searchGlobalCardsWithIdentityType:(NSString *)identityType identities:(NSArray<NSString *> *)identities completion:(void (^)(NSArray<VSSVirgilCard *> *, NSError *))callback {
-    VSSSearchCardsCriteria *criteria = [VSSSearchCardsCriteria searchCardsCriteriaWithScope:VSSCardScopeGlobal identityType:identityType identities:identities];;
+    VSSSearchCardsCriteria *criteria = [VSSSearchCardsCriteria searchCardsCriteriaWithScope:VSSCardScopeGlobal identityType:identityType identities:identities];
     
     [self searchCardsUsingCriteria:criteria completion:callback];
 }

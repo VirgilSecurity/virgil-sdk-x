@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Security/Security.h>
 #import "VSSKeyStorage.h"
+#import "VSSKeyAttrsPrivate.h"
 
 NSString *const kVSSKeyStorageErrorDomain = @"VSSKeyStorageErrorDomain";
 
@@ -39,13 +40,6 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
 }
 
 - (BOOL)storeKeyEntry:(VSSKeyEntry *)keyEntry error:(NSError **)errorPtr {
-    if ([self existsKeyEntryWithName:keyEntry.name]) {
-        if (errorPtr != nil) {
-            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:-1000 userInfo:@{ NSLocalizedDescriptionKey: @"Error storing VSSKeyEntry. Entry with this name already exists." }];
-        }
-        return NO;
-    }
-    
     NSMutableDictionary *query = [self baseExtendedKeychainQueryForName:keyEntry.name];
     
     NSData *keyEntryData = [NSKeyedArchiver archivedDataWithRootObject:keyEntry];
@@ -63,6 +57,80 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
             *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:status userInfo:@{ NSLocalizedDescriptionKey: @"Error while storing key in the keychain. See \"Security Error Codes\" (SecBase.h)." }];
         }
         
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (BOOL)storeKeyEntries:(NSArray<VSSKeyEntry *> * __nonnull)keyEntries error:(NSError * __nullable * __nullable)errorPtr {
+    // FIXME: Optimize
+    for (VSSKeyEntry *keyEntry in keyEntries) {
+        NSError *err;
+        [self storeKeyEntry:keyEntry error:&err];
+        
+        if (err != nil){
+            if (errorPtr != nil) {
+                *errorPtr = err;
+            }
+            return NO;
+        }
+    }
+    
+//    NSMutableArray *queries = [[NSMutableArray alloc] initWithCapacity:keyEntries.count];
+//    
+//    for (VSSKeyEntry *keyEntry in keyEntries) {
+//        NSMutableDictionary *query = [self baseExtendedKeychainQueryForName:keyEntry.name];
+//        
+//        NSData *keyEntryData = [NSKeyedArchiver archivedDataWithRootObject:keyEntry];
+//        NSMutableDictionary *keySpecificData = [NSMutableDictionary dictionaryWithDictionary:
+//            @{
+//              (__bridge id)kSecValueData: keyEntryData,
+//              }];
+//        
+//        [query addEntriesFromDictionary:keySpecificData];
+//        
+//        [queries addObject:query];
+//    }
+//    
+//    NSDictionary *query;
+//    if (keyEntries.count > 1) {
+//        query = @{
+//                  (__bridge id)kSecUseItemList: queries
+//                  };
+//    }
+//    else {
+//        query = queries[0];
+//    }
+//    
+//    OSStatus status = SecItemAdd((__bridge CFDictionaryRef)query, nil);
+//    
+//    if (status != errSecSuccess) {
+//        if (errorPtr != nil) {
+//            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:status userInfo:@{ NSLocalizedDescriptionKey: @"Error while storing key in the keychain. See \"Security Error Codes\" (SecBase.h)." }];
+//        }
+//        
+//        return NO;
+//    }
+    
+    return YES;
+}
+
+- (BOOL)updateKeyEntry:(VSSKeyEntry *)keyEntry error:(NSError **)errorPtr {
+    NSMutableDictionary *query = [self baseKeychainQueryForName:keyEntry.name];
+    
+    NSData *keyEntryData = [NSKeyedArchiver archivedDataWithRootObject:keyEntry];
+    NSMutableDictionary *keySpecificData = [NSMutableDictionary dictionaryWithDictionary:
+        @{
+          (__bridge id)kSecValueData: keyEntryData,
+          }];
+    
+    OSStatus status = SecItemUpdate((__bridge CFDictionaryRef)query, (__bridge CFDictionaryRef)keySpecificData);
+    
+    if (status != errSecSuccess) {
+        if (errorPtr != nil) {
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:status userInfo:@{ NSLocalizedDescriptionKey: @"Error while updating key in the keychain. See \"Security Error Codes\" (SecBase.h)." }];
+        }
         return NO;
     }
     
@@ -112,7 +180,15 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
 }
 
 - (BOOL)existsKeyEntryWithName:(NSString *)name {
-    return [self loadKeyEntryWithName:name error:nil] != nil;
+    NSMutableDictionary *query = [self baseKeychainQueryForName:name];
+    
+    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, nil);
+    
+    if (status != errSecSuccess) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (BOOL)deleteKeyEntryWithName:(NSString *)name error:(NSError **)errorPtr {
@@ -122,12 +198,118 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
     
     if (status != errSecSuccess) {
         if (errorPtr != nil) {
-            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:status userInfo:@{ NSLocalizedDescriptionKey: @"Error while obtaining key from the keychain. See \"Security Error Codes\" (SecBase.h)." }];
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:status userInfo:@{ NSLocalizedDescriptionKey: @"Error while deleting key from the keychain. See \"Security Error Codes\" (SecBase.h)." }];
         }
         return NO;
     }
     
     return YES;
+}
+
+- (BOOL)deleteKeyEntriesWithNames:(NSArray<NSString *> *)names error:(NSError **)errorPtr {
+    // FIXME: Optimize
+    for (NSString *name in names) {
+        NSError *err;
+        [self deleteKeyEntryWithName:name error:&err];
+        
+        if (err != nil){
+            if (errorPtr != nil) {
+                *errorPtr = err;
+            }
+            return NO;
+        }
+    }
+    
+//    NSMutableDictionary *query = [self baseKeychainQueryForNames:names];
+//    
+//    OSStatus status = SecItemDelete((__bridge CFDictionaryRef)query);
+//    
+//    if (status != errSecSuccess) {
+//        if (errorPtr != nil) {
+//            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:status userInfo:@{ NSLocalizedDescriptionKey: @"Error while deleting keys from the keychain. See \"Security Error Codes\" (SecBase.h)." }];
+//        }
+//        return NO;
+//    }
+    
+    return YES;
+}
+
+- (NSArray<VSSKeyEntry *> *)getAllKeysWithError:(NSError **)errorPtr {
+    NSMutableDictionary *query = [NSMutableDictionary dictionaryWithDictionary:
+      @{
+        (__bridge id)kSecClass: (__bridge id)kSecClassKey,
+        (__bridge id)kSecAttrKeyClass: (__bridge id)kSecAttrKeyClassPrivate,
+        (__bridge id)kSecReturnData: (__bridge id)kCFBooleanTrue,
+        (__bridge id)kSecMatchLimit: (__bridge id)kSecMatchLimitAll
+        }];
+    
+    CFArrayRef outData = nil;
+    
+    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, (CFTypeRef *)&outData);
+    
+    if (status == errSecItemNotFound) {
+        return @[];
+    }
+    
+    if (status != errSecSuccess) {
+        if (errorPtr != nil) {
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:status userInfo:@{ NSLocalizedDescriptionKey: @"Error while searching keys in the keychain. See \"Security Error Codes\" (SecBase.h)." }];
+        }
+        return nil;
+    }
+    
+    NSArray<NSData *> *entries = (__bridge NSArray*)outData;
+
+    NSMutableArray<VSSKeyEntry *> *keysEntries = [[NSMutableArray alloc] initWithCapacity:entries.count];
+    
+    for (NSData *keyData in entries) {
+        VSSKeyEntry *keyEntry = [NSKeyedUnarchiver unarchiveObjectWithData:keyData];
+        
+        [keysEntries addObject:keyEntry];
+    }
+
+    return keysEntries;
+}
+
+- (NSArray<VSSKeyAttrs *> *)getAllKeysAttrsWithError:(NSError **)errorPtr {
+    NSMutableDictionary *query = [NSMutableDictionary dictionaryWithDictionary:
+      @{
+        (__bridge id)kSecClass: (__bridge id)kSecClassKey,
+        (__bridge id)kSecAttrKeyClass: (__bridge id)kSecAttrKeyClassPrivate,
+        (__bridge id)kSecReturnAttributes: (__bridge id)kCFBooleanTrue,
+        (__bridge id)kSecMatchLimit: (__bridge id)kSecMatchLimitAll
+        }];
+    
+    CFArrayRef outData = nil;
+    
+    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, (CFTypeRef *)&outData);
+    
+    if (status == errSecItemNotFound) {
+        return @[];
+    }
+    
+    if (status != errSecSuccess) {
+        if (errorPtr != nil) {
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:status userInfo:@{ NSLocalizedDescriptionKey: @"Error while searching keys in the keychain. See \"Security Error Codes\" (SecBase.h)." }];
+        }
+        return nil;
+    }
+    
+    NSArray<NSDictionary *> *entries = (__bridge NSArray*)outData;
+    
+    NSMutableArray<VSSKeyAttrs *> *keysAttrs = [[NSMutableArray alloc] initWithCapacity:entries.count];
+    
+    for (NSDictionary *entry in entries) {
+        NSData *label = entry[(__bridge id)kSecAttrApplicationLabel];
+        NSString *labelStr = [[NSString alloc] initWithData:label encoding:NSUTF8StringEncoding];
+        NSDate *creationDate = entry[(__bridge id)kSecAttrCreationDate];
+        
+        VSSKeyAttrs *keyAttrs = [[VSSKeyAttrs alloc] initWithName:labelStr creationDate:creationDate];
+        
+        [keysAttrs addObject:keyAttrs];
+    }
+    
+    return keysAttrs;
 }
 
 - (NSMutableDictionary *)baseExtendedKeychainQueryForName:(NSString *)name {
