@@ -15,7 +15,7 @@
 @interface VSSServiceConfig : NSObject <NSCopying>
 
 /**
- NSString containing application token received from https://developer.virgilsecurity.com/dashboard/
+ NSString containing application token received from https://developer.virgilsecurity.com/account/dashboard/
  */
 @property (nonatomic, copy) NSString * __nullable token;
 /**
