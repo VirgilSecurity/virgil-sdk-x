@@ -74,4 +74,12 @@ extern NSString * __nonnull const kVSSKeyStorageErrorDomain;
  */
 - (BOOL)deleteKeyEntriesWithNames:(NSArray<NSString *> * __nonnull)names error:(NSError * __nullable * __nullable)errorPtr;
 
+/**
+ Removes ALL keys.
+ 
+ @param errorPtr NSError pointer to return error if needed
+ @return YES if succeeded, NO otherwise
+ */
+- (BOOL)resetWithError:(NSError * __nullable * __nullable)errorPtr;
+
 @end

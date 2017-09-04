@@ -140,4 +140,24 @@ class VSS009_KeyStorageiOSSpecificTests: XCTestCase {
             XCTAssert(k1.creationDate == k2.creationDate)
         }
     }
+    
+    func test005_Reset() {
+        var keyEntries = Array<VSSKeyEntry>()
+        for _ in 0..<self.numberOfKeys {
+            let keyPair = self.crypto.generateKeyPair()
+            
+            let privateKeyRawData = self.crypto.export(keyPair.privateKey, withPassword: nil)
+            let privateKeyName = UUID().uuidString
+            
+            keyEntries.append(VSSKeyEntry(name: privateKeyName, value: privateKeyRawData))
+        }
+        
+        try! self.storage.storeKeyEntries(keyEntries)
+        
+        XCTAssert((try! self.storage.getAllKeysAttrs()).count != 0)
+        
+        try! self.storage.reset()
+        
+        XCTAssert((try! self.storage.getAllKeysAttrs()).count == 0)
+    }
 }

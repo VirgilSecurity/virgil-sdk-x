@@ -234,6 +234,25 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
     return YES;
 }
 
+- (BOOL)resetWithError:(NSError **)errorPtr {
+    NSMutableDictionary *query = [NSMutableDictionary dictionaryWithDictionary:
+          @{
+            (__bridge id)kSecClass: (__bridge id)kSecClassKey,
+            (__bridge id)kSecAttrKeyClass: (__bridge id)kSecAttrKeyClassPrivate
+            }];
+    
+    OSStatus status = SecItemDelete((__bridge CFDictionaryRef)query);
+    
+    if (status != errSecSuccess) {
+        if (errorPtr != nil) {
+            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:status userInfo:@{ NSLocalizedDescriptionKey: @"Error while reseting keychain. See \"Security Error Codes\" (SecBase.h)." }];
+        }
+        return NO;
+    }
+    
+    return YES;
+}
+
 - (NSArray<VSSKeyEntry *> *)getAllKeysWithError:(NSError **)errorPtr {
     NSMutableDictionary *query = [NSMutableDictionary dictionaryWithDictionary:
       @{
