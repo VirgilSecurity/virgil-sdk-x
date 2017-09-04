@@ -33,6 +33,15 @@
 - (VSSKeyPair * __nonnull)generateKeyPair;
 
 /**
+ Generates multiple key pairs using ed25519 algorithm.
+ See VSSKeyPair.
+
+ @param numberOfKeyPairs number of keys to be generated
+ @return array with generated keys
+ */
+- (NSArray<VSSKeyPair *> * __nonnull)generateMultipleKeyPairs:(NSUInteger)numberOfKeyPairs;
+
+/**
  Imports Private Key with password from NSData raw representation.
 
  @param data     NSData raw representation of Private Key

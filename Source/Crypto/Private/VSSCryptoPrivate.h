@@ -16,6 +16,5 @@
 - (NSData * __nonnull)computeHashForPublicKeyData:(NSData * __nonnull)publicKeyData;
 
 @property (nonatomic, readonly) VSSKeyType defaultKeyType;
-@property (nonatomic, readonly) BOOL hasDefaultKeyType;
 
 @end

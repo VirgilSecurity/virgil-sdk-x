@@ -28,7 +28,6 @@ NSString * const kVSSCryptoErrorDomain = @"VSSCryptoErrorDomain";
     self = [super init];
     if (self) {
         _defaultKeyType = keyType;
-        _hasDefaultKeyType = YES;
     }
     
     return self;
@@ -37,7 +36,7 @@ NSString * const kVSSCryptoErrorDomain = @"VSSCryptoErrorDomain";
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _hasDefaultKeyType = NO;
+        _defaultKeyType = VSSKeyTypeFAST_EC_ED25519;
     }
     
     return self;
@@ -56,15 +55,23 @@ NSString * const kVSSCryptoErrorDomain = @"VSSCryptoErrorDomain";
     return [[VSSKeyPair alloc] initWithPrivateKey:privateKey publicKey:publicKey];
 }
 
+- (NSArray<VSSKeyPair *> *)generateMultipleKeyPairs:(NSUInteger)numberOfKeyPairs {
+    NSMutableArray<VSSKeyPair *> *result = [[NSMutableArray alloc] initWithCapacity:numberOfKeyPairs];
+    VSCKeyType cType = vss_mapKeyType(self.defaultKeyType);
+    
+    NSArray *keyPairs = [VSCKeyPair generateMultipleKeys:numberOfKeyPairs keyPairType:cType];
+    
+    for (NSUInteger i = 0; i < numberOfKeyPairs; i++) {
+        [result addObject:[self wrapCryptoKeyPair:keyPairs[i]]];
+    }
+    
+    return result;
+}
+
 - (VSSKeyPair *)generateKeyPair {
     VSCKeyPair *vscKeyPair = nil;
-    if (self.hasDefaultKeyType) {
-        VSCKeyType cType = vss_mapKeyType(self.defaultKeyType);
-        vscKeyPair = [[VSCKeyPair alloc] initWithKeyPairType:cType password:nil];
-    }
-    else {
-        vscKeyPair = [[VSCKeyPair alloc] init];
-    }
+    VSCKeyType cType = vss_mapKeyType(self.defaultKeyType);
+    vscKeyPair = [[VSCKeyPair alloc] initWithKeyPairType:cType password:nil];
     
     return [self wrapCryptoKeyPair:vscKeyPair];
 }

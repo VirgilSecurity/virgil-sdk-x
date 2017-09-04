@@ -27,6 +27,11 @@ class VSS003_CryptoTests: XCTestCase {
         super.tearDown()
     }
     
+    func testGK001() {
+        let keypairs = self.crypto.generateMultipleKeyPairs(100)
+        XCTAssert(keypairs.count == 100)
+    }
+    
     // MARK: Encryption tests
     
     func testED001_EncryptRandomData_SingleCorrectKey_ShouldDecrypt() {
