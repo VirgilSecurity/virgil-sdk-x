@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "VSSModelCommons.h"
 #import "VSSClientProtocol.h"
-#import "VSSBaseClient.h"
 #import "VSSServiceConfig.h"
 
 /**
@@ -20,7 +19,7 @@ extern NSString * __nonnull const kVSSClientErrorDomain;
 /**
  Default implementation of VSSClient protocol used for all interactions with Virgil Services.
  */
-@interface VSSClient : VSSBaseClient <VSSClient>
+@interface VSSClient : NSObject <VSSClient>
 
 /**
  VSSServiceConfig instance, which contains the information needed to interract with Virgil Services such as service URLs, token, CardValidator.

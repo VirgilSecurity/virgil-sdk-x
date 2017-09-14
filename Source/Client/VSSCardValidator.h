@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "VSSCardValidatorProtocol.h"
-#import "VSSCryptoProtocol.h"
+
+@import VirgilCryptoAPI;
 
 /**
  Default implementation of VSSCardValidator protocol.
@@ -26,7 +27,7 @@
 /**
  NSDictionary which stores NSString with verifier id as Key and its VSSPublicKey as Value
  */
-@property (nonatomic, copy, readonly) NSDictionary<NSString *, VSSPublicKey *> * __nonnull verifiers;
+@property (nonatomic, copy, readonly) NSDictionary<NSString *, id<VSAPublicKey>> * __nonnull verifiers;
 
 /**
  Designated initializer.
@@ -35,7 +36,7 @@
 
  @return initialized VSSCardValidator instance
  */
-- (instancetype __nonnull)initWithCrypto:(id<VSSCrypto> __nonnull)crypto NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithCrypto:(id<VSACrypto> __nonnull)crypto NS_DESIGNATED_INITIALIZER;
 
 /**
  Unavailable no-argument initializer inherited from NSObject

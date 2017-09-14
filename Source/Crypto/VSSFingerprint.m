@@ -8,11 +8,11 @@
 
 #import "VSSFingerprint.h"
 
-@import VirgilCrypto;
-
 @implementation VSSFingerprint
 
 @dynamic hexValue;
+
+// FIXME
 
 - (instancetype)initWithValue:(NSData *)value {
     self = [super init];
@@ -26,14 +26,15 @@
 - (instancetype)initWithHex:(NSString *)hex {
     self = [super init];
     if (self) {
-        _value = [VSCByteArrayUtils dataFromHexString:hex];
+//        _value = [VSCByteArrayUtils dataFromHexString:hex];
     }
     
     return self;
 }
 
 - (NSString *)hexValue {
-    return [VSCByteArrayUtils hexStringFromData:self.value];
+    return @"";
+//    return [VSCByteArrayUtils hexStringFromData:self.value];
 }
 
 @end

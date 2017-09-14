@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 
 #import "VSSRequestSignerProtocol.h"
-#import "VSSCryptoProtocol.h"
 #import "VSSPrivateKey.h"
 #import "VSSPublicKey.h"
 #import "VSSSignable.h"
+
+@import VirgilCryptoAPI;
 
 /**
  NSString with Error Domain used for VSSRequestSigner-related errors.
@@ -27,7 +28,7 @@ extern NSString * __nonnull const kVSSRequestSignerErrorDomain;
 /**
  Implementation of VSSCrypto protocol used for calculation signatures.
  */
-@property (nonatomic, readonly) id<VSSCrypto> __nonnull crypto;
+@property (nonatomic, readonly) id<VSACrypto> __nonnull crypto;
 
 /**
  Designated initializer.
@@ -36,7 +37,7 @@ extern NSString * __nonnull const kVSSRequestSignerErrorDomain;
 
  @return initialized VSSRequestSigner instance
  */
-- (instancetype __nonnull)initWithCrypto:(id<VSSCrypto> __nonnull)crypto NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithCrypto:(id<VSACrypto> __nonnull)crypto NS_DESIGNATED_INITIALIZER;
 
 /**
  Unavailable no-argument initializer inherited from NSObject

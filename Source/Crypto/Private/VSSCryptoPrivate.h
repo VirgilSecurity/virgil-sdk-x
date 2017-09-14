@@ -7,7 +7,6 @@
 //
 
 #import "VSSCrypto.h"
-@import VirgilCrypto;
 
 @interface VSSCrypto ()
 

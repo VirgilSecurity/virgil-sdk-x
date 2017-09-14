@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "VSSBaseClient.h"
 #import "VSSChallengeMessageResponse.h"
 #import "VSSObtainTokenResponse.h"
 #import "VSSAuthServiceConfig.h"

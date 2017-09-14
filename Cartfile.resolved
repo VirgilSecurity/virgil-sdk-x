@@ -1,2 +1,3 @@
-github "SanjoDeundiak/MailinatorClient" "05b1eb17462e4b5f6c11bfbab9cf5d07e82a7119"
-github "VirgilSecurity/virgil-foundation-x" "2.3.2"
+github "SanjoDeundiak/MailinatorClient" "eef3fc90108a889afce20fe0faaa2788901f05b5"
+github "VirgilSecurity/virgil-cryptoapi-x" "b609c35a5ec7dc0bc21cc620911c2e49b2099724"
+github "VirgilSecurity/virgil-foundation-x" "b13c94f6d52e80d97598eae8b66ae55205507827"

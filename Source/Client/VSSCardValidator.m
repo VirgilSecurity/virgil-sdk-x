@@ -17,10 +17,10 @@ static NSString * const kVSSVraServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZ
 
 @interface VSSCardValidator ()
 
-@property (nonatomic, readwrite) id<VSSCrypto> __nonnull crypto;
-@property (nonatomic, copy, readwrite) NSDictionary<NSString *, VSSPublicKey *> * __nonnull verifiers;
+@property (nonatomic, readwrite) id<VSACrypto> __nonnull crypto;
+@property (nonatomic, copy, readwrite) NSDictionary<NSString *, id<VSAPublicKey>> * __nonnull verifiers;
 
-- (void)addVerifierWithId:(NSString * __nonnull)verifierId publicKey:(VSSPublicKey * __nonnull)publicKey;
+- (void)addVerifierWithId:(NSString * __nonnull)verifierId publicKey:(id<VSAPublicKey> __nonnull)publicKey;
 
 @end
 
@@ -41,19 +41,20 @@ static NSString * const kVSSVraServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZ
     return copy;
 }
 
-- (instancetype)initWithCrypto:(id<VSSCrypto>)crypto {
+- (instancetype)initWithCrypto:(id<VSACrypto>)crypto {
     self = [super init];
     if (self) {
         _crypto = crypto;
         self.useVirgilServiceVerifiers = YES;
         
         NSData *cardsServicePublicKeyData = [[NSData alloc] initWithBase64EncodedString:kVSSCardsServicePublicKey options:0];
-        VSSPublicKey *cardsServicePublicKey = [crypto importPublicKeyFromData:cardsServicePublicKeyData];
+        
+        id<VSAPublicKey> cardsServicePublicKey = [crypto importPublicKeyFrom:cardsServicePublicKeyData error:nil];
         if (cardsServicePublicKey == nil)
             return nil;
         
         NSData *vraServicePublicKeyData = [[NSData alloc] initWithBase64EncodedString:kVSSVraServicePublicKey options:0];
-        VSSPublicKey *vraServicePublicKey = [crypto importPublicKeyFromData:vraServicePublicKeyData];
+        id<VSAPublicKey> vraServicePublicKey = [crypto importPublicKeyFrom:vraServicePublicKeyData error:nil];
         if (vraServicePublicKey == nil)
             return nil;
         
@@ -71,7 +72,7 @@ static NSString * const kVSSVraServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZ
     if (publicKeyData.length == 0)
         return NO;
 
-    VSSPublicKey *publicKey = [self.crypto importPublicKeyFromData:publicKeyData];
+    id<VSAPublicKey> publicKey = [self.crypto importPublicKeyFrom:publicKeyData error:nil];
     if (publicKey == nil)
         return NO;
 
@@ -79,65 +80,67 @@ static NSString * const kVSSVraServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZ
     return YES;
 }
 
-- (void)addVerifierWithId:(NSString *)verifierId publicKey:(VSSPublicKey *)publicKey {
+- (void)addVerifierWithId:(NSString *)verifierId publicKey:(id<VSAPublicKey>)publicKey {
     ((NSMutableDictionary *)_verifiers)[verifierId] = publicKey;
 }
 
+//FIXME
 - (BOOL)validateCardResponse:(VSSCardResponse *)cardResponse {
+    return NO;
     // Support for legacy Cards.
-    if ([cardResponse.cardVersion isEqualToString:@"3.0"])
-        return YES;
-
-    VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:cardResponse.snapshot];
-    
-    NSString *cardId = fingerprint.hexValue;
-    if (![cardResponse.identifier isEqualToString:cardId])
-        return NO;
-    
-    NSMutableDictionary *verifiers = [self.verifiers mutableCopy];
-    VSSPublicKey *creatorPublicKey = [self.crypto importPublicKeyFromData:cardResponse.model.publicKeyData];
-    verifiers[cardId] = creatorPublicKey;
-
-    for (NSString *verifierId in verifiers.allKeys) {
-        BOOL isVraSignature = [verifierId isEqualToString:kVSSVraServiceCardId];
-        BOOL isCardsServiceSignature = [verifierId isEqualToString:kVSSCardsServiceCardId];
-        BOOL isSelfSignature = [verifierId isEqualToString:cardId];
-
-        // Don't verify with BuiltIn verifiers
-        if (!self.useVirgilServiceVerifiers && (isVraSignature || isCardsServiceSignature)) {
-            continue;
-        }
-        
-        switch (cardResponse.model.scope) {
-            case VSSCardScopeGlobal:
-                // For Global cards only Vra, Cards Servive and Self signatures are verified
-                if (!isVraSignature
-                    && !isCardsServiceSignature
-                    && !isSelfSignature) {
-                    continue;
-                }
-                break;
-                
-            case VSSCardScopeApplication:
-                //  Don't verify Vra signature for non-global cards
-                if (isVraSignature) {
-                    continue;
-                }
-                break;
-        }
-        
-        NSData *signature = cardResponse.signatures[verifierId];
-        if (signature == nil)
-            return NO;
-        
-        NSError *error;
-        BOOL isVerified = [self.crypto verifyData:fingerprint.value withSignature:signature usingSignerPublicKey:verifiers[verifierId] error:&error];
-
-        if (!isVerified)
-            return NO;
-    }
-
-    return YES;
+//    if ([cardResponse.cardVersion isEqualToString:@"3.0"])
+//        return YES;
+//
+//    VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:cardResponse.snapshot];
+//    
+//    NSString *cardId = fingerprint.hexValue;
+//    if (![cardResponse.identifier isEqualToString:cardId])
+//        return NO;
+//    
+//    NSMutableDictionary *verifiers = [self.verifiers mutableCopy];
+//    VSSPublicKey *creatorPublicKey = [self.crypto importPublicKeyFromData:cardResponse.model.publicKeyData];
+//    verifiers[cardId] = creatorPublicKey;
+//
+//    for (NSString *verifierId in verifiers.allKeys) {
+//        BOOL isVraSignature = [verifierId isEqualToString:kVSSVraServiceCardId];
+//        BOOL isCardsServiceSignature = [verifierId isEqualToString:kVSSCardsServiceCardId];
+//        BOOL isSelfSignature = [verifierId isEqualToString:cardId];
+//
+//        // Don't verify with BuiltIn verifiers
+//        if (!self.useVirgilServiceVerifiers && (isVraSignature || isCardsServiceSignature)) {
+//            continue;
+//        }
+//        
+//        switch (cardResponse.model.scope) {
+//            case VSSCardScopeGlobal:
+//                // For Global cards only Vra, Cards Servive and Self signatures are verified
+//                if (!isVraSignature
+//                    && !isCardsServiceSignature
+//                    && !isSelfSignature) {
+//                    continue;
+//                }
+//                break;
+//                
+//            case VSSCardScopeApplication:
+//                //  Don't verify Vra signature for non-global cards
+//                if (isVraSignature) {
+//                    continue;
+//                }
+//                break;
+//        }
+//        
+//        NSData *signature = cardResponse.signatures[verifierId];
+//        if (signature == nil)
+//            return NO;
+//        
+//        NSError *error;
+//        BOOL isVerified = [self.crypto verifyData:fingerprint.value withSignature:signature usingSignerPublicKey:verifiers[verifierId] error:&error];
+//
+//        if (!isVerified)
+//            return NO;
+//    }
+//
+//    return YES;
 }
 
 @end

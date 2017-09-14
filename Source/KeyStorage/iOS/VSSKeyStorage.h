@@ -6,8 +6,8 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#import "VSSKeyStorageProtocol.h"
 #import "VSSKeyStorageConfiguration.h"
+#import "VSSKeyEntry.h"
 #import "VSSKeyAttrs.h"
 
 extern NSString * __nonnull const kVSSKeyStorageErrorDomain;
@@ -15,7 +15,7 @@ extern NSString * __nonnull const kVSSKeyStorageErrorDomain;
 /**
  Default VSSKeyStorage protocol implementation using Keychain.
  */
-@interface VSSKeyStorage : NSObject <VSSKeyStorage>
+@interface VSSKeyStorage : NSObject
 
 /**
  Configuration.

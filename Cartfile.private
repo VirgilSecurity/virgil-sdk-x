@@ -1,1 +1,2 @@
 github "SanjoDeundiak/MailinatorClient" "master"
+github "VirgilSecurity/virgil-foundation-x" "v3"
