@@ -8,13 +8,29 @@
 
 import Foundation
 
-// FIXME
 @objc(VSSRawCard) public class RawCard: NSObject, VSSDeserializable {
     public let contentSnapshot: Data
-//    public let signatures:
+    public let signatures: [RawSignature]
     
     public required init?(dict candidate: [AnyHashable : Any]) {
-        self.contentSnapshot = Data()
+        guard let snapshotStr = candidate["content_snapshot"] as? String,
+            let snapshot = Data(base64Encoded: snapshotStr),
+            let signaturesArray = candidate["signatures"] as? [[String : Any]] else {
+                return nil
+        }
+        
+        var signatures: [RawSignature] = []
+        signatures.reserveCapacity(signaturesArray.count)
+        for signatureDict in signaturesArray {
+            guard let signature = RawSignature(dict: signatureDict) else {
+                return nil
+            }
+            
+            signatures.append(signature)
+        }
+        
+        self.contentSnapshot = snapshot
+        self.signatures = signatures
         
         super.init()
     }
