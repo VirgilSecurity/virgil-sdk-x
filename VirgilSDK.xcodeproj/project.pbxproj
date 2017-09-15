@@ -13,6 +13,8 @@
 			buildPhases = (
 			);
 			dependencies = (
+				4284C3AF1F6BE9B800B75491 /* PBXTargetDependency */,
+				4284C3B11F6BE9B800B75491 /* PBXTargetDependency */,
 				42745A581ED43D9B00C1DEEC /* PBXTargetDependency */,
 				42745A561ED43D9900C1DEEC /* PBXTargetDependency */,
 			);
@@ -96,6 +98,30 @@
 		4284C37A1F6BE88800B75491 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CF01EE1F6A8CDC003ABB19 /* VirgilCryptoAPI.framework */; };
 		4284C37B1F6BE8A100B75491 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CF01F01F6A8CE8003ABB19 /* VirgilCryptoAPI.framework */; };
 		4284C37C1F6BE8A700B75491 /* VirgilCryptoAPI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42CF01F01F6A8CE8003ABB19 /* VirgilCryptoAPI.framework */; };
+		4284C38F1F6BE97100B75491 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4284C38E1F6BE97100B75491 /* VirgilCryptoAPI.framework */; };
+		4284C39E1F6BE98B00B75491 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4284C39D1F6BE98B00B75491 /* VirgilCryptoAPI.framework */; };
+		4284C3A81F6BE9A200B75491 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4284C3861F6BE95700B75491 /* VirgilSDK.framework */; };
+		4284C3B21F6BE9F300B75491 /* RawCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C34D1F6AB69600B75491 /* RawCard.swift */; };
+		4284C3B31F6BE9F300B75491 /* RawSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3531F6AD2C900B75491 /* RawSignature.swift */; };
+		4284C3B41F6BE9F400B75491 /* RawCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C34D1F6AB69600B75491 /* RawCard.swift */; };
+		4284C3B51F6BE9F400B75491 /* RawSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3531F6AD2C900B75491 /* RawSignature.swift */; };
+		4284C3B61F6BE9F700B75491 /* CardClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01F91F6AA174003ABB19 /* CardClient.swift */; };
+		4284C3B71F6BE9F800B75491 /* CardClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01F91F6AA174003ABB19 /* CardClient.swift */; };
+		4284C3B81F6BEA0100B75491 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C34A1F6AAB7B00B75491 /* Log.swift */; };
+		4284C3B91F6BEA0100B75491 /* CardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01F31F6A9DD5003ABB19 /* CardManager.swift */; };
+		4284C3BA1F6BEA0100B75491 /* CardManagerParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01F61F6A9EF9003ABB19 /* CardManagerParams.swift */; };
+		4284C3BB1F6BEA0200B75491 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C34A1F6AAB7B00B75491 /* Log.swift */; };
+		4284C3BC1F6BEA0200B75491 /* CardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01F31F6A9DD5003ABB19 /* CardManager.swift */; };
+		4284C3BD1F6BEA0200B75491 /* CardManagerParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01F61F6A9EF9003ABB19 /* CardManagerParams.swift */; };
+		4284C3BE1F6BEA0600B75491 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
+		4284C3BF1F6BEA0700B75491 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
+		4284C3C01F6BEA1200B75491 /* Deserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3691F6BDC4D00B75491 /* Deserializable.swift */; };
+		4284C3C11F6BEA1300B75491 /* Deserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3691F6BDC4D00B75491 /* Deserializable.swift */; };
+		4284C3C21F6BEA2100B75491 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01FC1F6AA209003ABB19 /* Connection.swift */; };
+		4284C3C31F6BEA2100B75491 /* ServiceConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01FF1F6AA2AD003ABB19 /* ServiceConnection.swift */; };
+		4284C3C41F6BEA2200B75491 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01FC1F6AA209003ABB19 /* Connection.swift */; };
+		4284C3C51F6BEA2200B75491 /* ServiceConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01FF1F6AA2AD003ABB19 /* ServiceConnection.swift */; };
+		4284C3C61F6BEA2D00B75491 /* VSS001_CardClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */; };
 		429123641F4B0B3700103BE0 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 429123551F4B0B3700103BE0 /* sdk_compatibility_data.json */; };
 		429123651F4B0B3700103BE0 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 429123551F4B0B3700103BE0 /* sdk_compatibility_data.json */; };
 		429123661F4B0B3700103BE0 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
@@ -154,6 +180,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = 422499B91EB39B380032F556;
 			remoteInfo = "VirgilSDK macOS";
+		};
+		4284C3A91F6BE9A200B75491 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4284C3851F6BE95700B75491;
+			remoteInfo = "VirgilSDK tvOS";
+		};
+		4284C3AE1F6BE9B800B75491 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4284C3851F6BE95700B75491;
+			remoteInfo = "VirgilSDK tvOS";
+		};
+		4284C3B01F6BE9B800B75491 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4284C3941F6BE97C00B75491;
+			remoteInfo = "VirgilSDK watchOS";
 		};
 		42B7E3611DB8F72200D70C12 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -296,6 +343,11 @@
 		4284C3531F6AD2C900B75491 /* RawSignature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawSignature.swift; sourceTree = "<group>"; };
 		4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS001_CardClientTests.m; sourceTree = "<group>"; };
 		4284C3691F6BDC4D00B75491 /* Deserializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deserializable.swift; sourceTree = "<group>"; };
+		4284C3861F6BE95700B75491 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4284C38E1F6BE97100B75491 /* VirgilCryptoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoAPI.framework; path = Carthage/Build/tvOS/VirgilCryptoAPI.framework; sourceTree = "<group>"; };
+		4284C3951F6BE97C00B75491 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4284C39D1F6BE98B00B75491 /* VirgilCryptoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoAPI.framework; path = Carthage/Build/watchOS/VirgilCryptoAPI.framework; sourceTree = "<group>"; };
+		4284C3A31F6BE9A200B75491 /* VirgilSDK tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilSDK tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		429123531F4B0B3700103BE0 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		429123551F4B0B3700103BE0 /* sdk_compatibility_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sdk_compatibility_data.json; sourceTree = "<group>"; };
 		429123561F4B0B3700103BE0 /* TestConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestConfig.plist; sourceTree = "<group>"; };
@@ -415,6 +467,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4284C3821F6BE95700B75491 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4284C38F1F6BE97100B75491 /* VirgilCryptoAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4284C3911F6BE97C00B75491 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4284C39E1F6BE98B00B75491 /* VirgilCryptoAPI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4284C3A01F6BE9A200B75491 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4284C3A81F6BE9A200B75491 /* VirgilSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		42B7E3581DB8F72200D70C12 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -455,6 +531,9 @@
 				42B7E35B1DB8F72200D70C12 /* VirgilSDK iOS Tests.xctest */,
 				422499BA1EB39B380032F556 /* VirgilSDK.framework */,
 				422499C21EB39B380032F556 /* VirgilSDK macOS Tests.xctest */,
+				4284C3861F6BE95700B75491 /* VirgilSDK.framework */,
+				4284C3951F6BE97C00B75491 /* VirgilSDK.framework */,
+				4284C3A31F6BE9A200B75491 /* VirgilSDK tvOS Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -918,6 +997,8 @@
 		ECBE87D3B790F5C27AAB2582 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4284C39D1F6BE98B00B75491 /* VirgilCryptoAPI.framework */,
+				4284C38E1F6BE97100B75491 /* VirgilCryptoAPI.framework */,
 				42CF01F01F6A8CE8003ABB19 /* VirgilCryptoAPI.framework */,
 				42CF01EE1F6A8CDC003ABB19 /* VirgilCryptoAPI.framework */,
 				42845F091ED2F883004AED0C /* Mailinator.framework */,
@@ -962,6 +1043,20 @@
 				42249AB01EB39E5C0032F556 /* VSSConfirmIdentityResponsePrivate.h in Headers */,
 				42249AAE1EB39E5C0032F556 /* VSSCardResponsePrivate.h in Headers */,
 				42249AB81EB39E6F0032F556 /* VSSImportable.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4284C3831F6BE95700B75491 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4284C3921F6BE97C00B75491 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1042,6 +1137,61 @@
 			productReference = 422499C21EB39B380032F556 /* VirgilSDK macOS Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		4284C3851F6BE95700B75491 /* VirgilSDK tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4284C38B1F6BE95700B75491 /* Build configuration list for PBXNativeTarget "VirgilSDK tvOS" */;
+			buildPhases = (
+				4284C3811F6BE95700B75491 /* Sources */,
+				4284C3821F6BE95700B75491 /* Frameworks */,
+				4284C3831F6BE95700B75491 /* Headers */,
+				4284C3841F6BE95700B75491 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "VirgilSDK tvOS";
+			productName = "VirgilSDK tvOS";
+			productReference = 4284C3861F6BE95700B75491 /* VirgilSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		4284C3941F6BE97C00B75491 /* VirgilSDK watchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4284C39A1F6BE97C00B75491 /* Build configuration list for PBXNativeTarget "VirgilSDK watchOS" */;
+			buildPhases = (
+				4284C3901F6BE97C00B75491 /* Sources */,
+				4284C3911F6BE97C00B75491 /* Frameworks */,
+				4284C3921F6BE97C00B75491 /* Headers */,
+				4284C3931F6BE97C00B75491 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "VirgilSDK watchOS";
+			productName = "VirgilSDK watchOS";
+			productReference = 4284C3951F6BE97C00B75491 /* VirgilSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		4284C3A21F6BE9A200B75491 /* VirgilSDK tvOS Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4284C3AB1F6BE9A200B75491 /* Build configuration list for PBXNativeTarget "VirgilSDK tvOS Tests" */;
+			buildPhases = (
+				4284C39F1F6BE9A200B75491 /* Sources */,
+				4284C3A01F6BE9A200B75491 /* Frameworks */,
+				4284C3A11F6BE9A200B75491 /* Resources */,
+				4284C3C71F6BEA5900B75491 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4284C3AA1F6BE9A200B75491 /* PBXTargetDependency */,
+			);
+			name = "VirgilSDK tvOS Tests";
+			productName = "VirgilSDK tvOS Tests";
+			productReference = 4284C3A31F6BE9A200B75491 /* VirgilSDK tvOS Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		42B7E35A1DB8F72200D70C12 /* VirgilSDK iOS Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 42B7E3631DB8F72200D70C12 /* Build configuration list for PBXNativeTarget "VirgilSDK iOS Tests" */;
@@ -1084,7 +1234,7 @@
 		3614030D1BB2E05F002E69CA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0810;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = VirgilSecurity;
 				TargetAttributes = {
@@ -1099,6 +1249,18 @@
 					};
 					42745A511ED43D9400C1DEEC = {
 						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
+					4284C3851F6BE95700B75491 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
+					4284C3941F6BE97C00B75491 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+					};
+					4284C3A21F6BE9A200B75491 = {
+						CreatedOnToolsVersion = 8.3.3;
 						ProvisioningStyle = Automatic;
 					};
 					42B7E35A1DB8F72200D70C12 = {
@@ -1129,6 +1291,9 @@
 				42B7E35A1DB8F72200D70C12 /* VirgilSDK iOS Tests */,
 				422499B91EB39B380032F556 /* VirgilSDK macOS */,
 				422499C11EB39B380032F556 /* VirgilSDK macOS Tests */,
+				4284C3851F6BE95700B75491 /* VirgilSDK tvOS */,
+				4284C3A21F6BE9A200B75491 /* VirgilSDK tvOS Tests */,
+				4284C3941F6BE97C00B75491 /* VirgilSDK watchOS */,
 				42745A511ED43D9400C1DEEC /* VirgilSDK */,
 			);
 		};
@@ -1142,6 +1307,27 @@
 				429123691F4B0B3700103BE0 /* testData.txt in Resources */,
 				429123671F4B0B3700103BE0 /* TestConfig.plist in Resources */,
 				429123651F4B0B3700103BE0 /* sdk_compatibility_data.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4284C3841F6BE95700B75491 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4284C3931F6BE97C00B75491 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4284C3A11F6BE9A200B75491 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1167,6 +1353,22 @@
 				"$(SRCROOT)/Carthage/Build/iOS/VirgilCrypto.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Mailinator.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/VirgilCryptoAPI.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		4284C3C71F6BEA5900B75491 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/tvOS/VirgilCrypto.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/Mailinator.framework",
+				"$(SRCROOT)/Carthage/Build/tvOS/VirgilCryptoAPI.framework",
 			);
 			outputPaths = (
 			);
@@ -1203,6 +1405,48 @@
 			files = (
 				4284C3571F6BDBC500B75491 /* VSS001_CardClientTests.m in Sources */,
 				4291237B1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4284C3811F6BE95700B75491 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4284C3B21F6BE9F300B75491 /* RawCard.swift in Sources */,
+				4284C3C31F6BEA2100B75491 /* ServiceConnection.swift in Sources */,
+				4284C3C21F6BEA2100B75491 /* Connection.swift in Sources */,
+				4284C3B61F6BE9F700B75491 /* CardClient.swift in Sources */,
+				4284C3B81F6BEA0100B75491 /* Log.swift in Sources */,
+				4284C3BE1F6BEA0600B75491 /* VSSKeyEntry.m in Sources */,
+				4284C3B91F6BEA0100B75491 /* CardManager.swift in Sources */,
+				4284C3B31F6BE9F300B75491 /* RawSignature.swift in Sources */,
+				4284C3BA1F6BEA0100B75491 /* CardManagerParams.swift in Sources */,
+				4284C3C01F6BEA1200B75491 /* Deserializable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4284C3901F6BE97C00B75491 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4284C3B41F6BE9F400B75491 /* RawCard.swift in Sources */,
+				4284C3C51F6BEA2200B75491 /* ServiceConnection.swift in Sources */,
+				4284C3C41F6BEA2200B75491 /* Connection.swift in Sources */,
+				4284C3B71F6BE9F800B75491 /* CardClient.swift in Sources */,
+				4284C3BB1F6BEA0200B75491 /* Log.swift in Sources */,
+				4284C3BF1F6BEA0700B75491 /* VSSKeyEntry.m in Sources */,
+				4284C3BC1F6BEA0200B75491 /* CardManager.swift in Sources */,
+				4284C3B51F6BE9F400B75491 /* RawSignature.swift in Sources */,
+				4284C3BD1F6BEA0200B75491 /* CardManagerParams.swift in Sources */,
+				4284C3C11F6BEA1300B75491 /* Deserializable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4284C39F1F6BE9A200B75491 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4284C3C61F6BEA2D00B75491 /* VSS001_CardClientTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1254,6 +1498,21 @@
 			isa = PBXTargetDependency;
 			target = 422499B91EB39B380032F556 /* VirgilSDK macOS */;
 			targetProxy = 42745A571ED43D9B00C1DEEC /* PBXContainerItemProxy */;
+		};
+		4284C3AA1F6BE9A200B75491 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4284C3851F6BE95700B75491 /* VirgilSDK tvOS */;
+			targetProxy = 4284C3A91F6BE9A200B75491 /* PBXContainerItemProxy */;
+		};
+		4284C3AF1F6BE9B800B75491 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4284C3851F6BE95700B75491 /* VirgilSDK tvOS */;
+			targetProxy = 4284C3AE1F6BE9B800B75491 /* PBXContainerItemProxy */;
+		};
+		4284C3B11F6BE9B800B75491 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4284C3941F6BE97C00B75491 /* VirgilSDK watchOS */;
+			targetProxy = 4284C3B01F6BE9B800B75491 /* PBXContainerItemProxy */;
 		};
 		42B7E3621DB8F72200D70C12 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1515,6 +1774,187 @@
 			};
 			name = Release;
 		};
+		4284C38C1F6BE95700B75491 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = VirgilSDK/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDK;
+				PRODUCT_NAME = VirgilSDK;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4284C38D1F6BE95700B75491 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
+				INFOPLIST_FILE = VirgilSDK/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDK;
+				PRODUCT_NAME = VirgilSDK;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4284C39B1F6BE97C00B75491 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/watchOS",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = VirgilSDK/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDK;
+				PRODUCT_NAME = VirgilSDK;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		4284C39C1F6BE97C00B75491 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/watchOS",
+				);
+				INFOPLIST_FILE = VirgilSDK/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDK;
+				PRODUCT_NAME = VirgilSDK;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		4284C3AC1F6BE9A200B75491 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "VirgilSDK tvOS Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilSDK-tvOS-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Debug;
+		};
+		4284C3AD1F6BE9A200B75491 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				INFOPLIST_FILE = "VirgilSDK tvOS Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilSDK-tvOS-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Release;
+		};
 		42B7E3641DB8F72200D70C12 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1692,6 +2132,30 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		4284C38B1F6BE95700B75491 /* Build configuration list for PBXNativeTarget "VirgilSDK tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4284C38C1F6BE95700B75491 /* Debug */,
+				4284C38D1F6BE95700B75491 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		4284C39A1F6BE97C00B75491 /* Build configuration list for PBXNativeTarget "VirgilSDK watchOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4284C39B1F6BE97C00B75491 /* Debug */,
+				4284C39C1F6BE97C00B75491 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		4284C3AB1F6BE9A200B75491 /* Build configuration list for PBXNativeTarget "VirgilSDK tvOS Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4284C3AC1F6BE9A200B75491 /* Debug */,
+				4284C3AD1F6BE9A200B75491 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		42B7E3631DB8F72200D70C12 /* Build configuration list for PBXNativeTarget "VirgilSDK iOS Tests" */ = {
 			isa = XCConfigurationList;
