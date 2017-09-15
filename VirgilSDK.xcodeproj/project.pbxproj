@@ -102,13 +102,6 @@
 		429123671F4B0B3700103BE0 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
 		429123681F4B0B3700103BE0 /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 429123571F4B0B3700103BE0 /* testData.txt */; };
 		429123691F4B0B3700103BE0 /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 429123571F4B0B3700103BE0 /* testData.txt */; };
-		4291236B1F4B0B3700103BE0 /* VSS001_ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429123591F4B0B3700103BE0 /* VSS001_ClientTests.swift */; };
-		4291236D1F4B0B3700103BE0 /* VSS002_ClientWOTokenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4291235A1F4B0B3700103BE0 /* VSS002_ClientWOTokenTests.swift */; };
-		4291236F1F4B0B3700103BE0 /* VSS003_CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4291235B1F4B0B3700103BE0 /* VSS003_CryptoTests.swift */; };
-		429123711F4B0B3700103BE0 /* VSS004_ModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4291235C1F4B0B3700103BE0 /* VSS004_ModelsTests.swift */; };
-		429123731F4B0B3700103BE0 /* VSS005_CompatibilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4291235D1F4B0B3700103BE0 /* VSS005_CompatibilityTests.swift */; };
-		429123771F4B0B3700103BE0 /* VSS007_HighLevelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4291235F1F4B0B3700103BE0 /* VSS007_HighLevelTests.swift */; };
-		429123791F4B0B3700103BE0 /* VSS008_HighLevelCryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429123601F4B0B3700103BE0 /* VSS008_HighLevelCryptoTests.swift */; };
 		4291237A1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 429123621F4B0B3700103BE0 /* VSSTestsConst.m */; };
 		4291237B1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 429123621F4B0B3700103BE0 /* VSSTestsConst.m */; };
 		4291237F1F4C53E100103BE0 /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4291237E1F4C53E100103BE0 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1208,15 +1201,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4291236D1F4B0B3700103BE0 /* VSS002_ClientWOTokenTests.swift in Sources */,
-				429123791F4B0B3700103BE0 /* VSS008_HighLevelCryptoTests.swift in Sources */,
-				429123731F4B0B3700103BE0 /* VSS005_CompatibilityTests.swift in Sources */,
-				429123771F4B0B3700103BE0 /* VSS007_HighLevelTests.swift in Sources */,
-				429123711F4B0B3700103BE0 /* VSS004_ModelsTests.swift in Sources */,
 				4284C3571F6BDBC500B75491 /* VSS001_CardClientTests.m in Sources */,
-				4291236B1F4B0B3700103BE0 /* VSS001_ClientTests.swift in Sources */,
 				4291237B1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
-				4291236F1F4B0B3700103BE0 /* VSS003_CryptoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
