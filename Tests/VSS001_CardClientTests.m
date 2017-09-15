@@ -7,3 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <XCTest/XCTest.h>
+
+@interface VSS001_CardClientTests : XCTestCase
+
+@end
+
+@implementation VSS001_CardClientTests
+
+- (void)test001_createCard {
+}
+
+@end

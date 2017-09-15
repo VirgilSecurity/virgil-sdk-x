@@ -18,44 +18,63 @@ import Foundation
         return NSError()
     }
     
-    public func getCard(withId cardId: String, completion: @escaping (RawCard?, Error?) -> ()) {
+    public func getCard(withId cardId: String) throws -> RawCard {
         guard let url = URL(string: "card/\(cardId)", relativeTo: self.baseUrl) else {
             // FIXME
-            return
+            throw NSError()
         }
         
         let request = ServiceRequest(url: url, method: .get, apiToken: self.apiToken)
         
-        do {
-            let response = try self.connection.send(request)
-            
-            guard response.statusCode == 200 else {
-                let error = self.handleError(statusCode: response.statusCode, body: response.body)
-                completion(nil, error)
-                return
-            }
-            
-            guard let data = response.body else {
-                completion(nil, NSError())
-                return
-            }
-            
-            guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [AnyHashable : Any] else {
-                completion(nil, NSError())
-                return
-            }
-            
-            guard let rawCard = RawCard(dict: json) else {
-                completion(nil, NSError())
-                return
-            }
-            
-            completion(rawCard, nil)
-            return
+        let response = try self.connection.send(request)
+        
+        guard response.statusCode == 200 else {
+            throw self.handleError(statusCode: response.statusCode, body: response.body)
         }
-        catch {
-            completion(nil, error)
-            return
+        
+        guard let data = response.body else {
+            throw NSError()
         }
+        
+        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [AnyHashable : Any] else {
+            throw NSError()
+        }
+        
+        guard let rawCard = RawCard(dict: json) else {
+            throw NSError()
+        }
+        
+        return rawCard
     }
+    
+    public func publishCard(request: RawCard) throws -> RawCard {
+        guard let url = URL(string: "card", relativeTo: self.baseUrl) else {
+            // FIXME
+            throw NSError()
+        }
+        
+        let request = ServiceRequest(url: url, method: .post, apiToken: self.apiToken)
+        
+        let response = try self.connection.send(request)
+        
+        guard response.statusCode == 200 else {
+            throw self.handleError(statusCode: response.statusCode, body: response.body)
+        }
+        
+        guard let data = response.body else {
+            throw NSError()
+        }
+        
+        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [AnyHashable : Any] else {
+            throw NSError()
+        }
+        
+        guard let rawCard = RawCard(dict: json) else {
+            throw NSError()
+        }
+        
+        return rawCard
+    }
+    
+    // SEARCH CARD
 }

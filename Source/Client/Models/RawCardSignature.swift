@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc(VSSRawSignature) public class RawSignature: NSObject, Deserializable {
+@objc(VSSRawCardSignature) public class RawCardSignature: NSObject, Deserializable {
     public let signerId: String
     public let signerType: String
     public let snapshot: Data

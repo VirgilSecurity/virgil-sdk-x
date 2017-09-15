@@ -27,4 +27,10 @@ import VirgilCryptoAPI
 //    public func getCard(withId cardId: String, completion: @escaping (VSSCard?, Error?) -> ()) {
 //        
 //    }
+    
+//    public func publishCard(csr: CSR) throws -> Card {
+//        let rawCard = try self.client.publishCard(request: csr.rawCard)
+//        
+//        
+//    }
 }
