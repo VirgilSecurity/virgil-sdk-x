@@ -89,13 +89,13 @@
 		4284C3541F6AD2C900B75491 /* RawSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3531F6AD2C900B75491 /* RawSignature.swift */; };
 		4284C3561F6BDBC500B75491 /* VSS001_CardClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */; };
 		4284C3571F6BDBC500B75491 /* VSS001_CardClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */; };
-		4284C3591F6BDBDC00B75491 /* VSS006_KeyStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4291235E1F4B0B3700103BE0 /* VSS006_KeyStorageTests.swift */; };
-		4284C35B1F6BDBDC00B75491 /* VSS006_KeyStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4291235E1F4B0B3700103BE0 /* VSS006_KeyStorageTests.swift */; };
-		4284C35C1F6BDBDC00B75491 /* VSS009_KeyStorageiOSSpecificTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B6CF681F58771A0024857B /* VSS009_KeyStorageiOSSpecificTests.swift */; };
 		4284C36C1F6BDC8200B75491 /* Deserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3691F6BDC4D00B75491 /* Deserializable.swift */; };
 		4284C36D1F6BDC8300B75491 /* Deserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3691F6BDC4D00B75491 /* Deserializable.swift */; };
 		4284C36E1F6BE54800B75491 /* RawCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C34D1F6AB69600B75491 /* RawCard.swift */; };
 		4284C36F1F6BE54D00B75491 /* RawSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3531F6AD2C900B75491 /* RawSignature.swift */; };
+		4284C37A1F6BE88800B75491 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CF01EE1F6A8CDC003ABB19 /* VirgilCryptoAPI.framework */; };
+		4284C37B1F6BE8A100B75491 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CF01F01F6A8CE8003ABB19 /* VirgilCryptoAPI.framework */; };
+		4284C37C1F6BE8A700B75491 /* VirgilCryptoAPI.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42CF01F01F6A8CE8003ABB19 /* VirgilCryptoAPI.framework */; };
 		429123641F4B0B3700103BE0 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 429123551F4B0B3700103BE0 /* sdk_compatibility_data.json */; };
 		429123651F4B0B3700103BE0 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 429123551F4B0B3700103BE0 /* sdk_compatibility_data.json */; };
 		429123661F4B0B3700103BE0 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
@@ -111,8 +111,6 @@
 		429123791F4B0B3700103BE0 /* VSS008_HighLevelCryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429123601F4B0B3700103BE0 /* VSS008_HighLevelCryptoTests.swift */; };
 		4291237A1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 429123621F4B0B3700103BE0 /* VSSTestsConst.m */; };
 		4291237B1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 429123621F4B0B3700103BE0 /* VSSTestsConst.m */; };
-		4291237C1F4B0B3700103BE0 /* VSSTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429123631F4B0B3700103BE0 /* VSSTestUtils.swift */; };
-		4291237D1F4B0B3700103BE0 /* VSSTestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429123631F4B0B3700103BE0 /* VSSTestUtils.swift */; };
 		4291237F1F4C53E100103BE0 /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4291237E1F4C53E100103BE0 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		429123821F4C540100103BE0 /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 429123801F4C53E700103BE0 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		429123AB1F4D722000103BE0 /* VSSKeyAttrs.h in Headers */ = {isa = PBXBuildFile; fileRef = 429123AA1F4D722000103BE0 /* VSSKeyAttrs.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -180,6 +178,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				4284C37C1F6BE8A700B75491 /* VirgilCryptoAPI.framework in CopyFiles */,
 				42512F751ED302C50007DFCC /* Mailinator.framework in CopyFiles */,
 				42505EDB1ECDEF8B00BCA031 /* VirgilCrypto.framework in CopyFiles */,
 			);
@@ -416,6 +415,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4284C37B1F6BE8A100B75491 /* VirgilCryptoAPI.framework in Frameworks */,
 				42845F0A1ED2F883004AED0C /* Mailinator.framework in Frameworks */,
 				42505ED41ECDED0200BCA031 /* VirgilCrypto.framework in Frameworks */,
 				422499C31EB39B380032F556 /* VirgilSDK.framework in Frameworks */,
@@ -426,6 +426,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4284C37A1F6BE88800B75491 /* VirgilCryptoAPI.framework in Frameworks */,
 				42845F061ED2F846004AED0C /* Mailinator.framework in Frameworks */,
 				42505ED31ECDECF600BCA031 /* VirgilCrypto.framework in Frameworks */,
 				42B7E3601DB8F72200D70C12 /* VirgilSDK.framework in Frameworks */,
@@ -1172,6 +1173,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/VirgilCrypto.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Mailinator.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/VirgilCryptoAPI.framework",
 			);
 			outputPaths = (
 			);
@@ -1212,10 +1214,8 @@
 				429123771F4B0B3700103BE0 /* VSS007_HighLevelTests.swift in Sources */,
 				429123711F4B0B3700103BE0 /* VSS004_ModelsTests.swift in Sources */,
 				4284C3571F6BDBC500B75491 /* VSS001_CardClientTests.m in Sources */,
-				4291237D1F4B0B3700103BE0 /* VSSTestUtils.swift in Sources */,
 				4291236B1F4B0B3700103BE0 /* VSS001_ClientTests.swift in Sources */,
 				4291237B1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
-				4284C3591F6BDBDC00B75491 /* VSS006_KeyStorageTests.swift in Sources */,
 				4291236F1F4B0B3700103BE0 /* VSS003_CryptoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1225,9 +1225,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4284C3561F6BDBC500B75491 /* VSS001_CardClientTests.m in Sources */,
-				4284C35B1F6BDBDC00B75491 /* VSS006_KeyStorageTests.swift in Sources */,
-				4284C35C1F6BDBDC00B75491 /* VSS009_KeyStorageiOSSpecificTests.swift in Sources */,
-				4291237C1F4B0B3700103BE0 /* VSSTestUtils.swift in Sources */,
 				4291237A1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

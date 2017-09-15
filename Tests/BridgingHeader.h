@@ -7,4 +7,3 @@
 //
 
 #import "VSSTestsConst.h"
-#import "PrivateApiDecl.h"
