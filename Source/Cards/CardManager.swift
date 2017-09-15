@@ -24,13 +24,19 @@ import VirgilCryptoAPI
         self.client = CardClient()
     }
     
-//    public func getCard(withId cardId: String, completion: @escaping (VSSCard?, Error?) -> ()) {
-//        
+//    public func getCard(withId cardId: String) throws -> Card {
+//        // FIXME
 //    }
     
-//    public func publishCard(csr: CSR) throws -> Card {
-//        let rawCard = try self.client.publishCard(request: csr.rawCard)
-//        
-//        
-//    }
+    public func publishCard(csr: CSR) throws -> Card {
+        let rawCard = try self.client.publishCard(request: csr.rawCard)
+        guard let card = Card.parse(crypto: self.crypto, rawCard: rawCard) else {
+            // FIXME
+            throw NSError()
+        }
+        
+        // Validate
+        
+        return card
+    }
 }

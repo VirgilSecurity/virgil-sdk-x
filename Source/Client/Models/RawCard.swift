@@ -10,9 +10,9 @@ import Foundation
 
 @objc(VSSRawCard) public class RawCard: NSObject, Deserializable {
     public let contentSnapshot: Data
-    public let signatures: [RawCardSignature]
+    public let signatures: [CardSignature]
     
-    public init(contentSnapshot: Data, signatures: [RawCardSignature]) {
+    public init(contentSnapshot: Data, signatures: [CardSignature]) {
         self.contentSnapshot = contentSnapshot
         self.signatures = signatures
         
@@ -30,10 +30,10 @@ import Foundation
                 return nil
         }
         
-        var signatures: [RawCardSignature] = []
+        var signatures: [CardSignature] = []
         signatures.reserveCapacity(signaturesArray.count)
         for signatureDict in signaturesArray {
-            guard let signature = RawCardSignature(dict: signatureDict) else {
+            guard let signature = CardSignature(dict: signatureDict) else {
                 return nil
             }
             

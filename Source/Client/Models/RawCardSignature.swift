@@ -1,5 +1,5 @@
 //
-//  RawSignature.swift
+//  CardSignature.swift
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 9/14/17.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-@objc(VSSRawCardSignature) public class RawCardSignature: NSObject, Deserializable {
+@objc(VSSCardSignature) public class CardSignature: NSObject, Deserializable {
     public let signerId: String
-    public let signerType: String
+    public let signerType: SignerType
     public let snapshot: Data
     public let signature: Data
     
@@ -20,7 +20,8 @@ import Foundation
         }
         
         guard let signerId = candidate["signer_id"] as? String,
-            let signerType = candidate["signer_type"] as? String,
+            let signerTypeStr = candidate["signer_type"] as? String,
+            let signerType = SignerType(from: signerTypeStr),
             let snapshotStr = candidate["snapshot_str"] as? String,
             let snapshot = Data(base64Encoded: snapshotStr),
             let signatureStr = candidate["signature"] as? String,
