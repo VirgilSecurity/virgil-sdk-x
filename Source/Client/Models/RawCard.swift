@@ -8,11 +8,15 @@
 
 import Foundation
 
-@objc(VSSRawCard) public class RawCard: NSObject, VSSDeserializable {
+@objc(VSSRawCard) public class RawCard: NSObject, Deserializable {
     public let contentSnapshot: Data
     public let signatures: [RawSignature]
     
-    public required init?(dict candidate: [AnyHashable : Any]) {
+    public required init?(dict: Any) {
+        guard let candidate = dict as? [String : AnyObject] else {
+            return nil
+        }
+        
         guard let snapshotStr = candidate["content_snapshot"] as? String,
             let snapshot = Data(base64Encoded: snapshotStr),
             let signaturesArray = candidate["signatures"] as? [[String : Any]] else {

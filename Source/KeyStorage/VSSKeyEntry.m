@@ -7,7 +7,6 @@
 //
 
 #import "VSSKeyEntry.h"
-#import "NSObject+VSSUtils.h"
 
 NSString *const kVSSKeyEntryName = @"name";
 NSString *const kVSSKeyEntryValue = @"value";

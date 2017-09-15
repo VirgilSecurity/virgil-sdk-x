@@ -8,13 +8,17 @@
 
 import Foundation
 
-@objc(VSSRawSignature) public class RawSignature: NSObject, VSSDeserializable {
+@objc(VSSRawSignature) public class RawSignature: NSObject, Deserializable {
     public let signerId: String
     public let signerType: String
     public let snapshot: Data
     public let signature: Data
     
-    public required init?(dict candidate: [AnyHashable : Any]) {
+    public required init?(dict: Any) {
+        guard let candidate = dict as? [String : Any] else {
+            return nil
+        }
+        
         guard let signerId = candidate["signer_id"] as? String,
             let signerType = candidate["signer_type"] as? String,
             let snapshotStr = candidate["snapshot_str"] as? String,

@@ -6,6 +6,8 @@
 //  Copyright © 2017 VirgilSecurity. All rights reserved.
 //
 
+import Foundation
+
 class Log {
     class func debug(_ closure: @autoclosure () -> String, functionName: String = #function, file: String = #file, line: UInt = #line) {
         #if DEBUG

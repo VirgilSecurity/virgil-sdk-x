@@ -18,13 +18,13 @@ import VirgilCryptoAPI
     public init(params: CardManagerParams) {
         self.crypto = params.crypto
         
-        let serviceConfig = VSSServiceConfig(token: params.apiToken)
-        serviceConfig.cardsServiceURL = params.apiUrl
+//        let serviceConfig = VSSServiceConfig(token: params.apiToken)
+//        serviceConfig.cardsServiceURL = params.apiUrl
         
         self.client = CardClient()
     }
     
-    public func getCard(withId cardId: String, completion: @escaping (VSSCard?, Error?) -> ()) {
-        
-    }
+//    public func getCard(withId cardId: String, completion: @escaping (VSSCard?, Error?) -> ()) {
+//        
+//    }
 }
