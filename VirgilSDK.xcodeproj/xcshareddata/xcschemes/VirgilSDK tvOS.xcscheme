@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4284C3851F6BE95700B75491"
-               BuildableName = "VirgilSDK tvOS.framework"
+               BuildableName = "VirgilSDK.framework"
                BlueprintName = "VirgilSDK tvOS"
                ReferencedContainer = "container:VirgilSDK.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4284C3851F6BE95700B75491"
-            BuildableName = "VirgilSDK tvOS.framework"
+            BuildableName = "VirgilSDK.framework"
             BlueprintName = "VirgilSDK tvOS"
             ReferencedContainer = "container:VirgilSDK.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4284C3851F6BE95700B75491"
-            BuildableName = "VirgilSDK tvOS.framework"
+            BuildableName = "VirgilSDK.framework"
             BlueprintName = "VirgilSDK tvOS"
             ReferencedContainer = "container:VirgilSDK.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4284C3851F6BE95700B75491"
-            BuildableName = "VirgilSDK tvOS.framework"
+            BuildableName = "VirgilSDK.framework"
             BlueprintName = "VirgilSDK tvOS"
             ReferencedContainer = "container:VirgilSDK.xcodeproj">
          </BuildableReference>
