@@ -43,7 +43,7 @@ import VirgilCryptoAPI
             }
         }
         
-        for signerInfo in self.whiteList {
+        if let signerInfo = self.whiteList.filter({ Set<String>(card.signatures.map({ $0.signerId  })).contains($0.cardId) }).first {
             if let publicKey = try? crypto.importPublicKey(from: signerInfo.publicKey) {
                 ExtendedValidator.validate(crypto: crypto, card: card, signerCardId: signerInfo.cardId, signerPublicKey: publicKey, signerKind: "Whitelist", result: result)
             }
@@ -51,18 +51,21 @@ import VirgilCryptoAPI
                 result.addError(NSError(domain: ExtendedValidator.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "Error importing Whitelist Public Key for \(signerInfo.cardId)"]))
             }
         }
+        else {
+            result.addError(NSError(domain: ExtendedValidator.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The card does not contain signature from specified Whitelist"]))
+        }
         
         return result
     }
     
     private class func validate(crypto: Crypto, card: Card, signerCardId: String, signerPublicKey: PublicKey, signerKind: String, result: ValidationResult) {
         guard let signature = card.signatures.first(where: { $0.signerId == signerCardId }) else {
-            result.addError(NSError(domain: ExtendedValidator.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The card does not contain the \(signerKind) signature"]))
+            result.addError(NSError(domain: ExtendedValidator.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The card does not contain the \(signerKind) signature for \(signerCardId)"]))
             return
         }
         
         guard crypto.verifySignature(signature.signature, of: card.fingerprint, with: signerPublicKey) else {
-            result.addError(NSError(domain: ExtendedValidator.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The \(signerKind) signature is not valid"]))
+            result.addError(NSError(domain: ExtendedValidator.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The \(signerKind) signature for \(signerCardId) is not valid"]))
             return
         }
     }
