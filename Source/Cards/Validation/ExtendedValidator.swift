@@ -64,9 +64,11 @@ import VirgilCryptoAPI
             return
         }
         
-        guard crypto.verifySignature(signature.signature, of: card.fingerprint, with: signerPublicKey) else {
+        do {
+            try crypto.verifySignature(signature.signature, of: card.fingerprint, with: signerPublicKey)
+        }
+        catch {
             result.addError(NSError(domain: ExtendedValidator.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The \(signerKind) signature for \(signerCardId) is not valid"]))
-            return
         }
     }
 }

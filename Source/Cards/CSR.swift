@@ -34,7 +34,7 @@ import VirgilCryptoAPI
     // IMPORT
     
     public class func generate(crypto: Crypto, params: CSRParams) throws -> CSR {
-        let cardInfo = RawCardInfo(identity: params.identity, publicKeyData: crypto.exportPublicKey(params.publicKey), version: "5.0")
+        let cardInfo = RawCardInfo(identity: params.identity, publicKeyData: try crypto.exportPublicKey(params.publicKey), version: "5.0")
         let snapshot = try SnapshotUtils.takeSnapshot(object: cardInfo)
         
         let csr = CSR(info: cardInfo, snapshot: snapshot, signatures: [])
