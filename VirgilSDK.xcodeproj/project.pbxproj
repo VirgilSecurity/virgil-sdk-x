@@ -140,6 +140,8 @@
 		4284C4661F70057800B75491 /* SignerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4641F7003D700B75491 /* SignerInfo.swift */; };
 		4284C4671F70057900B75491 /* SignerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4641F7003D700B75491 /* SignerInfo.swift */; };
 		4284C4681F70057900B75491 /* SignerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4641F7003D700B75491 /* SignerInfo.swift */; };
+		4284C4AE1F716C6500B75491 /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4AD1F716C6500B75491 /* ServiceRequest.swift */; };
+		4284C4B01F716C7700B75491 /* ServiceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4AF1F716C7700B75491 /* ServiceResponse.swift */; };
 		429123641F4B0B3700103BE0 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 429123551F4B0B3700103BE0 /* sdk_compatibility_data.json */; };
 		429123651F4B0B3700103BE0 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 429123551F4B0B3700103BE0 /* sdk_compatibility_data.json */; };
 		429123661F4B0B3700103BE0 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
@@ -276,6 +278,8 @@
 		4284C4551F6FECB600B75491 /* ValidationResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationResult.swift; sourceTree = "<group>"; };
 		4284C4581F6FECC300B75491 /* ExtendedValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedValidator.swift; sourceTree = "<group>"; };
 		4284C4641F7003D700B75491 /* SignerInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignerInfo.swift; sourceTree = "<group>"; };
+		4284C4AD1F716C6500B75491 /* ServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
+		4284C4AF1F716C7700B75491 /* ServiceResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceResponse.swift; sourceTree = "<group>"; };
 		429123531F4B0B3700103BE0 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		429123551F4B0B3700103BE0 /* sdk_compatibility_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sdk_compatibility_data.json; sourceTree = "<group>"; };
 		429123561F4B0B3700103BE0 /* TestConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestConfig.plist; sourceTree = "<group>"; };
@@ -576,6 +580,8 @@
 			children = (
 				42CF01FC1F6AA209003ABB19 /* Connection.swift */,
 				42CF01FF1F6AA2AD003ABB19 /* ServiceConnection.swift */,
+				4284C4AD1F716C6500B75491 /* ServiceRequest.swift */,
+				4284C4AF1F716C7700B75491 /* ServiceResponse.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1049,6 +1055,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4284C4561F6FECB600B75491 /* CardValidator.swift in Sources */,
+				4284C4B01F716C7700B75491 /* ServiceResponse.swift in Sources */,
 				4284C3DB1F6BF31100B75491 /* CSRParams.swift in Sources */,
 				4284C4571F6FECB600B75491 /* ValidationResult.swift in Sources */,
 				4284C3D51F6BF30A00B75491 /* SignParams.swift in Sources */,
@@ -1069,6 +1076,7 @@
 				42CF01F41F6A9DD5003ABB19 /* CardManager.swift in Sources */,
 				4284C4651F7003D700B75491 /* SignerInfo.swift in Sources */,
 				42CF01FA1F6AA174003ABB19 /* CardClient.swift in Sources */,
+				4284C4AE1F716C6500B75491 /* ServiceRequest.swift in Sources */,
 				423CEB5A1DCA06C900CCACB8 /* VSSKeyEntry.m in Sources */,
 				4284C3FF1F6C00C000B75491 /* Card.swift in Sources */,
 				4284C4421F6C1E3F00B75491 /* Serializable.swift in Sources */,
@@ -1161,6 +1169,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_MODULE_NAME = VirgilSDK;
 				PRODUCT_NAME = VirgilSDK;
 				SDKROOT = iphoneos;
@@ -1388,10 +1397,6 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/tvOS",
 				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = VirgilSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1457,10 +1462,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/watchOS",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
 				);
 				INFOPLIST_FILE = VirgilSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

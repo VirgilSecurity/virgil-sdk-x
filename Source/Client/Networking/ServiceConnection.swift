@@ -12,6 +12,11 @@ import Foundation
     private let queue: OperationQueue
     private let session: URLSession
     
+    @objc(VSSServiceConnectionError) public enum ServiceConnectionError: Int, Error {
+        case noUrlInRequest
+        case wrongResponseType
+    }
+    
     public override init() {
         self.queue = OperationQueue()
         self.queue.maxConcurrentOperationCount = 10
@@ -26,16 +31,17 @@ import Foundation
         let nativeRequest = request.getNativeRequest()
         
         guard let url = nativeRequest.url else {
-            // FIXME
-            throw NSError()
+            throw ServiceConnectionError.noUrlInRequest
         }
         
-        Log.debug("\(request.self): request method: \(nativeRequest.httpMethod ?? "")")
-        Log.debug("\(request.self): request url: \(url.absoluteString)")
+        let className = String(describing: type(of: self))
+        
+        Log.debug("\(className): request method: \(nativeRequest.httpMethod ?? "")")
+        Log.debug("\(className): request url: \(url.absoluteString)")
         if let data = nativeRequest.httpBody, data.count > 0, let str = String(data: data, encoding: .utf8) {
-            Log.debug("\(request.self): request body: \(str)")
+            Log.debug("\(className): request body: \(str)")
         }
-        Log.debug("\(request.self): request headers: \(nativeRequest.allHTTPHeaderFields ?? [:])")
+        Log.debug("\(className): request headers: \(nativeRequest.allHTTPHeaderFields ?? [:])")
         if let cookies = HTTPCookieStorage.shared.cookies(for: url) {
             for cookie in cookies {
                 Log.debug("*******COOKIE: \(cookie.name): \(cookie.value)")
@@ -47,13 +53,14 @@ import Foundation
         var dataT: Data?
         var responseT: URLResponse?
         var errorT: Error?
-        self.session.dataTask(with: nativeRequest) { dataR, responseR, errorR in
+        let task = self.session.dataTask(with: nativeRequest) { dataR, responseR, errorR in
             dataT = dataR
             responseT = responseR
             errorT = errorR
             
             semaphore.signal()
         }
+        task.resume()
         
         semaphore.wait()
         
@@ -62,17 +69,16 @@ import Foundation
         }
         
         guard let response = responseT as? HTTPURLResponse else {
-            // FIXME
-            throw NSError()
+            throw ServiceConnectionError.wrongResponseType
         }
         
-        Log.debug("\(request.self): response URL: \(response.url?.absoluteString ?? "")")
-        Log.debug("\(request.self): response HTTP status code: \(response.statusCode)")
-        Log.debug("\(request.self): response headers: \(response.allHeaderFields)")
+        Log.debug("\(className): response URL: \(response.url?.absoluteString ?? "")")
+        Log.debug("\(className): response HTTP status code: \(response.statusCode)")
+        Log.debug("\(className): response headers: \(response.allHeaderFields as AnyObject)")
         
         
         if let data = dataT, data.count > 0, let str = String(data: data, encoding: .utf8) {
-            Log.debug("\(request.self): response body: \(str)")
+            Log.debug("\(className): response body: \(str)")
         }
         
         return ServiceResponse(statusCode: response.statusCode, response: response, body: dataT)
@@ -81,69 +87,5 @@ import Foundation
     deinit {
         self.session.invalidateAndCancel()
         self.queue.cancelAllOperations()
-    }
-}
-
-@objc(VSSServiceResponse) public class ServiceResponse: NSObject, HTTPResponse {
-    public let statusCode: Int
-    public let response: HTTPURLResponse
-    public let body: Data?
-
-    public init(statusCode: Int, response: HTTPURLResponse, body: Data?) {
-        self.statusCode = statusCode
-        self.response = response
-        self.body = body
-    }
-}
-
-@objc(VSSServiceRequest) public class ServiceRequest: NSObject, HTTPRequest {
-    private let url: URL
-    private let method: Method
-    private let apiToken: String?
-    
-    public static let DefaultTimeout: TimeInterval = 45
-    public static let AccessTokenHeader = "Authorization"
-    
-    public enum Method: String {
-        case get = "GET"
-        case post = "POST"
-        case put = "PUT"
-        case delete = "DELETE"
-    }
-    
-    public init(url: URL, method: Method, apiToken: String?) {
-        self.url = url
-        self.method = method
-        self.apiToken = apiToken
-        
-        super.init()
-    }
-    
-    public init?(urlRequest: URLRequest) {
-        guard let url = urlRequest.url,
-            let methodStr = urlRequest.httpMethod,
-            let method = Method(rawValue: methodStr) else {
-                return nil
-        }
-        
-        self.url = url
-        self.method = method
-        self.apiToken = urlRequest.value(forHTTPHeaderField: ServiceRequest.AccessTokenHeader)
-    }
-    
-    public func getNativeRequest() -> URLRequest {
-        var request = URLRequest(url: self.url)
-        
-        request.timeoutInterval = ServiceRequest.DefaultTimeout
-        request.httpMethod = self.method.rawValue
-        request.setValue(self.apiToken, forHTTPHeaderField: ServiceRequest.AccessTokenHeader)
-
-        return request
-    }
-}
-
-extension NSURLRequest: HTTPRequest {
-    public func getNativeRequest() -> URLRequest {
-        return self as URLRequest
     }
 }

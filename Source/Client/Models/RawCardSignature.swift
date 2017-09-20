@@ -8,32 +8,52 @@
 
 import Foundation
 
-@objc(VSSCardSignature) public class CardSignature: NSObject, Deserializable {
+@objc(VSSCardSignature) public final class CardSignature: NSObject, Deserializable, Serializable {
     public let signerId: String
     public let signerType: SignerType
-    public let snapshot: Data
     public let signature: Data
+    public let extraData: Data
     
-    public required init?(dict: Any) {
+    private enum Keys: String {
+        case signerId = "signer_id"
+        case signerType = "signer_type"
+        case signature = "signature"
+        case extraContent = "extra_content"
+    }
+    
+    init(signerId: String, signerType: SignerType, signature: Data, extraData: Data) {
+        self.signerId = signerId
+        self.signerType = signerType
+        self.signature = signature
+        self.extraData = extraData
+        
+        super.init()
+    }
+    
+    convenience public init?(dict: Any) {
         guard let candidate = dict as? [String : Any] else {
             return nil
         }
         
-        guard let signerId = candidate["signer_id"] as? String,
-            let signerTypeStr = candidate["signer_type"] as? String,
+        guard let signerId = candidate[Keys.signerId.rawValue] as? String,
+            let signerTypeStr = candidate[Keys.signerType.rawValue] as? String,
             let signerType = SignerType(from: signerTypeStr),
-            let snapshotStr = candidate["snapshot_str"] as? String,
-            let snapshot = Data(base64Encoded: snapshotStr),
-            let signatureStr = candidate["signature"] as? String,
+            let signatureStr = candidate[Keys.signature.rawValue] as? String,
+            let extraDataStr = candidate[Keys.extraContent.rawValue] as? String,
+            let extraData = Data(base64Encoded: extraDataStr),
             let signature = Data(base64Encoded: signatureStr) else {
                 return nil
         }
         
-        self.signerId = signerId
-        self.signerType = signerType
-        self.snapshot = snapshot
-        self.signature = signature
-        
-        super.init()
+        self.init(signerId: signerId, signerType: signerType, signature: signature, extraData: extraData)
+    }
+    
+    public func serialize() -> Any {
+        return [
+            Keys.signerId.rawValue: self.signerId,
+            Keys.signerType.rawValue: self.signerType.rawValue,
+            Keys.signature.rawValue: self.signature.base64EncodedString(),
+            Keys.extraContent.rawValue: self.extraData.base64EncodedString()
+        ]
     }
 }

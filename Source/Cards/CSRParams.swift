@@ -14,7 +14,7 @@ import VirgilCryptoAPI
     public let publicKey: PublicKey
     public let privateKey: PrivateKey?
     
-    init(identity: String, publicKey: PublicKey, privateKey: PrivateKey?) {
+    public init(identity: String, publicKey: PublicKey, privateKey: PrivateKey?) {
         self.identity = identity
         self.publicKey = publicKey
         self.privateKey = privateKey

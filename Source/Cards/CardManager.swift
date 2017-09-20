@@ -12,16 +12,21 @@ import VirgilCryptoAPI
 @objc(VSSCardManager) public class CardManager: NSObject {
     private let crypto: Crypto
     private let client: CardClient
-    private let validator: CardValidator
+    private let validator: CardValidator?
     
     public init(params: CardManagerParams) {
         self.crypto = params.crypto
-        
-//        let serviceConfig = VSSServiceConfig(token: params.apiToken)
-//        serviceConfig.cardsServiceURL = params.apiUrl
-        
-        self.client = CardClient()
+        self.client = CardClient(baseUrl: params.apiUrl, apiToken: params.apiToken)
         self.validator = params.validator
+    }
+    
+    private func validateCard(_ card: Card) throws {
+        if let validator = self.validator {
+            let result = validator.validate(crypto: self.crypto, card: card)
+            guard result.isValid else {
+                throw NSError()
+            }
+        }
     }
     
     public func getCard(withId cardId: String) throws -> Card {
@@ -31,7 +36,7 @@ import VirgilCryptoAPI
             throw NSError()
         }
         
-        // Validate
+        try self.validateCard(card)
         
         return card
     }
@@ -43,7 +48,7 @@ import VirgilCryptoAPI
             throw NSError()
         }
         
-        // Validate
+        try self.validateCard(card)
         
         return card
     }

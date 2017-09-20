@@ -13,16 +13,19 @@ import Foundation
         case identity = "identity"
         case publicKeyData = "public_key"
         case version = "version"
+        case createdAt = "created_at"
     }
     
     public let identity: String
     public let publicKeyData: Data
     public let version: String
+    public let createdAt: Date
     
-    init(identity: String, publicKeyData: Data, version: String) {
+    init(identity: String, publicKeyData: Data, version: String, createdAt: Date) {
         self.identity = identity
         self.publicKeyData = publicKeyData
         self.version = version
+        self.createdAt = createdAt
         
         super.init()
     }
@@ -35,11 +38,12 @@ import Foundation
         guard let identity = candidate[Keys.identity.rawValue] as? String,
             let publicKeyStr = candidate[Keys.publicKeyData.rawValue] as? String,
             let publicKeyData = Data(base64Encoded: publicKeyStr),
-            let version = candidate[Keys.version.rawValue] as? String else {
+            let version = candidate[Keys.version.rawValue] as? String,
+            let createdAt = candidate[Keys.createdAt.rawValue] as? Double else {
                 return nil
         }
         
-        self.init(identity: identity, publicKeyData: publicKeyData, version: version)
+        self.init(identity: identity, publicKeyData: publicKeyData, version: version, createdAt: Date(timeIntervalSince1970: createdAt))
     }
     
     public func serialize() -> Any {

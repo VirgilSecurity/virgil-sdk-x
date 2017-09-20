@@ -8,9 +8,14 @@
 
 import Foundation
 
-@objc(VSSRawCard) public class RawCard: NSObject, Deserializable {
+@objc(VSSRawCard) public class RawCard: NSObject, Deserializable, Serializable {
     public let contentSnapshot: Data
     public let signatures: [CardSignature]
+    
+    private enum Keys: String {
+        case contentSnapshot = "content_snapshot"
+        case signatures = "signatures"
+    }
     
     public init(contentSnapshot: Data, signatures: [CardSignature]) {
         self.contentSnapshot = contentSnapshot
@@ -24,9 +29,9 @@ import Foundation
             return nil
         }
         
-        guard let snapshotStr = candidate["content_snapshot"] as? String,
+        guard let snapshotStr = candidate[Keys.contentSnapshot.rawValue] as? String,
             let snapshot = Data(base64Encoded: snapshotStr),
-            let signaturesArray = candidate["signatures"] as? [[String : Any]] else {
+            let signaturesArray = candidate[Keys.signatures.rawValue] as? [[String : Any]] else {
                 return nil
         }
         
@@ -41,5 +46,12 @@ import Foundation
         }
         
         self.init(contentSnapshot: snapshot, signatures: signatures)
+    }
+    
+    public func serialize() -> Any {
+        return [
+            Keys.contentSnapshot.rawValue: self.contentSnapshot.base64EncodedString(),
+            Keys.signatures.rawValue: self.signatures.serialize()
+        ]
     }
 }

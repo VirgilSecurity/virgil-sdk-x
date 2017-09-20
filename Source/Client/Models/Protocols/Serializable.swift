@@ -11,3 +11,9 @@ import Foundation
 @objc(VSSSerializable) public protocol Serializable {
     func serialize() -> Any
 }
+
+extension Array where Element: Serializable {
+    func serialize() -> Any {
+        return self.map({ $0.serialize() })
+    }
+}

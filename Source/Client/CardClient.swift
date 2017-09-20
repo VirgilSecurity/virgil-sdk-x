@@ -9,9 +9,17 @@
 import Foundation
 
 @objc(VSSCardClient) public class CardClient: NSObject {
-    private let baseUrl: URL = URL(string: "")!
-    private let connection: HTTPConnection = ServiceConnection()
-    private let apiToken: String = ""
+    private let baseUrl: URL
+    private let apiToken: String?
+    private let connection: HTTPConnection
+    
+    init(baseUrl: URL, apiToken: String?, connection: HTTPConnection = ServiceConnection()) {
+        self.baseUrl = baseUrl
+        self.apiToken = apiToken
+        self.connection = connection
+        
+        super.init()
+    }
     
     private func handleError(statusCode: Int, body: Data?) -> Error {
         // FIXME

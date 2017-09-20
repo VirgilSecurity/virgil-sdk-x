@@ -10,6 +10,7 @@ import Foundation
 import VirgilSDK
 import XCTest
 
+// FIXME
 class HexTests: XCTestCase {
     func test001() {
         let str = "This is a test."
