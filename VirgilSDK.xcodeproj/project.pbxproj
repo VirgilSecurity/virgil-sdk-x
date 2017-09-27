@@ -311,7 +311,6 @@
 		4248B0D11E043A6D000AB44C /* VSSIdentityError.m in Sources */ = {isa = PBXBuildFile; fileRef = 4248B0D01E043A6D000AB44C /* VSSIdentityError.m */; };
 		424EF9AD1E0D76B2005E8A8B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		424EF9AE1E0D76B7005E8A8B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
-		42505ED31ECDECF600BCA031 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */; };
 		42505ED41ECDED0200BCA031 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422499D11EB39BD50032F556 /* VirgilCrypto.framework */; };
 		42505EDB1ECDEF8B00BCA031 /* VirgilCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 422499D11EB39BD50032F556 /* VirgilCrypto.framework */; };
 		42512F751ED302C50007DFCC /* Mailinator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42845F091ED2F883004AED0C /* Mailinator.framework */; };
@@ -395,7 +394,6 @@
 		427C40661E5C78290017C2A9 /* VSSRemoveCardRelationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C40651E5C78290017C2A9 /* VSSRemoveCardRelationRequest.m */; };
 		427C40671E5C78770017C2A9 /* VSSRemoveCardRelationRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 427C40641E5C77BC0017C2A9 /* VSSRemoveCardRelationRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		427C406A1E5C78CE0017C2A9 /* VSSRemoveCardRelationHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 427C40691E5C78CE0017C2A9 /* VSSRemoveCardRelationHTTPRequest.m */; };
-		42845F061ED2F846004AED0C /* Mailinator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42845F051ED2F846004AED0C /* Mailinator.framework */; };
 		42845F0A1ED2F883004AED0C /* Mailinator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42845F091ED2F883004AED0C /* Mailinator.framework */; };
 		429123641F4B0B3700103BE0 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 429123551F4B0B3700103BE0 /* sdk_compatibility_data.json */; };
 		429123651F4B0B3700103BE0 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 429123551F4B0B3700103BE0 /* sdk_compatibility_data.json */; };
@@ -433,6 +431,11 @@
 		429623501F0A69AF00284665 /* VSSErrorPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 4296234F1F0A69AB00284665 /* VSSErrorPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		429623511F0A69B000284665 /* VSSErrorPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 4296234F1F0A69AB00284665 /* VSSErrorPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4296B0D21E7C18AE00703356 /* VSSRevokeCardHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D414A91E39016900F59580 /* VSSRevokeCardHTTPRequest.h */; };
+		42A01EEB1F7BD83100FF8804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A01EEA1F7BD83100FF8804 /* AppDelegate.swift */; };
+		42A01EED1F7BD83100FF8804 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A01EEC1F7BD83100FF8804 /* ViewController.swift */; };
+		42A01EF01F7BD83100FF8804 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42A01EEE1F7BD83100FF8804 /* Main.storyboard */; };
+		42A01EF21F7BD83100FF8804 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42A01EF11F7BD83100FF8804 /* Assets.xcassets */; };
+		42A01EF51F7BD83100FF8804 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42A01EF31F7BD83100FF8804 /* LaunchScreen.storyboard */; };
 		42A48C621ED4729B00650B25 /* VSSBaseClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 42A48C611ED4729B00650B25 /* VSSBaseClient.m */; };
 		42A48C671ED4737400650B25 /* VSSBaseClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 42A48C601ED4728C00650B25 /* VSSBaseClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42A48C681ED4737400650B25 /* VSSBaseClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 42A48C601ED4728C00650B25 /* VSSBaseClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -447,7 +450,6 @@
 		42A48C751ED4896400650B25 /* VSSAuthClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 42A48C6A1ED4836200650B25 /* VSSAuthClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42B33F761DC3A859008A7B78 /* VSSSignable.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B33F751DC3A707008A7B78 /* VSSSignable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42B6CF6A1F5877240024857B /* VSS009_KeyStorageiOSSpecificTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B6CF681F58771A0024857B /* VSS009_KeyStorageiOSSpecificTests.swift */; };
-		42B7E3601DB8F72200D70C12 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
 		42BBF0C31DD1F12E00E19D60 /* VSSRequestSignerProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 42BBF0C21DD1F12E00E19D60 /* VSSRequestSignerProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42BBF0DD1DD5DFE600E19D60 /* VSSCryptoCommons.h in Headers */ = {isa = PBXBuildFile; fileRef = 42BBF0DB1DD5DF8200E19D60 /* VSSCryptoCommons.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42BBF0DE1DD5DFEC00E19D60 /* VSSCryptoCommonsPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 42BBF0DC1DD5DFE200E19D60 /* VSSCryptoCommonsPrivate.h */; };
@@ -462,6 +464,9 @@
 		42D414A71E39005E00F59580 /* VSSRevokeEmailCardRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D414A61E39005E00F59580 /* VSSRevokeEmailCardRequest.m */; };
 		42D414A81E3900FB00F59580 /* VSSRevokeEmailCardRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 42D414A51E39005300F59580 /* VSSRevokeEmailCardRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42D414AB1E39018100F59580 /* VSSRevokeCardHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D414AA1E39018100F59580 /* VSSRevokeCardHTTPRequest.m */; };
+		42DEB4381F7BD6FF0005133F /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
+		42DEB4391F7BD7260005133F /* Mailinator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42845F051ED2F846004AED0C /* Mailinator.framework */; };
+		42DEB43A1F7BD7260005133F /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */; };
 		42DF01E61E8C52BE005CA7DD /* VSSVerifyIdentityRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 42F540801E0059D50071FDCF /* VSSVerifyIdentityRequest.m */; };
 		42DF01E71E8C52BE005CA7DD /* (null) in Sources */ = {isa = PBXBuildFile; };
 		42DF01E81E8C52BE005CA7DD /* VSSVraError.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D4149E1E38E03400F59580 /* VSSVraError.m */; };
@@ -573,7 +578,14 @@
 			remoteGlobalIDString = 422499B91EB39B380032F556;
 			remoteInfo = "VirgilSDK macOS";
 		};
-		42B7E3611DB8F72200D70C12 /* PBXContainerItemProxy */ = {
+		42A01EFD1F7BD8CE00FF8804 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42A01EE71F7BD83100FF8804;
+			remoteInfo = "TestApp iOS";
+		};
+		42A01F011F7BDABF00FF8804 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
 			proxyType = 1;
@@ -774,6 +786,13 @@
 		429123AF1F4D72D500103BE0 /* VSSKeyStoragePlatformSpecificPublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeyStoragePlatformSpecificPublic.h; sourceTree = "<group>"; };
 		429123B41F4D737F00103BE0 /* VSSKeyAttrsPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyAttrsPrivate.h; sourceTree = "<group>"; };
 		4296234F1F0A69AB00284665 /* VSSErrorPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSErrorPublic.h; sourceTree = "<group>"; };
+		42A01EE81F7BD83100FF8804 /* TestApp iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TestApp iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		42A01EEA1F7BD83100FF8804 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		42A01EEC1F7BD83100FF8804 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		42A01EEF1F7BD83100FF8804 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		42A01EF11F7BD83100FF8804 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		42A01EF41F7BD83100FF8804 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		42A01EF61F7BD83100FF8804 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42A442A61DC8F1D2000DD54B /* VSSKeyStorageProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorageProtocol.h; sourceTree = "<group>"; };
 		42A48C601ED4728C00650B25 /* VSSBaseClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSBaseClient.h; sourceTree = "<group>"; };
 		42A48C611ED4729B00650B25 /* VSSBaseClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSBaseClient.m; sourceTree = "<group>"; };
@@ -895,13 +914,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		42A01EE51F7BD83100FF8804 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		42B7E3581DB8F72200D70C12 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42845F061ED2F846004AED0C /* Mailinator.framework in Frameworks */,
-				42505ED31ECDECF600BCA031 /* VirgilCrypto.framework in Frameworks */,
-				42B7E3601DB8F72200D70C12 /* VirgilSDK.framework in Frameworks */,
+				42DEB4391F7BD7260005133F /* Mailinator.framework in Frameworks */,
+				42DEB43A1F7BD7260005133F /* VirgilCrypto.framework in Frameworks */,
+				42DEB4381F7BD6FF0005133F /* VirgilSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -922,6 +948,7 @@
 				42EB30E51DB8EC17001DF4C0 /* VirgilSDK */,
 				3614033E1BB2E0FC002E69CA /* Source */,
 				42B81C171DB8E5FB00E5E2AE /* Tests */,
+				42A01EE91F7BD83100FF8804 /* TestApp iOS */,
 				361403161BB2E05F002E69CA /* Products */,
 				ECBE87D3B790F5C27AAB2582 /* Frameworks */,
 			);
@@ -934,6 +961,7 @@
 				42B7E35B1DB8F72200D70C12 /* VirgilSDK iOS Tests.xctest */,
 				422499BA1EB39B380032F556 /* VirgilSDK.framework */,
 				422499C21EB39B380032F556 /* VirgilSDK macOS Tests.xctest */,
+				42A01EE81F7BD83100FF8804 /* TestApp iOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1220,6 +1248,19 @@
 				429123B41F4D737F00103BE0 /* VSSKeyAttrsPrivate.h */,
 			);
 			path = Private;
+			sourceTree = "<group>";
+		};
+		42A01EE91F7BD83100FF8804 /* TestApp iOS */ = {
+			isa = PBXGroup;
+			children = (
+				42A01EEA1F7BD83100FF8804 /* AppDelegate.swift */,
+				42A01EEC1F7BD83100FF8804 /* ViewController.swift */,
+				42A01EEE1F7BD83100FF8804 /* Main.storyboard */,
+				42A01EF11F7BD83100FF8804 /* Assets.xcassets */,
+				42A01EF31F7BD83100FF8804 /* LaunchScreen.storyboard */,
+				42A01EF61F7BD83100FF8804 /* Info.plist */,
+			);
+			path = "TestApp iOS";
 			sourceTree = "<group>";
 		};
 		42A442A51DC8F1B9000DD54B /* KeyStorage */ = {
@@ -1865,6 +1906,23 @@
 			productReference = 422499C21EB39B380032F556 /* VirgilSDK macOS Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		42A01EE71F7BD83100FF8804 /* TestApp iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42A01EF71F7BD83200FF8804 /* Build configuration list for PBXNativeTarget "TestApp iOS" */;
+			buildPhases = (
+				42A01EE41F7BD83100FF8804 /* Sources */,
+				42A01EE51F7BD83100FF8804 /* Frameworks */,
+				42A01EE61F7BD83100FF8804 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TestApp iOS";
+			productName = "TestApp iOS";
+			productReference = 42A01EE81F7BD83100FF8804 /* TestApp iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 		42B7E35A1DB8F72200D70C12 /* VirgilSDK iOS Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 42B7E3631DB8F72200D70C12 /* Build configuration list for PBXNativeTarget "VirgilSDK iOS Tests" */;
@@ -1872,12 +1930,13 @@
 				42B7E3571DB8F72200D70C12 /* Sources */,
 				42B7E3581DB8F72200D70C12 /* Frameworks */,
 				42B7E3591DB8F72200D70C12 /* Resources */,
-				42512F6E1ED2FD1D0007DFCC /* ShellScript */,
+				42A01F001F7BDA8A00FF8804 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				42B7E3621DB8F72200D70C12 /* PBXTargetDependency */,
+				42A01F021F7BDABF00FF8804 /* PBXTargetDependency */,
+				42A01EFE1F7BD8CE00FF8804 /* PBXTargetDependency */,
 			);
 			name = "VirgilSDK iOS Tests";
 			productName = VirgilSDKSwiftTests;
@@ -1907,8 +1966,8 @@
 		3614030D1BB2E05F002E69CA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0830;
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = VirgilSecurity;
 				TargetAttributes = {
 					422499B91EB39B380032F556 = {
@@ -1917,15 +1976,22 @@
 					};
 					422499C11EB39B380032F556 = {
 						CreatedOnToolsVersion = 8.3.2;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					42745A511ED43D9400C1DEEC = {
 						CreatedOnToolsVersion = 8.3.2;
 						ProvisioningStyle = Automatic;
 					};
+					42A01EE71F7BD83100FF8804 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
 					42B7E35A1DB8F72200D70C12 = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
+						TestTargetID = 42A01EE71F7BD83100FF8804;
 					};
 					42EB30E31DB8EC17001DF4C0 = {
 						CreatedOnToolsVersion = 8.0;
@@ -1952,6 +2018,7 @@
 				422499B91EB39B380032F556 /* VirgilSDK macOS */,
 				422499C11EB39B380032F556 /* VirgilSDK macOS Tests */,
 				42745A511ED43D9400C1DEEC /* VirgilSDK */,
+				42A01EE71F7BD83100FF8804 /* TestApp iOS */,
 			);
 		};
 /* End PBXProject section */
@@ -1964,6 +2031,16 @@
 				429123691F4B0B3700103BE0 /* testData.txt in Resources */,
 				429123671F4B0B3700103BE0 /* TestConfig.plist in Resources */,
 				429123651F4B0B3700103BE0 /* sdk_compatibility_data.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42A01EE61F7BD83100FF8804 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A01EF51F7BD83100FF8804 /* LaunchScreen.storyboard in Resources */,
+				42A01EF21F7BD83100FF8804 /* Assets.xcassets in Resources */,
+				42A01EF01F7BD83100FF8804 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1980,7 +2057,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		42512F6E1ED2FD1D0007DFCC /* ShellScript */ = {
+		42A01F001F7BDA8A00FF8804 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2110,6 +2187,15 @@
 				4291236B1F4B0B3700103BE0 /* VSS001_ClientTests.swift in Sources */,
 				4291237B1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
 				4291236F1F4B0B3700103BE0 /* VSS003_CryptoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42A01EE41F7BD83100FF8804 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42A01EED1F7BD83100FF8804 /* ViewController.swift in Sources */,
+				42A01EEB1F7BD83100FF8804 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2249,12 +2335,36 @@
 			target = 422499B91EB39B380032F556 /* VirgilSDK macOS */;
 			targetProxy = 42745A571ED43D9B00C1DEEC /* PBXContainerItemProxy */;
 		};
-		42B7E3621DB8F72200D70C12 /* PBXTargetDependency */ = {
+		42A01EFE1F7BD8CE00FF8804 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 42A01EE71F7BD83100FF8804 /* TestApp iOS */;
+			targetProxy = 42A01EFD1F7BD8CE00FF8804 /* PBXContainerItemProxy */;
+		};
+		42A01F021F7BDABF00FF8804 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 42EB30E31DB8EC17001DF4C0 /* VirgilSDK iOS */;
-			targetProxy = 42B7E3611DB8F72200D70C12 /* PBXContainerItemProxy */;
+			targetProxy = 42A01F011F7BDABF00FF8804 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		42A01EEE1F7BD83100FF8804 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42A01EEF1F7BD83100FF8804 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		42A01EF31F7BD83100FF8804 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				42A01EF41F7BD83100FF8804 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		361403361BB2E05F002E69CA /* Debug */ = {
@@ -2265,14 +2375,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -2314,14 +2430,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -2445,7 +2567,8 @@
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = Tests/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -2484,7 +2607,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = Tests/BridgingHeader.h;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -2499,6 +2623,61 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		42A01EF81F7BD83200FF8804 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IBSC_MODULE = TestApp_iOS;
+				INFOPLIST_FILE = "TestApp iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.TestApp-iOS";
+				PRODUCT_MODULE_NAME = TestApp_iOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		42A01EF91F7BD83200FF8804 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = TestApp_iOS;
+				INFOPLIST_FILE = "TestApp iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.TestApp-iOS";
+				PRODUCT_MODULE_NAME = TestApp_iOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -2539,7 +2718,9 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = Tests/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestApp iOS.app/TestApp iOS";
 			};
 			name = Debug;
 		};
@@ -2577,7 +2758,9 @@
 				PRODUCT_MODULE_NAME = VirgilSDK_iOS_Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Tests/BridgingHeader.h;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestApp iOS.app/TestApp iOS";
 			};
 			name = Release;
 		};
@@ -2674,6 +2857,15 @@
 			buildConfigurations = (
 				42745A521ED43D9400C1DEEC /* Debug */,
 				42745A531ED43D9400C1DEEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		42A01EF71F7BD83200FF8804 /* Build configuration list for PBXNativeTarget "TestApp iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42A01EF81F7BD83200FF8804 /* Debug */,
+				42A01EF91F7BD83200FF8804 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

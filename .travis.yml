@@ -1,6 +1,6 @@
 language: objective-c
 
-osx_image: xcode8.3
+osx_image: xcode9
 
 env:
   global:
@@ -8,12 +8,12 @@ env:
     - PROJECT=VirgilSDK.xcodeproj
     - IOS_FRAMEWORK_SCHEME="VirgilSDK iOS"
     - MACOS_FRAMEWORK_SCHEME="VirgilSDK macOS"
-    - IOS_SDK=iphonesimulator10.3
+    - IOS_SDK=iphonesimulator11.0
     - MACOS_SDK=macosx10.12
     - FRAMEWORK_NAME=VirgilSDK
   matrix:
-    - DESTINATION="OS=10.3.1,name=iPhone SE"   SCHEME="$IOS_FRAMEWORK_SCHEME"    SDK="$IOS_SDK"    CARTHAGE_PLATFORM_NAME="iOS"  RUN_TESTS="YES"  PUBLISH_COVERAGE="YES"  PUBLISH_DOCS="NO"   PUBLISH_CARTHAGE="YES"  POD_LIB_LINT="NO"
-    - DESTINATION="arch=x86_64"                SCHEME="$MACOS_FRAMEWORK_SCHEME"  SDK="$MACOS_SDK"  CARTHAGE_PLATFORM_NAME="Mac"  RUN_TESTS="YES"  PUBLISH_COVERAGE="NO"   PUBLISH_DOCS="YES"  PUBLISH_CARTHAGE="NO"   POD_LIB_LINT="NO"
+    - DESTINATION="OS=11.0,name=iPhone SE"   SCHEME="$IOS_FRAMEWORK_SCHEME"    SDK="$IOS_SDK"    CARTHAGE_PLATFORM_NAME="iOS"  RUN_TESTS="YES"  PUBLISH_COVERAGE="YES"  PUBLISH_DOCS="NO"   PUBLISH_CARTHAGE="YES"  POD_LIB_LINT="NO"
+    - DESTINATION="arch=x86_64"              SCHEME="$MACOS_FRAMEWORK_SCHEME"  SDK="$MACOS_SDK"  CARTHAGE_PLATFORM_NAME="Mac"  RUN_TESTS="YES"  PUBLISH_COVERAGE="NO"   PUBLISH_DOCS="YES"  PUBLISH_CARTHAGE="NO"   POD_LIB_LINT="NO"
 
 before_install:
   - set -o pipefail
@@ -45,11 +45,6 @@ script:
     fi
 
 after_success:
-  # Publish coverage
-  - if [ $RUN_TESTS == "YES" && $PUBLISH_COVERAGE == "YES" ]; then
-      bash <(curl -s https://codecov.io/bash);
-    fi
-
   # Generate and publish docs
   - if [ -n "${TRAVIS_TAG}" ] && [ $PUBLISH_DOCS == "YES" ]; then
       ./CI/publish-docs.sh;

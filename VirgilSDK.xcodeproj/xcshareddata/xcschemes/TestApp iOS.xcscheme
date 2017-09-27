@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "42745A511ED43D9400C1DEEC"
-               BuildableName = "VirgilSDK"
-               BlueprintName = "VirgilSDK"
+               BlueprintIdentifier = "42A01EE71F7BD83100FF8804"
+               BuildableName = "TestApp iOS.app"
+               BlueprintName = "TestApp iOS"
                ReferencedContainer = "container:VirgilSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,7 +29,26 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "42B7E35A1DB8F72200D70C12"
+               BuildableName = "VirgilSDK iOS Tests.xctest"
+               BlueprintName = "VirgilSDK iOS Tests"
+               ReferencedContainer = "container:VirgilSDK.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "42A01EE71F7BD83100FF8804"
+            BuildableName = "TestApp iOS.app"
+            BlueprintName = "TestApp iOS"
+            ReferencedContainer = "container:VirgilSDK.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -44,15 +63,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "42745A511ED43D9400C1DEEC"
-            BuildableName = "VirgilSDK"
-            BlueprintName = "VirgilSDK"
+            BlueprintIdentifier = "42A01EE71F7BD83100FF8804"
+            BuildableName = "TestApp iOS.app"
+            BlueprintName = "TestApp iOS"
             ReferencedContainer = "container:VirgilSDK.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -62,15 +82,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "42745A511ED43D9400C1DEEC"
-            BuildableName = "VirgilSDK"
-            BlueprintName = "VirgilSDK"
+            BlueprintIdentifier = "42A01EE71F7BD83100FF8804"
+            BuildableName = "TestApp iOS.app"
+            BlueprintName = "TestApp iOS"
             ReferencedContainer = "container:VirgilSDK.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
