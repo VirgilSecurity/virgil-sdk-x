@@ -13,7 +13,7 @@ import XCTest
 class VSS009_KeyStorageiOSSpecificTests: XCTestCase {
     private var crypto: VSSCrypto!
     private var storage: VSSKeyStorage!
-    private let numberOfKeys = 1
+    private let numberOfKeys = 20
     
     // MARK: Setup
     override func setUp() {
@@ -21,6 +21,8 @@ class VSS009_KeyStorageiOSSpecificTests: XCTestCase {
         
         self.crypto = VSSCrypto()
         self.storage = VSSKeyStorage()
+        
+        try! self.storage.reset()
     }
     
     override func tearDown() {
@@ -123,7 +125,12 @@ class VSS009_KeyStorageiOSSpecificTests: XCTestCase {
         
         let keys1 = try! self.storage.getAllKeysAttrs()
         
-        let newKeysAttrs = keys1.suffix(from: keys0.count)
+        XCTAssert(keys1.count == keys0.count + keysInfo.count)
+        
+        let newKeysAttrs = keys1
+            .filter({ !keys0.map({ $0.name }).contains($0.name) })
+            .sorted(by: { $0.creationDate < $1.creationDate })
+        XCTAssert(newKeysAttrs.count == keysInfo.count)
         
         let eps: TimeInterval = 1
         for elem in zip(newKeysAttrs, keysInfo) {
@@ -131,13 +138,6 @@ class VSS009_KeyStorageiOSSpecificTests: XCTestCase {
             
             let diff = abs(elem.0.creationDate.timeIntervalSince1970 - elem.1.1.timeIntervalSince1970)
             XCTAssert(diff < eps)
-        }
-        
-        XCTAssert(keys1.count == keys0.count + self.numberOfKeys)
-        
-        for (k1, k2) in zip(keys0, Array(keys1.dropLast(self.numberOfKeys))) {
-            XCTAssert(k1.name == k2.name)
-            XCTAssert(k1.creationDate == k2.creationDate)
         }
     }
     
