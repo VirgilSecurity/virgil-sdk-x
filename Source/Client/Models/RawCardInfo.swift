@@ -10,10 +10,11 @@ import Foundation
 
 @objc(VSSRawCardInfo) public class RawCardInfo: NSObject, Deserializable, Serializable {
     private enum Keys: String {
-        case identity = "identity"
+        case identity      = "identity"
         case publicKeyData = "public_key"
-        case version = "version"
-        case createdAt = "created_at"
+        case meta          = "meta"
+        case version       = "version"
+        case createdAt     = "created_at"
     }
     
     public let identity: String
@@ -38,8 +39,9 @@ import Foundation
         guard let identity = candidate[Keys.identity.rawValue] as? String,
             let publicKeyStr = candidate[Keys.publicKeyData.rawValue] as? String,
             let publicKeyData = Data(base64Encoded: publicKeyStr),
-            let version = candidate[Keys.version.rawValue] as? String,
-            let createdAt = candidate[Keys.createdAt.rawValue] as? Double else {
+            let meta = candidate[Keys.meta.rawValue] as? [AnyHashable : Any],
+            let version = meta[Keys.version.rawValue] as? String,
+            let createdAt = meta[Keys.createdAt.rawValue] as? Double else {
                 return nil
         }
         
@@ -50,7 +52,10 @@ import Foundation
         return [
             Keys.identity.rawValue: self.identity,
             Keys.publicKeyData.rawValue: self.publicKeyData.base64EncodedString(),
-            Keys.version.rawValue: self.version
+            Keys.meta.rawValue: [
+                Keys.version.rawValue: self.version,
+                Keys.createdAt.rawValue: Int(self.createdAt.timeIntervalSince1970)
+            ]
         ]
     }
 }

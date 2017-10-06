@@ -9,11 +9,39 @@
 import Foundation
 
 @objc(VSSCardClient) public class CardClient: NSObject {
-    private let baseUrl: URL
-    private let apiToken: String?
-    private let connection: HTTPConnection
+    let baseUrl: URL
+    let apiToken: String?
+    let connection: HTTPConnection
     
-    init(baseUrl: URL, apiToken: String?, connection: HTTPConnection = ServiceConnection()) {
+    public static let serviceErrorDomain = "VirgilSDK.CardServiceErrorDomain"
+    public static let clientErrorDomain = "VirgilSDK.CardClientErrorDomain"
+    
+    public enum CardClientError: Int, CustomNSError {
+        case constructingUrl
+        case noBody
+        case invalidJson
+        case invalidResponseModel
+        
+        public static var errorDomain: String { return CardClient.clientErrorDomain }
+        
+        public var errorCode: Int { return self.rawValue }
+    }
+    
+    public class CardServiceError: CustomNSError {
+        public let rawServiceError: RawServiceError
+        
+        init(rawServiceError: RawServiceError) {
+            self.rawServiceError = rawServiceError
+        }
+        
+        public static var errorDomain: String { return CardClient.serviceErrorDomain }
+        
+        public var errorCode: Int { return self.rawServiceError.code }
+        
+        public var errorUserInfo: [String : Any] { return [NSLocalizedDescriptionKey : self.rawServiceError.message] }
+    }
+    
+    public init(baseUrl: URL, apiToken: String?, connection: HTTPConnection = ServiceConnection()) {
         self.baseUrl = baseUrl
         self.apiToken = apiToken
         self.connection = connection
@@ -21,68 +49,47 @@ import Foundation
         super.init()
     }
     
-    private func handleError(statusCode: Int, body: Data?) -> Error {
-        // FIXME
-        return NSError()
+    func handleError(statusCode: Int, body: Data?) -> Error {
+        if let body = body {
+            if let json = try? JSONSerialization.jsonObject(with: body, options: []),
+                let rawServiceError = RawServiceError(dict: json) {
+                    return CardServiceError(rawServiceError: rawServiceError)
+            }
+            else if let str = String(data: body, encoding: .utf8) {
+                return NSError(domain: CardClient.serviceErrorDomain, code: statusCode, userInfo: [NSLocalizedDescriptionKey : str])
+            }
+        }
+        
+        return NSError(domain: CardClient.serviceErrorDomain, code: statusCode)
     }
     
-    public func getCard(withId cardId: String) throws -> RawCard {
-        guard let url = URL(string: "card/\(cardId)", relativeTo: self.baseUrl) else {
-            // FIXME
-            throw NSError()
-        }
-        
-        let request = ServiceRequest(url: url, method: .get, apiToken: self.apiToken)
-        
-        let response = try self.connection.send(request)
-        
-        guard response.statusCode == 200 else {
-            throw self.handleError(statusCode: response.statusCode, body: response.body)
-        }
-        
+    private func parseResponse(_ response: HTTPResponse) throws -> Any {
         guard let data = response.body else {
-            throw NSError()
+            throw CardClientError.noBody
         }
         
         guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [AnyHashable : Any] else {
-            throw NSError()
+            throw CardClientError.invalidJson
         }
         
-        guard let rawCard = RawCard(dict: json) else {
-            throw NSError()
-        }
-        
-        return rawCard
+        return json
     }
     
-    public func publishCard(request: RawCard) throws -> RawCard {
-        guard let url = URL(string: "card", relativeTo: self.baseUrl) else {
-            // FIXME
-            throw NSError()
-        }
-        
-        let request = ServiceRequest(url: url, method: .post, apiToken: self.apiToken)
-        
-        let response = try self.connection.send(request)
-        
+    private func validateResponse(_ response: HTTPResponse) throws {
         guard response.statusCode == 200 else {
             throw self.handleError(statusCode: response.statusCode, body: response.body)
         }
-        
-        guard let data = response.body else {
-            throw NSError()
-        }
-        
-        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [AnyHashable : Any] else {
-            throw NSError()
-        }
-        
-        guard let rawCard = RawCard(dict: json) else {
-            throw NSError()
-        }
-        
-        return rawCard
     }
     
-    // SEARCH CARD
+    func processResponse<T:Deserializable>(_ response: HTTPResponse) throws -> T {
+        try self.validateResponse(response)
+        
+        let json = try self.parseResponse(response)
+        
+        guard let responseModel = T(dict: json) else {
+            throw CardClientError.invalidResponseModel
+        }
+        
+        return responseModel
+    }
 }

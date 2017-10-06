@@ -51,7 +51,7 @@ import Foundation
     public func serialize() -> Any {
         return [
             Keys.signerId.rawValue: self.signerId,
-            Keys.signerType.rawValue: self.signerType.rawValue,
+            Keys.signerType.rawValue: self.signerType.toString(),
             Keys.signature.rawValue: self.signature.base64EncodedString(),
             Keys.extraContent.rawValue: self.extraData.base64EncodedString()
         ]

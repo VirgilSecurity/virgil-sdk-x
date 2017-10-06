@@ -11,6 +11,8 @@
 @import VirgilSDK;
 @import VirgilCrypto;
 
+#import "VSSTestsConst.h"
+
 @interface VSS001_CardClientTests : XCTestCase
 
 @end
@@ -20,7 +22,10 @@
 - (void)test001_createCard {
     VSCVirgilCrypto *crypto = [[VSCVirgilCrypto alloc] init];
     VSSCardManagerParams *params = [[VSSCardManagerParams alloc] initWithCrypto:crypto validator:nil];
-    params.apiUrl = [[NSURL alloc] initWithString:@""];
+    
+    VSSTestsConst *consts = [[VSSTestsConst alloc] init];
+    
+    params.apiUrl = consts.cardsServiceURL;
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:params];
     
@@ -35,7 +40,7 @@
     XCTAssert(err == nil);
     
     VSSCard *card = [cardManager publishCardWithCsr:csr error:&err];
-    XCTAssert(err == nil);
+    XCTAssert(card != nil && err == nil);
 }
 
 @end

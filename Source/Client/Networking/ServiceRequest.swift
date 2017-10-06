@@ -12,6 +12,7 @@ import Foundation
     let url: URL
     let method: Method
     let apiToken: String?
+    let body: Data?
     
     public static let DefaultTimeout: TimeInterval = 45
     public static let AccessTokenHeader = "Authorization"
@@ -23,24 +24,32 @@ import Foundation
         case delete = "DELETE"
     }
     
-    public init(url: URL, method: Method, apiToken: String?) {
+    public init(url: URL, method: Method, apiToken: String?, bodyJson: Any? = nil) throws {
         self.url = url
         self.method = method
         self.apiToken = apiToken
         
+        if let bodyJson = bodyJson {
+            self.body = try JSONSerialization.data(withJSONObject: bodyJson, options: [])
+        }
+        else {
+            self.body = nil
+        }
+        
         super.init()
     }
     
-    public init?(urlRequest: URLRequest) {
+    public init(urlRequest: URLRequest) throws {
         guard let url = urlRequest.url,
             let methodStr = urlRequest.httpMethod,
             let method = Method(rawValue: methodStr) else {
-                return nil
+                throw NSError()
         }
         
         self.url = url
         self.method = method
         self.apiToken = urlRequest.value(forHTTPHeaderField: ServiceRequest.AccessTokenHeader)
+        self.body = urlRequest.httpBody
     }
     
     public func getNativeRequest() -> URLRequest {
@@ -49,6 +58,7 @@ import Foundation
         request.timeoutInterval = ServiceRequest.DefaultTimeout
         request.httpMethod = self.method.rawValue
         request.setValue(self.apiToken, forHTTPHeaderField: ServiceRequest.AccessTokenHeader)
+        request.httpBody = self.body
         
         return request
     }
