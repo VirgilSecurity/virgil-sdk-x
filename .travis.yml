@@ -28,10 +28,10 @@ env:
     - secure: "ppZfOLSxYuOFOOf58DfgH0uzYTXh515JBnG3+t56oaiOVmsU1MbH1zxT30k/1yurfrpTTgfUxPu/OD/UMTOfhWgywzTtw7pHB1HWnlUlMA5kWuE73rHWeRs1Lm5SNKgcqYecU1EzGisoGDGpiMHYBPRPDKu+7I6srBWp6rpu5n/DdMIYhUCbddDOmJm/m7DJUWyHSOJNYrLvn75nKOunUD+Mz1aTr7mO7i8oHqWTqXWfDoHirMBgejUrnO4SILwNzkS3FNE7EdjEnci72VA+RHoqtw6u6qGE++QwCj7FZA2WQFae/rY91fB4P+kC6MizJVMTrBfzMtyUEdRUJYv0Fil9rMMFEkpzUfMmTciAzkw4zQd7EdggTL84EM45PUu/pX0CNGgz1+i47VJIrzlxPQzLJrL/pg/8+9S26uYtt321QlP0FbQYuPwnSD8vq//UykGuIkRIUrQ1JeXvST0FrxJTIj8IpM6BE9qjRAdJgyCaCGsqBp8yBd1bvwf3kbAuaQWT1xBWWOThmwTElvQdkdAY+Nt0dGmlGHq+OfI+RuEXk0lWZmV0/O/bl3GSH+0PpJTXiGmyVgejiLncWhui0/88o3NpMWFxg67B/f8q1wu5CpMbvlDTThSqfOyqoeklNwK+Nst6Z7WYFigmYM/FpXF9kvjAsh03EK1OaGTu7q0="
     
   matrix:
-    - DESTINATION="OS=10.3.1,name=iPhone SE"          SCHEME="$IOS_FRAMEWORK_SCHEME"        SDK="$IOS_SDK"        TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="iOS"        RUN_TESTS="YES"    PUBLISH_COVERAGE="YES"    PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"
-    - DESTINATION="arch=x86_64"                       SCHEME="$MACOS_FRAMEWORK_SCHEME"      SDK="$MACOS_SDK"      TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="Mac"        RUN_TESTS="YES"    PUBLISH_COVERAGE="NO"     PUBLISH_DOCS="YES"    PUBLISH_CARTHAGE="YES"    POD_LIB_LINT="NO"
-    - DESTINATION="OS=10.2,name=Apple TV 1080p"       SCHEME="$TVOS_FRAMEWORK_SCHEME"       SDK="$TVOS_SDK"       TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="tvOS"       RUN_TESTS="YES"    PUBLISH_CARTHAGE="NO"     PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"
-    - DESTINATION="OS=3.2,name=Apple Watch - 42mm"    SCHEME="$WATCHOS_FRAMEWORK_SCHEME"    SDK="$WATCHOS_SDK"    TWO_STEP_BUILD_ENABLED="NO"     CARTHAGE_PLATFORM_NAME="watchOS"    RUN_TESTS="NO"     PUBLISH_CARTHAGE="NO"     PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"
+    - DESTINATION="OS=10.3.1,name=iPhone SE"          SCHEME="$IOS_FRAMEWORK_SCHEME"        SDK="$IOS_SDK"        TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="iOS"        RUN_TESTS="YES"    PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"
+    - DESTINATION="arch=x86_64"                       SCHEME="$MACOS_FRAMEWORK_SCHEME"      SDK="$MACOS_SDK"      TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="Mac"        RUN_TESTS="YES"    PUBLISH_DOCS="YES"    PUBLISH_CARTHAGE="YES"    POD_LIB_LINT="NO"
+    - DESTINATION="OS=10.2,name=Apple TV 1080p"       SCHEME="$TVOS_FRAMEWORK_SCHEME"       SDK="$TVOS_SDK"       TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="tvOS"       RUN_TESTS="YES"    PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"
+    - DESTINATION="OS=3.2,name=Apple Watch - 42mm"    SCHEME="$WATCHOS_FRAMEWORK_SCHEME"    SDK="$WATCHOS_SDK"    TWO_STEP_BUILD_ENABLED="NO"     CARTHAGE_PLATFORM_NAME="watchOS"    RUN_TESTS="NO"     PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"
 
 before_install:
   - set -o pipefail
@@ -48,14 +48,14 @@ script:
   - |
     if [ $TWO_STEP_BUILD_ENABLED == "YES" ]; then
       # Build Framework
-      xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES clean build-for-testing | xcpretty;
+      xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release clean build-for-testing | xcpretty;
       # Build Framework in Release and Run Tests if specified
       if [ $RUN_TESTS == "YES" ]; then
-        xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release GCC_GENERATE_TEST_COVERAGE_FILES=YES test-without-building | xcpretty;
+        xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release test-without-building | xcpretty;
       fi
     else
       # Build Framework
-      xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release ONLY_ACTIVE_ARCH=NO ENABLE_TESTABILITY=YES GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES clean build | xcpretty;  
+      xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release clean build | xcpretty;  
     fi
 
   # Build with carthage
@@ -70,11 +70,6 @@ script:
     fi
 
 after_success:
-  # Publish coverage
-  - if [ $RUN_TESTS == "YES" && $PUBLISH_COVERAGE == "YES" ]; then
-      bash <(curl -s https://codecov.io/bash);
-    fi
-
   # Generate and publish docs
   - if [ -n "${TRAVIS_TAG}" ] && [ $PUBLISH_DOCS == "YES" ]; then
       ./CI/publish-docs.sh;
