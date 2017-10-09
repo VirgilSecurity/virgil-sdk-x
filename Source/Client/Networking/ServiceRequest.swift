@@ -14,8 +14,8 @@ import Foundation
     let apiToken: String?
     let body: Data?
     
-    public static let DefaultTimeout: TimeInterval = 45
-    public static let AccessTokenHeader = "Authorization"
+    @objc public static let DefaultTimeout: TimeInterval = 45
+    @objc public static let AccessTokenHeader = "Authorization"
     
     public enum Method: String {
         case get    = "GET"
@@ -39,7 +39,7 @@ import Foundation
         super.init()
     }
     
-    public init(urlRequest: URLRequest) throws {
+    @objc public init(urlRequest: URLRequest) throws {
         guard let url = urlRequest.url,
             let methodStr = urlRequest.httpMethod,
             let method = Method(rawValue: methodStr) else {

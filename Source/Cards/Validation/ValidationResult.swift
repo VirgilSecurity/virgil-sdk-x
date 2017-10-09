@@ -9,9 +9,9 @@
 import Foundation
 
 @objc(VSSValidationResult) public class ValidationResult: NSObject {
-    public private(set) var errors: [Error] = []
+    @objc public private(set) var errors: [Error] = []
     
-    public var isValid: Bool { return self.errors.count == 0 }
+    @objc public var isValid: Bool { return self.errors.count == 0 }
     
     func addError(_ error: Error) {
         self.errors.append(error)

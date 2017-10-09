@@ -9,10 +9,10 @@
 import Foundation
 
 @objc(VSSSignerInfo) public class SignerInfo: NSObject {
-    public let cardId: String
-    public let publicKey: Data
+    @objc public let cardId: String
+    @objc public let publicKey: Data
     
-    public init(cardId: String, publicKey: Data) {
+    @objc public init(cardId: String, publicKey: Data) {
         self.cardId = cardId
         self.publicKey = publicKey
     }

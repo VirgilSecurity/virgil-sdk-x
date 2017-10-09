@@ -10,12 +10,12 @@ import Foundation
 import VirgilCryptoAPI
 
 @objc(VSSCard) public class Card: NSObject {
-    public let identifier: String
-    public let identity: String
-    public let fingerprint: Data
-    public let publicKey: PublicKey
-    public let version: String
-    public let signatures: [CardSignature]
+    @objc public let identifier: String
+    @objc public let identity: String
+    @objc public let fingerprint: Data
+    @objc public let publicKey: PublicKey
+    @objc public let version: String
+    @objc public let signatures: [CardSignature]
     
     private init(identifier: String, identity: String, fingerprint: Data, publicKey: PublicKey, version: String, signatures: [CardSignature]) {
         self.identifier = identifier
@@ -28,7 +28,7 @@ import VirgilCryptoAPI
         super.init()
     }
     
-    public class func parse(crypto: Crypto, rawCard: RawCard) -> Card? {
+    @objc public class func parse(crypto: Crypto, rawCard: RawCard) -> Card? {
         guard let rawCardInfo: RawCardInfo = SnapshotUtils.parseSnapshot(snapshot: rawCard.contentSnapshot) else {
             return nil
         }

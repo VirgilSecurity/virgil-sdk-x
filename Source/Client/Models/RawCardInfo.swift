@@ -17,10 +17,10 @@ import Foundation
         case createdAt     = "created_at"
     }
     
-    public let identity: String
-    public let publicKeyData: Data
-    public let version: String
-    public let createdAt: Date
+    @objc public let identity: String
+    @objc public let publicKeyData: Data
+    @objc public let version: String
+    @objc public let createdAt: Date
     
     init(identity: String, publicKeyData: Data, version: String, createdAt: Date) {
         self.identity = identity

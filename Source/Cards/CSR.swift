@@ -22,17 +22,17 @@ import VirgilCryptoAPI
         super.init()
     }
     
-    public let cardId: String
-    public var identity: String { return self.info.identity }
-    public var publicKeyData: Data { return self.info.publicKeyData }
-    public var version: String { return self.info.version }
-    public var createdAt: Date { return self.info.createdAt }
+    @objc public let cardId: String
+    @objc public var identity: String { return self.info.identity }
+    @objc public var publicKeyData: Data { return self.info.publicKeyData }
+    @objc public var version: String { return self.info.version }
+    @objc public var createdAt: Date { return self.info.createdAt }
     
-    public var rawCard: RawCard {
+    @objc public var rawCard: RawCard {
         return RawCard(contentSnapshot: self.snapshot, signatures: self.signatures)
     }
     
-    public func sign(crypto: Crypto, params: SignParams) throws {
+    @objc public func sign(crypto: Crypto, params: SignParams) throws {
         // FIXME
         guard params.signerType != .self || self.signatures.first(where: { $0.signerType == .self }) == nil else {
             throw NSError()
@@ -62,7 +62,7 @@ import VirgilCryptoAPI
         self.signatures.append(cardSignature)
     }
     
-    public func export() throws -> String {
+    @objc public func export() throws -> String {
         let rawCard = RawCard(contentSnapshot: self.snapshot, signatures: self.signatures)
         
         let json = rawCard.serialize()
@@ -71,7 +71,7 @@ import VirgilCryptoAPI
         return jsonData.base64EncodedString()
     }
     
-    public func `import`(crypto: Crypto, csr: String) throws -> CSR {
+    @objc public func `import`(crypto: Crypto, csr: String) throws -> CSR {
         guard let data = Data(base64Encoded: csr) else {
             throw NSError()
         }
@@ -99,8 +99,8 @@ import VirgilCryptoAPI
         return CSR(info: rawCardInfo, snapshot: rawCard.contentSnapshot, cardId: cardId)
     }
     
-    public static let CurrentCardVersion = "5.0"
-    public class func generate(crypto: Crypto, params: CSRParams) throws -> CSR {
+    @objc public static let CurrentCardVersion = "5.0"
+    @objc public class func generate(crypto: Crypto, params: CSRParams) throws -> CSR {
         let cardInfo = RawCardInfo(identity: params.identity, publicKeyData: try crypto.exportPublicKey(params.publicKey), version: CSR.CurrentCardVersion, createdAt: Date())
         let snapshot = try SnapshotUtils.takeSnapshot(object: cardInfo)
         

@@ -9,7 +9,7 @@
 import Foundation
 
 extension CardClient {
-    public func getCard(withId cardId: String) throws -> RawCard {
+    @objc public func getCard(withId cardId: String) throws -> RawCard {
         guard let url = URL(string: "card/\(cardId)", relativeTo: self.baseUrl) else {
             throw CardClientError.constructingUrl
         }
@@ -21,7 +21,7 @@ extension CardClient {
         return try self.processResponse(response)
     }
     
-    public func publishCard(request: RawCard) throws -> RawCard {
+    @objc public func publishCard(request: RawCard) throws -> RawCard {
         guard let url = URL(string: "card", relativeTo: self.baseUrl) else {
             throw CardClientError.constructingUrl
         }

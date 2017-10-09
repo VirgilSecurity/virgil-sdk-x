@@ -10,11 +10,11 @@ import Foundation
 import VirgilCryptoAPI
 
 @objc(VSSCSRParams) public class CSRParams: NSObject {
-    public let identity: String
-    public let publicKey: PublicKey
-    public let privateKey: PrivateKey?
+    @objc public let identity: String
+    @objc public let publicKey: PublicKey
+    @objc public let privateKey: PrivateKey?
     
-    public init(identity: String, publicKey: PublicKey, privateKey: PrivateKey?) {
+    @objc public init(identity: String, publicKey: PublicKey, privateKey: PrivateKey?) {
         self.identity = identity
         self.publicKey = publicKey
         self.privateKey = privateKey

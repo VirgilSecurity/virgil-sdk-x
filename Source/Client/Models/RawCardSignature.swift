@@ -9,10 +9,10 @@
 import Foundation
 
 @objc(VSSCardSignature) public final class CardSignature: NSObject, Deserializable, Serializable {
-    public let signerId: String
-    public let signerType: SignerType
-    public let signature: Data
-    public let extraData: Data
+    @objc public let signerId: String
+    @objc public let signerType: SignerType
+    @objc public let signature: Data
+    @objc public let extraData: Data
     
     private enum Keys: String {
         case signerId = "signer_id"

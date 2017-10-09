@@ -13,7 +13,7 @@ import Foundation
     public let response: HTTPURLResponse
     public let body: Data?
     
-    public init(statusCode: Int, response: HTTPURLResponse, body: Data?) {
+    @objc public init(statusCode: Int, response: HTTPURLResponse, body: Data?) {
         self.statusCode = statusCode
         self.response = response
         self.body = body

@@ -9,15 +9,15 @@
 import Foundation
 
 @objc(VSSRawCard) public class RawCard: NSObject, Deserializable, Serializable {
-    public let contentSnapshot: Data
-    public let signatures: [CardSignature]
+    @objc public let contentSnapshot: Data
+    @objc public let signatures: [CardSignature]
     
     private enum Keys: String {
         case contentSnapshot = "content_snapshot"
         case signatures = "signatures"
     }
     
-    public init(contentSnapshot: Data, signatures: [CardSignature]) {
+    @objc public init(contentSnapshot: Data, signatures: [CardSignature]) {
         self.contentSnapshot = contentSnapshot
         self.signatures = signatures
         

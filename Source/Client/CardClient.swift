@@ -13,8 +13,8 @@ import Foundation
     let apiToken: String?
     let connection: HTTPConnection
     
-    public static let serviceErrorDomain = "VirgilSDK.CardServiceErrorDomain"
-    public static let clientErrorDomain = "VirgilSDK.CardClientErrorDomain"
+    @objc public static let serviceErrorDomain = "VirgilSDK.CardServiceErrorDomain"
+    @objc public static let clientErrorDomain = "VirgilSDK.CardClientErrorDomain"
     
     public enum CardClientError: Int, CustomNSError {
         case constructingUrl
@@ -41,7 +41,7 @@ import Foundation
         public var errorUserInfo: [String : Any] { return [NSLocalizedDescriptionKey : self.rawServiceError.message] }
     }
     
-    public init(baseUrl: URL, apiToken: String?, connection: HTTPConnection = ServiceConnection()) {
+    @objc public init(baseUrl: URL, apiToken: String?, connection: HTTPConnection = ServiceConnection()) {
         self.baseUrl = baseUrl
         self.apiToken = apiToken
         self.connection = connection

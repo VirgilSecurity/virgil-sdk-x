@@ -14,7 +14,7 @@ import VirgilCryptoAPI
     private let client: CardClient
     private let validator: CardValidator?
     
-    public init(params: CardManagerParams) {
+    @objc public init(params: CardManagerParams) {
         self.crypto = params.crypto
         self.client = CardClient(baseUrl: params.apiUrl, apiToken: params.apiToken)
         self.validator = params.validator
@@ -29,7 +29,7 @@ import VirgilCryptoAPI
         }
     }
     
-    public func getCard(withId cardId: String) throws -> Card {
+    @objc public func getCard(withId cardId: String) throws -> Card {
         let rawCard = try self.client.getCard(withId: cardId)
         guard let card = Card.parse(crypto: self.crypto, rawCard: rawCard) else {
             // FIXME
@@ -41,7 +41,7 @@ import VirgilCryptoAPI
         return card
     }
     
-    public func publishCard(csr: CSR) throws -> Card {
+    @objc public func publishCard(csr: CSR) throws -> Card {
         let rawCard = try self.client.publishCard(request: csr.rawCard)
         guard let card = Card.parse(crypto: self.crypto, rawCard: rawCard) else {
             // FIXME

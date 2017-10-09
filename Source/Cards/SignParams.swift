@@ -10,13 +10,13 @@ import Foundation
 import VirgilCryptoAPI
 
 @objc(VSSSignParams) public class SignParams: NSObject {
-    public let signerCardId: String
+    @objc public let signerCardId: String
     
-    public let signerPrivateKey: PrivateKey
+    @objc public let signerPrivateKey: PrivateKey
     
-    public let signerType: SignerType
+    @objc public let signerType: SignerType
     
-    public let extraFields: [String : String]?
+    @objc public let extraFields: [String : String]?
     
     init(signerCardId: String, signerPrivateKey: PrivateKey, signerType: SignerType, extraFields: [String : String]? = nil) {
         self.signerCardId = signerCardId

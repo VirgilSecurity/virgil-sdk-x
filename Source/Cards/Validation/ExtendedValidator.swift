@@ -10,17 +10,17 @@ import Foundation
 import VirgilCryptoAPI
 
 @objc(VSSExtendedValidator) public class ExtendedValidator: NSObject, CardValidator {
-    public static let ErrorDomain = "VSSExtendedValidatorErrorDomain"
+    @objc public static let ErrorDomain = "VSSExtendedValidatorErrorDomain"
     
     private static let virgilCardId = "3e29d43373348cfb373b7eae189214dc01d7237765e572db685839b64adca853"
     private static let virgilPublicKeyBase64 = "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUNvd0JRWURLMlZ3QXlFQVlSNTAxa1YxdFVuZTJ1T2RrdzRrRXJSUmJKcmMyU3lhejVWMWZ1RytyVnM9Ci0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQo"
     
-    public var ingoreSelfSignature: Bool = false
-    public var ignoreVirgilSignature: Bool = false
+    @objc public var ingoreSelfSignature: Bool = false
+    @objc public var ignoreVirgilSignature: Bool = false
     
-    public let whiteList: [SignerInfo]
+    @objc public let whiteList: [SignerInfo]
     
-    public init(whiteList: [SignerInfo]) {
+    @objc public init(whiteList: [SignerInfo]) {
         self.whiteList = whiteList
         
         super.init()
