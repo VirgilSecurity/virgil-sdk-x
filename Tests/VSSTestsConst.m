@@ -49,28 +49,12 @@
     return @STRINGIZE2(APPLICATION_PRIVATE_KEY_PASSWORD);
 }
 
-- (NSString *)applicationIdentityType {
-    NSString *appIdentityType = self.config[@"AppIdentityType"];
-    if (appIdentityType != nil)
-        return appIdentityType;
-    
-    return @STRINGIZE2(APPLICATION_IDENTITY_TYPE);
-}
-
 - (NSString *)applicationId {
     NSString *appId = self.config[@"AppId"];
     if (appId != nil)
         return appId;
     
     return @STRINGIZE2(APPLICATION_ID);
-}
-
-- (NSString *)mailinatorToken {
-    NSString *mailinatorToken = self.config[@"MailinatorToken"];
-    if (mailinatorToken != nil)
-        return mailinatorToken;
-    
-    return @STRINGIZE2(MAILINATOR_TOKEN);
 }
 
 - (NSURL *)cardsServiceURL {
@@ -80,50 +64,6 @@
     
     NSString *str = [@STRINGIZE2(CARDS_SERVICE_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
     return [[NSURL alloc] initWithString:str];
-}
-
-- (NSURL *)cardsServiceROURL {
-    NSString *cardsRoUrl = self.config[@"CardsRoUrl"];
-    if (cardsRoUrl != nil)
-        return [[NSURL alloc] initWithString:cardsRoUrl];
-    
-    NSString *str = [@STRINGIZE2(CARDS_SERVICE_RO_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-    return [[NSURL alloc] initWithString:str];
-}
-
-- (NSURL *)identityServiceURL {
-    NSString *identityUrl = self.config[@"IdentityUrl"];
-    if (identityUrl != nil)
-        return [[NSURL alloc] initWithString:identityUrl];
-    
-    NSString *str = [@STRINGIZE2(IDENTITY_SERVICE_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-    return [[NSURL alloc] initWithString:str];
-}
-
-- (NSURL *)registrationAuthorityURL {
-    NSString *raUrl = self.config[@"RaUrl"];
-    if (raUrl != nil)
-        return [[NSURL alloc] initWithString:raUrl];
-    
-    NSString *str = [@STRINGIZE2(REGISTRATION_AUTHORITY_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-    return [[NSURL alloc] initWithString:str];
-}
-
-- (NSURL *)authServiceURL {
-    NSString *authUrl = self.config[@"AuthUrl"];
-    if (authUrl != nil)
-        return [[NSURL alloc] initWithString:authUrl];
-    
-    NSString *str = [@STRINGIZE2(AUTH_SERVICE_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-    return [[NSURL alloc] initWithString:str];
-}
-
-- (NSString *)authServicePublicKeyBase64 {
-    NSString *authPublicKey = self.config[@"AuthPublicKey"];
-    if (authPublicKey != nil)
-        return authPublicKey;
-    
-    return @STRINGIZE2(AUTH_SERVICE_PUBLIC_KEY_BASE64);
 }
 
 @end
