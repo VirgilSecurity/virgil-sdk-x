@@ -1,6 +1,6 @@
 language: objective-c
 
-osx_image: xcode8.3
+osx_image: xcode9
 
 env:
   global:
@@ -10,10 +10,10 @@ env:
     - MACOS_FRAMEWORK_SCHEME="VirgilSDK macOS"
     - TVOS_FRAMEWORK_SCHEME="VirgilSDK tvOS"
     - WATCHOS_FRAMEWORK_SCHEME="VirgilSDK watchOS"
-    - IOS_SDK=iphonesimulator10.3
-    - MACOS_SDK=macosx10.12
-    - TVOS_SDK=appletvsimulator10.2
-    - WATCHOS_SDK=watchsimulator3.2
+    - IOS_SDK=iphonesimulator11.0
+    - MACOS_SDK=macosx10.13
+    - TVOS_SDK=appletvsimulator11.0
+    - WATCHOS_SDK=watchsimulator4.0
     - FRAMEWORK_NAME=VirgilSDK
 
     # APPLICATION_ID
@@ -28,10 +28,10 @@ env:
     - secure: "ppZfOLSxYuOFOOf58DfgH0uzYTXh515JBnG3+t56oaiOVmsU1MbH1zxT30k/1yurfrpTTgfUxPu/OD/UMTOfhWgywzTtw7pHB1HWnlUlMA5kWuE73rHWeRs1Lm5SNKgcqYecU1EzGisoGDGpiMHYBPRPDKu+7I6srBWp6rpu5n/DdMIYhUCbddDOmJm/m7DJUWyHSOJNYrLvn75nKOunUD+Mz1aTr7mO7i8oHqWTqXWfDoHirMBgejUrnO4SILwNzkS3FNE7EdjEnci72VA+RHoqtw6u6qGE++QwCj7FZA2WQFae/rY91fB4P+kC6MizJVMTrBfzMtyUEdRUJYv0Fil9rMMFEkpzUfMmTciAzkw4zQd7EdggTL84EM45PUu/pX0CNGgz1+i47VJIrzlxPQzLJrL/pg/8+9S26uYtt321QlP0FbQYuPwnSD8vq//UykGuIkRIUrQ1JeXvST0FrxJTIj8IpM6BE9qjRAdJgyCaCGsqBp8yBd1bvwf3kbAuaQWT1xBWWOThmwTElvQdkdAY+Nt0dGmlGHq+OfI+RuEXk0lWZmV0/O/bl3GSH+0PpJTXiGmyVgejiLncWhui0/88o3NpMWFxg67B/f8q1wu5CpMbvlDTThSqfOyqoeklNwK+Nst6Z7WYFigmYM/FpXF9kvjAsh03EK1OaGTu7q0="
     
   matrix:
-    - DESTINATION="OS=10.3.1,name=iPhone SE"          SCHEME="$IOS_FRAMEWORK_SCHEME"        SDK="$IOS_SDK"        TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="iOS"        RUN_TESTS="YES"    PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"
+    - DESTINATION="OS=11.0,name=iPhone SE"            SCHEME="$IOS_FRAMEWORK_SCHEME"        SDK="$IOS_SDK"        TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="iOS"        RUN_TESTS="YES"    PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"
     - DESTINATION="arch=x86_64"                       SCHEME="$MACOS_FRAMEWORK_SCHEME"      SDK="$MACOS_SDK"      TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="Mac"        RUN_TESTS="YES"    PUBLISH_DOCS="YES"    PUBLISH_CARTHAGE="YES"    POD_LIB_LINT="NO"
-    - DESTINATION="OS=10.2,name=Apple TV 1080p"       SCHEME="$TVOS_FRAMEWORK_SCHEME"       SDK="$TVOS_SDK"       TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="tvOS"       RUN_TESTS="YES"    PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"
-    - DESTINATION="OS=3.2,name=Apple Watch - 42mm"    SCHEME="$WATCHOS_FRAMEWORK_SCHEME"    SDK="$WATCHOS_SDK"    TWO_STEP_BUILD_ENABLED="NO"     CARTHAGE_PLATFORM_NAME="watchOS"    RUN_TESTS="NO"     PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"
+    - DESTINATION="OS=11.0,name=Apple TV 1080p"       SCHEME="$TVOS_FRAMEWORK_SCHEME"       SDK="$TVOS_SDK"       TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="tvOS"       RUN_TESTS="YES"    PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"
+    - DESTINATION="OS=4.0,name=Apple Watch - 42mm"    SCHEME="$WATCHOS_FRAMEWORK_SCHEME"    SDK="$WATCHOS_SDK"    TWO_STEP_BUILD_ENABLED="NO"     CARTHAGE_PLATFORM_NAME="watchOS"    RUN_TESTS="NO"     PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"
 
 before_install:
   - set -o pipefail
@@ -39,8 +39,6 @@ before_install:
   - brew outdated carthage || brew upgrade carthage
   - xcodebuild -version
   - xcodebuild -showsdks
-
-language: objective-c
 
 script:
   - carthage update --platform "$CARTHAGE_PLATFORM_NAME"
