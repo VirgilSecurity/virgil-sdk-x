@@ -8,11 +8,11 @@ Virgil Security gives developers open source API with the full cycle of data sec
 
 
 ## <a name="head1"></a> Set Up Server
-Your server should be able to authorize your users, store Application's Virgil Key and use **Virgil SDK** for cryptographic operations or for some requests to Virgil Services. You can configure your server using the [Setup Guide](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/guides/configuration/server-configuration.md).
+Your server should be able to authorize your users, store Application's Virgil Key and use **Virgil SDK** for cryptographic operations or for some requests to Virgil Services. You can configure your server using the [Setup Guide](/documentation-swift/guides/configuration/server-configuration.md).
 
 
 ## <a name="head2"></a> Set Up Clients
-Set up the client side. After users register at your Application Server, provide them with an access token that authenticates users for further operations and transmit their **Virgil Cards** to the server. Configure the client side using the [Setup Guide](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/guides/configuration/client-configuration.md).
+Set up the client side. After users register at your Application Server, provide them with an access token that authenticates users for further operations and transmit their **Virgil Cards** to the server. Configure the client side using the [Setup Guide](/documentation-swift/guides/configuration/client-configuration.md).
 
 
 ## <a name="head3"></a> Register Users
@@ -20,7 +20,7 @@ Now you need to register the users who will encrypt data.
 
 In order to encrypt a data each user must have his own tools, which allow him to perform cryptographic operations, and these tools must contain the necessary information to identify users. In Virgil Security, these tools are the Virgil Key and the Virgil Card.
 
-![Virgil Card](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/img/Card_introduct.png "Create Virgil Card")
+![Virgil Card](/documentation-swift/img/Card_introduct.png "Create Virgil Card")
 
 When we have already set up the Virgil SDK on the server & client sides, we can finally create Virgil Cards for the users and transmit the Cards to your Server for further publication on Virgil Services.
 
@@ -51,7 +51,7 @@ let aliceCard = try! virgil.cards.
 
 It should be noted that recently created user Virgil Cards will be visible only for application users because they are related to the Application.
 
-Read more about Virgil Cards and their types [here](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/guides/virgil-card/creating-card.md).
+Read more about Virgil Cards and their types [here](/documentation-swift/guides/virgil-card/creating-card.md).
 
 
 ### Transmit the Cards to Your Server
@@ -66,14 +66,14 @@ let exportedCard = aliceCard.exportData()
 TransmitToServer(exportedCard)
 ```
 
-Use the [approve & publish users guide](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/guides/configuration/server-configuration.md) to publish user's Virgil Card on Virgil Services.
+Use the [approve & publish users guide](/documentation-swift/guides/configuration/server-configuration.md) to publish user's Virgil Card on Virgil Services.
 
 
 ## <a name="head4"></a> Encrypt Data
 
 With the Virgil Card created, we're ready to start encrypting data which will then be stored in the encrypted storage. In this case we will encrypt some data for Alice, using her own Virgil Card.
 
-![encrypted storage](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/img/encrypted_storage_upload.png "Encrypt data")
+![encrypted storage](/documentation-swift/img/encrypted_storage_upload.png "Encrypt data")
 
 In order to encrypt data, the user must search for Virgil Cards at Virgil Services, where all Virgil Cards are saved.
 
@@ -89,7 +89,7 @@ virgil.cards.searchCards(withIdentities: ["alice"]) { aliceCards, error in
 }
 ```
 
-See our [guide](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/guides/virgil-card/finding-card.md) on Finding Cards for best practices on loading Alice's card.
+See our [guide](/documentation-swift/guides/virgil-card/finding-card.md) on Finding Cards for best practices on loading Alice's card.
 
 ### Storage
 
@@ -100,7 +100,7 @@ With this in place, Alice is now ready to store the encrypted files to a local o
 
 You can easily **decrypt** your encrypted files at any time using your private Virgil Key.
 
-![Encrypt Data](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/img/encrypted_storage_download.png "Decrypt Data")
+![Encrypt Data](/documentation-swift/img/encrypted_storage_download.png "Decrypt Data")
 
 To decrypt your encrypted files, load the data and use your own Virgil Key to decrypt the data.
 
@@ -113,4 +113,4 @@ let aliceKey = try! virgil.keys.loadKey(withName: "[KEY_NAME]",
 let originalFileBuf = try! aliceKey.decrypt(cipherFileBuf)
 ```
 
-To decrypt data, you will need your stored Virgil Key. See the [Loading Key](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/guides/virgil-key/loading-key.md) guide for more details.
+To decrypt data, you will need your stored Virgil Key. See the [Loading Key](/documentation-swift/guides/virgil-key/loading-key.md) guide for more details.

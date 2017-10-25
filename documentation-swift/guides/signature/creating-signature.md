@@ -4,11 +4,11 @@ This guide is a short tutorial on how to create a **Digital Signature** with Vir
 
 See our [Use Cases](https://github.com/VirgilSecurity/virgil-sdk-x/tree/docs-review/documentation-swift) to find out what you can do with Digital Signature.
 
-Set up your project environment before starting to create a Digital Signature, with the [getting started](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/guides/configuration/client-configuration.md) guide.
+Set up your project environment before starting to create a Digital Signature, with the [getting started](/documentation-swift/guides/configuration/client-configuration.md) guide.
 
 The **Signature Creation** procedure is shown in the figure below.
 
-![Virgil Signature Intro](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/img/Signature_introduction.png "Create Signature")
+![Virgil Signature Intro](/documentation-swift/img/Signature_introduction.png "Create Signature")
 
 In order to create a Digital Signature and sign the message, Alice has to have her **Virgil Key**.
 
@@ -44,6 +44,6 @@ let message = "Hey Bob, hope you are doing well."
 let signature = try! aliceKey.generateSignature(for: message)
 ```
 
-See our guide on [Loading Keys](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/guides/virgil-key/loading-key.md) for more examples.
+See our guide on [Loading Keys](/documentation-swift/guides/virgil-key/loading-key.md) for more examples.
 
 Now Alice can send a signed message to Bob.

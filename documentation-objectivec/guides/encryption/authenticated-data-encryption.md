@@ -6,11 +6,11 @@ This process is called **Authenticated Data Encryption**. It is a form of encryp
 
 
 
-Set up your project environment before you begin to work, with the [getting started](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-objectivec/guides/configuration/client-configuration.md) guide.
+Set up your project environment before you begin to work, with the [getting started](/documentation-objectivec/guides/configuration/client-configuration.md) guide.
 
 The Authenticated Data Encryption procedure is shown in the figure below.
 
-![Authenticated Data Encryption](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-objectivec/img/Guides_introduction.png "Authenticated Data Encryption")
+![Authenticated Data Encryption](/documentation-objectivec/img/Guides_introduction.png "Authenticated Data Encryption")
 
 In order to **sign"** and **encrypt** a **message**, Alice has to have:
  - Her Virgil Key
@@ -51,4 +51,4 @@ VSSVirgilApi *virgil = [[VSSVirgilApi alloc]
 
 To load a Virgil Key from a specific storage, developers need to change the storage path during Virgil SDK initialization.
 
-In many cases you need receiver's Virgil Cards. See [Finding Cards](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-objectivec/guides/virgil-card/finding-card.md) guide to find them.
+In many cases you need receiver's Virgil Cards. See [Finding Cards](/documentation-objectivec/guides/virgil-card/finding-card.md) guide to find them.

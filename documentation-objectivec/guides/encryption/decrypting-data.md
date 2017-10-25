@@ -4,11 +4,11 @@ This guide is a short tutorial on how to **decrypt** encrypted data with Virgil 
 
 Decryption is the reverse operation of encryption. As previously noted, Virgil Security allows you to encrypt data using public-key encryption. It's means that only the owner of the related private **Virgil Key** can decrypt the encrypted data.
 
-Before decryption, set up your project environment with the [getting started](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-objectivec/guides/configuration/client-configuration.md) guide.
+Before decryption, set up your project environment with the [getting started](/documentation-objectivec/guides/configuration/client-configuration.md) guide.
 
 The Data Decryption procedure is shown in the figure below.
 
-![Virgil Encryption Intro](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-objectivec/img/Encryption_introduction.png "Data decryption")
+![Virgil Encryption Intro](/documentation-objectivec/img/Encryption_introduction.png "Data decryption")
 
 In order to decrypt a **message**, Bob has to have:
  - His Virgil Key
@@ -40,4 +40,4 @@ VSSVirgilApi *virgil = [[VSSVirgilApi alloc]
 
 To load a Virgil Key from a specific storage, developers need to change the storage path during Virgil SDK initialization.
 
-To decrypt data, you need Bob's stored Virgil Key. See the [Storing Keys](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-objectivec/guides/virgil-key/saving-key.md) guide for more details.
+To decrypt data, you need Bob's stored Virgil Key. See the [Storing Keys](/documentation-objectivec/guides/virgil-key/saving-key.md) guide for more details.

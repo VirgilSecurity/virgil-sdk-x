@@ -8,18 +8,18 @@ Use **Virgil** to verify the integrity of data. **Data Integrity** is essential 
 <!-- ![Virgil Signature Intro](/img/Signature_introduction.png "Data integrity") -->
 
 ## <a name="head1"></a> Set Up Server
-Your server should be able to authorize your users, store Application Virgil Key and use **Virgil SDK** for cryptographic operations or for some requests to Virgil Services. You can configure your server using the [Setup Guide](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-objectivec/guides/configuration/server-configuration.md).
+Your server should be able to authorize your users, store Application Virgil Key and use **Virgil SDK** for cryptographic operations or for some requests to Virgil Services. You can configure your server using the [Setup Guide](/documentation-objectivec/guides/configuration/server-configuration.md).
 
 
 ## <a name="head2"></a> Set Up Clients
-Set up the client side. After users register at your Application Server, provide them with an access token that authenticates users for further operations and transmit their **Virgil Cards** to the server. Configure the client side using the [Setup Guide](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-objectivec/guides/configuration/client-configuration.md).
+Set up the client side. After users register at your Application Server, provide them with an access token that authenticates users for further operations and transmit their **Virgil Cards** to the server. Configure the client side using the [Setup Guide](/documentation-objectivec/guides/configuration/client-configuration.md).
 
 
 ## <a name="head3"></a> Register Users
 Now you need to register users. We are creating a Virgil Key and Card for each user that sends verified data.
 Cards are stored with Virgil and contain user's public encryption keys.
 
-![Virgil Card](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-objectivec/img/Card_introduct.png "Create Virgil Card")
+![Virgil Card](/documentation-objectivec/img/Card_introduct.png "Create Virgil Card")
 
 When we have already set up the Virgil SDK on the server and client sides, we can finally create Virgil Cards for the users and transmit the Cards to your Server for further publication on Virgil Services.
 
@@ -50,7 +50,7 @@ VSSVirgilCard *aliceCard = [virgil.cards
 
 **Note**: Recently created users' Virgil Cards are visible only for application users because they are related to the Application.
 
-Read more about Virgil Cards and their types [here](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-objectivec/guides/virgil-card/creating-card.md).
+Read more about Virgil Cards and their types [here](/documentation-objectivec/guides/virgil-card/creating-card.md).
 
 
 ### Transmit the Cards to Your Server
@@ -65,7 +65,7 @@ NSString *exportedCard = [aliceCard exportData];
 TransmitToServer(exportedCard);
 ```
 
-Use the [approve & publish users guide](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-objectivec/guides/configuration/server.md#-approve--publish-cards) to publish users Virgil Cards on Virgil Services.
+Use the [approve & publish users guide](/documentation-objectivec/guides/configuration/server.md#-approve--publish-cards) to publish users Virgil Cards on Virgil Services.
 
 ## <a name="head4"></a> Sign Data
 
@@ -79,7 +79,7 @@ NSString *message = @"Hey Bob, hope you are doing well.";
 NSData *signature = [aliceKey generateSignatureForString:message error:nil];
 ```
 
-To create a signature, you need to load Alice's Virgil Key. The [Loading Key](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-objectivec/guides/virgil-key/loading-key.md) guide provides more details
+To create a signature, you need to load Alice's Virgil Key. The [Loading Key](/documentation-objectivec/guides/virgil-key/loading-key.md) guide provides more details
 
 ### Transmission
 
@@ -102,7 +102,7 @@ To look up sender's card, we use the same identifier as for card publishing: `al
 }];
 ```
 
-The identifier for a Virgil Card can be any ID you prefer, for example, a username or user ID. The [Finding Card](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-objectivec/guides/virgil-card/finding-card.md) guide provides more details.
+The identifier for a Virgil Card can be any ID you prefer, for example, a username or user ID. The [Finding Card](/documentation-objectivec/guides/virgil-card/finding-card.md) guide provides more details.
 
 This returns all cards for Alice, which we can use to verify the data.
 
@@ -121,4 +121,4 @@ if (!verified) {
 }
 ```
 
-To create a signature, you need to load Alice's Virgil Key. The [Loading Key](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-objectivec/guides/virgil-key/loading-key.md) guide provides more details.
+To create a signature, you need to load Alice's Virgil Key. The [Loading Key](/documentation-objectivec/guides/virgil-key/loading-key.md) guide provides more details.

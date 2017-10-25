@@ -2,7 +2,7 @@
 
 This guide shows how to import a **Virgil Card** from the string representation.
 
-Set up your project environment before you begin to import a Virgil Card, with the [getting started](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-objectivec/guides/configuration/client-configuration.md) guide.
+Set up your project environment before you begin to import a Virgil Card, with the [getting started](/documentation-objectivec/guides/configuration/client-configuration.md) guide.
 
 
 In order to import the Virgil Card, we need to:

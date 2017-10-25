@@ -32,7 +32,7 @@ let virgil = VSSVirgilApi(token: "[YOUR_ACCESS_TOKEN_HERE]")
 
 ### Without a Token
 
-In case of a **Global Virgil Card** creation you don't need to initialize the SDK with the Access Token. For more information about the Global Virgil Card creation check out the [Creating Global Card guide](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/guides/virgil-card/creating-global-card.md).
+In case of a **Global Virgil Card** creation you don't need to initialize the SDK with the Access Token. For more information about the Global Virgil Card creation check out the [Creating Global Card guide](/documentation-swift/guides/virgil-card/creating-global-card.md).
 
 Use the following code to initialize Virgil SDK without Access Token.
 

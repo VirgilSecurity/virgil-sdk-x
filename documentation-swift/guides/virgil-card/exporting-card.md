@@ -2,7 +2,7 @@
 
 This guide shows how to export a **Virgil Card** to the string representation.
 
-Set up your project environment before you begin to export a Virgil Card, with the [getting started](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/guides/configuration/client-configuration.md) guide.
+Set up your project environment before you begin to export a Virgil Card, with the [getting started](/documentation-swift/guides/configuration/client-configuration.md) guide.
 
 In order to export a Virgil Card, we need to:
 

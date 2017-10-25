@@ -6,11 +6,11 @@ Encryption can be used to provide high levels of security to network communicati
 
 For original information about encryption, its syntax and parameters, follow the link [here](https://github.com/VirgilSecurity/virgil/blob/wiki/wiki/glossary.md#encryption).
 
-Set up your project environment before you begin to encrypt data, with the [getting started](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/guides/configuration/client-configuration.md) guide.
+Set up your project environment before you begin to encrypt data, with the [getting started](/documentation-swift/guides/configuration/client-configuration.md) guide.
 
 The Data Encryption procedure is shown in the figure below.
 
-![Virgil Encryption Intro](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/img/Encryption_introduction.png "Data encryption")
+![Virgil Encryption Intro](/documentation-swift/img/Encryption_introduction.png "Data encryption")
 
 
 In order to encrypt a message, Alice has to have:
@@ -45,4 +45,4 @@ let virgil = VSSVirgilApi(token: "[YOUR_ACCESS_TOKEN_HERE]")
 
 Now Alice can send encrypted message to the recipients.
 
-In many cases you will need the receiver's Virgil Cards. See [Finding Cards](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/guides/virgil-card/finding-card.md) guide to find them.
+In many cases you will need the receiver's Virgil Cards. See [Finding Cards](/documentation-swift/guides/virgil-card/finding-card.md) guide to find them.

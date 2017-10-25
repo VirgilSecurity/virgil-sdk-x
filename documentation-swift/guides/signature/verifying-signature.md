@@ -4,12 +4,12 @@ This guide is a short tutorial on how to verify a **Digital Signature** with Vir
 
 For original information about the Digital Signature follow the link [here](https://github.com/VirgilSecurity/virgil/blob/wiki/wiki/glossary.md#digital-signature).
 
-Set up your project environment before starting to verify a Digital Signature, with the [getting started](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/guides/configuration/client-configuration.md) guide.
+Set up your project environment before starting to verify a Digital Signature, with the [getting started](/documentation-swift/guides/configuration/client-configuration.md) guide.
 
 The Signature Verification procedure is shown in the figure below.
 
 
-![Virgil Signature Intro](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/img/Signature_introduction.png "Verify Signature")
+![Virgil Signature Intro](/documentation-swift/img/Signature_introduction.png "Verify Signature")
 
 In order to verify the Digital Signature, Bob has to have Alice's **Virgil Card"**.
 
@@ -36,4 +36,4 @@ virgil.cards.getCard(withId: "[ALICE_CARD_ID_HERE]") { aliceCard, error in
 }
 ```
 
-See our guide on [Validating Cards](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-swift/guides/virgil-card/validating-card.md) for the best practices.
+See our guide on [Validating Cards](/documentation-swift/guides/virgil-card/validating-card.md) for the best practices.

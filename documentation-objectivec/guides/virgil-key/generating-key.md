@@ -2,11 +2,11 @@
 
 This guide shows how to generate a **Virgil Key**. The Virgil Key is a Private Key, which never leaves its device. Only key holders are allowed to sign and decrypt data. The data was encrypted by Public Key. Every Public Key is associated with particular Private Key.
 
-Before generating a Virgil Key, set up your project environment using the [getting started](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-objectivec/guides/configuration/client-configuration.md) guide.
+Before generating a Virgil Key, set up your project environment using the [getting started](/documentation-objectivec/guides/configuration/client-configuration.md) guide.
 
 The Virgil Key generation procedure is shown in the figure below.
 
-![Virgil Key Intro](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/documentation-objectivec/img/Key_introduction.png "Keys generation")
+![Virgil Key Intro](/documentation-objectivec/img/Key_introduction.png "Keys generation")
 
 There are two options to generate a Virgil Key:
 - With **default** key pair type
