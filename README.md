@@ -22,28 +22,6 @@ The **Virgil SDK** is provided as module inside framework named **VirgilSDK**. V
 Packages are available for iOS 8.0+ and macOS 10.10+.
 
 
-### CocoaPods
-
-To integrate VirgilSDK into your Xcode project using [CocoaPods](http://cocoapods.org), specify it in your *Podfile*:
-
-```
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '10.0'
-use_frameworks!
-
-target '<Your Target Name>' do
-    pod 'VirgilSDK', '~> 4.5.0'
-end
-```
-Then, run the following command:
-
-```
-$ pod install
-```
-
-> CocoaPods 0.36+ is required to build VirgilSDK 4.0.0+.
-
-
 ### Carthage
 
 To integrate VirgilSDK into your Xcode project using [Carthage](https://github.com/Carthage/Carthage), perform following steps:
@@ -70,7 +48,28 @@ To integrate VirgilSDK into your Xcode project using [Carthage](https://github.c
   $(SRCROOT)/Carthage/Build/iOS/VirgilSDK.framework
   ```
 
- To import VirgilSDK and VirgilCrypto after linking frameworks to your project add following lines to your source files:
+### CocoaPods
+
+To integrate VirgilSDK into your Xcode project using [CocoaPods](http://cocoapods.org), specify it in your *Podfile*:
+
+```
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '10.0'
+use_frameworks!
+
+target '<Your Target Name>' do
+    pod 'VirgilSDK', '~> 4.5.0'
+end
+```
+Then, run the following command:
+
+```
+$ pod install
+```
+
+> CocoaPods 0.36+ is required to build VirgilSDK 4.0.0+.
+
+To import VirgilSDK and VirgilCrypto after linking frameworks to your project add following lines to your source files:
 
 ##### Objective-C
 ``` objective-c
