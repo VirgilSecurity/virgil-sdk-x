@@ -141,8 +141,8 @@ __Next:__ On the page below you can find configuration documentation and the lis
 
 Virgil Security has a powerful set of APIs and the documentation to help you get started:
 
-* [Get Started](/documentation/get-started) documentation
-  * [Encrypted storage](/documentation/get-started/encrypted-storage.md)
+* Get Started documentation
+  * Encrypted storage ([Objective-C](/documentation-objectivec/get-started/encrypted-storage.md) / [Swift](/documentation-swift/get-started/encrypted-storage.md))
   * [Encrypted communication](/documentation/get-started/encrypted-communication.md)
   * [Data integrity](/documentation/get-started/data-integrity.md)
 * [Guides](/documentation/guides)
