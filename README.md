@@ -143,16 +143,16 @@ Virgil Security has a powerful set of APIs and the documentation to help you get
 
 * Get Started documentation
   * Encrypted storage ([Objective-C](/documentation-objectivec/get-started/encrypted-storage.md) / [Swift](/documentation-swift/get-started/encrypted-storage.md))
-  * [Encrypted communication](/documentation/get-started/encrypted-communication.md)
-  * [Data integrity](/documentation/get-started/data-integrity.md)
-* [Guides](/documentation/guides)
-  * [Virgil Cards](/documentation/guides/virgil-card)
-  * [Virgil Keys](/documentation/guides/virgil-key)
-  * [Encryption](/documentation/guides/encryption)
-  * [Signature](/documentation/guides/signature)
-* [Configuration](/documentation/guides/configuration)
-  * [Set Up Client Side](/documentation/guides/configuration/client.md)
-  * [Set Up Server Side](/documentation/guides/configuration/server.md)
+  * Encrypted communication ([Objective-C](/documentation-objectivec/get-started/encrypted-communication.md) / [Swift](/documentation-swift/get-started/encrypted-communication.md))
+  * Data integrity ([Objective-C](/documentation-objectivec/get-started/data-integrity.md) / [Swift](/documentation-swift/get-started/data-integrity.md))
+* Guides
+  * Virgil Cards ([Objective-C](/documentation-objectivec/guides/virgil-card) / [Swift](/documentation-swift/guides/virgil-card))
+  * Virgil Keys ([Objective-C](/documentation-objectivec/guides/virgil-key) / [Swift](/documentation-swift/guides/virgil-key))
+  * Encryption ([Objective-C](/documentation-objectivec/guides/encryption) / [Swift](/documentation-swift/guides/encryption))
+  * Signature ([Objective-C](/documentation-objectivec/guides/signature) / [Swift](/documentation-swift/guides/signature))
+* Configuration
+  * Set Up Client Side ([Objective-C](/documentation-objectivec/guides/configuration/client.md) / [Swift](/documentation-swift/guides/configuration/client.md))
+
 * [Reference API](http://virgilsecurity.github.io/virgil-sdk-x/)
 
 __Next__ Also, see our Virgil [Swift SDK for PFS](https://github.com/VirgilSecurity/virgil-sdk-pfs-x) Encrypted Communication to protect previously intercepted traffic from being decrypted even if the main Private Key is compromised.
