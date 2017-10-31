@@ -4,7 +4,7 @@
 
 It is very easy to encrypt data for secure communications in a few simple steps. In this tutorial, we are helping two people communicate with full (end-to-end) **encryption**.
 
-Due to limited time and resources, developers often resort to third-party solutions to transfer data, which do not have an open source API, a full cycle of data security that would ensure integrity and confidentiality. Thus, all of your data could be read by the third party. Virgil offers a solution without these weaknesses.
+Due to limited time and resources, developers often resort to the third-party solutions to transfer data, which do not have an open source API, a full cycle of data security that would ensure integrity and confidentiality. Thus, all of your data could be read by the third party. Virgil offers a solution without these weaknesses.
 
 ![Encrypted Communication](/docs/objectivec/img/encrypted_communication_intro.png "Encrypted Communication")
 
@@ -25,9 +25,8 @@ We recommend to use one of the next SDKs:
 * [C#/.NET](https://github.com/VirgilSecurity/virgil-sdk-net/tree/v4)
 
 
-
 ## <a name="head2"></a> Set Up Clients
-Set up the client side. After users register at your Application Server, provide them with an access token that authenticates users for further operations and transmit their **Virgil Cards** to the server. Configure the client side using the [Setup Guide](/docs/objectivec/guides/configuration/client.md).
+Set up the client side. After users register at your Application Server, provide them with an access token that authenticates users for further operations and transmit their Virgil Cards to the server. Configure the client side using the [Setup Guide](/docs/objectivec/guides/configuration/client.md).
 
 
 ## <a name="head3"></a> Register Users
