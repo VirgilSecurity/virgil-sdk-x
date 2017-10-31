@@ -8,7 +8,18 @@ Use **Virgil** to verify the integrity of data. **Data Integrity** is essential 
 <!-- ![Virgil Signature Intro](/img/Signature_introduction.png "Data integrity") -->
 
 ## <a name="head1"></a> Set Up Server
-Your server should be able to authorize your users, store Application Virgil Key and use **Virgil SDK** for cryptographic operations or for some requests to Virgil Services. You can configure your server using the [Setup Guide](/docs/objectivec/guides/configuration/server-configuration.md).
+Your server should be able to authorize your users, store Application Virgil Key and use **Virgil SDK** for cryptographic operations or for some requests to Virgil Services.
+
+OBJECTIVE-C is not supported on the server side.
+We recommend using one of the next SDKs:
+[RUBY](https://github.com/VirgilSecurity/virgil-sdk-ruby/tree/v4)
+[PHP](https://github.com/VirgilSecurity/virgil-sdk-php/tree/v4)
+[GO](https://github.com/VirgilSecurity/virgil-crypto-go/tree/v4)
+[JAVASCRIPT](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/v4)
+[JAVA](https://github.com/VirgilSecurity/virgil-sdk-java-android/tree/v4)
+[PYTHON](https://github.com/VirgilSecurity/virgil-sdk-python/tree/v4)
+[C#/.NET](https://github.com/VirgilSecurity/virgil-sdk-net/tree/v4)
+
 
 
 ## <a name="head2"></a> Set Up Clients
@@ -27,7 +38,7 @@ When we have already set up the Virgil SDK on the server and client sides, we ca
 ### Generate Keys and Create Virgil Card
 Use the Virgil SDK on client side to generate a new Key Pair, and then, using recently generated Virgil Key, create user's Virgil Card. All keys are generated and stored on the client side.
 
-In this example, we are passing on user's username and password, which will lock in their private encryption key. Each Virgil Card is signed by user's Virgil Key, which guarantees Virgil Card's content integrity over its life cycle.
+In this example, we are passing on user's username and password, which will lock in their private encryption key. Each Virgil Card is signed by user's Virgil Key, which guarantees Virgil Card content integrity over its life cycle.
 
 ```objectivec
 // generate a new Virgil Key

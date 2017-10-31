@@ -7,7 +7,17 @@ Virgil Perfect Forward Secrecy (PFS) is designed to prevent a possibly compromis
 Create a [Developer account](https://developer.virgilsecurity.com/account/signup) and register your Application to get the possibility to use Virgil Infrastructure.
 
 ## <a name="head1"></a> Set Up Server
-Your server should be able to authorize your users, store Application's Virgil Key and use **Virgil SDK** for cryptographic operations or for some requests to Virgil Services. You can configure your server using the [Setup Guide](/docs/guides/configuration/server-configuration.md).
+Your server should be able to authorize your users, store Application's Virgil Key and use **Virgil SDK** for cryptographic operations or for some requests to Virgil Services.
+
+SWIFT is not supported on the server side.
+We recommend using one of the next SDKs:
+[RUBY](https://github.com/VirgilSecurity/virgil-sdk-ruby/tree/v4)
+[PHP](https://github.com/VirgilSecurity/virgil-sdk-php/tree/v4)
+[GO](https://github.com/VirgilSecurity/virgil-crypto-go/tree/v4)
+[JAVASCRIPT](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/v4)
+[JAVA](https://github.com/VirgilSecurity/virgil-sdk-java-android/tree/v4)
+[PYTHON](https://github.com/VirgilSecurity/virgil-sdk-python/tree/v4)
+[C#/.NET](https://github.com/VirgilSecurity/virgil-sdk-net/tree/v4)
 
 
 ## <a name="head2"></a> Set Up Clients
@@ -28,7 +38,7 @@ When we have already set up the Virgil SDK on the server & client sides, we can 
 ### Generate Keys and Create Virgil Card
 To generate a new Key Pair, use Virgil SDK on the client side. Then create user's Virgil Card with recently generated Virgil Key. All keys are generated and stored on the client side.
 
-In this example, we pass on the username and password, which we lock in their private encryption key. Each Virgil Card is signed by user's Virgil Key. This guarantees Virgil Card's content integrity over its life cycle.
+In this example, we pass on the username and password, which we lock in their private encryption key. Each Virgil Card is signed by user's Virgil Key. This guarantees Virgil Card content integrity over its life cycle.
 
 ```swift
 // generate a new Virgil Key

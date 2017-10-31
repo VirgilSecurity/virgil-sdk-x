@@ -14,8 +14,8 @@ In order to revoke a Global Virgil Card, we need to:
 
 - Load Alice's **Virgil Key** from the secure storage provided by default
 - Load Alice's Virgil Card from **Virgil Services**
-- Initiate the Card's identity verification process
-- Confirm the Card's identity using a **confirmation code**
+- Initiate the Card identity verification process
+- Confirm the Card identity using a **confirmation code**
 - Revoke the Global Virgil Card from Virgil Services
 
 ```swift
