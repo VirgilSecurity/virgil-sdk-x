@@ -12,13 +12,13 @@ Your server should be able to authorize your users, store Application's Virgil K
 
 SWIFT is not supported on the server side.
 We recommend using one of the next SDKs:
-[RUBY](https://github.com/VirgilSecurity/virgil-sdk-ruby/tree/v4)
-[PHP](https://github.com/VirgilSecurity/virgil-sdk-php/tree/v4)
-[GO](https://github.com/VirgilSecurity/virgil-crypto-go/tree/v4)
-[JAVASCRIPT](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/v4)
-[JAVA](https://github.com/VirgilSecurity/virgil-sdk-java-android/tree/v4)
-[PYTHON](https://github.com/VirgilSecurity/virgil-sdk-python/tree/v4)
-[C#/.NET](https://github.com/VirgilSecurity/virgil-sdk-net/tree/v4)
+* [RUBY](https://github.com/VirgilSecurity/virgil-sdk-ruby/tree/v4)
+* [PHP](https://github.com/VirgilSecurity/virgil-sdk-php/tree/v4)
+* [GO](https://github.com/VirgilSecurity/virgil-crypto-go/tree/v4)
+* [JAVASCRIPT](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/v4)
+* [JAVA](https://github.com/VirgilSecurity/virgil-sdk-java-android/tree/v4)
+* [PYTHON](https://github.com/VirgilSecurity/virgil-sdk-python/tree/v4)
+* [C#/.NET](https://github.com/VirgilSecurity/virgil-sdk-net/tree/v4)
 
 
 
