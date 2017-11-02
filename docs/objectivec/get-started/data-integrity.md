@@ -80,11 +80,11 @@ OBJECTIVE-C is not supported for publishing Virgil Cards on Virgil Services.
 We recommend using one of the next SDKs:
 * [RUBY](https://github.com/VirgilSecurity/virgil-sdk-ruby/tree/v4): [approve & publish users guide](https://github.com/VirgilSecurity/virgil-sdk-ruby/blob/v4/docs/guides/configuration/server.md#-approve--publish-cards)  
 * [PHP](https://github.com/VirgilSecurity/virgil-sdk-php/tree/v4): [approve & publish users guide](https://github.com/VirgilSecurity/virgil-sdk-php/blob/v4/docs/guides/configuration/server-configuration.md#-approve--publish-cards)  
-* [GO](https://github.com/VirgilSecurity/virgil-crypto-go/tree/v4): [approve & publish users guide](https://github.com/go-virgil/virgil/blob/docs-review/docs/guides/configuration/server-configuration.md#-approve--publish-cards)  
-* [JAVASCRIPT](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/v4): [approve & publish users guide](https://github.com/VirgilSecurity/virgil-sdk-javascript/blob/docs-review/docs/guides/configuration/server.md#-approve--publish-cards)  
-* [JAVA](https://github.com/VirgilSecurity/virgil-sdk-java-android/tree/v4): [approve & publish users guide](https://github.com/VirgilSecurity/virgil-sdk-java-android/blob/docs-review/docs/guides/configuration/server-configuration.md#-approve--publish-cards)  
+* [GO](https://github.com/VirgilSecurity/virgil-crypto-go/tree/v4): [approve & publish users guide](https://github.com/go-virgil/virgil/blob/v4/docs/guides/configuration/server-configuration.md#-approve--publish-cards)  
+* [JAVASCRIPT](https://github.com/VirgilSecurity/virgil-sdk-javascript/tree/v4): [approve & publish users guide](https://github.com/VirgilSecurity/virgil-sdk-javascript/blob/v4/docs/guides/configuration/server.md#-approve--publish-cards)  
+* [JAVA](https://github.com/VirgilSecurity/virgil-sdk-java-android/tree/v4): [approve & publish users guide](https://github.com/VirgilSecurity/virgil-sdk-java-android/blob/v4/docs/guides/configuration/server-configuration.md#-approve--publish-cards)  
 * [PYTHON](https://github.com/VirgilSecurity/virgil-sdk-python/tree/v4): [approve & publish users guide](https://github.com/VirgilSecurity/virgil-sdk-python/blob/v4/documentation/guides/configuration/server.md#-approve--publish-cards)  
-* [C#/.NET](https://github.com/VirgilSecurity/virgil-sdk-net/tree/v4): [approve & publish users guide](https://github.com/VirgilSecurity/virgil-sdk-net/blob/v4-docs-review-last/docs/guides/configuration/server-configuration.md#-approve--publish-cards)  
+* [C#/.NET](https://github.com/VirgilSecurity/virgil-sdk-net/tree/v4): [approve & publish users guide](https://github.com/VirgilSecurity/virgil-sdk-net/blob/v4/docs/guides/configuration/server-configuration.md#-approve--publish-cards)  
 
 
 ## <a name="head4"></a> Sign Data
