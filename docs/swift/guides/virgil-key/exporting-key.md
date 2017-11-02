@@ -2,7 +2,7 @@
 
 This guide shows how to export a **Virgil Key** to the string representation.
 
-Set up your project environment before you begin to export a Virgil Key, with the [getting started](/docs/guides/configuration/client.md) guide.
+Set up your project environment before you begin to export a Virgil Key, with the [getting started](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/docs/swift/guides/configuration/client.md) guide.
 
 To export the Virgil Key:
 
