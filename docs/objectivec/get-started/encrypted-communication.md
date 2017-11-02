@@ -32,7 +32,7 @@ Set up the client side. After users register at your Application Server, provide
 ## <a name="head3"></a> Register Users
 Now you need to register the users who will participate in encrypted communications.
 
-In order to sign and encrypt a message, each user must have his own tools, which allow him to perform cryptographic operations. These tools must contain the necessary information to identify users. In Virgil Security, such tools are the Virgil Key and the Virgil Card.
+To sign and encrypt a message, each user must have his own tools, which allow him to perform cryptographic operations. These tools must contain the necessary information to identify users. In Virgil Security, such tools are the Virgil Key and the Virgil Card.
 
 ![Virgil Card](/docs/objectivec/img/Card_introduct.png "Create Virgil Card")
 
@@ -92,7 +92,7 @@ As previously noted, we encrypt data for secure communication, but a recipient a
 
 ![Virgil Intro](/docs/objectivec/img/Guides_introduction.png "Sign & Encrypt")
 
-In order to sign then encrypt messages, the Sender must load their own recently generated Virgil Key and search for the receiver's Virgil Cards at Virgil Services, where all Virgil Cards are saved.
+To sign then encrypt messages, the Sender must load their own recently generated Virgil Key and search for the receiver's Virgil Cards at Virgil Services, where all Virgil Cards are saved.
 
 ```objectivec
 // load a Virgil Key from device storage
@@ -125,7 +125,7 @@ See our tutorial on [Virgil & Twilio Programmable Chat](https://github.com/Virgi
 
 Once the Recipient receives the signed and encrypted message, he can decrypt and validate the message. Thus, proving that the message has not been tampered with, user verifies the signature against the Sender's Virgil Card.
 
-In order to **decrypt** the encrypted message and then verify the signature, we need to load private receiver's Virgil Key and search for the sender's Virgil Card at Virgil Services.
+To **decrypt** the encrypted message and then verify the signature, we need to load private receiver's Virgil Key and search for the sender's Virgil Card at Virgil Services.
 
 ```objectivec
 // load a Virgil Key from device storage

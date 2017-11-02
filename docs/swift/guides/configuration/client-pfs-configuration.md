@@ -1,6 +1,6 @@
 # Client Configuration
 
-In order to use the Virgil Infrastructure, set up your client and implement required mechanisms using the following guide.
+To use the Virgil Infrastructure, set up your client and implement required mechanisms using the following guide.
 
 ## Install SDK
 

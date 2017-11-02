@@ -5,13 +5,13 @@ This guide is short tutorial on how to decrypt and then verify data with Virgil 
 This process is called **Authenticated Data Decryption**. During this procedure you work with encrypted and signed data, decrypting and verifying them. A recipient uses their **Virgil Key** (to decrypt the data) and **Virgil Card** (to verify data integrity).
 
 
-Set up your project environment before you begin to work, with the [getting started](/docs/objectivec/guides/configuration/client.md) guide.
+Before you begin, set up your project environment with the [getting started](/docs/objectivec/guides/configuration/client.md) guide.
 
 The Authenticated Data Decryption procedure is shown in the figure below.
 
 ![Virgil Intro](/docs/objectivec/img/Guides_introduction.png "Authenticated Data Decryption")
 
-In order to decrypt and verify the message, Bob has to have:
+To decrypt and verify the message, Bob has to have:
  - His Virgil Key
  - Alice's Virgil Card
 

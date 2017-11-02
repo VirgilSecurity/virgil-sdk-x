@@ -2,7 +2,7 @@
 
 This guide is a short tutorial on how to sign then encrypt data with Virgil Security.
 
-This process is called **Authenticated Data Encryption**. It is a form of encryption which simultaneously provides confidentiality, integrity, and authenticity assurances on the encrypted data. During this procedure you will sign then encrypt data using Alice’s **Virgil Key**, and then Bob’s **Virgil Card**. In order to do this, Alice’s Virgil Key must be loaded from the appropriate storage location, then Bob’s Virgil Card must be searched for, followed by preparation of the data for transmission, which is finally signed and encrypted before being sent.
+This process is called **Authenticated Data Encryption**. It is a form of encryption which simultaneously provides confidentiality, integrity, and authenticity assurances on the encrypted data. During this procedure you will sign then encrypt data using Alice’s **Virgil Key**, and then Bob’s **Virgil Card**. To do this, Alice’s Virgil Key must be loaded from the appropriate storage location, then Bob’s Virgil Card must be searched for, followed by preparation of the data for transmission, which is finally signed and encrypted before being sent.
 
 
 Set up your project environment before you begin to work, with the [getting started](/docs/swift/guides/configuration/client.md) guide.
@@ -11,7 +11,7 @@ The Authenticated Data Encryption procedure is shown in the figure below.
 
 ![Authenticated Data Encryption](/docs/swift/img/Guides_introduction.png "Authenticated Data Encryption")
 
-In order to **sign"** and **encrypt** a **message**, Alice has to have:
+To **sign"** and **encrypt** a **message**, Alice has to have:
  - Her Virgil Key
  - Bob's Virgil Card
 

@@ -10,13 +10,13 @@ Each Virgil Card contains a permanent digital signature that provides data integ
 
 ### Let's start to create a Global Virgil Card
 
-Set up your project environment before you begin to create a Global Virgil Card, with the [getting started](/docs/objectivec/guides/configuration/client.md) guide.
+Before you begin to create a Global Virgil Card, Set up your project environment with the [getting started](/docs/objectivec/guides/configuration/client.md) guide.
 
 The Global Virgil Card creation procedure is shown in the figure below.
 
 ![Card Intro](https://github.com/VirgilSecurity/virgil-sdk-x*/blob/docs-review/docs/objectivec/img/Card_intro.png "Create Global Virgil Card")
 
-In order to create a Global Virgil Card:
+To create a Global Virgil Card:
 
 1. Developers need to initialize the **Virgil SDK**
 

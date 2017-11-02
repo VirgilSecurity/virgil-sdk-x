@@ -4,7 +4,7 @@ This guide shows how to load a private **Virgil Key**, which is stored on the de
 
 Before loading a Virgil Key, set up your project environment with the [getting started](https://github.com/VirgilSecurity/virgil-swift-php/blob/docs-review/docs/guides/configuration/client.md) guide.
 
-In order to load the Virgil Key from the default storage:
+To load the Virgil Key from the default storage:
 
 - Initialize the **Virgil SDK**
 

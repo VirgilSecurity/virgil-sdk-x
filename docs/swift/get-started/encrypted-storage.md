@@ -29,7 +29,7 @@ Set up the client side. After users register at your Application Server, provide
 ## <a name="head3"></a> Register Users
 Now you need to register the users who will encrypt data.
 
-In order to encrypt a data each user must have his own tools, which allow him to perform cryptographic operations, and these tools must contain the necessary information to identify users. In Virgil Security, these tools are the Virgil Key and the Virgil Card.
+To encrypt a data each user must have his own tools, which allow him to perform cryptographic operations, and these tools must contain the necessary information to identify users. In Virgil Security, these tools are the Virgil Key and the Virgil Card.
 
 ![Virgil Card](/docs/swift/img/Card_introduct.png "Create Virgil Card")
 
@@ -86,7 +86,7 @@ With the Virgil Card created, we're ready to start encrypting data which will th
 
 ![encrypted storage](/docs/swift/img/encrypted_storage_upload.png "Encrypt data")
 
-In order to encrypt data, the user must search for Virgil Cards at Virgil Services, where all Virgil Cards are saved.
+To encrypt data, the user must search for Virgil Cards at Virgil Services, where all Virgil Cards are saved.
 
 ```swift
 // search for Virgil Cards

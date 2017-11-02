@@ -2,10 +2,10 @@
 
 This guide shows how to find a **Virgil Card**. As previously noted, all Virgil Cards are saved at **Virgil Services** after their publication. Thus, every user can find their own Virgil Card or another user's Virgil Card on Virgil Services. It should be noted that users' Virgil Cards will only be visible to application users. Global Virgil Cards will be visible to anybody.
 
-Set up your project environment before you begin to find a Virgil Card, with the [getting started](/docs/objectivec/guides/configuration/client.md) guide.
+Before you begin to find a Virgil Card, set up your project environment with the [getting started](/docs/objectivec/guides/configuration/client.md) guide.
 
 
-In order to search for an **Application** or **Global Virgil Card** you need to initialize the **Virgil SDK**:
+To search for an **Application** or **Global Virgil Card** you need to initialize the **Virgil SDK**:
 
 ```objectivec
 VSSVirgilApi *virgil = [[VSSVirgilApi alloc]

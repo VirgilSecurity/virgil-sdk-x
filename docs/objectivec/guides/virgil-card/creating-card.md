@@ -16,7 +16,7 @@ Each Virgil Card contains a  permanent digital signature that provides data inte
 
 ### Let's start to create a user's Virgil Card
 
-Set up your project environment before you begin to create a user's Virgil Card, with the [getting started](/docs/objectivec/guides/configuration/client.md) guide.
+Before you begin to create a user's Virgil Card, set up your project environment with the [getting started](/docs/objectivec/guides/configuration/client.md) guide.
 
 
 The Virgil Card creation procedure is shown in the figure below.
@@ -24,7 +24,7 @@ The Virgil Card creation procedure is shown in the figure below.
 ![Virgil Card Generation](/docs/objectivec/img/Card_introduct.png "Create Virgil Card")
 
 
-In order to create a Virgil Card:
+To create a Virgil Card:
 
 1. Developers need to initialize the **Virgil SDK**
 

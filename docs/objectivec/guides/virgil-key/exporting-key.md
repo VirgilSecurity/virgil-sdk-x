@@ -2,9 +2,9 @@
 
 This guide shows how to export a **Virgil Key** to the string representation.
 
-Set up your project environment before you begin to export a Virgil Key, with the [getting started](/docs/objectivec/guides/configuration/client.md) guide.
+Before you begin to export a Virgil Key, set up your project environment with the [getting started](/docs/objectivec/guides/configuration/client.md) guide.
 
-In order to export the Virgil Key:
+To export the Virgil Key:
 
 - Initialize **Virgil SDK**
 

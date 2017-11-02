@@ -2,9 +2,9 @@
 
 This guide shows how to export a **Virgil Card** to the string representation.
 
-Set up your project environment before you begin to export a Virgil Card, with the [getting started](/docs/objectivec/guides/configuration/client.md) guide.
+Before you begin to export a Virgil Card, set up your project environment with the [getting started](/docs/objectivec/guides/configuration/client.md) guide.
 
-In order to export a Virgil Card, we need to:
+To export a Virgil Card, we need to:
 
 - Initialize the **Virgil SDK**
 

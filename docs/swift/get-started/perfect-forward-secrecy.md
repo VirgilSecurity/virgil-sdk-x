@@ -28,7 +28,7 @@ Set up the client side to provide your users with an access token after their re
 ## <a name="head3"></a> Register Users
 Now you need to register the users who will participate in encrypted communications.
 
-In order to sign and encrypt a message, each user must have his own tools, that allow him to perform cryptographic operations. These tools must contain the information necessary to identify users. In Virgil Security, these tools are the Virgil Key and the Virgil Card.
+To sign and encrypt a message, each user must have his own tools, that allow him to perform cryptographic operations. These tools must contain the information necessary to identify users. In Virgil Security, these tools are the Virgil Key and the Virgil Card.
 
 ![Virgil Card](https://github.com/VirgilSecurity/virgil-sdk-swift/blob/docs-review/docs/img/Card_introduct.png "Create Virgil Card")
 
@@ -86,7 +86,7 @@ Use the [approve & publish users guide](https://github.com/VirgilSecurity/virgil
 ## <a name="head4"></a> Initialize PFS Chat
 With the user's Cards in place, we are now ready to initialize a PFS chat. In this case, we will use the Recipient's Private Keys, the Virgil Cards and the Access Token.
 
-In order to begin communicating, Bob must run the initialization:
+To begin communicating, Bob must run the initialization:
 
 ```swift
 let secureChatPreferences = SecureChatPreferences (

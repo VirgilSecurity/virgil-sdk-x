@@ -8,9 +8,9 @@ During the validation process we verify, by default, two signatures:
 
 Additionally, developers can verify the **signature of the application server**.
 
-Set up your project environment before you begin to validate a Virgil Card, with the [getting started](/docs/objectivec/guides/configuration/client.md) guide.
+Before you begin to validate a Virgil Card, set up your project environment with the [getting started](/docs/objectivec/guides/configuration/client.md) guide.
 
-In order to validate the signature of the Virgil Card owner, **Virgil Services**, and the Application Server, we need to:
+To validate the signature of the Virgil Card owner, **Virgil Services**, and the Application Server, we need to:
 
 ```objectivec
 NSData *appPublicKey = [[NSData alloc]

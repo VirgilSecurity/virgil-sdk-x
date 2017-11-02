@@ -2,9 +2,9 @@
 
 This guide shows how to revoke a **Global Virgil Card**.
 
-Set up your project environment before you begin to revoke a Global Virgil Card, with the [getting started](/docs/objectivec/guides/configuration/client.md) guide.
+Вefore you begin to revoke a Global Virgil Card, set up your project environment with the [getting started](/docs/objectivec/guides/configuration/client.md) guide.
 
-In order to revoke a Global Virgil Card, we need to:
+To revoke a Global Virgil Card, we need to:
 
 -  Initialize the Virgil SDK
 

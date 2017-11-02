@@ -24,7 +24,7 @@ The Virgil Card creation procedure is shown in the figure below.
 ![Virgil Card Generation](/docs/swift/img/Card_introduct.png "Create Virgil Card")
 
 
-In order to create a Virgil Card:
+To create a Virgil Card:
 
 1. Developers need to initialize the **Virgil SDK**
 
