@@ -30,7 +30,7 @@ Now you need to register the users who will participate in encrypted communicati
 
 To sign and encrypt a message, each user must have his own tools, that allow him to perform cryptographic operations. These tools must contain the information necessary to identify users. In Virgil Security, these tools are the Virgil Key and the Virgil Card.
 
-![Virgil Card](https://github.com/VirgilSecurity/virgil-sdk-swift/blob/docs-review/docs/img/Card_introduct.png "Create Virgil Card")
+![Virgil Card](https://github.com/VirgilSecurity/virgil-sdk-x/blob/v4/docs/swift/img/Card_introduct.png "Create Virgil Card")
 
 When we have already set up the Virgil SDK on the server & client sides, we can finally create Virgil Cards for the users and transmit the Cards to your Server for further publication on Virgil Services.
 
