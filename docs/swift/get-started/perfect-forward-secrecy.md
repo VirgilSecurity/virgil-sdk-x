@@ -21,7 +21,7 @@ We recommend using one of the next SDKs:
 
 
 ## <a name="head2"></a> Set Up Clients
-Set up the client side to provide your users with an access token after their registration at your Application Server to authenticate them for further operations and transmit their **Virgil Cards** to the server. Configure the client side using the [Setup Guide](/docs/guides/configuration/client-side-pfs).
+Set up the client side to provide your users with an access token after their registration at your Application Server to authenticate them for further operations and transmit their **Virgil Cards** to the server. Configure the client side using the [Setup Guide](https://github.com/VirgilSecurity/virgil-sdk-x/blob/docs-review/docs/swift/guides/configuration/client-pfs-configuration.md).
 
 
 
