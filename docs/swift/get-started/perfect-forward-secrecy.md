@@ -61,7 +61,7 @@ var aliceCard = try! virgil.cards.
 
 In order for the Sender to be able to send a message, we also need a Virgil Card associated with the Recipient. It should be noted that recently created user Virgil Cards will be visible only for application users because they are related to the Application.
 
-Read more about Virgil Cards and their types [here](/docs/guides/virgil-card/creating-card.md).
+Read more about Virgil Cards and their types [here](https://github.com/VirgilSecurity/virgil-sdk-x/blob/v4/docs/swift/guides/virgil-card/creating-card.md).
 
 
 ### Transmit the Cards to Your Server
