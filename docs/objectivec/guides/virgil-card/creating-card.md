@@ -4,7 +4,7 @@ This guide shows how to create a user's **Virgil Card** – the main entity of *
 
 Every developer can create a user's **Virgil Card** (visible within the Application) or **Global Virgil Card** (visible to anybody and not related to the Application).
 
-See our [Use Cases](https://github.com/VirgilSecurity/virgil-sdk-x/tree/docs-review/docs/objectivec/get-started) to find out what you can do with Virgil Cards. If you need to create a Global Virgil Card, start with the guide, [Creating a Global Card](/docs/objectivec/guides/virgil-card/creating-global-card.md).
+See our [Use Cases](https://github.com/VirgilSecurity/virgil-sdk-x/tree/v4/docs/objectivec/get-started) to find out what you can do with Virgil Cards. If you need to create a Global Virgil Card, start with the guide, [Creating a Global Card](/docs/objectivec/guides/virgil-card/creating-global-card.md).
 
 After a Virgil Card is created, it's published at Virgil Card Service, where an owner can find their Virgil Cards at any time.
 

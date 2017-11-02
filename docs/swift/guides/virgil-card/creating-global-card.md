@@ -14,7 +14,7 @@ Set up your project environment before you begin to create a Global Virgil Card,
 
 The Global Virgil Card creation procedure is shown in the figure below.
 
-![Card Intro](https://github.com/VirgilSecurity/virgil-sdk-x*/blob/docs-review/docs/swift/img/Card_intro.png "Create Global Virgil Card")
+![Card Intro](https://github.com/VirgilSecurity/virgil-sdk-x*/blob/v4/docs/swift/img/Card_intro.png "Create Global Virgil Card")
 
 To create a Global Virgil Card:
 

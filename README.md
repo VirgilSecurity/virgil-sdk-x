@@ -155,7 +155,7 @@ Virgil Security has a powerful set of APIs and the documentation to help you get
 
 * [Reference API](http://virgilsecurity.github.io/virgil-sdk-x/)
 
-__Next__ Also, see our Virgil [Swift SDK for PFS](https://github.com/VirgilSecurity/virgil-sdk-pfs-x) Encrypted Communication to protect previously intercepted traffic from being decrypted even if the main Private Key is compromised.
+Also, see our Virgil [Swift SDK for PFS](https://github.com/VirgilSecurity/virgil-sdk-pfs-x) Encrypted Communication to protect previously intercepted traffic from being decrypted even if the main Private Key is compromised.
 
 ## License
 
