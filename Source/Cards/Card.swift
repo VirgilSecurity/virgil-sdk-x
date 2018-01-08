@@ -28,7 +28,7 @@ import VirgilCryptoAPI
         super.init()
     }
     
-    @objc public class func parse(crypto: Crypto, rawCard: RawCard) -> Card? {
+    @objc public class func parse(crypto: CardCrypto, rawCard: RawCard) -> Card? {
         guard let rawCardInfo: RawCardInfo = SnapshotUtils.parseSnapshot(snapshot: rawCard.contentSnapshot) else {
             return nil
         }

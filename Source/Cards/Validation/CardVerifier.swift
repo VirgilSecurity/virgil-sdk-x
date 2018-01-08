@@ -9,6 +9,6 @@
 import Foundation
 import VirgilCryptoAPI
 
-@objc(VSSCardValidator) public protocol CardValidator {
-    func validate(crypto: Crypto, card: Card) -> ValidationResult
+@objc(VSSCardVefifier) public protocol CardVerifier {
+    func verifyCard(card: Card) -> ValidationResult
 }

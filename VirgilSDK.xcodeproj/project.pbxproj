@@ -123,18 +123,18 @@
 		4284C4461F6C1E4100B75491 /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C43A1F6C1E3500B75491 /* Serializable.swift */; };
 		4284C4471F6C1E4200B75491 /* Deserializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4391F6C1E3500B75491 /* Deserializable.swift */; };
 		4284C4481F6C1E4200B75491 /* Serializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C43A1F6C1E3500B75491 /* Serializable.swift */; };
-		4284C4561F6FECB600B75491 /* CardValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4541F6FECB600B75491 /* CardValidator.swift */; };
+		4284C4561F6FECB600B75491 /* CardVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4541F6FECB600B75491 /* CardVerifier.swift */; };
 		4284C4571F6FECB600B75491 /* ValidationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4551F6FECB600B75491 /* ValidationResult.swift */; };
-		4284C4591F6FECC300B75491 /* ExtendedValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4581F6FECC300B75491 /* ExtendedValidator.swift */; };
-		4284C45A1F6FECC600B75491 /* CardValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4541F6FECB600B75491 /* CardValidator.swift */; };
+		4284C4591F6FECC300B75491 /* VirgilCardVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4581F6FECC300B75491 /* VirgilCardVerifier.swift */; };
+		4284C45A1F6FECC600B75491 /* CardVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4541F6FECB600B75491 /* CardVerifier.swift */; };
 		4284C45B1F6FECC600B75491 /* ValidationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4551F6FECB600B75491 /* ValidationResult.swift */; };
-		4284C45C1F6FECC600B75491 /* ExtendedValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4581F6FECC300B75491 /* ExtendedValidator.swift */; };
-		4284C45D1F6FECC700B75491 /* CardValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4541F6FECB600B75491 /* CardValidator.swift */; };
+		4284C45C1F6FECC600B75491 /* VirgilCardVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4581F6FECC300B75491 /* VirgilCardVerifier.swift */; };
+		4284C45D1F6FECC700B75491 /* CardVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4541F6FECB600B75491 /* CardVerifier.swift */; };
 		4284C45E1F6FECC700B75491 /* ValidationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4551F6FECB600B75491 /* ValidationResult.swift */; };
-		4284C45F1F6FECC700B75491 /* ExtendedValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4581F6FECC300B75491 /* ExtendedValidator.swift */; };
-		4284C4601F6FECC700B75491 /* CardValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4541F6FECB600B75491 /* CardValidator.swift */; };
+		4284C45F1F6FECC700B75491 /* VirgilCardVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4581F6FECC300B75491 /* VirgilCardVerifier.swift */; };
+		4284C4601F6FECC700B75491 /* CardVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4541F6FECB600B75491 /* CardVerifier.swift */; };
 		4284C4611F6FECC700B75491 /* ValidationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4551F6FECB600B75491 /* ValidationResult.swift */; };
-		4284C4621F6FECC700B75491 /* ExtendedValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4581F6FECC300B75491 /* ExtendedValidator.swift */; };
+		4284C4621F6FECC700B75491 /* VirgilCardVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4581F6FECC300B75491 /* VirgilCardVerifier.swift */; };
 		4284C4631F6FFD0200B75491 /* HexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4241F6C0C6400B75491 /* HexTests.swift */; };
 		4284C4651F7003D700B75491 /* SignerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4641F7003D700B75491 /* SignerInfo.swift */; };
 		4284C4661F70057800B75491 /* SignerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4641F7003D700B75491 /* SignerInfo.swift */; };
@@ -288,9 +288,9 @@
 		4284C4281F6C11F400B75491 /* SnapshotUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotUtils.swift; sourceTree = "<group>"; };
 		4284C4391F6C1E3500B75491 /* Deserializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deserializable.swift; sourceTree = "<group>"; };
 		4284C43A1F6C1E3500B75491 /* Serializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serializable.swift; sourceTree = "<group>"; };
-		4284C4541F6FECB600B75491 /* CardValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardValidator.swift; sourceTree = "<group>"; };
+		4284C4541F6FECB600B75491 /* CardVerifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardVerifier.swift; sourceTree = "<group>"; };
 		4284C4551F6FECB600B75491 /* ValidationResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationResult.swift; sourceTree = "<group>"; };
-		4284C4581F6FECC300B75491 /* ExtendedValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedValidator.swift; sourceTree = "<group>"; };
+		4284C4581F6FECC300B75491 /* VirgilCardVerifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VirgilCardVerifier.swift; sourceTree = "<group>"; };
 		4284C4641F7003D700B75491 /* SignerInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignerInfo.swift; sourceTree = "<group>"; };
 		4284C4AD1F716C6500B75491 /* ServiceRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
 		4284C4AF1F716C7700B75491 /* ServiceResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceResponse.swift; sourceTree = "<group>"; };
@@ -484,9 +484,9 @@
 		4284C4531F6FECB600B75491 /* Validation */ = {
 			isa = PBXGroup;
 			children = (
-				4284C4541F6FECB600B75491 /* CardValidator.swift */,
+				4284C4541F6FECB600B75491 /* CardVerifier.swift */,
 				4284C4551F6FECB600B75491 /* ValidationResult.swift */,
-				4284C4581F6FECC300B75491 /* ExtendedValidator.swift */,
+				4284C4581F6FECC300B75491 /* VirgilCardVerifier.swift */,
 				4284C4641F7003D700B75491 /* SignerInfo.swift */,
 			);
 			path = Validation;
@@ -954,7 +954,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4284C4441F6C1E4000B75491 /* Serializable.swift in Sources */,
-				4284C45C1F6FECC600B75491 /* ExtendedValidator.swift in Sources */,
+				4284C45C1F6FECC600B75491 /* VirgilCardVerifier.swift in Sources */,
 				4284C34C1F6AAB8000B75491 /* Log.swift in Sources */,
 				4284C36F1F6BE54D00B75491 /* RawCardSignature.swift in Sources */,
 				4284C4B71F728B6600B75491 /* ServiceResponse.swift in Sources */,
@@ -968,7 +968,7 @@
 				4284C40C1F6C00C300B75491 /* SignerType.swift in Sources */,
 				4284C4431F6C1E4000B75491 /* Deserializable.swift in Sources */,
 				4284C4311F6C126900B75491 /* SnapshotUtils.swift in Sources */,
-				4284C45A1F6FECC600B75491 /* CardValidator.swift in Sources */,
+				4284C45A1F6FECC600B75491 /* CardVerifier.swift in Sources */,
 				4284C4661F70057800B75491 /* SignerInfo.swift in Sources */,
 				4284C4091F6C00C300B75491 /* CSRParams.swift in Sources */,
 				4284C4BE1F72936600B75491 /* CardClient+Queries.swift in Sources */,
@@ -1002,7 +1002,7 @@
 				4284C4B81F728B6700B75491 /* ServiceRequest.swift in Sources */,
 				4284C4B41F728B5900B75491 /* RawServiceError.swift in Sources */,
 				4284C3D71F6BF30C00B75491 /* SignParams.swift in Sources */,
-				4284C45F1F6FECC700B75491 /* ExtendedValidator.swift in Sources */,
+				4284C45F1F6FECC700B75491 /* VirgilCardVerifier.swift in Sources */,
 				4284C3E91F6BF31500B75491 /* CSR.swift in Sources */,
 				4284C3B21F6BE9F300B75491 /* RawCard.swift in Sources */,
 				4284C4BF1F72936600B75491 /* CardClient+Queries.swift in Sources */,
@@ -1020,7 +1020,7 @@
 				4284C3BA1F6BEA0100B75491 /* CardManagerParams.swift in Sources */,
 				4284C3E81F6BF31500B75491 /* CSRParams.swift in Sources */,
 				4284C4451F6C1E4100B75491 /* Deserializable.swift in Sources */,
-				4284C45D1F6FECC700B75491 /* CardValidator.swift in Sources */,
+				4284C45D1F6FECC700B75491 /* CardVerifier.swift in Sources */,
 				4284C3EA1F6BF31500B75491 /* SignerType.swift in Sources */,
 				4284C4221F6C03F500B75491 /* Data+hex.swift in Sources */,
 				4284C3FD1F6C00B800B75491 /* RawCardInfo.swift in Sources */,
@@ -1036,7 +1036,7 @@
 				4284C4BA1F728B6700B75491 /* ServiceRequest.swift in Sources */,
 				4284C4B51F728B5A00B75491 /* RawServiceError.swift in Sources */,
 				4284C3D81F6BF30D00B75491 /* SignParams.swift in Sources */,
-				4284C4621F6FECC700B75491 /* ExtendedValidator.swift in Sources */,
+				4284C4621F6FECC700B75491 /* VirgilCardVerifier.swift in Sources */,
 				4284C3EC1F6BF31500B75491 /* CSR.swift in Sources */,
 				4284C3B41F6BE9F400B75491 /* RawCard.swift in Sources */,
 				4284C4C01F72936600B75491 /* CardClient+Queries.swift in Sources */,
@@ -1054,7 +1054,7 @@
 				4284C3BD1F6BEA0200B75491 /* CardManagerParams.swift in Sources */,
 				4284C3EB1F6BF31500B75491 /* CSRParams.swift in Sources */,
 				4284C4471F6C1E4200B75491 /* Deserializable.swift in Sources */,
-				4284C4601F6FECC700B75491 /* CardValidator.swift in Sources */,
+				4284C4601F6FECC700B75491 /* CardVerifier.swift in Sources */,
 				4284C3ED1F6BF31500B75491 /* SignerType.swift in Sources */,
 				4284C4231F6C03F600B75491 /* Data+hex.swift in Sources */,
 				4284C3FE1F6C00B900B75491 /* RawCardInfo.swift in Sources */,
@@ -1088,13 +1088,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4284C4B21F728AD200B75491 /* RawServiceError.swift in Sources */,
-				4284C4561F6FECB600B75491 /* CardValidator.swift in Sources */,
+				4284C4561F6FECB600B75491 /* CardVerifier.swift in Sources */,
 				4284C4B01F716C7700B75491 /* ServiceResponse.swift in Sources */,
 				4284C3DB1F6BF31100B75491 /* CSRParams.swift in Sources */,
 				4284C4571F6FECB600B75491 /* ValidationResult.swift in Sources */,
 				4284C3D51F6BF30A00B75491 /* SignParams.swift in Sources */,
 				4263A1F61EBC7FFB00B13FF1 /* VSSKeyStorage.m in Sources */,
-				4284C4591F6FECC300B75491 /* ExtendedValidator.swift in Sources */,
+				4284C4591F6FECC300B75491 /* VirgilCardVerifier.swift in Sources */,
 				4284C3541F6AD2C900B75491 /* RawCardSignature.swift in Sources */,
 				4284C4301F6C126800B75491 /* SnapshotUtils.swift in Sources */,
 				4284C3FB1F6C00B600B75491 /* RawCardInfo.swift in Sources */,

@@ -10,9 +10,9 @@ import Foundation
 import VirgilCryptoAPI
 
 @objc(VSSCardManager) public class CardManager: NSObject {
-    private let crypto: Crypto
+    private let crypto: CardCrypto
     private let client: CardClient
-    private let validator: CardValidator?
+    private let validator: CardVerifier?
     
     @objc public init(params: CardManagerParams) {
         self.crypto = params.crypto
@@ -22,7 +22,7 @@ import VirgilCryptoAPI
     
     private func validateCard(_ card: Card) throws {
         if let validator = self.validator {
-            let result = validator.validate(crypto: self.crypto, card: card)
+            let result = validator.verifyCard(card: card)
             guard result.isValid else {
                 throw NSError()
             }

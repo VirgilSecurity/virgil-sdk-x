@@ -32,7 +32,7 @@ import VirgilCryptoAPI
         return RawCard(contentSnapshot: self.snapshot, signatures: self.signatures)
     }
     
-    @objc public func sign(crypto: Crypto, params: SignParams) throws {
+    @objc public func sign(crypto: CardCrypto, params: SignParams) throws {
         // FIXME
         guard params.signerType != .self || self.signatures.first(where: { $0.signerType == .self }) == nil else {
             throw NSError()
@@ -71,7 +71,7 @@ import VirgilCryptoAPI
         return jsonData.base64EncodedString()
     }
     
-    @objc public func `import`(crypto: Crypto, csr: String) throws -> CSR {
+    @objc public func `import`(crypto: CardCrypto, csr: String) throws -> CSR {
         guard let data = Data(base64Encoded: csr) else {
             throw NSError()
         }
@@ -100,7 +100,7 @@ import VirgilCryptoAPI
     }
     
     @objc public static let CurrentCardVersion = "5.0"
-    @objc public class func generate(crypto: Crypto, params: CSRParams) throws -> CSR {
+    @objc public class func generate(crypto: CardCrypto, params: CSRParams) throws -> CSR {
         let cardInfo = RawCardInfo(identity: params.identity, publicKeyData: try crypto.exportPublicKey(params.publicKey), version: CSR.CurrentCardVersion, createdAt: Date())
         let snapshot = try SnapshotUtils.takeSnapshot(object: cardInfo)
         
