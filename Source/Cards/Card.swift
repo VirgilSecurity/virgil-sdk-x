@@ -14,14 +14,16 @@ import VirgilCryptoAPI
     @objc public let identity: String
     @objc public let fingerprint: Data
     @objc public let publicKey: PublicKey
+    @objc public let previousCardId: String?
     @objc public let version: String
     @objc public let signatures: [CardSignature]
     
-    private init(identifier: String, identity: String, fingerprint: Data, publicKey: PublicKey, version: String, signatures: [CardSignature]) {
+    private init(identifier: String, identity: String, fingerprint: Data, publicKey: PublicKey, version: String, signatures: [CardSignature], previousCardId: String?) {
         self.identifier = identifier
         self.identity = identity
         self.fingerprint = fingerprint
         self.publicKey = publicKey
+        self.previousCardId = previousCardId
         self.version = version
         self.signatures = signatures
         
@@ -40,6 +42,6 @@ import VirgilCryptoAPI
             return nil
         }
         
-        return Card(identifier: cardId, identity: rawCardInfo.identity, fingerprint: fingerprint, publicKey: publicKey, version: rawCardInfo.version, signatures: rawCard.signatures)
+        return Card(identifier: cardId, identity: rawCardInfo.identity, fingerprint: fingerprint, publicKey: publicKey, version: rawCardInfo.version, signatures: rawCard.signatures, previousCardId: rawCardInfo.previousCardId)
     }
 }

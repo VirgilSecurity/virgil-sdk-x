@@ -101,7 +101,7 @@ import VirgilCryptoAPI
     
     @objc public static let CurrentCardVersion = "5.0"
     @objc public class func generate(crypto: CardCrypto, params: CSRParams) throws -> CSR {
-        let cardInfo = RawCardInfo(identity: params.identity, publicKeyData: try crypto.exportPublicKey(params.publicKey), version: CSR.CurrentCardVersion, createdAt: Date())
+        let cardInfo = RawCardInfo(identity: params.identity, publicKeyData: try crypto.exportPublicKey(params.publicKey), previousCardId: nil, version: CSR.CurrentCardVersion, createdAt: Date())
         let snapshot = try SnapshotUtils.takeSnapshot(object: cardInfo)
         
         let cardId = crypto
