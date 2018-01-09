@@ -10,7 +10,6 @@ import Foundation
 
 @objc(VSSCardClient) public class CardClient: NSObject {
     let baseUrl: URL
-    let apiToken: String?
     let connection: HTTPConnection
     
     @objc public static let serviceErrorDomain = "VirgilSDK.CardServiceErrorDomain"
@@ -41,9 +40,8 @@ import Foundation
         public var errorUserInfo: [String : Any] { return [NSLocalizedDescriptionKey : self.rawServiceError.message] }
     }
     
-    @objc public init(baseUrl: URL, apiToken: String?, connection: HTTPConnection = ServiceConnection()) {
+    @objc public init(baseUrl: URL, connection: HTTPConnection = ServiceConnection()) {
         self.baseUrl = baseUrl
-        self.apiToken = apiToken
         self.connection = connection
         
         super.init()

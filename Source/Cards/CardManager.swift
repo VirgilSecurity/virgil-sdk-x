@@ -11,18 +11,20 @@ import VirgilCryptoAPI
 
 @objc(VSSCardManager) public class CardManager: NSObject {
     private let crypto: CardCrypto
-    private let client: CardClient
-    private let validator: CardVerifier?
+    private let accessTokenProvider: AccessTokenProvider
+    private let cardClient: CardClient
+    private let cardVerifier: CardVerifier?
     
     @objc public init(params: CardManagerParams) {
         self.crypto = params.crypto
-        self.client = CardClient(baseUrl: params.apiUrl, apiToken: params.apiToken)
-        self.validator = params.validator
+        self.cardClient = CardClient(baseUrl: params.apiUrl)
+        self.cardVerifier = params.cardVerifier
+        self.accessTokenProvider = params.accessTokenProvider
     }
     
     private func validateCard(_ card: Card) throws {
-        if let validator = self.validator {
-            let result = validator.verifyCard(card: card)
+        if let cardVerifier = self.cardVerifier {
+            let result = cardVerifier.verifyCard(card: card)
             guard result.isValid else {
                 throw NSError()
             }
@@ -30,7 +32,8 @@ import VirgilCryptoAPI
     }
     
     @objc public func getCard(withId cardId: String) throws -> Card {
-        let rawCard = try self.client.getCard(withId: cardId)
+        let token = self.accessTokenProvider.getToken(forceReload: false)
+        let rawCard = try self.cardClient.getCard(withId: cardId, token: token.stringRepresentation())
         guard let card = Card.parse(crypto: self.crypto, rawCard: rawCard) else {
             // FIXME
             throw NSError()
@@ -42,7 +45,8 @@ import VirgilCryptoAPI
     }
     
     @objc public func publishCard(csr: CSR) throws -> Card {
-        let rawCard = try self.client.publishCard(request: csr.rawCard)
+        let token = self.accessTokenProvider.getToken(forceReload: false)
+        let rawCard = try self.cardClient.publishCard(request: csr.rawCard, token: token.stringRepresentation())
         guard let card = Card.parse(crypto: self.crypto, rawCard: rawCard) else {
             // FIXME
             throw NSError()

@@ -11,13 +11,14 @@ import VirgilCryptoAPI
 
 @objc(VSSCardManagerParams) public class CardManagerParams: NSObject {
     @objc public var crypto: CardCrypto
-    @objc public var validator: CardVerifier?
-    @objc public var apiToken: String?
+    @objc public var accessTokenProvider: AccessTokenProvider
+    @objc public var cardVerifier: CardVerifier?
     @objc public var apiUrl: URL
     
-    @objc public init(crypto: CardCrypto, validator: CardVerifier?) {
+    @objc public init(crypto: CardCrypto, accessTokenProvider: AccessTokenProvider, cardVerifier: CardVerifier?) {
         self.crypto = crypto
         self.apiUrl = URL(string: "https://cards.virgilsecurity.com/v5/")!
-        self.validator = validator
+        self.cardVerifier = cardVerifier
+        self.accessTokenProvider = accessTokenProvider
     }
 }
