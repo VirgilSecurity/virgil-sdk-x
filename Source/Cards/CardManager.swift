@@ -56,4 +56,20 @@ import VirgilCryptoAPI
         
         return card
     }
+    
+    @objc public func searchCards(withId identity: String) throws -> [Card] {
+        let token = self.accessTokenProvider.getToken(forceReload: false)
+        let rawCards = try self.cardClient.searchCards(withId: identity, token: token.stringRepresentation())
+        
+        var result: [Card] = []
+        for rawCard in rawCards {
+            guard let card = Card.parse(crypto: self.crypto, rawCard: rawCard) else {
+                // FIXME
+                throw NSError()
+            }
+            result.append(card)
+        }
+        
+        return result
+    }
 }

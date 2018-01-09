@@ -10,7 +10,7 @@ import Foundation
 
 extension CardClient {
     @objc public func getCard(withId cardId: String, token: String) throws -> RawCard {
-        guard let url = URL(string: "card/v5/\(cardId)", relativeTo: self.baseUrl) else {
+        guard let url = URL(string: "card/\(cardId)", relativeTo: self.baseUrl) else {
             throw CardClientError.constructingUrl
         }
         
@@ -22,7 +22,7 @@ extension CardClient {
     }
     
     @objc public func publishCard(request: RawCard, token: String) throws -> RawCard {
-        guard let url = URL(string: "card/v5", relativeTo: self.baseUrl) else {
+        guard let url = URL(string: "card", relativeTo: self.baseUrl) else {
             throw CardClientError.constructingUrl
         }
         
@@ -33,5 +33,36 @@ extension CardClient {
         return try self.processResponse(response)
     }
     
-    // SEARCH CARD
+    // FIXME
+    @objc public func searchCards(withId identity: String, token: String) throws -> [RawCard] {
+        guard let url = URL(string: "card/actions/search", relativeTo: self.baseUrl) else {
+            throw CardClientError.constructingUrl
+        }
+        
+        let request = try ServiceRequest(url: url, method: .post, apiToken: token, bodyJson: ["identity": identity])
+        
+        let response = try self.connection.send(request)
+        
+        guard response.statusCode == 200 else {
+            throw self.handleError(statusCode: response.statusCode, body: response.body)
+        }
+        
+        guard let data = response.body else {
+            throw CardClientError.noBody
+        }
+        
+        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[AnyHashable : Any]] else {
+            throw CardClientError.invalidJson
+        }
+        
+        var result: [RawCard] = []
+        for item in json {
+            guard let responseModel = RawCard(dict: item) else {
+                throw CardClientError.invalidResponseModel
+            }
+            result.append(responseModel)
+        }
+        
+        return result
+    }
 }
