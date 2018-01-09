@@ -24,6 +24,14 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		16B3FD422004D5E0008F0357 /* AccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD412004D5E0008F0357 /* AccessTokenProvider.swift */; };
+		16B3FD432004D5E0008F0357 /* AccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD412004D5E0008F0357 /* AccessTokenProvider.swift */; };
+		16B3FD442004D5E0008F0357 /* AccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD412004D5E0008F0357 /* AccessTokenProvider.swift */; };
+		16B3FD452004D5E0008F0357 /* AccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD412004D5E0008F0357 /* AccessTokenProvider.swift */; };
+		16B3FD482004D5FC008F0357 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD472004D5FC008F0357 /* AccessToken.swift */; };
+		16B3FD492004D5FC008F0357 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD472004D5FC008F0357 /* AccessToken.swift */; };
+		16B3FD4A2004D5FC008F0357 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD472004D5FC008F0357 /* AccessToken.swift */; };
+		16B3FD4B2004D5FC008F0357 /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD472004D5FC008F0357 /* AccessToken.swift */; };
 		422499C31EB39B380032F556 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422499BA1EB39B380032F556 /* VirgilSDK.framework */; };
 		42249A681EB39D6F0032F556 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
 		42249AF01EB39ED50032F556 /* VSSKeyStoragePublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -253,6 +261,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		16B3FD412004D5E0008F0357 /* AccessTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenProvider.swift; sourceTree = "<group>"; };
+		16B3FD472004D5FC008F0357 /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = Carthage/Build/iOS/VirgilCrypto.framework; sourceTree = "<group>"; };
 		422499BA1EB39B380032F556 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		422499C21EB39B380032F556 /* VirgilSDK macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilSDK macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -399,6 +409,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16B3FD402004D58F008F0357 /* JsonWebToken */ = {
+			isa = PBXGroup;
+			children = (
+				16B3FD462004D5E6008F0357 /* Protocols */,
+			);
+			path = JsonWebToken;
+			sourceTree = "<group>";
+		};
+		16B3FD462004D5E6008F0357 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				16B3FD412004D5E0008F0357 /* AccessTokenProvider.swift */,
+				16B3FD472004D5FC008F0357 /* AccessToken.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		3614030C1BB2E05F002E69CA = {
 			isa = PBXGroup;
 			children = (
@@ -429,6 +456,7 @@
 			children = (
 				42B7E3721DB9023400D70C12 /* VirgilSDK.h */,
 				42F0AB1C1D9ABF2200747799 /* Client */,
+				16B3FD402004D58F008F0357 /* JsonWebToken */,
 				42A442A51DC8F1B9000DD54B /* KeyStorage */,
 				36FF4B8C1C4D7FED00E901F3 /* Utils */,
 				42CF01F21F6A9DBC003ABB19 /* Cards */,
@@ -959,8 +987,10 @@
 				4284C36F1F6BE54D00B75491 /* RawCardSignature.swift in Sources */,
 				4284C4B71F728B6600B75491 /* ServiceResponse.swift in Sources */,
 				4284C40D1F6C00C300B75491 /* Card.swift in Sources */,
+				16B3FD432004D5E0008F0357 /* AccessTokenProvider.swift in Sources */,
 				4284C4B61F728B6600B75491 /* ServiceRequest.swift in Sources */,
 				42CF01FB1F6AA174003ABB19 /* CardClient.swift in Sources */,
+				16B3FD492004D5FC008F0357 /* AccessToken.swift in Sources */,
 				4284C3FC1F6C00B700B75491 /* RawCardInfo.swift in Sources */,
 				42CF01FE1F6AA209003ABB19 /* Connection.swift in Sources */,
 				4284C4B31F728B5800B75491 /* RawServiceError.swift in Sources */,
@@ -1001,6 +1031,7 @@
 			files = (
 				4284C4B81F728B6700B75491 /* ServiceRequest.swift in Sources */,
 				4284C4B41F728B5900B75491 /* RawServiceError.swift in Sources */,
+				16B3FD442004D5E0008F0357 /* AccessTokenProvider.swift in Sources */,
 				4284C3D71F6BF30C00B75491 /* SignParams.swift in Sources */,
 				4284C45F1F6FECC700B75491 /* VirgilCardVerifier.swift in Sources */,
 				4284C3E91F6BF31500B75491 /* CSR.swift in Sources */,
@@ -1009,6 +1040,7 @@
 				4284C3C31F6BEA2100B75491 /* ServiceConnection.swift in Sources */,
 				4284C3C21F6BEA2100B75491 /* Connection.swift in Sources */,
 				4284C4B91F728B6700B75491 /* ServiceResponse.swift in Sources */,
+				16B3FD4A2004D5FC008F0357 /* AccessToken.swift in Sources */,
 				4284C3B61F6BE9F700B75491 /* CardClient.swift in Sources */,
 				4284C3B81F6BEA0100B75491 /* Log.swift in Sources */,
 				4284C3BE1F6BEA0600B75491 /* VSSKeyEntry.m in Sources */,
@@ -1035,6 +1067,7 @@
 			files = (
 				4284C4BA1F728B6700B75491 /* ServiceRequest.swift in Sources */,
 				4284C4B51F728B5A00B75491 /* RawServiceError.swift in Sources */,
+				16B3FD452004D5E0008F0357 /* AccessTokenProvider.swift in Sources */,
 				4284C3D81F6BF30D00B75491 /* SignParams.swift in Sources */,
 				4284C4621F6FECC700B75491 /* VirgilCardVerifier.swift in Sources */,
 				4284C3EC1F6BF31500B75491 /* CSR.swift in Sources */,
@@ -1043,6 +1076,7 @@
 				4284C3C51F6BEA2200B75491 /* ServiceConnection.swift in Sources */,
 				4284C3C41F6BEA2200B75491 /* Connection.swift in Sources */,
 				4284C4BB1F728B6700B75491 /* ServiceResponse.swift in Sources */,
+				16B3FD4B2004D5FC008F0357 /* AccessToken.swift in Sources */,
 				4284C3B71F6BE9F800B75491 /* CardClient.swift in Sources */,
 				4284C3BB1F6BEA0200B75491 /* Log.swift in Sources */,
 				4284C3BF1F6BEA0700B75491 /* VSSKeyEntry.m in Sources */,
@@ -1105,6 +1139,7 @@
 				4284C34B1F6AAB7B00B75491 /* Log.swift in Sources */,
 				429123AD1F4D726300103BE0 /* VSSKeyAttrs.m in Sources */,
 				4284C4201F6C03F300B75491 /* Data+hex.swift in Sources */,
+				16B3FD422004D5E0008F0357 /* AccessTokenProvider.swift in Sources */,
 				42CF01FD1F6AA209003ABB19 /* Connection.swift in Sources */,
 				42DF01E71E8C52BE005CA7DD /* (null) in Sources */,
 				4284C3DD1F6BF31100B75491 /* SignerType.swift in Sources */,
@@ -1118,6 +1153,7 @@
 				4284C3DC1F6BF31100B75491 /* CSR.swift in Sources */,
 				42CF02001F6AA2AD003ABB19 /* ServiceConnection.swift in Sources */,
 				42CF01F71F6A9EF9003ABB19 /* CardManagerParams.swift in Sources */,
+				16B3FD482004D5FC008F0357 /* AccessToken.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
