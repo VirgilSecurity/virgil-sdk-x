@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc(VSSSignerInfo) public class SignerInfo: NSObject {
+@objc(VSSVerifierCredentials) public class VerifierCredentials: NSObject {
     @objc public let cardId: String
     @objc public let publicKey: Data
     

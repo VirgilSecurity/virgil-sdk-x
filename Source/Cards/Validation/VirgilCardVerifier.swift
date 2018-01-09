@@ -19,9 +19,9 @@ import VirgilCryptoAPI
     @objc public var ignoreSelfSignature: Bool = false
     @objc public var ignoreVirgilSignature: Bool = false
     
-    @objc public let whiteList: [SignerInfo]
+    @objc public let whiteList: [VerifierCredentials]
     
-    @objc public init(crypto: CardCrypto, whiteList: [SignerInfo]) {
+    @objc public init(crypto: CardCrypto, whiteList: [VerifierCredentials]) {
         self.whiteList = whiteList
         self.crypto = crypto
         

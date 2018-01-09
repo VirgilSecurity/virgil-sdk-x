@@ -16,9 +16,9 @@ import VirgilCryptoAPI
     @objc public let publicKey: PublicKey
     @objc public let previousCardId: String?
     @objc public let version: String
-    @objc public let signatures: [CardSignature]
+    @objc public let signatures: [RawSignature]
     
-    private init(identifier: String, identity: String, fingerprint: Data, publicKey: PublicKey, version: String, signatures: [CardSignature], previousCardId: String?) {
+    private init(identifier: String, identity: String, fingerprint: Data, publicKey: PublicKey, version: String, signatures: [RawSignature], previousCardId: String?) {
         self.identifier = identifier
         self.identity = identity
         self.fingerprint = fingerprint
@@ -30,8 +30,8 @@ import VirgilCryptoAPI
         super.init()
     }
     
-    @objc public class func parse(crypto: CardCrypto, rawCard: RawCard) -> Card? {
-        guard let rawCardInfo: RawCardInfo = SnapshotUtils.parseSnapshot(snapshot: rawCard.contentSnapshot) else {
+    @objc public class func parse(crypto: CardCrypto, rawCard: RawSignedModel) -> Card? {
+        guard let rawCardInfo: RawModelInfo = SnapshotUtils.parseSnapshot(snapshot: rawCard.contentSnapshot) else {
             return nil
         }
         

@@ -8,16 +8,16 @@
 
 import Foundation
 
-@objc(VSSRawCard) public class RawCard: NSObject, Deserializable, Serializable {
+@objc(VSSRawSignedModel) public class RawSignedModel: NSObject, Deserializable, Serializable {
     @objc public let contentSnapshot: Data
-    @objc public let signatures: [CardSignature]
+    @objc public let signatures: [RawSignature]
     
     private enum Keys: String {
         case contentSnapshot = "content_snapshot"
         case signatures = "signatures"
     }
     
-    @objc public init(contentSnapshot: Data, signatures: [CardSignature]) {
+    @objc public init(contentSnapshot: Data, signatures: [RawSignature]) {
         self.contentSnapshot = contentSnapshot
         self.signatures = signatures
         
@@ -35,10 +35,10 @@ import Foundation
                 return nil
         }
         
-        var signatures: [CardSignature] = []
+        var signatures: [RawSignature] = []
         signatures.reserveCapacity(signaturesArray.count)
         for signatureDict in signaturesArray {
-            guard let signature = CardSignature(dict: signatureDict) else {
+            guard let signature = RawSignature(dict: signatureDict) else {
                 return nil
             }
             

@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc(VSSRawCardInfo) public class RawCardInfo: NSObject, Deserializable, Serializable {
+@objc(VSSRawModelInfo) public class RawModelInfo: NSObject, Deserializable, Serializable {
     private enum Keys: String {
         case identity       = "identity"
         case publicKeyData  = "public_key"
