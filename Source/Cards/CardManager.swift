@@ -59,7 +59,7 @@ import VirgilCryptoAPI
     
     @objc public func searchCards(withId identity: String) throws -> [Card] {
         let token = self.accessTokenProvider.getToken(forceReload: false)
-        let rawSignedModels = try self.cardClient.searchCards(withId: identity, token: token.stringRepresentation())
+        let rawSignedModels = try self.cardClient.searchCards(identity: identity, token: token.stringRepresentation())
         
         var result: [Card] = []
         for rawSignedModel in rawSignedModels {

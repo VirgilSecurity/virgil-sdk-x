@@ -48,6 +48,27 @@ import Foundation
         self.init(contentSnapshot: snapshot, signatures: signatures)
     }
     
+    public required convenience init?(string: String) {
+        guard let data = Data(base64Encoded: string),
+              let json = try? JSONSerialization.jsonObject(with: data, options: []) else
+        {
+            return nil
+        }
+        
+       self.init(dict: json)
+    }
+    
+    @objc public func exportAsString() throws -> String {
+        let json = self.serialize()
+        let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+        
+        return jsonData.base64EncodedString()
+    }
+    
+    @objc public func exportAsJson() -> Any {
+        return self.serialize()
+    }
+    
     public func serialize() -> Any {
         return [
             Keys.contentSnapshot.rawValue: self.contentSnapshot.base64EncodedString(),

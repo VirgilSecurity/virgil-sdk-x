@@ -34,7 +34,7 @@ extension CardClient {
     }
     
     // FIXME
-    @objc public func searchCards(withId identity: String, token: String) throws -> [RawSignedModel] {
+    @objc public func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
         guard let url = URL(string: "card/actions/search", relativeTo: self.baseUrl) else {
             throw CardClientError.constructingUrl
         }
