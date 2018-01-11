@@ -10,22 +10,22 @@ import Foundation
 
 @objc(VSSRawSignature) public final class RawSignature: NSObject, Deserializable, Serializable {
     @objc public let signerId: String
+    @objc public let snapshot: String
     @objc public let signerType: SignerType
     @objc public let signature: Data
-    @objc public let extraData: Data
     
     private enum Keys: String {
         case signerId = "signer_id"
+        case snapshot = "snapshot"
         case signerType = "signer_type"
         case signature = "signature"
-        case extraContent = "extra_content"
     }
     
-    init(signerId: String, signerType: SignerType, signature: Data, extraData: Data) {
+    init(signerId: String, snapshot: String, signerType: SignerType, signature: Data) {
         self.signerId = signerId
+        self.snapshot = snapshot
         self.signerType = signerType
         self.signature = signature
-        self.extraData = extraData
         
         super.init()
     }
@@ -39,21 +39,20 @@ import Foundation
             let signerTypeStr = candidate[Keys.signerType.rawValue] as? String,
             let signerType = SignerType(from: signerTypeStr),
             let signatureStr = candidate[Keys.signature.rawValue] as? String,
-            let extraDataStr = candidate[Keys.extraContent.rawValue] as? String,
-            let extraData = Data(base64Encoded: extraDataStr),
+            let snapshot = candidate[Keys.snapshot.rawValue] as? String,
             let signature = Data(base64Encoded: signatureStr) else {
                 return nil
         }
         
-        self.init(signerId: signerId, signerType: signerType, signature: signature, extraData: extraData)
+        self.init(signerId: signerId, snapshot: snapshot, signerType: signerType, signature: signature)
     }
     
     public func serialize() -> Any {
         return [
             Keys.signerId.rawValue: self.signerId,
+            Keys.snapshot.rawValue: self.snapshot,
             Keys.signerType.rawValue: self.signerType.toString(),
             Keys.signature.rawValue: self.signature.base64EncodedString(),
-            Keys.extraContent.rawValue: self.extraData.base64EncodedString()
         ]
     }
 }

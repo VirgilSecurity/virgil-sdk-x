@@ -57,7 +57,7 @@ import VirgilCryptoAPI
         let fingerprint = crypto.computeSHA256(for: fingerprintPayload)
         let signature = try crypto.generateSignature(of: fingerprint, using: params.signerPrivateKey)
         
-        let cardSignature = RawSignature(signerId: params.signerCardId, signerType: params.signerType, signature: signature, extraData: extraData)
+        let cardSignature = RawSignature(signerId: params.signerCardId, snapshot: fingerprintPayload.base64EncodedString(), signerType: params.signerType, signature: signature)
         
         self.signatures.append(cardSignature)
     }
