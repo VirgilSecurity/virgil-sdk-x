@@ -10,5 +10,5 @@ import Foundation
 import VirgilCryptoAPI
 
 @objc(VSSCardVefifier) public protocol CardVerifier {
-    func verifyCard(card: Card) -> ValidationResult
+    @objc func verifyCard(card: Card) -> ValidationResult
 }

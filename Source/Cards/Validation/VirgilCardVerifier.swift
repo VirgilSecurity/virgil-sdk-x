@@ -28,7 +28,7 @@ import VirgilCryptoAPI
         super.init()
     }
     
-    public func verifyCard(card: Card) -> ValidationResult {
+    @objc public func verifyCard(card: Card) -> ValidationResult {
         let result = ValidationResult()
         
         if !self.ignoreSelfSignature {
