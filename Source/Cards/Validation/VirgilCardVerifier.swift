@@ -68,16 +68,21 @@ import VirgilCryptoAPI
             return
         }
         
-        var fingerprint = card.fingerprint
+        guard let cardSnapshot = try? SnapshotUtils.takeSnapshot(object: card) else  {
+            result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The card with id \(signerCardId) was corrupted"]))
+            return
+        }
+        var extraDataSnapshot = Data()
         if signerType == .custom {
-            guard let extraDataSnapshot = try? SnapshotUtils.takeSnapshot(object: signature.extraFields),
-                  let cardSnapshot = try? SnapshotUtils.takeSnapshot(object: card) else
+            guard let extraData = try? SnapshotUtils.takeSnapshot(object: signature.extraFields) else
             {
-                result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The \(signerType.rawValue) signature for \(signerCardId) or card was corrupted"]))
+                result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The \(signerType.rawValue) signature for \(signerCardId) was corrupted"]))
                 return
             }
-            fingerprint = crypto.computeSHA256(for: cardSnapshot + extraDataSnapshot)
+            extraDataSnapshot = extraData
         }
+        
+        let fingerprint = crypto.computeSHA256(for: cardSnapshot + extraDataSnapshot)
         
         do {
             try crypto.verifySignature(signature.signature, of: fingerprint, with: signerPublicKey)

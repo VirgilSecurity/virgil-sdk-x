@@ -12,7 +12,6 @@ import VirgilCryptoAPI
 @objc(VSSCard) public class Card: NSObject {
     @objc public let identifier: String
     @objc public let identity: String
-    @objc public let fingerprint: Data
     @objc public let publicKey: PublicKey
     @objc public let previousCardId: String?
     @objc public let version: String
@@ -21,7 +20,6 @@ import VirgilCryptoAPI
     private init(identifier: String, identity: String, fingerprint: Data, publicKey: PublicKey, version: String, signatures: [CardSignature], previousCardId: String?) {
         self.identifier = identifier
         self.identity = identity
-        self.fingerprint = fingerprint
         self.publicKey = publicKey
         self.previousCardId = previousCardId
         self.version = version
