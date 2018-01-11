@@ -33,8 +33,8 @@ import VirgilCryptoAPI
     
     @objc public func getCard(withId cardId: String) throws -> Card {
         let token = self.accessTokenProvider.getToken(forceReload: false)
-        let rawCard = try self.cardClient.getCard(withId: cardId, token: token.stringRepresentation())
-        guard let card = Card.parse(crypto: self.crypto, rawCard: rawCard) else {
+        let rawSignedModel = try self.cardClient.getCard(withId: cardId, token: token.stringRepresentation())
+        guard let card = Card.parse(crypto: self.crypto, rawSignedModel: rawSignedModel) else {
             // FIXME
             throw NSError()
         }
@@ -46,8 +46,8 @@ import VirgilCryptoAPI
     
     @objc public func publishCard(csr: CSR) throws -> Card {
         let token = self.accessTokenProvider.getToken(forceReload: false)
-        let rawCard = try self.cardClient.publishCard(request: csr.rawCard, token: token.stringRepresentation())
-        guard let card = Card.parse(crypto: self.crypto, rawCard: rawCard) else {
+        let rawSignedModel = try self.cardClient.publishCard(request: csr.rawCard, token: token.stringRepresentation())
+        guard let card = Card.parse(crypto: self.crypto, rawSignedModel: rawSignedModel) else {
             // FIXME
             throw NSError()
         }
@@ -59,11 +59,11 @@ import VirgilCryptoAPI
     
     @objc public func searchCards(withId identity: String) throws -> [Card] {
         let token = self.accessTokenProvider.getToken(forceReload: false)
-        let rawCards = try self.cardClient.searchCards(withId: identity, token: token.stringRepresentation())
+        let rawSignedModels = try self.cardClient.searchCards(withId: identity, token: token.stringRepresentation())
         
         var result: [Card] = []
-        for rawCard in rawCards {
-            guard let card = Card.parse(crypto: self.crypto, rawCard: rawCard) else {
+        for rawSignedModel in rawSignedModels {
+            guard let card = Card.parse(crypto: self.crypto, rawSignedModel: rawSignedModel) else {
                 // FIXME
                 throw NSError()
             }

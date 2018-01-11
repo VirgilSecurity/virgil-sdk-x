@@ -34,7 +34,7 @@ public extension Data {
             throw NSError()
         }
         
-        guard let result = Data.init(base64Encoded: s) else {
+        guard let result = Data(base64Encoded: s) else {
             throw NSError()
         }
         self = result

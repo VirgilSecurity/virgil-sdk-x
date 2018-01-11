@@ -16,9 +16,9 @@ import VirgilCryptoAPI
     @objc public let publicKey: PublicKey
     @objc public let previousCardId: String?
     @objc public let version: String
-    @objc public let signatures: [RawSignature]
+    @objc public let signatures: [CardSignature]
     
-    private init(identifier: String, identity: String, fingerprint: Data, publicKey: PublicKey, version: String, signatures: [RawSignature], previousCardId: String?) {
+    private init(identifier: String, identity: String, fingerprint: Data, publicKey: PublicKey, version: String, signatures: [CardSignature], previousCardId: String?) {
         self.identifier = identifier
         self.identity = identity
         self.fingerprint = fingerprint
@@ -30,18 +30,29 @@ import VirgilCryptoAPI
         super.init()
     }
     
-    @objc public class func parse(crypto: CardCrypto, rawCard: RawSignedModel) -> Card? {
-        guard let rawCardInfo: RawModelInfo = SnapshotUtils.parseSnapshot(snapshot: rawCard.contentSnapshot) else {
+    @objc public class func parse(crypto: CardCrypto, rawSignedModel: RawSignedModel) -> Card? {
+        guard let rawModelInfo: RawModelInfo = SnapshotUtils.parseSnapshot(snapshot: rawSignedModel.contentSnapshot) else {
             return nil
         }
         
-        let fingerprint = crypto.computeSHA256(for: rawCard.contentSnapshot)
+        let fingerprint = crypto.computeSHA256(for: rawSignedModel.contentSnapshot)
         let cardId = fingerprint.hexEncodedString()
         
-        guard let publicKey = try? crypto.importPublicKey(from: rawCardInfo.publicKeyData) else {
+        guard let publicKey = try? crypto.importPublicKey(from: rawModelInfo.publicKeyData) else {
             return nil
         }
         
-        return Card(identifier: cardId, identity: rawCardInfo.identity, fingerprint: fingerprint, publicKey: publicKey, version: rawCardInfo.version, signatures: rawCard.signatures, previousCardId: rawCardInfo.previousCardId)
+        var cardSignatures: [CardSignature] = []
+        for rawSignature in rawSignedModel.signatures {
+//            let combinedSnapshot = Data(base64Encoded: rawSignature.snapshot)
+//            let contentSnapshot = rawSignedModel.contentSnapshot
+            
+            // FIXME ExtraFields
+            let cardSignature = CardSignature.init(signerId: rawSignature.signerId, signerType: rawSignature.signerType, signature: rawSignature.signature)
+            
+            cardSignatures.append(cardSignature)
+        }
+        
+        return Card(identifier: cardId, identity: rawModelInfo.identity, fingerprint: fingerprint, publicKey: publicKey, version: rawModelInfo.version, signatures: cardSignatures, previousCardId: rawModelInfo.previousCardId)
     }
 }

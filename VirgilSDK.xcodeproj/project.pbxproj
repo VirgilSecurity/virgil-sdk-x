@@ -52,6 +52,10 @@
 		16B3FD642007952E008F0357 /* ModelSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD622007952E008F0357 /* ModelSigner.swift */; };
 		16B3FD652007952E008F0357 /* ModelSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD622007952E008F0357 /* ModelSigner.swift */; };
 		16B3FD662007952E008F0357 /* ModelSigner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD622007952E008F0357 /* ModelSigner.swift */; };
+		16B3FD6820079DF5008F0357 /* CardSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD6720079DF5008F0357 /* CardSignature.swift */; };
+		16B3FD6920079DF5008F0357 /* CardSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD6720079DF5008F0357 /* CardSignature.swift */; };
+		16B3FD6A20079DF5008F0357 /* CardSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD6720079DF5008F0357 /* CardSignature.swift */; };
+		16B3FD6B20079DF5008F0357 /* CardSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD6720079DF5008F0357 /* CardSignature.swift */; };
 		422499C31EB39B380032F556 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422499BA1EB39B380032F556 /* VirgilSDK.framework */; };
 		42249A681EB39D6F0032F556 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
 		42249AF01EB39ED50032F556 /* VSSKeyStoragePublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -288,6 +292,7 @@
 		16B3FD58200507F3008F0357 /* JwtBodyContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtBodyContent.swift; sourceTree = "<group>"; };
 		16B3FD5D20078113008F0357 /* Data+base64Url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+base64Url.swift"; sourceTree = "<group>"; };
 		16B3FD622007952E008F0357 /* ModelSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSigner.swift; sourceTree = "<group>"; };
+		16B3FD6720079DF5008F0357 /* CardSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSignature.swift; sourceTree = "<group>"; };
 		420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = Carthage/Build/iOS/VirgilCrypto.framework; sourceTree = "<group>"; };
 		422499BA1EB39B380032F556 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		422499C21EB39B380032F556 /* VirgilSDK macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilSDK macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -614,6 +619,7 @@
 				4284C3CF1F6BF24600B75491 /* SignParams.swift */,
 				4284C3D21F6BF29200B75491 /* SignerType.swift */,
 				4284C3F21F6BFD6200B75491 /* Card.swift */,
+				16B3FD6720079DF5008F0357 /* CardSignature.swift */,
 				4284C4281F6C11F400B75491 /* SnapshotUtils.swift */,
 				16B3FD622007952E008F0357 /* ModelSigner.swift */,
 			);
@@ -1023,6 +1029,7 @@
 				4284C4B61F728B6600B75491 /* ServiceRequest.swift in Sources */,
 				42CF01FB1F6AA174003ABB19 /* CardClient.swift in Sources */,
 				16B3FD492004D5FC008F0357 /* AccessToken.swift in Sources */,
+				16B3FD6920079DF5008F0357 /* CardSignature.swift in Sources */,
 				4284C3FC1F6C00B700B75491 /* RawModelInfo.swift in Sources */,
 				42CF01FE1F6AA209003ABB19 /* Connection.swift in Sources */,
 				4284C4B31F728B5800B75491 /* RawServiceError.swift in Sources */,
@@ -1075,6 +1082,7 @@
 				4284C3B21F6BE9F300B75491 /* RawSignedModel.swift in Sources */,
 				4284C4BF1F72936600B75491 /* CardClient+Queries.swift in Sources */,
 				4284C3C31F6BEA2100B75491 /* ServiceConnection.swift in Sources */,
+				16B3FD6A20079DF5008F0357 /* CardSignature.swift in Sources */,
 				4284C3C21F6BEA2100B75491 /* Connection.swift in Sources */,
 				4284C4B91F728B6700B75491 /* ServiceResponse.swift in Sources */,
 				16B3FD4A2004D5FC008F0357 /* AccessToken.swift in Sources */,
@@ -1116,6 +1124,7 @@
 				4284C3B41F6BE9F400B75491 /* RawSignedModel.swift in Sources */,
 				4284C4C01F72936600B75491 /* CardClient+Queries.swift in Sources */,
 				4284C3C51F6BEA2200B75491 /* ServiceConnection.swift in Sources */,
+				16B3FD6B20079DF5008F0357 /* CardSignature.swift in Sources */,
 				4284C3C41F6BEA2200B75491 /* Connection.swift in Sources */,
 				4284C4BB1F728B6700B75491 /* ServiceResponse.swift in Sources */,
 				16B3FD4B2004D5FC008F0357 /* AccessToken.swift in Sources */,
@@ -1176,6 +1185,7 @@
 				16B3FD4F200503B8008F0357 /* JWT.swift in Sources */,
 				4284C4591F6FECC300B75491 /* VirgilCardVerifier.swift in Sources */,
 				4284C3541F6AD2C900B75491 /* RawSignature.swift in Sources */,
+				16B3FD6820079DF5008F0357 /* CardSignature.swift in Sources */,
 				4284C4301F6C126800B75491 /* SnapshotUtils.swift in Sources */,
 				4284C3FB1F6C00B600B75491 /* RawModelInfo.swift in Sources */,
 				4263A1F81EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.m in Sources */,
