@@ -19,10 +19,10 @@ import VirgilCryptoAPI
     @objc public var ignoreSelfSignature: Bool = false
     @objc public var ignoreVirgilSignature: Bool = false
     
-    @objc public let whiteList: [VerifierCredentials]
+    @objc public let whiteLists: [WhiteList]
     
-    @objc public init(crypto: CardCrypto, whiteList: [VerifierCredentials]) {
-        self.whiteList = whiteList
+    @objc public init(crypto: CardCrypto, whiteLists: [WhiteList]) {
+        self.whiteLists = whiteLists
         self.crypto = crypto
         
         super.init()
@@ -32,45 +32,58 @@ import VirgilCryptoAPI
         let result = ValidationResult()
         
         if !self.ignoreSelfSignature {
-            VirgilCardVerifier.validate(crypto: crypto, card: card, signerCardId: card.identifier, signerPublicKey: card.publicKey, signerKind: "Self", result: result)
+            VirgilCardVerifier.validate(crypto: crypto, card: card, signerCardId: card.identifier, signerPublicKey: card.publicKey, signerType: .self, result: result)
         }
         
         if !self.ignoreVirgilSignature {
             if let publicKeyData = Data(base64Encoded: VirgilCardVerifier.virgilPublicKeyBase64),
                 let publicKey = try? crypto.importPublicKey(from: publicKeyData) {
-                    VirgilCardVerifier.validate(crypto: crypto, card: card, signerCardId: VirgilCardVerifier.virgilCardId, signerPublicKey: publicKey, signerKind: "Virgil", result: result)
+                    VirgilCardVerifier.validate(crypto: crypto, card: card, signerCardId: VirgilCardVerifier.virgilCardId, signerPublicKey: publicKey, signerType: .virgil, result: result)
             }
             else {
                 result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "Error importing Virgil Public Key"]))
             }
         }
         
-        if let signerInfo = self.whiteList.filter({ Set<String>(card.signatures.map({ $0.signerId  })).contains($0.cardId) }).first {
-            if let publicKey = try? crypto.importPublicKey(from: signerInfo.publicKey) {
-                VirgilCardVerifier.validate(crypto: crypto, card: card, signerCardId: signerInfo.cardId, signerPublicKey: publicKey, signerKind: "Whitelist", result: result)
+        for whiteList in whiteLists {
+            if let signerInfo = whiteList.verifiersCredentials.filter({ Set<String>(card.signatures.map({ $0.signerId  })).contains($0.id) }).first {
+                if let publicKey = try? crypto.importPublicKey(from: signerInfo.publicKey) {
+                    VirgilCardVerifier.validate(crypto: crypto, card: card, signerCardId: signerInfo.id, signerPublicKey: publicKey, signerType: .custom, result: result)
+                }
+                else {
+                    result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "Error importing Whitelist Public Key for \(signerInfo.id)"]))
+                }
             }
             else {
-                result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "Error importing Whitelist Public Key for \(signerInfo.cardId)"]))
+                result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The card does not contain signature from specified Whitelist"]))
             }
-        }
-        else {
-            result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The card does not contain signature from specified Whitelist"]))
         }
         
         return result
     }
     
-    private class func validate(crypto: CardCrypto, card: Card, signerCardId: String, signerPublicKey: PublicKey, signerKind: String, result: ValidationResult) {
+    private class func validate(crypto: CardCrypto, card: Card, signerCardId: String, signerPublicKey: PublicKey, signerType: SignerType, result: ValidationResult) {
         guard let signature = card.signatures.first(where: { $0.signerId == signerCardId }) else {
-            result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The card does not contain the \(signerKind) signature for \(signerCardId)"]))
+            result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The card does not contain the \(signerType) signature for \(signerCardId)"]))
             return
         }
         
+        var fingerprint = card.fingerprint
+        if signerType == .custom {
+            guard let extraDataSnapshot = try? SnapshotUtils.takeSnapshot(object: signature.extraFields),
+                  let cardSnapshot = try? SnapshotUtils.takeSnapshot(object: card) else
+            {
+                result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The \(signerType.rawValue) signature for \(signerCardId) or card was corrupted"]))
+                return
+            }
+            fingerprint = crypto.computeSHA256(for: cardSnapshot + extraDataSnapshot)
+        }
+        
         do {
-            try crypto.verifySignature(signature.signature, of: card.fingerprint, with: signerPublicKey)
+            try crypto.verifySignature(signature.signature, of: fingerprint, with: signerPublicKey)
         }
         catch {
-            result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The \(signerKind) signature for \(signerCardId) is not valid"]))
+            result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The \(signerType.rawValue) signature for \(signerCardId) is not valid"]))
         }
     }
 }

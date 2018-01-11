@@ -9,11 +9,11 @@
 import Foundation
 
 @objc(VSSVerifierCredentials) public class VerifierCredentials: NSObject {
-    @objc public let cardId: String
+    @objc public let id: String
     @objc public let publicKey: Data
     
-    @objc public init(cardId: String, publicKey: Data) {
-        self.cardId = cardId
+    @objc public init(id: String, publicKey: Data) {
+        self.id = id
         self.publicKey = publicKey
     }
 }

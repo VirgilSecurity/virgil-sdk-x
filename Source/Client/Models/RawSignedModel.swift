@@ -14,12 +14,12 @@ import Foundation
     
     private enum Keys: String {
         case contentSnapshot = "content_snapshot"
-        case signatures = "signatures"
+        case signatures      = "signatures"
     }
     
     @objc public init(contentSnapshot: Data, signatures: [RawSignature]) {
         self.contentSnapshot = contentSnapshot
-        self.signatures = signatures
+        self.signatures      = signatures
         
         super.init()
     }
