@@ -41,23 +41,33 @@ import Foundation
         guard let identity = candidate[Keys.identity.rawValue] as? String,
             let publicKeyStr = candidate[Keys.publicKeyData.rawValue] as? String,
             let publicKeyData = Data(base64Encoded: publicKeyStr),
-            var previousCardId = candidate[Keys.previousCardId.rawValue] as? String?,
             let version = candidate[Keys.version.rawValue] as? String,
             let createdAt = candidate[Keys.createdAt.rawValue] as? Double else {
                 return nil
         }
-        previousCardId = previousCardId == "" ? nil : previousCardId
+        let previousCardId = candidate[Keys.previousCardId.rawValue] as? String
         self.init(identity: identity, publicKeyData: publicKeyData, previousCardId: previousCardId, version: version, createdAt: Date(timeIntervalSince1970: createdAt))
     }
     
     public func serialize() -> Any {
-        let previousCardId = self.previousCardId ?? ""
-        return [
-            Keys.identity.rawValue: self.identity,
-            Keys.publicKeyData.rawValue: self.publicKeyData.base64EncodedString(),
-            Keys.previousCardId.rawValue: previousCardId,
-            Keys.version.rawValue: self.version,
-            Keys.createdAt.rawValue: Int(self.createdAt.timeIntervalSince1970)
-        ]
+        let result: [String : Any]
+        if let previousCardId = self.previousCardId {
+            result = [
+                Keys.identity.rawValue: self.identity,
+                Keys.publicKeyData.rawValue: self.publicKeyData.base64EncodedString(),
+                Keys.previousCardId.rawValue: previousCardId,
+                Keys.version.rawValue: self.version,
+                Keys.createdAt.rawValue: Int(self.createdAt.timeIntervalSince1970)
+            ]
+        }
+        else {
+            result = [
+                Keys.identity.rawValue: self.identity,
+                Keys.publicKeyData.rawValue: self.publicKeyData.base64EncodedString(),
+                Keys.version.rawValue: self.version,
+                Keys.createdAt.rawValue: Int(self.createdAt.timeIntervalSince1970)
+            ]
+        }
+        return result
     }
 }
