@@ -29,14 +29,14 @@ import VirgilCryptoAPI
     }
     
     @objc public class func parse(crypto: CardCrypto, rawSignedModel: RawSignedModel) -> Card? {
-        guard let rawModelInfo: RawModelInfo = SnapshotUtils.parseSnapshot(snapshot: rawSignedModel.contentSnapshot) else {
+        guard let rawCardContent: RawCardContent = SnapshotUtils.parseSnapshot(snapshot: rawSignedModel.contentSnapshot) else {
             return nil
         }
         
         let fingerprint = crypto.computeSHA256(for: rawSignedModel.contentSnapshot)
         let cardId = fingerprint.hexEncodedString()
         
-        guard let publicKey = try? crypto.importPublicKey(from: rawModelInfo.publicKeyData) else {
+        guard let publicKey = try? crypto.importPublicKey(from: rawCardContent.publicKeyData) else {
             return nil
         }
         
@@ -51,6 +51,6 @@ import VirgilCryptoAPI
             cardSignatures.append(cardSignature)
         }
         
-        return Card(identifier: cardId, identity: rawModelInfo.identity, publicKey: publicKey, version: rawModelInfo.version, signatures: cardSignatures, previousCardId: rawModelInfo.previousCardId)
+        return Card(identifier: cardId, identity: rawCardContent.identity, publicKey: publicKey, version: rawCardContent.version, signatures: cardSignatures, previousCardId: rawCardContent.previousCardId)
     }
 }

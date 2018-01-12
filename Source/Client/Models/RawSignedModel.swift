@@ -17,7 +17,7 @@ import Foundation
         case signatures      = "signatures"
     }
     
-    @objc public init(contentSnapshot: Data, signatures: [RawSignature]) {
+    @objc public init(contentSnapshot: Data, signatures: [RawSignature] = []) {
         self.contentSnapshot = contentSnapshot
         self.signatures      = signatures
         

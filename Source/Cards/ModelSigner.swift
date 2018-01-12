@@ -16,17 +16,21 @@ import VirgilCryptoAPI
         self.crypto = crypto
     }
     
-    @objc public func sign(model: RawSignedModel, signerId: String, type: SignerType, privateKey: PrivateKey, additionalData: Data = Data()) throws {
+    @objc public func sign(model: RawSignedModel, type: SignerType, privateKey: PrivateKey, additionalData: Data = Data()) throws {
         let combinedSnapshot = model.contentSnapshot + additionalData
         let fingerprint = self.crypto.computeSHA256(for: combinedSnapshot)
         let signature = try crypto.generateSignature(of: fingerprint, using: privateKey)
+        
+        let signerId = crypto
+            .computeSHA256(for: model.contentSnapshot)
+            .hexEncodedString()
         
         let rawSignature = RawSignature(signerId: signerId, snapshot: combinedSnapshot.base64EncodedString(), signerType: type, signature: signature)
         
         model.signatures.append(rawSignature)
     }
     
-    @objc public func selfSign(model: RawSignedModel, signerId: String, privateKey: PrivateKey, additionalData: Data = Data()) throws {
-        try self.sign(model: model, signerId: signerId, type: .self, privateKey: privateKey)
+    @objc public func selfSign(model: RawSignedModel, privateKey: PrivateKey, additionalData: Data = Data()) throws {
+        try self.sign(model: model, type: .self, privateKey: privateKey)
     }
 }

@@ -127,10 +127,10 @@
 		4284C3EB1F6BF31500B75491 /* CSRParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3C91F6BF08700B75491 /* CSRParams.swift */; };
 		4284C3EC1F6BF31500B75491 /* CSR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3CC1F6BF0F200B75491 /* CSR.swift */; };
 		4284C3ED1F6BF31500B75491 /* SignerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3D21F6BF29200B75491 /* SignerType.swift */; };
-		4284C3FB1F6C00B600B75491 /* RawModelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3F71F6C006600B75491 /* RawModelInfo.swift */; };
-		4284C3FC1F6C00B700B75491 /* RawModelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3F71F6C006600B75491 /* RawModelInfo.swift */; };
-		4284C3FD1F6C00B800B75491 /* RawModelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3F71F6C006600B75491 /* RawModelInfo.swift */; };
-		4284C3FE1F6C00B900B75491 /* RawModelInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3F71F6C006600B75491 /* RawModelInfo.swift */; };
+		4284C3FB1F6C00B600B75491 /* RawCardContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3F71F6C006600B75491 /* RawCardContent.swift */; };
+		4284C3FC1F6C00B700B75491 /* RawCardContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3F71F6C006600B75491 /* RawCardContent.swift */; };
+		4284C3FD1F6C00B800B75491 /* RawCardContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3F71F6C006600B75491 /* RawCardContent.swift */; };
+		4284C3FE1F6C00B900B75491 /* RawCardContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3F71F6C006600B75491 /* RawCardContent.swift */; };
 		4284C3FF1F6C00C000B75491 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3F21F6BFD6200B75491 /* Card.swift */; };
 		4284C4071F6C00C300B75491 /* CardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01F31F6A9DD5003ABB19 /* CardManager.swift */; };
 		4284C4081F6C00C300B75491 /* CardManagerParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01F61F6A9EF9003ABB19 /* CardManagerParams.swift */; };
@@ -327,7 +327,7 @@
 		4284C3CF1F6BF24600B75491 /* SignParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignParams.swift; sourceTree = "<group>"; };
 		4284C3D21F6BF29200B75491 /* SignerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignerType.swift; sourceTree = "<group>"; };
 		4284C3F21F6BFD6200B75491 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		4284C3F71F6C006600B75491 /* RawModelInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawModelInfo.swift; sourceTree = "<group>"; };
+		4284C3F71F6C006600B75491 /* RawCardContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawCardContent.swift; sourceTree = "<group>"; };
 		4284C41C1F6C03DF00B75491 /* Data+hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+hex.swift"; sourceTree = "<group>"; };
 		4284C4241F6C0C6400B75491 /* HexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexTests.swift; sourceTree = "<group>"; };
 		4284C4281F6C11F400B75491 /* SnapshotUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotUtils.swift; sourceTree = "<group>"; };
@@ -657,7 +657,7 @@
 				4284C4381F6C1E3500B75491 /* Protocols */,
 				4284C34D1F6AB69600B75491 /* RawSignedModel.swift */,
 				4284C3531F6AD2C900B75491 /* RawSignature.swift */,
-				4284C3F71F6C006600B75491 /* RawModelInfo.swift */,
+				4284C3F71F6C006600B75491 /* RawCardContent.swift */,
 				4284C4B11F728AD200B75491 /* RawServiceError.swift */,
 			);
 			path = Models;
@@ -1036,7 +1036,7 @@
 				42CF01FB1F6AA174003ABB19 /* CardClient.swift in Sources */,
 				16B3FD492004D5FC008F0357 /* AccessToken.swift in Sources */,
 				16B3FD6920079DF5008F0357 /* CardSignature.swift in Sources */,
-				4284C3FC1F6C00B700B75491 /* RawModelInfo.swift in Sources */,
+				4284C3FC1F6C00B700B75491 /* RawCardContent.swift in Sources */,
 				42CF01FE1F6AA209003ABB19 /* Connection.swift in Sources */,
 				4284C4B31F728B5800B75491 /* RawServiceError.swift in Sources */,
 				4284C45B1F6FECC600B75491 /* ValidationResult.swift in Sources */,
@@ -1110,7 +1110,7 @@
 				16B3FD652007952E008F0357 /* ModelSigner.swift in Sources */,
 				4284C3EA1F6BF31500B75491 /* SignerType.swift in Sources */,
 				4284C4221F6C03F500B75491 /* Data+hex.swift in Sources */,
-				4284C3FD1F6C00B800B75491 /* RawModelInfo.swift in Sources */,
+				4284C3FD1F6C00B800B75491 /* RawCardContent.swift in Sources */,
 				4284C4461F6C1E4100B75491 /* Serializable.swift in Sources */,
 				16B3FD562005059C008F0357 /* JwtHeaderContent.swift in Sources */,
 				4284C4141F6C00C400B75491 /* Card.swift in Sources */,
@@ -1153,7 +1153,7 @@
 				16B3FD662007952E008F0357 /* ModelSigner.swift in Sources */,
 				4284C3ED1F6BF31500B75491 /* SignerType.swift in Sources */,
 				4284C4231F6C03F600B75491 /* Data+hex.swift in Sources */,
-				4284C3FE1F6C00B900B75491 /* RawModelInfo.swift in Sources */,
+				4284C3FE1F6C00B900B75491 /* RawCardContent.swift in Sources */,
 				4284C4481F6C1E4200B75491 /* Serializable.swift in Sources */,
 				16B3FD572005059C008F0357 /* JwtHeaderContent.swift in Sources */,
 				4284C41B1F6C00C600B75491 /* Card.swift in Sources */,
@@ -1196,7 +1196,7 @@
 				4284C3541F6AD2C900B75491 /* RawSignature.swift in Sources */,
 				16B3FD6820079DF5008F0357 /* CardSignature.swift in Sources */,
 				4284C4301F6C126800B75491 /* SnapshotUtils.swift in Sources */,
-				4284C3FB1F6C00B600B75491 /* RawModelInfo.swift in Sources */,
+				4284C3FB1F6C00B600B75491 /* RawCardContent.swift in Sources */,
 				4263A1F81EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.m in Sources */,
 				4284C4411F6C1E3F00B75491 /* Deserializable.swift in Sources */,
 				4284C4BD1F72936600B75491 /* CardClient+Queries.swift in Sources */,

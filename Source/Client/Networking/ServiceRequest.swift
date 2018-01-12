@@ -15,7 +15,7 @@ import Foundation
     let body: Data?
     
     @objc public static let DefaultTimeout: TimeInterval = 45
-    @objc public static let AccessTokenHeader = "Authorization"
+    @objc public static let AccessTokenHeader = "Authorization: Virgil "
     
     public enum Method: String {
         case get    = "GET"

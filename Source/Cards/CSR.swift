@@ -10,11 +10,11 @@ import Foundation
 import VirgilCryptoAPI
 
 @objc(VSSCSR) public class CSR: NSObject {
-    private let info: RawModelInfo
+    private let info: RawCardContent
     private let snapshot: Data
     private var signatures: [RawSignature] = []
     
-    private init(info: RawModelInfo, snapshot: Data, cardId: String) {
+    private init(info: RawCardContent, snapshot: Data, cardId: String) {
         self.info = info
         self.snapshot = snapshot
         self.cardId = cardId
@@ -88,7 +88,7 @@ import VirgilCryptoAPI
         
         let snapshotJson = try JSONSerialization.jsonObject(with: snapshotData, options: [])
         
-        guard let rawCardInfo = RawModelInfo(dict: snapshotJson) else {
+        guard let rawCardInfo = RawCardContent(dict: snapshotJson) else {
             throw NSError()
         }
         
@@ -101,7 +101,7 @@ import VirgilCryptoAPI
     
     @objc public static let CurrentCardVersion = "5.0"
     @objc public class func generate(crypto: CardCrypto, params: CSRParams) throws -> CSR {
-        let cardInfo = RawModelInfo(identity: params.identity, publicKeyData: try crypto.exportPublicKey(params.publicKey), previousCardId: nil, version: CSR.CurrentCardVersion, createdAt: Date())
+        let cardInfo = RawCardContent(identity: params.identity, publicKeyData: try crypto.exportPublicKey(params.publicKey), previousCardId: nil, version: CSR.CurrentCardVersion, createdAt: Date())
         let snapshot = try SnapshotUtils.takeSnapshot(object: cardInfo)
         
         let cardId = crypto
