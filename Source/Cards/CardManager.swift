@@ -59,9 +59,9 @@ import VirgilCryptoAPI
         return card
     }
     
-    @objc public func publishCard(csr: CSR) throws -> Card {
+    @objc public func publishCard(rawCard: RawSignedModel) throws -> Card {
         let token = self.accessTokenProvider.getToken(forceReload: false)
-        let rawSignedModel = try self.cardClient.publishCard(request: csr.rawCard, token: token.stringRepresentation())
+        let rawSignedModel = try self.cardClient.publishCard(request: rawCard, token: token.stringRepresentation())
         guard let card = Card.parse(crypto: self.crypto, rawSignedModel: rawSignedModel) else {
             // FIXME
             throw NSError()
@@ -72,7 +72,13 @@ import VirgilCryptoAPI
         return card
     }
     
-    @objc public func searchCards(withId identity: String) throws -> [Card] {
+    @objc public func publishCard(privateKey: PrivateKey, publicKey: PublicKey, previousCardId: String? = nil) throws -> Card {
+        let rawCard = try self.generateRawCard(privateKey: privateKey, publicKey: publicKey, previousCardId: previousCardId)
+        
+        return try self.publishCard(rawCard: rawCard)
+    }
+    
+    @objc public func searchCards(identity: String) throws -> [Card] {
         let token = self.accessTokenProvider.getToken(forceReload: false)
         let rawSignedModels = try self.cardClient.searchCards(identity: identity, token: token.stringRepresentation())
         
@@ -86,5 +92,33 @@ import VirgilCryptoAPI
         }
         
         return result
+    }
+    
+    @objc public func importCard(string: String) -> Card? {
+        
+        guard let rawCard = RawSignedModel(string: string) else {
+            return nil
+        }
+        
+        return Card.parse(crypto: self.crypto, rawSignedModel: rawCard)
+    }
+    
+    @objc public func importCard(json: Any) -> Card? {
+        guard let rawCard = RawSignedModel.init(dict: json) else {
+            return nil
+        }
+        
+        return Card.parse(crypto: self.crypto, rawSignedModel: rawCard)
+    }
+    
+    @objc public func exportCardAsString(card: Card) throws -> String {
+        let json = try card.getRawCard(crypto: self.crypto).serialize()
+        let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+        
+        return jsonData.base64EncodedString()
+    }
+    
+    @objc public func exportCardAsJson(card: Card) throws -> Any {
+        return try card.getRawCard(crypto: self.crypto).serialize()
     }
 }

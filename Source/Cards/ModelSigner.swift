@@ -25,7 +25,7 @@ import VirgilCryptoAPI
             .computeSHA256(for: model.contentSnapshot)
             .hexEncodedString()
         
-        let rawSignature = RawSignature(signerId: signerId, snapshot: combinedSnapshot.base64EncodedString(), signerType: type, signature: signature)
+        let rawSignature = RawSignature(signerId: signerId, snapshot: additionalData.base64EncodedString(), signerType: type, signature: signature)
         
         model.signatures.append(rawSignature)
     }
