@@ -95,7 +95,6 @@ import VirgilCryptoAPI
     }
     
     @objc public func importCard(string: String) -> Card? {
-        
         guard let rawCard = RawSignedModel(string: string) else {
             return nil
         }
