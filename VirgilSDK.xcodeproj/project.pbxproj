@@ -76,6 +76,18 @@
 		16B3FD85200CC5F4008F0357 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD83200CC5F4008F0357 /* Collection.swift */; };
 		16B3FD86200CC5F4008F0357 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD83200CC5F4008F0357 /* Collection.swift */; };
 		16B3FD87200CC5F4008F0357 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD83200CC5F4008F0357 /* Collection.swift */; };
+		16B3FD89200CDBC9008F0357 /* JwtGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD88200CDBC9008F0357 /* JwtGenerator.swift */; };
+		16B3FD8A200CDBC9008F0357 /* JwtGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD88200CDBC9008F0357 /* JwtGenerator.swift */; };
+		16B3FD8B200CDBC9008F0357 /* JwtGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD88200CDBC9008F0357 /* JwtGenerator.swift */; };
+		16B3FD8C200CDBC9008F0357 /* JwtGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD88200CDBC9008F0357 /* JwtGenerator.swift */; };
+		16B3FD8E200CE469008F0357 /* JwtGeneratorAccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD8D200CE469008F0357 /* JwtGeneratorAccessTokenProvider.swift */; };
+		16B3FD8F200CE469008F0357 /* JwtGeneratorAccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD8D200CE469008F0357 /* JwtGeneratorAccessTokenProvider.swift */; };
+		16B3FD90200CE469008F0357 /* JwtGeneratorAccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD8D200CE469008F0357 /* JwtGeneratorAccessTokenProvider.swift */; };
+		16B3FD91200CE469008F0357 /* JwtGeneratorAccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD8D200CE469008F0357 /* JwtGeneratorAccessTokenProvider.swift */; };
+		16B3FD93200CE74C008F0357 /* JwtVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD92200CE74C008F0357 /* JwtVerifier.swift */; };
+		16B3FD94200CE74C008F0357 /* JwtVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD92200CE74C008F0357 /* JwtVerifier.swift */; };
+		16B3FD95200CE74C008F0357 /* JwtVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD92200CE74C008F0357 /* JwtVerifier.swift */; };
+		16B3FD96200CE74C008F0357 /* JwtVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD92200CE74C008F0357 /* JwtVerifier.swift */; };
 		422499C31EB39B380032F556 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422499BA1EB39B380032F556 /* VirgilSDK.framework */; };
 		42249A681EB39D6F0032F556 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
 		42249AF01EB39ED50032F556 /* VSSKeyStoragePublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -306,6 +318,9 @@
 		16B3FD79200CBB6C008F0357 /* VirgilAccessTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirgilAccessTokenProvider.swift; sourceTree = "<group>"; };
 		16B3FD7E200CBEB5008F0357 /* JwtParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtParser.swift; sourceTree = "<group>"; };
 		16B3FD83200CC5F4008F0357 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
+		16B3FD88200CDBC9008F0357 /* JwtGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtGenerator.swift; sourceTree = "<group>"; };
+		16B3FD8D200CE469008F0357 /* JwtGeneratorAccessTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtGeneratorAccessTokenProvider.swift; sourceTree = "<group>"; };
+		16B3FD92200CE74C008F0357 /* JwtVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtVerifier.swift; sourceTree = "<group>"; };
 		420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = Carthage/Build/iOS/VirgilCrypto.framework; sourceTree = "<group>"; };
 		422499BA1EB39B380032F556 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		422499C21EB39B380032F556 /* VirgilSDK macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilSDK macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -453,12 +468,13 @@
 			isa = PBXGroup;
 			children = (
 				16B3FD462004D5E6008F0357 /* Protocols */,
+				16B3FD97200CFF19008F0357 /* AccessProviders */,
 				16B3FD4E200503B8008F0357 /* JWT.swift */,
 				16B3FD532005059C008F0357 /* JwtHeaderContent.swift */,
 				16B3FD58200507F3008F0357 /* JwtBodyContent.swift */,
-				16B3FD74200CB88D008F0357 /* ConstJwtAccessTokenProvider.swift */,
-				16B3FD79200CBB6C008F0357 /* VirgilAccessTokenProvider.swift */,
+				16B3FD88200CDBC9008F0357 /* JwtGenerator.swift */,
 				16B3FD7E200CBEB5008F0357 /* JwtParser.swift */,
+				16B3FD92200CE74C008F0357 /* JwtVerifier.swift */,
 			);
 			path = JsonWebToken;
 			sourceTree = "<group>";
@@ -470,6 +486,16 @@
 				16B3FD472004D5FC008F0357 /* AccessToken.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		16B3FD97200CFF19008F0357 /* AccessProviders */ = {
+			isa = PBXGroup;
+			children = (
+				16B3FD74200CB88D008F0357 /* ConstJwtAccessTokenProvider.swift */,
+				16B3FD79200CBB6C008F0357 /* VirgilAccessTokenProvider.swift */,
+				16B3FD8D200CE469008F0357 /* JwtGeneratorAccessTokenProvider.swift */,
+			);
+			path = AccessProviders;
 			sourceTree = "<group>";
 		};
 		3614030C1BB2E05F002E69CA = {
@@ -1030,6 +1056,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16B3FD8F200CE469008F0357 /* JwtGeneratorAccessTokenProvider.swift in Sources */,
 				4284C4441F6C1E4000B75491 /* Serializable.swift in Sources */,
 				4284C45C1F6FECC600B75491 /* VirgilCardVerifier.swift in Sources */,
 				16B3FD5F20078113008F0357 /* Data+base64Url.swift in Sources */,
@@ -1047,6 +1074,7 @@
 				16B3FD6920079DF5008F0357 /* CardSignature.swift in Sources */,
 				4284C3FC1F6C00B700B75491 /* RawCardContent.swift in Sources */,
 				42CF01FE1F6AA209003ABB19 /* Connection.swift in Sources */,
+				16B3FD8A200CDBC9008F0357 /* JwtGenerator.swift in Sources */,
 				4284C4B31F728B5800B75491 /* RawServiceError.swift in Sources */,
 				4284C45B1F6FECC600B75491 /* ValidationResult.swift in Sources */,
 				16B3FD7B200CBB6C008F0357 /* VirgilAccessTokenProvider.swift in Sources */,
@@ -1055,6 +1083,7 @@
 				16B3FD642007952E008F0357 /* ModelSigner.swift in Sources */,
 				16B3FD6E2007A8B1008F0357 /* WhiteList.swift in Sources */,
 				4284C4431F6C1E4000B75491 /* Deserializable.swift in Sources */,
+				16B3FD94200CE74C008F0357 /* JwtVerifier.swift in Sources */,
 				4284C4311F6C126900B75491 /* SnapshotUtils.swift in Sources */,
 				4284C45A1F6FECC600B75491 /* CardVerifier.swift in Sources */,
 				4284C4661F70057800B75491 /* VerifierCredentials.swift in Sources */,
@@ -1107,6 +1136,7 @@
 				4284C3BE1F6BEA0600B75491 /* VSSKeyEntry.m in Sources */,
 				4284C3B91F6BEA0100B75491 /* CardManager.swift in Sources */,
 				4284C4321F6C126A00B75491 /* SnapshotUtils.swift in Sources */,
+				16B3FD95200CE74C008F0357 /* JwtVerifier.swift in Sources */,
 				4284C4671F70057900B75491 /* VerifierCredentials.swift in Sources */,
 				4284C3B31F6BE9F300B75491 /* RawSignature.swift in Sources */,
 				4284C45E1F6FECC700B75491 /* ValidationResult.swift in Sources */,
@@ -1123,6 +1153,8 @@
 				16B3FD562005059C008F0357 /* JwtHeaderContent.swift in Sources */,
 				16B3FD77200CB88D008F0357 /* ConstJwtAccessTokenProvider.swift in Sources */,
 				4284C4141F6C00C400B75491 /* Card.swift in Sources */,
+				16B3FD8B200CDBC9008F0357 /* JwtGenerator.swift in Sources */,
+				16B3FD90200CE469008F0357 /* JwtGeneratorAccessTokenProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1151,6 +1183,7 @@
 				4284C3BF1F6BEA0700B75491 /* VSSKeyEntry.m in Sources */,
 				4284C3BC1F6BEA0200B75491 /* CardManager.swift in Sources */,
 				4284C4331F6C126B00B75491 /* SnapshotUtils.swift in Sources */,
+				16B3FD96200CE74C008F0357 /* JwtVerifier.swift in Sources */,
 				4284C4681F70057900B75491 /* VerifierCredentials.swift in Sources */,
 				4284C3B51F6BE9F400B75491 /* RawSignature.swift in Sources */,
 				4284C4611F6FECC700B75491 /* ValidationResult.swift in Sources */,
@@ -1167,6 +1200,8 @@
 				16B3FD572005059C008F0357 /* JwtHeaderContent.swift in Sources */,
 				16B3FD78200CB88D008F0357 /* ConstJwtAccessTokenProvider.swift in Sources */,
 				4284C41B1F6C00C600B75491 /* Card.swift in Sources */,
+				16B3FD8C200CDBC9008F0357 /* JwtGenerator.swift in Sources */,
+				16B3FD91200CE469008F0357 /* JwtGeneratorAccessTokenProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1203,8 +1238,10 @@
 				4263A1F61EBC7FFB00B13FF1 /* VSSKeyStorage.m in Sources */,
 				16B3FD84200CC5F4008F0357 /* Collection.swift in Sources */,
 				16B3FD4F200503B8008F0357 /* JWT.swift in Sources */,
+				16B3FD8E200CE469008F0357 /* JwtGeneratorAccessTokenProvider.swift in Sources */,
 				4284C4591F6FECC300B75491 /* VirgilCardVerifier.swift in Sources */,
 				4284C3541F6AD2C900B75491 /* RawSignature.swift in Sources */,
+				16B3FD89200CDBC9008F0357 /* JwtGenerator.swift in Sources */,
 				16B3FD6820079DF5008F0357 /* CardSignature.swift in Sources */,
 				4284C4301F6C126800B75491 /* SnapshotUtils.swift in Sources */,
 				4284C3FB1F6C00B600B75491 /* RawCardContent.swift in Sources */,
@@ -1221,6 +1258,7 @@
 				42DF01E71E8C52BE005CA7DD /* (null) in Sources */,
 				4284C3DD1F6BF31100B75491 /* SignerType.swift in Sources */,
 				42CF01F41F6A9DD5003ABB19 /* CardManager.swift in Sources */,
+				16B3FD93200CE74C008F0357 /* JwtVerifier.swift in Sources */,
 				4284C4651F7003D700B75491 /* VerifierCredentials.swift in Sources */,
 				42CF01FA1F6AA174003ABB19 /* CardClient.swift in Sources */,
 				4284C4AE1F716C6500B75491 /* ServiceRequest.swift in Sources */,

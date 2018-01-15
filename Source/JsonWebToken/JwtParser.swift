@@ -9,7 +9,7 @@
 import Foundation
 
 @objc(VSSJwtParser) public class JwtParser: NSObject {
-   
+    
     @objc public static func parseJwtBodyContent(jwtBody: String) throws -> JwtBodyContent {
         let data = try Data(base64UrlEncoded: jwtBody)
         let json = try JSONSerialization.jsonObject(with: data, options: [])

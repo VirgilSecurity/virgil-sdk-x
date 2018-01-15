@@ -11,7 +11,8 @@ import Foundation
 @objc(VSSJwt) public class Jwt: NSObject, AccessToken {
     private let headerContent: JwtHeaderContent
     private let bodyContent: JwtBodyContent
-    private let signatureContent: Data?
+    
+    @objc public var signatureContent: Data?
     
     @objc public init(headerContent: JwtHeaderContent, bodyContent: JwtBodyContent, signatureContent: Data? = nil) {
         self.headerContent = headerContent
@@ -54,6 +55,13 @@ import Foundation
         }
         
         return result
+    }
+    
+    public func snapshotWithoutSignatures() throws -> Data {
+        let headerBase64Url = JwtParser.buildJwtHeader(jwtHeaderContent: self.headerContent)
+        let bodyBase64Url = JwtParser.buildJwtBody(jwtBodyContent: self.bodyContent)
+        
+        return try Data(base64UrlEncoded: headerBase64Url + "." + bodyBase64Url)
     }
     
     @objc public func identity() -> String {
