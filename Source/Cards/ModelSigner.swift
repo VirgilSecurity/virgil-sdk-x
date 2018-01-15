@@ -14,6 +14,8 @@ import VirgilCryptoAPI
     
     @objc public init(crypto: CardCrypto) {
         self.crypto = crypto
+        
+        super.init()
     }
     
     @objc public func sign(model: RawSignedModel, type: SignerType, privateKey: PrivateKey, additionalData: Data = Data()) throws {

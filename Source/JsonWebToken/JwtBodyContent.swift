@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc(VSSJwtBodyContent) public class JwtBodyContent: NSObject, Serializable {
+@objc(VSSJwtBodyContent) public class JwtBodyContent: NSObject, Serializable, Deserializable {
     let appId: String
     let identity: String
     let additionalData: [String : Any]
@@ -29,11 +29,31 @@ import Foundation
         self.expiresAt      = expiresAt
         self.issuedAt       = issuedAt
         self.additionalData = additionalData
+        
+        super.init()
     }
+    
+    public required convenience init?(dict: Any) {
+        guard let candidate = dict as? [String : AnyObject] else {
+            return nil
+        }
+        
+        guard let appId          = candidate[Keys.appId.rawValue]          as? String,
+              let identity       = candidate[Keys.identity.rawValue]       as? String,
+              let expiresAt      = candidate[Keys.expiresAt.rawValue]      as? Date,
+              let issuedAt       = candidate[Keys.issuedAt.rawValue]       as? Date,
+              let additionalData = candidate[Keys.additionalData.rawValue] as? [String : Any] else
+        {
+                return nil
+        }
+        
+        self.init(appId: appId, identity: identity, expiresAt: expiresAt, issuedAt: issuedAt, additionalData: additionalData)
+    }
+    
     
     public func serialize() -> Any {
         return [
-            Keys.appId.rawValue:          "virgil-" + self.appId,
+            Keys.appId.rawValue:          "virgil-"   + self.appId,
             Keys.identity.rawValue:       "identity-" + self.identity,
             Keys.additionalData.rawValue: self.additionalData,
             Keys.issuedAt.rawValue:       self.expiresAt,
