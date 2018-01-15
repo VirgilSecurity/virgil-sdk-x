@@ -33,6 +33,6 @@ import VirgilCryptoAPI
     }
     
     @objc public func selfSign(model: RawSignedModel, privateKey: PrivateKey, additionalData: Data = Data()) throws {
-        try self.sign(model: model, type: .self, privateKey: privateKey)
+        try self.sign(model: model, type: .self, privateKey: privateKey, additionalData: additionalData)
     }
 }

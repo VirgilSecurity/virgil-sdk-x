@@ -16,26 +16,26 @@ import VirgilCryptoAPI
     private static let virgilPublicKeyBase64 = "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUNvd0JRWURLMlZ3QXlFQVlSNTAxa1YxdFVuZTJ1T2RrdzRrRXJSUmJKcmMyU3lhejVWMWZ1RytyVnM9Ci0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQo"
     
     @objc public var crypto: CardCrypto
-    @objc public var ignoreSelfSignature: Bool = false
-    @objc public var ignoreVirgilSignature: Bool = false
+    @objc public var verifySelfSignature: Bool = true
+    @objc public var verifyVirgilSignature: Bool = true
     
     @objc public let whiteLists: [WhiteList]
     
     @objc public init(crypto: CardCrypto, whiteLists: [WhiteList]) {
         self.whiteLists = whiteLists
         self.crypto = crypto
-        
+    
         super.init()
     }
     
     @objc public func verifyCard(card: Card) -> ValidationResult {
         let result = ValidationResult()
         
-        if !self.ignoreSelfSignature {
+        if self.verifySelfSignature {
             VirgilCardVerifier.validate(crypto: crypto, card: card, signerCardId: card.identifier, signerPublicKey: card.publicKey, signerType: .self, result: result)
         }
         
-        if !self.ignoreVirgilSignature {
+        if self.verifyVirgilSignature {
             if let publicKeyData = Data(base64Encoded: VirgilCardVerifier.virgilPublicKeyBase64),
                 let publicKey = try? crypto.importPublicKey(from: publicKeyData) {
                     VirgilCardVerifier.validate(crypto: crypto, card: card, signerCardId: VirgilCardVerifier.virgilCardId, signerPublicKey: publicKey, signerType: .virgil, result: result)
