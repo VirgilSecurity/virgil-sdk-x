@@ -35,9 +35,7 @@ import VirgilCryptoAPI
     
     @objc public static let CurrentCardVersion = "5.0"
     @objc public func generateRawCard(privateKey: PrivateKey, publicKey: PublicKey, previousCardId: String? = nil) throws -> RawSignedModel {
-        guard let token = self.accessTokenProvider.getToken(forceReload: false) else {
-            throw NSError()
-        }
+        let token = try self.accessTokenProvider.getToken(forceReload: false)
         
         let cardContent = RawCardContent(identity: token.identity(), publicKeyData: try crypto.exportPublicKey(publicKey), previousCardId: nil, version: CardManager.CurrentCardVersion, createdAt: Date())
         let snapshot = try SnapshotUtils.takeSnapshot(object: cardContent)
@@ -56,9 +54,7 @@ import VirgilCryptoAPI
     }
     
     @objc public func getCard(withId cardId: String) throws -> Card {
-        guard let token = self.accessTokenProvider.getToken(forceReload: false) else {
-            throw NSError()
-        }
+        let token = try self.accessTokenProvider.getToken(forceReload: false)
         
         let rawSignedModel = try self.cardClient.getCard(withId: cardId, token: token.stringRepresentation())
         guard let card = Card.parse(crypto: self.crypto, rawSignedModel: rawSignedModel) else {
@@ -72,9 +68,7 @@ import VirgilCryptoAPI
     }
     
     @objc public func publishCard(rawCard: RawSignedModel) throws -> Card {
-        guard let token = self.accessTokenProvider.getToken(forceReload: false) else {
-            throw NSError()
-        }
+        let token = try self.accessTokenProvider.getToken(forceReload: false)
         
         let rawSignedModel = try self.cardClient.publishCard(request: rawCard, token: token.stringRepresentation())
         guard let card = Card.parse(crypto: self.crypto, rawSignedModel: rawSignedModel) else {
@@ -94,9 +88,7 @@ import VirgilCryptoAPI
     }
     
     @objc public func searchCards(identity: String) throws -> [Card] {
-        guard let token = self.accessTokenProvider.getToken(forceReload: false) else {
-            throw NSError()
-        }
+        let token = try self.accessTokenProvider.getToken(forceReload: false)
         
         let rawSignedModels = try self.cardClient.searchCards(identity: identity, token: token.stringRepresentation())
         

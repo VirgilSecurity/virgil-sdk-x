@@ -17,12 +17,13 @@ import Foundation
         super.init()
     }
     
-    @objc public func getToken(forceReload: Bool) -> AccessToken? {
-        guard let getTokenCallback = self.getTokenCallback else {
-            return nil
+    @objc public func getToken(forceReload: Bool) throws -> AccessToken {
+        guard let getTokenCallback = self.getTokenCallback,
+              let jwt = Jwt(jwtToken: getTokenCallback())else
+        {
+            throw NSError()
         }
-        let tokenString = getTokenCallback()
         
-        return Jwt(jwtToken: tokenString)
+        return jwt
     }
 }

@@ -17,7 +17,7 @@ import Foundation
         super.init()
     }
     
-    @objc public func getToken(forceReload: Bool) -> AccessToken {
+    @objc public func getToken(forceReload: Bool) throws -> AccessToken {
         return jwtToken
     }
 }
