@@ -14,12 +14,14 @@ import VirgilCryptoAPI
     private let accessTokenProvider: AccessTokenProvider
     private let cardClient: CardClient
     private let cardVerifier: CardVerifier?
+    private let signCallback: ((RawSignedModel)->(RawSignedModel))?
     
     @objc public init(params: CardManagerParams) {
         self.crypto = params.crypto
         self.cardClient = CardClient(baseUrl: params.apiUrl)
         self.cardVerifier = params.cardVerifier
         self.accessTokenProvider = params.accessTokenProvider
+        self.signCallback = params.signCallback
     }
     
     private func validateCard(_ card: Card) throws {
@@ -37,11 +39,15 @@ import VirgilCryptoAPI
         let cardContent = RawCardContent(identity: token.identity(), publicKeyData: try crypto.exportPublicKey(publicKey), previousCardId: nil, version: CardManager.CurrentCardVersion, createdAt: Date())
         let snapshot = try SnapshotUtils.takeSnapshot(object: cardContent)
         
-        let rawCard = RawSignedModel(contentSnapshot: snapshot)
+        var rawCard = RawSignedModel(contentSnapshot: snapshot)
         
         let modelSigner = ModelSigner(crypto: self.crypto)
         
         try modelSigner.selfSign(model: rawCard, privateKey: privateKey)
+        
+        if let signCallback = self.signCallback {
+            rawCard = signCallback(rawCard)
+        }
         
         return rawCard
     }
