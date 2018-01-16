@@ -88,6 +88,14 @@
 		16B3FD94200CE74C008F0357 /* JwtVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD92200CE74C008F0357 /* JwtVerifier.swift */; };
 		16B3FD95200CE74C008F0357 /* JwtVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD92200CE74C008F0357 /* JwtVerifier.swift */; };
 		16B3FD96200CE74C008F0357 /* JwtVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD92200CE74C008F0357 /* JwtVerifier.swift */; };
+		16B3FDA3200E0769008F0357 /* VSSPrivateKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 16B3FDA2200E0769008F0357 /* VSSPrivateKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16B3FDA4200E0769008F0357 /* VSSPrivateKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 16B3FDA2200E0769008F0357 /* VSSPrivateKeyStorage.h */; };
+		16B3FDA5200E0769008F0357 /* VSSPrivateKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 16B3FDA2200E0769008F0357 /* VSSPrivateKeyStorage.h */; };
+		16B3FDA6200E0769008F0357 /* VSSPrivateKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 16B3FDA2200E0769008F0357 /* VSSPrivateKeyStorage.h */; };
+		16B3FDA8200E0B7A008F0357 /* VSSPrivateKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FDA7200E0B7A008F0357 /* VSSPrivateKeyStorage.m */; };
+		16B3FDA9200E0B7A008F0357 /* VSSPrivateKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FDA7200E0B7A008F0357 /* VSSPrivateKeyStorage.m */; };
+		16B3FDAA200E0B7A008F0357 /* VSSPrivateKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FDA7200E0B7A008F0357 /* VSSPrivateKeyStorage.m */; };
+		16B3FDAB200E0B7A008F0357 /* VSSPrivateKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FDA7200E0B7A008F0357 /* VSSPrivateKeyStorage.m */; };
 		422499C31EB39B380032F556 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422499BA1EB39B380032F556 /* VirgilSDK.framework */; };
 		42249A681EB39D6F0032F556 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
 		42249AF01EB39ED50032F556 /* VSSKeyStoragePublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -321,6 +329,8 @@
 		16B3FD88200CDBC9008F0357 /* JwtGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtGenerator.swift; sourceTree = "<group>"; };
 		16B3FD8D200CE469008F0357 /* JwtGeneratorAccessTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtGeneratorAccessTokenProvider.swift; sourceTree = "<group>"; };
 		16B3FD92200CE74C008F0357 /* JwtVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtVerifier.swift; sourceTree = "<group>"; };
+		16B3FDA2200E0769008F0357 /* VSSPrivateKeyStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSPrivateKeyStorage.h; sourceTree = "<group>"; };
+		16B3FDA7200E0B7A008F0357 /* VSSPrivateKeyStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSSPrivateKeyStorage.m; sourceTree = "<group>"; };
 		420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = Carthage/Build/iOS/VirgilCrypto.framework; sourceTree = "<group>"; };
 		422499BA1EB39B380032F556 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		422499C21EB39B380032F556 /* VirgilSDK macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilSDK macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -619,6 +629,8 @@
 				4263A1F11EBC7FC400B13FF1 /* iOS */,
 				4263A1F21EBC7FC400B13FF1 /* macOS */,
 				423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */,
+				16B3FDA2200E0769008F0357 /* VSSPrivateKeyStorage.h */,
+				16B3FDA7200E0B7A008F0357 /* VSSPrivateKeyStorage.m */,
 				423CEB541DCA01AF00CCACB8 /* VSSKeyEntry.h */,
 				423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */,
 			);
@@ -729,6 +741,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42249AF01EB39ED50032F556 /* VSSKeyStoragePublic.h in Headers */,
+				16B3FDA4200E0769008F0357 /* VSSPrivateKeyStorage.h in Headers */,
 				4263A1FF1EBC801D00B13FF1 /* VSSKeyStorageConfiguration.h in Headers */,
 				429123B11F4D72DA00103BE0 /* VSSKeyStoragePlatformSpecificPublic.h in Headers */,
 				42249AF21EB39ED50032F556 /* VSSKeyEntry.h in Headers */,
@@ -740,6 +753,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16B3FDA5200E0769008F0357 /* VSSPrivateKeyStorage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -747,6 +761,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16B3FDA6200E0769008F0357 /* VSSPrivateKeyStorage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -755,6 +770,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				429123B21F4D72E000103BE0 /* VSSKeyStoragePlatformSpecificPublic.h in Headers */,
+				16B3FDA3200E0769008F0357 /* VSSPrivateKeyStorage.h in Headers */,
 				4263A1F71EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.h in Headers */,
 				429123B51F4D7A4800103BE0 /* VSSKeyAttrsPrivate.h in Headers */,
 				424EF9AE1E0D76B7005E8A8B /* (null) in Headers */,
@@ -1092,6 +1108,7 @@
 				4263A2011EBC805100B13FF1 /* VSSKeyStorage.m in Sources */,
 				4284C36E1F6BE54800B75491 /* RawSignedModel.swift in Sources */,
 				16B3FD50200503B8008F0357 /* JWT.swift in Sources */,
+				16B3FDA9200E0B7A008F0357 /* VSSPrivateKeyStorage.m in Sources */,
 				4284C4081F6C00C300B75491 /* CardManagerParams.swift in Sources */,
 				42CF02011F6AA2AD003ABB19 /* ServiceConnection.swift in Sources */,
 				16B3FD552005059C008F0357 /* JwtHeaderContent.swift in Sources */,
@@ -1132,6 +1149,7 @@
 				16B3FD4A2004D5FC008F0357 /* AccessToken.swift in Sources */,
 				16B3FD5B200507F3008F0357 /* JwtBodyContent.swift in Sources */,
 				4284C3B61F6BE9F700B75491 /* CardClient.swift in Sources */,
+				16B3FDAA200E0B7A008F0357 /* VSSPrivateKeyStorage.m in Sources */,
 				4284C3B81F6BEA0100B75491 /* Log.swift in Sources */,
 				4284C3BE1F6BEA0600B75491 /* VSSKeyEntry.m in Sources */,
 				4284C3B91F6BEA0100B75491 /* CardManager.swift in Sources */,
@@ -1179,6 +1197,7 @@
 				16B3FD4B2004D5FC008F0357 /* AccessToken.swift in Sources */,
 				16B3FD5C200507F3008F0357 /* JwtBodyContent.swift in Sources */,
 				4284C3B71F6BE9F800B75491 /* CardClient.swift in Sources */,
+				16B3FDAB200E0B7A008F0357 /* VSSPrivateKeyStorage.m in Sources */,
 				4284C3BB1F6BEA0200B75491 /* Log.swift in Sources */,
 				4284C3BF1F6BEA0700B75491 /* VSSKeyEntry.m in Sources */,
 				4284C3BC1F6BEA0200B75491 /* CardManager.swift in Sources */,
@@ -1258,6 +1277,7 @@
 				42DF01E71E8C52BE005CA7DD /* (null) in Sources */,
 				4284C3DD1F6BF31100B75491 /* SignerType.swift in Sources */,
 				42CF01F41F6A9DD5003ABB19 /* CardManager.swift in Sources */,
+				16B3FDA8200E0B7A008F0357 /* VSSPrivateKeyStorage.m in Sources */,
 				16B3FD93200CE74C008F0357 /* JwtVerifier.swift in Sources */,
 				4284C4651F7003D700B75491 /* VerifierCredentials.swift in Sources */,
 				42CF01FA1F6AA174003ABB19 /* CardClient.swift in Sources */,

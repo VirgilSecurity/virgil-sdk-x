@@ -28,7 +28,7 @@
 
  @param name NSString with key entry name
  @param value Key raw value
- @return allocated and initialized VSSCreateCardRequest instance
+ @return allocated and initialized VSSKeyEntry instance
  */
 + (VSSKeyEntry * __nonnull)keyEntryWithName:(NSString * __nonnull)name value:(NSData * __nonnull)value;
 

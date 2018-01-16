@@ -12,7 +12,7 @@
 extern NSString * __nonnull const kVSSKeyStorageErrorDomain;
 
 /**
- Default VSSKeyStorage protocol implementation using Keychain.
+ Class responsible for storing, loading, deleting KeyEntries using Keychain.
  */
 @interface VSSKeyStorage : NSObject
 
