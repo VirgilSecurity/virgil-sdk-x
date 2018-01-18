@@ -100,6 +100,8 @@ import VirgilCryptoAPI
             }
             result.append(card)
         }
+ 
+        result.forEach { card in card.previousCard = result.first(where: { $0.identifier == card.previousCardId })}
         
         return result
     }
