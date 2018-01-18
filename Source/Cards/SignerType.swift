@@ -8,11 +8,18 @@
 
 import Foundation
 
-@objc(VSSSignerType) public enum SignerType: Int {
+@objc(VSSSignerType) public enum SignerType: Int, Codable {
     case `self`
     case application
     case virgil
     case custom
+    
+    private enum CodingKeys: String, CodingKey {
+        case `self`      = "self"
+        case application = "application"
+        case virgil      = "virgil"
+        case custom      = "custom"
+    }
     
     enum SignerTypeInternal: String {
         case `self`      = "self"

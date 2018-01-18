@@ -26,10 +26,7 @@ import Foundation
         let array = jwtToken.components(separatedBy: ".")
         
         guard let headerBase64Url    = array[safe: 0],
-              let bodyBase64Url      = array[safe: 1] else
-        {
-            return nil
-        }
+              let bodyBase64Url      = array[safe: 1] else { return nil }
         
         do {
             let headerContent = try JwtParser.parseJwtHeaderContent(jwtHeader: headerBase64Url)
@@ -46,9 +43,10 @@ import Foundation
         }
     }
     
-    @objc public func stringRepresentation() -> String {
-        let headerBase64Url = JwtParser.buildJwtHeader(jwtHeaderContent: self.headerContent)
-        let bodyBase64Url = JwtParser.buildJwtBody(jwtBodyContent: self.bodyContent)
+    @objc public func stringRepresentation() throws -> String {
+        let headerBase64Url = try JwtParser.buildJwtHeader(jwtHeaderContent: self.headerContent)
+        let bodyBase64Url = try JwtParser.buildJwtBody(jwtBodyContent: self.bodyContent)
+        
         var result = headerBase64Url + "." + bodyBase64Url
         if let signatureContent = self.signatureContent {
             result += "." + signatureContent.base64UrlEncoded()
@@ -58,8 +56,8 @@ import Foundation
     }
     
     public func snapshotWithoutSignatures() throws -> Data {
-        let headerBase64Url = JwtParser.buildJwtHeader(jwtHeaderContent: self.headerContent)
-        let bodyBase64Url = JwtParser.buildJwtBody(jwtBodyContent: self.bodyContent)
+        let headerBase64Url = try JwtParser.buildJwtHeader(jwtHeaderContent: self.headerContent)
+        let bodyBase64Url = try JwtParser.buildJwtBody(jwtBodyContent: self.bodyContent)
         
         return try Data(base64UrlEncoded: headerBase64Url + "." + bodyBase64Url)
     }

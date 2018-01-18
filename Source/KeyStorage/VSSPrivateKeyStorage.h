@@ -53,7 +53,7 @@
  @param errorPtr NSError pointer to return error if needed
  @return VSAPrivateKey if loading succeeded, nil otherwise
  */
-- (id<VSAPrivateKey> __nonnull)loadWithName:(NSString * __nonnull)name getMeta:(NSDictionary<NSString *, NSString *> * __nullable *  __nullable)meta error:(NSError * __nullable * __nullable)errorPtr;
+- (id<VSAPrivateKey> __nullable)loadWithName:(NSString * __nonnull)name getMeta:(NSDictionary<NSString *, NSString *> * __nullable *  __nullable)meta error:(NSError * __nullable * __nullable)errorPtr;
 
 /**
  Checks whether key entry with given name exists.

@@ -79,7 +79,7 @@ import Foundation
         }
     }
     
-    func processResponse<T:Deserializable>(_ response: HTTPResponse) throws -> T {
+    func processResponse<T:Decodable>(_ response: HTTPResponse) throws -> T {
         try self.validateResponse(response)
         
         let json = try self.parseResponse(response)

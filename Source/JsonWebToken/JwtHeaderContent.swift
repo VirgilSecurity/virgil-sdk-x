@@ -8,13 +8,13 @@
 
 import Foundation
 
-@objc(VSSJwtHeaderContent) public class JwtHeaderContent: NSObject, Serializable, Deserializable {
+@objc(VSSJwtHeaderContent) public class JwtHeaderContent: NSObject, Codable {
     let algorithm: String
     let type: String
     let contentType: String
     let keyIdentifier: String
     
-    private enum Keys: String {
+    private enum CodingKeys: String, CodingKey {
         case algorithm     = "alg"
         case type          = "typ"
         case contentType   = "cty"
@@ -28,30 +28,5 @@ import Foundation
         self.keyIdentifier = keyIdentifier
         
         super.init()
-    }
-    
-    public required convenience init?(dict: Any) {
-        guard let candidate = dict as? [String : AnyObject] else {
-            return nil
-        }
-        
-        guard let algorithm     = candidate[Keys.algorithm.rawValue]     as? String,
-              let type          = candidate[Keys.type.rawValue]          as? String,
-              let contentType   = candidate[Keys.contentType.rawValue]   as? String,
-              let keyIdentifier = candidate[Keys.keyIdentifier.rawValue] as? String else
-        {
-            return nil
-        }
-        
-        self.init(algorithm: algorithm, type: type, contentType: contentType, keyIdentifier: keyIdentifier)
-    }
-    
-    public func serialize() -> Any {
-        return [
-            Keys.algorithm.rawValue:     self.algorithm,
-            Keys.type.rawValue:          self.type,
-            Keys.contentType.rawValue:   self.contentType,
-            Keys.keyIdentifier.rawValue: self.keyIdentifier
-        ]
     }
 }

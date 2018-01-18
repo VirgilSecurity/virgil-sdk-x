@@ -8,21 +8,7 @@
 
 import Foundation
 
-public final class RawServiceError: Deserializable {
+public final class RawServiceError: Decodable {
     let code: Int
     let message: String
-    
-    required public init?(dict: Any) {
-        guard let candidate = dict as? [AnyHashable : Any] else {
-            return nil
-        }
-        
-        guard let code = candidate["code"] as? Int,
-            let message = candidate["message"] as? String else {
-                return nil
-        }
-        
-        self.code = code
-        self.message = message
-    }
 }

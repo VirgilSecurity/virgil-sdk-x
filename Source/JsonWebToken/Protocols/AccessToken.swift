@@ -13,7 +13,7 @@ import Foundation
     /// Provides string representation of token
     ///
     /// - Returns: string with token
-    @objc func stringRepresentation() -> String
+    @objc func stringRepresentation() throws -> String
     
     /// Extracts identity
     ///

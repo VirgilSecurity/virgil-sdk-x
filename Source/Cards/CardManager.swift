@@ -113,7 +113,7 @@ import VirgilCryptoAPI
     }
     
     @objc public func importCard(json: Any) -> Card? {
-        guard let rawCard = RawSignedModel.init(dict: json) else {
+        guard let rawCard = RawSignedModel(dict: json) else {
             return nil
         }
         
@@ -121,13 +121,10 @@ import VirgilCryptoAPI
     }
     
     @objc public func exportCardAsString(card: Card) throws -> String {
-        let json = try card.getRawCard(crypto: self.crypto).serialize()
-        let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
-        
-        return jsonData.base64EncodedString()
+        return try card.getRawCard(crypto: self.crypto).asString()
     }
     
     @objc public func exportCardAsJson(card: Card) throws -> Any {
-        return try card.getRawCard(crypto: self.crypto).serialize()
+        return try card.getRawCard(crypto: self.crypto).asJson()
     }
 }

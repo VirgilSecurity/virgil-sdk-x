@@ -21,8 +21,8 @@ import Foundation
         return jwtBodyContent
     }
     
-    @objc public static func buildJwtBody(jwtBodyContent: JwtBodyContent) -> String {
-         return (jwtBodyContent.serialize() as! Data).base64UrlEncoded()
+    @objc public static func buildJwtBody(jwtBodyContent: JwtBodyContent) throws -> String {
+         return try jwtBodyContent.asString()
     }
     
     @objc public static func parseJwtHeaderContent(jwtHeader: String) throws -> JwtHeaderContent {
@@ -36,7 +36,7 @@ import Foundation
         return jwtHeaderContent
     }
     
-    @objc public static func buildJwtHeader(jwtHeaderContent: JwtHeaderContent) -> String {
-        return (jwtHeaderContent.serialize() as! Data).base64UrlEncoded()
+    @objc public static func buildJwtHeader(jwtHeaderContent: JwtHeaderContent) throws -> String {
+        return try jwtHeaderContent.asString()
     }
 }

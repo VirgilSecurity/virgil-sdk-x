@@ -26,7 +26,7 @@ extension CardClient {
             throw CardClientError.constructingUrl
         }
         
-        let request = try ServiceRequest(url: url, method: .post, apiToken: token, bodyJson: request.serialize())
+        let request = try ServiceRequest(url: url, method: .post, apiToken: token, bodyJson: request.asJson())
         
         let response = try self.connection.send(request)
         

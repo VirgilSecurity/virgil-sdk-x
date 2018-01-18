@@ -39,14 +39,14 @@
     return YES;
 }
 
-- (id<VSAPrivateKey> __nonnull)loadWithName:(NSString * __nonnull)name getMeta:(NSDictionary<NSString *, NSString *> * __nullable * __nullable)meta error:(NSError * __nullable * __nullable)errorPtr {
+- (id<VSAPrivateKey> __nullable)loadWithName:(NSString * __nonnull)name getMeta:(NSDictionary<NSString *, NSString *> * __nullable * __nullable)meta error:(NSError * __nullable * __nullable)errorPtr {
     VSSKeyEntry *keyEntry = [_keyStorage loadKeyEntryWithName:name error:errorPtr];
     
     if (*errorPtr) {
         return nil;
     }
-    
-    id<VSAPrivateKey> privateKey = [_privateKeyExporter importPrivateKeyWithData:[keyEntry value] error:errorPtr];
+
+    id<VSAPrivateKey> privateKey = [_privateKeyExporter importPrivateKeyFrom:[keyEntry value] error:errorPtr];
     
     if (*errorPtr) {
         return nil;

@@ -8,20 +8,21 @@
 
 import Foundation
 
-@objc(VSSRawCardContent) public class RawCardContent: NSObject, Deserializable, Serializable {
-    private enum Keys: String {
-        case identity       = "identity"
-        case publicKeyData  = "public_key"
-        case previousCardId = "previous_card_id"
-        case version        = "version"
-        case createdAt      = "created_at"
-    }
-    
+@objc(VSSRawCardContent) public class RawCardContent: NSObject, Codable {
     @objc public let identity: String
     @objc public let publicKeyData: Data
     @objc public let previousCardId: String?
     @objc public let version: String
     @objc public let createdAt: Date
+    
+    private enum CodingKeys: String, CodingKey {
+        case publicKeyData  = "public_key"
+        case previousCardId = "previous_card_id"
+        case createdAt      = "created_at"
+        
+        case identity
+        case version
+    }
     
     init(identity: String, publicKeyData: Data, previousCardId: String?, version: String, createdAt: Date) {
         self.identity = identity
@@ -31,43 +32,5 @@ import Foundation
         self.createdAt = createdAt
         
         super.init()
-    }
-    
-    required public convenience init?(dict: Any) {
-        guard let candidate = dict as? [AnyHashable : Any] else {
-            return nil
-        }
-        
-        guard let identity = candidate[Keys.identity.rawValue] as? String,
-            let publicKeyStr = candidate[Keys.publicKeyData.rawValue] as? String,
-            let publicKeyData = Data(base64Encoded: publicKeyStr),
-            let version = candidate[Keys.version.rawValue] as? String,
-            let createdAt = candidate[Keys.createdAt.rawValue] as? Double else {
-                return nil
-        }
-        let previousCardId = candidate[Keys.previousCardId.rawValue] as? String
-        self.init(identity: identity, publicKeyData: publicKeyData, previousCardId: previousCardId, version: version, createdAt: Date(timeIntervalSince1970: createdAt))
-    }
-    
-    public func serialize() -> Any {
-        let result: [String : Any]
-        if let previousCardId = self.previousCardId {
-            result = [
-                Keys.identity.rawValue: self.identity,
-                Keys.publicKeyData.rawValue: self.publicKeyData.base64EncodedString(),
-                Keys.previousCardId.rawValue: previousCardId,
-                Keys.version.rawValue: self.version,
-                Keys.createdAt.rawValue: Int(self.createdAt.timeIntervalSince1970)
-            ]
-        }
-        else {
-            result = [
-                Keys.identity.rawValue: self.identity,
-                Keys.publicKeyData.rawValue: self.publicKeyData.base64EncodedString(),
-                Keys.version.rawValue: self.version,
-                Keys.createdAt.rawValue: Int(self.createdAt.timeIntervalSince1970)
-            ]
-        }
-        return result
     }
 }

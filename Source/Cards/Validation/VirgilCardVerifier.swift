@@ -82,7 +82,10 @@ import VirgilCryptoAPI
             extraDataSnapshot = extraData
         }
         
-        let fingerprint = crypto.computeSHA256(for: cardSnapshot + extraDataSnapshot)
+        guard let fingerprint = try? crypto.generateSHA256(for: cardSnapshot + extraDataSnapshot) else {
+            result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: " Generating SHA256 of card with id\(signerCardId) failed"]))
+            return
+        }
         
         do {
             try crypto.verifySignature(signature.signature, of: fingerprint, with: signerPublicKey)

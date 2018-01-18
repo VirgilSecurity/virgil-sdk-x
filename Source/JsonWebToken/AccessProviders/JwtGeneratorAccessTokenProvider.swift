@@ -11,9 +11,9 @@ import Foundation
 @objc(VSSJwtGeneratorAccessTokenProvider) public class JwtGeneratorAccessTokenProvider: NSObject, AccessTokenProvider {
     private let jwtGenerator: JwtGenerator
     private let identity: String
-    private let additionalData: [String : Any]
+    private let additionalData: [String : String]
     
-    @objc public init(jwtGenerator: JwtGenerator, identity: String, additionalData: [String : Any] = [:]) {
+    @objc public init(jwtGenerator: JwtGenerator, identity: String, additionalData: [String : String] = [:]) {
         self.identity = identity
         self.additionalData = additionalData
         self.jwtGenerator = jwtGenerator

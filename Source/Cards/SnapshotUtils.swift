@@ -13,11 +13,11 @@ class SnapshotUtils {
         return try JSONSerialization.data(withJSONObject: object, options: [])
     }
     
-    public static func takeSnapshot(object: Serializable) throws -> Data {
-        return try SnapshotUtils.takeSnapshot(object: object.serialize())
+    public static func takeSnapshot(object: Encodable) throws -> Data {
+        return try SnapshotUtils.takeSnapshot(object: object.asJson())
     }
     
-    public static func parseSnapshot<T: Deserializable>(snapshot: Data) -> T? {
+    public static func parseSnapshot<T: Decodable>(snapshot: Data) -> T? {
         guard let json = try? JSONSerialization.jsonObject(with: snapshot, options: .allowFragments) else {
             return nil
         }
