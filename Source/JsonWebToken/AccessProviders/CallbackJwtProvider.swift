@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc(VSSVirgilAccessTokenProvider) public class VirgilAccessTokenProvider: NSObject, AccessTokenProvider {
+@objc(VSSCallbackJwtProvider) public class CallbackJwtProvider: NSObject, AccessTokenProvider {
     private var token: Jwt?
     private let getTokenCallback: ()->(String)
     

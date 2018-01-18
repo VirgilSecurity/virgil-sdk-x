@@ -10,7 +10,7 @@ import Foundation
 import VirgilCryptoAPI
 
 @objc(VSSVirgilCardVerifier) public class VirgilCardVerifier: NSObject, CardVerifier {
-    @objc public static let ErrorDomain = "VSSExtendedValidatorErrorDomain"
+    @objc public static let ErrorDomain = "VSSVirgilCardVerifierErrorDomain"
     
     private static let virgilCardId = "3e29d43373348cfb373b7eae189214dc01d7237765e572db685839b64adca853"
     private static let virgilPublicKeyBase64 = "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUNvd0JRWURLMlZ3QXlFQVlSNTAxa1YxdFVuZTJ1T2RrdzRrRXJSUmJKcmMyU3lhejVWMWZ1RytyVnM9Ci0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQo"

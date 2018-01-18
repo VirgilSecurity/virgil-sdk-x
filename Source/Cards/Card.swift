@@ -15,16 +15,18 @@ import VirgilCryptoAPI
     @objc public let publicKey: PublicKey
     @objc public let previousCardId: String?
     @objc public var previousCard: Card?
+    @objc public var isOutdated: Bool
     @objc public let version: String
     @objc public let createdAt: Date
     @objc public let signatures: [CardSignature]
     
-    private init(identifier: String, identity: String, publicKey: PublicKey, version: String, createdAt: Date, signatures: [CardSignature], previousCardId: String? = nil, previousCard: Card? = nil) {
+    private init(identifier: String, identity: String, publicKey: PublicKey, isOutdated: Bool = false, version: String, createdAt: Date, signatures: [CardSignature], previousCardId: String? = nil, previousCard: Card? = nil) {
         self.identifier = identifier
         self.identity = identity
         self.publicKey = publicKey
         self.previousCardId = previousCardId
         self.previousCard = previousCard
+        self.isOutdated = isOutdated
         self.version = version
         self.createdAt = createdAt
         self.signatures = signatures
@@ -44,10 +46,10 @@ import VirgilCryptoAPI
         
         var cardSignatures: [CardSignature] = []
         for rawSignature in rawSignedModel.signatures {
-            var extraFields: [String : Any] = [:]
+            var extraFields: [String : String] = [:]
             if let additionalData = Data(base64Encoded: rawSignature.snapshot),
                let json = try? JSONSerialization.jsonObject(with: additionalData, options: []),
-               let result = json as? [String : Any]
+               let result = json as? [String : String]
             {
                 extraFields = result
             }

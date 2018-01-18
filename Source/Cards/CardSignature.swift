@@ -13,9 +13,9 @@ import Foundation
     @objc public let signerType: SignerType
     @objc public let signature: Data
     @objc public let snapshot: String
-    @objc public let extraFields: [String : Any]
+    @objc public let extraFields: [String : String]
     
-    init(signerId: String, signerType: SignerType, signature: Data, snapshot: String, extraFields: [String: Any] = [:]) {
+    init(signerId: String, signerType: SignerType, signature: Data, snapshot: String, extraFields: [String: String] = [:]) {
         self.signerId = signerId
         self.signerType = signerType
         self.signature = signature

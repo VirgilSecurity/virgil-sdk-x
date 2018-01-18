@@ -92,16 +92,21 @@ import VirgilCryptoAPI
         
         let rawSignedModels = try self.cardClient.searchCards(identity: identity, token: token.stringRepresentation())
         
-        var result: [Card] = []
+        var cards: [Card] = []
         for rawSignedModel in rawSignedModels {
             guard let card = Card.parse(crypto: self.crypto, rawSignedModel: rawSignedModel) else {
                 // FIXME
                 throw NSError()
             }
-            result.append(card)
+            cards.append(card)
         }
  
-        result.forEach { card in card.previousCard = result.first(where: { $0.identifier == card.previousCardId })}
+        cards.forEach { card in
+            let previousCard = cards.first(where: { $0.identifier == card.previousCardId })
+            card.previousCard = previousCard
+            previousCard?.isOutdated = true
+        }
+        let result = cards.filter { card in cards.filter{ $0.previousCard == card}.count == 0 }
         
         return result
     }

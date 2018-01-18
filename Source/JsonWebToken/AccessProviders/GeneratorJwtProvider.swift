@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc(VSSJwtGeneratorAccessTokenProvider) public class JwtGeneratorAccessTokenProvider: NSObject, AccessTokenProvider {
+@objc(VSSGeneratorJwtProvider) public class GeneratorJwtProvider: NSObject, AccessTokenProvider {
     private let jwtGenerator: JwtGenerator
     private let identity: String
     private let additionalData: [String : String]
