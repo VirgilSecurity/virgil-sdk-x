@@ -10,7 +10,7 @@ import Foundation
 
 extension CardClient {
     @objc public func getCard(withId cardId: String, token: String) throws -> RawSignedModel {
-        guard let url = URL(string: "card/\(cardId)", relativeTo: self.baseUrl) else {
+        guard let url = URL(string: "card/\(cardId)", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
         
@@ -22,7 +22,7 @@ extension CardClient {
     }
     
     @objc public func publishCard(request: RawSignedModel, token: String) throws -> RawSignedModel {
-        guard let url = URL(string: "card", relativeTo: self.baseUrl) else {
+        guard let url = URL(string: "card", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
         
@@ -35,7 +35,7 @@ extension CardClient {
     
     // FIXME
     @objc public func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
-        guard let url = URL(string: "card/actions/search", relativeTo: self.baseUrl) else {
+        guard let url = URL(string: "card/actions/search", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
         

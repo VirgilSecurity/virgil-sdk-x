@@ -8,11 +8,11 @@
 
 import Foundation
 
-@objc(VSSConstJwtProvider) public class ConstJwtProvider: NSObject, AccessTokenProvider {
-    private let jwtToken: Jwt
+@objc(VSSConstAccessTokenProvider) public class ConstAccessTokenProvider: NSObject, AccessTokenProvider {
+    private let accessToken: AccessToken
     
-    @objc public init(jwtToken: Jwt) {
-        self.jwtToken = jwtToken
+    @objc public init(accessToken: AccessToken) {
+        self.AccessToken = AccessToken
         
         super.init()
     }

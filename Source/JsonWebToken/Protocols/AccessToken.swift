@@ -19,9 +19,4 @@ import Foundation
     ///
     /// - Returns: identity
     @objc func identity() -> String
-    
-    /// Provides info about expiration
-    ///
-    /// - Returns: true if token is expired
-    @objc func isExpired() -> Bool
 }

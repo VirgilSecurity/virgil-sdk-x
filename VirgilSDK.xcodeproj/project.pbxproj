@@ -36,6 +36,10 @@
 		1624B8392012151B007D223C /* CallbackOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B8372012151B007D223C /* CallbackOperation.swift */; };
 		1624B83A2012151B007D223C /* CallbackOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B8372012151B007D223C /* CallbackOperation.swift */; };
 		1624B83B2012151B007D223C /* CallbackOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B8372012151B007D223C /* CallbackOperation.swift */; };
+		1624B83E2012215B007D223C /* CardManager+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83D2012215B007D223C /* CardManager+Queries.swift */; };
+		1624B83F2012215B007D223C /* CardManager+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83D2012215B007D223C /* CardManager+Queries.swift */; };
+		1624B8402012215B007D223C /* CardManager+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83D2012215B007D223C /* CardManager+Queries.swift */; };
+		1624B8412012215B007D223C /* CardManager+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83D2012215B007D223C /* CardManager+Queries.swift */; };
 		16B3FD422004D5E0008F0357 /* AccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD412004D5E0008F0357 /* AccessTokenProvider.swift */; };
 		16B3FD432004D5E0008F0357 /* AccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD412004D5E0008F0357 /* AccessTokenProvider.swift */; };
 		16B3FD442004D5E0008F0357 /* AccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD412004D5E0008F0357 /* AccessTokenProvider.swift */; };
@@ -72,10 +76,10 @@
 		16B3FD6E2007A8B1008F0357 /* WhiteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD6C2007A8B1008F0357 /* WhiteList.swift */; };
 		16B3FD6F2007A8B1008F0357 /* WhiteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD6C2007A8B1008F0357 /* WhiteList.swift */; };
 		16B3FD702007A8B1008F0357 /* WhiteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD6C2007A8B1008F0357 /* WhiteList.swift */; };
-		16B3FD75200CB88D008F0357 /* ConstJwtProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD74200CB88D008F0357 /* ConstJwtProvider.swift */; };
-		16B3FD76200CB88D008F0357 /* ConstJwtProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD74200CB88D008F0357 /* ConstJwtProvider.swift */; };
-		16B3FD77200CB88D008F0357 /* ConstJwtProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD74200CB88D008F0357 /* ConstJwtProvider.swift */; };
-		16B3FD78200CB88D008F0357 /* ConstJwtProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD74200CB88D008F0357 /* ConstJwtProvider.swift */; };
+		16B3FD75200CB88D008F0357 /* ConstAccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD74200CB88D008F0357 /* ConstAccessTokenProvider.swift */; };
+		16B3FD76200CB88D008F0357 /* ConstAccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD74200CB88D008F0357 /* ConstAccessTokenProvider.swift */; };
+		16B3FD77200CB88D008F0357 /* ConstAccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD74200CB88D008F0357 /* ConstAccessTokenProvider.swift */; };
+		16B3FD78200CB88D008F0357 /* ConstAccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD74200CB88D008F0357 /* ConstAccessTokenProvider.swift */; };
 		16B3FD7A200CBB6C008F0357 /* CallbackJwtProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD79200CBB6C008F0357 /* CallbackJwtProvider.swift */; };
 		16B3FD7B200CBB6C008F0357 /* CallbackJwtProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD79200CBB6C008F0357 /* CallbackJwtProvider.swift */; };
 		16B3FD7C200CBB6C008F0357 /* CallbackJwtProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD79200CBB6C008F0357 /* CallbackJwtProvider.swift */; };
@@ -324,6 +328,7 @@
 		1624B82C2010AE75007D223C /* AsyncOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
 		1624B83220120898007D223C /* GenericOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericOperation.swift; sourceTree = "<group>"; };
 		1624B8372012151B007D223C /* CallbackOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallbackOperation.swift; sourceTree = "<group>"; };
+		1624B83D2012215B007D223C /* CardManager+Queries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardManager+Queries.swift"; sourceTree = "<group>"; };
 		16B3FD412004D5E0008F0357 /* AccessTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenProvider.swift; sourceTree = "<group>"; };
 		16B3FD472004D5FC008F0357 /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		16B3FD4E200503B8008F0357 /* JWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWT.swift; sourceTree = "<group>"; };
@@ -333,7 +338,7 @@
 		16B3FD622007952E008F0357 /* ModelSigner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelSigner.swift; sourceTree = "<group>"; };
 		16B3FD6720079DF5008F0357 /* CardSignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSignature.swift; sourceTree = "<group>"; };
 		16B3FD6C2007A8B1008F0357 /* WhiteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteList.swift; sourceTree = "<group>"; };
-		16B3FD74200CB88D008F0357 /* ConstJwtProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstJwtProvider.swift; sourceTree = "<group>"; };
+		16B3FD74200CB88D008F0357 /* ConstAccessTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstAccessTokenProvider.swift; sourceTree = "<group>"; };
 		16B3FD79200CBB6C008F0357 /* CallbackJwtProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallbackJwtProvider.swift; sourceTree = "<group>"; };
 		16B3FD7E200CBEB5008F0357 /* JwtParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtParser.swift; sourceTree = "<group>"; };
 		16B3FD83200CC5F4008F0357 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
@@ -494,6 +499,16 @@
 			path = Operation;
 			sourceTree = "<group>";
 		};
+		1624B83C20122127007D223C /* CardManager */ = {
+			isa = PBXGroup;
+			children = (
+				42CF01F31F6A9DD5003ABB19 /* CardManager.swift */,
+				1624B83D2012215B007D223C /* CardManager+Queries.swift */,
+				42CF01F61F6A9EF9003ABB19 /* CardManagerParams.swift */,
+			);
+			path = CardManager;
+			sourceTree = "<group>";
+		};
 		16B3FD402004D58F008F0357 /* JsonWebToken */ = {
 			isa = PBXGroup;
 			children = (
@@ -521,7 +536,7 @@
 		16B3FD97200CFF19008F0357 /* AccessProviders */ = {
 			isa = PBXGroup;
 			children = (
-				16B3FD74200CB88D008F0357 /* ConstJwtProvider.swift */,
+				16B3FD74200CB88D008F0357 /* ConstAccessTokenProvider.swift */,
 				16B3FD79200CBB6C008F0357 /* CallbackJwtProvider.swift */,
 				16B3FD8D200CE469008F0357 /* GeneratorJwtProvider.swift */,
 			);
@@ -677,9 +692,8 @@
 		42CF01F21F6A9DBC003ABB19 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
+				1624B83C20122127007D223C /* CardManager */,
 				4284C4531F6FECB600B75491 /* Validation */,
-				42CF01F31F6A9DD5003ABB19 /* CardManager.swift */,
-				42CF01F61F6A9EF9003ABB19 /* CardManagerParams.swift */,
 				4284C3F21F6BFD6200B75491 /* Card.swift */,
 				16B3FD6720079DF5008F0357 /* CardSignature.swift */,
 				16B3FD622007952E008F0357 /* ModelSigner.swift */,
@@ -1098,6 +1112,7 @@
 				42CF01FB1F6AA174003ABB19 /* CardClient.swift in Sources */,
 				16B3FD492004D5FC008F0357 /* AccessToken.swift in Sources */,
 				16B3FD80200CBEB5008F0357 /* JwtParser.swift in Sources */,
+				1624B83F2012215B007D223C /* CardManager+Queries.swift in Sources */,
 				16B3FD6920079DF5008F0357 /* CardSignature.swift in Sources */,
 				4284C3FC1F6C00B700B75491 /* RawCardContent.swift in Sources */,
 				1624B83420120898007D223C /* GenericOperation.swift in Sources */,
@@ -1107,7 +1122,7 @@
 				4284C45B1F6FECC600B75491 /* ValidationResult.swift in Sources */,
 				16B3FD7B200CBB6C008F0357 /* CallbackJwtProvider.swift in Sources */,
 				4284C40C1F6C00C300B75491 /* SignerType.swift in Sources */,
-				16B3FD76200CB88D008F0357 /* ConstJwtProvider.swift in Sources */,
+				16B3FD76200CB88D008F0357 /* ConstAccessTokenProvider.swift in Sources */,
 				16B3FD642007952E008F0357 /* ModelSigner.swift in Sources */,
 				16B3FD6E2007A8B1008F0357 /* WhiteList.swift in Sources */,
 				4284C4431F6C1E4000B75491 /* Serialization.swift in Sources */,
@@ -1152,6 +1167,7 @@
 				16B3FD6020078113008F0357 /* Data+base64Url.swift in Sources */,
 				16B3FD81200CBEB5008F0357 /* JwtParser.swift in Sources */,
 				4284C45F1F6FECC700B75491 /* VirgilCardVerifier.swift in Sources */,
+				1624B8402012215B007D223C /* CardManager+Queries.swift in Sources */,
 				16B3FD51200503B8008F0357 /* JWT.swift in Sources */,
 				4284C3B21F6BE9F300B75491 /* RawSignedModel.swift in Sources */,
 				4284C4BF1F72936600B75491 /* CardClient+Queries.swift in Sources */,
@@ -1184,7 +1200,7 @@
 				1624B82F2010AE75007D223C /* AsyncOperation.swift in Sources */,
 				4284C3FD1F6C00B800B75491 /* RawCardContent.swift in Sources */,
 				16B3FD562005059C008F0357 /* JwtHeaderContent.swift in Sources */,
-				16B3FD77200CB88D008F0357 /* ConstJwtProvider.swift in Sources */,
+				16B3FD77200CB88D008F0357 /* ConstAccessTokenProvider.swift in Sources */,
 				4284C4141F6C00C400B75491 /* Card.swift in Sources */,
 				16B3FD8B200CDBC9008F0357 /* JwtGenerator.swift in Sources */,
 				1624B83520120898007D223C /* GenericOperation.swift in Sources */,
@@ -1202,6 +1218,7 @@
 				16B3FD6120078113008F0357 /* Data+base64Url.swift in Sources */,
 				16B3FD82200CBEB5008F0357 /* JwtParser.swift in Sources */,
 				4284C4621F6FECC700B75491 /* VirgilCardVerifier.swift in Sources */,
+				1624B8412012215B007D223C /* CardManager+Queries.swift in Sources */,
 				16B3FD52200503B8008F0357 /* JWT.swift in Sources */,
 				4284C3B41F6BE9F400B75491 /* RawSignedModel.swift in Sources */,
 				4284C4C01F72936600B75491 /* CardClient+Queries.swift in Sources */,
@@ -1234,7 +1251,7 @@
 				1624B8302010AE75007D223C /* AsyncOperation.swift in Sources */,
 				4284C3FE1F6C00B900B75491 /* RawCardContent.swift in Sources */,
 				16B3FD572005059C008F0357 /* JwtHeaderContent.swift in Sources */,
-				16B3FD78200CB88D008F0357 /* ConstJwtProvider.swift in Sources */,
+				16B3FD78200CB88D008F0357 /* ConstAccessTokenProvider.swift in Sources */,
 				4284C41B1F6C00C600B75491 /* Card.swift in Sources */,
 				16B3FD8C200CDBC9008F0357 /* JwtGenerator.swift in Sources */,
 				1624B83620120898007D223C /* GenericOperation.swift in Sources */,
@@ -1286,7 +1303,7 @@
 				4284C3FB1F6C00B600B75491 /* RawCardContent.swift in Sources */,
 				4263A1F81EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.m in Sources */,
 				1624B83320120898007D223C /* GenericOperation.swift in Sources */,
-				16B3FD75200CB88D008F0357 /* ConstJwtProvider.swift in Sources */,
+				16B3FD75200CB88D008F0357 /* ConstAccessTokenProvider.swift in Sources */,
 				4284C4411F6C1E3F00B75491 /* Serialization.swift in Sources */,
 				4284C4BD1F72936600B75491 /* CardClient+Queries.swift in Sources */,
 				4284C34E1F6AB69600B75491 /* RawSignedModel.swift in Sources */,
@@ -1300,6 +1317,7 @@
 				42CF01F41F6A9DD5003ABB19 /* CardManager.swift in Sources */,
 				16B3FDA8200E0B7A008F0357 /* VSSPrivateKeyStorage.m in Sources */,
 				16B3FD93200CE74C008F0357 /* JwtVerifier.swift in Sources */,
+				1624B83E2012215B007D223C /* CardManager+Queries.swift in Sources */,
 				4284C4651F7003D700B75491 /* VerifierCredentials.swift in Sources */,
 				42CF01FA1F6AA174003ABB19 /* CardClient.swift in Sources */,
 				4284C4AE1F716C6500B75491 /* ServiceRequest.swift in Sources */,

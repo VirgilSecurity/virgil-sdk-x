@@ -1,60 +1,14 @@
 //
-//  CardManager.swift
+//  CardManager+Queries.swift
 //  VirgilSDK
 //
-//  Created by Oleksandr Deundiak on 9/14/17.
-//  Copyright © 2017 VirgilSecurity. All rights reserved.
+//  Created by Eugen Pivovarov on 1/19/18.
+//  Copyright © 2018 VirgilSecurity. All rights reserved.
 //
 
 import Foundation
 import VirgilCryptoAPI
 
-@objc(VSSCardManager) public class CardManager: NSObject {
-    private let crypto: CardCrypto
-    private let accessTokenProvider: AccessTokenProvider
-    private let cardClient: CardClient
-    private let cardVerifier: CardVerifier?
-    private let signCallback: ((RawSignedModel)->(RawSignedModel))?
-    
-    @objc public init(params: CardManagerParams) {
-        self.crypto = params.crypto
-        self.cardClient = CardClient(baseUrl: params.apiUrl)
-        self.cardVerifier = params.cardVerifier
-        self.accessTokenProvider = params.accessTokenProvider
-        self.signCallback = params.signCallback
-    }
-    
-    private func validateCard(_ card: Card) throws {
-        if let cardVerifier = self.cardVerifier {
-            let result = cardVerifier.verifyCard(card: card)
-            guard result.isValid else {
-                throw NSError()
-            }
-        }
-    }
-    
-    @objc public static let CurrentCardVersion = "5.0"
-    @objc public func generateRawCard(privateKey: PrivateKey, publicKey: PublicKey, previousCardId: String? = nil) throws -> RawSignedModel {
-        let token = try self.accessTokenProvider.getToken(forceReload: false)
-        
-        let cardContent = RawCardContent(identity: token.identity(), publicKeyData: try crypto.exportPublicKey(publicKey), previousCardId: nil, version: CardManager.CurrentCardVersion, createdAt: Date())
-        let snapshot = try SnapshotUtils.takeSnapshot(object: cardContent)
-        
-        var rawCard = RawSignedModel(contentSnapshot: snapshot)
-        
-        let modelSigner = ModelSigner(crypto: self.crypto)
-        
-        try modelSigner.selfSign(model: rawCard, privateKey: privateKey)
-        
-        if let signCallback = self.signCallback {
-            rawCard = signCallback(rawCard)
-        }
-        
-        return rawCard
-    }
-}
-
-// Queries
 extension CardManager {
     public func getCard(withId cardId: String) -> CallbackOperation<Card> {
         let operation = CallbackOperation<Card>() {
@@ -180,29 +134,3 @@ extension CardManager {
     }
 }
 
-// Import export cards
-extension CardManager {
-    @objc public func importCard(string: String) -> Card? {
-        guard let rawCard = RawSignedModel(string: string) else {
-            return nil
-        }
-        
-        return Card.parse(crypto: self.crypto, rawSignedModel: rawCard)
-    }
-    
-    @objc public func importCard(json: Any) -> Card? {
-        guard let rawCard = RawSignedModel(dict: json) else {
-            return nil
-        }
-        
-        return Card.parse(crypto: self.crypto, rawSignedModel: rawCard)
-    }
-    
-    @objc public func exportCardAsString(card: Card) throws -> String {
-        return try card.getRawCard(crypto: self.crypto).asString()
-    }
-    
-    @objc public func exportCardAsJson(card: Card) throws -> Any {
-        return try card.getRawCard(crypto: self.crypto).asJson()
-    }
-}
