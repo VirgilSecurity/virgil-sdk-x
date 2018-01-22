@@ -19,18 +19,23 @@ import Foundation
     
     @objc public enum RawSignedModelError: Int, Error {
         case modelHasMaxSignatures
+        case signatureWithThisIdExists
     }
     
-    @objc public init(contentSnapshot: Data, signatures: [RawSignature] = []) {
+    @objc public init(contentSnapshot: Data, signatures: [RawSignature]? = nil) {
         self.contentSnapshot = contentSnapshot
-        self.signatures      = signatures
+        self.signatures      = signatures ?? []
         
         super.init()
     }
     
     func addSignature(_ signature: RawSignature) throws {
-        guard self.signatures.count > 7 else {
+        guard self.signatures.count < 8 else {
             throw RawSignedModelError.modelHasMaxSignatures
+        }
+        
+        guard self.signatures.first(where: { $0.signerId == signature.signerId }) == nil else {
+            throw RawSignedModelError.signatureWithThisIdExists
         }
         self.signatures.append(signature)
     }

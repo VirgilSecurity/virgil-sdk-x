@@ -19,7 +19,7 @@ import VirgilCryptoAPI
     @objc public var verifySelfSignature: Bool = true
     @objc public var verifyVirgilSignature: Bool = true
     
-    @objc public let whiteLists: [WhiteList]
+    @objc public var whiteLists: [WhiteList]
     
     @objc public init(crypto: CardCrypto, whiteLists: [WhiteList]) {
         self.whiteLists = whiteLists
@@ -68,19 +68,11 @@ import VirgilCryptoAPI
             return
         }
         
-        guard let cardSnapshot = try? SnapshotUtils.takeSnapshot(object: card) else  {
+        guard let cardSnapshot = try? card.getRawCard(crypto: crypto).contentSnapshot else  {
             result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The card with id \(signerCardId) was corrupted"]))
             return
         }
-        var extraDataSnapshot = Data()
-        if signerType == .custom {
-            guard let extraData = try? SnapshotUtils.takeSnapshot(object: signature.extraFields) else
-            {
-                result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The \(signerType.rawValue) signature for \(signerCardId) was corrupted"]))
-                return
-            }
-            extraDataSnapshot = extraData
-        }
+        let extraDataSnapshot = Data(base64Encoded: signature.snapshot) ?? Data()
         
         guard let fingerprint = try? crypto.generateSHA256(for: cardSnapshot + extraDataSnapshot) else {
             result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: " Generating SHA256 of card with id\(signerCardId) failed"]))
