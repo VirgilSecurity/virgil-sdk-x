@@ -23,12 +23,12 @@ import Foundation
         case expiresAt      = "exp"
     }
     
-    @objc public init(appId: String, identity: String, expiresAt: Date, issuedAt: Date, additionalData: [String : String] = [:]) {
+    @objc public init(appId: String, identity: String, expiresAt: Date, issuedAt: Date, additionalData: [String : String]? = nil) {
         self.appId          = appId
         self.identity       = identity
         self.expiresAt      = expiresAt
         self.issuedAt       = issuedAt
-        self.additionalData = additionalData
+        self.additionalData = additionalData ?? [:]
         
         super.init()
     }

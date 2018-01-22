@@ -9,8 +9,8 @@
 import Foundation
 
 @objc(VSSCallbackJwtProvider) public class CallbackJwtProvider: NSObject, AccessTokenProvider {
-    private var token: Jwt?
-    private let getTokenCallback: ()->(String)
+    @objc private(set) var token: Jwt?
+    @objc private(set) var getTokenCallback: ()->(String)
     
     @objc public init(getTokenCallback: @escaping ()->(String)) {
         self.getTokenCallback = getTokenCallback
@@ -31,5 +31,9 @@ import Foundation
         }
         
         return self.token!
+    }
+    
+    @objc public func setCallback(_ callback: @escaping ()->(String)) {
+        self.getTokenCallback = callback
     }
 }

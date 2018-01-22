@@ -10,33 +10,20 @@ import Foundation
 
 public extension Data {
     func base64UrlEncoded() -> String {
-        var s = self.base64EncodedString()
-        s = String(describing: s.split(separator: "=").first)
-        s = s.replacingOccurrences(of: "+", with: "-")
-        s = s.replacingOccurrences(of: "/", with: "_")
-        return s
+        return self.base64EncodedString()
+            .replacingOccurrences(of: "+", with: "-")
+            .replacingOccurrences(of: "/", with: "_")
+            .replacingOccurrences(of: "=", with: "")
     }
     
-    init(base64UrlEncoded: String) throws {
-        var s = base64UrlEncoded
-        s = s.replacingOccurrences(of: "-", with: "+")
-        s = s.replacingOccurrences(of: "_", with: "/")
-        switch s.count % 4 {
-        case 0:
-            break
-        case 2:
-            s += "=="
-        case 3:
-            s += "="
-        default:
-            Log.error("Illegal base64url string")
-            // FIXME
-            throw NSError()
-        }
+    init?(base64UrlEncoded: String) {
+        let base64Encoded = base64UrlEncoded
+                .replacingOccurrences(of: "-", with: "+")
+                .replacingOccurrences(of: "_", with: "/")
+
+        let padLength = (4 - (base64Encoded.count % 4)) % 4
+        let base64EncodedWithPadding = base64Encoded + String(repeating: "=", count: padLength)
         
-        guard let result = Data(base64Encoded: s) else {
-            throw NSError()
-        }
-        self = result
+        self.init(base64Encoded: base64EncodedWithPadding)
     }
 }

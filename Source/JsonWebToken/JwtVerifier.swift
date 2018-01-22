@@ -21,9 +21,7 @@ import VirgilCryptoAPI
     }
     
     @objc public func verifyToken(jwtToken: Jwt) throws {
-        guard let signatureContent = jwtToken.signatureContent else {
-            throw NSError()
-        }
+        let signatureContent = jwtToken.signatureContent ?? Data() 
         
         try self.accessTokenSigner.verifyTokenSignature(signatureContent, of: try jwtToken.snapshotWithoutSignatures(), with: self.apiPublicKey)
     }

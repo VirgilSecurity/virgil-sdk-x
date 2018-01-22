@@ -59,7 +59,13 @@ import Foundation
         let headerBase64Url = try JwtParser.buildJwtHeader(jwtHeaderContent: self.headerContent)
         let bodyBase64Url = try JwtParser.buildJwtBody(jwtBodyContent: self.bodyContent)
         
-        return try Data(base64UrlEncoded: headerBase64Url + "." + bodyBase64Url)
+        let string: String = headerBase64Url + "." + bodyBase64Url
+        
+        guard let data = string.data(using: .utf8) else {
+            throw NSError()
+        }
+        
+        return data
     }
     
     @objc public func identity() -> String {

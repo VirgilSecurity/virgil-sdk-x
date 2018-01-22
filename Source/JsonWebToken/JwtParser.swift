@@ -10,12 +10,19 @@ import Foundation
 
 @objc(VSSJwtParser) public class JwtParser: NSObject {
     
+    @objc public enum JwtParserError: Int, Error {
+        case bodyContentCorrupted
+        case headerContentCorrupted
+    }
+    
     @objc public static func parseJwtBodyContent(jwtBody: String) throws -> JwtBodyContent {
-        let data = try Data(base64UrlEncoded: jwtBody)
+        guard let data = Data(base64UrlEncoded: jwtBody) else {
+            throw NSError()
+        }
         let json = try JSONSerialization.jsonObject(with: data, options: [])
         
         guard let jwtBodyContent = JwtBodyContent(dict: json) else {
-            throw NSError()
+            throw JwtParserError.bodyContentCorrupted
         }
         
         return jwtBodyContent
@@ -26,11 +33,13 @@ import Foundation
     }
     
     @objc public static func parseJwtHeaderContent(jwtHeader: String) throws -> JwtHeaderContent {
-        let data = try Data(base64UrlEncoded: jwtHeader)
+        guard let data = Data(base64UrlEncoded: jwtHeader) else {
+            throw NSError()
+        }
         let json = try JSONSerialization.jsonObject(with: data, options: [])
         
         guard let jwtHeaderContent = JwtHeaderContent(dict: json) else {
-            throw NSError()
+            throw JwtParserError.headerContentCorrupted
         }
         
         return jwtHeaderContent

@@ -12,12 +12,12 @@ import Foundation
     private let accessToken: AccessToken
     
     @objc public init(accessToken: AccessToken) {
-        self.AccessToken = AccessToken
+        self.accessToken = accessToken
         
         super.init()
     }
     
     @objc public func getToken(forceReload: Bool) throws -> AccessToken {
-        return jwtToken
+        return accessToken
     }
 }
