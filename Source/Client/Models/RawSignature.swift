@@ -1,5 +1,5 @@
 //
-//  CardSignature.swift
+//  RawSignature.swift
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 9/14/17.

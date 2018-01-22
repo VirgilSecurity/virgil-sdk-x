@@ -25,7 +25,7 @@ import VirgilCryptoAPI
         
         let rawSignature = RawSignature(signerId: id, snapshot: additionalData.base64EncodedString(), signerType: type, signature: signature)
         
-        model.signatures.append(rawSignature)
+        try model.addSignature(rawSignature)
     }
     
     @objc public func selfSign(model: RawSignedModel, privateKey: PrivateKey, additionalData: Data = Data()) throws {

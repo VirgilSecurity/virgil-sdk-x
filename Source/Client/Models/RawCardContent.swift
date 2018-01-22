@@ -1,5 +1,5 @@
 //
-//  RawCardInfo.swift
+//  RawCardContent.swift
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 9/15/17.

@@ -1,5 +1,5 @@
 //
-//  SignerInfo.swift
+//  VerifierCredentials.swift
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 9/18/17.

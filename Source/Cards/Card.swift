@@ -69,7 +69,7 @@ import VirgilCryptoAPI
         let rawCard = RawSignedModel(contentSnapshot: snapshot)
         
         for cardSignature in self.signatures {
-            rawCard.signatures.append(RawSignature(signerId: cardSignature.signerId, snapshot: cardSignature.snapshot, signerType: cardSignature.signerType, signature: cardSignature.signature))
+            try rawCard.addSignature(RawSignature(signerId: cardSignature.signerId, snapshot: cardSignature.snapshot, signerType: cardSignature.signerType, signature: cardSignature.signature))
         }
         
         return rawCard
