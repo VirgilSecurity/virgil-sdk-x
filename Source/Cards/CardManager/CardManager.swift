@@ -26,11 +26,16 @@ import VirgilCryptoAPI
         self.modelSigner = params.modelSigner
     }
     
+    @objc public enum CardManagerError: Int, Error {
+        case cardIsNotValid
+        case cardParsingFailed
+    }
+    
     func validateCard(_ card: Card) throws {
         if let cardVerifier = self.cardVerifier {
             let result = cardVerifier.verifyCard(card: card)
             guard result.isValid else {
-                throw NSError()
+                throw CardManagerError.cardIsNotValid
             }
         }
     }

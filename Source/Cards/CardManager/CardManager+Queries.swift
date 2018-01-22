@@ -16,8 +16,7 @@ extension CardManager {
             
             let rawSignedModel = try self.cardClient.getCard(withId: cardId, token: token.stringRepresentation())
             guard let card = Card.parse(crypto: self.crypto, rawSignedModel: rawSignedModel) else {
-                // FIXME
-                throw NSError()
+                throw CardManagerError.cardParsingFailed
             }
             
             try self.validateCard(card)
@@ -34,8 +33,7 @@ extension CardManager {
             
             let rawSignedModel = try self.cardClient.publishCard(request: rawCard, token: token.stringRepresentation())
             guard let card = Card.parse(crypto: self.crypto, rawSignedModel: rawSignedModel) else {
-                // FIXME
-                throw NSError()
+                throw CardManagerError.cardParsingFailed
             }
             
             try self.validateCard(card)
@@ -61,8 +59,7 @@ extension CardManager {
             var cards: [Card] = []
             for rawSignedModel in rawSignedModels {
                 guard let card = Card.parse(crypto: self.crypto, rawSignedModel: rawSignedModel) else {
-                    // FIXME
-                    throw NSError()
+                    throw CardManagerError.cardParsingFailed
                 }
                 cards.append(card)
             }

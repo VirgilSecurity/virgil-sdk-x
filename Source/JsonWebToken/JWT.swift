@@ -14,6 +14,10 @@ import Foundation
     
     @objc public var signatureContent: Data?
     
+    @objc public enum JwtError: Int, Error {
+        case dataFromStringFailed
+    }
+    
     @objc public init(headerContent: JwtHeaderContent, bodyContent: JwtBodyContent, signatureContent: Data? = nil) {
         self.headerContent = headerContent
         self.bodyContent = bodyContent
@@ -26,21 +30,17 @@ import Foundation
         let array = jwtToken.components(separatedBy: ".")
         
         guard let headerBase64Url    = array[safe: 0],
-              let bodyBase64Url      = array[safe: 1] else { return nil }
+              let bodyBase64Url      = array[safe: 1],
+              let headerContent = JwtParser.parseJwtHeaderContent(jwtHeader: headerBase64Url),
+              let bodyContent   = JwtParser.parseJwtBodyContent(jwtBody: bodyBase64Url) else { return nil }
         
-        do {
-            let headerContent = try JwtParser.parseJwtHeaderContent(jwtHeader: headerBase64Url)
-            let bodyContent   = try JwtParser.parseJwtBodyContent(jwtBody: bodyBase64Url)
-            var signatureContent: Data? = nil
-            
-            if let signatureBase64Url = array[safe: 2] {
-                signatureContent = try Data(base64UrlEncoded: signatureBase64Url)
-            }
-            
-            self.init(headerContent: headerContent, bodyContent: bodyContent, signatureContent: signatureContent)
-        } catch {
-            return nil
+        var signatureContent: Data? = nil
+        
+        if let signatureBase64Url = array[safe: 2] {
+            signatureContent = Data(base64UrlEncoded: signatureBase64Url)
         }
+        
+        self.init(headerContent: headerContent, bodyContent: bodyContent, signatureContent: signatureContent)
     }
     
     @objc public func stringRepresentation() throws -> String {
@@ -62,7 +62,7 @@ import Foundation
         let string: String = headerBase64Url + "." + bodyBase64Url
         
         guard let data = string.data(using: .utf8) else {
-            throw NSError()
+            throw JwtError.dataFromStringFailed
         }
         
         return data

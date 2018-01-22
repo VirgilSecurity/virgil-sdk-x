@@ -12,6 +12,10 @@ import Foundation
     @objc private(set) var token: Jwt?
     @objc private(set) var getTokenCallback: ()->(String)
     
+    @objc public enum CallbackProviderError: Int, Error {
+        case callbackReturnedCorruptedJwt
+    }
+    
     @objc public init(getTokenCallback: @escaping ()->(String)) {
         self.getTokenCallback = getTokenCallback
         
@@ -25,7 +29,7 @@ import Foundation
     @objc public func getVirgilToken(forceReload: Bool) throws -> Jwt {
         if forceReload || self.token == nil || self.token!.isExpired() {
             guard let jwt = Jwt(jwtToken: getTokenCallback()) else {
-                throw NSError()
+                throw CallbackProviderError.callbackReturnedCorruptedJwt
             }
             self.token = jwt
         }
