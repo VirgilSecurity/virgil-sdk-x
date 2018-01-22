@@ -40,6 +40,9 @@
 		1624B83F2012215B007D223C /* CardManager+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83D2012215B007D223C /* CardManager+Queries.swift */; };
 		1624B8402012215B007D223C /* CardManager+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83D2012215B007D223C /* CardManager+Queries.swift */; };
 		1624B8412012215B007D223C /* CardManager+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83D2012215B007D223C /* CardManager+Queries.swift */; };
+		16973142201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */; };
+		16973143201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */; };
+		16973144201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */; };
 		16AA6B092015F72400A0BA69 /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
 		16AA6B0A2015F72400A0BA69 /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
 		16AA6B0B2015F72400A0BA69 /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
@@ -332,6 +335,7 @@
 		1624B83220120898007D223C /* GenericOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericOperation.swift; sourceTree = "<group>"; };
 		1624B8372012151B007D223C /* CallbackOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallbackOperation.swift; sourceTree = "<group>"; };
 		1624B83D2012215B007D223C /* CardManager+Queries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardManager+Queries.swift"; sourceTree = "<group>"; };
+		16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS003_ModelSigner_CardVerifierTests.m; sourceTree = "<group>"; };
 		16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS002_JWTTests.m; sourceTree = "<group>"; };
 		16B3FD412004D5E0008F0357 /* AccessTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenProvider.swift; sourceTree = "<group>"; };
 		16B3FD472004D5FC008F0357 /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
@@ -689,6 +693,7 @@
 				429123631F4B0B3700103BE0 /* VSSTestUtils.swift */,
 				4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */,
 				16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */,
+				16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */,
 				4284C4241F6C0C6400B75491 /* DataExtensionsTests.swift */,
 			);
 			path = Tests;
@@ -1156,6 +1161,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16973143201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */,
 				4284C3571F6BDBC500B75491 /* VSS001_CardClientTests.m in Sources */,
 				16AA6B0A2015F72400A0BA69 /* VSS002_JWTTests.m in Sources */,
 				4284C4261F6C0C6400B75491 /* DataExtensionsTests.swift in Sources */,
@@ -1269,6 +1275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16973144201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */,
 				4284C3C81F6BEFD600B75491 /* VSSTestsConst.m in Sources */,
 				16AA6B0B2015F72400A0BA69 /* VSS002_JWTTests.m in Sources */,
 				4284C4631F6FFD0200B75491 /* DataExtensionsTests.swift in Sources */,
@@ -1280,6 +1287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16973142201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */,
 				4284C3561F6BDBC500B75491 /* VSS001_CardClientTests.m in Sources */,
 				16AA6B092015F72400A0BA69 /* VSS002_JWTTests.m in Sources */,
 				4284C4251F6C0C6400B75491 /* DataExtensionsTests.swift in Sources */,
