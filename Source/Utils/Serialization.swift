@@ -26,11 +26,9 @@ extension Decodable {
 }
 
 extension Encodable {
-    func asJson() throws -> [String: Any] {
+    func asJson() throws -> Any {
         let data = try JSONEncoder().encode(self)
-        guard let dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] else {
-            throw NSError()
-        }
+        let dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
         return dictionary
     }
     

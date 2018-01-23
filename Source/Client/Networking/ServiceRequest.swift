@@ -15,7 +15,7 @@ import Foundation
     let body: Data?
     
     @objc public static let DefaultTimeout: TimeInterval = 45
-    @objc public static let AccessTokenHeader = "Authorization: Virgil "
+    @objc public static let AccessTokenHeader = "Authorization"
     
     public enum Method: String {
         case get    = "GET"
@@ -57,7 +57,7 @@ import Foundation
         
         request.timeoutInterval = ServiceRequest.DefaultTimeout
         request.httpMethod = self.method.rawValue
-        request.setValue(self.apiToken, forHTTPHeaderField: ServiceRequest.AccessTokenHeader)
+        request.setValue("Virgil \(String(describing: self.apiToken))", forHTTPHeaderField: ServiceRequest.AccessTokenHeader)
         request.httpBody = self.body
         
         return request

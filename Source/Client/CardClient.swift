@@ -40,9 +40,9 @@ import Foundation
         public var errorUserInfo: [String : Any] { return [NSLocalizedDescriptionKey : self.rawServiceError.message] }
     }
     
-    @objc public init(serviceUrl: URL, connection: HTTPConnection = ServiceConnection()) {
-        self.serviceUrl = serviceUrl
-        self.connection = connection
+    @objc public init(serviceUrl: URL? = nil, connection: HTTPConnection? = nil) {
+        self.serviceUrl = serviceUrl ?? URL(string: "https://cards.virgilsecurity.com")!
+        self.connection = connection ?? ServiceConnection()
         
         super.init()
     }
