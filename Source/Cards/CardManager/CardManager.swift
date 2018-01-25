@@ -79,10 +79,10 @@ extension CardManager {
     }
     
     @objc public func exportCardAsString(card: Card) throws -> String {
-        return try card.getRawCard(crypto: self.crypto).asString()
+        return try card.getRawCard(crypto: self.crypto).exportAsString()
     }
     
     @objc public func exportCardAsJson(card: Card) throws -> Any {
-        return try card.getRawCard(crypto: self.crypto).asJson()
+        return try card.getRawCard(crypto: self.crypto).exportAsJson()
     }
 }

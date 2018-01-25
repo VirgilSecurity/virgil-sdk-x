@@ -12,8 +12,8 @@ import Foundation
     let appId: String
     let identity: String
     let additionalData: [String : String]
-    let expiresAt: Date
-    let issuedAt: Date
+    let expiresAt: Int
+    let issuedAt: Int
 
     private enum CodingKeys: String, CodingKey {
         case appId          = "iss"
@@ -24,23 +24,23 @@ import Foundation
     }
     
     @objc public init(appId: String, identity: String, expiresAt: Date, issuedAt: Date, additionalData: [String : String]? = nil) {
-        self.appId          = appId
-        self.identity       = identity
-        self.expiresAt      = expiresAt
-        self.issuedAt       = issuedAt
+        self.appId          = "virgil-" + appId
+        self.identity       = "identity-" + identity
+        self.expiresAt      = Int(expiresAt.timeIntervalSince1970)
+        self.issuedAt       = Int(issuedAt.timeIntervalSince1970)
         self.additionalData = additionalData ?? [:]
         
         super.init()
     }
     
-    @objc public convenience init?(jwtBody: String) {
-        guard let data = Data(base64UrlEncoded: jwtBody),
+    @objc public convenience init?(string: String) {
+        guard let data = Data(base64UrlEncoded: string),
             let json = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
         
         self.init(dict: json)
     }
     
-    @objc public func export() throws -> String {
+    @objc public func exportAsString() throws -> String {
         return try self.asString()
     }
 }

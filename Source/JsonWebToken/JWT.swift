@@ -23,8 +23,8 @@ import Foundation
         self.bodyContent = bodyContent
         self.signatureContent = signatureContent
         
-        guard  let headerBase64Url = try? self.headerContent.export(),
-               let bodyBase64Url   = try? self.bodyContent.export() else { return nil }
+        guard  let headerBase64Url = try? self.headerContent.exportAsString(),
+               let bodyBase64Url   = try? self.bodyContent.exportAsString() else { return nil }
         
         var result = headerBase64Url + "." + bodyBase64Url
         
@@ -43,8 +43,8 @@ import Foundation
         let headerBase64Url    = array[0]
         let bodyBase64Url      = array[1]
         
-        guard let headerContent = JwtHeaderContent(jwtHeader: headerBase64Url),
-              let bodyContent   = JwtBodyContent(jwtBody: bodyBase64Url) else { return nil }
+        guard let headerContent = JwtHeaderContent(string: headerBase64Url),
+              let bodyContent   = JwtBodyContent(string: bodyBase64Url) else { return nil }
         
         var signatureContent: Data? = nil
         if array.count == 3 {
@@ -60,8 +60,8 @@ import Foundation
     }
     
     public func snapshotWithoutSignatures() throws -> Data {
-        let headerBase64Url = try self.headerContent.export()
-        let bodyBase64Url   = try self.bodyContent.export()
+        let headerBase64Url = try self.headerContent.exportAsString()
+        let bodyBase64Url   = try self.bodyContent.exportAsString()
         
         let string: String = headerBase64Url + "." + bodyBase64Url
         
@@ -81,7 +81,7 @@ import Foundation
     }
     
     @objc public func isExpired() -> Bool {
-        return Date() >= self.bodyContent.expiresAt
+        return Int(Date().timeIntervalSince1970) >= self.bodyContent.expiresAt
     }
     
     public func setSignatureContent(_ signatureContent: Data) {

@@ -45,7 +45,7 @@ import Foundation
         return try self.asJson()
     }
     
-    public func addSignature(_ signature: RawSignature) throws {
+    @objc public func addSignature(_ signature: RawSignature) throws {
         guard self.signatures.count < 8 else {
             throw RawSignedModelError.modelHasMaxSignatures
         }
