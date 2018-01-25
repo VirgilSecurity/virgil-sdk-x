@@ -41,7 +41,7 @@ import Foundation
     }
     
     @objc public init(serviceUrl: URL? = nil, connection: HTTPConnection? = nil) {
-        self.serviceUrl = serviceUrl ?? URL(string: "https://cards.virgilsecurity.com")!
+        self.serviceUrl = serviceUrl ?? URL(string: "https://cards.virgilsecurity.com/v5")!
         self.connection = connection ?? ServiceConnection()
         
         super.init()

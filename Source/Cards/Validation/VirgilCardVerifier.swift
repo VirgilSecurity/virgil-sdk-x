@@ -21,8 +21,8 @@ import VirgilCryptoAPI
     
     @objc public var whiteLists: [WhiteList]
     
-    @objc public init(crypto: CardCrypto, whiteLists: [WhiteList]) {
-        self.whiteLists = whiteLists
+    @objc public init(crypto: CardCrypto, whiteLists: [WhiteList]? = nil) {
+        self.whiteLists = whiteLists ?? []
         self.crypto = crypto
     
         super.init()
@@ -48,7 +48,7 @@ import VirgilCryptoAPI
         for whiteList in whiteLists {
             if let signerInfo = whiteList.verifiersCredentials.filter({ Set<String>(card.signatures.map({ $0.signerId  })).contains($0.id) }).first {
                 if let publicKey = try? crypto.importPublicKey(from: signerInfo.publicKey) {
-                    VirgilCardVerifier.validate(crypto: crypto, card: card, signerCardId: signerInfo.id, signerPublicKey: publicKey, signerType: .custom, result: result)
+                    VirgilCardVerifier.validate(crypto: crypto, card: card, signerCardId: signerInfo.id, signerPublicKey: publicKey, signerType: .extra, result: result)
                 }
                 else {
                     result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "Error importing Whitelist Public Key for \(signerInfo.id)"]))

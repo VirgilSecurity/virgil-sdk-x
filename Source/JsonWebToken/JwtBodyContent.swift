@@ -32,5 +32,16 @@ import Foundation
         
         super.init()
     }
+    
+    @objc public convenience init?(jwtBody: String) {
+        guard let data = Data(base64UrlEncoded: jwtBody),
+            let json = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
+        
+        self.init(dict: json)
+    }
+    
+    @objc public func export() throws -> String {
+        return try self.asString()
+    }
 }
 

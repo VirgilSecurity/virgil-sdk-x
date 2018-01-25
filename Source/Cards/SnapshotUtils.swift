@@ -14,7 +14,7 @@ class SnapshotUtils {
     }
     
     public static func takeSnapshot(object: Encodable) throws -> Data {
-        return try SnapshotUtils.takeSnapshot(object: object.asJson())
+        return try object.asJsonData()
     }
     
     public static func parseSnapshot<T: Decodable>(snapshot: Data) -> T? {

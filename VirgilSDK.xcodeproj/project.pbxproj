@@ -107,14 +107,6 @@
 		16B3FD7B200CBB6C008F0357 /* CallbackJwtProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD79200CBB6C008F0357 /* CallbackJwtProvider.swift */; };
 		16B3FD7C200CBB6C008F0357 /* CallbackJwtProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD79200CBB6C008F0357 /* CallbackJwtProvider.swift */; };
 		16B3FD7D200CBB6C008F0357 /* CallbackJwtProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD79200CBB6C008F0357 /* CallbackJwtProvider.swift */; };
-		16B3FD7F200CBEB5008F0357 /* JwtParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD7E200CBEB5008F0357 /* JwtParser.swift */; };
-		16B3FD80200CBEB5008F0357 /* JwtParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD7E200CBEB5008F0357 /* JwtParser.swift */; };
-		16B3FD81200CBEB5008F0357 /* JwtParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD7E200CBEB5008F0357 /* JwtParser.swift */; };
-		16B3FD82200CBEB5008F0357 /* JwtParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD7E200CBEB5008F0357 /* JwtParser.swift */; };
-		16B3FD84200CC5F4008F0357 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD83200CC5F4008F0357 /* Collection.swift */; };
-		16B3FD85200CC5F4008F0357 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD83200CC5F4008F0357 /* Collection.swift */; };
-		16B3FD86200CC5F4008F0357 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD83200CC5F4008F0357 /* Collection.swift */; };
-		16B3FD87200CC5F4008F0357 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD83200CC5F4008F0357 /* Collection.swift */; };
 		16B3FD89200CDBC9008F0357 /* JwtGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD88200CDBC9008F0357 /* JwtGenerator.swift */; };
 		16B3FD8A200CDBC9008F0357 /* JwtGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD88200CDBC9008F0357 /* JwtGenerator.swift */; };
 		16B3FD8B200CDBC9008F0357 /* JwtGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD88200CDBC9008F0357 /* JwtGenerator.swift */; };
@@ -371,8 +363,6 @@
 		16B3FD6C2007A8B1008F0357 /* WhiteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteList.swift; sourceTree = "<group>"; };
 		16B3FD74200CB88D008F0357 /* ConstAccessTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstAccessTokenProvider.swift; sourceTree = "<group>"; };
 		16B3FD79200CBB6C008F0357 /* CallbackJwtProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallbackJwtProvider.swift; sourceTree = "<group>"; };
-		16B3FD7E200CBEB5008F0357 /* JwtParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtParser.swift; sourceTree = "<group>"; };
-		16B3FD83200CC5F4008F0357 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		16B3FD88200CDBC9008F0357 /* JwtGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtGenerator.swift; sourceTree = "<group>"; };
 		16B3FD8D200CE469008F0357 /* GeneratorJwtProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorJwtProvider.swift; sourceTree = "<group>"; };
 		16B3FD92200CE74C008F0357 /* JwtVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtVerifier.swift; sourceTree = "<group>"; };
@@ -549,7 +539,6 @@
 				16B3FD532005059C008F0357 /* JwtHeaderContent.swift */,
 				16B3FD58200507F3008F0357 /* JwtBodyContent.swift */,
 				16B3FD88200CDBC9008F0357 /* JwtGenerator.swift */,
-				16B3FD7E200CBEB5008F0357 /* JwtParser.swift */,
 				16B3FD92200CE74C008F0357 /* JwtVerifier.swift */,
 			);
 			path = JsonWebToken;
@@ -620,7 +609,6 @@
 				4284C34A1F6AAB7B00B75491 /* Log.swift */,
 				4284C41C1F6C03DF00B75491 /* Data+hex.swift */,
 				16B3FD5D20078113008F0357 /* Data+base64Url.swift */,
-				16B3FD83200CC5F4008F0357 /* Collection.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1155,14 +1143,12 @@
 				4284C34C1F6AAB8000B75491 /* Log.swift in Sources */,
 				16B3FD5A200507F3008F0357 /* JwtBodyContent.swift in Sources */,
 				4284C36F1F6BE54D00B75491 /* RawSignature.swift in Sources */,
-				16B3FD85200CC5F4008F0357 /* Collection.swift in Sources */,
 				4284C4B71F728B6600B75491 /* ServiceResponse.swift in Sources */,
 				4284C40D1F6C00C300B75491 /* Card.swift in Sources */,
 				16B3FD432004D5E0008F0357 /* AccessTokenProvider.swift in Sources */,
 				4284C4B61F728B6600B75491 /* ServiceRequest.swift in Sources */,
 				42CF01FB1F6AA174003ABB19 /* CardClient.swift in Sources */,
 				16B3FD492004D5FC008F0357 /* AccessToken.swift in Sources */,
-				16B3FD80200CBEB5008F0357 /* JwtParser.swift in Sources */,
 				1624B83F2012215B007D223C /* CardManager+Queries.swift in Sources */,
 				16B3FD6920079DF5008F0357 /* CardSignature.swift in Sources */,
 				4284C3FC1F6C00B700B75491 /* RawCardContent.swift in Sources */,
@@ -1219,7 +1205,6 @@
 				4284C4B41F728B5900B75491 /* RawServiceError.swift in Sources */,
 				16B3FD442004D5E0008F0357 /* AccessTokenProvider.swift in Sources */,
 				16B3FD6020078113008F0357 /* Data+base64Url.swift in Sources */,
-				16B3FD81200CBEB5008F0357 /* JwtParser.swift in Sources */,
 				4284C45F1F6FECC700B75491 /* VirgilCardVerifier.swift in Sources */,
 				1624B8402012215B007D223C /* CardManager+Queries.swift in Sources */,
 				16B3FD51200503B8008F0357 /* JWT.swift in Sources */,
@@ -1228,7 +1213,6 @@
 				4284C3C31F6BEA2100B75491 /* ServiceConnection.swift in Sources */,
 				16B3FD6A20079DF5008F0357 /* CardSignature.swift in Sources */,
 				4284C3C21F6BEA2100B75491 /* Connection.swift in Sources */,
-				16B3FD86200CC5F4008F0357 /* Collection.swift in Sources */,
 				4284C4B91F728B6700B75491 /* ServiceResponse.swift in Sources */,
 				16B3FD4A2004D5FC008F0357 /* AccessToken.swift in Sources */,
 				16B3FD5B200507F3008F0357 /* JwtBodyContent.swift in Sources */,
@@ -1270,7 +1254,6 @@
 				4284C4B51F728B5A00B75491 /* RawServiceError.swift in Sources */,
 				16B3FD452004D5E0008F0357 /* AccessTokenProvider.swift in Sources */,
 				16B3FD6120078113008F0357 /* Data+base64Url.swift in Sources */,
-				16B3FD82200CBEB5008F0357 /* JwtParser.swift in Sources */,
 				4284C4621F6FECC700B75491 /* VirgilCardVerifier.swift in Sources */,
 				1624B8412012215B007D223C /* CardManager+Queries.swift in Sources */,
 				16B3FD52200503B8008F0357 /* JWT.swift in Sources */,
@@ -1279,7 +1262,6 @@
 				4284C3C51F6BEA2200B75491 /* ServiceConnection.swift in Sources */,
 				16B3FD6B20079DF5008F0357 /* CardSignature.swift in Sources */,
 				4284C3C41F6BEA2200B75491 /* Connection.swift in Sources */,
-				16B3FD87200CC5F4008F0357 /* Collection.swift in Sources */,
 				4284C4BB1F728B6700B75491 /* ServiceResponse.swift in Sources */,
 				16B3FD4B2004D5FC008F0357 /* AccessToken.swift in Sources */,
 				16B3FD5C200507F3008F0357 /* JwtBodyContent.swift in Sources */,
@@ -1349,10 +1331,8 @@
 				4284C4561F6FECB600B75491 /* CardVerifier.swift in Sources */,
 				16B3FD7A200CBB6C008F0357 /* CallbackJwtProvider.swift in Sources */,
 				4284C4B01F716C7700B75491 /* ServiceResponse.swift in Sources */,
-				16B3FD7F200CBEB5008F0357 /* JwtParser.swift in Sources */,
 				4284C4571F6FECB600B75491 /* ValidationResult.swift in Sources */,
 				4263A1F61EBC7FFB00B13FF1 /* VSSKeyStorage.m in Sources */,
-				16B3FD84200CC5F4008F0357 /* Collection.swift in Sources */,
 				16B3FD4F200503B8008F0357 /* JWT.swift in Sources */,
 				1624B8382012151B007D223C /* CallbackOperation.swift in Sources */,
 				1624B82D2010AE75007D223C /* AsyncOperation.swift in Sources */,

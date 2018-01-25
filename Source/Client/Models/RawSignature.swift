@@ -11,7 +11,7 @@ import Foundation
 @objc(VSSRawSignature) public final class RawSignature: NSObject, Codable {
     @objc public let signerId:   String
     @objc public let snapshot:   String
-    @objc public let signerType: SignerType
+    @objc public let signerType: String
     @objc public let signature:  Data
     
     private enum CodingKeys: String, CodingKey {
@@ -22,10 +22,10 @@ import Foundation
         case signature
     }
     
-    init(signerId: String, snapshot: String, signerType: SignerType, signature: Data) {
+   public init(signerId: String, snapshot: String, signerType: SignerType, signature: Data) {
         self.signerId   = signerId
         self.snapshot   = snapshot
-        self.signerType = signerType
+        self.signerType = signerType.toString()
         self.signature  = signature
         
         super.init()

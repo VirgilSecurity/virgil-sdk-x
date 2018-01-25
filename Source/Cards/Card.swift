@@ -39,7 +39,8 @@ import VirgilCryptoAPI
             return nil
         }
         
-        guard let publicKey = try? crypto.importPublicKey(from: rawCardContent.publicKeyData),
+        guard let publicKeyData = Data(base64Encoded: rawCardContent.publicKey),
+              let publicKey = try? crypto.importPublicKey(from: publicKeyData),
               let fingerprint = try? crypto.generateSHA256(for: rawSignedModel.contentSnapshot) else { return nil }
         
         let cardId = fingerprint.hexEncodedString()
@@ -53,23 +54,24 @@ import VirgilCryptoAPI
             {
                 extraFields = result
             }
+            guard let signerType = SignerType(from: rawSignature.signerType) else { return nil }
             
-            let cardSignature = CardSignature(signerId: rawSignature.signerId, signerType: rawSignature.signerType, signature: rawSignature.signature, snapshot: rawSignature.snapshot, extraFields: extraFields)
+            let cardSignature = CardSignature(signerId: rawSignature.signerId, signerType: signerType, signature: rawSignature.signature, snapshot: rawSignature.snapshot, extraFields: extraFields)
             
             cardSignatures.append(cardSignature)
         }
         
-        return Card(identifier: cardId, identity: rawCardContent.identity, publicKey: publicKey, version: rawCardContent.version, createdAt: rawCardContent.createdAt, signatures: cardSignatures, previousCardId: rawCardContent.previousCardId)
+        return Card(identifier: cardId, identity: rawCardContent.identity, publicKey: publicKey, version: rawCardContent.version, createdAt: Date(timeIntervalSince1970: TimeInterval(rawCardContent.createdAt)), signatures: cardSignatures, previousCardId: rawCardContent.previousCardId)
     }
     
     @objc public func getRawCard(crypto: CardCrypto) throws -> RawSignedModel {
-        let cardContent = RawCardContent(identity: self.identity, publicKeyData: try crypto.exportPublicKey(self.publicKey), previousCardId: self.previousCardId, version: self.version, createdAt: self.createdAt)
+        let cardContent = RawCardContent(identity: self.identity, publicKey: try crypto.exportPublicKey(self.publicKey).base64EncodedString(), previousCardId: self.previousCardId, version: self.version, createdAt: Int(self.createdAt.timeIntervalSince1970))
         let snapshot = try SnapshotUtils.takeSnapshot(object: cardContent)
         
         let rawCard = RawSignedModel(contentSnapshot: snapshot)
         
         for cardSignature in self.signatures {
-            try rawCard.addSignature(RawSignature(signerId: cardSignature.signerId, snapshot: cardSignature.snapshot, signerType: cardSignature.signerType, signature: cardSignature.signature))
+            try rawCard.addSignature(RawSignature(signerId: cardSignature.signerId, snapshot: cardSignature.snapshot, signerType: SignerType(from: cardSignature.signerType)!, signature: cardSignature.signature))
         }
         
         return rawCard

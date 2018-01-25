@@ -10,38 +10,33 @@ import Foundation
 
 @objc(VSSSignerType) public enum SignerType: Int, Codable {
     case `self`
-    case application
     case virgil
-    case custom
+    case extra
     
     private enum CodingKeys: String, CodingKey {
         case `self`      = "self"
-        case application = "application"
         case virgil      = "virgil"
-        case custom      = "custom"
+        case extra       = "extra"
     }
     
     enum SignerTypeInternal: String {
         case `self`      = "self"
-        case application = "application"
         case virgil      = "virgil"
-        case custom      = "custom"
+        case extra       = "extra"
         
         init(internal: SignerType) {
             switch `internal` {
             case .self: self = .self
-            case .application: self = .application
             case .virgil: self = .virgil
-            case .custom: self = .custom
+            case .extra: self = .extra
             }
         }
         
         var external: SignerType {
             switch self {
             case .self: return .self
-            case .application: return .application
             case .virgil: return .virgil
-            case .custom: return .custom
+            case .extra: return .extra
             }
         }
     }
@@ -60,3 +55,4 @@ import Foundation
         return self.internal.rawValue
     }
 }
+
