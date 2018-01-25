@@ -1,0 +1,5 @@
+
+{
+	"content_snapshot": "CnsKCSJjcmVhdGVkX2F0IjogMTUxNTY4NjI0NSwKCSJpZGVudGl0eSI6ICJ0ZXN0IiwKCSJwdWJsaWNfa2V5IjogIk1Db3dCUVlESzJWd0F5RUEzSjBJdmNzNC9haEJhZnJuNm1CNHQrVUkrSUJoV2pDL3RvVkRyUEpjQ1prPSIsCgkidmVyc2lvbiI6ICI1LjAiCn0=",
+	"signatures": []
+}

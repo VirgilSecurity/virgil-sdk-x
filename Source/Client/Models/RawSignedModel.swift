@@ -29,7 +29,23 @@ import Foundation
         super.init()
     }
     
-    func addSignature(_ signature: RawSignature) throws {
+    @objc public convenience init?(json: Any) {
+        self.init(dict: json)
+    }
+    
+    @objc public convenience init?(string: String) {
+        self.init(withString: string)
+    }
+    
+    @objc public func exportAsString() throws -> String {
+        return try self.asString()
+    }
+    
+    @objc public func exportAsJson() throws -> Any {
+        return try self.asJson()
+    }
+    
+    public func addSignature(_ signature: RawSignature) throws {
         guard self.signatures.count < 8 else {
             throw RawSignedModelError.modelHasMaxSignatures
         }

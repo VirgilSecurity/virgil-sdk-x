@@ -14,26 +14,28 @@ extension Decodable {
         self = me
     }
     
-    init?(string: String) {
-        guard let data = Data(base64Encoded: string) else { return nil }
+    init?(withString: String) {
+        guard let data = Data(base64Encoded: withString) else { return nil }
         self.init(data: data)
     }
     
     init?(dict any: Any) {
-        guard let data = try? JSONSerialization.data(withJSONObject: any, options: .prettyPrinted) else { return nil }
+        guard let data = try? JSONSerialization.data(withJSONObject: any, options: [.prettyPrinted]) else { return nil }
         self.init(data: data)
     }
 }
 
 extension Encodable {
     func asJson() throws -> Any {
-        let data = try JSONEncoder().encode(self)
-        let dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+        let data = try self.asJsonData()
+        let dictionary = try JSONSerialization.jsonObject(with: data, options: [.allowFragments])
         return dictionary
     }
     
     public func asJsonData() throws -> Data {
-        return try JSONEncoder().encode(self)
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        return try encoder.encode(self)
     }
     
     public func asString() throws -> String {

@@ -32,7 +32,9 @@ import VirgilCryptoAPI
         
         let jwt = Jwt(headerContent: jwtHeaderContent, bodyContent: jwtBodyContent)
         
-        jwt.signatureContent =  try self.accessTokenSigner.generateTokenSignature(of: jwt.snapshotWithoutSignatures(), using: self.apiKey)
+        let signatureContent = try self.accessTokenSigner.generateTokenSignature(of: jwt.snapshotWithoutSignatures(), using: self.apiKey)
+        
+        jwt.setSignatureContent(signatureContent)
         
         return jwt
     }

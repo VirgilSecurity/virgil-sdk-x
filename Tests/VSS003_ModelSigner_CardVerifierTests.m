@@ -57,18 +57,18 @@
     
     error = nil;
     VSCVirgilKeyPair *keyPair2 = [crypto generateKeyPair];
-    [signer signWithModel:rawCard id:@"test_id" type:VSSSignerTypeCustom privateKey:keyPair2.privateKey additionalData:nil error:&error];
+    [signer signWithModel:rawCard id:@"test_id" type:VSSSignerTypeExtra privateKey:keyPair2.privateKey additionalData:nil error:&error];
     
     XCTAssert(rawCard.signatures.count == 2 && error == nil);
     
     VSSRawSignature *signature2 = rawCard.signatures[1];
     XCTAssert(signature2.snapshot == [[NSString alloc] init] && [signature2.signerId isEqualToString:@"test_id"]);
-    XCTAssert(signature2.signerType == VSSSignerTypeCustom && signature2.signature != [[NSData alloc] init]);
+    XCTAssert(signature2.signerType == VSSSignerTypeExtra && signature2.signature != [[NSData alloc] init]);
     
     [crypto verifySignature:signature2.signature of:fingerprint with:keyPair2.publicKey error:&error];
     XCTAssert(error == nil);
     
-    [signer signWithModel:rawCard id:@"test_id" type:VSSSignerTypeCustom privateKey:keyPair2.privateKey additionalData:nil error:&error];
+    [signer signWithModel:rawCard id:@"test_id" type:VSSSignerTypeExtra privateKey:keyPair2.privateKey additionalData:nil error:&error];
     XCTAssert(error != nil);
 }
 

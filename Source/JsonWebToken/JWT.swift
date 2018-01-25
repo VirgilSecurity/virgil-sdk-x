@@ -12,7 +12,7 @@ import Foundation
     private let headerContent: JwtHeaderContent
     private let bodyContent: JwtBodyContent
     
-    @objc public var signatureContent: Data?
+    @objc private(set) var signatureContent: Data?
     
     @objc public enum JwtError: Int, Error {
         case dataFromStringFailed
@@ -74,6 +74,10 @@ import Foundation
     
     @objc public func isExpired() -> Bool {
         return Date() >= self.bodyContent.expiresAt
+    }
+    
+    public func setSignatureContent(_ signatureContent: Data) {
+        self.signatureContent = signatureContent
     }
 }
 

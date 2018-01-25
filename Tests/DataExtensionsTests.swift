@@ -18,7 +18,7 @@ class DataExtensionsTests: XCTestCase {
         let data = Data(bytes: bytes, count: length)
         
         let base64url = data.base64UrlEncoded()
-        print(base64url)
+
         let newData = Data(base64UrlEncoded: base64url)
         
         XCTAssert(newData != nil)

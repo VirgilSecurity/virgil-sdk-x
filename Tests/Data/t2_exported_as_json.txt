@@ -1,0 +1,28 @@
+
+{
+	"content_snapshot": "CnsKCSJjcmVhdGVkX2F0IjogMTUxNTY4NjI0NSwKCSJpZGVudGl0eSI6ICJ0ZXN0IiwKCSJwcmV2aW91c19jYXJkX2lkIjogImE2NjYzMTgwNzEyNzRhZGI3MzhhZjNmNjdiOGM3ZWMyOWQ5NTRkZTJjYWJmZDcxYTk0MmU2ZWEzOGU1OWZmZjkiLAoJInB1YmxpY19rZXkiOiAiTUNvd0JRWURLMlZ3QXlFQTNKMEl2Y3M0L2FoQmFmcm42bUI0dCtVSStJQmhXakMvdG9WRHJQSmNDWms9IiwKCSJ2ZXJzaW9uIjogIjUuMCIKfQ==",
+	"signatures": 
+	[
+		
+		{
+			"signature": "MFEwDQYJYIZIAWUDBAICBQAEQFfpZUY8aD0SzmU7rJh49bm4CD7wyTtYeTWLddJzJDS+0HpST3DulxMfBjQfWq5Y3upj49odzQNhOaATz3fF3gg=",
+			"signer_id": "e6fbcad760b3d89610a96230718a6c0522d0dbb1dd264273401d9634c1bb5be0",
+			"signer_type": "self",
+			"snapshot": null
+		},
+		
+		{
+			"signature": "MFEwDQYJYIZIAWUDBAICBQAEQKLcj0Tx0dOTET6vmFmc+xk9BKOfsidoXdcl0BWr4hwL3SaEiQR3E2PT7VcVr6yIKMEneUmmlvL/mqbRCZ1dwQo=",
+			"signer_id": "5b748aa6890d90c4fe199300f8ff10b4e1fdfd50140774ca6b03adb121ee94e1",
+			"signer_type": "virgil",
+			"snapshot": null
+		},
+		
+		{
+			"signature": "MFEwDQYJYIZIAWUDBAICBQAEQHqRoiTjhbbDZfYLsXexjdywiNOH2HlEe84yZaWKIo5AiKGTAVsE31JgSBCCNvBn5FBymNSpbtNGH3Td17xePAQ=",
+			"signer_id": "d729624f302f03f4cf83062bd24af9c44aa35b11670a155300bf3a8560dfa30f",
+			"signer_type": "extra",
+			"snapshot": null
+		}
+	]
+}

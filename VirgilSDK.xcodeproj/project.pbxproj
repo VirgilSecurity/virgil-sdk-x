@@ -40,6 +40,23 @@
 		1624B83F2012215B007D223C /* CardManager+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83D2012215B007D223C /* CardManager+Queries.swift */; };
 		1624B8402012215B007D223C /* CardManager+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83D2012215B007D223C /* CardManager+Queries.swift */; };
 		1624B8412012215B007D223C /* CardManager+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83D2012215B007D223C /* CardManager+Queries.swift */; };
+		1658681C201771C800A27B00 /* ServiceConnectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1658681B201771C800A27B00 /* ServiceConnectionTest.swift */; };
+		1658681D2018B2BE00A27B00 /* VSS001_ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429123591F4B0B3700103BE0 /* VSS001_ClientTests.swift */; };
+		1658681F2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */; };
+		165868202018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */; };
+		165868212018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */; };
+		165868332018CF8600A27B00 /* t1_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 165868322018CF8600A27B00 /* t1_exported_as_json.txt */; };
+		165868342018CF8600A27B00 /* t1_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 165868322018CF8600A27B00 /* t1_exported_as_json.txt */; };
+		165868352018CF8600A27B00 /* t1_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 165868322018CF8600A27B00 /* t1_exported_as_json.txt */; };
+		168491B82019E32B00D6938B /* t2_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491B72019E32B00D6938B /* t2_exported_as_json.txt */; };
+		168491B92019E32B00D6938B /* t2_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491B72019E32B00D6938B /* t2_exported_as_json.txt */; };
+		168491BA2019E32B00D6938B /* t2_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491B72019E32B00D6938B /* t2_exported_as_json.txt */; };
+		168491BC2019FC9A00D6938B /* t1_exported_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491BB2019FC9A00D6938B /* t1_exported_as_str.txt */; };
+		168491BD2019FC9A00D6938B /* t1_exported_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491BB2019FC9A00D6938B /* t1_exported_as_str.txt */; };
+		168491BE2019FC9A00D6938B /* t1_exported_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491BB2019FC9A00D6938B /* t1_exported_as_str.txt */; };
+		168491C02019FDC600D6938B /* t2_exported_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491BF2019FDC500D6938B /* t2_exported_as_str.txt */; };
+		168491C12019FDC600D6938B /* t2_exported_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491BF2019FDC500D6938B /* t2_exported_as_str.txt */; };
+		168491C22019FDC600D6938B /* t2_exported_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491BF2019FDC500D6938B /* t2_exported_as_str.txt */; };
 		16973142201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */; };
 		16973143201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */; };
 		16973144201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */; };
@@ -335,6 +352,12 @@
 		1624B83220120898007D223C /* GenericOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericOperation.swift; sourceTree = "<group>"; };
 		1624B8372012151B007D223C /* CallbackOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallbackOperation.swift; sourceTree = "<group>"; };
 		1624B83D2012215B007D223C /* CardManager+Queries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardManager+Queries.swift"; sourceTree = "<group>"; };
+		1658681B201771C800A27B00 /* ServiceConnectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConnectionTest.swift; sourceTree = "<group>"; };
+		1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS004_CrossCompatibilityTests.m; sourceTree = "<group>"; };
+		165868322018CF8600A27B00 /* t1_exported_as_json.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t1_exported_as_json.txt; sourceTree = "<group>"; };
+		168491B72019E32B00D6938B /* t2_exported_as_json.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t2_exported_as_json.txt; sourceTree = "<group>"; };
+		168491BB2019FC9A00D6938B /* t1_exported_as_str.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t1_exported_as_str.txt; sourceTree = "<group>"; };
+		168491BF2019FDC500D6938B /* t2_exported_as_str.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t2_exported_as_str.txt; sourceTree = "<group>"; };
 		16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS003_ModelSigner_CardVerifierTests.m; sourceTree = "<group>"; };
 		16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS002_JWTTests.m; sourceTree = "<group>"; };
 		16B3FD412004D5E0008F0357 /* AccessTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenProvider.swift; sourceTree = "<group>"; };
@@ -644,6 +667,10 @@
 		429123541F4B0B3700103BE0 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				168491BB2019FC9A00D6938B /* t1_exported_as_str.txt */,
+				165868322018CF8600A27B00 /* t1_exported_as_json.txt */,
+				168491BF2019FDC500D6938B /* t2_exported_as_str.txt */,
+				168491B72019E32B00D6938B /* t2_exported_as_json.txt */,
 				429123551F4B0B3700103BE0 /* sdk_compatibility_data.json */,
 				429123561F4B0B3700103BE0 /* TestConfig.plist */,
 				429123571F4B0B3700103BE0 /* testData.txt */,
@@ -694,7 +721,9 @@
 				4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */,
 				16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */,
 				16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */,
+				1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */,
 				4284C4241F6C0C6400B75491 /* DataExtensionsTests.swift */,
+				1658681B201771C800A27B00 /* ServiceConnectionTest.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1031,7 +1060,11 @@
 			files = (
 				429123691F4B0B3700103BE0 /* testData.txt in Resources */,
 				429123671F4B0B3700103BE0 /* TestConfig.plist in Resources */,
+				168491BD2019FC9A00D6938B /* t1_exported_as_str.txt in Resources */,
+				165868342018CF8600A27B00 /* t1_exported_as_json.txt in Resources */,
 				429123651F4B0B3700103BE0 /* sdk_compatibility_data.json in Resources */,
+				168491B92019E32B00D6938B /* t2_exported_as_json.txt in Resources */,
+				168491C12019FDC600D6938B /* t2_exported_as_str.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1053,6 +1086,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				168491BA2019E32B00D6938B /* t2_exported_as_json.txt in Resources */,
+				168491BE2019FC9A00D6938B /* t1_exported_as_str.txt in Resources */,
+				165868352018CF8600A27B00 /* t1_exported_as_json.txt in Resources */,
+				168491C22019FDC600D6938B /* t2_exported_as_str.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1062,7 +1099,11 @@
 			files = (
 				429123681F4B0B3700103BE0 /* testData.txt in Resources */,
 				429123661F4B0B3700103BE0 /* TestConfig.plist in Resources */,
+				168491BC2019FC9A00D6938B /* t1_exported_as_str.txt in Resources */,
+				165868332018CF8600A27B00 /* t1_exported_as_json.txt in Resources */,
 				429123641F4B0B3700103BE0 /* sdk_compatibility_data.json in Resources */,
+				168491B82019E32B00D6938B /* t2_exported_as_json.txt in Resources */,
+				168491C02019FDC600D6938B /* t2_exported_as_str.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1165,6 +1206,7 @@
 				4284C3571F6BDBC500B75491 /* VSS001_CardClientTests.m in Sources */,
 				16AA6B0A2015F72400A0BA69 /* VSS002_JWTTests.m in Sources */,
 				4284C4261F6C0C6400B75491 /* DataExtensionsTests.swift in Sources */,
+				165868202018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m in Sources */,
 				4291237B1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1279,6 +1321,7 @@
 				4284C3C81F6BEFD600B75491 /* VSSTestsConst.m in Sources */,
 				16AA6B0B2015F72400A0BA69 /* VSS002_JWTTests.m in Sources */,
 				4284C4631F6FFD0200B75491 /* DataExtensionsTests.swift in Sources */,
+				165868212018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m in Sources */,
 				4284C3C61F6BEA2D00B75491 /* VSS001_CardClientTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1287,11 +1330,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1658681D2018B2BE00A27B00 /* VSS001_ClientTests.swift in Sources */,
 				16973142201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */,
+				1658681F2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m in Sources */,
 				4284C3561F6BDBC500B75491 /* VSS001_CardClientTests.m in Sources */,
 				16AA6B092015F72400A0BA69 /* VSS002_JWTTests.m in Sources */,
 				4284C4251F6C0C6400B75491 /* DataExtensionsTests.swift in Sources */,
 				4291237A1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
+				1658681C201771C800A27B00 /* ServiceConnectionTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
