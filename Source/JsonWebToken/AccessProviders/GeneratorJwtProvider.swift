@@ -21,7 +21,7 @@ import Foundation
         super.init()
     }
     
-    @objc public func getToken(forceReload: Bool) throws -> AccessToken {
+    @objc public func getToken(tokenContext: TokenContext) throws -> AccessToken {
         return try self.jwtGenerator.generateToken(identity: self.identity, additionalData: self.additionalData)
     }
 }

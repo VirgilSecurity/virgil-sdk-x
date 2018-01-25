@@ -22,12 +22,8 @@ import Foundation
         super.init()
     }
     
-    @objc public func getToken(forceReload: Bool) throws -> AccessToken {
-        return try self.getVirgilToken(forceReload: forceReload)
-    }
-    
-    @objc public func getVirgilToken(forceReload: Bool) throws -> Jwt {
-        if forceReload || self.token == nil || self.token!.isExpired() {
+    @objc public func getToken(tokenContext: TokenContext) throws -> AccessToken {
+        if tokenContext.forceReload || self.token == nil || self.token!.isExpired() {
             guard let jwt = Jwt(jwtToken: getTokenCallback()) else {
                 throw CallbackProviderError.callbackReturnedCorruptedJwt
             }

@@ -57,6 +57,10 @@
 		168491C02019FDC600D6938B /* t2_exported_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491BF2019FDC500D6938B /* t2_exported_as_str.txt */; };
 		168491C12019FDC600D6938B /* t2_exported_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491BF2019FDC500D6938B /* t2_exported_as_str.txt */; };
 		168491C22019FDC600D6938B /* t2_exported_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491BF2019FDC500D6938B /* t2_exported_as_str.txt */; };
+		168491C7201A269F00D6938B /* TokenContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168491C3201A252900D6938B /* TokenContext.swift */; };
+		168491C8201A26A000D6938B /* TokenContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168491C3201A252900D6938B /* TokenContext.swift */; };
+		168491C9201A26A100D6938B /* TokenContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168491C3201A252900D6938B /* TokenContext.swift */; };
+		168491CA201A26A100D6938B /* TokenContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168491C3201A252900D6938B /* TokenContext.swift */; };
 		16973142201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */; };
 		16973143201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */; };
 		16973144201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */; };
@@ -350,6 +354,7 @@
 		168491B72019E32B00D6938B /* t2_exported_as_json.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t2_exported_as_json.txt; sourceTree = "<group>"; };
 		168491BB2019FC9A00D6938B /* t1_exported_as_str.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t1_exported_as_str.txt; sourceTree = "<group>"; };
 		168491BF2019FDC500D6938B /* t2_exported_as_str.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t2_exported_as_str.txt; sourceTree = "<group>"; };
+		168491C3201A252900D6938B /* TokenContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenContext.swift; sourceTree = "<group>"; };
 		16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS003_ModelSigner_CardVerifierTests.m; sourceTree = "<group>"; };
 		16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS002_JWTTests.m; sourceTree = "<group>"; };
 		16B3FD412004D5E0008F0357 /* AccessTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenProvider.swift; sourceTree = "<group>"; };
@@ -540,6 +545,7 @@
 				16B3FD58200507F3008F0357 /* JwtBodyContent.swift */,
 				16B3FD88200CDBC9008F0357 /* JwtGenerator.swift */,
 				16B3FD92200CE74C008F0357 /* JwtVerifier.swift */,
+				168491C3201A252900D6938B /* TokenContext.swift */,
 			);
 			path = JsonWebToken;
 			sourceTree = "<group>";
@@ -1161,6 +1167,7 @@
 				4284C40C1F6C00C300B75491 /* SignerType.swift in Sources */,
 				16B3FD76200CB88D008F0357 /* ConstAccessTokenProvider.swift in Sources */,
 				16B3FD642007952E008F0357 /* ModelSigner.swift in Sources */,
+				168491C8201A26A000D6938B /* TokenContext.swift in Sources */,
 				16B3FD6E2007A8B1008F0357 /* WhiteList.swift in Sources */,
 				4284C4431F6C1E4000B75491 /* Serialization.swift in Sources */,
 				16B3FD94200CE74C008F0357 /* JwtVerifier.swift in Sources */,
@@ -1224,6 +1231,7 @@
 				4284C4321F6C126A00B75491 /* SnapshotUtils.swift in Sources */,
 				16B3FD95200CE74C008F0357 /* JwtVerifier.swift in Sources */,
 				4284C4671F70057900B75491 /* VerifierCredentials.swift in Sources */,
+				168491C9201A26A100D6938B /* TokenContext.swift in Sources */,
 				4284C3B31F6BE9F300B75491 /* RawSignature.swift in Sources */,
 				4284C45E1F6FECC700B75491 /* ValidationResult.swift in Sources */,
 				4284C3BA1F6BEA0100B75491 /* CardManagerParams.swift in Sources */,
@@ -1273,6 +1281,7 @@
 				4284C4331F6C126B00B75491 /* SnapshotUtils.swift in Sources */,
 				16B3FD96200CE74C008F0357 /* JwtVerifier.swift in Sources */,
 				4284C4681F70057900B75491 /* VerifierCredentials.swift in Sources */,
+				168491CA201A26A100D6938B /* TokenContext.swift in Sources */,
 				4284C3B51F6BE9F400B75491 /* RawSignature.swift in Sources */,
 				4284C4611F6FECC700B75491 /* ValidationResult.swift in Sources */,
 				4284C3BD1F6BEA0200B75491 /* CardManagerParams.swift in Sources */,
@@ -1335,6 +1344,7 @@
 				4263A1F61EBC7FFB00B13FF1 /* VSSKeyStorage.m in Sources */,
 				16B3FD4F200503B8008F0357 /* JWT.swift in Sources */,
 				1624B8382012151B007D223C /* CallbackOperation.swift in Sources */,
+				168491C7201A269F00D6938B /* TokenContext.swift in Sources */,
 				1624B82D2010AE75007D223C /* AsyncOperation.swift in Sources */,
 				16B3FD8E200CE469008F0357 /* GeneratorJwtProvider.swift in Sources */,
 				4284C4591F6FECC300B75491 /* VirgilCardVerifier.swift in Sources */,

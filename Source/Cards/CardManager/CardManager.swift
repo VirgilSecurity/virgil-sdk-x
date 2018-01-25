@@ -41,10 +41,8 @@ import VirgilCryptoAPI
     }
     
     @objc public static let CurrentCardVersion = "5.0"
-    @objc public func generateRawCard(privateKey: PrivateKey, publicKey: PublicKey, previousCardId: String? = nil) throws -> RawSignedModel {
-        let token = try self.accessTokenProvider.getToken(forceReload: false)
-        
-        let cardContent = RawCardContent(identity: token.identity(), publicKey: try crypto.exportPublicKey(publicKey).base64EncodedString(), previousCardId: nil, version: CardManager.CurrentCardVersion, createdAt: Int(Date().timeIntervalSince1970))
+    @objc public func generateRawCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String, previousCardId: String? = nil, extraFields: [String:String]? = nil) throws -> RawSignedModel {
+        let cardContent = RawCardContent(identity: identity, publicKey: try crypto.exportPublicKey(publicKey).base64EncodedString(), previousCardId: nil, version: CardManager.CurrentCardVersion, createdAt: Int(Date().timeIntervalSince1970))
         let snapshot = try SnapshotUtils.takeSnapshot(object: cardContent)
         
         var rawCard = RawSignedModel(contentSnapshot: snapshot)
@@ -78,11 +76,19 @@ extension CardManager {
         return Card.parse(crypto: self.crypto, rawSignedModel: rawCard)
     }
     
+    @objc public func importCard(rawCard: RawSignedModel) -> Card? {
+        return Card.parse(crypto: self.crypto, rawSignedModel: rawCard)
+    }
+    
     @objc public func exportCardAsString(card: Card) throws -> String {
         return try card.getRawCard(crypto: self.crypto).exportAsString()
     }
     
     @objc public func exportCardAsJson(card: Card) throws -> Any {
         return try card.getRawCard(crypto: self.crypto).exportAsJson()
+    }
+    
+    @objc public func exportAsRawCard(card: Card) throws -> RawSignedModel {
+        return try card.getRawCard(crypto: self.crypto)
     }
 }

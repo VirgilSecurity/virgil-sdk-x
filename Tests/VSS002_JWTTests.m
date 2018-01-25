@@ -37,22 +37,23 @@
     NSError *error;
     
     XCTAssert([callbackJwtProvider token] == nil);
-    
-    VSSJwt *jwt = (VSSJwt *)[callbackJwtProvider getTokenWithForceReload:NO error:&error];
+    VSSTokenContext *tokenContext = [[VSSTokenContext alloc] initWithIdentity:nil operation:@"FIXME" forceReload:NO];
+    VSSJwt *jwt = (VSSJwt *)[callbackJwtProvider getTokenWithTokenContext:tokenContext error:&error];
     
     XCTAssert(error == nil && jwt != nil && jwt == [callbackJwtProvider token]);
     
-    VSSJwt *cashedJwt = (VSSJwt *)[callbackJwtProvider getTokenWithForceReload:NO error:&error];
+    VSSJwt *cashedJwt = (VSSJwt *)[callbackJwtProvider getTokenWithTokenContext:tokenContext error:&error];
     
     XCTAssert(error == nil && cashedJwt != nil && cashedJwt == [callbackJwtProvider token] && cashedJwt == jwt);
     
     sleep(ttl);
     
-    VSSJwt *newJwt1 = (VSSJwt *)[callbackJwtProvider getTokenWithForceReload:NO error:&error];
+    VSSJwt *newJwt1 = (VSSJwt *)[callbackJwtProvider getTokenWithTokenContext:tokenContext error:&error];
     
     XCTAssert(error == nil && newJwt1 != nil && newJwt1 == [callbackJwtProvider token] && newJwt1 != cashedJwt);
     
-    VSSJwt *newJwt2 = (VSSJwt *)[callbackJwtProvider getTokenWithForceReload:YES error:&error];
+    VSSTokenContext *tokenContextForceReload = [[VSSTokenContext alloc] initWithIdentity:nil operation:@"FIXME" forceReload:YES];
+    VSSJwt *newJwt2 = (VSSJwt *)[callbackJwtProvider getTokenWithTokenContext:tokenContextForceReload error:&error];
     
     XCTAssert(error == nil && newJwt2 != nil && newJwt2 == [callbackJwtProvider token] && newJwt2 != newJwt1);
 }

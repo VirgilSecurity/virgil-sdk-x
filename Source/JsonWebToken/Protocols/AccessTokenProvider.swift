@@ -14,5 +14,5 @@ import Foundation
     ///
     /// - Parameter forceReload: true will invalidate cached token
     /// - Returns: access token
-    @objc func getToken(forceReload: Bool) throws -> AccessToken
+    @objc func getToken(tokenContext: TokenContext) throws -> AccessToken
 }
