@@ -46,7 +46,7 @@
     XCTAssert(signature1 != nil);
     
     XCTAssert(signature1.snapshot == [[NSString alloc] init]);
-    XCTAssert(signature1.signerType == VSSSignerTypeSelf && signature1.signature != [[NSData alloc] init]);
+    XCTAssert([signature1.signerType isEqualToString:@"self"] && signature1.signature != [[NSData alloc] init]);
     
     NSData *fingerprint = [cardCrypto generateSHA256For:data error:&error];
     [crypto verifySignature:signature1.signature of:fingerprint with:keyPair1.publicKey error:&error];
@@ -63,7 +63,7 @@
     
     VSSRawSignature *signature2 = rawCard.signatures[1];
     XCTAssert(signature2.snapshot == [[NSString alloc] init] && [signature2.signerId isEqualToString:@"test_id"]);
-    XCTAssert(signature2.signerType == VSSSignerTypeExtra && signature2.signature != [[NSData alloc] init]);
+    XCTAssert([signature2.signerType isEqualToString:@"extra"] && signature2.signature != [[NSData alloc] init]);
     
     [crypto verifySignature:signature2.signature of:fingerprint with:keyPair2.publicKey error:&error];
     XCTAssert(error == nil);

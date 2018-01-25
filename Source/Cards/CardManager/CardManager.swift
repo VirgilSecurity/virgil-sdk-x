@@ -10,12 +10,12 @@ import Foundation
 import VirgilCryptoAPI
 
 @objc(VSSCardManager) public class CardManager: NSObject {
-    let modelSigner: ModelSigner
-    let crypto: CardCrypto
-    let accessTokenProvider: AccessTokenProvider
-    let cardClient: CardClient
-    let cardVerifier: CardVerifier?
-    let signCallback: ((RawSignedModel)->(RawSignedModel))?
+    @objc public let modelSigner: ModelSigner
+    @objc public let crypto: CardCrypto
+    @objc public let accessTokenProvider: AccessTokenProvider
+    @objc public let cardClient: CardClient
+    @objc public let cardVerifier: CardVerifier?
+    @objc public let signCallback: ((RawSignedModel)->(RawSignedModel))?
     
     @objc public init(params: CardManagerParams) {
         self.crypto = params.crypto

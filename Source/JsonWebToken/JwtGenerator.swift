@@ -10,11 +10,11 @@ import Foundation
 import VirgilCryptoAPI
 
 @objc(VSSJwtGenerator) public class JwtGenerator: NSObject {
-    private let apiKey: PrivateKey
-    private let apiPublicKeyIdentifier: String
-    private let accessTokenSigner: AccessTokenSigner
-    private let appId: String
-    private let ttl: TimeInterval
+    @objc public let apiKey: PrivateKey
+    @objc public let apiPublicKeyIdentifier: String
+    @objc public let accessTokenSigner: AccessTokenSigner
+    @objc public let appId: String
+    @objc public let ttl: TimeInterval
     
     @objc public enum JwtGeneratorError: Int, Error {
         case generationFailed

@@ -15,5 +15,7 @@ import Foundation
     @objc public init(id: String, publicKey: Data) {
         self.id = id
         self.publicKey = publicKey
+        
+        super.init()
     }
 }

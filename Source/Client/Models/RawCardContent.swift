@@ -43,6 +43,4 @@ import Foundation
     @objc func snapshot() -> Data? {
         return try? SnapshotUtils.takeSnapshot(object: self)
     }
-    
-    
 }

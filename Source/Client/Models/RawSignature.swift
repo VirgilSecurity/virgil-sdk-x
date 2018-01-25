@@ -22,7 +22,7 @@ import Foundation
         case signature
     }
     
-   public init(signerId: String, snapshot: String, signerType: SignerType, signature: Data) {
+   @objc public init(signerId: String, snapshot: String, signerType: SignerType, signature: Data) {
         self.signerId   = signerId
         self.snapshot   = snapshot
         self.signerType = signerType.toString()

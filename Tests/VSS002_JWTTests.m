@@ -30,10 +30,9 @@
         NSError *error;
         NSString *identity = [[NSUUID alloc] init].UUIDString;
         VSSJwt *jwt = [generator generateTokenWithIdentity:identity additionalData:nil error:&error];
-        
         XCTAssert(error == nil);
         
-        return [jwt stringRepresentationAndReturnError:&error];
+        return [jwt stringRepresentation];
     }];
     NSError *error;
     

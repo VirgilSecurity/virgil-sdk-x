@@ -10,9 +10,9 @@ import Foundation
 import VirgilCryptoAPI
 
 @objc(VSSJwtVerifier) public class JwtVerifier: NSObject {
-    private let apiPublicKey: PublicKey
-    private let apiPublicKeyIdentifier: String
-    private let accessTokenSigner: AccessTokenSigner
+    @objc public let apiPublicKey: PublicKey
+    @objc public let apiPublicKeyIdentifier: String
+    @objc public let accessTokenSigner: AccessTokenSigner
     
     @objc public init(apiPublicKey: PublicKey, apiPublicKeyIdentifier: String, accessTokenSigner: AccessTokenSigner) {
         self.apiPublicKey = apiPublicKey

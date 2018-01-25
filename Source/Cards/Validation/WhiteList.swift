@@ -13,5 +13,7 @@ import Foundation
     
     @objc public init(verifiersCredentials: [VerifierCredentials]) {
         self.verifiersCredentials = verifiersCredentials
+        
+        super.init()
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 import VirgilCryptoAPI
 
 @objc(VSSModelSigner) public class ModelSigner: NSObject {
-    private let crypto: CardCrypto
+    @objc public let crypto: CardCrypto
     
     @objc public init(crypto: CardCrypto) {
         self.crypto = crypto
