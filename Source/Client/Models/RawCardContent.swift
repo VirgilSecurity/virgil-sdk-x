@@ -24,19 +24,19 @@ import Foundation
         case version
     }
     
-    @objc public init(identity: String, publicKey: String, previousCardId: String?, version: String, createdAt: Int) {
+    @objc public init(identity: String, publicKey: String, previousCardId: String? = nil, version: String? = nil, createdAt: Date) {
         self.identity = identity
         self.publicKey = publicKey
         self.previousCardId = previousCardId
-        self.version = version
-        self.createdAt = createdAt
+        self.version = version ?? "5.0"
+        self.createdAt = Int(createdAt.timeIntervalSince1970)
         
         super.init()
     }
     
     @objc public convenience init?(snapshot: Data) {
         guard let content: RawCardContent = SnapshotUtils.parseSnapshot(snapshot: snapshot) else { return nil }
-        self.init(identity: content.identity, publicKey: content.publicKey, previousCardId: content.previousCardId, version: content.version, createdAt: content.createdAt)
+        self.init(identity: content.identity, publicKey: content.publicKey, previousCardId: content.previousCardId, version: content.version, createdAt: Date(timeIntervalSince1970: TimeInterval(content.createdAt)))
     }
     
     

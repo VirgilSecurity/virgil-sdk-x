@@ -57,7 +57,7 @@ import Foundation
         
         request.timeoutInterval = ServiceRequest.DefaultTimeout
         request.httpMethod = self.method.rawValue
-        request.setValue("Virgil \(String(describing: self.apiToken))", forHTTPHeaderField: ServiceRequest.AccessTokenHeader)
+        request.setValue("Virgil " + self.apiToken!, forHTTPHeaderField: ServiceRequest.AccessTokenHeader)
         request.httpBody = self.body
         
         return request

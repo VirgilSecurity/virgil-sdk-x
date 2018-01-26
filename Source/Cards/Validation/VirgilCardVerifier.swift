@@ -72,7 +72,7 @@ import VirgilCryptoAPI
             result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The card with id \(signerCardId) was corrupted"]))
             return
         }
-        let extraDataSnapshot = Data(base64Encoded: signature.snapshot) ?? Data()
+        let extraDataSnapshot = Data(base64Encoded: signature.snapshot ?? "") ?? Data()
         
         guard let fingerprint = try? crypto.generateSHA256(for: cardSnapshot + extraDataSnapshot) else {
             result.addError(NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: " Generating SHA256 of card with id\(signerCardId) failed"]))

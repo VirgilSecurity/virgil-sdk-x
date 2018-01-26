@@ -11,11 +11,11 @@ import Foundation
 @objc(VSSJwt) public class Jwt: NSObject, AccessToken {
     @objc public let headerContent: JwtHeaderContent
     @objc public let bodyContent:   JwtBodyContent
-    @objc public let string: String
+    @objc private(set) var string: String
     @objc private(set) var signatureContent: Data?
     
     @objc public enum JwtError: Int, Error {
-        case dataFromStringFailed
+        case tokenCorrupted
     }
     
     @objc public init?(headerContent: JwtHeaderContent, bodyContent: JwtBodyContent, signatureContent: Data? = nil) {
@@ -28,7 +28,7 @@ import Foundation
         
         var result = headerBase64Url + "." + bodyBase64Url
         
-        if let signatureContent = self.signatureContent {
+        if let signatureContent = signatureContent {
             result += "." + signatureContent.base64UrlEncoded()
         }
         self.string = result
@@ -66,7 +66,7 @@ import Foundation
         let string: String = headerBase64Url + "." + bodyBase64Url
         
         guard let data = string.data(using: .utf8) else {
-            throw JwtError.dataFromStringFailed
+            throw JwtError.tokenCorrupted
         }
         
         return data
@@ -84,8 +84,16 @@ import Foundation
         return Int(Date().timeIntervalSince1970) >= self.bodyContent.expiresAt
     }
     
-    public func setSignatureContent(_ signatureContent: Data) {
+    public func setSignatureContent(_ signatureContent: Data) throws {
         self.signatureContent = signatureContent
+        
+        guard  let headerBase64Url = try? self.headerContent.exportAsString(),
+               let bodyBase64Url   = try? self.bodyContent.exportAsString() else
+        {
+            throw JwtError.tokenCorrupted
+        }
+
+        self.string = headerBase64Url + "." + bodyBase64Url + "." + signatureContent.base64UrlEncoded()
     }
 }
 

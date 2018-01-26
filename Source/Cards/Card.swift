@@ -48,15 +48,18 @@ import VirgilCryptoAPI
         var cardSignatures: [CardSignature] = []
         for rawSignature in rawSignedModel.signatures {
             var extraFields: [String : String] = [:]
-            if let additionalData = Data(base64Encoded: rawSignature.snapshot),
+            var snapshot: String? = nil
+            if let rawSnapshot = rawSignature.snapshot,
+               let additionalData = Data(base64Encoded: rawSnapshot),
                let json = try? JSONSerialization.jsonObject(with: additionalData, options: []),
                let result = json as? [String : String]
             {
                 extraFields = result
+                snapshot = rawSnapshot
             }
             guard let signerType = SignerType(from: rawSignature.signerType) else { return nil }
             
-            let cardSignature = CardSignature(signerId: rawSignature.signerId, signerType: signerType, signature: rawSignature.signature, snapshot: rawSignature.snapshot, extraFields: extraFields)
+            let cardSignature = CardSignature(signerId: rawSignature.signerId, signerType: signerType, signature: rawSignature.signature, snapshot: snapshot, extraFields: extraFields)
             
             cardSignatures.append(cardSignature)
         }
@@ -65,7 +68,7 @@ import VirgilCryptoAPI
     }
     
     @objc public func getRawCard(crypto: CardCrypto) throws -> RawSignedModel {
-        let cardContent = RawCardContent(identity: self.identity, publicKey: try crypto.exportPublicKey(self.publicKey).base64EncodedString(), previousCardId: self.previousCardId, version: self.version, createdAt: Int(self.createdAt.timeIntervalSince1970))
+        let cardContent = RawCardContent(identity: self.identity, publicKey: try crypto.exportPublicKey(self.publicKey).base64EncodedString(), previousCardId: self.previousCardId, version: self.version, createdAt: self.createdAt)
         let snapshot = try SnapshotUtils.takeSnapshot(object: cardContent)
         
         let rawCard = RawSignedModel(contentSnapshot: snapshot)

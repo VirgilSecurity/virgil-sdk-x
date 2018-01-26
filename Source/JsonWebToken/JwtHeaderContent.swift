@@ -21,7 +21,7 @@ import Foundation
         case keyIdentifier = "kid"
     }
     
-    @objc public init(algorithm: String = "VEDS512", type: String = "JWT", contentType: String = "virgil-jwt;v1", keyIdentifier: String) {
+    @objc public init(algorithm: String = "VEDS512", type: String = "JWT", contentType: String = "virgil-jwt;v=1", keyIdentifier: String) {
         self.algorithm     = algorithm
         self.type          = type
         self.contentType   = contentType

@@ -33,7 +33,7 @@ extension CardManager {
             let tokenContext = TokenContext(operation: "FIXME", forceReload: false)
             let token = try self.accessTokenProvider.getToken(tokenContext: tokenContext)
             
-            let rawSignedModel = try self.cardClient.publishCard(request: rawCard, token: token.stringRepresentation())
+            let rawSignedModel = try self.cardClient.publishCard(model: rawCard, token: token.stringRepresentation())
             guard let card = Card.parse(crypto: self.crypto, rawSignedModel: rawSignedModel) else {
                 throw CardManagerError.cardParsingFailed
             }

@@ -40,8 +40,8 @@ import Foundation
         public var errorUserInfo: [String : Any] { return [NSLocalizedDescriptionKey : self.rawServiceError.message] }
     }
     
-    @objc public init(serviceUrl: URL? = nil, connection: HTTPConnection? = nil) {
-        self.serviceUrl = serviceUrl ?? URL(string: "https://cards.virgilsecurity.com/v5")!
+    @objc public init(serviceUrl: URL, connection: HTTPConnection? = nil) {
+        self.serviceUrl = serviceUrl
         self.connection = connection ?? ServiceConnection()
         
         super.init()
@@ -66,7 +66,7 @@ import Foundation
             throw CardClientError.noBody
         }
         
-        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [AnyHashable : Any] else {
+        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else {
             throw CardClientError.invalidJson
         }
         
@@ -74,7 +74,7 @@ import Foundation
     }
     
     private func validateResponse(_ response: HTTPResponse) throws {
-        guard response.statusCode == 200 else {
+        guard response.statusCode/100 == 2 else {
             throw self.handleError(statusCode: response.statusCode, body: response.body)
         }
     }
