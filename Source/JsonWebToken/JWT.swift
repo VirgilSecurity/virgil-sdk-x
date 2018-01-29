@@ -39,7 +39,7 @@ import Foundation
     @objc public init?(jwtToken: String) {
         let array = jwtToken.components(separatedBy: ".")
         
-        guard array.count == 2 else { return nil }
+        guard array.count >= 2 else { return nil }
         let headerBase64Url    = array[0]
         let bodyBase64Url      = array[1]
         

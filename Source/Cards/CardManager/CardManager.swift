@@ -46,7 +46,9 @@ import VirgilCryptoAPI
         
         var rawCard = RawSignedModel(contentSnapshot: snapshot)
         
-        try self.modelSigner.selfSign(model: rawCard, privateKey: privateKey)
+        let data = try JSONSerialization.data(withJSONObject: extraFields as Any, options: [])
+        
+        try self.modelSigner.selfSign(model: rawCard, privateKey: privateKey, additionalData: data)
         
         if let signCallback = self.signCallback {
             rawCard = signCallback(rawCard)

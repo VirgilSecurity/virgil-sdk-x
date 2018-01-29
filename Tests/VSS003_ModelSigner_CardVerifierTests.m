@@ -24,7 +24,9 @@
     VSCVirgilCardCrypto   *cardCrypto = [[VSCVirgilCardCrypto  alloc] init];
     VSSModelSigner        *signer     = [[VSSModelSigner       alloc] initWithCrypto:cardCrypto];
     
-    VSCVirgilKeyPair *keyPair1 = [crypto generateKeyPair];
+    NSError *error;
+    VSCVirgilKeyPair *keyPair1 = [crypto generateKeyPairAndReturnError:&error];
+    XCTAssert(error == nil);
     
     // Test Utils
     int length = 2048;
@@ -37,7 +39,6 @@
     
     XCTAssert(rawCard.signatures.count == 0);
     
-    NSError *error;
     [signer selfSignWithModel:rawCard privateKey:keyPair1.privateKey additionalData:nil error:&error];
     
     XCTAssert(rawCard.signatures.count == 1 & error == nil);
@@ -54,9 +55,11 @@
     
     [signer selfSignWithModel:rawCard privateKey:keyPair1.privateKey additionalData:nil error:&error];
     XCTAssert(error != nil);
-    
     error = nil;
-    VSCVirgilKeyPair *keyPair2 = [crypto generateKeyPair];
+    
+    VSCVirgilKeyPair *keyPair2 = [crypto generateKeyPairAndReturnError:&error];
+    XCTAssert(error == nil);
+    
     [signer signWithModel:rawCard id:@"test_id" type:VSSSignerTypeExtra privateKey:keyPair2.privateKey additionalData:nil error:&error];
     
     XCTAssert(rawCard.signatures.count == 2 && error == nil);
@@ -77,7 +80,9 @@
     VSCVirgilCardCrypto   *cardCrypto = [[VSCVirgilCardCrypto  alloc] init];
     VSSModelSigner        *signer     = [[VSSModelSigner       alloc] initWithCrypto:cardCrypto];
     
-    VSCVirgilKeyPair *keyPair1 = [crypto generateKeyPair];
+    NSError *error;
+    VSCVirgilKeyPair *keyPair1 = [crypto generateKeyPairAndReturnError:&error];
+    XCTAssert(error == nil);
     
     // Test Utils
     int length = 2048;
@@ -90,7 +95,6 @@
     
     XCTAssert(rawCard.signatures.count == 0);
     
-    NSError *error;
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setValue:@"data1" forKey:@"key1"];
     [dic setValue:@"data2" forKey:@"key2"];
@@ -105,7 +109,10 @@
     XCTAssert(signature1.snapshot != [[NSString alloc] init]);
     // FIXME
     //XCTAssert(signature1.snapshot == [dataDic base64EncodedStringWithOptions:0]);
-    XCTAssert(signature1.signerType == VSSSignerTypeSelf && signature1.signature != [[NSData alloc] init]);
+    NSLog(@"Message == %@", signature1.signerType);
+    
+    XCTAssert([signature1.signerType isEqualToString:@"self"]);
+    XCTAssert(signature1.signature != [[NSData alloc] init]);
 }
 
 //    NSData *publicKey1 = [crypto exportVirgilPublicKey:keyPair1.publicKey error:&error];

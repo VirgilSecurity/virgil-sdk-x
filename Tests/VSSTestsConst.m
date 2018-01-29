@@ -25,24 +25,24 @@
     return self;
 }
 
-- (NSString *)applicationToken {
-    NSString *appToken = self.config[@"AppToken"];
+- (NSString *)accessPublicKeyId {
+    NSString *appToken = self.config[@"AccessPublicKeyId"];
     if (appToken != nil)
         return appToken;
     
     return @STRINGIZE2(APPLICATION_TOKEN);
 }
 
-- (NSString *)applicationPrivateKeyBase64 {
-    NSString *appPrivateKey = self.config[@"AppPrivateKey"];
+- (NSString *)accessPrivateKeyBase64 {
+    NSString *appPrivateKey = self.config[@"AccessPrivateKey"];
     if (appPrivateKey != nil)
         return appPrivateKey;
     
     return @STRINGIZE2(APPLICATION_PRIVATE_KEY_BASE64);
 }
 
-- (NSString *)applicationPrivateKeyPassword {
-    NSString *appPrivateKeyPassword = self.config[@"AppPrivateKeyPassword"];
+- (NSString *)accessPublicKeyBase64 {
+    NSString *appPrivateKeyPassword = self.config[@"AccessPublicKey"];
     if (appPrivateKeyPassword != nil)
         return appPrivateKeyPassword;
     
@@ -57,8 +57,8 @@
     return @STRINGIZE2(APPLICATION_ID);
 }
 
-- (NSURL *)cardsServiceURL {
-    NSString *cardsUrl = self.config[@"CardsUrl"];
+- (NSURL *)serviceURL {
+    NSString *cardsUrl = self.config[@"ServiceURL"];
     if (cardsUrl != nil)
         return [[NSURL alloc] initWithString:cardsUrl];
     

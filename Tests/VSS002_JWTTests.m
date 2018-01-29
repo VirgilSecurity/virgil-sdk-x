@@ -23,11 +23,14 @@
     NSTimeInterval ttl = 5;
     VSSCallbackJwtProvider *callbackJwtProvider = [[VSSCallbackJwtProvider alloc] initWithGetTokenCallback:^NSString*(void){
         VSCVirgilCrypto *crypto = [[VSCVirgilCrypto alloc] init];
-        VSCVirgilKeyPair *keyPair = [crypto generateKeyPair];
+        
+        NSError *error;
+        VSCVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&error];
+        XCTAssert(error == nil);
+        
         VSCVirgilAccessTokenSigner *signer = [[VSCVirgilAccessTokenSigner alloc] init];
         VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] apiPublicKeyIdentifier:@"id" accessTokenSigner:signer appId:@"app_id" ttl:ttl];
         
-        NSError *error;
         NSString *identity = [[NSUUID alloc] init].UUIDString;
         VSSJwt *jwt = [generator generateTokenWithIdentity:identity additionalData:nil error:&error];
         XCTAssert(error == nil);

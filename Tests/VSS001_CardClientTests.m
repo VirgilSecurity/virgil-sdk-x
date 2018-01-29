@@ -19,60 +19,92 @@
 
 @implementation VSS001_CardClientTests
 
-- (void)test001 {
-    NSString *accessKey       = @"530fc95b222590e57008e4d43a9f7f589d303f214fba54df21c08457cd89935c";
-    NSString *accessPublicKey = @"MCowBQYDK2VwAyEA2tzlPfxSgpUhJHYSEejrWDzC+HDc4QS9J/yhaAtOXrc=";
-    NSString *appID           = @"5a672d7860ea24000197dc1d";
+- (void)test001_CreateCard {
+    VSSTestsConst *consts = [[VSSTestsConst alloc] init];
     
-    VSSCardClient *cardClient = [[VSSCardClient alloc] initWithServiceUrl:nil connection:nil];
+    VSSCardClient *cardClient = [[VSSCardClient alloc] initWithServiceUrl:consts.serviceURL connection:nil];
     VSCVirgilCrypto *crypto = [[VSCVirgilCrypto alloc] init];
     
-//    FIXME cannot import
-//    VSCVirgilPrivateKeyExporter *exporter = [[VSCVirgilPrivateKeyExporter alloc] initWithVirgilCrypto:crypto password:nil];
-//
-//    NSData *privKey = [[NSData alloc] initWithBase64EncodedString:accessKey options:0];
-//    VSCVirgilPrivateKey *privateKey = (VSCVirgilPrivateKey *)[exporter importPrivateKeyFrom:privKey error:&error];
-//    XCTAssert(error == nil);
+    VSCVirgilPrivateKeyExporter *exporter = [[VSCVirgilPrivateKeyExporter alloc] initWithVirgilCrypto:crypto password:nil];
+
+    NSData *privKey = [[NSData alloc] initWithBase64EncodedString:consts.accessPrivateKeyBase64 options:0];
+    XCTAssert(privKey != nil);
     
     NSError *error;
-    VSCVirgilKeyPair *keyPair = [crypto generateKeyPair];
-    VSCVirgilPrivateKey *incorrectPrivateKey = keyPair.privateKey;
-    
-    VSCVirgilAccessTokenSigner *signer = [[VSCVirgilAccessTokenSigner alloc] init];
-    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:incorrectPrivateKey apiPublicKeyIdentifier:accessPublicKey accessTokenSigner:signer appId:appID ttl:0];
-    
-    VSSJwt *jwtToken = [generator generateTokenWithIdentity:@"tokenIdentity" additionalData:nil error:&error];
+    VSCVirgilPrivateKey *privateKey = (VSCVirgilPrivateKey *)[exporter importPrivateKeyFrom:privKey error:&error];
     XCTAssert(error == nil);
     
-    NSString *strToken = [jwtToken stringRepresentationAndReturnError:&error];
+    VSCVirgilAccessTokenSigner *tokenSigner = [[VSCVirgilAccessTokenSigner alloc] init];
+    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey apiPublicKeyIdentifier:consts.accessPublicKeyId accessTokenSigner:tokenSigner appId:consts.applicationId ttl:1000];
+    
+    NSString *identity = @"identity";
+    VSSJwt *jwtToken = [generator generateTokenWithIdentity:identity additionalData:nil error:&error];
     XCTAssert(error == nil);
     
-    VSSRawSignedModel *rawCard = [cardClient getCardWithId:@"cardId" token:strToken error:&error];
+    NSString *strToken = [jwtToken stringRepresentation];
+    XCTAssert(error == nil);
+    
+    NSData *pubKey = [[NSData alloc] initWithBase64EncodedString:consts.accessPublicKeyBase64 options:0];
+    VSCVirgilPublicKey *key =  [crypto importVirgilPublicKeyFrom:pubKey];
+    XCTAssert(error == nil);
+    
+    VSSJwtVerifier *verifier = [[VSSJwtVerifier alloc] initWithApiPublicKey:key apiPublicKeyIdentifier:consts.accessPublicKeyId accessTokenSigner:tokenSigner];
+    
+    [verifier verifyTokenWithJwtToken:jwtToken error:&error];
+    XCTAssert(error == nil);
 
-    XCTAssert(error != nil);
+    VSCVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&error];
+    XCTAssert(error == nil);
     
+    NSData *exportedPublicKey = [crypto exportVirgilPublicKey:keyPair.publicKey];
+    XCTAssert(error == nil);
+
+    NSString *publicKeyBase64 = [exportedPublicKey base64EncodedStringWithOptions:0];
+
+    NSLocale *currentLocale = [NSLocale currentLocale];
+    XCTAssert(currentLocale != nil);
     
-//    VSCVirgilCrypto *crypto = [[VSCVirgilCrypto alloc] init];
-//    VSSCardManagerParams *params = [[VSSCardManagerParams alloc] initWithCrypto:crypto validator:nil];
-//
-//    VSSTestsConst *consts = [[VSSTestsConst alloc] init];
-//
-//    params.apiUrl = consts.cardsServiceURL;
-//
-//    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:params];
-//
-//    NSError *err;
-//    NSString *identity = [[NSUUID alloc] init].UUIDString;
-//
-//    VSCVirgilKeyPair *keyPair = [crypto generateKeyPair];
-//
-//    VSSCSRParams *csrParams = [[VSSCSRParams alloc] initWithIdentity:identity publicKey:keyPair.publicKey privateKey:keyPair.privateKey];
-//
-//    VSSCSR *csr = [VSSCSR generateWithCrypto:crypto params:csrParams error:&err];
-//    XCTAssert(err == nil);
-//
-//    VSSCard *card = [cardManager publishCardWithCsr:csr error:&err];
-//    XCTAssert(card != nil && err == nil);
+    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:nil createdAt:NSDate.date];
+    XCTAssert(content != nil);
+    
+    NSData *snapshot = [content snapshot];
+    XCTAssert(snapshot != nil);
+    
+    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:nil];
+    XCTAssert(rawCard != nil);
+    
+    VSCVirgilCardCrypto *cardCrypto = [[VSCVirgilCardCrypto alloc] init];
+    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:cardCrypto];
+    
+    [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
+    XCTAssert(error == nil);
+    
+    VSSRawSignedModel *responceRawCard = [cardClient publishCardWithModel:rawCard token:strToken error:&error];
+    XCTAssert(error == nil);
+    XCTAssert(responceRawCard != nil);
+    
+    VSSCard *card = [VSSCard parseWithCrypto:cardCrypto rawSignedModel:responceRawCard];
+    XCTAssert(card != nil);
+    
+    NSData *exportedPublicKeyCard = [crypto exportVirgilPublicKey:(VSCVirgilPublicKey *)card.publicKey];
+    XCTAssert(error == nil);
+    
+    NSString *publicKeyBase64Card = [exportedPublicKeyCard base64EncodedStringWithOptions:0];
+    
+    VSSRawCardContent *responseContent = [[VSSRawCardContent alloc] initWithSnapshot:responceRawCard.contentSnapshot];
+    NSLog(@"Message == %@", responseContent.publicKey);
+    XCTAssert([responseContent.publicKey isEqualToString:publicKeyBase64]);
+    
+    NSLog(@"Message == %@", publicKeyBase64);
+    NSLog(@"Message == %@", publicKeyBase64Card);
+    
+    XCTAssert([card.identity isEqualToString:identity]);
+    XCTAssert([publicKeyBase64Card isEqualToString:publicKeyBase64]);
+    XCTAssert(card.previousCardId == nil);
+    XCTAssert(card.previousCard == nil);
+    XCTAssert(card.isOutdated == false);
+    XCTAssert([card.version isEqualToString:@"5.0"]);
+    XCTAssert(card.createdAt == [NSDate dateWithTimeIntervalSince1970:content.createdAt]);
 }
 
 @end
