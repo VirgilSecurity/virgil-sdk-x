@@ -114,29 +114,53 @@
 }
 
 - (void)test002 {
-//    NSError *error;
-//    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-//    
-//    NSString *path1 = [bundle pathForResource:@"t2_exported_as_str" ofType:@"txt"];
-//    XCTAssert(path1 != nil);
-//    
-//    NSString *rawCardString = [[NSString alloc]initWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:&error];
-//    XCTAssert(error == nil);
-//    XCTAssert(rawCardString != nil);
-//    
-//    VSSRawSignedModel *rawCard1 = [[VSSRawSignedModel alloc] initWithString:rawCardString];
-//    XCTAssert(rawCard1 != nil);
+    NSError *error;
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     
-//    VSSRawCardContent *cardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard1.contentSnapshot];
-//    XCTAssert(cardContent1 != nil);
-//    
-//    // FIXME move to utils
-//    XCTAssert([cardContent1.identity isEqualToString:@"test"]);
-//    XCTAssert([cardContent1.publicKey isEqualToString:@"MCowBQYDK2VwAyEA3J0Ivcs4/ahBafrn6mB4t+UI+IBhWjC/toVDrPJcCZk="]);
-//    XCTAssert([cardContent1.version isEqualToString:@"5.0"]);
-//    XCTAssert(cardContent1.createdAt == 1515686245);
-//    XCTAssert(cardContent1.previousCardId == nil);
-//    XCTAssert(rawCard1.signatures.count == 0);
+    NSString *path1 = [bundle pathForResource:@"t2_exported_as_str" ofType:@"txt"];
+    XCTAssert(path1 != nil);
+    
+    NSString *rawCardString = [[NSString alloc]initWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:&error];
+    XCTAssert(error == nil);
+    XCTAssert(rawCardString != nil);
+    NSLog(@"Message == %@", rawCardString);
+    
+    VSSRawSignedModel *rawCard1 = [[VSSRawSignedModel alloc] initWithString:rawCardString];
+    XCTAssert(rawCard1 != nil);
+    
+    VSSRawCardContent *cardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard1.contentSnapshot];
+    XCTAssert(cardContent1 != nil);
+    
+    // FIXME move to utils
+    XCTAssert([cardContent1.identity isEqualToString:@"test"]);
+    XCTAssert([cardContent1.publicKey isEqualToString:@"MCowBQYDK2VwAyEA3J0Ivcs4/ahBafrn6mB4t+UI+IBhWjC/toVDrPJcCZk="]);
+    XCTAssert([cardContent1.version isEqualToString:@"5.0"]);
+    XCTAssert(cardContent1.createdAt == 1515686245);
+    XCTAssert([cardContent1.previousCardId isEqualToString:@"a666318071274adb738af3f67b8c7ec29d954de2cabfd71a942e6ea38e59fff9"]);
+    XCTAssert(rawCard1.signatures.count == 3);
+    
+    NSString *path2 = [bundle pathForResource:@"t2_exported_as_json" ofType:@"txt"];
+    XCTAssert(path2 != nil);
+    
+    NSData *rawCardDic = [[NSData alloc] initWithContentsOfFile:path2];
+    XCTAssert(rawCardDic != nil);
+    
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:rawCardDic options:kNilOptions error:nil];
+    XCTAssert(dic != nil);
+    
+    VSSRawSignedModel *rawCard2 = [[VSSRawSignedModel alloc] initWithJson:dic];
+    XCTAssert(rawCard2 != nil);
+    
+    VSSRawCardContent *cardContent2 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard2.contentSnapshot];
+    XCTAssert(cardContent2 != nil);
+    
+    // FIXME move to utils
+    XCTAssert([cardContent2.identity isEqualToString:@"test"]);
+    XCTAssert([cardContent2.publicKey isEqualToString:@"MCowBQYDK2VwAyEA3J0Ivcs4/ahBafrn6mB4t+UI+IBhWjC/toVDrPJcCZk="]);
+    XCTAssert([cardContent2.version isEqualToString:@"5.0"]);
+    XCTAssert(cardContent2.createdAt == 1515686245);
+    XCTAssert([cardContent2.previousCardId isEqualToString:@"a666318071274adb738af3f67b8c7ec29d954de2cabfd71a942e6ea38e59fff9"]);
+    XCTAssert(rawCard2.signatures.count == 3);
 }
 
 

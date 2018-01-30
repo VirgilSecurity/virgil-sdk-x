@@ -48,6 +48,9 @@
 		165868332018CF8600A27B00 /* t1_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 165868322018CF8600A27B00 /* t1_exported_as_json.txt */; };
 		165868342018CF8600A27B00 /* t1_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 165868322018CF8600A27B00 /* t1_exported_as_json.txt */; };
 		165868352018CF8600A27B00 /* t1_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 165868322018CF8600A27B00 /* t1_exported_as_json.txt */; };
+		166C67BF201F5C0500D79608 /* VSSTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 166C67BE201F5C0500D79608 /* VSSTestUtils.m */; };
+		166C67C0201F5C0500D79608 /* VSSTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 166C67BE201F5C0500D79608 /* VSSTestUtils.m */; };
+		166C67C1201F5C0500D79608 /* VSSTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 166C67BE201F5C0500D79608 /* VSSTestUtils.m */; };
 		168491B82019E32B00D6938B /* t2_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491B72019E32B00D6938B /* t2_exported_as_json.txt */; };
 		168491B92019E32B00D6938B /* t2_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491B72019E32B00D6938B /* t2_exported_as_json.txt */; };
 		168491BA2019E32B00D6938B /* t2_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491B72019E32B00D6938B /* t2_exported_as_json.txt */; };
@@ -351,6 +354,8 @@
 		1658681B201771C800A27B00 /* ServiceConnectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConnectionTest.swift; sourceTree = "<group>"; };
 		1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS004_CrossCompatibilityTests.m; sourceTree = "<group>"; };
 		165868322018CF8600A27B00 /* t1_exported_as_json.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t1_exported_as_json.txt; sourceTree = "<group>"; };
+		166C67BD201F5BB200D79608 /* VSSTestUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSTestUtils.h; sourceTree = "<group>"; };
+		166C67BE201F5C0500D79608 /* VSSTestUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSSTestUtils.m; sourceTree = "<group>"; };
 		168491B72019E32B00D6938B /* t2_exported_as_json.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t2_exported_as_json.txt; sourceTree = "<group>"; };
 		168491BB2019FC9A00D6938B /* t1_exported_as_str.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t1_exported_as_str.txt; sourceTree = "<group>"; };
 		168491BF2019FDC500D6938B /* t2_exported_as_str.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t2_exported_as_str.txt; sourceTree = "<group>"; };
@@ -718,6 +723,8 @@
 				1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */,
 				4284C4241F6C0C6400B75491 /* DataExtensionsTests.swift */,
 				1658681B201771C800A27B00 /* ServiceConnectionTest.swift */,
+				166C67BD201F5BB200D79608 /* VSSTestUtils.h */,
+				166C67BE201F5C0500D79608 /* VSSTestUtils.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1200,6 +1207,7 @@
 				16AA6B0A2015F72400A0BA69 /* VSS002_JWTTests.m in Sources */,
 				4284C4261F6C0C6400B75491 /* DataExtensionsTests.swift in Sources */,
 				165868202018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m in Sources */,
+				166C67C0201F5C0500D79608 /* VSSTestUtils.m in Sources */,
 				4291237B1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1313,6 +1321,7 @@
 				16AA6B0B2015F72400A0BA69 /* VSS002_JWTTests.m in Sources */,
 				4284C4631F6FFD0200B75491 /* DataExtensionsTests.swift in Sources */,
 				165868212018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m in Sources */,
+				166C67C1201F5C0500D79608 /* VSSTestUtils.m in Sources */,
 				4284C3C61F6BEA2D00B75491 /* VSS001_CardClientTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1327,6 +1336,7 @@
 				4284C3561F6BDBC500B75491 /* VSS001_CardClientTests.m in Sources */,
 				16AA6B092015F72400A0BA69 /* VSS002_JWTTests.m in Sources */,
 				4284C4251F6C0C6400B75491 /* DataExtensionsTests.swift in Sources */,
+				166C67BF201F5C0500D79608 /* VSSTestUtils.m in Sources */,
 				4291237A1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
 				1658681C201771C800A27B00 /* ServiceConnectionTest.swift in Sources */,
 			);

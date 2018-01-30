@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Decodable {
+internal extension Decodable {
     init?(data: Data) {
         guard let me = try? JSONDecoder().decode(Self.self, from: data) else { return nil }
         self = me
@@ -25,20 +25,20 @@ extension Decodable {
     }
 }
 
-extension Encodable {
+internal extension Encodable {
     func asJson() throws -> Any {
         let data = try self.asJsonData()
         let dictionary = try JSONSerialization.jsonObject(with: data, options: [.allowFragments])
         return dictionary
     }
     
-    public func asJsonData() throws -> Data {
+    func asJsonData() throws -> Data {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         return try encoder.encode(self)
     }
     
-    public func asString() throws -> String {
+    func asString() throws -> String {
         let data = try self.asJsonData()
         return data.base64EncodedString()
     }
