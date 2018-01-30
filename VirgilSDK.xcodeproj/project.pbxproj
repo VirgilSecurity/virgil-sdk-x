@@ -40,11 +40,6 @@
 		1624B83F2012215B007D223C /* CardManager+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83D2012215B007D223C /* CardManager+Queries.swift */; };
 		1624B8402012215B007D223C /* CardManager+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83D2012215B007D223C /* CardManager+Queries.swift */; };
 		1624B8412012215B007D223C /* CardManager+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83D2012215B007D223C /* CardManager+Queries.swift */; };
-		1658681C201771C800A27B00 /* ServiceConnectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1658681B201771C800A27B00 /* ServiceConnectionTest.swift */; };
-		1658681D2018B2BE00A27B00 /* VSS001_ClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429123591F4B0B3700103BE0 /* VSS001_ClientTests.swift */; };
-		1658681F2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */; };
-		165868202018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */; };
-		165868212018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */; };
 		165868332018CF8600A27B00 /* t1_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 165868322018CF8600A27B00 /* t1_exported_as_json.txt */; };
 		165868342018CF8600A27B00 /* t1_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 165868322018CF8600A27B00 /* t1_exported_as_json.txt */; };
 		165868352018CF8600A27B00 /* t1_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 165868322018CF8600A27B00 /* t1_exported_as_json.txt */; };
@@ -64,12 +59,29 @@
 		168491C8201A26A000D6938B /* TokenContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168491C3201A252900D6938B /* TokenContext.swift */; };
 		168491C9201A26A100D6938B /* TokenContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168491C3201A252900D6938B /* TokenContext.swift */; };
 		168491CA201A26A100D6938B /* TokenContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168491C3201A252900D6938B /* TokenContext.swift */; };
-		16973142201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */; };
-		16973143201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */; };
-		16973144201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */; };
-		16AA6B092015F72400A0BA69 /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
-		16AA6B0A2015F72400A0BA69 /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
-		16AA6B0B2015F72400A0BA69 /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
+		16AE0B222020D99B005B311B /* VSSKeyAttrsPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 429123B41F4D737F00103BE0 /* VSSKeyAttrsPrivate.h */; };
+		16AE0B232020D99C005B311B /* VSSKeyAttrsPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 429123B41F4D737F00103BE0 /* VSSKeyAttrsPrivate.h */; };
+		16AE0B262020D9A1005B311B /* VSSKeyStoragePlatformSpecificPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 429123AE1F4D72AA00103BE0 /* VSSKeyStoragePlatformSpecificPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16AE0B272020D9A1005B311B /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4291237E1F4C53E100103BE0 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16AE0B282020D9A2005B311B /* VSSKeyStoragePlatformSpecificPublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 429123AE1F4D72AA00103BE0 /* VSSKeyStoragePlatformSpecificPublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16AE0B292020D9A2005B311B /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4291237E1F4C53E100103BE0 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16AE0B2A2020D9A6005B311B /* VSSKeyStorageConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 4263A1F41EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16AE0B2B2020D9A7005B311B /* VSSKeyStorageConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 4263A1F41EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16AE0B2C2020D9A9005B311B /* VSSKeyAttrs.h in Headers */ = {isa = PBXBuildFile; fileRef = 429123AA1F4D722000103BE0 /* VSSKeyAttrs.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16AE0B2D2020D9AA005B311B /* VSSKeyAttrs.h in Headers */ = {isa = PBXBuildFile; fileRef = 429123AA1F4D722000103BE0 /* VSSKeyAttrs.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16AE0B2E2020D9DA005B311B /* VSSKeyStoragePublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16AE0B2F2020D9DB005B311B /* VSSKeyStoragePublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16AE0B302020D9E9005B311B /* VSSKeyEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB541DCA01AF00CCACB8 /* VSSKeyEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16AE0B312020D9EA005B311B /* VSSKeyEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB541DCA01AF00CCACB8 /* VSSKeyEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16AE0B322020DA95005B311B /* VSSKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4263A1F31EBC7FFB00B13FF1 /* VSSKeyStorage.m */; };
+		16AE0B332020DA96005B311B /* VSSKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4263A1F31EBC7FFB00B13FF1 /* VSSKeyStorage.m */; };
+		16AE0B342020DA9A005B311B /* VSSKeyStorageConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4263A1F51EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.m */; };
+		16AE0B352020DA9B005B311B /* VSSKeyStorageConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4263A1F51EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.m */; };
+		16AE0B362020DA9E005B311B /* VSSKeyAttrs.m in Sources */ = {isa = PBXBuildFile; fileRef = 429123AC1F4D726300103BE0 /* VSSKeyAttrs.m */; };
+		16AE0B372020DA9E005B311B /* VSSKeyAttrs.m in Sources */ = {isa = PBXBuildFile; fileRef = 429123AC1F4D726300103BE0 /* VSSKeyAttrs.m */; };
+		16AE0B3C2020DC46005B311B /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4284C38E1F6BE97100B75491 /* VirgilCryptoAPI.framework */; };
+		16AE0B3F2020DC47005B311B /* Mailinator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16AE0B3D2020DC47005B311B /* Mailinator.framework */; };
+		16AE0B402020DC47005B311B /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16AE0B3E2020DC47005B311B /* VirgilCrypto.framework */; };
 		16B3FD422004D5E0008F0357 /* AccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD412004D5E0008F0357 /* AccessTokenProvider.swift */; };
 		16B3FD432004D5E0008F0357 /* AccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD412004D5E0008F0357 /* AccessTokenProvider.swift */; };
 		16B3FD442004D5E0008F0357 /* AccessTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD412004D5E0008F0357 /* AccessTokenProvider.swift */; };
@@ -127,9 +139,9 @@
 		16B3FD95200CE74C008F0357 /* JwtVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD92200CE74C008F0357 /* JwtVerifier.swift */; };
 		16B3FD96200CE74C008F0357 /* JwtVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FD92200CE74C008F0357 /* JwtVerifier.swift */; };
 		16B3FDA3200E0769008F0357 /* VSSPrivateKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 16B3FDA2200E0769008F0357 /* VSSPrivateKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		16B3FDA4200E0769008F0357 /* VSSPrivateKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 16B3FDA2200E0769008F0357 /* VSSPrivateKeyStorage.h */; };
-		16B3FDA5200E0769008F0357 /* VSSPrivateKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 16B3FDA2200E0769008F0357 /* VSSPrivateKeyStorage.h */; };
-		16B3FDA6200E0769008F0357 /* VSSPrivateKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 16B3FDA2200E0769008F0357 /* VSSPrivateKeyStorage.h */; };
+		16B3FDA4200E0769008F0357 /* VSSPrivateKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 16B3FDA2200E0769008F0357 /* VSSPrivateKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16B3FDA5200E0769008F0357 /* VSSPrivateKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 16B3FDA2200E0769008F0357 /* VSSPrivateKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		16B3FDA6200E0769008F0357 /* VSSPrivateKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 16B3FDA2200E0769008F0357 /* VSSPrivateKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		16B3FDA8200E0B7A008F0357 /* VSSPrivateKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FDA7200E0B7A008F0357 /* VSSPrivateKeyStorage.m */; };
 		16B3FDA9200E0B7A008F0357 /* VSSPrivateKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FDA7200E0B7A008F0357 /* VSSPrivateKeyStorage.m */; };
 		16B3FDAA200E0B7A008F0357 /* VSSPrivateKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FDA7200E0B7A008F0357 /* VSSPrivateKeyStorage.m */; };
@@ -141,8 +153,6 @@
 		423CEB5A1DCA06C900CCACB8 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
 		423CEB5D1DCA07C200CCACB8 /* VSSKeyStoragePublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423CEB5F1DCA07C200CCACB8 /* VSSKeyEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB541DCA01AF00CCACB8 /* VSSKeyEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		424EF9AD1E0D76B2005E8A8B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
-		424EF9AE1E0D76B7005E8A8B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		42505ED31ECDECF600BCA031 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */; };
 		42505ED41ECDED0200BCA031 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422499D11EB39BD50032F556 /* VirgilCrypto.framework */; };
 		42505EDB1ECDEF8B00BCA031 /* VirgilCrypto.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 422499D11EB39BD50032F556 /* VirgilCrypto.framework */; };
@@ -159,8 +169,6 @@
 		4284C34C1F6AAB8000B75491 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C34A1F6AAB7B00B75491 /* Log.swift */; };
 		4284C34E1F6AB69600B75491 /* RawSignedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C34D1F6AB69600B75491 /* RawSignedModel.swift */; };
 		4284C3541F6AD2C900B75491 /* RawSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3531F6AD2C900B75491 /* RawSignature.swift */; };
-		4284C3561F6BDBC500B75491 /* VSS001_CardClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */; };
-		4284C3571F6BDBC500B75491 /* VSS001_CardClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */; };
 		4284C36E1F6BE54800B75491 /* RawSignedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C34D1F6AB69600B75491 /* RawSignedModel.swift */; };
 		4284C36F1F6BE54D00B75491 /* RawSignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3531F6AD2C900B75491 /* RawSignature.swift */; };
 		4284C37A1F6BE88800B75491 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CF01EE1F6A8CDC003ABB19 /* VirgilCryptoAPI.framework */; };
@@ -187,7 +195,6 @@
 		4284C3C31F6BEA2100B75491 /* ServiceConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01FF1F6AA2AD003ABB19 /* ServiceConnection.swift */; };
 		4284C3C41F6BEA2200B75491 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01FC1F6AA209003ABB19 /* Connection.swift */; };
 		4284C3C51F6BEA2200B75491 /* ServiceConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01FF1F6AA2AD003ABB19 /* ServiceConnection.swift */; };
-		4284C3C61F6BEA2D00B75491 /* VSS001_CardClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */; };
 		4284C3C81F6BEFD600B75491 /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 429123621F4B0B3700103BE0 /* VSSTestsConst.m */; };
 		4284C3DD1F6BF31100B75491 /* SignerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3D21F6BF29200B75491 /* SignerType.swift */; };
 		4284C3EA1F6BF31500B75491 /* SignerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3D21F6BF29200B75491 /* SignerType.swift */; };
@@ -207,8 +214,6 @@
 		4284C4211F6C03F400B75491 /* Data+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C41C1F6C03DF00B75491 /* Data+hex.swift */; };
 		4284C4221F6C03F500B75491 /* Data+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C41C1F6C03DF00B75491 /* Data+hex.swift */; };
 		4284C4231F6C03F600B75491 /* Data+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C41C1F6C03DF00B75491 /* Data+hex.swift */; };
-		4284C4251F6C0C6400B75491 /* DataExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4241F6C0C6400B75491 /* DataExtensionsTests.swift */; };
-		4284C4261F6C0C6400B75491 /* DataExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4241F6C0C6400B75491 /* DataExtensionsTests.swift */; };
 		4284C4301F6C126800B75491 /* SnapshotUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4281F6C11F400B75491 /* SnapshotUtils.swift */; };
 		4284C4311F6C126900B75491 /* SnapshotUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4281F6C11F400B75491 /* SnapshotUtils.swift */; };
 		4284C4321F6C126A00B75491 /* SnapshotUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4281F6C11F400B75491 /* SnapshotUtils.swift */; };
@@ -229,7 +234,6 @@
 		4284C4601F6FECC700B75491 /* CardVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4541F6FECB600B75491 /* CardVerifier.swift */; };
 		4284C4611F6FECC700B75491 /* ValidationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4551F6FECB600B75491 /* ValidationResult.swift */; };
 		4284C4621F6FECC700B75491 /* VirgilCardVerifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4581F6FECC300B75491 /* VirgilCardVerifier.swift */; };
-		4284C4631F6FFD0200B75491 /* DataExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4241F6C0C6400B75491 /* DataExtensionsTests.swift */; };
 		4284C4651F7003D700B75491 /* VerifierCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4641F7003D700B75491 /* VerifierCredentials.swift */; };
 		4284C4661F70057800B75491 /* VerifierCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4641F7003D700B75491 /* VerifierCredentials.swift */; };
 		4284C4671F70057900B75491 /* VerifierCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4641F7003D700B75491 /* VerifierCredentials.swift */; };
@@ -351,7 +355,6 @@
 		1624B83220120898007D223C /* GenericOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericOperation.swift; sourceTree = "<group>"; };
 		1624B8372012151B007D223C /* CallbackOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallbackOperation.swift; sourceTree = "<group>"; };
 		1624B83D2012215B007D223C /* CardManager+Queries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardManager+Queries.swift"; sourceTree = "<group>"; };
-		1658681B201771C800A27B00 /* ServiceConnectionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceConnectionTest.swift; sourceTree = "<group>"; };
 		1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS004_CrossCompatibilityTests.m; sourceTree = "<group>"; };
 		165868322018CF8600A27B00 /* t1_exported_as_json.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t1_exported_as_json.txt; sourceTree = "<group>"; };
 		166C67BD201F5BB200D79608 /* VSSTestUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSTestUtils.h; sourceTree = "<group>"; };
@@ -362,6 +365,8 @@
 		168491C3201A252900D6938B /* TokenContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenContext.swift; sourceTree = "<group>"; };
 		16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS003_ModelSigner_CardVerifierTests.m; sourceTree = "<group>"; };
 		16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS002_JWTTests.m; sourceTree = "<group>"; };
+		16AE0B3D2020DC47005B311B /* Mailinator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mailinator.framework; path = Carthage/Build/tvOS/Mailinator.framework; sourceTree = "<group>"; };
+		16AE0B3E2020DC47005B311B /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = Carthage/Build/tvOS/VirgilCrypto.framework; sourceTree = "<group>"; };
 		16B3FD412004D5E0008F0357 /* AccessTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenProvider.swift; sourceTree = "<group>"; };
 		16B3FD472004D5FC008F0357 /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
 		16B3FD4E200503B8008F0357 /* JWT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JWT.swift; sourceTree = "<group>"; };
@@ -422,17 +427,9 @@
 		429123561F4B0B3700103BE0 /* TestConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestConfig.plist; sourceTree = "<group>"; };
 		429123571F4B0B3700103BE0 /* testData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testData.txt; sourceTree = "<group>"; };
 		429123581F4B0B3700103BE0 /* PrivateApiDecl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateApiDecl.h; sourceTree = "<group>"; };
-		429123591F4B0B3700103BE0 /* VSS001_ClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS001_ClientTests.swift; sourceTree = "<group>"; };
-		4291235A1F4B0B3700103BE0 /* VSS002_ClientWOTokenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS002_ClientWOTokenTests.swift; sourceTree = "<group>"; };
-		4291235B1F4B0B3700103BE0 /* VSS003_CryptoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS003_CryptoTests.swift; sourceTree = "<group>"; };
-		4291235C1F4B0B3700103BE0 /* VSS004_ModelsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS004_ModelsTests.swift; sourceTree = "<group>"; };
-		4291235D1F4B0B3700103BE0 /* VSS005_CompatibilityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS005_CompatibilityTests.swift; sourceTree = "<group>"; };
 		4291235E1F4B0B3700103BE0 /* VSS006_KeyStorageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS006_KeyStorageTests.swift; sourceTree = "<group>"; };
-		4291235F1F4B0B3700103BE0 /* VSS007_HighLevelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS007_HighLevelTests.swift; sourceTree = "<group>"; };
-		429123601F4B0B3700103BE0 /* VSS008_HighLevelCryptoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS008_HighLevelCryptoTests.swift; sourceTree = "<group>"; };
 		429123611F4B0B3700103BE0 /* VSSTestsConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSTestsConst.h; sourceTree = "<group>"; };
 		429123621F4B0B3700103BE0 /* VSSTestsConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSTestsConst.m; sourceTree = "<group>"; };
-		429123631F4B0B3700103BE0 /* VSSTestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSSTestUtils.swift; sourceTree = "<group>"; };
 		4291237E1F4C53E100103BE0 /* VSSKeyStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorage.h; sourceTree = "<group>"; };
 		429123801F4C53E700103BE0 /* VSSKeyStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorage.h; sourceTree = "<group>"; };
 		429123AA1F4D722000103BE0 /* VSSKeyAttrs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeyAttrs.h; sourceTree = "<group>"; };
@@ -494,6 +491,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16AE0B3F2020DC47005B311B /* Mailinator.framework in Frameworks */,
+				16AE0B402020DC47005B311B /* VirgilCrypto.framework in Frameworks */,
+				16AE0B3C2020DC46005B311B /* VirgilCryptoAPI.framework in Frameworks */,
 				4284C3A81F6BE9A200B75491 /* VirgilSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -705,24 +705,15 @@
 				429123541F4B0B3700103BE0 /* Data */,
 				429123531F4B0B3700103BE0 /* BridgingHeader.h */,
 				429123581F4B0B3700103BE0 /* PrivateApiDecl.h */,
-				429123591F4B0B3700103BE0 /* VSS001_ClientTests.swift */,
-				4291235A1F4B0B3700103BE0 /* VSS002_ClientWOTokenTests.swift */,
-				4291235B1F4B0B3700103BE0 /* VSS003_CryptoTests.swift */,
-				4291235C1F4B0B3700103BE0 /* VSS004_ModelsTests.swift */,
-				4291235D1F4B0B3700103BE0 /* VSS005_CompatibilityTests.swift */,
 				4291235E1F4B0B3700103BE0 /* VSS006_KeyStorageTests.swift */,
-				4291235F1F4B0B3700103BE0 /* VSS007_HighLevelTests.swift */,
-				429123601F4B0B3700103BE0 /* VSS008_HighLevelCryptoTests.swift */,
 				42B6CF681F58771A0024857B /* VSS009_KeyStorageiOSSpecificTests.swift */,
 				429123611F4B0B3700103BE0 /* VSSTestsConst.h */,
 				429123621F4B0B3700103BE0 /* VSSTestsConst.m */,
-				429123631F4B0B3700103BE0 /* VSSTestUtils.swift */,
 				4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */,
 				16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */,
 				16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */,
 				1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */,
 				4284C4241F6C0C6400B75491 /* DataExtensionsTests.swift */,
-				1658681B201771C800A27B00 /* ServiceConnectionTest.swift */,
 				166C67BD201F5BB200D79608 /* VSSTestUtils.h */,
 				166C67BE201F5C0500D79608 /* VSSTestUtils.m */,
 			);
@@ -787,6 +778,8 @@
 		ECBE87D3B790F5C27AAB2582 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				16AE0B3D2020DC47005B311B /* Mailinator.framework */,
+				16AE0B3E2020DC47005B311B /* VirgilCrypto.framework */,
 				4284C39D1F6BE98B00B75491 /* VirgilCryptoAPI.framework */,
 				4284C38E1F6BE97100B75491 /* VirgilCryptoAPI.framework */,
 				42CF01F01F6A8CE8003ABB19 /* VirgilCryptoAPI.framework */,
@@ -819,7 +812,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16AE0B222020D99B005B311B /* VSSKeyAttrsPrivate.h in Headers */,
+				16AE0B262020D9A1005B311B /* VSSKeyStoragePlatformSpecificPublic.h in Headers */,
+				16AE0B302020D9E9005B311B /* VSSKeyEntry.h in Headers */,
+				16AE0B2C2020D9A9005B311B /* VSSKeyAttrs.h in Headers */,
 				16B3FDA5200E0769008F0357 /* VSSPrivateKeyStorage.h in Headers */,
+				16AE0B2E2020D9DA005B311B /* VSSKeyStoragePublic.h in Headers */,
+				16AE0B272020D9A1005B311B /* VSSKeyStorage.h in Headers */,
+				16AE0B2A2020D9A6005B311B /* VSSKeyStorageConfiguration.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -827,7 +827,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16AE0B232020D99C005B311B /* VSSKeyAttrsPrivate.h in Headers */,
+				16AE0B282020D9A2005B311B /* VSSKeyStoragePlatformSpecificPublic.h in Headers */,
+				16AE0B312020D9EA005B311B /* VSSKeyEntry.h in Headers */,
+				16AE0B2D2020D9AA005B311B /* VSSKeyAttrs.h in Headers */,
 				16B3FDA6200E0769008F0357 /* VSSPrivateKeyStorage.h in Headers */,
+				16AE0B2F2020D9DB005B311B /* VSSKeyStoragePublic.h in Headers */,
+				16AE0B292020D9A2005B311B /* VSSKeyStorage.h in Headers */,
+				16AE0B2B2020D9A7005B311B /* VSSKeyStorageConfiguration.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -839,10 +846,8 @@
 				16B3FDA3200E0769008F0357 /* VSSPrivateKeyStorage.h in Headers */,
 				4263A1F71EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.h in Headers */,
 				429123B51F4D7A4800103BE0 /* VSSKeyAttrsPrivate.h in Headers */,
-				424EF9AE1E0D76B7005E8A8B /* (null) in Headers */,
 				423CEB5D1DCA07C200CCACB8 /* VSSKeyStoragePublic.h in Headers */,
 				423CEB5F1DCA07C200CCACB8 /* VSSKeyEntry.h in Headers */,
-				424EF9AD1E0D76B2005E8A8B /* (null) in Headers */,
 				4291237F1F4C53E100103BE0 /* VSSKeyStorage.h in Headers */,
 				429123AB1F4D722000103BE0 /* VSSKeyAttrs.h in Headers */,
 			);
@@ -1202,11 +1207,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16973143201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */,
-				4284C3571F6BDBC500B75491 /* VSS001_CardClientTests.m in Sources */,
-				16AA6B0A2015F72400A0BA69 /* VSS002_JWTTests.m in Sources */,
-				4284C4261F6C0C6400B75491 /* DataExtensionsTests.swift in Sources */,
-				165868202018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m in Sources */,
 				166C67C0201F5C0500D79608 /* VSSTestUtils.m in Sources */,
 				4291237B1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
 			);
@@ -1225,6 +1225,7 @@
 				16B3FD51200503B8008F0357 /* JWT.swift in Sources */,
 				4284C3B21F6BE9F300B75491 /* RawSignedModel.swift in Sources */,
 				4284C4BF1F72936600B75491 /* CardClient+Queries.swift in Sources */,
+				16AE0B342020DA9A005B311B /* VSSKeyStorageConfiguration.m in Sources */,
 				4284C3C31F6BEA2100B75491 /* ServiceConnection.swift in Sources */,
 				16B3FD6A20079DF5008F0357 /* CardSignature.swift in Sources */,
 				4284C3C21F6BEA2100B75491 /* Connection.swift in Sources */,
@@ -1240,6 +1241,7 @@
 				16B3FD95200CE74C008F0357 /* JwtVerifier.swift in Sources */,
 				4284C4671F70057900B75491 /* VerifierCredentials.swift in Sources */,
 				168491C9201A26A100D6938B /* TokenContext.swift in Sources */,
+				16AE0B372020DA9E005B311B /* VSSKeyAttrs.m in Sources */,
 				4284C3B31F6BE9F300B75491 /* RawSignature.swift in Sources */,
 				4284C45E1F6FECC700B75491 /* ValidationResult.swift in Sources */,
 				4284C3BA1F6BEA0100B75491 /* CardManagerParams.swift in Sources */,
@@ -1252,6 +1254,7 @@
 				4284C3EA1F6BF31500B75491 /* SignerType.swift in Sources */,
 				4284C4221F6C03F500B75491 /* Data+hex.swift in Sources */,
 				1624B82F2010AE75007D223C /* AsyncOperation.swift in Sources */,
+				16AE0B322020DA95005B311B /* VSSKeyStorage.m in Sources */,
 				4284C3FD1F6C00B800B75491 /* RawCardContent.swift in Sources */,
 				16B3FD562005059C008F0357 /* JwtHeaderContent.swift in Sources */,
 				16B3FD77200CB88D008F0357 /* ConstAccessTokenProvider.swift in Sources */,
@@ -1275,6 +1278,7 @@
 				16B3FD52200503B8008F0357 /* JWT.swift in Sources */,
 				4284C3B41F6BE9F400B75491 /* RawSignedModel.swift in Sources */,
 				4284C4C01F72936600B75491 /* CardClient+Queries.swift in Sources */,
+				16AE0B352020DA9B005B311B /* VSSKeyStorageConfiguration.m in Sources */,
 				4284C3C51F6BEA2200B75491 /* ServiceConnection.swift in Sources */,
 				16B3FD6B20079DF5008F0357 /* CardSignature.swift in Sources */,
 				4284C3C41F6BEA2200B75491 /* Connection.swift in Sources */,
@@ -1290,6 +1294,7 @@
 				16B3FD96200CE74C008F0357 /* JwtVerifier.swift in Sources */,
 				4284C4681F70057900B75491 /* VerifierCredentials.swift in Sources */,
 				168491CA201A26A100D6938B /* TokenContext.swift in Sources */,
+				16AE0B362020DA9E005B311B /* VSSKeyAttrs.m in Sources */,
 				4284C3B51F6BE9F400B75491 /* RawSignature.swift in Sources */,
 				4284C4611F6FECC700B75491 /* ValidationResult.swift in Sources */,
 				4284C3BD1F6BEA0200B75491 /* CardManagerParams.swift in Sources */,
@@ -1302,6 +1307,7 @@
 				4284C3ED1F6BF31500B75491 /* SignerType.swift in Sources */,
 				4284C4231F6C03F600B75491 /* Data+hex.swift in Sources */,
 				1624B8302010AE75007D223C /* AsyncOperation.swift in Sources */,
+				16AE0B332020DA96005B311B /* VSSKeyStorage.m in Sources */,
 				4284C3FE1F6C00B900B75491 /* RawCardContent.swift in Sources */,
 				16B3FD572005059C008F0357 /* JwtHeaderContent.swift in Sources */,
 				16B3FD78200CB88D008F0357 /* ConstAccessTokenProvider.swift in Sources */,
@@ -1316,13 +1322,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16973144201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */,
 				4284C3C81F6BEFD600B75491 /* VSSTestsConst.m in Sources */,
-				16AA6B0B2015F72400A0BA69 /* VSS002_JWTTests.m in Sources */,
-				4284C4631F6FFD0200B75491 /* DataExtensionsTests.swift in Sources */,
-				165868212018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m in Sources */,
 				166C67C1201F5C0500D79608 /* VSSTestUtils.m in Sources */,
-				4284C3C61F6BEA2D00B75491 /* VSS001_CardClientTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1330,15 +1331,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1658681D2018B2BE00A27B00 /* VSS001_ClientTests.swift in Sources */,
-				16973142201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m in Sources */,
-				1658681F2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m in Sources */,
-				4284C3561F6BDBC500B75491 /* VSS001_CardClientTests.m in Sources */,
-				16AA6B092015F72400A0BA69 /* VSS002_JWTTests.m in Sources */,
-				4284C4251F6C0C6400B75491 /* DataExtensionsTests.swift in Sources */,
 				166C67BF201F5C0500D79608 /* VSSTestUtils.m in Sources */,
 				4291237A1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
-				1658681C201771C800A27B00 /* ServiceConnectionTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1845,6 +1839,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1869,6 +1867,10 @@
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/tvOS",
+				);
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilSDK-tvOS-Tests";
 				PRODUCT_MODULE_NAME = VirgilSDK_tvOS_Tests;

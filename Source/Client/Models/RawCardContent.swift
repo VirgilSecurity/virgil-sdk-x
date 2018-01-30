@@ -40,7 +40,7 @@ import Foundation
     }
     
     
-    @objc func snapshot() -> Data? {
+    @objc public func snapshot() -> Data? {
         return try? SnapshotUtils.takeSnapshot(object: self)
     }
 }
