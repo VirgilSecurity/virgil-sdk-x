@@ -12,14 +12,14 @@
 #import "VSSTestsConst.h"
 
 @import VirgilSDK;
-@import VirgilCrypto;
+@import VirgilCryptoApiImpl;
 
 @interface VSSTestUtils : NSObject
 
-@property (nonatomic) VSCVirgilCrypto * __nonnull crypto;
+@property (nonatomic) VSMVirgilCrypto * __nonnull crypto;
 @property (nonatomic) VSSTestsConst * __nonnull consts;
 
-- (VSSRawSignedModel * __nonnull)instantiateRawSignedModelWithKeyPair:(VSCVirgilKeyPair * __nullable)keyPair identity:(NSString *_Nullable)identity error:(NSError * __nullable * __nullable)errorPtr;
+- (VSSRawSignedModel * __nonnull)instantiateRawSignedModelWithKeyPair:(VSMVirgilKeyPair * __nullable)keyPair identity:(NSString *_Nullable)identity error:(NSError * __nullable * __nullable)errorPtr;
 
 - (NSString * __nonnull)getTokenWithIdentity:(NSString *_Nonnull)identity error:(NSError * __nullable * __nullable)errorPtr;
 
@@ -31,7 +31,7 @@
 
 - (instancetype __nonnull)initWith NS_UNAVAILABLE;
 
-- (instancetype __nonnull)initWithCrypto:(VSCVirgilCrypto * __nonnull)crypto consts:(VSSTestsConst * __nonnull)consts;
+- (instancetype __nonnull)initWithCrypto:(VSMVirgilCrypto * __nonnull)crypto consts:(VSSTestsConst * __nonnull)consts;
 
 @end
 

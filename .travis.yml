@@ -41,7 +41,7 @@ before_install:
   - xcodebuild -showsdks
 
 script:
-  - carthage update --platform "$CARTHAGE_PLATFORM_NAME"
+  - carthage update --no-build
   
   - |
     if [ $TWO_STEP_BUILD_ENABLED == "YES" ]; then
