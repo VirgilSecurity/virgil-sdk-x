@@ -160,6 +160,10 @@
 		4227273C20210EC300265E25 /* Mailinator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4227272320210AAB00265E25 /* Mailinator.framework */; };
 		4227273D20210EC300265E25 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4227270420210AA300265E25 /* VirgilCrypto.framework */; };
 		4227273E20210EC300265E25 /* VirgilCryptoApiImpl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4227271220210AA300265E25 /* VirgilCryptoApiImpl.framework */; };
+		42272802202120F800265E25 /* VirgilSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7E3721DB9023400D70C12 /* VirgilSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42272818202120F900265E25 /* VirgilSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7E3721DB9023400D70C12 /* VirgilSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42272819202120FA00265E25 /* VirgilSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7E3721DB9023400D70C12 /* VirgilSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4227281A202120FA00265E25 /* VirgilSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7E3721DB9023400D70C12 /* VirgilSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423CEB5A1DCA06C900CCACB8 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
 		423CEB5D1DCA07C200CCACB8 /* VSSKeyStoragePublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423CEB5F1DCA07C200CCACB8 /* VSSKeyEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB541DCA01AF00CCACB8 /* VSSKeyEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1054,6 +1058,7 @@
 				4263A1FF1EBC801D00B13FF1 /* VSSKeyStorageConfiguration.h in Headers */,
 				429123B11F4D72DA00103BE0 /* VSSKeyStoragePlatformSpecificPublic.h in Headers */,
 				42249AF21EB39ED50032F556 /* VSSKeyEntry.h in Headers */,
+				42272818202120F900265E25 /* VirgilSDK.h in Headers */,
 				429123821F4C540100103BE0 /* VSSKeyStorage.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1070,6 +1075,7 @@
 				16AE0B2E2020D9DA005B311B /* VSSKeyStoragePublic.h in Headers */,
 				16AE0B272020D9A1005B311B /* VSSKeyStorage.h in Headers */,
 				16AE0B2A2020D9A6005B311B /* VSSKeyStorageConfiguration.h in Headers */,
+				42272819202120FA00265E25 /* VirgilSDK.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1085,6 +1091,7 @@
 				16AE0B2F2020D9DB005B311B /* VSSKeyStoragePublic.h in Headers */,
 				16AE0B292020D9A2005B311B /* VSSKeyStorage.h in Headers */,
 				16AE0B2B2020D9A7005B311B /* VSSKeyStorageConfiguration.h in Headers */,
+				4227281A202120FA00265E25 /* VirgilSDK.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1100,6 +1107,7 @@
 				423CEB5F1DCA07C200CCACB8 /* VSSKeyEntry.h in Headers */,
 				4291237F1F4C53E100103BE0 /* VSSKeyStorage.h in Headers */,
 				429123AB1F4D722000103BE0 /* VSSKeyAttrs.h in Headers */,
+				42272802202120F800265E25 /* VirgilSDK.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1999,7 +2007,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDK;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = Source/VirgilSDK.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2026,7 +2033,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDK;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = Source/VirgilSDK.h;
 				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -2372,7 +2378,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDK;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = Source/VirgilSDK.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2398,7 +2403,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDK;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = Source/VirgilSDK.h;
 				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

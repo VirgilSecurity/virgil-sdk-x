@@ -8,3 +8,4 @@
 
 #import "VSSKeyEntry.h"
 #import "VSSKeyStoragePlatformSpecificPublic.h"
+#import "VSSPrivateKeyStorage.h"
