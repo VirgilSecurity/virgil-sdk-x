@@ -1,2 +1,2 @@
 github "SanjoDeundiak/MailinatorClient" "master"
-github "VirgilSecurity/virgil-foundation-x" "v3-separate-frameworks"
+github "VirgilSecurity/virgil-foundation-x" "v3"
