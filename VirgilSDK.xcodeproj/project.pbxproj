@@ -143,6 +143,13 @@
 		16B3FDA9200E0B7A008F0357 /* VSSPrivateKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FDA7200E0B7A008F0357 /* VSSPrivateKeyStorage.m */; };
 		16B3FDAA200E0B7A008F0357 /* VSSPrivateKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FDA7200E0B7A008F0357 /* VSSPrivateKeyStorage.m */; };
 		16B3FDAB200E0B7A008F0357 /* VSSPrivateKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FDA7200E0B7A008F0357 /* VSSPrivateKeyStorage.m */; };
+		16C59E212020E652004820AA /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
+		16C59E2B2020E7B5004820AA /* DataExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4241F6C0C6400B75491 /* DataExtensionsTests.swift */; };
+		16C59E2C2020E7B6004820AA /* DataExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4241F6C0C6400B75491 /* DataExtensionsTests.swift */; };
+		16C59E2D2020E7B7004820AA /* DataExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4241F6C0C6400B75491 /* DataExtensionsTests.swift */; };
+		16C59E4D2021DA0D004820AA /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
+		16C59E4E2021DA0E004820AA /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
+		16C59E4F2021DA0E004820AA /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
 		422499C31EB39B380032F556 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422499BA1EB39B380032F556 /* VirgilSDK.framework */; };
 		42249A681EB39D6F0032F556 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
 		42249AF01EB39ED50032F556 /* VSSKeyStoragePublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -257,12 +264,8 @@
 		4284C4BE1F72936600B75491 /* CardClient+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4BC1F72936600B75491 /* CardClient+Queries.swift */; };
 		4284C4BF1F72936600B75491 /* CardClient+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4BC1F72936600B75491 /* CardClient+Queries.swift */; };
 		4284C4C01F72936600B75491 /* CardClient+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4BC1F72936600B75491 /* CardClient+Queries.swift */; };
-		429123641F4B0B3700103BE0 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 429123551F4B0B3700103BE0 /* sdk_compatibility_data.json */; };
-		429123651F4B0B3700103BE0 /* sdk_compatibility_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 429123551F4B0B3700103BE0 /* sdk_compatibility_data.json */; };
 		429123661F4B0B3700103BE0 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
 		429123671F4B0B3700103BE0 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
-		429123681F4B0B3700103BE0 /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 429123571F4B0B3700103BE0 /* testData.txt */; };
-		429123691F4B0B3700103BE0 /* testData.txt in Resources */ = {isa = PBXBuildFile; fileRef = 429123571F4B0B3700103BE0 /* testData.txt */; };
 		4291237A1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 429123621F4B0B3700103BE0 /* VSSTestsConst.m */; };
 		4291237B1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 429123621F4B0B3700103BE0 /* VSSTestsConst.m */; };
 		4291237F1F4C53E100103BE0 /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4291237E1F4C53E100103BE0 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -629,9 +632,7 @@
 		4284C4B11F728AD200B75491 /* RawServiceError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawServiceError.swift; sourceTree = "<group>"; };
 		4284C4BC1F72936600B75491 /* CardClient+Queries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardClient+Queries.swift"; sourceTree = "<group>"; };
 		429123531F4B0B3700103BE0 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
-		429123551F4B0B3700103BE0 /* sdk_compatibility_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sdk_compatibility_data.json; sourceTree = "<group>"; };
 		429123561F4B0B3700103BE0 /* TestConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestConfig.plist; sourceTree = "<group>"; };
-		429123571F4B0B3700103BE0 /* testData.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testData.txt; sourceTree = "<group>"; };
 		429123581F4B0B3700103BE0 /* PrivateApiDecl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateApiDecl.h; sourceTree = "<group>"; };
 		4291235E1F4B0B3700103BE0 /* VSS006_KeyStorageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS006_KeyStorageTests.swift; sourceTree = "<group>"; };
 		429123611F4B0B3700103BE0 /* VSSTestsConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSTestsConst.h; sourceTree = "<group>"; };
@@ -922,9 +923,7 @@
 				165868322018CF8600A27B00 /* t1_exported_as_json.txt */,
 				168491BF2019FDC500D6938B /* t2_exported_as_str.txt */,
 				168491B72019E32B00D6938B /* t2_exported_as_json.txt */,
-				429123551F4B0B3700103BE0 /* sdk_compatibility_data.json */,
 				429123561F4B0B3700103BE0 /* TestConfig.plist */,
-				429123571F4B0B3700103BE0 /* testData.txt */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -959,17 +958,17 @@
 				429123541F4B0B3700103BE0 /* Data */,
 				429123531F4B0B3700103BE0 /* BridgingHeader.h */,
 				429123581F4B0B3700103BE0 /* PrivateApiDecl.h */,
-				4291235E1F4B0B3700103BE0 /* VSS006_KeyStorageTests.swift */,
-				42B6CF681F58771A0024857B /* VSS009_KeyStorageiOSSpecificTests.swift */,
-				429123611F4B0B3700103BE0 /* VSSTestsConst.h */,
-				429123621F4B0B3700103BE0 /* VSSTestsConst.m */,
 				4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */,
 				16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */,
 				16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */,
 				1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */,
+				4291235E1F4B0B3700103BE0 /* VSS006_KeyStorageTests.swift */,
+				42B6CF681F58771A0024857B /* VSS009_KeyStorageiOSSpecificTests.swift */,
 				4284C4241F6C0C6400B75491 /* DataExtensionsTests.swift */,
 				166C67BD201F5BB200D79608 /* VSSTestUtils.h */,
 				166C67BE201F5C0500D79608 /* VSSTestUtils.m */,
+				429123611F4B0B3700103BE0 /* VSSTestsConst.h */,
+				429123621F4B0B3700103BE0 /* VSSTestsConst.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1511,11 +1510,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				429123691F4B0B3700103BE0 /* testData.txt in Resources */,
 				429123671F4B0B3700103BE0 /* TestConfig.plist in Resources */,
 				168491BD2019FC9A00D6938B /* t1_exported_as_str.txt in Resources */,
 				165868342018CF8600A27B00 /* t1_exported_as_json.txt in Resources */,
-				429123651F4B0B3700103BE0 /* sdk_compatibility_data.json in Resources */,
 				168491B92019E32B00D6938B /* t2_exported_as_json.txt in Resources */,
 				168491C12019FDC600D6938B /* t2_exported_as_str.txt in Resources */,
 			);
@@ -1542,6 +1539,7 @@
 				168491BA2019E32B00D6938B /* t2_exported_as_json.txt in Resources */,
 				168491BE2019FC9A00D6938B /* t1_exported_as_str.txt in Resources */,
 				165868352018CF8600A27B00 /* t1_exported_as_json.txt in Resources */,
+				16C59E212020E652004820AA /* TestConfig.plist in Resources */,
 				168491C22019FDC600D6938B /* t2_exported_as_str.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1550,11 +1548,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				429123681F4B0B3700103BE0 /* testData.txt in Resources */,
 				429123661F4B0B3700103BE0 /* TestConfig.plist in Resources */,
 				168491BC2019FC9A00D6938B /* t1_exported_as_str.txt in Resources */,
 				165868332018CF8600A27B00 /* t1_exported_as_json.txt in Resources */,
-				429123641F4B0B3700103BE0 /* sdk_compatibility_data.json in Resources */,
 				168491B82019E32B00D6938B /* t2_exported_as_json.txt in Resources */,
 				168491C02019FDC600D6938B /* t2_exported_as_str.txt in Resources */,
 			);
@@ -1619,6 +1615,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16C59E2C2020E7B6004820AA /* DataExtensionsTests.swift in Sources */,
+				16C59E4E2021DA0E004820AA /* VSS002_JWTTests.m in Sources */,
 				166C67C0201F5C0500D79608 /* VSSTestUtils.m in Sources */,
 				4291237B1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
 			);
@@ -1734,6 +1732,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16C59E2D2020E7B7004820AA /* DataExtensionsTests.swift in Sources */,
+				16C59E4F2021DA0E004820AA /* VSS002_JWTTests.m in Sources */,
 				4284C3C81F6BEFD600B75491 /* VSSTestsConst.m in Sources */,
 				166C67C1201F5C0500D79608 /* VSSTestUtils.m in Sources */,
 			);
@@ -1743,6 +1743,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16C59E2B2020E7B5004820AA /* DataExtensionsTests.swift in Sources */,
+				16C59E4D2021DA0D004820AA /* VSS002_JWTTests.m in Sources */,
 				166C67BF201F5C0500D79608 /* VSSTestUtils.m in Sources */,
 				4291237A1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
 			);

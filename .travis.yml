@@ -33,6 +33,8 @@ env:
     - DESTINATION="OS=4.2,name=Apple Watch - 42mm"    SCHEME="$WATCHOS_FRAMEWORK_SCHEME"    SDK="$WATCHOS_SDK"    TWO_STEP_BUILD_ENABLED="NO"     CARTHAGE_PLATFORM_NAME="watchOS"    RUN_TESTS="NO"     PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"
 
 before_install:
+  - openssl aes-256-cbc -K $encrypted_b7c778396268_key -iv $encrypted_b7c778396268_iv
+     -in TestConfig.plist.enc -out TestConfig.plist -d
   - set -e
   - set -o pipefail
   - brew update

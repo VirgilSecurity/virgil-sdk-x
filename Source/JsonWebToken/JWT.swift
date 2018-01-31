@@ -11,8 +11,8 @@ import Foundation
 @objc(VSSJwt) public class Jwt: NSObject, AccessToken {
     @objc public let headerContent: JwtHeaderContent
     @objc public let bodyContent:   JwtBodyContent
-    @objc private(set) var string: String
-    @objc private(set) var signatureContent: Data?
+    @objc public private(set) var string: String
+    @objc public private(set) var signatureContent: Data?
     
     @objc public enum JwtError: Int, Error {
         case tokenCorrupted

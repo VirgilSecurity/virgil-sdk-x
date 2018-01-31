@@ -10,7 +10,7 @@ import Foundation
 
 @objc(VSSRawSignedModel) public class RawSignedModel: NSObject, Codable {
     @objc public let contentSnapshot: Data
-    @objc private(set) var signatures: [RawSignature]
+    @objc public private(set) var signatures: [RawSignature]
     
     private enum CodingKeys: String, CodingKey {
         case contentSnapshot = "content_snapshot"

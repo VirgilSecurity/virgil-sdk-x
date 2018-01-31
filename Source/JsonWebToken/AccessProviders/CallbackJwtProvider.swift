@@ -9,8 +9,8 @@
 import Foundation
 
 @objc(VSSCallbackJwtProvider) public class CallbackJwtProvider: NSObject, AccessTokenProvider {
-    @objc private(set) var token: Jwt?
-    @objc private(set) var getTokenCallback: ()->(String)
+    @objc public private(set) var token: Jwt?
+    @objc public private(set) var getTokenCallback: ()->(String)
     
     @objc public enum CallbackProviderError: Int, Error {
         case callbackReturnedCorruptedJwt

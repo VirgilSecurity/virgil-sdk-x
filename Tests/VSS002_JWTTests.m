@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 @import VirgilSDK;
-@import VirgilCrypto;
+@import VirgilCryptoApiImpl;
 
 #import "VSSTestsConst.h"
 
@@ -22,13 +22,13 @@
 - (void)test001 {
     NSTimeInterval ttl = 5;
     VSSCallbackJwtProvider *callbackJwtProvider = [[VSSCallbackJwtProvider alloc] initWithGetTokenCallback:^NSString*(void){
-        VSCVirgilCrypto *crypto = [[VSCVirgilCrypto alloc] init];
+        VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] init];
         
         NSError *error;
-        VSCVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&error];
+        VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&error];
         XCTAssert(error == nil);
         
-        VSCVirgilAccessTokenSigner *signer = [[VSCVirgilAccessTokenSigner alloc] init];
+        VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] init];
         VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] apiPublicKeyIdentifier:@"id" accessTokenSigner:signer appId:@"app_id" ttl:ttl];
         
         NSString *identity = [[NSUUID alloc] init].UUIDString;

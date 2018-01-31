@@ -124,7 +124,7 @@
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
     XCTAssert(error == nil);
     XCTAssert(rawCard.signatures.count == 1);
-
+    
     VSSRawSignedModel *publishedRawCard = [self.cardClient publishCardWithModel:rawCard token:strToken error:&error];
     XCTAssert(error == nil);
     VSSCard *card = [VSSCard parseWithCrypto:self.cardCrypto rawSignedModel:publishedRawCard];
@@ -219,6 +219,7 @@
     XCTAssert(error == nil);
     
     VSSRawSignedModel *responseRawCard = [self.cardClient publishCardWithModel:rawCard token:strToken error:&error];
+    
     //Services must fix it
     XCTAssert(error != nil);
     XCTAssert(responseRawCard == nil);
