@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 @import VirgilSDK;
+@import VirgilCryptoApiImpl;
 @import VirgilCrypto;
 
 #import "VSSTestsConst.h"
@@ -30,8 +31,8 @@
     [super setUp];
     
     self.consts = [[VSSTestsConst alloc] init];
-    self.crypto = [[VSMVirgilCrypto alloc] init];
-    self.cardCrypto = [[VSMVirgilCardCrypto alloc] init];
+    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+    self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
     self.cardClient = [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL connection:nil];
 }
@@ -46,7 +47,7 @@
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
     
-    NSData *exportedPublicKey = [self.crypto exportVirgilPublicKey:keyPair.publicKey];
+    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
     NSString *publicKeyBase64 = [exportedPublicKey base64EncodedStringWithOptions:0];
     NSString *identity = @"identity";
 
@@ -66,32 +67,20 @@
     VSSRawSignedModel *responseRawCard = [self.cardClient publishCardWithModel:rawCard token:strToken error:&error];
     XCTAssert(error == nil && responseRawCard != nil);
     
-    VSSCard *card = [VSSCard parseWithCrypto:self.cardCrypto rawSignedModel:responseRawCard];
-    XCTAssert(card != nil);
+    VSSCard *responseCard = [VSSCard parseWithCrypto:self.cardCrypto rawSignedModel:responseRawCard];
+    VSSCard *card = [VSSCard parseWithCrypto:self.cardCrypto rawSignedModel:rawCard];
+    XCTAssert(card != nil && responseCard != nil);
     
-    VSSRawCardContent *responseContent = [[VSSRawCardContent alloc] initWithSnapshot:responseRawCard.contentSnapshot];
-    
-    XCTAssert([responseContent.publicKey      isEqualToString: content.publicKey]);
-    XCTAssert([responseContent.previousCardId isEqualToString: content.previousCardId] || (responseContent.previousCardId == nil && content.previousCardId == nil));
-    XCTAssert([responseContent.version        isEqualToString: content.version]);
-    XCTAssert(responseContent.createdAt      == content.createdAt);
-    
-    XCTAssert([self.utils isRawCardContentEqualWithContent:responseContent and:content]);
+    XCTAssert([self.utils isCardsEqualWithCard:responseCard and:card]);
                
-    NSData *exportedPublicKeyCard = [self.crypto exportVirgilPublicKey:(VSMVirgilPublicKey *)card.publicKey];
+    NSData *exportedPublicKeyCard = [self.crypto exportPublicKey:(VSMVirgilPublicKey *)card.publicKey];
     XCTAssert(error == nil);
     NSString *publicKeyBase64Card = [exportedPublicKeyCard base64EncodedStringWithOptions:0];
     
     NSLog(@"Message == %@", publicKeyBase64);
     NSLog(@"Message == %@", publicKeyBase64Card);
     
-    XCTAssert([card.identity isEqualToString:identity]);
     XCTAssert([publicKeyBase64Card isEqualToString:publicKeyBase64]);
-    XCTAssert(card.previousCardId == nil);
-    XCTAssert(card.previousCard == nil);
-    XCTAssert(card.isOutdated == false);
-    XCTAssert([card.version isEqualToString:@"5.0"]);
-    XCTAssert(card.createdAt == [NSDate dateWithTimeIntervalSince1970:content.createdAt]);
     
     VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
     
@@ -108,14 +97,13 @@
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
 
-    NSData *exportedPublicKey = [self.crypto exportVirgilPublicKey:keyPair.publicKey];
+    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
     NSString *publicKeyBase64 = [exportedPublicKey base64EncodedStringWithOptions:0];
 
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:nil createdAt:NSDate.date];
     NSData *snapshot = [content snapshot];
 
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:nil];
-    XCTAssert(error == nil && rawCard != nil);
     
     VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
@@ -125,7 +113,6 @@
     VSSRawSignedModel *publishedRawCard = [self.cardClient publishCardWithModel:rawCard token:strToken error:&error];
     XCTAssert(error == nil);
     VSSCard *card = [VSSCard parseWithCrypto:self.cardCrypto rawSignedModel:publishedRawCard];
-    XCTAssert(card != nil);
     
     VSSRawSignedModel *foundedRawCard = [self.cardClient getCardWithId:card.identifier token:strToken error:&error];
     VSSCard *foundedCard = [VSSCard parseWithCrypto:self.cardCrypto rawSignedModel:foundedRawCard];
@@ -133,6 +120,7 @@
     
     VSSRawCardContent *responseContent = [[VSSRawCardContent alloc] initWithSnapshot:foundedRawCard.contentSnapshot];
     XCTAssert([self.utils isRawCardContentEqualWithContent:content and:responseContent]);
+    
     XCTAssert([self.utils isCardsEqualWithCard:card and:foundedCard]);
     
     VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
@@ -150,14 +138,12 @@
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
     
-    NSData *exportedPublicKey = [self.crypto exportVirgilPublicKey:keyPair.publicKey];
+    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
     NSString *publicKeyBase64 = [exportedPublicKey base64EncodedStringWithOptions:0];
     
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:nil createdAt:NSDate.date];
     NSData *snapshot = [content snapshot];
-    
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:nil];
-    XCTAssert(error == nil && rawCard != nil);
     
     VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
@@ -174,10 +160,11 @@
     VSSRawSignedModel *foundedRawCard = foundedRawCards.firstObject;
     
     VSSCard *foundedCard = [VSSCard parseWithCrypto:self.cardCrypto rawSignedModel:foundedRawCard];
-    XCTAssert(error == nil && foundedCard != nil);
+    XCTAssert(foundedCard != nil);
     
     VSSRawCardContent *responseContent = [[VSSRawCardContent alloc] initWithSnapshot:foundedRawCard.contentSnapshot];
     XCTAssert([self.utils isRawCardContentEqualWithContent:content and:responseContent]);
+    
     XCTAssert([self.utils isCardsEqualWithCard:card and:foundedCard]);
     
     VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
@@ -191,7 +178,7 @@
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
     
-    NSData *exportedPublicKey = [self.crypto exportVirgilPublicKey:keyPair.publicKey];
+    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
     NSString *publicKeyBase64 = [exportedPublicKey base64EncodedStringWithOptions:0];
     NSString *identity = @"identity1";
     NSString *wrongIdentity = @"identity2";
@@ -200,7 +187,7 @@
     NSData *snapshot = [content snapshot];
     
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:nil];
-    XCTAssert(error == nil && rawCard != nil);
+    XCTAssert(rawCard != nil);
     
     NSString *strToken = [self.utils getTokenWithIdentity:wrongIdentity error:&error];
     XCTAssert(error == nil);
@@ -223,7 +210,7 @@
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
     
-    NSData *exportedPublicKey = [self.crypto exportVirgilPublicKey:keyPair.publicKey];
+    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
     NSString *publicKeyBase64 = [exportedPublicKey base64EncodedStringWithOptions:0];
     NSString *identity = @"identity1";
     

@@ -32,8 +32,8 @@
     [super setUp];
     
     self.consts = [[VSSTestsConst alloc] init];
-    self.crypto = [[VSMVirgilCrypto alloc] init];
-    self.cardCrypto = [[VSMVirgilCardCrypto alloc] init];
+    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+    self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
     self.modelSigner = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
     self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
@@ -54,7 +54,7 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManagerParams *params = [[VSSCardManagerParams alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner serviceUrl:[self.consts serviceURL] cardVerifier:self.verifier signCallback:nil];
+    VSSCardManagerParams *params = [[VSSCardManagerParams alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:params];
     
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
@@ -87,7 +87,7 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManagerParams *params = [[VSSCardManagerParams alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner serviceUrl:[self.consts serviceURL] cardVerifier:self.verifier signCallback:nil];
+    VSSCardManagerParams *params = [[VSSCardManagerParams alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:params];
     
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
@@ -124,7 +124,7 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManagerParams *params = [[VSSCardManagerParams alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner serviceUrl:[self.consts serviceURL] cardVerifier:self.verifier signCallback:nil];
+    VSSCardManagerParams *params = [[VSSCardManagerParams alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:params];
     
     VSMVirgilKeyPair *keyPair1 = [self.crypto generateKeyPairAndReturnError:&error];
@@ -187,7 +187,7 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity1 error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManagerParams *params = [[VSSCardManagerParams alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner serviceUrl:[self.consts serviceURL] cardVerifier:self.verifier signCallback:nil];
+    VSSCardManagerParams *params = [[VSSCardManagerParams alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:params];
     
     VSMVirgilKeyPair *keyPair1 = [self.crypto generateKeyPairAndReturnError:&error];
@@ -252,10 +252,10 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManagerParams *addParams = [[VSSCardManagerParams alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner serviceUrl:[self.consts serviceURL] cardVerifier:self.verifier signCallback:nil];
+    VSSCardManagerParams *addParams = [[VSSCardManagerParams alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
     VSSCardManager *addCardManager = [[VSSCardManager alloc] initWithParams:addParams];
     
-    VSSCardManagerParams *params = [[VSSCardManagerParams alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner serviceUrl:[self.consts serviceURL] cardVerifier:self.verifier signCallback:^VSSRawSignedModel *(VSSRawSignedModel *model) {
+    VSSCardManagerParams *params = [[VSSCardManagerParams alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:^VSSRawSignedModel *(VSSRawSignedModel *model) {
             VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:nil];
             VSSRawSignedModel *rawCard = [addCardManager generateRawCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:nil error:nil];
             VSSCard *card = [VSSCard parseWithCrypto:self.cardCrypto rawSignedModel:rawCard];

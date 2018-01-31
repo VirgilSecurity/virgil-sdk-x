@@ -19,7 +19,7 @@ import VirgilCryptoAPI
     
     @objc public init(params: CardManagerParams) {
         self.crypto = params.crypto
-        self.cardClient = CardClient(serviceUrl: params.serviceUrl)
+        self.cardClient = params.cardClient ??  CardClient()
         self.cardVerifier = params.cardVerifier
         self.accessTokenProvider = params.accessTokenProvider
         self.signCallback = params.signCallback

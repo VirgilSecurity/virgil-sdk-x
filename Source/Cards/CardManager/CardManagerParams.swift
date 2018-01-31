@@ -14,12 +14,12 @@ import VirgilCryptoAPI
     @objc public var crypto: CardCrypto
     @objc public var accessTokenProvider: AccessTokenProvider
     @objc public var cardVerifier: CardVerifier?
-    @objc public var serviceUrl: URL?
+    @objc public let cardClient: CardClient?
     @objc public var signCallback: ((RawSignedModel)->(RawSignedModel))?
     
-    @objc public init(crypto: CardCrypto, accessTokenProvider: AccessTokenProvider, modelSigner: ModelSigner, serviceUrl: URL? = nil,  cardVerifier: CardVerifier?, signCallback: ((RawSignedModel)->(RawSignedModel))?) {
+    @objc public init(crypto: CardCrypto, accessTokenProvider: AccessTokenProvider, modelSigner: ModelSigner, cardClient: CardClient? = nil,  cardVerifier: CardVerifier?, signCallback: ((RawSignedModel)->(RawSignedModel))?) {
         self.crypto = crypto
-        self.serviceUrl = serviceUrl
+        self.cardClient = cardClient
         self.cardVerifier = cardVerifier
         self.accessTokenProvider = accessTokenProvider
         self.signCallback = signCallback

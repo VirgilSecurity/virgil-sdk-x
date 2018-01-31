@@ -10,6 +10,7 @@
 #import <XCTest/XCTest.h>
 @import VirgilSDK;
 @import VirgilCryptoApiImpl;
+@import VirgilCrypto;
 
 #import "VSSTestsConst.h"
 
@@ -22,13 +23,14 @@
 - (void)test001 {
     NSTimeInterval ttl = 5;
     VSSCallbackJwtProvider *callbackJwtProvider = [[VSSCallbackJwtProvider alloc] initWithGetTokenCallback:^NSString*(void){
-        VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] init];
+        
+        VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
         
         NSError *error;
         VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&error];
         XCTAssert(error == nil);
         
-        VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] init];
+        VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:crypto];
         VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] apiPublicKeyIdentifier:@"id" accessTokenSigner:signer appId:@"app_id" ttl:ttl];
         
         NSString *identity = [[NSUUID alloc] init].UUIDString;
