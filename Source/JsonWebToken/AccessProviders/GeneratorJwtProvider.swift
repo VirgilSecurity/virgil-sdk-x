@@ -13,9 +13,9 @@ import Foundation
     private let identity: String
     private let additionalData: [String : String]
     
-    @objc public init(jwtGenerator: JwtGenerator, identity: String, additionalData: [String : String] = [:]) {
+    @objc public init(jwtGenerator: JwtGenerator, identity: String, additionalData: [String : String]? = nil) {
         self.identity = identity
-        self.additionalData = additionalData
+        self.additionalData = additionalData ?? [:]
         self.jwtGenerator = jwtGenerator
         
         super.init()

@@ -17,8 +17,8 @@
 @interface VSS001_CardClientTests : XCTestCase
 
 @property (nonatomic) VSSTestsConst       * consts;
-@property (nonatomic) VSCVirgilCrypto     * crypto;
-@property (nonatomic) VSCVirgilCardCrypto * cardCrypto;
+@property (nonatomic) VSMVirgilCrypto     * crypto;
+@property (nonatomic) VSMVirgilCardCrypto * cardCrypto;
 @property (nonatomic) VSSTestUtils        * utils;
 @property (nonatomic) VSSCardClient       * cardClient;
 
@@ -30,8 +30,8 @@
     [super setUp];
     
     self.consts = [[VSSTestsConst alloc] init];
-    self.crypto = [[VSCVirgilCrypto alloc] init];
-    self.cardCrypto = [[VSCVirgilCardCrypto alloc] init];
+    self.crypto = [[VSMVirgilCrypto alloc] init];
+    self.cardCrypto = [[VSMVirgilCardCrypto alloc] init];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
     self.cardClient = [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL connection:nil];
 }
@@ -43,7 +43,7 @@
 
 - (void)test001_CreateCard {
     NSError *error;
-    VSCVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
+    VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
     
     NSData *exportedPublicKey = [self.crypto exportVirgilPublicKey:keyPair.publicKey];
@@ -78,7 +78,7 @@
     
     XCTAssert([self.utils isRawCardContentEqualWithContent:responseContent and:content]);
                
-    NSData *exportedPublicKeyCard = [self.crypto exportVirgilPublicKey:(VSCVirgilPublicKey *)card.publicKey];
+    NSData *exportedPublicKeyCard = [self.crypto exportVirgilPublicKey:(VSMVirgilPublicKey *)card.publicKey];
     XCTAssert(error == nil);
     NSString *publicKeyBase64Card = [exportedPublicKeyCard base64EncodedStringWithOptions:0];
     
@@ -95,9 +95,6 @@
     
     VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
     
-    // FIXME
-    verifier.verifyVirgilSignature = false;
-    
     VSSValidationResult *result = [verifier verifyCardWithCard:card];
     XCTAssert([result isValid]);
 }
@@ -108,7 +105,7 @@
     NSString *strToken = [self.utils getTokenWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSCVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
+    VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
 
     NSData *exportedPublicKey = [self.crypto exportVirgilPublicKey:keyPair.publicKey];
@@ -140,9 +137,6 @@
     
     VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
     
-    // FIXME
-    verifier.verifyVirgilSignature = false;
-    
     VSSValidationResult *result = [verifier verifyCardWithCard:foundedCard];
     XCTAssert([result isValid]);
 }
@@ -153,7 +147,7 @@
     NSString *strToken = [self.utils getTokenWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSCVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
+    VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
     
     NSData *exportedPublicKey = [self.crypto exportVirgilPublicKey:keyPair.publicKey];
@@ -188,16 +182,13 @@
     
     VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
     
-    // FIXME
-    verifier.verifyVirgilSignature = false;
-    
     VSSValidationResult *result = [verifier verifyCardWithCard:foundedCard];
     XCTAssert([result isValid]);
 }
 
 -(void)test004_PublishCard_With_wrongTokenIdentity {
     NSError *error;
-    VSCVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
+    VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
     
     NSData *exportedPublicKey = [self.crypto exportVirgilPublicKey:keyPair.publicKey];
@@ -229,7 +220,7 @@
 
 -(void)test005_PublishCard_With_wrongTokenPrivateKey {
     NSError *error;
-    VSCVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
+    VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
     
     NSData *exportedPublicKey = [self.crypto exportVirgilPublicKey:keyPair.publicKey];

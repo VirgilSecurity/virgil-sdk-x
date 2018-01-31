@@ -589,6 +589,7 @@
 		16B3FD92200CE74C008F0357 /* JwtVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtVerifier.swift; sourceTree = "<group>"; };
 		16B3FDA2200E0769008F0357 /* VSSPrivateKeyStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSPrivateKeyStorage.h; sourceTree = "<group>"; };
 		16B3FDA7200E0B7A008F0357 /* VSSPrivateKeyStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSSPrivateKeyStorage.m; sourceTree = "<group>"; };
+		16E6C9352021FB1200286FAB /* VSS005_CardManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS005_CardManagerTests.m; sourceTree = "<group>"; };
 		420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = Carthage/Build/iOS/VirgilCrypto.framework; sourceTree = "<group>"; };
 		422499BA1EB39B380032F556 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		422499C21EB39B380032F556 /* VirgilSDK macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilSDK macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -962,6 +963,7 @@
 				16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */,
 				16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */,
 				1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */,
+				16E6C9352021FB1200286FAB /* VSS005_CardManagerTests.m */,
 				4291235E1F4B0B3700103BE0 /* VSS006_KeyStorageTests.swift */,
 				42B6CF681F58771A0024857B /* VSS009_KeyStorageiOSSpecificTests.swift */,
 				4284C4241F6C0C6400B75491 /* DataExtensionsTests.swift */,

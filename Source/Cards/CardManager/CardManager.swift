@@ -31,7 +31,7 @@ import VirgilCryptoAPI
         case cardParsingFailed
     }
     
-    func validateCard(_ card: Card) throws {
+    func verifyCard(_ card: Card) throws {
         if let cardVerifier = self.cardVerifier {
             let result = cardVerifier.verifyCard(card: card)
             guard result.isValid else {
@@ -46,7 +46,10 @@ import VirgilCryptoAPI
         
         var rawCard = RawSignedModel(contentSnapshot: snapshot)
         
-        let data = try JSONSerialization.data(withJSONObject: extraFields as Any, options: [])
+        var data: Data?
+        if extraFields != nil {
+            data = try JSONSerialization.data(withJSONObject: extraFields as Any, options: [])
+        }
         
         try self.modelSigner.selfSign(model: rawCard, privateKey: privateKey, additionalData: data)
         

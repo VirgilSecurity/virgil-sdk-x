@@ -15,7 +15,7 @@
 @property (nonatomic, readonly) NSString * __nonnull accessPrivateKeyBase64;
 @property (nonatomic, readonly) NSString * __nonnull accessPublicKeyBase64;
 @property (nonatomic, readonly) NSString * __nonnull applicationId;
-@property (nonatomic, readonly) NSString * __nonnull serviceURL;
+@property (nonatomic, readonly) NSURL * __nonnull serviceURL;
 
 @property (nonatomic, readonly) NSDictionary * __nullable config;
 

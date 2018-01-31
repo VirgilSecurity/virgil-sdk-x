@@ -20,7 +20,7 @@ extension CardManager {
                 throw CardManagerError.cardParsingFailed
             }
             
-            try self.validateCard(card)
+            try self.verifyCard(card)
             
             return card
         }
@@ -38,7 +38,7 @@ extension CardManager {
                 throw CardManagerError.cardParsingFailed
             }
             
-            try self.validateCard(card)
+            try self.verifyCard(card)
             
             return card
         }

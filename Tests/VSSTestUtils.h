@@ -21,13 +21,21 @@
 
 - (VSSRawSignedModel * __nonnull)instantiateRawSignedModelWithKeyPair:(VSMVirgilKeyPair * __nullable)keyPair identity:(NSString *_Nullable)identity error:(NSError * __nullable * __nullable)errorPtr;
 
-- (NSString * __nonnull)getTokenWithIdentity:(NSString *_Nonnull)identity error:(NSError * __nullable * __nullable)errorPtr;
+- (NSString * __nonnull)getTokenWithIdentity:(NSString * __nonnull)identity error:(NSError * __nullable * __nullable)errorPtr;
 
 - (NSString * __nonnull)getTokenWithWrongPrivateKeyWithIdentity:(NSString * __nonnull)identity error:(NSError * __nullable * __nullable)errorPtr;
 
--(BOOL)isCardsEqualWithCard:(VSSCard * __nonnull)card1 and:(VSSCard * __nonnull)card2;
+-(VSSGeneratorJwtProvider * __nonnull)getGeneratorJwtProviderWithIdentity:(NSString * __nonnull)identity error:(NSError * __nullable * __nullable)errorPtr;
 
+-(NSData * __nonnull)getRandomData;
+
+-(BOOL)isCardsEqualWithCard:(VSSCard * __nonnull)card1 and:(VSSCard * __nonnull)card2;
 -(BOOL)isRawCardContentEqualWithContent:(VSSRawCardContent * __nonnull)content1 and:(VSSRawCardContent * __nonnull)content2;
+-(BOOL)isRawSignaturesEqualWithSignature:(VSSRawSignature * __nonnull)signature1 and:(VSSRawSignature * __nonnull)signature2;
+-(BOOL)isCardSignaturesEqualWithSignature:(VSSCardSignature * __nonnull)signature1 and:(VSSCardSignature * __nonnull)signature2;
+
+-(VSSRawSignature * __nullable)getSelfSignatureFromModel:(VSSRawSignedModel * __nonnull)rawCard;
+-(VSSCardSignature * __nullable)getSelfSignatureFromCard:(VSSCard * __nonnull)card;
 
 - (instancetype __nonnull)initWith NS_UNAVAILABLE;
 

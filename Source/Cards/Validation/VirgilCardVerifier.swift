@@ -12,8 +12,8 @@ import VirgilCryptoAPI
 @objc(VSSVirgilCardVerifier) public class VirgilCardVerifier: NSObject, CardVerifier {
     @objc public static let ErrorDomain = "VSSVirgilCardVerifierErrorDomain"
     
-    private static let virgilCardId          = "3e29d43373348cfb373b7eae189214dc01d7237765e572db685839b64adca853"
-    private static let virgilPublicKeyBase64 = "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUNvd0JRWURLMlZ3QXlFQVlSNTAxa1YxdFVuZTJ1T2RrdzRrRXJSUmJKcmMyU3lhejVWMWZ1RytyVnM9Ci0tLS0tRU5EIFBVQkxJQyBLRVktLS0tLQo"
+    private static let virgilCardId          = "a3dda3d499d91d8287194d399f992c2317f9b6c529d9a0e4972c6e244c399f25"
+    private static let virgilPublicKeyBase64 = "MCowBQYDK2VwAyEAr0rjTWlCLJ8q9em0og33grHEh/3vmqp0IewosUaVnQg="
     
     @objc public var crypto: CardCrypto
     @objc public var verifySelfSignature:   Bool = true

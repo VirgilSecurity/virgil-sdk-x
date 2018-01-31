@@ -35,6 +35,7 @@
         u_int32_t randomBits = arc4random();
         [data appendBytes:(void*)&randomBits length:4];
     }
+    
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:data signatures:nil];
     
     XCTAssert(rawCard.signatures.count == 0);

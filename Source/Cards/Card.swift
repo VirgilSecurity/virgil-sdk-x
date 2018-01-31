@@ -22,8 +22,8 @@ import VirgilCryptoAPI
     
     private init(identifier: String, identity: String, publicKey: PublicKey, isOutdated: Bool = false, version: String, createdAt: Date, signatures: [CardSignature], previousCardId: String? = nil, previousCard: Card? = nil) {
         self.identifier = identifier
-        self.identity = identity
-        self.publicKey = publicKey
+        self.identity   = identity
+        self.publicKey  = publicKey
         self.previousCardId = previousCardId
         self.previousCard = previousCard
         self.isOutdated = isOutdated
@@ -39,24 +39,35 @@ import VirgilCryptoAPI
             return nil
         }
         
+        guard let selfSignature = rawSignedModel.signatures.first(where: {$0.signerType == "self"}) else { return nil }
+        var combinedSnapsot = rawSignedModel.contentSnapshot
+        
+        if let extraSnapshotString = selfSignature.snapshot,
+            let extraSnapshot = Data(base64Encoded: extraSnapshotString)
+        {
+            combinedSnapsot += extraSnapshot
+        }
+        
         guard let publicKeyData = Data(base64Encoded: rawCardContent.publicKey),
-              let publicKey = try? crypto.importPublicKey(from: publicKeyData),
-              let fingerprint = try? crypto.generateSHA256(for: rawSignedModel.contentSnapshot) else { return nil }
+              let publicKey   = try? crypto.importPublicKey(from: publicKeyData),
+              let fingerprint = try? crypto.generateSHA256(for: combinedSnapsot) else { return nil }
         
         let cardId = fingerprint.hexEncodedString()
         
         var cardSignatures: [CardSignature] = []
         for rawSignature in rawSignedModel.signatures {
-            var extraFields: [String : String] = [:]
+            var extraFields: [String : String]? = nil
             var snapshot: String? = nil
-            if let rawSnapshot = rawSignature.snapshot,
-               let additionalData = Data(base64Encoded: rawSnapshot),
-               let json = try? JSONSerialization.jsonObject(with: additionalData, options: []),
-               let result = json as? [String : String]
-            {
-                extraFields = result
+            if let rawSnapshot = rawSignature.snapshot {
                 snapshot = rawSnapshot
+                if  let additionalData = Data(base64Encoded: rawSnapshot),
+                    let json = try? JSONSerialization.jsonObject(with: additionalData, options: []),
+                    let result = json as? [String : String]
+                {
+                    extraFields = result
+                }
             }
+            
             guard let signerType = SignerType(from: rawSignature.signerType) else { return nil }
             
             let cardSignature = CardSignature(signerId: rawSignature.signerId, signerType: signerType, signature: rawSignature.signature, snapshot: snapshot, extraFields: extraFields)
