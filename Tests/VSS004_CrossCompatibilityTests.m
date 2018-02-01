@@ -75,7 +75,7 @@
     VSSRawSignedModel *newRawCard1 = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot1 signatures:rawCard1.signatures];
     XCTAssert(newRawCard1 != nil);
     
-    NSString *exportedRawCardString = [newRawCard1 exportAsStringAndReturnError:&error];
+    NSString *exportedRawCardString = [rawCard1 exportAsStringAndReturnError:&error];
     XCTAssert(error == nil);
     
     VSSRawSignedModel *newImportedRawCard1 = [[VSSRawSignedModel alloc] initWithString:exportedRawCardString];

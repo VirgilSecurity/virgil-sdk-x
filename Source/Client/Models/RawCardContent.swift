@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc(VSSRawCardContent) public class RawCardContent: NSObject, Deserializable {
+@objc(VSSRawCardContent) public class RawCardContent: NSObject, Deserializable, Serializable {
     @objc public let identity: String
     @objc public let publicKey: String
     @objc public let previousCardId: String?

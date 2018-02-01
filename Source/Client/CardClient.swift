@@ -15,7 +15,7 @@ import Foundation
     @objc public static let serviceErrorDomain = "VirgilSDK.CardServiceErrorDomain"
     @objc public static let clientErrorDomain = "VirgilSDK.CardClientErrorDomain"
     
-    public enum CardClientError: Int, CustomNSError {
+    @objc public enum CardClientError: Int, CustomNSError {
         case constructingUrl
         case noBody
         case invalidJson
@@ -26,7 +26,7 @@ import Foundation
         public var errorCode: Int { return self.rawValue }
     }
     
-    public class CardServiceError: CustomNSError {
+    @objc public class CardServiceError: NSObject, CustomNSError {
         public let rawServiceError: RawServiceError
         
         init(rawServiceError: RawServiceError) {
@@ -79,7 +79,7 @@ import Foundation
         }
     }
     
-    func processResponse<T:Decodable>(_ response: HTTPResponse) throws -> T {
+    func processResponse<T:Deserializable>(_ response: HTTPResponse) throws -> T {
         try self.validateResponse(response)
         
         let json = try self.parseResponse(response)

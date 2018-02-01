@@ -14,16 +14,16 @@ import VirgilCryptoAPI
     @objc public let crypto: CardCrypto
     @objc public let accessTokenProvider: AccessTokenProvider
     @objc public let cardClient: CardClient
-    @objc public let cardVerifier: CardVerifier?
+    @objc public let cardVerifier: CardVerifier
     @objc public let signCallback: ((RawSignedModel)->(RawSignedModel))?
     
-    @objc public init(params: CardManagerParams) {
-        self.crypto = params.crypto
-        self.cardClient = params.cardClient ??  CardClient()
-        self.cardVerifier = params.cardVerifier
-        self.accessTokenProvider = params.accessTokenProvider
-        self.signCallback = params.signCallback
-        self.modelSigner = params.modelSigner
+    @objc public init(crypto: CardCrypto, accessTokenProvider: AccessTokenProvider, modelSigner: ModelSigner, cardClient: CardClient,  cardVerifier: CardVerifier, signCallback: ((RawSignedModel)->(RawSignedModel))?) {
+        self.crypto = crypto
+        self.cardClient = cardClient
+        self.cardVerifier = cardVerifier
+        self.accessTokenProvider = accessTokenProvider
+        self.signCallback = signCallback
+        self.modelSigner = modelSigner
     }
     
     @objc public enum CardManagerError: Int, Error {
@@ -32,11 +32,10 @@ import VirgilCryptoAPI
     }
     
     func verifyCard(_ card: Card) throws {
-        if let cardVerifier = self.cardVerifier {
-            let result = cardVerifier.verifyCard(card: card)
-            guard result.isValid else {
-                throw CardManagerError.cardIsNotValid
-            }
+        do {
+            try cardVerifier.verifyCard(card: card)
+        } catch {
+            throw CardManagerError.cardIsNotValid
         }
     }
     
@@ -58,6 +57,19 @@ import VirgilCryptoAPI
         }
         
         return rawCard
+    }
+    
+    func getToken(operation: String) throws -> AccessToken {
+        do {
+            return try self.accessTokenProvider.getToken(tokenContext: TokenContext(operation: operation, forceReload: false))
+        } catch {
+            if let err = error as? CardClient.CardServiceError {
+                if err.errorCode == 401 {
+                    return try self.accessTokenProvider.getToken(tokenContext: TokenContext(operation: operation, forceReload: true))
+                }
+            }
+            throw error
+        }
     }
 }
 

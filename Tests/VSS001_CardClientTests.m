@@ -41,7 +41,6 @@
     [super tearDown];
 }
 
-
 - (void)test001_CreateCard {
     NSError *error;
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
@@ -57,7 +56,7 @@
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:nil];
     XCTAssert(error == nil && rawCard != nil);
 
-    NSString *strToken = [self.utils getTokenWithIdentity:identity error:&error];
+    NSString *strToken = [self.utils getTokenStringWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
     VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
@@ -84,14 +83,14 @@
     
     VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
     
-    VSSValidationResult *result = [verifier verifyCardWithCard:card];
-    XCTAssert([result isValid]);
+    [verifier verifyCardWithCard:responseCard error:&error];
+    XCTAssert(error == nil);
 }
 
 -(void)test002_GetCard {
     NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
-    NSString *strToken = [self.utils getTokenWithIdentity:identity error:&error];
+    NSString *strToken = [self.utils getTokenStringWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
@@ -125,14 +124,14 @@
     
     VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
     
-    VSSValidationResult *result = [verifier verifyCardWithCard:foundedCard];
-    XCTAssert([result isValid]);
+    [verifier verifyCardWithCard:foundedCard error:&error];
+    XCTAssert(error == nil);
 }
 
 -(void)test003_SearchCards {
     NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
-    NSString *strToken = [self.utils getTokenWithIdentity:identity error:&error];
+    NSString *strToken = [self.utils getTokenStringWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
@@ -169,8 +168,8 @@
     
     VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
     
-    VSSValidationResult *result = [verifier verifyCardWithCard:foundedCard];
-    XCTAssert([result isValid]);
+    [verifier verifyCardWithCard:foundedCard error:&error];
+    XCTAssert(error == nil);
 }
 
 -(void)test004_PublishCard_With_wrongTokenIdentity {
@@ -189,7 +188,7 @@
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:nil];
     XCTAssert(rawCard != nil);
     
-    NSString *strToken = [self.utils getTokenWithIdentity:wrongIdentity error:&error];
+    NSString *strToken = [self.utils getTokenStringWithIdentity:wrongIdentity error:&error];
     XCTAssert(error == nil);
     
     VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];

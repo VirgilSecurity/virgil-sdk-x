@@ -12,8 +12,7 @@ import VirgilCryptoAPI
 extension CardManager {
     public func getCard(withId cardId: String) -> CallbackOperation<Card> {
         let operation = CallbackOperation<Card>() {
-            let tokenContext = TokenContext(operation: "FIXME", forceReload: false)
-            let token = try self.accessTokenProvider.getToken(tokenContext: tokenContext)
+            let token = try self.getToken(operation: "FIXME")
             
             let rawSignedModel = try self.cardClient.getCard(withId: cardId, token: token.stringRepresentation())
             guard let card = Card.parse(crypto: self.crypto, rawSignedModel: rawSignedModel) else {
@@ -30,8 +29,7 @@ extension CardManager {
     
     public func publishCard(rawCard: RawSignedModel) -> CallbackOperation<Card> {
         let operation = CallbackOperation<Card>() {
-            let tokenContext = TokenContext(operation: "FIXME", forceReload: false)
-            let token = try self.accessTokenProvider.getToken(tokenContext: tokenContext)
+            let token = try self.getToken(operation: "FIXME")
             
             let rawSignedModel = try self.cardClient.publishCard(model: rawCard, token: token.stringRepresentation())
             guard let card = Card.parse(crypto: self.crypto, rawSignedModel: rawSignedModel) else {
@@ -54,8 +52,7 @@ extension CardManager {
     
     public func searchCards(identity: String) -> CallbackOperation<[Card]> {
         let operation = CallbackOperation<[Card]>() {
-            let tokenContext = TokenContext(operation: "FIXME", forceReload: false)
-            let token = try self.accessTokenProvider.getToken(tokenContext: tokenContext)
+            let token = try self.getToken(operation: "FIXME")
             
             let rawSignedModels = try self.cardClient.searchCards(identity: identity, token: token.stringRepresentation())
             

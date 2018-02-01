@@ -11,24 +11,24 @@ import Foundation
 @objc(VSSSignerType) public enum SignerType: Int, Codable {
     case `self`
     case virgil
-    case extra
+    case app
     
     private enum CodingKeys: String, CodingKey {
         case `self`      = "self"
         case virgil      = "virgil"
-        case extra       = "extra"
+        case app       = "app"
     }
     
     enum SignerTypeInternal: String {
         case `self`      = "self"
         case virgil      = "virgil"
-        case extra       = "extra"
+        case app       = "app"
         
         init(internal: SignerType) {
             switch `internal` {
             case .self: self = .self
             case .virgil: self = .virgil
-            case .extra: self = .extra
+            case .app: self = .app
             }
         }
         
@@ -36,7 +36,7 @@ import Foundation
             switch self {
             case .self: return .self
             case .virgil: return .virgil
-            case .extra: return .extra
+            case .app: return .app
             }
         }
     }
