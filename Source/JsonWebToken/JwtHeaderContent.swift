@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc(VSSJwtHeaderContent) public class JwtHeaderContent: NSObject, Codable {
+@objc(VSSJwtHeaderContent) public class JwtHeaderContent: NSObject, Serializable, Deserializable {
     @objc public let algorithm: String
     @objc public let type: String
     @objc public let contentType: String
@@ -37,7 +37,7 @@ import Foundation
         self.init(dict: json)
     }
     
-    @objc public func exportAsString() throws -> String {
-        return try self.asString()
+    @objc public func getBase64Url() throws -> String {
+        return try self.asJsonData().base64UrlEncoded()
     }
 }

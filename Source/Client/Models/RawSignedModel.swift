@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc(VSSRawSignedModel) public class RawSignedModel: NSObject, Codable {
+@objc(VSSRawSignedModel) public class RawSignedModel: NSObject, Serializable, Deserializable {
     @objc public let contentSnapshot: Data
     @objc public private(set) var signatures: [RawSignature]
     
@@ -34,11 +34,11 @@ import Foundation
     }
     
     @objc public convenience init?(string: String) {
-        self.init(withString: string)
+        self.init(base64: string)
     }
     
     @objc public func exportAsString() throws -> String {
-        return try self.asString()
+        return try self.asStringBase64()
     }
     
     @objc public func exportAsJson() throws -> Any {

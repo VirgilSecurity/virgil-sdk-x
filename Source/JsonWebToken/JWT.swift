@@ -23,8 +23,8 @@ import Foundation
         self.bodyContent = bodyContent
         self.signatureContent = signatureContent
         
-        guard  let headerBase64Url = try? self.headerContent.exportAsString(),
-               let bodyBase64Url   = try? self.bodyContent.exportAsString() else { return nil }
+        guard  let headerBase64Url = try? self.headerContent.getBase64Url(),
+               let bodyBase64Url   = try? self.bodyContent.getBase64Url() else { return nil }
         
         var result = headerBase64Url + "." + bodyBase64Url
         
@@ -60,8 +60,8 @@ import Foundation
     }
     
     public func snapshotWithoutSignatures() throws -> Data {
-        let headerBase64Url = try self.headerContent.exportAsString()
-        let bodyBase64Url   = try self.bodyContent.exportAsString()
+        let headerBase64Url = try self.headerContent.getBase64Url()
+        let bodyBase64Url   = try self.bodyContent.getBase64Url()
         
         let string: String = headerBase64Url + "." + bodyBase64Url
         
@@ -86,12 +86,8 @@ import Foundation
     
     public func setSignatureContent(_ signatureContent: Data) throws {
         self.signatureContent = signatureContent
-        
-        guard  let headerBase64Url = try? self.headerContent.exportAsString(),
-               let bodyBase64Url   = try? self.bodyContent.exportAsString() else
-        {
-            throw JwtError.tokenCorrupted
-        }
+        let headerBase64Url = try self.headerContent.getBase64Url()
+        let bodyBase64Url   = try self.bodyContent.getBase64Url()
 
         self.string = headerBase64Url + "." + bodyBase64Url + "." + signatureContent.base64UrlEncoded()
     }

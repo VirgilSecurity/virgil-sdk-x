@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class RawServiceError: Decodable {
+public final class RawServiceError: Deserializable {
     let code: Int
     let message: String
 }

@@ -8,10 +8,10 @@
 
 import Foundation
 
-@objc(VSSJwtBodyContent) public class JwtBodyContent: NSObject, Codable {
+@objc(VSSJwtBodyContent) public class JwtBodyContent: NSObject, Serializable, Deserializable {
     @objc public let appId: String
     @objc public let identity: String
-    @objc public let additionalData: [String : String]
+    @objc public let additionalData: [String : String]?
     @objc public let expiresAt: Int
     @objc public let issuedAt: Int
 
@@ -28,7 +28,7 @@ import Foundation
         self.identity       = "identity-" + identity
         self.expiresAt      = Int(expiresAt.timeIntervalSince1970)
         self.issuedAt       = Int(issuedAt.timeIntervalSince1970)
-        self.additionalData = additionalData ?? [:]
+        self.additionalData = additionalData
         
         super.init()
     }
@@ -40,8 +40,8 @@ import Foundation
         self.init(dict: json)
     }
     
-    @objc public func exportAsString() throws -> String {
-        return try self.asString()
+    @objc public func getBase64Url() throws -> String {
+        return try self.asJsonData().base64UrlEncoded()
     }
 }
 

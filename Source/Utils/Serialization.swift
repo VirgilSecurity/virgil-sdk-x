@@ -8,14 +8,30 @@
 
 import Foundation
 
-internal extension Decodable {
+protocol Deserializable: Decodable {
+    init?(data: Data)
+    
+    init?(base64: String)
+    
+    init?(dict any: Any)
+}
+
+protocol Serializable: Encodable {
+    func asJson() throws -> Any
+    
+    func asJsonData() throws -> Data
+    
+    func asStringBase64() throws -> String
+}
+
+extension Deserializable {
     init?(data: Data) {
         guard let me = try? JSONDecoder().decode(Self.self, from: data) else { return nil }
         self = me
     }
     
-    init?(withString: String) {
-        guard let data = Data(base64Encoded: withString) else { return nil }
+    init?(base64: String) {
+        guard let data = Data(base64Encoded: base64) else { return nil }
         self.init(data: data)
     }
     
@@ -25,7 +41,7 @@ internal extension Decodable {
     }
 }
 
-internal extension Encodable {
+extension Serializable {
     func asJson() throws -> Any {
         let data = try self.asJsonData()
         let dictionary = try JSONSerialization.jsonObject(with: data, options: [.allowFragments])
@@ -38,9 +54,8 @@ internal extension Encodable {
         return try encoder.encode(self)
     }
     
-    func asString() throws -> String {
+    func asStringBase64() throws -> String {
         let data = try self.asJsonData()
         return data.base64EncodedString()
     }
 }
-

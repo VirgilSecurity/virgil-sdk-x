@@ -11,11 +11,11 @@ import Foundation
 @objc(VSSGeneratorJwtProvider) public class GeneratorJwtProvider: NSObject, AccessTokenProvider {
     private let jwtGenerator: JwtGenerator
     private let identity: String
-    private let additionalData: [String : String]
+    private let additionalData: [String : String]?
     
     @objc public init(jwtGenerator: JwtGenerator, identity: String, additionalData: [String : String]? = nil) {
         self.identity = identity
-        self.additionalData = additionalData ?? [:]
+        self.additionalData = additionalData
         self.jwtGenerator = jwtGenerator
         
         super.init()
