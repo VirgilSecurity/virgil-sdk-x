@@ -58,7 +58,9 @@
     
     VSSJwtVerifier *verifier = [[VSSJwtVerifier alloc] initWithApiPublicKey:key apiPublicKeyIdentifier:_consts.accessPublicKeyId accessTokenSigner:tokenSigner];
     
-    [verifier verifyTokenWithJwtToken:jwtToken error:errorPtr];
+    if ([verifier verifyTokenWithJwtToken:jwtToken] == false) {
+        return nil;
+    }
     
     return strToken;
 }

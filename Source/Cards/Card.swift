@@ -80,8 +80,6 @@ import VirgilCryptoAPI
     }
     
     @objc public func getRawCard(crypto: CardCrypto) throws -> RawSignedModel {
-        let cardContent = RawCardContent(identity: self.identity, publicKey: try crypto.exportPublicKey(self.publicKey).base64EncodedString(), previousCardId: self.previousCardId, version: self.version, createdAt: self.createdAt)
-        
         let rawCard = RawSignedModel(contentSnapshot: self.contentSnapshot)
         
         for cardSignature in self.signatures {

@@ -34,7 +34,7 @@ import VirgilCryptoAPI
         let signerId = fingerprint.hexEncodedString()
         
         let signature = try crypto.generateSignature(of: fingerprint, using: privateKey)
-        let rawSignature = RawSignature(signerId: signerId, snapshot: additionalData?.base64EncodedString(), signerType: SignerType.`self`.rawValue, signature: signature.base64EncodedString())
+        let rawSignature = RawSignature(signerId: signerId, snapshot: additionalData?.base64EncodedString(), signerType: "self", signature: signature.base64EncodedString())
         
         try model.addSignature(rawSignature)
     }

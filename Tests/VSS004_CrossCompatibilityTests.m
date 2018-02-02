@@ -339,7 +339,7 @@
     XCTAssert([card1.identifier isEqualToString:@"665e7fa683538fe94701a012e92ffba9261de2504e235eed28076ae73a39ce61"]);
     XCTAssert([card1.identity   isEqualToString:@"test"]);
     XCTAssert( card1.publicKey  != nil);
-    XCTAssert([[[self.crypto exportPublicKey:card1.publicKey] base64EncodedStringWithOptions:0] isEqualToString:@"MCowBQYDK2VwAyEA3J0Ivcs4/ahBafrn6mB4t+UI+IBhWjC/toVDrPJcCZk="]);
+    XCTAssert([[[self.crypto exportPublicKey:(VSMVirgilPublicKey *)card1.publicKey] base64EncodedStringWithOptions:0] isEqualToString:@"MCowBQYDK2VwAyEA3J0Ivcs4/ahBafrn6mB4t+UI+IBhWjC/toVDrPJcCZk="]);
     XCTAssert([card1.version    isEqualToString:@"5.0"]);
     XCTAssert(card1.previousCard == nil);
     XCTAssert(card1.previousCardId == nil);

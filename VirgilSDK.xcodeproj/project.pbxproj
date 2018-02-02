@@ -46,7 +46,6 @@
 		166C67BF201F5C0500D79608 /* VSSTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 166C67BE201F5C0500D79608 /* VSSTestUtils.m */; };
 		166C67C0201F5C0500D79608 /* VSSTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 166C67BE201F5C0500D79608 /* VSSTestUtils.m */; };
 		166C67C1201F5C0500D79608 /* VSSTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 166C67BE201F5C0500D79608 /* VSSTestUtils.m */; };
-		166D0765202482CD00A339D9 /* VSS004_CrossCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */; };
 		168491B82019E32B00D6938B /* t2_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491B72019E32B00D6938B /* t2_exported_as_json.txt */; };
 		168491B92019E32B00D6938B /* t2_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491B72019E32B00D6938B /* t2_exported_as_json.txt */; };
 		168491BA2019E32B00D6938B /* t2_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491B72019E32B00D6938B /* t2_exported_as_json.txt */; };
@@ -217,16 +216,12 @@
 		4284C3C41F6BEA2200B75491 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01FC1F6AA209003ABB19 /* Connection.swift */; };
 		4284C3C51F6BEA2200B75491 /* ServiceConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01FF1F6AA2AD003ABB19 /* ServiceConnection.swift */; };
 		4284C3C81F6BEFD600B75491 /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 429123621F4B0B3700103BE0 /* VSSTestsConst.m */; };
-		4284C3DD1F6BF31100B75491 /* SignerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3D21F6BF29200B75491 /* SignerType.swift */; };
-		4284C3EA1F6BF31500B75491 /* SignerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3D21F6BF29200B75491 /* SignerType.swift */; };
-		4284C3ED1F6BF31500B75491 /* SignerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3D21F6BF29200B75491 /* SignerType.swift */; };
 		4284C3FB1F6C00B600B75491 /* RawCardContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3F71F6C006600B75491 /* RawCardContent.swift */; };
 		4284C3FC1F6C00B700B75491 /* RawCardContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3F71F6C006600B75491 /* RawCardContent.swift */; };
 		4284C3FD1F6C00B800B75491 /* RawCardContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3F71F6C006600B75491 /* RawCardContent.swift */; };
 		4284C3FE1F6C00B900B75491 /* RawCardContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3F71F6C006600B75491 /* RawCardContent.swift */; };
 		4284C3FF1F6C00C000B75491 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3F21F6BFD6200B75491 /* Card.swift */; };
 		4284C4071F6C00C300B75491 /* CardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01F31F6A9DD5003ABB19 /* CardManager.swift */; };
-		4284C40C1F6C00C300B75491 /* SignerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3D21F6BF29200B75491 /* SignerType.swift */; };
 		4284C40D1F6C00C300B75491 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3F21F6BFD6200B75491 /* Card.swift */; };
 		4284C4141F6C00C400B75491 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3F21F6BFD6200B75491 /* Card.swift */; };
 		4284C41B1F6C00C600B75491 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3F21F6BFD6200B75491 /* Card.swift */; };
@@ -626,7 +621,6 @@
 		4284C3951F6BE97C00B75491 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4284C39D1F6BE98B00B75491 /* VirgilCryptoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoAPI.framework; path = Carthage/Build/watchOS/VirgilCryptoAPI.framework; sourceTree = "<group>"; };
 		4284C3A31F6BE9A200B75491 /* VirgilSDK tvOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilSDK tvOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4284C3D21F6BF29200B75491 /* SignerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignerType.swift; sourceTree = "<group>"; };
 		4284C3F21F6BFD6200B75491 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		4284C3F71F6C006600B75491 /* RawCardContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawCardContent.swift; sourceTree = "<group>"; };
 		4284C41C1F6C03DF00B75491 /* Data+hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+hex.swift"; sourceTree = "<group>"; };
@@ -992,7 +986,6 @@
 				4284C3F21F6BFD6200B75491 /* Card.swift */,
 				16B3FD6720079DF5008F0357 /* CardSignature.swift */,
 				16B3FD622007952E008F0357 /* ModelSigner.swift */,
-				4284C3D21F6BF29200B75491 /* SignerType.swift */,
 				4284C4281F6C11F400B75491 /* SnapshotUtils.swift */,
 			);
 			path = Cards;
@@ -1606,7 +1599,6 @@
 				16B3FD8A200CDBC9008F0357 /* JwtGenerator.swift in Sources */,
 				4284C4B31F728B5800B75491 /* RawServiceError.swift in Sources */,
 				16B3FD7B200CBB6C008F0357 /* CallbackJwtProvider.swift in Sources */,
-				4284C40C1F6C00C300B75491 /* SignerType.swift in Sources */,
 				16B3FD76200CB88D008F0357 /* ConstAccessTokenProvider.swift in Sources */,
 				16B3FD642007952E008F0357 /* ModelSigner.swift in Sources */,
 				168491C8201A26A000D6938B /* TokenContext.swift in Sources */,
@@ -1680,7 +1672,6 @@
 				1624B83A2012151B007D223C /* CallbackOperation.swift in Sources */,
 				16B3FD7C200CBB6C008F0357 /* CallbackJwtProvider.swift in Sources */,
 				16B3FD652007952E008F0357 /* ModelSigner.swift in Sources */,
-				4284C3EA1F6BF31500B75491 /* SignerType.swift in Sources */,
 				4284C4221F6C03F500B75491 /* Data+hex.swift in Sources */,
 				1624B82F2010AE75007D223C /* AsyncOperation.swift in Sources */,
 				16AE0B322020DA95005B311B /* VSSKeyStorage.m in Sources */,
@@ -1731,7 +1722,6 @@
 				1624B83B2012151B007D223C /* CallbackOperation.swift in Sources */,
 				16B3FD7D200CBB6C008F0357 /* CallbackJwtProvider.swift in Sources */,
 				16B3FD662007952E008F0357 /* ModelSigner.swift in Sources */,
-				4284C3ED1F6BF31500B75491 /* SignerType.swift in Sources */,
 				4284C4231F6C03F600B75491 /* Data+hex.swift in Sources */,
 				1624B8302010AE75007D223C /* AsyncOperation.swift in Sources */,
 				16AE0B332020DA96005B311B /* VSSKeyStorage.m in Sources */,
@@ -1763,7 +1753,6 @@
 				16C59E2B2020E7B5004820AA /* DataExtensionsTests.swift in Sources */,
 				16C59E4D2021DA0D004820AA /* VSS002_JWTTests.m in Sources */,
 				166C67BF201F5C0500D79608 /* VSSTestUtils.m in Sources */,
-				166D0765202482CD00A339D9 /* VSS004_CrossCompatibilityTests.m in Sources */,
 				4291237A1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1800,7 +1789,6 @@
 				16B3FD422004D5E0008F0357 /* AccessTokenProvider.swift in Sources */,
 				42CF01FD1F6AA209003ABB19 /* Connection.swift in Sources */,
 				42DF01E71E8C52BE005CA7DD /* (null) in Sources */,
-				4284C3DD1F6BF31100B75491 /* SignerType.swift in Sources */,
 				42CF01F41F6A9DD5003ABB19 /* CardManager.swift in Sources */,
 				16B3FDA8200E0B7A008F0357 /* VSSPrivateKeyStorage.m in Sources */,
 				16B3FD93200CE74C008F0357 /* JwtVerifier.swift in Sources */,
