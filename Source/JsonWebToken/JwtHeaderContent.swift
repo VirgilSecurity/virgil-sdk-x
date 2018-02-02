@@ -9,9 +9,9 @@
 import Foundation
 
 @objc(VSSJwtHeaderContent) public class JwtHeaderContent: NSObject, Serializable, Deserializable {
-    @objc public let algorithm: String
-    @objc public let type: String
-    @objc public let contentType: String
+    @objc public let algorithm:     String
+    @objc public let type:          String
+    @objc public let contentType:   String
     @objc public let keyIdentifier: String
     
     private enum CodingKeys: String, CodingKey {

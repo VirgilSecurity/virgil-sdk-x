@@ -12,7 +12,7 @@ import Foundation
     @objc public let signerId:   String
     @objc public let signerType: String
     @objc public let snapshot:   String?
-    @objc public let signature:  Data
+    @objc public let signature:  String
     
     private enum CodingKeys: String, CodingKey {
         case signerId   = "signer_id"
@@ -22,10 +22,10 @@ import Foundation
         case signature
     }
     
-   @objc public init(signerId: String, snapshot: String? = nil, signerType: SignerType, signature: Data) {
+   @objc public init(signerId: String, snapshot: String? = nil, signerType: String, signature: String) {
         self.signerId   = signerId
         self.snapshot   = snapshot
-        self.signerType = signerType.toString()
+        self.signerType = signerType
         self.signature  = signature
         
         super.init()

@@ -51,7 +51,10 @@ extension Serializable {
     func asJsonData() throws -> Data {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
-        return try encoder.encode(self)
+        let dataWithEscapings = try encoder.encode(self)
+        let dataWhithoutEscapings = String(data: dataWithEscapings, encoding: .utf8)?.replacingOccurrences(of: "\\", with: "").data(using: .utf8)
+        
+        return dataWhithoutEscapings!
     }
     
     func asStringBase64() throws -> String {

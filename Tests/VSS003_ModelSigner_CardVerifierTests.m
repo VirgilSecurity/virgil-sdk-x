@@ -84,6 +84,10 @@
     self.verifier.verifyVirgilSignature = false;
 }
 
+- (void)tearDown {
+    [super tearDown];
+}
+
 - (void)test001 {
     NSError *error;
     VSMVirgilKeyPair *keyPair1 = [self.crypto generateKeyPairAndReturnError:&error];

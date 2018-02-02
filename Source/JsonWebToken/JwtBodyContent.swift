@@ -9,11 +9,11 @@
 import Foundation
 
 @objc(VSSJwtBodyContent) public class JwtBodyContent: NSObject, Serializable, Deserializable {
-    @objc public let appId: String
-    @objc public let identity: String
+    @objc public let appId:          String
+    @objc public let identity:       String
+    @objc public let expiresAt:      Int
+    @objc public let issuedAt:       Int
     @objc public let additionalData: [String : String]?
-    @objc public let expiresAt: Int
-    @objc public let issuedAt: Int
 
     private enum CodingKeys: String, CodingKey {
         case appId          = "iss"

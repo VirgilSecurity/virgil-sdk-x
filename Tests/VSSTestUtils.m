@@ -147,7 +147,7 @@
 -(BOOL)isRawSignaturesEqualWithSignature:(VSSRawSignature * __nonnull)signature1 and:(VSSRawSignature * __nonnull)signature2 {
     return ([signature1.signerId   isEqualToString:signature2.signerId]   &&
             [signature1.signerType isEqualToString:signature2.signerType] &&
-            [signature1.signature  isEqualToData  :signature2.signature]  &&
+            [signature1.signature  isEqualToString:signature2.signature]  &&
             ([signature1.snapshot  isEqualToString:signature2.snapshot]   || (signature1.snapshot == nil && signature2.snapshot == nil)));
 }
 
@@ -155,7 +155,7 @@
     return ([signature1.signerId     isEqualToString:signature2.signerId]        &&
             [signature1.signerType   isEqualToString:signature2.signerType]      &&
             [signature1.signature    isEqualToData  :signature2.signature]       &&
-            ([signature1.snapshot    isEqualToString:signature2.snapshot]        || (signature1.snapshot == nil && signature2.snapshot == nil)) &&
+            ([signature1.snapshot    isEqualToData:signature2.snapshot]        || (signature1.snapshot == nil && signature2.snapshot == nil)) &&
             ([signature1.extraFields isEqualToDictionary:signature2.extraFields] || (signature1.extraFields == nil && signature2.extraFields == nil)));
 }
 

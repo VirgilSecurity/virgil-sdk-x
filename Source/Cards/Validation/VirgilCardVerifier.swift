@@ -60,15 +60,14 @@ import VirgilCryptoAPI
     
     private class func verify(crypto: CardCrypto, card: Card, signerCardId: String, signerPublicKey: PublicKey, signerType: SignerType) throws {
         guard let signature = card.signatures.first(where: { $0.signerId == signerCardId }) else {
-            throw NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The card does not contain the \(signerType.toString()) signature for \(signerCardId)"])
+            throw NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The card does not contain the \(signerType.rawValue) signature for \(signerCardId)"])
         }
         
         guard let cardSnapshot = try? card.getRawCard(crypto: crypto).contentSnapshot else  {
             throw NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: "The card with id \(signerCardId) was corrupted"])
         }
-        let extraDataSnapshot = Data(base64Encoded: signature.snapshot ?? "") ?? Data()
         
-        guard let fingerprint = try? crypto.generateSHA256(for: cardSnapshot + extraDataSnapshot) else {
+        guard let fingerprint = try? crypto.generateSHA256(for: cardSnapshot + signature.snapshot) else {
             throw NSError(domain: VirgilCardVerifier.ErrorDomain, code: -1, userInfo: [NSLocalizedDescriptionKey: " Generating SHA256 of card with id\(signerCardId) failed"])
         }
         
