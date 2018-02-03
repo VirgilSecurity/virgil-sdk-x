@@ -38,4 +38,15 @@ import VirgilCryptoAPI
         
         try model.addSignature(rawSignature)
     }
+    
+    @objc public func sign(model: RawSignedModel, id: String, type: String, privateKey: PrivateKey, extraFields: [String:String]? = nil) throws {
+        let additionalData = try? JSONSerialization.data(withJSONObject: extraFields as Any, options: [])
+        try self.selfSign(model: model, privateKey: privateKey, additionalData: additionalData)
+    }
+    
+    @objc public func selfSign(model: RawSignedModel, privateKey: PrivateKey, extraFields: [String:String]? = nil) throws {
+        let additionalData = try? JSONSerialization.data(withJSONObject: extraFields as Any, options: [])
+        
+        try self.selfSign(model: model, privateKey: privateKey, additionalData: additionalData)
+    }
 }

@@ -99,7 +99,7 @@
     VSMVirgilAccessTokenSigner *tokenSigner = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:self.crypto];
     VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey apiPublicKeyIdentifier:_consts.accessPublicKeyId accessTokenSigner:tokenSigner appId:_consts.applicationId ttl:1000];
 
-    VSSGeneratorJwtProvider *generatorProvider = [[VSSGeneratorJwtProvider alloc] initWithJwtGenerator:generator identity:identity additionalData:nil];
+    VSSGeneratorJwtProvider *generatorProvider = [[VSSGeneratorJwtProvider alloc] initWithJwtGenerator:generator defaultIdentity:identity additionalData:nil];
 
     return generatorProvider;
 }
@@ -167,6 +167,54 @@
             [content1.version        isEqualToString: content2.version]         &&
              content1.createdAt       == content2.createdAt                     &&
             ([content1.previousCardId isEqualToString: content2.previousCardId] || (content1.previousCardId == nil && content2.previousCardId == nil)));
+}
+
+-(BOOL)isRawSignaturesEqualWithSignatures:(NSArray<VSSRawSignature *> * __nonnull)signatures1 and:(NSArray<VSSRawSignature *> * __nonnull)signatures2 {
+    
+    if (signatures1.count != signatures2.count) {
+        return false;
+    }
+    BOOL found = false;
+    for (VSSRawSignature* signature1 in signatures1) {
+        found = false;
+        for (VSSRawSignature* signature2 in signatures1) {
+            if ([signature2.signerType isEqualToString:signature1.signerType]) {
+                found = ([signature1.signerId   isEqualToString:signature2.signerId]   &&
+                         [signature1.signerType isEqualToString:signature2.signerType] &&
+                         [signature1.signature  isEqualToString:signature2.signature]  &&
+                         ([signature1.snapshot  isEqualToString:signature2.snapshot]   || (signature1.snapshot == nil && signature2.snapshot == nil)));
+            }
+        }
+        if (found == false) {
+            return false;
+        }
+    }
+    
+    return true;
+}
+
+-(BOOL)isCardSignaturesEqualWithSignatures:(NSArray<VSSCardSignature *> * __nonnull)signatures1 and:(NSArray<VSSCardSignature *> * __nonnull)signatures2 {
+    
+    if (signatures1.count != signatures2.count) {
+        return false;
+    }
+    BOOL found = false;
+    for (VSSRawSignature* signature1 in signatures1) {
+        found = false;
+        for (VSSRawSignature* signature2 in signatures1) {
+            if ([signature2.signerType isEqualToString:signature1.signerType]) {
+                found = ([signature1.signerId   isEqualToString:signature2.signerId]   &&
+                         [signature1.signerType isEqualToString:signature2.signerType] &&
+                         [signature1.signature  isEqualToString:signature2.signature]  &&
+                         ([signature1.snapshot  isEqualToString:signature2.snapshot]   || (signature1.snapshot == nil && signature2.snapshot == nil)));
+            }
+        }
+        if (found == false) {
+            return false;
+        }
+    }
+    
+    return true;
 }
 
 @end

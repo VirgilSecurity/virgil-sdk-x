@@ -33,6 +33,8 @@
 -(BOOL)isRawCardContentEqualWithContent:(VSSRawCardContent * __nonnull)content1 and:(VSSRawCardContent * __nonnull)content2;
 -(BOOL)isRawSignaturesEqualWithSignature:(VSSRawSignature * __nonnull)signature1 and:(VSSRawSignature * __nonnull)signature2;
 -(BOOL)isCardSignaturesEqualWithSignature:(VSSCardSignature * __nonnull)signature1 and:(VSSCardSignature * __nonnull)signature2;
+-(BOOL)isRawSignaturesEqualWithSignatures:(NSArray<VSSRawSignature *> * __nonnull)signatures1 and:(NSArray<VSSRawSignature *> * __nonnull)signatures2;
+-(BOOL)isCardSignaturesEqualWithSignatures:(NSArray<VSSCardSignature *> * __nonnull)signatures1 and:(NSArray<VSSCardSignature *> * __nonnull)signatures2;
 
 -(VSSRawSignature * __nullable)getSelfSignatureFromModel:(VSSRawSignedModel * __nonnull)rawCard;
 -(VSSCardSignature * __nullable)getSelfSignatureFromCard:(VSSCard * __nonnull)card;

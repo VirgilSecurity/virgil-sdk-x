@@ -63,7 +63,8 @@
 @property (nonatomic) VSSTestUtils          * utils;
 @property (nonatomic) VSSCardClient         * cardClient;
 @property (nonatomic) VSSModelSigner        * modelSigner;
-@property (nonatomic) VSSVirgilCardVerifier *verifier;
+@property (nonatomic) VSSVirgilCardVerifier * verifier;
+@property (nonatomic) NSDictionary          * testData;
 
 @end
 
@@ -82,6 +83,13 @@
     
     self.verifier.verifySelfSignature   = false;
     self.verifier.verifyVirgilSignature = false;
+    
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *path = [bundle pathForResource:@"test_data" ofType:@"txt"];
+    NSData *dicData = [[NSData alloc] initWithContentsOfFile:path];
+    XCTAssert(dicData != nil);
+    
+    self.testData = [NSJSONSerialization JSONObjectWithData:dicData options:kNilOptions error:nil];
 }
 
 - (void)tearDown {
@@ -102,10 +110,11 @@
     
     VSSRawSignature *signature1 = rawCard.signatures.firstObject;
     XCTAssert(signature1.snapshot == nil);
-    XCTAssert([signature1.signerType isEqualToString:@"self"] && signature1.signature != [[NSData alloc] init]);
+    XCTAssert([signature1.signerType isEqualToString:@"self"]);
+    XCTAssert(([signature1.signature isEqualToString:@""]) == false);
     
     NSData *fingerprint = [self.cardCrypto generateSHA256For:data error:&error];
-    BOOL success = [self.crypto verifySignature:signature1.signature of:fingerprint with:keyPair1.publicKey];
+    BOOL success = [self.crypto verifySignature:[[NSData alloc] initWithBase64EncodedString:signature1.signature options:0] of:fingerprint with:keyPair1.publicKey];
     XCTAssert(success);
     
     [self.modelSigner selfSignWithModel:rawCard privateKey:keyPair1.privateKey additionalData:nil error:&error];
@@ -115,17 +124,18 @@
     VSMVirgilKeyPair *keyPair2 = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
     
-    [self.modelSigner signWithModel:rawCard id:@"test_id" type:VSSSignerTypeApp privateKey:keyPair2.privateKey additionalData:nil error:&error];
+    [self.modelSigner signWithModel:rawCard id:@"test_id" type:@"app" privateKey:keyPair2.privateKey additionalData:nil error:&error];
     XCTAssert(rawCard.signatures.count == 2 && error == nil);
     
     VSSRawSignature *signature2 = rawCard.signatures[1];
     XCTAssert(signature2.snapshot == nil && [signature2.signerId isEqualToString:@"test_id"]);
-    XCTAssert([signature2.signerType isEqualToString:@"extra"] && signature2.signature != [[NSData alloc] init]);
+    XCTAssert([signature2.signerType isEqualToString:@"app"]);
+    XCTAssert(([signature2.signature isEqualToString:@""]) == false);
     
-    success = [self.crypto verifySignature:signature2.signature of:fingerprint with:keyPair2.publicKey];
+    success = [self.crypto verifySignature:[[NSData alloc] initWithBase64EncodedString:signature2.signature options:0] of:fingerprint with:keyPair2.publicKey];
     XCTAssert(success);
     
-    [self.modelSigner signWithModel:rawCard id:@"test_id" type:VSSSignerTypeApp privateKey:keyPair2.privateKey additionalData:nil error:&error];
+    [self.modelSigner signWithModel:rawCard id:@"test_id" type:@"app" privateKey:keyPair2.privateKey additionalData:nil error:&error];
     XCTAssert(error != nil);
 }
 
@@ -149,7 +159,7 @@
     XCTAssert(signature1 != nil);
     XCTAssert([signature1.snapshot isEqualToString:[dataDic base64EncodedStringWithOptions:0]]);
     XCTAssert([signature1.signerType isEqualToString:@"self"]);
-    XCTAssert(signature1.signature != [[NSData alloc] init]);
+   XCTAssert(([signature1.signature isEqualToString:@""]) == false);
 }
 
 -(void)test003 {
@@ -160,9 +170,7 @@
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
     
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path1 = [bundle pathForResource:@"FIXME" ofType:@"txt"];
-    NSString *cardString = [[NSString alloc]initWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:&error];
+    NSString *cardString = self.testData[@"STC-10.as_string"];
     XCTAssert(error == nil);
     VSSCard *card = [cardManager importCardWithString:cardString];
     XCTAssert(card != nil);
@@ -216,9 +224,7 @@
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
     
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path1 = [bundle pathForResource:@"FIXME" ofType:@"txt"];
-    NSString *cardString = [[NSString alloc]initWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:&error];
+    NSString *cardString = self.testData[@"STC-11.as_string"];
     XCTAssert(error == nil);
     VSSCard *card = [cardManager importCardWithString:cardString];
     XCTAssert(card != nil);
@@ -243,9 +249,7 @@
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
     
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path1 = [bundle pathForResource:@"FIXME" ofType:@"txt"];
-    NSString *cardString = [[NSString alloc]initWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:&error];
+    NSString *cardString = self.testData[@"STC-12.as_string"];
     XCTAssert(error == nil);
     VSSCard *card = [cardManager importCardWithString:cardString];
     XCTAssert(card != nil);
@@ -270,9 +274,7 @@
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
     
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path1 = [bundle pathForResource:@"FIXME" ofType:@"txt"];
-    NSString *cardString = [[NSString alloc]initWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:&error];
+    NSString *cardString = self.testData[@"STC-14.as_string"];
     XCTAssert(error == nil);
     VSSCard *card = [cardManager importCardWithString:cardString];
     XCTAssert(card != nil);
@@ -293,9 +295,7 @@
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
     
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path1 = [bundle pathForResource:@"FIXME" ofType:@"txt"];
-    NSString *cardString = [[NSString alloc]initWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:&error];
+    NSString *cardString = self.testData[@"STC-15.as_string"];
     XCTAssert(error == nil);
     VSSCard *card = [cardManager importCardWithString:cardString];
     XCTAssert(card != nil);
@@ -317,15 +317,17 @@
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
     
-    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path1 = [bundle pathForResource:@"FIXME" ofType:@"txt"];
-    NSString *cardString = [[NSString alloc]initWithContentsOfFile:path1 encoding:NSUTF8StringEncoding error:&error];
+    NSString *cardString = self.testData[@"STC-16.as_string"];
     XCTAssert(error == nil);
     VSSCard *card = [cardManager importCardWithString:cardString];
     XCTAssert(card != nil);
     
     self.verifier.verifySelfSignature   = false;
     self.verifier.verifyVirgilSignature = false;
+    
+    NSData *pubicKeyBase64 = [self.testData[@"STC-16.public_key1_base64"] dataUsingEncoding:NSUTF8StringEncoding];
+    XCTAssert(pubicKeyBase64 != nil);
+    
     VSSVerifierCredentials *creds1      = [[VSSVerifierCredentials alloc] initWithId:@"FIXME" publicKey:[self.utils getRandomData]];
     VSSWhiteList *whitelist1            = [[VSSWhiteList alloc] initWithVerifiersCredentials:[NSArray arrayWithObject:creds1]];
     self.verifier.whiteLists            = [NSArray arrayWithObject:whitelist1];
@@ -334,7 +336,7 @@
     XCTAssert(error != nil);
     
     VSSVerifierCredentials *creds21 = [[VSSVerifierCredentials alloc] initWithId:@"FIXME" publicKey:[self.utils getRandomData]];
-    VSSVerifierCredentials *creds22 = [[VSSVerifierCredentials alloc] initWithId:@"FIXME" publicKey:[self.utils getRandomData]];
+    VSSVerifierCredentials *creds22 = [[VSSVerifierCredentials alloc] initWithId:@"FIXME" publicKey:pubicKeyBase64];
     VSSWhiteList *whitelist2        = [[VSSWhiteList alloc] initWithVerifiersCredentials:[NSArray arrayWithObjects:creds21, creds22, nil]];
     self.verifier.whiteLists        = [NSArray arrayWithObject:whitelist2];
     
