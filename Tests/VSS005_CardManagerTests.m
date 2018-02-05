@@ -16,12 +16,12 @@
 
 @interface VSS005_CardManagerTests : XCTestCase
 
-@property (nonatomic) VSSTestsConst         * consts;
-@property (nonatomic) VSMVirgilCrypto       * crypto;
-@property (nonatomic) VSMVirgilCardCrypto   * cardCrypto;
-@property (nonatomic) VSSTestUtils          * utils;
-@property (nonatomic) VSSCardClient         * cardClient;
-@property (nonatomic) VSSModelSigner        * modelSigner;
+@property (nonatomic) VSSTestsConst *consts;
+@property (nonatomic) VSMVirgilCrypto *crypto;
+@property (nonatomic) VSMVirgilCardCrypto *cardCrypto;
+@property (nonatomic) VSSTestUtils *utils;
+@property (nonatomic) VSSCardClient *cardClient;
+@property (nonatomic) VSSModelSigner *modelSigner;
 @property (nonatomic) VSSVirgilCardVerifier *verifier;
 
 @end
@@ -255,7 +255,7 @@
         VSSRawSignedModel *rawCard = [addCardManager generateRawCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:nil error:nil];
         VSSCard *card = [VSSCard parseWithCrypto:self.cardCrypto rawSignedModel:rawCard];
         
-        [self.modelSigner signWithModel:model id:card.identifier type:VSSSignerTypeApp privateKey:keyPair.privateKey additionalData:nil error:nil];
+        [self.modelSigner signWithModel:model id:card.identifier type:@"app" privateKey:keyPair.privateKey additionalData:nil error:nil];
         
         return  model;
     }];

@@ -17,14 +17,14 @@
 
 @interface VSS004_CrossCompatibilityTests : XCTestCase
 
-@property (nonatomic) VSSTestsConst         * consts;
-@property (nonatomic) VSMVirgilCrypto       * crypto;
-@property (nonatomic) VSMVirgilCardCrypto   * cardCrypto;
-@property (nonatomic) VSSTestUtils          * utils;
-@property (nonatomic) VSSCardClient         * cardClient;
-@property (nonatomic) VSSModelSigner        * modelSigner;
-@property (nonatomic) VSSVirgilCardVerifier * verifier;
-@property (nonatomic) NSDictionary          * testData;
+@property (nonatomic) VSSTestsConst *consts;
+@property (nonatomic) VSMVirgilCrypto *crypto;
+@property (nonatomic) VSMVirgilCardCrypto *cardCrypto;
+@property (nonatomic) VSSTestUtils *utils;
+@property (nonatomic) VSSCardClient *cardClient;
+@property (nonatomic) VSSModelSigner *modelSigner;
+@property (nonatomic) VSSVirgilCardVerifier *verifier;
+@property (nonatomic) NSDictionary *testData;
 
 @end
 
@@ -137,24 +137,21 @@
     XCTAssert(cardContent1 != nil);
     
     XCTAssert([cardContent1.identity isEqualToString:@"test"]);
-    XCTAssert([cardContent1.publicKey isEqualToString:@"MCowBQYDK2VwAyEA3J0Ivcs4/ahBafrn6mB4t+UI+IBhWjC/toVDrPJcCZk="]);
+    XCTAssert([cardContent1.publicKey isEqualToString:@"MCowBQYDK2VwAyEA6d9bQQFuEnU8vSmx9fDo0Wxec42JdNg4VR4FOr4/BUk="]);
     XCTAssert([cardContent1.version isEqualToString:@"5.0"]);
     XCTAssert(cardContent1.createdAt == 1515686245);
     XCTAssert([cardContent1.previousCardId isEqualToString:@"a666318071274adb738af3f67b8c7ec29d954de2cabfd71a942e6ea38e59fff9"]);
     XCTAssert(rawCard1.signatures.count == 3);
     
     for (VSSRawSignature* signature in rawCard1.signatures) {
-        if ([signature.signerType isEqualToString:@"self"]) {
-            XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAICBQAEQFfpZUY8aD0SzmU7rJh49bm4CD7wyTtYeTWLddJzJDS+0HpST3DulxMfBjQfWq5Y3upj49odzQNhOaATz3fF3gg="]);
-            XCTAssert([signature.signerId  isEqualToString:@"e6fbcad760b3d89610a96230718a6c0522d0dbb1dd264273401d9634c1bb5be0"]);
+        if ([signature.signer isEqualToString:@"self"]) {
+            XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQNXguibY1cDCfnuJhTK+jX/Qv6v5i5TzqQs3e1fWlbisdUWYh+s10gsLkhf83wOqrm8ZXUCpjgkJn83TDaKYZQ8="]);
             XCTAssert(signature.snapshot == nil);
-        } else if ([signature.signerType isEqualToString:@"virgil"]) {
-            XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAICBQAEQKLcj0Tx0dOTET6vmFmc+xk9BKOfsidoXdcl0BWr4hwL3SaEiQR3E2PT7VcVr6yIKMEneUmmlvL/mqbRCZ1dwQo="]);
-            XCTAssert([signature.signerId  isEqualToString:@"5b748aa6890d90c4fe199300f8ff10b4e1fdfd50140774ca6b03adb121ee94e1"]);
+        } else if ([signature.signer isEqualToString:@"virgil"]) {
+            XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQNXguibY1cDCfnuJhTK+jX/Qv6v5i5TzqQs3e1fWlbisdUWYh+s10gsLkhf83wOqrm8ZXUCpjgkJn83TDaKYZQ8="]);
             XCTAssert(signature.snapshot == nil);
-        } else if ([signature.signerType isEqualToString:@"extra"]) {
-            XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAICBQAEQHqRoiTjhbbDZfYLsXexjdywiNOH2HlEe84yZaWKIo5AiKGTAVsE31JgSBCCNvBn5FBymNSpbtNGH3Td17xePAQ="]);
-            XCTAssert([signature.signerId  isEqualToString:@"d729624f302f03f4cf83062bd24af9c44aa35b11670a155300bf3a8560dfa30f"]);
+        } else if ([signature.signer isEqualToString:@"extra"]) {
+            XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQOGsh+lzM99RQB3NJOioriRfpCDyTdPC62uZi0MDYqgXVJMcxhRnRRMWzYC1BKAoUzCRc9W+cblEpCi2Ny0zpAU="]);
             XCTAssert(signature.snapshot == nil);
         }
     }
@@ -238,10 +235,10 @@
     NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comps];
     
     XCTAssert([card1.identifier isEqualToString:@"551a933671d4e20524bc7f42e3062e810a1d62250fcbb217263c34c762de9dd0"]);
-    XCTAssert([card1.identity   isEqualToString:@"test"]);
-    XCTAssert( card1.publicKey  != nil);
+    XCTAssert([card1.identity isEqualToString:@"test"]);
+    XCTAssert( card1.publicKey != nil);
     XCTAssert([[[self.crypto exportPublicKey:(VSMVirgilPublicKey *)card1.publicKey] base64EncodedStringWithOptions:0] isEqualToString:@"MCowBQYDK2VwAyEA6d9bQQFuEnU8vSmx9fDo0Wxec42JdNg4VR4FOr4/BUk="]);
-    XCTAssert([card1.version    isEqualToString:@"5.0"]);
+    XCTAssert([card1.version isEqualToString:@"5.0"]);
     XCTAssert(card1.previousCard == nil);
     XCTAssert(card1.previousCardId == nil);
     XCTAssert(card1.signatures.count == 0);
@@ -298,27 +295,24 @@
     NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comps];
     
     XCTAssert([card1.identifier isEqualToString:@"551a933671d4e20524bc7f42e3062e810a1d62250fcbb217263c34c762de9dd0"]);
-    XCTAssert([card1.identity   isEqualToString:@"test"]);
-     XCTAssert([[[self.crypto exportPublicKey:(VSMVirgilPublicKey *)card1.publicKey] base64EncodedStringWithOptions:0] isEqualToString:@"MCowBQYDK2VwAyEA6d9bQQFuEnU8vSmx9fDo0Wxec42JdNg4VR4FOr4/BUk="]);
-    XCTAssert([card1.version    isEqualToString:@"5.0"]);
+    XCTAssert([card1.identity isEqualToString:@"test"]);
+    XCTAssert([[[self.crypto exportPublicKey:(VSMVirgilPublicKey *)card1.publicKey] base64EncodedStringWithOptions:0] isEqualToString:@"MCowBQYDK2VwAyEA6d9bQQFuEnU8vSmx9fDo0Wxec42JdNg4VR4FOr4/BUk="]);
+    XCTAssert([card1.version isEqualToString:@"5.0"]);
     XCTAssert(card1.previousCard == nil);
     XCTAssert(card1.previousCardId == nil);
     XCTAssert(card1.signatures.count == 3);
     XCTAssert([card1.createdAt isEqualToDate:date]);
     
-    for (VSSRawSignature* signature in card1.signatures) {
-        if ([signature.signerType isEqualToString:@"self"]) {
-            XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAICBQAEQFfpZUY8aD0SzmU7rJh49bm4CD7wyTtYeTWLddJzJDS+0HpST3DulxMfBjQfWq5Y3upj49odzQNhOaATz3fF3gg="]);
-            XCTAssert([signature.signerId  isEqualToString:@"e6fbcad760b3d89610a96230718a6c0522d0dbb1dd264273401d9634c1bb5be0"]);
-            XCTAssert(signature.snapshot == nil);
-        } else if ([signature.signerType isEqualToString:@"virgil"]) {
-            XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAICBQAEQKLcj0Tx0dOTET6vmFmc+xk9BKOfsidoXdcl0BWr4hwL3SaEiQR3E2PT7VcVr6yIKMEneUmmlvL/mqbRCZ1dwQo="]);
-            XCTAssert([signature.signerId  isEqualToString:@"5b748aa6890d90c4fe199300f8ff10b4e1fdfd50140774ca6b03adb121ee94e1"]);
-            XCTAssert(signature.snapshot == nil);
-        } else if ([signature.signerType isEqualToString:@"extra"]) {
-            XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAICBQAEQHqRoiTjhbbDZfYLsXexjdywiNOH2HlEe84yZaWKIo5AiKGTAVsE31JgSBCCNvBn5FBymNSpbtNGH3Td17xePAQ="]);
-            XCTAssert([signature.signerId  isEqualToString:@"d729624f302f03f4cf83062bd24af9c44aa35b11670a155300bf3a8560dfa30f"]);
-            XCTAssert(signature.snapshot == nil);
+    for (VSSCardSignature* signature in card1.signatures) {
+        if ([signature.signer isEqualToString:@"self"]) {
+            XCTAssert([[signature.signature base64EncodedStringWithOptions:0] isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQJuTxlQ7r+RG2P8D12OFOdgPsIDmZMd4UBMIG1c1Amqm/oc1wRUzk7ccz1RbTWEt2XP+1GbkF0Z6s6FYf1QEUQI="]);
+            XCTAssert(signature.snapshot == [[NSData alloc] init]);
+        } else if ([signature.signer isEqualToString:@"virgil"]) {
+            XCTAssert([[signature.signature base64EncodedStringWithOptions:0] isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQJuTxlQ7r+RG2P8D12OFOdgPsIDmZMd4UBMIG1c1Amqm/oc1wRUzk7ccz1RbTWEt2XP+1GbkF0Z6s6FYf1QEUQI="]);
+            XCTAssert(signature.snapshot == [[NSData alloc] init]);
+        } else if ([signature.signer isEqualToString:@"extra"]) {
+            XCTAssert([[signature.signature base64EncodedStringWithOptions:0] isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQAm0XDH2G5da5qIo71bh9hEdyFj4jN5Sb0vparDtgiNIG7XmU9n7QMM16gmk/zd5dle3ezgAWfOQnIOuGGSl/gI="]);
+            XCTAssert(signature.snapshot == [[NSData alloc] init]);
         }
     }
     
@@ -358,14 +352,14 @@
     VSSJwt *jwt = [[VSSJwt alloc] initWithJwtToken:self.testData[@"STC-22.jwt"]];
     XCTAssert(jwt != nil);
     
-    XCTAssert([jwt.headerContent.algorithm   isEqualToString:@"VEDS512"]);
+    XCTAssert([jwt.headerContent.algorithm isEqualToString:@"VEDS512"]);
     XCTAssert([jwt.headerContent.contentType isEqualToString:@"virgil-jwt;v=1"]);
-    XCTAssert([jwt.headerContent.type        isEqualToString:@"JWT"]);
+    XCTAssert([jwt.headerContent.type isEqualToString:@"JWT"]);
     XCTAssert([jwt.headerContent.keyIdentifier isEqualToString:@"e0068a69cdddd2fdb1df667546f0bcc0d6581149c464f59c07afb9d9c3e2216ca32dafec0b13e9ee04bcb1091d82c9b9d5ce3f2772f3ec455b01c509343e8030"]);
     
     XCTAssert([jwt.bodyContent.identity isEqualToString:@"identity-some_identity"]);
-    XCTAssert([jwt.bodyContent.appId    isEqualToString:@"virgil-78b91158fcaa2b3f93ffad2bb3eff1f6bfe8670c50bf41f350374fe37332bd23"]);
-    XCTAssert(jwt.bodyContent.issuedAt  == 1517578965);
+    XCTAssert([jwt.bodyContent.appId isEqualToString:@"virgil-78b91158fcaa2b3f93ffad2bb3eff1f6bfe8670c50bf41f350374fe37332bd23"]);
+    XCTAssert(jwt.bodyContent.issuedAt == 1517578965);
     XCTAssert(jwt.bodyContent.expiresAt == 1517579565);
     XCTAssert(jwt.isExpired == true);
     
@@ -393,14 +387,14 @@
     XCTAssert(error == nil);
     XCTAssert(jwt != nil);
     
-    XCTAssert([jwt.headerContent.algorithm   isEqualToString:@"VEDS512"]);
+    XCTAssert([jwt.headerContent.algorithm isEqualToString:@"VEDS512"]);
     XCTAssert([jwt.headerContent.contentType isEqualToString:@"virgil-jwt;v=1"]);
-    XCTAssert([jwt.headerContent.type        isEqualToString:@"JWT"]);
+    XCTAssert([jwt.headerContent.type isEqualToString:@"JWT"]);
     XCTAssert([jwt.headerContent.keyIdentifier isEqualToString:@"e0068a69cdddd2fdb1df667546f0bcc0d6581149c464f59c07afb9d9c3e2216ca32dafec0b13e9ee04bcb1091d82c9b9d5ce3f2772f3ec455b01c509343e8030"]);
     
     XCTAssert([jwt.bodyContent.identity isEqualToString:@"identity-some_identity"]);
-    XCTAssert([jwt.bodyContent.appId    isEqualToString:@"virgil-78b91158fcaa2b3f93ffad2bb3eff1f6bfe8670c50bf41f350374fe37332bd23"]);
-    XCTAssert(jwt.bodyContent.issuedAt  == 1517578965);
+    XCTAssert([jwt.bodyContent.appId isEqualToString:@"virgil-78b91158fcaa2b3f93ffad2bb3eff1f6bfe8670c50bf41f350374fe37332bd23"]);
+    XCTAssert(jwt.bodyContent.issuedAt == 1517578965);
     XCTAssert(jwt.bodyContent.expiresAt == 1517579565);
     XCTAssert(jwt.isExpired == true);
     

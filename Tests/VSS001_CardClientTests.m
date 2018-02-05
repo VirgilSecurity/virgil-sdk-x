@@ -17,11 +17,11 @@
 
 @interface VSS001_CardClientTests : XCTestCase
 
-@property (nonatomic) VSSTestsConst       * consts;
-@property (nonatomic) VSMVirgilCrypto     * crypto;
-@property (nonatomic) VSMVirgilCardCrypto * cardCrypto;
-@property (nonatomic) VSSTestUtils        * utils;
-@property (nonatomic) VSSCardClient       * cardClient;
+@property (nonatomic) VSSTestsConst *consts;
+@property (nonatomic) VSMVirgilCrypto *crypto;
+@property (nonatomic) VSMVirgilCardCrypto *cardCrypto;
+@property (nonatomic) VSSTestUtils *utils;
+@property (nonatomic) VSSCardClient *cardClient;
 
 @end
 
@@ -71,7 +71,7 @@
     XCTAssert(card != nil && responseCard != nil);
     
     XCTAssert([self.utils isCardsEqualWithCard:responseCard and:card]);
-               
+    
     NSData *exportedPublicKeyCard = [self.crypto exportPublicKey:(VSMVirgilPublicKey *)card.publicKey];
     XCTAssert(error == nil);
     NSString *publicKeyBase64Card = [exportedPublicKeyCard base64EncodedStringWithOptions:0];

@@ -17,14 +17,14 @@
 
 @interface VSSAccessTokenProviderMock: NSObject<VSSAccessTokenProvider>
 
-@property (nonatomic) VSSTestsConst         * consts;
-@property (nonatomic) VSMVirgilCrypto       * crypto;
-@property (nonatomic) VSSTestUtils          * utils;
+@property (nonatomic) VSSTestsConst *consts;
+@property (nonatomic) VSMVirgilCrypto *crypto;
+@property (nonatomic) VSSTestUtils *utils;
 @property NSInteger counter;
 
 -(id)init;
 
--(id<VSSAccessToken>)getTokenWithTokenContext:(VSSTokenContext *)tokenContext error:(NSError *__autoreleasing  _Nullable *)error;
+-(id<VSSAccessToken>)getTokenWithTokenContext:(VSSTokenContext *)tokenContext error:(NSError *__autoreleasing _Nullable *)error;
 
 @end
 
@@ -33,16 +33,16 @@
 -(id)init {
     self = [super init];
     
-    self.consts      = [[VSSTestsConst         alloc] init];
-    self.crypto      = [[VSMVirgilCrypto       alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
-    self.utils       = [[VSSTestUtils          alloc] initWithCrypto      :self.crypto consts:self.consts];
+    self.consts = [[VSSTestsConst alloc] init];
+    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+    self.utils = [[VSSTestUtils alloc] initWithCrypto :self.crypto consts:self.consts];
     
     self.counter = 0;
     
     return self;
 }
 
-- (id<VSSAccessToken>)getTokenWithTokenContext:(VSSTokenContext * _Nonnull)tokenContext error:(NSError *__autoreleasing  _Nullable * _Nullable)error {
+- (id<VSSAccessToken>)getTokenWithTokenContext:(VSSTokenContext * _Nonnull)tokenContext error:(NSError *__autoreleasing _Nullable * _Nullable)error {
     NSTimeInterval interval = (self.counter % 2) * 1000 + 1;
     self.counter++;
     
@@ -57,14 +57,14 @@
 
 @interface VSS003_ModelSignerCardVerifierTests : XCTestCase
 
-@property (nonatomic) VSSTestsConst         * consts;
-@property (nonatomic) VSMVirgilCrypto       * crypto;
-@property (nonatomic) VSMVirgilCardCrypto   * cardCrypto;
-@property (nonatomic) VSSTestUtils          * utils;
-@property (nonatomic) VSSCardClient         * cardClient;
-@property (nonatomic) VSSModelSigner        * modelSigner;
-@property (nonatomic) VSSVirgilCardVerifier * verifier;
-@property (nonatomic) NSDictionary          * testData;
+@property (nonatomic) VSSTestsConst *consts;
+@property (nonatomic) VSMVirgilCrypto *crypto;
+@property (nonatomic) VSMVirgilCardCrypto *cardCrypto;
+@property (nonatomic) VSSTestUtils *utils;
+@property (nonatomic) VSSCardClient *cardClient;
+@property (nonatomic) VSSModelSigner *modelSigner;
+@property (nonatomic) VSSVirgilCardVerifier *verifier;
+@property (nonatomic) NSDictionary *testData;
 
 @end
 
@@ -73,13 +73,13 @@
 - (void)setUp {
     [super setUp];
     
-    self.consts      = [[VSSTestsConst         alloc] init];
-    self.crypto      = [[VSMVirgilCrypto       alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
-    self.cardCrypto  = [[VSMVirgilCardCrypto   alloc] initWithVirgilCrypto:self.crypto];
-    self.utils       = [[VSSTestUtils          alloc] initWithCrypto      :self.crypto consts:self.consts];
-    self.cardClient  = [[VSSCardClient         alloc] initWithServiceUrl  :self.consts.serviceURL connection:nil];
-    self.modelSigner = [[VSSModelSigner        alloc] initWithCrypto      :self.cardCrypto];
-    self.verifier    = [[VSSVirgilCardVerifier alloc] initWithCrypto      :self.cardCrypto whiteLists:nil];
+    self.consts = [[VSSTestsConst alloc] init];
+    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+    self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
+    self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
+    self.cardClient = [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL connection:nil];
+    self.modelSigner = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
+    self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
     
     self.verifier.verifySelfSignature   = false;
     self.verifier.verifyVirgilSignature = false;
@@ -175,9 +175,9 @@
     VSSCard *card = [cardManager importCardWithString:cardString];
     XCTAssert(card != nil);
     
-    self.verifier.verifySelfSignature   = false;
+    self.verifier.verifySelfSignature = false;
     self.verifier.verifyVirgilSignature = false;
-    self.verifier.whiteLists            = [[NSArray<VSSWhiteList *> alloc] init];
+    self.verifier.whiteLists = [[NSArray<VSSWhiteList *> alloc] init];
     
     [self.verifier verifyCardWithCard:card error:&error];
     XCTAssert(error == nil);
@@ -191,16 +191,16 @@
     XCTAssert(error == nil);
     
     VSSVerifierCredentials *creds1 = [[VSSVerifierCredentials alloc] initWithId:@"FIXME" publicKey:[self.utils getRandomData]];
-    VSSWhiteList *whitelist1       = [[VSSWhiteList alloc] initWithVerifiersCredentials:[NSArray arrayWithObject:creds1]];
-    self.verifier.whiteLists       = [NSArray arrayWithObject:whitelist1];
+    VSSWhiteList *whitelist1 = [[VSSWhiteList alloc] initWithVerifiersCredentials:[NSArray arrayWithObject:creds1]];
+    self.verifier.whiteLists = [NSArray arrayWithObject:whitelist1];
 
     [self.verifier verifyCardWithCard:card error:&error];
     XCTAssert(error == nil);
     
     VSSVerifierCredentials *creds21 = [[VSSVerifierCredentials alloc] initWithId:@"FIXME" publicKey:[self.utils getRandomData]];
     VSSVerifierCredentials *creds22 = [[VSSVerifierCredentials alloc] initWithId:@"FIXME" publicKey:[self.utils getRandomData]];
-    VSSWhiteList *whitelist2        = [[VSSWhiteList alloc] initWithVerifiersCredentials:[NSArray arrayWithObjects:creds21, creds22, nil]];
-    self.verifier.whiteLists        = [NSArray arrayWithObject:whitelist2];
+    VSSWhiteList *whitelist2 = [[VSSWhiteList alloc] initWithVerifiersCredentials:[NSArray arrayWithObjects:creds21, creds22, nil]];
+    self.verifier.whiteLists = [NSArray arrayWithObject:whitelist2];
     
     [self.verifier verifyCardWithCard:card error:&error];
     XCTAssert(error == nil);
@@ -208,9 +208,9 @@
     VSSVerifierCredentials *creds31 = [[VSSVerifierCredentials alloc] initWithId:@"FIXME" publicKey:[self.utils getRandomData]];
     VSSVerifierCredentials *creds32 = [[VSSVerifierCredentials alloc] initWithId:@"FIXME" publicKey:[self.utils getRandomData]];
     VSSVerifierCredentials *creds33 = [[VSSVerifierCredentials alloc] initWithId:@"FIXME" publicKey:[self.utils getRandomData]];
-    VSSWhiteList *whitelist31       = [[VSSWhiteList alloc] initWithVerifiersCredentials:[NSArray arrayWithObjects:creds31, creds32, nil]];
-    VSSWhiteList *whitelist32       = [[VSSWhiteList alloc] initWithVerifiersCredentials:[NSArray arrayWithObject:creds33]];
-    self.verifier.whiteLists        = [NSArray arrayWithObjects:whitelist31, whitelist32, nil];
+    VSSWhiteList *whitelist31 = [[VSSWhiteList alloc] initWithVerifiersCredentials:[NSArray arrayWithObjects:creds31, creds32, nil]];
+    VSSWhiteList *whitelist32 = [[VSSWhiteList alloc] initWithVerifiersCredentials:[NSArray arrayWithObject:creds33]];
+    self.verifier.whiteLists = [NSArray arrayWithObjects:whitelist31, whitelist32, nil];
     
     [self.verifier verifyCardWithCard:card error:&error];
     XCTAssert(error != nil);
@@ -229,9 +229,9 @@
     VSSCard *card = [cardManager importCardWithString:cardString];
     XCTAssert(card != nil);
     
-    self.verifier.verifySelfSignature   = false;
+    self.verifier.verifySelfSignature = false;
     self.verifier.verifyVirgilSignature = false;
-    self.verifier.whiteLists            = [[NSArray<VSSWhiteList *> alloc] init];
+    self.verifier.whiteLists = [[NSArray<VSSWhiteList *> alloc] init];
     
     [self.verifier verifyCardWithCard:card error:&error];
     XCTAssert(error == nil);
@@ -254,9 +254,9 @@
     VSSCard *card = [cardManager importCardWithString:cardString];
     XCTAssert(card != nil);
     
-    self.verifier.verifySelfSignature   = false;
+    self.verifier.verifySelfSignature = false;
     self.verifier.verifyVirgilSignature = false;
-    self.verifier.whiteLists            = [[NSArray<VSSWhiteList *> alloc] init];
+    self.verifier.whiteLists = [[NSArray<VSSWhiteList *> alloc] init];
     
     [self.verifier verifyCardWithCard:card error:&error];
     XCTAssert(error == nil);
@@ -279,9 +279,9 @@
     VSSCard *card = [cardManager importCardWithString:cardString];
     XCTAssert(card != nil);
     
-    self.verifier.verifySelfSignature   = true;
+    self.verifier.verifySelfSignature = true;
     self.verifier.verifyVirgilSignature = false;
-    self.verifier.whiteLists            = [[NSArray<VSSWhiteList *> alloc] init];
+    self.verifier.whiteLists = [[NSArray<VSSWhiteList *> alloc] init];
     
     [self.verifier verifyCardWithCard:card error:&error];
     XCTAssert(error != nil);
@@ -300,9 +300,9 @@
     VSSCard *card = [cardManager importCardWithString:cardString];
     XCTAssert(card != nil);
     
-    self.verifier.verifySelfSignature   = false;
+    self.verifier.verifySelfSignature = false;
     self.verifier.verifyVirgilSignature = true;
-    self.verifier.whiteLists            = [[NSArray<VSSWhiteList *> alloc] init];
+    self.verifier.whiteLists = [[NSArray<VSSWhiteList *> alloc] init];
     
     [self.verifier verifyCardWithCard:card error:&error];
     XCTAssert(error != nil);
@@ -322,23 +322,23 @@
     VSSCard *card = [cardManager importCardWithString:cardString];
     XCTAssert(card != nil);
     
-    self.verifier.verifySelfSignature   = false;
+    self.verifier.verifySelfSignature = false;
     self.verifier.verifyVirgilSignature = false;
     
     NSData *pubicKeyBase64 = [self.testData[@"STC-16.public_key1_base64"] dataUsingEncoding:NSUTF8StringEncoding];
     XCTAssert(pubicKeyBase64 != nil);
     
-    VSSVerifierCredentials *creds1      = [[VSSVerifierCredentials alloc] initWithId:@"FIXME" publicKey:[self.utils getRandomData]];
-    VSSWhiteList *whitelist1            = [[VSSWhiteList alloc] initWithVerifiersCredentials:[NSArray arrayWithObject:creds1]];
-    self.verifier.whiteLists            = [NSArray arrayWithObject:whitelist1];
+    VSSVerifierCredentials *creds1 = [[VSSVerifierCredentials alloc] initWithId:@"FIXME" publicKey:[self.utils getRandomData]];
+    VSSWhiteList *whitelist1 = [[VSSWhiteList alloc] initWithVerifiersCredentials:[NSArray arrayWithObject:creds1]];
+    self.verifier.whiteLists = [NSArray arrayWithObject:whitelist1];
     
     [self.verifier verifyCardWithCard:card error:&error];
     XCTAssert(error != nil);
     
     VSSVerifierCredentials *creds21 = [[VSSVerifierCredentials alloc] initWithId:@"FIXME" publicKey:[self.utils getRandomData]];
     VSSVerifierCredentials *creds22 = [[VSSVerifierCredentials alloc] initWithId:@"FIXME" publicKey:pubicKeyBase64];
-    VSSWhiteList *whitelist2        = [[VSSWhiteList alloc] initWithVerifiersCredentials:[NSArray arrayWithObjects:creds21, creds22, nil]];
-    self.verifier.whiteLists        = [NSArray arrayWithObject:whitelist2];
+    VSSWhiteList *whitelist2 = [[VSSWhiteList alloc] initWithVerifiersCredentials:[NSArray arrayWithObjects:creds21, creds22, nil]];
+    self.verifier.whiteLists = [NSArray arrayWithObject:whitelist2];
     
     [self.verifier verifyCardWithCard:card error:&error];
     XCTAssert(error == nil);
