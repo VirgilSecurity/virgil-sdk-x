@@ -19,16 +19,15 @@ import Foundation
         case publicKey = "public_key"
         case previousCardId = "previous_card_id"
         case createdAt = "created_at"
-        
         case identity
         case version
     }
     
-    @objc public init(identity: String, publicKey: String, previousCardId: String? = nil, version: String? = nil, createdAt: Date) {
+    @objc public init(identity: String, publicKey: String, previousCardId: String? = nil, version: String = "5.0", createdAt: Date) {
         self.identity = identity
         self.publicKey = publicKey
         self.previousCardId = previousCardId
-        self.version = version ?? "5.0"
+        self.version = version
         self.createdAt = Int(createdAt.timeIntervalSince1970)
         
         super.init()
@@ -38,7 +37,6 @@ import Foundation
         guard let content: RawCardContent = SnapshotUtils.parseSnapshot(snapshot: snapshot) else { return nil }
         self.init(identity: content.identity, publicKey: content.publicKey, previousCardId: content.previousCardId, version: content.version, createdAt: Date(timeIntervalSince1970: TimeInterval(content.createdAt)))
     }
-    
     
     @objc public func snapshot() -> Data? {
         return try? SnapshotUtils.takeSnapshot(object: self)

@@ -32,12 +32,12 @@ import VirgilCryptoAPI
         try self.sign(model: model, signer: "self", privateKey: privateKey, additionalData: additionalData)
     }
     
-    @objc public func sign(model: RawSignedModel, signer: String, privateKey: PrivateKey, extraFields: [String:String]? = nil) throws {
+    @objc public func sign(model: RawSignedModel, signer: String, privateKey: PrivateKey, extraFields: [String : String]? = nil) throws {
         let additionalData = try? JSONSerialization.data(withJSONObject: extraFields as Any, options: [])
-         try self.sign(model: model, signer: signer, privateKey: privateKey, additionalData: additionalData)
+        try self.sign(model: model, signer: signer, privateKey: privateKey, additionalData: additionalData)
     }
     
-    @objc public func selfSign(model: RawSignedModel, privateKey: PrivateKey, extraFields: [String:String]? = nil) throws {
+    @objc public func selfSign(model: RawSignedModel, privateKey: PrivateKey, extraFields: [String : String]? = nil) throws {
         let additionalData = try? JSONSerialization.data(withJSONObject: extraFields as Any, options: [])
         
         try self.sign(model: model, signer: "self", privateKey: privateKey, additionalData: additionalData)

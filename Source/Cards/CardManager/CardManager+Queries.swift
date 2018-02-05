@@ -44,7 +44,7 @@ extension CardManager {
         return operation
     }
     
-    public func publishCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String, previousCardId: String? = nil, extraFields: [String:String]? = nil) throws -> CallbackOperation<Card> {
+    public func publishCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String, previousCardId: String? = nil, extraFields: [String : String]? = nil) throws -> CallbackOperation<Card> {
         let rawCard = try self.generateRawCard(privateKey: privateKey, publicKey: publicKey, identity: identity, previousCardId: previousCardId, extraFields: extraFields)
         
         return self.publishCard(rawCard: rawCard)
@@ -103,7 +103,7 @@ extension CardManager {
     }
     
     @objc public func publishCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String, previousCardId: String? = nil,
-                                  timeout: NSNumber? = nil, extraFields: [String:String]? = nil, completion: @escaping (Card?, Error?)->())
+                                  timeout: NSNumber? = nil, extraFields: [String : String]? = nil, completion: @escaping (Card?, Error?)->())
     {
         do {
             try self.publishCard(privateKey: privateKey, publicKey: publicKey, identity: identity, previousCardId: previousCardId, extraFields: extraFields).start(timeout: timeout as? Int) { result in

@@ -9,9 +9,9 @@
 import Foundation
 
 @objc(VSSGeneratorJwtProvider) public class GeneratorJwtProvider: NSObject, AccessTokenProvider {
-    private let jwtGenerator: JwtGenerator
-    private let defaultIdentity: String
-    private let additionalData: [String : String]?
+    @objc public let jwtGenerator: JwtGenerator
+    @objc public let defaultIdentity: String
+    @objc public let additionalData: [String : String]?
     
     @objc public init(jwtGenerator: JwtGenerator, defaultIdentity: String, additionalData: [String : String]? = nil) {
         self.defaultIdentity = defaultIdentity

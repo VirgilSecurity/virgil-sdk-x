@@ -37,7 +37,7 @@ import VirgilCryptoAPI
         }
     }
     
-    @objc public func generateRawCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String, previousCardId: String? = nil, extraFields: [String:String]? = nil) throws -> RawSignedModel {
+    @objc public func generateRawCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String, previousCardId: String? = nil, extraFields: [String : String]? = nil) throws -> RawSignedModel {
         let cardContent = RawCardContent(identity: identity, publicKey: try crypto.exportPublicKey(publicKey).base64EncodedString(), previousCardId: nil, createdAt: Date())
         let snapshot = try SnapshotUtils.takeSnapshot(object: cardContent)
         

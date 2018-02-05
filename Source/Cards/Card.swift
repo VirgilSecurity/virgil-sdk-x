@@ -60,7 +60,6 @@ import VirgilCryptoAPI
                     extraFields = result
                 }
             }
-            
             guard let signature = Data(base64Encoded: rawSignature.signature) else { return nil }
             
             let cardSignature = CardSignature(signer: rawSignature.signer, signature: signature, snapshot: Data(base64Encoded: snapshot ?? ""), extraFields: extraFields)

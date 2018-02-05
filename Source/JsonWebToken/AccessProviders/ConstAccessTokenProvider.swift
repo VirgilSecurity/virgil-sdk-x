@@ -9,7 +9,7 @@
 import Foundation
 
 @objc(VSSConstAccessTokenProvider) public class ConstAccessTokenProvider: NSObject, AccessTokenProvider {
-    private let accessToken: AccessToken
+    @objc public let accessToken: AccessToken
     
     @objc public init(accessToken: AccessToken) {
         self.accessToken = accessToken

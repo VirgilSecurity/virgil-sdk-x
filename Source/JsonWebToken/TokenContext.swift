@@ -13,7 +13,7 @@ import Foundation
     @objc public let operation: String
     @objc public let forceReload: Bool
     
-    @objc public init(identity: String? = nil, operation: String, forceReload: Bool) {
+    @objc public init(identity: String? = nil, operation: String, forceReload: Bool = false) {
         self.identity = identity
         self.operation = operation
         self.forceReload = forceReload

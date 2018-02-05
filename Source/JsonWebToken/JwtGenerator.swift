@@ -19,6 +19,7 @@ import VirgilCryptoAPI
     @objc public enum JwtGeneratorError: Int, Error {
         case generationFailed
     }
+    
     @objc public init(apiKey: PrivateKey, apiPublicKeyIdentifier: String, accessTokenSigner: AccessTokenSigner, appId: String, ttl: TimeInterval) {
         self.apiKey = apiKey
         self.apiPublicKeyIdentifier = apiPublicKeyIdentifier
@@ -29,7 +30,7 @@ import VirgilCryptoAPI
         super.init()
     }
     
-    @objc public func generateToken(identity: String, additionalData: [String: String]? = nil) throws -> Jwt {
+    @objc public func generateToken(identity: String, additionalData: [String : String]? = nil) throws -> Jwt {
         let jwtHeaderContent = JwtHeaderContent(keyIdentifier: self.apiPublicKeyIdentifier)
         let jwtBodyContent = JwtBodyContent(appId: self.appId, identity: identity, expiresAt: Date() + self.ttl, issuedAt: Date(), additionalData: additionalData)
         
@@ -38,7 +39,6 @@ import VirgilCryptoAPI
         }
         
         let signatureContent = try self.accessTokenSigner.generateTokenSignature(of: jwt.snapshotWithoutSignatures(), using: self.apiKey)
-        
         try jwt.setSignatureContent(signatureContent)
         
         return jwt

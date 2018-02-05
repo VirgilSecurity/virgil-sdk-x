@@ -15,7 +15,7 @@ import Foundation
     @objc public let extraFields: [String : String]?
     
     
-    init(signer: String, signature: Data, snapshot: Data?, extraFields: [String: String]? = nil) {
+    init(signer: String, signature: Data, snapshot: Data?, extraFields: [String : String]? = nil) {
         self.signer = signer
         self.signature = signature
         self.snapshot = snapshot ?? Data()

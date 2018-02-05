@@ -13,7 +13,7 @@ import Foundation
     @objc public let signature: String
     @objc public let snapshot: String?
     
-   @objc public init(signer: String, signature: String, snapshot: String? = nil) {
+    @objc public init(signer: String, signature: String, snapshot: String? = nil) {
         self.signer = signer
         self.signature = signature
         self.snapshot = snapshot
