@@ -37,6 +37,7 @@ before_install:
   - set -o pipefail
   - brew update
   - brew outdated carthage || brew upgrade carthage
+  - brew outdated swiftlint || brew upgrade swiftlint
   - xcodebuild -version
   - xcodebuild -showsdks
 
