@@ -10,7 +10,7 @@ import Foundation
 
 @objc(VSSJwt) public class Jwt: NSObject, AccessToken {
     @objc public let headerContent: JwtHeaderContent
-    @objc public let bodyContent:   JwtBodyContent
+    @objc public let bodyContent: JwtBodyContent
     @objc public private(set) var string: String
     @objc public private(set) var signatureContent: Data?
     
@@ -23,8 +23,8 @@ import Foundation
         self.bodyContent = bodyContent
         self.signatureContent = signatureContent
         
-        guard  let headerBase64Url = try? self.headerContent.getBase64Url(),
-               let bodyBase64Url   = try? self.bodyContent.getBase64Url() else { return nil }
+        guard let headerBase64Url = try? self.headerContent.getBase64Url(),
+              let bodyBase64Url = try? self.bodyContent.getBase64Url() else { return nil }
         
         var result = headerBase64Url + "." + bodyBase64Url
         
@@ -40,11 +40,11 @@ import Foundation
         let array = jwtToken.components(separatedBy: ".")
         
         guard array.count >= 2 else { return nil }
-        let headerBase64Url    = array[0]
-        let bodyBase64Url      = array[1]
+        let headerBase64Url = array[0]
+        let bodyBase64Url = array[1]
         
         guard let headerContent = JwtHeaderContent(string: headerBase64Url),
-              let bodyContent   = JwtBodyContent(string: bodyBase64Url) else { return nil }
+              let bodyContent = JwtBodyContent(string: bodyBase64Url) else { return nil }
         
         var signatureContent: Data? = nil
         if array.count == 3 {
@@ -61,7 +61,7 @@ import Foundation
     
     public func snapshotWithoutSignatures() throws -> Data {
         let headerBase64Url = try self.headerContent.getBase64Url()
-        let bodyBase64Url   = try self.bodyContent.getBase64Url()
+        let bodyBase64Url = try self.bodyContent.getBase64Url()
         
         let string: String = headerBase64Url + "." + bodyBase64Url
         
@@ -87,7 +87,7 @@ import Foundation
     public func setSignatureContent(_ signatureContent: Data) throws {
         self.signatureContent = signatureContent
         let headerBase64Url = try self.headerContent.getBase64Url()
-        let bodyBase64Url   = try self.bodyContent.getBase64Url()
+        let bodyBase64Url = try self.bodyContent.getBase64Url()
 
         self.string = headerBase64Url + "." + bodyBase64Url + "." + signatureContent.base64UrlEncoded()
     }

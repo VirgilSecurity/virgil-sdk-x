@@ -22,6 +22,6 @@ import Foundation
     }
     
     @objc public func getToken(tokenContext: TokenContext) throws -> AccessToken {
-        return try self.jwtGenerator.generateToken(identity: self.defaultIdentity, additionalData: self.additionalData)
+        return try self.jwtGenerator.generateToken(identity: tokenContext.identity ?? self.defaultIdentity, additionalData: self.additionalData)
     }
 }
