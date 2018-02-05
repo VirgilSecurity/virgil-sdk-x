@@ -13,7 +13,7 @@ import VirgilCryptoAPI
     private static let virgilPublicKeyBase64 = "MCowBQYDK2VwAyEAr0rjTWlCLJ8q9em0og33grHEh/3vmqp0IewosUaVnQg="
     
     @objc public var crypto: CardCrypto
-    @objc public var verifySelfSignature:   Bool = true
+    @objc public var verifySelfSignature: Bool = true
     @objc public var verifyVirgilSignature: Bool = true
     
     private var virgilPublicKey: PublicKey? = nil
@@ -42,7 +42,7 @@ import VirgilCryptoAPI
         return true
     }
     
-    private func verifyVirgil(_ card: Card) -> Bool  {
+    private func verifyVirgil(_ card: Card) -> Bool {
         if self.verifyVirgilSignature {
             if let publicKey = self.virgilPublicKey {
                 return VirgilCardVerifier.verify(crypto: crypto, card: card, signer: "virgil", signerPublicKey: publicKey)

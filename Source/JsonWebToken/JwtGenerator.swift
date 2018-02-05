@@ -31,7 +31,7 @@ import VirgilCryptoAPI
     
     @objc public func generateToken(identity: String, additionalData: [String: String]? = nil) throws -> Jwt {
         let jwtHeaderContent = JwtHeaderContent(keyIdentifier: self.apiPublicKeyIdentifier)
-        let jwtBodyContent   = JwtBodyContent(appId: self.appId, identity: identity, expiresAt: Date() + self.ttl, issuedAt: Date(), additionalData: additionalData)
+        let jwtBodyContent = JwtBodyContent(appId: self.appId, identity: identity, expiresAt: Date() + self.ttl, issuedAt: Date(), additionalData: additionalData)
         
         guard let jwt = Jwt(headerContent: jwtHeaderContent, bodyContent: jwtBodyContent) else {
             throw JwtGeneratorError.generationFailed

@@ -9,22 +9,22 @@
 import Foundation
 
 @objc(VSSJwtHeaderContent) public class JwtHeaderContent: NSObject, Serializable, Deserializable {
-    @objc public let algorithm:     String
-    @objc public let type:          String
-    @objc public let contentType:   String
+    @objc public let algorithm: String
+    @objc public let type: String
+    @objc public let contentType: String
     @objc public let keyIdentifier: String
     
     private enum CodingKeys: String, CodingKey {
-        case algorithm     = "alg"
-        case type          = "typ"
-        case contentType   = "cty"
+        case algorithm = "alg"
+        case type = "typ"
+        case contentType = "cty"
         case keyIdentifier = "kid"
     }
     
     @objc public init(algorithm: String = "VEDS512", type: String = "JWT", contentType: String = "virgil-jwt;v=1", keyIdentifier: String) {
-        self.algorithm     = algorithm
-        self.type          = type
-        self.contentType   = contentType
+        self.algorithm = algorithm
+        self.type = type
+        self.contentType = contentType
         self.keyIdentifier = keyIdentifier
         
         super.init()

@@ -9,7 +9,7 @@
 import Foundation
 
 @objc(VSSVerifierCredentials) public class VerifierCredentials: NSObject {
-    @objc public let signer:    String
+    @objc public let signer: String
     @objc public let publicKey: Data
     
     @objc public init(signer: String, publicKey: Data) {

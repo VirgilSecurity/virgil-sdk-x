@@ -32,9 +32,7 @@ import VirgilCryptoAPI
     }
     
     func verifyCard(_ card: Card) throws {
-        do {
-            try cardVerifier.verifyCard(card: card)
-        } catch {
+        guard cardVerifier.verifyCard(card: card) else {
             throw CardManagerError.cardIsNotValid
         }
     }

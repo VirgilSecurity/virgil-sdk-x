@@ -16,9 +16,9 @@ import Foundation
     @objc public let createdAt: Int
     
     private enum CodingKeys: String, CodingKey {
-        case publicKey      = "public_key"
+        case publicKey = "public_key"
         case previousCardId = "previous_card_id"
-        case createdAt      = "created_at"
+        case createdAt = "created_at"
         
         case identity
         case version

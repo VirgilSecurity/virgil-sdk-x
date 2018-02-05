@@ -24,7 +24,7 @@ import Foundation
     
     @objc public init(contentSnapshot: Data, signatures: [RawSignature]? = nil) {
         self.contentSnapshot = contentSnapshot
-        self.signatures      = signatures ?? []
+        self.signatures = signatures ?? []
         
         super.init()
     }
