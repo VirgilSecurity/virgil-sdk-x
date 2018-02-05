@@ -41,17 +41,9 @@ import VirgilCryptoAPI
             return nil
         }
         
-        var combinedSnapsot = rawSignedModel.contentSnapshot
-        if let selfSignature = rawSignedModel.signatures.first(where: {$0.signerType == "self"}),
-           let extraSnapshotString = selfSignature.snapshot,
-           let extraSnapshot = Data(base64Encoded: extraSnapshotString)
-        {
-            combinedSnapsot += extraSnapshot
-        }
-        
         guard let publicKeyData = Data(base64Encoded: rawCardContent.publicKey),
               let publicKey   = try? crypto.importPublicKey(from: publicKeyData),
-              let fingerprint = try? crypto.generateSHA256(for: combinedSnapsot) else { return nil }
+              let fingerprint = try? crypto.generateSHA256(for: rawSignedModel.contentSnapshot) else { return nil }
         
         let cardId = fingerprint.hexEncodedString()
         
@@ -71,7 +63,7 @@ import VirgilCryptoAPI
             
             guard let signature  = Data(base64Encoded: rawSignature.signature) else { return nil }
             
-            let cardSignature = CardSignature(signerId: rawSignature.signerId, signerType: rawSignature.signerType, signature: signature, snapshot: Data(base64Encoded: snapshot ?? ""), extraFields: extraFields)
+            let cardSignature = CardSignature(signer: rawSignature.signer, signature: signature, snapshot: Data(base64Encoded: snapshot ?? ""), extraFields: extraFields)
             
             cardSignatures.append(cardSignature)
         }
@@ -83,7 +75,7 @@ import VirgilCryptoAPI
         let rawCard = RawSignedModel(contentSnapshot: self.contentSnapshot)
         
         for cardSignature in self.signatures {
-            try rawCard.addSignature(RawSignature(signerId: cardSignature.signerId, snapshot: cardSignature.snapshot.base64EncodedString(), signerType: cardSignature.signerType, signature: cardSignature.signature.base64EncodedString()))
+            try rawCard.addSignature(RawSignature(signer: cardSignature.signer, signature: cardSignature.signature.base64EncodedString(), snapshot: cardSignature.snapshot.base64EncodedString()))
         }
         
         return rawCard

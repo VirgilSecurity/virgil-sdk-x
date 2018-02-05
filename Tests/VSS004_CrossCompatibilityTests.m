@@ -346,8 +346,13 @@
 }
 
 -(void)test005_STC_22 {
+    NSError *error;
     VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:self.crypto];
-    VSSJwtVerifier *verifier = [[VSSJwtVerifier alloc] initWithApiPublicKey:self.testData[@"STC-22.api_public_key_base64"] apiPublicKeyIdentifier:self.testData[@"STC-22.api_key_id"] accessTokenSigner:signer];
+    NSData *publicKeyBase64 = [[NSData alloc] initWithBase64EncodedString:self.testData[@"STC-22.api_public_key_base64"] options:0];
+    VSMVirgilPublicKey *publicKey = [self.crypto importPublicKeyFrom:publicKeyBase64 error:&error];
+    XCTAssert(error == nil);
+    
+    VSSJwtVerifier *verifier = [[VSSJwtVerifier alloc] initWithApiPublicKey:publicKey apiPublicKeyIdentifier:self.testData[@"STC-22.api_key_id"] accessTokenSigner:signer];
     
     VSSJwt *jwt = [[VSSJwt alloc] initWithJwtToken:self.testData[@"STC-22.jwt"]];
     XCTAssert(jwt != nil);
@@ -369,40 +374,49 @@
     [dic setValue:@"some_username" forKey:@"username"];
     XCTAssert([jwt.bodyContent.additionalData isEqualToDictionary:dic]);
     
-    BOOL success = [verifier verifyTokenWithJwtToken:jwt];
-    XCTAssert(success == true);
+    XCTAssert([verifier verifyTokenWithJwtToken:jwt]);
 }
 
 -(void)test006_STC_23 {
     NSError *error;
+    
+    self.continueAfterFailure = NO;
     VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:self.crypto];
-    VSSJwtVerifier *verifier = [[VSSJwtVerifier alloc] initWithApiPublicKey:self.testData[@"STC-23.api_public_key_base64"] apiPublicKeyIdentifier:self.testData[@"STC-23.api_key_id"] accessTokenSigner:signer];
+    NSData *publicKeyBase64 = [[NSData alloc] initWithBase64EncodedString:self.testData[@"STC-23.api_public_key_base64"] options:0];
+    VSMVirgilPublicKey *publicKey = [self.crypto importPublicKeyFrom:publicKeyBase64 error:&error];
+    XCTAssert(error == nil);
+    VSSJwtVerifier *verifier = [[VSSJwtVerifier alloc] initWithApiPublicKey:publicKey apiPublicKeyIdentifier:self.testData[@"STC-23.api_key_id"] accessTokenSigner:signer];
     
-    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:self.testData[@"STC-23.api_private_key_base64"] apiPublicKeyIdentifier:self.testData[@"STC-23.api_key_id"] accessTokenSigner:signer appId:self.testData[@"STC-23.app_id"] ttl:1000];
+    NSString *apiKeyStringBase64 = self.testData[@"STC-23.api_private_key_base64"];
+    NSData *apiKeyDataBase64 = [[NSData alloc] initWithBase64EncodedString:apiKeyStringBase64 options:0];
+    VSMVirgilPrivateKeyExporter *exporter = [[VSMVirgilPrivateKeyExporter alloc] initWithVirgilCrypto:self.crypto password:nil];
+    VSMVirgilPrivateKey *privateKey = (VSMVirgilPrivateKey *)[exporter importPrivateKeyFrom:apiKeyDataBase64 error:&error];
+    XCTAssert(error == nil);
     
-    NSString *identity = @"identity";
+    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey apiPublicKeyIdentifier:self.testData[@"STC-23.api_key_id"] accessTokenSigner:signer appId:self.testData[@"STC-23.app_id"] ttl:1000];
+    
+    NSString *identity = @"some_identity";
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setValue:@"some_username" forKey:@"username"];
     VSSJwt *jwt = [generator generateTokenWithIdentity:identity additionalData:dic error:&error];
     XCTAssert(error == nil);
     XCTAssert(jwt != nil);
     
+    VSSJwt *jwt22 = [[VSSJwt alloc] initWithJwtToken:self.testData[@"STC-22.jwt"]];
+    XCTAssert(jwt22 != nil);
+    
     XCTAssert([jwt.headerContent.algorithm isEqualToString:@"VEDS512"]);
     XCTAssert([jwt.headerContent.contentType isEqualToString:@"virgil-jwt;v=1"]);
     XCTAssert([jwt.headerContent.type isEqualToString:@"JWT"]);
-    XCTAssert([jwt.headerContent.keyIdentifier isEqualToString:@"e0068a69cdddd2fdb1df667546f0bcc0d6581149c464f59c07afb9d9c3e2216ca32dafec0b13e9ee04bcb1091d82c9b9d5ce3f2772f3ec455b01c509343e8030"]);
+    XCTAssert([jwt.headerContent.keyIdentifier isEqualToString:jwt22.headerContent.keyIdentifier]);
     
-    XCTAssert([jwt.bodyContent.identity isEqualToString:@"identity-some_identity"]);
-    XCTAssert([jwt.bodyContent.appId isEqualToString:@"virgil-78b91158fcaa2b3f93ffad2bb3eff1f6bfe8670c50bf41f350374fe37332bd23"]);
-    XCTAssert(jwt.bodyContent.issuedAt == 1517578965);
-    XCTAssert(jwt.bodyContent.expiresAt == 1517579565);
-    XCTAssert(jwt.isExpired == true);
+    XCTAssert([jwt.bodyContent.identity isEqualToString:jwt22.bodyContent.identity]);
+    XCTAssert([jwt.bodyContent.appId isEqualToString:jwt22.bodyContent.appId]);
+    XCTAssert(jwt.isExpired == false);
     
-    XCTAssert([jwt.stringRepresentation isEqualToString:self.testData[@"STC-22.jwt"]]);
     XCTAssert([jwt.bodyContent.additionalData isEqualToDictionary:dic]);
     
-    BOOL success = [verifier verifyTokenWithJwtToken:jwt];
-    XCTAssert(success == true);
+    XCTAssert([verifier verifyTokenWithJwtToken:jwt]);
 }
 
 

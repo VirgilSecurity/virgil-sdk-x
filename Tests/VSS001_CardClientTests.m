@@ -29,6 +29,7 @@
 
 - (void)setUp {
     [super setUp];
+    self.continueAfterFailure = NO;
     
     self.consts = [[VSSTestsConst alloc] init];
     self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
@@ -83,8 +84,7 @@
     
     VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
     
-    [verifier verifyCardWithCard:responseCard error:&error];
-    XCTAssert(error == nil);
+    XCTAssert([verifier verifyCardWithCard:responseCard]);
 }
 
 -(void)test002_GetCard {
@@ -124,8 +124,7 @@
     
     VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
     
-    [verifier verifyCardWithCard:foundedCard error:&error];
-    XCTAssert(error == nil);
+    XCTAssert([verifier verifyCardWithCard:foundedCard]);
 }
 
 -(void)test003_SearchCards {
@@ -168,8 +167,7 @@
     
     VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
     
-    [verifier verifyCardWithCard:foundedCard error:&error];
-    XCTAssert(error == nil);
+    XCTAssert([verifier verifyCardWithCard:foundedCard]);
 }
 
 -(void)test004_PublishCard_With_wrongTokenIdentity {

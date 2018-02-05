@@ -14,6 +14,8 @@
 #import "VSSTestsConst.h"
 #import "VSSTestUtils.h"
 
+static const NSTimeInterval timeout = 8.;
+
 @interface VSS005_CardManagerTests : XCTestCase
 
 @property (nonatomic) VSSTestsConst *consts;
@@ -49,6 +51,8 @@
 }
 
 -(void)test002_Publish_And_Get {
+    XCTestExpectation *ex = [self expectationWithDescription:@"Card should be published and get"];
+    
     NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
@@ -76,11 +80,20 @@
             XCTAssert(returnedCard.isOutdated == false);
             
             XCTAssert([self.utils isCardsEqualWithCard:card and:returnedCard]);
+            
+            [ex fulfill];
         }];
+    }];
+    
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
     }];
 }
 
 -(void)test003_Publish_And_Get_With_extaData {
+    XCTestExpectation *ex = [self expectationWithDescription:@"Card should be published and get with extra data"];
+    
     NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
@@ -112,11 +125,20 @@
             XCTAssert(returnedCard.isOutdated == false);
             
             XCTAssert([self.utils isCardsEqualWithCard:card and:returnedCard]);
+            
+            [ex fulfill];
         }];
+    }];
+    
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
     }];
 }
 
 -(void)test004_CardReplacement {
+    XCTestExpectation *ex = [self expectationWithDescription:@"Card should be replaced"];
+    
     NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
@@ -170,14 +192,23 @@
                         XCTAssert(returnedCard.isOutdated == true);
                         
                         XCTAssert([self.utils isCardsEqualWithCard:card1 and:returnedCard]);
+                        
+                        [ex fulfill];
                     }];
                 }];
             }];
         }];
     }];
+    
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
+    }];
 }
 
 -(void)test005_SearchCards {
+    XCTestExpectation *ex = [self expectationWithDescription:@"Cards should be published and searched"];
+    
     NSError *error;
     NSString *identity1 = [[NSUUID alloc] init].UUIDString;
     NSString *identity2 = [[NSUUID alloc] init].UUIDString;
@@ -235,27 +266,31 @@
                             XCTAssert([self.utils isCardsEqualWithCard:card and:card3]);
                         }
                     }
-
+                    
+                    [ex fulfill];
                 }];
             }];
         }];
     }];
+    
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
+    }];
 }
 
 - (void)test006_generateRawCard{
+    XCTestExpectation *ex = [self expectationWithDescription:@"Card should be published"];
+    
     NSError *error;
     NSString *identity =[[NSUUID alloc] init].UUIDString;
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
 
-    VSSCardManager *addCardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
-
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:^VSSRawSignedModel *(VSSRawSignedModel *model) {
         VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:nil];
-        VSSRawSignedModel *rawCard = [addCardManager generateRawCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:nil error:nil];
-        VSSCard *card = [VSSCard parseWithCrypto:self.cardCrypto rawSignedModel:rawCard];
         
-        [self.modelSigner signWithModel:model id:card.identifier type:@"app" privateKey:keyPair.privateKey additionalData:nil error:nil];
+        [self.modelSigner signWithModel:model signer:@"extra" privateKey:keyPair.privateKey additionalData:nil error:nil];
         
         return  model;
     }];
@@ -279,6 +314,12 @@
         XCTAssert(returnedCard.isOutdated == false);
         
         XCTAssert([self.utils isCardsEqualWithCard:card and:returnedCard]);
+        [ex fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
     }];
 }
 

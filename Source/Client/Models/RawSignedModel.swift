@@ -19,7 +19,7 @@ import Foundation
     
     @objc public enum RawSignedModelError: Int, Error {
         case modelHasMaxSignatures
-        case signatureWithThisIdExists
+        case signatureWithThisSignerAlreadyExist
     }
     
     @objc public init(contentSnapshot: Data, signatures: [RawSignature]? = nil) {
@@ -50,8 +50,8 @@ import Foundation
             throw RawSignedModelError.modelHasMaxSignatures
         }
         
-        guard self.signatures.first(where: { $0.signerId == signature.signerId }) == nil else {
-            throw RawSignedModelError.signatureWithThisIdExists
+        guard self.signatures.first(where: { $0.signer == signature.signer }) == nil else {
+            throw RawSignedModelError.signatureWithThisSignerAlreadyExist
         }
         self.signatures.append(signature)
     }

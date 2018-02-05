@@ -9,6 +9,8 @@
 import Foundation
 import VirgilCrypto
 import XCTest
+import VirgilCryptoApiImpl
+import VirgilSDK
 
 class VSS006_KeyStorageTests: XCTestCase {
     private var crypto: VirgilCrypto!
@@ -22,7 +24,7 @@ class VSS006_KeyStorageTests: XCTestCase {
         
         self.crypto = VirgilCrypto()
         self.storage = VSSKeyStorage()
-        let keyPair = self.crypto.generateKeyPair()
+        let keyPair = try! self.crypto.generateKeyPair()
         
         let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
         let privateKeyName = UUID().uuidString
@@ -49,7 +51,7 @@ class VSS006_KeyStorageTests: XCTestCase {
     func test002_StoreKeyWithDuplicateName() {
         try! self.storage.store(self.keyEntry)
     
-        let keyPair = self.crypto.generateKeyPair()
+        let keyPair = try! self.crypto.generateKeyPair()
         
         let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
         let privateKeyName = self.keyEntry.name
@@ -101,7 +103,7 @@ class VSS006_KeyStorageTests: XCTestCase {
     func test006_UpdateKey() {
         try! self.storage.store(self.keyEntry)
         
-        let keyPair = self.crypto.generateKeyPair()
+        let keyPair = try! self.crypto.generateKeyPair()
         
         let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
         let privateKeyName = self.keyEntry.name

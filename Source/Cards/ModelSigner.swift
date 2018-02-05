@@ -18,35 +18,28 @@ import VirgilCryptoAPI
         super.init()
     }
     
-    @objc public func sign(model: RawSignedModel, id: String, type: String, privateKey: PrivateKey, additionalData: Data? = nil) throws {
+    @objc public func sign(model: RawSignedModel, signer: String, privateKey: PrivateKey, additionalData: Data? = nil) throws {
         let combinedSnapshot = model.contentSnapshot + (additionalData ?? Data())
         let fingerprint = try self.crypto.generateSHA256(for: combinedSnapshot)
         let signature = try crypto.generateSignature(of: fingerprint, using: privateKey)
         
-        let rawSignature = RawSignature(signerId: id, snapshot: additionalData?.base64EncodedString(), signerType: type, signature: signature.base64EncodedString())
+        let rawSignature = RawSignature(signer: signer, signature: signature.base64EncodedString(), snapshot: additionalData?.base64EncodedString())
         
         try model.addSignature(rawSignature)
     }
     
     @objc public func selfSign(model: RawSignedModel, privateKey: PrivateKey, additionalData: Data? = nil) throws {
-        let combinedSnapshot = model.contentSnapshot + (additionalData ?? Data())
-        let fingerprint = try self.crypto.generateSHA256(for: combinedSnapshot)
-        let signerId = fingerprint.hexEncodedString()
-        
-        let signature = try crypto.generateSignature(of: fingerprint, using: privateKey)
-        let rawSignature = RawSignature(signerId: signerId, snapshot: additionalData?.base64EncodedString(), signerType: "self", signature: signature.base64EncodedString())
-        
-        try model.addSignature(rawSignature)
+        try self.sign(model: model, signer: "self", privateKey: privateKey, additionalData: additionalData)
     }
     
-    @objc public func sign(model: RawSignedModel, id: String, type: String, privateKey: PrivateKey, extraFields: [String:String]? = nil) throws {
+    @objc public func sign(model: RawSignedModel, signer: String, privateKey: PrivateKey, extraFields: [String:String]? = nil) throws {
         let additionalData = try? JSONSerialization.data(withJSONObject: extraFields as Any, options: [])
-        try self.selfSign(model: model, privateKey: privateKey, additionalData: additionalData)
+         try self.sign(model: model, signer: signer, privateKey: privateKey, additionalData: additionalData)
     }
     
     @objc public func selfSign(model: RawSignedModel, privateKey: PrivateKey, extraFields: [String:String]? = nil) throws {
         let additionalData = try? JSONSerialization.data(withJSONObject: extraFields as Any, options: [])
         
-        try self.selfSign(model: model, privateKey: privateKey, additionalData: additionalData)
+        try self.sign(model: model, signer: "self", privateKey: privateKey, additionalData: additionalData)
     }
 }
