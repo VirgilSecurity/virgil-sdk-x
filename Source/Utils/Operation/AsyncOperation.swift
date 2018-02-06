@@ -10,11 +10,11 @@ import Foundation
 
 public class AsyncOperation: Operation {
     override public var isAsynchronous: Bool { return true }
-    
+
     override public var isExecuting: Bool { return state == .executing }
-    override public var isFinished:  Bool { return state == .finished }
-    
-    var state = State.ready {
+    override public var isFinished: Bool { return state == .finished }
+
+    public var state = State.ready {
         willSet {
             willChangeValue(forKey: state.keyPath)
             willChangeValue(forKey: newValue.keyPath)
@@ -24,11 +24,12 @@ public class AsyncOperation: Operation {
             didChangeValue(forKey: oldValue.keyPath)
         }
     }
-    
-    enum State: String {
+
+    public enum State: String {
         case ready     = "Ready"
         case executing = "Executing"
         case finished  = "Finished"
+
         fileprivate var keyPath: String { return "is" + self.rawValue }
     }
 
@@ -40,10 +41,8 @@ public class AsyncOperation: Operation {
         self.state = .ready
         self.main()
     }
-    
+
     override public func main() {
         // Implement your async task here.
     }
 }
-
-

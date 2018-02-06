@@ -10,14 +10,14 @@ import Foundation
 
 @objc(VSSConstAccessTokenProvider) public class ConstAccessTokenProvider: NSObject, AccessTokenProvider {
     @objc public let accessToken: AccessToken
-    
+
     @objc public init(accessToken: AccessToken) {
         self.accessToken = accessToken
-        
+
         super.init()
     }
-    
-    @objc public func getToken(tokenContext: TokenContext) throws -> AccessToken {
+
+    @objc public func getToken(with tokenContext: TokenContext) throws -> AccessToken {
         return accessToken
     }
 }

@@ -28,11 +28,11 @@
     NSData *exportedPublicKey = [self.crypto exportPublicKey: kp.publicKey];
     NSString *publicKeyBase64 = [exportedPublicKey base64EncodedStringWithOptions:0];
     
-    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:idty publicKey:publicKeyBase64 previousCardId:nil version:nil createdAt:NSDate.date];
+    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:idty publicKey:publicKeyBase64 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     
     NSData *snapshot = [content snapshot];
     
-    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:nil];
+    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:[[NSArray alloc] init]];
     
     VSMVirgilCardCrypto *cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:cardCrypto];

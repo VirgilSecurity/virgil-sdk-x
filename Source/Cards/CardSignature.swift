@@ -12,15 +12,14 @@ import Foundation
     @objc public let signer: String
     @objc public let signature: Data
     @objc public let snapshot: Data
-    @objc public let extraFields: [String : String]?
-    
-    
-    init(signer: String, signature: Data, snapshot: Data?, extraFields: [String : String]? = nil) {
+    @objc public let extraFields: [String: String]?
+
+    @objc public init(signer: String, signature: Data, snapshot: Data?, extraFields: [String: String]? = nil) {
         self.signer = signer
         self.signature = signature
         self.snapshot = snapshot ?? Data()
         self.extraFields = extraFields
-        
+
         super.init()
     }
 }

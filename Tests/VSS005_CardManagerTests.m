@@ -38,8 +38,8 @@ static const NSTimeInterval timeout = 8.;
     self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
     self.modelSigner = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
-    self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
-    self.cardClient = [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL connection:nil];
+    self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:[[NSArray alloc] init]];
+    self.cardClient = [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL];
 }
 
 - (void)tearDown {

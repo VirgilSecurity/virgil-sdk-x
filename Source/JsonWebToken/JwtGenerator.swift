@@ -15,33 +15,36 @@ import VirgilCryptoAPI
     @objc public let accessTokenSigner: AccessTokenSigner
     @objc public let appId: String
     @objc public let ttl: TimeInterval
-    
+
     @objc public enum JwtGeneratorError: Int, Error {
-        case generationFailed
+        case generationFailed = 0
     }
-    
-    @objc public init(apiKey: PrivateKey, apiPublicKeyIdentifier: String, accessTokenSigner: AccessTokenSigner, appId: String, ttl: TimeInterval) {
+
+    @objc public init(apiKey: PrivateKey, apiPublicKeyIdentifier: String,
+                      accessTokenSigner: AccessTokenSigner, appId: String, ttl: TimeInterval) {
         self.apiKey = apiKey
         self.apiPublicKeyIdentifier = apiPublicKeyIdentifier
         self.accessTokenSigner = accessTokenSigner
         self.appId = appId
         self.ttl = ttl
-        
+
         super.init()
     }
-    
-    @objc public func generateToken(identity: String, additionalData: [String : String]? = nil) throws -> Jwt {
+
+    @objc public func generateToken(identity: String, additionalData: [String: String]? = nil) throws -> Jwt {
         let jwtHeaderContent = JwtHeaderContent(keyIdentifier: self.apiPublicKeyIdentifier)
-        let jwtBodyContent = JwtBodyContent(appId: self.appId, identity: identity, expiresAt: Date() + self.ttl, issuedAt: Date(), additionalData: additionalData)
-        
+        let jwtBodyContent = JwtBodyContent(appId: self.appId, identity: identity,
+                                            expiresAt: Date() + self.ttl, issuedAt: Date(),
+                                            additionalData: additionalData)
+
         guard let jwt = Jwt(headerContent: jwtHeaderContent, bodyContent: jwtBodyContent) else {
             throw JwtGeneratorError.generationFailed
         }
-        
-        let signatureContent = try self.accessTokenSigner.generateTokenSignature(of: jwt.snapshotWithoutSignatures(), using: self.apiKey)
+
+        let snapshot = try jwt.snapshotWithoutSignatures()
+        let signatureContent = try self.accessTokenSigner.generateTokenSignature(of: snapshot, using: self.apiKey)
         try jwt.setSignatureContent(signatureContent)
-        
+
         return jwt
     }
 }
-

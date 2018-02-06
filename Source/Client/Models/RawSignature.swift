@@ -12,12 +12,12 @@ import Foundation
     @objc public let signer: String
     @objc public let signature: String
     @objc public let snapshot: String?
-    
+
     @objc public init(signer: String, signature: String, snapshot: String? = nil) {
         self.signer = signer
         self.signature = signature
         self.snapshot = snapshot
-        
+
         super.init()
     }
 }

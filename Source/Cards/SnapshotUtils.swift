@@ -8,20 +8,20 @@
 
 import Foundation
 
-class SnapshotUtils {
-    public static func takeSnapshot(object: Any) throws -> Data {
+@objc public class SnapshotUtils: NSObject {
+    public static func takeSnapshot(of object: Any) throws -> Data {
         return try JSONSerialization.data(withJSONObject: object, options: [])
     }
-    
-    public static func takeSnapshot(object: Serializable) throws -> Data {
+
+    public static func takeSnapshot(of object: Serializable) throws -> Data {
         return try object.asJsonData()
     }
-    
-    public static func parseSnapshot<T: Deserializable>(snapshot: Data) -> T? {
+
+    public static func parse<T: Deserializable>(_ snapshot: Data) -> T? {
         guard let json = try? JSONSerialization.jsonObject(with: snapshot, options: .allowFragments) else {
             return nil
         }
-        
+
         return T(dict: json)
     }
 }

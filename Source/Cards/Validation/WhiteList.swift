@@ -10,10 +10,10 @@ import Foundation
 
 @objc(VSSWhiteList) public class WhiteList: NSObject {
     @objc public let verifiersCredentials: [VerifierCredentials]
-    
+
     @objc public init(verifiersCredentials: [VerifierCredentials]) {
         self.verifiersCredentials = verifiersCredentials
-        
+
         super.init()
     }
 }

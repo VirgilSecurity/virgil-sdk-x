@@ -10,28 +10,28 @@ import Foundation
 
 public class CallbackOperation<T>: GenericOperation<T> {
     private let task: () throws -> (T)
-    
+
     public init(task: @escaping () throws ->(T)) {
         self.task = task
     }
-    
+
     override public func main() {
         self.state = .executing
-        
+
         var tmpResult: Result<T>
         do {
             tmpResult = .success(try self.task())
         } catch {
             tmpResult = .failure(error)
         }
-        
+
         guard !self.isCancelled else {
             self.state = .finished
             return
         }
-        
+
         self.result = tmpResult
-        
+
         self.state = .finished
     }
 }

@@ -24,7 +24,7 @@
 
 -(id)init;
 
--(id<VSSAccessToken>)getTokenWithTokenContext:(VSSTokenContext *)tokenContext error:(NSError *__autoreleasing _Nullable *)error;
+-(id<VSSAccessToken>)getTokenWith:(VSSTokenContext *)tokenContext error:(NSError *__autoreleasing _Nullable *)error;
 
 @end
 
@@ -42,7 +42,7 @@
     return self;
 }
 
-- (id<VSSAccessToken>)getTokenWithTokenContext:(VSSTokenContext * _Nonnull)tokenContext error:(NSError *__autoreleasing _Nullable * _Nullable)error {
+- (id<VSSAccessToken>)getTokenWith:(VSSTokenContext * _Nonnull)tokenContext error:(NSError *__autoreleasing _Nullable * _Nullable)error {
     NSTimeInterval interval = (self.counter % 2) * 1000 + 1;
     self.counter++;
     
@@ -77,9 +77,9 @@
     self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
     self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
-    self.cardClient = [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL connection:nil];
+    self.cardClient = [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL];
     self.modelSigner = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
-    self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
+    self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:[[NSArray alloc] init]];
     
     self.verifier.verifySelfSignature   = false;
     self.verifier.verifyVirgilSignature = false;
@@ -102,7 +102,7 @@
     XCTAssert(error == nil);
     NSData *data = [self.utils getRandomData];
     
-    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:data signatures:nil];
+    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:data signatures:[[NSArray alloc] init]];
     XCTAssert(rawCard.signatures.count == 0);
     
     [self.modelSigner selfSignWithModel:rawCard privateKey:keyPair1.privateKey additionalData:nil error:&error];
@@ -144,7 +144,7 @@
     XCTAssert(error == nil);
     
     NSData *data = [self.utils getRandomData];
-    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:data signatures:nil];
+    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:data signatures:[[NSArray alloc] init]];
     XCTAssert(rawCard.signatures.count == 0);
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];

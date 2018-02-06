@@ -11,11 +11,11 @@ import Foundation
 @objc(VSSVerifierCredentials) public class VerifierCredentials: NSObject {
     @objc public let signer: String
     @objc public let publicKey: Data
-    
+
     @objc public init(signer: String, publicKey: Data) {
         self.signer = signer
         self.publicKey = publicKey
-        
+
         super.init()
     }
 }

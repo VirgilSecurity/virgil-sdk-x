@@ -35,7 +35,7 @@
     self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
     self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
-    self.cardClient = [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL connection:nil];
+    self.cardClient = [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL];
 }
 
 - (void)tearDown {
@@ -51,10 +51,10 @@
     NSString *publicKeyBase64 = [exportedPublicKey base64EncodedStringWithOptions:0];
     NSString *identity = @"identity";
 
-    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:nil createdAt:NSDate.date];
+    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     NSData *snapshot = [content snapshot];
     
-    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:nil];
+    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:[[NSArray alloc] init]];
     XCTAssert(error == nil && rawCard != nil);
 
     NSString *strToken = [self.utils getTokenStringWithIdentity:identity error:&error];
@@ -82,7 +82,7 @@
     
     XCTAssert([publicKeyBase64Card isEqualToString:publicKeyBase64]);
     
-    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
+    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:[[NSArray alloc] init]];
     
     XCTAssert([verifier verifyCardWithCard:responseCard]);
 }
@@ -99,10 +99,10 @@
     NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
     NSString *publicKeyBase64 = [exportedPublicKey base64EncodedStringWithOptions:0];
 
-    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:nil createdAt:NSDate.date];
+    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     NSData *snapshot = [content snapshot];
 
-    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:nil];
+    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:[[NSArray alloc] init]];
     
     VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
@@ -122,7 +122,7 @@
     
     XCTAssert([self.utils isCardsEqualWithCard:card and:foundedCard]);
     
-    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
+    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:[[NSArray alloc] init]];
     
     XCTAssert([verifier verifyCardWithCard:foundedCard]);
 }
@@ -139,9 +139,9 @@
     NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
     NSString *publicKeyBase64 = [exportedPublicKey base64EncodedStringWithOptions:0];
     
-    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:nil createdAt:NSDate.date];
+    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     NSData *snapshot = [content snapshot];
-    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:nil];
+    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:[[NSArray alloc] init]];
     
     VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
@@ -165,7 +165,7 @@
     
     XCTAssert([self.utils isCardsEqualWithCard:card and:foundedCard]);
     
-    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:nil];
+    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:[[NSArray alloc] init]];
     
     XCTAssert([verifier verifyCardWithCard:foundedCard]);
 }
@@ -180,10 +180,10 @@
     NSString *identity = @"identity1";
     NSString *wrongIdentity = @"identity2";
     
-    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:nil createdAt:NSDate.date];
+    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     NSData *snapshot = [content snapshot];
     
-    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:nil];
+    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:[[NSArray alloc] init]];
     XCTAssert(rawCard != nil);
     
     NSString *strToken = [self.utils getTokenStringWithIdentity:wrongIdentity error:&error];
@@ -211,10 +211,10 @@
     NSString *publicKeyBase64 = [exportedPublicKey base64EncodedStringWithOptions:0];
     NSString *identity = @"identity1";
     
-    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:nil createdAt:NSDate.date];
+    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     NSData *snapshot = [content snapshot];
     
-    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:nil];
+    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:[[NSArray alloc] init]];
     XCTAssert(error == nil && rawCard != nil);
     
     NSString *strToken = [self.utils getTokenWithWrongPrivateKeyWithIdentity:identity error:&error];

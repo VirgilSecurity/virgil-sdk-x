@@ -10,30 +10,30 @@ import Foundation
 
 @objc(VSSCallbackJwtProvider) public class CallbackJwtProvider: NSObject, AccessTokenProvider {
     @objc public private(set) var token: Jwt?
-    @objc public private(set) var getTokenCallback: ()->(String)
-    
+    @objc public private(set) var getTokenCallback: () -> (String)
+
     @objc public enum CallbackProviderError: Int, Error {
-        case callbackReturnedCorruptedJwt
+        case callbackReturnedCorruptedJwt = 0
     }
-    
-    @objc public init(getTokenCallback: @escaping ()->(String)) {
+
+    @objc public init(getTokenCallback: @escaping () -> (String)) {
         self.getTokenCallback = getTokenCallback
-        
+
         super.init()
     }
-    
-    @objc public func getToken(tokenContext: TokenContext) throws -> AccessToken {
+
+    @objc public func getToken(with tokenContext: TokenContext) throws -> AccessToken {
         if tokenContext.forceReload || self.token == nil || self.token!.isExpired() {
             guard let jwt = Jwt(jwtToken: getTokenCallback()) else {
                 throw CallbackProviderError.callbackReturnedCorruptedJwt
             }
             self.token = jwt
         }
-        
+
         return self.token!
     }
-    
-    @objc public func setCallback(_ callback: @escaping ()->(String)) {
+
+    @objc public func setCallback(_ callback: @escaping () -> (String)) {
         self.getTokenCallback = callback
     }
 }

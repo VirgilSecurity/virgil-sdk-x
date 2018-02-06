@@ -8,53 +8,52 @@
 
 import Foundation
 
-extension CardClient {
-    @objc public func getCard(withId cardId: String, token: String) throws -> RawSignedModel {
+public extension CardClient {
+    @objc func getCard(withId cardId: String, token: String) throws -> RawSignedModel {
         guard let url = URL(string: "card/v5/\(cardId)", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
-        
+
         let request = try ServiceRequest(url: url, method: .get, apiToken: token)
-        
+
         let response = try self.connection.send(request)
-        
+
         return try self.processResponse(response)
     }
-    
-    @objc public func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
+
+    @objc func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
         guard let url = URL(string: "card/v5", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
-        
+
         let request = try ServiceRequest(url: url, method: .post, apiToken: token, bodyJson: model.exportAsJson())
-        
+
         let response = try self.connection.send(request)
-        
+
         return try self.processResponse(response)
     }
-    
-    // FIXME
-    @objc public func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
+
+    @objc func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
         guard let url = URL(string: "card/v5/actions/search", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
-        
+
         let request = try ServiceRequest(url: url, method: .post, apiToken: token, bodyJson: ["identity": identity])
-        
+
         let response = try self.connection.send(request)
-        
+
         guard response.statusCode == 200 else {
             throw self.handleError(statusCode: response.statusCode, body: response.body)
         }
-        
+
         guard let data = response.body else {
             throw CardClientError.noBody
         }
-        
-        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[AnyHashable : Any]] else {
+
+        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[AnyHashable: Any]] else {
             throw CardClientError.invalidJson
         }
-        
+
         var result: [RawSignedModel] = []
         for item in json {
             guard let responseModel = RawSignedModel(dict: item) else {
@@ -62,7 +61,7 @@ extension CardClient {
             }
             result.append(responseModel)
         }
-        
+
         return result
     }
 }

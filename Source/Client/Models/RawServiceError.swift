@@ -9,6 +9,6 @@
 import Foundation
 
 public final class RawServiceError: Deserializable {
-    let code: Int
-    let message: String
+    public let code: Int
+    public let message: String
 }

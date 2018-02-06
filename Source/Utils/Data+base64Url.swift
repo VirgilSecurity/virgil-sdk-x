@@ -15,7 +15,7 @@ public extension Data {
             .replacingOccurrences(of: "/", with: "_")
             .replacingOccurrences(of: "=", with: "")
     }
-    
+
     init?(base64UrlEncoded: String) {
         let base64Encoded = base64UrlEncoded
             .replacingOccurrences(of: "-", with: "+")
@@ -23,7 +23,7 @@ public extension Data {
 
         let padLength = (4 - (base64Encoded.count % 4)) % 4
         let base64EncodedWithPadding = base64Encoded + String(repeating: "=", count: padLength)
-        
+
         self.init(base64Encoded: base64EncodedWithPadding)
     }
 }

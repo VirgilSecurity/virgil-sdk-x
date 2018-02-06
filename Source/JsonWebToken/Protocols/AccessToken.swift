@@ -14,7 +14,7 @@ import Foundation
     ///
     /// - Returns: string with token
     @objc func stringRepresentation() -> String
-    
+
     /// Extracts identity
     ///
     /// - Returns: identity

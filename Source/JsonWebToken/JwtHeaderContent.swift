@@ -13,30 +13,31 @@ import Foundation
     @objc public let type: String
     @objc public let contentType: String
     @objc public let keyIdentifier: String
-    
+
     private enum CodingKeys: String, CodingKey {
         case algorithm = "alg"
         case type = "typ"
         case contentType = "cty"
         case keyIdentifier = "kid"
     }
-    
-    @objc public init(algorithm: String = "VEDS512", type: String = "JWT", contentType: String = "virgil-jwt;v=1", keyIdentifier: String) {
+
+    @objc public init(algorithm: String = "VEDS512", type: String = "JWT",
+                      contentType: String = "virgil-jwt;v=1", keyIdentifier: String) {
         self.algorithm = algorithm
         self.type = type
         self.contentType = contentType
         self.keyIdentifier = keyIdentifier
-        
+
         super.init()
     }
-    
+
     @objc public convenience init?(string: String) {
         guard let data = Data(base64UrlEncoded: string),
               let json = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
-        
+
         self.init(dict: json)
     }
-    
+
     @objc public func getBase64Url() throws -> String {
         return try self.asJsonData().base64UrlEncoded()
     }

@@ -11,17 +11,18 @@ import Foundation
 @objc(VSSGeneratorJwtProvider) public class GeneratorJwtProvider: NSObject, AccessTokenProvider {
     @objc public let jwtGenerator: JwtGenerator
     @objc public let defaultIdentity: String
-    @objc public let additionalData: [String : String]?
-    
-    @objc public init(jwtGenerator: JwtGenerator, defaultIdentity: String, additionalData: [String : String]? = nil) {
+    @objc public let additionalData: [String: String]?
+
+    @objc public init(jwtGenerator: JwtGenerator, defaultIdentity: String, additionalData: [String: String]? = nil) {
         self.defaultIdentity = defaultIdentity
         self.additionalData = additionalData
         self.jwtGenerator = jwtGenerator
-        
+
         super.init()
     }
-    
-    @objc public func getToken(tokenContext: TokenContext) throws -> AccessToken {
-        return try self.jwtGenerator.generateToken(identity: tokenContext.identity ?? self.defaultIdentity, additionalData: self.additionalData)
+
+    @objc public func getToken(with tokenContext: TokenContext) throws -> AccessToken {
+        return try self.jwtGenerator.generateToken(identity: tokenContext.identity ?? self.defaultIdentity,
+                                                   additionalData: self.additionalData)
     }
 }
