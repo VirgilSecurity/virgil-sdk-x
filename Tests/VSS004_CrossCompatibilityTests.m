@@ -151,7 +151,7 @@
             XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQNXguibY1cDCfnuJhTK+jX/Qv6v5i5TzqQs3e1fWlbisdUWYh+s10gsLkhf83wOqrm8ZXUCpjgkJn83TDaKYZQ8="]);
             XCTAssert(signature.snapshot == nil);
         } else if ([signature.signer isEqualToString:@"extra"]) {
-            XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQOGsh+lzM99RQB3NJOioriRfpCDyTdPC62uZi0MDYqgXVJMcxhRnRRMWzYC1BKAoUzCRc9W+cblEpCi2Ny0zpAU="]);
+            XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQAAJD/9HE6iJwPHXuws+WBBUeG6HXB0eJcxojz9DtElJMPkkDxktgv/pBiBTkES3CAXfAtGS0rkvQL/OkjdCZwE="]);
             XCTAssert(signature.snapshot == nil);
         }
     }
@@ -234,10 +234,10 @@
     [comps setSecond:25];
     NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comps];
     
-    XCTAssert([card1.identifier isEqualToString:@"551a933671d4e20524bc7f42e3062e810a1d62250fcbb217263c34c762de9dd0"]);
+    XCTAssert([card1.identifier isEqualToString:self.testData[@"STC-3.card_id"]]);
     XCTAssert([card1.identity isEqualToString:@"test"]);
     XCTAssert( card1.publicKey != nil);
-    XCTAssert([[[self.crypto exportPublicKey:(VSMVirgilPublicKey *)card1.publicKey] base64EncodedStringWithOptions:0] isEqualToString:@"MCowBQYDK2VwAyEA6d9bQQFuEnU8vSmx9fDo0Wxec42JdNg4VR4FOr4/BUk="]);
+    XCTAssert([[[self.crypto exportPublicKey:(VSMVirgilPublicKey *)card1.publicKey] base64EncodedStringWithOptions:0] isEqualToString:self.testData[@"STC-3.public_key_base64"]]);
     XCTAssert([card1.version isEqualToString:@"5.0"]);
     XCTAssert(card1.previousCard == nil);
     XCTAssert(card1.previousCardId == nil);
@@ -255,7 +255,7 @@
     
     [self.utils isCardsEqualWithCard:card1 and:card2];
     
-    NSString *exportedCardString = [cardManager exportCardAsStringWithCard:card1 error:&error];
+    NSString *exportedCardString = [cardManager exportAsStringWithCard:card1 error:&error];
     XCTAssert(error == nil);
     
     VSSCard *newImportedCard1 = [cardManager importCardWithString:exportedCardString];
@@ -263,7 +263,7 @@
 
     XCTAssert([self.utils isCardsEqualWithCard:card1 and:newImportedCard1]);
     
-    NSDictionary *exportedCardJson = [cardManager exportCardAsJsonWithCard:card2 error:&error];
+    NSDictionary *exportedCardJson = [cardManager exportAsJsonWithCard:card2 error:&error];
     XCTAssert(error == nil);
     
     VSSCard *newImportedCard2 = [cardManager importCardWithJson:exportedCardJson];
@@ -294,9 +294,9 @@
     [comps setSecond:25];
     NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comps];
     
-    XCTAssert([card1.identifier isEqualToString:@"551a933671d4e20524bc7f42e3062e810a1d62250fcbb217263c34c762de9dd0"]);
+    XCTAssert([card1.identifier isEqualToString:self.testData[@"STC-4.card_id"]]);
     XCTAssert([card1.identity isEqualToString:@"test"]);
-    XCTAssert([[[self.crypto exportPublicKey:(VSMVirgilPublicKey *)card1.publicKey] base64EncodedStringWithOptions:0] isEqualToString:@"MCowBQYDK2VwAyEA6d9bQQFuEnU8vSmx9fDo0Wxec42JdNg4VR4FOr4/BUk="]);
+    XCTAssert([[[self.crypto exportPublicKey:(VSMVirgilPublicKey *)card1.publicKey] base64EncodedStringWithOptions:0] isEqualToString:self.testData[@"STC-4.public_key_base64"]]);
     XCTAssert([card1.version isEqualToString:@"5.0"]);
     XCTAssert(card1.previousCard == nil);
     XCTAssert(card1.previousCardId == nil);
@@ -305,13 +305,13 @@
     
     for (VSSCardSignature* signature in card1.signatures) {
         if ([signature.signer isEqualToString:@"self"]) {
-            XCTAssert([[signature.signature base64EncodedStringWithOptions:0] isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQJuTxlQ7r+RG2P8D12OFOdgPsIDmZMd4UBMIG1c1Amqm/oc1wRUzk7ccz1RbTWEt2XP+1GbkF0Z6s6FYf1QEUQI="]);
+            XCTAssert([[signature.signature base64EncodedStringWithOptions:0] isEqualToString:self.testData[@"STC-4.signature_self_base64"]]);
             XCTAssert(signature.snapshot == [[NSData alloc] init]);
         } else if ([signature.signer isEqualToString:@"virgil"]) {
-            XCTAssert([[signature.signature base64EncodedStringWithOptions:0] isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQJuTxlQ7r+RG2P8D12OFOdgPsIDmZMd4UBMIG1c1Amqm/oc1wRUzk7ccz1RbTWEt2XP+1GbkF0Z6s6FYf1QEUQI="]);
+            XCTAssert([[signature.signature base64EncodedStringWithOptions:0] isEqualToString:self.testData[@"STC-4.signature_virgil_base64"]]);
             XCTAssert(signature.snapshot == [[NSData alloc] init]);
         } else if ([signature.signer isEqualToString:@"extra"]) {
-            XCTAssert([[signature.signature base64EncodedStringWithOptions:0] isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQAm0XDH2G5da5qIo71bh9hEdyFj4jN5Sb0vparDtgiNIG7XmU9n7QMM16gmk/zd5dle3ezgAWfOQnIOuGGSl/gI="]);
+            XCTAssert([[signature.signature base64EncodedStringWithOptions:0] isEqualToString:self.testData[@"STC-4.signature_extra_base64"]]);
             XCTAssert(signature.snapshot == [[NSData alloc] init]);
         }
     }
@@ -328,7 +328,7 @@
     XCTAssert([self.utils isCardSignaturesEqualWithSignatures:card1.signatures and:card2.signatures]);
     
     
-    NSString *exportedCardString = [cardManager exportCardAsStringWithCard:card1 error:&error];
+    NSString *exportedCardString = [cardManager exportAsStringWithCard:card1 error:&error];
     XCTAssert(error == nil);
     
     VSSCard *newImportedCard1 = [cardManager importCardWithString:exportedCardString];
@@ -336,7 +336,7 @@
     XCTAssert([self.utils isCardsEqualWithCard:card1 and:newImportedCard1]);
     XCTAssert([self.utils isCardSignaturesEqualWithSignatures:card1.signatures and:newImportedCard1.signatures]);
     
-    NSDictionary *exportedCardJson = [cardManager exportCardAsJsonWithCard:card2 error:&error];
+    NSDictionary *exportedCardJson = [cardManager exportAsJsonWithCard:card2 error:&error];
     XCTAssert(error == nil);
     
     VSSCard *newImportedCard2 = [cardManager importCardWithJson:exportedCardJson];

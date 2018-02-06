@@ -40,21 +40,9 @@
 		1624B83F2012215B007D223C /* CardManager+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83D2012215B007D223C /* CardManager+Queries.swift */; };
 		1624B8402012215B007D223C /* CardManager+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83D2012215B007D223C /* CardManager+Queries.swift */; };
 		1624B8412012215B007D223C /* CardManager+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83D2012215B007D223C /* CardManager+Queries.swift */; };
-		165868332018CF8600A27B00 /* t1_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 165868322018CF8600A27B00 /* t1_exported_as_json.txt */; };
-		165868342018CF8600A27B00 /* t1_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 165868322018CF8600A27B00 /* t1_exported_as_json.txt */; };
-		165868352018CF8600A27B00 /* t1_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 165868322018CF8600A27B00 /* t1_exported_as_json.txt */; };
 		166C67BF201F5C0500D79608 /* VSSTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 166C67BE201F5C0500D79608 /* VSSTestUtils.m */; };
 		166C67C0201F5C0500D79608 /* VSSTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 166C67BE201F5C0500D79608 /* VSSTestUtils.m */; };
 		166C67C1201F5C0500D79608 /* VSSTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 166C67BE201F5C0500D79608 /* VSSTestUtils.m */; };
-		168491B82019E32B00D6938B /* t2_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491B72019E32B00D6938B /* t2_exported_as_json.txt */; };
-		168491B92019E32B00D6938B /* t2_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491B72019E32B00D6938B /* t2_exported_as_json.txt */; };
-		168491BA2019E32B00D6938B /* t2_exported_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491B72019E32B00D6938B /* t2_exported_as_json.txt */; };
-		168491BC2019FC9A00D6938B /* t1_exported_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491BB2019FC9A00D6938B /* t1_exported_as_str.txt */; };
-		168491BD2019FC9A00D6938B /* t1_exported_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491BB2019FC9A00D6938B /* t1_exported_as_str.txt */; };
-		168491BE2019FC9A00D6938B /* t1_exported_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491BB2019FC9A00D6938B /* t1_exported_as_str.txt */; };
-		168491C02019FDC600D6938B /* t2_exported_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491BF2019FDC500D6938B /* t2_exported_as_str.txt */; };
-		168491C12019FDC600D6938B /* t2_exported_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491BF2019FDC500D6938B /* t2_exported_as_str.txt */; };
-		168491C22019FDC600D6938B /* t2_exported_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 168491BF2019FDC500D6938B /* t2_exported_as_str.txt */; };
 		168491C7201A269F00D6938B /* TokenContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168491C3201A252900D6938B /* TokenContext.swift */; };
 		168491C8201A26A000D6938B /* TokenContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168491C3201A252900D6938B /* TokenContext.swift */; };
 		168491C9201A26A100D6938B /* TokenContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168491C3201A252900D6938B /* TokenContext.swift */; };
@@ -153,18 +141,6 @@
 		16E006552025F9D200D2C638 /* test_data.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16E006542025F9D100D2C638 /* test_data.txt */; };
 		16E006562025F9D200D2C638 /* test_data.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16E006542025F9D100D2C638 /* test_data.txt */; };
 		16E006572025F9D200D2C638 /* test_data.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16E006542025F9D100D2C638 /* test_data.txt */; };
-		16FF150520249A7D00FA34B5 /* t3_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16FF150420249A7D00FA34B5 /* t3_as_str.txt */; };
-		16FF150620249A7D00FA34B5 /* t3_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16FF150420249A7D00FA34B5 /* t3_as_str.txt */; };
-		16FF150720249A7D00FA34B5 /* t3_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16FF150420249A7D00FA34B5 /* t3_as_str.txt */; };
-		16FF150920249A8100FA34B5 /* t3_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16FF150820249A8100FA34B5 /* t3_as_json.txt */; };
-		16FF150A20249A8100FA34B5 /* t3_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16FF150820249A8100FA34B5 /* t3_as_json.txt */; };
-		16FF150B20249A8100FA34B5 /* t3_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16FF150820249A8100FA34B5 /* t3_as_json.txt */; };
-		16FF150D20249A9200FA34B5 /* t4_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16FF150C20249A9200FA34B5 /* t4_as_str.txt */; };
-		16FF150E20249A9200FA34B5 /* t4_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16FF150C20249A9200FA34B5 /* t4_as_str.txt */; };
-		16FF150F20249A9200FA34B5 /* t4_as_str.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16FF150C20249A9200FA34B5 /* t4_as_str.txt */; };
-		16FF151120249A9600FA34B5 /* t4_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16FF151020249A9500FA34B5 /* t4_as_json.txt */; };
-		16FF151220249A9600FA34B5 /* t4_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16FF151020249A9500FA34B5 /* t4_as_json.txt */; };
-		16FF151320249A9600FA34B5 /* t4_as_json.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16FF151020249A9500FA34B5 /* t4_as_json.txt */; };
 		422499C31EB39B380032F556 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422499BA1EB39B380032F556 /* VirgilSDK.framework */; };
 		42249A681EB39D6F0032F556 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
 		42249AF01EB39ED50032F556 /* VSSKeyStoragePublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -565,12 +541,8 @@
 		1624B8372012151B007D223C /* CallbackOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallbackOperation.swift; sourceTree = "<group>"; };
 		1624B83D2012215B007D223C /* CardManager+Queries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardManager+Queries.swift"; sourceTree = "<group>"; };
 		1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS004_CrossCompatibilityTests.m; sourceTree = "<group>"; };
-		165868322018CF8600A27B00 /* t1_exported_as_json.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t1_exported_as_json.txt; sourceTree = "<group>"; };
 		166C67BD201F5BB200D79608 /* VSSTestUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSTestUtils.h; sourceTree = "<group>"; };
 		166C67BE201F5C0500D79608 /* VSSTestUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSSTestUtils.m; sourceTree = "<group>"; };
-		168491B72019E32B00D6938B /* t2_exported_as_json.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t2_exported_as_json.txt; sourceTree = "<group>"; };
-		168491BB2019FC9A00D6938B /* t1_exported_as_str.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t1_exported_as_str.txt; sourceTree = "<group>"; };
-		168491BF2019FDC500D6938B /* t2_exported_as_str.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t2_exported_as_str.txt; sourceTree = "<group>"; };
 		168491C3201A252900D6938B /* TokenContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenContext.swift; sourceTree = "<group>"; };
 		16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS003_ModelSigner_CardVerifierTests.m; sourceTree = "<group>"; };
 		16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS002_JWTTests.m; sourceTree = "<group>"; };
@@ -594,10 +566,6 @@
 		16B3FDA7200E0B7A008F0357 /* VSSPrivateKeyStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSSPrivateKeyStorage.m; sourceTree = "<group>"; };
 		16E006542025F9D100D2C638 /* test_data.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_data.txt; sourceTree = "<group>"; };
 		16E6C9352021FB1200286FAB /* VSS005_CardManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS005_CardManagerTests.m; sourceTree = "<group>"; };
-		16FF150420249A7D00FA34B5 /* t3_as_str.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t3_as_str.txt; sourceTree = "<group>"; };
-		16FF150820249A8100FA34B5 /* t3_as_json.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t3_as_json.txt; sourceTree = "<group>"; };
-		16FF150C20249A9200FA34B5 /* t4_as_str.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t4_as_str.txt; sourceTree = "<group>"; };
-		16FF151020249A9500FA34B5 /* t4_as_json.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t4_as_json.txt; sourceTree = "<group>"; };
 		420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = Carthage/Build/iOS/VirgilCrypto.framework; sourceTree = "<group>"; };
 		422499BA1EB39B380032F556 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		422499C21EB39B380032F556 /* VirgilSDK macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilSDK macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -924,14 +892,6 @@
 			isa = PBXGroup;
 			children = (
 				16E006542025F9D100D2C638 /* test_data.txt */,
-				168491BB2019FC9A00D6938B /* t1_exported_as_str.txt */,
-				165868322018CF8600A27B00 /* t1_exported_as_json.txt */,
-				168491BF2019FDC500D6938B /* t2_exported_as_str.txt */,
-				168491B72019E32B00D6938B /* t2_exported_as_json.txt */,
-				16FF150420249A7D00FA34B5 /* t3_as_str.txt */,
-				16FF150820249A8100FA34B5 /* t3_as_json.txt */,
-				16FF150C20249A9200FA34B5 /* t4_as_str.txt */,
-				16FF151020249A9500FA34B5 /* t4_as_json.txt */,
 				429123561F4B0B3700103BE0 /* TestConfig.plist */,
 			);
 			path = Data;
@@ -1524,15 +1484,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				429123671F4B0B3700103BE0 /* TestConfig.plist in Resources */,
-				168491BD2019FC9A00D6938B /* t1_exported_as_str.txt in Resources */,
-				16FF150A20249A8100FA34B5 /* t3_as_json.txt in Resources */,
-				165868342018CF8600A27B00 /* t1_exported_as_json.txt in Resources */,
-				16FF150620249A7D00FA34B5 /* t3_as_str.txt in Resources */,
-				168491B92019E32B00D6938B /* t2_exported_as_json.txt in Resources */,
 				16E006562025F9D200D2C638 /* test_data.txt in Resources */,
-				16FF150E20249A9200FA34B5 /* t4_as_str.txt in Resources */,
-				168491C12019FDC600D6938B /* t2_exported_as_str.txt in Resources */,
-				16FF151220249A9600FA34B5 /* t4_as_json.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1554,16 +1506,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				168491BA2019E32B00D6938B /* t2_exported_as_json.txt in Resources */,
-				168491BE2019FC9A00D6938B /* t1_exported_as_str.txt in Resources */,
-				16FF150B20249A8100FA34B5 /* t3_as_json.txt in Resources */,
-				165868352018CF8600A27B00 /* t1_exported_as_json.txt in Resources */,
-				16FF150720249A7D00FA34B5 /* t3_as_str.txt in Resources */,
 				16C59E212020E652004820AA /* TestConfig.plist in Resources */,
 				16E006572025F9D200D2C638 /* test_data.txt in Resources */,
-				16FF150F20249A9200FA34B5 /* t4_as_str.txt in Resources */,
-				168491C22019FDC600D6938B /* t2_exported_as_str.txt in Resources */,
-				16FF151320249A9600FA34B5 /* t4_as_json.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1572,15 +1516,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				429123661F4B0B3700103BE0 /* TestConfig.plist in Resources */,
-				168491BC2019FC9A00D6938B /* t1_exported_as_str.txt in Resources */,
-				16FF150920249A8100FA34B5 /* t3_as_json.txt in Resources */,
-				165868332018CF8600A27B00 /* t1_exported_as_json.txt in Resources */,
-				16FF150520249A7D00FA34B5 /* t3_as_str.txt in Resources */,
-				168491B82019E32B00D6938B /* t2_exported_as_json.txt in Resources */,
 				16E006552025F9D200D2C638 /* test_data.txt in Resources */,
-				16FF150D20249A9200FA34B5 /* t4_as_str.txt in Resources */,
-				168491C02019FDC600D6938B /* t2_exported_as_str.txt in Resources */,
-				16FF151120249A9600FA34B5 /* t4_as_json.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

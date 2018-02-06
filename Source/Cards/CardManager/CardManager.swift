@@ -101,15 +101,15 @@ public extension CardManager {
         return Card.parse(crypto: self.crypto, rawSignedModel: rawCard)
     }
 
-    @objc func importCard(rawCard: RawSignedModel) -> Card? {
+    @objc func `import`(rawCard: RawSignedModel) -> Card? {
         return Card.parse(crypto: self.crypto, rawSignedModel: rawCard)
     }
 
-    @objc func exportCardAsString(card: Card) throws -> String {
+    @objc func exportAsString(card: Card) throws -> String {
         return try card.getRawCard(crypto: self.crypto).exportAsString()
     }
 
-    @objc func exportCardAsJson(card: Card) throws -> Any {
+    @objc func exportAsJson(card: Card) throws -> Any {
         return try card.getRawCard(crypto: self.crypto).exportAsJson()
     }
 
