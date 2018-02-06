@@ -38,11 +38,12 @@ public class AsyncOperation: Operation {
             self.state = .finished
             return
         }
-        self.state = .ready
+
+        self.state = .executing
         self.main()
     }
 
     override public func main() {
-        // Implement your async task here.
+        // Implement your task here.
     }
 }

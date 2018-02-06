@@ -16,8 +16,6 @@ public class CallbackOperation<T>: GenericOperation<T> {
     }
 
     override public func main() {
-        self.state = .executing
-
         var tmpResult: Result<T>
         do {
             tmpResult = .success(try self.task())
