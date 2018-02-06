@@ -17,10 +17,10 @@ import Foundation
     @objc public static let defaultURL = URL(string: "https://api.virgilsecurity.com")!
 
     @objc public enum CardClientError: Int, CustomNSError {
-        case constructingUrl = 0
-        case noBody = 1
-        case invalidJson = 2
-        case invalidResponseModel = 3
+        case constructingUrl = 1
+        case noBody = 2
+        case invalidJson = 3
+        case invalidResponseModel = 4
 
         public static var errorDomain: String { return CardClient.clientErrorDomain }
 

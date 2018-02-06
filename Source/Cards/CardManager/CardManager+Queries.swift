@@ -85,7 +85,7 @@ public extension CardManager {
 
 //objc compatable Queries
 public extension CardManager {
-    @objc func getCard(withId cardId: String, timeout: NSNumber? = nil, completion: @escaping (Card?, Error?) -> ()) {
+    @objc func getCard(withId cardId: String, completion: @escaping (Card?, Error?) -> ()) {
         self.getCard(withId: cardId).start { result in
             switch result {
             case .success(let card):
@@ -109,8 +109,8 @@ public extension CardManager {
     }
 
     @objc func publishCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String,
-                           previousCardId: String? = nil, timeout: NSNumber? = nil,
-                           extraFields: [String: String]? = nil, completion: @escaping (Card?, Error?) -> ()) {
+                           previousCardId: String? = nil, extraFields: [String: String]? = nil,
+                           completion: @escaping (Card?, Error?) -> ()) {
         do {
             try self.publishCard(privateKey: privateKey, publicKey: publicKey, identity: identity,
                                  previousCardId: previousCardId, extraFields: extraFields)
@@ -127,7 +127,7 @@ public extension CardManager {
         }
     }
 
-    @objc func searchCards(identity: String, timeout: NSNumber? = nil, completion: @escaping ([Card]?, Error?) -> ()) {
+    @objc func searchCards(identity: String, completion: @escaping ([Card]?, Error?) -> ()) {
         self.searchCards(identity: identity).start { result in
             switch result {
             case .success(let cards):

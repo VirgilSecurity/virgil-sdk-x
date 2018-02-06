@@ -13,8 +13,8 @@ import Foundation
     private let session: URLSession
 
     @objc(VSSServiceConnectionError) public enum ServiceConnectionError: Int, Error {
-        case noUrlInRequest = 0
-        case wrongResponseType = 1
+        case noUrlInRequest = 1
+        case wrongResponseType = 2
     }
 
     public override init() {

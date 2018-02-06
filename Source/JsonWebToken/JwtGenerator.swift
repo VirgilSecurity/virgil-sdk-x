@@ -17,7 +17,7 @@ import VirgilCryptoAPI
     @objc public let ttl: TimeInterval
 
     @objc public enum JwtGeneratorError: Int, Error {
-        case generationFailed = 0
+        case generationFailed = 1
     }
 
     @objc public init(apiKey: PrivateKey, apiPublicKeyIdentifier: String,

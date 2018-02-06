@@ -18,8 +18,8 @@ import Foundation
     }
 
     @objc public enum RawSignedModelError: Int, Error {
-        case modelHasMaxSignatures = 0
-        case signatureWithThisSignerAlreadyExist = 1
+        case modelHasMaxSignatures = 1
+        case signatureWithThisSignerAlreadyExist = 2
     }
 
     @objc public init(contentSnapshot: Data, signatures: [RawSignature] = []) {

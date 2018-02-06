@@ -15,7 +15,7 @@ import Foundation
     @objc public private(set) var signatureContent: Data?
 
     @objc public enum JwtError: Int, Error {
-        case tokenCorrupted = 0
+        case tokenCorrupted = 1
     }
 
     @objc public init?(headerContent: JwtHeaderContent, bodyContent: JwtBodyContent, signatureContent: Data? = nil) {

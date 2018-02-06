@@ -30,8 +30,8 @@ import VirgilCryptoAPI
     }
 
     @objc public enum CardManagerError: Int, Error {
-        case cardIsNotValid = 0
-        case cardParsingFailed = 1
+        case cardIsNotValid = 1
+        case cardParsingFailed = 2
     }
 
     internal func verifyCard(_ card: Card) throws {

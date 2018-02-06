@@ -345,34 +345,34 @@
     XCTAssert(error == nil);
     VSSCard *card = [VSSCard parseWithCrypto:self.cardCrypto rawSignedModel:rawCard];
     
-    [cardManager publishCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil timeout:nil extraFields:nil completion:^(VSSCard * returnedCard, NSError *error) {
+    [cardManager publishCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:nil completion:^(VSSCard * returnedCard, NSError *error) {
         XCTAssert(error != nil);
         XCTAssert([[error localizedDescription] isEqualToString:@"token has expired"]);
         XCTAssert([error code] == 20304);
         
-        [cardManager publishCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil timeout:nil extraFields:nil completion:^(VSSCard * returnedCard, NSError *error) {
+        [cardManager publishCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:nil completion:^(VSSCard * returnedCard, NSError *error) {
             XCTAssert(error == nil);
             XCTAssert(returnedCard != nil);
 
             XCTAssert([self.utils isCardsEqualWithCard:card and:returnedCard]);
             
-            [cardManager getCardWithId:card.identifier timeout:nil completion:^(VSSCard * returnedCard, NSError *error) {
+            [cardManager getCardWithId:card.identifier completion:^(VSSCard * returnedCard, NSError *error) {
                 XCTAssert(error != nil);
                 XCTAssert([[error localizedDescription] isEqualToString:@"token has expired"]);
                 XCTAssert([error code] == 20304);
                 
-                [cardManager getCardWithId:card.identifier timeout:nil completion:^(VSSCard * returnedCard, NSError *error) {
+                [cardManager getCardWithId:card.identifier completion:^(VSSCard * returnedCard, NSError *error) {
                     XCTAssert(error == nil);
                     XCTAssert(returnedCard != nil);
                     
                     XCTAssert([self.utils isCardsEqualWithCard:card and:returnedCard]);
                     
-                    [cardManager searchCardsWithIdentity:identity timeout:nil completion:^(NSArray<VSSCard *> * returnedCards, NSError *error) {
+                    [cardManager searchCardsWithIdentity:identity completion:^(NSArray<VSSCard *> * returnedCards, NSError *error) {
                         XCTAssert(error != nil);
                         XCTAssert([[error localizedDescription] isEqualToString:@"token has expired"]);
                         XCTAssert([error code] == 20304);
                         
-                        [cardManager searchCardsWithIdentity:identity timeout:nil completion:^(NSArray<VSSCard *> * returnedCards, NSError *error) {
+                        [cardManager searchCardsWithIdentity:identity completion:^(NSArray<VSSCard *> * returnedCards, NSError *error) {
                             XCTAssert(error == nil);
                             
                             BOOL founded = false;

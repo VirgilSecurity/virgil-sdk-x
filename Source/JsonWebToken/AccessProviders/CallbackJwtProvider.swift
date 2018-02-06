@@ -13,7 +13,7 @@ import Foundation
     @objc public private(set) var getTokenCallback: () -> (String)
 
     @objc public enum CallbackProviderError: Int, Error {
-        case callbackReturnedCorruptedJwt = 0
+        case callbackReturnedCorruptedJwt = 1
     }
 
     @objc public init(getTokenCallback: @escaping () -> (String)) {
