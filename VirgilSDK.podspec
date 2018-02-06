@@ -1,34 +1,23 @@
 Pod::Spec.new do |s|
-  s.name                  = "VirgilSDK"
-  s.version               = "4.6.0"
-  s.summary               = "Virgil SDK for Apple devices and languages."
-  s.cocoapods_version     = ">= 0.36"
-  s.homepage              = "https://github.com/VirgilSecurity/virgil-sdk-x/"
-  s.license               = { :type => "BSD", :file => "LICENSE" }
-  s.author                = { "Oleksandr Deundiak" => "deundiak@gmail.com" }
-  s.platforms             = { :ios => "8.0", :osx => "10.10" }
-  s.source                = { :git => "https://github.com/VirgilSecurity/virgil-sdk-x.git",
-                              :tag => s.version }
-  s.weak_frameworks       = 'Foundation'
-  s.module_name           = 'VirgilSDK'
-  s.source_files          = 'Source/**/*.{h,m}'
-  s.public_header_files   = 'Source/*.{h}',
-                            'Source/Client/*.{h}',
-                            'Source/Client/Models/*.{h}',
-                            'Source/Client/Models/Requests/*.{h}',
-                            'Source/Client/Models/Errors/*.{h}',
-                            'Source/Client/Models/Responses/*.{h}',
-                            'Source/Client/Models/SnapshotModels/*.{h}',
-                            'Source/Client/Models/Protocols/*.{h}',
-                            'Source/Client/Networking/*.{h}',
-                            'Source/Client/Networking/Requests/*.{h}',
-                            'Source/Crypto/*.{h}',
-                            'Source/Crypto/Keys/*.{h}',
-                            'Source/DeviceManager/**/*.{h}',
-                            'Source/KeyStorage/**/*.{h}',
-                            'Source/HighLevel/*.{h}'
-  s.ios.exclude_files     = "Source/**/macOS/*.{h,m}"
-  s.osx.exclude_files     = "Source/**/iOS/*.{h,m}"
-  s.requires_arc          = true
-  s.dependency "VirgilCrypto", "~> 2.3"
+  s.name                        = "VirgilSDK"
+  s.version                     = "5.0.0-beta1"
+  s.license                     = { :type => "BSD", :file => "LICENSE" }
+  s.summary                     = "Virgil SDK for Apple devices and languages."
+  s.homepage                    = "https://github.com/VirgilSecurity/virgil-sdk-x/"
+  s.authors                     = { "Virgil Security" => "https://virgilsecurity.com/" }
+  s.source                      = { :git => "https://github.com/VirgilSecurity/virgil-sdk-x.git", :tag => s.version }
+  s.ios.deployment_target       = "8.0"
+  s.osx.deployment_target       = "10.10"
+  s.tvos.deployment_target      = "9.0"
+  s.watchos.deployment_target   = "2.0"
+  s.source_files                = 'Source/**/*.{h,m,swift}'
+  s.public_header_files         = 'Source/VirgilSDK.h',
+                                  'Source/KeyStorage/*.{h}',
+                                  'Source/KeyStorage/iOS/*.{h}',
+                                  'Source/KeyStorage/macOS/*.{h}'
+  s.ios.exclude_files           = "Source/**/macOS/*.{h,m}"
+  s.osx.exclude_files           = "Source/**/iOS/*.{h,m}"
+  s.tvos.exclude_files          = "Source/**/macOS/*.{h,m}"
+  s.watchos.exclude_files       = "Source/**/macOS/*.{h,m}"
+  s.dependency "VirgilCryptoApiImpl", "= 3.0.0-beta7"
 end
