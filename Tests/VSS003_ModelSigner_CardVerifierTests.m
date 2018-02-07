@@ -102,7 +102,7 @@
     XCTAssert(error == nil);
     NSData *data = [self.utils getRandomData];
     
-    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:data signatures:[[NSArray alloc] init]];
+    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:data];
     XCTAssert(rawCard.signatures.count == 0);
     
     [self.modelSigner selfSignWithModel:rawCard privateKey:keyPair1.privateKey additionalData:nil error:&error];
@@ -144,7 +144,7 @@
     XCTAssert(error == nil);
     
     NSData *data = [self.utils getRandomData];
-    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:data signatures:[[NSArray alloc] init]];
+    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:data];
     XCTAssert(rawCard.signatures.count == 0);
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];

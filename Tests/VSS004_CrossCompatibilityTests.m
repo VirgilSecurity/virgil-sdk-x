@@ -61,7 +61,7 @@
     NSString *rawCardString = self.testData[@"STC-1.as_string"];
     XCTAssert(rawCardString != nil);
     
-    VSSRawSignedModel *rawCard1 = [[VSSRawSignedModel alloc] initWithString:rawCardString];
+    VSSRawSignedModel *rawCard1 = [[VSSRawSignedModel alloc] initWithBase64Encoded:rawCardString];
     XCTAssert(rawCard1 != nil);
     
     VSSRawCardContent *cardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard1.contentSnapshot];
@@ -94,13 +94,17 @@
     NSData *snapshot1 = [cardContent1 snapshot];
     XCTAssert(error == nil && snapshot1 != nil);
     
-    VSSRawSignedModel *newRawCard1 = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot1 signatures:rawCard1.signatures];
+    VSSRawSignedModel *newRawCard1 = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot1];
     XCTAssert(newRawCard1 != nil);
+    for (VSSRawSignature* signature in rawCard1.signatures) {
+        [newRawCard1 addSignature:signature error:&error];
+        XCTAssert(error == nil);
+    }
     
-    NSString *exportedRawCardString = [rawCard1 exportAsStringAndReturnError:&error];
+    NSString *exportedRawCardString = [rawCard1 base64EncodedStringAndReturnError:&error];
     XCTAssert(error == nil);
     
-    VSSRawSignedModel *newImportedRawCard1 = [[VSSRawSignedModel alloc] initWithString:exportedRawCardString];
+    VSSRawSignedModel *newImportedRawCard1 = [[VSSRawSignedModel alloc] initWithBase64Encoded:exportedRawCardString];
     XCTAssert(newImportedRawCard1 != nil);
     
     VSSRawCardContent *newCardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:newImportedRawCard1.contentSnapshot];
@@ -130,7 +134,7 @@
     XCTAssert(rawCardString != nil);
     NSLog(@"Message == %@", rawCardString);
     
-    VSSRawSignedModel *rawCard1 = [[VSSRawSignedModel alloc] initWithString:rawCardString];
+    VSSRawSignedModel *rawCard1 = [[VSSRawSignedModel alloc] initWithBase64Encoded:rawCardString];
     XCTAssert(rawCard1 != nil);
     
     VSSRawCardContent *cardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard1.contentSnapshot];
@@ -177,13 +181,17 @@
     NSData *snapshot1 = [cardContent1 snapshot];
     XCTAssert(error == nil && snapshot1 != nil);
     
-    VSSRawSignedModel *newRawCard1 = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot1 signatures:rawCard1.signatures];
+    VSSRawSignedModel *newRawCard1 = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot1];
     XCTAssert(newRawCard1 != nil);
+    for (VSSRawSignature* signature in rawCard1.signatures) {
+        [newRawCard1 addSignature:signature error:&error];
+        XCTAssert(error == nil);
+    }
     
-    NSString *exportedRawCardString = [rawCard1 exportAsStringAndReturnError:&error];
+    NSString *exportedRawCardString = [rawCard1 base64EncodedStringAndReturnError:&error];
     XCTAssert(error == nil);
     
-    VSSRawSignedModel *newImportedRawCard1 = [[VSSRawSignedModel alloc] initWithString:exportedRawCardString];
+    VSSRawSignedModel *newImportedRawCard1 = [[VSSRawSignedModel alloc] initWithBase64Encoded:exportedRawCardString];
     XCTAssert(newImportedRawCard1 != nil);
     
     VSSRawCardContent *newCardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:newImportedRawCard1.contentSnapshot];
@@ -255,7 +263,7 @@
     
     [self.utils isCardsEqualWithCard:card1 and:card2];
     
-    NSString *exportedCardString = [cardManager exportAsStringWithCard:card1 error:&error];
+    NSString *exportedCardString = [cardManager exportAsBase64StringWithCard:card1 error:&error];
     XCTAssert(error == nil);
     
     VSSCard *newImportedCard1 = [cardManager importCardWithString:exportedCardString];
@@ -328,7 +336,7 @@
     XCTAssert([self.utils isCardSignaturesEqualWithSignatures:card1.signatures and:card2.signatures]);
     
     
-    NSString *exportedCardString = [cardManager exportAsStringWithCard:card1 error:&error];
+    NSString *exportedCardString = [cardManager exportAsBase64StringWithCard:card1 error:&error];
     XCTAssert(error == nil);
     
     VSSCard *newImportedCard1 = [cardManager importCardWithString:exportedCardString];

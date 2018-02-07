@@ -54,7 +54,7 @@
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     NSData *snapshot = [content snapshot];
     
-    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:[[NSArray alloc] init]];
+    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     XCTAssert(error == nil && rawCard != nil);
 
     NSString *strToken = [self.utils getTokenStringWithIdentity:identity error:&error];
@@ -102,7 +102,7 @@
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     NSData *snapshot = [content snapshot];
 
-    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:[[NSArray alloc] init]];
+    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     
     VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
@@ -141,7 +141,7 @@
     
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     NSData *snapshot = [content snapshot];
-    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:[[NSArray alloc] init]];
+    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     
     VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
@@ -183,7 +183,7 @@
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     NSData *snapshot = [content snapshot];
     
-    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:[[NSArray alloc] init]];
+    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     XCTAssert(rawCard != nil);
     
     NSString *strToken = [self.utils getTokenStringWithIdentity:wrongIdentity error:&error];
@@ -214,7 +214,7 @@
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     NSData *snapshot = [content snapshot];
     
-    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:[[NSArray alloc] init]];
+    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot ];
     XCTAssert(error == nil && rawCard != nil);
     
     NSString *strToken = [self.utils getTokenWithWrongPrivateKeyWithIdentity:identity error:&error];

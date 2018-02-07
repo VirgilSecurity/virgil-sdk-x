@@ -32,7 +32,7 @@
     
     NSData *snapshot = [content snapshot];
     
-    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot signatures:[[NSArray alloc] init]];
+    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     
     VSMVirgilCardCrypto *cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:cardCrypto];
