@@ -8,7 +8,10 @@
 
 import Foundation
 
+/// Model for representing service errors
 public final class RawServiceError: Deserializable {
+    /// Code of error
     public let code: Int
+    /// Description of error
     public let message: String
 }

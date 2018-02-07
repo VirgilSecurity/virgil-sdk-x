@@ -8,7 +8,15 @@
 
 import Foundation
 
+// MARK: - Queries
 public extension CardClient {
+    /// Returns `RawSignedModel` of card from the Virgil Cards Service with given ID, if exists
+    ///
+    /// - Parameters:
+    ///   - cardId: string with unique Virgil Card identifier
+    ///   - token: string with `Access Token`
+    /// - Returns: `RawSignedModel` if card found
+    /// - Throws: corresponding error
     @objc func getCard(withId cardId: String, token: String) throws -> RawSignedModel {
         guard let url = URL(string: "card/v5/\(cardId)", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
@@ -21,6 +29,15 @@ public extension CardClient {
         return try self.processResponse(response)
     }
 
+    /// Creates Virgil Card instance on the Virgil Cards Service and associates it with unique identifier
+    /// Also makes the Card accessible for search/get queries from other users
+    /// `RawSignedModel` should be at least selfSigned
+    ///
+    /// - Parameters:
+    ///   - model: self signed `RawSignedModel`
+    ///   - token: string with `Access Token`
+    /// - Returns: `RawSignedModel` of created card
+    /// - Throws: corresponding error
     @objc func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
         guard let url = URL(string: "card/v5", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
@@ -33,6 +50,13 @@ public extension CardClient {
         return try self.processResponse(response)
     }
 
+    /// Performs search of Virgil Cards using identity on the Virgil Cards Service
+    ///
+    /// - Parameters:
+    ///   - identity: identity of cards to search
+    ///   - token: string with `Access Token`
+    /// - Returns: array with RawSignedModels of matched Virgil Cards
+    /// - Throws: corresponding error
     @objc func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
         guard let url = URL(string: "card/v5/actions/search", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl

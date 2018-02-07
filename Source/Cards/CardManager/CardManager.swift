@@ -86,7 +86,7 @@ import VirgilCryptoAPI
 // Import export cards
 public extension CardManager {
     @objc func importCard(string: String) -> Card? {
-        guard let rawCard = RawSignedModel(string: string) else {
+        guard let rawCard = RawSignedModel(base64Encoded: string) else {
             return nil
         }
 
@@ -105,8 +105,8 @@ public extension CardManager {
         return Card.parse(crypto: self.crypto, rawSignedModel: rawCard)
     }
 
-    @objc func exportAsString(card: Card) throws -> String {
-        return try card.getRawCard(crypto: self.crypto).exportAsString()
+    @objc func exportAsBase64String(card: Card) throws -> String {
+        return try card.getRawCard(crypto: self.crypto).base64EncodedString()
     }
 
     @objc func exportAsJson(card: Card) throws -> Any {

@@ -8,14 +8,24 @@
 
 import Foundation
 
+/// Class representing operations with Virgil Cards service
 @objc(VSSCardClient) public class CardClient: NSObject {
     @objc public let serviceUrl: URL
     @objc public let connection: HTTPConnection
 
+    /// Error domain for NSError instances thrown from service
     @objc public static let serviceErrorDomain = "VirgilSDK.CardServiceErrorDomain"
+    /// Error domain for NSError instances thrown from here
     @objc public static let clientErrorDomain = "VirgilSDK.CardClientErrorDomain"
+
     @objc public static let defaultURL = URL(string: "https://api.virgilsecurity.com")!
 
+    /// Declares client error types and codes
+    ///
+    /// - constructingUrl: constructing url of endpoint failed
+    /// - noBody: service response does not have body
+    /// - invalidJson: service response body is invalid json
+    /// - invalidResponseModel: constructing returned `RawSignedModel` failed
     @objc public enum CardClientError: Int, CustomNSError {
         case constructingUrl = 1
         case noBody = 2
@@ -27,6 +37,7 @@ import Foundation
         public var errorCode: Int { return self.rawValue }
     }
 
+    /// Represent card service error
     @objc public class CardServiceError: NSObject, CustomNSError {
         public let rawServiceError: RawServiceError
 
@@ -41,15 +52,23 @@ import Foundation
         public var errorUserInfo: [String: Any] { return [NSLocalizedDescriptionKey: self.rawServiceError.message] }
     }
 
-    @objc convenience public init(serviceUrl: URL = defaultURL) {
-        self.init(connection: ServiceConnection())
-    }
-
+    /// Initializes a new `CardClient` instance
+    ///
+    /// - Parameters:
+    ///   - serviceUrl: URL of service client will use
+    ///   - connection: custom HTTPConnection
     @objc public init(serviceUrl: URL = defaultURL, connection: HTTPConnection) {
         self.serviceUrl = serviceUrl
         self.connection = connection
 
         super.init()
+    }
+
+    /// Initializes a new `CardClient` instance
+    ///
+    /// - Parameter serviceUrl: URL of service client will use
+    @objc convenience public init(serviceUrl: URL = defaultURL) {
+        self.init(connection: ServiceConnection())
     }
 
     internal func handleError(statusCode: Int, body: Data?) -> Error {
