@@ -1,5 +1,5 @@
 //
-//  VSS009_KeyStorageiOSSpecificTests.swift
+//  VSS007_KeyStorageiOSSpecificTests.swift
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 11/4/16.
@@ -9,9 +9,10 @@
 import Foundation
 import VirgilSDK
 import XCTest
+import VirgilCryptoApiImpl
 
-class VSS009_KeyStorageiOSSpecificTests: XCTestCase {
-    private var crypto: VSSCrypto!
+class VSS007_KeyStorageiOSSpecificTests: XCTestCase {
+    private var crypto: VirgilCrypto!
     private var storage: VSSKeyStorage!
     private let numberOfKeys = 1
     
@@ -19,7 +20,7 @@ class VSS009_KeyStorageiOSSpecificTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        self.crypto = VSSCrypto()
+        self.crypto = VirgilCrypto()
         self.storage = VSSKeyStorage()
     }
     
@@ -33,9 +34,9 @@ class VSS009_KeyStorageiOSSpecificTests: XCTestCase {
     func test001_AddMultiple() {
         var keyEntries = Array<VSSKeyEntry>()
         for _ in 0..<self.numberOfKeys {
-            let keyPair = self.crypto.generateKeyPair()
+            let keyPair = try! self.crypto.generateKeyPair()
             
-            let privateKeyRawData = self.crypto.export(keyPair.privateKey, withPassword: nil)
+            let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
             let privateKeyName = UUID().uuidString
             
             keyEntries.append(VSSKeyEntry(name: privateKeyName, value: privateKeyRawData))
@@ -54,9 +55,9 @@ class VSS009_KeyStorageiOSSpecificTests: XCTestCase {
     func test002_DeleteMultiple() {
         var names = Array<String>()
         for _ in 0..<self.numberOfKeys {
-            let keyPair = self.crypto.generateKeyPair()
+            let keyPair = try! self.crypto.generateKeyPair()
             
-            let privateKeyRawData = self.crypto.export(keyPair.privateKey, withPassword: nil)
+            let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
             let privateKeyName = UUID().uuidString
             names.append(privateKeyName)
             
@@ -84,9 +85,9 @@ class VSS009_KeyStorageiOSSpecificTests: XCTestCase {
         let keys0 = try! self.storage.getAllKeys()
         
         for _ in 0..<self.numberOfKeys {
-            let keyPair = self.crypto.generateKeyPair()
+            let keyPair = try! self.crypto.generateKeyPair()
             
-            let privateKeyRawData = self.crypto.export(keyPair.privateKey, withPassword: nil)
+            let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
             let privateKeyName = UUID().uuidString
             
             let keyEntry = VSSKeyEntry(name: privateKeyName, value: privateKeyRawData)
@@ -109,9 +110,9 @@ class VSS009_KeyStorageiOSSpecificTests: XCTestCase {
         
         var keysInfo = Array<(String, Date)>()
         for _ in 0..<self.numberOfKeys {
-            let keyPair = self.crypto.generateKeyPair()
+            let keyPair = try! self.crypto.generateKeyPair()
             
-            let privateKeyRawData = self.crypto.export(keyPair.privateKey, withPassword: nil)
+            let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
             let privateKeyName = UUID().uuidString
             
             keysInfo.append((privateKeyName, Date()))
@@ -144,9 +145,9 @@ class VSS009_KeyStorageiOSSpecificTests: XCTestCase {
     func test005_Reset() {
         var keyEntries = Array<VSSKeyEntry>()
         for _ in 0..<self.numberOfKeys {
-            let keyPair = self.crypto.generateKeyPair()
+            let keyPair = try! self.crypto.generateKeyPair()
             
-            let privateKeyRawData = self.crypto.export(keyPair.privateKey, withPassword: nil)
+            let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
             let privateKeyName = UUID().uuidString
             
             keyEntries.append(VSSKeyEntry(name: privateKeyName, value: privateKeyRawData))

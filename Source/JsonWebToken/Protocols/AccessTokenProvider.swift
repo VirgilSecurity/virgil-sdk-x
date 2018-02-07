@@ -10,9 +10,5 @@ import Foundation
 
 /// This protocol is responsible for providing AccessToken
 @objc(VSSAccessTokenProvider) public protocol AccessTokenProvider {
-    /// Provides access token
-    ///
-    /// - Parameter forceReload: true will invalidate cached token
-    /// - Returns: access token
     @objc func getToken(with tokenContext: TokenContext) throws -> AccessToken
 }

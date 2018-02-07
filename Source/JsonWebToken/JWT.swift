@@ -29,7 +29,7 @@ import Foundation
         var result = headerBase64Url + "." + bodyBase64Url
 
         if let signatureContent = signatureContent {
-            result += "." + signatureContent.base64UrlEncoded()
+            result += "." + signatureContent.base64UrlEncodedString()
         }
         self.string = result
 
@@ -91,6 +91,6 @@ import Foundation
         let headerBase64Url = try self.headerContent.getBase64Url()
         let bodyBase64Url = try self.bodyContent.getBase64Url()
 
-        self.string = headerBase64Url + "." + bodyBase64Url + "." + signatureContent.base64UrlEncoded()
+        self.string = headerBase64Url + "." + bodyBase64Url + "." + signatureContent.base64UrlEncodedString()
     }
 }

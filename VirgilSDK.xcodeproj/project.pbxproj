@@ -132,9 +132,9 @@
 		16B3FDAA200E0B7A008F0357 /* VSSPrivateKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FDA7200E0B7A008F0357 /* VSSPrivateKeyStorage.m */; };
 		16B3FDAB200E0B7A008F0357 /* VSSPrivateKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B3FDA7200E0B7A008F0357 /* VSSPrivateKeyStorage.m */; };
 		16C59E212020E652004820AA /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
-		16C59E2B2020E7B5004820AA /* DataExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4241F6C0C6400B75491 /* DataExtensionsTests.swift */; };
-		16C59E2C2020E7B6004820AA /* DataExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4241F6C0C6400B75491 /* DataExtensionsTests.swift */; };
-		16C59E2D2020E7B7004820AA /* DataExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4241F6C0C6400B75491 /* DataExtensionsTests.swift */; };
+		16C59E2B2020E7B5004820AA /* VSS008_DataExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4241F6C0C6400B75491 /* VSS008_DataExtensionsTests.swift */; };
+		16C59E2C2020E7B6004820AA /* VSS008_DataExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4241F6C0C6400B75491 /* VSS008_DataExtensionsTests.swift */; };
+		16C59E2D2020E7B7004820AA /* VSS008_DataExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4241F6C0C6400B75491 /* VSS008_DataExtensionsTests.swift */; };
 		16C59E4D2021DA0D004820AA /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
 		16C59E4E2021DA0E004820AA /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
 		16C59E4F2021DA0E004820AA /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
@@ -149,13 +149,10 @@
 		4227272920210AC700265E25 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422726DE20210A9A00265E25 /* VirgilCryptoAPI.framework */; };
 		4227272C20210AD400265E25 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422726E420210A9A00265E25 /* VirgilCryptoAPI.framework */; };
 		4227272F20210AE100265E25 /* VirgilCryptoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422726E220210A9A00265E25 /* VirgilCryptoAPI.framework */; };
-		4227273620210B6D00265E25 /* Mailinator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4227271F20210AAB00265E25 /* Mailinator.framework */; };
 		4227273720210B6D00265E25 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422726FC20210AA300265E25 /* VirgilCrypto.framework */; };
 		4227273820210B6D00265E25 /* VirgilCryptoApiImpl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4227270A20210AA300265E25 /* VirgilCryptoApiImpl.framework */; };
-		4227273920210E8400265E25 /* Mailinator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4227272120210AAB00265E25 /* Mailinator.framework */; };
 		4227273A20210E8400265E25 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4227270020210AA300265E25 /* VirgilCrypto.framework */; };
 		4227273B20210E8400265E25 /* VirgilCryptoApiImpl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4227270E20210AA300265E25 /* VirgilCryptoApiImpl.framework */; };
-		4227273C20210EC300265E25 /* Mailinator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4227272320210AAB00265E25 /* Mailinator.framework */; };
 		4227273D20210EC300265E25 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4227270420210AA300265E25 /* VirgilCrypto.framework */; };
 		4227273E20210EC300265E25 /* VirgilCryptoApiImpl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4227271220210AA300265E25 /* VirgilCryptoApiImpl.framework */; };
 		42272802202120F800265E25 /* VirgilSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7E3721DB9023400D70C12 /* VirgilSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -267,6 +264,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		16A6EA73202A7E4C007EE4A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 422726E720210AA300265E25 /* VirgilCrypto.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 42D61B63202A5843007E0758;
+			remoteInfo = "VSCCrypto iOS";
+		};
+		16A6EA75202A7E4C007EE4A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 422726E720210AA300265E25 /* VirgilCrypto.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 42D61B7E202A58B8007E0758;
+			remoteInfo = "VSCCrypto macOS";
+		};
+		16A6EA77202A7E4C007EE4A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 422726E720210AA300265E25 /* VirgilCrypto.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 42D61B8D202A5963007E0758;
+			remoteInfo = "VSCCrypto tvOS";
+		};
+		16A6EA79202A7E4C007EE4A4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 422726E720210AA300265E25 /* VirgilCrypto.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 42D61B9B202A59C4007E0758;
+			remoteInfo = "VSCCrypto watchOS";
+		};
 		422499C41EB39B380032F556 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
@@ -421,27 +446,6 @@
 			remoteGlobalIDString = 42B12ACE201FD73F0082F9BC;
 			remoteInfo = "VirgilCryptoApiImpl watchOS";
 		};
-		4227271E20210AAB00265E25 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4227271720210AAB00265E25 /* Mailinator.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 42B341CA1ED2E84A00F944FC;
-			remoteInfo = "MailinatorClient iOS";
-		};
-		4227272020210AAB00265E25 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4227271720210AAB00265E25 /* Mailinator.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 42B3429C1ED2EBE300F944FC;
-			remoteInfo = "MailinatorClient macOS";
-		};
-		4227272220210AAB00265E25 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4227271720210AAB00265E25 /* Mailinator.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 42CDC2421F69627F00D69111;
-			remoteInfo = "MailinatorClient tvOS";
-		};
 		4227272420210AB300265E25 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 422726CE20210A9A00265E25 /* VirgilCryptoAPI.xcodeproj */;
@@ -483,13 +487,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 42B129EA201FD2790082F9BC;
 			remoteInfo = "VirgilCryptoApiImpl iOS";
-		};
-		4227273420210B6000265E25 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4227271720210AAB00265E25 /* Mailinator.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 42B341C91ED2E84A00F944FC;
-			remoteInfo = "MailinatorClient iOS";
 		};
 		42745A551ED43D9900C1DEEC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -572,7 +569,6 @@
 		422499D11EB39BD50032F556 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = Carthage/Build/Mac/VirgilCrypto.framework; sourceTree = "<group>"; };
 		422726CE20210A9A00265E25 /* VirgilCryptoAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VirgilCryptoAPI.xcodeproj; path = "Carthage/Checkouts/virgil-cryptoapi-x/VirgilCryptoAPI.xcodeproj"; sourceTree = "<group>"; };
 		422726E720210AA300265E25 /* VirgilCrypto.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VirgilCrypto.xcodeproj; path = "Carthage/Checkouts/virgil-foundation-x/VirgilCrypto.xcodeproj"; sourceTree = SOURCE_ROOT; };
-		4227271720210AAB00265E25 /* Mailinator.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Mailinator.xcodeproj; path = Carthage/Checkouts/MailinatorClient/Mailinator.xcodeproj; sourceTree = SOURCE_ROOT; };
 		423CEB541DCA01AF00CCACB8 /* VSSKeyEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyEntry.h; sourceTree = "<group>"; };
 		423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeyEntry.m; sourceTree = "<group>"; };
 		423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStoragePublic.h; sourceTree = "<group>"; };
@@ -596,7 +592,7 @@
 		4284C3F21F6BFD6200B75491 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		4284C3F71F6C006600B75491 /* RawCardContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawCardContent.swift; sourceTree = "<group>"; };
 		4284C41C1F6C03DF00B75491 /* Data+hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+hex.swift"; sourceTree = "<group>"; };
-		4284C4241F6C0C6400B75491 /* DataExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataExtensionsTests.swift; sourceTree = "<group>"; };
+		4284C4241F6C0C6400B75491 /* VSS008_DataExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS008_DataExtensionsTests.swift; sourceTree = "<group>"; };
 		4284C4281F6C11F400B75491 /* SnapshotUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotUtils.swift; sourceTree = "<group>"; };
 		4284C4391F6C1E3500B75491 /* Serialization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Serialization.swift; sourceTree = "<group>"; };
 		4284C4541F6FECB600B75491 /* CardVerifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardVerifier.swift; sourceTree = "<group>"; };
@@ -619,7 +615,7 @@
 		429123AE1F4D72AA00103BE0 /* VSSKeyStoragePlatformSpecificPublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStoragePlatformSpecificPublic.h; sourceTree = "<group>"; };
 		429123AF1F4D72D500103BE0 /* VSSKeyStoragePlatformSpecificPublic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeyStoragePlatformSpecificPublic.h; sourceTree = "<group>"; };
 		429123B41F4D737F00103BE0 /* VSSKeyAttrsPrivate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyAttrsPrivate.h; sourceTree = "<group>"; };
-		42B6CF681F58771A0024857B /* VSS009_KeyStorageiOSSpecificTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS009_KeyStorageiOSSpecificTests.swift; sourceTree = "<group>"; };
+		42B6CF681F58771A0024857B /* VSS007_KeyStorageiOSSpecificTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS007_KeyStorageiOSSpecificTests.swift; sourceTree = "<group>"; };
 		42B7E35B1DB8F72200D70C12 /* VirgilSDK iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilSDK iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42B7E3721DB9023400D70C12 /* VirgilSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VirgilSDK.h; sourceTree = "<group>"; };
 		42CF01EE1F6A8CDC003ABB19 /* VirgilCryptoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCryptoAPI.framework; path = Carthage/Build/iOS/VirgilCryptoAPI.framework; sourceTree = "<group>"; };
@@ -645,7 +641,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4227273920210E8400265E25 /* Mailinator.framework in Frameworks */,
 				4227273A20210E8400265E25 /* VirgilCrypto.framework in Frameworks */,
 				4227273B20210E8400265E25 /* VirgilCryptoApiImpl.framework in Frameworks */,
 				422499C31EB39B380032F556 /* VirgilSDK.framework in Frameworks */,
@@ -672,7 +667,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4227273C20210EC300265E25 /* Mailinator.framework in Frameworks */,
 				4227273D20210EC300265E25 /* VirgilCrypto.framework in Frameworks */,
 				4227273E20210EC300265E25 /* VirgilCryptoApiImpl.framework in Frameworks */,
 				4284C3A81F6BE9A200B75491 /* VirgilSDK.framework in Frameworks */,
@@ -683,7 +677,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4227273620210B6D00265E25 /* Mailinator.framework in Frameworks */,
 				4227273720210B6D00265E25 /* VirgilCrypto.framework in Frameworks */,
 				4227273820210B6D00265E25 /* VirgilCryptoApiImpl.framework in Frameworks */,
 				42B7E3601DB8F72200D70C12 /* VirgilSDK.framework in Frameworks */,
@@ -812,9 +805,9 @@
 				422726DC20210A9A00265E25 /* VirgilCryptoAPI iOS Tests.xctest */,
 				422726DE20210A9A00265E25 /* VirgilCryptoAPI.framework */,
 				422726E020210A9A00265E25 /* VirgilCryptoAPI macOS Tests.xctest */,
-				422726E220210A9A00265E25 /* VirgilCryptoAPI.framework */,
 				422726E420210A9A00265E25 /* VirgilCryptoAPI.framework */,
 				422726E620210A9A00265E25 /* VirgilCryptoAPI tvOS Tests.xctest */,
+				422726E220210A9A00265E25 /* VirgilCryptoAPI.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -836,16 +829,10 @@
 				4227271220210AA300265E25 /* VirgilCryptoApiImpl.framework */,
 				4227271420210AA300265E25 /* VirgilCryptoApiImpl tvOS Tests.xctest */,
 				4227271620210AA300265E25 /* VirgilCryptoApiImpl.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		4227271820210AAB00265E25 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4227271F20210AAB00265E25 /* Mailinator.framework */,
-				4227272120210AAB00265E25 /* Mailinator.framework */,
-				4227272320210AAB00265E25 /* Mailinator.framework */,
+				16A6EA74202A7E4C007EE4A4 /* VSCCrypto.framework */,
+				16A6EA76202A7E4C007EE4A4 /* VSCCrypto.framework */,
+				16A6EA78202A7E4C007EE4A4 /* VSCCrypto.framework */,
+				16A6EA7A202A7E4C007EE4A4 /* VSCCrypto.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -923,7 +910,6 @@
 			isa = PBXGroup;
 			children = (
 				422726E720210AA300265E25 /* VirgilCrypto.xcodeproj */,
-				4227271720210AAB00265E25 /* Mailinator.xcodeproj */,
 				429123541F4B0B3700103BE0 /* Data */,
 				429123531F4B0B3700103BE0 /* BridgingHeader.h */,
 				429123581F4B0B3700103BE0 /* PrivateApiDecl.h */,
@@ -933,8 +919,8 @@
 				1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */,
 				16E6C9352021FB1200286FAB /* VSS005_CardManagerTests.m */,
 				4291235E1F4B0B3700103BE0 /* VSS006_KeyStorageTests.swift */,
-				42B6CF681F58771A0024857B /* VSS009_KeyStorageiOSSpecificTests.swift */,
-				4284C4241F6C0C6400B75491 /* DataExtensionsTests.swift */,
+				42B6CF681F58771A0024857B /* VSS007_KeyStorageiOSSpecificTests.swift */,
+				4284C4241F6C0C6400B75491 /* VSS008_DataExtensionsTests.swift */,
 				166C67BD201F5BB200D79608 /* VSSTestUtils.h */,
 				166C67BE201F5C0500D79608 /* VSSTestUtils.m */,
 				429123611F4B0B3700103BE0 /* VSSTestsConst.h */,
@@ -1187,7 +1173,6 @@
 			dependencies = (
 				4227273120210B6000265E25 /* PBXTargetDependency */,
 				4227273320210B6000265E25 /* PBXTargetDependency */,
-				4227273520210B6000265E25 /* PBXTargetDependency */,
 				42B7E3621DB8F72200D70C12 /* PBXTargetDependency */,
 			);
 			name = "VirgilSDK iOS Tests";
@@ -1277,10 +1262,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 4227271820210AAB00265E25 /* Products */;
-					ProjectRef = 4227271720210AAB00265E25 /* Mailinator.xcodeproj */;
-				},
-				{
 					ProductGroup = 422726E820210AA300265E25 /* Products */;
 					ProjectRef = 422726E720210AA300265E25 /* VirgilCrypto.xcodeproj */;
 				},
@@ -1304,6 +1285,34 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		16A6EA74202A7E4C007EE4A4 /* VSCCrypto.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = VSCCrypto.framework;
+			remoteRef = 16A6EA73202A7E4C007EE4A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		16A6EA76202A7E4C007EE4A4 /* VSCCrypto.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = VSCCrypto.framework;
+			remoteRef = 16A6EA75202A7E4C007EE4A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		16A6EA78202A7E4C007EE4A4 /* VSCCrypto.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = VSCCrypto.framework;
+			remoteRef = 16A6EA77202A7E4C007EE4A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		16A6EA7A202A7E4C007EE4A4 /* VSCCrypto.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = VSCCrypto.framework;
+			remoteRef = 16A6EA79202A7E4C007EE4A4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		422726DA20210A9A00265E25 /* VirgilCryptoAPI.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -1451,27 +1460,6 @@
 			remoteRef = 4227271520210AA300265E25 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		4227271F20210AAB00265E25 /* Mailinator.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Mailinator.framework;
-			remoteRef = 4227271E20210AAB00265E25 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4227272120210AAB00265E25 /* Mailinator.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Mailinator.framework;
-			remoteRef = 4227272020210AAB00265E25 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4227272320210AAB00265E25 /* Mailinator.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Mailinator.framework;
-			remoteRef = 4227272220210AAB00265E25 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1572,7 +1560,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16C59E2C2020E7B6004820AA /* DataExtensionsTests.swift in Sources */,
+				16C59E2C2020E7B6004820AA /* VSS008_DataExtensionsTests.swift in Sources */,
 				16C59E4E2021DA0E004820AA /* VSS002_JWTTests.m in Sources */,
 				166C67C0201F5C0500D79608 /* VSSTestUtils.m in Sources */,
 				4291237B1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
@@ -1683,7 +1671,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16C59E2D2020E7B7004820AA /* DataExtensionsTests.swift in Sources */,
+				16C59E2D2020E7B7004820AA /* VSS008_DataExtensionsTests.swift in Sources */,
 				16C59E4F2021DA0E004820AA /* VSS002_JWTTests.m in Sources */,
 				4284C3C81F6BEFD600B75491 /* VSSTestsConst.m in Sources */,
 				166C67C1201F5C0500D79608 /* VSSTestUtils.m in Sources */,
@@ -1694,7 +1682,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				16C59E2B2020E7B5004820AA /* DataExtensionsTests.swift in Sources */,
+				16C59E2B2020E7B5004820AA /* VSS008_DataExtensionsTests.swift in Sources */,
 				16C59E4D2021DA0D004820AA /* VSS002_JWTTests.m in Sources */,
 				166C67BF201F5C0500D79608 /* VSSTestUtils.m in Sources */,
 				4291237A1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
@@ -1789,11 +1777,6 @@
 			isa = PBXTargetDependency;
 			name = "VirgilCryptoApiImpl iOS";
 			targetProxy = 4227273220210B6000265E25 /* PBXContainerItemProxy */;
-		};
-		4227273520210B6000265E25 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "MailinatorClient iOS";
-			targetProxy = 4227273420210B6000265E25 /* PBXContainerItemProxy */;
 		};
 		42745A561ED43D9900C1DEEC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

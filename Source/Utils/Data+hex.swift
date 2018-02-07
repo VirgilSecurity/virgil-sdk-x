@@ -32,7 +32,7 @@ public extension Data {
                 break
             }
 
-            let c = hex.substring(with: Range(uncheckedBounds: (lowerBound, upperBound)))
+            let c = String(hex[Range(uncheckedBounds: (lowerBound, upperBound))])
             let res = strtol(c, nil, 16)
             data.append(contentsOf: [UInt8(res)])
 

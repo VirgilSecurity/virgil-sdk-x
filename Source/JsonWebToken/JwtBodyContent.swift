@@ -66,6 +66,6 @@ import Foundation
     }
 
     @objc public func getBase64Url() throws -> String {
-        return try self.asJsonData().base64UrlEncoded()
+        return try self.asJsonData().base64UrlEncodedString()
     }
 }

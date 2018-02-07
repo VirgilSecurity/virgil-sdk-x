@@ -360,12 +360,12 @@
     XCTAssert([jwt.headerContent.algorithm isEqualToString:@"VEDS512"]);
     XCTAssert([jwt.headerContent.contentType isEqualToString:@"virgil-jwt;v=1"]);
     XCTAssert([jwt.headerContent.type isEqualToString:@"JWT"]);
-    XCTAssert([jwt.headerContent.keyIdentifier isEqualToString:@"e0068a69cdddd2fdb1df667546f0bcc0d6581149c464f59c07afb9d9c3e2216ca32dafec0b13e9ee04bcb1091d82c9b9d5ce3f2772f3ec455b01c509343e8030"]);
+    XCTAssert([jwt.headerContent.keyIdentifier isEqualToString:@"7dc94e254f589521e045d2f95520180fabe8bf36141fbf3fd0ff89d6e4f9950de5a7c4559d3b96d0e45272f01f94c3eb5fc889913e33c1f136d12b882019e313"]);
     
-    XCTAssert([jwt.bodyContent.identity isEqualToString:@"identity-some_identity"]);
-    XCTAssert([jwt.bodyContent.appId isEqualToString:@"virgil-78b91158fcaa2b3f93ffad2bb3eff1f6bfe8670c50bf41f350374fe37332bd23"]);
-    XCTAssert(jwt.bodyContent.issuedAt == 1517578965);
-    XCTAssert(jwt.bodyContent.expiresAt == 1517579565);
+    XCTAssert([jwt.bodyContent.identity isEqualToString:@"some_identity"]);
+    XCTAssert([jwt.bodyContent.appId isEqualToString:@"0f3b26e2114dce3faa1cc4917fc0a54955dab1ea0950239fde60d68dca400b3e"]);
+    XCTAssert(jwt.bodyContent.issuedAt == 1517922141);
+    XCTAssert(jwt.bodyContent.expiresAt == 1517922741);
     XCTAssert(jwt.isExpired == true);
     
     XCTAssert([jwt.stringRepresentation isEqualToString:self.testData[@"STC-22.jwt"]]);
