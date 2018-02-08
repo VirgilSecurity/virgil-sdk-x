@@ -8,16 +8,26 @@
 
 import Foundation
 
+/// Class implementing `AccessToken` in terms of JWT
 @objc(VSSJwt) public class Jwt: NSObject, AccessToken {
     @objc public let headerContent: JwtHeaderContent
     @objc public let bodyContent: JwtBodyContent
     @objc public private(set) var string: String
     @objc public private(set) var signatureContent: Data?
 
+    /// Declares error types and codes
+    ///
+    /// - tokenCorrupted: token is corrupted and cannot be used
     @objc public enum JwtError: Int, Error {
         case tokenCorrupted = 1
     }
 
+    /// Initializes `Jwt` with provided header, body and signature content
+    ///
+    /// - Parameters:
+    ///   - headerContent: header of `Jwt`
+    ///   - bodyContent: body of `Jwt`
+    ///   - signatureContent: Data with signature content (optional)
     @objc public init?(headerContent: JwtHeaderContent, bodyContent: JwtBodyContent, signatureContent: Data? = nil) {
         self.headerContent = headerContent
         self.bodyContent = bodyContent
@@ -36,6 +46,9 @@ import Foundation
         super.init()
     }
 
+    /// Initializes `Jwt` from its string representation
+    ///
+    /// - Parameter jwtToken: must be equal to base64UrlEncode(JWT Header) + "." + base64UrlEncode(JWT Body) + "." + base64UrlEncode(Jwt Signature)
     @objc public init?(jwtToken: String) {
         let array = jwtToken.components(separatedBy: ".")
 
@@ -45,8 +58,8 @@ import Foundation
         let headerBase64Url = array[0]
         let bodyBase64Url = array[1]
 
-        guard let headerContent = JwtHeaderContent(string: headerBase64Url),
-              let bodyContent = JwtBodyContent(string: bodyBase64Url) else { return nil }
+        guard let headerContent = JwtHeaderContent(base64Url: headerBase64Url),
+              let bodyContent = JwtBodyContent(base64Url: bodyBase64Url) else { return nil }
 
         var signatureContent: Data? = nil
         if array.count == 3 {

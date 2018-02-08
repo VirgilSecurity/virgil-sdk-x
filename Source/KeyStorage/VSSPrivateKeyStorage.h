@@ -17,6 +17,7 @@
 /**
  Class responsible for storing Private Keys
  */
+NS_SWIFT_NAME(PrivateKeyStorage)
 @interface VSSPrivateKeyStorage : NSObject
 
 /**

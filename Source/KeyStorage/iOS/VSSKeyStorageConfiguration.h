@@ -12,6 +12,7 @@
  Class used to initialize default VSSKeyStorage implementation.
  See VSSKeyStorage.
  */
+NS_SWIFT_NAME(KeyStorageConfiguration)
 @interface VSSKeyStorageConfiguration: NSObject <NSCopying>
 
 /**

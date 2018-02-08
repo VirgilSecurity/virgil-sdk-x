@@ -15,11 +15,12 @@ import VirgilCryptoAPI
     @objc public let accessTokenProvider: AccessTokenProvider
     @objc public let cardClient: CardClient
     @objc public let cardVerifier: CardVerifier
-    @objc public let signCallback: ((RawSignedModel) -> (RawSignedModel))?
+    @objc public let retryOnUnauthorized: Bool
+    @objc public let signCallback: ((RawSignedModel, @escaping (RawSignedModel?, Error?) -> ()) -> ())?
 
     @objc public init(crypto: CardCrypto, accessTokenProvider: AccessTokenProvider,
-                      modelSigner: ModelSigner, cardClient: CardClient, cardVerifier: CardVerifier,
-                      signCallback: ((RawSignedModel) -> (RawSignedModel))?) {
+                      modelSigner: ModelSigner, cardClient: CardClient, cardVerifier: CardVerifier, retryOnUnauthorized: Bool = true,
+                      signCallback: ((RawSignedModel, @escaping (RawSignedModel?, Error?) -> ()) -> ())?) {
 
         self.crypto = crypto
         self.cardClient = cardClient
@@ -27,6 +28,7 @@ import VirgilCryptoAPI
         self.accessTokenProvider = accessTokenProvider
         self.signCallback = signCallback
         self.modelSigner = modelSigner
+        self.retryOnUnauthorized = retryOnUnauthorized
     }
 
     @objc public enum CardManagerError: Int, Error {
@@ -43,7 +45,6 @@ import VirgilCryptoAPI
     @objc public func generateRawCard(privateKey: PrivateKey, publicKey: PublicKey,
                                       identity: String, previousCardId: String? = nil,
                                       extraFields: [String: String]? = nil) throws -> RawSignedModel {
-
         let exportedPubKey = try crypto.exportPublicKey(publicKey).base64EncodedString()
 
         let cardContent = RawCardContent(identity: identity, publicKey: exportedPubKey,
@@ -51,7 +52,7 @@ import VirgilCryptoAPI
 
         let snapshot = try SnapshotUtils.takeSnapshot(of: cardContent)
 
-        var rawCard = RawSignedModel(contentSnapshot: snapshot)
+        let rawCard = RawSignedModel(contentSnapshot: snapshot)
 
         var data: Data?
         if extraFields != nil {
@@ -60,26 +61,7 @@ import VirgilCryptoAPI
 
         try self.modelSigner.selfSign(model: rawCard, privateKey: privateKey, additionalData: data)
 
-        if let signCallback = self.signCallback {
-            rawCard = signCallback(rawCard)
-        }
-
         return rawCard
-    }
-
-    internal func getToken(operation: String) throws -> AccessToken {
-        do {
-            let tokenContext = TokenContext(operation: operation, forceReload: false)
-            return try self.accessTokenProvider.getToken(with: tokenContext)
-        } catch {
-            if let err = error as? CardClient.CardServiceError {
-                if err.errorCode == 401 {
-                    let tokenContext = TokenContext(operation: operation, forceReload: true)
-                    return try self.accessTokenProvider.getToken(with: tokenContext)
-                }
-            }
-            throw error
-        }
     }
 }
 
@@ -101,7 +83,7 @@ public extension CardManager {
         return Card.parse(crypto: self.crypto, rawSignedModel: rawCard)
     }
 
-    @objc func `import`(rawCard: RawSignedModel) -> Card? {
+    @objc func importCard(from rawCard: RawSignedModel) -> Card? {
         return Card.parse(crypto: self.crypto, rawSignedModel: rawCard)
     }
 

@@ -21,17 +21,14 @@ import Foundation
 
     /// Declares error types and codes
     ///
-    /// - modelHasMaxSignatures: `RawSignedModel` instance already has maximum value - 8 of signatures
     /// - duplicateSignature: `RawSignedModel` instance already has signature with same signer field
     @objc public enum RawSignedModelError: Int, Error {
-        case modelHasMaxSignatures = 1
         case duplicateSignature = 2
     }
 
     /// Initializes a new `RawSignedModel` with the provided contentSnapshot
     ///
-    /// - Parameters:
-    ///   - contentSnapshot: data with snapshot of content
+    /// - Parameter contentSnapshot: data with snapshot of content
     @objc public init(contentSnapshot: Data) {
         self.contentSnapshot = contentSnapshot
         self.signatures = []
@@ -75,20 +72,9 @@ import Foundation
     /// - Parameter signature: signature to add
     /// - Throws: throws corresponding `RawSignedModelError` if adding fails
     @objc public func addSignature(_ signature: RawSignature) throws {
-        guard self.signatures.count < 8 else {
-            throw RawSignedModelError.modelHasMaxSignatures
-        }
-
         guard self.signatures.first(where: { $0.signer == signature.signer }) == nil else {
             throw RawSignedModelError.duplicateSignature
         }
         self.signatures.append(signature)
-    }
-
-    /// Removes signature with provided signer from model
-    ///
-    /// - Parameter signer: signer of signature to delete
-    @objc public func removeSignature(signer: String) {
-        self.signatures = self.signatures.filter { $0.signer != signer }
     }
 }

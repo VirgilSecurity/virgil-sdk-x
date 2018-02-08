@@ -58,8 +58,8 @@ import Foundation
         try container.encode(self.additionalData, forKey: .additionalData)
     }
 
-    @objc public convenience init?(string: String) {
-        guard let data = Data(base64UrlEncoded: string),
+    @objc public convenience init?(base64Url: String) {
+        guard let data = Data(base64UrlEncoded: base64Url),
             let json = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
 
         self.init(dict: json)

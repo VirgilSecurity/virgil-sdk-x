@@ -11,6 +11,7 @@
 /**
  Class that represents key attributes.
  */
+NS_SWIFT_NAME(KeyAttrs)
 @interface VSSKeyAttrs : NSObject
 
 /**

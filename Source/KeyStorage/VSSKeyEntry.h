@@ -11,6 +11,7 @@
 /**
  Represents key entry for VSSKeyStorage.
  */
+NS_SWIFT_NAME(KeyEntry)
 @interface VSSKeyEntry : NSObject
 
 /**

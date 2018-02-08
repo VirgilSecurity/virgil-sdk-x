@@ -56,7 +56,6 @@ public extension Serializable {
 
     func asJsonData() throws -> Data {
         let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
 
         return try encoder.encode(self)
     }

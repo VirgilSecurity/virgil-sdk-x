@@ -10,5 +10,10 @@ import Foundation
 
 /// This protocol is responsible for providing AccessToken
 @objc(VSSAccessTokenProvider) public protocol AccessTokenProvider {
+    /// Provides access token
+    ///
+    /// - Parameter tokenContext: `TokenContext` instance with corresponding info
+    /// - Returns: access token
+    /// - Throws: corresponding error
     @objc func getToken(with tokenContext: TokenContext) throws -> AccessToken
 }

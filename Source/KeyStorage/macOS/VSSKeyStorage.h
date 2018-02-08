@@ -14,6 +14,7 @@ extern NSString * __nonnull const kVSSKeyStorageErrorDomain;
 /**
  Class responsible for storing, loading, deleting KeyEntries using Keychain.
  */
+NS_SWIFT_NAME(KeyStorage)
 @interface VSSKeyStorage : NSObject
 
 /**
