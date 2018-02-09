@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc(VSSJwtHeaderContent) public class JwtHeaderContent: NSObject, Serializable, Deserializable {
+@objc(VSSJwtHeaderContent) public class JwtHeaderContent: NSObject, Codable {
     @objc public let algorithm: String
     @objc public let type: String
     @objc public let contentType: String
@@ -31,14 +31,15 @@ import Foundation
         super.init()
     }
 
-    @objc public convenience init?(base64Url: String) {
-        guard let data = Data(base64UrlEncoded: base64Url),
-              let json = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
+    @objc public static func importFrom(base64UrlEncoded: String) -> JwtHeaderContent? {
+        guard let data = Data(base64UrlEncoded: base64UrlEncoded) else {
+            return nil
+        }
 
-        self.init(dict: json)
+        return try? JSONDecoder().decode(JwtHeaderContent.self, from: data)
     }
 
-    @objc public func getBase64Url() throws -> String {
-        return try self.asJsonData().base64UrlEncodedString()
+    @objc public func base64UrlEncodedString() throws -> String {
+        return try JSONEncoder().encode(self).base64UrlEncodedString()
     }
 }

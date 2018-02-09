@@ -18,10 +18,9 @@ import VirgilCryptoAPI
     @objc public let retryOnUnauthorized: Bool
     @objc public let signCallback: ((RawSignedModel, @escaping (RawSignedModel?, Error?) -> ()) -> ())?
 
-    @objc public init(crypto: CardCrypto, accessTokenProvider: AccessTokenProvider,
-                      modelSigner: ModelSigner, cardClient: CardClient, cardVerifier: CardVerifier, retryOnUnauthorized: Bool = true,
+    @objc public init(crypto: CardCrypto, accessTokenProvider: AccessTokenProvider, modelSigner: ModelSigner,
+                      cardClient: CardClient, cardVerifier: CardVerifier, retryOnUnauthorized: Bool = true,
                       signCallback: ((RawSignedModel, @escaping (RawSignedModel?, Error?) -> ()) -> ())?) {
-
         self.crypto = crypto
         self.cardClient = cardClient
         self.cardVerifier = cardVerifier
@@ -50,7 +49,7 @@ import VirgilCryptoAPI
         let cardContent = RawCardContent(identity: identity, publicKey: exportedPubKey,
                                          previousCardId: nil, createdAt: Date())
 
-        let snapshot = try SnapshotUtils.takeSnapshot(of: cardContent)
+        let snapshot = try JSONEncoder().encode(cardContent)
 
         let rawCard = RawSignedModel(contentSnapshot: snapshot)
 
@@ -68,7 +67,7 @@ import VirgilCryptoAPI
 // Import export cards
 public extension CardManager {
     @objc func importCard(string: String) -> Card? {
-        guard let rawCard = RawSignedModel(base64Encoded: string) else {
+        guard let rawCard = RawSignedModel.importFrom(base64Encoded: string) else {
             return nil
         }
 
@@ -76,7 +75,7 @@ public extension CardManager {
     }
 
     @objc func importCard(json: Any) -> Card? {
-        guard let rawCard = RawSignedModel(dict: json) else {
+        guard let rawCard = RawSignedModel.importFrom(json: json) else {
             return nil
         }
 

@@ -73,8 +73,7 @@ import Foundation
 
     internal func handleError(statusCode: Int, body: Data?) -> Error {
         if let body = body {
-            if let json = try? JSONSerialization.jsonObject(with: body, options: []),
-                let rawServiceError = RawServiceError(dict: json) {
+            if let rawServiceError = try? JSONDecoder().decode(RawServiceError.self, from: body) {
                     return CardServiceError(rawServiceError: rawServiceError)
             }
             else if let str = String(data: body, encoding: .utf8) {
@@ -86,32 +85,20 @@ import Foundation
         return NSError(domain: CardClient.serviceErrorDomain, code: statusCode)
     }
 
-    private func parseResponse(_ response: HTTPResponse) throws -> Any {
-        guard let data = response.body else {
-            throw CardClientError.noBody
-        }
-
-        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
-            throw CardClientError.invalidJson
-        }
-
-        return json
-    }
-
     private func validateResponse(_ response: HTTPResponse) throws {
         guard response.statusCode / 100 == 2 else {
             throw self.handleError(statusCode: response.statusCode, body: response.body)
         }
     }
 
-    internal func processResponse<T: Deserializable>(_ response: HTTPResponse) throws -> T {
+    internal func processResponse<T: Decodable>(_ response: HTTPResponse) throws -> T {
         try self.validateResponse(response)
 
-        let json = try self.parseResponse(response)
-
-        guard let responseModel = T(dict: json) else {
-            throw CardClientError.invalidResponseModel
+        guard let data = response.body else {
+            throw CardClientError.noBody
         }
+
+        let responseModel = try JSONDecoder().decode(T.self, from: data)
 
         return responseModel
     }

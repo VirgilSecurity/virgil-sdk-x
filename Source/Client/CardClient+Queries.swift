@@ -80,9 +80,9 @@ public extension CardClient {
 
         var result: [RawSignedModel] = []
         for item in json {
-            guard let responseModel = RawSignedModel(dict: item) else {
-                throw CardClientError.invalidResponseModel
-            }
+            let data = try JSONSerialization.data(withJSONObject: item, options: [])
+            let responseModel = try JSONDecoder().decode(RawSignedModel.self, from: data)
+
             result.append(responseModel)
         }
 

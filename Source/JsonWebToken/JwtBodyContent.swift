@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc(VSSJwtBodyContent) public class JwtBodyContent: NSObject, Serializable, Deserializable {
+@objc(VSSJwtBodyContent) public class JwtBodyContent: NSObject, Codable {
 
     @objc public let appId: String
     @objc public let identity: String
@@ -55,17 +55,20 @@ import Foundation
         try container.encode("identity-" + self.identity, forKey: .identity)
         try container.encode(self.issuedAt, forKey: .issuedAt)
         try container.encode(self.expiresAt, forKey: .expiresAt)
-        try container.encode(self.additionalData, forKey: .additionalData)
+        if let additionalData = self.additionalData {
+            try container.encode(additionalData, forKey: .additionalData)
+        }
     }
 
-    @objc public convenience init?(base64Url: String) {
-        guard let data = Data(base64UrlEncoded: base64Url),
-            let json = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
+    @objc public static func importFrom(base64UrlEncoded: String) -> JwtBodyContent? {
+        guard let data = Data(base64UrlEncoded: base64UrlEncoded) else {
+            return nil
+        }
 
-        self.init(dict: json)
+        return try? JSONDecoder().decode(JwtBodyContent.self, from: data)
     }
 
-    @objc public func getBase64Url() throws -> String {
-        return try self.asJsonData().base64UrlEncodedString()
+    @objc public func base64UrlEncodedString() throws -> String {
+        return try JSONEncoder().encode(self).base64UrlEncodedString()
     }
 }

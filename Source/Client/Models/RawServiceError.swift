@@ -9,7 +9,7 @@
 import Foundation
 
 /// Model for representing service errors
-public final class RawServiceError: Deserializable {
+public final class RawServiceError: Decodable {
     /// Code of error
     public let code: Int
     /// Description of error

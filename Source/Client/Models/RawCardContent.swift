@@ -9,7 +9,7 @@
 import Foundation
 
 /// Represents content of Virgil Card
-@objc(VSSRawCardContent) public class RawCardContent: NSObject, Deserializable, Serializable {
+@objc(VSSRawCardContent) public class RawCardContent: NSObject, Codable {
     @objc public let identity: String
     @objc public let publicKey: String
     @objc public let previousCardId: String?
@@ -48,7 +48,7 @@ import Foundation
     ///
     /// - Parameter snapshot: snapshot of `RawCardContent`
     @objc public convenience init?(snapshot: Data) {
-        guard let content: RawCardContent = SnapshotUtils.parse(snapshot) else {
+        guard let content = try? JSONDecoder().decode(RawCardContent.self, from: snapshot) else {
             return nil
         }
 
@@ -61,6 +61,6 @@ import Foundation
     ///
     /// - Returns: data snapshot of `RawCardContent`
     @objc public func snapshot() -> Data? {
-        return try? SnapshotUtils.takeSnapshot(of: self)
+        return try? JSONEncoder().encode(self)
     }
 }

@@ -42,7 +42,7 @@ import VirgilCryptoAPI
 
     @objc public class func parse(crypto: CardCrypto, rawSignedModel: RawSignedModel) -> Card? {
         let contentSnapshot = rawSignedModel.contentSnapshot
-        guard let rawCardContent: RawCardContent = SnapshotUtils.parse(contentSnapshot) else {
+        guard let rawCardContent = try? JSONDecoder().decode(RawCardContent.self, from: contentSnapshot) else {
             return nil
         }
 

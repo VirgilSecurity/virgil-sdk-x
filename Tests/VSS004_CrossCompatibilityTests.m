@@ -61,7 +61,7 @@
     NSString *rawCardString = self.testData[@"STC-1.as_string"];
     XCTAssert(rawCardString != nil);
     
-    VSSRawSignedModel *rawCard1 = [[VSSRawSignedModel alloc] initWithBase64Encoded:rawCardString];
+    VSSRawSignedModel *rawCard1 = [VSSRawSignedModel importFromBase64Encoded: rawCardString];
     XCTAssert(rawCard1 != nil);
     
     VSSRawCardContent *cardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard1.contentSnapshot];
@@ -81,7 +81,7 @@
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:rawCardDic options:kNilOptions error:nil];
     XCTAssert(dic != nil);
     
-    VSSRawSignedModel *rawCard2 = [[VSSRawSignedModel alloc] initWithJson:dic];
+    VSSRawSignedModel *rawCard2 = [VSSRawSignedModel importFromJson: dic];
     XCTAssert(rawCard2 != nil);
     
     VSSRawCardContent *cardContent2 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard2.contentSnapshot];
@@ -104,7 +104,7 @@
     NSString *exportedRawCardString = [rawCard1 base64EncodedStringAndReturnError:&error];
     XCTAssert(error == nil);
     
-    VSSRawSignedModel *newImportedRawCard1 = [[VSSRawSignedModel alloc] initWithBase64Encoded:exportedRawCardString];
+    VSSRawSignedModel *newImportedRawCard1 = [VSSRawSignedModel importFromBase64Encoded: exportedRawCardString];
     XCTAssert(newImportedRawCard1 != nil);
     
     VSSRawCardContent *newCardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:newImportedRawCard1.contentSnapshot];
@@ -116,7 +116,7 @@
     NSDictionary *exportedRawCardJson = [newRawCard1 exportAsJsonAndReturnError:&error];
     XCTAssert(error == nil);
     
-    VSSRawSignedModel *newImportedRawCard2 = [[VSSRawSignedModel alloc] initWithJson:exportedRawCardJson];
+    VSSRawSignedModel *newImportedRawCard2 = [VSSRawSignedModel importFromJson: exportedRawCardJson];
     XCTAssert(newImportedRawCard2 != nil);
     
     VSSRawCardContent *newCardContent2 = [[VSSRawCardContent alloc] initWithSnapshot:newImportedRawCard2.contentSnapshot];
@@ -134,7 +134,7 @@
     XCTAssert(rawCardString != nil);
     NSLog(@"Message == %@", rawCardString);
     
-    VSSRawSignedModel *rawCard1 = [[VSSRawSignedModel alloc] initWithBase64Encoded:rawCardString];
+    VSSRawSignedModel *rawCard1 = [VSSRawSignedModel importFromBase64Encoded: rawCardString];
     XCTAssert(rawCard1 != nil);
     
     VSSRawCardContent *cardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard1.contentSnapshot];
@@ -166,7 +166,7 @@
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:rawCardDic options:kNilOptions error:nil];
     XCTAssert(dic != nil);
     
-    VSSRawSignedModel *rawCard2 = [[VSSRawSignedModel alloc] initWithJson:dic];
+    VSSRawSignedModel *rawCard2 = [VSSRawSignedModel importFromJson: dic];;
     XCTAssert(rawCard2 != nil);
     
     VSSRawCardContent *cardContent2 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard2.contentSnapshot];
@@ -191,7 +191,7 @@
     NSString *exportedRawCardString = [rawCard1 base64EncodedStringAndReturnError:&error];
     XCTAssert(error == nil);
     
-    VSSRawSignedModel *newImportedRawCard1 = [[VSSRawSignedModel alloc] initWithBase64Encoded:exportedRawCardString];
+    VSSRawSignedModel *newImportedRawCard1 = [VSSRawSignedModel importFromBase64Encoded: exportedRawCardString];
     XCTAssert(newImportedRawCard1 != nil);
     
     VSSRawCardContent *newCardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:newImportedRawCard1.contentSnapshot];
@@ -205,7 +205,7 @@
     NSDictionary *exportedRawCardJson = [newRawCard1 exportAsJsonAndReturnError:&error];
     XCTAssert(error == nil);
     
-    VSSRawSignedModel *newImportedRawCard2 = [[VSSRawSignedModel alloc] initWithJson:exportedRawCardJson];
+    VSSRawSignedModel *newImportedRawCard2 = [VSSRawSignedModel importFromBase64Encoded: exportedRawCardString];
     XCTAssert(newImportedRawCard2 != nil);
     
     VSSRawCardContent *newCardContent2 = [[VSSRawCardContent alloc] initWithSnapshot:newImportedRawCard2.contentSnapshot];
@@ -225,8 +225,9 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
-    
+    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider:generator
+                                                            modelSigner:self.modelSigner cardClient:self.cardClient
+                                                            cardVerifier:self.verifier retryOnUnauthorized:true signCallback:nil];
     NSString *rawCardString = self.testData[@"STC-3.as_string"];
     XCTAssert(rawCardString != nil);
  
@@ -285,7 +286,9 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
+    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator
+                                                            modelSigner:self.modelSigner cardClient:self.cardClient
+                                                            cardVerifier:self.verifier retryOnUnauthorized:true signCallback:nil];
     
     NSString *rawCardString = self.testData[@"STC-4.as_string"];
     XCTAssert(rawCardString != nil);
@@ -426,6 +429,5 @@
     
     XCTAssert([verifier verifyTokenWithJwtToken:jwt]);
 }
-
 
 @end

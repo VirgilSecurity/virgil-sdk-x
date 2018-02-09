@@ -9,7 +9,7 @@
 import Foundation
 
 /// Represents some model in binary form that can have signatures and corresponds to Virgil Cards Service model
-@objc(VSSRawSignedModel) public class RawSignedModel: NSObject, Serializable, Deserializable {
+@objc(VSSRawSignedModel) public class RawSignedModel: NSObject, Codable {
     @objc public let contentSnapshot: Data
     @objc public private(set) var signatures: [RawSignature]
 
@@ -39,15 +39,21 @@ import Foundation
     /// Initializes `RawSignedModel` from json dictionary
     ///
     /// - Parameter json: dictionary representing `RawSignedModel`
-    @objc public convenience init?(json: Any) {
-        self.init(dict: json)
+    @objc public static func importFrom(json: Any) -> RawSignedModel? {
+        guard let data = try? JSONSerialization.data(withJSONObject: json, options: []) else {
+            return nil
+        }
+        return try? JSONDecoder().decode(RawSignedModel.self, from: data)
     }
 
     /// Initializes `RawSignedModel` from base64 encoded string
     ///
     /// - Parameter base64Encoded: base64 encoded string with `RawSignedModel`
-    @objc public convenience init?(base64Encoded: String) {
-        self.init(base64: base64Encoded)
+    @objc public static func importFrom(base64Encoded: String) -> RawSignedModel? {
+        guard let data = Data(base64Encoded: base64Encoded) else {
+            return nil
+        }
+        return try? JSONDecoder().decode(RawSignedModel.self, from: data)
     }
 
     /// Exports `RawSignedModel` as base64 encoded string
@@ -55,7 +61,7 @@ import Foundation
     /// - Returns: base64 encoded string with `RawSignedModel`
     /// - Throws: corresponding error if encoding fails
     @objc public func base64EncodedString() throws -> String {
-        return try self.asStringBase64()
+       return try JSONEncoder().encode(self).base64EncodedString()
     }
 
     /// Exports `RawSignedModel` as json dictionary
@@ -63,9 +69,9 @@ import Foundation
     /// - Returns: json dictionary with `RawSignedModel`
     /// - Throws: corresponding error if encoding fails
     @objc public func exportAsJson() throws -> Any {
-        return try self.asJson()
+        let data = try JSONEncoder().encode(self)
+        return try JSONSerialization.jsonObject(with: data, options: [])
     }
-
 
     /// Adds new signature to `RawSignedModel` instance
     ///

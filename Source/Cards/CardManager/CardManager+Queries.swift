@@ -25,7 +25,7 @@ public extension CardManager {
 
     func getCard(withId cardId: String) -> CallbackOperation<Card> {
         let operation = CallbackOperation<Card> {
-            let card:Card = try self.tryPerformQuery() { forceReload in
+            let card: Card = try self.tryPerformQuery { forceReload in
                 let tokenContext = TokenContext(operation: "get", forceReload: forceReload)
                 let token = try self.accessTokenProvider.getToken(with: tokenContext)
 
@@ -47,7 +47,7 @@ public extension CardManager {
 
     func publishCard(rawCard: RawSignedModel, token: AccessToken? = nil) -> CallbackOperation<Card> {
         let operation = CallbackOperation<Card> {
-            let card:Card = try self.tryPerformQuery() { forceReload in
+            let card: Card = try self.tryPerformQuery { forceReload in
                 let tokenContext = TokenContext(operation: "publish", forceReload: forceReload)
                 let token = try token ?? self.accessTokenProvider.getToken(with: tokenContext)
 
@@ -90,17 +90,17 @@ public extension CardManager {
                      extraFields: [String: String]? = nil) throws -> CallbackOperation<Card> {
         let tokenContext = TokenContext(operation: "publish", forceReload: false)
         let token = try self.accessTokenProvider.getToken(with: tokenContext)
-    
+
         let rawCard = try self.generateRawCard(privateKey: privateKey, publicKey: publicKey,
                                                identity: token.identity(), previousCardId: previousCardId,
                                                extraFields: extraFields)
 
-        return self.publishCard(rawCard: rawCard, token:token)
+        return self.publishCard(rawCard: rawCard, token: token)
     }
 
     func searchCards(identity: String) -> CallbackOperation<[Card]> {
         let operation = CallbackOperation<[Card]> {
-            let cards:[Card] = try self.tryPerformQuery() { forceReload in
+            let cards: [Card] = try self.tryPerformQuery { forceReload in
                 let tokenContext = TokenContext(operation: "search", forceReload: forceReload)
                 let token = try self.accessTokenProvider.getToken(with: tokenContext)
                 let tokenString = token.stringRepresentation()
