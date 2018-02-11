@@ -365,7 +365,7 @@
     
     VSSJwtVerifier *verifier = [[VSSJwtVerifier alloc] initWithApiPublicKey:publicKey apiPublicKeyIdentifier:self.testData[@"STC-22.api_key_id"] accessTokenSigner:signer];
     
-    VSSJwt *jwt = [[VSSJwt alloc] initWithJwtToken:self.testData[@"STC-22.jwt"]];
+    VSSJwt *jwt = [[VSSJwt alloc] initWithStringRepresentation:self.testData[@"STC-22.jwt"]];
     XCTAssert(jwt != nil);
     
     XCTAssert([jwt.headerContent.algorithm isEqualToString:@"VEDS512"]);
@@ -385,7 +385,7 @@
     [dic setValue:@"some_username" forKey:@"username"];
     XCTAssert([jwt.bodyContent.additionalData isEqualToDictionary:dic]);
     
-    XCTAssert([verifier verifyTokenWithJwtToken:jwt]);
+    XCTAssert([verifier verifyWithToken:jwt]);
 }
 
 -(void)test006_STC_23 {
@@ -413,7 +413,7 @@
     XCTAssert(error == nil);
     XCTAssert(jwt != nil);
     
-    VSSJwt *jwt22 = [[VSSJwt alloc] initWithJwtToken:self.testData[@"STC-22.jwt"]];
+    VSSJwt *jwt22 = [[VSSJwt alloc] initWithStringRepresentation:self.testData[@"STC-22.jwt"]];
     XCTAssert(jwt22 != nil);
     
     XCTAssert([jwt.headerContent.algorithm isEqualToString:@"VEDS512"]);
@@ -427,7 +427,7 @@
     
     XCTAssert([jwt.bodyContent.additionalData isEqualToDictionary:dic]);
     
-    XCTAssert([verifier verifyTokenWithJwtToken:jwt]);
+    XCTAssert([verifier verifyWithToken:jwt]);
 }
 
 @end

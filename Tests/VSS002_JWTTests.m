@@ -14,6 +14,8 @@
 
 #import "VSSTestsConst.h"
 
+// static const NSTimeInterval timeout = 15.;
+
 @interface VSS001_JWTTests : XCTestCase
 
 @end
@@ -21,46 +23,53 @@
 @implementation VSS001_JWTTests
 
 - (void)test001_STC_24 {
+    // XCTestExpectation *ex = [self expectationWithDescription:@"Jwt should return cash token, force reload"];
     NSTimeInterval ttl = 5;
-    VSSCallbackJwtProvider *callbackJwtProvider = [[VSSCallbackJwtProvider alloc] initWithGetTokenCallback:^NSString*(void){
+    VSSCallbackJwtProvider *callbackJwtProvider = [[VSSCallbackJwtProvider alloc] initWithGetTokenCallback:^(void (^ completionHandler)(NSString* token, NSError* error)) {
         
         VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
         
-        NSError *error;
-        VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&error];
-        XCTAssert(error == nil);
+        NSError *err;
+        VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
+        XCTAssert(err == nil);
         
         VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:crypto];
         VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] apiPublicKeyIdentifier:@"id" accessTokenSigner:signer appId:@"app_id" ttl:ttl];
         
         NSString *identity = @"some_identity";
-        VSSJwt *jwt = [generator generateTokenWithIdentity:identity additionalData:nil error:&error];
-        XCTAssert(error == nil);
-        
-        return [jwt stringRepresentation];
+        VSSJwt *jwt = [generator generateTokenWithIdentity:identity additionalData:nil error:&err];
+        XCTAssert(err == nil);
+
+        completionHandler([jwt stringRepresentation], err);
+        return;
     }];
-    NSError *error;
-    
     XCTAssert([callbackJwtProvider token] == nil);
+
     VSSTokenContext *tokenContext = [[VSSTokenContext alloc] initWithIdentity:nil operation:@"FIXME" forceReload:NO];
-    VSSJwt *jwt = (VSSJwt *)[callbackJwtProvider getTokenWith:tokenContext error:&error];
-    
-    XCTAssert(error == nil && jwt != nil && jwt == [callbackJwtProvider token]);
-    
-    VSSJwt *cashedJwt = (VSSJwt *)[callbackJwtProvider getTokenWith:tokenContext error:&error];
-    
-    XCTAssert(error == nil && cashedJwt != nil && cashedJwt == [callbackJwtProvider token] && cashedJwt == jwt);
-    
-    sleep(ttl);
-    
-    VSSJwt *newJwt1 = (VSSJwt *)[callbackJwtProvider getTokenWith:tokenContext error:&error];
-    
-    XCTAssert(error == nil && newJwt1 != nil && newJwt1 == [callbackJwtProvider token] && newJwt1 != cashedJwt);
-    
-    VSSTokenContext *tokenContextForceReload = [[VSSTokenContext alloc] initWithIdentity:nil operation:@"FIXME" forceReload:YES];
-    VSSJwt *newJwt2 = (VSSJwt *)[callbackJwtProvider getTokenWith:tokenContextForceReload error:&error];
-    
-    XCTAssert(error == nil && newJwt2 != nil && newJwt2 == [callbackJwtProvider token] && newJwt2 != newJwt1);
+    [callbackJwtProvider getTokenWith:tokenContext completion:^(id<VSSAccessToken> jwt, NSError *error) {
+        XCTAssert(error == nil && jwt != nil && jwt == [callbackJwtProvider token]);
+
+        [callbackJwtProvider getTokenWith:tokenContext completion:^(id<VSSAccessToken> cashedJwt, NSError *error) {
+            XCTAssert(error == nil && cashedJwt != nil && cashedJwt == [callbackJwtProvider token] && cashedJwt == jwt);
+            sleep(ttl);
+
+            [callbackJwtProvider getTokenWith:tokenContext completion:^(id<VSSAccessToken> newJwt1, NSError *error) {
+                XCTAssert(error == nil && newJwt1 != nil && newJwt1 == [callbackJwtProvider token] && newJwt1 != cashedJwt);
+                VSSTokenContext *tokenContextForceReload = [[VSSTokenContext alloc] initWithIdentity:nil operation:@"FIXME" forceReload:YES];
+
+                [callbackJwtProvider getTokenWith:tokenContextForceReload completion:^(id<VSSAccessToken> newJwt2, NSError *error) {
+                    XCTAssert(error == nil && newJwt2 != nil && newJwt2 == [callbackJwtProvider token] && newJwt2 != newJwt1);
+
+                    // [ex fulfill];
+                }];
+            }];
+        }];
+    }];
+
+//    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+//        if (error != nil)
+//            XCTFail(@"Expectation failed: %@", error);
+//    }];
 }
 
 -(void)test002_STC_28 {
@@ -73,7 +82,7 @@
     NSDictionary *testData = [NSJSONSerialization JSONObjectWithData:dicData options:kNilOptions error:&error];
     XCTAssert(error == nil);
 
-    VSSJwt *jwt = [[VSSJwt alloc] initWithJwtToken:testData[@"STC-28.jwt"]];
+    VSSJwt *jwt = [[VSSJwt alloc] initWithStringRepresentation:testData[@"STC-28.jwt"]];
     XCTAssert(jwt != nil);
 
     XCTAssert([jwt.headerContent.algorithm isEqualToString:testData[@"STC-28.jwt_algorithm"]]);

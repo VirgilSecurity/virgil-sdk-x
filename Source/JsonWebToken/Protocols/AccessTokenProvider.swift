@@ -15,5 +15,5 @@ import Foundation
     /// - Parameter tokenContext: `TokenContext` instance with corresponding info
     /// - Returns: access token
     /// - Throws: corresponding error
-    @objc func getToken(with tokenContext: TokenContext) throws -> AccessToken
+    @objc func getToken(with tokenContext: TokenContext, completion: @escaping (AccessToken?, Error?) -> ())
 }

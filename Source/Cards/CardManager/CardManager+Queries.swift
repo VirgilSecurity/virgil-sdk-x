@@ -27,7 +27,7 @@ public extension CardManager {
         let operation = CallbackOperation<Card> {
             let card: Card = try self.tryPerformQuery { forceReload in
                 let tokenContext = TokenContext(operation: "get", forceReload: forceReload)
-                let token = try self.accessTokenProvider.getToken(with: tokenContext)
+                let token = try self.getTokenSync(tokenContext: tokenContext)
 
                 let responseModel = try self.cardClient.getCard(withId: cardId, token: token.stringRepresentation())
 
@@ -49,27 +49,9 @@ public extension CardManager {
         let operation = CallbackOperation<Card> {
             let card: Card = try self.tryPerformQuery { forceReload in
                 let tokenContext = TokenContext(operation: "publish", forceReload: forceReload)
-                let token = try token ?? self.accessTokenProvider.getToken(with: tokenContext)
+                let token = try token ?? self.getTokenSync(tokenContext: tokenContext)
 
-                let queue = OperationQueue()
-                var rawCard = rawCard
-                var error: Error?
-                if let signCallback = self.signCallback {
-                    queue.addOperation {
-                        signCallback(rawCard) { signedRawCard, err in
-                            guard let signedRawCard = signedRawCard, err == nil else {
-                                error = err
-                                return
-                            }
-                            rawCard = signedRawCard
-                        }
-                    }
-                }
-                queue.waitUntilAllOperationsAreFinished()
-
-                if let err = error {
-                    throw err
-                }
+                let rawCard = try self.signSync(rawCard: rawCard)
 
                 let responseModel = try self.cardClient.publishCard(model: rawCard, token: token.stringRepresentation())
                 guard let card = Card.parse(crypto: self.crypto, rawSignedModel: responseModel) else {
@@ -89,7 +71,7 @@ public extension CardManager {
     func publishCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String?, previousCardId: String? = nil,
                      extraFields: [String: String]? = nil) throws -> CallbackOperation<Card> {
         let tokenContext = TokenContext(operation: "publish", forceReload: false)
-        let token = try self.accessTokenProvider.getToken(with: tokenContext)
+        let token = try self.getTokenSync(tokenContext: tokenContext)
 
         let rawCard = try self.generateRawCard(privateKey: privateKey, publicKey: publicKey,
                                                identity: token.identity(), previousCardId: previousCardId,
@@ -102,7 +84,7 @@ public extension CardManager {
         let operation = CallbackOperation<[Card]> {
             let cards: [Card] = try self.tryPerformQuery { forceReload in
                 let tokenContext = TokenContext(operation: "search", forceReload: forceReload)
-                let token = try self.accessTokenProvider.getToken(with: tokenContext)
+                let token = try self.getTokenSync(tokenContext: tokenContext)
                 let tokenString = token.stringRepresentation()
 
                 let rawSignedModels = try self.cardClient.searchCards(identity: identity, token: tokenString)

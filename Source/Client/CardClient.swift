@@ -68,7 +68,7 @@ import Foundation
     ///
     /// - Parameter serviceUrl: URL of service client will use
     @objc convenience public init(serviceUrl: URL = defaultURL) {
-        self.init(connection: ServiceConnection())
+        self.init(serviceUrl: serviceUrl, connection: ServiceConnection())
     }
 
     internal func handleError(statusCode: Int, body: Data?) -> Error {

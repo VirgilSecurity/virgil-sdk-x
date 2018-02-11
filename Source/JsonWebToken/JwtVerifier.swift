@@ -20,9 +20,9 @@ import VirgilCryptoAPI
         self.accessTokenSigner = accessTokenSigner
     }
 
-    @objc public func verifyToken(jwtToken: Jwt) -> Bool {
-        let signatureContent = jwtToken.signatureContent ?? Data()
-        guard let data = try? jwtToken.snapshotWithoutSignatures() else {
+    @objc public func verify(token: Jwt) -> Bool {
+        let signatureContent = token.signatureContent ?? Data()
+        guard let data = try? token.snapshotWithoutSignatures() else {
             return false
         }
 

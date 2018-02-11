@@ -21,8 +21,13 @@ import Foundation
         super.init()
     }
 
-    @objc public func getToken(with tokenContext: TokenContext) throws -> AccessToken {
-        return try self.jwtGenerator.generateToken(identity: tokenContext.identity ?? self.defaultIdentity,
+    @objc public func getToken(with tokenContext: TokenContext, completion: @escaping (AccessToken?, Error?) -> ()) {
+        do {
+            let token = try self.jwtGenerator.generateToken(identity: tokenContext.identity ?? self.defaultIdentity,
                                                    additionalData: self.additionalData)
+            completion(token, nil)
+        } catch {
+            completion(nil, error)
+        }
     }
 }

@@ -17,7 +17,7 @@ import Foundation
         super.init()
     }
 
-    @objc public func getToken(with tokenContext: TokenContext) throws -> AccessToken {
-        return accessToken
+    @objc public func getToken(with tokenContext: TokenContext, completion: @escaping (AccessToken?, Error?) -> ()) {
+        completion(self.accessToken, nil)
     }
 }

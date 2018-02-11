@@ -10,30 +10,34 @@ import Foundation
 
 @objc(VSSCallbackJwtProvider) public class CallbackJwtProvider: NSObject, AccessTokenProvider {
     @objc public private(set) var token: Jwt?
-    @objc public private(set) var getTokenCallback: () -> (String)
+    @objc public let getTokenCallback: ((String?, Error?) -> ()) -> ()
 
     @objc public enum CallbackProviderError: Int, Error {
         case callbackReturnedCorruptedJwt = 1
     }
 
-    @objc public init(getTokenCallback: @escaping () -> (String)) {
+    @objc public init(getTokenCallback: @escaping ((String?, Error?) -> ()) -> ()) {
         self.getTokenCallback = getTokenCallback
 
         super.init()
     }
 
-    @objc public func getToken(with tokenContext: TokenContext) throws -> AccessToken {
+    @objc public func getToken(with tokenContext: TokenContext, completion: @escaping (AccessToken?, Error?) -> ()) {
         if tokenContext.forceReload || self.token == nil || self.token!.isExpired() {
-            guard let jwt = Jwt(jwtToken: getTokenCallback()) else {
-                throw CallbackProviderError.callbackReturnedCorruptedJwt
+            self.getTokenCallback { tokenString, err in
+                guard let tokenString = tokenString, err == nil else {
+                    completion(nil, err)
+                    return
+                }
+                guard let jwt = Jwt(stringRepresentation: tokenString) else {
+                    completion(nil, CallbackProviderError.callbackReturnedCorruptedJwt)
+                    return
+                }
+                self.token = jwt
+
+                completion(jwt, nil)
             }
-            self.token = jwt
         }
-
-        return self.token!
-    }
-
-    @objc public func setCallback(_ callback: @escaping () -> (String)) {
-        self.getTokenCallback = callback
+        completion(self.token, nil)
     }
 }

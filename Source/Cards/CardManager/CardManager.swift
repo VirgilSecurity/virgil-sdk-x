@@ -33,12 +33,62 @@ import VirgilCryptoAPI
     @objc public enum CardManagerError: Int, Error {
         case cardIsNotValid = 1
         case cardParsingFailed = 2
+        case gotNilToken = 3
+        case gotNilSignedRawCard = 4
     }
 
     internal func verifyCard(_ card: Card) throws {
         guard cardVerifier.verifyCard(card: card) else {
             throw CardManagerError.cardIsNotValid
         }
+    }
+
+    internal func getTokenSync(tokenContext: TokenContext) throws -> AccessToken {
+        let group = DispatchGroup()
+        var error: Error?
+        var tokenStr: AccessToken?
+        group.enter()
+        self.accessTokenProvider.getToken(with: tokenContext) { token, err in
+            error = err
+            tokenStr = token
+            group.leave()
+        }
+        group.wait()
+
+        if let err = error {
+            throw err
+        }
+        guard let token = tokenStr else {
+            throw CardManagerError.gotNilToken
+        }
+
+        return token
+    }
+
+    internal func signSync(rawCard: RawSignedModel) throws -> RawSignedModel {
+        if let signCallback = self.signCallback {
+            let group = DispatchGroup()
+            var error: Error?
+            var tempRawCard: RawSignedModel?
+            group.enter()
+
+            signCallback(rawCard) { signedRawCard, err in
+                error = err
+                tempRawCard = signedRawCard
+                group.leave()
+            }
+            group.wait()
+
+            if let err = error {
+                throw err
+            }
+            guard let signedRawCard = tempRawCard else {
+                throw CardManagerError.gotNilSignedRawCard
+            }
+
+            return signedRawCard
+        }
+        return rawCard
     }
 
     @objc public func generateRawCard(privateKey: PrivateKey, publicKey: PublicKey,

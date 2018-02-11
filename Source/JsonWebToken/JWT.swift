@@ -48,10 +48,10 @@ import Foundation
 
     /// Initializes `Jwt` from its string representation
     ///
-    /// - Parameter jwtToken: must be equal to
+    /// - Parameter stringRepresentation: must be equal to
     ///   base64UrlEncode(JWT Header) + "." + base64UrlEncode(JWT Body) + "." + base64UrlEncode(Jwt Signature)
-    @objc public init?(jwtToken: String) {
-        let array = jwtToken.components(separatedBy: ".")
+    @objc public init?(stringRepresentation: String) {
+        let array = stringRepresentation.components(separatedBy: ".")
 
         guard array.count >= 2 else {
             return nil
@@ -70,7 +70,7 @@ import Foundation
         self.headerContent = headerContent
         self.bodyContent = bodyContent
         self.signatureContent = signatureContent
-        self.string = jwtToken
+        self.string = stringRepresentation
 
         super.init()
     }
