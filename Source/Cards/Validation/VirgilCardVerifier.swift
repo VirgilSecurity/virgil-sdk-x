@@ -67,8 +67,7 @@ import VirgilCryptoAPI
     private class func verify(crypto: CardCrypto, card: Card, signer: String, signerPublicKey: PublicKey) -> Bool {
         guard let signature = card.signatures.first(where: { $0.signer == signer }),
               let cardSnapshot = try? card.getRawCard(crypto: crypto).contentSnapshot,
-              let fingerprint = try? crypto.generateSHA256(for: cardSnapshot + signature.snapshot),
-              crypto.verifySignature(signature.signature, of: fingerprint, with: signerPublicKey) else { return false }
+              crypto.verifySignature(signature.signature, of: cardSnapshot + signature.snapshot, with: signerPublicKey) else { return false }
         return true
     }
 }

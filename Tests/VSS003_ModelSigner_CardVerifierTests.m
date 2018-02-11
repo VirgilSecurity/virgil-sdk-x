@@ -24,7 +24,7 @@
 
 -(id)init;
 
--(id<VSSAccessToken>)getTokenWith:(VSSTokenContext *)tokenContext error:(NSError *__autoreleasing _Nullable *)error;
+- (void)getTokenWith:(VSSTokenContext * _Nonnull)tokenContext completion:(void (^ _Nonnull)(id<VSSAccessToken> _Nullable, NSError * _Nullable))completion;
 
 @end
 
@@ -42,15 +42,16 @@
     return self;
 }
 
-- (id<VSSAccessToken>)getTokenWith:(VSSTokenContext * _Nonnull)tokenContext error:(NSError *__autoreleasing _Nullable * _Nullable)error {
+- (void)getTokenWith:(VSSTokenContext * _Nonnull)tokenContext completion:(void (^ _Nonnull)(id<VSSAccessToken> _Nullable, NSError * _Nullable))completion {
     NSTimeInterval interval = (self.counter % 2) * 1000 + 1;
     self.counter++;
-    
-    id<VSSAccessToken> token = [self.utils getTokenWithIdentity:@"identity" ttl:interval error:error];
+
+    NSError *error;
+    id<VSSAccessToken> token = [self.utils getTokenWithIdentity:@"identity" ttl:interval error:&error];
     
     sleep(2);
     
-    return token;
+    completion(token, error);
 }
 
 @end
@@ -112,9 +113,8 @@
     XCTAssert(signature1.snapshot == nil);
     XCTAssert([signature1.signer isEqualToString:@"self"]);
     XCTAssert(([signature1.signature isEqualToString:@""]) == false);
-    
-    NSData *fingerprint = [self.cardCrypto generateSHA256For:data error:&error];
-    BOOL success = [self.crypto verifySignature:[[NSData alloc] initWithBase64EncodedString:signature1.signature options:0] of:fingerprint with:keyPair1.publicKey];
+
+    BOOL success = [self.crypto verifySignature:[[NSData alloc] initWithBase64EncodedString:signature1.signature options:0] of:data with:keyPair1.publicKey];
     XCTAssert(success);
     
     [self.modelSigner selfSignWithModel:rawCard privateKey:keyPair1.privateKey additionalData:nil error:&error];
@@ -131,7 +131,7 @@
     XCTAssert(signature2.snapshot == nil && [signature2.signer isEqualToString:@"extra"]);
     XCTAssert(([signature2.signature isEqualToString:@""]) == false);
     
-    success = [self.crypto verifySignature:[[NSData alloc] initWithBase64EncodedString:signature2.signature options:0] of:fingerprint with:keyPair2.publicKey];
+    success = [self.crypto verifySignature:[[NSData alloc] initWithBase64EncodedString:signature2.signature options:0] of:data with:keyPair2.publicKey];
     XCTAssert(success);
     
     [self.modelSigner signWithModel:rawCard signer:@"extra" privateKey:keyPair2.privateKey additionalData:nil error:&error];
@@ -167,7 +167,7 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
+    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider:generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier retryOnUnauthorized:false signCallback:nil];
     
     NSString *cardString = self.testData[@"STC-10.as_string"];
     XCTAssert(error == nil);
@@ -215,7 +215,7 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
+    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier retryOnUnauthorized:false signCallback:nil];
     
     NSString *cardString = self.testData[@"STC-11.as_string"];
     XCTAssert(error == nil);
@@ -238,7 +238,7 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
+    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier retryOnUnauthorized:false signCallback:nil];
     
     NSString *cardString = self.testData[@"STC-12.as_string"];
     XCTAssert(error == nil);
@@ -261,7 +261,7 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
+    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier retryOnUnauthorized:false signCallback:nil];
     
     NSString *cardString = self.testData[@"STC-14.as_string"];
     XCTAssert(error == nil);
@@ -281,7 +281,7 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
+    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier retryOnUnauthorized:false signCallback:nil];
     
     NSString *cardString = self.testData[@"STC-15.as_string"];
     XCTAssert(error == nil);
@@ -302,7 +302,7 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
+    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier retryOnUnauthorized:false signCallback:nil];
     
     NSString *cardString = self.testData[@"STC-16.as_string"];
     XCTAssert(error == nil);
@@ -336,7 +336,7 @@
     NSString *identity = @"identity";
     VSSAccessTokenProviderMock *tokenProvider = [[VSSAccessTokenProviderMock alloc] init];
     
-    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: tokenProvider modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier signCallback:nil];
+    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: tokenProvider modelSigner:self.modelSigner cardClient:self.cardClient cardVerifier:self.verifier retryOnUnauthorized:false signCallback:nil];
     
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);

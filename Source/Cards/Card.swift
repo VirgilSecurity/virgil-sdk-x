@@ -48,9 +48,9 @@ import VirgilCryptoAPI
 
         guard let publicKeyData = Data(base64Encoded: rawCardContent.publicKey),
               let publicKey = try? crypto.importPublicKey(from: publicKeyData),
-              let fingerprint = try? crypto.generateSHA256(for: rawSignedModel.contentSnapshot) else { return nil }
+              let fingerprint = try? crypto.generateSHA512(for: rawSignedModel.contentSnapshot) else { return nil }
 
-        let cardId = fingerprint.hexEncodedString()
+        let cardId = fingerprint.subdata(in: 0..<32).hexEncodedString()
 
         var cardSignatures: [CardSignature] = []
         for rawSignature in rawSignedModel.signatures {

@@ -70,7 +70,7 @@ public extension CardManager {
 
     func publishCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String?, previousCardId: String? = nil,
                      extraFields: [String: String]? = nil) throws -> CallbackOperation<Card> {
-        let tokenContext = TokenContext(operation: "publish", forceReload: false)
+        let tokenContext = TokenContext(identity: identity, operation: "publish", forceReload: false)
         let token = try self.getTokenSync(tokenContext: tokenContext)
 
         let rawCard = try self.generateRawCard(privateKey: privateKey, publicKey: publicKey,

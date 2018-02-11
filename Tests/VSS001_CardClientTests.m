@@ -194,8 +194,7 @@
     XCTAssert(error == nil);
     
     VSSRawSignedModel *responseRawCard = [self.cardClient publishCardWithModel:rawCard token:strToken error:&error];
-    
-    //Services must fix it
+
     XCTAssert(error != nil);
     XCTAssert(responseRawCard == nil);
     

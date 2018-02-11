@@ -97,7 +97,7 @@ import VirgilCryptoAPI
         let exportedPubKey = try crypto.exportPublicKey(publicKey).base64EncodedString()
 
         let cardContent = RawCardContent(identity: identity, publicKey: exportedPubKey,
-                                         previousCardId: nil, createdAt: Date())
+                                         previousCardId: previousCardId, createdAt: Date())
 
         let snapshot = try JSONEncoder().encode(cardContent)
 
