@@ -86,7 +86,7 @@ import Foundation
     }
 
     private func validateResponse(_ response: HTTPResponse) throws {
-        guard response.statusCode / 100 == 2 else {
+        guard response.statusCode / 100 == 2 || response.statusCode == 403 else {
             throw self.handleError(statusCode: response.statusCode, body: response.body)
         }
     }

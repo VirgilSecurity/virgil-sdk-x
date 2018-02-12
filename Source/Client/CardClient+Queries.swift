@@ -17,7 +17,7 @@ public extension CardClient {
     ///   - token: string with `Access Token`
     /// - Returns: `RawSignedModel` if card found
     /// - Throws: corresponding error
-    @objc func getCard(withId cardId: String, token: String) throws -> RawSignedModel {
+    @objc func getCard(withId cardId: String, token: String, completion: (RawSignedModel, Bool) -> ()) throws {
         guard let url = URL(string: "card/v5/\(cardId)", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
@@ -26,7 +26,9 @@ public extension CardClient {
 
         let response = try self.connection.send(request)
 
-        return try self.processResponse(response)
+        let isOutdated = response.statusCode == 403 ? true : false
+
+        completion(try self.processResponse(response), isOutdated)
     }
 
     /// Creates Virgil Card instance on the Virgil Cards Service and associates it with unique identifier

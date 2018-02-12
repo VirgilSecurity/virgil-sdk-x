@@ -29,11 +29,18 @@ public extension CardManager {
                 let tokenContext = TokenContext(operation: "get", forceReload: forceReload)
                 let token = try self.getTokenSync(tokenContext: tokenContext)
 
-                let responseModel = try self.cardClient.getCard(withId: cardId, token: token.stringRepresentation())
+                var responseModel: RawSignedModel?
+                var isOutdated: Bool = false
+                try self.cardClient.getCard(withId: cardId, token: token.stringRepresentation()) { model, outdated in
+                    responseModel = model
+                    isOutdated = outdated
+                }
 
-                guard let card = Card.parse(crypto: self.crypto, rawSignedModel: responseModel) else {
+                guard let model = responseModel,
+                      let card = Card.parse(crypto: self.crypto, rawSignedModel: model) else {
                     throw CardManagerError.cardParsingFailed
                 }
+                card.isOutdated = isOutdated
 
                 try self.verifyCard(card)
 

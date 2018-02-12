@@ -6,6 +6,9 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
+#define STRINGIZE(x) #x
+#define STRINGIZE2(x) STRINGIZE(x)
+
 #import "VSSTestsConst.h"
 
 @implementation VSSTestsConst
@@ -27,7 +30,7 @@
     if (appToken != nil)
         return appToken;
     
-    return nil;
+    return @STRINGIZE2(API_PUBLIC_KEY_ID);
 }
 
 - (NSString *)apiPrivateKeyBase64 {
@@ -35,7 +38,7 @@
     if (appPrivateKey != nil)
         return appPrivateKey;
     
-    return nil;
+    return @STRINGIZE2(API_PRIVATE_KEY);
 }
 
 - (NSString *)apiPublicKeyBase64 {
@@ -43,7 +46,7 @@
     if (appPrivateKeyPassword != nil)
         return appPrivateKeyPassword;
     
-    return nil;
+    return @STRINGIZE2(API_PUBLIC_KEY);
 }
 
 - (NSString *)applicationId {
@@ -51,7 +54,7 @@
     if (appId != nil)
         return appId;
     
-    return nil;
+    return @STRINGIZE2(APP_ID);
 }
 
 - (NSURL *)serviceURL {
@@ -59,7 +62,8 @@
     if (cardsUrl != nil)
         return [[NSURL alloc] initWithString:cardsUrl];
     
-    return nil;
+    NSString *str = [@STRINGIZE2(SERVICE_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    return [[NSURL alloc] initWithString:str];
 }
 
 @end
