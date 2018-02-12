@@ -142,6 +142,11 @@
 		16E006562025F9D200D2C638 /* test_data.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16E006542025F9D100D2C638 /* test_data.txt */; };
 		16E006572025F9D200D2C638 /* test_data.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16E006542025F9D100D2C638 /* test_data.txt */; };
 		16EC38C42030F5C000E4027A /* VSS001_CardClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */; };
+		16EC38E12031A64400E4027A /* VSS004_CrossCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */; };
+		16EC38E22031AB1000E4027A /* VSS004_CrossCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */; };
+		16EC38E32031AB1100E4027A /* VSS004_CrossCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */; };
+		16F3D4732031B6FF00257A43 /* VSS001_CardClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */; };
+		16F3D4742031B70000257A43 /* VSS001_CardClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */; };
 		422499C31EB39B380032F556 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422499BA1EB39B380032F556 /* VirgilSDK.framework */; };
 		42249A681EB39D6F0032F556 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
 		42249AF01EB39ED50032F556 /* VSSKeyStoragePublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -854,7 +859,7 @@
 			path = macOS;
 			sourceTree = "<group>";
 		};
-		4284C4531F6FECB600B75491 /* Validation */ = {
+		4284C4531F6FECB600B75491 /* Verification */ = {
 			isa = PBXGroup;
 			children = (
 				4284C4541F6FECB600B75491 /* CardVerifier.swift */,
@@ -862,7 +867,7 @@
 				4284C4641F7003D700B75491 /* VerifierCredentials.swift */,
 				16B3FD6C2007A8B1008F0357 /* WhiteList.swift */,
 			);
-			path = Validation;
+			path = Verification;
 			sourceTree = "<group>";
 		};
 		429123541F4B0B3700103BE0 /* Data */ = {
@@ -923,7 +928,7 @@
 			isa = PBXGroup;
 			children = (
 				1624B83C20122127007D223C /* CardManager */,
-				4284C4531F6FECB600B75491 /* Validation */,
+				4284C4531F6FECB600B75491 /* Verification */,
 				4284C3F21F6BFD6200B75491 /* Card.swift */,
 				16B3FD6720079DF5008F0357 /* CardSignature.swift */,
 				16B3FD622007952E008F0357 /* ModelSigner.swift */,
@@ -1549,6 +1554,8 @@
 				16C59E2C2020E7B6004820AA /* VSS008_DataExtensionsTests.swift in Sources */,
 				16C59E4E2021DA0E004820AA /* VSS002_JWTTests.m in Sources */,
 				166C67C0201F5C0500D79608 /* VSSTestUtils.m in Sources */,
+				16F3D4732031B6FF00257A43 /* VSS001_CardClientTests.m in Sources */,
+				16EC38E22031AB1000E4027A /* VSS004_CrossCompatibilityTests.m in Sources */,
 				4291237B1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1656,6 +1663,8 @@
 				16C59E2D2020E7B7004820AA /* VSS008_DataExtensionsTests.swift in Sources */,
 				16C59E4F2021DA0E004820AA /* VSS002_JWTTests.m in Sources */,
 				4284C3C81F6BEFD600B75491 /* VSSTestsConst.m in Sources */,
+				16F3D4742031B70000257A43 /* VSS001_CardClientTests.m in Sources */,
+				16EC38E32031AB1100E4027A /* VSS004_CrossCompatibilityTests.m in Sources */,
 				166C67C1201F5C0500D79608 /* VSSTestUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1668,6 +1677,7 @@
 				16C59E4D2021DA0D004820AA /* VSS002_JWTTests.m in Sources */,
 				16EC38C42030F5C000E4027A /* VSS001_CardClientTests.m in Sources */,
 				166C67BF201F5C0500D79608 /* VSSTestUtils.m in Sources */,
+				16EC38E12031A64400E4027A /* VSS004_CrossCompatibilityTests.m in Sources */,
 				4291237A1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

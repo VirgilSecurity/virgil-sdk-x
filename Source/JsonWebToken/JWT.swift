@@ -12,6 +12,8 @@ import Foundation
 @objc(VSSJwt) public class Jwt: NSObject, AccessToken {
     @objc public let headerContent: JwtHeaderContent
     @objc public let bodyContent: JwtBodyContent
+    @objc public let unsignedString: String
+
     @objc public private(set) var string: String
     @objc public private(set) var signatureContent: Data?
 
@@ -37,6 +39,7 @@ import Foundation
               let bodyBase64Url = try? self.bodyContent.base64UrlEncodedString() else { return nil }
 
         var result = headerBase64Url + "." + bodyBase64Url
+        self.unsignedString = result
 
         if let signatureContent = signatureContent {
             result += "." + signatureContent.base64UrlEncodedString()
@@ -70,22 +73,10 @@ import Foundation
         self.headerContent = headerContent
         self.bodyContent = bodyContent
         self.signatureContent = signatureContent
+        self.unsignedString = headerBase64Url + "." + bodyBase64Url
         self.string = stringRepresentation
 
         super.init()
-    }
-
-    public func snapshotWithoutSignatures() throws -> Data {
-        let headerBase64Url = try self.headerContent.base64UrlEncodedString()
-        let bodyBase64Url = try self.bodyContent.base64UrlEncodedString()
-
-        let string: String = headerBase64Url + "." + bodyBase64Url
-
-        guard let data = string.data(using: .utf8) else {
-            throw JwtError.tokenCorrupted
-        }
-
-        return data
     }
 
     @objc public func stringRepresentation() -> String {

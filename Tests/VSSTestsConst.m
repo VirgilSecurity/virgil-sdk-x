@@ -6,9 +6,6 @@
 //  Copyright © 2016 VirgilSecurity. All rights reserved.
 //
 
-#define STRINGIZE(x) #x
-#define STRINGIZE2(x) STRINGIZE(x)
-
 #import "VSSTestsConst.h"
 
 @implementation VSSTestsConst
@@ -25,28 +22,28 @@
     return self;
 }
 
-- (NSString *)accessPublicKeyId {
-    NSString *appToken = self.config[@"AccessPublicKeyId"];
+- (NSString *)apiPublicKeyId {
+    NSString *appToken = self.config[@"ApiPublicKeyId"];
     if (appToken != nil)
         return appToken;
     
-    return @STRINGIZE2(APPLICATION_TOKEN);
+    return nil;
 }
 
-- (NSString *)accessPrivateKeyBase64 {
-    NSString *appPrivateKey = self.config[@"AccessPrivateKey"];
+- (NSString *)apiPrivateKeyBase64 {
+    NSString *appPrivateKey = self.config[@"ApiPrivateKey"];
     if (appPrivateKey != nil)
         return appPrivateKey;
     
-    return @STRINGIZE2(APPLICATION_PRIVATE_KEY_BASE64);
+    return nil;
 }
 
-- (NSString *)accessPublicKeyBase64 {
-    NSString *appPrivateKeyPassword = self.config[@"AccessPublicKey"];
+- (NSString *)apiPublicKeyBase64 {
+    NSString *appPrivateKeyPassword = self.config[@"ApiPublicKey"];
     if (appPrivateKeyPassword != nil)
         return appPrivateKeyPassword;
     
-    return @STRINGIZE2(APPLICATION_PRIVATE_KEY_PASSWORD);
+    return nil;
 }
 
 - (NSString *)applicationId {
@@ -54,7 +51,7 @@
     if (appId != nil)
         return appId;
     
-    return @STRINGIZE2(APPLICATION_ID);
+    return nil;
 }
 
 - (NSURL *)serviceURL {
@@ -62,8 +59,7 @@
     if (cardsUrl != nil)
         return [[NSURL alloc] initWithString:cardsUrl];
     
-    NSString *str = [@STRINGIZE2(CARDS_SERVICE_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-    return [[NSURL alloc] initWithString:str];
+    return nil;
 }
 
 @end

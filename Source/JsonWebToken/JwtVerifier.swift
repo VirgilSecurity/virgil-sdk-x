@@ -22,7 +22,7 @@ import VirgilCryptoAPI
 
     @objc public func verify(token: Jwt) -> Bool {
         let signatureContent = token.signatureContent ?? Data()
-        guard let data = try? token.snapshotWithoutSignatures() else {
+        guard let data = token.unsignedString.data(using: .utf8) else {
             return false
         }
 

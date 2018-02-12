@@ -11,11 +11,11 @@
 //In order to make this work, substitute appropriate values
 @interface VSSTestsConst : NSObject
 
-@property (nonatomic, readonly) NSString * __nonnull accessPublicKeyId;
-@property (nonatomic, readonly) NSString * __nonnull accessPrivateKeyBase64;
-@property (nonatomic, readonly) NSString * __nonnull accessPublicKeyBase64;
-@property (nonatomic, readonly) NSString * __nonnull applicationId;
-@property (nonatomic, readonly) NSURL * __nonnull serviceURL;
+@property (nonatomic, readonly) NSString * __nullable apiPublicKeyId;
+@property (nonatomic, readonly) NSString * __nullable apiPrivateKeyBase64;
+@property (nonatomic, readonly) NSString * __nullable apiPublicKeyBase64;
+@property (nonatomic, readonly) NSString * __nullable applicationId;
+@property (nonatomic, readonly) NSURL * __nullable serviceURL;
 
 @property (nonatomic, readonly) NSDictionary * __nullable config;
 

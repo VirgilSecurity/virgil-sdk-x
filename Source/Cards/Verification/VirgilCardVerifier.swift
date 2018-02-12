@@ -10,7 +10,7 @@ import Foundation
 import VirgilCryptoAPI
 
 @objc(VSSVirgilCardVerifier) public class VirgilCardVerifier: NSObject, CardVerifier {
-    private static let virgilPublicKeyBase64 = "MCowBQYDK2VwAyEAr0rjTWlCLJ8q9em0og33grHEh/3vmqp0IewosUaVnQg="
+    @objc public static let virgilPublicKeyBase64 = "MCowBQYDK2VwAyEAr0rjTWlCLJ8q9em0og33grHEh/3vmqp0IewosUaVnQg="
 
     @objc public let crypto: CardCrypto
     @objc public let virgilPublicKey: PublicKey

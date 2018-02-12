@@ -37,11 +37,11 @@ import VirgilCryptoAPI
                                             expiresAt: Date() + self.ttl, issuedAt: Date(),
                                             additionalData: additionalData)
 
-        guard let jwt = Jwt(headerContent: jwtHeaderContent, bodyContent: jwtBodyContent) else {
+        guard let jwt = Jwt(headerContent: jwtHeaderContent, bodyContent: jwtBodyContent),
+              let snapshot = jwt.unsignedString.data(using: .utf8) else {
             throw JwtGeneratorError.generationFailed
         }
 
-        let snapshot = try jwt.snapshotWithoutSignatures()
         let signatureContent = try self.accessTokenSigner.generateTokenSignature(of: snapshot, using: self.apiKey)
         try jwt.setSignatureContent(signatureContent)
 

@@ -238,7 +238,7 @@
     [comps setDay:11];
     [comps setMonth:1];
     [comps setYear:2018];
-    [comps setHour:17];         //???
+    [comps setHour:17];
     [comps setMinute:57];
     [comps setSecond:25];
     NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comps];
