@@ -38,9 +38,13 @@ public extension CardManager {
 
                 guard let model = responseModel,
                       let card = Card.parse(crypto: self.crypto, rawSignedModel: model) else {
-                    throw CardManagerError.cardParsingFailed
+                    throw CardManagerError.cardIsCorrupted
                 }
                 card.isOutdated = isOutdated
+
+                guard card.identifier == cardId else {
+                    throw CardManagerError.gotWrongCard
+                }
 
                 try self.verifyCard(card)
 
@@ -62,7 +66,14 @@ public extension CardManager {
 
                 let responseModel = try self.cardClient.publishCard(model: rawCard, token: token.stringRepresentation())
                 guard let card = Card.parse(crypto: self.crypto, rawSignedModel: responseModel) else {
-                    throw CardManagerError.cardParsingFailed
+                    throw CardManagerError.cardIsCorrupted
+                }
+
+                guard rawCard.contentSnapshot == card.contentSnapshot,
+                      let selfSignature = rawCard.signatures.first(where: { $0.signer == "self" }),
+                      let responseSelfSignature = card.signatures.first(where: { $0.signer == "self" }),
+                      selfSignature.snapshot ?? "" == responseSelfSignature.snapshot.base64EncodedString() else {
+                    throw CardManagerError.gotWrongCard
                 }
 
                 try self.verifyCard(card)
@@ -99,8 +110,12 @@ public extension CardManager {
                 var cards: [Card] = []
                 for rawSignedModel in rawSignedModels {
                     guard let card = Card.parse(crypto: self.crypto, rawSignedModel: rawSignedModel) else {
-                        throw CardManagerError.cardParsingFailed
+                        throw CardManagerError.cardIsCorrupted
                     }
+                    guard card.identity == identity else {
+                        throw CardManagerError.gotWrongCard
+                    }
+                    try self.verifyCard(card)
                     cards.append(card)
                 }
 

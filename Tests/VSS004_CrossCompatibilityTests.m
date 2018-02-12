@@ -155,7 +155,7 @@
             XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQNXguibY1cDCfnuJhTK+jX/Qv6v5i5TzqQs3e1fWlbisdUWYh+s10gsLkhf83wOqrm8ZXUCpjgkJn83TDaKYZQ8="]);
             XCTAssert(signature.snapshot == nil);
         } else if ([signature.signer isEqualToString:@"extra"]) {
-            XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQAAJD/9HE6iJwPHXuws+WBBUeG6HXB0eJcxojz9DtElJMPkkDxktgv/pBiBTkES3CAXfAtGS0rkvQL/OkjdCZwE="]);
+            XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQFou1fTFqwqeWhLmZcS3MbPvvUdBmP/QurqzGzz0Tv/TT8D+rE3d73fPEvrNxAdxyRwP0wXSWz+PQkKibLUvGQQ="]);
             XCTAssert(signature.snapshot == nil);
         }
     }
@@ -231,8 +231,8 @@
     NSString *rawCardString = self.testData[@"STC-3.as_string"];
     XCTAssert(rawCardString != nil);
  
-    VSSCard *card1 = [cardManager importCardWithString:rawCardString];
-    XCTAssert(card1 != nil);
+    VSSCard *card1 = [cardManager importCardWithString:rawCardString error:&error];
+    XCTAssert(card1 != nil && error == nil);
     
     NSDateComponents *comps = [[NSDateComponents alloc] init];
     [comps setDay:11];
@@ -259,7 +259,7 @@
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:rawCardDic options:kNilOptions error:nil];
     XCTAssert(dic != nil);
     
-    VSSCard *card2 = [cardManager importCardWithJson:dic];
+    VSSCard *card2 = [cardManager importCardWithJson:dic error:&error];
     XCTAssert(card2 != nil);
     
     [self.utils isCardsEqualWithCard:card1 and:card2];
@@ -267,7 +267,7 @@
     NSString *exportedCardString = [cardManager exportAsBase64StringWithCard:card1 error:&error];
     XCTAssert(error == nil);
     
-    VSSCard *newImportedCard1 = [cardManager importCardWithString:exportedCardString];
+    VSSCard *newImportedCard1 = [cardManager importCardWithString:exportedCardString error:&error];
     XCTAssert(newImportedCard1 != nil);
 
     XCTAssert([self.utils isCardsEqualWithCard:card1 and:newImportedCard1]);
@@ -275,7 +275,7 @@
     NSDictionary *exportedCardJson = [cardManager exportAsJsonWithCard:card2 error:&error];
     XCTAssert(error == nil);
     
-    VSSCard *newImportedCard2 = [cardManager importCardWithJson:exportedCardJson];
+    VSSCard *newImportedCard2 = [cardManager importCardWithJson:exportedCardJson error:&error];
     XCTAssert(newImportedCard2 != nil);
     XCTAssert([self.utils isCardsEqualWithCard:card2 and:newImportedCard2]);
 }
@@ -293,7 +293,7 @@
     NSString *rawCardString = self.testData[@"STC-4.as_string"];
     XCTAssert(rawCardString != nil);
     
-    VSSCard *card1 = [cardManager importCardWithString:rawCardString];
+    VSSCard *card1 = [cardManager importCardWithString:rawCardString error:&error];
     XCTAssert(card1 != nil);
     
     NSDateComponents *comps = [[NSDateComponents alloc] init];
@@ -333,7 +333,7 @@
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:rawCardDic options:kNilOptions error:nil];
     XCTAssert(dic != nil);
     
-    VSSCard *card2 = [cardManager importCardWithJson:dic];
+    VSSCard *card2 = [cardManager importCardWithJson:dic error:&error];
     XCTAssert(card2 != nil);
     XCTAssert([self.utils isCardsEqualWithCard:card1 and:card2]);
     XCTAssert([self.utils isCardSignaturesEqualWithSignatures:card1.signatures and:card2.signatures]);
@@ -342,7 +342,7 @@
     NSString *exportedCardString = [cardManager exportAsBase64StringWithCard:card1 error:&error];
     XCTAssert(error == nil);
     
-    VSSCard *newImportedCard1 = [cardManager importCardWithString:exportedCardString];
+    VSSCard *newImportedCard1 = [cardManager importCardWithString:exportedCardString error:&error];
     XCTAssert(newImportedCard1 != nil);
     XCTAssert([self.utils isCardsEqualWithCard:card1 and:newImportedCard1]);
     XCTAssert([self.utils isCardSignaturesEqualWithSignatures:card1.signatures and:newImportedCard1.signatures]);
@@ -350,7 +350,7 @@
     NSDictionary *exportedCardJson = [cardManager exportAsJsonWithCard:card2 error:&error];
     XCTAssert(error == nil);
     
-    VSSCard *newImportedCard2 = [cardManager importCardWithJson:exportedCardJson];
+    VSSCard *newImportedCard2 = [cardManager importCardWithJson:exportedCardJson error:&error];
     XCTAssert(newImportedCard2 != nil);
     XCTAssert([self.utils isCardsEqualWithCard:card2 and:newImportedCard2]);
     XCTAssert([self.utils isCardSignaturesEqualWithSignatures:card1.signatures and:newImportedCard2.signatures]);
@@ -371,12 +371,12 @@
     XCTAssert([jwt.headerContent.algorithm isEqualToString:@"VEDS512"]);
     XCTAssert([jwt.headerContent.contentType isEqualToString:@"virgil-jwt;v=1"]);
     XCTAssert([jwt.headerContent.type isEqualToString:@"JWT"]);
-    XCTAssert([jwt.headerContent.keyIdentifier isEqualToString:@"7dc94e254f589521e045d2f95520180fabe8bf36141fbf3fd0ff89d6e4f9950de5a7c4559d3b96d0e45272f01f94c3eb5fc889913e33c1f136d12b882019e313"]);
+    XCTAssert([jwt.headerContent.keyIdentifier isEqualToString:@"a2ae26f9ed0453cb49e83e8ed045e801e75c77efb162ca152f62f699cf95ff8b58848da3968a05fa2949e12c225ef6fa0e999b83e6bc15aa8e3a530e44837d7c"]);
     
     XCTAssert([jwt.bodyContent.identity isEqualToString:@"some_identity"]);
-    XCTAssert([jwt.bodyContent.appId isEqualToString:@"0f3b26e2114dce3faa1cc4917fc0a54955dab1ea0950239fde60d68dca400b3e"]);
-    XCTAssert(jwt.bodyContent.issuedAt == 1517922141);
-    XCTAssert(jwt.bodyContent.expiresAt == 1517922741);
+    XCTAssert([jwt.bodyContent.appId isEqualToString:@"d29ad1e9081f3496873d13cfd86c5bdf019604a839091fb2fc2350d667eb0245"]);
+    XCTAssert(jwt.bodyContent.issuedAt == 1518425839);
+    XCTAssert(jwt.bodyContent.expiresAt == 1518426439);
     XCTAssert(jwt.isExpired == true);
     
     XCTAssert([jwt.stringRepresentation isEqualToString:self.testData[@"STC-22.jwt"]]);

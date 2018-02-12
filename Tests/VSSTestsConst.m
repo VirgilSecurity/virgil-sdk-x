@@ -30,7 +30,7 @@
     if (appToken != nil)
         return appToken;
     
-    return @STRINGIZE2(API_PUBLIC_KEY_ID);
+    return @STRINGIZE2(APPLICATION_TOKEN);
 }
 
 - (NSString *)apiPrivateKeyBase64 {
@@ -38,7 +38,7 @@
     if (appPrivateKey != nil)
         return appPrivateKey;
     
-    return @STRINGIZE2(API_PRIVATE_KEY);
+    return @STRINGIZE2(APPLICATION_PRIVATE_KEY_BASE64);
 }
 
 - (NSString *)apiPublicKeyBase64 {
@@ -46,7 +46,7 @@
     if (appPrivateKeyPassword != nil)
         return appPrivateKeyPassword;
     
-    return @STRINGIZE2(API_PUBLIC_KEY);
+    return @STRINGIZE2(APPLICATION_PRIVATE_KEY_PASSWORD);
 }
 
 - (NSString *)applicationId {
@@ -54,7 +54,7 @@
     if (appId != nil)
         return appId;
     
-    return @STRINGIZE2(APP_ID);
+    return @STRINGIZE2(APPLICATION_ID);
 }
 
 - (NSURL *)serviceURL {
@@ -62,7 +62,7 @@
     if (cardsUrl != nil)
         return [[NSURL alloc] initWithString:cardsUrl];
     
-    NSString *str = [@STRINGIZE2(SERVICE_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    NSString *str = [@STRINGIZE2(CARDS_SERVICE_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
     return [[NSURL alloc] initWithString:str];
 }
 

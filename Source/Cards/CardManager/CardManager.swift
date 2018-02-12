@@ -31,15 +31,16 @@ import VirgilCryptoAPI
     }
 
     @objc public enum CardManagerError: Int, Error {
-        case cardIsNotValid = 1
-        case cardParsingFailed = 2
+        case cardIsNotVerified = 1
+        case cardIsCorrupted = 2
         case gotNilToken = 3
         case gotNilSignedRawCard = 4
+        case gotWrongCard = 5
     }
 
     internal func verifyCard(_ card: Card) throws {
         guard cardVerifier.verifyCard(card: card) else {
-            throw CardManagerError.cardIsNotValid
+            throw CardManagerError.cardIsNotVerified
         }
     }
 
@@ -116,24 +117,36 @@ import VirgilCryptoAPI
 
 // Import export cards
 public extension CardManager {
-    @objc func importCard(string: String) -> Card? {
-        guard let rawCard = RawSignedModel.importFrom(base64Encoded: string) else {
-            return nil
+    @objc func importCard(string: String) throws -> Card {
+        guard let rawCard = RawSignedModel.importFrom(base64Encoded: string),
+              let card = Card.parse(crypto: self.crypto, rawSignedModel: rawCard) else {
+            throw CardManagerError.cardIsCorrupted
         }
-
-        return Card.parse(crypto: self.crypto, rawSignedModel: rawCard)
+        guard self.cardVerifier.verifyCard(card: card) else {
+            throw CardManagerError.cardIsNotVerified
+        }
+        return card
     }
 
-    @objc func importCard(json: Any) -> Card? {
-        guard let rawCard = RawSignedModel.importFrom(json: json) else {
-            return nil
+    @objc func importCard(json: Any) throws -> Card {
+        guard let rawCard = RawSignedModel.importFrom(json: json),
+              let card = Card.parse(crypto: self.crypto, rawSignedModel: rawCard) else {
+                throw CardManagerError.cardIsCorrupted
         }
-
-        return Card.parse(crypto: self.crypto, rawSignedModel: rawCard)
+        guard self.cardVerifier.verifyCard(card: card) else {
+            throw CardManagerError.cardIsNotVerified
+        }
+        return card
     }
 
-    @objc func importCard(from rawCard: RawSignedModel) -> Card? {
-        return Card.parse(crypto: self.crypto, rawSignedModel: rawCard)
+    @objc func importCard(from rawCard: RawSignedModel) throws -> Card {
+        guard let card = Card.parse(crypto: self.crypto, rawSignedModel: rawCard) else {
+            throw CardManagerError.cardIsCorrupted
+        }
+        guard self.cardVerifier.verifyCard(card: card) else {
+            throw CardManagerError.cardIsNotVerified
+        }
+        return card
     }
 
     @objc func exportAsBase64String(card: Card) throws -> String {

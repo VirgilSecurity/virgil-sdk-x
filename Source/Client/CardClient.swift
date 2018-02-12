@@ -9,7 +9,7 @@
 import Foundation
 
 /// Class representing operations with Virgil Cards service
-@objc(VSSCardClient) public class CardClient: NSObject {
+@objc(VSSCardClient) open class CardClient: NSObject {
     @objc public let serviceUrl: URL
     @objc public let connection: HTTPConnection
 

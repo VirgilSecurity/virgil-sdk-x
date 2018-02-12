@@ -171,7 +171,7 @@
     XCTAssert([verifier verifyCardWithCard:foundedCard]);
 }
 
--(void)test004_PublishCardWithWrongTokenIdentity {
+-(void)test004_STC_25 {
     NSError *error;
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
@@ -202,7 +202,7 @@
     NSLog(@"Message == %@", [error localizedDescription]);
 }
 
--(void)test005_PublishCardWithWrongTokenPrivateKey {
+-(void)test005_STC_27 {
     NSError *error;
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);

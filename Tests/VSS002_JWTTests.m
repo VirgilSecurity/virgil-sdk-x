@@ -105,4 +105,37 @@
     XCTAssert([[[jwt signatureContent] base64EncodedStringWithOptions:0] isEqualToString:testData[@"STC-28.jwt_signature_base64"]]);
 }
 
+-(void)test003_STC_29 {
+    NSError *error;
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    NSString *path = [bundle pathForResource:@"test_data" ofType:@"txt"];
+    NSData *dicData = [[NSData alloc] initWithContentsOfFile:path];
+    XCTAssert(dicData != nil);
+
+    NSDictionary *testData = [NSJSONSerialization JSONObjectWithData:dicData options:kNilOptions error:&error];
+    XCTAssert(error == nil);
+
+    VSSJwt *jwt = [[VSSJwt alloc] initWithStringRepresentation:testData[@"STC-29.jwt"]];
+    XCTAssert(jwt != nil);
+
+    XCTAssert([jwt.headerContent.algorithm isEqualToString:testData[@"STC-29.jwt_algorithm"]]);
+    XCTAssert([jwt.headerContent.contentType isEqualToString:testData[@"STC-29.jwt_content_type"]]);
+    XCTAssert([jwt.headerContent.type isEqualToString:testData[@"STC-29.jwt_type"]]);
+    XCTAssert([jwt.headerContent.keyIdentifier isEqualToString:testData[@"STC-29.jwt_api_key_id"]]);
+
+    XCTAssert([jwt.bodyContent.identity isEqualToString:testData[@"STC-29.jwt_identity"]]);
+    XCTAssert([jwt.bodyContent.appId isEqualToString:testData[@"STC-29.jwt_app_id"]]);
+    NSString *issuedAt = [NSString stringWithFormat:@"%ld", (long)jwt.bodyContent.issuedAt];
+    XCTAssert([issuedAt isEqualToString:testData[@"STC-29.jwt_issued_at"]]);
+    NSString *expiresAt = [NSString stringWithFormat:@"%ld", (long)jwt.bodyContent.expiresAt];
+    XCTAssert([expiresAt isEqualToString:testData[@"STC-29.jwt_expires_at"]]);
+    XCTAssert(jwt.isExpired == false);
+
+    NSData *data = [testData[@"STC-29.jwt_additional_data"] dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    XCTAssert([jwt.bodyContent.additionalData isEqualToDictionary:dic]);
+
+    XCTAssert([[[jwt signatureContent] base64EncodedStringWithOptions:0] isEqualToString:testData[@"STC-29.jwt_signature_base64"]]);
+}
+
 @end

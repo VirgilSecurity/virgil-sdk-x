@@ -147,6 +147,12 @@
 		16EC38E32031AB1100E4027A /* VSS004_CrossCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */; };
 		16F3D4732031B6FF00257A43 /* VSS001_CardClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */; };
 		16F3D4742031B70000257A43 /* VSS001_CardClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */; };
+		16F3D4782031DFF600257A43 /* VSS005_CardManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C9352021FB1200286FAB /* VSS005_CardManagerTests.m */; };
+		16F3D4792031DFF700257A43 /* VSS005_CardManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C9352021FB1200286FAB /* VSS005_CardManagerTests.m */; };
+		16F3D47A2031DFF700257A43 /* VSS005_CardManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C9352021FB1200286FAB /* VSS005_CardManagerTests.m */; };
+		16F3D47C2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F3D47B2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift */; };
+		16F3D47D2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F3D47B2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift */; };
+		16F3D47E2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F3D47B2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift */; };
 		422499C31EB39B380032F556 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422499BA1EB39B380032F556 /* VirgilSDK.framework */; };
 		42249A681EB39D6F0032F556 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
 		42249AF01EB39ED50032F556 /* VSSKeyStoragePublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -561,6 +567,7 @@
 		16B3FDA7200E0B7A008F0357 /* VSSPrivateKeyStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSSPrivateKeyStorage.m; sourceTree = "<group>"; };
 		16E006542025F9D100D2C638 /* test_data.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_data.txt; sourceTree = "<group>"; };
 		16E6C9352021FB1200286FAB /* VSS005_CardManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS005_CardManagerTests.m; sourceTree = "<group>"; };
+		16F3D47B2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSS009_ExtraCardManagerTests.swift; sourceTree = "<group>"; };
 		420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = Carthage/Build/iOS/VirgilCrypto.framework; sourceTree = "<group>"; };
 		422499BA1EB39B380032F556 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		422499C21EB39B380032F556 /* VirgilSDK macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilSDK macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -916,6 +923,7 @@
 				4291235E1F4B0B3700103BE0 /* VSS006_KeyStorageTests.swift */,
 				42B6CF681F58771A0024857B /* VSS007_KeyStorageiOSSpecificTests.swift */,
 				4284C4241F6C0C6400B75491 /* VSS008_DataExtensionsTests.swift */,
+				16F3D47B2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift */,
 				166C67BD201F5BB200D79608 /* VSSTestUtils.h */,
 				166C67BE201F5C0500D79608 /* VSSTestUtils.m */,
 				429123611F4B0B3700103BE0 /* VSSTestsConst.h */,
@@ -1552,11 +1560,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				16C59E2C2020E7B6004820AA /* VSS008_DataExtensionsTests.swift in Sources */,
+				16F3D47D2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift in Sources */,
 				16C59E4E2021DA0E004820AA /* VSS002_JWTTests.m in Sources */,
 				166C67C0201F5C0500D79608 /* VSSTestUtils.m in Sources */,
 				16F3D4732031B6FF00257A43 /* VSS001_CardClientTests.m in Sources */,
 				16EC38E22031AB1000E4027A /* VSS004_CrossCompatibilityTests.m in Sources */,
 				4291237B1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
+				16F3D4792031DFF700257A43 /* VSS005_CardManagerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1661,11 +1671,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				16C59E2D2020E7B7004820AA /* VSS008_DataExtensionsTests.swift in Sources */,
+				16F3D47E2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift in Sources */,
 				16C59E4F2021DA0E004820AA /* VSS002_JWTTests.m in Sources */,
 				4284C3C81F6BEFD600B75491 /* VSSTestsConst.m in Sources */,
 				16F3D4742031B70000257A43 /* VSS001_CardClientTests.m in Sources */,
 				16EC38E32031AB1100E4027A /* VSS004_CrossCompatibilityTests.m in Sources */,
 				166C67C1201F5C0500D79608 /* VSSTestUtils.m in Sources */,
+				16F3D47A2031DFF700257A43 /* VSS005_CardManagerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1674,11 +1686,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				16C59E2B2020E7B5004820AA /* VSS008_DataExtensionsTests.swift in Sources */,
+				16F3D47C2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift in Sources */,
 				16C59E4D2021DA0D004820AA /* VSS002_JWTTests.m in Sources */,
 				16EC38C42030F5C000E4027A /* VSS001_CardClientTests.m in Sources */,
 				166C67BF201F5C0500D79608 /* VSSTestUtils.m in Sources */,
 				16EC38E12031A64400E4027A /* VSS004_CrossCompatibilityTests.m in Sources */,
 				4291237A1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
+				16F3D4782031DFF600257A43 /* VSS005_CardManagerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

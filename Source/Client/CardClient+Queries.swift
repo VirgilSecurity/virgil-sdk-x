@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - Queries
-public extension CardClient {
+extension CardClient {
     /// Returns `RawSignedModel` of card from the Virgil Cards Service with given ID, if exists
     ///
     /// - Parameters:
@@ -17,7 +17,7 @@ public extension CardClient {
     ///   - token: string with `Access Token`
     /// - Returns: `RawSignedModel` if card found
     /// - Throws: corresponding error
-    @objc func getCard(withId cardId: String, token: String, completion: (RawSignedModel, Bool) -> ()) throws {
+    @objc open func getCard(withId cardId: String, token: String, completion: (RawSignedModel, Bool) -> ()) throws {
         guard let url = URL(string: "card/v5/\(cardId)", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
@@ -40,7 +40,7 @@ public extension CardClient {
     ///   - token: string with `Access Token`
     /// - Returns: `RawSignedModel` of created card
     /// - Throws: corresponding error
-    @objc func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
+    @objc open func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
         guard let url = URL(string: "card/v5", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
@@ -59,7 +59,7 @@ public extension CardClient {
     ///   - token: string with `Access Token`
     /// - Returns: array with RawSignedModels of matched Virgil Cards
     /// - Throws: corresponding error
-    @objc func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
+    @objc open func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
         guard let url = URL(string: "card/v5/actions/search", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
