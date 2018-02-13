@@ -75,7 +75,7 @@
 -(void)test002_STC_28 {
     NSError *error;
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [bundle pathForResource:@"test_data" ofType:@"txt"];
+    NSString *path = [bundle pathForResource:@"data" ofType:@"json"];
     NSData *dicData = [[NSData alloc] initWithContentsOfFile:path];
     XCTAssert(dicData != nil);
 
@@ -108,7 +108,7 @@
 -(void)test003_STC_29 {
     NSError *error;
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [bundle pathForResource:@"test_data" ofType:@"txt"];
+    NSString *path = [bundle pathForResource:@"data" ofType:@"json"];
     NSData *dicData = [[NSData alloc] initWithContentsOfFile:path];
     XCTAssert(dicData != nil);
 

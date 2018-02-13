@@ -17,7 +17,7 @@ class CardClientStub_STC3: CardClient {
     private var testsDict: Dictionary<String, Any>!
 
     init() {
-        let testFileURL = Bundle(for: type(of: self)).url(forResource: "test_data", withExtension: "txt")!
+        let testFileURL = Bundle(for: type(of: self)).url(forResource: "data", withExtension: "json")!
         let testFileData = try! Data(contentsOf: testFileURL)
         self.testsDict = try! JSONSerialization.jsonObject(with: testFileData, options: JSONSerialization.ReadingOptions.init(rawValue: 0)) as! Dictionary<String, Any>
 
@@ -44,7 +44,7 @@ class CardClientStub_STC34: CardClient {
     private var testsDict: Dictionary<String, Any>!
 
     init() {
-        let testFileURL = Bundle(for: type(of: self)).url(forResource: "test_data", withExtension: "txt")!
+        let testFileURL = Bundle(for: type(of: self)).url(forResource: "data", withExtension: "json")!
         let testFileData = try! Data(contentsOf: testFileURL)
         self.testsDict = try! JSONSerialization.jsonObject(with: testFileData, options: JSONSerialization.ReadingOptions.init(rawValue: 0)) as! Dictionary<String, Any>
 
@@ -91,7 +91,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        let testFileURL = Bundle(for: type(of: self)).url(forResource: "test_data", withExtension: "txt")!
+        let testFileURL = Bundle(for: type(of: self)).url(forResource: "data", withExtension: "json")!
         let testFileData = try! Data(contentsOf: testFileURL)
         self.testsDict = try! JSONSerialization.jsonObject(with: testFileData, options: JSONSerialization.ReadingOptions.init(rawValue: 0)) as! Dictionary<String, Any>
 
