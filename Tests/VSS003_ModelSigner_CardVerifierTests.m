@@ -73,7 +73,7 @@
     XCTAssert([signature1.signer isEqualToString:@"self"]);
     XCTAssert(signature1.signature.length != 0);
 
-    BOOL success = [self.crypto verifySignature:[[NSData alloc] initWithBase64EncodedString:signature1.signature options:0] of:data with:keyPair1.publicKey];
+    BOOL success = [self.crypto verifySignature:signature1.signature of:data with:keyPair1.publicKey];
     XCTAssert(success);
     
     [self.modelSigner selfSignWithModel:rawCard privateKey:keyPair1.privateKey additionalData:nil error:&error];
@@ -90,7 +90,7 @@
     XCTAssert(signature2.snapshot == nil && [signature2.signer isEqualToString:@"test"]);
     XCTAssert(signature2.signature.length != 0);
     
-    success = [self.crypto verifySignature:[[NSData alloc] initWithBase64EncodedString:signature2.signature options:0] of:data with:keyPair2.publicKey];
+    success = [self.crypto verifySignature:signature2.signature of:data with:keyPair2.publicKey];
     XCTAssert(success);
     
     [self.modelSigner signWithModel:rawCard signer:@"test" privateKey:keyPair2.privateKey additionalData:nil error:&error];
@@ -116,14 +116,14 @@
     VSSRawSignature *signature1 = rawCard.signatures[0];
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:nil];
     
-    XCTAssert([jsonData isEqualToData:[[NSData alloc] initWithBase64EncodedString:signature1.snapshot options:0]]);
+    XCTAssert([jsonData isEqualToData:signature1.snapshot]);
     XCTAssert([signature1.signer isEqualToString:@"self"]);
     XCTAssert(signature1.signature.length != 0);
     
     NSMutableData *selfData = [rawCard.contentSnapshot mutableCopy];
     [selfData appendData:jsonData];
     
-    BOOL success = [self.crypto verifySignature:[[NSData alloc] initWithBase64EncodedString:signature1.signature options:0] of:selfData with:keyPair1.publicKey];
+    BOOL success = [self.crypto verifySignature:signature1.signature of:selfData with:keyPair1.publicKey];
     XCTAssert(success);
     
     VSMVirgilKeyPair *keyPair2 = [self.crypto generateKeyPairAndReturnError:&error];
@@ -133,11 +133,11 @@
     XCTAssert(rawCard.signatures.count == 2 && error == nil);
     
     VSSRawSignature *signature2 = rawCard.signatures[1];
-    XCTAssert([jsonData isEqualToData:[[NSData alloc] initWithBase64EncodedString:signature2.snapshot options:0]]);
+    XCTAssert([jsonData isEqualToData:signature2.snapshot]);
     XCTAssert([signature2.signer isEqualToString:@"test"]);
     XCTAssert(signature2.signature.length != 0);
     
-    success = [self.crypto verifySignature:[[NSData alloc] initWithBase64EncodedString:signature2.signature options:0] of:selfData with:keyPair2.publicKey];
+    success = [self.crypto verifySignature:signature2.signature of:selfData with:keyPair2.publicKey];
     XCTAssert(success);
 }
 
@@ -159,14 +159,14 @@
     XCTAssert(rawCard.signatures.count == 1 && error == nil);
     
     VSSRawSignature *signature1 = rawCard.signatures[0];
-    XCTAssert([jsonData isEqualToData:[[NSData alloc] initWithBase64EncodedString:signature1.snapshot options:0]]);
+    XCTAssert([jsonData isEqualToData:signature1.snapshot]);
     XCTAssert([signature1.signer isEqualToString:@"self"]);
     XCTAssert(signature1.signature.length != 0);
     
     NSMutableData *selfData = [rawCard.contentSnapshot mutableCopy];
     [selfData appendData:jsonData];
     
-    BOOL success = [self.crypto verifySignature:[[NSData alloc] initWithBase64EncodedString:signature1.signature options:0] of:selfData with:keyPair1.publicKey];
+    BOOL success = [self.crypto verifySignature:signature1.signature of:selfData with:keyPair1.publicKey];
     XCTAssert(success);
     
     VSMVirgilKeyPair *keyPair2 = [self.crypto generateKeyPairAndReturnError:&error];
@@ -176,11 +176,11 @@
     XCTAssert(rawCard.signatures.count == 2 && error == nil);
     
     VSSRawSignature *signature2 = rawCard.signatures[1];
-    XCTAssert([jsonData isEqualToData:[[NSData alloc] initWithBase64EncodedString:signature2.snapshot options:0]]);
+    XCTAssert([jsonData isEqualToData:signature2.snapshot]);
     XCTAssert([signature2.signer isEqualToString:@"test"]);
     XCTAssert(signature2.signature.length != 0);
     
-    success = [self.crypto verifySignature:[[NSData alloc] initWithBase64EncodedString:signature2.signature options:0] of:selfData with:keyPair2.publicKey];
+    success = [self.crypto verifySignature:signature2.signature of:selfData with:keyPair2.publicKey];
     XCTAssert(success);
 }
 

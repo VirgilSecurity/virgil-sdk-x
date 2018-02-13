@@ -25,8 +25,8 @@ import VirgilCryptoAPI
         let combinedSnapshot = model.contentSnapshot + (additionalData ?? Data())
         let signature = try crypto.generateSignature(of: combinedSnapshot, using: privateKey)
 
-        let rawSignature = RawSignature(signer: signer, signature: signature.base64EncodedString(),
-                                        snapshot: additionalData?.base64EncodedString())
+        let rawSignature = RawSignature(signer: signer, signature: signature,
+                                        snapshot: additionalData)
 
         try model.addSignature(rawSignature)
     }

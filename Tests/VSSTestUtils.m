@@ -91,7 +91,7 @@
     return strToken;
 }
 
--(VSSGeneratorJwtProvider * __nonnull)getGeneratorJwtProviderWithIdentity:(NSString *)identity error:(NSError * __nullable * __nullable)errorPtr {
+- (VSSGeneratorJwtProvider * __nonnull)getGeneratorJwtProviderWithIdentity:(NSString *)identity error:(NSError * __nullable * __nullable)errorPtr {
     VSMVirgilPrivateKeyExporter *exporter = [[VSMVirgilPrivateKeyExporter alloc] initWithVirgilCrypto:self.crypto password:nil];
     NSData *privKey = [[NSData alloc] initWithBase64EncodedString:self.consts.apiPrivateKeyBase64 options:0];
     VSMVirgilPrivateKey *privateKey = (VSMVirgilPrivateKey *)[exporter importPrivateKeyFrom:privKey error:errorPtr];
@@ -104,7 +104,7 @@
     return generatorProvider;
 }
 
--(VSSRawSignature * __nullable)getSelfSignatureFromModel:(VSSRawSignedModel * __nonnull)rawCard {
+- (VSSRawSignature * __nullable)getSelfSignatureFromModel:(VSSRawSignedModel * __nonnull)rawCard {
     for (VSSRawSignature* signature in rawCard.signatures) {
         if ([signature.signer isEqualToString:@"self"]) {
             return signature;
@@ -113,7 +113,7 @@
     return nil;
 }
 
--(VSSCardSignature * __nullable)getSelfSignatureFromCard:(VSSCard * __nonnull)card {
+- (VSSCardSignature * __nullable)getSelfSignatureFromCard:(VSSCard * __nonnull)card {
     for (VSSCardSignature* signature in card.signatures) {
         if ([signature.signer isEqualToString:@"self"]) {
             return signature;
@@ -122,7 +122,7 @@
     return nil;
 }
 
--(NSData * __nonnull)getRandomData {
+- (NSData * __nonnull)getRandomData {
     int length = 2048;
     NSMutableData *data = [NSMutableData dataWithCapacity:length];
     for (unsigned int i = 0; i < length/4; ++i) {
@@ -132,7 +132,7 @@
     return data;
 }
 
--(BOOL)isCardsEqualWithCard:(VSSCard * __nonnull)card1 and:(VSSCard * __nonnull)card2 {
+- (BOOL)isCardsEqualWithCard:(VSSCard * __nonnull)card1 and:(VSSCard * __nonnull)card2 {
     VSSCardSignature *selfSignature1 = [self getSelfSignatureFromCard:card1];
     VSSCardSignature *selfSignature2 = [self getSelfSignatureFromCard:card2];
     
@@ -146,20 +146,20 @@
             ([self isCardSignaturesEqualWithSignature:selfSignature1 and:selfSignature2] || (selfSignature1 == nil && selfSignature2 == nil)));
 }
 
--(BOOL)isRawSignaturesEqualWithSignature:(VSSRawSignature * __nonnull)signature1 and:(VSSRawSignature * __nonnull)signature2 {
+- (BOOL)isRawSignaturesEqualWithSignature:(VSSRawSignature * __nonnull)signature1 and:(VSSRawSignature * __nonnull)signature2 {
     return ([signature1.signer isEqualToString:signature2.signer] &&
-            [signature1.signature isEqualToString:signature2.signature] &&
-            ([signature1.snapshot isEqualToString:signature2.snapshot] || (signature1.snapshot == nil && signature2.snapshot == nil)));
+            [signature1.signature isEqualToData:signature2.signature] &&
+            ([signature1.snapshot isEqualToData:signature2.snapshot] || (signature1.snapshot == nil && signature2.snapshot == nil)));
 }
 
--(BOOL)isCardSignaturesEqualWithSignature:(VSSCardSignature * __nonnull)signature1 and:(VSSCardSignature * __nonnull)signature2 {
+- (BOOL)isCardSignaturesEqualWithSignature:(VSSCardSignature * __nonnull)signature1 and:(VSSCardSignature * __nonnull)signature2 {
     return ([signature1.signer isEqualToString:signature2.signer] &&
             [signature1.signature isEqualToData:signature2.signature] &&
             ([signature1.snapshot isEqualToData:signature2.snapshot] || (signature1.snapshot == nil && signature2.snapshot == nil)) &&
             ([signature1.extraFields isEqualToDictionary:signature2.extraFields] || (signature1.extraFields == nil && signature2.extraFields == nil)));
 }
 
--(BOOL)isRawCardContentEqualWithContent:(VSSRawCardContent * __nonnull)content1 and:(VSSRawCardContent * __nonnull)content2 {
+- (BOOL)isRawCardContentEqualWithContent:(VSSRawCardContent * __nonnull)content1 and:(VSSRawCardContent * __nonnull)content2 {
     return ([content1.identity isEqualToString: content2.identity] &&
             [content1.publicKey isEqualToString: content2.publicKey] &&
             [content1.version isEqualToString: content2.version] &&
@@ -167,29 +167,26 @@
             ([content1.previousCardId isEqualToString: content2.previousCardId] || (content1.previousCardId == nil && content2.previousCardId == nil)));
 }
 
--(BOOL)isRawSignaturesEqualWithSignatures:(NSArray<VSSRawSignature *> * __nonnull)signatures1 and:(NSArray<VSSRawSignature *> * __nonnull)signatures2 {
-    
+- (BOOL)isRawSignaturesEqualWithSignatures:(NSArray<VSSRawSignature *> * __nonnull)signatures1 and:(NSArray<VSSRawSignature *> * __nonnull)signatures2 {
     if (signatures1.count != signatures2.count) {
         return false;
     }
-    BOOL found = false;
+    
     for (VSSRawSignature* signature1 in signatures1) {
-        found = false;
         for (VSSRawSignature* signature2 in signatures1) {
             if ([signature2.signer isEqualToString:signature1.signer]) {
-                found = ([signature1.signature isEqualToString:signature2.signature] &&
-                         ([signature1.snapshot isEqualToString:signature2.snapshot] || (signature1.snapshot == nil && signature2.snapshot == nil)));
+                if (!([signature1.signature isEqualToData:signature2.signature]
+                      && ([signature1.snapshot isEqualToData:signature2.snapshot] || (signature1.snapshot == nil && signature2.snapshot == nil)))) {
+                    return NO;
+                }
             }
-        }
-        if (found == false) {
-            return false;
         }
     }
     
-    return true;
+    return YES;
 }
 
--(BOOL)isCardSignaturesEqualWithSignatures:(NSArray<VSSCardSignature *> * __nonnull)signatures1 and:(NSArray<VSSCardSignature *> * __nonnull)signatures2 {
+- (BOOL)isCardSignaturesEqualWithSignatures:(NSArray<VSSCardSignature *> * __nonnull)signatures1 and:(NSArray<VSSCardSignature *> * __nonnull)signatures2 {
     
     if (signatures1.count != signatures2.count) {
         return false;
