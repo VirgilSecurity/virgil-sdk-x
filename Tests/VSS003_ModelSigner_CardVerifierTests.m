@@ -215,8 +215,7 @@
     self.verifier.verifySelfSignature = true;
     XCTAssert([self.verifier verifyCardWithCard:card]);
 
-    // FIXME Will appear as Vasilina fix
-    //self.verifier.verifyVirgilSignature = true;
+    self.verifier.verifyVirgilSignature = true;
     XCTAssert([self.verifier verifyCardWithCard:card]);
     
     NSData *publicKeyData2 = [self.crypto exportPublicKey:[self.crypto generateKeyPairAndReturnError:nil].publicKey];
