@@ -16,10 +16,10 @@ public extension CardManager {
             let getTokenOperation = self.makeGetTokenOperation(tokenContext: tokenContext)
             let getCardOperation = self.makeGetCardOperation(cardId: cardId)
             let verifyCardOperation = self.makeVerifyCardOperation()
-            
+
             getCardOperation.addDependency(getTokenOperation)
             verifyCardOperation.addDependency(getCardOperation)
-            
+
             verifyCardOperation.completionBlock = { [unowned verifyCardOperation] in
                 do {
                     guard let verifyResult = verifyCardOperation.result,
@@ -27,7 +27,7 @@ public extension CardManager {
                         verified else {
                             throw CardManagerError.cardIsNotVerified
                     }
-                    
+
                     let card: Card = try verifyCardOperation.findDependencyResult()
                     completion(card, nil)
                 }
@@ -35,11 +35,11 @@ public extension CardManager {
                     completion(nil, error)
                 }
             }
-            
+
             let queue = OperationQueue()
             queue.addOperations([getTokenOperation, getCardOperation, verifyCardOperation], waitUntilFinished: false)
         }
-        
+
         return aggregateOperation
     }
 
@@ -47,17 +47,17 @@ public extension CardManager {
         let aggregateOperation = CallbackOperation<Card> { _, completion in
             let tokenContext = TokenContext(operation: "publish", forceReload: false)
             let getTokenOperation = self.makeGetTokenOperation(tokenContext: tokenContext)
-            let generateRawCardOperation = CallbackOperation<RawSignedModel> { operation, completion in
+            let generateRawCardOperation = CallbackOperation<RawSignedModel> { _, completion in
                 completion(rawCard, nil)
             }
             let publishCardOperation = self.makePublishCardOperation()
             let verifyCardOperation = self.makeVerifyCardOperation()
-            
+
             generateRawCardOperation.addDependency(getTokenOperation)
             publishCardOperation.addDependency(getTokenOperation)
             publishCardOperation.addDependency(generateRawCardOperation)
             verifyCardOperation.addDependency(publishCardOperation)
-            
+
             verifyCardOperation.completionBlock = { [unowned verifyCardOperation] in
                 do {
                     guard let verifyResult = verifyCardOperation.result,
@@ -65,7 +65,7 @@ public extension CardManager {
                         verified else {
                             throw CardManagerError.cardIsNotVerified
                     }
-                    
+
                     let card: Card = try verifyCardOperation.findDependencyResult()
                     completion(card, nil)
                 }
@@ -73,9 +73,10 @@ public extension CardManager {
                     completion(nil, error)
                 }
             }
-            
+
             let queue = OperationQueue()
-            queue.addOperations([getTokenOperation, generateRawCardOperation, publishCardOperation, verifyCardOperation], waitUntilFinished: false)
+            let operations = [getTokenOperation, generateRawCardOperation, publishCardOperation, verifyCardOperation]
+            queue.addOperations(operations, waitUntilFinished: false)
         }
 
         return aggregateOperation
@@ -89,11 +90,11 @@ public extension CardManager {
             let generateRawCardOperation = CallbackOperation<RawSignedModel> { operation, completion in
                 do {
                     let token: AccessToken = try operation.findDependencyResult()
-                    
+
                     let rawCard = try self.generateRawCard(privateKey: privateKey, publicKey: publicKey,
                                                            identity: token.identity(), previousCardId: previousCardId,
                                                            extraFields: extraFields)
-                    
+
                     completion(rawCard, nil)
                 }
                 catch {
@@ -102,12 +103,12 @@ public extension CardManager {
             }
             let publishCardOperation = self.makePublishCardOperation()
             let verifyCardOperation = self.makeVerifyCardOperation()
-            
+
             generateRawCardOperation.addDependency(getTokenOperation)
             publishCardOperation.addDependency(getTokenOperation)
             publishCardOperation.addDependency(generateRawCardOperation)
             verifyCardOperation.addDependency(publishCardOperation)
-            
+
             verifyCardOperation.completionBlock = { [unowned verifyCardOperation] in
                 do {
                     guard let verifyResult = verifyCardOperation.result,
@@ -115,7 +116,7 @@ public extension CardManager {
                         verified else {
                             throw CardManagerError.cardIsNotVerified
                     }
-                    
+
                     let card: Card = try verifyCardOperation.findDependencyResult()
                     completion(card, nil)
                 }
@@ -123,11 +124,12 @@ public extension CardManager {
                     completion(nil, error)
                 }
             }
-            
+
             let queue = OperationQueue()
-            queue.addOperations([getTokenOperation, generateRawCardOperation, publishCardOperation, verifyCardOperation], waitUntilFinished: false)
+            let operations = [getTokenOperation, generateRawCardOperation, publishCardOperation, verifyCardOperation]
+            queue.addOperations(operations, waitUntilFinished: false)
         }
-        
+
         return aggregateOperation
     }
 
@@ -137,10 +139,10 @@ public extension CardManager {
             let getTokenOperation = self.makeGetTokenOperation(tokenContext: tokenContext)
             let searchCardsOperation = self.makeSearchCardsOperation(identity: identity)
             let verifyCardsOperation = self.makeVerifyCardsOperation()
-            
+
             searchCardsOperation.addDependency(getTokenOperation)
             verifyCardsOperation.addDependency(searchCardsOperation)
-            
+
             verifyCardsOperation.completionBlock = { [unowned verifyCardsOperation] in
                 do {
                     guard let verifyResult = verifyCardsOperation.result,
@@ -148,22 +150,23 @@ public extension CardManager {
                         verified else {
                             throw CardManagerError.cardIsNotVerified
                     }
-                    
+
                     let cards: [Card] = try verifyCardsOperation.findDependencyResult()
-                    
-                    guard !cards.contains(where: { $0.identity != identity}) else {
+
+                    guard !cards.contains(where: { $0.identity != identity }) else {
                         throw CardManagerError.gotWrongCard
                     }
-                    
+
                     completion(cards, nil)
                 }
                 catch {
                     completion(nil, error)
                 }
             }
-            
+
             let queue = OperationQueue()
-            queue.addOperations([getTokenOperation, searchCardsOperation, verifyCardsOperation], waitUntilFinished: false)
+            let operations = [getTokenOperation, searchCardsOperation, verifyCardsOperation]
+            queue.addOperations(operations, waitUntilFinished: false)
         }
 
         return aggregateOperation

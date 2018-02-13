@@ -11,7 +11,7 @@ import Foundation
 open class HttpConnection: HttpConnectionProtocol {
     private let queue: OperationQueue
     private let session: URLSession
-    
+
     @objc(VSSServiceConnectionError) public enum ServiceConnectionError: Int, Error {
         case noUrlInRequest = 1
         case wrongResponseType = 2

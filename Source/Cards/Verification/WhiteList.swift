@@ -17,9 +17,9 @@ import Foundation
 
     @objc public init(verifiersCredentials: [VerifierCredentials]) throws {
         self.verifiersCredentials = verifiersCredentials
-        
+
         let signers = self.verifiersCredentials.map { $0.signer }
-        
+
         for signer in signers {
             guard signers.filter({ $0 == signer }).count < 2 else {
                 throw WhiteListError.duplicateSigner

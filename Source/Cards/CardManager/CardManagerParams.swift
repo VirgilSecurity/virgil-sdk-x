@@ -17,7 +17,7 @@ import VirgilCryptoAPI
     @objc public var cardClient: CardClientProtocol
     @objc public var signCallback: ((RawSignedModel, @escaping (RawSignedModel?, Error?) -> Void) -> Void)?
     @objc public var retryOnUnauthorized: Bool
-    
+
     @objc public init(cardCrypto: CardCrypto, accessTokenProvider: AccessTokenProvider, cardVerifier: CardVerifier) {
         self.cardCrypto = cardCrypto
         self.modelSigner = ModelSigner(crypto: cardCrypto)
@@ -25,7 +25,7 @@ import VirgilCryptoAPI
         self.accessTokenProvider = accessTokenProvider
         self.cardVerifier = cardVerifier
         self.retryOnUnauthorized = true
-        
+
         super.init()
     }
 }

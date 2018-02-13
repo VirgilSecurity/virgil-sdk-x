@@ -15,26 +15,26 @@ public extension CardManager {
             let card = Card.parse(cardCrypto: self.cardCrypto, rawSignedModel: rawCard) else {
                 throw CardManagerError.cardIsCorrupted
         }
-        
+
         guard self.cardVerifier.verifyCard(card: card) else {
             throw CardManagerError.cardIsNotVerified
         }
         return card
     }
-    
+
     @objc func importCard(json: Any) throws -> Card {
         guard let rawCard = RawSignedModel.importFrom(json: json),
             let card = Card.parse(cardCrypto: self.cardCrypto, rawSignedModel: rawCard) else {
                 throw CardManagerError.cardIsCorrupted
         }
-        
+
         guard self.cardVerifier.verifyCard(card: card) else {
             throw CardManagerError.cardIsNotVerified
         }
-        
+
         return card
     }
-    
+
     @objc func importCard(from rawCard: RawSignedModel) throws -> Card {
         guard let card = Card.parse(cardCrypto: self.cardCrypto, rawSignedModel: rawCard) else {
             throw CardManagerError.cardIsCorrupted
@@ -42,18 +42,18 @@ public extension CardManager {
         guard self.cardVerifier.verifyCard(card: card) else {
             throw CardManagerError.cardIsNotVerified
         }
-        
+
         return card
     }
-    
+
     @objc func exportAsBase64String(card: Card) throws -> String {
         return try card.getRawCard(cardCrypto: self.cardCrypto).base64EncodedString()
     }
-    
+
     @objc func exportAsJson(card: Card) throws -> Any {
         return try card.getRawCard(cardCrypto: self.cardCrypto).exportAsJson()
     }
-    
+
     @objc func exportAsRawCard(card: Card) throws -> RawSignedModel {
         return try card.getRawCard(cardCrypto: self.cardCrypto)
     }

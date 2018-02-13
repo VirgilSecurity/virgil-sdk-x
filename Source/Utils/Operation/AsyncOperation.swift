@@ -42,7 +42,7 @@ public class AsyncOperation: Operation {
         self.state = .executing
         self.main()
     }
-    
+
     open func finish() {
         self.state = .finished
     }

@@ -57,7 +57,7 @@ import VirgilCryptoAPI
         var cardSignatures: [CardSignature] = []
         for rawSignature in rawSignedModel.signatures {
             let extraFields: [String: String]?
-            
+
             if let rawSnapshot = rawSignature.snapshot,
                 let json = try? JSONSerialization.jsonObject(with: rawSnapshot, options: []),
                    let result = json as? [String: String] {
@@ -66,7 +66,7 @@ import VirgilCryptoAPI
             else {
                 extraFields = nil
             }
-            
+
             let cardSignature = CardSignature(signer: rawSignature.signer, signature: rawSignature.signature,
                                               snapshot: rawSignature.snapshot, extraFields: extraFields)
 
@@ -86,7 +86,7 @@ import VirgilCryptoAPI
             let signature = RawSignature(signer: cardSignature.signer,
                                          signature: cardSignature.signature,
                                          snapshot: cardSignature.snapshot)
-            
+
             try rawCard.addSignature(signature)
         }
 

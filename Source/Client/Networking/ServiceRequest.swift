@@ -14,23 +14,23 @@ open class ServiceRequest: Request {
         case urlComponentsConvertingFailed = 2
         case getQueryWithDecodableIsNotSupported = 3
     }
-    
+
     public static let accessTokenHeader = "Authorization"
     public static let accessTokenPrefix = "Virgil"
-    
+
     public init<T: Encodable>(url: URL, method: Method, accessToken: String, params: T? = nil) throws {
         let bodyData: Data?
         let newUrl: URL
-        
+
         switch method {
         case .get:
             guard params == nil else {
                 throw ServiceRequestError.getQueryWithDecodableIsNotSupported
             }
-            
+
             bodyData = nil
             newUrl = url
-            
+
         case .post, .put, .delete:
             if let bodyEncodable = params {
                 bodyData = try JSONEncoder().encode(bodyEncodable)
@@ -38,11 +38,12 @@ open class ServiceRequest: Request {
             else {
                 bodyData = nil
             }
-            
+
             newUrl = url
         }
-        
-        try super.init(url: newUrl, method: method, headers: [ServiceRequest.accessTokenHeader: "\(ServiceRequest.accessTokenPrefix) \(accessToken)"], body: bodyData)
+
+        let headers = [ServiceRequest.accessTokenHeader: "\(ServiceRequest.accessTokenPrefix) \(accessToken)"]
+        try super.init(url: newUrl, method: method, headers: headers, body: bodyData)
     }
 
     public init(url: URL, method: Method, accessToken: String, params: Any? = nil) throws {
@@ -55,11 +56,11 @@ open class ServiceRequest: Request {
                 guard let params = params as? [String: String] else {
                     throw ServiceRequestError.invalidGetRequestParameters
                 }
-                
+
                 var components = URLComponents(string: url.absoluteString)
-                
+
                 components?.queryItems = params.map { URLQueryItem(name: $0.key, value: $0.value) }
-                
+
                 guard let url = components?.url else {
                     throw ServiceRequestError.urlComponentsConvertingFailed
                 }
@@ -69,7 +70,7 @@ open class ServiceRequest: Request {
                 newUrl = url
             }
             bodyData = nil
-            
+
         case .post, .put, .delete:
             if let bodyJson = params {
                 bodyData = try JSONSerialization.data(withJSONObject: bodyJson, options: [])
@@ -77,10 +78,11 @@ open class ServiceRequest: Request {
             else {
                 bodyData = nil
             }
-            
+
             newUrl = url
         }
-        
-        try super.init(url: newUrl, method: method, headers: [ServiceRequest.accessTokenHeader: "\(ServiceRequest.accessTokenPrefix) \(accessToken)"], body: bodyData)
+
+        let headers = [ServiceRequest.accessTokenHeader: "\(ServiceRequest.accessTokenPrefix) \(accessToken)"]
+        try super.init(url: newUrl, method: method, headers: headers, body: bodyData)
     }
 }

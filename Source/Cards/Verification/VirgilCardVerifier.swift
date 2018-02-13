@@ -12,7 +12,7 @@ import VirgilCryptoAPI
 @objc(VSSVirgilCardVerifier) public class VirgilCardVerifier: NSObject, CardVerifier {
     @objc public static let selfSignerIdentifier = "self"
     @objc public static let virgilSignerIdentifier = "virgil"
-    
+
     @objc public static let virgilPublicKeyBase64 = "MCowBQYDK2VwAyEAr0rjTWlCLJ8q9em0og33grHEh/3vmqp0IewosUaVnQg="
 
     @objc public let cardCrypto: CardCrypto
@@ -77,7 +77,8 @@ import VirgilCryptoAPI
     private class func verify(cardCrypto: CardCrypto, card: Card, signer: String, signerPublicKey: PublicKey) -> Bool {
         guard let signature = card.signatures.first(where: { $0.signer == signer }),
               let cardSnapshot = try? card.getRawCard(cardCrypto: cardCrypto).contentSnapshot,
-              cardCrypto.verifySignature(signature.signature, of: cardSnapshot + (signature.snapshot ?? Data()), with: signerPublicKey) else {
+              cardCrypto.verifySignature(signature.signature, of: cardSnapshot + (signature.snapshot ?? Data()),
+                                         with: signerPublicKey) else {
                 return false
         }
 

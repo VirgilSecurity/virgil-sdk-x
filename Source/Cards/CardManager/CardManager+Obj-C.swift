@@ -21,7 +21,7 @@ public extension CardManager {
             }
         }
     }
-    
+
     @objc func publishCard(rawCard: RawSignedModel, timeout: NSNumber? = nil,
                            completion: @escaping (Card?, Error?) -> ()) {
         self.publishCard(rawCard: rawCard).start { result in
@@ -33,7 +33,7 @@ public extension CardManager {
             }
         }
     }
-    
+
     @objc func publishCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String,
                            previousCardId: String? = nil, extraFields: [String: String]? = nil,
                            completion: @escaping (Card?, Error?) -> ()) {
@@ -47,12 +47,12 @@ public extension CardManager {
                     case .failure(let error):
                         completion(nil, error)
                     }
-            }
+                }
         } catch {
             completion(nil, error)
         }
     }
-    
+
     @objc func searchCards(identity: String, completion: @escaping ([Card]?, Error?) -> ()) {
         self.searchCards(identity: identity).start { result in
             switch result {

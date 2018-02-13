@@ -33,14 +33,14 @@ import VirgilCryptoAPI
         self.cardClient = params.cardClient
         self.cardVerifier = params.cardVerifier
         self.retryOnUnauthorized = params.retryOnUnauthorized
-        
+
         if let signCallback = params.signCallback {
             self.signModelOperationFabric = SignModelOperationFabric(callback: signCallback)
         }
         else {
             self.signModelOperationFabric = nil
         }
-        
+
         super.init()
     }
 

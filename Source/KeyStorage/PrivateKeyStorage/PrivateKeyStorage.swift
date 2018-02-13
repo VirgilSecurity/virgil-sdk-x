@@ -58,7 +58,7 @@ import VirgilCryptoAPI
     /// - Parameter name: stored entry name
     /// - Returns: true if entry with this name exists, false otherwise
     @objc public func exists(withName name: String) -> Bool {
-        return self.keyStorage.existsKeyEntry(withName:name)
+        return self.keyStorage.existsKeyEntry(withName: name)
     }
 
     /// Removes key entry with given name

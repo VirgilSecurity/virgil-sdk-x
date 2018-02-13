@@ -53,7 +53,7 @@ extension CardClient: CardClientProtocol {
         guard let url = URL(string: "card/v5", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
-        
+
         let request = try ServiceRequest(url: url, method: .post, accessToken: token, params: model)
 
         let response = try self.connection.send(request)
