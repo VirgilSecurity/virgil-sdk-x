@@ -22,7 +22,7 @@ import Foundation
     /// Declares error types and codes
     ///
     /// - duplicateSignature: `RawSignedModel` instance already has signature with same signer field
-    @objc public enum RawSignedModelError: Int, Error {
+    @objc(VSSRawSignedModelError) public enum RawSignedModelError: Int, Error {
         case duplicateSignature = 2
     }
 

@@ -10,183 +10,162 @@ import Foundation
 import VirgilCryptoAPI
 
 public extension CardManager {
-    private func tryPerformQuery<T>(task: (Bool) throws -> T) throws -> T {
-        do {
-            return try task(false)
-        } catch {
-            if let err = error as? CardClient.CardServiceError {
-                if err.errorCode == 401, self.retryOnUnauthorized {
-                    return try task(true)
-                }
-            }
-            throw error
-        }
-    }
-
     func getCard(withId cardId: String) -> CallbackOperation<Card> {
-        let operation = CallbackOperation<Card> {
-            let card: Card = try self.tryPerformQuery { forceReload in
-                let tokenContext = TokenContext(operation: "get", forceReload: forceReload)
-                let token = try self.getTokenSync(tokenContext: tokenContext)
-
-                var responseModel: RawSignedModel?
-                var isOutdated: Bool = false
-                try self.cardClient.getCard(withId: cardId, token: token.stringRepresentation()) { model, outdated in
-                    responseModel = model
-                    isOutdated = outdated
-                }
-
-                guard let model = responseModel,
-                      let card = Card.parse(crypto: self.crypto, rawSignedModel: model) else {
-                    throw CardManagerError.cardIsCorrupted
-                }
-                card.isOutdated = isOutdated
-
-                guard card.identifier == cardId else {
-                    throw CardManagerError.gotWrongCard
-                }
-
-                try self.verifyCard(card)
-
-                return card
-            }
-            return card
-        }
-
-        return operation
-    }
-
-    func publishCard(rawCard: RawSignedModel, token: AccessToken? = nil) -> CallbackOperation<Card> {
-        let operation = CallbackOperation<Card> {
-            let card: Card = try self.tryPerformQuery { forceReload in
-                let tokenContext = TokenContext(operation: "publish", forceReload: forceReload)
-                let token = try token ?? self.getTokenSync(tokenContext: tokenContext)
-
-                let rawCard = try self.signSync(rawCard: rawCard)
-
-                let responseModel = try self.cardClient.publishCard(model: rawCard, token: token.stringRepresentation())
-                guard let card = Card.parse(crypto: self.crypto, rawSignedModel: responseModel) else {
-                    throw CardManagerError.cardIsCorrupted
-                }
-
-                guard rawCard.contentSnapshot == card.contentSnapshot,
-                      let selfSignature = rawCard.signatures.first(where: { $0.signer == "self" }),
-                      let responseSelfSignature = card.signatures.first(where: { $0.signer == "self" }),
-                      selfSignature.snapshot ?? "" == responseSelfSignature.snapshot.base64EncodedString() else {
-                    throw CardManagerError.gotWrongCard
-                }
-
-                try self.verifyCard(card)
-
-                return card
-            }
-            return card
-        }
-
-        return operation
-    }
-
-    func publishCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String?, previousCardId: String? = nil,
-                     extraFields: [String: String]? = nil) throws -> CallbackOperation<Card> {
-        let tokenContext = TokenContext(identity: identity, operation: "publish", forceReload: false)
-        let token = try self.getTokenSync(tokenContext: tokenContext)
-
-        let rawCard = try self.generateRawCard(privateKey: privateKey, publicKey: publicKey,
-                                               identity: token.identity(), previousCardId: previousCardId,
-                                               extraFields: extraFields)
-
-        return self.publishCard(rawCard: rawCard, token: token)
-    }
-
-    func searchCards(identity: String) -> CallbackOperation<[Card]> {
-        let operation = CallbackOperation<[Card]> {
-            let cards: [Card] = try self.tryPerformQuery { forceReload in
-                let tokenContext = TokenContext(operation: "search", forceReload: forceReload)
-                let token = try self.getTokenSync(tokenContext: tokenContext)
-                let tokenString = token.stringRepresentation()
-
-                let rawSignedModels = try self.cardClient.searchCards(identity: identity, token: tokenString)
-
-                var cards: [Card] = []
-                for rawSignedModel in rawSignedModels {
-                    guard let card = Card.parse(crypto: self.crypto, rawSignedModel: rawSignedModel) else {
-                        throw CardManagerError.cardIsCorrupted
+        let aggregateOperation = CallbackOperation<Card> { _, completion in
+            let tokenContext = TokenContext(operation: "get", forceReload: false)
+            let getTokenOperation = self.makeGetTokenOperation(tokenContext: tokenContext)
+            let getCardOperation = self.makeGetCardOperation(cardId: cardId)
+            let verifyCardOperation = self.makeVerifyCardOperation()
+            
+            getCardOperation.addDependency(getTokenOperation)
+            verifyCardOperation.addDependency(getCardOperation)
+            
+            verifyCardOperation.completionBlock = { [unowned verifyCardOperation] in
+                do {
+                    guard let verifyResult = verifyCardOperation.result,
+                        case let .success(verified) = verifyResult,
+                        verified else {
+                            throw CardManagerError.cardIsNotVerified
                     }
-                    guard card.identity == identity else {
-                        throw CardManagerError.gotWrongCard
-                    }
-                    try self.verifyCard(card)
-                    cards.append(card)
-                }
-
-                cards.forEach { card in
-                    let previousCard = cards.first(where: { $0.identifier == card.previousCardId })
-                    card.previousCard = previousCard
-                    previousCard?.isOutdated = true
-                }
-                let result = cards.filter { card in cards.filter { $0.previousCard == card }.isEmpty }
-
-                return result
-            }
-            return cards
-        }
-
-        return operation
-    }
-}
-
-//objc compatable Queries
-public extension CardManager {
-    @objc func getCard(withId cardId: String, completion: @escaping (Card?, Error?) -> ()) {
-        self.getCard(withId: cardId).start { result in
-            switch result {
-            case .success(let card):
-                completion(card, nil)
-            case .failure(let error):
-                completion(nil, error)
-            }
-        }
-    }
-
-    @objc func publishCard(rawCard: RawSignedModel, timeout: NSNumber? = nil,
-                           completion: @escaping (Card?, Error?) -> ()) {
-        self.publishCard(rawCard: rawCard).start { result in
-            switch result {
-            case .success(let card):
-                completion(card, nil)
-            case .failure(let error):
-                completion(nil, error)
-            }
-        }
-    }
-
-    @objc func publishCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String,
-                           previousCardId: String? = nil, extraFields: [String: String]? = nil,
-                           completion: @escaping (Card?, Error?) -> ()) {
-        do {
-            try self.publishCard(privateKey: privateKey, publicKey: publicKey, identity: identity,
-                                 previousCardId: previousCardId, extraFields: extraFields)
-            .start { result in
-                switch result {
-                case .success(let card):
+                    
+                    let card: Card = try verifyCardOperation.findDependencyResult()
                     completion(card, nil)
-                case .failure(let error):
+                }
+                catch {
                     completion(nil, error)
                 }
             }
-        } catch {
-            completion(nil, error)
+            
+            let queue = OperationQueue()
+            queue.addOperations([getTokenOperation, getCardOperation, verifyCardOperation], waitUntilFinished: false)
         }
+        
+        return aggregateOperation
     }
 
-    @objc func searchCards(identity: String, completion: @escaping ([Card]?, Error?) -> ()) {
-        self.searchCards(identity: identity).start { result in
-            switch result {
-            case .success(let cards):
-                completion(cards, nil)
-            case .failure(let error):
-                completion(nil, error)
+    func publishCard(rawCard: RawSignedModel) -> CallbackOperation<Card> {
+        let aggregateOperation = CallbackOperation<Card> { _, completion in
+            let tokenContext = TokenContext(operation: "publish", forceReload: false)
+            let getTokenOperation = self.makeGetTokenOperation(tokenContext: tokenContext)
+            let generateRawCardOperation = CallbackOperation<RawSignedModel> { operation, completion in
+                completion(rawCard, nil)
             }
+            let publishCardOperation = self.makePublishCardOperation()
+            let verifyCardOperation = self.makeVerifyCardOperation()
+            
+            generateRawCardOperation.addDependency(getTokenOperation)
+            publishCardOperation.addDependency(getTokenOperation)
+            publishCardOperation.addDependency(generateRawCardOperation)
+            verifyCardOperation.addDependency(publishCardOperation)
+            
+            verifyCardOperation.completionBlock = { [unowned verifyCardOperation] in
+                do {
+                    guard let verifyResult = verifyCardOperation.result,
+                        case let .success(verified) = verifyResult,
+                        verified else {
+                            throw CardManagerError.cardIsNotVerified
+                    }
+                    
+                    let card: Card = try verifyCardOperation.findDependencyResult()
+                    completion(card, nil)
+                }
+                catch {
+                    completion(nil, error)
+                }
+            }
+            
+            let queue = OperationQueue()
+            queue.addOperations([getTokenOperation, generateRawCardOperation, publishCardOperation, verifyCardOperation], waitUntilFinished: false)
         }
+
+        return aggregateOperation
+    }
+
+    func publishCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String?, previousCardId: String? = nil,
+                     extraFields: [String: String]? = nil) throws -> GenericOperation<Card> {
+        let aggregateOperation = CallbackOperation<Card> { operation, completion in
+            let tokenContext = TokenContext(operation: "publish", forceReload: false)
+            let getTokenOperation = self.makeGetTokenOperation(tokenContext: tokenContext)
+            let generateRawCardOperation = CallbackOperation<RawSignedModel> { operation, completion in
+                do {
+                    let token: AccessToken = try operation.findDependencyResult()
+                    
+                    let rawCard = try self.generateRawCard(privateKey: privateKey, publicKey: publicKey,
+                                                           identity: token.identity(), previousCardId: previousCardId,
+                                                           extraFields: extraFields)
+                    
+                    completion(rawCard, nil)
+                }
+                catch {
+                    completion(nil, error)
+                }
+            }
+            let publishCardOperation = self.makePublishCardOperation()
+            let verifyCardOperation = self.makeVerifyCardOperation()
+            
+            generateRawCardOperation.addDependency(getTokenOperation)
+            publishCardOperation.addDependency(getTokenOperation)
+            publishCardOperation.addDependency(generateRawCardOperation)
+            verifyCardOperation.addDependency(publishCardOperation)
+            
+            verifyCardOperation.completionBlock = { [unowned verifyCardOperation] in
+                do {
+                    guard let verifyResult = verifyCardOperation.result,
+                        case let .success(verified) = verifyResult,
+                        verified else {
+                            throw CardManagerError.cardIsNotVerified
+                    }
+                    
+                    let card: Card = try verifyCardOperation.findDependencyResult()
+                    completion(card, nil)
+                }
+                catch {
+                    completion(nil, error)
+                }
+            }
+            
+            let queue = OperationQueue()
+            queue.addOperations([getTokenOperation, generateRawCardOperation, publishCardOperation, verifyCardOperation], waitUntilFinished: false)
+        }
+        
+        return aggregateOperation
+    }
+
+    func searchCards(identity: String) -> CallbackOperation<[Card]> {
+        let aggregateOperation = CallbackOperation<[Card]> { _, completion in
+            let tokenContext = TokenContext(operation: "search", forceReload: false)
+            let getTokenOperation = self.makeGetTokenOperation(tokenContext: tokenContext)
+            let searchCardsOperation = self.makeSearchCardsOperation(identity: identity)
+            let verifyCardsOperation = self.makeVerifyCardsOperation()
+            
+            searchCardsOperation.addDependency(getTokenOperation)
+            verifyCardsOperation.addDependency(searchCardsOperation)
+            
+            verifyCardsOperation.completionBlock = { [unowned verifyCardsOperation] in
+                do {
+                    guard let verifyResult = verifyCardsOperation.result,
+                        case let .success(verified) = verifyResult,
+                        verified else {
+                            throw CardManagerError.cardIsNotVerified
+                    }
+                    
+                    let cards: [Card] = try verifyCardsOperation.findDependencyResult()
+                    
+                    guard !cards.contains(where: { $0.identity != identity}) else {
+                        throw CardManagerError.gotWrongCard
+                    }
+                    
+                    completion(cards, nil)
+                }
+                catch {
+                    completion(nil, error)
+                }
+            }
+            
+            let queue = OperationQueue()
+            queue.addOperations([getTokenOperation, searchCardsOperation, verifyCardsOperation], waitUntilFinished: false)
+        }
+
+        return aggregateOperation
     }
 }

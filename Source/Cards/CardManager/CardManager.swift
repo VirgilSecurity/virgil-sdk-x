@@ -11,26 +11,14 @@ import VirgilCryptoAPI
 
 @objc(VSSCardManager) public class CardManager: NSObject {
     @objc public let modelSigner: ModelSigner
-    @objc public let crypto: CardCrypto
+    @objc public let cardCrypto: CardCrypto
     @objc public let accessTokenProvider: AccessTokenProvider
     @objc public let cardClient: CardClient
     @objc public let cardVerifier: CardVerifier
     @objc public let retryOnUnauthorized: Bool
-    @objc public let signCallback: ((RawSignedModel, @escaping (RawSignedModel?, Error?) -> ()) -> ())?
+    public let signModelOperationFabric: SignModelOperationFabric?
 
-    @objc public init(crypto: CardCrypto, accessTokenProvider: AccessTokenProvider, modelSigner: ModelSigner,
-                      cardClient: CardClient, cardVerifier: CardVerifier, retryOnUnauthorized: Bool = true,
-                      signCallback: ((RawSignedModel, @escaping (RawSignedModel?, Error?) -> ()) -> ())?) {
-        self.crypto = crypto
-        self.cardClient = cardClient
-        self.cardVerifier = cardVerifier
-        self.accessTokenProvider = accessTokenProvider
-        self.signCallback = signCallback
-        self.modelSigner = modelSigner
-        self.retryOnUnauthorized = retryOnUnauthorized
-    }
-
-    @objc public enum CardManagerError: Int, Error {
+    @objc(VSSCardManagerError) public enum CardManagerError: Int, Error {
         case cardIsNotVerified = 1
         case cardIsCorrupted = 2
         case gotNilToken = 3
@@ -38,64 +26,28 @@ import VirgilCryptoAPI
         case gotWrongCard = 5
     }
 
-    internal func verifyCard(_ card: Card) throws {
-        guard cardVerifier.verifyCard(card: card) else {
-            throw CardManagerError.cardIsNotVerified
+    @objc public init(params: CardManagerParams) {
+        self.modelSigner = params.modelSigner
+        self.cardCrypto = params.cardCrypto
+        self.accessTokenProvider = params.accessTokenProvider
+        self.cardClient = params.cardClient
+        self.cardVerifier = params.cardVerifier
+        self.retryOnUnauthorized = params.retryOnUnauthorized
+        
+        if let signCallback = params.signCallback {
+            self.signModelOperationFabric = SignModelOperationFabric(callback: signCallback)
         }
-    }
-
-    internal func getTokenSync(tokenContext: TokenContext) throws -> AccessToken {
-        let group = DispatchGroup()
-        var error: Error?
-        var tokenStr: AccessToken?
-        group.enter()
-        self.accessTokenProvider.getToken(with: tokenContext) { token, err in
-            error = err
-            tokenStr = token
-            group.leave()
+        else {
+            self.signModelOperationFabric = nil
         }
-        group.wait()
-
-        if let err = error {
-            throw err
-        }
-        guard let token = tokenStr else {
-            throw CardManagerError.gotNilToken
-        }
-
-        return token
-    }
-
-    internal func signSync(rawCard: RawSignedModel) throws -> RawSignedModel {
-        if let signCallback = self.signCallback {
-            let group = DispatchGroup()
-            var error: Error?
-            var tempRawCard: RawSignedModel?
-            group.enter()
-
-            signCallback(rawCard) { signedRawCard, err in
-                error = err
-                tempRawCard = signedRawCard
-                group.leave()
-            }
-            group.wait()
-
-            if let err = error {
-                throw err
-            }
-            guard let signedRawCard = tempRawCard else {
-                throw CardManagerError.gotNilSignedRawCard
-            }
-
-            return signedRawCard
-        }
-        return rawCard
+        
+        super.init()
     }
 
     @objc public func generateRawCard(privateKey: PrivateKey, publicKey: PublicKey,
                                       identity: String, previousCardId: String? = nil,
                                       extraFields: [String: String]? = nil) throws -> RawSignedModel {
-        let exportedPubKey = try crypto.exportPublicKey(publicKey).base64EncodedString()
+        let exportedPubKey = try cardCrypto.exportPublicKey(publicKey).base64EncodedString()
 
         let cardContent = RawCardContent(identity: identity, publicKey: exportedPubKey,
                                          previousCardId: previousCardId, createdAt: Date())
@@ -112,52 +64,5 @@ import VirgilCryptoAPI
         try self.modelSigner.selfSign(model: rawCard, privateKey: privateKey, additionalData: data)
 
         return rawCard
-    }
-}
-
-// Import export cards
-public extension CardManager {
-    @objc func importCard(string: String) throws -> Card {
-        guard let rawCard = RawSignedModel.importFrom(base64Encoded: string),
-              let card = Card.parse(crypto: self.crypto, rawSignedModel: rawCard) else {
-            throw CardManagerError.cardIsCorrupted
-        }
-        guard self.cardVerifier.verifyCard(card: card) else {
-            throw CardManagerError.cardIsNotVerified
-        }
-        return card
-    }
-
-    @objc func importCard(json: Any) throws -> Card {
-        guard let rawCard = RawSignedModel.importFrom(json: json),
-              let card = Card.parse(crypto: self.crypto, rawSignedModel: rawCard) else {
-                throw CardManagerError.cardIsCorrupted
-        }
-        guard self.cardVerifier.verifyCard(card: card) else {
-            throw CardManagerError.cardIsNotVerified
-        }
-        return card
-    }
-
-    @objc func importCard(from rawCard: RawSignedModel) throws -> Card {
-        guard let card = Card.parse(crypto: self.crypto, rawSignedModel: rawCard) else {
-            throw CardManagerError.cardIsCorrupted
-        }
-        guard self.cardVerifier.verifyCard(card: card) else {
-            throw CardManagerError.cardIsNotVerified
-        }
-        return card
-    }
-
-    @objc func exportAsBase64String(card: Card) throws -> String {
-        return try card.getRawCard(crypto: self.crypto).base64EncodedString()
-    }
-
-    @objc func exportAsJson(card: Card) throws -> Any {
-        return try card.getRawCard(crypto: self.crypto).exportAsJson()
-    }
-
-    @objc func exportAsRawCard(card: Card) throws -> RawSignedModel {
-        return try card.getRawCard(crypto: self.crypto)
     }
 }

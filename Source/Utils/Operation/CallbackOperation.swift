@@ -8,28 +8,34 @@
 
 import Foundation
 
-public class CallbackOperation<T>: GenericOperation<T> {
-    private let task: () throws -> (T)
+@objc(VSSCallbackOperationError) public enum CallbackOperationError: Int, Error {
+    case errorAndResultMissing = 1
+}
 
-    public init(task: @escaping () throws ->(T)) {
+public class CallbackOperation<T>: GenericOperation<T> {
+    public typealias Task = (CallbackOperation<T>, @escaping (T?, Error?) -> Void) -> Void
+    
+    public let task: Task
+
+    public init(task: @escaping Task) {
         self.task = task
+        
+        super.init()
     }
 
     override public func main() {
-        var tmpResult: Result<T>
-        do {
-            tmpResult = .success(try self.task())
-        } catch {
-            tmpResult = .failure(error)
+        self.task(self) { res, error in
+            if let res = res {
+                self.result = .success(res)
+            }
+            else if let error = error {
+                self.result = .failure(error)
+            }
+            else {
+                self.result = .failure(CallbackOperationError.errorAndResultMissing)
+            }
+            
+            self.finish()
         }
-
-        guard !self.isCancelled else {
-            self.state = .finished
-            return
-        }
-
-        self.result = tmpResult
-
-        self.state = .finished
     }
 }

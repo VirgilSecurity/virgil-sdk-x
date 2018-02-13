@@ -14,8 +14,8 @@ import VirgilSDK
 
 class VSS006_KeyStorageTests: XCTestCase {
     private var crypto: VirgilCrypto!
-    private var storage: VSSKeyStorage!
-    private var keyEntry: VSSKeyEntry!
+    private var storage: KeyStorage!
+    private var keyEntry: KeyEntry!
     private var privateKeyName: String!
     
     // MARK: Setup
@@ -23,13 +23,13 @@ class VSS006_KeyStorageTests: XCTestCase {
         super.setUp()
         
         self.crypto = VirgilCrypto()
-        self.storage = VSSKeyStorage()
+        self.storage = KeyStorage()
         let keyPair = try! self.crypto.generateKeyPair()
         
         let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
         let privateKeyName = UUID().uuidString
         
-        self.keyEntry = VSSKeyEntry(name: privateKeyName, value: privateKeyRawData)
+        self.keyEntry = KeyEntry(name: privateKeyName, value: privateKeyRawData)
     }
     
     override func tearDown() {
@@ -56,7 +56,7 @@ class VSS006_KeyStorageTests: XCTestCase {
         let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
         let privateKeyName = self.keyEntry.name
         
-        let keyEntry = VSSKeyEntry(name: privateKeyName, value: privateKeyRawData)
+        let keyEntry = KeyEntry(name: privateKeyName, value: privateKeyRawData)
         
         var errorWasThrown = false
         do {
@@ -108,7 +108,7 @@ class VSS006_KeyStorageTests: XCTestCase {
         let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
         let privateKeyName = self.keyEntry.name
         
-        let keyEntry = VSSKeyEntry(name: privateKeyName, value: privateKeyRawData)
+        let keyEntry = KeyEntry(name: privateKeyName, value: privateKeyRawData)
         
         try! self.storage.update(keyEntry)
         

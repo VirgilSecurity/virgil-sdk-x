@@ -24,10 +24,10 @@ class CardClientStub_STC3: CardClient {
         super.init(connection: ServiceConnection())
     }
 
-    @objc override func getCard(withId cardId: String, token: String, completion: (RawSignedModel, Bool) -> ()) throws {
-        let response = RawSignedModel.importFrom(base64Encoded: self.testsDict["STC-3.as_string"] as! String)
+    @objc override func getCard(withId cardId: String, token: String) throws -> GetCardResponse {
+        let response = RawSignedModel.importFrom(base64Encoded: self.testsDict["STC-3.as_string"] as! String)!
 
-        completion(response!, false)
+        return GetCardResponse(rawCard: response, isOutdated: false)
     }
 
     @objc override func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
@@ -51,10 +51,10 @@ class CardClientStub_STC34: CardClient {
         super.init(connection: ServiceConnection())
     }
 
-    @objc override func getCard(withId cardId: String, token: String, completion: (RawSignedModel, Bool) -> ()) throws {
-        let response = RawSignedModel.importFrom(base64Encoded: self.testsDict["STC-34.as_string"] as! String)
-
-        completion(response!, false)
+    @objc override func getCard(withId cardId: String, token: String) throws -> GetCardResponse {
+        let response = RawSignedModel.importFrom(base64Encoded: self.testsDict["STC-3.as_string"] as! String)!
+        
+        return GetCardResponse(rawCard: response, isOutdated: false)
     }
 
     @objc override func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
@@ -103,109 +103,95 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
     }
 
     override func tearDown() {
-
         self.crypto = nil
         self.consts = nil
         self.cardCrypto = nil
         self.modelSigner = nil
+        
         super.tearDown()
     }
 
     // MARK: Tests
     func test001_STC_13() {
         let generator = self.utils.getGeneratorJwtProvider(withIdentity: "identity", error: nil)
-        let cardManager = CardManager(crypto: self.cardCrypto, accessTokenProvider: generator,
-                                           modelSigner: self.modelSigner, cardClient: CardClientStub_STC3(),
-                                           cardVerifier: VerifierStubFalse(), signCallback: nil)
-        var errorWasThrows = false
+        
+        let cardManagerParams = CardManagerParams(cardCrypto: self.cardCrypto, accessTokenProvider: generator, cardVerifier: VerifierStubFalse())
+        cardManagerParams.cardClient = CardClientStub_STC3()
+        
+        let cardManager = CardManager(params: cardManagerParams)
+        
+        var errorWasThrown = false
         do {
           _ = try cardManager.importCard(string: self.testsDict["STC-3.as_string"] as! String)
         } catch {
-            errorWasThrows = true
+            errorWasThrown = true
         }
 
-        XCTAssert(errorWasThrows)
-        errorWasThrows = false
+        XCTAssert(errorWasThrown)
+        errorWasThrown = false
 
         do {
             let data = (self.testsDict["STC-3.as_json"] as! String).data(using: .utf8)!
             let dic = try JSONSerialization.jsonObject(with: data, options: [])
             _ = try  cardManager.importCard(json: dic)
         } catch {
-            errorWasThrows = true
+            errorWasThrown = true
         }
-        XCTAssert(errorWasThrows)
-        errorWasThrows = false
+        XCTAssert(errorWasThrown)
+        errorWasThrown = false
 
         let keyPair = try! self.crypto.generateKeyPair()
         let operation1 = try! cardManager.publishCard(privateKey: keyPair.privateKey, publicKey: keyPair.publicKey, identity: nil)
-        let result1 = operation1.startSync()
-        switch result1 {
-        case .success: break
-        case .failure:
-            errorWasThrows = true
-        }
 
-        XCTAssert(errorWasThrows)
-        errorWasThrows = false
+        switch operation1.startSync() {
+        case .success: XCTFail()
+        case .failure: break
+        }
 
         let rawCard = RawSignedModel.importFrom(base64Encoded: self.testsDict["STC-3.as_string"] as! String)!
         let operation2 = cardManager.publishCard(rawCard: rawCard)
-        let result2 = operation2.startSync()
 
-        switch result2 {
-        case .success: break
-        case .failure:
-            errorWasThrows = true
+        switch operation2.startSync() {
+        case .success: XCTFail()
+        case .failure: break
         }
-        XCTAssert(errorWasThrows)
-        errorWasThrows = false
 
         let operation3 = cardManager.getCard(withId: "some_id")
-        let result3 = operation3.startSync()
 
-        switch result3 {
-        case .success: break
-        case .failure:
-            errorWasThrows = true
+        switch operation3.startSync() {
+        case .success: XCTFail()
+        case .failure: break
         }
-        XCTAssert(errorWasThrows)
-        errorWasThrows = false
 
         let operation4 = cardManager.searchCards(identity: "some_identity")
-        let result4 = operation4.startSync()
 
-        switch result4 {
-        case .success: break
-        case .failure:
-            errorWasThrows = true
+        switch operation4.startSync() {
+        case .success: XCTFail()
+        case .failure: break
         }
-        XCTAssert(errorWasThrows)
     }
 
     func test002_STC_34() {
         let generator = self.utils.getGeneratorJwtProvider(withIdentity: "identity", error: nil)
-        let cardManager = CardManager(crypto: self.cardCrypto, accessTokenProvider: generator,
-                                           modelSigner: self.modelSigner, cardClient: CardClientStub_STC34(),
-                                           cardVerifier: VerifierStubTrue(), signCallback: nil)
-        let operation = cardManager.getCard(withId: "375f795bf6799b18c4836d33dce5208daf0895a3f7aacbcd0366529aed2345d4")
-        let result = operation.startSync()
-
-        var errorWasThrows = false
-
-        switch result {
-        case .success: break
-        case .failure:
-            errorWasThrows = true
+        
+        let cardManagerParams = CardManagerParams(cardCrypto: self.cardCrypto, accessTokenProvider: generator, cardVerifier: VerifierStubTrue())
+        cardManagerParams.cardClient = CardClientStub_STC34()
+        
+        let cardManager = CardManager(params: cardManagerParams)
+        
+        switch cardManager.getCard(withId: "375f795bf6799b18c4836d33dce5208daf0895a3f7aacbcd0366529aed2345d4").startSync() {
+        case .success: XCTFail()
+        case .failure: break
         }
-        XCTAssert(errorWasThrows)
     }
 
     func test003_STC_35() {
         let generator = self.utils.getGeneratorJwtProvider(withIdentity: "identity", error: nil)
-        let cardManager = CardManager(crypto: self.cardCrypto, accessTokenProvider: generator,
-                                      modelSigner: self.modelSigner, cardClient: CardClientStub_STC34(),
-                                      cardVerifier: VerifierStubTrue(), signCallback: nil)
+        
+        let cardManagerParams = CardManagerParams(cardCrypto: self.cardCrypto, accessTokenProvider: generator, cardVerifier: VerifierStubTrue())
+        cardManagerParams.cardClient = CardClientStub_STC34()
+        
+        let cardManager = CardManager(params: cardManagerParams)
 
         let publicKeyBase64 = self.testsDict["STC-34.public_key_base64"] as! String
 
@@ -219,29 +205,31 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         let extraDataSnapshot = self.testsDict["STC-34.self_signature_snapshot_base64"] as! String
         try! self.modelSigner.selfSign(model: rawCard1, privateKey: privateKey, additionalData: Data(base64Encoded: extraDataSnapshot))
 
-        let operation1 = cardManager.publishCard(rawCard: rawCard1)
-        let result1 = operation1.startSync()
-
-        var errorWasThrows = false
-        switch result1 {
-        case .success: break
-        case .failure:
-            errorWasThrows = true
+        switch cardManager.publishCard(rawCard: rawCard1).startSync() {
+        case .success: XCTFail()
+        case .failure: break
         }
-        XCTAssert(errorWasThrows)
-        errorWasThrows = false
 
         let contentStnapshot = testsDict["STC-34.content_snapshot_base64"] as! String
         let rawCard2 = RawSignedModel(contentSnapshot: Data(base64Encoded: contentStnapshot)!)
 
-        let operation2 = cardManager.publishCard(rawCard: rawCard2)
-        let result2 = operation2.startSync()
-
-        switch result2 {
-        case .success: break
-        case .failure:
-            errorWasThrows = true
+        switch cardManager.publishCard(rawCard: rawCard2).startSync() {
+        case .success: XCTFail()
+        case .failure: break
         }
-        XCTAssert(errorWasThrows)
+    }
+    
+    func test004_STC_36() {
+        let generator = self.utils.getGeneratorJwtProvider(withIdentity: "identity", error: nil)
+        
+        let cardManagerParams = CardManagerParams(cardCrypto: self.cardCrypto, accessTokenProvider: generator, cardVerifier: VerifierStubTrue())
+        cardManagerParams.cardClient = CardClientStub_STC34()
+        
+        let cardManager = CardManager(params: cardManagerParams)
+        
+        switch cardManager.searchCards(identity: "Alice").startSync() {
+        case .success(_): XCTFail()
+        case .failure(_): break
+        }
     }
 }

@@ -16,11 +16,11 @@
 
 // static const NSTimeInterval timeout = 15.;
 
-@interface VSS001_JWTTests : XCTestCase
+@interface VSS002_JWTTests : XCTestCase
 
 @end
 
-@implementation VSS001_JWTTests
+@implementation VSS002_JWTTests
 
 - (void)test001_STC_24 {
     // XCTestExpectation *ex = [self expectationWithDescription:@"Jwt should return cash token, force reload"];

@@ -67,8 +67,8 @@
     VSSRawSignedModel *responseRawCard = [self.cardClient publishCardWithModel:rawCard token:strToken error:&error];
     XCTAssert(error == nil && responseRawCard != nil);
     
-    VSSCard *responseCard = [VSSCard parseWithCrypto:self.cardCrypto rawSignedModel:responseRawCard];
-    VSSCard *card = [VSSCard parseWithCrypto:self.cardCrypto rawSignedModel:rawCard];
+    VSSCard *responseCard = [VSSCard parseWithCardCrypto:self.cardCrypto rawSignedModel:responseRawCard];
+    VSSCard *card = [VSSCard parseWithCardCrypto:self.cardCrypto rawSignedModel:rawCard];
     XCTAssert(card != nil && responseCard != nil);
     
     XCTAssert([self.utils isCardsEqualWithCard:responseCard and:card]);
@@ -82,7 +82,7 @@
     
     XCTAssert([publicKeyBase64Card isEqualToString:publicKeyBase64]);
     
-    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:[[NSArray alloc] init]];
+    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whiteLists:@[]];
     
     XCTAssert([verifier verifyCardWithCard:responseCard]);
 }
@@ -111,21 +111,21 @@
     
     VSSRawSignedModel *publishedRawCard = [self.cardClient publishCardWithModel:rawCard token:strToken error:&error];
     XCTAssert(error == nil);
-    VSSCard *card = [VSSCard parseWithCrypto:self.cardCrypto rawSignedModel:publishedRawCard];
+    VSSCard *card = [VSSCard parseWithCardCrypto:self.cardCrypto rawSignedModel:publishedRawCard];
     
-    [self.cardClient getCardWithId:card.identifier token:strToken error:&error completion:^(VSSRawSignedModel *foundedRawCard, BOOL isOutdated) {
-        VSSCard *foundedCard = [VSSCard parseWithCrypto:self.cardCrypto rawSignedModel:foundedRawCard];
-        XCTAssert(error == nil && foundedCard != nil);
+    VSSGetCardResponse *getCardResponse = [self.cardClient getCardWithId:card.identifier token:strToken error:&error];
+    
+    VSSCard *foundCard = [VSSCard parseWithCardCrypto:self.cardCrypto rawSignedModel:getCardResponse.rawCard];
+    XCTAssert(error == nil && foundCard != nil);
 
-        VSSRawCardContent *responseContent = [[VSSRawCardContent alloc] initWithSnapshot:foundedRawCard.contentSnapshot];
-        XCTAssert([self.utils isRawCardContentEqualWithContent:content and:responseContent]);
+    VSSRawCardContent *responseContent = [[VSSRawCardContent alloc] initWithSnapshot:getCardResponse.rawCard.contentSnapshot];
+    XCTAssert([self.utils isRawCardContentEqualWithContent:content and:responseContent]);
 
-        XCTAssert([self.utils isCardsEqualWithCard:card and:foundedCard]);
+    XCTAssert([self.utils isCardsEqualWithCard:card and:foundCard]);
 
-        VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:[[NSArray alloc] init]];
+    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whiteLists:@[]];
 
-        XCTAssert([verifier verifyCardWithCard:foundedCard]);
-    }];
+    XCTAssert([verifier verifyCardWithCard:foundCard]);
 }
 
 -(void)test003_SearchCards {
@@ -151,24 +151,24 @@
     
     VSSRawSignedModel *publishedRawCard = [self.cardClient publishCardWithModel:rawCard token:strToken error:&error];
     XCTAssert(error == nil);
-    VSSCard *card = [VSSCard parseWithCrypto:self.cardCrypto rawSignedModel:publishedRawCard];
+    VSSCard *card = [VSSCard parseWithCardCrypto:self.cardCrypto rawSignedModel:publishedRawCard];
     XCTAssert(card != nil);
     
-    NSArray<VSSRawSignedModel *> *foundedRawCards = [self.cardClient searchCardsWithIdentity:identity token:strToken error:&error];
-    XCTAssert(foundedRawCards.count != 0);
-    VSSRawSignedModel *foundedRawCard = foundedRawCards.firstObject;
+    NSArray<VSSRawSignedModel *> *foundRawCards = [self.cardClient searchCardsWithIdentity:identity token:strToken error:&error];
+    XCTAssert(foundRawCards.count != 0);
+    VSSRawSignedModel *foundRawCard = foundRawCards.firstObject;
     
-    VSSCard *foundedCard = [VSSCard parseWithCrypto:self.cardCrypto rawSignedModel:foundedRawCard];
-    XCTAssert(foundedCard != nil);
+    VSSCard *foundCard = [VSSCard parseWithCardCrypto:self.cardCrypto rawSignedModel:foundRawCard];
+    XCTAssert(foundCard != nil);
     
-    VSSRawCardContent *responseContent = [[VSSRawCardContent alloc] initWithSnapshot:foundedRawCard.contentSnapshot];
+    VSSRawCardContent *responseContent = [[VSSRawCardContent alloc] initWithSnapshot:foundRawCard.contentSnapshot];
     XCTAssert([self.utils isRawCardContentEqualWithContent:content and:responseContent]);
     
-    XCTAssert([self.utils isCardsEqualWithCard:card and:foundedCard]);
+    XCTAssert([self.utils isCardsEqualWithCard:card and:foundCard]);
     
-    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:[[NSArray alloc] init]];
+    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whiteLists:@[]];
     
-    XCTAssert([verifier verifyCardWithCard:foundedCard]);
+    XCTAssert([verifier verifyCardWithCard:foundCard]);
 }
 
 -(void)test004_STC_25 {

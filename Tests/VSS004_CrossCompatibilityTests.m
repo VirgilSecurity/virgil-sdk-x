@@ -38,7 +38,7 @@
     self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
     self.modelSigner = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
-    self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.cardCrypto whiteLists:[[NSArray alloc] init]];
+    self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whiteLists:@[]];
     self.cardClient = [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL];
     
     self.verifier.verifySelfSignature   = false;
@@ -225,9 +225,11 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider:generator
-                                                            modelSigner:self.modelSigner cardClient:self.cardClient
-                                                            cardVerifier:self.verifier retryOnUnauthorized:true signCallback:nil];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
+    cardManagerParams.cardClient = self.cardClient;
+    
+    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
+    
     NSString *rawCardString = self.testData[@"STC-3.as_string"];
     XCTAssert(rawCardString != nil);
  
@@ -286,9 +288,10 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithCrypto:self.cardCrypto accessTokenProvider: generator
-                                                            modelSigner:self.modelSigner cardClient:self.cardClient
-                                                            cardVerifier:self.verifier retryOnUnauthorized:true signCallback:nil];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
+    cardManagerParams.cardClient = self.cardClient;
+    
+    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
     
     NSString *rawCardString = self.testData[@"STC-4.as_string"];
     XCTAssert(rawCardString != nil);

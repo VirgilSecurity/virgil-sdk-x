@@ -11,17 +11,17 @@ import Foundation
 public class AsyncOperation: Operation {
     override public var isAsynchronous: Bool { return true }
 
-    override public var isExecuting: Bool { return state == .executing }
-    override public var isFinished: Bool { return state == .finished }
+    override public var isExecuting: Bool { return self.state == .executing }
+    override public var isFinished: Bool { return self.state == .finished }
 
-    public var state = State.ready {
+    public private(set) var state = State.ready {
         willSet {
-            willChangeValue(forKey: state.keyPath)
-            willChangeValue(forKey: newValue.keyPath)
+            self.willChangeValue(forKey: self.state.keyPath)
+            self.willChangeValue(forKey: newValue.keyPath)
         }
         didSet {
-            didChangeValue(forKey: state.keyPath)
-            didChangeValue(forKey: oldValue.keyPath)
+            self.didChangeValue(forKey: self.state.keyPath)
+            self.didChangeValue(forKey: oldValue.keyPath)
         }
     }
 
@@ -41,6 +41,10 @@ public class AsyncOperation: Operation {
 
         self.state = .executing
         self.main()
+    }
+    
+    open func finish() {
+        self.state = .finished
     }
 
     override public func main() {
