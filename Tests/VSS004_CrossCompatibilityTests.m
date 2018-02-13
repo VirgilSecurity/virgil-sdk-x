@@ -155,7 +155,7 @@
             XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQNXguibY1cDCfnuJhTK+jX/Qv6v5i5TzqQs3e1fWlbisdUWYh+s10gsLkhf83wOqrm8ZXUCpjgkJn83TDaKYZQ8="]);
             XCTAssert(signature.snapshot == nil);
         } else if ([signature.signer isEqualToString:@"extra"]) {
-            XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQFou1fTFqwqeWhLmZcS3MbPvvUdBmP/QurqzGzz0Tv/TT8D+rE3d73fPEvrNxAdxyRwP0wXSWz+PQkKibLUvGQQ="]);
+            XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQCA3O35Rk+doRPHkHhJJKJyFxz2APDZOSBZi6QhmI7BP3yTb65gRYwu0HtNNYdMRsEqVj9IEKhtDelf4SKpbJwo="]);
             XCTAssert(signature.snapshot == nil);
         }
     }
@@ -374,12 +374,12 @@
     XCTAssert([jwt.headerContent.algorithm isEqualToString:@"VEDS512"]);
     XCTAssert([jwt.headerContent.contentType isEqualToString:@"virgil-jwt;v=1"]);
     XCTAssert([jwt.headerContent.type isEqualToString:@"JWT"]);
-    XCTAssert([jwt.headerContent.keyIdentifier isEqualToString:@"a2ae26f9ed0453cb49e83e8ed045e801e75c77efb162ca152f62f699cf95ff8b58848da3968a05fa2949e12c225ef6fa0e999b83e6bc15aa8e3a530e44837d7c"]);
+    XCTAssert([jwt.headerContent.keyIdentifier isEqualToString:@"8e62643674d100b8a52648475c23b8bb86a1f119e89970cc63cdccc0920df2ea2d8cb7d6b54c4a9e284b2ccf5acb22ea37efefcb6e4274c4b04ed725e4454ca1"]);
     
     XCTAssert([jwt.bodyContent.identity isEqualToString:@"some_identity"]);
-    XCTAssert([jwt.bodyContent.appId isEqualToString:@"d29ad1e9081f3496873d13cfd86c5bdf019604a839091fb2fc2350d667eb0245"]);
-    XCTAssert(jwt.bodyContent.issuedAt == 1518425839);
-    XCTAssert(jwt.bodyContent.expiresAt == 1518426439);
+    XCTAssert([jwt.bodyContent.appId isEqualToString:@"13497c3c795e3a6c32643b0a76957b70d2332080762469cdbec89d6390e6dbd7"]);
+    XCTAssert(jwt.bodyContent.issuedAt == 1518513309);
+    XCTAssert(jwt.bodyContent.expiresAt == 1518513909);
     XCTAssert(jwt.isExpired == true);
     
     XCTAssert([jwt.stringRepresentation isEqualToString:self.testData[@"STC-22.jwt"]]);
