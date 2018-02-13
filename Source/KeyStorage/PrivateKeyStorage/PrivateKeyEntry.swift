@@ -9,11 +9,11 @@
 import Foundation
 import VirgilCryptoAPI
 
-@objc(VSSImportedKeyEntry) public class ImportedKeyEntry: NSObject {
+@objc(VSSPrivateKeyEntry) public class PrivateKeyEntry: NSObject {
     @objc public let privateKey: PrivateKey
     @objc public let meta: [String: String]?
 
-    public init(privateKey: PrivateKey, meta: [String: String]? = nil) {
+    @objc public init(privateKey: PrivateKey, meta: [String: String]? = nil) {
         self.privateKey = privateKey
         self.meta = meta
     }
