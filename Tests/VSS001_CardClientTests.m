@@ -77,9 +77,6 @@
     XCTAssert(error == nil);
     NSString *publicKeyBase64Card = [exportedPublicKeyCard base64EncodedStringWithOptions:0];
     
-    NSLog(@"Message == %@", publicKeyBase64);
-    NSLog(@"Message == %@", publicKeyBase64Card);
-    
     XCTAssert([publicKeyBase64Card isEqualToString:publicKeyBase64]);
     
     VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whiteLists:@[]];
@@ -171,7 +168,7 @@
     XCTAssert([verifier verifyCardWithCard:foundCard]);
 }
 
--(void)test004_STC_25 {
+-(void)test004_STC_27 {
     NSError *error;
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
@@ -198,11 +195,9 @@
 
     XCTAssert(error != nil);
     XCTAssert(responseRawCard == nil);
-    
-    NSLog(@"Message == %@", [error localizedDescription]);
 }
 
--(void)test005_STC_27 {
+-(void)test005_STC_25 {
     NSError *error;
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
