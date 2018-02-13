@@ -235,10 +235,7 @@ static const NSTimeInterval timeout = 8.;
                         XCTAssert(error == nil);
                         XCTAssert(returnedCard != nil);
 
-                        // FIXME Services must fix
                         XCTAssert(returnedCard.isOutdated == true);
-                        
-                        XCTAssert([self.utils isCardsEqualWithCard:card1 and:returnedCard]);
 
                         [ex fulfill];
                     }];

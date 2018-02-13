@@ -2,70 +2,85 @@
 //  ServiceRequest.swift
 //  VirgilSDK
 //
-//  Created by Oleksandr Deundiak on 9/19/17.
-//  Copyright © 2017 VirgilSecurity. All rights reserved.
+//  Created by Oleksandr Deundiak on 2/13/18.
+//  Copyright © 2018 VirgilSecurity. All rights reserved.
 //
 
 import Foundation
 
-@objc(VSSServiceRequest) public class ServiceRequest: NSObject, HTTPRequest {
-    public let url: URL
-    public let method: Method
-    public let apiToken: String?
-    public let body: Data?
-
-    @objc public static let DefaultTimeout: TimeInterval = 45
-    @objc public static let AccessTokenHeader = "Authorization"
-
-    public enum Method: String {
-        case get    = "GET"
-        case post   = "POST"
-        case put    = "PUT"
-        case delete = "DELETE"
+open class ServiceRequest: Request {
+    @objc(ServiceRequestError) public enum ServiceRequestError: Int, Error {
+        case invalidGetRequestParameters = 1
+        case urlComponentsConvertingFailed = 2
+        case getQueryWithDecodableIsNotSupported = 3
     }
-
-    public init(url: URL, method: Method, apiToken: String?, bodyJson: Any? = nil) throws {
-        self.url = url
-        self.method = method
-        self.apiToken = apiToken
-
-        if let bodyJson = bodyJson {
-            self.body = try JSONSerialization.data(withJSONObject: bodyJson, options: [])
+    
+    public static let accessTokenHeader = "Authorization"
+    public static let accessTokenPrefix = "Virgil"
+    
+    public init<T: Encodable>(url: URL, method: Method, accessToken: String, params: T? = nil) throws {
+        let bodyData: Data?
+        let newUrl: URL
+        
+        switch method {
+        case .get:
+            guard params == nil else {
+                throw ServiceRequestError.getQueryWithDecodableIsNotSupported
+            }
+            
+            bodyData = nil
+            newUrl = url
+            
+        case .post, .put, .delete:
+            if let bodyEncodable = params {
+                bodyData = try JSONEncoder().encode(bodyEncodable)
+            }
+            else {
+                bodyData = nil
+            }
+            
+            newUrl = url
         }
-        else {
-            self.body = nil
+        
+        try super.init(url: newUrl, method: method, headers: [ServiceRequest.accessTokenHeader: "\(ServiceRequest.accessTokenPrefix) \(accessToken)"], body: bodyData)
+    }
+
+    public init(url: URL, method: Method, accessToken: String, params: Any? = nil) throws {
+        let bodyData: Data?
+        let newUrl: URL
+
+        switch method {
+        case .get:
+            if let params = params {
+                guard let params = params as? [String: String] else {
+                    throw ServiceRequestError.invalidGetRequestParameters
+                }
+                
+                var components = URLComponents(string: url.absoluteString)
+                
+                components?.queryItems = params.map { URLQueryItem(name: $0.key, value: $0.value) }
+                
+                guard let url = components?.url else {
+                    throw ServiceRequestError.urlComponentsConvertingFailed
+                }
+                newUrl = url
+            }
+            else {
+                newUrl = url
+            }
+            bodyData = nil
+            
+        case .post, .put, .delete:
+            if let bodyJson = params {
+                bodyData = try JSONSerialization.data(withJSONObject: bodyJson, options: [])
+            }
+            else {
+                bodyData = nil
+            }
+            
+            newUrl = url
         }
-
-        super.init()
-    }
-
-    @objc public init(urlRequest: URLRequest) throws {
-        guard let url = urlRequest.url,
-            let methodStr = urlRequest.httpMethod,
-            let method = Method(rawValue: methodStr) else {
-                throw NSError()
-        }
-
-        self.url = url
-        self.method = method
-        self.apiToken = urlRequest.value(forHTTPHeaderField: ServiceRequest.AccessTokenHeader)
-        self.body = urlRequest.httpBody
-    }
-
-    public func getNativeRequest() -> URLRequest {
-        var request = URLRequest(url: self.url)
-
-        request.timeoutInterval = ServiceRequest.DefaultTimeout
-        request.httpMethod = self.method.rawValue
-        request.setValue("Virgil " + (self.apiToken ?? ""), forHTTPHeaderField: ServiceRequest.AccessTokenHeader)
-        request.httpBody = self.body
-
-        return request
-    }
-}
-
-extension NSURLRequest: HTTPRequest {
-    public func getNativeRequest() -> URLRequest {
-        return self as URLRequest
+        
+        try super.init(url: newUrl, method: method, headers: [ServiceRequest.accessTokenHeader: "\(ServiceRequest.accessTokenPrefix) \(accessToken)"], body: bodyData)
     }
 }

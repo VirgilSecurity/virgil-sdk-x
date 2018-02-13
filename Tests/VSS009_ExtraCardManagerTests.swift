@@ -13,56 +13,50 @@ import XCTest
 import VirgilCryptoApiImpl
 import VirgilSDK
 
-class CardClientStub_STC3: CardClient {
+class CardClientStub_STC3: CardClientProtocol {
     private var testsDict: Dictionary<String, Any>!
 
     init() {
         let testFileURL = Bundle(for: type(of: self)).url(forResource: "data", withExtension: "json")!
         let testFileData = try! Data(contentsOf: testFileURL)
         self.testsDict = try! JSONSerialization.jsonObject(with: testFileData, options: JSONSerialization.ReadingOptions.init(rawValue: 0)) as! Dictionary<String, Any>
-
-        super.init(connection: ServiceConnection())
     }
 
-    @objc override func getCard(withId cardId: String, token: String) throws -> GetCardResponse {
+    @objc func getCard(withId cardId: String, token: String) throws -> GetCardResponse {
         let response = RawSignedModel.importFrom(base64Encoded: self.testsDict["STC-3.as_string"] as! String)!
 
         return GetCardResponse(rawCard: response, isOutdated: false)
     }
 
-    @objc override func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
+    @objc func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
         return RawSignedModel.importFrom(base64Encoded: self.testsDict["STC-3.as_string"] as! String)!
     }
 
-
-    @objc override func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
+    @objc func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
         return [RawSignedModel.importFrom(base64Encoded: self.testsDict["STC-3.as_string"] as! String)!]
     }
 }
 
-class CardClientStub_STC34: CardClient {
+class CardClientStub_STC34: CardClientProtocol {
     private var testsDict: Dictionary<String, Any>!
 
     init() {
         let testFileURL = Bundle(for: type(of: self)).url(forResource: "data", withExtension: "json")!
         let testFileData = try! Data(contentsOf: testFileURL)
         self.testsDict = try! JSONSerialization.jsonObject(with: testFileData, options: JSONSerialization.ReadingOptions.init(rawValue: 0)) as! Dictionary<String, Any>
-
-        super.init(connection: ServiceConnection())
     }
 
-    @objc override func getCard(withId cardId: String, token: String) throws -> GetCardResponse {
+    @objc func getCard(withId cardId: String, token: String) throws -> GetCardResponse {
         let response = RawSignedModel.importFrom(base64Encoded: self.testsDict["STC-3.as_string"] as! String)!
         
         return GetCardResponse(rawCard: response, isOutdated: false)
     }
 
-    @objc override func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
+    @objc func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
         return RawSignedModel.importFrom(base64Encoded: self.testsDict["STC-34.as_string"] as! String)!
     }
 
-
-    @objc override func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
+    @objc func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
         return [RawSignedModel.importFrom(base64Encoded: self.testsDict["STC-34.as_string"] as! String)!]
     }
 }

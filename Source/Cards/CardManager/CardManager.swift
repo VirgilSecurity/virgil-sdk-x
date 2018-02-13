@@ -13,7 +13,7 @@ import VirgilCryptoAPI
     @objc public let modelSigner: ModelSigner
     @objc public let cardCrypto: CardCrypto
     @objc public let accessTokenProvider: AccessTokenProvider
-    @objc public let cardClient: CardClient
+    @objc public let cardClient: CardClientProtocol
     @objc public let cardVerifier: CardVerifier
     @objc public let retryOnUnauthorized: Bool
     public let signModelOperationFabric: SignModelOperationFabric?
