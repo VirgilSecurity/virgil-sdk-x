@@ -15,7 +15,7 @@
 #import "VSSTestsConst.h"
 #import "VSSTestUtils.h"
 
-@interface VSS004_CrossCompatibilityTests : XCTestCase
+@interface VSS004_CrossCompatibilityTests: XCTestCase
 
 @property (nonatomic) VSSTestsConst *consts;
 @property (nonatomic) VSMVirgilCrypto *crypto;
@@ -45,7 +45,7 @@
     self.verifier.verifyVirgilSignature = false;
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [bundle pathForResource:@"test_data" ofType:@"txt"];
+    NSString *path = [bundle pathForResource:@"data" ofType:@"json"];
     NSData *dicData = [[NSData alloc] initWithContentsOfFile:path];
     XCTAssert(dicData != nil);
     
@@ -57,11 +57,9 @@
 }
 
 - (void)test001_STC_1 {
-    NSError *error;
     NSString *rawCardString = self.testData[@"STC-1.as_string"];
-    XCTAssert(rawCardString != nil);
     
-    VSSRawSignedModel *rawCard1 = [VSSRawSignedModel importFromBase64Encoded: rawCardString];
+    VSSRawSignedModel *rawCard1 = [VSSRawSignedModel importFromBase64Encoded:rawCardString];
     XCTAssert(rawCard1 != nil);
     
     VSSRawCardContent *cardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard1.contentSnapshot];
@@ -73,68 +71,40 @@
     XCTAssert(cardContent1.createdAt == 1515686245);
     XCTAssert(cardContent1.previousCardId == nil);
     XCTAssert(rawCard1.signatures.count == 0);
-    
 
-    NSData *rawCardDic = [self.testData[@"STC-1.as_json"] dataUsingEncoding:NSUTF8StringEncoding];
-    XCTAssert(rawCardDic != nil);
+    NSData *rawCardDictData = [self.testData[@"STC-1.as_json"] dataUsingEncoding:NSUTF8StringEncoding];
+    XCTAssert(rawCardDictData != nil);
     
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:rawCardDic options:kNilOptions error:nil];
-    XCTAssert(dic != nil);
+    NSDictionary *rawCardDict = [NSJSONSerialization JSONObjectWithData:rawCardDictData options:kNilOptions error:nil];
+    XCTAssert(rawCardDict != nil);
     
-    VSSRawSignedModel *rawCard2 = [VSSRawSignedModel importFromJson: dic];
+    VSSRawSignedModel *rawCard2 = [VSSRawSignedModel importFromJson:rawCardDict];
     XCTAssert(rawCard2 != nil);
     
-    VSSRawCardContent *cardContent2 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard2.contentSnapshot];
-    XCTAssert(cardContent2 != nil);
-    
-    XCTAssert([self.utils isRawCardContentEqualWithContent:cardContent1 and:cardContent2]);
+    XCTAssert([rawCard2.contentSnapshot isEqualToData:rawCard1.contentSnapshot]);
     XCTAssert(rawCard2.signatures.count == 0);
     
-// FIXME exported json compatibility
-    NSData *snapshot1 = [cardContent1 snapshot];
-    XCTAssert(error == nil && snapshot1 != nil);
+    NSDictionary *rawCardContentDict = [NSJSONSerialization JSONObjectWithData:[cardContent1 snapshot] options:0 error:nil];
+    XCTAssert(rawCardContentDict != nil);
+    NSDictionary *rawCardContentDictImported = [NSJSONSerialization JSONObjectWithData:rawCard1.contentSnapshot options:0 error:nil];
+    XCTAssert([rawCardContentDict isEqualToDictionary:rawCardContentDictImported]);
     
-    VSSRawSignedModel *newRawCard1 = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot1];
-    XCTAssert(newRawCard1 != nil);
-    for (VSSRawSignature* signature in rawCard1.signatures) {
-        [newRawCard1 addSignature:signature error:&error];
-        XCTAssert(error == nil);
-    }
-    
-    NSString *exportedRawCardString = [rawCard1 base64EncodedStringAndReturnError:&error];
+    NSError *error;
+    NSDictionary *exportedRawCard1 = [rawCard1 exportAsJsonAndReturnError:&error];
     XCTAssert(error == nil);
-    
-    VSSRawSignedModel *newImportedRawCard1 = [VSSRawSignedModel importFromBase64Encoded: exportedRawCardString];
-    XCTAssert(newImportedRawCard1 != nil);
-    
-    VSSRawCardContent *newCardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:newImportedRawCard1.contentSnapshot];
-    XCTAssert(newCardContent1 != nil);
-    
-    XCTAssert([self.utils isRawCardContentEqualWithContent:newCardContent1 and:cardContent1]);
-    XCTAssert(newImportedRawCard1.signatures.count == 0);
-    
-    NSDictionary *exportedRawCardJson = [newRawCard1 exportAsJsonAndReturnError:&error];
+    XCTAssert([exportedRawCard1 isEqualToDictionary:rawCardDict]);
+
+    NSString *exportedRawCard1String = [rawCard1 base64EncodedStringAndReturnError:&error];
     XCTAssert(error == nil);
-    
-    VSSRawSignedModel *newImportedRawCard2 = [VSSRawSignedModel importFromJson: exportedRawCardJson];
-    XCTAssert(newImportedRawCard2 != nil);
-    
-    VSSRawCardContent *newCardContent2 = [[VSSRawCardContent alloc] initWithSnapshot:newImportedRawCard2.contentSnapshot];
-    XCTAssert(newCardContent2 != nil);
-    
-    XCTAssert([self.utils isRawCardContentEqualWithContent:newCardContent2 and:cardContent2]);
-    XCTAssert(newImportedRawCard2.signatures.count == 0);
-    
-    XCTAssert(exportedRawCardJson[@"previous_card_id"] == nil);
+    NSDictionary *exportedRawCard1Dict = [NSJSONSerialization JSONObjectWithData:[[NSData alloc] initWithBase64EncodedString:exportedRawCard1String options:0] options:0 error:nil];
+    XCTAssert([exportedRawCard1Dict isEqualToDictionary:rawCardDict]);
 }
 
 - (void)test002_STC_2 {
-    NSError *error;
     NSString *rawCardString = self.testData[@"STC-2.as_string"];
     XCTAssert(rawCardString != nil);
-    NSLog(@"Message == %@", rawCardString);
     
-    VSSRawSignedModel *rawCard1 = [VSSRawSignedModel importFromBase64Encoded: rawCardString];
+    VSSRawSignedModel *rawCard1 = [VSSRawSignedModel importFromBase64Encoded:rawCardString];
     XCTAssert(rawCard1 != nil);
     
     VSSRawCardContent *cardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard1.contentSnapshot];
@@ -149,74 +119,48 @@
     
     for (VSSRawSignature* signature in rawCard1.signatures) {
         if ([signature.signer isEqualToString:@"self"]) {
-            XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQNXguibY1cDCfnuJhTK+jX/Qv6v5i5TzqQs3e1fWlbisdUWYh+s10gsLkhf83wOqrm8ZXUCpjgkJn83TDaKYZQ8="]);
+            XCTAssert([[signature.signature base64EncodedStringWithOptions:0] isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQNXguibY1cDCfnuJhTK+jX/Qv6v5i5TzqQs3e1fWlbisdUWYh+s10gsLkhf83wOqrm8ZXUCpjgkJn83TDaKYZQ8="]);
             XCTAssert(signature.snapshot == nil);
         } else if ([signature.signer isEqualToString:@"virgil"]) {
-            XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQNXguibY1cDCfnuJhTK+jX/Qv6v5i5TzqQs3e1fWlbisdUWYh+s10gsLkhf83wOqrm8ZXUCpjgkJn83TDaKYZQ8="]);
+            XCTAssert([[signature.signature base64EncodedStringWithOptions:0] isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQNXguibY1cDCfnuJhTK+jX/Qv6v5i5TzqQs3e1fWlbisdUWYh+s10gsLkhf83wOqrm8ZXUCpjgkJn83TDaKYZQ8="]);
             XCTAssert(signature.snapshot == nil);
         } else if ([signature.signer isEqualToString:@"extra"]) {
-            XCTAssert([signature.signature isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQCA3O35Rk+doRPHkHhJJKJyFxz2APDZOSBZi6QhmI7BP3yTb65gRYwu0HtNNYdMRsEqVj9IEKhtDelf4SKpbJwo="]);
+            XCTAssert([[signature.signature base64EncodedStringWithOptions:0] isEqualToString:@"MFEwDQYJYIZIAWUDBAIDBQAEQCA3O35Rk+doRPHkHhJJKJyFxz2APDZOSBZi6QhmI7BP3yTb65gRYwu0HtNNYdMRsEqVj9IEKhtDelf4SKpbJwo="]);
             XCTAssert(signature.snapshot == nil);
+        }
+        else {
+            XCTFail();
         }
     }
     
-    NSData *rawCardDic = [self.testData[@"STC-2.as_json"] dataUsingEncoding:NSUTF8StringEncoding];
-    XCTAssert(rawCardDic != nil);
+    NSData *rawCardDictData = [self.testData[@"STC-2.as_json"] dataUsingEncoding:NSUTF8StringEncoding];
+    XCTAssert(rawCardDictData != nil);
     
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:rawCardDic options:kNilOptions error:nil];
-    XCTAssert(dic != nil);
+    NSDictionary *rawCardDict = [NSJSONSerialization JSONObjectWithData:rawCardDictData options:kNilOptions error:nil];
+    XCTAssert(rawCardDict != nil);
     
-    VSSRawSignedModel *rawCard2 = [VSSRawSignedModel importFromJson: dic];;
+    VSSRawSignedModel *rawCard2 = [VSSRawSignedModel importFromJson:rawCardDict];
     XCTAssert(rawCard2 != nil);
     
-    VSSRawCardContent *cardContent2 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard2.contentSnapshot];
-    XCTAssert(cardContent2 != nil);
-    
-    XCTAssert([self.utils isRawCardContentEqualWithContent:cardContent1 and:cardContent2]);
+    XCTAssert([rawCard2.contentSnapshot isEqualToData:rawCard1.contentSnapshot]);
     XCTAssert(rawCard2.signatures.count == 3);
     
     XCTAssert([self.utils isRawSignaturesEqualWithSignatures:rawCard1.signatures and:rawCard2.signatures]);
     
-    // FIXME exported json compatibility
-    NSData *snapshot1 = [cardContent1 snapshot];
-    XCTAssert(error == nil && snapshot1 != nil);
+    NSDictionary *rawCardContentDict = [NSJSONSerialization JSONObjectWithData:[cardContent1 snapshot] options:0 error:nil];
+    XCTAssert(rawCardContentDict != nil);
+    NSDictionary *rawCardContentDictImported = [NSJSONSerialization JSONObjectWithData:rawCard1.contentSnapshot options:0 error:nil];
+    XCTAssert([rawCardContentDict isEqualToDictionary:rawCardContentDictImported]);
     
-    VSSRawSignedModel *newRawCard1 = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot1];
-    XCTAssert(newRawCard1 != nil);
-    for (VSSRawSignature* signature in rawCard1.signatures) {
-        [newRawCard1 addSignature:signature error:&error];
-        XCTAssert(error == nil);
-    }
-    
-    NSString *exportedRawCardString = [rawCard1 base64EncodedStringAndReturnError:&error];
+    NSError *error;
+    NSDictionary *exportedRawCard1 = [rawCard1 exportAsJsonAndReturnError:&error];
     XCTAssert(error == nil);
+    XCTAssert([exportedRawCard1 isEqualToDictionary:rawCardDict]);
     
-    VSSRawSignedModel *newImportedRawCard1 = [VSSRawSignedModel importFromBase64Encoded: exportedRawCardString];
-    XCTAssert(newImportedRawCard1 != nil);
-    
-    VSSRawCardContent *newCardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:newImportedRawCard1.contentSnapshot];
-    XCTAssert(newCardContent1 != nil);
-    
-    XCTAssert([self.utils isRawCardContentEqualWithContent:newCardContent1 and:cardContent1]);
-    XCTAssert(newImportedRawCard1.signatures.count == 3);
-    
-    XCTAssert([self.utils isRawSignaturesEqualWithSignatures:rawCard1.signatures and:newImportedRawCard1.signatures]);
-    
-    NSDictionary *exportedRawCardJson = [newRawCard1 exportAsJsonAndReturnError:&error];
+    NSString *exportedRawCard1String = [rawCard1 base64EncodedStringAndReturnError:&error];
     XCTAssert(error == nil);
-    
-    VSSRawSignedModel *newImportedRawCard2 = [VSSRawSignedModel importFromBase64Encoded: exportedRawCardString];
-    XCTAssert(newImportedRawCard2 != nil);
-    
-    VSSRawCardContent *newCardContent2 = [[VSSRawCardContent alloc] initWithSnapshot:newImportedRawCard2.contentSnapshot];
-    XCTAssert(newCardContent2 != nil);
-    
-    XCTAssert([self.utils isRawCardContentEqualWithContent:newCardContent2 and:cardContent2]);
-    XCTAssert(newImportedRawCard2.signatures.count == 3);
-    
-    XCTAssert([self.utils isRawSignaturesEqualWithSignatures:rawCard1.signatures and:newImportedRawCard2.signatures]);
-    
-    XCTAssert(exportedRawCardJson[@"previous_card_id"] == nil);
+    NSDictionary *exportedRawCard1Dict = [NSJSONSerialization JSONObjectWithData:[[NSData alloc] initWithBase64EncodedString:exportedRawCard1String options:0] options:0 error:nil];
+    XCTAssert([exportedRawCard1Dict isEqualToDictionary:rawCardDict]);
 }
 
 -(void)test003_STC_3 {
@@ -236,18 +180,11 @@
     VSSCard *card1 = [cardManager importCardWithString:rawCardString error:&error];
     XCTAssert(card1 != nil && error == nil);
     
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    [comps setDay:11];
-    [comps setMonth:1];
-    [comps setYear:2018];
-    [comps setHour:17];
-    [comps setMinute:57];
-    [comps setSecond:25];
-    NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:1515686245];
     
     XCTAssert([card1.identifier isEqualToString:self.testData[@"STC-3.card_id"]]);
     XCTAssert([card1.identity isEqualToString:@"test"]);
-    XCTAssert( card1.publicKey != nil);
+    XCTAssert(card1.publicKey != nil);
     XCTAssert([[[self.crypto exportPublicKey:(VSMVirgilPublicKey *)card1.publicKey] base64EncodedStringWithOptions:0] isEqualToString:self.testData[@"STC-3.public_key_base64"]]);
     XCTAssert([card1.version isEqualToString:@"5.0"]);
     XCTAssert(card1.previousCard == nil);
@@ -269,17 +206,13 @@
     NSString *exportedCardString = [cardManager exportAsBase64StringWithCard:card1 error:&error];
     XCTAssert(error == nil);
     
-    VSSCard *newImportedCard1 = [cardManager importCardWithString:exportedCardString error:&error];
-    XCTAssert(newImportedCard1 != nil);
-
-    XCTAssert([self.utils isCardsEqualWithCard:card1 and:newImportedCard1]);
-    
-    NSDictionary *exportedCardJson = [cardManager exportAsJsonWithCard:card2 error:&error];
+    NSDictionary *exportedStringDict = [NSJSONSerialization JSONObjectWithData:[[NSData alloc] initWithBase64EncodedString:exportedCardString options:0] options:0 error:&error];
     XCTAssert(error == nil);
+    XCTAssert([exportedStringDict isEqualToDictionary:dic]);
     
-    VSSCard *newImportedCard2 = [cardManager importCardWithJson:exportedCardJson error:&error];
-    XCTAssert(newImportedCard2 != nil);
-    XCTAssert([self.utils isCardsEqualWithCard:card2 and:newImportedCard2]);
+    NSDictionary *exportedJsonDict = [cardManager exportAsJsonWithCard:card2 error:&error];
+    XCTAssert(error == nil);
+    XCTAssert([exportedJsonDict isEqualToDictionary:dic]);
 }
 
 -(void)test004_STC_4 {
@@ -299,14 +232,7 @@
     VSSCard *card1 = [cardManager importCardWithString:rawCardString error:&error];
     XCTAssert(card1 != nil);
     
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    [comps setDay:11];
-    [comps setMonth:1];
-    [comps setYear:2018];
-    [comps setHour:17];         //???
-    [comps setMinute:57];
-    [comps setSecond:25];
-    NSDate *date = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:1515686245];
     
     XCTAssert([card1.identifier isEqualToString:self.testData[@"STC-4.card_id"]]);
     XCTAssert([card1.identity isEqualToString:@"test"]);
@@ -320,13 +246,16 @@
     for (VSSCardSignature* signature in card1.signatures) {
         if ([signature.signer isEqualToString:@"self"]) {
             XCTAssert([[signature.signature base64EncodedStringWithOptions:0] isEqualToString:self.testData[@"STC-4.signature_self_base64"]]);
-            XCTAssert(signature.snapshot == [[NSData alloc] init]);
+            XCTAssert(signature.snapshot == nil);
         } else if ([signature.signer isEqualToString:@"virgil"]) {
             XCTAssert([[signature.signature base64EncodedStringWithOptions:0] isEqualToString:self.testData[@"STC-4.signature_virgil_base64"]]);
-            XCTAssert(signature.snapshot == [[NSData alloc] init]);
+            XCTAssert(signature.snapshot == nil);
         } else if ([signature.signer isEqualToString:@"extra"]) {
             XCTAssert([[signature.signature base64EncodedStringWithOptions:0] isEqualToString:self.testData[@"STC-4.signature_extra_base64"]]);
-            XCTAssert(signature.snapshot == [[NSData alloc] init]);
+            XCTAssert(signature.snapshot == nil);
+        }
+        else {
+            XCTFail();
         }
     }
     
@@ -341,22 +270,16 @@
     XCTAssert([self.utils isCardsEqualWithCard:card1 and:card2]);
     XCTAssert([self.utils isCardSignaturesEqualWithSignatures:card1.signatures and:card2.signatures]);
     
-    
     NSString *exportedCardString = [cardManager exportAsBase64StringWithCard:card1 error:&error];
     XCTAssert(error == nil);
     
-    VSSCard *newImportedCard1 = [cardManager importCardWithString:exportedCardString error:&error];
-    XCTAssert(newImportedCard1 != nil);
-    XCTAssert([self.utils isCardsEqualWithCard:card1 and:newImportedCard1]);
-    XCTAssert([self.utils isCardSignaturesEqualWithSignatures:card1.signatures and:newImportedCard1.signatures]);
-    
-    NSDictionary *exportedCardJson = [cardManager exportAsJsonWithCard:card2 error:&error];
+    NSDictionary *exportedStringDict = [NSJSONSerialization JSONObjectWithData:[[NSData alloc] initWithBase64EncodedString:exportedCardString options:0] options:0 error:&error];
     XCTAssert(error == nil);
+    XCTAssert([exportedStringDict isEqualToDictionary:dic]);
     
-    VSSCard *newImportedCard2 = [cardManager importCardWithJson:exportedCardJson error:&error];
-    XCTAssert(newImportedCard2 != nil);
-    XCTAssert([self.utils isCardsEqualWithCard:card2 and:newImportedCard2]);
-    XCTAssert([self.utils isCardSignaturesEqualWithSignatures:card1.signatures and:newImportedCard2.signatures]);
+    NSDictionary *exportedJsonDict = [cardManager exportAsJsonWithCard:card2 error:&error];
+    XCTAssert(error == nil);
+    XCTAssert([exportedJsonDict isEqualToDictionary:dic]);
 }
 
 -(void)test005_STC_22 {
@@ -374,7 +297,7 @@
     XCTAssert([jwt.headerContent.algorithm isEqualToString:@"VEDS512"]);
     XCTAssert([jwt.headerContent.contentType isEqualToString:@"virgil-jwt;v=1"]);
     XCTAssert([jwt.headerContent.type isEqualToString:@"JWT"]);
-    XCTAssert([jwt.headerContent.keyIdentifier isEqualToString:@"8e62643674d100b8a52648475c23b8bb86a1f119e89970cc63cdccc0920df2ea2d8cb7d6b54c4a9e284b2ccf5acb22ea37efefcb6e4274c4b04ed725e4454ca1"]);
+    XCTAssert([jwt.headerContent.keyIdentifier isEqualToString:self.testData[@"STC-22.api_key_id"]]);
     
     XCTAssert([jwt.bodyContent.identity isEqualToString:@"some_identity"]);
     XCTAssert([jwt.bodyContent.appId isEqualToString:@"13497c3c795e3a6c32643b0a76957b70d2332080762469cdbec89d6390e6dbd7"]);
@@ -384,8 +307,9 @@
     
     XCTAssert([jwt.stringRepresentation isEqualToString:self.testData[@"STC-22.jwt"]]);
     
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setValue:@"some_username" forKey:@"username"];
+    NSDictionary *dic = @{
+                          @"username":@"some_username"
+                          };
     XCTAssert([jwt.bodyContent.additionalData isEqualToDictionary:dic]);
     
     XCTAssert([verifier verifyWithToken:jwt]);
@@ -394,7 +318,6 @@
 -(void)test006_STC_23 {
     NSError *error;
     
-    self.continueAfterFailure = NO;
     VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:self.crypto];
     NSData *publicKeyBase64 = [[NSData alloc] initWithBase64EncodedString:self.testData[@"STC-23.api_public_key_base64"] options:0];
     VSMVirgilPublicKey *publicKey = [self.crypto importPublicKeyFrom:publicKeyBase64 error:&error];
@@ -410,23 +333,21 @@
     VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey apiPublicKeyIdentifier:self.testData[@"STC-23.api_key_id"] accessTokenSigner:signer appId:self.testData[@"STC-23.app_id"] ttl:1000];
     
     NSString *identity = @"some_identity";
-    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setValue:@"some_username" forKey:@"username"];
+    NSDictionary *dic = @{
+                          @"username": @"some_username"
+                          };
     VSSJwt *jwt = [generator generateTokenWithIdentity:identity additionalData:dic error:&error];
     XCTAssert(error == nil);
     XCTAssert(jwt != nil);
     
-    VSSJwt *jwt22 = [[VSSJwt alloc] initWithStringRepresentation:self.testData[@"STC-22.jwt"]];
-    XCTAssert(jwt22 != nil);
-    
     XCTAssert([jwt.headerContent.algorithm isEqualToString:@"VEDS512"]);
     XCTAssert([jwt.headerContent.contentType isEqualToString:@"virgil-jwt;v=1"]);
     XCTAssert([jwt.headerContent.type isEqualToString:@"JWT"]);
-    XCTAssert([jwt.headerContent.keyIdentifier isEqualToString:jwt22.headerContent.keyIdentifier]);
+    XCTAssert([jwt.headerContent.keyIdentifier isEqualToString:self.testData[@"STC-23.api_key_id"]]);
     
-    XCTAssert([jwt.bodyContent.identity isEqualToString:jwt22.bodyContent.identity]);
-    XCTAssert([jwt.bodyContent.appId isEqualToString:jwt22.bodyContent.appId]);
-    XCTAssert(jwt.isExpired == false);
+    XCTAssert([jwt.bodyContent.identity isEqualToString:identity]);
+    XCTAssert([jwt.bodyContent.appId isEqualToString:self.testData[@"STC-23.app_id"]]);
+    XCTAssert(!jwt.isExpired);
     
     XCTAssert([jwt.bodyContent.additionalData isEqualToDictionary:dic]);
     

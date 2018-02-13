@@ -56,22 +56,19 @@ import VirgilCryptoAPI
 
         var cardSignatures: [CardSignature] = []
         for rawSignature in rawSignedModel.signatures {
-            var extraFields: [String: String]? = nil
-            var snapshot: String? = nil
-            if let rawSnapshot = rawSignature.snapshot {
-                snapshot = rawSnapshot
-                if let additionalData = Data(base64Encoded: rawSnapshot),
-                   let json = try? JSONSerialization.jsonObject(with: additionalData, options: []),
+            let extraFields: [String: String]?
+            
+            if let rawSnapshot = rawSignature.snapshot,
+                let json = try? JSONSerialization.jsonObject(with: rawSnapshot, options: []),
                    let result = json as? [String: String] {
                     extraFields = result
                 }
+            else {
+                extraFields = nil
             }
-            guard let signature = Data(base64Encoded: rawSignature.signature) else {
-                return nil
-            }
-
-            let cardSignature = CardSignature(signer: rawSignature.signer, signature: signature,
-                                              snapshot: Data(base64Encoded: snapshot ?? ""), extraFields: extraFields)
+            
+            let cardSignature = CardSignature(signer: rawSignature.signer, signature: rawSignature.signature,
+                                              snapshot: rawSignature.snapshot, extraFields: extraFields)
 
             cardSignatures.append(cardSignature)
         }
@@ -87,8 +84,8 @@ import VirgilCryptoAPI
 
         for cardSignature in self.signatures {
             let signature = RawSignature(signer: cardSignature.signer,
-                                         signature: cardSignature.signature.base64EncodedString(),
-                                         snapshot: cardSignature.snapshot.base64EncodedString())
+                                         signature: cardSignature.signature,
+                                         snapshot: cardSignature.snapshot)
             
             try rawCard.addSignature(signature)
         }
