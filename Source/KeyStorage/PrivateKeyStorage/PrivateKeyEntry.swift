@@ -1,5 +1,5 @@
 //
-//  ImportedKeyEntry.swift
+//  PrivateKeyEntry.swift
 //  VirgilSDK
 //
 //  Created by Eugen Pivovarov on 2/13/18.

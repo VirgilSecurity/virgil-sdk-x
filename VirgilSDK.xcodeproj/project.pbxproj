@@ -130,17 +130,14 @@
 		16C59E4D2021DA0D004820AA /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
 		16C59E4E2021DA0E004820AA /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
 		16C59E4F2021DA0E004820AA /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
-		16E006552025F9D200D2C638 /* test_data.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16E006542025F9D100D2C638 /* test_data.txt */; };
-		16E006562025F9D200D2C638 /* test_data.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16E006542025F9D100D2C638 /* test_data.txt */; };
-		16E006572025F9D200D2C638 /* test_data.txt in Resources */ = {isa = PBXBuildFile; fileRef = 16E006542025F9D100D2C638 /* test_data.txt */; };
 		16E7F5AE20331FFA009A9025 /* PrivateKeyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E7F5AC20331FFA009A9025 /* PrivateKeyStorage.swift */; };
 		16E7F5B120332002009A9025 /* PrivateKeyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E7F5AC20331FFA009A9025 /* PrivateKeyStorage.swift */; };
 		16E7F5B220332002009A9025 /* PrivateKeyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E7F5AC20331FFA009A9025 /* PrivateKeyStorage.swift */; };
 		16E7F5B320332002009A9025 /* PrivateKeyStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E7F5AC20331FFA009A9025 /* PrivateKeyStorage.swift */; };
-		16E7F5B620332511009A9025 /* ImportedKeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E7F5B520332511009A9025 /* ImportedKeyEntry.swift */; };
-		16E7F5B720332511009A9025 /* ImportedKeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E7F5B520332511009A9025 /* ImportedKeyEntry.swift */; };
-		16E7F5B820332511009A9025 /* ImportedKeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E7F5B520332511009A9025 /* ImportedKeyEntry.swift */; };
-		16E7F5B920332511009A9025 /* ImportedKeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E7F5B520332511009A9025 /* ImportedKeyEntry.swift */; };
+		16E7F5B620332511009A9025 /* PrivateKeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E7F5B520332511009A9025 /* PrivateKeyEntry.swift */; };
+		16E7F5B720332511009A9025 /* PrivateKeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E7F5B520332511009A9025 /* PrivateKeyEntry.swift */; };
+		16E7F5B820332511009A9025 /* PrivateKeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E7F5B520332511009A9025 /* PrivateKeyEntry.swift */; };
+		16E7F5B920332511009A9025 /* PrivateKeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E7F5B520332511009A9025 /* PrivateKeyEntry.swift */; };
 		16EC38C42030F5C000E4027A /* VSS001_CardClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */; };
 		16EC38E12031A64400E4027A /* VSS004_CrossCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */; };
 		16EC38E22031AB1000E4027A /* VSS004_CrossCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */; };
@@ -701,10 +698,9 @@
 		16B3FD88200CDBC9008F0357 /* JwtGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtGenerator.swift; sourceTree = "<group>"; };
 		16B3FD8D200CE469008F0357 /* GeneratorJwtProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorJwtProvider.swift; sourceTree = "<group>"; };
 		16B3FD92200CE74C008F0357 /* JwtVerifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtVerifier.swift; sourceTree = "<group>"; };
-		16E006542025F9D100D2C638 /* test_data.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test_data.txt; sourceTree = "<group>"; };
 		16E6C9352021FB1200286FAB /* VSS005_CardManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS005_CardManagerTests.m; sourceTree = "<group>"; };
 		16E7F5AC20331FFA009A9025 /* PrivateKeyStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeyStorage.swift; sourceTree = "<group>"; };
-		16E7F5B520332511009A9025 /* ImportedKeyEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportedKeyEntry.swift; sourceTree = "<group>"; };
+		16E7F5B520332511009A9025 /* PrivateKeyEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeyEntry.swift; sourceTree = "<group>"; };
 		16F3D47B2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSS009_ExtraCardManagerTests.swift; sourceTree = "<group>"; };
 		420FE61F1E4CB1E1005A32D4 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = Carthage/Build/iOS/VirgilCrypto.framework; sourceTree = "<group>"; };
 		422499BA1EB39B380032F556 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -957,7 +953,7 @@
 			isa = PBXGroup;
 			children = (
 				16E7F5AC20331FFA009A9025 /* PrivateKeyStorage.swift */,
-				16E7F5B520332511009A9025 /* ImportedKeyEntry.swift */,
+				16E7F5B520332511009A9025 /* PrivateKeyEntry.swift */,
 			);
 			path = PrivateKeyStorage;
 			sourceTree = "<group>";
@@ -1921,7 +1917,7 @@
 				4284C4211F6C03F400B75491 /* Data+hex.swift in Sources */,
 				4263A2011EBC805100B13FF1 /* VSSKeyStorage.m in Sources */,
 				1624B8392012151B007D223C /* CallbackOperation.swift in Sources */,
-				16E7F5B720332511009A9025 /* ImportedKeyEntry.swift in Sources */,
+				16E7F5B720332511009A9025 /* PrivateKeyEntry.swift in Sources */,
 				4284C36E1F6BE54800B75491 /* RawSignedModel.swift in Sources */,
 				16B3FD50200503B8008F0357 /* JWT.swift in Sources */,
 				1624B82E2010AE75007D223C /* AsyncOperation.swift in Sources */,
@@ -2027,7 +2023,7 @@
 				16B3FD7C200CBB6C008F0357 /* CallbackJwtProvider.swift in Sources */,
 				16B3FD652007952E008F0357 /* ModelSigner.swift in Sources */,
 				4284C4221F6C03F500B75491 /* Data+hex.swift in Sources */,
-				16E7F5B820332511009A9025 /* ImportedKeyEntry.swift in Sources */,
+				16E7F5B820332511009A9025 /* PrivateKeyEntry.swift in Sources */,
 				1624B82F2010AE75007D223C /* AsyncOperation.swift in Sources */,
 				42DA83B320321F980091D223 /* CardManagerParams.swift in Sources */,
 				16AE0B322020DA95005B311B /* VSSKeyStorage.m in Sources */,
@@ -2082,7 +2078,7 @@
 				16B3FD7D200CBB6C008F0357 /* CallbackJwtProvider.swift in Sources */,
 				16B3FD662007952E008F0357 /* ModelSigner.swift in Sources */,
 				4284C4231F6C03F600B75491 /* Data+hex.swift in Sources */,
-				16E7F5B920332511009A9025 /* ImportedKeyEntry.swift in Sources */,
+				16E7F5B920332511009A9025 /* PrivateKeyEntry.swift in Sources */,
 				1624B8302010AE75007D223C /* AsyncOperation.swift in Sources */,
 				42DA83B420321F980091D223 /* CardManagerParams.swift in Sources */,
 				16AE0B332020DA96005B311B /* VSSKeyStorage.m in Sources */,
@@ -2170,7 +2166,7 @@
 				4284C4AE1F716C6500B75491 /* ServiceRequest.swift in Sources */,
 				16B3FD632007952E008F0357 /* ModelSigner.swift in Sources */,
 				42DA83C0203262950091D223 /* CardManager+Export.swift in Sources */,
-				16E7F5B620332511009A9025 /* ImportedKeyEntry.swift in Sources */,
+				16E7F5B620332511009A9025 /* PrivateKeyEntry.swift in Sources */,
 				42DA83B6203227400091D223 /* GetCardResponse.swift in Sources */,
 				42DA83A920321F980091D223 /* SignModelOperationFabric.swift in Sources */,
 				16E7F5B220332002009A9025 /* PrivateKeyStorage.swift in Sources */,
