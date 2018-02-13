@@ -40,10 +40,10 @@ import VirgilCryptoAPI
         try self.keyStorage.store(keyEntry)
     }
 
-    /// Loads `ImportedKeyEntry` with imported Private Key and meta
+    /// Loads `PrivateKeyEntry` with imported Private Key and meta
     ///
     /// - Parameter name: stored entry name
-    /// - Returns: `ImportedKeyEntry` with imported Private Key and meta
+    /// - Returns: `PrivateKeyEntry` with imported Private Key and meta
     /// - Throws: NSError if needed
     @objc public func load(withName name: String) throws -> PrivateKeyEntry {
         let keyEntry = try self.keyStorage.loadKeyEntry(withName: name)
