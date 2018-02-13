@@ -543,13 +543,6 @@
 			remoteGlobalIDString = 42B129EA201FD2790082F9BC;
 			remoteInfo = "VirgilCryptoApiImpl iOS";
 		};
-		4244F76F2033050E0053EE4B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4244F75C203305080053EE4B;
-			remoteInfo = "TestApp iOS";
-		};
 		4244F77B2033055D0053EE4B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
@@ -1494,7 +1487,6 @@
 				4227273120210B6000265E25 /* PBXTargetDependency */,
 				4227273320210B6000265E25 /* PBXTargetDependency */,
 				42B7E3621DB8F72200D70C12 /* PBXTargetDependency */,
-				4244F7702033050E0053EE4B /* PBXTargetDependency */,
 			);
 			name = "VirgilSDK iOS Tests";
 			productName = VirgilSDKSwiftTests;
@@ -1576,7 +1568,6 @@
 						CreatedOnToolsVersion = 8.0;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 4244F75C203305080053EE4B;
 					};
 					42EB30E31DB8EC17001DF4C0 = {
 						CreatedOnToolsVersion = 8.0;
@@ -2218,11 +2209,6 @@
 			isa = PBXTargetDependency;
 			name = "VirgilCryptoApiImpl iOS";
 			targetProxy = 4227273220210B6000265E25 /* PBXContainerItemProxy */;
-		};
-		4244F7702033050E0053EE4B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4244F75C203305080053EE4B /* TestApp iOS */;
-			targetProxy = 4244F76F2033050E0053EE4B /* PBXContainerItemProxy */;
 		};
 		4244F77C2033055D0053EE4B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3006,7 +2992,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = Tests/BridgingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestApp iOS.app/TestApp iOS";
 			};
 			name = Debug;
 		};
@@ -3041,7 +3026,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = Tests/BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TestApp iOS.app/TestApp iOS";
 			};
 			name = Release;
 		};
