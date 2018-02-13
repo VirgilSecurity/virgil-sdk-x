@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import VirgilCryptoAPI
 
 //objc compatable Queries
 public extension CardManager {
