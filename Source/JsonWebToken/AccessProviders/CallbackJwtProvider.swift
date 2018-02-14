@@ -11,7 +11,7 @@ import Foundation
 @objc(VSSCallbackJwtProvider) public class CallbackJwtProvider: NSObject, AccessTokenProvider {
     @objc public let getTokenCallback: (TokenContext, (String?, Error?) -> ()) -> ()
 
-    @objc public enum CallbackProviderError: Int, Error {
+    @objc(VSSCallbackProviderError) public enum CallbackProviderError: Int, Error {
         case callbackReturnedCorruptedJwt = 1
     }
 

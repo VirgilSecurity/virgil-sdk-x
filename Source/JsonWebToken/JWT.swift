@@ -20,7 +20,7 @@ import Foundation
     /// Declares error types and codes
     ///
     /// - tokenCorrupted: token is corrupted and cannot be used
-    @objc public enum JwtError: Int, Error {
+    @objc(VSSJwtError) public enum JwtError: Int, Error {
         case tokenCorrupted = 1
     }
 

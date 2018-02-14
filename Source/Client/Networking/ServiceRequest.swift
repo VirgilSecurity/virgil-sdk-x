@@ -9,7 +9,7 @@
 import Foundation
 
 open class ServiceRequest: Request {
-    @objc(ServiceRequestError) public enum ServiceRequestError: Int, Error {
+    @objc(VSSServiceRequestError) public enum ServiceRequestError: Int, Error {
         case invalidGetRequestParameters = 1
         case urlComponentsConvertingFailed = 2
         case getQueryWithDecodableIsNotSupported = 3

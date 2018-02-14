@@ -16,7 +16,7 @@ import VirgilCryptoAPI
     @objc public let appId: String
     @objc public let ttl: TimeInterval
 
-    @objc public enum JwtGeneratorError: Int, Error {
+    @objc(VSSJwtGeneratorError) public enum JwtGeneratorError: Int, Error {
         case generationFailed = 1
     }
 
