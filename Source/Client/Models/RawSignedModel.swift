@@ -44,7 +44,7 @@ import Foundation
     /// - Throws: Error
     @objc public static func `import`(fromJson json: Any) throws -> RawSignedModel {
         let data = try JSONSerialization.data(withJSONObject: json, options: [])
-        
+
         return try JSONDecoder().decode(RawSignedModel.self, from: data)
     }
 
@@ -55,7 +55,7 @@ import Foundation
         guard let data = Data(base64Encoded: base64EncodedString) else {
             throw RawSignedModelError.invalidBase64String
         }
-        
+
         return try JSONDecoder().decode(RawSignedModel.self, from: data)
     }
 
@@ -73,7 +73,7 @@ import Foundation
     /// - Throws: corresponding error if encoding fails
     @objc public func exportAsJson() throws -> Any {
         let data = try JSONEncoder().encode(self)
-        
+
         return try JSONSerialization.jsonObject(with: data, options: [])
     }
 
@@ -85,7 +85,7 @@ import Foundation
         guard self.signatures.first(where: { $0.signer == signature.signer }) == nil else {
             throw RawSignedModelError.duplicateSignature
         }
-        
+
         self.signatures.append(signature)
     }
 }

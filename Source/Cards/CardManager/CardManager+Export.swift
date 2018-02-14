@@ -17,7 +17,7 @@ public extension CardManager {
         guard self.cardVerifier.verifyCard(card: card) else {
             throw CardManagerError.cardIsNotVerified
         }
-        
+
         return card
     }
 
@@ -34,7 +34,7 @@ public extension CardManager {
 
     @objc func importCard(fromRawCard rawCard: RawSignedModel) throws -> Card {
         let card = try self.parseCard(from: rawCard)
-        
+
         guard self.cardVerifier.verifyCard(card: card) else {
             throw CardManagerError.cardIsNotVerified
         }

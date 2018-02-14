@@ -112,7 +112,7 @@ extension CardManager {
                 var cards: [Card] = []
                 for rawSignedModel in rawSignedModels {
                     let card = try self.parseCard(from: rawSignedModel)
-                    
+
                     cards.append(card)
                 }
 

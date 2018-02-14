@@ -22,10 +22,9 @@ import VirgilCryptoAPI
     @objc public let contentSnapshot: Data
 
     internal init(identifier: String, identity: String, publicKey: PublicKey,
-                 isOutdated: Bool = false, version: String, createdAt: Date,
-                 signatures: [CardSignature], previousCardId: String? = nil,
-                 previousCard: Card? = nil, contentSnapshot: Data) {
-
+                  isOutdated: Bool = false, version: String, createdAt: Date,
+                  signatures: [CardSignature], previousCardId: String? = nil,
+                  previousCard: Card? = nil, contentSnapshot: Data) {
         self.identifier = identifier
         self.identity = identity
         self.publicKey = publicKey
