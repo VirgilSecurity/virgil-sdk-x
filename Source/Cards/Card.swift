@@ -33,11 +33,10 @@ import VirgilCryptoAPI
     /// Snapshot of corresponding `RawCardContent`
     @objc public let contentSnapshot: Data
 
-    private init(identifier: String, identity: String, publicKey: PublicKey,
-                 isOutdated: Bool = false, version: String, createdAt: Date,
-                 signatures: [CardSignature], previousCardId: String? = nil,
-                 previousCard: Card? = nil, contentSnapshot: Data) {
-
+    internal init(identifier: String, identity: String, publicKey: PublicKey,
+                  isOutdated: Bool = false, version: String, createdAt: Date,
+                  signatures: [CardSignature], previousCardId: String? = nil,
+                  previousCard: Card? = nil, contentSnapshot: Data) {
         self.identifier = identifier
         self.identity = identity
         self.publicKey = publicKey

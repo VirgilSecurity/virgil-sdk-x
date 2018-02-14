@@ -55,9 +55,7 @@ extension CardManager {
 
                 let responseModel = try self.cardClient.getCard(withId: cardId, token: token.stringRepresentation())
 
-                guard let card = Card.parse(cardCrypto: self.cardCrypto, rawSignedModel: responseModel.rawCard) else {
-                    throw CardManagerError.cardIsCorrupted
-                }
+                let card = try self.parseCard(from: responseModel.rawCard)
                 card.isOutdated = responseModel.isOutdated
 
                 guard card.identifier == cardId else {
@@ -83,15 +81,15 @@ extension CardManager {
                 let responseModel = try self.cardClient.publishCard(model: rawCard, token: token.stringRepresentation())
 
                 guard responseModel.contentSnapshot == rawCard.contentSnapshot,
-                    let selfSignature = rawCard.signatures.first(where: { $0.signer == ModelSigner.selfSignerIdentifier }),
-                    let responseSelfSignature = responseModel.signatures.first(where: { $0.signer == ModelSigner.selfSignerIdentifier }),
+                    let selfSignature = rawCard.signatures
+                        .first(where: { $0.signer == ModelSigner.selfSignerIdentifier }),
+                    let responseSelfSignature = responseModel.signatures
+                        .first(where: { $0.signer == ModelSigner.selfSignerIdentifier }),
                     selfSignature.snapshot == responseSelfSignature.snapshot else {
                     throw CardManagerError.gotWrongCard
                 }
 
-                guard let card = Card.parse(cardCrypto: self.cardCrypto, rawSignedModel: responseModel) else {
-                    throw CardManagerError.cardIsCorrupted
-                }
+                let card = try self.parseCard(from: responseModel)
 
                 completion(card, nil)
             }
@@ -108,13 +106,13 @@ extension CardManager {
             do {
                 let token: AccessToken = try operation.findDependencyResult()
 
-                let rawSignedModels = try self.cardClient.searchCards(identity: identity, token: token.stringRepresentation())
+                let rawSignedModels = try self.cardClient.searchCards(identity: identity,
+                                                                      token: token.stringRepresentation())
 
                 var cards: [Card] = []
                 for rawSignedModel in rawSignedModels {
-                    guard let card = Card.parse(cardCrypto: self.cardCrypto, rawSignedModel: rawSignedModel) else {
-                        throw CardManagerError.cardIsCorrupted
-                    }
+                    let card = try self.parseCard(from: rawSignedModel)
+
                     cards.append(card)
                 }
 

@@ -21,7 +21,7 @@ import VirgilCryptoAPI
     /// ModelSigner instance used for self signing Cards
     @objc public var modelSigner: ModelSigner
     /// CardClient instance used for performing queries
-    @objc public var cardClient: CardClient
+    @objc public var cardClient: CardClientProtocol
     /// Callback used for custom signing RawSignedModel, which takes RawSignedModel
     /// to sign and competion handler, called with signed RawSignedModel or provided error
     @objc public var signCallback: ((RawSignedModel, @escaping (RawSignedModel?, Error?) -> Void) -> Void)?

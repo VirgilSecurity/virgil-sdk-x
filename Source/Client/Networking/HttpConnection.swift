@@ -1,5 +1,5 @@
 //
-//  ServiceConnection.swift
+//  HttpConnection.swift
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 9/14/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc(VSSServiceConnection) public class ServiceConnection: NSObject, HTTPConnection {
+open class HttpConnection: HttpConnectionProtocol {
     private let queue: OperationQueue
     private let session: URLSession
 
@@ -17,17 +17,15 @@ import Foundation
         case wrongResponseType = 2
     }
 
-    public override init() {
+    public init() {
         self.queue = OperationQueue()
         self.queue.maxConcurrentOperationCount = 10
 
         let config = URLSessionConfiguration.ephemeral
         self.session = URLSession(configuration: config, delegate: nil, delegateQueue: self.queue)
-
-        super.init()
     }
 
-    public func send(_ request: HTTPRequest) throws -> HTTPResponse {
+    public func send(_ request: Request) throws -> Response {
         let nativeRequest = request.getNativeRequest()
 
         guard let url = nativeRequest.url else {
@@ -80,7 +78,7 @@ import Foundation
             Log.debug("\(className): response body: \(str)")
         }
 
-        return ServiceResponse(statusCode: response.statusCode, response: response, body: dataT)
+        return Response(statusCode: response.statusCode, response: response, body: dataT)
     }
 
     deinit {

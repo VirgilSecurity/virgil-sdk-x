@@ -1,5 +1,5 @@
 //
-//  ServiceResponse.swift
+//  Response.swift
 //  VirgilSDK
 //
 //  Created by Oleksandr Deundiak on 9/19/17.
@@ -8,16 +8,14 @@
 
 import Foundation
 
-@objc(VSSServiceResponse) public class ServiceResponse: NSObject {
+open class Response: NSObject {
     public let statusCode: Int
     public let response: HTTPURLResponse
     public let body: Data?
 
-    @objc public init(statusCode: Int, response: HTTPURLResponse, body: Data?) {
+    public init(statusCode: Int, response: HTTPURLResponse, body: Data?) {
         self.statusCode = statusCode
         self.response = response
         self.body = body
     }
 }
-
-extension ServiceResponse: HTTPResponse { }

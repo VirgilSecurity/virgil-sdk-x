@@ -10,20 +10,20 @@ import Foundation
 
 /// Import export cards
 public extension CardManager {
+
     /// Imports and verifies Card from base64 encoded string
     ///
     /// - Parameter string: base64 encoded string with Card
     /// - Returns: imported and verified Card
     /// - Throws: corresponding CardManagerError
-    @objc func importCard(base64Encoded string: String) throws -> Card {
-        guard let rawCard = RawSignedModel.importFrom(base64Encoded: string),
-            let card = Card.parse(cardCrypto: self.cardCrypto, rawSignedModel: rawCard) else {
-                throw CardManagerError.cardIsCorrupted
-        }
+    @objc func importCard(fromBase64EncodedString base64EncodedString: String) throws -> Card {
+        let rawCard = try RawSignedModel.import(fromBase64Encoded: base64EncodedString)
+        let card = try self.parseCard(from: rawCard)
 
         guard self.cardVerifier.verifyCard(card: card) else {
             throw CardManagerError.cardIsNotVerified
         }
+
         return card
     }
 
@@ -32,11 +32,9 @@ public extension CardManager {
     /// - Parameter json: json Dictionary
     /// - Returns: imported and verified Card
     /// - Throws: corresponding CardManagerError
-    @objc func importCard(json: Any) throws -> Card {
-        guard let rawCard = RawSignedModel.importFrom(json: json),
-            let card = Card.parse(cardCrypto: self.cardCrypto, rawSignedModel: rawCard) else {
-                throw CardManagerError.cardIsCorrupted
-        }
+    @objc func importCard(fromJson json: Any) throws -> Card {
+        let rawCard = try RawSignedModel.import(fromJson: json)
+        let card = try self.parseCard(from: rawCard)
 
         guard self.cardVerifier.verifyCard(card: card) else {
             throw CardManagerError.cardIsNotVerified
@@ -50,10 +48,9 @@ public extension CardManager {
     /// - Parameter rawCard: RawSignedModel
     /// - Returns: imported and verified Card
     /// - Throws: corresponding CardManagerError
-    @objc func importCard(from rawCard: RawSignedModel) throws -> Card {
-        guard let card = Card.parse(cardCrypto: self.cardCrypto, rawSignedModel: rawCard) else {
-            throw CardManagerError.cardIsCorrupted
-        }
+    @objc func importCard(fromRawCard rawCard: RawSignedModel) throws -> Card {
+        let card = try self.parseCard(from: rawCard)
+
         guard self.cardVerifier.verifyCard(card: card) else {
             throw CardManagerError.cardIsNotVerified
         }
@@ -66,8 +63,8 @@ public extension CardManager {
     /// - Parameter card: Card to be exported
     /// - Returns: base64 encoded string with Card
     /// - Throws: corresponding Error
-    @objc func exportAsBase64String(card: Card) throws -> String {
-        return try card.getRawCard().base64EncodedString()
+    @objc func exportCardAsBase64EncodedString(card: Card) throws -> String {
+        return try card.getRawCard().exportAsBase64EncodedString()
     }
 
     /// Exports Card as json Dictionary
@@ -75,7 +72,7 @@ public extension CardManager {
     /// - Parameter card: Card to be exported
     /// - Returns: json Dictionary with Card
     /// - Throws: corresponding Error
-    @objc func exportAsJson(card: Card) throws -> Any {
+    @objc func exportCardAsJson(card: Card) throws -> Any {
         return try card.getRawCard().exportAsJson()
     }
 
@@ -84,7 +81,7 @@ public extension CardManager {
     /// - Parameter card: Card to be exported
     /// - Returns: RawSignedModel representing Card
     /// - Throws: corresponding Error
-    @objc func exportAsRawCard(card: Card) throws -> RawSignedModel {
+    @objc func exportCardAsRawCard(card: Card) throws -> RawSignedModel {
         return try card.getRawCard()
     }
 }

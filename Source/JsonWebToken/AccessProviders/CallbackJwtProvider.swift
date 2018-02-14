@@ -17,7 +17,7 @@ import Foundation
     /// Declares error types and codes
     ///
     /// - callbackReturnedCorruptedJwt: importing `Jwt` instance from provided by callback string failed
-    @objc public enum CallbackProviderError: Int, Error {
+    @objc(VSSCallbackProviderError) public enum CallbackProviderError: Int, Error {
         case callbackReturnedCorruptedJwt = 1
     }
 

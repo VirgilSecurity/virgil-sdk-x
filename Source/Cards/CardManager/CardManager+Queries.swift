@@ -59,7 +59,7 @@ public extension CardManager {
         let aggregateOperation = CallbackOperation<Card> { _, completion in
             let tokenContext = TokenContext(operation: "publish", forceReload: false)
             let getTokenOperation = self.makeGetTokenOperation(tokenContext: tokenContext)
-            let generateRawCardOperation = CallbackOperation<RawSignedModel> { operation, completion in
+            let generateRawCardOperation = CallbackOperation<RawSignedModel> { _, completion in
                 completion(rawCard, nil)
             }
             let publishCardOperation = self.makePublishCardOperation()
@@ -87,11 +87,13 @@ public extension CardManager {
             }
 
             let queue = OperationQueue()
-            queue.addOperations([getTokenOperation, generateRawCardOperation, publishCardOperation, verifyCardOperation], waitUntilFinished: false)
+            let operations = [getTokenOperation, generateRawCardOperation, publishCardOperation, verifyCardOperation]
+            queue.addOperations(operations, waitUntilFinished: false)
         }
 
         return aggregateOperation
     }
+
 
     /// Makes CallbackOperation<Card> for generating self signed RawSignedModel and
     /// creating Virgil Card instance on the Virgil Cards Service
@@ -105,7 +107,8 @@ public extension CardManager {
     /// - Returns: CallbackOperation<Card> for generating self signed RawSignedModel and
     ///            creating Virgil Card instance on the Virgil Cards Service
     /// - Throws: corresponding Error
-    func publishCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String?, previousCardId: String? = nil,
+    func publishCard(privateKey: PrivateKey, publicKey: PublicKey,
+                     identity: String? = nil, previousCardId: String? = nil,
                      extraFields: [String: String]? = nil) throws -> GenericOperation<Card> {
         let aggregateOperation = CallbackOperation<Card> { operation, completion in
             let tokenContext = TokenContext(operation: "publish", forceReload: false)
@@ -149,7 +152,8 @@ public extension CardManager {
             }
 
             let queue = OperationQueue()
-            queue.addOperations([getTokenOperation, generateRawCardOperation, publishCardOperation, verifyCardOperation], waitUntilFinished: false)
+            let operations = [getTokenOperation, generateRawCardOperation, publishCardOperation, verifyCardOperation]
+            queue.addOperations(operations, waitUntilFinished: false)
         }
 
         return aggregateOperation
@@ -180,7 +184,7 @@ public extension CardManager {
 
                     let cards: [Card] = try verifyCardsOperation.findDependencyResult()
 
-                    guard !cards.contains(where: { $0.identity != identity}) else {
+                    guard !cards.contains(where: { $0.identity != identity }) else {
                         throw CardManagerError.gotWrongCard
                     }
 
@@ -192,7 +196,8 @@ public extension CardManager {
             }
 
             let queue = OperationQueue()
-            queue.addOperations([getTokenOperation, searchCardsOperation, verifyCardsOperation], waitUntilFinished: false)
+            let operations = [getTokenOperation, searchCardsOperation, verifyCardsOperation]
+            queue.addOperations(operations, waitUntilFinished: false)
         }
 
         return aggregateOperation

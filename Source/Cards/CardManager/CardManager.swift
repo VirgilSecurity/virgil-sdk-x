@@ -18,8 +18,9 @@ import VirgilCryptoAPI
     /// AccessTokenProvider instance used for getting Access Token
     /// when performing queries
     @objc public let accessTokenProvider: AccessTokenProvider
+
     /// CardClient instance used for performing queries
-    @objc public let cardClient: CardClient
+    @objc public let cardClient: CardClientProtocol
     /// Card Verifier instance used for verifyng Cards
     @objc public let cardVerifier: CardVerifier
     /// Will automaticaly perform second query with forceReloaded = true AccessToken if true
@@ -35,7 +36,10 @@ import VirgilCryptoAPI
     @objc(VSSCardManagerError) public enum CardManagerError: Int, Error {
         case cardIsNotVerified = 1
         case cardIsCorrupted = 2
-        case gotWrongCard = 3
+        case gotNilToken = 3
+        case gotNilSignedRawCard = 4
+        case gotWrongCard = 5
+        case invalidPublicKeyBase64String = 6
     }
 
     /// Initializer
@@ -81,9 +85,12 @@ import VirgilCryptoAPI
 
         let rawCard = RawSignedModel(contentSnapshot: snapshot)
 
-        var data: Data?
+        var data: Data
         if extraFields != nil {
             data = try JSONSerialization.data(withJSONObject: extraFields as Any, options: [])
+        }
+        else {
+            data = Data()
         }
 
         try self.modelSigner.selfSign(model: rawCard, privateKey: privateKey, additionalData: data)

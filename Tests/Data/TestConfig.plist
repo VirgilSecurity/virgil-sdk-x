@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+<dict>
+	<key>ApiPublicKeyId</key>
+	<string>73c3751a4562902a</string>
+	<key>ApiPrivateKey</key>
+	<string>MC4CAQAwBQYDK2VwBCIEILifDf6riKjJM2Zo9Bob47fLkqXEWYuLyFcep+ShujWC</string>
+	<key>ApiPublicKey</key>
+	<string>MCowBQYDK2VwAyEA88XDMws08U4bZ0yl6h0sPbEbSSpryPwJd6YJtoknii4=</string>
+	<key>AppId</key>
+	<string>660766ea9f6248d185c1649b7a0400cf</string>
+	<key>ServiceURL</key>
+	<string>https://api-stg.virgilsecurity.com</string>
+</dict>
 </plist>

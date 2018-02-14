@@ -12,9 +12,8 @@ import Foundation
 @objc(VSSCardClient) open class CardClient: NSObject {
     /// Base URL for the Virgil Gateway
     @objc public let serviceUrl: URL
-    /// HttpConnection to use for queries
-    @objc public let connection: HTTPConnection
-
+    /// HttpConnectionProtocol implementation to use for queries
+    public let connection: HttpConnectionProtocol
     /// Error domain for Error instances thrown from service
     @objc public static let serviceErrorDomain = "VirgilSDK.CardServiceErrorDomain"
     /// Error domain for Error instances thrown from here
@@ -65,7 +64,7 @@ import Foundation
     /// - Parameters:
     ///   - serviceUrl: URL of service client will use
     ///   - connection: custom HTTPConnection
-    @objc public init(serviceUrl: URL = defaultURL, connection: HTTPConnection) {
+    public init(serviceUrl: URL = CardClient.defaultURL, connection: HttpConnectionProtocol) {
         self.serviceUrl = serviceUrl
         self.connection = connection
 
@@ -76,7 +75,7 @@ import Foundation
     ///
     /// - Parameter serviceUrl: URL of service client will use
     @objc convenience public init(serviceUrl: URL = defaultURL) {
-        self.init(serviceUrl: serviceUrl, connection: ServiceConnection())
+        self.init(serviceUrl: serviceUrl, connection: HttpConnection())
     }
 
     internal func handleError(statusCode: Int, body: Data?) -> Error {
@@ -93,13 +92,13 @@ import Foundation
         return NSError(domain: CardClient.serviceErrorDomain, code: statusCode)
     }
 
-    private func validateResponse(_ response: HTTPResponse) throws {
-        guard response.statusCode / 100 == 2 || response.statusCode == 403 else {
+    private func validateResponse(_ response: Response) throws {
+        guard 200..<300 ~= response.statusCode else {
             throw self.handleError(statusCode: response.statusCode, body: response.body)
         }
     }
 
-    internal func processResponse<T: Decodable>(_ response: HTTPResponse) throws -> T {
+    internal func processResponse<T: Decodable>(_ response: Response) throws -> T {
         try self.validateResponse(response)
 
         guard let data = response.body else {

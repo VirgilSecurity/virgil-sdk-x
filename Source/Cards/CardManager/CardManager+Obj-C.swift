@@ -57,7 +57,8 @@ public extension CardManager {
         }
     }
 
-    /// Asynchronously generats self signed RawSignedModel and creates Virgil Card
+
+    /// Asynchronously generates self signed RawSignedModel and creates Virgil Card
     /// instance on the Virgil Cards Service and associates it with unique identifier
     ///
     /// - Parameters:
@@ -80,7 +81,7 @@ public extension CardManager {
                     case .failure(let error):
                         completion(nil, error)
                     }
-            }
+                }
         } catch {
             completion(nil, error)
         }

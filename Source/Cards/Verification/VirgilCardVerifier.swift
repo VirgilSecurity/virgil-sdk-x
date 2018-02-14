@@ -102,7 +102,8 @@ import VirgilCryptoAPI
     private class func verify(cardCrypto: CardCrypto, card: Card, signer: String, signerPublicKey: PublicKey) -> Bool {
         guard let signature = card.signatures.first(where: { $0.signer == signer }),
               let cardSnapshot = try? card.getRawCard().contentSnapshot,
-              cardCrypto.verifySignature(signature.signature, of: cardSnapshot + (signature.snapshot ?? Data()), with: signerPublicKey) else {
+              cardCrypto.verifySignature(signature.signature, of: cardSnapshot + (signature.snapshot ?? Data()),
+                                         with: signerPublicKey) else {
                 return false
         }
 

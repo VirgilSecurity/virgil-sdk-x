@@ -28,7 +28,7 @@ import VirgilCryptoAPI
     /// Declares error types and codes
     ///
     /// - generationFailed: generation of new token failed
-    @objc public enum JwtGeneratorError: Int, Error {
+    @objc(VSSJwtGeneratorError) public enum JwtGeneratorError: Int, Error {
         case generationFailed = 1
     }
 

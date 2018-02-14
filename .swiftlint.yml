@@ -39,6 +39,8 @@ opt_in_rules:
 excluded: 
   - Carthage
   - Tests
+  - TestApp iOS
+  - TestApp tvOS
 
 warning_threshold: 15
 

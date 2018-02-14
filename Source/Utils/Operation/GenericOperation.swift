@@ -25,24 +25,24 @@ public class GenericOperation<T>: AsyncOperation {
 
     public func start(completion: @escaping (Result<T>) -> ()) {
         guard !self.isCancelled else {
-            // FIXME
+            // FIXME investigate cancellation
             self.cancel()
             return
         }
 
         let queue = OperationQueue()
-        
+
         self.completionBlock = {
             guard let result = self.result else {
                 let result: Result<T> = Result.failure(GenericOperationError.resultIsMissing)
                 self.result = result
-                
+
                 completion(result)
                 return
             }
             completion(result)
         }
-        
+
         queue.addOperation(self)
     }
 
@@ -50,16 +50,16 @@ public class GenericOperation<T>: AsyncOperation {
         let queue = OperationQueue()
 
         queue.addOperation(self)
-        
+
         // FIXME: Add tests
         if let timeout = timeout {
             let deadlineTime = DispatchTime.now() + timeout
-            
+
             DispatchQueue.global(qos: .background).asyncAfter(deadline: deadlineTime) {
                 queue.cancelAllOperations()
             }
         }
-        
+
         queue.waitUntilAllOperationsAreFinished()
 
         guard let result = self.result else {
@@ -72,21 +72,22 @@ public class GenericOperation<T>: AsyncOperation {
     }
 }
 
-extension GenericOperation {
-    public func findDependencyResult<T>() throws -> T {
-        guard let operation = self.dependencies.first(where: { ($0 as? GenericOperation<T>)?.result != nil }) as? GenericOperation<T>,
+public extension GenericOperation {
+    func findDependencyResult<T>() throws -> T {
+        guard let operation = self.dependencies
+            .first(where: { ($0 as? GenericOperation<T>)?.result != nil }) as? GenericOperation<T>,
             let operationResult = operation.result else {
                 throw GenericOperationError.missingDependencies
         }
-        
+
         guard case let .success(result) = operationResult else {
             throw GenericOperationError.dependencyFailed
         }
-        
+
         return result
     }
-    
-    public func findDependencyError<T>() -> T? {
+
+    func findDependencyError<T>() -> T? {
         for dependency in self.dependencies {
             if let d = dependency as? GenericOperation,
                 let res = d.result {
@@ -97,7 +98,7 @@ extension GenericOperation {
                     }
             }
         }
-        
+
         return nil
     }
 }

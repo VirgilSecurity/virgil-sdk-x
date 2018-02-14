@@ -14,12 +14,12 @@ import Foundation
 
 public class CallbackOperation<T>: GenericOperation<T> {
     public typealias Task = (CallbackOperation<T>, @escaping (T?, Error?) -> Void) -> Void
-    
+
     public let task: Task
 
     public init(task: @escaping Task) {
         self.task = task
-        
+
         super.init()
     }
 
@@ -34,7 +34,7 @@ public class CallbackOperation<T>: GenericOperation<T> {
             else {
                 self.result = .failure(CallbackOperationError.errorAndResultMissing)
             }
-            
+
             self.finish()
         }
     }

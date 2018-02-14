@@ -9,8 +9,11 @@
 import Foundation
 
 // MARK: - Queries
-extension CardClient {
+extension CardClient: CardClientProtocol {
+    @objc public static let xVirgilIsSuperseededKey = "x-virgil-is-superseeded"
+    @objc public static let xVirgilIsSuperseededTrue = "true"
     /// Returns `GetCardResponse` with `RawSignedModel` of card from the Virgil Cards Service with given ID, if exists
+
     ///
     /// - Parameters:
     ///   - cardId: string with unique Virgil Card identifier
@@ -22,11 +25,18 @@ extension CardClient {
             throw CardClientError.constructingUrl
         }
 
-        let request = try ServiceRequest(url: url, method: .get, apiToken: token)
+        let request = try ServiceRequest(url: url, method: .get, accessToken: token)
 
         let response = try self.connection.send(request)
 
-        let isOutdated = response.statusCode == 403 ? true : false
+        let isOutdated: Bool
+        if let xVirgilIsSuperseeded = response.response.allHeaderFields[CardClient.xVirgilIsSuperseededKey] as? String,
+            xVirgilIsSuperseeded == CardClient.xVirgilIsSuperseededTrue {
+                isOutdated = true
+        }
+        else {
+            isOutdated = false
+        }
 
         return GetCardResponse(rawCard: try self.processResponse(response), isOutdated: isOutdated)
     }
@@ -45,7 +55,7 @@ extension CardClient {
             throw CardClientError.constructingUrl
         }
 
-        let request = try ServiceRequest(url: url, method: .post, apiToken: token, bodyJson: model.exportAsJson())
+        let request = try ServiceRequest(url: url, method: .post, accessToken: token, params: model)
 
         let response = try self.connection.send(request)
 
@@ -64,7 +74,7 @@ extension CardClient {
             throw CardClientError.constructingUrl
         }
 
-        let request = try ServiceRequest(url: url, method: .post, apiToken: token, bodyJson: ["identity": identity])
+        let request = try ServiceRequest(url: url, method: .post, accessToken: token, params: ["identity": identity])
 
         let response = try self.connection.send(request)
 
