@@ -18,10 +18,12 @@ import VirgilCryptoAPI
 
     /// PrivateKeyStorage initializer
     ///
-    /// - Parameter privateKeyExporter: PrivateKeyExporter to use it for import/export stored Private Keys
-    @objc public init(privateKeyExporter: PrivateKeyExporter) {
+    /// - Parameters:
+    ///   - privateKeyExporter: PrivateKeyExporter to use it for import/export stored Private Keys
+    ///   - keyStorage: keychain key storage
+    @objc public init(privateKeyExporter: PrivateKeyExporter, keyStorage: KeyStorage = KeyStorage()) {
         self.privateKeyExporter = privateKeyExporter
-        self.keyStorage = KeyStorage()
+        self.keyStorage = keyStorage
 
         super.init()
     }
