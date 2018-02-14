@@ -59,8 +59,9 @@
 - (void)test001_STC_1 {
     NSString *rawCardString = self.testData[@"STC-1.as_string"];
     
-    VSSRawSignedModel *rawCard1 = [VSSRawSignedModel importFromBase64Encoded:rawCardString];
-    XCTAssert(rawCard1 != nil);
+    NSError *error;
+    VSSRawSignedModel *rawCard1 = [VSSRawSignedModel importFromBase64Encoded:rawCardString error:&error];
+    XCTAssert(error == nil && rawCard1 != nil);
     
     VSSRawCardContent *cardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard1.contentSnapshot];
     XCTAssert(cardContent1 != nil);
@@ -78,8 +79,8 @@
     NSDictionary *rawCardDict = [NSJSONSerialization JSONObjectWithData:rawCardDictData options:kNilOptions error:nil];
     XCTAssert(rawCardDict != nil);
     
-    VSSRawSignedModel *rawCard2 = [VSSRawSignedModel importFromJson:rawCardDict];
-    XCTAssert(rawCard2 != nil);
+    VSSRawSignedModel *rawCard2 = [VSSRawSignedModel importFromJson:rawCardDict error:&error];
+    XCTAssert(error == nil && rawCard2 != nil);
     
     XCTAssert([rawCard2.contentSnapshot isEqualToData:rawCard1.contentSnapshot]);
     XCTAssert(rawCard2.signatures.count == 0);
@@ -89,12 +90,11 @@
     NSDictionary *rawCardContentDictImported = [NSJSONSerialization JSONObjectWithData:rawCard1.contentSnapshot options:0 error:nil];
     XCTAssert([rawCardContentDict isEqualToDictionary:rawCardContentDictImported]);
     
-    NSError *error;
     NSDictionary *exportedRawCard1 = [rawCard1 exportAsJsonAndReturnError:&error];
     XCTAssert(error == nil);
     XCTAssert([exportedRawCard1 isEqualToDictionary:rawCardDict]);
 
-    NSString *exportedRawCard1String = [rawCard1 base64EncodedStringAndReturnError:&error];
+    NSString *exportedRawCard1String = [rawCard1 exportAsBase64EncodedStringAndReturnError:&error];
     XCTAssert(error == nil);
     NSDictionary *exportedRawCard1Dict = [NSJSONSerialization JSONObjectWithData:[[NSData alloc] initWithBase64EncodedString:exportedRawCard1String options:0] options:0 error:nil];
     XCTAssert([exportedRawCard1Dict isEqualToDictionary:rawCardDict]);
@@ -104,8 +104,9 @@
     NSString *rawCardString = self.testData[@"STC-2.as_string"];
     XCTAssert(rawCardString != nil);
     
-    VSSRawSignedModel *rawCard1 = [VSSRawSignedModel importFromBase64Encoded:rawCardString];
-    XCTAssert(rawCard1 != nil);
+    NSError *error;
+    VSSRawSignedModel *rawCard1 = [VSSRawSignedModel importFromBase64Encoded:rawCardString error:&error];
+    XCTAssert(error == nil && rawCard1 != nil);
     
     VSSRawCardContent *cardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard1.contentSnapshot];
     XCTAssert(cardContent1 != nil);
@@ -139,8 +140,8 @@
     NSDictionary *rawCardDict = [NSJSONSerialization JSONObjectWithData:rawCardDictData options:kNilOptions error:nil];
     XCTAssert(rawCardDict != nil);
     
-    VSSRawSignedModel *rawCard2 = [VSSRawSignedModel importFromJson:rawCardDict];
-    XCTAssert(rawCard2 != nil);
+    VSSRawSignedModel *rawCard2 = [VSSRawSignedModel importFromJson:rawCardDict error:&error];
+    XCTAssert(error == nil && rawCard2 != nil);
     
     XCTAssert([rawCard2.contentSnapshot isEqualToData:rawCard1.contentSnapshot]);
     XCTAssert(rawCard2.signatures.count == 3);
@@ -152,12 +153,11 @@
     NSDictionary *rawCardContentDictImported = [NSJSONSerialization JSONObjectWithData:rawCard1.contentSnapshot options:0 error:nil];
     XCTAssert([rawCardContentDict isEqualToDictionary:rawCardContentDictImported]);
     
-    NSError *error;
     NSDictionary *exportedRawCard1 = [rawCard1 exportAsJsonAndReturnError:&error];
     XCTAssert(error == nil);
     XCTAssert([exportedRawCard1 isEqualToDictionary:rawCardDict]);
     
-    NSString *exportedRawCard1String = [rawCard1 base64EncodedStringAndReturnError:&error];
+    NSString *exportedRawCard1String = [rawCard1 exportAsBase64EncodedStringAndReturnError:&error];
     XCTAssert(error == nil);
     NSDictionary *exportedRawCard1Dict = [NSJSONSerialization JSONObjectWithData:[[NSData alloc] initWithBase64EncodedString:exportedRawCard1String options:0] options:0 error:nil];
     XCTAssert([exportedRawCard1Dict isEqualToDictionary:rawCardDict]);
@@ -177,7 +177,7 @@
     NSString *rawCardString = self.testData[@"STC-3.as_string"];
     XCTAssert(rawCardString != nil);
  
-    VSSCard *card1 = [cardManager importCardWithString:rawCardString error:&error];
+    VSSCard *card1 = [cardManager importCardFromBase64Encoded:rawCardString error:&error];
     XCTAssert(card1 != nil && error == nil);
     
     NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:1515686245];
@@ -198,19 +198,19 @@
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:rawCardDic options:kNilOptions error:nil];
     XCTAssert(dic != nil);
     
-    VSSCard *card2 = [cardManager importCardWithJson:dic error:&error];
+    VSSCard *card2 = [cardManager importCardFromJson:dic error:&error];
     XCTAssert(card2 != nil);
     
     [self.utils isCardsEqualWithCard:card1 and:card2];
     
-    NSString *exportedCardString = [cardManager exportAsBase64StringWithCard:card1 error:&error];
+    NSString *exportedCardString = [cardManager exportCardAsBase64EncodedString:card1 error:&error];
     XCTAssert(error == nil);
     
     NSDictionary *exportedStringDict = [NSJSONSerialization JSONObjectWithData:[[NSData alloc] initWithBase64EncodedString:exportedCardString options:0] options:0 error:&error];
     XCTAssert(error == nil);
     XCTAssert([exportedStringDict isEqualToDictionary:dic]);
     
-    NSDictionary *exportedJsonDict = [cardManager exportAsJsonWithCard:card2 error:&error];
+    NSDictionary *exportedJsonDict = [cardManager exportCardAsJson:card2 error:&error];
     XCTAssert(error == nil);
     XCTAssert([exportedJsonDict isEqualToDictionary:dic]);
 }
@@ -229,7 +229,7 @@
     NSString *rawCardString = self.testData[@"STC-4.as_string"];
     XCTAssert(rawCardString != nil);
     
-    VSSCard *card1 = [cardManager importCardWithString:rawCardString error:&error];
+    VSSCard *card1 = [cardManager importCardFromBase64Encoded:rawCardString error:&error];
     XCTAssert(card1 != nil);
     
     NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:1515686245];
@@ -265,19 +265,19 @@
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:rawCardDic options:kNilOptions error:nil];
     XCTAssert(dic != nil);
     
-    VSSCard *card2 = [cardManager importCardWithJson:dic error:&error];
+    VSSCard *card2 = [cardManager importCardFromJson:dic error:&error];
     XCTAssert(card2 != nil);
     XCTAssert([self.utils isCardsEqualWithCard:card1 and:card2]);
     XCTAssert([self.utils isCardSignaturesEqualWithSignatures:card1.signatures and:card2.signatures]);
     
-    NSString *exportedCardString = [cardManager exportAsBase64StringWithCard:card1 error:&error];
+    NSString *exportedCardString = [cardManager exportCardAsBase64EncodedString:card1 error:&error];
     XCTAssert(error == nil);
     
     NSDictionary *exportedStringDict = [NSJSONSerialization JSONObjectWithData:[[NSData alloc] initWithBase64EncodedString:exportedCardString options:0] options:0 error:&error];
     XCTAssert(error == nil);
     XCTAssert([exportedStringDict isEqualToDictionary:dic]);
     
-    NSDictionary *exportedJsonDict = [cardManager exportAsJsonWithCard:card2 error:&error];
+    NSDictionary *exportedJsonDict = [cardManager exportCardAsJson:card2 error:&error];
     XCTAssert(error == nil);
     XCTAssert([exportedJsonDict isEqualToDictionary:dic]);
 }

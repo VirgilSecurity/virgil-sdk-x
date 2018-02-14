@@ -23,17 +23,17 @@ class CardClientStub_STC3: CardClientProtocol {
     }
 
     @objc func getCard(withId cardId: String, token: String) throws -> GetCardResponse {
-        let response = RawSignedModel.importFrom(base64Encoded: self.testsDict["STC-3.as_string"] as! String)!
+        let response = try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)
 
         return GetCardResponse(rawCard: response, isOutdated: false)
     }
 
     @objc func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
-        return RawSignedModel.importFrom(base64Encoded: self.testsDict["STC-3.as_string"] as! String)!
+        return try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)
     }
 
     @objc func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
-        return [RawSignedModel.importFrom(base64Encoded: self.testsDict["STC-3.as_string"] as! String)!]
+        return [try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)]
     }
 }
 
@@ -47,17 +47,17 @@ class CardClientStub_STC34: CardClientProtocol {
     }
 
     @objc func getCard(withId cardId: String, token: String) throws -> GetCardResponse {
-        let response = RawSignedModel.importFrom(base64Encoded: self.testsDict["STC-3.as_string"] as! String)!
+        let response = try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)
         
         return GetCardResponse(rawCard: response, isOutdated: false)
     }
 
     @objc func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
-        return RawSignedModel.importFrom(base64Encoded: self.testsDict["STC-34.as_string"] as! String)!
+        return try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-34.as_string"] as! String)
     }
 
     @objc func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
-        return [RawSignedModel.importFrom(base64Encoded: self.testsDict["STC-34.as_string"] as! String)!]
+        return [try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-34.as_string"] as! String)]
     }
 }
 
@@ -116,7 +116,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         
         var errorWasThrown = false
         do {
-          _ = try cardManager.importCard(string: self.testsDict["STC-3.as_string"] as! String)
+          _ = try cardManager.importCard(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)
         } catch {
             errorWasThrown = true
         }
@@ -127,7 +127,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         do {
             let data = (self.testsDict["STC-3.as_json"] as! String).data(using: .utf8)!
             let dic = try JSONSerialization.jsonObject(with: data, options: [])
-            _ = try  cardManager.importCard(json: dic)
+            _ = try  cardManager.importCard(fromJson: dic)
         } catch {
             errorWasThrown = true
         }
@@ -142,7 +142,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         case .failure: break
         }
 
-        let rawCard = RawSignedModel.importFrom(base64Encoded: self.testsDict["STC-3.as_string"] as! String)!
+        let rawCard = try! RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)
         let operation2 = cardManager.publishCard(rawCard: rawCard)
 
         switch operation2.startSync() {
@@ -197,7 +197,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         let exporter = VirgilPrivateKeyExporter(virgilCrypto: self.crypto, password: nil)
         let privateKey = try! exporter.importPrivateKey(from: Data(base64Encoded: privateKeyBase64)!)
         let extraDataSnapshot = self.testsDict["STC-34.self_signature_snapshot_base64"] as! String
-        try! self.modelSigner.selfSign(model: rawCard1, privateKey: privateKey, additionalData: Data(base64Encoded: extraDataSnapshot))
+        try! self.modelSigner.selfSign(model: rawCard1, privateKey: privateKey, additionalData: Data(base64Encoded: extraDataSnapshot)!)
 
         switch cardManager.publishCard(rawCard: rawCard1).startSync() {
         case .success: XCTFail()

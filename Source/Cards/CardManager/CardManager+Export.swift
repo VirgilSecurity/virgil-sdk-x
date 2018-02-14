@@ -10,7 +10,7 @@ import Foundation
 
 // Import export cards
 public extension CardManager {
-    @objc func importCard(fromBase64EncodedString base64EncodedString: String) throws -> Card {
+    @objc func importCard(fromBase64Encoded base64EncodedString: String) throws -> Card {
         let rawCard = try RawSignedModel.import(fromBase64Encoded: base64EncodedString)
         let card = try self.parseCard(from: rawCard)
 
@@ -42,15 +42,15 @@ public extension CardManager {
         return card
     }
 
-    @objc func exportCardAsBase64EncodedString(card: Card) throws -> String {
+    @objc func exportCardAsBase64EncodedString(_ card: Card) throws -> String {
         return try card.getRawCard(cardCrypto: self.cardCrypto).exportAsBase64EncodedString()
     }
 
-    @objc func exportCardAsJson(card: Card) throws -> Any {
+    @objc func exportCardAsJson(_ card: Card) throws -> Any {
         return try card.getRawCard(cardCrypto: self.cardCrypto).exportAsJson()
     }
 
-    @objc func exportCardAsRawCard(card: Card) throws -> RawSignedModel {
+    @objc func exportCardAsRawCard(_ card: Card) throws -> RawSignedModel {
         return try card.getRawCard(cardCrypto: self.cardCrypto)
     }
 }

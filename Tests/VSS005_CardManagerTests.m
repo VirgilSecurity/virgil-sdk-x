@@ -105,7 +105,9 @@ static const NSTimeInterval timeout = 8.;
     
     VSSRawSignedModel *rawCard = [cardManager generateRawCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:nil error:&error];
     XCTAssert(error == nil);
-    VSSCard *card = [VSSCard parseWithCardCrypto:self.cardCrypto rawSignedModel:rawCard];
+    
+    VSSCard *card = [VSSCardManager parseCardFrom:rawCard cardCrypto:self.cardCrypto error:&error];
+    XCTAssert(card != nil && error == nil);
     
     [cardManager publishCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:nil completion:^(VSSCard *returnedCard, NSError *error) {
         XCTAssert(error == nil);
@@ -153,7 +155,9 @@ static const NSTimeInterval timeout = 8.;
 
     VSSRawSignedModel *rawCard = [cardManager generateRawCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:dic error:&error];
     XCTAssert(error == nil);
-    VSSCard *card = [VSSCard parseWithCardCrypto:self.cardCrypto rawSignedModel:rawCard];
+    
+    VSSCard *card = [VSSCardManager parseCardFrom:rawCard cardCrypto:self.cardCrypto error:&error];
+    XCTAssert(card != nil && error == nil);
 
     [cardManager publishCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:dic completion:^(VSSCard *returnedCard, NSError *error) {
         XCTAssert(error == nil);
@@ -198,7 +202,9 @@ static const NSTimeInterval timeout = 8.;
 
     VSSRawSignedModel *rawCard1 = [cardManager generateRawCardWithPrivateKey:keyPair1.privateKey publicKey:keyPair1.publicKey identity:identity previousCardId:nil extraFields:nil error:&error];
     XCTAssert(error == nil);
-    VSSCard *card1 = [VSSCard parseWithCardCrypto:self.cardCrypto rawSignedModel:rawCard1];
+    
+    VSSCard *card1 = [VSSCardManager parseCardFrom:rawCard1 cardCrypto:self.cardCrypto error:&error];
+    XCTAssert(card1 != nil && error == nil);
 
     [cardManager publishCardWithPrivateKey:keyPair1.privateKey publicKey:keyPair1.publicKey identity:identity previousCardId:nil extraFields:nil completion:^(VSSCard *returnedCard, NSError *error) {
         XCTAssert(error == nil);
@@ -216,7 +222,9 @@ static const NSTimeInterval timeout = 8.;
 
             VSSRawSignedModel *rawCard2 = [cardManager generateRawCardWithPrivateKey:keyPair2.privateKey publicKey:keyPair2.publicKey identity:identity previousCardId:card1.identifier extraFields:nil error:&error];
             XCTAssert(error == nil);
-            VSSCard *card2 = [VSSCard parseWithCardCrypto:self.cardCrypto rawSignedModel:rawCard2];
+            
+            VSSCard *card2 = [VSSCardManager parseCardFrom:rawCard2 cardCrypto:self.cardCrypto error:&error];
+            XCTAssert(card2 != nil && error == nil);
             [cardManager publishCardWithPrivateKey:keyPair2.privateKey publicKey:keyPair2.publicKey identity:identity previousCardId:returnedCard.identifier extraFields:nil completion:^(VSSCard *returnedCard, NSError *error) {
                 XCTAssert(error == nil);
                 XCTAssert(returnedCard != nil);
@@ -269,7 +277,8 @@ static const NSTimeInterval timeout = 8.;
     XCTAssert(error == nil);
     
     VSSRawSignedModel *rawCard1 = [cardManager generateRawCardWithPrivateKey:keyPair1.privateKey publicKey:keyPair1.publicKey identity:identity previousCardId:nil extraFields:nil error:&error];
-    VSSCard *card1 = [VSSCard parseWithCardCrypto:self.cardCrypto rawSignedModel:rawCard1];
+    VSSCard *card1 = [VSSCardManager parseCardFrom:rawCard1 cardCrypto:self.cardCrypto error:&error];
+    XCTAssert(card1 != nil && error == nil);
     
     [cardManager publishCardWithPrivateKey:keyPair1.privateKey publicKey:keyPair1.publicKey identity:identity previousCardId:nil extraFields:nil completion:^(VSSCard *returnedCard, NSError *error) {
         XCTAssert(error == nil);
@@ -279,7 +288,9 @@ static const NSTimeInterval timeout = 8.;
         XCTAssert([self.utils isCardsEqualWithCard:card1 and:returnedCard]);
 
         VSSRawSignedModel *rawCard2 = [cardManager generateRawCardWithPrivateKey:keyPair2.privateKey publicKey:keyPair2.publicKey identity:returnedCard.identity previousCardId:returnedCard.identifier extraFields:nil error:&error];
-        VSSCard *card2 = [VSSCard parseWithCardCrypto:self.cardCrypto rawSignedModel:rawCard2];
+        
+        VSSCard *card2 = [VSSCardManager parseCardFrom:rawCard2 cardCrypto:self.cardCrypto error:&error];
+        XCTAssert(card2 != nil && error == nil);
         [cardManager publishCardWithPrivateKey:keyPair2.privateKey publicKey:keyPair2.publicKey identity:returnedCard.identity previousCardId:returnedCard.identifier extraFields:nil completion:^(VSSCard *returnedCard, NSError *error) {
             XCTAssert(error == nil);
             XCTAssert(returnedCard != nil);
@@ -287,7 +298,9 @@ static const NSTimeInterval timeout = 8.;
             XCTAssert([self.utils isCardsEqualWithCard:card2 and:returnedCard]);
 
             VSSRawSignedModel *rawCard3 = [cardManager generateRawCardWithPrivateKey:keyPair3.privateKey publicKey:keyPair3.publicKey identity:identity previousCardId:nil extraFields:nil error:&error];
-            VSSCard *card3 = [VSSCard parseWithCardCrypto:self.cardCrypto rawSignedModel:rawCard3];
+            
+            VSSCard *card3 = [VSSCardManager parseCardFrom:rawCard3 cardCrypto:self.cardCrypto error:&error];
+            XCTAssert(card3 != nil && error == nil);
             [cardManager publishCardWithPrivateKey:keyPair3.privateKey publicKey:keyPair3.publicKey identity:identity previousCardId:nil extraFields:nil completion:^(VSSCard *returnedCard, NSError *error) {
                 XCTAssert(error == nil);
                 XCTAssert(returnedCard != nil);
@@ -349,7 +362,9 @@ static const NSTimeInterval timeout = 8.;
 
     VSSRawSignedModel *rawCard = [cardManager generateRawCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:nil error:&error];
     XCTAssert(error == nil);
-    VSSCard *card = [VSSCard parseWithCardCrypto:self.cardCrypto rawSignedModel:rawCard];
+    
+    VSSCard *card = [VSSCardManager parseCardFrom:rawCard cardCrypto:self.cardCrypto error:&error];
+    XCTAssert(card != nil && error == nil);
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithSnapshot:rawCard.contentSnapshot];
 
     XCTAssert([content.identity isEqualToString:identity]);
