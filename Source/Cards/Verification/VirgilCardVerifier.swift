@@ -9,18 +9,37 @@
 import Foundation
 import VirgilCryptoAPI
 
+/// Virgil implementation of CardVerifier protocol
+/// By default verifies Card's self signature and Virgil Cards Service signature
 @objc(VSSVirgilCardVerifier) public class VirgilCardVerifier: NSObject, CardVerifier {
+    /// Signer identifier for self signatures
     @objc public static let selfSignerIdentifier = "self"
+    /// Signer identifier for Virgil Cards Service signatures
     @objc public static let virgilSignerIdentifier = "virgil"
-    
+    /// Base64 encoded string with Virgil Service's Public Key for verifying Virgil Cards Service signatures
+    /// - Note: Can be found [here](https://dashboard.virgilsecurity.com)
     @objc public static let virgilPublicKeyBase64 = "MCowBQYDK2VwAyEAr0rjTWlCLJ8q9em0og33grHEh/3vmqp0IewosUaVnQg="
 
+    /// CardCrypto instance
     @objc public let cardCrypto: CardCrypto
+    /// Imported Virgil Service's Public Key for verifying Virgil Cards Service signatures
     @objc public let virgilPublicKey: PublicKey
+    /// VirgilCardVerifier will verify self signature if true
     @objc public var verifySelfSignature: Bool = true
+    /// VirgilCardVerifier will verify Virgil Cards Service signatures if true
     @objc public var verifyVirgilSignature: Bool = true
+    /// Array with collections of verifiers
+    /// - Important: VirgilCardVerifier verifies Card if it contains signature from AT LEAST
+    ///   one verifier from EACH WhiteList
     @objc public var whiteLists: [WhiteList]
 
+    /// Initializer
+    ///
+    /// - Parameters:
+    ///   - cardCrypto: CardCrypto instance
+    ///   - whiteLists:  collections of verifiers
+    /// - Important: VirgilCardVerifier verifies Card if it contains signature from AT LEAST
+    ///   one verifier from EACH WhiteList
     @objc public init?(cardCrypto: CardCrypto, whiteLists: [WhiteList] = []) {
         self.whiteLists = whiteLists
         self.cardCrypto = cardCrypto
@@ -35,6 +54,12 @@ import VirgilCryptoAPI
         super.init()
     }
 
+    /// Verifies Card instance using set rules
+    ///
+    /// - Parameter card: Card to verify
+    /// - Returns: true if Card verified, false otherwise
+    /// - Important: VirgilCardVerifier verifies Card if it contains signature from AT LEAST
+    ///   one verifier from EACH WhiteList
     @objc public func verifyCard(card: Card) -> Bool {
         return verifySelfSignature(card) && verifyVirgilSignature(card) && verifyWhitelistsSignatures(card)
     }
@@ -76,7 +101,7 @@ import VirgilCryptoAPI
 
     private class func verify(cardCrypto: CardCrypto, card: Card, signer: String, signerPublicKey: PublicKey) -> Bool {
         guard let signature = card.signatures.first(where: { $0.signer == signer }),
-              let cardSnapshot = try? card.getRawCard(cardCrypto: cardCrypto).contentSnapshot,
+              let cardSnapshot = try? card.getRawCard().contentSnapshot,
               cardCrypto.verifySignature(signature.signature, of: cardSnapshot + (signature.snapshot ?? Data()), with: signerPublicKey) else {
                 return false
         }

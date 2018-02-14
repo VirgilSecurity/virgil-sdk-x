@@ -60,7 +60,7 @@
     NSString *strToken = [self.utils getTokenStringWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
+    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
     XCTAssert(error == nil);
     
@@ -101,7 +101,7 @@
 
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     
-    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
+    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
     XCTAssert(error == nil);
     XCTAssert(rawCard.signatures.count == 1);
@@ -141,7 +141,7 @@
     NSData *snapshot = [content snapshot];
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     
-    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
+    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
     XCTAssert(error == nil);
     XCTAssert(rawCard.signatures.count == 1);
@@ -187,7 +187,7 @@
     NSString *strToken = [self.utils getTokenStringWithIdentity:wrongIdentity error:&error];
     XCTAssert(error == nil);
     
-    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
+    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
     XCTAssert(error == nil);
     
@@ -215,7 +215,7 @@
     NSString *strToken = [self.utils getTokenWithWrongPrivateKeyWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
+    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
     XCTAssert(error == nil);
     

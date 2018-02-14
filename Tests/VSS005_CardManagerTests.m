@@ -78,7 +78,7 @@ static const NSTimeInterval timeout = 8.;
     self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
     self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
-    self.modelSigner = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
+    self.modelSigner = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
     self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whiteLists:@[]];
     self.cardClient = [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL];
 }

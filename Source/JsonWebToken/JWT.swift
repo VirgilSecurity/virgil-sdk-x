@@ -9,27 +9,26 @@
 import Foundation
 
 /// Class implementing `AccessToken` in terms of JWT
+/// - Important: [JWT specification](https://tools.ietf.org/html/rfc7519)
 @objc(VSSJwt) public class Jwt: NSObject, AccessToken {
+    /// Represents JWT Header content
     @objc public let headerContent: JwtHeaderContent
+    /// Represents JWT Body content
     @objc public let bodyContent: JwtBodyContent
+    /// Keeps string representation of unsigned token
     @objc public let unsignedString: String
 
+    /// Keeps string representation of signed token
     @objc public private(set) var string: String
+    /// Signature data
     @objc public private(set) var signatureContent: Data?
-
-    /// Declares error types and codes
-    ///
-    /// - tokenCorrupted: token is corrupted and cannot be used
-    @objc public enum JwtError: Int, Error {
-        case tokenCorrupted = 1
-    }
 
     /// Initializes `Jwt` with provided header, body and signature content
     ///
     /// - Parameters:
     ///   - headerContent: header of `Jwt`
     ///   - bodyContent: body of `Jwt`
-    ///   - signatureContent: Data with signature content (optional)
+    ///   - signatureContent: Data with signature content
     @objc public init?(headerContent: JwtHeaderContent, bodyContent: JwtBodyContent, signatureContent: Data? = nil) {
         self.headerContent = headerContent
         self.bodyContent = bodyContent
@@ -79,18 +78,31 @@ import Foundation
         super.init()
     }
 
+    /// Provides string representation of token
+    ///
+    /// - Returns: string representation of token
     @objc public func stringRepresentation() -> String {
         return self.string
     }
 
+    /// Extracts identity
+    ///
+    /// - Returns: identity
     @objc public func identity() -> String {
         return self.bodyContent.identity
     }
 
+    /// Returns whether or not token is expired
+    ///
+    /// - Returns: true if token is expired, false otherwise
     @objc public func isExpired() -> Bool {
         return Int(Date().timeIntervalSince1970) >= self.bodyContent.expiresAt
     }
 
+    /// Sets signature content to JWT
+    ///
+    /// - Parameter signatureContent: sinature to be set
+    /// - Throws: error if token corrupted
     public func setSignatureContent(_ signatureContent: Data) throws {
         self.signatureContent = signatureContent
         let headerBase64Url = try self.headerContent.base64UrlEncodedString()

@@ -10,10 +10,15 @@ import Foundation
 
 /// Represents content of Virgil Card
 @objc(VSSRawCardContent) public class RawCardContent: NSObject, Codable {
+    /// Card identity
     @objc public let identity: String
+    /// Base64 encoded string with PublicKey data
     @objc public let publicKey: String
+    /// Identifier of outdated previous Virgil Card with same identity
     @objc public let previousCardId: String?
+    /// Version of Virgil Card
     @objc public let version: String
+    /// Timestamp in seconds with creation date
     @objc public let createdAt: Int
 
     /// Defines coding keys for encoding and decoding
@@ -29,9 +34,9 @@ import Foundation
     ///
     /// - Parameters:
     ///   - identity: card identity
-    ///   - publicKey: public key of Virgil Card
-    ///   - previousCardId: identifier of previous Virgil Card
-    ///   - version: card version (by default is "5.0")
+    ///   - publicKey: base64 encoded string with PublicKey data of Virgil Card
+    ///   - previousCardId: identifier of previous Virgil Card with same identity
+    ///   - version: Virgil Card version
     ///   - createdAt: date of creation
     @objc public init(identity: String, publicKey: String, previousCardId: String? = nil,
                       version: String = "5.0", createdAt: Date) {

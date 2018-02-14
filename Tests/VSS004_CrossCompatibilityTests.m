@@ -37,7 +37,7 @@
     self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
     self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
-    self.modelSigner = [[VSSModelSigner alloc] initWithCrypto:self.cardCrypto];
+    self.modelSigner = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
     self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whiteLists:@[]];
     self.cardClient = [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL];
     
@@ -177,7 +177,7 @@
     NSString *rawCardString = self.testData[@"STC-3.as_string"];
     XCTAssert(rawCardString != nil);
  
-    VSSCard *card1 = [cardManager importCardWithString:rawCardString error:&error];
+    VSSCard *card1 = [cardManager importCardWithBase64Encoded:rawCardString error:&error];
     XCTAssert(card1 != nil && error == nil);
     
     NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:1515686245];
@@ -229,7 +229,7 @@
     NSString *rawCardString = self.testData[@"STC-4.as_string"];
     XCTAssert(rawCardString != nil);
     
-    VSSCard *card1 = [cardManager importCardWithString:rawCardString error:&error];
+    VSSCard *card1 = [cardManager importCardWithBase64Encoded:rawCardString error:&error];
     XCTAssert(card1 != nil);
     
     NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:1515686245];

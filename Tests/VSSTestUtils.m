@@ -35,7 +35,7 @@
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     
     VSMVirgilCardCrypto *cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
-    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:cardCrypto];
+    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCardCrypto:cardCrypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:errorPtr];
 
     return rawCard;

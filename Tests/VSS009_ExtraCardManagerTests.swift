@@ -99,7 +99,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         self.consts = VSSTestsConst()
         self.utils = VSSTestUtils.init(crypto: self.crypto, consts: self.consts)
         self.cardCrypto = VirgilCardCrypto(virgilCrypto: self.crypto)
-        self.modelSigner = ModelSigner(crypto: self.cardCrypto)
+        self.modelSigner = ModelSigner(cardCrypto: self.cardCrypto)
     }
 
     override func tearDown() {
@@ -122,7 +122,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         
         var errorWasThrown = false
         do {
-          _ = try cardManager.importCard(string: self.testsDict["STC-3.as_string"] as! String)
+          _ = try cardManager.importCard(base64Encoded: self.testsDict["STC-3.as_string"] as! String)
         } catch {
             errorWasThrown = true
         }

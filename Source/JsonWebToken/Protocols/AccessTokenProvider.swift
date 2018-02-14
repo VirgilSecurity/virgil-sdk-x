@@ -12,8 +12,8 @@ import Foundation
 @objc(VSSAccessTokenProvider) public protocol AccessTokenProvider {
     /// Provides access token
     ///
-    /// - Parameter tokenContext: `TokenContext` instance with corresponding info
-    /// - Returns: access token
-    /// - Throws: corresponding error
+    /// - Parameters:
+    ///   - tokenContext: `TokenContext` instance with corresponding info
+    ///   - completion: completion closure, called with access token or corresponding error
     @objc func getToken(with tokenContext: TokenContext, completion: @escaping (AccessToken?, Error?) -> ())
 }

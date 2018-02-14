@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - Queries
 extension CardClient {
-    /// Returns `RawSignedModel` of card from the Virgil Cards Service with given ID, if exists
+    /// Returns `GetCardResponse` with `RawSignedModel` of card from the Virgil Cards Service with given ID, if exists
     ///
     /// - Parameters:
     ///   - cardId: string with unique Virgil Card identifier
