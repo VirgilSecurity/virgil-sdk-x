@@ -67,7 +67,7 @@
     XCTAssert(cardContent1 != nil);
     
     XCTAssert([cardContent1.identity isEqualToString:@"test"]);
-    XCTAssert([cardContent1.publicKey isEqualToString:@"MCowBQYDK2VwAyEA6d9bQQFuEnU8vSmx9fDo0Wxec42JdNg4VR4FOr4/BUk="]);
+    XCTAssert([[cardContent1.publicKey base64EncodedStringWithOptions:0] isEqualToString:@"MCowBQYDK2VwAyEA6d9bQQFuEnU8vSmx9fDo0Wxec42JdNg4VR4FOr4/BUk="]);
     XCTAssert([cardContent1.version isEqualToString:@"5.0"]);
     XCTAssert(cardContent1.createdAt == 1515686245);
     XCTAssert(cardContent1.previousCardId == nil);
@@ -112,7 +112,7 @@
     XCTAssert(cardContent1 != nil);
     
     XCTAssert([cardContent1.identity isEqualToString:@"test"]);
-    XCTAssert([cardContent1.publicKey isEqualToString:@"MCowBQYDK2VwAyEA6d9bQQFuEnU8vSmx9fDo0Wxec42JdNg4VR4FOr4/BUk="]);
+    XCTAssert([[cardContent1.publicKey base64EncodedStringWithOptions:0] isEqualToString:@"MCowBQYDK2VwAyEA6d9bQQFuEnU8vSmx9fDo0Wxec42JdNg4VR4FOr4/BUk="]);
     XCTAssert([cardContent1.version isEqualToString:@"5.0"]);
     XCTAssert(cardContent1.createdAt == 1515686245);
     XCTAssert([cardContent1.previousCardId isEqualToString:@"a666318071274adb738af3f67b8c7ec29d954de2cabfd71a942e6ea38e59fff9"]);

@@ -21,10 +21,7 @@ public extension CardManager {
         let contentSnapshot = rawSignedModel.contentSnapshot
         let rawCardContent = try JSONDecoder().decode(RawCardContent.self, from: contentSnapshot)
         
-        guard let publicKeyData = Data(base64Encoded: rawCardContent.publicKey) else {
-            throw CardManagerError.invalidPublicKeyBase64String
-        }
-        
+        let publicKeyData = rawCardContent.publicKey
         let publicKey = try cardCrypto.importPublicKey(from: publicKeyData)
         let fingerprint = try cardCrypto.generateSHA512(for: rawSignedModel.contentSnapshot)
         let cardId = fingerprint.subdata(in: 0..<32).hexEncodedString()

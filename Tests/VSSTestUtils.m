@@ -25,10 +25,9 @@
     VSMVirgilKeyPair *kp = keyPair != nil ? keyPair : [self.crypto generateKeyPairAndReturnError:errorPtr];
     NSString *idty = identity != nil ? identity : [[NSUUID alloc] init].UUIDString;
     
-    NSData *exportedPublicKey = [self.crypto exportPublicKey: kp.publicKey];
-    NSString *publicKeyBase64 = [exportedPublicKey base64EncodedStringWithOptions:0];
+    NSData *exportedPublicKey = [self.crypto exportPublicKey:kp.publicKey];
     
-    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:idty publicKey:publicKeyBase64 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
+    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:idty publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     
     NSData *snapshot = [content snapshot];
     
@@ -136,12 +135,12 @@
     VSSCardSignature *selfSignature1 = [self getSelfSignatureFromCard:card1];
     VSSCardSignature *selfSignature2 = [self getSelfSignatureFromCard:card2];
     
-    return ([card1.identifier isEqualToString: card2.identifier] &&
-            [card1.identity isEqualToString: card2.identity] &&
-            [card1.version isEqualToString: card2.version] &&
+    return ([card1.identifier isEqualToString:card2.identifier] &&
+            [card1.identity isEqualToString:card2.identity] &&
+            [card1.version isEqualToString:card2.version] &&
             card1.isOutdated == card2.isOutdated &&
             card1.createdAt == card2.createdAt &&
-            ([card1.previousCardId isEqualToString: card2.previousCardId] || (card1.previousCardId == nil && card2.previousCardId == nil)) &&
+            ([card1.previousCardId isEqualToString:card2.previousCardId] || (card1.previousCardId == nil && card2.previousCardId == nil)) &&
             ([self isCardsEqualWithCard:card1.previousCard and:card2.previousCard] || (card1.previousCard   == nil && card2.previousCard   == nil)) &&
             ([self isCardSignaturesEqualWithSignature:selfSignature1 and:selfSignature2] || (selfSignature1 == nil && selfSignature2 == nil)));
 }
@@ -160,11 +159,11 @@
 }
 
 - (BOOL)isRawCardContentEqualWithContent:(VSSRawCardContent * __nonnull)content1 and:(VSSRawCardContent * __nonnull)content2 {
-    return ([content1.identity isEqualToString: content2.identity] &&
-            [content1.publicKey isEqualToString: content2.publicKey] &&
-            [content1.version isEqualToString: content2.version] &&
+    return ([content1.identity isEqualToString:content2.identity] &&
+            [content1.publicKey isEqualToData:content2.publicKey] &&
+            [content1.version isEqualToString:content2.version] &&
              content1.createdAt == content2.createdAt &&
-            ([content1.previousCardId isEqualToString: content2.previousCardId] || (content1.previousCardId == nil && content2.previousCardId == nil)));
+            ([content1.previousCardId isEqualToString:content2.previousCardId] || (content1.previousCardId == nil && content2.previousCardId == nil)));
 }
 
 - (BOOL)isRawSignaturesEqualWithSignatures:(NSArray<VSSRawSignature *> * __nonnull)signatures1 and:(NSArray<VSSRawSignature *> * __nonnull)signatures2 {

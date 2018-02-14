@@ -188,8 +188,9 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         let cardManager = CardManager(params: cardManagerParams)
 
         let publicKeyBase64 = self.testsDict["STC-34.public_key_base64"] as! String
+        let publicKeyData = Data(base64Encoded: publicKeyBase64)!
 
-        let cardContent = RawCardContent(identity: "some identity", publicKey: publicKeyBase64, createdAt: Date())
+        let cardContent = RawCardContent(identity: "some identity", publicKey: publicKeyData, createdAt: Date())
         let snapshot = try! JSONEncoder().encode(cardContent)
         let rawCard1 = RawSignedModel(contentSnapshot: snapshot)
 

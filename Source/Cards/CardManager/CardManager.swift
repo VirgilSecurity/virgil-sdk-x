@@ -28,18 +28,13 @@ import VirgilCryptoAPI
     /// Makes GenerickOperation with provided in initializer signCallback
     public let signModelOperationFabric: SignModelOperationFabric?
 
-    /// Declares error types and codes
+    /// Declares error types and codes for CardManager
     ///
     /// - cardIsNotVerified: Virgil Card was not verified by cardVerifier
-    /// - cardIsCorrupted: cannot parse RawSignedModel to build Card
     /// - gotWrongCard: in a result of query Virgil Card Service returned wrong Card
     @objc(VSSCardManagerError) public enum CardManagerError: Int, Error {
         case cardIsNotVerified = 1
-        case cardIsCorrupted = 2
-        case gotNilToken = 3
-        case gotNilSignedRawCard = 4
-        case gotWrongCard = 5
-        case invalidPublicKeyBase64String = 6
+        case gotWrongCard = 2
     }
 
     /// Initializer
@@ -76,7 +71,7 @@ import VirgilCryptoAPI
     @objc public func generateRawCard(privateKey: PrivateKey, publicKey: PublicKey,
                                       identity: String, previousCardId: String? = nil,
                                       extraFields: [String: String]? = nil) throws -> RawSignedModel {
-        let exportedPubKey = try cardCrypto.exportPublicKey(publicKey).base64EncodedString()
+        let exportedPubKey = try cardCrypto.exportPublicKey(publicKey)
 
         let cardContent = RawCardContent(identity: identity, publicKey: exportedPubKey,
                                          previousCardId: previousCardId, createdAt: Date())

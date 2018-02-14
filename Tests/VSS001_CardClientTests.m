@@ -48,10 +48,9 @@
     XCTAssert(error == nil);
     
     NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
-    NSString *publicKeyBase64 = [exportedPublicKey base64EncodedStringWithOptions:0];
     NSString *identity = @"identity";
 
-    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
+    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     NSData *snapshot = [content snapshot];
     
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
@@ -76,9 +75,8 @@
     
     NSData *exportedPublicKeyCard = [self.crypto exportPublicKey:(VSMVirgilPublicKey *)card.publicKey];
     XCTAssert(error == nil);
-    NSString *publicKeyBase64Card = [exportedPublicKeyCard base64EncodedStringWithOptions:0];
     
-    XCTAssert([publicKeyBase64Card isEqualToString:publicKeyBase64]);
+    XCTAssert([exportedPublicKeyCard isEqualToData:exportedPublicKey]);
     
     VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whiteLists:@[]];
     
@@ -95,9 +93,8 @@
     XCTAssert(error == nil);
 
     NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
-    NSString *publicKeyBase64 = [exportedPublicKey base64EncodedStringWithOptions:0];
 
-    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
+    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     NSData *snapshot = [content snapshot];
 
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
@@ -137,9 +134,8 @@
     XCTAssert(error == nil);
     
     NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
-    NSString *publicKeyBase64 = [exportedPublicKey base64EncodedStringWithOptions:0];
     
-    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
+    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     NSData *snapshot = [content snapshot];
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     
@@ -176,11 +172,10 @@
     XCTAssert(error == nil);
     
     NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
-    NSString *publicKeyBase64 = [exportedPublicKey base64EncodedStringWithOptions:0];
     NSString *identity = @"identity1";
     NSString *wrongIdentity = @"identity2";
     
-    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
+    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     NSData *snapshot = [content snapshot];
     
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
@@ -205,10 +200,9 @@
     XCTAssert(error == nil);
     
     NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
-    NSString *publicKeyBase64 = [exportedPublicKey base64EncodedStringWithOptions:0];
     NSString *identity = @"identity1";
     
-    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:publicKeyBase64 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
+    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     NSData *snapshot = [content snapshot];
     
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot ];
