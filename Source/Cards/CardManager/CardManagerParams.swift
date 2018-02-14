@@ -20,7 +20,7 @@ import VirgilCryptoAPI
 
     @objc public init(cardCrypto: CardCrypto, accessTokenProvider: AccessTokenProvider, cardVerifier: CardVerifier) {
         self.cardCrypto = cardCrypto
-        self.modelSigner = ModelSigner(crypto: cardCrypto)
+        self.modelSigner = ModelSigner(cardCrypto: cardCrypto)
         self.cardClient = CardClient()
         self.accessTokenProvider = accessTokenProvider
         self.cardVerifier = cardVerifier

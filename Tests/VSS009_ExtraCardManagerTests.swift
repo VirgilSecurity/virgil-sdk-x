@@ -91,9 +91,9 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
 
         self.crypto = VirgilCrypto()
         self.consts = VSSTestsConst()
-        self.utils = VSSTestUtils.init(crypto: self.crypto, consts: self.consts)
+        self.utils = VSSTestUtils(crypto: self.crypto, consts: self.consts)
         self.cardCrypto = VirgilCardCrypto(virgilCrypto: self.crypto)
-        self.modelSigner = ModelSigner(crypto: self.cardCrypto)
+        self.modelSigner = ModelSigner(cardCrypto: self.cardCrypto)
     }
 
     override func tearDown() {

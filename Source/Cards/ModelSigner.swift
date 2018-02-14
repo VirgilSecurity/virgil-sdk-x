@@ -12,10 +12,10 @@ import VirgilCryptoAPI
 @objc(VSSModelSigner) public final class ModelSigner: NSObject {
     @objc public static let selfSignerIdentifier = "self"
 
-    @objc public let crypto: CardCrypto
+    @objc public let cardCrypto: CardCrypto
 
-    @objc public init(crypto: CardCrypto) {
-        self.crypto = crypto
+    @objc public init(cardCrypto: CardCrypto) {
+        self.cardCrypto = cardCrypto
 
         super.init()
     }
@@ -23,7 +23,7 @@ import VirgilCryptoAPI
     @objc public func sign(model: RawSignedModel, signer: String, privateKey: PrivateKey,
                            additionalData: Data? = nil) throws {
         let combinedSnapshot = model.contentSnapshot + (additionalData ?? Data())
-        let signature = try crypto.generateSignature(of: combinedSnapshot, using: privateKey)
+        let signature = try cardCrypto.generateSignature(of: combinedSnapshot, using: privateKey)
 
         let rawSignature = RawSignature(signer: signer, signature: signature,
                                         snapshot: additionalData)
