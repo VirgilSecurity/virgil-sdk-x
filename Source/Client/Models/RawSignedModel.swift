@@ -9,7 +9,7 @@
 import Foundation
 
 /// Represents some model in binary form that can have signatures and corresponds to Virgil Cards Service model
-@objc(VSSRawSignedModel) public class RawSignedModel: NSObject, Codable {
+@objc(VSSRawSignedModel) public final class RawSignedModel: NSObject, Codable {
     /// Snapshot of `RawCardContent`
     @objc public let contentSnapshot: Data
     /// Array with RawSignatures of card
