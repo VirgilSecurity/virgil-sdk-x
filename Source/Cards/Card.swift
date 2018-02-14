@@ -51,51 +51,6 @@ import VirgilCryptoAPI
         super.init()
     }
 
-    /// Imports Virgil Card from RawSignedModel
-    ///
-    /// - Parameters:
-    ///   - cardCrypto: `CardCrypto` instance
-    ///   - rawSignedModel: RawSignedModel to import
-    /// - Returns: imported Card if succeeded
-    @objc public class func parse(cardCrypto: CardCrypto, rawSignedModel: RawSignedModel) -> Card? {
-        let contentSnapshot = rawSignedModel.contentSnapshot
-        guard let rawCardContent = try? JSONDecoder().decode(RawCardContent.self, from: contentSnapshot) else {
-            return nil
-        }
-
-        guard let publicKeyData = Data(base64Encoded: rawCardContent.publicKey),
-              let publicKey = try? cardCrypto.importPublicKey(from: publicKeyData),
-              let fingerprint = try? cardCrypto.generateSHA512(for: rawSignedModel.contentSnapshot) else {
-                return nil
-        }
-
-        let cardId = fingerprint.subdata(in: 0..<32).hexEncodedString()
-
-        var cardSignatures: [CardSignature] = []
-        for rawSignature in rawSignedModel.signatures {
-            let extraFields: [String: String]?
-
-            if let rawSnapshot = rawSignature.snapshot,
-                let json = try? JSONSerialization.jsonObject(with: rawSnapshot, options: []),
-                   let result = json as? [String: String] {
-                    extraFields = result
-                }
-            else {
-                extraFields = nil
-            }
-
-            let cardSignature = CardSignature(signer: rawSignature.signer, signature: rawSignature.signature,
-                                              snapshot: rawSignature.snapshot, extraFields: extraFields)
-
-            cardSignatures.append(cardSignature)
-        }
-        let createdAt = Date(timeIntervalSince1970: TimeInterval(rawCardContent.createdAt))
-
-        return Card(identifier: cardId, identity: rawCardContent.identity, publicKey: publicKey,
-                    version: rawCardContent.version, createdAt: createdAt, signatures: cardSignatures,
-                    previousCardId: rawCardContent.previousCardId, contentSnapshot: rawSignedModel.contentSnapshot)
-    }
-
     /// Builds RawSignedModel representing Card
     ///
     /// - Returns: RawSignedModel representing Card
