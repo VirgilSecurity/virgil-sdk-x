@@ -94,7 +94,6 @@ public extension CardManager {
         return aggregateOperation
     }
 
-
     /// Makes CallbackOperation<Card> for generating self signed RawSignedModel and
     /// creating Virgil Card instance on the Virgil Cards Service
     ///

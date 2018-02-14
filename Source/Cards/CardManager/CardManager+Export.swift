@@ -10,10 +10,9 @@ import Foundation
 
 /// Import export cards
 public extension CardManager {
-
     /// Imports and verifies Card from base64 encoded string
     ///
-    /// - Parameter string: base64 encoded string with Card
+    /// - Parameter base64EncodedString: base64 encoded string with Card
     /// - Returns: imported and verified Card
     /// - Throws: corresponding CardManagerError
     @objc func importCard(fromBase64EncodedString base64EncodedString: String) throws -> Card {

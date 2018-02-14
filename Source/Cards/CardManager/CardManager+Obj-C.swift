@@ -28,16 +28,6 @@ public extension CardManager {
         }
     }
 
-    /// Creates Virgil Card instance on the Virgil Cards Service and associates it with unique identifier
-    /// Also makes the Card accessible for search/get queries from other users
-    /// `RawSignedModel` should be at least selfSigned
-    ///
-    /// - Parameters:
-    ///   - model: self signed `RawSignedModel`
-    ///   - token: string with `Access Token`
-    /// - Returns: `RawSignedModel` of created card
-    /// - Throws: corresponding error
-
     /// Asynchronously creates Virgil Card instance on the Virgil Cards Service and associates it with unique identifier
     /// Also makes the Card accessible for search/get queries from other users
     /// `RawSignedModel` should be at least selfSigned
@@ -56,7 +46,6 @@ public extension CardManager {
             }
         }
     }
-
 
     /// Asynchronously generates self signed RawSignedModel and creates Virgil Card
     /// instance on the Virgil Cards Service and associates it with unique identifier
@@ -86,14 +75,6 @@ public extension CardManager {
             completion(nil, error)
         }
     }
-
-    /// Performs search of Virgil Cards using identity on the Virgil Cards Service
-    ///
-    /// - Parameters:
-    ///   - identity: identity of cards to search
-    ///   - token: string with `Access Token`
-    /// - Returns: array with RawSignedModels of matched Virgil Cards
-    /// - Throws: corresponding error
 
     /// Asynchronously performs search of Virgil Cards using identity on the Virgil Cards Service
     ///

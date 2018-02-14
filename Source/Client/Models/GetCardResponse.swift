@@ -14,7 +14,7 @@ import Foundation
     @objc public let rawCard: RawSignedModel
     /// True if Virgil Card is outdated
     @objc public let isOutdated: Bool
-    
+
     /// Creates a new `GetCardResponse` with the provided parameters
     ///
     /// - Parameters:
