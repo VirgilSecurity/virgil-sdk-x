@@ -82,7 +82,7 @@ public extension CardManager {
         return aggregateOperation
     }
 
-    func publishCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String?, previousCardId: String? = nil,
+    func publishCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String? = nil, previousCardId: String? = nil,
                      extraFields: [String: String]? = nil) throws -> GenericOperation<Card> {
         let aggregateOperation = CallbackOperation<Card> { operation, completion in
             let tokenContext = TokenContext(operation: "publish", forceReload: false)

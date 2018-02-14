@@ -998,10 +998,10 @@
 				42CF01F31F6A9DD5003ABB19 /* CardManager.swift */,
 				1624B83D2012215B007D223C /* CardManager+Queries.swift */,
 				42DA83BF203262950091D223 /* CardManager+Export.swift */,
-				42DA83A420321F980091D223 /* CardManagerParams.swift */,
 				42DA83A320321F980091D223 /* CardManager+Obj-C.swift */,
 				42DA838A20321F970091D223 /* CardManager+Operations.swift */,
 				422B4D37203494F3003923E2 /* CardManager+Parse.swift */,
+				42DA83A420321F980091D223 /* CardManagerParams.swift */,
 				42DA83A220321F980091D223 /* SignModelOperationFabric.swift */,
 			);
 			path = CardManager;

@@ -21,8 +21,8 @@ import VirgilCryptoAPI
     }
 
     @objc public func sign(model: RawSignedModel, signer: String, privateKey: PrivateKey,
-                           additionalData: Data? = nil) throws {
-        let combinedSnapshot = model.contentSnapshot + (additionalData ?? Data())
+                           additionalData: Data) throws {
+        let combinedSnapshot = model.contentSnapshot + additionalData
         let signature = try cardCrypto.generateSignature(of: combinedSnapshot, using: privateKey)
 
         let rawSignature = RawSignature(signer: signer, signature: signature,
@@ -31,19 +31,19 @@ import VirgilCryptoAPI
         try model.addSignature(rawSignature)
     }
 
-    @objc public func selfSign(model: RawSignedModel, privateKey: PrivateKey, additionalData: Data? = nil) throws {
+    @objc public func selfSign(model: RawSignedModel, privateKey: PrivateKey, additionalData: Data) throws {
         try self.sign(model: model, signer: ModelSigner.selfSignerIdentifier,
                       privateKey: privateKey, additionalData: additionalData)
     }
 
     @objc public func sign(model: RawSignedModel, signer: String, privateKey: PrivateKey,
                            extraFields: [String: String]? = nil) throws {
-        let additionalData: Data?
+        let additionalData: Data
         if let extraFields = extraFields {
-            additionalData = try? JSONSerialization.data(withJSONObject: extraFields, options: [])
+            additionalData = try JSONSerialization.data(withJSONObject: extraFields, options: [])
         }
         else {
-            additionalData = nil
+            additionalData = Data()
         }
 
         try self.sign(model: model, signer: signer, privateKey: privateKey, additionalData: additionalData)
@@ -51,12 +51,12 @@ import VirgilCryptoAPI
 
     @objc public func selfSign(model: RawSignedModel, privateKey: PrivateKey,
                                extraFields: [String: String]? = nil) throws {
-        let additionalData: Data?
+        let additionalData: Data
         if let extraFields = extraFields {
-            additionalData = try? JSONSerialization.data(withJSONObject: extraFields, options: [])
+            additionalData = try JSONSerialization.data(withJSONObject: extraFields, options: [])
         }
         else {
-            additionalData = nil
+            additionalData = Data()
         }
 
         try self.selfSign(model: model, privateKey: privateKey, additionalData: additionalData)

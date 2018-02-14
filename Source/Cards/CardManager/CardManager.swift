@@ -57,9 +57,12 @@ import VirgilCryptoAPI
 
         let rawCard = RawSignedModel(contentSnapshot: snapshot)
 
-        var data: Data?
+        var data: Data
         if extraFields != nil {
             data = try JSONSerialization.data(withJSONObject: extraFields as Any, options: [])
+        }
+        else {
+            data = Data()
         }
 
         try self.modelSigner.selfSign(model: rawCard, privateKey: privateKey, additionalData: data)
