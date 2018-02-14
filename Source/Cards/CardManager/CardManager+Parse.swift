@@ -10,6 +10,13 @@ import Foundation
 import VirgilCryptoAPI
 
 public extension CardManager {
+    /// Imports Virgil Card from RawSignedModel
+    ///
+    /// - Parameters:
+    ///   - cardCrypto: `CardCrypto` instance
+    ///   - rawSignedModel: RawSignedModel to import
+    /// - Returns: imported Card
+    /// - Throws: corresponding error
     @objc static func parseCard(from rawSignedModel: RawSignedModel, cardCrypto: CardCrypto) throws -> Card {
         let contentSnapshot = rawSignedModel.contentSnapshot
         let rawCardContent = try JSONDecoder().decode(RawCardContent.self, from: contentSnapshot)
@@ -47,6 +54,12 @@ public extension CardManager {
                     previousCardId: rawCardContent.previousCardId, contentSnapshot: rawSignedModel.contentSnapshot)
     }
 
+    /// Imports Virgil Card from RawSignedModel using self CardCrypto instance
+    ///
+    /// - Parameters:
+    ///   - rawSignedModel: RawSignedModel to import
+    /// - Returns: imported Card
+    /// - Throws: corresponding error
     @objc func parseCard(from rawSignedModel: RawSignedModel) throws -> Card {
         return try CardManager.parseCard(from: rawSignedModel, cardCrypto: self.cardCrypto)
     }
