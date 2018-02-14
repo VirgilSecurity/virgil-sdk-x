@@ -9,9 +9,21 @@
 import Foundation
 
 /// Model for representing service errors
-public final class RawServiceError: Decodable {
+@objc(VSSRawServiceError) public final class RawServiceError: NSObject, Decodable {
     /// Code of error
-    public let code: Int
+    @objc public let code: Int
     /// Description of error
-    public let message: String
+    @objc public let message: String
+
+    /// Initializer
+    ///
+    /// - Parameters:
+    ///   - code: Error code
+    ///   - message: Error description
+    internal init(code: Int, message: String) {
+        self.code = code
+        self.message = message
+
+        super.init()
+    }
 }
