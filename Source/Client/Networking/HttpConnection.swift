@@ -8,23 +8,41 @@
 
 import Foundation
 
+/// Simple HttpConnection implementation
 open class HttpConnection: HttpConnectionProtocol {
+    /// Default number of maximum concurrent operations
+    public static let defaulMaxConcurrentOperationCount = 10
+    /// Queue for URLSession
     private let queue: OperationQueue
+
+    /// Url session used to create network tasks
     private let session: URLSession
 
+    /// Declares error types and codes
+    ///
+    /// - noUrlInRequest: Provided URLRequest doesn't have url
+    /// - wrongResponseType: Response is not of HTTPURLResponse type
     @objc(VSSServiceConnectionError) public enum ServiceConnectionError: Int, Error {
         case noUrlInRequest = 1
         case wrongResponseType = 2
     }
 
-    public init() {
+    /// Creates HttpConnection with maximum number of concurrent operations
+    /// = HttpConnection.defaulMaxConcurrentOperationCount
+    public init(maxConcurrentOperationCount: Int = HttpConnection.defaulMaxConcurrentOperationCount) {
         self.queue = OperationQueue()
-        self.queue.maxConcurrentOperationCount = 10
+        self.queue.maxConcurrentOperationCount = maxConcurrentOperationCount
 
         let config = URLSessionConfiguration.ephemeral
         self.session = URLSession(configuration: config, delegate: nil, delegateQueue: self.queue)
     }
 
+    /// Sends Request and returns Response over http
+    ///
+    /// - Parameter request: Request to send
+    /// - Returns: Obtained response
+    /// - Throws: ServiceConnectionError.noUrlInRequest if provided URLRequest doesn't have url
+    ///           ServiceConnectionError.wrongResponseType if response is not of HTTPURLResponse type
     public func send(_ request: Request) throws -> Response {
         let nativeRequest = request.getNativeRequest()
 

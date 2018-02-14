@@ -8,6 +8,12 @@
 
 import Foundation
 
+/// Protocol for HTTP connection
 public protocol HttpConnectionProtocol: class {
+    /// Sends Request and returns Response
+    ///
+    /// - Parameter request: Request to send
+    /// - Returns: Obrained response
+    /// - Throws: Any Error
     func send(_ request: Request) throws -> Response
 }
