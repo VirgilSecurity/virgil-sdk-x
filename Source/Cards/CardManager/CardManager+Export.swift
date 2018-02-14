@@ -8,8 +8,13 @@
 
 import Foundation
 
-// Import export cards
+/// Import export cards
 public extension CardManager {
+    /// Imports and verifies Card from base64 encoded string
+    ///
+    /// - Parameter base64EncodedString: base64 encoded string with Card
+    /// - Returns: imported and verified Card
+    /// - Throws: corresponding CardManagerError
     @objc func importCard(fromBase64Encoded base64EncodedString: String) throws -> Card {
         let rawCard = try RawSignedModel.import(fromBase64Encoded: base64EncodedString)
         let card = try self.parseCard(from: rawCard)
@@ -21,6 +26,11 @@ public extension CardManager {
         return card
     }
 
+    /// Imports and verifies Card from json Dictionary
+    ///
+    /// - Parameter json: json Dictionary
+    /// - Returns: imported and verified Card
+    /// - Throws: corresponding CardManagerError
     @objc func importCard(fromJson json: Any) throws -> Card {
         let rawCard = try RawSignedModel.import(fromJson: json)
         let card = try self.parseCard(from: rawCard)
@@ -32,6 +42,11 @@ public extension CardManager {
         return card
     }
 
+    /// Imports and verifies Card from RawSignedModel
+    ///
+    /// - Parameter rawCard: RawSignedModel
+    /// - Returns: imported and verified Card
+    /// - Throws: corresponding CardManagerError
     @objc func importCard(fromRawCard rawCard: RawSignedModel) throws -> Card {
         let card = try self.parseCard(from: rawCard)
 
@@ -42,15 +57,29 @@ public extension CardManager {
         return card
     }
 
+    /// Exports Card as base64 encoded string
+    ///
+    /// - Parameter card: Card to be exported
+    /// - Returns: base64 encoded string with Card
+    /// - Throws: corresponding Error
     @objc func exportCardAsBase64EncodedString(_ card: Card) throws -> String {
-        return try card.getRawCard(cardCrypto: self.cardCrypto).exportAsBase64EncodedString()
+        return try card.getRawCard().exportAsBase64EncodedString()
     }
 
+    /// Exports Card as json Dictionary
+    ///
+    /// - Parameter card: Card to be exported
+    /// - Returns: json Dictionary with Card
+    /// - Throws: corresponding Error
     @objc func exportCardAsJson(_ card: Card) throws -> Any {
-        return try card.getRawCard(cardCrypto: self.cardCrypto).exportAsJson()
+        return try card.getRawCard().exportAsJson()
     }
-
+    /// Exports Card as RawSignedModel
+    ///
+    /// - Parameter card: Card to be exported
+    /// - Returns: RawSignedModel representing Card
+    /// - Throws: corresponding Error
     @objc func exportCardAsRawCard(_ card: Card) throws -> RawSignedModel {
-        return try card.getRawCard(cardCrypto: self.cardCrypto)
+        return try card.getRawCard()
     }
 }

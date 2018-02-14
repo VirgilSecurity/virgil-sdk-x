@@ -12,7 +12,8 @@ import Foundation
 extension CardClient: CardClientProtocol {
     @objc public static let xVirgilIsSuperseededKey = "x-virgil-is-superseeded"
     @objc public static let xVirgilIsSuperseededTrue = "true"
-    /// Returns `RawSignedModel` of card from the Virgil Cards Service with given ID, if exists
+    /// Returns `GetCardResponse` with `RawSignedModel` of card from the Virgil Cards Service with given ID, if exists
+
     ///
     /// - Parameters:
     ///   - cardId: string with unique Virgil Card identifier

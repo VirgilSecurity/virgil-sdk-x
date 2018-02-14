@@ -10,6 +10,11 @@ import Foundation
 import VirgilCryptoAPI
 
 public extension CardManager {
+    /// Makes CallbackOperation<GetCardResponse> for getting `GetCardResponse` with verified Virgil Card
+    /// from the Virgil Cards Service with given ID, if exists
+    ///
+    /// - Parameter cardId: identifier of Virgil Card to find
+    /// - Returns: CallbackOperation<GetCardResponse> for getting `GetCardResponse` with verified Virgil Card
     func getCard(withId cardId: String) -> CallbackOperation<Card> {
         let aggregateOperation = CallbackOperation<Card> { _, completion in
             let tokenContext = TokenContext(operation: "get", forceReload: false)
@@ -43,6 +48,13 @@ public extension CardManager {
         return aggregateOperation
     }
 
+    /// Makes CallbackOperation<Card> for creating Virgil Card instance
+    /// on the Virgil Cards Service and associates it with unique identifier
+    ///
+    /// - Important: `RawSignedModel` should be at least selfSigned
+    ///
+    /// - Parameter rawCard: RawSigned model of Card to create
+    /// - Returns: CallbackOperation<Card> for creating Virgil Card instance
     func publishCard(rawCard: RawSignedModel) -> CallbackOperation<Card> {
         let aggregateOperation = CallbackOperation<Card> { _, completion in
             let tokenContext = TokenContext(operation: "publish", forceReload: false)
@@ -82,6 +94,18 @@ public extension CardManager {
         return aggregateOperation
     }
 
+    /// Makes CallbackOperation<Card> for generating self signed RawSignedModel and
+    /// creating Virgil Card instance on the Virgil Cards Service
+    ///
+    /// - Parameters:
+    ///   - privateKey: Private Key to self sign RawSignedModel with
+    ///   - publicKey: PublicKey for generating RawSignedModel
+    ///   - identity: identity for generating RawSignedModel. Will be taken from token if ommited
+    ///   - previousCardId: identifier of Virgil Card to replace
+    ///   - extraFields: Dictionary with extra data to sign with model
+    /// - Returns: CallbackOperation<Card> for generating self signed RawSignedModel and
+    ///            creating Virgil Card instance on the Virgil Cards Service
+    /// - Throws: corresponding Error
     func publishCard(privateKey: PrivateKey, publicKey: PublicKey,
                      identity: String? = nil, previousCardId: String? = nil,
                      extraFields: [String: String]? = nil) throws -> GenericOperation<Card> {
@@ -134,6 +158,11 @@ public extension CardManager {
         return aggregateOperation
     }
 
+    /// Makes CallbackOperation<[Card]> for performing search of Virgil Cards
+    /// using identity on the Virgil Cards Service
+    ///
+    /// - Parameter identity: identity of cards to search
+    /// - Returns: CallbackOperation<[Card]> for performing search of Virgil Cards
     func searchCards(identity: String) -> CallbackOperation<[Card]> {
         let aggregateOperation = CallbackOperation<[Card]> { _, completion in
             let tokenContext = TokenContext(operation: "search", forceReload: false)

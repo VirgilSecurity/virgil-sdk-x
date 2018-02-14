@@ -8,14 +8,21 @@
 
 import Foundation
 
+/// Class representing JWT Body content
 @objc(VSSJwtBodyContent) public class JwtBodyContent: NSObject, Codable {
-
+    /// Issuer containing application id
+    /// - Note: Can be taken [here](https://dashboard.virgilsecurity.com)
     @objc public let appId: String
+    /// Subject as identity
     @objc public let identity: String
+    /// Timestamp in seconds with expiration date
     @objc public let expiresAt: Int
+    /// Timestamp in seconds with issued date
     @objc public let issuedAt: Int
+    /// Dictionary with additional data
     @objc public let additionalData: [String: String]?
 
+    /// Defines coding keys for encoding and decoding
     private enum CodingKeys: String, CodingKey {
         case appId = "iss"
         case identity = "sub"
@@ -24,6 +31,14 @@ import Foundation
         case additionalData = "ada"
     }
 
+    /// Initializer
+    ///
+    /// - Parameters:
+    ///   - appId: Issuer containing application id. Can be taken [here](https://dashboard.virgilsecurity.com)
+    ///   - identity: identity (must be equal to RawSignedModel identity when publishing card)
+    ///   - expiresAt: expiration date
+    ///   - issuedAt: issued date
+    ///   - additionalData: dictionary with additional data
     @objc public init(appId: String, identity: String, expiresAt: Date,
                       issuedAt: Date, additionalData: [String: String]? = nil) {
         self.appId = appId
@@ -60,6 +75,10 @@ import Foundation
         }
     }
 
+    /// Imports JwtBodyContent from base64Url encoded string
+    ///
+    /// - Parameter base64UrlEncoded: base64Url encoded string with JwtBodyContent
+    /// - Returns: decoded JwtBodyContent if succeeded, nil otherwise
     @objc public static func importFrom(base64UrlEncoded: String) -> JwtBodyContent? {
         guard let data = Data(base64UrlEncoded: base64UrlEncoded) else {
             return nil
@@ -68,6 +87,10 @@ import Foundation
         return try? JSONDecoder().decode(JwtBodyContent.self, from: data)
     }
 
+    /// Exports JwtBodyContent as base64Url encoded string
+    ///
+    /// - Returns: base64Url encoded string with JwtBodyContent
+    /// - Throws: corresponding error if encoding failed
     @objc public func base64UrlEncodedString() throws -> String {
         return try JSONEncoder().encode(self).base64UrlEncodedString()
     }

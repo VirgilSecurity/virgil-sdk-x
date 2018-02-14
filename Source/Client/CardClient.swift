@@ -10,14 +10,15 @@ import Foundation
 
 /// Class representing operations with Virgil Cards service
 @objc(VSSCardClient) open class CardClient: NSObject {
+    /// Base URL for the Virgil Gateway
     @objc public let serviceUrl: URL
+    /// HttpConnectionProtocol implementation to use for queries
     public let connection: HttpConnectionProtocol
-
-    /// Error domain for NSError instances thrown from service
+    /// Error domain for Error instances thrown from service
     @objc public static let serviceErrorDomain = "VirgilSDK.CardServiceErrorDomain"
-    /// Error domain for NSError instances thrown from here
+    /// Error domain for Error instances thrown from here
     @objc public static let clientErrorDomain = "VirgilSDK.CardClientErrorDomain"
-
+    /// Default URL for serviceURL
     @objc public static let defaultURL = URL(string: "https://api.virgilsecurity.com")!
 
     /// Declares client error types and codes
@@ -32,23 +33,29 @@ import Foundation
         case invalidJson = 3
         case invalidResponseModel = 4
 
+        /// Error domain or Error instances thrown from client
         public static var errorDomain: String { return CardClient.clientErrorDomain }
-
+        /// Code of error
         public var errorCode: Int { return self.rawValue }
     }
 
     /// Represent card service error
     @objc public class CardServiceError: NSObject, CustomNSError {
+        /// Recieved and decoded `RawServiceError`
         public let rawServiceError: RawServiceError
 
+        /// Initializer
+        ///
+        /// - Parameter rawServiceError: recieved and decoded rawServiceError
         public init(rawServiceError: RawServiceError) {
             self.rawServiceError = rawServiceError
         }
 
+        /// Error domain or Error instances thrown from Service
         public static var errorDomain: String { return CardClient.serviceErrorDomain }
-
+        /// Code of error
         public var errorCode: Int { return self.rawServiceError.code }
-
+        /// Provides info about the error. Error message can be recieve by NSLocalizedDescriptionKey
         public var errorUserInfo: [String: Any] { return [NSLocalizedDescriptionKey: self.rawServiceError.message] }
     }
 
