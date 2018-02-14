@@ -23,6 +23,7 @@ import Foundation
     ///
     /// - duplicateSignature: `RawSignedModel` instance already has signature with same signer field
     @objc(VSSRawSignedModelError) public enum RawSignedModelError: Int, Error {
+        case invalidBase64String = 1
         case duplicateSignature = 2
     }
 
@@ -39,28 +40,30 @@ import Foundation
     /// Initializes `RawSignedModel` from json dictionary
     ///
     /// - Parameter json: dictionary representing `RawSignedModel`
-    @objc public static func importFrom(json: Any) -> RawSignedModel? {
-        guard let data = try? JSONSerialization.data(withJSONObject: json, options: []) else {
-            return nil
-        }
-        return try? JSONDecoder().decode(RawSignedModel.self, from: data)
+    /// - Returns: RawSignedModel instance
+    /// - Throws: Error
+    @objc public static func `import`(fromJson json: Any) throws -> RawSignedModel {
+        let data = try JSONSerialization.data(withJSONObject: json, options: [])
+        
+        return try JSONDecoder().decode(RawSignedModel.self, from: data)
     }
 
     /// Initializes `RawSignedModel` from base64 encoded string
     ///
     /// - Parameter base64Encoded: base64 encoded string with `RawSignedModel`
-    @objc public static func importFrom(base64Encoded: String) -> RawSignedModel? {
-        guard let data = Data(base64Encoded: base64Encoded) else {
-            return nil
+    @objc public static func `import`(fromBase64Encoded base64EncodedString: String) throws -> RawSignedModel {
+        guard let data = Data(base64Encoded: base64EncodedString) else {
+            throw RawSignedModelError.invalidBase64String
         }
-        return try? JSONDecoder().decode(RawSignedModel.self, from: data)
+        
+        return try JSONDecoder().decode(RawSignedModel.self, from: data)
     }
 
     /// Exports `RawSignedModel` as base64 encoded string
     ///
     /// - Returns: base64 encoded string with `RawSignedModel`
     /// - Throws: corresponding error if encoding fails
-    @objc public func base64EncodedString() throws -> String {
+    @objc public func exportAsBase64EncodedString() throws -> String {
        return try JSONEncoder().encode(self).base64EncodedString()
     }
 
@@ -70,6 +73,7 @@ import Foundation
     /// - Throws: corresponding error if encoding fails
     @objc public func exportAsJson() throws -> Any {
         let data = try JSONEncoder().encode(self)
+        
         return try JSONSerialization.jsonObject(with: data, options: [])
     }
 
@@ -81,6 +85,7 @@ import Foundation
         guard self.signatures.first(where: { $0.signer == signature.signer }) == nil else {
             throw RawSignedModelError.duplicateSignature
         }
+        
         self.signatures.append(signature)
     }
 }

@@ -24,6 +24,7 @@ import VirgilCryptoAPI
         case gotNilToken = 3
         case gotNilSignedRawCard = 4
         case gotWrongCard = 5
+        case invalidPublicKeyBase64String = 6
     }
 
     @objc public init(params: CardManagerParams) {

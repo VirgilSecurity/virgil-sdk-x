@@ -168,6 +168,10 @@
 		42272818202120F900265E25 /* VirgilSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7E3721DB9023400D70C12 /* VirgilSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42272819202120FA00265E25 /* VirgilSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7E3721DB9023400D70C12 /* VirgilSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4227281A202120FA00265E25 /* VirgilSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7E3721DB9023400D70C12 /* VirgilSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		422B4D38203494F3003923E2 /* CardManager+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B4D37203494F3003923E2 /* CardManager+Parse.swift */; };
+		422B4D39203494F3003923E2 /* CardManager+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B4D37203494F3003923E2 /* CardManager+Parse.swift */; };
+		422B4D3A203494F3003923E2 /* CardManager+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B4D37203494F3003923E2 /* CardManager+Parse.swift */; };
+		422B4D3B203494F3003923E2 /* CardManager+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B4D37203494F3003923E2 /* CardManager+Parse.swift */; };
 		423CEB5A1DCA06C900CCACB8 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
 		423CEB5D1DCA07C200CCACB8 /* VSSKeyStoragePublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423CEB5F1DCA07C200CCACB8 /* VSSKeyEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB541DCA01AF00CCACB8 /* VSSKeyEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -794,6 +798,7 @@
 		422499C21EB39B380032F556 /* VirgilSDK macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilSDK macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		422726CE20210A9A00265E25 /* VirgilCryptoAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VirgilCryptoAPI.xcodeproj; path = "Carthage/Checkouts/virgil-cryptoapi-x/VirgilCryptoAPI.xcodeproj"; sourceTree = "<group>"; };
 		422726E720210AA300265E25 /* VirgilCrypto.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VirgilCrypto.xcodeproj; path = "Carthage/Checkouts/virgil-foundation-x/VirgilCrypto.xcodeproj"; sourceTree = SOURCE_ROOT; };
+		422B4D37203494F3003923E2 /* CardManager+Parse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardManager+Parse.swift"; sourceTree = "<group>"; };
 		423CEB541DCA01AF00CCACB8 /* VSSKeyEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyEntry.h; sourceTree = "<group>"; };
 		423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeyEntry.m; sourceTree = "<group>"; };
 		423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyStoragePublic.h; sourceTree = "<group>"; };
@@ -996,6 +1001,7 @@
 				42DA83A420321F980091D223 /* CardManagerParams.swift */,
 				42DA83A320321F980091D223 /* CardManager+Obj-C.swift */,
 				42DA838A20321F970091D223 /* CardManager+Operations.swift */,
+				422B4D37203494F3003923E2 /* CardManager+Parse.swift */,
 				42DA83A220321F980091D223 /* SignModelOperationFabric.swift */,
 			);
 			path = CardManager;
@@ -2014,6 +2020,7 @@
 				16B3FD552005059C008F0357 /* JwtHeaderContent.swift in Sources */,
 				42249A681EB39D6F0032F556 /* VSSKeyEntry.m in Sources */,
 				4263A2001EBC804C00B13FF1 /* VSSKeyStorageConfiguration.m in Sources */,
+				422B4D39203494F3003923E2 /* CardManager+Parse.swift in Sources */,
 				4284C4071F6C00C300B75491 /* CardManager.swift in Sources */,
 				42DA83AE20321F980091D223 /* CardManager+Obj-C.swift in Sources */,
 			);
@@ -2120,6 +2127,7 @@
 				16AE0B322020DA95005B311B /* VSSKeyStorage.m in Sources */,
 				4284C3FD1F6C00B800B75491 /* RawCardContent.swift in Sources */,
 				16B3FD562005059C008F0357 /* JwtHeaderContent.swift in Sources */,
+				422B4D3A203494F3003923E2 /* CardManager+Parse.swift in Sources */,
 				16B3FD77200CB88D008F0357 /* ConstAccessTokenProvider.swift in Sources */,
 				42DA83A720321F980091D223 /* CardManager+Operations.swift in Sources */,
 				4284C4141F6C00C400B75491 /* Card.swift in Sources */,
@@ -2177,6 +2185,7 @@
 				16AE0B332020DA96005B311B /* VSSKeyStorage.m in Sources */,
 				4284C3FE1F6C00B900B75491 /* RawCardContent.swift in Sources */,
 				16B3FD572005059C008F0357 /* JwtHeaderContent.swift in Sources */,
+				422B4D3B203494F3003923E2 /* CardManager+Parse.swift in Sources */,
 				16B3FD78200CB88D008F0357 /* ConstAccessTokenProvider.swift in Sources */,
 				42DA83A820321F980091D223 /* CardManager+Operations.swift in Sources */,
 				4284C41B1F6C00C600B75491 /* Card.swift in Sources */,
@@ -2247,6 +2256,7 @@
 				4284C34B1F6AAB7B00B75491 /* Log.swift in Sources */,
 				429123AD1F4D726300103BE0 /* VSSKeyAttrs.m in Sources */,
 				4284C4201F6C03F300B75491 /* Data+hex.swift in Sources */,
+				422B4D38203494F3003923E2 /* CardManager+Parse.swift in Sources */,
 				4244F81D203365BB0053EE4B /* ServiceRequest.swift in Sources */,
 				16B3FD422004D5E0008F0357 /* AccessTokenProvider.swift in Sources */,
 				42CF01FD1F6AA209003ABB19 /* HttpConnectionProtocol.swift in Sources */,

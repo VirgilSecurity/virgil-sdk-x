@@ -55,9 +55,7 @@ extension CardManager {
 
                 let responseModel = try self.cardClient.getCard(withId: cardId, token: token.stringRepresentation())
 
-                guard let card = Card.parse(cardCrypto: self.cardCrypto, rawSignedModel: responseModel.rawCard) else {
-                    throw CardManagerError.cardIsCorrupted
-                }
+                let card = try self.parseCard(from: responseModel.rawCard)
                 card.isOutdated = responseModel.isOutdated
 
                 guard card.identifier == cardId else {
@@ -91,9 +89,7 @@ extension CardManager {
                     throw CardManagerError.gotWrongCard
                 }
 
-                guard let card = Card.parse(cardCrypto: self.cardCrypto, rawSignedModel: responseModel) else {
-                    throw CardManagerError.cardIsCorrupted
-                }
+                let card = try self.parseCard(from: responseModel)
 
                 completion(card, nil)
             }
@@ -115,9 +111,8 @@ extension CardManager {
 
                 var cards: [Card] = []
                 for rawSignedModel in rawSignedModels {
-                    guard let card = Card.parse(cardCrypto: self.cardCrypto, rawSignedModel: rawSignedModel) else {
-                        throw CardManagerError.cardIsCorrupted
-                    }
+                    let card = try self.parseCard(from: rawSignedModel)
+                    
                     cards.append(card)
                 }
 
