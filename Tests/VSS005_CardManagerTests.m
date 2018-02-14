@@ -365,7 +365,7 @@ static const NSTimeInterval timeout = 8.;
     
     VSSCard *card = [VSSCardManager parseCardFrom:rawCard cardCrypto:self.cardCrypto error:&error];
     XCTAssert(card != nil && error == nil);
-    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithSnapshot:rawCard.contentSnapshot];
+    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithSnapshot:rawCard.contentSnapshot error:nil];
 
     XCTAssert([content.identity isEqualToString:identity]);
     XCTAssert([content.version isEqualToString:@"5.0"]);

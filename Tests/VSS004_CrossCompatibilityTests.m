@@ -63,7 +63,7 @@
     VSSRawSignedModel *rawCard1 = [VSSRawSignedModel importFromBase64Encoded:rawCardString error:&error];
     XCTAssert(error == nil && rawCard1 != nil);
     
-    VSSRawCardContent *cardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard1.contentSnapshot];
+    VSSRawCardContent *cardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard1.contentSnapshot error:nil];
     XCTAssert(cardContent1 != nil);
     
     XCTAssert([cardContent1.identity isEqualToString:@"test"]);
@@ -85,7 +85,7 @@
     XCTAssert([rawCard2.contentSnapshot isEqualToData:rawCard1.contentSnapshot]);
     XCTAssert(rawCard2.signatures.count == 0);
     
-    NSDictionary *rawCardContentDict = [NSJSONSerialization JSONObjectWithData:[cardContent1 snapshot] options:0 error:nil];
+    NSDictionary *rawCardContentDict = [NSJSONSerialization JSONObjectWithData:[cardContent1 snapshotAndReturnError:nil] options:0 error:nil];
     XCTAssert(rawCardContentDict != nil);
     NSDictionary *rawCardContentDictImported = [NSJSONSerialization JSONObjectWithData:rawCard1.contentSnapshot options:0 error:nil];
     XCTAssert([rawCardContentDict isEqualToDictionary:rawCardContentDictImported]);
@@ -108,7 +108,7 @@
     VSSRawSignedModel *rawCard1 = [VSSRawSignedModel importFromBase64Encoded:rawCardString error:&error];
     XCTAssert(error == nil && rawCard1 != nil);
     
-    VSSRawCardContent *cardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard1.contentSnapshot];
+    VSSRawCardContent *cardContent1 = [[VSSRawCardContent alloc] initWithSnapshot:rawCard1.contentSnapshot error:nil];
     XCTAssert(cardContent1 != nil);
     
     XCTAssert([cardContent1.identity isEqualToString:@"test"]);
@@ -148,7 +148,7 @@
     
     XCTAssert([self.utils isRawSignaturesEqualWithSignatures:rawCard1.signatures and:rawCard2.signatures]);
     
-    NSDictionary *rawCardContentDict = [NSJSONSerialization JSONObjectWithData:[cardContent1 snapshot] options:0 error:nil];
+    NSDictionary *rawCardContentDict = [NSJSONSerialization JSONObjectWithData:[cardContent1 snapshotAndReturnError:nil] options:0 error:nil];
     XCTAssert(rawCardContentDict != nil);
     NSDictionary *rawCardContentDictImported = [NSJSONSerialization JSONObjectWithData:rawCard1.contentSnapshot options:0 error:nil];
     XCTAssert([rawCardContentDict isEqualToDictionary:rawCardContentDictImported]);

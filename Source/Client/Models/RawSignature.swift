@@ -20,7 +20,7 @@ import Foundation
     /// Additional data
     @objc public let snapshot: Data?
 
-    /// Initializes a new `RawSignature` with the provided signer, signature and snapshot (optionally)
+    /// Initializes a new `RawSignature` with the provided signer, signature and snapshot
     ///
     /// - Parameters:
     ///   - signer: identifier of signer

@@ -9,16 +9,16 @@
 import Foundation
 
 /// Represents content of Virgil Card
-@objc(VSSRawCardContent) public class RawCardContent: NSObject, Codable {
+@objc(VSSRawCardContent) public final class RawCardContent: NSObject, Codable {
     /// Card identity
     @objc public let identity: String
     /// PublicKey data
     @objc public let publicKey: Data
-    /// Identifier of outdated previous Virgil Card with same identity
+    /// Identifier of outdated previous Virgil Card with same identity.
     @objc public let previousCardId: String?
     /// Version of Virgil Card
     @objc public let version: String
-    /// Timestamp in seconds with creation date
+    /// UTC timestamp of creation date
     @objc public let createdAt: Int
 
     /// Defines coding keys for encoding and decoding
@@ -33,11 +33,11 @@ import Foundation
     /// Initializes a new `RawCardContent` with the provided content
     ///
     /// - Parameters:
-    ///   - identity: card identity
-    ///   - publicKey: publicKey data
-    ///   - previousCardId: identifier of previous Virgil Card with same identity
+    ///   - identity: Card identity
+    ///   - publicKey: PublicKey data
+    ///   - previousCardId: Identifier of previous Virgil Card with same identity
     ///   - version: Virgil Card version
-    ///   - createdAt: date of creation
+    ///   - createdAt: Date of creation
     @objc public init(identity: String, publicKey: Data, previousCardId: String? = nil,
                       version: String = "5.0", createdAt: Date) {
         self.identity = identity
@@ -49,23 +49,23 @@ import Foundation
         super.init()
     }
 
-    /// Initializes `RawCardContent` from data snapshot
+    /// Initializes `RawCardContent` from binary content snapshot
     ///
-    /// - Parameter snapshot: snapshot of `RawCardContent`
-    @objc public convenience init?(snapshot: Data) {
-        guard let content = try? JSONDecoder().decode(RawCardContent.self, from: snapshot) else {
-            return nil
-        }
+    /// - Parameter snapshot: Binary snapshot of `RawCardContent`
+    /// - Throws: Rethrows from JSONDecoder
+    @objc public convenience init(snapshot: Data) throws {
+        let content = try JSONDecoder().decode(RawCardContent.self, from: snapshot)
 
         self.init(identity: content.identity, publicKey: content.publicKey,
                   previousCardId: content.previousCardId, version: content.version,
                   createdAt: Date(timeIntervalSince1970: TimeInterval(content.createdAt)))
     }
 
-    /// Takes snapshot of `RawCardContent`
+    /// Takes binary snapshot of `RawCardContent`
     ///
-    /// - Returns: data snapshot of `RawCardContent`
-    @objc public func snapshot() -> Data? {
-        return try? JSONEncoder().encode(self)
+    /// - Returns: Binary snapshot of `RawCardContent`
+    /// - Throws: Rethrows from JSONEncoder
+    @objc public func snapshot() throws -> Data {
+        return try JSONEncoder().encode(self)
     }
 }

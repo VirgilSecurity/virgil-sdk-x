@@ -29,7 +29,7 @@
     
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:idty publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     
-    NSData *snapshot = [content snapshot];
+    NSData *snapshot = [content snapshotAndReturnError:nil];
     
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     

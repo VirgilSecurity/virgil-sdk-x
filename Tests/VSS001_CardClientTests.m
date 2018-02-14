@@ -51,7 +51,8 @@
     NSString *identity = @"identity";
 
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
-    NSData *snapshot = [content snapshot];
+    
+    NSData *snapshot = [content snapshotAndReturnError:nil];
     
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     XCTAssert(error == nil && rawCard != nil);
@@ -95,7 +96,7 @@
     NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
 
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
-    NSData *snapshot = [content snapshot];
+    NSData *snapshot = [content snapshotAndReturnError:nil];
 
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     
@@ -114,7 +115,7 @@
     VSSCard *foundCard = [VSSCardManager parseCardFrom:getCardResponse.rawCard cardCrypto:self.cardCrypto error:&error];
     XCTAssert(error == nil && foundCard != nil);
 
-    VSSRawCardContent *responseContent = [[VSSRawCardContent alloc] initWithSnapshot:getCardResponse.rawCard.contentSnapshot];
+    VSSRawCardContent *responseContent = [[VSSRawCardContent alloc] initWithSnapshot:getCardResponse.rawCard.contentSnapshot error:nil];
     XCTAssert([self.utils isRawCardContentEqualWithContent:content and:responseContent]);
 
     XCTAssert([self.utils isCardsEqualWithCard:card and:foundCard]);
@@ -136,7 +137,7 @@
     NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
     
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
-    NSData *snapshot = [content snapshot];
+    NSData *snapshot = [content snapshotAndReturnError:nil];
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     
     VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
@@ -156,7 +157,7 @@
     VSSCard *foundCard = [VSSCardManager parseCardFrom:foundRawCard cardCrypto:self.cardCrypto error:&error];
     XCTAssert(error == nil && foundCard != nil);
     
-    VSSRawCardContent *responseContent = [[VSSRawCardContent alloc] initWithSnapshot:foundRawCard.contentSnapshot];
+    VSSRawCardContent *responseContent = [[VSSRawCardContent alloc] initWithSnapshot:foundRawCard.contentSnapshot error:nil];
     XCTAssert([self.utils isRawCardContentEqualWithContent:content and:responseContent]);
     
     XCTAssert([self.utils isCardsEqualWithCard:card and:foundCard]);
@@ -176,7 +177,7 @@
     NSString *wrongIdentity = @"identity2";
     
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
-    NSData *snapshot = [content snapshot];
+    NSData *snapshot = [content snapshotAndReturnError:nil];
     
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     XCTAssert(rawCard != nil);
@@ -203,7 +204,7 @@
     NSString *identity = @"identity1";
     
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
-    NSData *snapshot = [content snapshot];
+    NSData *snapshot = [content snapshotAndReturnError:nil];
     
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot ];
     XCTAssert(error == nil && rawCard != nil);
