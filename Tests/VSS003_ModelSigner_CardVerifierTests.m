@@ -197,7 +197,8 @@
     
     NSString *cardString = self.testData[@"STC-10.as_string"];
     XCTAssert(error == nil);
-    VSSCard *card = [cardManager importCardWithBase64Encoded:cardString error:&error];
+    
+    VSSCard *card = [cardManager importCardFromBase64Encoded:cardString error:&error];
     XCTAssert(card != nil && error == nil);
 
     NSString *privateKey1Base64 = self.testData[@"STC-10.private_key1_base64"];
@@ -261,7 +262,7 @@
     
     NSString *cardString = self.testData[@"STC-11.as_string"];
     XCTAssert(error == nil);
-    VSSCard *card = [cardManager importCardWithBase64Encoded:cardString error:&error];
+    VSSCard *card = [cardManager importCardFromBase64Encoded:cardString error:&error];
     XCTAssert(card != nil);
     
     XCTAssert([self.verifier verifyCardWithCard:card]);
@@ -283,7 +284,7 @@
     
     NSString *cardString = self.testData[@"STC-12.as_string"];
     XCTAssert(error == nil);
-    VSSCard *card = [cardManager importCardWithBase64Encoded:cardString error:&error];
+    VSSCard *card = [cardManager importCardFromBase64Encoded:cardString error:&error];
     XCTAssert(card != nil);
     
     XCTAssert([self.verifier verifyCardWithCard:card]);
@@ -305,7 +306,7 @@
     
     NSString *cardString = self.testData[@"STC-14.as_string"];
     XCTAssert(error == nil);
-    VSSCard *card = [cardManager importCardWithBase64Encoded:cardString error:&error];
+    VSSCard *card = [cardManager importCardFromBase64Encoded:cardString error:&error];
     XCTAssert(card != nil);
     
     self.verifier.verifyVirgilSignature = true;
@@ -326,7 +327,7 @@
     
     NSString *cardString = self.testData[@"STC-15.as_string"];
     XCTAssert(error == nil);
-    VSSCard *card = [cardManager importCardWithBase64Encoded:cardString error:&error];
+    VSSCard *card = [cardManager importCardFromBase64Encoded:cardString error:&error];
     XCTAssert(card != nil);
     
     self.verifier.verifySelfSignature = true;
@@ -347,7 +348,7 @@
     
     NSString *cardString = self.testData[@"STC-16.as_string"];
     XCTAssert(error == nil);
-    VSSCard *card = [cardManager importCardWithBase64Encoded:cardString error:&error];
+    VSSCard *card = [cardManager importCardFromBase64Encoded:cardString error:&error];
     XCTAssert(card != nil);
     
     NSData *pubicKeyBase64 = [[NSData alloc] initWithBase64EncodedString:self.testData[@"STC-16.public_key1_base64"] options:0];

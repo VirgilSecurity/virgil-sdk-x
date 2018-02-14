@@ -15,7 +15,7 @@ public extension CardManager {
     /// - Parameter base64EncodedString: base64 encoded string with Card
     /// - Returns: imported and verified Card
     /// - Throws: corresponding CardManagerError
-    @objc func importCard(fromBase64EncodedString base64EncodedString: String) throws -> Card {
+    @objc func importCard(fromBase64Encoded base64EncodedString: String) throws -> Card {
         let rawCard = try RawSignedModel.import(fromBase64Encoded: base64EncodedString)
         let card = try self.parseCard(from: rawCard)
 
@@ -62,7 +62,7 @@ public extension CardManager {
     /// - Parameter card: Card to be exported
     /// - Returns: base64 encoded string with Card
     /// - Throws: corresponding Error
-    @objc func exportCardAsBase64EncodedString(card: Card) throws -> String {
+    @objc func exportCardAsBase64EncodedString(_ card: Card) throws -> String {
         return try card.getRawCard().exportAsBase64EncodedString()
     }
 
@@ -71,16 +71,15 @@ public extension CardManager {
     /// - Parameter card: Card to be exported
     /// - Returns: json Dictionary with Card
     /// - Throws: corresponding Error
-    @objc func exportCardAsJson(card: Card) throws -> Any {
+    @objc func exportCardAsJson(_ card: Card) throws -> Any {
         return try card.getRawCard().exportAsJson()
     }
-
     /// Exports Card as RawSignedModel
     ///
     /// - Parameter card: Card to be exported
     /// - Returns: RawSignedModel representing Card
     /// - Throws: corresponding Error
-    @objc func exportCardAsRawCard(card: Card) throws -> RawSignedModel {
+    @objc func exportCardAsRawCard(_ card: Card) throws -> RawSignedModel {
         return try card.getRawCard()
     }
 }

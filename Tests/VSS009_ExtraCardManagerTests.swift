@@ -23,17 +23,17 @@ class CardClientStub_STC3: CardClientProtocol {
     }
 
     @objc func getCard(withId cardId: String, token: String) throws -> GetCardResponse {
-        let response = try! RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)
+        let response = try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)
 
         return GetCardResponse(rawCard: response, isOutdated: false)
     }
 
     @objc func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
-        return try! RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)
+        return try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)
     }
 
     @objc func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
-        return try! [RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)]
+        return [try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)]
     }
 }
 
@@ -47,17 +47,17 @@ class CardClientStub_STC34: CardClientProtocol {
     }
 
     @objc func getCard(withId cardId: String, token: String) throws -> GetCardResponse {
-        let response = try! RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-34.as_string"] as! String)
+        let response = try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)
         
         return GetCardResponse(rawCard: response, isOutdated: false)
     }
 
     @objc func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
-        return try! RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-34.as_string"] as! String)
+        return try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-34.as_string"] as! String)
     }
 
     @objc func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
-        return try! [RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-34.as_string"] as! String)]
+        return [try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-34.as_string"] as! String)]
     }
 }
 
@@ -116,7 +116,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         
         var errorWasThrown = false
         do {
-          _ = try cardManager.importCard(fromBase64EncodedString: self.testsDict["STC-3.as_string"] as! String)
+          _ = try cardManager.importCard(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)
         } catch {
             errorWasThrown = true
         }

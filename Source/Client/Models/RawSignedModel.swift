@@ -52,7 +52,7 @@ import Foundation
 
     /// Initializes `RawSignedModel` from base64 encoded string
     ///
-    /// - Parameter base64Encoded: base64 encoded string with `RawSignedModel`
+    /// - Parameter base64EncodedString: base64 encoded string with `RawSignedModel`
     @objc public static func `import`(fromBase64Encoded base64EncodedString: String) throws -> RawSignedModel {
         guard let data = Data(base64Encoded: base64EncodedString) else {
             throw RawSignedModelError.invalidBase64String
