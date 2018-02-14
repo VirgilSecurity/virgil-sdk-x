@@ -10,14 +10,6 @@ import Foundation
 
 /// Simple HttpConnection implementation
 open class HttpConnection: HttpConnectionProtocol {
-    /// Default number of maximum concurrent operations
-    public static let defaulMaxConcurrentOperationCount = 10
-    /// Queue for URLSession
-    private let queue: OperationQueue
-
-    /// Url session used to create network tasks
-    private let session: URLSession
-
     /// Declares error types and codes
     ///
     /// - noUrlInRequest: Provided URLRequest doesn't have url
@@ -26,6 +18,13 @@ open class HttpConnection: HttpConnectionProtocol {
         case noUrlInRequest = 1
         case wrongResponseType = 2
     }
+
+    /// Default number of maximum concurrent operations
+    public static let defaulMaxConcurrentOperationCount = 10
+    /// Queue for URLSession
+    private let queue: OperationQueue
+    /// Url session used to create network tasks
+    private let session: URLSession
 
     /// Creates HttpConnection with maximum number of concurrent operations
     /// = HttpConnection.defaulMaxConcurrentOperationCount

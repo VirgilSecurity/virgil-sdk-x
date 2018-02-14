@@ -43,7 +43,7 @@ open class ServiceRequest: Request {
         }
 
         let headers = [ServiceRequest.accessTokenHeader: "\(ServiceRequest.accessTokenPrefix) \(accessToken)"]
-        try super.init(url: newUrl, method: method, headers: headers, body: bodyData)
+        super.init(url: newUrl, method: method, headers: headers, body: bodyData)
     }
 
     public init(url: URL, method: Method, accessToken: String, params: Any? = nil) throws {
@@ -83,6 +83,6 @@ open class ServiceRequest: Request {
         }
 
         let headers = [ServiceRequest.accessTokenHeader: "\(ServiceRequest.accessTokenPrefix) \(accessToken)"]
-        try super.init(url: newUrl, method: method, headers: headers, body: bodyData)
+        super.init(url: newUrl, method: method, headers: headers, body: bodyData)
     }
 }
