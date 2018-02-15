@@ -8,16 +8,33 @@
 
 import Foundation
 
+/// Class represents HTTP Request to Virgil Service
 open class ServiceRequest: Request {
+    /// Declares error types and codes
+    ///
+    /// - invalidGetRequestParameters: GET request parameters are not [String: String] and cannot be encoded
+    /// - urlComponentsConvertingFailed: Error building url from components during GET request
+    /// - getQueryWithDecodableIsNotSupported: GET query with Encodable body is not supported
     @objc(VSSServiceRequestError) public enum ServiceRequestError: Int, Error {
         case invalidGetRequestParameters = 1
         case urlComponentsConvertingFailed = 2
         case getQueryWithDecodableIsNotSupported = 3
     }
 
+    /// HTTP header key for Authorization
     public static let accessTokenHeader = "Authorization"
+    /// HTTP header prefix for Virgil JWT
     public static let accessTokenPrefix = "Virgil"
-
+    
+    /// Initializer
+    ///
+    /// - Parameters:
+    ///   - url: Request url
+    ///   - method: Request method
+    ///   - accessToken: Access token
+    ///   - params: Encodable request body
+    /// - Throws: ServiceRequestError.getQueryWithDecodableIsNotSupported, if GET query with params
+    ///           Rethrows from JSONEncoder
     public init<T: Encodable>(url: URL, method: Method, accessToken: String, params: T? = nil) throws {
         let bodyData: Data?
         let newUrl: URL
@@ -46,6 +63,16 @@ open class ServiceRequest: Request {
         super.init(url: newUrl, method: method, headers: headers, body: bodyData)
     }
 
+    /// Initializer
+    ///
+    /// - Parameters:
+    ///   - url: Request url
+    ///   - method: Request method
+    ///   - accessToken: Access token
+    ///   - params: JSON-encodable object
+    /// - Throws: ServiceRequestError.invalidGetRequestParameters, if GET request is initialized and params are not [String: String]
+    ///           ServiceRequestError.urlComponentsConvertingFailed, if error occured while building url from components during GET request
+    ///           Rethrows from JSONSerialization
     public init(url: URL, method: Method, accessToken: String, params: Any? = nil) throws {
         let bodyData: Data?
         let newUrl: URL
