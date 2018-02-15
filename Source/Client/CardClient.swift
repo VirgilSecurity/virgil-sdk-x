@@ -14,11 +14,7 @@ import Foundation
     @objc public let serviceUrl: URL
     /// HttpConnectionProtocol implementation to use for queries
     public let connection: HttpConnectionProtocol
-    /// Error domain for Error instances thrown from service
-    @objc public static let serviceErrorDomain = "VirgilSDK.CardServiceErrorDomain"
-    /// Error domain for Error instances thrown from here
-    @objc public static let clientErrorDomain = "VirgilSDK.CardClientErrorDomain"
-    /// Default URL for serviceURL
+    /// Default URL for service
     @objc public static let defaultURL = URL(string: "https://api.virgilsecurity.com")!
 
     /// Declares client error types and codes
@@ -26,19 +22,14 @@ import Foundation
     /// - constructingUrl: constructing url of endpoint failed
     /// - noBody: service response does not have body
     /// - invalidJson: service response body is invalid json
-    /// - invalidResponseModel: constructing returned `RawSignedModel` failed
-    @objc public enum CardClientError: Int, CustomNSError {
+    @objc(VSSCardClientError) public enum CardClientError: Int, Error {
         case constructingUrl = 1
         case noBody = 2
         case invalidJson = 3
-        case invalidResponseModel = 4
-
-        /// Error domain or Error instances thrown from client
-        public static var errorDomain: String { return CardClient.clientErrorDomain }
-        /// Code of error
-        public var errorCode: Int { return self.rawValue }
     }
 
+    /// Error domain for Error instances thrown from service
+    @objc public static let serviceErrorDomain = "VirgilSDK.CardServiceErrorDomain"
     /// Represent card service error
     @objc public class CardServiceError: NSObject, CustomNSError {
         /// Recieved and decoded `RawServiceError`
@@ -92,7 +83,7 @@ import Foundation
         return NSError(domain: CardClient.serviceErrorDomain, code: statusCode)
     }
 
-    private func validateResponse(_ response: Response) throws {
+    internal func validateResponse(_ response: Response) throws {
         guard 200..<300 ~= response.statusCode else {
             throw self.handleError(statusCode: response.statusCode, body: response.body)
         }

@@ -9,11 +9,13 @@
 import Foundation
 
 /// Protocol for HTTP connection
+///
+/// See: HttpConnection for default implementation
 public protocol HttpConnectionProtocol: class {
     /// Sends Request and returns Response
     ///
     /// - Parameter request: Request to send
     /// - Returns: Obrained response
-    /// - Throws: Any Error
+    /// - Throws: Depends on implementation
     func send(_ request: Request) throws -> Response
 }

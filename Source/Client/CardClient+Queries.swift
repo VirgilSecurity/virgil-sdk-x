@@ -10,16 +10,23 @@ import Foundation
 
 // MARK: - Queries
 extension CardClient: CardClientProtocol {
+    /// HTTP header key for getCard response that marks outdated cards
     @objc public static let xVirgilIsSuperseededKey = "x-virgil-is-superseeded"
+    /// HTTP header value for xVirgilIsSuperseededKey key for getCard response that marks outdated cards
     @objc public static let xVirgilIsSuperseededTrue = "true"
+    
     /// Returns `GetCardResponse` with `RawSignedModel` of card from the Virgil Cards Service with given ID, if exists
-
     ///
     /// - Parameters:
-    ///   - cardId: string with unique Virgil Card identifier
-    ///   - token: string with `Access Token`
+    ///   - cardId: String with unique Virgil Card identifier
+    ///   - token: String with `Access Token`
     /// - Returns: `GetCardResponse` if card found
-    /// - Throws: corresponding error
+    /// - Throws: CardClientError.constructingUrl, if url initialization failed
+    ///           CardServiceError, if service returned correctly-formed error json
+    ///           CardClientError.noBody, if response's body is empty
+    ///           NSError with CardClient.serviceErrorDomain error domain,
+    ///               http status code as error code, and description string if present in http body
+    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder
     @objc open func getCard(withId cardId: String, token: String) throws -> GetCardResponse {
         guard let url = URL(string: "card/v5/\(cardId)", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
@@ -41,15 +48,20 @@ extension CardClient: CardClientProtocol {
         return GetCardResponse(rawCard: try self.processResponse(response), isOutdated: isOutdated)
     }
 
-    /// Creates Virgil Card instance on the Virgil Cards Service and associates it with unique identifier
+    /// Creates Virgil Card instance on the Virgil Cards Service
     /// Also makes the Card accessible for search/get queries from other users
-    /// `RawSignedModel` should be at least selfSigned
+    /// `RawSignedModel` should contain appropriate signatures
     ///
     /// - Parameters:
-    ///   - model: self signed `RawSignedModel`
-    ///   - token: string with `Access Token`
+    ///   - model: Signed `RawSignedModel`
+    ///   - token: String with `Access Token`
     /// - Returns: `RawSignedModel` of created card
-    /// - Throws: corresponding error
+    /// - Throws: CardClientError.constructingUrl, if url initialization failed
+    ///           CardServiceError, if service returned correctly-formed error json
+    ///           CardClientError.noBody, if response's body is empty
+    ///           NSError with CardClient.serviceErrorDomain error domain,
+    ///               http status code as error code, and description string if present in http body
+    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder
     @objc open func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
         guard let url = URL(string: "card/v5", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
@@ -62,13 +74,18 @@ extension CardClient: CardClientProtocol {
         return try self.processResponse(response)
     }
 
-    /// Performs search of Virgil Cards using identity on the Virgil Cards Service
+    /// Performs search of Virgil Cards using given identity on the Virgil Cards Service
     ///
     /// - Parameters:
-    ///   - identity: identity of cards to search
-    ///   - token: string with `Access Token`
-    /// - Returns: array with RawSignedModels of matched Virgil Cards
-    /// - Throws: corresponding error
+    ///   - identity: Identity of cards to search
+    ///   - token: String with `Access Token`
+    /// - Returns: Array with `RawSignedModel`s of matched Virgil Cards
+    /// - Throws: CardClientError.constructingUrl, if url initialization failed
+    ///           CardServiceError, if service returned correctly-formed error json
+    ///           CardClientError.noBody, if response's body is empty
+    ///           NSError with CardClient.serviceErrorDomain error domain,
+    ///               http status code as error code, and description string if present in http body
+    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder
     @objc open func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
         guard let url = URL(string: "card/v5/actions/search", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
@@ -77,27 +94,7 @@ extension CardClient: CardClientProtocol {
         let request = try ServiceRequest(url: url, method: .post, accessToken: token, params: ["identity": identity])
 
         let response = try self.connection.send(request)
-
-        guard response.statusCode == 200 else {
-            throw self.handleError(statusCode: response.statusCode, body: response.body)
-        }
-
-        guard let data = response.body else {
-            throw CardClientError.noBody
-        }
-
-        guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[AnyHashable: Any]] else {
-            throw CardClientError.invalidJson
-        }
-
-        var result: [RawSignedModel] = []
-        for item in json {
-            let data = try JSONSerialization.data(withJSONObject: item, options: [])
-            let responseModel = try JSONDecoder().decode(RawSignedModel.self, from: data)
-
-            result.append(responseModel)
-        }
-
-        return result
+        
+        return try self.processResponse(response)
     }
 }
