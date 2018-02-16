@@ -25,13 +25,6 @@ import VirgilCryptoAPI
     /// Lifetime of generated tokens
     @objc public let ttl: TimeInterval
 
-    /// Declares error types and codes
-    ///
-    /// - generationFailed: generation of new token failed
-    @objc(VSSJwtGeneratorError) public enum JwtGeneratorError: Int, Error {
-        case generationFailed = 1
-    }
-
     /// Initializer
     ///
     /// - Parameters:
@@ -59,19 +52,15 @@ import VirgilCryptoAPI
     /// - Returns: generated and signed `Jwt`
     /// - Throws: corresponding error if generation fails
     @objc public func generateToken(identity: String, additionalData: [String: String]? = nil) throws -> Jwt {
-        let jwtHeaderContent = JwtHeaderContent(keyIdentifier: self.apiPublicKeyIdentifier)
-        let jwtBodyContent = JwtBodyContent(appId: self.appId, identity: identity,
-                                            expiresAt: Date() + self.ttl, issuedAt: Date(),
-                                            additionalData: additionalData)
+        let jwtHeaderContent = try JwtHeaderContent(keyIdentifier: self.apiPublicKeyIdentifier)
+        let jwtBodyContent = try JwtBodyContent(appId: self.appId, identity: identity,
+                                                expiresAt: Date() + self.ttl, issuedAt: Date(),
+                                                additionalData: additionalData)
 
-        guard let jwt = Jwt(headerContent: jwtHeaderContent, bodyContent: jwtBodyContent),
-              let snapshot = jwt.unsignedString.data(using: .utf8) else {
-            throw JwtGeneratorError.generationFailed
-        }
+        let data = try Jwt.dataToSign(headerContent: jwtHeaderContent, bodyContent: jwtBodyContent)
 
-        let signatureContent = try self.accessTokenSigner.generateTokenSignature(of: snapshot, using: self.apiKey)
-        try jwt.setSignatureContent(signatureContent)
-
-        return jwt
+        let signature = try self.accessTokenSigner.generateTokenSignature(of: data, using: self.apiKey)
+        
+        return try Jwt(headerContent: jwtHeaderContent, bodyContent: jwtBodyContent, signatureContent: JwtSignatureContent(signature: signature))
     }
 }

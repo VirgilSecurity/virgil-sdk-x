@@ -291,8 +291,8 @@
     
     VSSJwtVerifier *verifier = [[VSSJwtVerifier alloc] initWithApiPublicKey:publicKey apiPublicKeyIdentifier:self.testData[@"STC-22.api_key_id"] accessTokenSigner:signer];
     
-    VSSJwt *jwt = [[VSSJwt alloc] initWithStringRepresentation:self.testData[@"STC-22.jwt"]];
-    XCTAssert(jwt != nil);
+    VSSJwt *jwt = [[VSSJwt alloc] initWithStringRepresentation:self.testData[@"STC-22.jwt"] error:&error];
+    XCTAssert(error == nil && jwt != nil);
     
     XCTAssert([jwt.headerContent.algorithm isEqualToString:@"VEDS512"]);
     XCTAssert([jwt.headerContent.contentType isEqualToString:@"virgil-jwt;v=1"]);
@@ -301,8 +301,8 @@
     
     XCTAssert([jwt.bodyContent.identity isEqualToString:@"some_identity"]);
     XCTAssert([jwt.bodyContent.appId isEqualToString:@"13497c3c795e3a6c32643b0a76957b70d2332080762469cdbec89d6390e6dbd7"]);
-    XCTAssert(jwt.bodyContent.issuedAt == 1518513309);
-    XCTAssert(jwt.bodyContent.expiresAt == 1518513909);
+    XCTAssert(jwt.bodyContent.issuedAt.timeIntervalSince1970 == 1518513309);
+    XCTAssert(jwt.bodyContent.expiresAt.timeIntervalSince1970 == 1518513909);
     XCTAssert(jwt.isExpired == true);
     
     XCTAssert([jwt.stringRepresentation isEqualToString:self.testData[@"STC-22.jwt"]]);

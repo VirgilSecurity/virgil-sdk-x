@@ -9,23 +9,36 @@
 import Foundation
 
 /// Class representing JWT Header content
-@objc(VSSJwtHeaderContent) public class JwtHeaderContent: NSObject, Codable {
+@objc(VSSJwtHeaderContent) public class JwtHeaderContent: NSObject {
+    @objc(VSSJwtHeaderContentError) public enum JwtHeaderContentError: Int, Error {
+        case base64UrlStrIsInvalid = 1
+    }
+    
+    private let container: Container
+    
     /// Represents used signature algorithm
-    @objc public let algorithm: String
+    @objc public var algorithm: String { return self.container.algorithm }
     /// Represents token type
-    @objc public let type: String
+    @objc public var type: String { return self.container.type }
     /// Represents content type for this JWT
-    @objc public let contentType: String
+    @objc public var contentType: String { return self.container.contentType }
     /// Represents identifier of public key which should be used to verify signature
     /// - Note: Can be taken from [here](https://dashboard.virgilsecurity.com/api-keys)
-    @objc public let keyIdentifier: String
+    @objc public var keyIdentifier: String { return self.container.keyIdentifier }
+    @objc public let stringRepresentation: String
 
-    /// Defines coding keys for encoding and decoding
-    private enum CodingKeys: String, CodingKey {
-        case algorithm = "alg"
-        case type = "typ"
-        case contentType = "cty"
-        case keyIdentifier = "kid"
+    private struct Container: Codable {
+        let algorithm: String
+        let type: String
+        let contentType: String
+        let keyIdentifier: String
+        
+        private enum CodingKeys: String, CodingKey {
+            case algorithm = "alg"
+            case type = "typ"
+            case contentType = "cty"
+            case keyIdentifier = "kid"
+        }
     }
 
     /// Initializer
@@ -36,11 +49,11 @@ import Foundation
     ///   - contentType: content type for this JWT
     ///   - keyIdentifier: identifier of public key which should be used to verify signature
     @objc public init(algorithm: String = "VEDS512", type: String = "JWT",
-                      contentType: String = "virgil-jwt;v=1", keyIdentifier: String) {
-        self.algorithm = algorithm
-        self.type = type
-        self.contentType = contentType
-        self.keyIdentifier = keyIdentifier
+                      contentType: String = "virgil-jwt;v=1", keyIdentifier: String) throws {
+        let container = Container(algorithm: algorithm, type: type,
+                                  contentType: contentType, keyIdentifier: keyIdentifier)
+        self.container = container
+        self.stringRepresentation = try JSONEncoder().encode(container).base64UrlEncodedString()
 
         super.init()
     }
@@ -49,19 +62,12 @@ import Foundation
     ///
     /// - Parameter base64UrlEncoded: base64Url encoded string with JwtHeaderContent
     /// - Returns: decoded JwtHeaderContent if succeeded, nil otherwise
-    @objc public static func importFrom(base64UrlEncoded: String) -> JwtHeaderContent? {
+    @objc public init(base64UrlEncoded: String) throws  {
         guard let data = Data(base64UrlEncoded: base64UrlEncoded) else {
-            return nil
+            throw JwtHeaderContentError.base64UrlStrIsInvalid
         }
 
-        return try? JSONDecoder().decode(JwtHeaderContent.self, from: data)
-    }
-
-    /// Exports JwtHeaderContent as base64Url encoded string
-    ///
-    /// - Returns: base64Url encoded string with JwtHeaderContent
-    /// - Throws: corresponding error if encoding failed
-    @objc public func base64UrlEncodedString() throws -> String {
-        return try JSONEncoder().encode(self).base64UrlEncodedString()
+        self.container = try JSONDecoder().decode(Container.self, from: data)
+        self.stringRepresentation = base64UrlEncoded
     }
 }

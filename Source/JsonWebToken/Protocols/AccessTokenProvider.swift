@@ -13,7 +13,7 @@ import Foundation
     /// Provides access token
     ///
     /// - Parameters:
-    ///   - tokenContext: `TokenContext` instance with corresponding info
-    ///   - completion: completion closure, called with access token or corresponding error
+    ///   - tokenContext: `TokenContext`, provides context explaining why token is needed
+    ///   - completion: Completion closure, called with access token or corresponding error
     @objc func getToken(with tokenContext: TokenContext, completion: @escaping (AccessToken?, Error?) -> ())
 }

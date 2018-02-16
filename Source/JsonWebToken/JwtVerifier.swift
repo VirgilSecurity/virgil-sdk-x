@@ -35,11 +35,14 @@ import VirgilCryptoAPI
     /// - Parameter token: Jwt to be verified
     /// - Returns: true if token verified, false otherwise
     @objc public func verify(token: Jwt) -> Bool {
-        guard let data = token.unsignedString.data(using: .utf8),
-              let signatureContent = token.signatureContent else {
+        do {
+            let data = try token.dataToSign()
+            let signature = token.signatureContent.signature
+
+            return self.accessTokenSigner.verifyTokenSignature(signature, of: data, with: self.apiPublicKey)
+        }
+        catch {
             return false
         }
-
-        return self.accessTokenSigner.verifyTokenSignature(signatureContent, of: data, with: self.apiPublicKey)
     }
 }

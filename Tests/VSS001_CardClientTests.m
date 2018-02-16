@@ -219,7 +219,7 @@
     VSSRawSignedModel *responseRawCard = [self.cardClient publishCardWithModel:rawCard token:strToken error:&error];
     XCTAssert(error != nil);
     XCTAssert(responseRawCard == nil);
-    XCTAssert([[error localizedDescription] isEqualToString:@"JWT is invalid"]);
+    XCTAssert([[error localizedDescription] isEqualToString:@"JWT token parsing error"]);
 }
 
 @end

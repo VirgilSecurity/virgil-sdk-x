@@ -81,7 +81,7 @@
     VSMVirgilPrivateKey *privateKey = wrongKeyPair.privateKey;
     
     VSMVirgilAccessTokenSigner *tokenSigner = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:self.crypto];
-    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey apiPublicKeyIdentifier:_consts.apiPublicKeyId accessTokenSigner:tokenSigner appId:_consts.applicationId ttl:1000];
+    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey apiPublicKeyIdentifier:self.consts.apiPublicKeyId accessTokenSigner:tokenSigner appId:self.consts.applicationId ttl:1000];
     
     VSSJwt *jwtToken = [generator generateTokenWithIdentity:identity additionalData:nil error:errorPtr];
     

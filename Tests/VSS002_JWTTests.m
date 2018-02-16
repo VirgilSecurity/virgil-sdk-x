@@ -113,8 +113,8 @@ static const NSTimeInterval timeout = 8.;
     NSDictionary *testData = [NSJSONSerialization JSONObjectWithData:dicData options:kNilOptions error:&error];
     XCTAssert(error == nil);
 
-    VSSJwt *jwt = [[VSSJwt alloc] initWithStringRepresentation:testData[@"STC-28.jwt"]];
-    XCTAssert(jwt != nil);
+    VSSJwt *jwt = [[VSSJwt alloc] initWithStringRepresentation:testData[@"STC-28.jwt"] error:&error];
+    XCTAssert(error == nil && jwt != nil);
 
     XCTAssert([jwt.headerContent.algorithm isEqualToString:testData[@"STC-28.jwt_algorithm"]]);
     XCTAssert([jwt.headerContent.contentType isEqualToString:testData[@"STC-28.jwt_content_type"]]);
@@ -123,9 +123,9 @@ static const NSTimeInterval timeout = 8.;
 
     XCTAssert([jwt.bodyContent.identity isEqualToString:testData[@"STC-28.jwt_identity"]]);
     XCTAssert([jwt.bodyContent.appId isEqualToString:testData[@"STC-28.jwt_app_id"]]);
-    NSString *issuedAt = [NSString stringWithFormat:@"%ld", (long)jwt.bodyContent.issuedAt];
+    NSString *issuedAt = [NSString stringWithFormat:@"%ld", (long)jwt.bodyContent.issuedAt.timeIntervalSince1970];
     XCTAssert([issuedAt isEqualToString:testData[@"STC-28.jwt_issued_at"]]);
-    NSString *expiresAt = [NSString stringWithFormat:@"%ld", (long)jwt.bodyContent.expiresAt];
+    NSString *expiresAt = [NSString stringWithFormat:@"%ld", (long)jwt.bodyContent.expiresAt.timeIntervalSince1970];
     XCTAssert([expiresAt isEqualToString:testData[@"STC-28.jwt_expires_at"]]);
     XCTAssert(jwt.isExpired == true);
 
@@ -133,7 +133,7 @@ static const NSTimeInterval timeout = 8.;
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     XCTAssert([jwt.bodyContent.additionalData isEqualToDictionary:dic]);
     
-    XCTAssert([[[jwt signatureContent] base64EncodedStringWithOptions:0] isEqualToString:testData[@"STC-28.jwt_signature_base64"]]);
+    XCTAssert([[jwt.signatureContent.signature base64EncodedStringWithOptions:0] isEqualToString:testData[@"STC-28.jwt_signature_base64"]]);
 }
 
 -(void)test004_STC_29 {
@@ -146,8 +146,8 @@ static const NSTimeInterval timeout = 8.;
     NSDictionary *testData = [NSJSONSerialization JSONObjectWithData:dicData options:kNilOptions error:&error];
     XCTAssert(error == nil);
 
-    VSSJwt *jwt = [[VSSJwt alloc] initWithStringRepresentation:testData[@"STC-29.jwt"]];
-    XCTAssert(jwt != nil);
+    VSSJwt *jwt = [[VSSJwt alloc] initWithStringRepresentation:testData[@"STC-29.jwt"] error:&error];
+    XCTAssert(error == nil && jwt != nil);
 
     XCTAssert([jwt.headerContent.algorithm isEqualToString:testData[@"STC-29.jwt_algorithm"]]);
     XCTAssert([jwt.headerContent.contentType isEqualToString:testData[@"STC-29.jwt_content_type"]]);
@@ -156,9 +156,9 @@ static const NSTimeInterval timeout = 8.;
 
     XCTAssert([jwt.bodyContent.identity isEqualToString:testData[@"STC-29.jwt_identity"]]);
     XCTAssert([jwt.bodyContent.appId isEqualToString:testData[@"STC-29.jwt_app_id"]]);
-    NSString *issuedAt = [NSString stringWithFormat:@"%ld", (long)jwt.bodyContent.issuedAt];
+    NSString *issuedAt = [NSString stringWithFormat:@"%ld", (long)jwt.bodyContent.issuedAt.timeIntervalSince1970];
     XCTAssert([issuedAt isEqualToString:testData[@"STC-29.jwt_issued_at"]]);
-    NSString *expiresAt = [NSString stringWithFormat:@"%ld", (long)jwt.bodyContent.expiresAt];
+    NSString *expiresAt = [NSString stringWithFormat:@"%ld", (long)jwt.bodyContent.expiresAt.timeIntervalSince1970];
     XCTAssert([expiresAt isEqualToString:testData[@"STC-29.jwt_expires_at"]]);
     XCTAssert(jwt.isExpired == false);
 
@@ -166,7 +166,7 @@ static const NSTimeInterval timeout = 8.;
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     XCTAssert([jwt.bodyContent.additionalData isEqualToDictionary:dic]);
 
-    XCTAssert([[[jwt signatureContent] base64EncodedStringWithOptions:0] isEqualToString:testData[@"STC-29.jwt_signature_base64"]]);
+    XCTAssert([[jwt.signatureContent.signature base64EncodedStringWithOptions:0] isEqualToString:testData[@"STC-29.jwt_signature_base64"]]);
 }
 
 @end

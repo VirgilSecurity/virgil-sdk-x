@@ -9,26 +9,75 @@
 import Foundation
 
 /// Class representing JWT Body content
-@objc(VSSJwtBodyContent) public class JwtBodyContent: NSObject, Codable {
+@objc(VSSJwtBodyContent) public class JwtBodyContent: NSObject {
+    @objc(VSSJwtBodyContentError) public enum JwtBodyContentError: Int, Error {
+        case base64UrlStrIsInvalid = 1
+    }
+    
+    private let container: Container
+    
     /// Issuer containing application id
     /// - Note: Can be taken [here](https://dashboard.virgilsecurity.com)
-    @objc public let appId: String
+    @objc public var appId: String { return self.container.appId }
     /// Subject as identity
-    @objc public let identity: String
+    @objc public var identity: String { return self.container.identity }
     /// Timestamp in seconds with expiration date
-    @objc public let expiresAt: Int
+    @objc public var expiresAt: Date { return self.container.expiresAt }
     /// Timestamp in seconds with issued date
-    @objc public let issuedAt: Int
+    @objc public var issuedAt: Date { return self.container.issuedAt }
     /// Dictionary with additional data
-    @objc public let additionalData: [String: String]?
+    @objc public var additionalData: [String: String]? { return self.container.additionalData }
+    
+    @objc public let stringRepresentation: String
+    
+    private struct Container: Codable {
+        let appId: String
+        let identity: String
+        let expiresAt: Date
+        let issuedAt: Date
+        let additionalData: [String: String]?
+        
+        private enum CodingKeys: String, CodingKey {
+            case appId = "iss"
+            case identity = "sub"
+            case issuedAt = "iat"
+            case expiresAt = "exp"
+            case additionalData = "ada"
+        }
+        
+        init(appId: String, identity: String, expiresAt: Date,
+            issuedAt: Date, additionalData: [String: String]?) {
+            self.appId = appId
+            self.identity = identity
+            self.expiresAt = expiresAt
+            self.issuedAt = issuedAt
+            self.additionalData = additionalData
+        }
+        
+        init(from decoder: Decoder) throws {
+            let values = try decoder.container(keyedBy: Container.CodingKeys.self)
 
-    /// Defines coding keys for encoding and decoding
-    private enum CodingKeys: String, CodingKey {
-        case appId = "iss"
-        case identity = "sub"
-        case issuedAt = "iat"
-        case expiresAt = "exp"
-        case additionalData = "ada"
+            let issuer = try values.decode(String.self, forKey: .appId)
+            let subject = try values.decode(String.self, forKey: .identity)
+
+            self.appId = issuer.replacingOccurrences(of: "virgil-", with: "")
+            self.identity = subject.replacingOccurrences(of: "identity-", with: "")
+            self.additionalData = try? values.decode(Dictionary.self, forKey: .additionalData)
+            self.issuedAt = try values.decode(Date.self, forKey: .issuedAt)
+            self.expiresAt = try values.decode(Date.self, forKey: .expiresAt)
+        }
+        
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            
+            try container.encode("virgil-" + self.appId, forKey: .appId)
+            try container.encode("identity-" + self.identity, forKey: .identity)
+            try container.encode(self.issuedAt, forKey: .issuedAt)
+            try container.encode(self.expiresAt, forKey: .expiresAt)
+            if let additionalData = self.additionalData {
+                try container.encode(additionalData, forKey: .additionalData)
+            }
+        }
     }
 
     /// Initializer
@@ -40,58 +89,35 @@ import Foundation
     ///   - issuedAt: issued date
     ///   - additionalData: dictionary with additional data
     @objc public init(appId: String, identity: String, expiresAt: Date,
-                      issuedAt: Date, additionalData: [String: String]? = nil) {
-        self.appId = appId
-        self.identity = identity
-        self.expiresAt = Int(expiresAt.timeIntervalSince1970)
-        self.issuedAt = Int(issuedAt.timeIntervalSince1970)
-        self.additionalData = additionalData
+                      issuedAt: Date, additionalData: [String: String]? = nil) throws {
+        let container = Container(appId: appId, identity: identity,
+                                  expiresAt: expiresAt,
+                                  issuedAt: issuedAt,
+                                  additionalData: additionalData)
+        
+        self.container = container
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .custom(JsonHelper.timestampDateEncodingStrategy)
+        
+        self.stringRepresentation = try encoder.encode(container).base64UrlEncodedString()
 
         super.init()
-    }
-
-    public required init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-
-        let issuer = try values.decode(String.self, forKey: .appId)
-        let subject = try values.decode(String.self, forKey: .identity)
-
-        self.appId = issuer.replacingOccurrences(of: "virgil-", with: "")
-        self.identity = subject.replacingOccurrences(of: "identity-", with: "")
-        self.additionalData = try? values.decode(Dictionary.self, forKey: .additionalData)
-        self.issuedAt = try values.decode(Int.self, forKey: .issuedAt)
-        self.expiresAt = try values.decode(Int.self, forKey: .expiresAt)
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-
-        try container.encode("virgil-" + self.appId, forKey: .appId)
-        try container.encode("identity-" + self.identity, forKey: .identity)
-        try container.encode(self.issuedAt, forKey: .issuedAt)
-        try container.encode(self.expiresAt, forKey: .expiresAt)
-        if let additionalData = self.additionalData {
-            try container.encode(additionalData, forKey: .additionalData)
-        }
     }
 
     /// Imports JwtBodyContent from base64Url encoded string
     ///
     /// - Parameter base64UrlEncoded: base64Url encoded string with JwtBodyContent
     /// - Returns: decoded JwtBodyContent if succeeded, nil otherwise
-    @objc public static func importFrom(base64UrlEncoded: String) -> JwtBodyContent? {
+    @objc public init(base64UrlEncoded: String) throws {
         guard let data = Data(base64UrlEncoded: base64UrlEncoded) else {
-            return nil
+            throw JwtBodyContentError.base64UrlStrIsInvalid
         }
-
-        return try? JSONDecoder().decode(JwtBodyContent.self, from: data)
-    }
-
-    /// Exports JwtBodyContent as base64Url encoded string
-    ///
-    /// - Returns: base64Url encoded string with JwtBodyContent
-    /// - Throws: corresponding error if encoding failed
-    @objc public func base64UrlEncodedString() throws -> String {
-        return try JSONEncoder().encode(self).base64UrlEncodedString()
+        
+        self.stringRepresentation = base64UrlEncoded
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .custom(JsonHelper.timestampDateDecodingStrategy)
+        self.container = try decoder.decode(Container.self, from: data)
+        
+        super.init()
     }
 }

@@ -31,7 +31,7 @@ import Foundation
     /// Error domain for Error instances thrown from service
     @objc public static let serviceErrorDomain = "VirgilSDK.CardServiceErrorDomain"
     /// Represent card service error
-    @objc public class CardServiceError: NSObject, CustomNSError {
+    @objc public final class CardServiceError: NSObject, CustomNSError {
         /// Recieved and decoded `RawServiceError`
         public let rawServiceError: RawServiceError
 

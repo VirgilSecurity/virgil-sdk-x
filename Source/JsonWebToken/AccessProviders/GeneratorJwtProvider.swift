@@ -9,20 +9,22 @@
 import Foundation
 
 /// Implementation of AccessTokenProvider which provides generated JWTs
-@objc(VSSGeneratorJwtProvider) public class GeneratorJwtProvider: NSObject, AccessTokenProvider {
+@objc(VSSGeneratorJwtProvider) open class GeneratorJwtProvider: NSObject, AccessTokenProvider {
     /// JwtGeneretor for generating new tokens
     @objc public let jwtGenerator: JwtGenerator
-    /// Identity is used for generating token if tokenContext do not have it
+    /// Identity that will be used for generating token if tokenContext do not have it (e.g. for read operations)
+    /// WARNING: Do not create cards with defaultIdentity
     @objc public let defaultIdentity: String
-    /// Dictionary with additional data to be inserted into generated token
+    /// Additional data, that will be present in token
     @objc public let additionalData: [String: String]?
 
     /// Initializer
     ///
     /// - Parameters:
     ///   - jwtGenerator: `JwtGeneretor` instance for generating new tokens
-    ///   - defaultIdentity: identity is used for generating token if tokenContext do not have it
-    ///   - additionalData: dictionary with additional data to be inserted into generated token
+    ///   - defaultIdentity: Identity that will be used for generating token if tokenContext do not have it (e.g. for read operations)
+    ///                      WARNING: Do not create cards with defaultIdentity
+    ///   - additionalData: Additional data, that will be present in token
     @objc public init(jwtGenerator: JwtGenerator, defaultIdentity: String, additionalData: [String: String]? = nil) {
         self.defaultIdentity = defaultIdentity
         self.additionalData = additionalData
@@ -31,11 +33,11 @@ import Foundation
         super.init()
     }
 
-    /// Provides generated new JWT
+    /// Provides new generated JWT
     ///
     /// - Parameters:
-    ///   - tokenContext: `TokenContext` instance with corresponding info
-    ///   - completion: completion closure, called with generated JWT or corresponding error
+    ///   - tokenContext: `TokenContext`, provides context explaining why token is needed
+    ///   - completion: completion closure, called with access token or corresponding error
     @objc public func getToken(with tokenContext: TokenContext, completion: @escaping (AccessToken?, Error?) -> ()) {
         do {
             let token = try self.jwtGenerator.generateToken(identity: tokenContext.identity ?? self.defaultIdentity,
