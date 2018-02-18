@@ -135,7 +135,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         errorWasThrown = false
 
         let keyPair = try! self.crypto.generateKeyPair()
-        let operation1 = try! cardManager.publishCard(privateKey: keyPair.privateKey, publicKey: keyPair.publicKey, identity: nil)
+        let operation1 = cardManager.publishCard(privateKey: keyPair.privateKey, publicKey: keyPair.publicKey, identity: nil)
 
         switch operation1.startSync() {
         case .success: XCTFail()
