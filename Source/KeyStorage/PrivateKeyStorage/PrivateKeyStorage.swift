@@ -10,7 +10,7 @@ import Foundation
 import VirgilCryptoAPI
 
 /// Class responsible for storing Private Keys
-@objc(VSSPrivateKeyStorage) public class PrivateKeyStorage: NSObject {
+@objc(VSSPrivateKeyStorage) open class PrivateKeyStorage: NSObject {
     /// Instance for storing, loading, deleting KeyEntries
     @objc public let keyStorage: KeyStorage
     /// PrivateKeyExporter implementation instance for import/export PrivateKey
@@ -34,7 +34,7 @@ import VirgilCryptoAPI
     ///   - privateKey: PrivateKey to store
     ///   - name: identifier for loading key back
     ///   - meta: Dictionary with any meta data
-    /// - Throws: NSError if needed
+    /// - Throws: Rethrows from PrivateKeyExporter, KeyStorage
     @objc public func store(privateKey: PrivateKey, name: String, meta: [String: String]?) throws {
         let privateKeyInstance = try self.privateKeyExporter.exportPrivateKey(privateKey: privateKey)
         let keyEntry = KeyEntry(name: name, value: privateKeyInstance, meta: meta)
@@ -46,7 +46,7 @@ import VirgilCryptoAPI
     ///
     /// - Parameter name: stored entry name
     /// - Returns: `PrivateKeyEntry` with imported Private Key and meta
-    /// - Throws: NSError if needed
+    /// - Throws: Rethrows from PrivateKeyExporter, KeyStorage
     @objc public func load(withName name: String) throws -> PrivateKeyEntry {
         let keyEntry = try self.keyStorage.loadKeyEntry(withName: name)
         let privateKey = try self.privateKeyExporter.importPrivateKey(from: keyEntry.value)
@@ -66,7 +66,7 @@ import VirgilCryptoAPI
     /// Removes key entry with given name
     ///
     /// - Parameter name: key entry name to delete
-    /// - Throws: NSError if needed
+    /// - Throws: Rethrows from KeyStorage
     @objc public func delete(withName name: String) throws {
         try self.keyStorage.deleteKeyEntry(withName: name)
     }

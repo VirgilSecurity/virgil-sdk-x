@@ -9,10 +9,18 @@
 import Foundation
 import VirgilCryptoAPI
 
-@objc(VSSPrivateKeyEntry) public class PrivateKeyEntry: NSObject {
+/// Class for aggregating PrivateKey and meta info
+@objc(VSSPrivateKeyEntry) open class PrivateKeyEntry: NSObject {
+    /// PrivateKey
     @objc public let privateKey: PrivateKey
+    /// Meta info
     @objc public let meta: [String: String]?
 
+    /// Initializer
+    ///
+    /// - Parameters:
+    ///   - privateKey: PrivateKey
+    ///   - meta: Meta info
     @objc public init(privateKey: PrivateKey, meta: [String: String]? = nil) {
         self.privateKey = privateKey
         self.meta = meta
