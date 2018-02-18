@@ -30,12 +30,13 @@ import Foundation
     @objc public let stringRepresentation: String
 
     private let container: Container
+
     private struct Container: Codable {
         let algorithm: String
         let type: String
         let contentType: String
         let keyIdentifier: String
-        
+
         private enum CodingKeys: String, CodingKey {
             case algorithm = "alg"
             case type = "typ"
@@ -67,7 +68,7 @@ import Foundation
     /// - Parameter base64UrlEncoded: base64Url encoded string with JwtHeaderContent
     /// - Throws: JwtHeaderContentError.base64UrlStrIsInvalid If given base64 string is invalid
     ///           Rethrows from JSONDecoder
-    @objc public init(base64UrlEncoded: String) throws  {
+    @objc public init(base64UrlEncoded: String) throws {
         guard let data = Data(base64UrlEncoded: base64UrlEncoded) else {
             throw JwtHeaderContentError.base64UrlStrIsInvalid
         }

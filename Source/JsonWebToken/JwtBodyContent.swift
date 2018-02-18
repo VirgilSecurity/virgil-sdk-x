@@ -16,7 +16,7 @@ import Foundation
     @objc(VSSJwtBodyContentError) public enum JwtBodyContentError: Int, Error {
         case base64UrlStrIsInvalid = 1
     }
-    
+
     /// Issuer containing application id
     /// - Note: Can be taken [here](https://dashboard.virgilsecurity.com)
     @objc public var appId: String { return self.container.appId }
@@ -30,15 +30,16 @@ import Foundation
     @objc public var additionalData: [String: String]? { return self.container.additionalData }
     /// String representation
     @objc public let stringRepresentation: String
-    
+
     private let container: Container
+
     private struct Container: Codable {
         let appId: String
         let identity: String
         let expiresAt: Date
         let issuedAt: Date
         let additionalData: [String: String]?
-        
+
         private enum CodingKeys: String, CodingKey {
             case appId = "iss"
             case identity = "sub"
@@ -46,16 +47,16 @@ import Foundation
             case expiresAt = "exp"
             case additionalData = "ada"
         }
-        
+
         init(appId: String, identity: String, expiresAt: Date,
-            issuedAt: Date, additionalData: [String: String]?) {
+             issuedAt: Date, additionalData: [String: String]?) {
             self.appId = appId
             self.identity = identity
             self.expiresAt = expiresAt
             self.issuedAt = issuedAt
             self.additionalData = additionalData
         }
-        
+
         init(from decoder: Decoder) throws {
             let values = try decoder.container(keyedBy: Container.CodingKeys.self)
 
@@ -68,10 +69,10 @@ import Foundation
             self.issuedAt = try values.decode(Date.self, forKey: .issuedAt)
             self.expiresAt = try values.decode(Date.self, forKey: .expiresAt)
         }
-        
+
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            
+
             try container.encode("virgil-" + self.appId, forKey: .appId)
             try container.encode("identity-" + self.identity, forKey: .identity)
             try container.encode(self.issuedAt, forKey: .issuedAt)
@@ -97,11 +98,11 @@ import Foundation
                                   expiresAt: expiresAt,
                                   issuedAt: issuedAt,
                                   additionalData: additionalData)
-        
+
         self.container = container
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .custom(JsonHelper.timestampDateEncodingStrategy)
-        
+
         self.stringRepresentation = try encoder.encode(container).base64UrlEncodedString()
 
         super.init()
@@ -116,12 +117,12 @@ import Foundation
         guard let data = Data(base64UrlEncoded: base64UrlEncoded) else {
             throw JwtBodyContentError.base64UrlStrIsInvalid
         }
-        
+
         self.stringRepresentation = base64UrlEncoded
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .custom(JsonHelper.timestampDateDecodingStrategy)
         self.container = try decoder.decode(Container.self, from: data)
-        
+
         super.init()
     }
 }

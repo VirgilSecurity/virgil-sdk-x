@@ -20,7 +20,7 @@ import Foundation
     /// - Returns: `GetCardResponse` if card found
     /// - Throws: Depends on implementation
     @objc func getCard(withId cardId: String, token: String) throws -> GetCardResponse
-    
+
     /// Creates Virgil Card instance on the Virgil Cards Service
     /// Also makes the Card accessible for search/get queries from other users
     /// `RawSignedModel` should contain appropriate signatures
@@ -31,7 +31,7 @@ import Foundation
     /// - Returns: `RawSignedModel` of created card
     /// - Throws: Depends on implementation
     @objc func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel
-    
+
     /// Performs search of Virgil Cards using given identity on the Virgil Cards Service
     ///
     /// - Parameters:

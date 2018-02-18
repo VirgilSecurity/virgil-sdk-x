@@ -14,7 +14,7 @@ extension CardClient: CardClientProtocol {
     @objc public static let xVirgilIsSuperseededKey = "x-virgil-is-superseeded"
     /// HTTP header value for xVirgilIsSuperseededKey key for getCard response that marks outdated cards
     @objc public static let xVirgilIsSuperseededTrue = "true"
-    
+
     /// Returns `GetCardResponse` with `RawSignedModel` of card from the Virgil Cards Service with given ID, if exists
     ///
     /// - Parameters:
@@ -94,7 +94,7 @@ extension CardClient: CardClientProtocol {
         let request = try ServiceRequest(url: url, method: .post, accessToken: token, params: ["identity": identity])
 
         let response = try self.connection.send(request)
-        
+
         return try self.processResponse(response)
     }
 }

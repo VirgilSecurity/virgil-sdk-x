@@ -18,7 +18,7 @@ import Foundation
         case incorrectNumberOfJwtComponents = 1
         case utf8StrIsInvalid = 2
     }
-    
+
     /// Represents JWT Header content
     @objc public let headerContent: JwtHeaderContent
     /// Represents JWT Body content
@@ -32,7 +32,8 @@ import Foundation
     ///   - headerContent: header of `Jwt`
     ///   - bodyContent: body of `Jwt`
     ///   - signatureContent: signature of `Jwt`
-    @objc public init(headerContent: JwtHeaderContent, bodyContent: JwtBodyContent, signatureContent: JwtSignatureContent) throws {
+    @objc public init(headerContent: JwtHeaderContent, bodyContent: JwtBodyContent,
+                      signatureContent: JwtSignatureContent) throws {
         self.headerContent = headerContent
         self.bodyContent = bodyContent
         self.signatureContent = signatureContent
@@ -51,7 +52,7 @@ import Foundation
         guard array.count == 3 else {
             throw JwtError.incorrectNumberOfJwtComponents
         }
-        
+
         let headerBase64Url = array[0]
         let bodyBase64Url = array[1]
         let signatureBase64Url = array[2]
@@ -70,7 +71,7 @@ import Foundation
     @objc public func dataToSign() throws -> Data {
         return try Jwt.dataToSign(headerContent: self.headerContent, bodyContent: self.bodyContent)
     }
-    
+
     /// Returns JWT data that should be signed
     ///
     /// - Parameters:
@@ -79,10 +80,11 @@ import Foundation
     /// - Returns: JWT data that should be signed
     /// - Throws: JwtError.utf8StrIsInvalid if utf8 string is invalid
     @objc public static func dataToSign(headerContent: JwtHeaderContent, bodyContent: JwtBodyContent) throws -> Data {
-        guard let data = "\(headerContent.stringRepresentation).\(bodyContent.stringRepresentation)".data(using: .utf8) else {
+        let dataStr = "\(headerContent.stringRepresentation).\(bodyContent.stringRepresentation)"
+        guard let data = dataStr.data(using: .utf8) else {
             throw JwtError.utf8StrIsInvalid
         }
-        
+
         return data
     }
 
@@ -90,7 +92,11 @@ import Foundation
     ///
     /// - Returns: string representation of token
     @objc public func stringRepresentation() -> String {
-        return "\(self.headerContent.stringRepresentation).\(self.bodyContent.stringRepresentation).\(self.signatureContent.stringRepresentation)"
+        let headerStr = self.headerContent.stringRepresentation
+        let bodyStr = self.bodyContent.stringRepresentation
+        let signatureStr = self.signatureContent.stringRepresentation
+
+        return "\(headerStr).\(bodyStr).\(signatureStr)"
     }
 
     /// Extracts identity

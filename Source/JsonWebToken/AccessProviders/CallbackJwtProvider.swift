@@ -35,7 +35,7 @@ import Foundation
                 completion(nil, err)
                 return
             }
-            
+
             do {
                 let jwt = try Jwt(stringRepresentation: tokenString)
                 completion(jwt, nil)

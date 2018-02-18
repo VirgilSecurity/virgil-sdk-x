@@ -22,7 +22,8 @@ import Foundation
     ///
     /// - Parameters:
     ///   - jwtGenerator: `JwtGeneretor` instance for generating new tokens
-    ///   - defaultIdentity: Identity that will be used for generating token if tokenContext do not have it (e.g. for read operations)
+    ///   - defaultIdentity: Identity that will be used for generating token
+    ///                      if tokenContext do not have it (e.g. for read operations)
     ///                      WARNING: Do not create cards with defaultIdentity
     ///   - additionalData: Additional data, that will be present in token
     @objc public init(jwtGenerator: JwtGenerator, defaultIdentity: String, additionalData: [String: String]? = nil) {

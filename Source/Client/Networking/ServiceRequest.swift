@@ -25,7 +25,7 @@ open class ServiceRequest: Request {
     public static let accessTokenHeader = "Authorization"
     /// HTTP header prefix for Virgil JWT
     public static let accessTokenPrefix = "Virgil"
-    
+
     /// Initializer
     ///
     /// - Parameters:
@@ -70,8 +70,10 @@ open class ServiceRequest: Request {
     ///   - method: Request method
     ///   - accessToken: Access token
     ///   - params: JSON-encodable object
-    /// - Throws: ServiceRequestError.invalidGetRequestParameters, if GET request is initialized and params are not [String: String]
-    ///           ServiceRequestError.urlComponentsConvertingFailed, if error occured while building url from components during GET request
+    /// - Throws: ServiceRequestError.invalidGetRequestParameters,
+    ///               if GET request is initialized and params are not [String: String]
+    ///           ServiceRequestError.urlComponentsConvertingFailed,
+    ///               if error occured while building url from components during GET request
     ///           Rethrows from JSONSerialization
     public init(url: URL, method: Method, accessToken: String, params: Any? = nil) throws {
         let bodyData: Data?

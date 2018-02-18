@@ -60,7 +60,8 @@ import VirgilCryptoAPI
         let data = try Jwt.dataToSign(headerContent: jwtHeaderContent, bodyContent: jwtBodyContent)
 
         let signature = try self.accessTokenSigner.generateTokenSignature(of: data, using: self.apiKey)
-        
-        return try Jwt(headerContent: jwtHeaderContent, bodyContent: jwtBodyContent, signatureContent: JwtSignatureContent(signature: signature))
+
+        return try Jwt(headerContent: jwtHeaderContent, bodyContent: jwtBodyContent,
+                       signatureContent: JwtSignatureContent(signature: signature))
     }
 }
