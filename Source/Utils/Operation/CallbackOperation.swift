@@ -8,22 +8,32 @@
 
 import Foundation
 
+/// Declares error types and codes
+///
+/// - errorAndResultMissing: Both Result and Error are missing in callback
 @objc(VSSCallbackOperationError) public enum CallbackOperationError: Int, Error {
     case errorAndResultMissing = 1
 }
 
-public class CallbackOperation<T>: GenericOperation<T> {
+/// Async GenericOperation that can be initialized with callback
+open class CallbackOperation<T>: GenericOperation<T> {
+    /// Task type
     public typealias Task = (CallbackOperation<T>, @escaping (T?, Error?) -> Void) -> Void
 
+    /// Task to execute
     public let task: Task
 
+    /// Initializer
+    ///
+    /// - Parameter task: task to execute
     public init(task: @escaping Task) {
         self.task = task
 
         super.init()
     }
 
-    override public func main() {
+    /// Main function
+    override open func main() {
         self.task(self) { res, error in
             if let res = res {
                 self.result = .success(res)

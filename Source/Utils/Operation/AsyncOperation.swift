@@ -8,12 +8,15 @@
 
 import Foundation
 
-public class AsyncOperation: Operation {
-    override public var isAsynchronous: Bool { return true }
-
-    override public var isExecuting: Bool { return self.state == .executing }
-    override public var isFinished: Bool { return self.state == .finished }
-
+/// Class for AsyncOperations
+open class AsyncOperation: Operation {
+    /// Overrides Operation variable
+    override open var isAsynchronous: Bool { return true }
+    /// Overrides Operation variable
+    override open var isExecuting: Bool { return self.state == .executing }
+    /// Overrides Operation variable
+    override open var isFinished: Bool { return self.state == .finished }
+    /// Operation state
     public private(set) var state = State.ready {
         willSet {
             self.willChangeValue(forKey: self.state.keyPath)
@@ -25,6 +28,7 @@ public class AsyncOperation: Operation {
         }
     }
 
+    /// Describes Operation state
     public enum State: String {
         case ready     = "Ready"
         case executing = "Executing"
@@ -33,7 +37,9 @@ public class AsyncOperation: Operation {
         fileprivate var keyPath: String { return "is" + self.rawValue }
     }
 
-    override public func start() {
+    /// Overrides Operation function
+    /// WARNING: You do not need override this function. Override main() func instead
+    override open func start() {
         guard !self.isCancelled else {
             self.state = .finished
             return
@@ -43,11 +49,13 @@ public class AsyncOperation: Operation {
         self.main()
     }
 
+    /// Call this function when you task is finished
+    /// WARNING: You do not need override this function. Override main() func instead
     open func finish() {
         self.state = .finished
     }
 
-    override public func main() {
-        // Implement your task here.
+    /// Implement your task here
+    override open func main() {
     }
 }

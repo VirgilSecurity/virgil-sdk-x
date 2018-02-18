@@ -8,7 +8,11 @@
 
 import Foundation
 
+// MARK: - Data extension for base64Url encoding and decoding
 public extension Data {
+    /// Encodes data in base64Url format
+    ///
+    /// - Returns: Base64Url-encoded string
     func base64UrlEncodedString() -> String {
         return self.base64EncodedString()
             .replacingOccurrences(of: "+", with: "-")
@@ -16,6 +20,9 @@ public extension Data {
             .replacingOccurrences(of: "=", with: "")
     }
 
+    /// Initializer
+    ///
+    /// - Parameter base64UrlEncoded: base64UrlEncoded-encoded string
     init?(base64UrlEncoded: String) {
         let base64Encoded = base64UrlEncoded
             .replacingOccurrences(of: "-", with: "+")

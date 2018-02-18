@@ -176,6 +176,14 @@
 		4229CCB92037380200AFEF4F /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCB72037380200AFEF4F /* JsonHelper.swift */; };
 		4229CCBA2037380200AFEF4F /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCB72037380200AFEF4F /* JsonHelper.swift */; };
 		4229CCBB2037380200AFEF4F /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCB72037380200AFEF4F /* JsonHelper.swift */; };
+		4229CCBD2039D21100AFEF4F /* GenericOperation+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCBC2039D21100AFEF4F /* GenericOperation+Dependencies.swift */; };
+		4229CCBE2039D21100AFEF4F /* GenericOperation+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCBC2039D21100AFEF4F /* GenericOperation+Dependencies.swift */; };
+		4229CCBF2039D21100AFEF4F /* GenericOperation+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCBC2039D21100AFEF4F /* GenericOperation+Dependencies.swift */; };
+		4229CCC02039D21100AFEF4F /* GenericOperation+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCBC2039D21100AFEF4F /* GenericOperation+Dependencies.swift */; };
+		4229CCC22039D22400AFEF4F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCC12039D22400AFEF4F /* Result.swift */; };
+		4229CCC32039D22400AFEF4F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCC12039D22400AFEF4F /* Result.swift */; };
+		4229CCC42039D22400AFEF4F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCC12039D22400AFEF4F /* Result.swift */; };
+		4229CCC52039D22400AFEF4F /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCC12039D22400AFEF4F /* Result.swift */; };
 		422B4D38203494F3003923E2 /* CardManager+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B4D37203494F3003923E2 /* CardManager+Parse.swift */; };
 		422B4D39203494F3003923E2 /* CardManager+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B4D37203494F3003923E2 /* CardManager+Parse.swift */; };
 		422B4D3A203494F3003923E2 /* CardManager+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422B4D37203494F3003923E2 /* CardManager+Parse.swift */; };
@@ -808,6 +816,8 @@
 		422726E720210AA300265E25 /* VirgilCrypto.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VirgilCrypto.xcodeproj; path = "Carthage/Checkouts/virgil-foundation-x/VirgilCrypto.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		4229CCA220371C7D00AFEF4F /* JwtSignatureContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtSignatureContent.swift; sourceTree = "<group>"; };
 		4229CCB72037380200AFEF4F /* JsonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonHelper.swift; sourceTree = "<group>"; };
+		4229CCBC2039D21100AFEF4F /* GenericOperation+Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GenericOperation+Dependencies.swift"; sourceTree = "<group>"; };
+		4229CCC12039D22400AFEF4F /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		422B4D37203494F3003923E2 /* CardManager+Parse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardManager+Parse.swift"; sourceTree = "<group>"; };
 		423CEB541DCA01AF00CCACB8 /* VSSKeyEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSKeyEntry.h; sourceTree = "<group>"; };
 		423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeyEntry.m; sourceTree = "<group>"; };
@@ -997,6 +1007,8 @@
 			children = (
 				1624B82C2010AE75007D223C /* AsyncOperation.swift */,
 				1624B83220120898007D223C /* GenericOperation.swift */,
+				4229CCC12039D22400AFEF4F /* Result.swift */,
+				4229CCBC2039D21100AFEF4F /* GenericOperation+Dependencies.swift */,
 				1624B8372012151B007D223C /* CallbackOperation.swift */,
 			);
 			path = Operation;
@@ -1985,6 +1997,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4229CCC32039D22400AFEF4F /* Result.swift in Sources */,
 				16B3FD8F200CE469008F0357 /* GeneratorJwtProvider.swift in Sources */,
 				4284C45C1F6FECC600B75491 /* VirgilCardVerifier.swift in Sources */,
 				16B3FD5F20078113008F0357 /* Data+base64Url.swift in Sources */,
@@ -2020,6 +2033,7 @@
 				16B3FD94200CE74C008F0357 /* JwtVerifier.swift in Sources */,
 				4284C45A1F6FECC600B75491 /* CardVerifier.swift in Sources */,
 				16E7F5AE20331FFA009A9025 /* PrivateKeyStorage.swift in Sources */,
+				4229CCBE2039D21100AFEF4F /* GenericOperation+Dependencies.swift in Sources */,
 				4284C4661F70057800B75491 /* VerifierCredentials.swift in Sources */,
 				4284C4BE1F72936600B75491 /* CardClient+Queries.swift in Sources */,
 				4284C4211F6C03F400B75491 /* Data+hex.swift in Sources */,
@@ -2117,6 +2131,8 @@
 				42DA83AB20321F980091D223 /* SignModelOperationFabric.swift in Sources */,
 				16B3FD6A20079DF5008F0357 /* CardSignature.swift in Sources */,
 				4284C3C21F6BEA2100B75491 /* HttpConnectionProtocol.swift in Sources */,
+				4229CCBF2039D21100AFEF4F /* GenericOperation+Dependencies.swift in Sources */,
+				4229CCC42039D22400AFEF4F /* Result.swift in Sources */,
 				4284C4B91F728B6700B75491 /* Response.swift in Sources */,
 				16B3FD4A2004D5FC008F0357 /* AccessToken.swift in Sources */,
 				16B3FD5B200507F3008F0357 /* JwtBodyContent.swift in Sources */,
@@ -2177,6 +2193,8 @@
 				42DA83AC20321F980091D223 /* SignModelOperationFabric.swift in Sources */,
 				16B3FD6B20079DF5008F0357 /* CardSignature.swift in Sources */,
 				4284C3C41F6BEA2200B75491 /* HttpConnectionProtocol.swift in Sources */,
+				4229CCC02039D21100AFEF4F /* GenericOperation+Dependencies.swift in Sources */,
+				4229CCC52039D22400AFEF4F /* Result.swift in Sources */,
 				4284C4BB1F728B6700B75491 /* Response.swift in Sources */,
 				16B3FD4B2004D5FC008F0357 /* AccessToken.swift in Sources */,
 				16B3FD5C200507F3008F0357 /* JwtBodyContent.swift in Sources */,
@@ -2249,6 +2267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4229CCBD2039D21100AFEF4F /* GenericOperation+Dependencies.swift in Sources */,
 				4284C4B21F728AD200B75491 /* RawServiceError.swift in Sources */,
 				4284C4561F6FECB600B75491 /* CardVerifier.swift in Sources */,
 				16B3FD7A200CBB6C008F0357 /* CallbackJwtProvider.swift in Sources */,
@@ -2294,6 +2313,7 @@
 				42DA83A920321F980091D223 /* SignModelOperationFabric.swift in Sources */,
 				16E7F5B220332002009A9025 /* PrivateKeyStorage.swift in Sources */,
 				16B3FD542005059C008F0357 /* JwtHeaderContent.swift in Sources */,
+				4229CCC22039D22400AFEF4F /* Result.swift in Sources */,
 				4229CCB82037380200AFEF4F /* JsonHelper.swift in Sources */,
 				423CEB5A1DCA06C900CCACB8 /* VSSKeyEntry.m in Sources */,
 				16B3FD6D2007A8B1008F0357 /* WhiteList.swift in Sources */,

@@ -8,13 +8,20 @@
 
 import Foundation
 
+// MARK: - Data extension for hex encoding and decoding
 public extension Data {
+    /// Encodes data in hex format
+    ///
+    /// - Returns: Hex-encoded string
     func hexEncodedString() -> String {
         return self
             .map({ String(format: "%02hhx", $0) })
             .joined()
     }
 
+    /// Initializer
+    ///
+    /// - Parameter hex: Hex-encoded string
     init?(hexEncodedString hex: String) {
         let length = hex.lengthOfBytes(using: .ascii)
 

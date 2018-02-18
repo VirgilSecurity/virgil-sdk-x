@@ -8,11 +8,12 @@
 
 import Foundation
 
-public enum Result<T> {
-    case success(T)
-    case failure(Error)
-}
-
+/// Declares error types and codes
+///
+/// - timeout: Timeout has fired
+/// - resultIsMissing: Result variable is empty after execution
+/// - missingDependencies: Dependend operation result not found
+/// - dependencyFailed: Dependend operation has failed
 @objc(VSSGenericOperationError) public enum GenericOperationError: Int, Error {
     case timeout = 1
     case resultIsMissing = 2
@@ -20,10 +21,16 @@ public enum Result<T> {
     case dependencyFailed = 4
 }
 
-public class GenericOperation<T>: AsyncOperation {
-    internal(set) var result: Result<T>? = nil
+/// Represents AsyncOperation with Generic result
+open class GenericOperation<T>: AsyncOperation {
+    /// Operation Result
+    /// WARNING: Do not modify this value outside of GenericOperation functions
+    public var result: Result<T>? = nil
 
-    public func start(completion: @escaping (Result<T>) -> ()) {
+    /// Created OperationQueue and starts operation
+    ///
+    /// - Parameter completion: Completion callback
+    open func start(completion: @escaping (Result<T>) -> ()) {
         guard !self.isCancelled else {
             // FIXME investigate cancellation
             self.cancel()
@@ -46,7 +53,11 @@ public class GenericOperation<T>: AsyncOperation {
         queue.addOperation(self)
     }
 
-    public func startSync(timeout: TimeInterval? = nil) -> Result<T> {
+    /// Creates queue, starts operation, waits for result, returns result
+    ///
+    /// - Parameter timeout: Operation timeout
+    /// - Returns: Operation Result
+    open func startSync(timeout: TimeInterval? = nil) -> Result<T> {
         let queue = OperationQueue()
 
         queue.addOperation(self)
@@ -69,36 +80,5 @@ public class GenericOperation<T>: AsyncOperation {
         }
 
         return result
-    }
-}
-
-public extension GenericOperation {
-    func findDependencyResult<T>() throws -> T {
-        guard let operation = self.dependencies
-            .first(where: { ($0 as? GenericOperation<T>)?.result != nil }) as? GenericOperation<T>,
-            let operationResult = operation.result else {
-                throw GenericOperationError.missingDependencies
-        }
-
-        guard case let .success(result) = operationResult else {
-            throw GenericOperationError.dependencyFailed
-        }
-
-        return result
-    }
-
-    func findDependencyError<T>() -> T? {
-        for dependency in self.dependencies {
-            if let d = dependency as? GenericOperation,
-                let res = d.result {
-                    if case let .failure(error) = res {
-                        if let e = error as? T {
-                            return e
-                        }
-                    }
-            }
-        }
-
-        return nil
     }
 }
