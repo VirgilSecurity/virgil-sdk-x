@@ -10,12 +10,13 @@ import Foundation
 
 /// Class representing JWT Header content
 @objc(VSSJwtHeaderContent) public class JwtHeaderContent: NSObject {
+    /// Declares error types and codes
+    ///
+    /// - base64UrlStrIsInvalid: If given base64 string is invalid
     @objc(VSSJwtHeaderContentError) public enum JwtHeaderContentError: Int, Error {
         case base64UrlStrIsInvalid = 1
     }
-    
-    private let container: Container
-    
+
     /// Represents used signature algorithm
     @objc public var algorithm: String { return self.container.algorithm }
     /// Represents token type
@@ -25,8 +26,10 @@ import Foundation
     /// Represents identifier of public key which should be used to verify signature
     /// - Note: Can be taken from [here](https://dashboard.virgilsecurity.com/api-keys)
     @objc public var keyIdentifier: String { return self.container.keyIdentifier }
+    /// String representation
     @objc public let stringRepresentation: String
 
+    private let container: Container
     private struct Container: Codable {
         let algorithm: String
         let type: String
@@ -48,6 +51,7 @@ import Foundation
     ///   - type: token type
     ///   - contentType: content type for this JWT
     ///   - keyIdentifier: identifier of public key which should be used to verify signature
+    /// - Throws: Rethrows from JSONEncoder
     @objc public init(algorithm: String = "VEDS512", type: String = "JWT",
                       contentType: String = "virgil-jwt;v=1", keyIdentifier: String) throws {
         let container = Container(algorithm: algorithm, type: type,
@@ -61,7 +65,8 @@ import Foundation
     /// Imports JwtHeaderContent from base64Url encoded string
     ///
     /// - Parameter base64UrlEncoded: base64Url encoded string with JwtHeaderContent
-    /// - Returns: decoded JwtHeaderContent if succeeded, nil otherwise
+    /// - Throws: JwtHeaderContentError.base64UrlStrIsInvalid If given base64 string is invalid
+    ///           Rethrows from JSONDecoder
     @objc public init(base64UrlEncoded: String) throws  {
         guard let data = Data(base64UrlEncoded: base64UrlEncoded) else {
             throw JwtHeaderContentError.base64UrlStrIsInvalid

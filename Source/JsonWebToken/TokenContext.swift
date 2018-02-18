@@ -8,21 +8,25 @@
 
 import Foundation
 
-/// Class used to provide additional info for AccessTokenProvider about for what token will be used
+/// Class used to provide additional info for AccessTokenProvider and explains why token is needed
 @objc(VSSTokenContext) public class TokenContext: NSObject {
     /// Identity to use in token
     @objc public let identity: String?
-    /// Explanation of the purpose of token usage
+    /// Operation for which token is needed
+    /// CardManager uses following operations:
+    /// - "get"
+    /// - "search"
+    /// - "publish"
     @objc public let operation: String
-    /// Tells providers not to use cashed tokens if true
+    /// AccessTokenProvider should reset cached token, if such exist
     @objc public let forceReload: Bool
 
     /// Initializer
     ///
     /// - Parameters:
-    ///   - identity: identity to use in token
-    ///   - operation: explanation of the purpose of token usage
-    ///   - forceReload: tells providers not to use cashed tokens if true
+    ///   - identity: Identity to use in token
+    ///   - operation: Operation for which token is needed
+    ///   - forceReload: AccessTokenProvider should reset cached token, if such exist
     @objc public init(identity: String? = nil, operation: String, forceReload: Bool = false) {
         self.identity = identity
         self.operation = operation

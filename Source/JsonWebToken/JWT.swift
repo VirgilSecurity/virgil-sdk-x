@@ -10,6 +10,10 @@ import Foundation
 
 /// Class implementing `AccessToken` in terms of Virgil JWT
 @objc(VSSJwt) public final class Jwt: NSObject, AccessToken {
+    /// Declares error types and codes
+    ///
+    /// - incorrectNumberOfJwtComponents: Number of JWT components doesn't equal 3
+    /// - utf8StrIsInvalid: Invalid UTF8 string to sign
     @objc(VSSJwtError) public enum JwtError: Int, Error {
         case incorrectNumberOfJwtComponents = 1
         case utf8StrIsInvalid = 2
@@ -19,7 +23,7 @@ import Foundation
     @objc public let headerContent: JwtHeaderContent
     /// Represents JWT Body content
     @objc public let bodyContent: JwtBodyContent
-    /// Signature data
+    /// Represents JWT Signature content
     @objc public let signatureContent: JwtSignatureContent
 
     /// Initializes `Jwt` with provided header, body and signature content
@@ -27,7 +31,7 @@ import Foundation
     /// - Parameters:
     ///   - headerContent: header of `Jwt`
     ///   - bodyContent: body of `Jwt`
-    ///   - signatureContent: Data with signature content
+    ///   - signatureContent: signature of `Jwt`
     @objc public init(headerContent: JwtHeaderContent, bodyContent: JwtBodyContent, signatureContent: JwtSignatureContent) throws {
         self.headerContent = headerContent
         self.bodyContent = bodyContent
@@ -39,7 +43,8 @@ import Foundation
     /// Initializes `Jwt` from its string representation
     ///
     /// - Parameter stringRepresentation: must be equal to
-    ///   base64UrlEncode(JWT Header) + "." + base64UrlEncode(JWT Body) + "." + base64UrlEncode(Jwt Signature)
+    ///                                   base64UrlEncode(JWT Header) + "." + base64UrlEncode(JWT Body)
+    ///                                   + "." + base64UrlEncode(Jwt Signature)
     @objc public init(stringRepresentation: String) throws {
         let array = stringRepresentation.components(separatedBy: ".")
 
@@ -57,11 +62,22 @@ import Foundation
 
         super.init()
     }
-    
+
+    /// Returns JWT data that should be signed
+    ///
+    /// - Returns: JWT data that should be signed
+    /// - Throws: JwtError.utf8StrIsInvalid if utf8 string is invalid
     @objc public func dataToSign() throws -> Data {
         return try Jwt.dataToSign(headerContent: self.headerContent, bodyContent: self.bodyContent)
     }
     
+    /// Returns JWT data that should be signed
+    ///
+    /// - Parameters:
+    ///   - headerContent: JWT header
+    ///   - bodyContent: JWT body
+    /// - Returns: JWT data that should be signed
+    /// - Throws: JwtError.utf8StrIsInvalid if utf8 string is invalid
     @objc public static func dataToSign(headerContent: JwtHeaderContent, bodyContent: JwtBodyContent) throws -> Data {
         guard let data = "\(headerContent.stringRepresentation).\(bodyContent.stringRepresentation)".data(using: .utf8) else {
             throw JwtError.utf8StrIsInvalid

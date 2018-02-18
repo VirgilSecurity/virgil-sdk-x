@@ -9,8 +9,8 @@
 import Foundation
 import VirgilCryptoAPI
 
-/// Class responsible for generation of JWTs
-@objc(VSSJwtGenerator) public class JwtGenerator: NSObject {
+/// Class responsible for JWT generation
+@objc(VSSJwtGenerator) open class JwtGenerator: NSObject {
     /// Api Private Key for signing generated tokens
     /// - Note: Can be taken [here](https://dashboard.virgilsecurity.com/api-keys)
     @objc public let apiKey: PrivateKey
@@ -47,10 +47,10 @@ import VirgilCryptoAPI
     /// Generates new JWT
     ///
     /// - Parameters:
-    ///   - identity: identity to generate with
-    ///   - additionalData: dictionary with additional data
-    /// - Returns: generated and signed `Jwt`
-    /// - Throws: corresponding error if generation fails
+    ///   - identity: Identity to generate with
+    ///   - additionalData: Dictionary with additional data
+    /// - Returns: Generated and signed `Jwt`
+    /// - Throws: Rethrows from JwtHeaderContent, JwtBodyContent, Jwt, AccessTokenSigner
     @objc public func generateToken(identity: String, additionalData: [String: String]? = nil) throws -> Jwt {
         let jwtHeaderContent = try JwtHeaderContent(keyIdentifier: self.apiPublicKeyIdentifier)
         let jwtBodyContent = try JwtBodyContent(appId: self.appId, identity: identity,

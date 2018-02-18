@@ -10,11 +10,12 @@ import Foundation
 
 /// Class representing JWT Body content
 @objc(VSSJwtBodyContent) public class JwtBodyContent: NSObject {
+    /// Declares error types and codes
+    ///
+    /// - base64UrlStrIsInvalid: If given base64 string is invalid
     @objc(VSSJwtBodyContentError) public enum JwtBodyContentError: Int, Error {
         case base64UrlStrIsInvalid = 1
     }
-    
-    private let container: Container
     
     /// Issuer containing application id
     /// - Note: Can be taken [here](https://dashboard.virgilsecurity.com)
@@ -27,9 +28,10 @@ import Foundation
     @objc public var issuedAt: Date { return self.container.issuedAt }
     /// Dictionary with additional data
     @objc public var additionalData: [String: String]? { return self.container.additionalData }
-    
+    /// String representation
     @objc public let stringRepresentation: String
     
+    private let container: Container
     private struct Container: Codable {
         let appId: String
         let identity: String
@@ -88,6 +90,7 @@ import Foundation
     ///   - expiresAt: expiration date
     ///   - issuedAt: issued date
     ///   - additionalData: dictionary with additional data
+    /// - Throws: Rethrows from JSONEncoder
     @objc public init(appId: String, identity: String, expiresAt: Date,
                       issuedAt: Date, additionalData: [String: String]? = nil) throws {
         let container = Container(appId: appId, identity: identity,
@@ -107,7 +110,8 @@ import Foundation
     /// Imports JwtBodyContent from base64Url encoded string
     ///
     /// - Parameter base64UrlEncoded: base64Url encoded string with JwtBodyContent
-    /// - Returns: decoded JwtBodyContent if succeeded, nil otherwise
+    /// - Throws: JwtBodyContentError.base64UrlStrIsInvalid If given base64 string is invalid
+    ///           Rethrows from JSONDencoder
     @objc public init(base64UrlEncoded: String) throws {
         guard let data = Data(base64UrlEncoded: base64UrlEncoded) else {
             throw JwtBodyContentError.base64UrlStrIsInvalid

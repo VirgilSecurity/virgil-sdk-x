@@ -10,7 +10,7 @@ import Foundation
 import VirgilCryptoAPI
 
 /// Class responsible for verification of JWTs
-@objc(VSSJwtVerifier) public class JwtVerifier: NSObject {
+@objc(VSSJwtVerifier) open class JwtVerifier: NSObject {
     /// Public Key which should be used to verify signatures
     @objc public let apiPublicKey: PublicKey
     /// Identifier of public key which should be used to verify signatures
@@ -33,7 +33,7 @@ import VirgilCryptoAPI
     /// Verifies Jwt signature
     ///
     /// - Parameter token: Jwt to be verified
-    /// - Returns: true if token verified, false otherwise
+    /// - Returns: true if token is verified, false otherwise
     @objc public func verify(token: Jwt) -> Bool {
         do {
             let data = try token.dataToSign()
