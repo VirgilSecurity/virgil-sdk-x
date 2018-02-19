@@ -71,7 +71,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         self.utils = VSSTestUtils(crypto: self.crypto, consts: self.consts)
         self.cardCrypto = VirgilCardCrypto(virgilCrypto: self.crypto)
         self.modelSigner = ModelSigner(cardCrypto: self.cardCrypto)
-        self.cardClient = CardClient(serviceUrl: self.consts.serviceURL!)
+        self.cardClient = CardClient(serviceUrl: self.consts.serviceURL)
     }
 
     override func tearDown() {
@@ -145,7 +145,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
             }
         }
 
-        let operation3 = cardManager.getCard(withId: self.consts.existentCardId!)
+        let operation3 = cardManager.getCard(withId: self.consts.existentCardId)
 
         switch operation3.startSync() {
         case .success: XCTFail()
@@ -157,7 +157,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
             }
         }
 
-        let operation4 = cardManager.searchCards(identity: self.consts.existentCardIdentity!)
+        let operation4 = cardManager.searchCards(identity: self.consts.existentCardIdentity)
 
         switch operation4.startSync() {
         case .success: XCTFail()
