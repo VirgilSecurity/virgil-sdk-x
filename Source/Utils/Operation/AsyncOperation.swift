@@ -19,7 +19,7 @@ open class AsyncOperation: Operation {
     /// Overrides Operation variable
     override open var isFinished: Bool { return self.state == .finished }
     /// Operation state
-    public private(set) var state = State.ready {
+    private var state = State.ready {
         willSet {
             self.willChangeValue(forKey: self.state.keyPath)
             self.willChangeValue(forKey: newValue.keyPath)

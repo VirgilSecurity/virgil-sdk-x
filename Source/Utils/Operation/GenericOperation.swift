@@ -34,13 +34,12 @@ open class GenericOperation<T>: AsyncOperation {
         }
     }
 
-    /// Created OperationQueue and starts operation
+    /// Creates OperationQueue and starts operation
     ///
     /// - Parameter completion: Completion callback
     open func start(completion: @escaping (Result<T>) -> ()) {
         guard !self.isCancelled else {
-            // FIXME investigate cancellation
-            self.cancel()
+            self.finish()
             return
         }
 
@@ -69,11 +68,12 @@ open class GenericOperation<T>: AsyncOperation {
 
         queue.addOperation(self)
 
-        // FIXME: Add tests
         if let timeout = timeout {
             let deadlineTime = DispatchTime.now() + timeout
 
             DispatchQueue.global(qos: .background).asyncAfter(deadline: deadlineTime) {
+                let result: Result<T> = Result.failure(GenericOperationError.timeout)
+                self.result = result
                 queue.cancelAllOperations()
             }
         }
@@ -81,7 +81,7 @@ open class GenericOperation<T>: AsyncOperation {
         queue.waitUntilAllOperationsAreFinished()
 
         guard let result = self.result else {
-            let result: Result<T> = Result.failure(GenericOperationError.timeout)
+            let result: Result<T> = Result.failure(GenericOperationError.resultIsMissing)
             self.result = result
             return result
         }
