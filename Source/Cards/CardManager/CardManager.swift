@@ -33,8 +33,8 @@ import VirgilCryptoAPI
     @objc public let cardVerifier: CardVerifier
     /// Will automaticaly perform second query with forceReloaded = true AccessToken if true
     @objc public let retryOnUnauthorized: Bool
-    /// Makes GenerickOperation with provided in initializer signCallback
-    public let signModelOperationFabric: SignModelOperationFabric?
+    /// Called to perform additional signatures for card before publishing
+    @objc public let signCallback: ((RawSignedModel, @escaping (RawSignedModel?, Error?) -> Void) -> Void)?
 
     /// Initializer
     ///
@@ -46,13 +46,7 @@ import VirgilCryptoAPI
         self.cardClient = params.cardClient
         self.cardVerifier = params.cardVerifier
         self.retryOnUnauthorized = params.retryOnUnauthorized
-
-        if let signCallback = params.signCallback {
-            self.signModelOperationFabric = SignModelOperationFabric(callback: signCallback)
-        }
-        else {
-            self.signModelOperationFabric = nil
-        }
+        self.signCallback = params.signCallback
 
         super.init()
     }

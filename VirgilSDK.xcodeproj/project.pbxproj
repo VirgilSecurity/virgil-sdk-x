@@ -328,10 +328,6 @@
 		42DA83A620321F980091D223 /* CardManager+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DA838A20321F970091D223 /* CardManager+Operations.swift */; };
 		42DA83A720321F980091D223 /* CardManager+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DA838A20321F970091D223 /* CardManager+Operations.swift */; };
 		42DA83A820321F980091D223 /* CardManager+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DA838A20321F970091D223 /* CardManager+Operations.swift */; };
-		42DA83A920321F980091D223 /* SignModelOperationFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DA83A220321F980091D223 /* SignModelOperationFabric.swift */; };
-		42DA83AA20321F980091D223 /* SignModelOperationFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DA83A220321F980091D223 /* SignModelOperationFabric.swift */; };
-		42DA83AB20321F980091D223 /* SignModelOperationFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DA83A220321F980091D223 /* SignModelOperationFabric.swift */; };
-		42DA83AC20321F980091D223 /* SignModelOperationFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DA83A220321F980091D223 /* SignModelOperationFabric.swift */; };
 		42DA83AD20321F980091D223 /* CardManager+Obj-C.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DA83A320321F980091D223 /* CardManager+Obj-C.swift */; };
 		42DA83AE20321F980091D223 /* CardManager+Obj-C.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DA83A320321F980091D223 /* CardManager+Obj-C.swift */; };
 		42DA83AF20321F980091D223 /* CardManager+Obj-C.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DA83A320321F980091D223 /* CardManager+Obj-C.swift */; };
@@ -885,7 +881,6 @@
 		42CF01FF1F6AA2AD003ABB19 /* HttpConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpConnection.swift; sourceTree = "<group>"; };
 		42D5C2FB2033715F000DBF80 /* CardClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardClientProtocol.swift; sourceTree = "<group>"; };
 		42DA838A20321F970091D223 /* CardManager+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardManager+Operations.swift"; sourceTree = "<group>"; };
-		42DA83A220321F980091D223 /* SignModelOperationFabric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignModelOperationFabric.swift; sourceTree = "<group>"; };
 		42DA83A320321F980091D223 /* CardManager+Obj-C.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardManager+Obj-C.swift"; sourceTree = "<group>"; };
 		42DA83A420321F980091D223 /* CardManagerParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardManagerParams.swift; sourceTree = "<group>"; };
 		42DA83B5203227400091D223 /* GetCardResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCardResponse.swift; sourceTree = "<group>"; };
@@ -1024,7 +1019,6 @@
 				42DA838A20321F970091D223 /* CardManager+Operations.swift */,
 				422B4D37203494F3003923E2 /* CardManager+Parse.swift */,
 				42DA83A420321F980091D223 /* CardManagerParams.swift */,
-				42DA83A220321F980091D223 /* SignModelOperationFabric.swift */,
 			);
 			path = CardManager;
 			sourceTree = "<group>";
@@ -2003,7 +1997,6 @@
 				16B3FD5F20078113008F0357 /* Data+base64Url.swift in Sources */,
 				4284C34C1F6AAB8000B75491 /* Log.swift in Sources */,
 				16B3FD5A200507F3008F0357 /* JwtBodyContent.swift in Sources */,
-				42DA83AA20321F980091D223 /* SignModelOperationFabric.swift in Sources */,
 				4284C36F1F6BE54D00B75491 /* RawSignature.swift in Sources */,
 				42DA83A620321F980091D223 /* CardManager+Operations.swift in Sources */,
 				4284C4B71F728B6600B75491 /* Response.swift in Sources */,
@@ -2128,7 +2121,6 @@
 				42DA83B8203227400091D223 /* GetCardResponse.swift in Sources */,
 				4229CCA520371C7D00AFEF4F /* JwtSignatureContent.swift in Sources */,
 				4284C3C31F6BEA2100B75491 /* HttpConnection.swift in Sources */,
-				42DA83AB20321F980091D223 /* SignModelOperationFabric.swift in Sources */,
 				16B3FD6A20079DF5008F0357 /* CardSignature.swift in Sources */,
 				4284C3C21F6BEA2100B75491 /* HttpConnectionProtocol.swift in Sources */,
 				4229CCBF2039D21100AFEF4F /* GenericOperation+Dependencies.swift in Sources */,
@@ -2190,7 +2182,6 @@
 				42DA83B9203227400091D223 /* GetCardResponse.swift in Sources */,
 				4229CCA620371C7D00AFEF4F /* JwtSignatureContent.swift in Sources */,
 				4284C3C51F6BEA2200B75491 /* HttpConnection.swift in Sources */,
-				42DA83AC20321F980091D223 /* SignModelOperationFabric.swift in Sources */,
 				16B3FD6B20079DF5008F0357 /* CardSignature.swift in Sources */,
 				4284C3C41F6BEA2200B75491 /* HttpConnectionProtocol.swift in Sources */,
 				4229CCC02039D21100AFEF4F /* GenericOperation+Dependencies.swift in Sources */,
@@ -2310,7 +2301,6 @@
 				42DA83C0203262950091D223 /* CardManager+Export.swift in Sources */,
 				16E7F5B620332511009A9025 /* PrivateKeyEntry.swift in Sources */,
 				42DA83B6203227400091D223 /* GetCardResponse.swift in Sources */,
-				42DA83A920321F980091D223 /* SignModelOperationFabric.swift in Sources */,
 				16E7F5B220332002009A9025 /* PrivateKeyStorage.swift in Sources */,
 				16B3FD542005059C008F0357 /* JwtHeaderContent.swift in Sources */,
 				4229CCC22039D22400AFEF4F /* Result.swift in Sources */,

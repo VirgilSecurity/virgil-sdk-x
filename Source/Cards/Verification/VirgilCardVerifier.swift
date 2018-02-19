@@ -31,17 +31,17 @@ import VirgilCryptoAPI
     /// Array with collections of verifiers
     /// - Important: VirgilCardVerifier verifies Card if it contains signature from AT LEAST
     ///   one verifier from EACH Whitelist
-    @objc public var whiteLists: [Whitelist]
+    @objc public var whitelists: [Whitelist]
 
     /// Initializer
     ///
     /// - Parameters:
     ///   - cardCrypto: CardCrypto instance
-    ///   - whiteLists:  collections of verifiers
+    ///   - whitelists:  collections of verifiers
     /// - Important: VirgilCardVerifier verifies Card if it contains signature from AT LEAST
     ///   one verifier from EACH Whitelist
-    @objc public init?(cardCrypto: CardCrypto, whiteLists: [Whitelist] = []) {
-        self.whiteLists = whiteLists
+    @objc public init?(cardCrypto: CardCrypto, whitelists: [Whitelist] = []) {
+        self.whitelists = whitelists
         self.cardCrypto = cardCrypto
 
         guard let publicKeyData = Data(base64Encoded: VirgilCardVerifier.virgilPublicKeyBase64),
@@ -85,8 +85,8 @@ import VirgilCryptoAPI
     }
 
     private func verifyWhitelistsSignatures(_ card: Card) -> Bool {
-        for whiteList in self.whiteLists {
-            guard let signerInfo = whiteList.verifiersCredentials.first(where: {
+        for whitelist in self.whitelists {
+            guard let signerInfo = whitelist.verifiersCredentials.first(where: {
                     Set<String>(card.signatures.map({ $0.signer })).contains($0.signer)
                   }),
                   let publicKey = try? self.cardCrypto.importPublicKey(from: signerInfo.publicKey),

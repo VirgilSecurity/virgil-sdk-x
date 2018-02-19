@@ -39,7 +39,7 @@
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
     self.cardClient = [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL];
     self.modelSigner = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
-    self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whiteLists:@[]];
+    self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
     
     self.verifier.verifySelfSignature = false;
     self.verifier.verifyVirgilSignature = false;
@@ -225,7 +225,7 @@
     VSSVerifierCredentials *creds1 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKey1Data];
     VSSWhitelist *whitelist1 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds1] error:&error];
     XCTAssert(error == nil);
-    self.verifier.whiteLists = @[whitelist1];
+    self.verifier.whitelists = @[whitelist1];
 
     XCTAssert([self.verifier verifyCardWithCard:card]);
     
@@ -233,7 +233,7 @@
     VSSVerifierCredentials *creds22 = [[VSSVerifierCredentials alloc] initWithSigner:@"test1" publicKey:publicKeyData2];
     VSSWhitelist *whitelist2 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds21, creds22] error:&error];
     XCTAssert(error == nil);
-    self.verifier.whiteLists = @[whitelist2];
+    self.verifier.whitelists = @[whitelist2];
     
     XCTAssert([self.verifier verifyCardWithCard:card]);
     
@@ -244,7 +244,7 @@
     XCTAssert(error == nil);
     VSSWhitelist *whitelist32 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds33] error:&error];
     XCTAssert(error == nil);
-    self.verifier.whiteLists = @[whitelist31, whitelist32];
+    self.verifier.whitelists = @[whitelist31, whitelist32];
     
     XCTAssert(![self.verifier verifyCardWithCard:card]);
 }
@@ -360,14 +360,14 @@
     VSSVerifierCredentials *creds1 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKeyData];
     VSSWhitelist *whitelist1 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds1] error:&error];
     XCTAssert(error == nil);
-    self.verifier.whiteLists = @[whitelist1];
+    self.verifier.whitelists = @[whitelist1];
     
     XCTAssert(![self.verifier verifyCardWithCard:card]);
     
     VSSVerifierCredentials *creds2 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:pubicKeyBase64];
     VSSWhitelist *whitelist2 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds2] error:&error];
     XCTAssert(error == nil);
-    self.verifier.whiteLists = @[whitelist2];
+    self.verifier.whitelists = @[whitelist2];
     
     XCTAssert([self.verifier verifyCardWithCard:card]);
 }

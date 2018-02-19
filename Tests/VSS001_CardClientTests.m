@@ -79,7 +79,7 @@
     
     XCTAssert([exportedPublicKeyCard isEqualToData:exportedPublicKey]);
     
-    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whiteLists:@[]];
+    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
     
     XCTAssert([verifier verifyCardWithCard:responseCard]);
 }
@@ -120,7 +120,7 @@
 
     XCTAssert([self.utils isCardsEqualWithCard:card and:foundCard]);
 
-    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whiteLists:@[]];
+    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
 
     XCTAssert([verifier verifyCardWithCard:foundCard]);
 }
@@ -162,7 +162,7 @@
     
     XCTAssert([self.utils isCardsEqualWithCard:card and:foundCard]);
     
-    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whiteLists:@[]];
+    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
     
     XCTAssert([verifier verifyCardWithCard:foundCard]);
 }

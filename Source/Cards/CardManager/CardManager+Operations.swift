@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import VirgilCryptoAPI
 
 extension CardManager {
     internal func makeEmptyOperation() -> GenericOperation<Void> {
@@ -32,22 +33,21 @@ extension CardManager {
         }
     }
 
-    internal func makeVerifyCardsOperation() -> GenericOperation<Bool> {
-        return CallbackOperation<Bool> { operation, completion in
+    internal func makeVerifyCardsOperation() -> GenericOperation<Void> {
+        return CallbackOperation<Void> { operation, completion in
             do {
                 let cards: [Card] = try operation.findDependencyResult()
 
                 for card in cards {
                     guard self.cardVerifier.verifyCard(card: card) else {
-                        completion(false, nil)
-                        return
+                        throw CardManagerError.cardIsNotVerified
                     }
                 }
 
-                completion(true, nil)
+                completion(Void(), nil)
             }
             catch {
-                completion(false, nil)
+                completion(nil, error)
             }
         }
     }
@@ -141,5 +141,57 @@ extension CardManager {
         }
 
         return searchCardsOperation
+    }
+    
+    internal func makeAdditionalSignOperation() -> GenericOperation<RawSignedModel> {
+        let signOperation = CallbackOperation<RawSignedModel> { operation, completion in
+            do {
+                let rawCard: RawSignedModel = try operation.findDependencyResult()
+                
+                if let signCallback = self.signCallback {
+                    signCallback(rawCard) { rawCard, error in
+                        completion(rawCard, error)
+                    }
+                }
+                else {
+                    completion(rawCard, nil)
+                }
+            }
+            catch {
+                completion(nil, error)
+            }
+        }
+        
+        return signOperation
+    }
+    
+    internal func makeGenerateRawCardOperation(rawCard: RawSignedModel) -> GenericOperation<RawSignedModel> {
+        let generateRawCardOperation = CallbackOperation<RawSignedModel> { _, completion in
+            completion(rawCard, nil)
+        }
+        
+        return generateRawCardOperation
+    }
+    
+    internal func makeGenerateRawCardOperation(privateKey: PrivateKey,
+                                               publicKey: PublicKey,
+                                               previousCardId: String?,
+                                               extraFields: [String: String]?) -> GenericOperation<RawSignedModel> {
+        let generateRawCardOperation = CallbackOperation<RawSignedModel> { operation, completion in
+            do {
+                let token: AccessToken = try operation.findDependencyResult()
+                
+                let rawCard = try self.generateRawCard(privateKey: privateKey, publicKey: publicKey,
+                                                       identity: token.identity(), previousCardId: previousCardId,
+                                                       extraFields: extraFields)
+                
+                completion(rawCard, nil)
+            }
+            catch {
+                completion(nil, error)
+            }
+        }
+        
+        return generateRawCardOperation
     }
 }
