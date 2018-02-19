@@ -26,7 +26,7 @@ extension CardManager {
 
             getCardOperation.addDependency(getTokenOperation)
             verifyCardOperation.addDependency(getCardOperation)
-            
+
             completionOperation.addDependency(getTokenOperation)
             completionOperation.addDependency(getCardOperation)
             completionOperation.addDependency(verifyCardOperation)
@@ -37,7 +37,7 @@ extension CardManager {
                         completion(nil, error)
                         return
                     }
-                    
+
                     let card: Card = try completionOperation.findDependencyResult()
                     completion(card, nil)
                 }
@@ -103,26 +103,26 @@ extension CardManager {
             let publishCardOperation = self.makePublishCardOperation()
             let verifyCardOperation = self.makeVerifyCardOperation()
             let completionOperation = self.makeEmptyOperation()
-            
+
             generateRawCardOperation.addDependency(getTokenOperation)
             signOperation.addDependency(generateRawCardOperation)
             publishCardOperation.addDependency(getTokenOperation)
             publishCardOperation.addDependency(signOperation)
             verifyCardOperation.addDependency(publishCardOperation)
-            
+
             completionOperation.addDependency(getTokenOperation)
             completionOperation.addDependency(generateRawCardOperation)
             completionOperation.addDependency(signOperation)
             completionOperation.addDependency(publishCardOperation)
             completionOperation.addDependency(verifyCardOperation)
-            
+
             completionOperation.completionBlock = { [unowned completionOperation] in
                 do {
                     if let error = completionOperation.findDependencyError() {
                         completion(nil, error)
                         return
                     }
-                    
+
                     let card: Card = try completionOperation.findDependencyResult()
                     completion(card, nil)
                 }
@@ -170,7 +170,7 @@ extension CardManager {
             publishCardOperation.addDependency(getTokenOperation)
             publishCardOperation.addDependency(signOperation)
             verifyCardOperation.addDependency(publishCardOperation)
-            
+
             completionOperation.addDependency(getTokenOperation)
             completionOperation.addDependency(generateRawCardOperation)
             completionOperation.addDependency(signOperation)
@@ -183,7 +183,7 @@ extension CardManager {
                         completion(nil, error)
                         return
                     }
-                    
+
                     let card: Card = try completionOperation.findDependencyResult()
                     completion(card, nil)
                 }
@@ -216,10 +216,10 @@ extension CardManager {
             let searchCardsOperation = self.makeSearchCardsOperation(identity: identity)
             let verifyCardsOperation = self.makeVerifyCardsOperation()
             let completionOperation = self.makeEmptyOperation()
-            
+
             searchCardsOperation.addDependency(getTokenOperation)
             verifyCardsOperation.addDependency(searchCardsOperation)
-            
+
             completionOperation.addDependency(getTokenOperation)
             completionOperation.addDependency(searchCardsOperation)
             completionOperation.addDependency(verifyCardsOperation)
@@ -230,7 +230,7 @@ extension CardManager {
                         completion(nil, error)
                         return
                     }
-                    
+
                     let cards: [Card] = try completionOperation.findDependencyResult()
                     completion(cards, nil)
                 }

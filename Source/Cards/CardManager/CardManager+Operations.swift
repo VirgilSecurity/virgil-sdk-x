@@ -11,7 +11,7 @@ import VirgilCryptoAPI
 
 extension CardManager {
     internal func makeEmptyOperation() -> GenericOperation<Void> {
-        return CallbackOperation() { _, completion in
+        return CallbackOperation { _, completion in
             completion(Void(), nil)
         }
     }
@@ -24,7 +24,7 @@ extension CardManager {
                 guard self.cardVerifier.verifyCard(card: card) else {
                     throw CardManagerError.cardIsNotVerified
                 }
-                
+
                 completion(Void(), nil)
             }
             catch {
@@ -130,7 +130,7 @@ extension CardManager {
                     guard card.identity == identity else {
                         throw CardManagerError.gotWrongCard
                     }
-                    
+
                     let previousCard = cards.first(where: { $0.identifier == card.previousCardId })
                     card.previousCard = previousCard
                     previousCard?.isOutdated = true
@@ -146,12 +146,12 @@ extension CardManager {
 
         return searchCardsOperation
     }
-    
+
     internal func makeAdditionalSignOperation() -> GenericOperation<RawSignedModel> {
         let signOperation = CallbackOperation<RawSignedModel> { operation, completion in
             do {
                 let rawCard: RawSignedModel = try operation.findDependencyResult()
-                
+
                 if let signCallback = self.signCallback {
                     signCallback(rawCard) { rawCard, error in
                         completion(rawCard, error)
@@ -165,18 +165,18 @@ extension CardManager {
                 completion(nil, error)
             }
         }
-        
+
         return signOperation
     }
-    
+
     internal func makeGenerateRawCardOperation(rawCard: RawSignedModel) -> GenericOperation<RawSignedModel> {
         let generateRawCardOperation = CallbackOperation<RawSignedModel> { _, completion in
             completion(rawCard, nil)
         }
-        
+
         return generateRawCardOperation
     }
-    
+
     internal func makeGenerateRawCardOperation(privateKey: PrivateKey,
                                                publicKey: PublicKey,
                                                previousCardId: String?,
@@ -184,18 +184,18 @@ extension CardManager {
         let generateRawCardOperation = CallbackOperation<RawSignedModel> { operation, completion in
             do {
                 let token: AccessToken = try operation.findDependencyResult()
-                
+
                 let rawCard = try self.generateRawCard(privateKey: privateKey, publicKey: publicKey,
                                                        identity: token.identity(), previousCardId: previousCardId,
                                                        extraFields: extraFields)
-                
+
                 completion(rawCard, nil)
             }
             catch {
                 completion(nil, error)
             }
         }
-        
+
         return generateRawCardOperation
     }
 }
