@@ -30,8 +30,8 @@ import VirgilCryptoAPI
     @objc public var verifyVirgilSignature: Bool = true
     /// Array with collections of verifiers
     /// - Important: VirgilCardVerifier verifies Card if it contains signature from AT LEAST
-    ///   one verifier from EACH WhiteList
-    @objc public var whiteLists: [WhiteList]
+    ///   one verifier from EACH Whitelist
+    @objc public var whiteLists: [Whitelist]
 
     /// Initializer
     ///
@@ -39,8 +39,8 @@ import VirgilCryptoAPI
     ///   - cardCrypto: CardCrypto instance
     ///   - whiteLists:  collections of verifiers
     /// - Important: VirgilCardVerifier verifies Card if it contains signature from AT LEAST
-    ///   one verifier from EACH WhiteList
-    @objc public init?(cardCrypto: CardCrypto, whiteLists: [WhiteList] = []) {
+    ///   one verifier from EACH Whitelist
+    @objc public init?(cardCrypto: CardCrypto, whiteLists: [Whitelist] = []) {
         self.whiteLists = whiteLists
         self.cardCrypto = cardCrypto
 
@@ -59,7 +59,7 @@ import VirgilCryptoAPI
     /// - Parameter card: Card to verify
     /// - Returns: true if Card verified, false otherwise
     /// - Important: VirgilCardVerifier verifies Card if it contains signature from AT LEAST
-    ///   one verifier from EACH WhiteList
+    ///   one verifier from EACH Whitelist
     @objc public func verifyCard(card: Card) -> Bool {
         return verifySelfSignature(card) && verifyVirgilSignature(card) && verifyWhitelistsSignatures(card)
     }
