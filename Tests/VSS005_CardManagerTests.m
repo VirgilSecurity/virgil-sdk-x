@@ -351,6 +351,64 @@ static const NSTimeInterval timeout = 8.;
     }];
 }
 
+-(void)test007_ImportExportRawCard {
+    XCTestExpectation *ex = [self expectationWithDescription:@"Card should be published and get"];
+    
+    NSError *error;
+    NSString *identity = [[NSUUID alloc] init].UUIDString;
+    VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
+    XCTAssert(error == nil);
+    
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
+    cardManagerParams.cardClient = self.cardClient;
+    
+    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
+    
+    VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
+    XCTAssert(error == nil);
+    
+    VSSRawSignedModel *rawCard = [cardManager generateRawCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:nil error:&error];
+    XCTAssert(error == nil);
+    
+    [cardManager publishCardWithRawCard:rawCard completion:^(VSSCard *card, NSError *error) {
+        NSError *err;
+        
+        VSSRawSignedModel *rawCard = [cardManager exportCardAsRawCard:card error:&err];
+        XCTAssert(err == nil);
+        XCTAssert([rawCard.contentSnapshot isEqualToData:card.contentSnapshot]);
+        XCTAssert(rawCard.signatures.count == card.signatures.count);
+        XCTAssert(rawCard.signatures.count == 2);
+        
+        NSData *signature1;
+        NSData *signature2;
+        for (VSSCardSignature *cardSignature in card.signatures) {
+            if ([cardSignature.signer isEqualToString:@"self"]) {
+                signature1 = cardSignature.signature;
+            }
+        }
+        
+        for (VSSRawSignature *rawSignature in rawCard.signatures) {
+            if ([rawSignature.signer isEqualToString:@"self"]) {
+                signature2 = rawSignature.signature;
+            }
+        }
+        
+        XCTAssert([signature1 isEqualToData:signature2]);
+        
+        VSSCard *card1 = [cardManager importCardFromRawCard:rawCard error:&err];
+        XCTAssert(err == nil);
+        
+        XCTAssert([self.utils isCardsEqualWithCard:card and:card1]);
+        
+        [ex fulfill];
+    }];
+    
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
+    }];
+}
+
 //-(void)test006_STC_26 {
 //    XCTestExpectation *ex = [self expectationWithDescription:@"All operations should proceed on second calls"];
 //    NSError *error;
