@@ -223,7 +223,7 @@
     NSData *publicKeyData3 = [self.crypto exportPublicKey:[self.crypto generateKeyPairAndReturnError:nil].publicKey];
     
     VSSVerifierCredentials *creds1 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKey1Data];
-    VSSWhiteList *whitelist1 = [[VSSWhiteList alloc] initWithVerifiersCredentials:@[creds1] error:&error];
+    VSSWhitelist *whitelist1 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds1] error:&error];
     XCTAssert(error == nil);
     self.verifier.whiteLists = @[whitelist1];
 
@@ -231,7 +231,7 @@
     
     VSSVerifierCredentials *creds21 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKey1Data];
     VSSVerifierCredentials *creds22 = [[VSSVerifierCredentials alloc] initWithSigner:@"test1" publicKey:publicKeyData2];
-    VSSWhiteList *whitelist2 = [[VSSWhiteList alloc] initWithVerifiersCredentials:@[creds21, creds22] error:&error];
+    VSSWhitelist *whitelist2 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds21, creds22] error:&error];
     XCTAssert(error == nil);
     self.verifier.whiteLists = @[whitelist2];
     
@@ -240,9 +240,9 @@
     VSSVerifierCredentials *creds31 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKey1Data];
     VSSVerifierCredentials *creds32 = [[VSSVerifierCredentials alloc] initWithSigner:@"test1" publicKey:publicKeyData2];
     VSSVerifierCredentials *creds33 = [[VSSVerifierCredentials alloc] initWithSigner:@"test2" publicKey:publicKeyData3];
-    VSSWhiteList *whitelist31 = [[VSSWhiteList alloc] initWithVerifiersCredentials:@[creds31, creds32] error:&error];
+    VSSWhitelist *whitelist31 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds31, creds32] error:&error];
     XCTAssert(error == nil);
-    VSSWhiteList *whitelist32 = [[VSSWhiteList alloc] initWithVerifiersCredentials:@[creds33] error:&error];
+    VSSWhitelist *whitelist32 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds33] error:&error];
     XCTAssert(error == nil);
     self.verifier.whiteLists = @[whitelist31, whitelist32];
     
@@ -358,14 +358,14 @@
     NSData *publicKeyData = [self.crypto exportPublicKey:keyPair.publicKey];
     
     VSSVerifierCredentials *creds1 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKeyData];
-    VSSWhiteList *whitelist1 = [[VSSWhiteList alloc] initWithVerifiersCredentials:@[creds1] error:&error];
+    VSSWhitelist *whitelist1 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds1] error:&error];
     XCTAssert(error == nil);
     self.verifier.whiteLists = @[whitelist1];
     
     XCTAssert(![self.verifier verifyCardWithCard:card]);
     
     VSSVerifierCredentials *creds2 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:pubicKeyBase64];
-    VSSWhiteList *whitelist2 = [[VSSWhiteList alloc] initWithVerifiersCredentials:@[creds2] error:&error];
+    VSSWhitelist *whitelist2 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds2] error:&error];
     XCTAssert(error == nil);
     self.verifier.whiteLists = @[whitelist2];
     
