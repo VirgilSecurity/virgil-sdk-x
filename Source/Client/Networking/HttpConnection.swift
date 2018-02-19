@@ -8,17 +8,17 @@
 
 import Foundation
 
+/// Declares error types and codes
+///
+/// - noUrlInRequest: Provided URLRequest doesn't have url
+/// - wrongResponseType: Response is not of HTTPURLResponse type
+@objc(VSSServiceConnectionError) public enum ServiceConnectionError: Int, Error {
+    case noUrlInRequest = 1
+    case wrongResponseType = 2
+}
+
 /// Simple HttpConnection implementation
 open class HttpConnection: HttpConnectionProtocol {
-    /// Declares error types and codes
-    ///
-    /// - noUrlInRequest: Provided URLRequest doesn't have url
-    /// - wrongResponseType: Response is not of HTTPURLResponse type
-    @objc(VSSServiceConnectionError) public enum ServiceConnectionError: Int, Error {
-        case noUrlInRequest = 1
-        case wrongResponseType = 2
-    }
-
     /// Default number of maximum concurrent operations
     public static let defaulMaxConcurrentOperationCount = 10
     /// Queue for URLSession

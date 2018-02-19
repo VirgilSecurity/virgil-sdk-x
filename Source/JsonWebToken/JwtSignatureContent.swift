@@ -8,15 +8,15 @@
 
 import Foundation
 
+/// Declares error types and codes
+///
+/// - base64UrlStrIsInvalid: If given base64 string is invalid
+@objc(VSSJwtSignatureContentError) public enum JwtSignatureContentError: Int, Error {
+    case base64UrlStrIsInvalid = 1
+}
+
 /// Class representing JWT Signature content
 @objc(VSSJwtSignatureContent) public final class JwtSignatureContent: NSObject {
-    /// Declares error types and codes
-    ///
-    /// - base64UrlStrIsInvalid: If given base64 string is invalid
-    @objc(VSSJwtSignatureContentError) public enum JwtSignatureContentError: Int, Error {
-        case base64UrlStrIsInvalid = 1
-    }
-
     /// Signature date
     @objc public let signature: Data
     /// String representation

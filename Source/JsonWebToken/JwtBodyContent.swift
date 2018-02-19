@@ -8,15 +8,15 @@
 
 import Foundation
 
+/// Declares error types and codes
+///
+/// - base64UrlStrIsInvalid: If given base64 string is invalid
+@objc(VSSJwtBodyContentError) public enum JwtBodyContentError: Int, Error {
+    case base64UrlStrIsInvalid = 1
+}
+
 /// Class representing JWT Body content
 @objc(VSSJwtBodyContent) public class JwtBodyContent: NSObject {
-    /// Declares error types and codes
-    ///
-    /// - base64UrlStrIsInvalid: If given base64 string is invalid
-    @objc(VSSJwtBodyContentError) public enum JwtBodyContentError: Int, Error {
-        case base64UrlStrIsInvalid = 1
-    }
-
     /// Issuer containing application id
     /// - Note: Can be taken [here](https://dashboard.virgilsecurity.com)
     @objc public var appId: String { return self.container.appId }

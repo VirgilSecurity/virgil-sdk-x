@@ -8,6 +8,17 @@
 
 import Foundation
 
+/// Declares client error types and codes
+///
+/// - constructingUrl: constructing url of endpoint failed
+/// - noBody: service response does not have body
+/// - invalidJson: service response body is invalid json
+@objc(VSSCardClientError) public enum CardClientError: Int, Error {
+    case constructingUrl = 1
+    case noBody = 2
+    case invalidJson = 3
+}
+
 /// Class representing operations with Virgil Cards service
 @objc(VSSCardClient) open class CardClient: NSObject {
     /// Base URL for the Virgil Gateway
@@ -16,18 +27,6 @@ import Foundation
     public let connection: HttpConnectionProtocol
     /// Default URL for service
     @objc public static let defaultURL = URL(string: "https://api.virgilsecurity.com")!
-
-    /// Declares client error types and codes
-    ///
-    /// - constructingUrl: constructing url of endpoint failed
-    /// - noBody: service response does not have body
-    /// - invalidJson: service response body is invalid json
-    @objc(VSSCardClientError) public enum CardClientError: Int, Error {
-        case constructingUrl = 1
-        case noBody = 2
-        case invalidJson = 3
-    }
-
     /// Error domain for Error instances thrown from service
     @objc public static let serviceErrorDomain = "VirgilSDK.CardServiceErrorDomain"
     /// Represent card service error

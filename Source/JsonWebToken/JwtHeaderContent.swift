@@ -8,15 +8,15 @@
 
 import Foundation
 
+/// Declares error types and codes
+///
+/// - base64UrlStrIsInvalid: If given base64 string is invalid
+@objc(VSSJwtHeaderContentError) public enum JwtHeaderContentError: Int, Error {
+    case base64UrlStrIsInvalid = 1
+}
+
 /// Class representing JWT Header content
 @objc(VSSJwtHeaderContent) public class JwtHeaderContent: NSObject {
-    /// Declares error types and codes
-    ///
-    /// - base64UrlStrIsInvalid: If given base64 string is invalid
-    @objc(VSSJwtHeaderContentError) public enum JwtHeaderContentError: Int, Error {
-        case base64UrlStrIsInvalid = 1
-    }
-
     /// Represents used signature algorithm
     @objc public var algorithm: String { return self.container.algorithm }
     /// Represents token type

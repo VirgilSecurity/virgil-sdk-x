@@ -8,17 +8,17 @@
 
 import Foundation
 
+/// Declares error types and codes
+///
+/// - incorrectNumberOfJwtComponents: Number of JWT components doesn't equal 3
+/// - utf8StrIsInvalid: Invalid UTF8 string to sign
+@objc(VSSJwtError) public enum JwtError: Int, Error {
+    case incorrectNumberOfJwtComponents = 1
+    case utf8StrIsInvalid = 2
+}
+
 /// Class implementing `AccessToken` in terms of Virgil JWT
 @objc(VSSJwt) public final class Jwt: NSObject, AccessToken {
-    /// Declares error types and codes
-    ///
-    /// - incorrectNumberOfJwtComponents: Number of JWT components doesn't equal 3
-    /// - utf8StrIsInvalid: Invalid UTF8 string to sign
-    @objc(VSSJwtError) public enum JwtError: Int, Error {
-        case incorrectNumberOfJwtComponents = 1
-        case utf8StrIsInvalid = 2
-    }
-
     /// Represents JWT Header content
     @objc public let headerContent: JwtHeaderContent
     /// Represents JWT Body content

@@ -8,19 +8,19 @@
 
 import Foundation
 
+/// Declares error types and codes
+///
+/// - invalidGetRequestParameters: GET request parameters are not [String: String] and cannot be encoded
+/// - urlComponentsConvertingFailed: Error building url from components during GET request
+/// - getQueryWithDecodableIsNotSupported: GET query with Encodable body is not supported
+@objc(VSSServiceRequestError) public enum ServiceRequestError: Int, Error {
+    case invalidGetRequestParameters = 1
+    case urlComponentsConvertingFailed = 2
+    case getQueryWithDecodableIsNotSupported = 3
+}
+
 /// Class represents HTTP Request to Virgil Service
 open class ServiceRequest: Request {
-    /// Declares error types and codes
-    ///
-    /// - invalidGetRequestParameters: GET request parameters are not [String: String] and cannot be encoded
-    /// - urlComponentsConvertingFailed: Error building url from components during GET request
-    /// - getQueryWithDecodableIsNotSupported: GET query with Encodable body is not supported
-    @objc(VSSServiceRequestError) public enum ServiceRequestError: Int, Error {
-        case invalidGetRequestParameters = 1
-        case urlComponentsConvertingFailed = 2
-        case getQueryWithDecodableIsNotSupported = 3
-    }
-
     /// HTTP header key for Authorization
     public static let accessTokenHeader = "Authorization"
     /// HTTP header prefix for Virgil JWT

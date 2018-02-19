@@ -8,6 +8,15 @@
 
 import Foundation
 
+/// Declares error types and codes
+///
+/// - invalidBase64String: Passed string is not correct base64 encoded string
+/// - duplicateSignature: Signature with same signer already exists
+@objc(VSSRawSignedModelError) public enum RawSignedModelError: Int, Error {
+    case invalidBase64String = 1
+    case duplicateSignature = 2
+}
+
 /// Represents some model in binary form that can have signatures and corresponds to Virgil Cards Service model
 @objc(VSSRawSignedModel) public final class RawSignedModel: NSObject, Codable {
     /// Snapshot of `RawCardContent`
@@ -19,15 +28,6 @@ import Foundation
     private enum CodingKeys: String, CodingKey {
         case contentSnapshot = "content_snapshot"
         case signatures = "signatures"
-    }
-
-    /// Declares error types and codes
-    ///
-    /// - invalidBase64String: Passed string is not correct base64 encoded string
-    /// - duplicateSignature: Signature with same signer already exists
-    @objc(VSSRawSignedModelError) public enum RawSignedModelError: Int, Error {
-        case invalidBase64String = 1
-        case duplicateSignature = 2
     }
 
     /// Initializes a new `RawSignedModel` with the provided contentSnapshot

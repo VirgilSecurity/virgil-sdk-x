@@ -8,15 +8,15 @@
 
 import Foundation
 
+/// Declares error types and codes
+///
+/// - urlRequestIsIncompleteOrInvalid: Provided URLRequest is incomplete or invalid
+@objc(VSSRequestError) public enum RequestError: Int, Error {
+    case urlRequestIsIncompleteOrInvalid = 1
+}
+
 /// Represents Http request
 open class Request {
-    /// Declares error types and codes
-    ///
-    /// - urlRequestIsIncompleteOrInvalid: Provided URLRequest is incomplete or invalid
-    @objc(VSSRequestError) public enum RequestError: Int, Error {
-        case urlRequestIsIncompleteOrInvalid = 1
-    }
-
     /// Url of request
     public let url: URL
     /// Http method

@@ -9,6 +9,15 @@
 import Foundation
 import VirgilCryptoAPI
 
+/// Declares error types and codes for CardManager
+///
+/// - cardIsNotVerified: Virgil Card was not verified by cardVerifier
+/// - gotWrongCard: Response Card doesn't match to what was queried
+@objc(VSSCardManagerError) public enum CardManagerError: Int, Error {
+    case cardIsNotVerified = 1
+    case gotWrongCard = 2
+}
+
 /// Class responsible for operations with Virgil Cards
 @objc(VSSCardManager) open class CardManager: NSObject {
     /// ModelSigner instance used for self signing Cards
@@ -26,15 +35,6 @@ import VirgilCryptoAPI
     @objc public let retryOnUnauthorized: Bool
     /// Makes GenerickOperation with provided in initializer signCallback
     public let signModelOperationFabric: SignModelOperationFabric?
-
-    /// Declares error types and codes for CardManager
-    ///
-    /// - cardIsNotVerified: Virgil Card was not verified by cardVerifier
-    /// - gotWrongCard: Response Card doesn't match to what was queried
-    @objc(VSSCardManagerError) public enum CardManagerError: Int, Error {
-        case cardIsNotVerified = 1
-        case gotWrongCard = 2
-    }
 
     /// Initializer
     ///
