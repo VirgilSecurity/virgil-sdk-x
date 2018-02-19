@@ -16,6 +16,8 @@
 @property (nonatomic, readonly) NSString * __nullable apiPublicKeyBase64;
 @property (nonatomic, readonly) NSString * __nullable applicationId;
 @property (nonatomic, readonly) NSURL * __nullable serviceURL;
+@property (nonatomic, readonly) NSString * __nullable existentCardId;
+@property (nonatomic, readonly) NSString * __nullable existentCardIdentity;
 
 @property (nonatomic, readonly) NSDictionary * __nullable config;
 

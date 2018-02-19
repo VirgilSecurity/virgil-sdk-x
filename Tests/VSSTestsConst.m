@@ -22,48 +22,50 @@
         NSDictionary *config = [NSDictionary dictionaryWithContentsOfURL:configFileUrl];
         _config = config;
     }
+    
     return self;
 }
 
 - (NSString *)apiPublicKeyId {
     NSString *appToken = self.config[@"ApiPublicKeyId"];
-    if (appToken != nil)
-        return appToken;
-    
-    return @STRINGIZE2(APPLICATION_TOKEN);
+
+    return appToken;
 }
 
 - (NSString *)apiPrivateKeyBase64 {
     NSString *appPrivateKey = self.config[@"ApiPrivateKey"];
-    if (appPrivateKey != nil)
-        return appPrivateKey;
     
-    return @STRINGIZE2(APPLICATION_PRIVATE_KEY_BASE64);
+    return appPrivateKey;
 }
 
 - (NSString *)apiPublicKeyBase64 {
     NSString *appPrivateKeyPassword = self.config[@"ApiPublicKey"];
-    if (appPrivateKeyPassword != nil)
-        return appPrivateKeyPassword;
-    
-    return @STRINGIZE2(APPLICATION_PRIVATE_KEY_PASSWORD);
+
+    return appPrivateKeyPassword;
 }
 
 - (NSString *)applicationId {
     NSString *appId = self.config[@"AppId"];
-    if (appId != nil)
-        return appId;
     
-    return @STRINGIZE2(APPLICATION_ID);
+    return appId;
 }
 
 - (NSURL *)serviceURL {
     NSString *cardsUrl = self.config[@"ServiceURL"];
-    if (cardsUrl != nil)
-        return [[NSURL alloc] initWithString:cardsUrl];
     
-    NSString *str = [@STRINGIZE2(CARDS_SERVICE_URL) stringByReplacingOccurrencesOfString:@"\"" withString:@""];
-    return [[NSURL alloc] initWithString:str];
+    return [[NSURL alloc] initWithString:cardsUrl];
+}
+
+- (NSString *)existentCardId {
+    NSString *cardId = self.config[@"CardId"];
+    
+    return cardId;
+}
+
+- (NSString *)existentCardIdentity {
+    NSString *cardIdentity = self.config[@"CardIdentity"];
+    
+    return cardIdentity;
 }
 
 @end
