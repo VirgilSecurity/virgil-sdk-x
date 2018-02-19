@@ -126,12 +126,16 @@ extension CardManager {
                     cards.append(card)
                 }
 
-                cards.forEach { card in
+                try cards.forEach { card in
+                    guard card.identity == identity else {
+                        throw CardManagerError.gotWrongCard
+                    }
+                    
                     let previousCard = cards.first(where: { $0.identifier == card.previousCardId })
                     card.previousCard = previousCard
                     previousCard?.isOutdated = true
                 }
-                let result = cards.filter { card in cards.filter { $0.previousCard == card }.isEmpty }
+                let result = cards.filter { card in cards.filter { $0.previousCard === card }.isEmpty }
 
                 completion(result, nil)
             }
