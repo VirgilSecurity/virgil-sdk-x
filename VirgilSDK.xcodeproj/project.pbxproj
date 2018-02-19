@@ -292,6 +292,9 @@
 		4284C4BE1F72936600B75491 /* CardClient+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4BC1F72936600B75491 /* CardClient+Queries.swift */; };
 		4284C4BF1F72936600B75491 /* CardClient+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4BC1F72936600B75491 /* CardClient+Queries.swift */; };
 		4284C4C01F72936600B75491 /* CardClient+Queries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C4BC1F72936600B75491 /* CardClient+Queries.swift */; };
+		4285E6F1203B662A00499FB4 /* VSS010_PrivateKeyStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4285E6F0203B662A00499FB4 /* VSS010_PrivateKeyStorageTests.m */; };
+		4285E6F2203B662A00499FB4 /* VSS010_PrivateKeyStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4285E6F0203B662A00499FB4 /* VSS010_PrivateKeyStorageTests.m */; };
+		4285E6F3203B662A00499FB4 /* VSS010_PrivateKeyStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4285E6F0203B662A00499FB4 /* VSS010_PrivateKeyStorageTests.m */; };
 		429123661F4B0B3700103BE0 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
 		429123671F4B0B3700103BE0 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
 		4291237A1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 429123621F4B0B3700103BE0 /* VSSTestsConst.m */; };
@@ -859,6 +862,7 @@
 		4284C4AF1F716C7700B75491 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		4284C4B11F728AD200B75491 /* RawServiceError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawServiceError.swift; sourceTree = "<group>"; };
 		4284C4BC1F72936600B75491 /* CardClient+Queries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CardClient+Queries.swift"; sourceTree = "<group>"; };
+		4285E6F0203B662A00499FB4 /* VSS010_PrivateKeyStorageTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS010_PrivateKeyStorageTests.m; sourceTree = "<group>"; };
 		429123531F4B0B3700103BE0 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		429123561F4B0B3700103BE0 /* TestConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestConfig.plist; sourceTree = "<group>"; };
 		429123581F4B0B3700103BE0 /* PrivateApiDecl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateApiDecl.h; sourceTree = "<group>"; };
@@ -1272,6 +1276,7 @@
 				42B6CF681F58771A0024857B /* VSS007_KeyStorageiOSSpecificTests.swift */,
 				4284C4241F6C0C6400B75491 /* VSS008_DataExtensionsTests.swift */,
 				16F3D47B2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift */,
+				4285E6F0203B662A00499FB4 /* VSS010_PrivateKeyStorageTests.m */,
 				166C67BD201F5BB200D79608 /* VSSTestUtils.h */,
 				166C67BE201F5C0500D79608 /* VSSTestUtils.m */,
 				429123611F4B0B3700103BE0 /* VSSTestsConst.h */,
@@ -1652,6 +1657,7 @@
 					};
 					4244F7742033055C0053EE4B = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						TestTargetID = 4244F75C203305080053EE4B;
 					};
 					4244F7C5203306FA0053EE4B = {
@@ -1659,6 +1665,7 @@
 					};
 					4244F7D82033071D0053EE4B = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						TestTargetID = 4244F7C5203306FA0053EE4B;
 					};
 					42745A511ED43D9400C1DEEC = {
@@ -2052,6 +2059,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16C59E2C2020E7B6004820AA /* VSS008_DataExtensionsTests.swift in Sources */,
+				4285E6F1203B662A00499FB4 /* VSS010_PrivateKeyStorageTests.m in Sources */,
 				42DA83BD2032356B0091D223 /* VSS006_KeyStorageTests.swift in Sources */,
 				16F3D47D2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift in Sources */,
 				16C59E4E2021DA0E004820AA /* VSS002_JWTTests.m in Sources */,
@@ -2078,6 +2086,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4244F783203305750053EE4B /* VSS007_KeyStorageiOSSpecificTests.swift in Sources */,
+				4285E6F2203B662A00499FB4 /* VSS010_PrivateKeyStorageTests.m in Sources */,
 				4244F782203305750053EE4B /* VSS006_KeyStorageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2096,6 +2105,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4244F7E4203307240053EE4B /* VSS007_KeyStorageiOSSpecificTests.swift in Sources */,
+				4285E6F3203B662A00499FB4 /* VSS010_PrivateKeyStorageTests.m in Sources */,
 				4244F7E3203307240053EE4B /* VSS006_KeyStorageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2774,6 +2784,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2799,6 +2810,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2873,6 +2885,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
@@ -2900,6 +2913,7 @@
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "";
