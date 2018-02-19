@@ -13,30 +13,6 @@ import XCTest
 import VirgilCryptoApiImpl
 import VirgilSDK
 
-class CardClientStub_STC3: CardClientProtocol {
-    private var testsDict: Dictionary<String, Any>!
-
-    init() {
-        let testFileURL = Bundle(for: type(of: self)).url(forResource: "data", withExtension: "json")!
-        let testFileData = try! Data(contentsOf: testFileURL)
-        self.testsDict = try! JSONSerialization.jsonObject(with: testFileData, options: JSONSerialization.ReadingOptions.init(rawValue: 0)) as! Dictionary<String, Any>
-    }
-
-    @objc func getCard(withId cardId: String, token: String) throws -> GetCardResponse {
-        let response = try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)
-
-        return GetCardResponse(rawCard: response, isOutdated: false)
-    }
-
-    @objc func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
-        return try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)
-    }
-
-    @objc func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
-        return [try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)]
-    }
-}
-
 class CardClientStub_STC34: CardClientProtocol {
     private var testsDict: Dictionary<String, Any>!
 
@@ -80,6 +56,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
     private var utils: VSSTestUtils!
     private var modelSigner: ModelSigner!
     private var testsDict: Dictionary<String, Any>!
+    private var cardClient: CardClient!
 
     // MARK: Setup
     override func setUp() {
@@ -94,6 +71,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         self.utils = VSSTestUtils(crypto: self.crypto, consts: self.consts)
         self.cardCrypto = VirgilCardCrypto(virgilCrypto: self.crypto)
         self.modelSigner = ModelSigner(cardCrypto: self.cardCrypto)
+        self.cardClient = CardClient(serviceUrl: self.consts.serviceURL!)
     }
 
     override func tearDown() {
@@ -110,15 +88,18 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         let generator = self.utils.getGeneratorJwtProvider(withIdentity: "identity", error: nil)
         
         let cardManagerParams = CardManagerParams(cardCrypto: self.cardCrypto, accessTokenProvider: generator, cardVerifier: VerifierStubFalse())
-        cardManagerParams.cardClient = CardClientStub_STC3()
+        cardManagerParams.cardClient = self.cardClient
         
         let cardManager = CardManager(params: cardManagerParams)
         
         var errorWasThrown = false
         do {
           _ = try cardManager.importCard(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)
-        } catch {
+        } catch CardManagerError.cardIsNotVerified {
             errorWasThrown = true
+        }
+        catch {
+            XCTFail()
         }
 
         XCTAssert(errorWasThrown)
@@ -128,40 +109,64 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
             let data = (self.testsDict["STC-3.as_json"] as! String).data(using: .utf8)!
             let dic = try JSONSerialization.jsonObject(with: data, options: [])
             _ = try  cardManager.importCard(fromJson: dic)
-        } catch {
+        } catch CardManagerError.cardIsNotVerified {
             errorWasThrown = true
+        }
+        catch {
+            XCTFail()
         }
         XCTAssert(errorWasThrown)
         errorWasThrown = false
 
-        let keyPair = try! self.crypto.generateKeyPair()
-        let operation1 = cardManager.publishCard(privateKey: keyPair.privateKey, publicKey: keyPair.publicKey, identity: nil)
+        let keyPair1 = try! self.crypto.generateKeyPair()
+        let operation1 = cardManager.publishCard(privateKey: keyPair1.privateKey, publicKey: keyPair1.publicKey, identity: nil)
 
         switch operation1.startSync() {
         case .success: XCTFail()
-        case .failure: break
+        case .failure(let error):
+            guard let error = error as? CardManagerError,
+                error == .cardIsNotVerified else {
+                    XCTFail()
+                    return
+            }
         }
 
-        let rawCard = try! RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-3.as_string"] as! String)
+        let keyPair2 = try! self.crypto.generateKeyPair()
+        let rawCard = try! cardManager.generateRawCard(privateKey: keyPair2.privateKey, publicKey: keyPair2.publicKey, identity: "identity")
         let operation2 = cardManager.publishCard(rawCard: rawCard)
 
         switch operation2.startSync() {
         case .success: XCTFail()
-        case .failure: break
+        case .failure(let error):
+            guard let error = error as? CardManagerError,
+                error == .cardIsNotVerified else {
+                    XCTFail()
+                    return
+            }
         }
 
-        let operation3 = cardManager.getCard(withId: "some_id")
+        let operation3 = cardManager.getCard(withId: "edc1878753664e8f80af100ac20a6ac1563db0b01f1b0ce23795b9c39f126cbb")
 
         switch operation3.startSync() {
         case .success: XCTFail()
-        case .failure: break
+        case .failure(let error):
+            guard let error = error as? CardManagerError,
+                error == .cardIsNotVerified else {
+                    XCTFail()
+                    return
+            }
         }
 
-        let operation4 = cardManager.searchCards(identity: "some_identity")
+        let operation4 = cardManager.searchCards(identity: "526A981D-6FC4-42F8-85CE-EB47A8D1F089")
 
         switch operation4.startSync() {
         case .success: XCTFail()
-        case .failure: break
+        case .failure(let error):
+            guard let error = error as? CardManagerError,
+                error == .cardIsNotVerified else {
+                    XCTFail()
+                    return
+            }
         }
     }
 
@@ -175,7 +180,12 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         
         switch cardManager.getCard(withId: "375f795bf6799b18c4836d33dce5208daf0895a3f7aacbcd0366529aed2345d4").startSync() {
         case .success: XCTFail()
-        case .failure: break
+        case .failure(let error):
+            guard let error = error as? CardManagerError,
+                error == .gotWrongCard else {
+                    XCTFail()
+                    return
+            }
         }
     }
 
@@ -210,7 +220,12 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
 
         switch cardManager.publishCard(rawCard: rawCard2).startSync() {
         case .success: XCTFail()
-        case .failure: break
+        case .failure(let error):
+            guard let error = error as? CardManagerError,
+                error == .gotWrongCard else {
+                    XCTFail()
+                    return
+            }
         }
     }
     
@@ -224,7 +239,12 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         
         switch cardManager.searchCards(identity: "Alice").startSync() {
         case .success(_): XCTFail()
-        case .failure(_): break
+        case .failure(let error):
+            guard let error = error as? CardManagerError,
+                error == .gotWrongCard else {
+                    XCTFail()
+                    return
+            }
         }
     }
 }
