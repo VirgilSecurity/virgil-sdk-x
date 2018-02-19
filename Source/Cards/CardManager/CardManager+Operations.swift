@@ -9,15 +9,25 @@
 import Foundation
 
 extension CardManager {
-    internal func makeVerifyCardOperation() -> GenericOperation<Bool> {
-        return CallbackOperation<Bool> { operation, completion in
+    internal func makeEmptyOperation() -> GenericOperation<Void> {
+        return CallbackOperation() { _, completion in
+            completion(Void(), nil)
+        }
+    }
+
+    internal func makeVerifyCardOperation() -> GenericOperation<Void> {
+        return CallbackOperation<Void> { operation, completion in
             do {
                 let card: Card = try operation.findDependencyResult()
 
-                completion(self.cardVerifier.verifyCard(card: card), nil)
+                guard self.cardVerifier.verifyCard(card: card) else {
+                    throw CardManagerError.cardIsNotVerified
+                }
+                
+                completion(Void(), nil)
             }
             catch {
-                completion(false, nil)
+                completion(nil, error)
             }
         }
     }

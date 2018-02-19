@@ -33,15 +33,11 @@ public extension GenericOperation {
     /// Finds dependency error
     ///
     /// - Returns: Dependency error
-    func findDependencyError<T>() -> T? {
+    func findDependencyError() -> Error? {
         for dependency in self.dependencies {
-            if let d = dependency as? GenericOperation,
-                let res = d.result {
-                if case let .failure(error) = res {
-                    if let e = error as? T {
-                        return e
-                    }
-                }
+            if let dependency = dependency as? AsyncOperation,
+                let error = dependency.error {
+                    return error
             }
         }
 

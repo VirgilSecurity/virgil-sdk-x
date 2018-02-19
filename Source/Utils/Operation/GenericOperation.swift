@@ -25,7 +25,14 @@ import Foundation
 open class GenericOperation<T>: AsyncOperation {
     /// Operation Result
     /// WARNING: Do not modify this value outside of GenericOperation functions
-    public var result: Result<T>? = nil
+    public var result: Result<T>? = nil {
+        didSet {
+            if let result = self.result,
+                case .failure(let error) = result {
+                    self.error = error
+            }
+        }
+    }
 
     /// Created OperationQueue and starts operation
     ///

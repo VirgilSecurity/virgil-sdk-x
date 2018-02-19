@@ -10,6 +10,8 @@ import Foundation
 
 /// Class for AsyncOperations
 open class AsyncOperation: Operation {
+    /// Operation error
+    open var error: Error?
     /// Overrides Operation variable
     override open var isAsynchronous: Bool { return true }
     /// Overrides Operation variable

@@ -22,19 +22,21 @@ extension CardManager {
             let getTokenOperation = self.makeGetTokenOperation(tokenContext: tokenContext)
             let getCardOperation = self.makeGetCardOperation(cardId: cardId)
             let verifyCardOperation = self.makeVerifyCardOperation()
+            let completionOperation = self.makeEmptyOperation()
 
             getCardOperation.addDependency(getTokenOperation)
             verifyCardOperation.addDependency(getCardOperation)
+            completionOperation.addDependency(getCardOperation)
+            completionOperation.addDependency(verifyCardOperation)
 
-            verifyCardOperation.completionBlock = { [unowned verifyCardOperation] in
+            completionOperation.completionBlock = { [unowned completionOperation] in
                 do {
-                    guard let verifyResult = verifyCardOperation.result,
-                        case let .success(verified) = verifyResult,
-                        verified else {
-                            throw CardManagerError.cardIsNotVerified
+                    if let error = completionOperation.findDependencyError() {
+                        completion(nil, error)
+                        return
                     }
-
-                    let card: Card = try verifyCardOperation.findDependencyResult()
+                    
+                    let card: Card = try completionOperation.findDependencyResult()
                     completion(card, nil)
                 }
                 catch {
@@ -43,7 +45,8 @@ extension CardManager {
             }
 
             let queue = OperationQueue()
-            queue.addOperations([getTokenOperation, getCardOperation, verifyCardOperation], waitUntilFinished: false)
+            let operations = [getTokenOperation, getCardOperation, verifyCardOperation, completionOperation]
+            queue.addOperations(operations, waitUntilFinished: false)
         }
 
         return aggregateOperation
@@ -98,21 +101,23 @@ extension CardManager {
             }
             let publishCardOperation = self.makePublishCardOperation()
             let verifyCardOperation = self.makeVerifyCardOperation()
+            let completionOperation = self.makeEmptyOperation()
 
             generateRawCardOperation.addDependency(getTokenOperation)
             publishCardOperation.addDependency(getTokenOperation)
             publishCardOperation.addDependency(generateRawCardOperation)
             verifyCardOperation.addDependency(publishCardOperation)
-
-            verifyCardOperation.completionBlock = { [unowned verifyCardOperation] in
+            completionOperation.addDependency(publishCardOperation)
+            completionOperation.addDependency(verifyCardOperation)
+            
+            completionOperation.completionBlock = { [unowned completionOperation] in
                 do {
-                    guard let verifyResult = verifyCardOperation.result,
-                        case let .success(verified) = verifyResult,
-                        verified else {
-                            throw CardManagerError.cardIsNotVerified
+                    if let error = completionOperation.findDependencyError() {
+                        completion(nil, error)
+                        return
                     }
-
-                    let card: Card = try verifyCardOperation.findDependencyResult()
+                    
+                    let card: Card = try completionOperation.findDependencyResult()
                     completion(card, nil)
                 }
                 catch {
@@ -121,7 +126,7 @@ extension CardManager {
             }
 
             let queue = OperationQueue()
-            let operations = [getTokenOperation, generateRawCardOperation, publishCardOperation, verifyCardOperation]
+            let operations = [getTokenOperation, generateRawCardOperation, publishCardOperation, verifyCardOperation, completionOperation]
             queue.addOperations(operations, waitUntilFinished: false)
         }
 
@@ -161,21 +166,25 @@ extension CardManager {
             }
             let publishCardOperation = self.makePublishCardOperation()
             let verifyCardOperation = self.makeVerifyCardOperation()
+            let completionOperation = self.makeEmptyOperation()
 
             generateRawCardOperation.addDependency(getTokenOperation)
             publishCardOperation.addDependency(getTokenOperation)
             publishCardOperation.addDependency(generateRawCardOperation)
             verifyCardOperation.addDependency(publishCardOperation)
+            completionOperation.addDependency(getTokenOperation)
+            completionOperation.addDependency(generateRawCardOperation)
+            completionOperation.addDependency(publishCardOperation)
+            completionOperation.addDependency(verifyCardOperation)
 
-            verifyCardOperation.completionBlock = { [unowned verifyCardOperation] in
+            completionOperation.completionBlock = { [unowned completionOperation] in
                 do {
-                    guard let verifyResult = verifyCardOperation.result,
-                        case let .success(verified) = verifyResult,
-                        verified else {
-                            throw CardManagerError.cardIsNotVerified
+                    if let error = completionOperation.findDependencyError() {
+                        completion(nil, error)
+                        return
                     }
-
-                    let card: Card = try verifyCardOperation.findDependencyResult()
+                    
+                    let card: Card = try completionOperation.findDependencyResult()
                     completion(card, nil)
                 }
                 catch {
@@ -184,7 +193,7 @@ extension CardManager {
             }
 
             let queue = OperationQueue()
-            let operations = [getTokenOperation, generateRawCardOperation, publishCardOperation, verifyCardOperation]
+            let operations = [getTokenOperation, generateRawCardOperation, publishCardOperation, verifyCardOperation, completionOperation]
             queue.addOperations(operations, waitUntilFinished: false)
         }
 
