@@ -39,8 +39,7 @@ extension CardManager {
     /// - Parameters:
     ///   - rawCard: self signed `RawSignedModel`
     ///   - completion: completion handler, called with published and verified Card or corresponding error
-    @objc open func publishCard(rawCard: RawSignedModel, timeout: NSNumber? = nil,
-                                completion: @escaping (Card?, Error?) -> ()) {
+    @objc open func publishCard(rawCard: RawSignedModel, completion: @escaping (Card?, Error?) -> ()) {
         self.publishCard(rawCard: rawCard).start { result in
             switch result {
             case .success(let card):
