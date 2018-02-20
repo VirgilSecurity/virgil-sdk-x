@@ -148,7 +148,7 @@ Next, on your application targets’ “General” settings tab, in the “Embed
 ## Usage Examples
 
 #### Generate and publish users Cards with public keys inside on Cards Service
-Use the following lines of code to create and publish a user's Card with public key inside on Virgil Cards ServiceL:
+Use the following lines of code to create and publish a user's Card with public key inside on Virgil Cards Service:
 
 ```swift
 import VirgilSDK
