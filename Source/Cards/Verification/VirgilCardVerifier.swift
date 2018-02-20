@@ -18,7 +18,7 @@ import VirgilCryptoAPI
     @objc public static let virgilSignerIdentifier = "virgil"
     /// Base64 encoded string with Virgil Service's Public Key for verifying Virgil Cards Service signatures
     /// - Note: Can be found [here](https://dashboard.virgilsecurity.com)
-    @objc public static let virgilPublicKeyBase64 = "MCowBQYDK2VwAyEAr0rjTWlCLJ8q9em0og33grHEh/3vmqp0IewosUaVnQg="
+    @objc public static let virgilPublicKeyBase64 = "MCowBQYDK2VwAyEAljOYGANYiVq1WbvVvoYIKtvZi2ji9bAhxyu6iV/LF8M="
 
     /// CardCrypto instance
     @objc public let cardCrypto: CardCrypto
