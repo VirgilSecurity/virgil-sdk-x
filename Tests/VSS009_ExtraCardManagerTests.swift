@@ -38,13 +38,13 @@ class CardClientStub_STC34: CardClientProtocol {
 }
 
 class VerifierStubFalse: CardVerifier {
-    func verifyCard(card: Card) -> Bool {
+    func verifyCard(_ card: Card) -> Bool {
         return false
     }
 }
 
 class VerifierStubTrue: CardVerifier {
-    func verifyCard(card: Card) -> Bool {
+    func verifyCard(_ card: Card) -> Bool {
         return true
     }
 }

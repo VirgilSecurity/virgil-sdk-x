@@ -81,7 +81,7 @@
     
     VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
     
-    XCTAssert([verifier verifyCardWithCard:responseCard]);
+    XCTAssert([verifier verifyCard:responseCard]);
 }
 
 -(void)test002_GetCard {
@@ -122,7 +122,7 @@
 
     VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
 
-    XCTAssert([verifier verifyCardWithCard:foundCard]);
+    XCTAssert([verifier verifyCard:foundCard]);
 }
 
 -(void)test003_SearchCards {
@@ -164,7 +164,7 @@
     
     VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
     
-    XCTAssert([verifier verifyCardWithCard:foundCard]);
+    XCTAssert([verifier verifyCard:foundCard]);
 }
 
 -(void)test004_STC_27 {

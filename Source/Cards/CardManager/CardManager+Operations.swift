@@ -21,7 +21,7 @@ extension CardManager {
             do {
                 let card: Card = try operation.findDependencyResult()
 
-                guard self.cardVerifier.verifyCard(card: card) else {
+                guard self.cardVerifier.verifyCard(card) else {
                     throw CardManagerError.cardIsNotVerified
                 }
 
@@ -39,7 +39,7 @@ extension CardManager {
                 let cards: [Card] = try operation.findDependencyResult()
 
                 for card in cards {
-                    guard self.cardVerifier.verifyCard(card: card) else {
+                    guard self.cardVerifier.verifyCard(card) else {
                         throw CardManagerError.cardIsNotVerified
                     }
                 }

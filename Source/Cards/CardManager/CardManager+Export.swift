@@ -20,7 +20,7 @@ extension CardManager {
         let rawCard = try RawSignedModel.import(fromBase64Encoded: base64EncodedString)
         let card = try self.parseCard(from: rawCard)
 
-        guard self.cardVerifier.verifyCard(card: card) else {
+        guard self.cardVerifier.verifyCard(card) else {
             throw CardManagerError.cardIsNotVerified
         }
 
@@ -37,7 +37,7 @@ extension CardManager {
         let rawCard = try RawSignedModel.import(fromJson: json)
         let card = try self.parseCard(from: rawCard)
 
-        guard self.cardVerifier.verifyCard(card: card) else {
+        guard self.cardVerifier.verifyCard(card) else {
             throw CardManagerError.cardIsNotVerified
         }
 
@@ -53,7 +53,7 @@ extension CardManager {
     @objc open func importCard(fromRawCard rawCard: RawSignedModel) throws -> Card {
         let card = try self.parseCard(from: rawCard)
 
-        guard self.cardVerifier.verifyCard(card: card) else {
+        guard self.cardVerifier.verifyCard(card) else {
             throw CardManagerError.cardIsNotVerified
         }
 

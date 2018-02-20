@@ -11,10 +11,9 @@ import VirgilCryptoAPI
 
 /// Protocol representing Card verification process.
 @objc(VSSCardVefifier) public protocol CardVerifier {
-
     /// Verifies Card instance
     ///
     /// - Parameter card: Card to verify
     /// - Returns: true if Card verified, false otherwise
-    @objc func verifyCard(card: Card) -> Bool
+    @objc func verifyCard(_ card: Card) -> Bool
 }

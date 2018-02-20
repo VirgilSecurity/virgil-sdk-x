@@ -11,7 +11,7 @@ import VirgilCryptoAPI
 
 /// Virgil implementation of CardVerifier protocol
 /// By default verifies Card's self signature and Virgil Cards Service signature
-@objc(VSSVirgilCardVerifier) public class VirgilCardVerifier: NSObject, CardVerifier {
+@objc(VSSVirgilCardVerifier) public final class VirgilCardVerifier: NSObject, CardVerifier {
     /// Signer identifier for self signatures
     @objc public static let selfSignerIdentifier = "self"
     /// Signer identifier for Virgil Cards Service signatures
@@ -60,7 +60,7 @@ import VirgilCryptoAPI
     /// - Returns: true if Card verified, false otherwise
     /// - Important: VirgilCardVerifier verifies Card if it contains signature from AT LEAST
     ///   one verifier from EACH Whitelist
-    @objc public func verifyCard(card: Card) -> Bool {
+    @objc public func verifyCard(_ card: Card) -> Bool {
         return verifySelfSignature(card) && verifyVirgilSignature(card) && verifyWhitelistsSignatures(card)
     }
 

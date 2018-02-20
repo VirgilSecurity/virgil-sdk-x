@@ -211,13 +211,13 @@
     NSData *publicKey1Data = [self.crypto exportPublicKey:publicKey1];
     XCTAssert(error == nil);
     
-    XCTAssert([self.verifier verifyCardWithCard:card]);
+    XCTAssert([self.verifier verifyCard:card]);
     
     self.verifier.verifySelfSignature = true;
-    XCTAssert([self.verifier verifyCardWithCard:card]);
+    XCTAssert([self.verifier verifyCard:card]);
 
     self.verifier.verifyVirgilSignature = true;
-    XCTAssert([self.verifier verifyCardWithCard:card]);
+    XCTAssert([self.verifier verifyCard:card]);
     
     NSData *publicKeyData2 = [self.crypto exportPublicKey:[self.crypto generateKeyPairAndReturnError:nil].publicKey];
     NSData *publicKeyData3 = [self.crypto exportPublicKey:[self.crypto generateKeyPairAndReturnError:nil].publicKey];
@@ -227,7 +227,7 @@
     XCTAssert(error == nil);
     self.verifier.whitelists = @[whitelist1];
 
-    XCTAssert([self.verifier verifyCardWithCard:card]);
+    XCTAssert([self.verifier verifyCard:card]);
     
     VSSVerifierCredentials *creds21 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKey1Data];
     VSSVerifierCredentials *creds22 = [[VSSVerifierCredentials alloc] initWithSigner:@"test1" publicKey:publicKeyData2];
@@ -235,7 +235,7 @@
     XCTAssert(error == nil);
     self.verifier.whitelists = @[whitelist2];
     
-    XCTAssert([self.verifier verifyCardWithCard:card]);
+    XCTAssert([self.verifier verifyCard:card]);
     
     VSSVerifierCredentials *creds31 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKey1Data];
     VSSVerifierCredentials *creds32 = [[VSSVerifierCredentials alloc] initWithSigner:@"test1" publicKey:publicKeyData2];
@@ -246,7 +246,7 @@
     XCTAssert(error == nil);
     self.verifier.whitelists = @[whitelist31, whitelist32];
     
-    XCTAssert(![self.verifier verifyCardWithCard:card]);
+    XCTAssert(![self.verifier verifyCard:card]);
 }
 
 -(void)test004_STC_11 {
@@ -265,10 +265,10 @@
     VSSCard *card = [cardManager importCardFromBase64Encoded:cardString error:&error];
     XCTAssert(card != nil);
     
-    XCTAssert([self.verifier verifyCardWithCard:card]);
+    XCTAssert([self.verifier verifyCard:card]);
     
     self.verifier.verifySelfSignature = true;
-    XCTAssert(![self.verifier verifyCardWithCard:card]);
+    XCTAssert(![self.verifier verifyCard:card]);
 }
 
 -(void)test005_STC_12 {
@@ -287,10 +287,10 @@
     VSSCard *card = [cardManager importCardFromBase64Encoded:cardString error:&error];
     XCTAssert(card != nil);
     
-    XCTAssert([self.verifier verifyCardWithCard:card]);
+    XCTAssert([self.verifier verifyCard:card]);
     
     self.verifier.verifyVirgilSignature = true;
-    XCTAssert(![self.verifier verifyCardWithCard:card]);
+    XCTAssert(![self.verifier verifyCard:card]);
 }
 
 -(void)test006_STC_14 {
@@ -310,8 +310,7 @@
     XCTAssert(card != nil);
     
     self.verifier.verifyVirgilSignature = true;
-    
-    XCTAssert(![self.verifier verifyCardWithCard:card]);
+    XCTAssert(![self.verifier verifyCard:card]);
 }
 
 -(void)test007_STC_15 {
@@ -331,8 +330,7 @@
     XCTAssert(card != nil);
     
     self.verifier.verifySelfSignature = true;
-    
-    XCTAssert(![self.verifier verifyCardWithCard:card]);
+    XCTAssert(![self.verifier verifyCard:card]);
 }
 
 -(void)test008_STC_16 {
@@ -362,14 +360,14 @@
     XCTAssert(error == nil);
     self.verifier.whitelists = @[whitelist1];
     
-    XCTAssert(![self.verifier verifyCardWithCard:card]);
+    XCTAssert(![self.verifier verifyCard:card]);
     
     VSSVerifierCredentials *creds2 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:pubicKeyBase64];
     VSSWhitelist *whitelist2 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds2] error:&error];
     XCTAssert(error == nil);
     self.verifier.whitelists = @[whitelist2];
     
-    XCTAssert([self.verifier verifyCardWithCard:card]);
+    XCTAssert([self.verifier verifyCard:card]);
 }
 
 @end
