@@ -52,8 +52,10 @@
 
 - (NSURL *)serviceURL {
     NSString *cardsUrl = self.config[@"ServiceURL"];
+    if (cardsUrl != nil)
+        return [[NSURL alloc] initWithString:cardsUrl];
     
-    return [[NSURL alloc] initWithString:cardsUrl];
+    return nil;
 }
 
 - (NSString *)existentCardId {

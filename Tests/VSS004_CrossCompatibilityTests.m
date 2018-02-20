@@ -39,7 +39,7 @@
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
     self.modelSigner = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
     self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
-    self.cardClient = [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL];
+    self.cardClient = self.consts.serviceURL == nil ? [[VSSCardClient alloc] init] : [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL];
     
     self.verifier.verifySelfSignature   = false;
     self.verifier.verifyVirgilSignature = false;

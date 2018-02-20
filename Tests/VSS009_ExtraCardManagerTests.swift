@@ -71,7 +71,12 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         self.utils = VSSTestUtils(crypto: self.crypto, consts: self.consts)
         self.cardCrypto = VirgilCardCrypto(virgilCrypto: self.crypto)
         self.modelSigner = ModelSigner(cardCrypto: self.cardCrypto)
-        self.cardClient = CardClient(serviceUrl: self.consts.serviceURL)
+        if let serviceURL = self.consts.serviceURL {
+            self.cardClient = CardClient(serviceUrl: serviceURL)
+        }
+        else {
+            self.cardClient = CardClient()
+        }
     }
 
     override func tearDown() {

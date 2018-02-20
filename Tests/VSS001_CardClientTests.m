@@ -35,7 +35,7 @@
     self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
     self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
-    self.cardClient = [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL];
+    self.cardClient = self.consts.serviceURL == nil ? [[VSSCardClient alloc] init] : [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL];
 }
 
 - (void)tearDown {
@@ -48,7 +48,7 @@
     XCTAssert(error == nil);
     
     NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
-    NSString *identity = @"identity";
+    NSString *identity = [[NSUUID alloc] init].UUIDString;
 
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     
