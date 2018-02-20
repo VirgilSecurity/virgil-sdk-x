@@ -19,6 +19,29 @@ import Foundation
     case invalidJson = 3
 }
 
+/// Represent card service error
+@objc(VSSCardServiceError) public final class CardServiceError: NSObject, CustomNSError {
+    /// Http status code
+    @objc public let httpStatusCode: Int
+    /// Recieved and decoded `RawServiceError`
+    @objc public let rawServiceError: RawServiceError
+    
+    /// Initializer
+    ///
+    /// - Parameter rawServiceError: recieved and decoded rawServiceError
+    @objc public init(httpStatusCode: Int, rawServiceError: RawServiceError) {
+        self.httpStatusCode = httpStatusCode
+        self.rawServiceError = rawServiceError
+    }
+    
+    /// Error domain or Error instances thrown from Service
+    @objc public static var errorDomain: String { return CardClient.serviceErrorDomain }
+    /// Code of error
+    @objc public var errorCode: Int { return self.rawServiceError.code }
+    /// Provides info about the error. Error message can be recieve by NSLocalizedDescriptionKey
+    @objc public var errorUserInfo: [String: Any] { return [NSLocalizedDescriptionKey: self.rawServiceError.message] }
+}
+
 /// Class representing operations with Virgil Cards service
 @objc(VSSCardClient) open class CardClient: NSObject {
     /// Base URL for the Virgil Gateway
@@ -29,25 +52,6 @@ import Foundation
     @objc public static let defaultURL = URL(string: "https://api.virgilsecurity.com")!
     /// Error domain for Error instances thrown from service
     @objc public static let serviceErrorDomain = "VirgilSDK.CardServiceErrorDomain"
-    /// Represent card service error
-    @objc public final class CardServiceError: NSObject, CustomNSError {
-        /// Recieved and decoded `RawServiceError`
-        public let rawServiceError: RawServiceError
-
-        /// Initializer
-        ///
-        /// - Parameter rawServiceError: recieved and decoded rawServiceError
-        public init(rawServiceError: RawServiceError) {
-            self.rawServiceError = rawServiceError
-        }
-
-        /// Error domain or Error instances thrown from Service
-        public static var errorDomain: String { return CardClient.serviceErrorDomain }
-        /// Code of error
-        public var errorCode: Int { return self.rawServiceError.code }
-        /// Provides info about the error. Error message can be recieve by NSLocalizedDescriptionKey
-        public var errorUserInfo: [String: Any] { return [NSLocalizedDescriptionKey: self.rawServiceError.message] }
-    }
 
     /// Initializes a new `CardClient` instance
     ///
@@ -76,7 +80,7 @@ import Foundation
     internal func handleError(statusCode: Int, body: Data?) -> Error {
         if let body = body {
             if let rawServiceError = try? JSONDecoder().decode(RawServiceError.self, from: body) {
-                    return CardServiceError(rawServiceError: rawServiceError)
+                return CardServiceError(httpStatusCode: statusCode, rawServiceError: rawServiceError)
             }
             else if let str = String(data: body, encoding: .utf8) {
                 return NSError(domain: CardClient.serviceErrorDomain, code: statusCode,

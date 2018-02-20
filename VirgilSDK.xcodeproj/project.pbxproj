@@ -1281,11 +1281,11 @@
 				4284C4241F6C0C6400B75491 /* VSS008_DataExtensionsTests.swift */,
 				16F3D47B2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift */,
 				4285E6F0203B662A00499FB4 /* VSS010_PrivateKeyStorageTests.m */,
+				4285E6F4203B82BB00499FB4 /* VSS011_OperationsTests.swift */,
 				166C67BD201F5BB200D79608 /* VSSTestUtils.h */,
 				166C67BE201F5C0500D79608 /* VSSTestUtils.m */,
 				429123611F4B0B3700103BE0 /* VSSTestsConst.h */,
 				429123621F4B0B3700103BE0 /* VSSTestsConst.m */,
-				4285E6F4203B82BB00499FB4 /* VSS011_OperationsTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
