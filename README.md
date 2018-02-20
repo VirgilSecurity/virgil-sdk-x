@@ -1,4 +1,4 @@
-# Virgil Security Objective-C/Swift SDK 
+# Virgil Security Objective-C/Swift SDK
 
 ![VirgilSDK](https://cloud.githubusercontent.com/assets/6513916/19643783/bfbf78be-99f4-11e6-8d5a-a43394f2b9b2.png)
 
@@ -9,20 +9,57 @@
 [![codecov.io](https://codecov.io/github/VirgilSecurity/virgil-sdk-x/coverage.svg)](https://codecov.io/github/VirgilSecurity/virgil-sdk-x/)
 [![GitHub license](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg)](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE)
 
-[Installation](#installation) | [Encryption Example](#encryption-example) | [Initialization](#initialization) | [Documentation](#documentation) | [Migration notes](#migration-notes) | [Support](#support)
+[Introduction](#installation) | [SDK Features](#sdk-features) | [Installation](#installation) | [Usage Examples](#usage-examples) | [Docs](#docs) | [Migration notes](#migration-notes) | [Support](#support)
+
+
+## Introduction
 
 [Virgil Security](https://virgilsecurity.com) provides a set of APIs for adding security to any application. In a few simple steps you can encrypt communication, securely store data, provide passwordless login, and ensure data integrity.
 
-For a full overview head over to our Objective-C/Swift [Get Started][_getstarted] guides.
+The Virgil SDK allows developers to get up and running with Virgil API quickly, add to full end-to-end security in their own digital solutions to became HIPPA and GDPR compliance and more.
+
+## SDK Features
+- communicate with [Virgil Cards Service][_cards_service];
+- manage users public keys;
+- setup your own private key storage;
+- use Virgil [Crypto library][_virgil_crypto]
+- use your own Crypto
+
 
 ## Installation
 
-The **Virgil SDK** is provided as module inside framework named **VirgilSDK**. VirgilSDK depends on another Virgil module called VirgilCrypto also packed inside framework named **VirgilCrypto**.
-Both packages are distributed via Carthage and CocoaPods. Carthage is RECOMMENDED way to integrate VirgilSDK into your projects. Carthage integration is easy, convenient and you can simultaniously use CocoaPods to manage all other dependencies. CocoaPods support for versions above 4.5.0 is SUSPENDED, more info below under CocoaPods section.
+Virgil SDK is provided as a set of frameworks. These frameworks are distributed via Carthage and CocoaPods.  Also in this guide, you find out one more package called VirgilCrypto, Virgil Crypto Library, that is used by SDK to perform cryptographic operation.
 
-Packages are available for iOS 8.0+ and macOS 10.10+.
+All frameworks are available for:
+- iOS 8.0+
+- macOS 10.10+
+- tvOS 9.0+
+- watchOS 2.0+
 
-To link frameworks to your project follow instructions depending on package manager of your choice:
+### COCOAPODS
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+To integrate VirgilSDK into your Xcode project using CocoaPods, specify it in your *Podfile*:
+
+```bash
+target '<Your Target Name>' do
+  use_frameworks!
+
+  pod 'VirgilCryptoApiImpl', '~> 3.0.0'
+  pod 'VirgilSDK', '~> 5.0.0'
+end
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
 
 ### Carthage
 
@@ -35,186 +72,195 @@ $ brew update
 $ brew install carthage
 ```
 
-To integrate VirgilSDK into your Xcode project using Carthage, perform following steps:
+To integrate VirgilSDK into your Xcode project using Carthage, create an empty file with name *Cartfile* in your project's root folder and add following lines to your *Cartfile*
 
-##### If you're building for iOS
+```
+github "VirgilSecurity/virgil-sdk-x" ~> 5.0.0
+github "VirgilSecurity/virgil-foundation-x" ~> 3.0.0
+```
 
-1. Create an empty file with name `Cartfile` in your project's root folder, that lists the frameworks you’d like to use in your project.
-1. Add the following line to your `Cartfile`
+#### Linking against prebuilt binaries
 
-    ```ogdl
-    github "VirgilSecurity/virgil-sdk-x" ~> 4.6.0
-    ```
-  
-1. Run `carthage update`. This will fetch dependencies into a `Carthage/Checkouts` folder inside your project's folder, then build each one or download a pre-compiled framework.
-1. On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, add each framework you want to use from the `Carthage/Build` folder inside your project's folder.
-1. On your application targets’ “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script in which you specify your shell (ex: `/bin/sh`), add the following contents to the script area below the shell:
-
-  ```sh
-  /usr/local/bin/carthage copy-frameworks
-  ```
-
-  and add the paths to the frameworks you want to use under “Input Files”, e.g.:
-
-  ```
-  $(SRCROOT)/Carthage/Build/iOS/VirgilSDK.framework
-  $(SRCROOT)/Carthage/Build/iOS/VirgilCrypto.framework
-  ```
-
-This script works around an [App Store submission bug](http://www.openradar.me/radar?id=6409498411401216) triggered by universal binaries and ensures that necessary bitcode-related files and dSYMs are copied when archiving.
-
-With the debug information copied into the built products directory, Xcode will be able to symbolicate the stack trace whenever you stop at a breakpoint. This will also enable you to step through third-party code in the debugger.
-
-When archiving your application for submission to the App Store or TestFlight, Xcode will also copy these files into the dSYMs subdirectory of your application’s `.xcarchive` bundle.
-
-##### If you're building for macOS
-
-1. Create an empty file with name `Cartfile` in your project's root folder, that lists the frameworks you’d like to use in your project.
-1. Add the following line to your `Cartfile`
-
-    ```ogdl
-    github "VirgilSecurity/virgil-sdk-x" ~> 4.6.0
-    ```
-
-1. Run `carthage update`. This will fetch dependencies into a `Carthage/Checkouts` folder inside your project's folder, then build each one or download a pre-compiled framework.
-1. On your application targets’ “General” settings tab, in the “Embedded Binaries” section, drag and drop each framework you want to use from the `Carthage/Build` folder inside your project's folder including VirgilSDK.framework and VirgilCrypto.framework.
-
-Additionally, you'll need to copy debug symbols for debugging and crash reporting on OS X.
-
-1. On your application target’s “Build Phases” settings tab, click the “+” icon and choose “New Copy Files Phase”.
-1. Click the “Destination” drop-down menu and select “Products Directory”.
-1. For each framework you’re using, drag and drop its corresponding dSYM file.
-
-### CocoaPods
-
-**CocoaPods support for versions above 4.5.0 is SUSPENDED**.
-We RECOMMEND using Carthage to integrate VirgilSDK. For versions 4.5.0 and lower you can integrate using CocoaPods without use_frameworks! option in your podfile. The reason for this is that VirgilCrypto framework, which VirgilSDK depends on, includes static library, this creates transitive dependency with static library.
-More info can be found here:
-https://github.com/CocoaPods/CocoaPods/issues/6848
-and here:
-https://github.com/CocoaPods/CocoaPods/pull/6811.
-
-
-
-[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+To link prebuilt frameworks to your app, run following command:
 
 ```bash
-$ gem install cocoapods
+$ carthage update
 ```
 
-To integrate VirgilSDK into your Xcode project using CocoaPods, specify it in your `Podfile`:
+This will build each dependency or download a pre-compiled framework from github Releases.
 
-```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '10.0'
+##### Building for iOS/tvOS/watchOS
 
-target '<Your Target Name>' do
-    pod 'VirgilSDK', '~> 4.5.0'
-end
-```
+On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, add following frameworks from the *Carthage/Build* folder inside your project's folder:
+ - VirgilSDK
+ - VirgilCryptoAPI
+ - VirgilCryptoApiImpl
+ - VirgilCrypto
+ - VSCCrypto
 
-Then, run the following command:
+On your application targets’ “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script in which you specify your shell (ex: */bin/sh*), add the following contents to the script area below the shell:
 
 ```bash
-$ pod install
+/usr/local/bin/carthage copy-frameworks
 ```
 
- To import VirgilSDK and VirgilCrypto after linking frameworks to your project add following lines to your source files:
+and add the paths to the frameworks you want to use under “Input Files”, e.g.:
 
-###### Objective-C
-``` objective-c
-@import VirgilCrypto;
-@import VirgilSDK;
+```
+$(SRCROOT)/Carthage/Build/iOS/VirgilSDK.framework
+$(SRCROOT)/Carthage/Build/iOS/VirgilCryptoAPI.framework
+$(SRCROOT)/Carthage/Build/iOS/VirgilCryptoAPIImpl.framework
+$(SRCROOT)/Carthage/Build/iOS/VirgilCrypto.framework
+$(SRCROOT)/Carthage/Build/iOS/VSCCrypto.framework
 ```
 
-###### Swift
-``` swift
-import VirgilCrypto
-import VirgilSDK
+##### Building for macOS
+
+On your application targets’ “General” settings tab, in the “Embedded Binaries” section, drag and drop following frameworks from the Carthage/Build folder on disk:
+ - VirgilSDK
+ - VirgilCryptoAPI
+ - VirgilCryptoApiImpl
+ - VirgilCrypto
+ - VSCCrypto
+
+Additionally, you'll need to copy debug symbols for debugging and crash reporting on macOS.
+
+On your application target’s “Build Phases” settings tab, click the “+” icon and choose “New Copy Files Phase”.
+Click the “Destination” drop-down menu and select “Products Directory”. For each framework, drag and drop corresponding dSYM file.
+
+#### Integrating as subproject
+
+It is possible to use carthage just for fetching right sources for further integration into your project.
+Run following command:
+
+```bash
+$ carthage update --no-build
 ```
 
-## Swift note
+This will fetch dependencies into a *Carthage/Checkouts* folder inside your project's folder. Then, drag and drop VirgilCrypto.xcodeproj, VirgilCryptoAPI.xcodeproj and VirgilSDK.xcodeproj from corresponding folders inside Carthage/Checkouts folder to your Xcode Project Navigator sidebar.
 
-Although VirgilSDK pod is using Objective-C as its primary language it might be quite easily used in a Swift application.
-All public API is available from Swift and is bridged using NS_SWIFT_NAME where needed.
+Next, on your application targets’ “General” settings tab, in the “Embedded Binaries” section add following frameworks from subprojects:
+ - VirgilSDK
+ - VirgilCryptoAPI
+ - VirgilCryptoApiImpl
+ - VirgilCrypto
+ - VSCCrypto
 
-__Next:__ [Get Started with the Objective-C/Swift SDK][_getstarted].
 
-# Encryption Example
+## Usage Examples
 
-Virgil Security makes it super easy to add encryption to any application. With our SDK you create a public [__Virgil Card__][_guide_virgil_cards] for every one of your users and devices. With these in place you can easily encrypt any data in the client.
+#### Generate and publish users Cards with public keys inside on Cards Service
+Use the following lines of code to create and publish a user's Card with public key inside on Virgil Cards ServiceL:
 
 ```swift
-// find Alice's card(s)
-virgil.cards.searchCards(withIdentities: ["alice"]) { aliceCards, error in
-  // encrypt the message using Alice's cards
-  let message = "Hello Alice!"
-  let encryptedMessage = try! virgil.encrypt(message, for: aliceCards!)
+import VirgilSDK
+import VirgilCryptoApiImpl
 
-  // transmit the message with your preferred technology
-  self.transmit(message: encryptedMessage.base64EncodedString())
+// use Virgil Crypto
+let crypto = VirgilCrypto()
+
+// generate a user's key pair
+let keyPair = try! crypto.generateKeyPair()
+
+// save a private key into key storage
+try! privateKeyStorage.store(privateKey: keyPair.privateKey, name: "Alice", meta: nil)
+
+// publish user's on the Cards Service
+cardManager.publishCard(privateKey: keyPair.privateKey, publicKey: keyPair.publicKey).start { result in
+    switch result {
+        // Card is created
+        case .success(let card): break
+        // Error occured
+        case .failure(let error): break
+    }
 }
 ```
 
-The receiving user then uses their stored __private key__ to decrypt the message.
+#### Sign then encrypt data
 
+Virgil SDK lets you use users private key and their Cards to sign then encrypt any kind of data.
 
-```swift
-// load Alice's Key from storage.
-let aliceKey = try! virgil.keys.loadKey(withName: "alice_key_1", password: "mypassword")
-
-// decrypt the message using the key 
-let originalMessage = String(data: try! aliceKey.decrypt(transferData), encoding: .utf8)!
-```
-
-__Next:__ To [get you properly started][_guide_encryption] you'll need to know how to create and store Virgil Cards. Our [Get Started guide][_guide_encryption] will get you there all the way.
-
-__Also:__ [Encrypted communication][_getstarted_encryption] is just one of the few things our SDK can do. Have a look at our guides on  [Encrypted Storage][_getstarted_storage], [Data Integrity][_getstarted_data_integrity] and [Passwordless Login][_getstarted_passwordless_login] for more information.
-
-## Initialization
-
-To use this SDK you need to [sign up for an account](https://developer.virgilsecurity.com/account/signup) and create your first __application__. Make sure to save the __app id__, __private key__ and it's __password__. After this, create an __application token__ for your application to make authenticated requests from your clients.
-
-To initialize the SDK on the client side you will only need the __access token__ you created.
+In the following example we load a Private Key from a customized Key Storage and get recipient's Card from the Virgil Cards Services. Recipient's Card contains a Public Key on which we will encrypt the data and verify a signature.
 
 ```swift
-let virgil = VSSVirgilApi(token: "[ACCESS_TOKEN]")
+import VirgilSDK
+import VirgilCryptoApiImpl
+
+// prepare a message
+let messageToEncrypt = "Hello, Bob!"
+let dataToEncrypt = messageToEncrypt.data(using: .utf8)!
+
+// prepare a user's private key
+let alicePrivateKeyEntry = try! privateKeyStorage.load(withName: "Alice")
+let alicePrivateKey = alicePrivateKeyEntry.privateKey as! VirgilPrivateKey
+
+// using cardManager search for user's cards on Cards Service
+cardManager.searchCards(identity: "Bob").start { result in
+    switch result {
+    // Cards are obtained
+    case .success(let cards):
+        let bobRelevantCardsPublicKeys = cards
+            .map { $0.publicKey } as! [VirgilPublicKey]
+
+        // sign a message with a private key then encrypt on a public key
+        let encryptedData = try! crypto.signThenEncrypt(dataToEncrypt, with: alicePrivateKey,
+                                                        for: bobRelevantCardsPublicKeys)
+
+    // Error occured
+    case .failure(let error): break
+    }
+}
 ```
 
-> __Note:__ this client will have limited capabilities. For example, it will be able to generate new __Cards__ but it will need a server-side client to transmit these to Virgil.
-
-To initialize the SDK on the server side we will need the __access token__, __app id__ and the __App Key__ you created on the [Developer Dashboard](https://developer.virgilsecurity.com/account/dashboard).
+#### Decrypt then verify data
+Once the Users receive the signed and encrypted message, they can decrypt it with their own Private Key and verify signature with a Sender's Card:
 
 ```swift
-let url = Bundle.main.url(forResource: "[YOUR_APP_KEY_FILENAME_HERE]", withExtension: nil)!
-let appPrivateKeyData = try! Data(contentsOf: url)
-let credentials = VSSCredentials(appKeyData: appPrivateKeyData, appKeyPassword: "[YOUR_APP_KEY_PASSWORD_HERE]", appId: "[YOUR_APP_ID_HERE]")
+import VirgilSDK
+import VirgilCryptoApiImpl
 
-let context = VSSVirgilApiContext(crypto: nil, token: "[YOUR_ACCESS_TOKEN_HERE]", credentials: credentials, cardVerifiers: nil)
+// prepare a user's private key
+let bobPrivateKeyEntry = try! privateKeyStorage.load(withName: "Bob")
+let bobPrivateKey = bobPrivateKeyEntry.privateKey as! VirgilPrivateKey
 
-let virgil = VSSVirgilApi(context: context)
+// using cardManager search for user's cards on Cards Service
+cardManager.searchCards(identity: "Alice").start { result in
+    switch result {
+    // Cards are obtained
+    case .success(let cards):
+        let aliceRelevantCardsPublicKeys = cards.map { $0.publicKey } as! [VirgilPublicKey]
+
+        // decrypt with a private key and verify using a public key
+        let decryptedData = try! crypto.decryptThenVerify(encryptedData, with: bobPrivateKey,
+                                                          usingOneOf: aliceRelevantCardsPublicKeys)
+
+    // Error occured
+    case .failure(let error): break
+    }
+}
 ```
 
-Next: [Learn more about our the different ways of initializing the Objective-C/Swift SDK][_guide_initialization] in our documentation.
-
-## Documentation
-
+## Docs
 Virgil Security has a powerful set of APIs, and the documentation is there to get you started today.
 
-* [Get Started][_getstarted_root] documentation
-  * [Initialize the SDK][_initialize_root]
-  * [Encrypted storage][_getstarted_storage]
-  * [Encrypted communication][_getstarted_encryption]
-  * [Data integrity][_getstarted_data_integrity]
-  * [Passwordless login][_getstarted_passwordless_login]
-* [Guides][_guides]
-  * [Virgil Cards][_guide_virgil_cards]
-  * [Virgil Keys][_guide_virgil_keys]
+In order to use the Virgil SDK with your application, you will need to first configure your application. By default, the SDK will attempt to look for Virgil-specific settings in your application's but you can change it during SDK configuration.
+
+* [Configure the SDK][_configure_sdk] documentation
+  * [Setup authentication][_setup_authentication] to make API calls to Virgil Services
+  * [Setup Card Manager][_card_manager] to manage users public keys
+  * [Setup Card Verifier][_card_verifier] to verify signatures inside of user's Card
+  * [Setup Key storage][_key_storage] to store Private Keys
+  * [Setup your own Crypto library][_own_crypto] inside of the SDK
+* [More usage examples][_more_examples]
+  * [Create & publish a Card][_create_card] with a public key inside on Virgil Cards Service
+  * [Search user's Card by user's identity][_search_card]
+  * [Get user's Card by its ID][_get_card]
+  * [Use Card for crypto operations][_use_card]
 * [Reference API][_reference_api]
 
 ## Migration notes
 
-For users of versions prior to 4.4.0 we recommend checking out version 4.4.0+ with completely new and more convenient API.
+For users of versions prior to 4.4.0 we recommend checking out version 4.5.0 with completely new and more convenient API.
 Anyway, old API is still available, so anyone can migrate with little changes to the source sode. Therefore, it is recommended to migrate to the newest version for ALL users.
 List of the most important changes:
 - Renaming: VSSCreateGlobalCardRequest -> VSSCreateEmailCardRequest
@@ -227,20 +273,23 @@ List of the most important changes:
 This library is released under the [3-clause BSD License](LICENSE.md).
 
 ## Support
+Our developer support team is here to help you.
 
-Our developer support team is here to help you. You can find us on [Twitter](https://twitter.com/virgilsecurity) or send us email support@virgilsecurity.com
+You can find us on [Twitter](https://twitter.com/VirgilSecurity) or send us email support@virgilsecurity.com.
 
-[__support_email]: https://google.com.ua/
-[_getstarted_root]: https://developer.virgilsecurity.com/docs/swift/get-started
-[_getstarted]: https://developer.virgilsecurity.com/docs/swift/guides
-[_getstarted_encryption]: https://developer.virgilsecurity.com/docs/swift/get-started/encrypted-communication
-[_getstarted_storage]: https://developer.virgilsecurity.com/docs/swift/get-started/encrypted-storage
-[_getstarted_data_integrity]: https://developer.virgilsecurity.com/docs/swift/get-started/data-integrity
-[_getstarted_passwordless_login]: https://developer.virgilsecurity.com/docs/swift/get-started/passwordless-authentication
-[_guides]: https://developer.virgilsecurity.com/docs/swift/guides
-[_guide_initialization]: https://developer.virgilsecurity.com/docs/swift/guides/settings/install-sdk
-[_guide_virgil_cards]: https://developer.virgilsecurity.com/docs/swift/guides/virgil-card/creating
-[_guide_virgil_keys]: https://developer.virgilsecurity.com/docs/swift/guides/virgil-key/generating
-[_guide_encryption]: https://developer.virgilsecurity.com/docs/swift/guides/encryption/encrypting
-[_initialize_root]: https://developer.virgilsecurity.com/docs/swift/guides/settings/initialize-sdk-on-client
-[_reference_api]: http://virgilsecurity.github.io/virgil-sdk-x/
+Also, get extra help from our support team on [Slack](https://join.slack.com/t/VirgilSecurity/shared_invite/enQtMjg4MDE4ODM3ODA4LTc2OWQwOTQ3YjNhNTQ0ZjJiZDc2NjkzYjYxNTI0YzhmNTY2ZDliMGJjYWQ5YmZiOGU5ZWEzNmJiMWZhYWVmYTM).
+
+[_virgil_crypto]: https://github.com/VirgilSecurity/virgil-foundation-x
+[_cards_service]: https://developer.virgilsecurity.com/docs/api-reference/card-service/v5
+[_use_card]: https://developer.virgilsecurity.com/docs/swift/how-to/public-key-management/use-card-for-crypto-operation
+[_get_card]: https://developer.virgilsecurity.com/docs/swift/how-to/public-key-management/get-card
+[_search_card]: https://developer.virgilsecurity.com/docs/swift/how-to/public-key-management/search-card
+[_create_card]: https://developer.virgilsecurity.com/docs/swift/how-to/public-key-management/create-card
+[_own_crypto]: https://developer.virgilsecurity.com/docs/swift/how-to/setup/setup-own-crypto-library
+[_key_storage]: https://developer.virgilsecurity.com/docs/swift/how-to/setup/setup-key-storage
+[_card_verifier]: https://developer.virgilsecurity.com/docs/swift/how-to/setup/setup-card-verifier
+[_card_manager]: https://developer.virgilsecurity.com/docs/swift/how-to/setup/setup-card-manager
+[_setup_authentication]: https://developer.virgilsecurity.com/docs/swift/how-to/setup/setup-authentication
+[_reference_api]: https://developer.virgilsecurity.com/docs/api-reference
+[_configure_sdk]: https://developer.virgilsecurity.com/docs/how-to#sdk-configuration
+[_more_examples]: https://developer.virgilsecurity.com/docs/how-to#public-key-management
