@@ -14,19 +14,19 @@
 
 [Virgil Security](https://virgilsecurity.com) provides a set of APIs for adding security to any application. In a few simple steps you can encrypt communication, securely store data, provide passwordless login, and ensure data integrity.
 
-The Virgil SDK allows developers to get up and running with Virgil API quickly, add to full end-to-end security in their own digital solutions to become HIPAA and GDPR compliant and more.
+The Virgil SDK allows developers to get up and running with Virgil API quickly and add full end-to-end security to their existing digital solutions to become HIPAA and GDPR compliant and more.
 
 ## SDK Features
 - communicate with [Virgil Cards Service][_cards_service];
-- manage users public keys;
-- setup your own private key storage;
+- manage users' Public Keys;
+- setup your own Private Key storage;
 - use Virgil [Crypto library][_virgil_crypto];
 - use your own Crypto.
 
 
 ## Installation
 
-Virgil SDK is provided as a set of frameworks. These frameworks are distributed via Carthage and CocoaPods.  Also in this guide, you find one more package called VirgilCrypto, Virgil Crypto Library, that is used by SDK to perform cryptographic operation.
+Virgil SDK is provided as a set of frameworks. These frameworks are distributed via Carthage and CocoaPods.  Also in this guide, you find one more package called VirgilCrypto (Virgil Crypto Library) that is used by the SDK to perform cryptographic operations.
 
 All frameworks are available for:
 - iOS 8.0+
@@ -96,7 +96,7 @@ On your application targets’ “General” settings tab, in the “Linked Fram
  - VirgilCrypto
  - VSCCrypto
 
-On your application targets’ “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script in which you specify your shell (ex: */bin/sh*), add the following contents to the script area below the shell:
+On your application targets’ “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase.” Create a Run Script in which you specify your shell (ex: */bin/sh*), add the following contents to the script area below the shell:
 
 ```bash
 /usr/local/bin/carthage copy-frameworks
@@ -114,7 +114,7 @@ $(SRCROOT)/Carthage/Build/iOS/VSCCrypto.framework
 
 ##### Building for macOS
 
-On your application targets’ “General” settings tab, in the “Embedded Binaries” section, drag and drop following frameworks from the Carthage/Build folder on disk:
+On your application target's “General” settings tab, in the “Embedded Binaries” section, drag and drop following frameworks from the Carthage/Build folder on disk:
  - VirgilSDK
  - VirgilCryptoAPI
  - VirgilCryptoApiImpl
@@ -128,7 +128,7 @@ Click the “Destination” drop-down menu and select “Products Directory”. 
 
 #### Integrating as subproject
 
-It is possible to use carthage just for fetching right sources for further integration into your project.
+It is possible to use carthage just for fetching the right sources for further integration into your project.
 Run following command:
 
 ```bash
@@ -137,7 +137,7 @@ $ carthage update --no-build
 
 This will fetch dependencies into a *Carthage/Checkouts* folder inside your project's folder. Then, drag and drop VirgilCrypto.xcodeproj, VirgilCryptoAPI.xcodeproj and VirgilSDK.xcodeproj from corresponding folders inside Carthage/Checkouts folder to your Xcode Project Navigator sidebar.
 
-Next, on your application targets’ “General” settings tab, in the “Embedded Binaries” section add following frameworks from subprojects:
+Next, on your application target's “General” settings tab, in the “Embedded Binaries” section add the following frameworks from subprojects:
  - VirgilSDK
  - VirgilCryptoAPI
  - VirgilCryptoApiImpl
@@ -147,8 +147,8 @@ Next, on your application targets’ “General” settings tab, in the “Embed
 
 ## Usage Examples
 
-#### Generate and publish users Cards with public keys inside on Cards Service
-Use the following lines of code to create and publish a user's Card with public key inside on Virgil Cards Service:
+#### Generate and publish user's Cards with Public kKys inside on Cards Service
+Use the following lines of code to create and publish a user's Card with pPublic Key inside on Virgil Cards Service:
 
 ```swift
 import VirgilSDK
@@ -176,9 +176,9 @@ cardManager.publishCard(privateKey: keyPair.privateKey, publicKey: keyPair.publi
 
 #### Sign then encrypt data
 
-Virgil SDK lets you use users private key and their Cards to sign then encrypt any kind of data.
+Virgil SDK lets you use a user's Private key and his or her Cards to sign, then encrypt any kind of data.
 
-In the following example we load a Private Key from a customized Key Storage and get recipient's Card from the Virgil Cards Services. Recipient's Card contains a Public Key on which we will encrypt the data and verify a signature.
+In the following example, we load a Private Key from a customized Key Storage and get recipient's Card from the Virgil Cards Services. Recipient's Card contains a Public Key on which we will encrypt the data and verify a signature.
 
 ```swift
 import VirgilSDK
@@ -239,18 +239,18 @@ cardManager.searchCards(identity: "Alice").start { result in
 ```
 
 ## Docs
-Virgil Security has a powerful set of APIs, and the documentation is there to get you started today.
+Virgil Security has a powerful set of APIs, and the documentation below can get you started today.
 
-In order to use the Virgil SDK with your application, you will need to first configure your application. By default, the SDK will attempt to look for Virgil-specific settings in your application's but you can change it during SDK configuration.
+In order to use the Virgil SDK with your application, you will need to first configure your application. By default, the SDK will attempt to look for Virgil-specific settings in your application but you can change it during SDK configuration.
 
 * [Configure the SDK][_configure_sdk] documentation
   * [Setup authentication][_setup_authentication] to make API calls to Virgil Services
-  * [Setup Card Manager][_card_manager] to manage users public keys
+  * [Setup Card Manager][_card_manager] to manage user's Public Keys
   * [Setup Card Verifier][_card_verifier] to verify signatures inside of user's Card
   * [Setup Key storage][_key_storage] to store Private Keys
   * [Setup your own Crypto library][_own_crypto] inside of the SDK
 * [More usage examples][_more_examples]
-  * [Create & publish a Card][_create_card] with a public key inside on Virgil Cards Service
+  * [Create & publish a Card][_create_card] that has a Public Key on Virgil Cards Service
   * [Search user's Card by user's identity][_search_card]
   * [Get user's Card by its ID][_get_card]
   * [Use Card for crypto operations][_use_card]
@@ -258,8 +258,8 @@ In order to use the Virgil SDK with your application, you will need to first con
 
 ## Migration notes
 
-For users of versions prior to 4.5.0 we recommend checking out version 5.0.0 with completely new and more convenient API.
-Anyway, old API is still available, so anyone can migrate with little changes to the source sode. Therefore, it is recommended to migrate to the newest version for ALL users.
+For users of versions prior to 4.5.0, we recommend migrating to version 5.0.0 which has a completely new and more convenient API.
+Because the previous API is still available, it's easy to migrate to version 5.0.0 with very few changes to the source code. Again, we recommend that ALL users take a few minutes to migrate to version 5.0.0.
 List of the most important changes:
 ##### Renaming
 -  VSSCreateUserCardRequest -> VSSCreateCardRequest
