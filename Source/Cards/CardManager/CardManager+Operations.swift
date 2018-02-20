@@ -15,6 +15,68 @@ extension CardManager {
             completion(Void(), nil)
         }
     }
+    
+    internal func makeCompletionOperation<T>(completion: @escaping (T?, Error?) -> Void) -> GenericOperation<Void> {
+        let completionOperation = CallbackOperation { _, completion in
+            completion(Void(), nil)
+        }
+        
+        completionOperation.completionBlock = {
+            do {
+                if let error = completionOperation.findDependencyError() {
+                    completion(nil, error)
+                    return
+                }
+                
+                let res: T = try completionOperation.findDependencyResult()
+                completion(res, nil)
+            }
+            catch {
+                completion(nil, error)
+            }
+        }
+        
+        return completionOperation
+    }
+    
+    private func makeRetryOperation(aggregateOperation: Operation,
+                                     makeAggregateOperation: @escaping (Bool) -> Operation,
+                                     completionOperation: Operation,
+                                     queue: OperationQueue) -> GenericOperation<Void> {
+        let retryCheckOperation = CallbackOperation<Void> { [unowned completionOperation, queue] op, completion in
+            if let error = op.findDependencyError(),
+                let cardServiceError = error as? CardServiceError,
+                cardServiceError.errorCode == 20304 {
+                let aggregateOperationRetry = makeAggregateOperation(true)
+                completionOperation.addDependency(aggregateOperationRetry)
+                completionOperation.removeDependency(aggregateOperation)
+                queue.addOperation(aggregateOperationRetry)
+                completion(Void(), nil)
+            }
+            
+            completion(Void(), nil)
+        }
+        
+        return retryCheckOperation
+    }
+    
+    internal func makeRetryAggregate<T>(makeAggregateOperation: @escaping (Bool) -> GenericOperation<T>) -> GenericOperation<T> {
+        return CallbackOperation<T>() { _, completion in
+            let queue = OperationQueue()
+            
+            let aggregateOperation = makeAggregateOperation(false)
+            let completionOperation = self.makeCompletionOperation(completion: completion)
+            let retryCheckOperation = self.makeRetryOperation(aggregateOperation: aggregateOperation, makeAggregateOperation: makeAggregateOperation, completionOperation: completionOperation, queue: queue)
+            
+            retryCheckOperation.addDependency(aggregateOperation)
+            
+            completionOperation.addDependency(aggregateOperation)
+            completionOperation.addDependency(retryCheckOperation)
+            
+            let operations = [aggregateOperation, retryCheckOperation, completionOperation]
+            queue.addOperations(operations, waitUntilFinished: false)
+        }
+    }
 
     internal func makeVerifyCardOperation() -> GenericOperation<Void> {
         return CallbackOperation<Void> { operation, completion in

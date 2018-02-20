@@ -14,16 +14,18 @@
 #import "VSSTestsConst.h"
 #import "VSSTestUtils.h"
 
-static const NSTimeInterval timeout = 8.;
+static const NSTimeInterval timeout = 20.;
 
 @interface VSSAccessTokenProviderMock: NSObject<VSSAccessTokenProvider>
 
 @property (nonatomic) VSSTestsConst *consts;
 @property (nonatomic) VSMVirgilCrypto *crypto;
 @property (nonatomic) VSSTestUtils *utils;
+@property (nonatomic) NSString *identity;
+@property (nonatomic) void (^forceCallback)(BOOL) ;
 @property NSInteger counter;
 
--(id)init;
+-(id)initWithIdentity:(NSString *)identity forceCallback:(void (^)(BOOL))forceCallback;
 
 - (void)getTokenWith:(VSSTokenContext * _Nonnull)tokenContext completion:(void (^ _Nonnull)(id<VSSAccessToken> _Nullable, NSError * _Nullable))completion;
 
@@ -31,24 +33,26 @@ static const NSTimeInterval timeout = 8.;
 
 @implementation VSSAccessTokenProviderMock
 
--(id)init {
+-(id)initWithIdentity:(NSString *)identity forceCallback:(void (^)(BOOL))forceCallback {
     self = [super init];
     
+    self.identity = [identity copy];
     self.consts = [[VSSTestsConst alloc] init];
     self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:NO];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
-    
+    self.forceCallback = forceCallback;
     self.counter = 0;
     
     return self;
 }
 
 - (void)getTokenWith:(VSSTokenContext * _Nonnull)tokenContext completion:(void (^ _Nonnull)(id<VSSAccessToken> _Nullable, NSError * _Nullable))completion {
-    NSTimeInterval interval = (self.counter % 2) * 1000 + 1;
+    NSTimeInterval interval = (self.counter % 2) == 0 ? -1 : 1000;
+    self.forceCallback(tokenContext.forceReload);
     self.counter++;
     
     NSError *error;
-    id<VSSAccessToken> token = [self.utils getTokenWithIdentity:@"identity" ttl:interval error:&error];
+    id<VSSAccessToken> token = [self.utils getTokenWithIdentity:self.identity ttl:interval error:&error];
     
     sleep(2);
     
@@ -434,73 +438,47 @@ static const NSTimeInterval timeout = 8.;
     }];
 }
 
-//-(void)test006_STC_26 {
-//    XCTestExpectation *ex = [self expectationWithDescription:@"All operations should proceed on second calls"];
-//    NSError *error;
-//
-//    NSString *identity = @"identity";
-//    VSSAccessTokenProviderMock *tokenProvider = [[VSSAccessTokenProviderMock alloc] init];
-//
-//    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:tokenProvider cardVerifier:self.verifier];
-//    cardManagerParams.cardClient = self.cardClient;
-//
-//    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
-//
-//    VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
-//    XCTAssert(error == nil);
-//
-//    [cardManager publishCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:nil completion:^(VSSCard *returnedCard1, NSError *error) {
-//        XCTAssert(error != nil);
-//        XCTAssert([error code] == 20304);
-//
-//        [cardManager publishCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:nil completion:^(VSSCard *returnedCard, NSError *error) {
-//            XCTAssert(error == nil);
-//            XCTAssert(returnedCard != nil);
-//
-//            NSError *err;
-//            VSSRawSignedModel *rawCard = [cardManager generateRawCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:returnedCard1.identifier extraFields:nil error:&err];
-//            XCTAssert(err == nil);
-//            VSSCard *card = [VSSCard parseWithCardCrypto:self.cardCrypto rawSignedModel:rawCard];
-//            XCTAssert([self.utils isCardsEqualWithCard:card and:returnedCard]);
-//
-//            [cardManager getCardWithId:card.identifier completion:^(VSSCard *returnedCard, NSError *error) {
-//                XCTAssert(error != nil);
-//                XCTAssert([error code] == 20304);
-//
-//                [cardManager getCardWithId:card.identifier completion:^(VSSCard *returnedCard, NSError *error) {
-//                    XCTAssert(error == nil);
-//                    XCTAssert(returnedCard != nil);
-//
-//                    XCTAssert([self.utils isCardsEqualWithCard:card and:returnedCard]);
-//
-//                    [cardManager searchCardsWithIdentity:identity completion:^(NSArray<VSSCard *> * returnedCards, NSError *error) {
-//                        XCTAssert(error != nil);
-//                        XCTAssert([error code] == 20304);
-//
-//                        [cardManager searchCardsWithIdentity:identity completion:^(NSArray<VSSCard *> * returnedCards, NSError *error) {
-//                            XCTAssert(error == nil);
-//
-//                            BOOL found = false;
-//                            for (VSSCard* returnedCard in returnedCards) {
-//                                if ([returnedCard.identifier isEqualToString:card.identifier]) {
-//                                    XCTAssert([self.utils isCardsEqualWithCard:returnedCard and:card]);
-//                                    found = true;
-//                                }
-//                            }
-//                            XCTAssert(found);
-//
-//                            [ex fulfill];
-//                        }];
-//                    }];
-//                }];
-//            }];
-//        }];
-//    }];
-//
-//    [self waitForExpectationsWithTimeout:15. handler:^(NSError *error) {
-//        if (error != nil)
-//            XCTFail(@"Expectation failed: %@", error);
-//    }];
-//}
+-(void)test008_STC_26 {
+    XCTestExpectation *ex = [self expectationWithDescription:@"All operations should proceed on second calls"];
+    NSError *error;
+
+    NSInteger __block counter = 0;
+    NSString *identity = [[NSUUID alloc] init].UUIDString;
+    VSSAccessTokenProviderMock *tokenProvider = [[VSSAccessTokenProviderMock alloc] initWithIdentity:identity forceCallback:^(BOOL force) {
+        if (counter % 2 == 0)
+            XCTAssert(!force);
+        else
+            XCTAssert(force);
+        
+        counter++;
+    }];
+
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:tokenProvider cardVerifier:self.verifier];
+    cardManagerParams.cardClient = self.cardClient;
+
+    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
+
+    VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
+    XCTAssert(error == nil);
+
+    [cardManager publishCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:nil completion:^(VSSCard *publishedCard, NSError *error) {
+        XCTAssert(error == nil && publishedCard != nil);
+
+        [cardManager getCardWithId:publishedCard.identifier completion:^(VSSCard *returnedCard, NSError *error) {
+            XCTAssert(error == nil && returnedCard != nil);
+
+            [cardManager searchCardsWithIdentity:identity completion:^(NSArray<VSSCard *> *foundCards, NSError *error) {
+                XCTAssert(error == nil && foundCards.count == 1);
+                
+                [ex fulfill];
+            }];
+        }];
+    }];
+
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
+    }];
+}
 
 @end
