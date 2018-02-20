@@ -60,7 +60,7 @@ import Foundation
 
         super.init()
     }
-    
+
     /// Initializes a new `CardClient` instance
     @objc convenience public override init() {
         self.init(serviceUrl: CardClient.defaultURL)
