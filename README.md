@@ -1,7 +1,5 @@
 # Virgil Security Objective-C/Swift SDK
 
-![VirgilSDK](https://cloud.githubusercontent.com/assets/6513916/19643783/bfbf78be-99f4-11e6-8d5a-a43394f2b9b2.png)
-
 [![Build Status](https://api.travis-ci.org/VirgilSecurity/virgil-sdk-x.svg?branch=master)](https://travis-ci.org/VirgilSecurity/virgil-sdk-x)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilSDK.svg)](https://img.shields.io/cocoapods/v/VirgilSDK.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
@@ -22,13 +20,13 @@ The Virgil SDK allows developers to get up and running with Virgil API quickly, 
 - communicate with [Virgil Cards Service][_cards_service];
 - manage users public keys;
 - setup your own private key storage;
-- use Virgil [Crypto library][_virgil_crypto]
-- use your own Crypto
+- use Virgil [Crypto library][_virgil_crypto];
+- use your own Crypto.
 
 
 ## Installation
 
-Virgil SDK is provided as a set of frameworks. These frameworks are distributed via Carthage and CocoaPods.  Also in this guide, you find out one more package called VirgilCrypto, Virgil Crypto Library, that is used by SDK to perform cryptographic operation.
+Virgil SDK is provided as a set of frameworks. These frameworks are distributed via Carthage and CocoaPods.  Also in this guide, you find one more package called VirgilCrypto, Virgil Crypto Library, that is used by SDK to perform cryptographic operation.
 
 All frameworks are available for:
 - iOS 8.0+
