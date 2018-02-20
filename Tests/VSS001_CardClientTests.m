@@ -22,6 +22,7 @@
 @property (nonatomic) VSMVirgilCardCrypto *cardCrypto;
 @property (nonatomic) VSSTestUtils *utils;
 @property (nonatomic) VSSCardClient *cardClient;
+@property (nonatomic) VSSVirgilCardVerifier *verifier;
 
 @end
 
@@ -36,6 +37,19 @@
     self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
     self.cardClient = self.consts.serviceURL == nil ? [[VSSCardClient alloc] init] : [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL];
+    
+    if (self.consts.servicePublicKey == nil) {
+        self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
+    }
+    else {
+        NSData *publicKeyData = [[NSData alloc] initWithBase64EncodedString:self.consts.servicePublicKey options:0];
+        VSSVerifierCredentials *creds = [[VSSVerifierCredentials alloc] initWithSigner:@"virgil" publicKey:publicKeyData];
+        NSError *error;
+        VSSWhitelist *whitelist = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds] error:&error];
+        XCTAssert(error == nil);
+        self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[whitelist]];
+        self.verifier.verifyVirgilSignature = NO;
+    }
 }
 
 - (void)tearDown {
@@ -79,9 +93,7 @@
     
     XCTAssert([exportedPublicKeyCard isEqualToData:exportedPublicKey]);
     
-    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
-    
-    XCTAssert([verifier verifyCard:responseCard]);
+    XCTAssert([self.verifier verifyCard:responseCard]);
 }
 
 -(void)test002_GetCard {
@@ -120,9 +132,7 @@
 
     XCTAssert([self.utils isCardsEqualWithCard:card and:foundCard]);
 
-    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
-
-    XCTAssert([verifier verifyCard:foundCard]);
+    XCTAssert([self.verifier verifyCard:foundCard]);
 }
 
 -(void)test003_SearchCards {
@@ -162,9 +172,7 @@
     
     XCTAssert([self.utils isCardsEqualWithCard:card and:foundCard]);
     
-    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
-    
-    XCTAssert([verifier verifyCard:foundCard]);
+    XCTAssert([self.verifier verifyCard:foundCard]);
 }
 
 -(void)test004_STC_27 {

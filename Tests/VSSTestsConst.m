@@ -70,4 +70,10 @@
     return cardIdentity;
 }
 
+- (NSString *)servicePublicKey {
+    NSString *servicePublicKey = self.config[@"ServicePublicKey"];
+    
+    return servicePublicKey;
+}
+
 @end

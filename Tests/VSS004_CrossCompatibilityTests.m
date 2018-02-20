@@ -41,7 +41,7 @@
     self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
     self.cardClient = self.consts.serviceURL == nil ? [[VSSCardClient alloc] init] : [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL];
     
-    self.verifier.verifySelfSignature   = false;
+    self.verifier.verifySelfSignature = false;
     self.verifier.verifyVirgilSignature = false;
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];

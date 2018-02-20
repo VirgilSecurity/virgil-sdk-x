@@ -79,7 +79,18 @@ static const NSTimeInterval timeout = 8.;
     self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
     self.modelSigner = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
-    self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
+    if (self.consts.servicePublicKey == nil) {
+        self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
+    }
+    else {
+        NSData *publicKeyData = [[NSData alloc] initWithBase64EncodedString:self.consts.servicePublicKey options:0];
+        VSSVerifierCredentials *creds = [[VSSVerifierCredentials alloc] initWithSigner:@"virgil" publicKey:publicKeyData];
+        NSError *error;
+        VSSWhitelist *whitelist = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds] error:&error];
+        XCTAssert(error == nil);
+        self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[whitelist]];
+        self.verifier.verifyVirgilSignature = NO;
+    }
     self.cardClient = self.consts.serviceURL == nil ? [[VSSCardClient alloc] init] : [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL];
 }
 
@@ -279,9 +290,23 @@ static const NSTimeInterval timeout = 8.;
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:nil];
     NSData *publicKeyData = [self.crypto exportPublicKey:keyPair.publicKey];
     VSSVerifierCredentials *creds = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKeyData];
-    VSSWhitelist *whitelist = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds] error:&error];
+    
+    VSSWhitelist *whitelist1 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds] error:&error];
     XCTAssert(error == nil);
-    VSSVirgilCardVerifier *verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[whitelist]];
+    
+    VSSVirgilCardVerifier *verifier;
+    if (self.consts.servicePublicKey == nil) {
+        verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[whitelist1]];
+    }
+    else {
+        NSData *publicKeyData = [[NSData alloc] initWithBase64EncodedString:self.consts.servicePublicKey options:0];
+        VSSVerifierCredentials *creds = [[VSSVerifierCredentials alloc] initWithSigner:@"virgil" publicKey:publicKeyData];
+        NSError *error;
+        VSSWhitelist *whitelist = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds] error:&error];
+        XCTAssert(error == nil);
+        verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[whitelist, whitelist1]];
+        verifier.verifyVirgilSignature = NO;
+    }
     
     VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:verifier];
     cardManagerParams.cardClient = self.cardClient;

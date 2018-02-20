@@ -18,6 +18,7 @@
 @property (nonatomic, readonly) NSURL * __nullable serviceURL;
 @property (nonatomic, readonly) NSString * __nonnull existentCardId;
 @property (nonatomic, readonly) NSString * __nonnull existentCardIdentity;
+@property (nonatomic, readonly) NSString * __nullable servicePublicKey;
 
 @property (nonatomic, readonly) NSDictionary * __nonnull config;
 
