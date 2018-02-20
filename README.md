@@ -262,20 +262,11 @@ For users of versions prior to 4.5.0 we recommend checking out version 5.0.0 wit
 Anyway, old API is still available, so anyone can migrate with little changes to the source sode. Therefore, it is recommended to migrate to the newest version for ALL users.
 List of the most important changes:
 ##### Renaming
--  VSSCreateGlobalCardRequest -> VSSCreateEmailCardRequest
--  VSSCreateCardRequest -> VSSCreateUserCardRequest
--  VSSRevokeGlobalCardRequest -> VSSRevokeEmailCardRequest
--  VSSRevokeCardRequest -> VSSRevokeUserCardRequest
-
-##### Delete
--
--
--
+-  VSSCreateUserCardRequest -> VSSCreateCardRequest
 
 ##### Deprecated
--
--
--
+- VSSRevokeUserCardRequest
+- VSSRevokeEmailCardRequest
 
 ## License
 
