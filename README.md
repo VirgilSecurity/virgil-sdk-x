@@ -258,7 +258,7 @@ In order to use the Virgil SDK with your application, you will need to first con
 
 ## Migration notes
 
-For users of versions prior to 4.4.0 we recommend checking out version 4.5.0 with completely new and more convenient API.
+For users of versions prior to 4.5.0 we recommend checking out version 5.0.0 with completely new and more convenient API.
 Anyway, old API is still available, so anyone can migrate with little changes to the source sode. Therefore, it is recommended to migrate to the newest version for ALL users.
 List of the most important changes:
 - Renaming: VSSCreateGlobalCardRequest -> VSSCreateEmailCardRequest
