@@ -14,7 +14,7 @@
 
 [Virgil Security](https://virgilsecurity.com) provides a set of APIs for adding security to any application. In a few simple steps you can encrypt communication, securely store data, provide passwordless login, and ensure data integrity.
 
-The Virgil SDK allows developers to get up and running with Virgil API quickly, add to full end-to-end security in their own digital solutions to became HIPPA and GDPR compliance and more.
+The Virgil SDK allows developers to get up and running with Virgil API quickly, add to full end-to-end security in their own digital solutions to become HIPAA and GDPR compliant and more.
 
 ## SDK Features
 - communicate with [Virgil Cards Service][_cards_service];
