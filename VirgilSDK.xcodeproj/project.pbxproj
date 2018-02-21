@@ -1251,19 +1251,6 @@
 			path = Private;
 			sourceTree = "<group>";
 		};
-		42A01EE91F7BD83100FF8804 /* TestApp iOS */ = {
-			isa = PBXGroup;
-			children = (
-				42A01EEA1F7BD83100FF8804 /* AppDelegate.swift */,
-				42A01EEC1F7BD83100FF8804 /* ViewController.swift */,
-				42A01EEE1F7BD83100FF8804 /* Main.storyboard */,
-				42A01EF11F7BD83100FF8804 /* Assets.xcassets */,
-				42A01EF31F7BD83100FF8804 /* LaunchScreen.storyboard */,
-				42A01EF61F7BD83100FF8804 /* Info.plist */,
-			);
-			path = "TestApp iOS";
-			sourceTree = "<group>";
-		};
 		42A442A51DC8F1B9000DD54B /* KeyStorage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1709,7 +1696,6 @@
 						CreatedOnToolsVersion = 8.0;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
-						TestTargetID = 42A01EE71F7BD83100FF8804;
 					};
 					42EB30E31DB8EC17001DF4C0 = {
 						CreatedOnToolsVersion = 8.0;
@@ -2266,15 +2252,6 @@
 				42DA83BC203234CA0091D223 /* VSS003_ModelSigner_CardVerifierTests.m in Sources */,
 				166C67C1201F5C0500D79608 /* VSSTestUtils.m in Sources */,
 				16F3D47A2031DFF700257A43 /* VSS005_CardManagerTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		42A01EE41F7BD83100FF8804 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				42A01EED1F7BD83100FF8804 /* ViewController.swift in Sources */,
-				42A01EEB1F7BD83100FF8804 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

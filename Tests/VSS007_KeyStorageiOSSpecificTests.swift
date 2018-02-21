@@ -36,7 +36,7 @@ class VSS007_KeyStorageiOSSpecificTests: XCTestCase {
         for _ in 0..<self.numberOfKeys {
             let keyPair = try! self.crypto.generateKeyPair()
             
-            let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
+            let privateKeyRawData = self.crypto.exportPrivateKey(keyPair.privateKey)
             let privateKeyName = UUID().uuidString
             
             keyEntries.append(KeyEntry(name: privateKeyName, value: privateKeyRawData))
@@ -57,7 +57,7 @@ class VSS007_KeyStorageiOSSpecificTests: XCTestCase {
         for _ in 0..<self.numberOfKeys {
             let keyPair = try! self.crypto.generateKeyPair()
             
-            let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
+            let privateKeyRawData = self.crypto.exportPrivateKey(keyPair.privateKey)
             let privateKeyName = UUID().uuidString
             names.append(privateKeyName)
             
@@ -87,7 +87,7 @@ class VSS007_KeyStorageiOSSpecificTests: XCTestCase {
         for _ in 0..<self.numberOfKeys {
             let keyPair = try! self.crypto.generateKeyPair()
             
-            let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
+            let privateKeyRawData = self.crypto.exportPrivateKey(keyPair.privateKey)
             let privateKeyName = UUID().uuidString
             
             let keyEntry = KeyEntry(name: privateKeyName, value: privateKeyRawData)
@@ -112,7 +112,7 @@ class VSS007_KeyStorageiOSSpecificTests: XCTestCase {
         for _ in 0..<self.numberOfKeys {
             let keyPair = try! self.crypto.generateKeyPair()
             
-            let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
+            let privateKeyRawData = self.crypto.exportPrivateKey(keyPair.privateKey)
             let privateKeyName = UUID().uuidString
             
             keysInfo.append((privateKeyName, Date()))
@@ -145,7 +145,7 @@ class VSS007_KeyStorageiOSSpecificTests: XCTestCase {
         for _ in 0..<self.numberOfKeys {
             let keyPair = try! self.crypto.generateKeyPair()
             
-            let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
+            let privateKeyRawData = self.crypto.exportPrivateKey(keyPair.privateKey)
             let privateKeyName = UUID().uuidString
             
             keyEntries.append(KeyEntry(name: privateKeyName, value: privateKeyRawData))
