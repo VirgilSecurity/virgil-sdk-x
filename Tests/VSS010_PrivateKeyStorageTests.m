@@ -46,8 +46,8 @@
     XCTAssert(error == nil && privateKeyEntry != nil);
     XCTAssert(privateKeyEntry.meta == nil);
     
-    NSData *privateKeyData1 = [self.crypto exportPrivateKey:(VSMVirgilPrivateKey *)privateKeyEntry.privateKey password:nil error:nil];
-    NSData *privateKeyData2 = [self.crypto exportPrivateKey:keyPair.privateKey password:nil error:nil];
+    NSData *privateKeyData1 = [self.crypto exportPrivateKey:(VSMVirgilPrivateKey *)privateKeyEntry.privateKey];
+    NSData *privateKeyData2 = [self.crypto exportPrivateKey:keyPair.privateKey];
     
     XCTAssert([privateKeyData1 isEqualToData:privateKeyData2]);
 }
@@ -67,8 +67,8 @@
     VSSPrivateKeyEntry *privateKeyEntry = [self.privateKeyStorage loadWithName:name error:&error];
     XCTAssert(error == nil && privateKeyEntry != nil);
     
-    NSData *privateKeyData1 = [self.crypto exportPrivateKey:(VSMVirgilPrivateKey *)privateKeyEntry.privateKey password:nil error:nil];
-    NSData *privateKeyData2 = [self.crypto exportPrivateKey:keyPair.privateKey password:nil error:nil];
+    NSData *privateKeyData1 = [self.crypto exportPrivateKey:(VSMVirgilPrivateKey *)privateKeyEntry.privateKey];
+    NSData *privateKeyData2 = [self.crypto exportPrivateKey:keyPair.privateKey];
     
     XCTAssert([privateKeyData1 isEqualToData:privateKeyData2]);
     XCTAssert([dict isEqualToDictionary:privateKeyEntry.meta]);

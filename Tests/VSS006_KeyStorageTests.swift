@@ -26,7 +26,7 @@ class VSS006_KeyStorageTests: XCTestCase {
         self.storage = KeyStorage()
         let keyPair = try! self.crypto.generateKeyPair()
         
-        let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
+        let privateKeyRawData = self.crypto.exportPrivateKey(keyPair.privateKey)
         let privateKeyName = UUID().uuidString
         
         self.keyEntry = KeyEntry(name: privateKeyName, value: privateKeyRawData)
@@ -53,7 +53,7 @@ class VSS006_KeyStorageTests: XCTestCase {
     
         let keyPair = try! self.crypto.generateKeyPair()
         
-        let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
+        let privateKeyRawData = self.crypto.exportPrivateKey(keyPair.privateKey)
         let privateKeyName = self.keyEntry.name
         
         let keyEntry = KeyEntry(name: privateKeyName, value: privateKeyRawData)
@@ -105,7 +105,7 @@ class VSS006_KeyStorageTests: XCTestCase {
         
         let keyPair = try! self.crypto.generateKeyPair()
         
-        let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey, password: nil)
+        let privateKeyRawData = self.crypto.exportPrivateKey(keyPair.privateKey)
         let privateKeyName = self.keyEntry.name
         
         let keyEntry = KeyEntry(name: privateKeyName, value: privateKeyRawData)
