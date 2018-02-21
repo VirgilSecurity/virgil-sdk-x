@@ -7,7 +7,7 @@
 [![codecov.io](https://codecov.io/github/VirgilSecurity/virgil-sdk-x/coverage.svg)](https://codecov.io/github/VirgilSecurity/virgil-sdk-x/)
 [![GitHub license](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg)](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE)
 
-[Introduction](#installation) | [SDK Features](#sdk-features) | [Installation](#installation) | [Usage Examples](#usage-examples) | [Docs](#docs) | [Migration notes](#migration-notes) | [Support](#support)
+[Introduction](#installation) | [SDK Features](#sdk-features) | [Installation](#installation) | [Usage Examples](#usage-examples) | [Docs](#docs) | [Support](#support)
 
 
 ## Introduction
@@ -256,17 +256,6 @@ In order to use the Virgil SDK with your application, you will need to first con
   * [Use Card for crypto operations][_use_card]
 * [Reference API][_reference_api]
 
-## Migration notes
-
-For users of versions prior to 4.5.0 we recommend checking out version 5.0.0 with completely new and more convenient API.
-Anyway, old API is still available, so anyone can migrate with little changes to the source sode. Therefore, it is recommended to migrate to the newest version for ALL users.
-List of the most important changes:
-##### Renaming
--  VSSCreateUserCardRequest -> VSSCreateCardRequest
-
-##### Deprecated
-- VSSRevokeUserCardRequest
-- VSSRevokeEmailCardRequest
 
 ## License
 
