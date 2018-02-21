@@ -6,6 +6,7 @@ env:
     - LC_CTYPE=en_US.UTF-8
     - PROJECT=VirgilSDK.xcodeproj
     - IOS_FRAMEWORK_SCHEME="VirgilSDK iOS"
+    - IOS_TEST_SCHEME="TestApp iOS"
     - MACOS_FRAMEWORK_SCHEME="VirgilSDK macOS"
     - TVOS_FRAMEWORK_SCHEME="VirgilSDK tvOS"
     - WATCHOS_FRAMEWORK_SCHEME="VirgilSDK watchOS"

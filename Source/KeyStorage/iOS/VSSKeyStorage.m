@@ -64,7 +64,7 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
 }
 
 - (BOOL)storeKeyEntries:(NSArray<VSSKeyEntry *> * __nonnull)keyEntries error:(NSError * __nullable * __nullable)errorPtr {
-    // FIXME: Optimize
+    // FIXME: Implement using kSecUseItemList when Apple fixes it
     for (VSSKeyEntry *keyEntry in keyEntries) {
         NSError *err;
         [self storeKeyEntry:keyEntry error:&err];
@@ -76,42 +76,6 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
             return NO;
         }
     }
-    
-//    NSMutableArray *queries = [[NSMutableArray alloc] initWithCapacity:keyEntries.count];
-//    
-//    for (VSSKeyEntry *keyEntry in keyEntries) {
-//        NSMutableDictionary *query = [self baseExtendedKeychainQueryForName:keyEntry.name];
-//        
-//        NSData *keyEntryData = [NSKeyedArchiver archivedDataWithRootObject:keyEntry];
-//        NSMutableDictionary *keySpecificData = [NSMutableDictionary dictionaryWithDictionary:
-//            @{
-//              (__bridge id)kSecValueData: keyEntryData,
-//              }];
-//        
-//        [query addEntriesFromDictionary:keySpecificData];
-//        
-//        [queries addObject:query];
-//    }
-//    
-//    NSDictionary *query;
-//    if (keyEntries.count > 1) {
-//        query = @{
-//                  (__bridge id)kSecUseItemList: queries
-//                  };
-//    }
-//    else {
-//        query = queries[0];
-//    }
-//    
-//    OSStatus status = SecItemAdd((__bridge CFDictionaryRef)query, nil);
-//    
-//    if (status != errSecSuccess) {
-//        if (errorPtr != nil) {
-//            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:status userInfo:@{ NSLocalizedDescriptionKey: @"Error while storing key in the keychain. See \"Security Error Codes\" (SecBase.h)." }];
-//        }
-//        
-//        return NO;
-//    }
     
     return YES;
 }
@@ -207,7 +171,7 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
 }
 
 - (BOOL)deleteKeyEntriesWithNames:(NSArray<NSString *> *)names error:(NSError **)errorPtr {
-    // FIXME: Optimize
+    // FIXME: Implement using kSecUseItemList when Apple fixes it
     for (NSString *name in names) {
         NSError *err;
         [self deleteKeyEntryWithName:name error:&err];
@@ -220,17 +184,6 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
         }
     }
     
-//    NSMutableDictionary *query = [self baseKeychainQueryForNames:names];
-//    
-//    OSStatus status = SecItemDelete((__bridge CFDictionaryRef)query);
-//    
-//    if (status != errSecSuccess) {
-//        if (errorPtr != nil) {
-//            *errorPtr = [[NSError alloc] initWithDomain:kVSSKeyStorageErrorDomain code:status userInfo:@{ NSLocalizedDescriptionKey: @"Error while deleting keys from the keychain. See \"Security Error Codes\" (SecBase.h)." }];
-//        }
-//        return NO;
-//    }
-    
     return YES;
 }
 
@@ -242,6 +195,10 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
             }];
     
     OSStatus status = SecItemDelete((__bridge CFDictionaryRef)query);
+    
+    if (status == errSecItemNotFound) {
+        return YES;
+    }
     
     if (status != errSecSuccess) {
         if (errorPtr != nil) {
