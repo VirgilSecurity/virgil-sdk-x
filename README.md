@@ -19,7 +19,7 @@ The Virgil SDK allows developers to get up and running with Virgil API quickly a
 ## SDK Features
 - communicate with [Virgil Cards Service][_cards_service]
 - manage users' Public Keys
-- setup your own Private Key storage
+- store private keys in secure local storage
 - use Virgil [Crypto library][_virgil_crypto]
 - use your own Crypto
 
@@ -147,8 +147,8 @@ Next, on your application target's “General” settings tab, in the “Embedde
 
 ## Usage Examples
 
-#### Generate and publish user's Cards with Public kKys inside on Cards Service
-Use the following lines of code to create and publish a user's Card with pPublic Key inside on Virgil Cards Service:
+#### Generate and publish user's Cards with Public Keys inside on Cards Service
+Use the following lines of code to create and publish a user's Card with Public Key inside on Virgil Cards Service:
 
 ```swift
 import VirgilSDK
