@@ -217,7 +217,12 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
 
         switch cardManager.publishCard(rawCard: rawCard1).startSync() {
         case .success: XCTFail()
-        case .failure: break
+        case .failure(let error):
+            guard let error = error as? CardManagerError,
+                error == .gotWrongCard else {
+                    XCTFail()
+                    return
+            }
         }
 
         let contentStnapshot = testsDict["STC-34.content_snapshot_base64"] as! String
