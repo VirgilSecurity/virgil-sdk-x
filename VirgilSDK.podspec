@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                  = "VirgilSDK"
-  s.version               = "4.6.0"
+  s.version               = "4.8.0"
   s.summary               = "Virgil SDK for Apple devices and languages."
   s.cocoapods_version     = ">= 0.36"
   s.homepage              = "https://github.com/VirgilSecurity/virgil-sdk-x/"
@@ -30,5 +30,5 @@ Pod::Spec.new do |s|
   s.ios.exclude_files     = "Source/**/macOS/*.{h,m}"
   s.osx.exclude_files     = "Source/**/iOS/*.{h,m}"
   s.requires_arc          = true
-  s.dependency "VirgilCrypto", "~> 2.3"
+  s.dependency "VirgilCrypto", "~> 2.5"
 end
