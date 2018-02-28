@@ -42,24 +42,25 @@ To integrate VirgilSDK into your Xcode project using Carthage, perform following
 1. Create an empty file with name `Cartfile` in your project's root folder, that lists the frameworks you’d like to use in your project.
 1. Add the following line to your `Cartfile`
 
-    ```ogdl
-    github "VirgilSecurity/virgil-sdk-x" ~> 4.6.0
-    ```
+```
+github "VirgilSecurity/virgil-sdk-x" ~> 4.8.0
+```
   
-1. Run `carthage update`. This will fetch dependencies into a `Carthage/Checkouts` folder inside your project's folder, then build each one or download a pre-compiled framework.
+1. Run `carthage update --no-use-binaries --platform iOS`. This will fetch dependencies into a `Carthage/Checkouts` folder inside your project's folder, then build each one or download a pre-compiled framework.
 1. On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, add each framework you want to use from the `Carthage/Build` folder inside your project's folder.
 1. On your application targets’ “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase”. Create a Run Script in which you specify your shell (ex: `/bin/sh`), add the following contents to the script area below the shell:
 
-  ```sh
-  /usr/local/bin/carthage copy-frameworks
-  ```
+```sh
+/usr/local/bin/carthage copy-frameworks
+```
 
   and add the paths to the frameworks you want to use under “Input Files”, e.g.:
 
-  ```
-  $(SRCROOT)/Carthage/Build/iOS/VirgilSDK.framework
-  $(SRCROOT)/Carthage/Build/iOS/VirgilCrypto.framework
-  ```
+```
+$(SRCROOT)/Carthage/Build/iOS/VirgilSDK.framework
+$(SRCROOT)/Carthage/Build/iOS/VirgilCrypto.framework
+$(SRCROOT)/Carthage/Build/iOS/VSCCrypto.framework
+```
 
 This script works around an [App Store submission bug](http://www.openradar.me/radar?id=6409498411401216) triggered by universal binaries and ensures that necessary bitcode-related files and dSYMs are copied when archiving.
 
@@ -72,12 +73,12 @@ When archiving your application for submission to the App Store or TestFlight, X
 1. Create an empty file with name `Cartfile` in your project's root folder, that lists the frameworks you’d like to use in your project.
 1. Add the following line to your `Cartfile`
 
-    ```ogdl
-    github "VirgilSecurity/virgil-sdk-x" ~> 4.6.0
-    ```
+```
+github "VirgilSecurity/virgil-sdk-x" ~> 4.8.0
+```
 
-1. Run `carthage update`. This will fetch dependencies into a `Carthage/Checkouts` folder inside your project's folder, then build each one or download a pre-compiled framework.
-1. On your application targets’ “General” settings tab, in the “Embedded Binaries” section, drag and drop each framework you want to use from the `Carthage/Build` folder inside your project's folder including VirgilSDK.framework and VirgilCrypto.framework.
+1. Run `carthage update --no-use-binaries --platform macOS`. This will fetch dependencies into a `Carthage/Checkouts` folder inside your project's folder, then build each one or download a pre-compiled framework.
+1. On your application targets’ “General” settings tab, in the “Embedded Binaries” section, drag and drop each framework you want to use from the `Carthage/Build` folder inside your project's folder including VirgilSDK.framework, VirgilCrypto.framework and VSCCrypto.framework.
 
 Additionally, you'll need to copy debug symbols for debugging and crash reporting on OS X.
 
@@ -86,15 +87,6 @@ Additionally, you'll need to copy debug symbols for debugging and crash reportin
 1. For each framework you’re using, drag and drop its corresponding dSYM file.
 
 ### CocoaPods
-
-**CocoaPods support for versions above 4.5.0 is SUSPENDED**.
-We RECOMMEND using Carthage to integrate VirgilSDK. For versions 4.5.0 and lower you can integrate using CocoaPods without use_frameworks! option in your podfile. The reason for this is that VirgilCrypto framework, which VirgilSDK depends on, includes static library, this creates transitive dependency with static library.
-More info can be found here:
-https://github.com/CocoaPods/CocoaPods/issues/6848
-and here:
-https://github.com/CocoaPods/CocoaPods/pull/6811.
-
-
 
 [CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
 
@@ -109,7 +101,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '10.0'
 
 target '<Your Target Name>' do
-    pod 'VirgilSDK', '~> 4.5.0'
+    pod 'VirgilSDK', '~> 4.8.0'
 end
 ```
 
@@ -214,8 +206,12 @@ Virgil Security has a powerful set of APIs, and the documentation is there to ge
 
 ## Migration notes
 
-For users of versions prior to 4.4.0 we recommend checking out version 4.4.0+ with completely new and more convenient API.
-Anyway, old API is still available, so anyone can migrate with little changes to the source sode. Therefore, it is recommended to migrate to the newest version for ALL users.
+### From version 4.7.0
+
+- VSCCrypto is now linked dynamically, so if you use Carthage you should link VSCCrypto.framework directly to your target and add it to Run script input files.
+
+### From version 4.4.0
+
 List of the most important changes:
 - Renaming: VSSCreateGlobalCardRequest -> VSSCreateEmailCardRequest
 - Renaming: VSSCreateCardRequest -> VSSCreateUserCardRequest
