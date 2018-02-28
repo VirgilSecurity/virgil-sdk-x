@@ -24,6 +24,12 @@
 @property (nonatomic) BOOL useVirgilServiceVerifiers;
 
 /**
+ BOOL value which indicates whether cards of version 3 will pass validation.
+ Default value is NO.
+ */
+@property (nonatomic) BOOL verifyV3Cards;
+
+/**
  NSDictionary which stores NSString with verifier id as Key and its VSSPublicKey as Value
  */
 @property (nonatomic, copy, readonly) NSDictionary<NSString *, VSSPublicKey *> * __nonnull verifiers;

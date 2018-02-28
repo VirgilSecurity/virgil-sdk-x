@@ -37,6 +37,7 @@ static NSString * const kVSSVraServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZ
     }
     
     copy.useVirgilServiceVerifiers = self.useVirgilServiceVerifiers;
+    copy.verifyV3Cards = self.verifyV3Cards;
     
     return copy;
 }
@@ -46,6 +47,7 @@ static NSString * const kVSSVraServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZ
     if (self) {
         _crypto = crypto;
         self.useVirgilServiceVerifiers = YES;
+        self.verifyV3Cards = NO;
         
         NSData *cardsServicePublicKeyData = [[NSData alloc] initWithBase64EncodedString:kVSSCardsServicePublicKey options:0];
         VSSPublicKey *cardsServicePublicKey = [crypto importPublicKeyFromData:cardsServicePublicKeyData];
@@ -86,7 +88,7 @@ static NSString * const kVSSVraServicePublicKey = @"LS0tLS1CRUdJTiBQVUJMSUMgS0VZ
 - (BOOL)validateCardResponse:(VSSCardResponse *)cardResponse {
     // Support for legacy Cards.
     if ([cardResponse.cardVersion isEqualToString:@"3.0"])
-        return YES;
+        return self.verifyV3Cards;
 
     VSSFingerprint *fingerprint = [self.crypto calculateFingerprintForData:cardResponse.snapshot];
     
