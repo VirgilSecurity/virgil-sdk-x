@@ -27,7 +27,8 @@ before_install:
 script:
   - openssl aes-256-cbc -K $encrypted_785bf4ec0237_key -iv $encrypted_785bf4ec0237_iv -in TestConfig.plist.enc -out TestConfig.plist -d
   - mv -f TestConfig.plist Tests/Data/TestConfig.plist
-  - carthage update --platform "$PLATFORM_NAME"
+
+  - carthage update --platform "$PLATFORM_NAME" --no-use-binaries
 
   - xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release clean build | xcpretty;
   - if [ $RUN_TESTS == "YES" ]; then
