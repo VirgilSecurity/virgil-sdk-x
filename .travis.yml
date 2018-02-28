@@ -1,6 +1,5 @@
-language: objective-c
-
-osx_image: xcode9
+language: swift
+osx_image: xcode9.2
 
 env:
   global:
@@ -10,14 +9,15 @@ env:
     - IOS_TEST_SCHEME="TestApp iOS"
     - MACOS_FRAMEWORK_SCHEME="VirgilSDK macOS"
     - MACOS_TEST_SCHEME="VirgilSDK macOS"
-    - IOS_SDK=iphonesimulator11.0
+    - IOS_SDK=iphonesimulator11.2
     - MACOS_SDK=macosx10.13
     - FRAMEWORK_NAME=VirgilSDK
   matrix:
-    - DESTINATION="OS=11.0,name=iPhone SE"  SCHEME="$IOS_FRAMEWORK_SCHEME"    TEST_SCHEME="$IOS_TEST_SCHEME"    SDK="$IOS_SDK"    PLATFORM_NAME="iOS"  RUN_TESTS="YES"  PUBLISH_DOCS="NO"   PUBLISH_CARTHAGE="NO"   POD_LIB_LINT="NO"
-    - DESTINATION="arch=x86_64"             SCHEME="$MACOS_FRAMEWORK_SCHEME"  TEST_SCHEME="$MACOS_TEST_SCHEME"  SDK="$MACOS_SDK"  PLATFORM_NAME="Mac"  RUN_TESTS="YES"  PUBLISH_DOCS="YES"  PUBLISH_CARTHAGE="YES"  POD_LIB_LINT="NO"
+    - DESTINATION="OS=11.2,name=iPhone SE"  SCHEME="$IOS_FRAMEWORK_SCHEME"    TEST_SCHEME="$IOS_TEST_SCHEME"    SDK="$IOS_SDK"    PLATFORM_NAME="iOS"  RUN_TESTS="YES"  PUBLISH_DOCS="NO"  PUBLISH_CARTHAGE="NO"   POD_LIB_LINT="NO"
+    - DESTINATION="arch=x86_64"             SCHEME="$MACOS_FRAMEWORK_SCHEME"  TEST_SCHEME="$MACOS_TEST_SCHEME"  SDK="$MACOS_SDK"  PLATFORM_NAME="Mac"  RUN_TESTS="YES"  PUBLISH_DOCS="NO"  PUBLISH_CARTHAGE="YES"  POD_LIB_LINT="NO"
 
 before_install:
+  - set -e
   - set -o pipefail
   - brew update
   - brew outdated carthage || brew upgrade carthage
@@ -25,7 +25,9 @@ before_install:
   - xcodebuild -showsdks
 
 script:
-  - carthage update --platform "$PLATFORM_NAME";
+  - openssl aes-256-cbc -K $encrypted_785bf4ec0237_key -iv $encrypted_785bf4ec0237_iv -in TestConfig.plist.enc -out TestConfig.plist -d
+  - mv -f TestConfig.plist Tests/Data/TestConfig.plist
+  - carthage update --platform "$PLATFORM_NAME"
 
   - xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release clean build | xcpretty;
   - if [ $RUN_TESTS == "YES" ]; then
@@ -52,7 +54,7 @@ after_success:
 before_deploy:
   # Generate carthage framework
   - if [ $PUBLISH_CARTHAGE == "YES" ]; then
-      carthage archive $FRAMEWORK_NAME;
+      carthage archive;
     fi
 
 deploy:
