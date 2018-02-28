@@ -25,7 +25,9 @@ Pod::Spec.new do |s|
                             'Source/Crypto/*.{h}',
                             'Source/Crypto/Keys/*.{h}',
                             'Source/DeviceManager/**/*.{h}',
-                            'Source/KeyStorage/**/*.{h}',
+                            'Source/KeyStorage/*.{h}',
+                            'Source/KeyStorage/iOS/*.{h}',
+                            'Source/KeyStorage/macOS/*.{h}',
                             'Source/HighLevel/*.{h}'
   s.ios.exclude_files     = "Source/**/macOS/*.{h,m}"
   s.osx.exclude_files     = "Source/**/iOS/*.{h,m}"
