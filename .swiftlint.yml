@@ -16,7 +16,6 @@ opt_in_rules:
   - explicit_init
   - explicit_top_level_acl
   - extension_access_modifier
-  - file_header # ???
   - first_where
   - force_unwrapping
   - implicitly_unwrapped_optional
@@ -43,13 +42,3 @@ excluded:
   - TestApp tvOS
 
 warning_threshold: 15
-
-file_header:
-  required_pattern: |
-                    \/\/
-                    \/\/  .*?\.swift
-                    \/\/  VirgilSDK
-                    \/\/
-                    \/\/  Created by .*? on \d{1,2}\/\d{1,2}\/\d{2}\.
-                    \/\/  Copyright © \d{4} VirgilSecurity\. All rights reserved\.
-                    \/\/
