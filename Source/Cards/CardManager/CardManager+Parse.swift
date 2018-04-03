@@ -72,6 +72,7 @@ extension CardManager {
 
             cardSignatures.append(cardSignature)
         }
+
         let createdAt = Date(timeIntervalSince1970: TimeInterval(rawCardContent.createdAt))
 
         return Card(identifier: cardId, identity: rawCardContent.identity, publicKey: publicKey,
