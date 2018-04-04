@@ -64,7 +64,7 @@ import Foundation
         super.init()
     }
     
-    internal func handleError(statusCode: Int, body: Data?) -> Error {
+    open func handleError(statusCode: Int, body: Data?) -> Error {
         if let body = body, let str = String(data: body, encoding: .utf8) {
             return NSError(domain: type(of: self).serviceErrorDomain, code: statusCode,
                            userInfo: [NSLocalizedDescriptionKey: str])
@@ -73,13 +73,13 @@ import Foundation
         return NSError(domain: type(of: self).serviceErrorDomain, code: statusCode)
     }
     
-    internal func validateResponse(_ response: Response) throws {
+    open func validateResponse(_ response: Response) throws {
         guard 200..<300 ~= response.statusCode else {
             throw self.handleError(statusCode: response.statusCode, body: response.body)
         }
     }
     
-    internal func processResponse<T: Decodable>(_ response: Response) throws -> T {
+    open func processResponse<T: Decodable>(_ response: Response) throws -> T {
         try self.validateResponse(response)
         
         guard let data = response.body else {
