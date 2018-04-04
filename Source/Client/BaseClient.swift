@@ -38,14 +38,14 @@ import Foundation
 
 /// Declares client error types and codes
 ///
-/// - constructingUrl: constructing url of endpoint failed
 /// - noBody: service response does not have body
 @objc(VSSBaseClientError) public enum BaseClientError: Int, Error {
     case noBody = 1
 }
 
+/// Base class for clients
 @objc(VSSBaseClient) open class BaseClient: NSObject {
-    /// Base URL for the Virgil Gateway
+    /// Base URL for a service
     @objc public let serviceUrl: URL
     /// HttpConnectionProtocol implementation to use for queries
     public let connection: HttpConnectionProtocol
