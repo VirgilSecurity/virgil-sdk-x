@@ -34,7 +34,9 @@ before_install:
 script:
   - openssl aes-256-cbc -K $encrypted_6015ea603613_key -iv $encrypted_6015ea603613_iv -in TestConfig.plist.enc -out TestConfig.plist -d
   - mv -f TestConfig.plist Tests/Data/TestConfig.plist
-  - carthage update --no-build
+
+  - carthage version
+  - carthage bootstrap --no-build
 
   - |
     if [ $SWIFT_LINT == "YES" ]; then
