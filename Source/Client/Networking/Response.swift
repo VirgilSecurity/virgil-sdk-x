@@ -36,7 +36,7 @@
 
 import Foundation
 
-/// /// Represents Http response
+/// Represents Http response
 open class Response: NSObject {
     /// HTTP status code
     public let statusCode: Int

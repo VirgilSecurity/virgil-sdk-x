@@ -51,10 +51,9 @@ extension CardClient: CardClientProtocol {
     /// - Returns: `GetCardResponse` if card found
     /// - Throws: CardClientError.constructingUrl, if url initialization failed
     ///           CardServiceError, if service returned correctly-formed error json
-    ///           CardClientError.noBody, if response's body is empty
     ///           NSError with CardClient.serviceErrorDomain error domain,
     ///               http status code as error code, and description string if present in http body
-    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder
+    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
     @objc open func getCard(withId cardId: String, token: String) throws -> GetCardResponse {
         guard let url = URL(string: "card/v5/\(cardId)", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
@@ -86,10 +85,9 @@ extension CardClient: CardClientProtocol {
     /// - Returns: `RawSignedModel` of created card
     /// - Throws: CardClientError.constructingUrl, if url initialization failed
     ///           CardServiceError, if service returned correctly-formed error json
-    ///           CardClientError.noBody, if response's body is empty
     ///           NSError with CardClient.serviceErrorDomain error domain,
     ///               http status code as error code, and description string if present in http body
-    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder
+    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
     @objc open func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
         guard let url = URL(string: "card/v5", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
@@ -110,10 +108,9 @@ extension CardClient: CardClientProtocol {
     /// - Returns: Array with `RawSignedModel`s of matched Virgil Cards
     /// - Throws: CardClientError.constructingUrl, if url initialization failed
     ///           CardServiceError, if service returned correctly-formed error json
-    ///           CardClientError.noBody, if response's body is empty
     ///           NSError with CardClient.serviceErrorDomain error domain,
     ///               http status code as error code, and description string if present in http body
-    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder
+    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
     @objc open func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
         guard let url = URL(string: "card/v5/actions/search", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
