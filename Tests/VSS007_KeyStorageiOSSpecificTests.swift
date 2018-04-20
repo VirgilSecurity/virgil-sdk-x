@@ -42,7 +42,7 @@ import VirgilCryptoApiImpl
 class VSS007_KeyStorageiOSSpecificTests: XCTestCase {
     private var crypto: VirgilCrypto!
     private var storage: KeyStorage!
-    private let numberOfKeys = 1
+    private let numberOfKeys = 10
     
     // MARK: Setup
     override func setUp() {
