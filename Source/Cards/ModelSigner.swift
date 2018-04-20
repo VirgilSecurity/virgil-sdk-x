@@ -114,14 +114,7 @@ import VirgilCryptoAPI
     /// - Throws: corresponding error id signature generation fails
     @objc public func selfSign(model: RawSignedModel, privateKey: PrivateKey,
                                extraFields: [String: String]? = nil) throws {
-        let additionalData: Data?
-        if let extraFields = extraFields {
-            additionalData = try JSONSerialization.data(withJSONObject: extraFields, options: [])
-        }
-        else {
-            additionalData = nil
-        }
-
-        try self.selfSign(model: model, privateKey: privateKey, additionalData: additionalData)
+        try self.sign(model: model, signer: ModelSigner.selfSignerIdentifier,
+                      privateKey: privateKey, extraFields: extraFields)
     }
 }
