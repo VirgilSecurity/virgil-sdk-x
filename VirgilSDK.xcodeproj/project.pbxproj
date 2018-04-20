@@ -227,6 +227,14 @@
 		4263A1FF1EBC801D00B13FF1 /* VSSKeyStorageConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 4263A1FA1EBC800400B13FF1 /* VSSKeyStorageConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4263A2001EBC804C00B13FF1 /* VSSKeyStorageConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4263A1FB1EBC800400B13FF1 /* VSSKeyStorageConfiguration.m */; };
 		4263A2011EBC805100B13FF1 /* VSSKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4263A1F91EBC800400B13FF1 /* VSSKeyStorage.m */; };
+		4267C65D2089DF0E007EAEB2 /* OperationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4267C65C2089DF0E007EAEB2 /* OperationUtils.swift */; };
+		4267C65E2089DF0E007EAEB2 /* OperationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4267C65C2089DF0E007EAEB2 /* OperationUtils.swift */; };
+		4267C65F2089DF0E007EAEB2 /* OperationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4267C65C2089DF0E007EAEB2 /* OperationUtils.swift */; };
+		4267C6602089DF0E007EAEB2 /* OperationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4267C65C2089DF0E007EAEB2 /* OperationUtils.swift */; };
+		4267C6622089DFAE007EAEB2 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4267C6612089DFAE007EAEB2 /* ServiceError.swift */; };
+		4267C6632089DFAE007EAEB2 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4267C6612089DFAE007EAEB2 /* ServiceError.swift */; };
+		4267C6642089DFAE007EAEB2 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4267C6612089DFAE007EAEB2 /* ServiceError.swift */; };
+		4267C6652089DFAE007EAEB2 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4267C6612089DFAE007EAEB2 /* ServiceError.swift */; };
 		4284C34B1F6AAB7B00B75491 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C34A1F6AAB7B00B75491 /* Log.swift */; };
 		4284C34C1F6AAB8000B75491 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C34A1F6AAB7B00B75491 /* Log.swift */; };
 		4284C3A81F6BE9A200B75491 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4284C3861F6BE95700B75491 /* VirgilSDK.framework */; };
@@ -870,6 +878,8 @@
 		4263A1F91EBC800400B13FF1 /* VSSKeyStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeyStorage.m; sourceTree = "<group>"; };
 		4263A1FA1EBC800400B13FF1 /* VSSKeyStorageConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorageConfiguration.h; sourceTree = "<group>"; };
 		4263A1FB1EBC800400B13FF1 /* VSSKeyStorageConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeyStorageConfiguration.m; sourceTree = "<group>"; };
+		4267C65C2089DF0E007EAEB2 /* OperationUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationUtils.swift; sourceTree = "<group>"; };
+		4267C6612089DFAE007EAEB2 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		4284C34A1F6AAB7B00B75491 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS001_CardClientTests.m; sourceTree = "<group>"; };
 		4284C3861F6BE95700B75491 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1032,6 +1042,7 @@
 		1624B83120120872007D223C /* Operation */ = {
 			isa = PBXGroup;
 			children = (
+				4267C65C2089DF0E007EAEB2 /* OperationUtils.swift */,
 				1624B82C2010AE75007D223C /* AsyncOperation.swift */,
 				1624B83220120898007D223C /* GenericOperation.swift */,
 				4229CCC12039D22400AFEF4F /* Result.swift */,
@@ -1371,6 +1382,7 @@
 				42DD28F82074F6D900C9C014 /* Cards */,
 				42F0AB461D9ABF2200747799 /* Networking */,
 				42DD28F32074EE8E00C9C014 /* BaseClient.swift */,
+				4267C6612089DFAE007EAEB2 /* ServiceError.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -2085,6 +2097,7 @@
 				4229CCBE2039D21100AFEF4F /* GenericOperation+Dependencies.swift in Sources */,
 				4284C4661F70057800B75491 /* VerifierCredentials.swift in Sources */,
 				4284C4211F6C03F400B75491 /* Data+hex.swift in Sources */,
+				4267C6632089DFAE007EAEB2 /* ServiceError.swift in Sources */,
 				4263A2011EBC805100B13FF1 /* VSSKeyStorage.m in Sources */,
 				1624B8392012151B007D223C /* CallbackOperation.swift in Sources */,
 				16E7F5B720332511009A9025 /* PrivateKeyEntry.swift in Sources */,
@@ -2099,6 +2112,7 @@
 				422B4D39203494F3003923E2 /* CardManager+Parse.swift in Sources */,
 				4284C4071F6C00C300B75491 /* CardManager.swift in Sources */,
 				42DA83AE20321F980091D223 /* CardManager+Obj-C.swift in Sources */,
+				4267C65E2089DF0E007EAEB2 /* OperationUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2175,6 +2189,7 @@
 				16AE0B342020DA9A005B311B /* VSSKeyStorageConfiguration.m in Sources */,
 				42DD29182074F6D900C9C014 /* GetCardResponse.swift in Sources */,
 				16E7F5B320332002009A9025 /* PrivateKeyStorage.swift in Sources */,
+				4267C6642089DFAE007EAEB2 /* ServiceError.swift in Sources */,
 				4229CCA520371C7D00AFEF4F /* JwtSignatureContent.swift in Sources */,
 				4284C3C31F6BEA2100B75491 /* HttpConnection.swift in Sources */,
 				16B3FD6A20079DF5008F0357 /* CardSignature.swift in Sources */,
@@ -2208,6 +2223,7 @@
 				42DA83B320321F980091D223 /* CardManagerParams.swift in Sources */,
 				16AE0B322020DA95005B311B /* VSSKeyStorage.m in Sources */,
 				16B3FD562005059C008F0357 /* JwtHeaderContent.swift in Sources */,
+				4267C65F2089DF0E007EAEB2 /* OperationUtils.swift in Sources */,
 				422B4D3A203494F3003923E2 /* CardManager+Parse.swift in Sources */,
 				16B3FD77200CB88D008F0357 /* ConstAccessTokenProvider.swift in Sources */,
 				42DA83A720321F980091D223 /* CardManager+Operations.swift in Sources */,
@@ -2237,6 +2253,7 @@
 				16AE0B352020DA9B005B311B /* VSSKeyStorageConfiguration.m in Sources */,
 				42DD29192074F6D900C9C014 /* GetCardResponse.swift in Sources */,
 				16E7F5B120332002009A9025 /* PrivateKeyStorage.swift in Sources */,
+				4267C6652089DFAE007EAEB2 /* ServiceError.swift in Sources */,
 				4229CCA620371C7D00AFEF4F /* JwtSignatureContent.swift in Sources */,
 				4284C3C51F6BEA2200B75491 /* HttpConnection.swift in Sources */,
 				16B3FD6B20079DF5008F0357 /* CardSignature.swift in Sources */,
@@ -2270,6 +2287,7 @@
 				42DA83B420321F980091D223 /* CardManagerParams.swift in Sources */,
 				16AE0B332020DA96005B311B /* VSSKeyStorage.m in Sources */,
 				16B3FD572005059C008F0357 /* JwtHeaderContent.swift in Sources */,
+				4267C6602089DF0E007EAEB2 /* OperationUtils.swift in Sources */,
 				422B4D3B203494F3003923E2 /* CardManager+Parse.swift in Sources */,
 				16B3FD78200CB88D008F0357 /* ConstAccessTokenProvider.swift in Sources */,
 				42DA83A820321F980091D223 /* CardManager+Operations.swift in Sources */,
@@ -2323,6 +2341,7 @@
 			files = (
 				4229CCBD2039D21100AFEF4F /* GenericOperation+Dependencies.swift in Sources */,
 				4284C4561F6FECB600B75491 /* CardVerifier.swift in Sources */,
+				4267C6622089DFAE007EAEB2 /* ServiceError.swift in Sources */,
 				16B3FD7A200CBB6C008F0357 /* CallbackJwtProvider.swift in Sources */,
 				42DD290A2074F6D900C9C014 /* RawSignedModel.swift in Sources */,
 				4284C4B01F716C7700B75491 /* Response.swift in Sources */,
@@ -2372,6 +2391,7 @@
 				16B3FD6D2007A8B1008F0357 /* Whitelist.swift in Sources */,
 				4284C3FF1F6C00C000B75491 /* Card.swift in Sources */,
 				42DD291E2074F6D900C9C014 /* CardClient+Queries.swift in Sources */,
+				4267C65D2089DF0E007EAEB2 /* OperationUtils.swift in Sources */,
 				42CF02001F6AA2AD003ABB19 /* HttpConnection.swift in Sources */,
 				16B3FD59200507F3008F0357 /* JwtBodyContent.swift in Sources */,
 				16B3FD5E20078113008F0357 /* Data+base64Url.swift in Sources */,

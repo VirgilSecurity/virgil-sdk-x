@@ -48,10 +48,11 @@ extension CardManager {
         let makeAggregateOperation: (Bool) -> GenericOperation<Card> = { force in
             return CallbackOperation { _, completion in
                 let tokenContext = TokenContext(operation: "get", forceReload: force)
-                let getTokenOperation = self.makeGetTokenOperation(tokenContext: tokenContext)
+                let getTokenOperation = OperationUtils.makeGetTokenOperation(tokenContext: tokenContext,
+                                                                             accessTokenProvider: self.accessTokenProvider)
                 let getCardOperation = self.makeGetCardOperation(cardId: cardId)
                 let verifyCardOperation = self.makeVerifyCardOperation()
-                let completionOperation = self.makeCompletionOperation(completion: completion)
+                let completionOperation = OperationUtils.makeCompletionOperation(completion: completion)
 
                 getCardOperation.addDependency(getTokenOperation)
                 verifyCardOperation.addDependency(getCardOperation)
@@ -70,7 +71,7 @@ extension CardManager {
             return makeAggregateOperation(false)
         }
         else {
-            return self.makeRetryAggregate(makeAggregateOperation: makeAggregateOperation)
+            return OperationUtils.makeRetryAggregate(makeAggregateOperation: makeAggregateOperation)
         }
     }
 
@@ -118,12 +119,13 @@ extension CardManager {
         let makeAggregateOperation: (Bool) -> GenericOperation<Card> = { forceReload in
             return CallbackOperation { _, completion in
                 let tokenContext = TokenContext(operation: "publish", forceReload: forceReload)
-                let getTokenOperation = self.makeGetTokenOperation(tokenContext: tokenContext)
+                let getTokenOperation = OperationUtils.makeGetTokenOperation(tokenContext: tokenContext,
+                                                                             accessTokenProvider: self.accessTokenProvider)
                 let generateRawCardOperation = self.makeGenerateRawCardOperation(rawCard: rawCard)
                 let signOperation = self.makeAdditionalSignOperation()
                 let publishCardOperation = self.makePublishCardOperation()
                 let verifyCardOperation = self.makeVerifyCardOperation()
-                let completionOperation = self.makeCompletionOperation(completion: completion)
+                let completionOperation = OperationUtils.makeCompletionOperation(completion: completion)
 
                 generateRawCardOperation.addDependency(getTokenOperation)
                 signOperation.addDependency(generateRawCardOperation)
@@ -148,7 +150,7 @@ extension CardManager {
             return makeAggregateOperation(false)
         }
         else {
-            return self.makeRetryAggregate(makeAggregateOperation: makeAggregateOperation)
+            return OperationUtils.makeRetryAggregate(makeAggregateOperation: makeAggregateOperation)
         }
     }
 
@@ -169,14 +171,15 @@ extension CardManager {
         let makeAggregateOperation: (Bool) -> GenericOperation<Card> = { forceReload in
             return CallbackOperation { operation, completion in
                 let tokenContext = TokenContext(operation: "publish", forceReload: forceReload)
-                let getTokenOperation = self.makeGetTokenOperation(tokenContext: tokenContext)
+                let getTokenOperation = OperationUtils.makeGetTokenOperation(tokenContext: tokenContext,
+                                                                            accessTokenProvider: self.accessTokenProvider)
                 let generateRawCardOperation =
                     self.makeGenerateRawCardOperation(privateKey: privateKey, publicKey: publicKey,
                                                       previousCardId: previousCardId, extraFields: extraFields)
                 let signOperation = self.makeAdditionalSignOperation()
                 let publishCardOperation = self.makePublishCardOperation()
                 let verifyCardOperation = self.makeVerifyCardOperation()
-                let completionOperation = self.makeCompletionOperation(completion: completion)
+                let completionOperation = OperationUtils.makeCompletionOperation(completion: completion)
 
                 generateRawCardOperation.addDependency(getTokenOperation)
                 signOperation.addDependency(generateRawCardOperation)
@@ -201,7 +204,7 @@ extension CardManager {
             return makeAggregateOperation(false)
         }
         else {
-            return self.makeRetryAggregate(makeAggregateOperation: makeAggregateOperation)
+            return OperationUtils.makeRetryAggregate(makeAggregateOperation: makeAggregateOperation)
         }
     }
 
@@ -217,10 +220,11 @@ extension CardManager {
         let makeAggregateOperation: (Bool) -> GenericOperation<[Card]> = { forceReload in
             return CallbackOperation { _, completion in
                 let tokenContext = TokenContext(operation: "search", forceReload: forceReload)
-                let getTokenOperation = self.makeGetTokenOperation(tokenContext: tokenContext)
+                let getTokenOperation = OperationUtils.makeGetTokenOperation(tokenContext: tokenContext,
+                                                                             accessTokenProvider: self.accessTokenProvider)
                 let searchCardsOperation = self.makeSearchCardsOperation(identity: identity)
                 let verifyCardsOperation = self.makeVerifyCardsOperation()
-                let completionOperation = self.makeCompletionOperation(completion: completion)
+                let completionOperation = OperationUtils.makeCompletionOperation(completion: completion)
 
                 searchCardsOperation.addDependency(getTokenOperation)
                 verifyCardsOperation.addDependency(searchCardsOperation)
@@ -239,7 +243,7 @@ extension CardManager {
             return makeAggregateOperation(false)
         }
         else {
-            return self.makeRetryAggregate(makeAggregateOperation: makeAggregateOperation)
+            return OperationUtils.makeRetryAggregate(makeAggregateOperation: makeAggregateOperation)
         }
     }
 }

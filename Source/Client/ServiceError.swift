@@ -36,44 +36,25 @@
 
 import Foundation
 
-/// Declares client error types and codes
-///
-/// - constructingUrl: constructing url of endpoint failed
-@objc(VSSCardClientError) public enum CardClientError: Int, Error {
-    case constructingUrl = 1
-}
-
-/// Class representing operations with Virgil Cards service
-@objc(VSSCardClient) open class CardClient: BaseClient {
-    /// Default URL for service
-    @objc public static let defaultURL = URL(string: "https://api.virgilsecurity.com")!
-
-    /// Initializes a new `CardClient` instance
+/// Represent card service error
+@objc(VSSServiceError) public final class ServiceError: NSObject, CustomNSError {
+    /// Http status code
+    @objc public let httpStatusCode: Int
+    /// Recieved and decoded `RawServiceError`
+    @objc public let rawServiceError: RawServiceError
+    
+    /// Initializer
     ///
-    /// - Parameters:
-    ///   - serviceUrl: URL of service client will use
-    ///   - connection: custom HTTPConnection
-    public override init(serviceUrl: URL = CardClient.defaultURL, connection: HttpConnectionProtocol) {
-        super.init(serviceUrl: serviceUrl, connection: connection)
+    /// - Parameter rawServiceError: recieved and decoded rawServiceError
+    @objc public init(httpStatusCode: Int, rawServiceError: RawServiceError) {
+        self.httpStatusCode = httpStatusCode
+        self.rawServiceError = rawServiceError
     }
-
-    /// Initializes a new `CardClient` instance
-    @objc convenience public init() {
-        self.init(serviceUrl: CardClient.defaultURL)
-    }
-
-    /// Initializes a new `CardClient` instance
-    ///
-    /// - Parameter serviceUrl: URL of service client will use
-    @objc convenience public init(serviceUrl: URL) {
-        self.init(serviceUrl: serviceUrl, connection: HttpConnection())
-    }
-
-    override open func handleError(statusCode: Int, body: Data?) -> Error {
-        if let body = body, let rawServiceError = try? JSONDecoder().decode(RawServiceError.self, from: body) {
-            return ServiceError(httpStatusCode: statusCode, rawServiceError: rawServiceError)
-        }
-        
-        return super.handleError(statusCode: statusCode, body: body)
-    }
+    
+    /// Error domain or Error instances thrown from Service
+    @objc public static var errorDomain: String { return "VirgilSDK.ServiceErrorDomain" }
+    /// Code of error
+    @objc public var errorCode: Int { return self.rawServiceError.code }
+    /// Provides info about the error. Error message can be recieve by NSLocalizedDescriptionKey
+    @objc public var errorUserInfo: [String: Any] { return [NSLocalizedDescriptionKey: self.rawServiceError.message] }
 }
