@@ -36,7 +36,7 @@
 
 import Foundation
 
-class OperationUtils {
+public final class OperationUtils {
     class func makeEmptyOperation() -> GenericOperation<Void> {
         return CallbackOperation { _, completion in
             completion(Void(), nil)
