@@ -37,13 +37,13 @@
 import Foundation
 
 public final class OperationUtils {
-    class func makeEmptyOperation() -> GenericOperation<Void> {
+    public class func makeEmptyOperation() -> GenericOperation<Void> {
         return CallbackOperation { _, completion in
             completion(Void(), nil)
         }
     }
     
-    class func makeCompletionOperation<T>(completion: @escaping (T?, Error?) -> Void) -> GenericOperation<Void> {
+    public class func makeCompletionOperation<T>(completion: @escaping (T?, Error?) -> Void) -> GenericOperation<Void> {
         let completionOperation = CallbackOperation { _, completion in
             completion(Void(), nil)
         }
@@ -67,9 +67,9 @@ public final class OperationUtils {
     }
     
     private class func makeRetryOperation(aggregateOperation: Operation,
-                                    makeAggregateOperation: @escaping (Bool) -> Operation,
-                                    completionOperation: Operation,
-                                    queue: OperationQueue) -> GenericOperation<Void> {
+                                          makeAggregateOperation: @escaping (Bool) -> Operation,
+                                          completionOperation: Operation,
+                                          queue: OperationQueue) -> GenericOperation<Void> {
         let retryCheckOp = CallbackOperation<Void> { [unowned completionOperation, queue] operation, completion in
             if let error = operation.findDependencyError(),
                 let serviceError = error as? ServiceError,
@@ -87,7 +87,7 @@ public final class OperationUtils {
         return retryCheckOp
     }
     
-    class func makeRetryAggregate<T>(
+    public class func makeRetryAggregate<T>(
         makeAggregateOperation: @escaping (Bool) -> GenericOperation<T>)-> GenericOperation<T> {
         return CallbackOperation<T> { _, completion in
             let queue = OperationQueue()
@@ -109,7 +109,8 @@ public final class OperationUtils {
         }
     }
     
-    class func makeGetTokenOperation(tokenContext: TokenContext, accessTokenProvider: AccessTokenProvider) -> GenericOperation<AccessToken> {
+    public class func makeGetTokenOperation(tokenContext: TokenContext,
+                                            accessTokenProvider: AccessTokenProvider) -> GenericOperation<AccessToken> {
         return CallbackOperation<AccessToken> { _, completion in
             accessTokenProvider.getToken(with: tokenContext, completion: completion)
         }
