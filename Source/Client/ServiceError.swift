@@ -42,7 +42,7 @@ import Foundation
     @objc public let httpStatusCode: Int
     /// Recieved and decoded `RawServiceError`
     @objc public let rawServiceError: RawServiceError
-    
+
     /// Initializer
     ///
     /// - Parameter rawServiceError: recieved and decoded rawServiceError
@@ -50,7 +50,7 @@ import Foundation
         self.httpStatusCode = httpStatusCode
         self.rawServiceError = rawServiceError
     }
-    
+
     /// Error domain or Error instances thrown from Service
     @objc public static var errorDomain: String { return "VirgilSDK.ServiceErrorDomain" }
     /// Code of error

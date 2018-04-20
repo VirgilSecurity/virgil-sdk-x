@@ -51,7 +51,7 @@ import Foundation
     public let connection: HttpConnectionProtocol
     /// Error domain for Error instances thrown from service
     @objc open class var serviceErrorDomain: String { return "VirgilSDK.BaseServiceErrorDomain" }
-    
+
     /// Initializes a new `BaseClient` instance
     ///
     /// - Parameters:
@@ -60,34 +60,34 @@ import Foundation
     public init(serviceUrl: URL, connection: HttpConnectionProtocol) {
         self.serviceUrl = serviceUrl
         self.connection = connection
-        
+
         super.init()
     }
-    
+
     open func handleError(statusCode: Int, body: Data?) -> Error {
         if let body = body, let str = String(data: body, encoding: .utf8) {
             return NSError(domain: type(of: self).serviceErrorDomain, code: statusCode,
                            userInfo: [NSLocalizedDescriptionKey: str])
         }
-        
+
         return NSError(domain: type(of: self).serviceErrorDomain, code: statusCode)
     }
-    
+
     open func validateResponse(_ response: Response) throws {
         guard 200..<300 ~= response.statusCode else {
             throw self.handleError(statusCode: response.statusCode, body: response.body)
         }
     }
-    
+
     open func processResponse<T: Decodable>(_ response: Response) throws -> T {
         try self.validateResponse(response)
-        
+
         guard let data = response.body else {
             throw BaseClientError.noBody
         }
-        
+
         let responseModel = try JSONDecoder().decode(T.self, from: data)
-        
+
         return responseModel
     }
 }

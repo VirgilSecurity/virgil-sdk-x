@@ -48,8 +48,8 @@ extension CardManager {
         let makeAggregateOperation: (Bool) -> GenericOperation<Card> = { force in
             return CallbackOperation { _, completion in
                 let tokenContext = TokenContext(operation: "get", forceReload: force)
-                let getTokenOperation = OperationUtils.makeGetTokenOperation(tokenContext: tokenContext,
-                                                                             accessTokenProvider: self.accessTokenProvider)
+                let getTokenOperation = OperationUtils.makeGetTokenOperation(
+                    tokenContext: tokenContext, accessTokenProvider: self.accessTokenProvider)
                 let getCardOperation = self.makeGetCardOperation(cardId: cardId)
                 let verifyCardOperation = self.makeVerifyCardOperation()
                 let completionOperation = OperationUtils.makeCompletionOperation(completion: completion)
@@ -119,8 +119,8 @@ extension CardManager {
         let makeAggregateOperation: (Bool) -> GenericOperation<Card> = { forceReload in
             return CallbackOperation { _, completion in
                 let tokenContext = TokenContext(operation: "publish", forceReload: forceReload)
-                let getTokenOperation = OperationUtils.makeGetTokenOperation(tokenContext: tokenContext,
-                                                                             accessTokenProvider: self.accessTokenProvider)
+                let getTokenOperation = OperationUtils.makeGetTokenOperation(
+                    tokenContext: tokenContext, accessTokenProvider: self.accessTokenProvider)
                 let generateRawCardOperation = self.makeGenerateRawCardOperation(rawCard: rawCard)
                 let signOperation = self.makeAdditionalSignOperation()
                 let publishCardOperation = self.makePublishCardOperation()
@@ -171,8 +171,8 @@ extension CardManager {
         let makeAggregateOperation: (Bool) -> GenericOperation<Card> = { forceReload in
             return CallbackOperation { operation, completion in
                 let tokenContext = TokenContext(operation: "publish", forceReload: forceReload)
-                let getTokenOperation = OperationUtils.makeGetTokenOperation(tokenContext: tokenContext,
-                                                                            accessTokenProvider: self.accessTokenProvider)
+                let getTokenOperation = OperationUtils.makeGetTokenOperation(
+                    tokenContext: tokenContext, accessTokenProvider: self.accessTokenProvider)
                 let generateRawCardOperation =
                     self.makeGenerateRawCardOperation(privateKey: privateKey, publicKey: publicKey,
                                                       previousCardId: previousCardId, extraFields: extraFields)
@@ -220,8 +220,8 @@ extension CardManager {
         let makeAggregateOperation: (Bool) -> GenericOperation<[Card]> = { forceReload in
             return CallbackOperation { _, completion in
                 let tokenContext = TokenContext(operation: "search", forceReload: forceReload)
-                let getTokenOperation = OperationUtils.makeGetTokenOperation(tokenContext: tokenContext,
-                                                                             accessTokenProvider: self.accessTokenProvider)
+                let getTokenOperation = OperationUtils.makeGetTokenOperation(
+                    tokenContext: tokenContext, accessTokenProvider: self.accessTokenProvider)
                 let searchCardsOperation = self.makeSearchCardsOperation(identity: identity)
                 let verifyCardsOperation = self.makeVerifyCardsOperation()
                 let completionOperation = OperationUtils.makeCompletionOperation(completion: completion)

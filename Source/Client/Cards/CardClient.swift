@@ -73,7 +73,7 @@ import Foundation
         if let body = body, let rawServiceError = try? JSONDecoder().decode(RawServiceError.self, from: body) {
             return ServiceError(httpStatusCode: statusCode, rawServiceError: rawServiceError)
         }
-        
+
         return super.handleError(statusCode: statusCode, body: body)
     }
 }
