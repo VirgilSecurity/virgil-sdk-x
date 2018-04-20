@@ -71,7 +71,7 @@ static const NSTimeInterval timeout = 8.;
         completionHandler([jwt stringRepresentation], err);
     }];
 
-    VSSTokenContext *tokenContext = [[VSSTokenContext alloc] initWithIdentity:@"some_identity" operation:@"test" forceReload:NO];
+    VSSTokenContext *tokenContext = [[VSSTokenContext alloc] initWithIdentity:@"some_identity" service:@"cards" operation:@"test" forceReload:NO];
     [callbackJwtProvider getTokenWith:tokenContext completion:^(id<VSSAccessToken> jwt, NSError *error) {
         XCTAssert(error == nil && jwt != nil);
 
@@ -110,7 +110,7 @@ static const NSTimeInterval timeout = 8.;
     NSTimeInterval ttl = 2;
     VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:crypto];
     VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] apiPublicKeyIdentifier:@"id" accessTokenSigner:signer appId:@"app_id" ttl:ttl];
-    VSSTokenContext *tokenContext = [[VSSTokenContext alloc] initWithIdentity:@"some_identity1" operation:@"test" forceReload:NO];
+    VSSTokenContext *tokenContext = [[VSSTokenContext alloc] initWithIdentity:@"some_identity1" service:@"cards" operation:@"test" forceReload:NO];
     VSSJwt *jwt = [generator generateTokenWithIdentity:@"some_identity2" additionalData:nil error:&err];
     XCTAssert(err == nil);
 

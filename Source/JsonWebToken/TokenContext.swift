@@ -40,6 +40,8 @@ import Foundation
 @objc(VSSTokenContext) public class TokenContext: NSObject {
     /// Identity to use in token
     @objc public let identity: String?
+    /// Requested service
+    @objc public let service: String
     /// Operation for which token is needed
     /// CardManager uses following operations:
     /// - "get"
@@ -53,10 +55,12 @@ import Foundation
     ///
     /// - Parameters:
     ///   - identity: Identity to use in token
+    ///   - service: Requested service
     ///   - operation: Operation for which token is needed
     ///   - forceReload: AccessTokenProvider should reset cached token, if such exist
-    @objc public init(identity: String? = nil, operation: String, forceReload: Bool = false) {
+    @objc public init(identity: String? = nil, service: String, operation: String, forceReload: Bool = false) {
         self.identity = identity
+        self.service = service
         self.operation = operation
         self.forceReload = forceReload
     }
