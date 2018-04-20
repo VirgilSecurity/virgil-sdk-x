@@ -331,7 +331,7 @@
     XCTAssert([jwt.bodyContent.appId isEqualToString:@"13497c3c795e3a6c32643b0a76957b70d2332080762469cdbec89d6390e6dbd7"]);
     XCTAssert(jwt.bodyContent.issuedAt.timeIntervalSince1970 == 1518513309);
     XCTAssert(jwt.bodyContent.expiresAt.timeIntervalSince1970 == 1518513909);
-    XCTAssert(jwt.isExpired == true);
+    XCTAssert([jwt isExpiredWithDate:NSDate.date] == true);
     
     XCTAssert([jwt.stringRepresentation isEqualToString:self.testData[@"STC-22.jwt"]]);
     
@@ -375,7 +375,7 @@
     
     XCTAssert([jwt.bodyContent.identity isEqualToString:identity]);
     XCTAssert([jwt.bodyContent.appId isEqualToString:self.testData[@"STC-23.app_id"]]);
-    XCTAssert(!jwt.isExpired);
+    XCTAssert(![jwt isExpiredWithDate:NSDate.date]);
     
     XCTAssert([jwt.bodyContent.additionalData isEqualToDictionary:dic]);
     

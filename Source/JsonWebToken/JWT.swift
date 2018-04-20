@@ -136,8 +136,9 @@ import Foundation
 
     /// Returns whether or not token is expired
     ///
+    /// - Parameter date: current date
     /// - Returns: true if token is expired, false otherwise
-    @objc public func isExpired() -> Bool {
-        return Date() >= self.bodyContent.expiresAt
+    @objc public func isExpired(date: Date = Date()) -> Bool {
+        return date >= self.bodyContent.expiresAt
     }
 }

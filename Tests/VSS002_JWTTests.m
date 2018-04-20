@@ -99,7 +99,7 @@ static const NSTimeInterval timeout = 8.;
     }];
 }
 
--(void)test002_STC_37 {
+- (void)test002_STC_37 {
     XCTestExpectation *ex = [self expectationWithDescription:@"ConstAccessTokenProvider should always return the same token regardless of the tokenContext"];
 
     NSError *err;
@@ -131,7 +131,7 @@ static const NSTimeInterval timeout = 8.;
     }];
 }
 
--(void)test003_STC_28 {
+- (void)test003_STC_28 {
     NSError *error;
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *path = [bundle pathForResource:@"data" ofType:@"json"];
@@ -155,7 +155,7 @@ static const NSTimeInterval timeout = 8.;
     XCTAssert([issuedAt isEqualToString:testData[@"STC-28.jwt_issued_at"]]);
     NSString *expiresAt = [NSString stringWithFormat:@"%ld", (long)jwt.bodyContent.expiresAt.timeIntervalSince1970];
     XCTAssert([expiresAt isEqualToString:testData[@"STC-28.jwt_expires_at"]]);
-    XCTAssert(jwt.isExpired == true);
+    XCTAssert([jwt isExpiredWithDate:NSDate.date] == true);
 
     NSData *data = [testData[@"STC-28.jwt_additional_data"] dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
@@ -164,7 +164,7 @@ static const NSTimeInterval timeout = 8.;
     XCTAssert([[jwt.signatureContent.signature base64EncodedStringWithOptions:0] isEqualToString:testData[@"STC-28.jwt_signature_base64"]]);
 }
 
--(void)test004_STC_29 {
+- (void)test004_STC_29 {
     NSError *error;
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     NSString *path = [bundle pathForResource:@"data" ofType:@"json"];
@@ -188,13 +188,55 @@ static const NSTimeInterval timeout = 8.;
     XCTAssert([issuedAt isEqualToString:testData[@"STC-29.jwt_issued_at"]]);
     NSString *expiresAt = [NSString stringWithFormat:@"%ld", (long)jwt.bodyContent.expiresAt.timeIntervalSince1970];
     XCTAssert([expiresAt isEqualToString:testData[@"STC-29.jwt_expires_at"]]);
-    XCTAssert(jwt.isExpired == false);
+    XCTAssert([jwt isExpiredWithDate:NSDate.date] == false);
 
     NSData *data = [testData[@"STC-29.jwt_additional_data"] dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
     XCTAssert([jwt.bodyContent.additionalData isEqualToDictionary:dic]);
 
     XCTAssert([[jwt.signatureContent.signature base64EncodedStringWithOptions:0] isEqualToString:testData[@"STC-29.jwt_signature_base64"]]);
+}
+
+- (void)test005_STC_38 {
+    XCTestExpectation *ex = [self expectationWithDescription:@"callbackJwtProvider should cache token"];
+    NSTimeInterval ttl = 10;
+    VSSCachingJwtProvider *cachingJwtProvider = [[VSSCachingJwtProvider alloc] initWithRenewTokenCallback:^(VSSTokenContext *tokenContext, void(^completionHandler)(NSString* token, NSError* error)) {
+        VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+        
+        NSError *err;
+        VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
+        XCTAssert(err == nil);
+        
+        VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:crypto];
+        VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] apiPublicKeyIdentifier:@"id" accessTokenSigner:signer appId:@"app_id" ttl:ttl];
+        
+        NSString *identity = tokenContext.identity;
+        VSSJwt *jwt = [generator generateTokenWithIdentity:identity additionalData:nil error:&err];
+        XCTAssert(err == nil);
+        
+        completionHandler([jwt stringRepresentation], err);
+    }];
+    
+    VSSTokenContext *tokenContext = [[VSSTokenContext alloc] initWithIdentity:@"some_identity" service:@"cards" operation:@"test" forceReload:NO];
+    [cachingJwtProvider getTokenWith:tokenContext completion:^(id<VSSAccessToken> jwt, NSError *error) {
+        XCTAssert(error == nil && jwt != nil);
+        
+        [cachingJwtProvider getTokenWith:tokenContext completion:^(id<VSSAccessToken> newJwt, NSError *error) {
+            XCTAssert(error == nil && newJwt == jwt);
+            sleep(ttl);
+            
+            [cachingJwtProvider getTokenWith:tokenContext completion:^(id<VSSAccessToken> veryNewJwt, NSError *error) {
+                XCTAssert(error == nil && veryNewJwt != nil && veryNewJwt != newJwt);
+                
+                [ex fulfill];
+            }];
+        }];
+    }];
+    
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
+    }];
 }
 
 @end
