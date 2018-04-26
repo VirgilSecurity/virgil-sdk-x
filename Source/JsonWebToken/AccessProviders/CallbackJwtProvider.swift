@@ -39,17 +39,39 @@ import Foundation
 /// Implementation of AccessTokenProvider which provides AccessToken using callback
 @objc(VSSCallbackJwtProvider) open class CallbackJwtProvider: NSObject, AccessTokenProvider {
     /// Callback, which takes a TokenContext and completion handler
-    /// Completion handler should be called with either JWT string, or Error
-    @objc public let getTokenCallback: (TokenContext, (String?, Error?) -> ()) -> ()
+    /// Completion handler should be called with either JWT, or Error
+    @objc public let getJwtCallback: (TokenContext, (Jwt?, Error?) -> ()) -> ()
+    
+    /// Initializer
+    ///
+    /// - Parameter getJwtCallback: Callback, which takes a TokenContext and completion handler
+    ///                             Completion handler should be called with either JWT, or Error
+    @objc public init(getJwtCallback: @escaping (TokenContext, (Jwt?, Error?) -> ()) -> ()) {
+        self.getJwtCallback = getJwtCallback
+        
+        super.init()
+    }
 
     /// Initializer
     ///
     /// - Parameter getTokenCallback: Callback, which takes a TokenContext and completion handler
     ///                               Completion handler should be called with either JWT string, or Error
-    @objc public init(getTokenCallback: @escaping (TokenContext, (String?, Error?) -> ()) -> ()) {
-        self.getTokenCallback = getTokenCallback
-
-        super.init()
+    @objc public convenience init(getTokenCallback: @escaping (TokenContext, (String?, Error?) -> ()) -> ()) {
+        self.init(getJwtCallback: { ctx, completion in
+            getTokenCallback(ctx) { string, error in
+                do {
+                    guard let string = string, error == nil else {
+                        completion(nil, error)
+                        return
+                    }
+                    
+                    completion(try Jwt(stringRepresentation: string), nil)
+                }
+                catch {
+                    completion(nil, error)
+                }
+            }
+        })
     }
 
     /// Provides access token using callback
@@ -58,19 +80,13 @@ import Foundation
     ///   - tokenContext: `TokenContext` provides context explaining why token is needed
     ///   - completion: completion closure
     @objc public func getToken(with tokenContext: TokenContext, completion: @escaping (AccessToken?, Error?) -> ()) {
-        self.getTokenCallback(tokenContext) { tokenString, err in
-            guard let tokenString = tokenString, err == nil else {
+        self.getJwtCallback(tokenContext) { token, err in
+            guard let token = token, err == nil else {
                 completion(nil, err)
                 return
             }
-
-            do {
-                let jwt = try Jwt(stringRepresentation: tokenString)
-                completion(jwt, nil)
-            }
-            catch {
-                completion(nil, error)
-            }
+            
+            completion(token, nil)
         }
     }
 }

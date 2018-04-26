@@ -41,17 +41,39 @@ import Foundation
     /// Cached Jwt
     private(set) var jwt: Jwt?
     /// Callback, which takes a TokenContext and completion handler
-    /// Completion handler should be called with either JWT string, or Error
-    @objc public let renewTokenCallback: (TokenContext, (String?, Error?) -> ()) -> ()
+    /// Completion handler should be called with either JWT, or Error
+    @objc public let renewJwtCallback: (TokenContext, (Jwt?, Error?) -> ()) -> ()
     
     /// Initializer
     ///
-    /// - Parameter getTokenCallback: Callback, which takes a TokenContext and completion handler
-    ///                               Completion handler should be called with either JWT string, or Error
-    @objc public init(renewTokenCallback: @escaping (TokenContext, (String?, Error?) -> ()) -> ()) {
-        self.renewTokenCallback = renewTokenCallback
+    /// - Parameter renewJwtCallback: Callback, which takes a TokenContext and completion handler
+    ///                               Completion handler should be called with either JWT, or Error
+    @objc public init(renewJwtCallback: @escaping (TokenContext, (Jwt?, Error?) -> ()) -> ()) {
+        self.renewJwtCallback = renewJwtCallback
         
         super.init()
+    }
+    
+    /// Initializer
+    ///
+    /// - Parameter renewTokenCallback: Callback, which takes a TokenContext and completion handler
+    ///                                 Completion handler should be called with either JWT String, or Error
+    @objc public convenience init(renewTokenCallback: @escaping (TokenContext, (String?, Error?) -> ()) -> ()) {
+        self.init(renewJwtCallback: { ctx, completion in
+            renewTokenCallback(ctx) { string, error in
+                do {
+                    guard let string = string, error == nil else {
+                        completion(nil, error)
+                        return
+                    }
+                    
+                    completion(try Jwt(stringRepresentation: string), nil)
+                }
+                catch {
+                    completion(nil, error)
+                }
+            }
+        })
     }
     
     /// Provides access token using callback
@@ -65,20 +87,14 @@ import Foundation
             return
         }
 
-        self.renewTokenCallback(tokenContext) { tokenString, err in
-            guard let tokenString = tokenString, err == nil else {
+        self.renewJwtCallback(tokenContext) { token, err in
+            guard let token = token, err == nil else {
                 completion(nil, err)
                 return
             }
             
-            do {
-                let jwt = try Jwt(stringRepresentation: tokenString)
-                self.jwt = jwt
-                completion(jwt, nil)
-            }
-            catch {
-                completion(nil, error)
-            }
+            self.jwt = token
+            completion(token, nil)
         }
     }
 }
