@@ -43,17 +43,17 @@ import Foundation
     /// Callback, which takes a TokenContext and completion handler
     /// Completion handler should be called with either JWT, or Error
     @objc public let renewJwtCallback: (TokenContext, (Jwt?, Error?) -> ()) -> ()
-    
+
     /// Initializer
     ///
     /// - Parameter renewJwtCallback: Callback, which takes a TokenContext and completion handler
     ///                               Completion handler should be called with either JWT, or Error
     @objc public init(renewJwtCallback: @escaping (TokenContext, (Jwt?, Error?) -> ()) -> ()) {
         self.renewJwtCallback = renewJwtCallback
-        
+
         super.init()
     }
-    
+
     /// Initializer
     ///
     /// - Parameter renewTokenCallback: Callback, which takes a TokenContext and completion handler
@@ -66,7 +66,7 @@ import Foundation
                         completion(nil, error)
                         return
                     }
-                    
+
                     completion(try Jwt(stringRepresentation: string), nil)
                 }
                 catch {
@@ -75,7 +75,7 @@ import Foundation
             }
         })
     }
-    
+
     /// Provides access token using callback
     ///
     /// - Parameters:
@@ -92,7 +92,7 @@ import Foundation
                 completion(nil, err)
                 return
             }
-            
+
             self.jwt = token
             completion(token, nil)
         }

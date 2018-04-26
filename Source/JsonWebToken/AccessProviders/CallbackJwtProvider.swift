@@ -41,14 +41,14 @@ import Foundation
     /// Callback, which takes a TokenContext and completion handler
     /// Completion handler should be called with either JWT, or Error
     @objc public let getJwtCallback: (TokenContext, (Jwt?, Error?) -> ()) -> ()
-    
+
     /// Initializer
     ///
     /// - Parameter getJwtCallback: Callback, which takes a TokenContext and completion handler
     ///                             Completion handler should be called with either JWT, or Error
     @objc public init(getJwtCallback: @escaping (TokenContext, (Jwt?, Error?) -> ()) -> ()) {
         self.getJwtCallback = getJwtCallback
-        
+
         super.init()
     }
 
@@ -64,7 +64,7 @@ import Foundation
                         completion(nil, error)
                         return
                     }
-                    
+
                     completion(try Jwt(stringRepresentation: string), nil)
                 }
                 catch {
@@ -85,7 +85,7 @@ import Foundation
                 completion(nil, err)
                 return
             }
-            
+
             completion(token, nil)
         }
     }
