@@ -48,14 +48,7 @@ extension CardManager {
     ///   - cardId: string with unique Virgil Card identifier
     ///   - completion: completion handler, called with found and verified Card or corresponding error
     @objc open func getCard(withId cardId: String, completion: @escaping (Card?, Error?) -> ()) {
-        self.getCard(withId: cardId).start { result in
-            switch result {
-            case .success(let card):
-                completion(card, nil)
-            case .failure(let error):
-                completion(nil, error)
-            }
-        }
+        self.getCard(withId: cardId).start(completion: completion)
     }
 
     /// Asynchronously creates Virgil Card instance on the Virgil Cards Service and associates it with unique identifier
@@ -68,14 +61,7 @@ extension CardManager {
     ///   - rawCard: self signed `RawSignedModel`
     ///   - completion: completion handler, called with published and verified Card or corresponding error
     @objc open func publishCard(rawCard: RawSignedModel, completion: @escaping (Card?, Error?) -> ()) {
-        self.publishCard(rawCard: rawCard).start { result in
-            switch result {
-            case .success(let card):
-                completion(card, nil)
-            case .failure(let error):
-                completion(nil, error)
-            }
-        }
+        self.publishCard(rawCard: rawCard).start(completion: completion)
     }
 
     /// Asynchronously generates self signed RawSignedModel and creates Virgil Card
@@ -95,14 +81,7 @@ extension CardManager {
                                 completion: @escaping (Card?, Error?) -> ()) {
         self.publishCard(privateKey: privateKey, publicKey: publicKey, identity: identity,
                          previousCardId: previousCardId, extraFields: extraFields)
-            .start { result in
-                switch result {
-                case .success(let card):
-                    completion(card, nil)
-                case .failure(let error):
-                    completion(nil, error)
-                }
-            }
+            .start(completion: completion)
     }
 
     /// Asynchronously performs search of Virgil Cards using identity on the Virgil Cards Service
@@ -113,13 +92,6 @@ extension CardManager {
     ///   - identity: identity of cards to search
     ///   - completion: completion handler, called with found and verified Cards or corresponding error
     @objc open func searchCards(identity: String, completion: @escaping ([Card]?, Error?) -> ()) {
-        self.searchCards(identity: identity).start { result in
-            switch result {
-            case .success(let cards):
-                completion(cards, nil)
-            case .failure(let error):
-                completion(nil, error)
-            }
-        }
+        self.searchCards(identity: identity).start(completion: completion)
     }
 }
