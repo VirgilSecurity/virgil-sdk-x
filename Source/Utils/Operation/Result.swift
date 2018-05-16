@@ -39,7 +39,7 @@ import Foundation
 /// Declares error types and codes
 ///
 /// - resultIsFailure: result is failure
-enum ResultError: Error {
+public enum ResultError: Error {
     case resultIsFailure
 }
 

@@ -260,4 +260,26 @@ class VSS011_OperationsTests: XCTestCase {
                 return
         }
     }
+    
+    func test012_ResultTest() {
+        let result1 = Result<Int>.success(3)
+        
+        XCTAssert(try! result1.getResult() == 3)
+        
+        let result2 = Result<Int>.failure(NSError(domain: "", code: 0))
+        
+        var errorWasThrown = false
+        
+        do {
+            let _ = try result2.getResult()
+        }
+        catch(ResultError.resultIsFailure) {
+            errorWasThrown = true
+        }
+        catch {
+            XCTFail()
+        }
+        
+        XCTAssert(errorWasThrown)
+    }
 }
