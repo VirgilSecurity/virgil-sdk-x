@@ -86,12 +86,12 @@ open class GenericOperation<T>: AsyncOperation {
 
         queue.addOperation(self)
     }
-    
+
     /// Creates OperationQueue and starts operation
     ///
     /// - Parameter completion: Completion callback
     open func start(completion: @escaping (T?, Error?) -> ()) {
-        self.start() { result in
+        self.start { result in
             switch result {
             case .success(let res): completion(res, nil)
             case .failure(let error): completion(nil, error)

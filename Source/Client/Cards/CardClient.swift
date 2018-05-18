@@ -45,8 +45,10 @@ import Foundation
 
 /// Class representing operations with Virgil Cards service
 @objc(VSSCardClient) open class CardClient: BaseClient {
+    // swiftlint:disable force_unwrapping
     /// Default URL for service
     @objc public static let defaultURL = URL(string: "https://api.virgilsecurity.com")!
+    // swiftlint:enable force_unwrapping
 
     /// Initializes a new `CardClient` instance
     ///

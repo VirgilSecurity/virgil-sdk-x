@@ -67,8 +67,8 @@ public extension Data {
                 break
             }
 
-            let c = String(hex[Range(uncheckedBounds: (lowerBound, upperBound))])
-            let res = strtol(c, nil, 16)
+            let substr = String(hex[Range(uncheckedBounds: (lowerBound, upperBound))])
+            let res = strtol(substr, nil, 16)
             data.append(contentsOf: [UInt8(res)])
 
             lowerBound = upperBound

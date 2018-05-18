@@ -50,7 +50,7 @@ public enum ResultError: Error {
 public enum Result<T> {
     case success(T)
     case failure(Error)
-    
+
     /// Returns underlying result if successful
     ///
     /// - Returns: Underlying result if successful

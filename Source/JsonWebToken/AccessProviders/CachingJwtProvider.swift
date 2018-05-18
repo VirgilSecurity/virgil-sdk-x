@@ -39,7 +39,7 @@ import Foundation
 /// Implementation of AccessTokenProvider which provides AccessToken using cache+renew callback
 @objc(VSSCachingJwtProvider) open class CachingJwtProvider: NSObject, AccessTokenProvider {
     /// Cached Jwt
-    private(set) var jwt: Jwt?
+    private(set) public var jwt: Jwt?
     /// Callback, which takes a TokenContext and completion handler
     /// Completion handler should be called with either JWT, or Error
     @objc public let renewJwtCallback: (TokenContext, (Jwt?, Error?) -> ()) -> ()
