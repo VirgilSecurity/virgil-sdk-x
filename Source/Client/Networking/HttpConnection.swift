@@ -126,10 +126,8 @@ open class HttpConnection: HttpConnectionProtocol {
         return Response(statusCode: response.statusCode, response: response, body: dataT)
     }
 
-    // swiftlint:disable explicit_acl
     deinit {
         self.session.invalidateAndCancel()
         self.queue.cancelAllOperations()
     }
-    // swiftlint:enable explicit_acl
 }
