@@ -47,8 +47,8 @@ To integrate VirgilSDK into your Xcode project using CocoaPods, specify it in yo
 target '<Your Target Name>' do
   use_frameworks!
 
-  pod 'VirgilCryptoApiImpl', '~> 3.0.0'
-  pod 'VirgilSDK', '~> 5.0.0'
+  pod 'VirgilCryptoApiImpl', '~> 3.1.2'
+  pod 'VirgilSDK', '~> 5.1.0'
 end
 ```
 
@@ -72,8 +72,8 @@ $ brew install carthage
 To integrate VirgilSDK into your Xcode project using Carthage, create an empty file with name *Cartfile* in your project's root folder and add following lines to your *Cartfile*
 
 ```
-github "VirgilSecurity/virgil-sdk-x" ~> 5.0.0
-github "VirgilSecurity/virgil-foundation-x" ~> 3.0.0
+github "VirgilSecurity/virgil-sdk-x" ~> 5.1.0
+github "VirgilSecurity/virgil-foundation-x" ~> 3.1.2
 ```
 
 #### Linking against prebuilt binaries
