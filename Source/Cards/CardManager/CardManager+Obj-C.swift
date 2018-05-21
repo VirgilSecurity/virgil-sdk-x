@@ -1,9 +1,37 @@
 //
-//  CardManager+Obj-C.swift
-//  VirgilSDK
+// Copyright (C) 2015-2018 Virgil Security Inc.
 //
-//  Created by Oleksandr Deundiak on 2/12/18.
-//  Copyright © 2018 VirgilSecurity. All rights reserved.
+// All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+//     (1) Redistributions of source code must retain the above copyright
+//     notice, this list of conditions and the following disclaimer.
+//
+//     (2) Redistributions in binary form must reproduce the above copyright
+//     notice, this list of conditions and the following disclaimer in
+//     the documentation and/or other materials provided with the
+//     distribution.
+//
+//     (3) Neither the name of the copyright holder nor the names of its
+//     contributors may be used to endorse or promote products derived from
+//     this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE AUTHOR ''AS IS'' AND ANY EXPRESS OR
+// IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT,
+// INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+// (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+// SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+// STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
+// IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
+//
+// Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
 import Foundation
@@ -20,14 +48,7 @@ extension CardManager {
     ///   - cardId: string with unique Virgil Card identifier
     ///   - completion: completion handler, called with found and verified Card or corresponding error
     @objc open func getCard(withId cardId: String, completion: @escaping (Card?, Error?) -> ()) {
-        self.getCard(withId: cardId).start { result in
-            switch result {
-            case .success(let card):
-                completion(card, nil)
-            case .failure(let error):
-                completion(nil, error)
-            }
-        }
+        self.getCard(withId: cardId).start(completion: completion)
     }
 
     /// Asynchronously creates Virgil Card instance on the Virgil Cards Service and associates it with unique identifier
@@ -40,14 +61,7 @@ extension CardManager {
     ///   - rawCard: self signed `RawSignedModel`
     ///   - completion: completion handler, called with published and verified Card or corresponding error
     @objc open func publishCard(rawCard: RawSignedModel, completion: @escaping (Card?, Error?) -> ()) {
-        self.publishCard(rawCard: rawCard).start { result in
-            switch result {
-            case .success(let card):
-                completion(card, nil)
-            case .failure(let error):
-                completion(nil, error)
-            }
-        }
+        self.publishCard(rawCard: rawCard).start(completion: completion)
     }
 
     /// Asynchronously generates self signed RawSignedModel and creates Virgil Card
@@ -67,14 +81,7 @@ extension CardManager {
                                 completion: @escaping (Card?, Error?) -> ()) {
         self.publishCard(privateKey: privateKey, publicKey: publicKey, identity: identity,
                          previousCardId: previousCardId, extraFields: extraFields)
-            .start { result in
-                switch result {
-                case .success(let card):
-                    completion(card, nil)
-                case .failure(let error):
-                    completion(nil, error)
-                }
-            }
+            .start(completion: completion)
     }
 
     /// Asynchronously performs search of Virgil Cards using identity on the Virgil Cards Service
@@ -85,13 +92,6 @@ extension CardManager {
     ///   - identity: identity of cards to search
     ///   - completion: completion handler, called with found and verified Cards or corresponding error
     @objc open func searchCards(identity: String, completion: @escaping ([Card]?, Error?) -> ()) {
-        self.searchCards(identity: identity).start { result in
-            switch result {
-            case .success(let cards):
-                completion(cards, nil)
-            case .failure(let error):
-                completion(nil, error)
-            }
-        }
+        self.searchCards(identity: identity).start(completion: completion)
     }
 }
