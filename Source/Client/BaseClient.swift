@@ -64,6 +64,12 @@ import Foundation
         super.init()
     }
 
+    /// Handles error
+    ///
+    /// - Parameters:
+    ///   - statusCode: http status code
+    ///   - body: response body
+    /// - Returns: Corresponding error instance
     open func handleError(statusCode: Int, body: Data?) -> Error {
         if let body = body, let str = String(data: body, encoding: .utf8) {
             return NSError(domain: type(of: self).serviceErrorDomain, code: statusCode,
@@ -73,12 +79,22 @@ import Foundation
         return NSError(domain: type(of: self).serviceErrorDomain, code: statusCode)
     }
 
+    /// Validated response and throws error if needed
+    ///
+    /// - Parameter response: response
+    /// - Throws: NSError
     open func validateResponse(_ response: Response) throws {
         guard 200..<300 ~= response.statusCode else {
             throw self.handleError(statusCode: response.statusCode, body: response.body)
         }
     }
 
+    /// Processes response and returns needed Decodable type
+    ///
+    /// - Parameter response: response
+    /// - Returns: Decoded object of type T
+    /// - Throws: BaseClientError.noBody if no body was found in response
+    ///           Rethrows from JSONDecoder
     open func processResponse<T: Decodable>(_ response: Response) throws -> T {
         try self.validateResponse(response)
 

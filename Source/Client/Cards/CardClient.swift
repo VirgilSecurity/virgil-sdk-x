@@ -71,6 +71,12 @@ import Foundation
         self.init(serviceUrl: serviceUrl, connection: HttpConnection())
     }
 
+    /// Handles error from Card Service
+    ///
+    /// - Parameters:
+    ///   - statusCode: http status code
+    ///   - body: response body
+    /// - Returns: Corresponding error
     override open func handleError(statusCode: Int, body: Data?) -> Error {
         if let body = body, let rawServiceError = try? JSONDecoder().decode(RawServiceError.self, from: body) {
             return ServiceError(httpStatusCode: statusCode, rawServiceError: rawServiceError)
