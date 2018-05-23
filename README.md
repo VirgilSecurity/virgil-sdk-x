@@ -146,7 +146,7 @@ Next, on your application target's “General” settings tab, in the “Embedde
 
 ## Usage Examples
 
-Before start practicing with the usage examples be sure that the SDK is configured. Check out our [SDK configuration guides][_configure_sdk] for more information.
+Before starting practicing with the usage examples be sure that the SDK is configured. Check out our [SDK configuration guides][_configure_sdk] for more information.
 
 #### Generate and publish user's Cards with Public Keys inside on Cards Service
 Use the following lines of code to create and publish a user's Card with Public Key inside on Virgil Cards Service:
