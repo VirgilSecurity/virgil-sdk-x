@@ -28,7 +28,7 @@ The Virgil SDK allows developers to get up and running with Virgil API quickly a
 Virgil SDK is provided as a set of frameworks. These frameworks are distributed via Carthage and CocoaPods.  Also in this guide, you find one more package called VirgilCrypto (Virgil Crypto Library) that is used by the SDK to perform cryptographic operations.
 
 All frameworks are available for:
-- iOS 8.0+
+- iOS 9.0+
 - macOS 10.10+
 - tvOS 9.0+
 - watchOS 2.0+
