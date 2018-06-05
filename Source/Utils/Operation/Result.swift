@@ -36,13 +36,6 @@
 
 import Foundation
 
-/// Declares error types and codes
-///
-/// - resultIsFailure: result is failure
-public enum ResultError: Error {
-    case resultIsFailure
-}
-
 /// Represents operation result
 ///
 /// - success: Operation has succeeded
@@ -54,13 +47,14 @@ public enum Result<T> {
     /// Returns underlying result if successful
     ///
     /// - Returns: Underlying result if successful
-    /// - Throws: ResultError.resultIsFailure if result is failure
+    /// - Throws: Rethrows error
     public func getResult() throws -> T {
-        if case .success(let result) = self {
+        switch self {
+        case .success(let result):
             return result
-        }
-        else {
-            throw ResultError.resultIsFailure
+            
+        case .failure(let error):
+            throw error
         }
     }
 }

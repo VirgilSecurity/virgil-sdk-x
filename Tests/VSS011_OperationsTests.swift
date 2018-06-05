@@ -266,18 +266,21 @@ class VSS011_OperationsTests: XCTestCase {
         
         XCTAssert(try! result1.getResult() == 3)
         
-        let result2 = Result<Int>.failure(NSError(domain: "", code: 0))
+        let result2 = Result<Int>.failure(NSError(domain: "TEST", code: 12345))
         
         var errorWasThrown = false
         
         do {
             let _ = try result2.getResult()
         }
-        catch(ResultError.resultIsFailure) {
-            errorWasThrown = true
-        }
         catch {
-            XCTFail()
+            let error = error as NSError
+            guard error.domain == "TEST", error.code == 12345 else {
+                XCTFail()
+                return
+            }
+            
+            errorWasThrown = true
         }
         
         XCTAssert(errorWasThrown)
