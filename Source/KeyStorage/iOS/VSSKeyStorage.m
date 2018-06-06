@@ -41,7 +41,7 @@
 
 NSString *const kVSSKeyStorageErrorDomain = @"VSSKeyStorageErrorDomain";
 
-static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
+static NSString *privateKeyIdentifierFormat = @"%@.%@.privatekey.%@\0";
 
 @interface VSSKeyStorage ()
 
@@ -347,7 +347,7 @@ static NSString *privateKeyIdentifierFormat = @".%@.privatekey.%@\0";
 }
 
 - (NSMutableDictionary *)baseKeychainQueryForName:(NSString *)name {
-    NSString *tag = [[NSString alloc] initWithFormat:privateKeyIdentifierFormat, self.configuration.applicationName, name];
+    NSString *tag = [[NSString alloc] initWithFormat:privateKeyIdentifierFormat, self.configuration.namePrefix, self.configuration.applicationName, name];
     NSData *tagData = [tag dataUsingEncoding:NSUTF8StringEncoding];
     
     NSMutableDictionary *query = [NSMutableDictionary dictionaryWithDictionary:

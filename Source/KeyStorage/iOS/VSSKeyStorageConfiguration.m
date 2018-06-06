@@ -38,22 +38,23 @@
 
 @interface VSSKeyStorageConfiguration ()
 
-- (instancetype __nonnull)initWithAccessibility:(NSString * __nullable)accessibility accessGroup:(NSString * __nullable)accessGroup NS_DESIGNATED_INITIALIZER;
+- (instancetype __nonnull)initWithAccessibility:(NSString * __nullable)accessibility accessGroup:(NSString * __nullable)accessGroup namePrefix:(NSString * __nullable)namePrefix NS_DESIGNATED_INITIALIZER;
 
 @end
 
 @implementation VSSKeyStorageConfiguration
 
 - (instancetype)init {
-    return [self initWithAccessibility:nil accessGroup:nil];
+    return [self initWithAccessibility:nil accessGroup:nil namePrefix:nil];
 }
 
-- (instancetype)initWithAccessibility:(NSString *)accessibility accessGroup:(NSString *)accessGroup {
+- (instancetype)initWithAccessibility:(NSString *)accessibility accessGroup:(NSString *)accessGroup namePrefix:(NSString *)namePrefix {
     self = [super init];
     if (self) {
         _accessibility = accessibility.length == 0 ? (__bridge NSString*)kSecAttrAccessibleWhenUnlocked : [accessibility copy];
         _accessGroup = [accessGroup copy];
         _applicationName = [NSBundle.mainBundle.bundleIdentifier copy];
+        _namePrefix = namePrefix.length == 0 ? @"" : [namePrefix copy];
     }
     
     return self;
@@ -64,11 +65,15 @@
 }
 
 + (VSSKeyStorageConfiguration *)keyStorageConfigurationWithAccessibility:(NSString *)accessibility accessGroup:(NSString *)accessGroup {
-    return [[VSSKeyStorageConfiguration alloc] initWithAccessibility:accessibility accessGroup:accessGroup];
+    return [[VSSKeyStorageConfiguration alloc] initWithAccessibility:accessibility accessGroup:accessGroup namePrefix:nil];
+}
+
++ (VSSKeyStorageConfiguration *)keyStorageConfigurationWithNamePrefix:(NSString *)namePrefix {
+    return [[VSSKeyStorageConfiguration alloc] initWithAccessibility:nil accessGroup:nil namePrefix:namePrefix];
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    return [[VSSKeyStorageConfiguration alloc] initWithAccessibility:self.accessibility accessGroup:self.accessGroup];
+    return [[VSSKeyStorageConfiguration alloc] initWithAccessibility:self.accessibility accessGroup:self.accessGroup namePrefix:self.namePrefix];
 }
 
 @end
