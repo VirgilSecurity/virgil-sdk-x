@@ -60,14 +60,6 @@ NS_SWIFT_NAME(KeyStorageConfiguration)
 + (VSSKeyStorageConfiguration * __nonnull)keyStorageConfigurationWithAccessibility:(NSString * __nullable)accessibility accessGroup:(NSString * __nullable)accessGroup;
 
 /**
- Factory method which allocates and initalizes VSSKeyStorageConfiguration instance.
-
- @param namePrefix Name prefix used for keys tag
- @return allocated and initialized VSSKeyStorageConfiguration instance
- */
-+ (VSSKeyStorageConfiguration * __nonnull)keyStorageConfigurationWithNamePrefix:(NSString * __nonnull)namePrefix;
-
-/**
  Accessibility. See https://developer.apple.com/reference/security/keychain_services/keychain_item_accessibility_constants
  */
 @property (nonatomic, readonly, copy) NSString * __nonnull accessibility;
@@ -82,10 +74,5 @@ NS_SWIFT_NAME(KeyStorageConfiguration)
  ApplicationName.
  */
 @property (nonatomic, readonly, copy) NSString * __nonnull applicationName;
-
-/**
- Name prefix used for keys tags.
- */
-@property (nonatomic, readonly, copy) NSString * __nonnull namePrefix;
 
 @end
