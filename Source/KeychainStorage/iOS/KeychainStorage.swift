@@ -139,11 +139,11 @@ extension KeychainEntry {
         
         let status = SecItemAdd(query as CFDictionary, &data)
         
-        guard status == errSecSuccess else {
+        guard let d = data, status == errSecSuccess else {
             throw NSError() // FIXME
         }
         
-        return try KeychainStorage.parseKeychainEntry(from: data)
+        return try KeychainStorage.parseKeychainEntry(from: d)
     }
     
     @objc open func retrieveEntry(withName name: String) throws -> KeychainEntry {
@@ -167,14 +167,44 @@ extension KeychainEntry {
         
         let status = SecItemCopyMatching(query as CFDictionary, &data)
         
-        guard status == errSecSuccess else {
+        guard let d = data, status == errSecSuccess else {
             throw NSError() // FIXME
         }
         
-        return try KeychainStorage.parseKeychainEntry(from: data)
+        return try KeychainStorage.parseKeychainEntry(from: d)
     }
     
-    private static func parseKeychainEntry(from data: AnyObject?) throws -> KeychainEntry {
+    @objc open func retrieveAllEntries() throws -> [KeychainEntry] {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassKey,
+            kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
+            
+            kSecReturnData as String: true,
+            kSecReturnAttributes as String: true,
+            
+            kSecMatchLimit as String: kSecMatchLimitAll
+        ]
+        
+        var data: AnyObject?
+        
+        let status = SecItemCopyMatching(query as CFDictionary, &data)
+        
+        if status == errSecItemNotFound {
+            return []
+        }
+        
+        guard let d = data, status == errSecSuccess else {
+            throw NSError() // FIXME
+        }
+        
+        guard let arr = d as? [AnyObject] else {
+            throw NSError() // FIXME
+        }
+        
+        return try arr.map { try KeychainStorage.parseKeychainEntry(from: $0) }
+    }
+    
+    private static func parseKeychainEntry(from data: AnyObject) throws -> KeychainEntry {
         guard let dict = data as? [String: Any] else {
             throw NSError() // FIXME
         }

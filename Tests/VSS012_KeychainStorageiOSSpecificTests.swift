@@ -79,4 +79,30 @@ class VSS012_KeychainStorageiOSSpecificTests: XCTestCase {
         
         XCTAssert(retrievedEntry == keychainEntry)
     }
+    
+    func test003_RetrieveAllEntries() {
+        let keychainEntries1 = try! self.storage.retrieveAllEntries()
+        
+        let data = NSUUID().uuidString.data(using: .utf8)!
+        let name = NSUUID().uuidString
+        
+        let newEntry = try! self.storage.store(data: data, withName: name, meta: nil)
+        
+        let keychainEntries2 = try! self.storage.retrieveAllEntries()
+        
+        XCTAssert(keychainEntries2.count - keychainEntries1.count == 1)
+        
+        keychainEntries2.forEach { entry in
+            let foundKeys = keychainEntries1.filter {
+                $0.name == entry.name
+            }
+            
+            if foundKeys.count == 1 {
+                XCTAssert(foundKeys[0] == entry)
+            }
+            else {
+                XCTAssert(entry == newEntry)
+            }
+        }
+    }
 }
