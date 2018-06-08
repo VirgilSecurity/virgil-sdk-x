@@ -204,6 +204,27 @@ extension KeychainEntry {
         return try arr.map { try KeychainStorage.parseKeychainEntry(from: $0) }
     }
     
+    @objc open func deleteEntry(withName name: String) throws {
+        let tag = String(format: KeychainStorage.privateKeyIdentifierFormat, self.storageParams.appName, name)
+        guard let tagData = tag.data(using: .utf8),
+            let nameData = name.data(using: .utf8) else {
+                throw NSError() // FIXME
+        }
+        
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassKey,
+            kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
+            kSecAttrApplicationLabel as String: nameData,
+            kSecAttrApplicationTag as String: tagData,
+        ]
+        
+        let status = SecItemDelete(query as CFDictionary)
+        
+        guard status == errSecSuccess else {
+            throw NSError() // FIXME
+        }
+    }
+    
     private static func parseKeychainEntry(from data: AnyObject) throws -> KeychainEntry {
         guard let dict = data as? [String: Any] else {
             throw NSError() // FIXME

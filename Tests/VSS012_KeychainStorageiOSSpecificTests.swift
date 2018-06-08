@@ -105,4 +105,24 @@ class VSS012_KeychainStorageiOSSpecificTests: XCTestCase {
             }
         }
     }
+    
+    func test004_DeleteEntries() {
+        let data = NSUUID().uuidString.data(using: .utf8)!
+        let name = NSUUID().uuidString
+        
+        let entry = try! self.storage.store(data: data, withName: name, meta: nil)
+        
+        try! self.storage.deleteEntry(withName: name)
+        
+        var errorWasThrown = false
+        do {
+            try self.storage.retrieveEntry(withName: name)
+        }
+        catch {
+            errorWasThrown = true
+            // FIXME
+        }
+        
+        XCTAssert(errorWasThrown)
+    }
 }
