@@ -129,37 +129,37 @@ import Foundation
 
         return try KeychainStorage.parseKeychainEntry(from: data)
     }
-    
+
     @objc open func updateEntry(withName name: String, data: Data, meta: [String: String]?) throws {
         let tag = String(format: KeychainStorage.privateKeyIdentifierFormat, self.storageParams.appName, name)
         guard let tagData = tag.data(using: .utf8),
             let nameData = name.data(using: .utf8) else {
                 throw KeychainStorageError(errCode: .utf8ConvertingError)
         }
-        
+
         var query: [String: Any] = [
             kSecClass as String: kSecClassKey,
             kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
             kSecAttrApplicationLabel as String: nameData,
-            kSecAttrApplicationTag as String: tagData,
+            kSecAttrApplicationTag as String: tagData
         ]
-        
+
         // Access groups are not supported in simulator
         #if TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
         if let accessGroup = self.storageParams.accessGroup {
             query[kSecAttrAccessGroup] = accessGroup
         }
         #endif
-        
+
         let keyEntry = KeyEntry(name: name, value: data, meta: meta)
         let keyEntryData = NSKeyedArchiver.archivedData(withRootObject: keyEntry)
-        
+
         let keySpecificData: [String: Any] = [
-            kSecValueData as String: keyEntryData,
+            kSecValueData as String: keyEntryData
         ]
-        
+
         let status = SecItemUpdate(query as CFDictionary, keySpecificData as CFDictionary)
-        
+
         guard status == errSecSuccess else {
             throw KeychainStorageError(errCode: .keychainError, osStatus: status)
         }
@@ -239,19 +239,19 @@ import Foundation
             throw KeychainStorageError(errCode: .keychainError, osStatus: status)
         }
     }
-    
+
     @objc open func deleteAllEntries() throws {
         let query: [String: Any] = [
             kSecClass as String: kSecClassKey,
-            kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
+            kSecAttrKeyClass as String: kSecAttrKeyClassPrivate
         ]
-        
+
         let status = SecItemDelete(query as CFDictionary)
-        
+
         if status == errSecItemNotFound {
             return
         }
-        
+
         guard status == errSecSuccess else {
             throw KeychainStorageError(errCode: .keychainError, osStatus: status)
         }
