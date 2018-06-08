@@ -221,6 +221,8 @@
 		4244F81E203365BB0053EE4B /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4244F81C203365BB0053EE4B /* ServiceRequest.swift */; };
 		4244F81F203365BB0053EE4B /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4244F81C203365BB0053EE4B /* ServiceRequest.swift */; };
 		4244F820203365BB0053EE4B /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4244F81C203365BB0053EE4B /* ServiceRequest.swift */; };
+		425EF98520C96CD000CE1D4F /* VSS012_KeychainStorageiOSSpecificTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425EF98320C96CC200CE1D4F /* VSS012_KeychainStorageiOSSpecificTests.swift */; };
+		425EF99B20CA775200CE1D4F /* KeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425EF99A20CA775200CE1D4F /* KeychainStorage.swift */; };
 		4263A1F61EBC7FFB00B13FF1 /* VSSKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4263A1F31EBC7FFB00B13FF1 /* VSSKeyStorage.m */; };
 		4263A1F71EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 4263A1F41EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4263A1F81EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4263A1F51EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.m */; };
@@ -895,6 +897,8 @@
 		4244F7D92033071D0053EE4B /* VirgilSDK tvOS KeyStorage Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilSDK tvOS KeyStorage Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4244F7F920331D610053EE4B /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		4244F81C203365BB0053EE4B /* ServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
+		425EF98320C96CC200CE1D4F /* VSS012_KeychainStorageiOSSpecificTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS012_KeychainStorageiOSSpecificTests.swift; sourceTree = "<group>"; };
+		425EF99A20CA775200CE1D4F /* KeychainStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainStorage.swift; sourceTree = "<group>"; };
 		4263A1F31EBC7FFB00B13FF1 /* VSSKeyStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeyStorage.m; sourceTree = "<group>"; };
 		4263A1F41EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorageConfiguration.h; sourceTree = "<group>"; };
 		4263A1F51EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeyStorageConfiguration.m; sourceTree = "<group>"; };
@@ -1174,6 +1178,7 @@
 				42F0AB1C1D9ABF2200747799 /* Client */,
 				16B3FD402004D58F008F0357 /* JsonWebToken */,
 				42A442A51DC8F1B9000DD54B /* KeyStorage */,
+				425EF96E20C966D100CE1D4F /* KeychainStorage */,
 				36FF4B8C1C4D7FED00E901F3 /* Utils */,
 				42CF01F21F6A9DBC003ABB19 /* Cards */,
 			);
@@ -1254,6 +1259,22 @@
 				4244F7D1203306FA0053EE4B /* Info.plist */,
 			);
 			path = "TestApp tvOS";
+			sourceTree = "<group>";
+		};
+		425EF96E20C966D100CE1D4F /* KeychainStorage */ = {
+			isa = PBXGroup;
+			children = (
+				425EF99920CA775200CE1D4F /* iOS */,
+			);
+			path = KeychainStorage;
+			sourceTree = "<group>";
+		};
+		425EF99920CA775200CE1D4F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				425EF99A20CA775200CE1D4F /* KeychainStorage.swift */,
+			);
+			path = iOS;
 			sourceTree = "<group>";
 		};
 		4263A1F11EBC7FC400B13FF1 /* iOS */ = {
@@ -1342,6 +1363,7 @@
 				16F3D47B2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift */,
 				4285E6F0203B662A00499FB4 /* VSS010_PrivateKeyStorageTests.m */,
 				4285E6F4203B82BB00499FB4 /* VSS011_OperationsTests.swift */,
+				425EF98320C96CC200CE1D4F /* VSS012_KeychainStorageiOSSpecificTests.swift */,
 				166C67BD201F5BB200D79608 /* VSSTestUtils.h */,
 				166C67BE201F5C0500D79608 /* VSSTestUtils.m */,
 				429123611F4B0B3700103BE0 /* VSSTestsConst.h */,
@@ -2177,6 +2199,7 @@
 			files = (
 				4244F783203305750053EE4B /* VSS007_KeyStorageiOSSpecificTests.swift in Sources */,
 				4285E6F2203B662A00499FB4 /* VSS010_PrivateKeyStorageTests.m in Sources */,
+				425EF98520C96CD000CE1D4F /* VSS012_KeychainStorageiOSSpecificTests.swift in Sources */,
 				4244F782203305750053EE4B /* VSS006_KeyStorageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2385,6 +2408,7 @@
 				4284C4591F6FECC300B75491 /* VirgilCardVerifier.swift in Sources */,
 				42DD28F42074EE8E00C9C014 /* BaseClient.swift in Sources */,
 				16B3FD89200CDBC9008F0357 /* JwtGenerator.swift in Sources */,
+				425EF99B20CA775200CE1D4F /* KeychainStorage.swift in Sources */,
 				42DD29122074F6D900C9C014 /* RawSignature.swift in Sources */,
 				16B3FD6820079DF5008F0357 /* CardSignature.swift in Sources */,
 				42DA83A520321F980091D223 /* CardManager+Operations.swift in Sources */,
