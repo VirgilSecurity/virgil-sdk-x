@@ -239,6 +239,23 @@ import Foundation
             throw KeychainStorageError(errCode: .keychainError, osStatus: status)
         }
     }
+    
+    @objc open func deleteAllEntries() throws {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassKey,
+            kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
+        ]
+        
+        let status = SecItemDelete(query as CFDictionary)
+        
+        if status == errSecItemNotFound {
+            return
+        }
+        
+        guard status == errSecSuccess else {
+            throw KeychainStorageError(errCode: .keychainError, osStatus: status)
+        }
+    }
 
     private static func validateKeychainResponse(dataObject: AnyObject?, status: OSStatus) throws -> AnyObject {
         guard status == errSecSuccess else {

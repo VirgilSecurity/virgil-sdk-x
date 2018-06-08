@@ -133,15 +133,18 @@ class VSS012_KeychainStorageiOSSpecificTests: XCTestCase {
     func test005_StoreEntryWithMeta() {
         let data = NSUUID().uuidString.data(using: .utf8)!
         let name = NSUUID().uuidString
+        let meta = [
+            "test_key": "test_value"
+        ]
         
-        let keychainEntry = try! self.storage.store(data: data, withName: name, meta: nil)
+        let keychainEntry = try! self.storage.store(data: data, withName: name, meta: meta)
         
         XCTAssert(keychainEntry.name == name)
         XCTAssert(keychainEntry.data == data)
         let eps: TimeInterval = 0.5
         XCTAssert(abs(keychainEntry.creationDate.timeIntervalSince1970 - Date().timeIntervalSince1970) < eps)
         XCTAssert(abs(keychainEntry.modificationDate.timeIntervalSince1970 - Date().timeIntervalSince1970) < eps)
-        XCTAssert(keychainEntry.meta == nil)
+        XCTAssert(keychainEntry.meta == meta)
     }
     
     func test006_UpdateEntry() {
@@ -164,6 +167,15 @@ class VSS012_KeychainStorageiOSSpecificTests: XCTestCase {
         XCTAssert(keychainEntry2.creationDate == keychainEntry1.creationDate)
         let eps: TimeInterval = 0.5
         XCTAssert((keychainEntry2.modificationDate.timeIntervalSince1970 - keychainEntry2.creationDate.timeIntervalSince1970 - waitTime) < eps)
+    }
+    
+    func test007_DeleteAllEntries() {
+        let data = NSUUID().uuidString.data(using: .utf8)!
+        let name = NSUUID().uuidString
         
+        let _ = try! self.storage.store(data: data, withName: name, meta: nil)
+        
+        try! self.storage.deleteAllEntries()
+        XCTAssert(try! self.storage.retrieveAllEntries().count == 0)        
     }
 }
