@@ -150,6 +150,8 @@
 		16F3D47C2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F3D47B2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift */; };
 		16F3D47D2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F3D47B2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift */; };
 		16F3D47E2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F3D47B2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift */; };
+		42011DA220CAB6F500B84755 /* KeychainEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42011DA120CAB6F500B84755 /* KeychainEntry.swift */; };
+		42011DB420CAB72300B84755 /* KeychainStorageParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42011DB320CAB72300B84755 /* KeychainStorageParams.swift */; };
 		422499C31EB39B380032F556 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422499BA1EB39B380032F556 /* VirgilSDK.framework */; };
 		42249A681EB39D6F0032F556 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
 		42249AF01EB39ED50032F556 /* VSSKeyStoragePublic.h in Headers */ = {isa = PBXBuildFile; fileRef = 423CEB5B1DCA079E00CCACB8 /* VSSKeyStoragePublic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -868,6 +870,8 @@
 		16E7F5AC20331FFA009A9025 /* PrivateKeyStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeyStorage.swift; sourceTree = "<group>"; };
 		16E7F5B520332511009A9025 /* PrivateKeyEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeyEntry.swift; sourceTree = "<group>"; };
 		16F3D47B2031E0E400257A43 /* VSS009_ExtraCardManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSS009_ExtraCardManagerTests.swift; sourceTree = "<group>"; };
+		42011DA120CAB6F500B84755 /* KeychainEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainEntry.swift; sourceTree = "<group>"; };
+		42011DB320CAB72300B84755 /* KeychainStorageParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStorageParams.swift; sourceTree = "<group>"; };
 		422499BA1EB39B380032F556 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		422499C21EB39B380032F556 /* VirgilSDK macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilSDK macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		422726CE20210A9A00265E25 /* VirgilCryptoAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VirgilCryptoAPI.xcodeproj; path = "Carthage/Checkouts/virgil-cryptoapi-x/VirgilCryptoAPI.xcodeproj"; sourceTree = "<group>"; };
@@ -1273,6 +1277,8 @@
 			isa = PBXGroup;
 			children = (
 				425EF99A20CA775200CE1D4F /* KeychainStorage.swift */,
+				42011DA120CAB6F500B84755 /* KeychainEntry.swift */,
+				42011DB320CAB72300B84755 /* KeychainStorageParams.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -2414,6 +2420,7 @@
 				42DA83A520321F980091D223 /* CardManager+Operations.swift in Sources */,
 				4263A1F81EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.m in Sources */,
 				1624B83320120898007D223C /* GenericOperation.swift in Sources */,
+				42011DA220CAB6F500B84755 /* KeychainEntry.swift in Sources */,
 				16B3FD75200CB88D008F0357 /* ConstAccessTokenProvider.swift in Sources */,
 				4284C34B1F6AAB7B00B75491 /* Log.swift in Sources */,
 				429123AD1F4D726300103BE0 /* VSSKeyAttrs.m in Sources */,
@@ -2425,6 +2432,7 @@
 				42CF01FD1F6AA209003ABB19 /* HttpConnectionProtocol.swift in Sources */,
 				42DA83B120321F980091D223 /* CardManagerParams.swift in Sources */,
 				42DF01E71E8C52BE005CA7DD /* (null) in Sources */,
+				42011DB420CAB72300B84755 /* KeychainStorageParams.swift in Sources */,
 				42CF01F41F6A9DD5003ABB19 /* CardManager.swift in Sources */,
 				4229CCA320371C7D00AFEF4F /* JwtSignatureContent.swift in Sources */,
 				16B3FD93200CE74C008F0357 /* JwtVerifier.swift in Sources */,

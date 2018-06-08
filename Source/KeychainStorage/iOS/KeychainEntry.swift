@@ -36,25 +36,30 @@
 
 import Foundation
 
-/// Represents operation result
-///
-/// - success: Operation has succeeded
-/// - failure: Operation has failed
-public enum Result<T> {
-    case success(T)
-    case failure(Error)
+@objc(VSSKeychainEntry) public final class KeychainEntry: NSObject {
+    @objc public let data: Data
+    @objc public let name: String
+    @objc public let meta: [String: String]?
+    @objc public let creationDate: Date
+    @objc public let modificationDate: Date
 
-    /// Returns underlying result if successful
-    ///
-    /// - Returns: Underlying result if successful
-    /// - Throws: Rethrows error
-    public func getResult() throws -> T {
-        switch self {
-        case .success(let result):
-            return result
+    internal init(data: Data, name: String, meta: [String: String]?, creationDate: Date, modificationDate: Date) {
+        self.data = data
+        self.name = name
+        self.meta = meta
+        self.creationDate = creationDate
+        self.modificationDate = modificationDate
 
-        case .failure(let error):
-            throw error
-        }
+        super.init()
+    }
+}
+
+public extension KeychainEntry {
+    static func == (lhs: KeychainEntry, rhs: KeychainEntry) -> Bool {
+        return lhs.data == rhs.data
+            && lhs.name == rhs.name
+            && lhs.meta == rhs.meta
+            && lhs.creationDate == rhs.creationDate
+            && lhs.modificationDate == rhs.modificationDate
     }
 }

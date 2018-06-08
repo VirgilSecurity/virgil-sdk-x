@@ -36,25 +36,22 @@
 
 import Foundation
 
-/// Represents operation result
-///
-/// - success: Operation has succeeded
-/// - failure: Operation has failed
-public enum Result<T> {
-    case success(T)
-    case failure(Error)
+@objc(VSSKeychainStorageParams) public final class KeychainStorageParams: NSObject {
+    @objc public let appName: String
+    @objc public let accessGroup: String?
 
-    /// Returns underlying result if successful
-    ///
-    /// - Returns: Underlying result if successful
-    /// - Throws: Rethrows error
-    public func getResult() throws -> T {
-        switch self {
-        case .success(let result):
-            return result
+    internal init(appName: String, accessGroup: String?) {
+        self.appName = appName
+        self.accessGroup = accessGroup
 
-        case .failure(let error):
-            throw error
+        super.init()
+    }
+
+    @objc static public func makeKeychainStorageParams(accessGroup: String? = nil) throws -> KeychainStorageParams {
+        guard let appName = Bundle.main.bundleIdentifier else {
+            throw KeychainStorageError(errCode: .invalidAppBundle)
         }
+
+        return KeychainStorageParams(appName: appName, accessGroup: accessGroup)
     }
 }

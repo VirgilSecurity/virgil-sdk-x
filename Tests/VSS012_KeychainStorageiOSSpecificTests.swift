@@ -118,9 +118,13 @@ class VSS012_KeychainStorageiOSSpecificTests: XCTestCase {
         do {
             try self.storage.retrieveEntry(withName: name)
         }
-        catch {
+        catch(let error as KeychainStorageError) {
             errorWasThrown = true
-            // FIXME
+            XCTAssert(error.errCode == .keychainError)
+            XCTAssert(error.osStatus! == -25300)
+        }
+        catch {
+            XCTFail()
         }
         
         XCTAssert(errorWasThrown)
