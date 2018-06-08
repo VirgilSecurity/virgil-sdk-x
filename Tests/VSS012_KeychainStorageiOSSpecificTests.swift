@@ -110,13 +110,13 @@ class VSS012_KeychainStorageiOSSpecificTests: XCTestCase {
         let data = NSUUID().uuidString.data(using: .utf8)!
         let name = NSUUID().uuidString
         
-        let entry = try! self.storage.store(data: data, withName: name, meta: nil)
+        let _ = try! self.storage.store(data: data, withName: name, meta: nil)
         
         try! self.storage.deleteEntry(withName: name)
         
         var errorWasThrown = false
         do {
-            try self.storage.retrieveEntry(withName: name)
+            let _ = try self.storage.retrieveEntry(withName: name)
         }
         catch(let error as KeychainStorageError) {
             errorWasThrown = true
@@ -128,5 +128,42 @@ class VSS012_KeychainStorageiOSSpecificTests: XCTestCase {
         }
         
         XCTAssert(errorWasThrown)
+    }
+    
+    func test005_StoreEntryWithMeta() {
+        let data = NSUUID().uuidString.data(using: .utf8)!
+        let name = NSUUID().uuidString
+        
+        let keychainEntry = try! self.storage.store(data: data, withName: name, meta: nil)
+        
+        XCTAssert(keychainEntry.name == name)
+        XCTAssert(keychainEntry.data == data)
+        let eps: TimeInterval = 0.5
+        XCTAssert(abs(keychainEntry.creationDate.timeIntervalSince1970 - Date().timeIntervalSince1970) < eps)
+        XCTAssert(abs(keychainEntry.modificationDate.timeIntervalSince1970 - Date().timeIntervalSince1970) < eps)
+        XCTAssert(keychainEntry.meta == nil)
+    }
+    
+    func test006_UpdateEntry() {
+        let data1 = NSUUID().uuidString.data(using: .utf8)!
+        let data2 = NSUUID().uuidString.data(using: .utf8)!
+        let name = NSUUID().uuidString
+        
+        let keychainEntry1 = try! self.storage.store(data: data1, withName: name, meta: nil)
+        
+        try! self.storage.updateEntry(withName: name, data: data2, meta: nil)
+        
+        let keychainEntry2 = try! self.storage.retrieveEntry(withName: name)
+        
+        let waitTime: TimeInterval = 2
+        sleep(UInt32(waitTime))
+        
+        XCTAssert(keychainEntry2.name == name)
+        XCTAssert(keychainEntry2.data == data2)
+        XCTAssert(keychainEntry2.meta == nil)
+        XCTAssert(keychainEntry2.creationDate == keychainEntry1.creationDate)
+        let eps: TimeInterval = 0.5
+        XCTAssert((keychainEntry2.modificationDate.timeIntervalSince1970 - keychainEntry2.creationDate.timeIntervalSince1970 - waitTime) < eps)
+        
     }
 }
