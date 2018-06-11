@@ -178,4 +178,16 @@ class VSS012_KeychainStorageiOSSpecificTests: XCTestCase {
         try! self.storage.deleteAllEntries()
         XCTAssert(try! self.storage.retrieveAllEntries().count == 0)        
     }
+    
+    func test008_ExistsEntry() {
+        let data = NSUUID().uuidString.data(using: .utf8)!
+        let name = NSUUID().uuidString
+        
+        XCTAssert(!(try! self.storage.existsEntry(withName: name)))
+        let _ = try! self.storage.store(data: data, withName: name, meta: nil)
+        XCTAssert((try! self.storage.existsEntry(withName: name)))
+        
+        try! self.storage.deleteAllEntries()
+        XCTAssert(!(try! self.storage.existsEntry(withName: name)))
+    }
 }

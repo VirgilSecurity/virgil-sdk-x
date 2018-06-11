@@ -257,6 +257,24 @@ import Foundation
         }
     }
 
+    open func existsEntry(withName name: String) throws -> Bool {
+        do {
+            _ = try self.retrieveEntry(withName: name)
+
+            return true
+        }
+        catch let error as KeychainStorageError {
+            if error.errCode == .keychainError, let osStatus = error.osStatus, osStatus == errSecItemNotFound {
+                return false
+            }
+
+            throw error
+        }
+        catch {
+            throw error
+        }
+    }
+
     private static func validateKeychainResponse(dataObject: AnyObject?, status: OSStatus) throws -> AnyObject {
         guard status == errSecSuccess else {
             throw KeychainStorageError(errCode: .keychainError, osStatus: status)
