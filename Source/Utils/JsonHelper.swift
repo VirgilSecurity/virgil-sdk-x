@@ -36,14 +36,26 @@
 
 import Foundation
 
-internal final class JsonHelper {
-    internal static func timestampDateDecodingStrategy(decoder: Decoder) throws -> Date {
+/// Aggregates common functions to use with JSONEncoder
+public final class JsonHelper {
+    /// Decodes Date using Int timestamp
+    ///
+    /// - Parameter decoder: Decoder
+    /// - Returns: Decoded Date
+    /// - Throws: Rethrows from Decoder
+    public static func timestampDateDecodingStrategy(decoder: Decoder) throws -> Date {
         let timestamp = try decoder.singleValueContainer().decode(Int.self)
 
         return Date(timeIntervalSince1970: TimeInterval(timestamp))
     }
 
-    internal static func timestampDateEncodingStrategy(date: Date, encoder: Encoder) throws {
+    /// Encodes Date to Int timestamp
+    ///
+    /// - Parameters:
+    ///   - date: Date to encode
+    ///   - encoder: Encoder
+    /// - Throws: Rethrows from Encoder
+    public static func timestampDateEncodingStrategy(date: Date, encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(Int(date.timeIntervalSince1970))
     }
