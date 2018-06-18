@@ -47,7 +47,7 @@ import Foundation
     /// Version of Virgil Card
     @objc public let version: String
     /// UTC timestamp of creation date
-    @objc public let createdAt: Int
+    @objc public let createdAt: Int64
 
     /// Defines coding keys for encoding and decoding
     private enum CodingKeys: String, CodingKey {
@@ -66,14 +66,27 @@ import Foundation
     ///   - previousCardId: Identifier of previous Virgil Card with same identity
     ///   - version: Virgil Card version
     ///   - createdAt: Date of creation
-    @objc public init(identity: String, publicKey: Data, previousCardId: String? = nil,
+    @objc public convenience init(identity: String, publicKey: Data, previousCardId: String? = nil,
                       version: String = "5.0", createdAt: Date) {
+        self.init(identity: identity, publicKey: publicKey, previousCardId: previousCardId, version: version, createdAtTimestamp: DateUtils.dateToTimestamp(date: createdAt))
+    }
+
+    /// Initializes a new `RawCardContent` with the provided content
+    ///
+    /// - Parameters:
+    ///   - identity: Card identity
+    ///   - publicKey: PublicKey data
+    ///   - previousCardId: Identifier of previous Virgil Card with same identity
+    ///   - version: Virgil Card version
+    ///   - createdAtTimestamp: Timestamp of creation
+    @objc public init(identity: String, publicKey: Data, previousCardId: String? = nil,
+                      version: String = "5.0", createdAtTimestamp: Int64) {
         self.identity = identity
         self.publicKey = publicKey
         self.previousCardId = previousCardId
         self.version = version
-        self.createdAt = Int(createdAt.timeIntervalSince1970)
-
+        self.createdAt = createdAtTimestamp
+        
         super.init()
     }
 
@@ -86,7 +99,7 @@ import Foundation
 
         self.init(identity: content.identity, publicKey: content.publicKey,
                   previousCardId: content.previousCardId, version: content.version,
-                  createdAt: Date(timeIntervalSince1970: TimeInterval(content.createdAt)))
+                  createdAtTimestamp: content.createdAt)
     }
 
     /// Takes binary snapshot of `RawCardContent`
