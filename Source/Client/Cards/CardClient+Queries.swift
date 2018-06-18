@@ -64,7 +64,9 @@ extension CardClient: CardClientProtocol {
         let response = try self.connection.send(request)
 
         let isOutdated: Bool
-        if let xVirgilIsSuperseeded = response.response.allHeaderFields[CardClient.xVirgilIsSuperseededKey] as? String,
+        // Swift dictionaries doesn't support case-insensitive keys, NSDictionary does
+        let allHeaders = (response.response.allHeaderFields as NSDictionary)
+        if let xVirgilIsSuperseeded = allHeaders[CardClient.xVirgilIsSuperseededKey] as? String,
             xVirgilIsSuperseeded == CardClient.xVirgilIsSuperseededTrue {
                 isOutdated = true
         }
