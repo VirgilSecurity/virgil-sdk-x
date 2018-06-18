@@ -37,7 +37,39 @@
 import Foundation
 
 /// Aggregates common functions to use with JSONEncoder
-public final class JsonHelper {
+public final class DateUtils {
+    /// Converts date to timestamp
+    ///
+    /// - Parameter date: date
+    /// - Returns: timestamp
+    public static func dateToTimestamp(date: Date) -> Int64 {
+        return Int64(date.timeIntervalSince1970)
+    }
+
+    /// Converts date to timestamp in milliseconds
+    ///
+    /// - Parameter date: date
+    /// - Returns: timestamp in milliseconds
+    public static func dateToMilliTimestamp(date: Date) -> Int64 {
+        return Int64(date.timeIntervalSince1970 * 1000)
+    }
+
+    /// Creates date from tiemstamp
+    ///
+    /// - Parameter timestamp: timestamp
+    /// - Returns: date
+    public static func dateFromTimestamp(_ timestamp: Int64) -> Date {
+        return Date(timeIntervalSince1970: TimeInterval(timestamp))
+    }
+
+    /// Creates date from timestamp in milliseconds
+    ///
+    /// - Parameter timestamp: timestamp in milliseconds
+    /// - Returns: date
+    public static func dateFromMilliTimestamp(_ timestamp: Int64) -> Date {
+        return Date(timeIntervalSince1970: TimeInterval(timestamp) / 1000)
+    }
+    
     /// Decodes Date using Int timestamp
     ///
     /// - Parameter decoder: Decoder
@@ -46,7 +78,7 @@ public final class JsonHelper {
     public static func timestampDateDecodingStrategy(decoder: Decoder) throws -> Date {
         let timestamp = try decoder.singleValueContainer().decode(Int64.self)
 
-        return Date(timeIntervalSince1970: TimeInterval(timestamp))
+        return self.dateFromTimestamp(timestamp)
     }
 
     /// Encodes Date to Int timestamp
@@ -57,7 +89,7 @@ public final class JsonHelper {
     /// - Throws: Rethrows from Encoder
     public static func timestampDateEncodingStrategy(date: Date, encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        try container.encode(Int64(date.timeIntervalSince1970))
+        try container.encode(self.dateToTimestamp(date: date))
     }
     
     /// Decodes Date using Int64 timestamp in milliseconds
@@ -68,7 +100,7 @@ public final class JsonHelper {
     public static func timestampMilliDateDecodingStrategy(decoder: Decoder) throws -> Date {
         let timestamp = try decoder.singleValueContainer().decode(Int64.self)
         
-        return Date(timeIntervalSince1970: TimeInterval(timestamp) / 1000)
+        return self.dateFromMilliTimestamp(timestamp)
     }
     
     /// Encodes Date to Int64 timestamp in milliseconds
@@ -79,6 +111,6 @@ public final class JsonHelper {
     /// - Throws: Rethrows from Encoder
     public static func timestampMilliDateEncodingStrategy(date: Date, encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
-        try container.encode(Int64(date.timeIntervalSince1970 * 1000))
+        try container.encode(self.dateToMilliTimestamp(date: date))
     }
 }

@@ -129,7 +129,7 @@ import Foundation
 
         self.container = container
         let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .custom(JsonHelper.timestampDateEncodingStrategy)
+        encoder.dateEncodingStrategy = .custom(DateUtils.timestampDateEncodingStrategy)
 
         self.stringRepresentation = try encoder.encode(container).base64UrlEncodedString()
 
@@ -148,7 +148,7 @@ import Foundation
 
         self.stringRepresentation = base64UrlEncoded
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .custom(JsonHelper.timestampDateDecodingStrategy)
+        decoder.dateDecodingStrategy = .custom(DateUtils.timestampDateDecodingStrategy)
         self.container = try decoder.decode(Container.self, from: data)
 
         super.init()

@@ -174,10 +174,10 @@
 		4229CCA420371C7D00AFEF4F /* JwtSignatureContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCA220371C7D00AFEF4F /* JwtSignatureContent.swift */; };
 		4229CCA520371C7D00AFEF4F /* JwtSignatureContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCA220371C7D00AFEF4F /* JwtSignatureContent.swift */; };
 		4229CCA620371C7D00AFEF4F /* JwtSignatureContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCA220371C7D00AFEF4F /* JwtSignatureContent.swift */; };
-		4229CCB82037380200AFEF4F /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCB72037380200AFEF4F /* JsonHelper.swift */; };
-		4229CCB92037380200AFEF4F /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCB72037380200AFEF4F /* JsonHelper.swift */; };
-		4229CCBA2037380200AFEF4F /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCB72037380200AFEF4F /* JsonHelper.swift */; };
-		4229CCBB2037380200AFEF4F /* JsonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCB72037380200AFEF4F /* JsonHelper.swift */; };
+		4229CCB82037380200AFEF4F /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCB72037380200AFEF4F /* DateUtils.swift */; };
+		4229CCB92037380200AFEF4F /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCB72037380200AFEF4F /* DateUtils.swift */; };
+		4229CCBA2037380200AFEF4F /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCB72037380200AFEF4F /* DateUtils.swift */; };
+		4229CCBB2037380200AFEF4F /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCB72037380200AFEF4F /* DateUtils.swift */; };
 		4229CCBD2039D21100AFEF4F /* GenericOperation+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCBC2039D21100AFEF4F /* GenericOperation+Dependencies.swift */; };
 		4229CCBE2039D21100AFEF4F /* GenericOperation+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCBC2039D21100AFEF4F /* GenericOperation+Dependencies.swift */; };
 		4229CCBF2039D21100AFEF4F /* GenericOperation+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCBC2039D21100AFEF4F /* GenericOperation+Dependencies.swift */; };
@@ -877,7 +877,7 @@
 		422726CE20210A9A00265E25 /* VirgilCryptoAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VirgilCryptoAPI.xcodeproj; path = "Carthage/Checkouts/virgil-cryptoapi-x/VirgilCryptoAPI.xcodeproj"; sourceTree = "<group>"; };
 		422726E720210AA300265E25 /* VirgilCrypto.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VirgilCrypto.xcodeproj; path = "Carthage/Checkouts/virgil-foundation-x/VirgilCrypto.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		4229CCA220371C7D00AFEF4F /* JwtSignatureContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtSignatureContent.swift; sourceTree = "<group>"; };
-		4229CCB72037380200AFEF4F /* JsonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonHelper.swift; sourceTree = "<group>"; };
+		4229CCB72037380200AFEF4F /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		4229CCBC2039D21100AFEF4F /* GenericOperation+Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GenericOperation+Dependencies.swift"; sourceTree = "<group>"; };
 		4229CCC12039D22400AFEF4F /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		422B4D37203494F3003923E2 /* CardManager+Parse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardManager+Parse.swift"; sourceTree = "<group>"; };
@@ -1196,7 +1196,7 @@
 				4284C34A1F6AAB7B00B75491 /* Log.swift */,
 				4284C41C1F6C03DF00B75491 /* Data+hex.swift */,
 				16B3FD5D20078113008F0357 /* Data+base64Url.swift */,
-				4229CCB72037380200AFEF4F /* JsonHelper.swift */,
+				4229CCB72037380200AFEF4F /* DateUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -2142,7 +2142,7 @@
 				16B3FD7B200CBB6C008F0357 /* CallbackJwtProvider.swift in Sources */,
 				16B3FD76200CB88D008F0357 /* ConstAccessTokenProvider.swift in Sources */,
 				16B3FD642007952E008F0357 /* ModelSigner.swift in Sources */,
-				4229CCB92037380200AFEF4F /* JsonHelper.swift in Sources */,
+				4229CCB92037380200AFEF4F /* DateUtils.swift in Sources */,
 				168491C8201A26A000D6938B /* TokenContext.swift in Sources */,
 				16B3FD6E2007A8B1008F0357 /* Whitelist.swift in Sources */,
 				16B3FD94200CE74C008F0357 /* JwtVerifier.swift in Sources */,
@@ -2233,7 +2233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4229CCBA2037380200AFEF4F /* JsonHelper.swift in Sources */,
+				4229CCBA2037380200AFEF4F /* DateUtils.swift in Sources */,
 				42DD29142074F6D900C9C014 /* RawSignature.swift in Sources */,
 				4284C4B81F728B6700B75491 /* Request.swift in Sources */,
 				16B3FD442004D5E0008F0357 /* AccessTokenProvider.swift in Sources */,
@@ -2298,7 +2298,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4229CCBB2037380200AFEF4F /* JsonHelper.swift in Sources */,
+				4229CCBB2037380200AFEF4F /* DateUtils.swift in Sources */,
 				42DD29152074F6D900C9C014 /* RawSignature.swift in Sources */,
 				4284C4BA1F728B6700B75491 /* Request.swift in Sources */,
 				16B3FD452004D5E0008F0357 /* AccessTokenProvider.swift in Sources */,
@@ -2446,7 +2446,7 @@
 				16B3FD542005059C008F0357 /* JwtHeaderContent.swift in Sources */,
 				42DD29162074F6D900C9C014 /* GetCardResponse.swift in Sources */,
 				4229CCC22039D22400AFEF4F /* Result.swift in Sources */,
-				4229CCB82037380200AFEF4F /* JsonHelper.swift in Sources */,
+				4229CCB82037380200AFEF4F /* DateUtils.swift in Sources */,
 				42DD29022074F6D900C9C014 /* CardClient.swift in Sources */,
 				423CEB5A1DCA06C900CCACB8 /* VSSKeyEntry.m in Sources */,
 				16B3FD6D2007A8B1008F0357 /* Whitelist.swift in Sources */,
