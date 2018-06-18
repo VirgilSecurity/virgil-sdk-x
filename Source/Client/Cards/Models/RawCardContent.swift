@@ -67,8 +67,9 @@ import Foundation
     ///   - version: Virgil Card version
     ///   - createdAt: Date of creation
     @objc public convenience init(identity: String, publicKey: Data, previousCardId: String? = nil,
-                      version: String = "5.0", createdAt: Date) {
-        self.init(identity: identity, publicKey: publicKey, previousCardId: previousCardId, version: version, createdAtTimestamp: DateUtils.dateToTimestamp(date: createdAt))
+                                  version: String = "5.0", createdAt: Date) {
+        self.init(identity: identity, publicKey: publicKey, previousCardId: previousCardId,
+                  version: version, createdAtTimestamp: DateUtils.dateToTimestamp(date: createdAt))
     }
 
     /// Initializes a new `RawCardContent` with the provided content
@@ -86,7 +87,7 @@ import Foundation
         self.previousCardId = previousCardId
         self.version = version
         self.createdAt = createdAtTimestamp
-        
+
         super.init()
     }
 

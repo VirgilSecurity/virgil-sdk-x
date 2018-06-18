@@ -52,7 +52,7 @@ public enum Result<T> {
         switch self {
         case .success(let result):
             return result
-            
+
         case .failure(let error):
             throw error
         }
