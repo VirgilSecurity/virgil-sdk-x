@@ -69,7 +69,7 @@ public final class DateUtils {
     public static func dateFromMilliTimestamp(_ timestamp: Int64) -> Date {
         return Date(timeIntervalSince1970: TimeInterval(timestamp) / 1000)
     }
-    
+
     /// Decodes Date using Int timestamp
     ///
     /// - Parameter decoder: Decoder
@@ -91,7 +91,7 @@ public final class DateUtils {
         var container = encoder.singleValueContainer()
         try container.encode(self.dateToTimestamp(date: date))
     }
-    
+
     /// Decodes Date using Int64 timestamp in milliseconds
     ///
     /// - Parameter decoder: Decoder
@@ -99,10 +99,10 @@ public final class DateUtils {
     /// - Throws: Rethrows from Decoder
     public static func timestampMilliDateDecodingStrategy(decoder: Decoder) throws -> Date {
         let timestamp = try decoder.singleValueContainer().decode(Int64.self)
-        
+
         return self.dateFromMilliTimestamp(timestamp)
     }
-    
+
     /// Encodes Date to Int64 timestamp in milliseconds
     ///
     /// - Parameters:
