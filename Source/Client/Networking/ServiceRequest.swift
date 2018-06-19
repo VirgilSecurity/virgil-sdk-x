@@ -41,10 +41,12 @@ import Foundation
 /// - invalidGetRequestParameters: GET request parameters are not [String: String] and cannot be encoded
 /// - urlComponentsConvertingFailed: Error building url from components during GET request
 /// - getQueryWithDecodableIsNotSupported: GET query with Encodable body is not supported
+/// - duplicateHeadersKey: Passed headers dictionary contains forbidden http header keys
 @objc(VSSServiceRequestError) public enum ServiceRequestError: Int, Error {
     case invalidGetRequestParameters = 1
     case urlComponentsConvertingFailed = 2
     case getQueryWithDecodableIsNotSupported = 3
+    case duplicateHeadersKey = 4
 }
 
 /// Class represents HTTP Request to Virgil Service
@@ -61,9 +63,11 @@ open class ServiceRequest: Request {
     ///   - method: Request method
     ///   - accessToken: Access token
     ///   - params: Encodable request body
+    ///   - headers: Http headers
     /// - Throws: ServiceRequestError.getQueryWithDecodableIsNotSupported, if GET query with params
     ///           Rethrows from JSONEncoder
-    public init<T: Encodable>(url: URL, method: Method, accessToken: String, params: T? = nil) throws {
+    public init<T: Encodable>(url: URL, method: Method, accessToken: String, params: T? = nil,
+                              headers: [String: String] = [:]) throws {
         let bodyData: Data?
         let newUrl: URL
 
@@ -87,8 +91,11 @@ open class ServiceRequest: Request {
             newUrl = url
         }
 
-        let headers = [ServiceRequest.accessTokenHeader: "\(ServiceRequest.accessTokenPrefix) \(accessToken)"]
-        super.init(url: newUrl, method: method, headers: headers, body: bodyData)
+        var requestHeaders = [ServiceRequest.accessTokenHeader: "\(ServiceRequest.accessTokenPrefix) \(accessToken)"]
+
+        try requestHeaders.merge(headers) { _, _ in throw ServiceRequestError.duplicateHeadersKey }
+        
+        super.init(url: newUrl, method: method, headers: requestHeaders, body: bodyData)
     }
 
     /// Initializer
@@ -98,12 +105,14 @@ open class ServiceRequest: Request {
     ///   - method: Request method
     ///   - accessToken: Access token
     ///   - params: JSON-encodable object
+    ///   - headers: Http headers
     /// - Throws: ServiceRequestError.invalidGetRequestParameters,
     ///               if GET request is initialized and params are not [String: String]
     ///           ServiceRequestError.urlComponentsConvertingFailed,
     ///               if error occured while building url from components during GET request
     ///           Rethrows from JSONSerialization
-    public init(url: URL, method: Method, accessToken: String, params: Any? = nil) throws {
+    public init(url: URL, method: Method, accessToken: String, params: Any? = nil,
+                headers: [String: String] = [:]) throws {
         let bodyData: Data?
         let newUrl: URL
 
@@ -139,7 +148,10 @@ open class ServiceRequest: Request {
             newUrl = url
         }
 
-        let headers = [ServiceRequest.accessTokenHeader: "\(ServiceRequest.accessTokenPrefix) \(accessToken)"]
-        super.init(url: newUrl, method: method, headers: headers, body: bodyData)
+        var requestHeaders = [ServiceRequest.accessTokenHeader: "\(ServiceRequest.accessTokenPrefix) \(accessToken)"]
+
+        try requestHeaders.merge(headers) { _, _ in throw ServiceRequestError.duplicateHeadersKey }
+
+        super.init(url: newUrl, method: method, headers: requestHeaders, body: bodyData)
     }
 }
