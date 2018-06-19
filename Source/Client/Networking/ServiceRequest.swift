@@ -94,7 +94,7 @@ open class ServiceRequest: Request {
         var requestHeaders = [ServiceRequest.accessTokenHeader: "\(ServiceRequest.accessTokenPrefix) \(accessToken)"]
 
         try requestHeaders.merge(headers) { _, _ in throw ServiceRequestError.duplicateHeadersKey }
-        
+
         super.init(url: newUrl, method: method, headers: requestHeaders, body: bodyData)
     }
 
