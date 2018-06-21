@@ -36,15 +36,15 @@
 
 import Foundation
 
-internal class Log {
-    internal class func debug(_ closure: @autoclosure () -> String, functionName: String = #function,
+public class Log {
+    public class func debug(_ closure: @autoclosure () -> String, functionName: String = #function,
                               file: String = #file, line: UInt = #line) {
         #if DEBUG
             self.log("<DEBUG>: \(closure())", functionName: functionName, file: file, line: line)
         #endif
     }
 
-    internal class func error( _ closure: @autoclosure () -> String, functionName: String = #function,
+    public class func error( _ closure: @autoclosure () -> String, functionName: String = #function,
                                file: String = #file, line: UInt = #line) {
         self.log("<ERROR>: \(closure())", functionName: functionName, file: file, line: line)
     }
