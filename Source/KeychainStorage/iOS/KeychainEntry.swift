@@ -43,7 +43,7 @@ import Foundation
     @objc public let creationDate: Date
     @objc public let modificationDate: Date
 
-    internal init(data: Data, name: String, meta: [String: String]?, creationDate: Date, modificationDate: Date) {
+    public init(data: Data, name: String, meta: [String: String]?, creationDate: Date, modificationDate: Date) {
         self.data = data
         self.name = name
         self.meta = meta
