@@ -40,13 +40,13 @@ import Foundation
 @objc(VSSCallbackJwtProvider) open class CallbackJwtProvider: NSObject, AccessTokenProvider {
     /// Callback, which takes a TokenContext and completion handler
     /// Completion handler should be called with either JWT, or Error
-    @objc public let getJwtCallback: (TokenContext, (Jwt?, Error?) -> ()) -> ()
+    @objc public let getJwtCallback: (TokenContext, @escaping (Jwt?, Error?) -> ()) -> ()
 
     /// Initializer
     ///
     /// - Parameter getJwtCallback: Callback, which takes a TokenContext and completion handler
     ///                             Completion handler should be called with either JWT, or Error
-    @objc public init(getJwtCallback: @escaping (TokenContext, (Jwt?, Error?) -> ()) -> ()) {
+    @objc public init(getJwtCallback: @escaping (TokenContext, @escaping (Jwt?, Error?) -> ()) -> ()) {
         self.getJwtCallback = getJwtCallback
 
         super.init()
@@ -56,7 +56,7 @@ import Foundation
     ///
     /// - Parameter getTokenCallback: Callback, which takes a TokenContext and completion handler
     ///                               Completion handler should be called with either JWT string, or Error
-    @objc public convenience init(getTokenCallback: @escaping (TokenContext, (String?, Error?) -> ()) -> ()) {
+    @objc public convenience init(getTokenCallback: @escaping (TokenContext, @escaping (String?, Error?) -> ()) -> ()) {
         self.init(getJwtCallback: { ctx, completion in
             getTokenCallback(ctx) { string, error in
                 do {
