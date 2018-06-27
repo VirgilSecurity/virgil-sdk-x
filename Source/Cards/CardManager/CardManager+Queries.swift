@@ -89,7 +89,9 @@ extension CardManager {
                                     identity: String, previousCardId: String? = nil,
                                     extraFields: [String: String]? = nil) throws -> RawSignedModel {
         return try CardManager.generateRawCard(cardCrypto: self.cardCrypto, modelSigner: self.modelSigner,
-                                               privateKey: privateKey, publicKey: publicKey, identity: identity)
+                                               privateKey: privateKey, publicKey: publicKey,
+                                               identity: identity, previousCardId: previousCardId,
+                                               extraFields: extraFields)
     }
 
     /// Generates self signed RawSignedModel
