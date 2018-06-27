@@ -54,11 +54,16 @@ import Foundation
         super.init()
     }
 
+    /// Typealias for callback used below
+    public typealias JwtStringCallback = (String?, Error?) -> Void
+    /// Typealias for callback used below
+    public typealias RenewJwtCallback = (TokenContext, @escaping JwtStringCallback) -> Void
+
     /// Initializer
     ///
     /// - Parameter renewTokenCallback: Callback, which takes a TokenContext and completion handler
     ///                                 Completion handler should be called with either JWT String, or Error
-    @objc public convenience init(renewTokenCallback: @escaping (TokenContext, @escaping (String?, Error?) -> ()) -> ()) {
+    @objc public convenience init(renewTokenCallback: @escaping RenewJwtCallback) {
         self.init(renewJwtCallback: { ctx, completion in
             renewTokenCallback(ctx) { string, error in
                 do {
@@ -76,12 +81,15 @@ import Foundation
         })
     }
 
+    /// Typealias for callback used below
+    public typealias AccessTokenCallback = (AccessToken?, Error?) -> Void
+
     /// Provides access token using callback
     ///
     /// - Parameters:
     ///   - tokenContext: `TokenContext` provides context explaining why token is needed
     ///   - completion: completion closure
-    @objc public func getToken(with tokenContext: TokenContext, completion: @escaping (AccessToken?, Error?) -> ()) {
+    @objc public func getToken(with tokenContext: TokenContext, completion: @escaping AccessTokenCallback) {
         if let jwt = self.jwt, !jwt.isExpired(date: Date().addingTimeInterval(5)) {
             completion(jwt, nil)
             return
