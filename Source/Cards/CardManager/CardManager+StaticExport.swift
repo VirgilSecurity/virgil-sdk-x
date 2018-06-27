@@ -35,40 +35,70 @@
 //
 
 import Foundation
+import VirgilCryptoAPI
 
-// MARK: - Import export cards
+// MARK: - Import export cards: static functions
 extension CardManager {
     /// Imports and verifies Card from base64 encoded string
     ///
-    /// - Parameter base64EncodedString: base64 encoded string with Card
+    /// - Parameters:
+    ///   - base64EncodedString: base64 encoded string with Card
+    ///   - cardCrypto: CardCrypto implementation
+    ///   - cardVerifier: CardVerifier implementation
     /// - Returns: imported and verified Card
     /// - Throws: CardManagerError.cardIsNotVerified, if Card verificaction has failed
     ///           Rethrows from RawSignedModel, JSONDecoder, CardCrypto
-    @objc open func importCard(fromBase64Encoded base64EncodedString: String) throws -> Card {
-        return try CardManager.importCard(fromBase64Encoded: base64EncodedString,
-                                          cardCrypto: self.cardCrypto, cardVerifier: self.cardVerifier)
+    @objc open class func importCard(fromBase64Encoded base64EncodedString: String,
+                                     cardCrypto: CardCrypto, cardVerifier: CardVerifier) throws -> Card {
+        let rawCard = try RawSignedModel.import(fromBase64Encoded: base64EncodedString)
+        let card = try CardManager.parseCard(from: rawCard, cardCrypto: cardCrypto)
+
+        guard cardVerifier.verifyCard(card) else {
+            throw CardManagerError.cardIsNotVerified
+        }
+
+        return card
     }
 
     /// Imports and verifies Card from json Dictionary
     ///
-    /// - Parameter json: json Dictionary
+    /// - Parameters:
+    ///   - json: json Dictionary
+    ///   - cardCrypto: CardCrypto implementation
+    ///   - cardVerifier: CardVerifier implementation
     /// - Returns: imported and verified Card
     /// - Throws: CardManagerError.cardIsNotVerified, if Card verificaction has failed
     ///           Rethrows from RawSignedModel, JSONDecoder, CardCrypto, JSONSerialization
-    @objc open func importCard(fromJson json: Any) throws -> Card {
-        return try CardManager.importCard(fromJson: json,
-                                          cardCrypto: self.cardCrypto, cardVerifier: self.cardVerifier)
+    @objc open class func importCard(fromJson json: Any,
+                                     cardCrypto: CardCrypto, cardVerifier: CardVerifier) throws -> Card {
+        let rawCard = try RawSignedModel.import(fromJson: json)
+        let card = try CardManager.parseCard(from: rawCard, cardCrypto: cardCrypto)
+
+        guard cardVerifier.verifyCard(card) else {
+            throw CardManagerError.cardIsNotVerified
+        }
+
+        return card
     }
 
     /// Imports and verifies Card from RawSignedModel
     ///
-    /// - Parameter rawCard: RawSignedModel
+    /// - Parameters:
+    ///   - rawCard: RawSignedModel
+    ///   - cardCrypto: CardCrypto implementation
+    ///   - cardVerifier: CardVerifier implementation
     /// - Returns: imported and verified Card
     /// - Throws: CardManagerError.cardIsNotVerified, if Card verificaction has failed
     ///           Rethrows from RawSignedModel, JSONDecoder, CardCrypto, JSONSerialization
-    @objc open func importCard(fromRawCard rawCard: RawSignedModel) throws -> Card {
-        return try CardManager.importCard(fromRawCard: rawCard,
-                                          cardCrypto: self.cardCrypto, cardVerifier: self.cardVerifier)
+    @objc open class func importCard(fromRawCard rawCard: RawSignedModel,
+                                     cardCrypto: CardCrypto, cardVerifier: CardVerifier) throws -> Card {
+        let card = try CardManager.parseCard(from: rawCard, cardCrypto: cardCrypto)
+
+        guard cardVerifier.verifyCard(card) else {
+            throw CardManagerError.cardIsNotVerified
+        }
+
+        return card
     }
 
     /// Exports Card as base64 encoded string
@@ -77,8 +107,8 @@ extension CardManager {
     /// - Returns: base64 encoded string with Card
     /// - Throws: CardManagerError.cardIsNotVerified, if Card verificaction has failed
     ///           Rethrows from RawSignedModel, JSOEncoder, CardCrypto
-    @objc open func exportCardAsBase64EncodedString(_ card: Card) throws -> String {
-        return try CardManager.exportCardAsBase64EncodedString(card)
+    @objc open class func exportCardAsBase64EncodedString(_ card: Card) throws -> String {
+        return try card.getRawCard().exportAsBase64EncodedString()
     }
 
     /// Exports Card as json Dictionary
@@ -87,8 +117,8 @@ extension CardManager {
     /// - Returns: json Dictionary with Card
     /// - Throws: CardManagerError.cardIsNotVerified, if Card verificaction has failed
     ///           Rethrows from RawSignedModel, JSOEncoder, CardCrypto, JSONSerialization
-    @objc open func exportCardAsJson(_ card: Card) throws -> Any {
-        return try CardManager.exportCardAsJson(card)
+    @objc open class func exportCardAsJson(_ card: Card) throws -> Any {
+        return try card.getRawCard().exportAsJson()
     }
     /// Exports Card as RawSignedModel
     ///
@@ -96,7 +126,7 @@ extension CardManager {
     /// - Returns: RawSignedModel representing Card
     /// - Throws: CardManagerError.cardIsNotVerified, if Card verificaction has failed
     ///           Rethrows from RawSignedModel, JSOEncoder, CardCrypto
-    @objc open func exportCardAsRawCard(_ card: Card) throws -> RawSignedModel {
-        return try CardManager.exportCardAsRawCard(card)
+    @objc open class func exportCardAsRawCard(_ card: Card) throws -> RawSignedModel {
+        return try card.getRawCard()
     }
 }

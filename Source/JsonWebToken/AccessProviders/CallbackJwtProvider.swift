@@ -40,23 +40,28 @@ import Foundation
 @objc(VSSCallbackJwtProvider) open class CallbackJwtProvider: NSObject, AccessTokenProvider {
     /// Callback, which takes a TokenContext and completion handler
     /// Completion handler should be called with either JWT, or Error
-    @objc public let getJwtCallback: (TokenContext, (Jwt?, Error?) -> ()) -> ()
+    @objc public let getJwtCallback: (TokenContext, @escaping (Jwt?, Error?) -> ()) -> ()
 
     /// Initializer
     ///
     /// - Parameter getJwtCallback: Callback, which takes a TokenContext and completion handler
     ///                             Completion handler should be called with either JWT, or Error
-    @objc public init(getJwtCallback: @escaping (TokenContext, (Jwt?, Error?) -> ()) -> ()) {
+    @objc public init(getJwtCallback: @escaping (TokenContext, @escaping (Jwt?, Error?) -> ()) -> ()) {
         self.getJwtCallback = getJwtCallback
 
         super.init()
     }
 
+    /// Typealias for callback used below
+    public typealias JwtStringCallback = (String?, Error?) -> Void
+    /// Typealias for callback used below
+    public typealias RenewJwtCallback = (TokenContext, @escaping JwtStringCallback) -> Void
+
     /// Initializer
     ///
     /// - Parameter getTokenCallback: Callback, which takes a TokenContext and completion handler
     ///                               Completion handler should be called with either JWT string, or Error
-    @objc public convenience init(getTokenCallback: @escaping (TokenContext, (String?, Error?) -> ()) -> ()) {
+    @objc public convenience init(getTokenCallback: @escaping RenewJwtCallback) {
         self.init(getJwtCallback: { ctx, completion in
             getTokenCallback(ctx) { string, error in
                 do {
@@ -74,12 +79,15 @@ import Foundation
         })
     }
 
+    /// Typealias for callback used below
+    public typealias AccessTokenCallback = (AccessToken?, Error?) -> Void
+
     /// Provides access token using callback
     ///
     /// - Parameters:
     ///   - tokenContext: `TokenContext` provides context explaining why token is needed
     ///   - completion: completion closure
-    @objc public func getToken(with tokenContext: TokenContext, completion: @escaping (AccessToken?, Error?) -> ()) {
+    @objc public func getToken(with tokenContext: TokenContext, completion: @escaping AccessTokenCallback) {
         self.getJwtCallback(tokenContext) { token, err in
             guard let token = token, err == nil else {
                 completion(nil, err)

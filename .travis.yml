@@ -32,7 +32,7 @@ before_install:
   - xcodebuild -showsdks
 
 script:
-  - openssl aes-256-cbc -K $encrypted_6015ea603613_key -iv $encrypted_6015ea603613_iv -in TestConfig.plist.enc -out TestConfig.plist -d
+  - openssl aes-256-cbc -K $encrypted_146d77d787d2_key -iv $encrypted_146d77d787d2_iv -in TestConfig.plist.enc -out TestConfig.plist -d
   - mv -f TestConfig.plist Tests/Data/TestConfig.plist
 
   - carthage version

@@ -151,6 +151,7 @@ extension CardManager {
                     card.previousCard = previousCard
                     previousCard?.isOutdated = true
                 }
+
                 let result = cards.filter { card in cards.filter { $0.previousCard === card }.isEmpty }
 
                 completion(result, nil)

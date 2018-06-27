@@ -91,7 +91,6 @@ class VSS006_KeyStorageTests: XCTestCase {
             try self.storage.store(keyEntry)
         }
         catch {
-            print((error as NSError).code)
             errorWasThrown = true
         }
         
