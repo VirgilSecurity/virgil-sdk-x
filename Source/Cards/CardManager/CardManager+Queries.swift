@@ -88,7 +88,29 @@ extension CardManager {
     @objc open func generateRawCard(privateKey: PrivateKey, publicKey: PublicKey,
                                     identity: String, previousCardId: String? = nil,
                                     extraFields: [String: String]? = nil) throws -> RawSignedModel {
-        let exportedPubKey = try self.cardCrypto.exportPublicKey(publicKey)
+        return try CardManager.generateRawCard(cardCrypto: self.cardCrypto, modelSigner: self.modelSigner,
+                                               privateKey: privateKey, publicKey: publicKey,
+                                               identity: identity, previousCardId: previousCardId,
+                                               extraFields: extraFields)
+    }
+
+    /// Generates self signed RawSignedModel
+    ///
+    /// - Parameters:
+    ///   - cardCrypto: CardCrypto implementation
+    ///   - modelSigner: ModelSigner implementation
+    ///   - privateKey: PrivateKey to self sign with
+    ///   - publicKey: Public Key instance
+    ///   - identity: Card's identity
+    ///   - previousCardId: Identifier of Virgil Card with same identity this Card will replace
+    ///   - extraFields: Dictionary with extra data to sign with model. Should be JSON-compatible
+    /// - Returns: Self signed RawSignedModel
+    /// - Throws: Rethrows from CardCrypto, JSONEncoder, JSONSerialization, ModelSigner
+    @objc open class func generateRawCard(cardCrypto: CardCrypto, modelSigner: ModelSigner,
+                                          privateKey: PrivateKey, publicKey: PublicKey,
+                                          identity: String, previousCardId: String? = nil,
+                                          extraFields: [String: String]? = nil) throws -> RawSignedModel {
+        let exportedPubKey = try cardCrypto.exportPublicKey(publicKey)
 
         let cardContent = RawCardContent(identity: identity, publicKey: exportedPubKey,
                                          previousCardId: previousCardId, createdAt: Date())
@@ -105,7 +127,7 @@ extension CardManager {
             data = nil
         }
 
-        try self.modelSigner.selfSign(model: rawCard, privateKey: privateKey, additionalData: data)
+        try modelSigner.selfSign(model: rawCard, privateKey: privateKey, additionalData: data)
 
         return rawCard
     }
