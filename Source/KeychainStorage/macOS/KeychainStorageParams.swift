@@ -45,19 +45,14 @@ import Security
     /// Trusted applications
     @objc public let trustedApplications: [String]
 
-    /// Access label
-    @objc public let accessLabel: String
-
     /// Init
     ///
     /// - Parameters:
     ///   - appName: Application name
     ///   - trustedApplications: List of trusted applications
-    ///   - accessLabel: Access label
-    @objc public init(appName: String, trustedApplications: [String], accessLabel: String) {
+    @objc public init(appName: String, trustedApplications: [String]) {
         self.appName = appName
         self.trustedApplications = trustedApplications
-        self.accessLabel = accessLabel
 
         super.init()
     }
@@ -66,15 +61,14 @@ import Security
     ///
     /// - Parameters:
     ///   - trustedApplications: List of trusted applications
-    ///   - accessLabel: Access label
     /// - Returns: Initialized KeychainStorageParams
     /// - Throws: KeychainStorageError
-    @objc static public func makeKeychainStorageParams(trustedApplications: [String] = [],
-                                                       accessLabel: String) throws -> KeychainStorageParams {
+    @objc static public func makeKeychainStorageParams(trustedApplications: [String] = [])
+        throws -> KeychainStorageParams {
         guard let appName = Bundle.main.bundleIdentifier else {
             throw KeychainStorageError(errCode: .invalidAppBundle)
         }
 
-        return KeychainStorageParams(appName: appName, trustedApplications: [], accessLabel: accessLabel)
+        return KeychainStorageParams(appName: appName, trustedApplications: [])
     }
 }

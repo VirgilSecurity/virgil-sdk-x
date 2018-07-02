@@ -49,7 +49,7 @@ class VSS012_KeychainStorageTests: XCTestCase {
     #if os(iOS) || os(tvOS) || os(watchOS)
         let storageParams = try! KeychainStorageParams.makeKeychainStorageParams()
     #elseif os(macOS)
-        let storageParams = KeychainStorageParams(appName: "test", trustedApplications: [], accessLabel: "test")
+        let storageParams = KeychainStorageParams(appName: "test", trustedApplications: [])
     #endif
 
         self.storage = KeychainStorage(storageParams: storageParams)

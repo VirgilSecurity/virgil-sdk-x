@@ -106,9 +106,10 @@ import Foundation
 
     /// Created access for trusted application + current application
     ///
+    /// - Parameter name: entry nake
     /// - Returns: SecAccess
     /// - Throws: KeychainStorageError
-    @objc public func createAccess(withAccessLabel accessLabel: String) throws -> SecAccess {
+    @objc public func createAccess(forName name: String) throws -> SecAccess {
         // Make an exception list of trusted applications; that is,
         // applications that are allowed to access the item without
         // requiring user confirmation:
@@ -135,7 +136,7 @@ import Foundation
 
         //Create an access object:
         var accessT: SecAccess?
-        status = SecAccessCreate(accessLabel as CFString, trustedList as CFArray, &accessT)
+        status = SecAccessCreate(name as CFString, trustedList as CFArray, &accessT)
         guard status == errSecSuccess, let access = accessT else {
             throw KeychainStorageError(osStatus: status)
         }
@@ -205,7 +206,7 @@ import Foundation
         }
         #endif
     #elseif os(macOS)
-        let access = try self.createAccess(withAccessLabel: self.storageParams.accessLabel)
+        let access = try self.createAccess(forName: name)
 
         var query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
