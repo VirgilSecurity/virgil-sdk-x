@@ -15,9 +15,9 @@ Pod::Spec.new do |s|
                                   'Source/KeyStorage/*.{h}',
                                   'Source/KeyStorage/iOS/*.{h}',
                                   'Source/KeyStorage/macOS/*.{h}'
-  s.ios.exclude_files           = "Source/**/macOS/*.{h,m}"
-  s.osx.exclude_files           = "Source/**/iOS/*.{h,m}"
-  s.tvos.exclude_files          = "Source/**/macOS/*.{h,m}"
-  s.watchos.exclude_files       = "Source/**/macOS/*.{h,m}"
+  s.ios.exclude_files           = "Source/**/macOS/*.{h,m,swift}"
+  s.osx.exclude_files           = "Source/**/iOS/*.{h,m,swift}"
+  s.tvos.exclude_files          = "Source/**/macOS/*.{h,m,swift}"
+  s.watchos.exclude_files       = "Source/**/macOS/*.{h,m,swift}"
   s.dependency "VirgilCryptoAPI", "~> 1.0.0"
 end
