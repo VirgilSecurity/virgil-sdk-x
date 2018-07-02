@@ -254,7 +254,8 @@ import Foundation
                 throw KeychainStorageError(errCode: .utf8ConvertingError)
         }
 
-        var query: [String: Any] = [
+        var query = [String: Any]()
+        query = [
             kSecClass as String: kSecClassKey,
             kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
             kSecAttrApplicationLabel as String: nameData,
@@ -262,9 +263,9 @@ import Foundation
         ]
 
         // Access groups are not supported in simulator
-        #if TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
+        #if !targetEnvironment(simulator)
         if let accessGroup = self.storageParams.accessGroup {
-            query[kSecAttrAccessGroup] = accessGroup
+            query[kSecAttrAccessGroup as String] = accessGroup
         }
         #endif
     #elseif os(macOS)
@@ -305,7 +306,7 @@ import Foundation
                 throw KeychainStorageError(errCode: .utf8ConvertingError)
         }
 
-        var query: [String: Any] = [
+        let query: [String: Any] = [
             kSecClass as String: kSecClassKey,
             kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
             kSecAttrApplicationLabel as String: nameData,
