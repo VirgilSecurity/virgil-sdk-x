@@ -98,10 +98,10 @@ import Foundation
 @objc(VSSKeychainStorage) open class KeychainStorage: NSObject {
 #if os(macOS)
     /// Comment for all macOS password entries created by this class. Used for filtering
-    @objc public static let commentStringPrefix = "Created by VirgilSDK. DO NOT modify this value."
+    @objc public static let commentStringPrefix = "CREATED_BY_VIRGILSDK"
 
     @objc public func commentString() -> String {
-        return "\(KeychainStorage.commentStringPrefix)"
+        return "\(KeychainStorage.commentStringPrefix).OWNER_APP=\(self.storageParams.appName)"
     }
 
     /// Created access for trusted application + current application
