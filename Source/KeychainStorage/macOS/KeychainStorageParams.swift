@@ -42,34 +42,39 @@ import Security
     /// Application name
     @objc public let appName: String
 
-    /// Access group. See https://developer.apple.com/reference/security/ksecattraccessgroup
-    @objc public let accessGroup: String?
+    /// Trusted applications
+    @objc public let trustedApplications: [String]
 
-    /// Accessibility.
-    /// See https://developer.apple.com/reference/security/keychain_services/keychain_item_accessibility_constants
-    @objc public let accessibility: String
+    /// Access label
+    @objc public let accessLabel: String
 
-    internal init(appName: String, accessGroup: String?, accessibility: String?) {
+    /// Init
+    ///
+    /// - Parameters:
+    ///   - appName: Application name
+    ///   - trustedApplications: List of trusted applications
+    ///   - accessLabel: Access label
+    @objc public init(appName: String, trustedApplications: [String], accessLabel: String) {
         self.appName = appName
-        self.accessGroup = accessGroup
-        self.accessibility = accessibility ?? kSecAttrAccessibleAfterFirstUnlock as String
+        self.trustedApplications = trustedApplications
+        self.accessLabel = accessLabel
 
         super.init()
     }
 
-    /// Factory method.
+    /// Fabric method
     ///
     /// - Parameters:
-    ///   - accessGroup: accessGroup. Default value is nil
-    ///   - accessibility: accessibility. Default value is kSecAttrAccessibleAfterFirstUnlock
+    ///   - trustedApplications: List of trusted applications
+    ///   - accessLabel: Access label
     /// - Returns: Initialized KeychainStorageParams
     /// - Throws: KeychainStorageError
-    @objc static public func makeKeychainStorageParams(accessGroup: String? = nil, accessibility: String? = nil)
-        throws -> KeychainStorageParams {
+    @objc static public func makeKeychainStorageParams(trustedApplications: [String] = [],
+                                                       accessLabel: String) throws -> KeychainStorageParams {
         guard let appName = Bundle.main.bundleIdentifier else {
             throw KeychainStorageError(errCode: .invalidAppBundle)
         }
 
-        return KeychainStorageParams(appName: appName, accessGroup: accessGroup, accessibility: accessibility)
+        return KeychainStorageParams(appName: appName, trustedApplications: [], accessLabel: accessLabel)
     }
 }

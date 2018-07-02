@@ -45,8 +45,13 @@ class VSS012_KeychainStorageTests: XCTestCase {
     // MARK: Setup
     override func setUp() {
         super.setUp()
-        
+
+    #if os(iOS) || os(tvOS) || os(watchOS)
         let storageParams = try! KeychainStorageParams.makeKeychainStorageParams()
+    #elseif os(macOS)
+        let storageParams = KeychainStorageParams(appName: "test", trustedApplications: [], accessLabel: "test")
+    #endif
+
         self.storage = KeychainStorage(storageParams: storageParams)
     }
     
@@ -141,7 +146,7 @@ class VSS012_KeychainStorageTests: XCTestCase {
         
         XCTAssert(keychainEntry.name == name)
         XCTAssert(keychainEntry.data == data)
-        let eps: TimeInterval = 0.5
+        let eps: TimeInterval = 1
         XCTAssert(abs(keychainEntry.creationDate.timeIntervalSince1970 - Date().timeIntervalSince1970) < eps)
         XCTAssert(abs(keychainEntry.modificationDate.timeIntervalSince1970 - Date().timeIntervalSince1970) < eps)
         XCTAssert(keychainEntry.meta == meta)
@@ -165,7 +170,7 @@ class VSS012_KeychainStorageTests: XCTestCase {
         XCTAssert(keychainEntry2.data == data2)
         XCTAssert(keychainEntry2.meta == nil)
         XCTAssert(keychainEntry2.creationDate == keychainEntry1.creationDate)
-        let eps: TimeInterval = 0.5
+        let eps: TimeInterval = 1
         XCTAssert((keychainEntry2.modificationDate.timeIntervalSince1970 - keychainEntry2.creationDate.timeIntervalSince1970 - waitTime) < eps)
     }
     
@@ -187,7 +192,7 @@ class VSS012_KeychainStorageTests: XCTestCase {
         let _ = try! self.storage.store(data: data, withName: name, meta: nil)
         XCTAssert((try! self.storage.existsEntry(withName: name)))
         
-        try! self.storage.deleteAllEntries()
+        try! self.storage.deleteEntry(withName: name)
         XCTAssert(!(try! self.storage.existsEntry(withName: name)))
     }
 }

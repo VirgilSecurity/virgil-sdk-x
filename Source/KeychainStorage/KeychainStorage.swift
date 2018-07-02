@@ -77,16 +77,73 @@ import Foundation
         }
     }
 
-    internal init(errCode: KeychainStorageErrorCodes, osStatus: OSStatus? = nil) {
+    internal init(errCode: KeychainStorageErrorCodes) {
         self.errCode = errCode
+        self.osStatus = nil
+
+        super.init()
+    }
+
+    internal init(osStatus: OSStatus?) {
+        self.errCode = .keychainError
         self.osStatus = osStatus
 
         super.init()
     }
 }
 
+// swiftlint:disable function_body_length type_body_length file_length
+
 /// Class responsible for Keychain interactions.
 @objc(VSSKeychainStorage) open class KeychainStorage: NSObject {
+#if os(macOS)
+    /// Comment for all macOS password entries created by this class. Used for filtering
+    @objc public static let commentStringPrefix = "Created by VirgilSDK. DO NOT modify this value."
+
+    @objc public func commentString() -> String {
+        return "\(KeychainStorage.commentStringPrefix)"
+    }
+
+    /// Created access for trusted application + current application
+    ///
+    /// - Returns: SecAccess
+    /// - Throws: KeychainStorageError
+    @objc public func createAccess(withAccessLabel accessLabel: String) throws -> SecAccess {
+        // Make an exception list of trusted applications; that is,
+        // applications that are allowed to access the item without
+        // requiring user confirmation:
+        var myselfT: SecTrustedApplication?
+
+        var status = SecTrustedApplicationCreateFromPath(nil, &myselfT)
+        guard status == errSecSuccess, let myself = myselfT else {
+            throw KeychainStorageError(osStatus: status)
+        }
+
+        var trustedList = [SecTrustedApplication]()
+        trustedList.append(myself)
+
+        for application in self.storageParams.trustedApplications {
+            var appT: SecTrustedApplication?
+
+            status = SecTrustedApplicationCreateFromPath(application, &appT)
+            guard status == errSecSuccess, let app = appT else {
+                throw KeychainStorageError(osStatus: status)
+            }
+
+            trustedList.append(app)
+        }
+
+        //Create an access object:
+        var accessT: SecAccess?
+        status = SecAccessCreate(accessLabel as CFString, trustedList as CFArray, &accessT)
+        guard status == errSecSuccess, let access = accessT else {
+            throw KeychainStorageError(osStatus: status)
+        }
+
+        return access
+    }
+#endif
+
     /// Private key identifier format
     @objc public static let privateKeyIdentifierFormat = ".%@.privatekey.%@\0"
 
@@ -112,6 +169,8 @@ import Foundation
     /// - Throws: KeychainStorageError
     @objc open func store(data: Data, withName name: String, meta: [String: String]?) throws -> KeychainEntry {
         let tag = String(format: KeychainStorage.privateKeyIdentifierFormat, self.storageParams.appName, name)
+
+    #if os(iOS) || os(tvOS) || os(watchOS)
         guard let tagData = tag.data(using: .utf8),
             let nameData = name.data(using: .utf8) else {
                 throw KeychainStorageError(errCode: .utf8ConvertingError)
@@ -145,6 +204,25 @@ import Foundation
             query[kSecAttrAccessGroup] = accessGroup
         }
         #endif
+    #elseif os(macOS)
+        let access = try self.createAccess(withAccessLabel: self.storageParams.accessLabel)
+
+        var query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: name,
+            kSecAttrService as String: tag,
+
+            kSecAttrLabel as String: name,
+            kSecAttrSynchronizable as String: false,
+            kSecAttrIsInvisible as String: true,
+
+            kSecAttrAccess as String: access,
+            kSecAttrComment as String: self.commentString(),
+
+            kSecReturnData as String: true,
+            kSecReturnAttributes as String: true
+        ]
+    #endif
 
         let keyEntry = KeyEntry(name: name, value: data, meta: meta)
         let keyEntryData = NSKeyedArchiver.archivedData(withRootObject: keyEntry)
@@ -169,6 +247,8 @@ import Foundation
     /// - Throws: KeychainStorageError
     @objc open func updateEntry(withName name: String, data: Data, meta: [String: String]?) throws {
         let tag = String(format: KeychainStorage.privateKeyIdentifierFormat, self.storageParams.appName, name)
+
+    #if os(iOS) || os(tvOS) || os(watchOS)
         guard let tagData = tag.data(using: .utf8),
             let nameData = name.data(using: .utf8) else {
                 throw KeychainStorageError(errCode: .utf8ConvertingError)
@@ -187,6 +267,15 @@ import Foundation
             query[kSecAttrAccessGroup] = accessGroup
         }
         #endif
+    #elseif os(macOS)
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: name,
+            kSecAttrService as String: tag,
+
+            kSecAttrComment as String: self.commentString()
+        ]
+    #endif
 
         let keyEntry = KeyEntry(name: name, value: data, meta: meta)
         let keyEntryData = NSKeyedArchiver.archivedData(withRootObject: keyEntry)
@@ -198,7 +287,7 @@ import Foundation
         let status = SecItemUpdate(query as CFDictionary, keySpecificData as CFDictionary)
 
         guard status == errSecSuccess else {
-            throw KeychainStorageError(errCode: .keychainError, osStatus: status)
+            throw KeychainStorageError(osStatus: status)
         }
     }
 
@@ -209,12 +298,14 @@ import Foundation
     /// - Throws: KeychainStorageError
     @objc open func retrieveEntry(withName name: String) throws -> KeychainEntry {
         let tag = String(format: KeychainStorage.privateKeyIdentifierFormat, self.storageParams.appName, name)
+
+    #if os(iOS) || os(tvOS) || os(watchOS)
         guard let tagData = tag.data(using: .utf8),
             let nameData = name.data(using: .utf8) else {
                 throw KeychainStorageError(errCode: .utf8ConvertingError)
         }
 
-        let query: [String: Any] = [
+        var query: [String: Any] = [
             kSecClass as String: kSecClassKey,
             kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
             kSecAttrApplicationLabel as String: nameData,
@@ -223,6 +314,18 @@ import Foundation
             kSecReturnData as String: true,
             kSecReturnAttributes as String: true
         ]
+    #elseif os(macOS)
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: name,
+            kSecAttrService as String: tag,
+
+            kSecReturnData as String: true,
+            kSecReturnAttributes as String: true,
+
+            kSecAttrComment as String: self.commentString()
+        ]
+    #endif
 
         var dataObject: AnyObject?
 
@@ -238,6 +341,7 @@ import Foundation
     /// - Returns: Retrieved entries
     /// - Throws: KeychainStorageError
     @objc open func retrieveAllEntries() throws -> [KeychainEntry] {
+    #if os(iOS) || os(tvOS) || os(watchOS)
         let query: [String: Any] = [
             kSecClass as String: kSecClassKey,
             kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
@@ -247,6 +351,20 @@ import Foundation
 
             kSecMatchLimit as String: kSecMatchLimitAll
         ]
+    #elseif os(macOS)
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+
+            kSecReturnData as String: true,
+            kSecReturnAttributes as String: true,
+
+            // Workaround: kSecMatchLimitAll doesn't work
+            // Seems like UInt32.max / 2 is maximum allowed value, which should be enough for one application
+            kSecMatchLimit as String: NSNumber(value: UInt32.max / 2),
+
+            kSecAttrComment as String: self.commentString()
+        ]
+    #endif
 
         var dataObject: AnyObject?
 
@@ -271,6 +389,8 @@ import Foundation
     /// - Throws: KeychainStorageError
     @objc open func deleteEntry(withName name: String) throws {
         let tag = String(format: KeychainStorage.privateKeyIdentifierFormat, self.storageParams.appName, name)
+
+    #if os(iOS) || os(tvOS) || os(watchOS)
         guard let tagData = tag.data(using: .utf8),
             let nameData = name.data(using: .utf8) else {
                 throw KeychainStorageError(errCode: .utf8ConvertingError)
@@ -282,11 +402,20 @@ import Foundation
             kSecAttrApplicationLabel as String: nameData,
             kSecAttrApplicationTag as String: tagData
         ]
+    #elseif os(macOS)
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrAccount as String: name,
+            kSecAttrService as String: tag,
+
+            kSecAttrComment as String: self.commentString()
+        ]
+    #endif
 
         let status = SecItemDelete(query as CFDictionary)
 
         guard status == errSecSuccess else {
-            throw KeychainStorageError(errCode: .keychainError, osStatus: status)
+            throw KeychainStorageError(osStatus: status)
         }
     }
 
@@ -294,10 +423,22 @@ import Foundation
     ///
     /// - Throws: KeychainStorageError
     @objc open func deleteAllEntries() throws {
+    #if os(iOS) || os(tvOS) || os(watchOS)
         let query: [String: Any] = [
             kSecClass as String: kSecClassKey,
             kSecAttrKeyClass as String: kSecAttrKeyClassPrivate
         ]
+    #elseif os(macOS)
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+
+            // Workaround: kSecMatchLimitAll doesn't work
+            // Seems like UInt32.max / 2 is maximum allowed value, which should be enough for one application
+            kSecMatchLimit as String: NSNumber(value: UInt32.max / 2),
+
+            kSecAttrComment as String: self.commentString()
+        ]
+    #endif
 
         let status = SecItemDelete(query as CFDictionary)
 
@@ -306,7 +447,7 @@ import Foundation
         }
 
         guard status == errSecSuccess else {
-            throw KeychainStorageError(errCode: .keychainError, osStatus: status)
+            throw KeychainStorageError(osStatus: status)
         }
     }
 
@@ -335,7 +476,7 @@ import Foundation
 
     private static func validateKeychainResponse(dataObject: AnyObject?, status: OSStatus) throws -> AnyObject {
         guard status == errSecSuccess else {
-            throw KeychainStorageError(errCode: .keychainError, osStatus: status)
+            throw KeychainStorageError(osStatus: status)
         }
 
         guard let data = dataObject else {
