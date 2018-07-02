@@ -35,23 +35,40 @@
 //
 
 import Foundation
+import Security
 
+/// Class responsible for KeychainStorage setup
 @objc(VSSKeychainStorageParams) public final class KeychainStorageParams: NSObject {
+    /// Application name
     @objc public let appName: String
-    @objc public let accessGroup: String?
 
-    internal init(appName: String, accessGroup: String?) {
+    /// Access group. See https://developer.apple.com/reference/security/ksecattraccessgroup
+    @objc public let accessGroup: String?
+    
+    /// Accessibility. See https://developer.apple.com/reference/security/keychain_services/keychain_item_accessibility_constants
+    @objc public let accessibility: String
+
+    internal init(appName: String, accessGroup: String?, accessibility: String?) {
         self.appName = appName
         self.accessGroup = accessGroup
+        self.accessibility = accessibility ?? kSecAttrAccessibleAfterFirstUnlock as String
 
         super.init()
     }
 
-    @objc static public func makeKeychainStorageParams(accessGroup: String? = nil) throws -> KeychainStorageParams {
+    /// Factory method.
+    ///
+    /// - Parameters:
+    ///   - accessGroup: accessGroup. Default value is nil
+    ///   - accessibility: accessibility. Default value is kSecAttrAccessibleAfterFirstUnlock
+    /// - Returns: Initialized KeychainStorageParams
+    /// - Throws: KeychainStorageError
+    @objc static public func makeKeychainStorageParams(accessGroup: String? = nil, accessibility: String? = nil)
+        throws -> KeychainStorageParams {
         guard let appName = Bundle.main.bundleIdentifier else {
             throw KeychainStorageError(errCode: .invalidAppBundle)
         }
 
-        return KeychainStorageParams(appName: appName, accessGroup: accessGroup)
+        return KeychainStorageParams(appName: appName, accessGroup: accessGroup, accessibility: accessibility)
     }
 }

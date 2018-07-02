@@ -36,6 +36,14 @@
 
 import Foundation
 
+/// Declares error codes for KeychainStorage. See KeychainStorageError
+///
+/// - utf8ConvertingError: Error while converting string to utf8 binary
+/// - emptyKeychainResponse: Keychain response is nil
+/// - wrongResponseType: Unexpected keychain response type
+/// - errorParsingKeychainResponse: Error while deserializing keychain response
+/// - invalidAppBundle: Bundle.main.bundleIdentifier is empty
+/// - keychainError: Keychain returned error
 @objc(VSSKeychainStorageErrorCodes) public enum KeychainStorageErrorCodes: Int {
     case utf8ConvertingError = 1
     case emptyKeychainResponse = 2
@@ -45,14 +53,21 @@ import Foundation
     case keychainError = 6
 }
 
+/// Class respresenting error returned from KeychainStorage
 @objc(VSSKeychainStorageError) public final class KeychainStorageError: NSObject, CustomNSError {
+    /// Error domain
     public static var errorDomain: String { return "VirgilSDK.KeyStorageErrorDomain" }
 
+    /// Error code. See KeychainStorageErrorCodes
     public var errorCode: Int { return self.errCode.rawValue }
 
+    /// Error code. See KeychainStorageErrorCodes
     @objc public let errCode: KeychainStorageErrorCodes
+
+    /// OSStatus returned from Keychain
     public let osStatus: OSStatus?
 
+    /// OSStatus as NSNumber
     @objc public var osStatusNumber: NSNumber? {
         if let osStatus = self.osStatus {
             return NSNumber(integerLiteral: Int(osStatus))
@@ -70,16 +85,31 @@ import Foundation
     }
 }
 
+/// Class responsible for Keychain interactions.
 @objc(VSSKeychainStorage) open class KeychainStorage: NSObject {
+    /// Private key identifier format
     @objc public static let privateKeyIdentifierFormat = ".%@.privatekey.%@\0"
+
+    /// KeychainStorage parameters
     @objc public let storageParams: KeychainStorageParams
 
+    /// Initializer
+    ///
+    /// - Parameter storageParams: KeychainStorage parameters
     @objc public init(storageParams: KeychainStorageParams) {
         self.storageParams = storageParams
 
         super.init()
     }
 
+    /// Stores sensitive data to Keychain
+    ///
+    /// - Parameters:
+    ///   - data: Sensitive data
+    ///   - name: Alias for data
+    ///   - meta: Additional meta info
+    /// - Returns: Stored entry
+    /// - Throws: KeychainStorageError
     @objc open func store(data: Data, withName name: String, meta: [String: String]?) throws -> KeychainEntry {
         let tag = String(format: KeychainStorage.privateKeyIdentifierFormat, self.storageParams.appName, name)
         guard let tagData = tag.data(using: .utf8),
@@ -93,7 +123,7 @@ import Foundation
             kSecAttrApplicationLabel as String: nameData,
             kSecAttrApplicationTag as String: tagData,
 
-            kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlock,
+            kSecAttrAccessible as String: self.storageParams.accessibility as CFString,
             kSecAttrLabel as String: name,
             kSecAttrIsPermanent as String: true,
             kSecAttrCanEncrypt as String: true,
@@ -130,6 +160,13 @@ import Foundation
         return try KeychainStorage.parseKeychainEntry(from: data)
     }
 
+    /// Updated entry in Keychain
+    ///
+    /// - Parameters:
+    ///   - name: Alias
+    ///   - data: New data
+    ///   - meta: New meta info
+    /// - Throws: KeychainStorageError
     @objc open func updateEntry(withName name: String, data: Data, meta: [String: String]?) throws {
         let tag = String(format: KeychainStorage.privateKeyIdentifierFormat, self.storageParams.appName, name)
         guard let tagData = tag.data(using: .utf8),
@@ -165,6 +202,11 @@ import Foundation
         }
     }
 
+    /// Retrieves entry from keychain
+    ///
+    /// - Parameter name: Alias
+    /// - Returns: Retrieved entry
+    /// - Throws: KeychainStorageError
     @objc open func retrieveEntry(withName name: String) throws -> KeychainEntry {
         let tag = String(format: KeychainStorage.privateKeyIdentifierFormat, self.storageParams.appName, name)
         guard let tagData = tag.data(using: .utf8),
@@ -191,6 +233,10 @@ import Foundation
         return try KeychainStorage.parseKeychainEntry(from: data)
     }
 
+    /// Retrieves all entries in Keychain
+    ///
+    /// - Returns: Retrieved entries
+    /// - Throws: KeychainStorageError
     @objc open func retrieveAllEntries() throws -> [KeychainEntry] {
         let query: [String: Any] = [
             kSecClass as String: kSecClassKey,
@@ -219,6 +265,10 @@ import Foundation
         return try arr.map { try KeychainStorage.parseKeychainEntry(from: $0) }
     }
 
+    /// Deletes entry from Keychain
+    ///
+    /// - Parameter name: Alias
+    /// - Throws: KeychainStorageError
     @objc open func deleteEntry(withName name: String) throws {
         let tag = String(format: KeychainStorage.privateKeyIdentifierFormat, self.storageParams.appName, name)
         guard let tagData = tag.data(using: .utf8),
@@ -240,6 +290,9 @@ import Foundation
         }
     }
 
+    /// Deletes all entries from Keychain
+    ///
+    /// - Throws: KeychainStorageError
     @objc open func deleteAllEntries() throws {
         let query: [String: Any] = [
             kSecClass as String: kSecClassKey,
@@ -257,6 +310,11 @@ import Foundation
         }
     }
 
+    /// Checks if entry exists in Keychain
+    ///
+    /// - Parameter name: Alias
+    /// - Returns: true if entry exists, false otherwise
+    /// - Throws: KeychainStorageError
     open func existsEntry(withName name: String) throws -> Bool {
         do {
             _ = try self.retrieveEntry(withName: name)

@@ -36,14 +36,32 @@
 
 import Foundation
 
+/// Class representing Keychain entry
 @objc(VSSKeychainEntry) public final class KeychainEntry: NSObject {
+    /// Sensitive data
     @objc public let data: Data
+
+    /// Alias
     @objc public let name: String
+
+    /// Additional meta info
     @objc public let meta: [String: String]?
+
+    /// Entry creation date (obtained from Keychain)
     @objc public let creationDate: Date
+
+    /// Entry modification date (obtained from Keychain)
     @objc public let modificationDate: Date
 
-    public init(data: Data, name: String, meta: [String: String]?, creationDate: Date, modificationDate: Date) {
+    /// Init
+    ///
+    /// - Parameters:
+    ///   - data: Sensitive data
+    ///   - name: Alias
+    ///   - meta: Additional meta
+    ///   - creationDate: Creation date
+    ///   - modificationDate: Modification date
+    @objc public init(data: Data, name: String, meta: [String: String]?, creationDate: Date, modificationDate: Date) {
         self.data = data
         self.name = name
         self.meta = meta
@@ -54,6 +72,7 @@ import Foundation
     }
 }
 
+// MARK: - Equality override
 public extension KeychainEntry {
     static func == (lhs: KeychainEntry, rhs: KeychainEntry) -> Bool {
         return lhs.data == rhs.data
