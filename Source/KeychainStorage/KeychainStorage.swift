@@ -222,7 +222,7 @@ import Foundation
             kSecReturnData as String: true,
             kSecReturnAttributes as String: true
         ]
-        
+
         #if DEBUG
         query[kSecAttrIsInvisible as String] = false
         #else
