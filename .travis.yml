@@ -9,8 +9,8 @@ env:
     - MACOS_FRAMEWORK_SCHEME="VirgilSDK macOS"
     - TVOS_FRAMEWORK_SCHEME="VirgilSDK tvOS"
     - WATCHOS_FRAMEWORK_SCHEME="VirgilSDK watchOS"
-    - IOS_TEST_SCHEME="TestApp iOS"
-    - TVOS_TEST_SCHEME="TestApp tvOS"
+    - IOS_TEST_SCHEME="SDKTestApp iOS"
+    - TVOS_TEST_SCHEME="SDKTestApp tvOS"
     - IOS_SDK=iphonesimulator11.3
     - MACOS_SDK=macosx10.13
     - TVOS_SDK=appletvsimulator11.3
@@ -47,18 +47,18 @@ script:
   - |
     if [ $TWO_STEP_BUILD_ENABLED == "YES" ]; then
       # Build Framework
-      xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug clean build-for-testing | xcpretty;
+      xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release clean build | xcpretty;
       # Build Framework in Release and Run Tests if specified
       if [ $RUN_TESTS == "YES" ]; then
-        xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug test-without-building;
-
         if [ -n "$ADDITIONAL_TESTS_SCHEME" ]; then
           xcodebuild -verbose -project "$PROJECT" -scheme "$ADDITIONAL_TESTS_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug clean test;
+        else
+          xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug test;
         fi
       fi
     else
       # Build Framework
-      xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release clean build | xcpretty;  
+      xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Release clean build | xcpretty;
     fi
 
   # Build with carthage
