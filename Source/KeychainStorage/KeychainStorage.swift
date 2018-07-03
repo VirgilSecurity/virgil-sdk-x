@@ -222,12 +222,12 @@ import Foundation
             kSecReturnData as String: true,
             kSecReturnAttributes as String: true
         ]
-    #endif
         
-    #if DEBUG
+        #if DEBUG
         query[kSecAttrIsInvisible as String] = false
-    #else
+        #else
         query[kSecAttrIsInvisible as String] = true
+        #endif
     #endif
 
         let keyEntry = KeyEntry(name: name, value: data, meta: meta)
