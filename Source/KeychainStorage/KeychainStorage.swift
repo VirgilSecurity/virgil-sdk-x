@@ -215,7 +215,6 @@ import Foundation
 
             kSecAttrLabel as String: name,
             kSecAttrSynchronizable as String: false,
-            kSecAttrIsInvisible as String: true,
 
             kSecAttrAccess as String: access,
             kSecAttrComment as String: self.commentString(),
@@ -223,6 +222,12 @@ import Foundation
             kSecReturnData as String: true,
             kSecReturnAttributes as String: true
         ]
+    #endif
+        
+    #if DEBUG
+        query[kSecAttrIsInvisible as String] = false
+    #else
+        query[kSecAttrIsInvisible as String] = true
     #endif
 
         let keyEntry = KeyEntry(name: name, value: data, meta: meta)
