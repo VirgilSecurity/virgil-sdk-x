@@ -3,6 +3,7 @@ disabled_rules:
   - statement_position
   - void_return
   - nesting
+  - compiler_protocol_init
 
 opt_in_rules:
   - array_init
@@ -39,8 +40,8 @@ opt_in_rules:
 excluded: 
   - Carthage
   - Tests
-  - TestApp iOS
-  - TestApp tvOS
+  - SDKTestApp iOS
+  - SDKTestApp tvOS
 
 warning_threshold: 15
 

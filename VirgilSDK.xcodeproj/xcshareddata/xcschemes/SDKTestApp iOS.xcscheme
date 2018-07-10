@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "0940"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4244F7C5203306FA0053EE4B"
-               BuildableName = "TestApp tvOS.app"
-               BlueprintName = "TestApp tvOS"
+               BlueprintIdentifier = "42D0589020EB894500FC544E"
+               BuildableName = "SDKTestApp iOS.app"
+               BlueprintName = "SDKTestApp iOS"
                ReferencedContainer = "container:VirgilSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,15 +26,16 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      codeCoverageEnabled = "YES"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4244F7D82033071D0053EE4B"
-               BuildableName = "VirgilSDK tvOS KeyStorage Tests.xctest"
-               BlueprintName = "VirgilSDK tvOS KeyStorage Tests"
+               BlueprintIdentifier = "42D058A620EB896200FC544E"
+               BuildableName = "VirgilSDK AppTests iOS.xctest"
+               BlueprintName = "VirgilSDK AppTests iOS"
                ReferencedContainer = "container:VirgilSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +43,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4244F7C5203306FA0053EE4B"
-            BuildableName = "TestApp tvOS.app"
-            BlueprintName = "TestApp tvOS"
+            BlueprintIdentifier = "42D0589020EB894500FC544E"
+            BuildableName = "SDKTestApp iOS.app"
+            BlueprintName = "SDKTestApp iOS"
             ReferencedContainer = "container:VirgilSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,9 +66,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4244F7C5203306FA0053EE4B"
-            BuildableName = "TestApp tvOS.app"
-            BlueprintName = "TestApp tvOS"
+            BlueprintIdentifier = "42D0589020EB894500FC544E"
+            BuildableName = "SDKTestApp iOS.app"
+            BlueprintName = "SDKTestApp iOS"
             ReferencedContainer = "container:VirgilSDK.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -84,9 +85,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4244F7C5203306FA0053EE4B"
-            BuildableName = "TestApp tvOS.app"
-            BlueprintName = "TestApp tvOS"
+            BlueprintIdentifier = "42D0589020EB894500FC544E"
+            BuildableName = "SDKTestApp iOS.app"
+            BlueprintName = "SDKTestApp iOS"
             ReferencedContainer = "container:VirgilSDK.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

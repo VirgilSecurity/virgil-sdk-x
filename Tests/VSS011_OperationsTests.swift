@@ -35,6 +35,7 @@
 //
 
 import Foundation
+import VirgilSDK
 import XCTest
 
 class VSS011_OperationsTests: XCTestCase {

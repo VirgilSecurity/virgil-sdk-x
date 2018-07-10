@@ -1,7 +1,7 @@
 # Virgil Security Objective-C/Swift SDK
 
 [![Build Status](https://api.travis-ci.org/VirgilSecurity/virgil-sdk-x.svg?branch=master)](https://travis-ci.org/VirgilSecurity/virgil-sdk-x)
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilSDK.svg)](https://img.shields.io/cocoapods/v/VirgilSDK.svg)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilSDK.svg)](https://cocoapods.org/pods/VirgilSDK)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/VirgilSDK.svg?style=flat)](http://cocoadocs.org/docsets/VirgilSDK)
 [![GitHub license](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg)](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE)
@@ -48,7 +48,7 @@ target '<Your Target Name>' do
   use_frameworks!
 
   pod 'VirgilCryptoApiImpl', '~> 3.1.2'
-  pod 'VirgilSDK', '~> 5.2.0'
+  pod 'VirgilSDK', '~> 5.3.0'
 end
 ```
 
@@ -72,7 +72,7 @@ $ brew install carthage
 To integrate VirgilSDK into your Xcode project using Carthage, create an empty file with name *Cartfile* in your project's root folder and add following lines to your *Cartfile*
 
 ```
-github "VirgilSecurity/virgil-sdk-x" ~> 5.2.0
+github "VirgilSecurity/virgil-sdk-x" ~> 5.3.0
 github "VirgilSecurity/virgil-foundation-x" ~> 3.1.2
 ```
 
