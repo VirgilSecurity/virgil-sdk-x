@@ -47,7 +47,7 @@ extension CardManager {
     /// - Parameters:
     ///   - cardId: string with unique Virgil Card identifier
     ///   - completion: completion handler, called with found and verified Card or corresponding error
-    @objc open func getCard(withId cardId: String, completion: @escaping (Card?, Error?) -> ()) {
+    @objc open func getCard(withId cardId: String, completion: @escaping (Card?, Error?) -> Void) {
         self.getCard(withId: cardId).start(completion: completion)
     }
 
@@ -60,7 +60,7 @@ extension CardManager {
     /// - Parameters:
     ///   - rawCard: self signed `RawSignedModel`
     ///   - completion: completion handler, called with published and verified Card or corresponding error
-    @objc open func publishCard(rawCard: RawSignedModel, completion: @escaping (Card?, Error?) -> ()) {
+    @objc open func publishCard(rawCard: RawSignedModel, completion: @escaping (Card?, Error?) -> Void) {
         self.publishCard(rawCard: rawCard).start(completion: completion)
     }
 
@@ -78,7 +78,7 @@ extension CardManager {
     ///   - completion: completion handler, called with published and verified Card or corresponding error
     @objc open func publishCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String,
                                 previousCardId: String? = nil, extraFields: [String: String]? = nil,
-                                completion: @escaping (Card?, Error?) -> ()) {
+                                completion: @escaping (Card?, Error?) -> Void) {
         self.publishCard(privateKey: privateKey, publicKey: publicKey, identity: identity,
                          previousCardId: previousCardId, extraFields: extraFields)
             .start(completion: completion)
@@ -91,7 +91,7 @@ extension CardManager {
     /// - Parameters:
     ///   - identity: identity of cards to search
     ///   - completion: completion handler, called with found and verified Cards or corresponding error
-    @objc open func searchCards(identity: String, completion: @escaping ([Card]?, Error?) -> ()) {
+    @objc open func searchCards(identity: String, completion: @escaping ([Card]?, Error?) -> Void) {
         self.searchCards(identity: identity).start(completion: completion)
     }
 }

@@ -74,6 +74,12 @@ import Foundation
 
 // MARK: - Equality override
 public extension KeychainEntry {
+    /// Equality operator
+    ///
+    /// - Parameters:
+    ///   - lhs: left argument
+    ///   - rhs: right argument
+    /// - Returns: true if left and right arguments are equal, false otherwiseKeychainStorageErrorCodes
     static func == (lhs: KeychainEntry, rhs: KeychainEntry) -> Bool {
         return lhs.data == rhs.data
             && lhs.name == rhs.name

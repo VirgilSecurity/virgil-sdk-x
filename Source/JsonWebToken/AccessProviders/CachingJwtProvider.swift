@@ -42,13 +42,13 @@ import Foundation
     private(set) public var jwt: Jwt?
     /// Callback, which takes a TokenContext and completion handler
     /// Completion handler should be called with either JWT, or Error
-    @objc public let renewJwtCallback: (TokenContext, @escaping (Jwt?, Error?) -> ()) -> ()
+    @objc public let renewJwtCallback: (TokenContext, @escaping (Jwt?, Error?) -> Void) -> Void
 
     /// Initializer
     ///
     /// - Parameter renewJwtCallback: Callback, which takes a TokenContext and completion handler
     ///                               Completion handler should be called with either JWT, or Error
-    @objc public init(renewJwtCallback: @escaping (TokenContext, @escaping (Jwt?, Error?) -> ()) -> ()) {
+    @objc public init(renewJwtCallback: @escaping (TokenContext, @escaping (Jwt?, Error?) -> Void) -> Void) {
         self.renewJwtCallback = renewJwtCallback
 
         super.init()

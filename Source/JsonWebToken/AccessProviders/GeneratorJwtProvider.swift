@@ -67,7 +67,7 @@ import Foundation
     /// - Parameters:
     ///   - tokenContext: `TokenContext`, provides context explaining why token is needed
     ///   - completion: completion closure, called with access token or corresponding error
-    @objc public func getToken(with tokenContext: TokenContext, completion: @escaping (AccessToken?, Error?) -> ()) {
+    @objc public func getToken(with tokenContext: TokenContext, completion: @escaping (AccessToken?, Error?) -> Void) {
         do {
             let token = try self.jwtGenerator.generateToken(identity: tokenContext.identity ?? self.defaultIdentity,
                                                             additionalData: self.additionalData)
