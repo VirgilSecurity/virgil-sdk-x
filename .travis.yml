@@ -104,3 +104,5 @@ deploy:
     on:
       # tags: true
       condition: $PUBLISH_DOCS = "YES"
+      branch: docs-fix
+
