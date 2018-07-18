@@ -64,6 +64,7 @@ script:
   # Build with carthage
   - if [ $PUBLISH_CARTHAGE == "YES" ]; then
       carthage build --no-skip-current --no-use-binaries;
+      carthage archive
     fi
   
   # Check pod lib
@@ -77,11 +78,6 @@ after_success:
   # - if [ -n "${TRAVIS_TAG}" ] && [ $PUBLISH_DOCS == "YES" ]; then
   - if [ $PUBLISH_DOCS == "YES" ]; then
       ./CI/publish-docs.sh;
-    fi
-
-before_deploy:
-  - if [ $PUBLISH_CARTHAGE == "YES" ]; then
-      carthage archive
     fi
 
 deploy:
