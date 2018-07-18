@@ -80,7 +80,9 @@ after_success:
     fi
 
 before_deploy:
-  - carthage archive
+  - if [ $PUBLISH_CARTHAGE == "YES" ]; then
+      carthage archive
+    fi
 
 deploy:
   # Upload framework to gh-releases for carthage
