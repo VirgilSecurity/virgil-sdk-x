@@ -97,9 +97,8 @@ deploy:
     skip_cleanup: true
     github-token: $GITHUB_TOKEN
     local_dir: "docs"
-    target-branch: gh-pages-test
     on:
       # tags: true
       condition: $PUBLISH_DOCS = "YES"
-      branch: docs-fix
+      branch: develop
 
