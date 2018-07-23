@@ -49,7 +49,7 @@ import Foundation
     /// Initializer
     ///
     /// - Parameters:
-    ///   - jwtGenerator: `JwtGeneretor` instance for generating new tokens
+    ///   - jwtGenerator: `JwtGenerator` instance for generating new tokens
     ///   - defaultIdentity: Identity that will be used for generating token
     ///                      if tokenContext do not have it (e.g. for read operations)
     ///                      WARNING: Do not create cards with defaultIdentity

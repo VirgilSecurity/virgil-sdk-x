@@ -57,9 +57,9 @@ import VirgilCryptoAPI
     @objc public let accessTokenProvider: AccessTokenProvider
     /// CardClient instance used for performing queries
     @objc public let cardClient: CardClientProtocol
-    /// Card Verifier instance used for verifyng Cards
+    /// Card Verifier instance used for verifying Cards
     @objc public let cardVerifier: CardVerifier
-    /// Will automaticaly perform second query with forceReloaded = true AccessToken if true
+    /// Will automatically perform second query with forceReload = true AccessToken if true
     @objc public let retryOnUnauthorized: Bool
     /// Called to perform additional signatures for card before publishing
     @objc public let signCallback: ((RawSignedModel, @escaping (RawSignedModel?, Error?) -> Void) -> Void)?
