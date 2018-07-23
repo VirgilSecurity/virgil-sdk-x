@@ -39,7 +39,7 @@ import VirgilCryptoAPI
 
 //Objective-C compatible Queries
 extension CardManager {
-    /// Asynchronously returns `GetCardResponse` with `RawSignedModel` of card
+    /// Asynchronously returns `Card` with given identifier
     /// from the Virgil Cards Service with given ID, if exists
     ///
     /// NOTE: See swift version for additional info
@@ -72,7 +72,7 @@ extension CardManager {
     /// - Parameters:
     ///   - privateKey: Private Key to self sign RawSignedModel with
     ///   - publicKey: PublicKey for generating RawSignedModel
-    ///   - identity: identity for generating RawSignedModel. Will be taken from token if ommited
+    ///   - identity: identity for generating RawSignedModel. Will be taken from token if omitted
     ///   - previousCardId: identifier of Virgil Card to replace
     ///   - extraFields: Dictionary with extra data to sign with model
     ///   - completion: completion handler, called with published and verified Card or corresponding error
