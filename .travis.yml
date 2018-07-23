@@ -98,7 +98,6 @@ deploy:
     github-token: $GITHUB_TOKEN
     local_dir: "docs"
     on:
-      # tags: true
+      tags: true
       condition: $PUBLISH_DOCS = "YES"
-      branch: develop
 
