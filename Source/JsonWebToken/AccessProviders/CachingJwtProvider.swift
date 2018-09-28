@@ -46,9 +46,12 @@ import Foundation
 
     /// Initializer
     ///
-    /// - Parameter renewJwtCallback: Callback, which takes a TokenContext and completion handler
-    ///                               Completion handler should be called with either JWT, or Error
-    @objc public init(renewJwtCallback: @escaping (TokenContext, @escaping (Jwt?, Error?) -> ()) -> ()) {
+    /// - Parameters:
+    ///   - jwt: initual value of cached jwt
+    ///   - renewJwtCallback: Callback, which takes a TokenContext and completion handler
+    ///                       Completion handler should be called with either JWT, or Error
+    @objc public init(jwt: Jwt? = nil, renewJwtCallback: @escaping (TokenContext, @escaping (Jwt?, Error?) -> ()) -> ()) {
+        self.jwt = jwt
         self.renewJwtCallback = renewJwtCallback
 
         super.init()
@@ -61,10 +64,12 @@ import Foundation
 
     /// Initializer
     ///
-    /// - Parameter renewTokenCallback: Callback, which takes a TokenContext and completion handler
-    ///                                 Completion handler should be called with either JWT String, or Error
-    @objc public convenience init(renewTokenCallback: @escaping RenewJwtCallback) {
-        self.init(renewJwtCallback: { ctx, completion in
+    /// - Parameters:
+    ///   - jwt: initual value of cached jwt
+    ///   - renewTokenCallback: Callback, which takes a TokenContext and completion handler
+    ///                         Completion handler should be called with either JWT String, or Error
+    @objc public convenience init(jwt: Jwt? = nil, renewTokenCallback: @escaping RenewJwtCallback) {
+        self.init(jwt: jwt, renewJwtCallback: { ctx, completion in
             renewTokenCallback(ctx) { string, error in
                 do {
                     guard let string = string, error == nil else {
