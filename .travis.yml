@@ -21,7 +21,7 @@ env:
     - DESTINATION="OS=11.3,name=iPhone SE"            SCHEME="$IOS_FRAMEWORK_SCHEME"        SDK="$IOS_SDK"        TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="iOS"        RUN_TESTS="YES"    ADDITIONAL_TESTS_SCHEME="$IOS_TEST_SCHEME"     PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="YES"   SWIFT_LINT="NO"
     - DESTINATION="arch=x86_64"                       SCHEME="$MACOS_FRAMEWORK_SCHEME"      SDK="$MACOS_SDK"      TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="Mac"        RUN_TESTS="YES"    ADDITIONAL_TESTS_SCHEME=""                     PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="YES"    POD_LIB_LINT="NO"    SWIFT_LINT="NO"
     - DESTINATION="OS=11.3,name=Apple TV 4K"          SCHEME="$TVOS_FRAMEWORK_SCHEME"       SDK="$TVOS_SDK"       TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="tvOS"       RUN_TESTS="YES"    ADDITIONAL_TESTS_SCHEME="$TVOS_TEST_SCHEME"    PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"    SWIFT_LINT="YES"
-    - DESTINATION="OS=4.3,name=Apple Watch - 42mm"    SCHEME="$WATCHOS_FRAMEWORK_SCHEME"    SDK="$WATCHOS_SDK"    TWO_STEP_BUILD_ENABLED="NO"     CARTHAGE_PLATFORM_NAME="watchOS"    RUN_TESTS="NO"     ADDITIONAL_TESTS_SCHEME=""                     PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"    SWIFT_LINT="NO"
+    - DESTINATION="OS=4.3,name=Apple Watch - 42mm"    SCHEME="$WATCHOS_FRAMEWORK_SCHEME"    SDK="$WATCHOS_SDK"    TWO_STEP_BUILD_ENABLED="NO"     CARTHAGE_PLATFORM_NAME="watchOS"    RUN_TESTS="NO"     ADDITIONAL_TESTS_SCHEME=""                     PUBLISH_DOCS="YES"    PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"    SWIFT_LINT="NO"
 
 before_install:
   - set -e
@@ -64,6 +64,7 @@ script:
   # Build with carthage
   - if [ $PUBLISH_CARTHAGE == "YES" ]; then
       carthage build --no-skip-current --no-use-binaries;
+      carthage archive;
     fi
   
   # Check pod lib
@@ -74,12 +75,10 @@ script:
 
 after_success:
   # Generate and publish docs
-  - if [ -n "${TRAVIS_TAG}" ] && [ $PUBLISH_DOCS == "YES" ]; then
+  # - if [ -n "${TRAVIS_TAG}" ] && [ $PUBLISH_DOCS == "YES" ]; then
+  - if [ $PUBLISH_DOCS == "YES" ]; then
       ./CI/publish-docs.sh;
     fi
-
-before_deploy:
-  - carthage archive
 
 deploy:
   # Upload framework to gh-releases for carthage
@@ -96,8 +95,9 @@ deploy:
   # Upload docs to gh-pages
   - provider: pages
     skip_cleanup: true
-    github_token: $GITHUB_TOKEN
-    local_dir: "${TRAVIS_BUILD_DIR}/docs"
+    github-token: $GITHUB_TOKEN
+    local_dir: "docs"
     on:
       tags: true
       condition: $PUBLISH_DOCS = "YES"
+

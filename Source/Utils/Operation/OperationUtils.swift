@@ -36,13 +36,21 @@
 
 import Foundation
 
+/// Class that helps to create Operation instances for common cases
 public final class OperationUtils {
+    /// Creates empty async operation
+    ///
+    /// - Returns: GenericOperation<Void>
     public class func makeEmptyOperation() -> GenericOperation<Void> {
         return CallbackOperation { _, completion in
             completion(Void(), nil)
         }
     }
 
+    /// Creates completion operation that finds result and passes it to completion callback
+    ///
+    /// - Parameter completion: completion callback to be called after finding result
+    /// - Returns: GenericOperation<Void>
     public class func makeCompletionOperation<T>(completion: @escaping (T?, Error?) -> Void) -> GenericOperation<Void> {
         let completionOperation = CallbackOperation { _, completion in
             completion(Void(), nil)
@@ -87,8 +95,12 @@ public final class OperationUtils {
         return retryCheckOp
     }
 
+    /// Creates retry operation using operation fabric in form of closure
+    ///
+    /// - Parameter makeAggregateOperation: Operation fabric closure
+    /// - Returns: GenericOperation<T>
     public class func makeRetryAggregate<T>(
-        makeAggregateOperation: @escaping (Bool) -> GenericOperation<T>)-> GenericOperation<T> {
+        makeAggregateOperation: @escaping (Bool) -> GenericOperation<T>) -> GenericOperation<T> {
         return CallbackOperation<T> { _, completion in
             let queue = OperationQueue()
 
@@ -109,6 +121,12 @@ public final class OperationUtils {
         }
     }
 
+    /// Creates operation that obtains token
+    ///
+    /// - Parameters:
+    ///   - tokenContext: TokenContext
+    ///   - accessTokenProvider: AccessTokenProvider
+    /// - Returns: GenericOperation<AccessToken>
     public class func makeGetTokenOperation(tokenContext: TokenContext,
                                             accessTokenProvider: AccessTokenProvider) -> GenericOperation<AccessToken> {
         return CallbackOperation<AccessToken> { _, completion in

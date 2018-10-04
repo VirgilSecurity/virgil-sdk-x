@@ -36,7 +36,7 @@
 
 import Foundation
 
-/// Class used to provide additional info for AccessTokenProvider and explains why token is needed
+/// Class used to provide additional info for AccessTokenProvider and explain why token is needed
 @objc(VSSTokenContext) public class TokenContext: NSObject {
     /// Identity to use in token
     @objc public let identity: String?
