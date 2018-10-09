@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                        = "VirgilSDK"
-  s.version                     = "5.3.0"
+  s.version                     = "5.4.0"
   s.license                     = { :type => "BSD", :file => "LICENSE" }
   s.summary                     = "Virgil SDK for Apple devices and languages."
   s.homepage                    = "https://github.com/VirgilSecurity/sdk-x/"
@@ -19,5 +19,5 @@ Pod::Spec.new do |s|
   s.osx.exclude_files           = "Source/**/iOS/*.{h,m,swift}"
   s.tvos.exclude_files          = "Source/**/macOS/*.{h,m,swift}"
   s.watchos.exclude_files       = "Source/**/macOS/*.{h,m,swift}"
-  s.dependency "VirgilCryptoAPI", "~> 1.0.0"
+  s.dependency "VirgilCryptoAPI", "~> 1.0"
 end
