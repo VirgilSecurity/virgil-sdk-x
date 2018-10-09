@@ -390,7 +390,7 @@ import Foundation
             throw KeychainStorageError(errCode: .wrongResponseType)
         }
 
-        return try arr.map { try KeychainStorage.parseKeychainEntry(from: $0) }
+        return arr.compactMap { try? KeychainStorage.parseKeychainEntry(from: $0) }
     }
 
     /// Deletes entry from Keychain
