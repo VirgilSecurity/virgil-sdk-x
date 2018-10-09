@@ -39,7 +39,7 @@ import VirgilCryptoAPI
 
 // MARK: - Extension for primary operations
 extension CardManager {
-    /// Makes CallbackOperation<GetCardResponse> for getting `GetCardResponse` with verified Virgil Card
+    /// Makes CallbackOperation<Card> for getting verified Virgil Card
     /// from the Virgil Cards Service with given ID, if exists
     ///
     /// - Parameter cardId: identifier of Virgil Card to find

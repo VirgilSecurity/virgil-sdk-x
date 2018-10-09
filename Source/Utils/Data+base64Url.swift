@@ -50,7 +50,7 @@ public extension Data {
 
     /// Initializer
     ///
-    /// - Parameter base64UrlEncoded: base64UrlEncoded-encoded string
+    /// - Parameter base64UrlEncoded: base64Url-encoded string
     init?(base64UrlEncoded: String) {
         let base64Encoded = base64UrlEncoded
             .replacingOccurrences(of: "-", with: "+")

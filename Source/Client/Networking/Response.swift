@@ -42,7 +42,7 @@ open class Response: NSObject {
     public let statusCode: Int
     /// HTTP response
     public let response: HTTPURLResponse
-    // Response body
+    /// Response body
     public let body: Data?
 
     /// Initializer

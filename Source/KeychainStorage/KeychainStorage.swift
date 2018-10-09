@@ -100,6 +100,9 @@ import Foundation
     /// Comment for all macOS password entries created by this class. Used for filtering
     @objc public static let commentStringPrefix = "CREATED_BY_VIRGILSDK"
 
+    /// Comment string
+    ///
+    /// - Returns: Comment string for macOS Keychain entries
     @objc public func commentString() -> String {
         return "\(KeychainStorage.commentStringPrefix).OWNER_APP=\(self.storageParams.appName)"
     }
@@ -387,7 +390,7 @@ import Foundation
             throw KeychainStorageError(errCode: .wrongResponseType)
         }
 
-        return try arr.map { try KeychainStorage.parseKeychainEntry(from: $0) }
+        return arr.compactMap { try? KeychainStorage.parseKeychainEntry(from: $0) }
     }
 
     /// Deletes entry from Keychain

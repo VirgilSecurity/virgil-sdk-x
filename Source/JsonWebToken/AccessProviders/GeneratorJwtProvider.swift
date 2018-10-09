@@ -49,7 +49,7 @@ import Foundation
     /// Initializer
     ///
     /// - Parameters:
-    ///   - jwtGenerator: `JwtGeneretor` instance for generating new tokens
+    ///   - jwtGenerator: `JwtGenerator` instance for generating new tokens
     ///   - defaultIdentity: Identity that will be used for generating token
     ///                      if tokenContext do not have it (e.g. for read operations)
     ///                      WARNING: Do not create cards with defaultIdentity
@@ -67,7 +67,7 @@ import Foundation
     /// - Parameters:
     ///   - tokenContext: `TokenContext`, provides context explaining why token is needed
     ///   - completion: completion closure, called with access token or corresponding error
-    @objc public func getToken(with tokenContext: TokenContext, completion: @escaping (AccessToken?, Error?) -> ()) {
+    @objc public func getToken(with tokenContext: TokenContext, completion: @escaping (AccessToken?, Error?) -> Void) {
         do {
             let token = try self.jwtGenerator.generateToken(identity: tokenContext.identity ?? self.defaultIdentity,
                                                             additionalData: self.additionalData)

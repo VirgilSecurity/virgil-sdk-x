@@ -45,7 +45,7 @@ extension CardManager {
     ///   - rawSignedModel: RawSignedModel to import
     /// - Returns: imported Card
     /// - Throws: corresponding error
-    @objc open static func parseCard(from rawSignedModel: RawSignedModel, cardCrypto: CardCrypto) throws -> Card {
+    @objc open class func parseCard(from rawSignedModel: RawSignedModel, cardCrypto: CardCrypto) throws -> Card {
         let contentSnapshot = rawSignedModel.contentSnapshot
         let rawCardContent = try JSONDecoder().decode(RawCardContent.self, from: contentSnapshot)
 

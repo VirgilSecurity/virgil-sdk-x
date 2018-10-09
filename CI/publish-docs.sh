@@ -38,8 +38,6 @@
 # Settings
 REPO_PATH=https://github.com/VirgilSecurity/virgil-sdk-x.git
 HTML_PATH_DST="${TRAVIS_BUILD_DIR}/docs"
-COMMIT_USER="Travis CI documentation builder."
-COMMIT_EMAIL="deundiak@gmail.com"
 CHANGESET=$(git rev-parse --verify HEAD)
 
 # Get a clean version of the HTML documentation repo.

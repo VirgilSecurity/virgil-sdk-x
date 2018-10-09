@@ -43,5 +43,5 @@ import Foundation
     /// - Parameters:
     ///   - tokenContext: `TokenContext`, provides context explaining why token is needed
     ///   - completion: Completion closure, called with access token or corresponding error
-    @objc func getToken(with tokenContext: TokenContext, completion: @escaping (AccessToken?, Error?) -> ())
+    @objc func getToken(with tokenContext: TokenContext, completion: @escaping (AccessToken?, Error?) -> Void)
 }
