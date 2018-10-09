@@ -67,7 +67,6 @@ script:
   # Build with carthage
   - if [ $PUBLISH_CARTHAGE == "YES" ]; then
       carthage build --no-skip-current --no-use-binaries;
-      carthage archive;
     fi
   
   # Check pod lib
@@ -76,6 +75,9 @@ script:
       pod repo update;
       pod lib lint;
     fi
+
+before_deploy:
+  - carthage archive
 
 after_success:
   # Generate and publish docs
@@ -92,7 +94,7 @@ deploy:
     file: $FRAMEWORK_NAME.framework.zip
     skip_cleanup: true
     on:
-      repo: VirgilSecurity/virgil-sdk-x
+      repo: VirgilSecurity/sdk-x
       tags: true
       condition: $PUBLISH_CARTHAGE = "YES"
 
