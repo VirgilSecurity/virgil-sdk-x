@@ -33,8 +33,12 @@ before_install:
   - xcodebuild -showsdks
 
 script:
-  - openssl aes-256-cbc -K $encrypted_146d77d787d2_key -iv $encrypted_146d77d787d2_iv -in TestConfig.plist.enc -out TestConfig.plist -d
-  - mv -f TestConfig.plist Tests/Data/TestConfig.plist
+  - |
+    if [ -n "$TRAVIS_TAG" ]; then
+      openssl aes-256-cbc -K $encrypted_cda9e01aaac5_key -iv $encrypted_cda9e01aaac5_iv -in TestConfig_prod.plist.enc -out Tests/Data/TestConfig.plist -d
+    else
+      openssl aes-256-cbc -K $encrypted_cda9e01aaac5_key -iv $encrypted_cda9e01aaac5_iv -in TestConfig_stg.plist.enc -out Tests/Data/TestConfig.plist -d
+    fi
 
   - carthage version
   - carthage bootstrap --no-build
