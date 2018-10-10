@@ -47,7 +47,7 @@ import Foundation
     /// Initializer
     ///
     /// - Parameters:
-    ///   - initialJwt: Initual jwt value
+    ///   - initialJwt: Initial jwt value
     ///   - renewJwtCallback: Callback, which takes a TokenContext and completion handler
     ///                       Completion handler should be called with either JWT, or Error
     @objc public init(initialJwt: Jwt? = nil, renewJwtCallback: @escaping (TokenContext, @escaping (Jwt?, Error?) -> ()) -> ()) {
@@ -65,7 +65,7 @@ import Foundation
     /// Initializer
     ///
     /// - Parameters:
-    ///   - initialJwt: Initual jwt value
+    ///   - initialJwt: Initial jwt value
     ///   - renewTokenCallback: Callback, which takes a TokenContext and completion handler
     ///                         Completion handler should be called with either JWT String, or Error
     @objc public convenience init(initialJwt: Jwt? = nil, renewTokenCallback: @escaping RenewJwtCallback) {
