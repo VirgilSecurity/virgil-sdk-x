@@ -198,7 +198,7 @@ static const NSTimeInterval timeout = 8.;
 }
 
 - (void)test005_STC_38 {
-    XCTestExpectation *ex = [self expectationWithDescription:@"callbackJwtProvider should cache token"];
+    XCTestExpectation *ex = [self expectationWithDescription:@"cachingJwtProvider should cache token"];
     NSTimeInterval ttl = 10;
     VSSCachingJwtProvider *cachingJwtProvider = [[VSSCachingJwtProvider alloc] initWithInitialJwt:nil renewTokenCallback:^(VSSTokenContext *tokenContext, void(^completionHandler)(NSString* token, NSError* error)) {
         VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
@@ -237,6 +237,116 @@ static const NSTimeInterval timeout = 8.;
         if (error != nil)
             XCTFail(@"Expectation failed: %@", error);
     }];
+}
+    
+- (void)test006_STC39 {
+    NSTimeInterval ttl = 10;
+    VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+    
+    NSError *err;
+    VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
+    XCTAssert(err == nil);
+    
+    NSString *identity = @"some_identity";
+    
+    VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:crypto];
+    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] apiPublicKeyIdentifier:@"id" accessTokenSigner:signer appId:@"app_id" ttl:ttl];
+    
+    NSInteger __block callCounter = 0;
+    
+    dispatch_queue_t queue = dispatch_queue_create("queue", 0);
+    
+    VSSCachingJwtProvider *cachingJwtProvider = [[VSSCachingJwtProvider alloc] initWithInitialJwt:nil renewTokenCallback:^(VSSTokenContext *tokenContext, void(^completionHandler)(NSString* token, NSError* error)) {
+        
+        dispatch_async(queue, ^{
+            VSSJwt *jwt = [generator generateTokenWithIdentity:identity additionalData:nil error:nil];
+            
+            callCounter++;
+            sleep(1);
+            
+            completionHandler([jwt stringRepresentation], nil);
+        });
+    }];
+    
+    id<VSSAccessToken> __block jwt1;
+    id<VSSAccessToken> __block jwt2;
+    
+    VSSTokenContext *tokenContext = [[VSSTokenContext alloc] initWithIdentity:identity service:@"cards" operation:@"test" forceReload:NO];
+    [cachingJwtProvider getTokenWith:tokenContext completion:^(id<VSSAccessToken> jwt, NSError *error) {
+        XCTAssert(error == nil && jwt != nil);
+        
+        jwt1 = jwt;
+    }];
+    
+    [cachingJwtProvider getTokenWith:tokenContext completion:^(id<VSSAccessToken> jwt, NSError *error) {
+        XCTAssert(error == nil && jwt != nil);
+        
+        jwt2 = jwt;
+    }];
+    
+    sleep(5);
+    
+    XCTAssert(jwt1 == jwt2);
+    XCTAssert(callCounter == 1);
+}
+    
+- (void)test007_STC40 {
+    NSTimeInterval ttl = 10;
+    VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+    
+    NSError *err;
+    VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
+    XCTAssert(err == nil);
+    
+    NSString *identity = @"some_identity";
+    
+    VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:crypto];
+    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] apiPublicKeyIdentifier:@"id" accessTokenSigner:signer appId:@"app_id" ttl:ttl];
+    
+    VSSJwt *initialJwt = [generator generateTokenWithIdentity:identity additionalData:nil error:nil];
+    
+    NSInteger __block callCounter = 0;
+    
+    VSSCachingJwtProvider *cachingJwtProvider = [[VSSCachingJwtProvider alloc] initWithInitialJwt:initialJwt renewTokenCallback:^(VSSTokenContext *tokenContext, void(^completionHandler)(NSString* token, NSError* error)) {
+
+        VSSJwt *jwt = [generator generateTokenWithIdentity:identity additionalData:nil error:nil];
+        
+        callCounter++;
+        
+        completionHandler([jwt stringRepresentation], nil);
+    }];
+    
+    id<VSSAccessToken> __block jwt1;
+    id<VSSAccessToken> __block jwt2;
+    id<VSSAccessToken> __block jwt3;
+    
+    VSSTokenContext *tokenContext = [[VSSTokenContext alloc] initWithIdentity:identity service:@"cards" operation:@"test" forceReload:NO];
+    [cachingJwtProvider getTokenWith:tokenContext completion:^(id<VSSAccessToken> jwt, NSError *error) {
+        XCTAssert(error == nil && jwt != nil);
+        
+        jwt1 = jwt;
+    }];
+    
+    sleep(3);
+    
+    [cachingJwtProvider getTokenWith:tokenContext completion:^(id<VSSAccessToken> jwt, NSError *error) {
+        XCTAssert(error == nil && jwt != nil);
+        
+        jwt2 = jwt;
+    }];
+    
+    sleep(9);
+    
+    [cachingJwtProvider getTokenWith:tokenContext completion:^(id<VSSAccessToken> jwt, NSError *error) {
+        XCTAssert(error == nil && jwt != nil);
+        
+        jwt3 = jwt;
+    }];
+    
+    XCTAssert(initialJwt == jwt1);
+    XCTAssert(jwt1 == jwt2);
+    XCTAssert(jwt2 != jwt3);
+    XCTAssert(callCounter == 1);
 }
 
 @end
