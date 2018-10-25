@@ -43,12 +43,17 @@ import Foundation
     /// Callback, which takes a TokenContext and completion handler
     /// Completion handler should be called with either JWT, or Error
     @objc public let renewJwtCallback: (TokenContext, @escaping (Jwt?, Error?) -> Void) -> Void
+    
+    private let semaphore = DispatchSemaphore(value: 1)
 
     /// Initializer
     ///
-    /// - Parameter renewJwtCallback: Callback, which takes a TokenContext and completion handler
-    ///                               Completion handler should be called with either JWT, or Error
-    @objc public init(renewJwtCallback: @escaping (TokenContext, @escaping (Jwt?, Error?) -> Void) -> Void) {
+    /// - Parameters:
+    ///   - initialJwt: Initial jwt value
+    ///   - renewJwtCallback: Callback, which takes a TokenContext and completion handler
+    ///                       Completion handler should be called with either JWT, or Error
+    @objc public init(initialJwt: Jwt? = nil, renewJwtCallback: @escaping (TokenContext, @escaping (Jwt?, Error?) -> ()) -> ()) {
+        self.jwt = initialJwt
         self.renewJwtCallback = renewJwtCallback
 
         super.init()
@@ -61,10 +66,12 @@ import Foundation
 
     /// Initializer
     ///
-    /// - Parameter renewTokenCallback: Callback, which takes a TokenContext and completion handler
-    ///                                 Completion handler should be called with either JWT String, or Error
-    @objc public convenience init(renewTokenCallback: @escaping RenewJwtCallback) {
-        self.init(renewJwtCallback: { ctx, completion in
+    /// - Parameters:
+    ///   - initialJwt: Initial jwt value
+    ///   - renewTokenCallback: Callback, which takes a TokenContext and completion handler
+    ///                         Completion handler should be called with either JWT String, or Error
+    @objc public convenience init(initialJwt: Jwt? = nil, renewTokenCallback: @escaping RenewJwtCallback) {
+        self.init(initialJwt: initialJwt, renewJwtCallback: { ctx, completion in
             renewTokenCallback(ctx) { string, error in
                 do {
                     guard let string = string, error == nil else {
@@ -90,18 +97,30 @@ import Foundation
     ///   - tokenContext: `TokenContext` provides context explaining why token is needed
     ///   - completion: completion closure
     @objc public func getToken(with tokenContext: TokenContext, completion: @escaping AccessTokenCallback) {
-        if let jwt = self.jwt, !jwt.isExpired(date: Date().addingTimeInterval(5)) {
+        let expirationTime = Date().addingTimeInterval(5)
+
+        if let jwt = self.jwt, !jwt.isExpired(date: expirationTime) {
+            completion(jwt, nil)
+            return
+        }
+
+        self.semaphore.wait()
+        
+        if let jwt = self.jwt, !jwt.isExpired(date: expirationTime) {
+            self.semaphore.signal()
             completion(jwt, nil)
             return
         }
 
         self.renewJwtCallback(tokenContext) { token, err in
             guard let token = token, err == nil else {
+                self.semaphore.signal()
                 completion(nil, err)
                 return
             }
 
             self.jwt = token
+            self.semaphore.signal()
             completion(token, nil)
         }
     }
