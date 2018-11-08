@@ -46,7 +46,7 @@ import Security
     @objc public let accessGroup: String?
 
     /// Accessibility.
-    /// See https://developer.apple.com/reference/security/keychain_services/keychain_item_accessibility_constants
+    /// See https://developer.apple.com/documentation/security/keychain_services/keychain_items/restricting_keychain_item_accessibility
     @objc public let accessibility: String
 
     internal init(appName: String, accessGroup: String?, accessibility: String?) {
