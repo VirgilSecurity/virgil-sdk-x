@@ -324,6 +324,12 @@ import Foundation
             kSecReturnData as String: true,
             kSecReturnAttributes as String: true
         ]
+
+        #if TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
+        if let accessGroup = self.storageParams.accessGroup {
+            query[kSecAttrAccessGroup] = accessGroup
+        }
+        #endif
     #elseif os(macOS)
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -361,6 +367,12 @@ import Foundation
 
             kSecMatchLimit as String: kSecMatchLimitAll
         ]
+
+        #if TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
+        if let accessGroup = self.storageParams.accessGroup {
+            query[kSecAttrAccessGroup] = accessGroup
+        }
+        #endif
     #elseif os(macOS)
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -412,6 +424,12 @@ import Foundation
             kSecAttrApplicationLabel as String: nameData,
             kSecAttrApplicationTag as String: tagData
         ]
+
+        #if TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
+        if let accessGroup = self.storageParams.accessGroup {
+            query[kSecAttrAccessGroup] = accessGroup
+        }
+        #endif
     #elseif os(macOS)
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -438,6 +456,12 @@ import Foundation
             kSecClass as String: kSecClassKey,
             kSecAttrKeyClass as String: kSecAttrKeyClassPrivate
         ]
+
+        #if TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
+        if let accessGroup = self.storageParams.accessGroup {
+            query[kSecAttrAccessGroup] = accessGroup
+        }
+        #endif
     #elseif os(macOS)
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
