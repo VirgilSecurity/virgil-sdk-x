@@ -172,15 +172,19 @@ import Foundation
     /// - Returns: Stored entry
     /// - Throws: KeychainStorageError
     @objc open func store(data: Data, withName name: String, meta: [String: String]?) throws -> KeychainEntry {
+        let tag = String(format: KeychainStorage.privateKeyIdentifierFormat, self.storageParams.appName, name)
+
     #if os(iOS) || os(tvOS) || os(watchOS)
-        guard let nameData = name.data(using: .utf8) else {
-            throw KeychainStorageError(errCode: .utf8ConvertingError)
+        guard let tagData = tag.data(using: .utf8),
+            let nameData = name.data(using: .utf8) else {
+                throw KeychainStorageError(errCode: .utf8ConvertingError)
         }
 
         var query: [String: Any] = [
             kSecClass as String: kSecClassKey,
             kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
             kSecAttrApplicationLabel as String: nameData,
+            kSecAttrApplicationTag as String: tagData,
 
             kSecAttrAccessible as String: self.storageParams.accessibility as CFString,
             kSecAttrLabel as String: name,
@@ -210,6 +214,7 @@ import Foundation
         var query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: name,
+            kSecAttrService as String: tag,
 
             kSecAttrLabel as String: name,
             kSecAttrSynchronizable as String: false,
@@ -250,9 +255,12 @@ import Foundation
     ///   - meta: New meta info
     /// - Throws: KeychainStorageError
     @objc open func updateEntry(withName name: String, data: Data, meta: [String: String]?) throws {
+        let tag = String(format: KeychainStorage.privateKeyIdentifierFormat, self.storageParams.appName, name)
+
     #if os(iOS) || os(tvOS) || os(watchOS)
-        guard let nameData = name.data(using: .utf8) else {
-            throw KeychainStorageError(errCode: .utf8ConvertingError)
+        guard let tagData = tag.data(using: .utf8),
+            let nameData = name.data(using: .utf8) else {
+                throw KeychainStorageError(errCode: .utf8ConvertingError)
         }
 
         var query = [String: Any]()
@@ -260,6 +268,7 @@ import Foundation
             kSecClass as String: kSecClassKey,
             kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
             kSecAttrApplicationLabel as String: nameData,
+            kSecAttrApplicationTag as String: tagData
         ]
 
         // Access groups are not supported in simulator
@@ -272,6 +281,7 @@ import Foundation
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: name,
+            kSecAttrService as String: tag,
 
             kSecAttrComment as String: self.commentString()
         ]
@@ -297,15 +307,19 @@ import Foundation
     /// - Returns: Retrieved entry
     /// - Throws: KeychainStorageError
     @objc open func retrieveEntry(withName name: String) throws -> KeychainEntry {
+        let tag = String(format: KeychainStorage.privateKeyIdentifierFormat, self.storageParams.appName, name)
+
     #if os(iOS) || os(tvOS) || os(watchOS)
-        guard let nameData = name.data(using: .utf8) else {
-            throw KeychainStorageError(errCode: .utf8ConvertingError)
+        guard let tagData = tag.data(using: .utf8),
+            let nameData = name.data(using: .utf8) else {
+                throw KeychainStorageError(errCode: .utf8ConvertingError)
         }
 
         let query: [String: Any] = [
             kSecClass as String: kSecClassKey,
             kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
             kSecAttrApplicationLabel as String: nameData,
+            kSecAttrApplicationTag as String: tagData,
 
             kSecReturnData as String: true,
             kSecReturnAttributes as String: true
@@ -320,6 +334,7 @@ import Foundation
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: name,
+            kSecAttrService as String: tag,
 
             kSecReturnData as String: true,
             kSecReturnAttributes as String: true,
@@ -395,15 +410,19 @@ import Foundation
     /// - Parameter name: Alias
     /// - Throws: KeychainStorageError
     @objc open func deleteEntry(withName name: String) throws {
+        let tag = String(format: KeychainStorage.privateKeyIdentifierFormat, self.storageParams.appName, name)
+
     #if os(iOS) || os(tvOS) || os(watchOS)
-        guard let nameData = name.data(using: .utf8) else {
-            throw KeychainStorageError(errCode: .utf8ConvertingError)
+        guard let tagData = tag.data(using: .utf8),
+            let nameData = name.data(using: .utf8) else {
+                throw KeychainStorageError(errCode: .utf8ConvertingError)
         }
 
         let query: [String: Any] = [
             kSecClass as String: kSecClassKey,
             kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
             kSecAttrApplicationLabel as String: nameData,
+            kSecAttrApplicationTag as String: tagData
         ]
 
         #if TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
@@ -415,6 +434,7 @@ import Foundation
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: name,
+            kSecAttrService as String: tag,
 
             kSecAttrComment as String: self.commentString()
         ]
