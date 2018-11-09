@@ -46,7 +46,7 @@ import Security
     @objc public let accessGroup: String?
 
     /// Accessibility.
-    /// See https://developer.apple.com/reference/security/keychain_services/keychain_item_accessibility_constants
+    /// See https://developer.apple.com/documentation/security/keychain_services/keychain_items/restricting_keychain_item_accessibility
     @objc public let accessibility: String
 
     internal init(appName: String, accessGroup: String?, accessibility: String?) {
@@ -64,9 +64,9 @@ import Security
     ///   - accessibility: accessibility. Default value is kSecAttrAccessibleAfterFirstUnlock
     /// - Returns: Initialized KeychainStorageParams
     /// - Throws: KeychainStorageError
-    @objc static public func makeKeychainStorageParams(accessGroup: String? = nil, accessibility: String? = nil)
+    @objc static public func makeKeychainStorageParams(appName: String? = nil, accessGroup: String? = nil, accessibility: String? = nil)
         throws -> KeychainStorageParams {
-        guard let appName = Bundle.main.bundleIdentifier else {
+        guard let appName = appName ?? Bundle.main.bundleIdentifier else {
             throw KeychainStorageError(errCode: .invalidAppBundle)
         }
 

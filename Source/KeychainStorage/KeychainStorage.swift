@@ -109,7 +109,7 @@ import Foundation
 
     /// Created access for trusted application + current application
     ///
-    /// - Parameter name: entry nake
+    /// - Parameter name: entry name
     /// - Returns: SecAccess
     /// - Throws: KeychainStorageError
     @objc public func createAccess(forName name: String) throws -> SecAccess {
