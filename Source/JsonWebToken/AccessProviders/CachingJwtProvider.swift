@@ -43,7 +43,7 @@ import Foundation
     /// Callback, which takes a TokenContext and completion handler
     /// Completion handler should be called with either JWT, or Error
     @objc public let renewJwtCallback: (TokenContext, @escaping (Jwt?, Error?) -> Void) -> Void
-    
+
     private let semaphore = DispatchSemaphore(value: 1)
 
     /// Initializer
@@ -52,7 +52,8 @@ import Foundation
     ///   - initialJwt: Initial jwt value
     ///   - renewJwtCallback: Callback, which takes a TokenContext and completion handler
     ///                       Completion handler should be called with either JWT, or Error
-    @objc public init(initialJwt: Jwt? = nil, renewJwtCallback: @escaping (TokenContext, @escaping (Jwt?, Error?) -> ()) -> ()) {
+    @objc public init(initialJwt: Jwt? = nil,
+                      renewJwtCallback: @escaping (TokenContext, @escaping (Jwt?, Error?) -> ()) -> ()) {
         self.jwt = initialJwt
         self.renewJwtCallback = renewJwtCallback
 
@@ -105,7 +106,7 @@ import Foundation
         }
 
         self.semaphore.wait()
-        
+
         if let jwt = self.jwt, !jwt.isExpired(date: expirationTime) {
             self.semaphore.signal()
             completion(jwt, nil)

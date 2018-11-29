@@ -42,6 +42,10 @@ import VirgilCryptoApiImpl
 import VirgilSDK
 
 class CardClientStub_STC34: CardClientProtocol {
+    func searchCards(identities: [String], token: String) throws -> [RawSignedModel] {
+        return [try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-34.as_string"] as! String)]
+    }
+    
     private var testsDict: Dictionary<String, Any>!
 
     init() {
@@ -61,7 +65,7 @@ class CardClientStub_STC34: CardClientProtocol {
     }
 
     @objc func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
-        return [try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-34.as_string"] as! String)]
+        return try self.searchCards(identities: [identity], token: token)
     }
 }
 

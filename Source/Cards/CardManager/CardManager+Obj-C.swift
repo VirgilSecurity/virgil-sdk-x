@@ -94,4 +94,15 @@ extension CardManager {
     @objc open func searchCards(identity: String, completion: @escaping ([Card]?, Error?) -> Void) {
         self.searchCards(identity: identity).start(completion: completion)
     }
+
+    /// Asynchronously performs search of Virgil Cards on the Virgil Cards Service using identities
+    ///
+    /// NOTE: See swift version for additional info
+    ///
+    /// - Parameters:
+    ///   - identities: identities of cards to search
+    ///   - completion: completion handler, called with found and verified Cards or corresponding error
+    @objc open func searchCards(identities: [String], completion: @escaping ([Card]?, Error?) -> Void) {
+        self.searchCards(identities: identities).start(completion: completion)
+    }
 }

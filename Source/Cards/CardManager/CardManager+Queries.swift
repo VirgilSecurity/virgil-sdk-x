@@ -239,12 +239,24 @@ extension CardManager {
     /// - Parameter identity: identity of cards to search
     /// - Returns: CallbackOperation<[Card]> for performing search of Virgil Cards
     open func searchCards(identity: String) -> GenericOperation<[Card]> {
+        return self.searchCards(identities: [identity])
+    }
+
+    /// Makes CallbackOperation<[Card]> for performing search of Virgil Cards
+    /// on the Virgil Cards Service using identities
+    ///
+    /// NOTE: Resulting array will contain only actual cards.
+    ///       Older cards (that were replaced) can be accessed using previousCard property of new cards.
+    ///
+    /// - Parameter identities: identities of cards to search
+    /// - Returns: CallbackOperation<[Card]> for performing search of Virgil Cards
+    open func searchCards(identities: [String]) -> GenericOperation<[Card]> {
         let makeAggregateOperation: (Bool) -> GenericOperation<[Card]> = { forceReload in
             return CallbackOperation { _, completion in
                 let tokenContext = TokenContext(service: "cards", operation: "search", forceReload: forceReload)
                 let getTokenOperation = OperationUtils.makeGetTokenOperation(
                     tokenContext: tokenContext, accessTokenProvider: self.accessTokenProvider)
-                let searchCardsOperation = self.makeSearchCardsOperation(identity: identity)
+                let searchCardsOperation = self.makeSearchCardsOperation(identities: identities)
                 let verifyCardsOperation = self.makeVerifyCardsOperation()
                 let completionOperation = OperationUtils.makeCompletionOperation(completion: completion)
 
