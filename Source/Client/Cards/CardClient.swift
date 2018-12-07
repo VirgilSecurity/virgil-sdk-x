@@ -55,19 +55,19 @@ import Foundation
     /// - Parameters:
     ///   - serviceUrl: URL of service client will use
     ///   - connection: custom HTTPConnection
-    public override init(serviceUrl: URL = CardClient.defaultURL, connection: HttpConnectionProtocol) {
+    override public init(serviceUrl: URL = CardClient.defaultURL, connection: HttpConnectionProtocol) {
         super.init(serviceUrl: serviceUrl, connection: connection)
     }
 
     /// Initializes a new `CardClient` instance
-    @objc convenience public init() {
+    @objc public convenience init() {
         self.init(serviceUrl: CardClient.defaultURL)
     }
 
     /// Initializes a new `CardClient` instance
     ///
     /// - Parameter serviceUrl: URL of service client will use
-    @objc convenience public init(serviceUrl: URL) {
+    @objc public convenience init(serviceUrl: URL) {
         self.init(serviceUrl: serviceUrl, connection: HttpConnection())
     }
 

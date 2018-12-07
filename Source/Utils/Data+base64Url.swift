@@ -36,6 +36,8 @@
 
 import Foundation
 
+// swiftlint:disable missing_docs
+
 // MARK: - Data extension for base64Url encoding and decoding
 public extension Data {
     /// Encodes data in base64Url format

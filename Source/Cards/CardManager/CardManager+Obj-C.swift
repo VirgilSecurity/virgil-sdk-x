@@ -79,8 +79,11 @@ extension CardManager {
     @objc open func publishCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String,
                                 previousCardId: String? = nil, extraFields: [String: String]? = nil,
                                 completion: @escaping (Card?, Error?) -> Void) {
-        self.publishCard(privateKey: privateKey, publicKey: publicKey, identity: identity,
-                         previousCardId: previousCardId, extraFields: extraFields)
+        self.publishCard(privateKey: privateKey,
+                         publicKey: publicKey,
+                         identity: identity,
+                         previousCardId: previousCardId,
+                         extraFields: extraFields)
             .start(completion: completion)
     }
 

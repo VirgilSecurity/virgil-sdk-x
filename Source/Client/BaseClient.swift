@@ -72,7 +72,8 @@ import Foundation
     /// - Returns: Corresponding error instance
     open func handleError(statusCode: Int, body: Data?) -> Error {
         if let body = body, let str = String(data: body, encoding: .utf8) {
-            return NSError(domain: type(of: self).serviceErrorDomain, code: statusCode,
+            return NSError(domain: type(of: self).serviceErrorDomain,
+                           code: statusCode,
                            userInfo: [NSLocalizedDescriptionKey: str])
         }
 

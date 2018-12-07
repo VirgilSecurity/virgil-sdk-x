@@ -37,6 +37,8 @@
 import Foundation
 import Security
 
+// swiftlint:disable line_length
+
 /// Class responsible for KeychainStorage setup
 @objc(VSSKeychainStorageParams) public final class KeychainStorageParams: NSObject {
     /// Application name
@@ -64,7 +66,9 @@ import Security
     ///   - accessibility: accessibility. Default value is kSecAttrAccessibleAfterFirstUnlock
     /// - Returns: Initialized KeychainStorageParams
     /// - Throws: KeychainStorageError
-    @objc static public func makeKeychainStorageParams(appName: String? = nil, accessGroup: String? = nil, accessibility: String? = nil)
+    @objc public static func makeKeychainStorageParams(appName: String? = nil,
+                                                       accessGroup: String? = nil,
+                                                       accessibility: String? = nil)
         throws -> KeychainStorageParams {
         guard let appName = appName ?? Bundle.main.bundleIdentifier else {
             throw KeychainStorageError(errCode: .invalidAppBundle)

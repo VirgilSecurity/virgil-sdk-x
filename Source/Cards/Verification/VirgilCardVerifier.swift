@@ -94,7 +94,8 @@ import VirgilCryptoAPI
 
     private func verifySelfSignature(_ card: Card) -> Bool {
         if self.verifySelfSignature {
-            return VirgilCardVerifier.verify(cardCrypto: cardCrypto, card: card,
+            return VirgilCardVerifier.verify(cardCrypto: cardCrypto,
+                                             card: card,
                                              signer: VirgilCardVerifier.selfSignerIdentifier,
                                              signerPublicKey: card.publicKey)
         }
@@ -104,7 +105,8 @@ import VirgilCryptoAPI
 
     private func verifyVirgilSignature(_ card: Card) -> Bool {
         if self.verifyVirgilSignature {
-            return VirgilCardVerifier.verify(cardCrypto: self.cardCrypto, card: card,
+            return VirgilCardVerifier.verify(cardCrypto: self.cardCrypto,
+                                             card: card,
                                              signer: VirgilCardVerifier.virgilSignerIdentifier,
                                              signerPublicKey: self.virgilPublicKey)
         }
@@ -118,7 +120,9 @@ import VirgilCryptoAPI
                     Set<String>(card.signatures.map({ $0.signer })).contains($0.signer)
                   }),
                   let publicKey = try? self.cardCrypto.importPublicKey(from: signerInfo.publicKey),
-                  VirgilCardVerifier.verify(cardCrypto: self.cardCrypto, card: card, signer: signerInfo.signer,
+                  VirgilCardVerifier.verify(cardCrypto: self.cardCrypto,
+                                            card: card,
+                                            signer: signerInfo.signer,
                                             signerPublicKey: publicKey) else {
                return false
             }
@@ -130,7 +134,8 @@ import VirgilCryptoAPI
     private class func verify(cardCrypto: CardCrypto, card: Card, signer: String, signerPublicKey: PublicKey) -> Bool {
         guard let signature = card.signatures.first(where: { $0.signer == signer }),
               let cardSnapshot = try? card.getRawCard().contentSnapshot,
-              cardCrypto.verifySignature(signature.signature, of: cardSnapshot + (signature.snapshot ?? Data()),
+              cardCrypto.verifySignature(signature.signature,
+                                         of: cardSnapshot + (signature.snapshot ?? Data()),
                                          with: signerPublicKey) else {
                 return false
         }

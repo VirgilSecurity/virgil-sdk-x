@@ -66,7 +66,8 @@ import VirgilCryptoAPI
         let combinedSnapshot = model.contentSnapshot + (additionalData ?? Data())
         let signature = try cardCrypto.generateSignature(of: combinedSnapshot, using: privateKey)
 
-        let rawSignature = RawSignature(signer: signer, signature: signature,
+        let rawSignature = RawSignature(signer: signer,
+                                        signature: signature,
                                         snapshot: additionalData)
 
         try model.addSignature(rawSignature)
@@ -80,8 +81,10 @@ import VirgilCryptoAPI
     ///   - additionalData: additionalData to sign with model
     /// - Throws: corresponding error id signature generation fails
     @objc public func selfSign(model: RawSignedModel, privateKey: PrivateKey, additionalData: Data?) throws {
-        try self.sign(model: model, signer: ModelSigner.selfSignerIdentifier,
-                      privateKey: privateKey, additionalData: additionalData)
+        try self.sign(model: model,
+                      signer: ModelSigner.selfSignerIdentifier,
+                      privateKey: privateKey,
+                      additionalData: additionalData)
     }
 
     /// Adds signature to given RawSignedModel with provided signer, privateKey and additionalData
@@ -114,7 +117,9 @@ import VirgilCryptoAPI
     /// - Throws: corresponding error id signature generation fails
     @objc public func selfSign(model: RawSignedModel, privateKey: PrivateKey,
                                extraFields: [String: String]? = nil) throws {
-        try self.sign(model: model, signer: ModelSigner.selfSignerIdentifier,
-                      privateKey: privateKey, extraFields: extraFields)
+        try self.sign(model: model,
+                      signer: ModelSigner.selfSignerIdentifier,
+                      privateKey: privateKey,
+                      extraFields: extraFields)
     }
 }

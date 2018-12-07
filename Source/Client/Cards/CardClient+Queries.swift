@@ -134,7 +134,9 @@ extension CardClient: CardClientProtocol {
             throw CardClientError.constructingUrl
         }
 
-        let request = try ServiceRequest(url: url, method: .post, accessToken: token,
+        let request = try ServiceRequest(url: url,
+                                         method: .post,
+                                         accessToken: token,
                                          params: ["identities": identities])
 
         let response = try self.connection.send(request)

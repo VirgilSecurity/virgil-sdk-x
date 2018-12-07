@@ -46,7 +46,8 @@ extension CardManager {
     ///           Rethrows from RawSignedModel, JSONDecoder, CardCrypto
     @objc open func importCard(fromBase64Encoded base64EncodedString: String) throws -> Card {
         return try CardManager.importCard(fromBase64Encoded: base64EncodedString,
-                                          cardCrypto: self.cardCrypto, cardVerifier: self.cardVerifier)
+                                          cardCrypto: self.cardCrypto,
+                                          cardVerifier: self.cardVerifier)
     }
 
     /// Imports and verifies Card from json Dictionary
@@ -57,7 +58,8 @@ extension CardManager {
     ///           Rethrows from RawSignedModel, JSONDecoder, CardCrypto, JSONSerialization
     @objc open func importCard(fromJson json: Any) throws -> Card {
         return try CardManager.importCard(fromJson: json,
-                                          cardCrypto: self.cardCrypto, cardVerifier: self.cardVerifier)
+                                          cardCrypto: self.cardCrypto,
+                                          cardVerifier: self.cardVerifier)
     }
 
     /// Imports and verifies Card from RawSignedModel
@@ -68,7 +70,8 @@ extension CardManager {
     ///           Rethrows from RawSignedModel, JSONDecoder, CardCrypto, JSONSerialization
     @objc open func importCard(fromRawCard rawCard: RawSignedModel) throws -> Card {
         return try CardManager.importCard(fromRawCard: rawCard,
-                                          cardCrypto: self.cardCrypto, cardVerifier: self.cardVerifier)
+                                          cardCrypto: self.cardCrypto,
+                                          cardVerifier: self.cardVerifier)
     }
 
     /// Exports Card as base64 encoded string

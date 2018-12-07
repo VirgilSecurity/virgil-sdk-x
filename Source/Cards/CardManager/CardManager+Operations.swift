@@ -147,7 +147,7 @@ extension CardManager {
                         throw CardManagerError.gotWrongCard
                     }
 
-                    let previousCard = cards.first(where: { $0.identifier == card.previousCardId })
+                    let previousCard = cards.first { $0.identifier == card.previousCardId }
                     card.previousCard = previousCard
                     previousCard?.isOutdated = true
                 }
@@ -200,8 +200,10 @@ extension CardManager {
             do {
                 let token: AccessToken = try operation.findDependencyResult()
 
-                let rawCard = try self.generateRawCard(privateKey: privateKey, publicKey: publicKey,
-                                                       identity: token.identity(), previousCardId: previousCardId,
+                let rawCard = try self.generateRawCard(privateKey: privateKey,
+                                                       publicKey: publicKey,
+                                                       identity: token.identity(),
+                                                       previousCardId: previousCardId,
                                                        extraFields: extraFields)
 
                 completion(rawCard, nil)

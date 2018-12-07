@@ -508,7 +508,10 @@ import Foundation
                 throw KeychainStorageError(errCode: .errorParsingKeychainResponse)
         }
 
-        return KeychainEntry(data: storedKeyEntry.value, name: storedKeyEntry.name,
-                             meta: storedKeyEntry.meta, creationDate: creationDate, modificationDate: modificationDate)
+        return KeychainEntry(data: storedKeyEntry.value,
+                             name: storedKeyEntry.name,
+                             meta: storedKeyEntry.meta,
+                             creationDate: creationDate,
+                             modificationDate: modificationDate)
     }
 }

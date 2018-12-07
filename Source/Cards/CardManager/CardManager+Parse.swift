@@ -67,17 +67,24 @@ extension CardManager {
                 extraFields = nil
             }
 
-            let cardSignature = CardSignature(signer: rawSignature.signer, signature: rawSignature.signature,
-                                              snapshot: rawSignature.snapshot, extraFields: extraFields)
+            let cardSignature = CardSignature(signer: rawSignature.signer,
+                                              signature: rawSignature.signature,
+                                              snapshot: rawSignature.snapshot,
+                                              extraFields: extraFields)
 
             cardSignatures.append(cardSignature)
         }
 
         let createdAt = DateUtils.dateFromTimestamp(rawCardContent.createdAt)
 
-        return Card(identifier: cardId, identity: rawCardContent.identity, publicKey: publicKey,
-                    version: rawCardContent.version, createdAt: createdAt, signatures: cardSignatures,
-                    previousCardId: rawCardContent.previousCardId, contentSnapshot: rawSignedModel.contentSnapshot)
+        return Card(identifier: cardId,
+                    identity: rawCardContent.identity,
+                    publicKey: publicKey,
+                    version: rawCardContent.version,
+                    createdAt: createdAt,
+                    signatures: cardSignatures,
+                    previousCardId: rawCardContent.previousCardId,
+                    contentSnapshot: rawSignedModel.contentSnapshot)
     }
 
     /// Imports Virgil Card from RawSignedModel using self CardCrypto instance

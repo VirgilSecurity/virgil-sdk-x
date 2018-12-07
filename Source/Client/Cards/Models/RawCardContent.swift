@@ -68,8 +68,11 @@ import Foundation
     ///   - createdAt: Date of creation
     @objc public convenience init(identity: String, publicKey: Data, previousCardId: String? = nil,
                                   version: String = "5.0", createdAt: Date) {
-        self.init(identity: identity, publicKey: publicKey, previousCardId: previousCardId,
-                  version: version, createdAtTimestamp: DateUtils.dateToTimestamp(date: createdAt))
+        self.init(identity: identity,
+                  publicKey: publicKey,
+                  previousCardId: previousCardId,
+                  version: version,
+                  createdAtTimestamp: DateUtils.dateToTimestamp(date: createdAt))
     }
 
     /// Initializes a new `RawCardContent` with the provided content
@@ -98,8 +101,10 @@ import Foundation
     @objc public convenience init(snapshot: Data) throws {
         let content = try JSONDecoder().decode(RawCardContent.self, from: snapshot)
 
-        self.init(identity: content.identity, publicKey: content.publicKey,
-                  previousCardId: content.previousCardId, version: content.version,
+        self.init(identity: content.identity,
+                  publicKey: content.publicKey,
+                  previousCardId: content.previousCardId,
+                  version: content.version,
                   createdAtTimestamp: content.createdAt)
     }
 
