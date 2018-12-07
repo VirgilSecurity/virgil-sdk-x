@@ -93,8 +93,10 @@ open class GenericOperation<T>: AsyncOperation {
     open func start(completion: @escaping (T?, Error?) -> Void) {
         self.start { result in
             switch result {
-            case .success(let res): completion(res, nil)
-            case .failure(let error): completion(nil, error)
+            case .success(let res):
+                completion(res, nil)
+            case .failure(let error):
+                completion(nil, error)
             }
         }
     }

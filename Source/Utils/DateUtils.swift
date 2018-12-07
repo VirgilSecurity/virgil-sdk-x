@@ -37,7 +37,7 @@
 import Foundation
 
 /// Aggregates common functions to use with JSONEncoder
-public final class DateUtils {
+public enum DateUtils {
     /// Converts date to timestamp
     ///
     /// - Parameter date: date
@@ -51,7 +51,7 @@ public final class DateUtils {
     /// - Parameter date: date
     /// - Returns: timestamp in milliseconds
     public static func dateToMilliTimestamp(date: Date) -> Int64 {
-        return Int64(date.timeIntervalSince1970 * 1000)
+        return Int64(date.timeIntervalSince1970 * 1_000)
     }
 
     /// Creates date from tiemstamp
@@ -67,7 +67,7 @@ public final class DateUtils {
     /// - Parameter timestamp: timestamp in milliseconds
     /// - Returns: date
     public static func dateFromMilliTimestamp(_ timestamp: Int64) -> Date {
-        return Date(timeIntervalSince1970: TimeInterval(timestamp) / 1000)
+        return Date(timeIntervalSince1970: TimeInterval(timestamp) / 1_000)
     }
 
     /// Decodes Date using Int timestamp

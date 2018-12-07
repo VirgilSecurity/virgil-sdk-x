@@ -83,8 +83,10 @@ import Foundation
     /// - Throws: Rethrows from JSONEncoder
     @objc public init(algorithm: String = "VEDS512", type: String = "JWT",
                       contentType: String = "virgil-jwt;v=1", keyIdentifier: String) throws {
-        let container = Container(algorithm: algorithm, type: type,
-                                  contentType: contentType, keyIdentifier: keyIdentifier)
+        let container = Container(algorithm: algorithm,
+                                  type: type,
+                                  contentType: contentType,
+                                  keyIdentifier: keyIdentifier)
         self.container = container
         self.stringRepresentation = try JSONEncoder().encode(container).base64UrlEncodedString()
 

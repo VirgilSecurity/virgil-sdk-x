@@ -75,15 +75,17 @@ static const NSTimeInterval timeout = 20.;
 }
 
 - (void)getTokenWith:(VSSTokenContext * _Nonnull)tokenContext completion:(void (^ _Nonnull)(id<VSSAccessToken> _Nullable, NSError * _Nullable))completion {
-    NSTimeInterval interval = (self.counter % 2) == 0 ? -1 : 1000;
+    NSTimeInterval interval = (self.counter % 2) == 0 ? 5 : 1000;
     self.forceCallback(tokenContext.forceReload);
-    self.counter++;
     
     NSError *error;
     id<VSSAccessToken> token = [self.utils getTokenWithIdentity:self.identity ttl:interval error:&error];
     
-    sleep(2);
+    if (self.counter % 2 == 0)
+        sleep(10);
     
+    self.counter++;
+
     completion(token, error);
 }
 
@@ -469,6 +471,8 @@ static const NSTimeInterval timeout = 20.;
 -(void)test008_STC_26 {
     XCTestExpectation *ex = [self expectationWithDescription:@"All operations should proceed on second calls"];
     NSError *error;
+    
+    NSTimeInterval timeout = 50.;
 
     NSInteger __block counter = 0;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
@@ -503,6 +507,71 @@ static const NSTimeInterval timeout = 20.;
         }];
     }];
 
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
+    }];
+}
+
+- (void)test009_STC_42 {
+    XCTestExpectation *ex = [self expectationWithDescription:@"Cards should be published and searched"];
+    
+    NSError *error;
+    NSString *identity1 = [[NSUUID alloc] init].UUIDString;
+    NSString *identity2 = [[NSUUID alloc] init].UUIDString;
+    VSSGeneratorJwtProvider *generator1 = [self.utils getGeneratorJwtProviderWithIdentity:identity1 error:&error];
+    VSSGeneratorJwtProvider *generator2 = [self.utils getGeneratorJwtProviderWithIdentity:identity2 error:&error];
+    XCTAssert(error == nil);
+    
+    VSSCardManagerParams *cardManagerParams1 = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator1 cardVerifier:self.verifier];
+    cardManagerParams1.cardClient = self.cardClient;
+    
+    VSSCardManagerParams *cardManagerParams2 = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator2 cardVerifier:self.verifier];
+    cardManagerParams2.cardClient = self.cardClient;
+    
+    VSSCardManager *cardManager1 = [[VSSCardManager alloc] initWithParams:cardManagerParams1];
+    VSSCardManager *cardManager2 = [[VSSCardManager alloc] initWithParams:cardManagerParams2];
+    
+    VSMVirgilKeyPair *keyPair1 = [self.crypto generateKeyPairAndReturnError:&error];
+    VSMVirgilKeyPair *keyPair2 = [self.crypto generateKeyPairAndReturnError:&error];
+    VSMVirgilKeyPair *keyPair3 = [self.crypto generateKeyPairAndReturnError:&error];
+    XCTAssert(error == nil);
+    
+    [cardManager1 publishCardWithPrivateKey:keyPair1.privateKey publicKey:keyPair1.publicKey identity:identity1 previousCardId:nil extraFields:nil completion:^(VSSCard *card1, NSError *error) {
+        XCTAssert(error == nil && card1 != nil);
+        
+        [cardManager1 publishCardWithPrivateKey:keyPair2.privateKey publicKey:keyPair2.publicKey identity:identity1 previousCardId:card1.identifier extraFields:nil completion:^(VSSCard *card2, NSError *error) {
+            XCTAssert(error == nil && card2 != nil);
+            
+            [cardManager2 publishCardWithPrivateKey:keyPair3.privateKey publicKey:keyPair3.publicKey identity:identity2 previousCardId:nil extraFields:nil completion:^(VSSCard *card3, NSError *error) {
+                XCTAssert(error == nil && card3 != nil);
+                
+                [cardManager1 searchCardsWithIdentities:@[identity1, identity2] completion:^(NSArray<VSSCard *> * returnedCards, NSError *error) {
+                    XCTAssert(error == nil);
+                    XCTAssert(returnedCards.count == 2);
+                    card2.previousCard = card1;
+                    card1.isOutdated = true;
+                    
+                    for (VSSCard* card in returnedCards) {
+                        if ([card.identifier isEqualToString:card2.identifier]) {
+                            XCTAssert([self.utils isCardsEqualWithCard:card and:card2]);
+                            XCTAssert([self.utils isCardsEqualWithCard:card.previousCard and:card1]);
+                            XCTAssert([card.previousCardId isEqualToString:card1.identifier]);
+                        }
+                        else if ([card.identifier isEqualToString:card3.identifier]) {
+                            XCTAssert([self.utils isCardsEqualWithCard:card and:card3]);
+                        }
+                        else {
+                            XCTFail();
+                        }
+                    }
+                    
+                    [ex fulfill];
+                }];
+            }];
+        }];
+    }];
+    
     [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
         if (error != nil)
             XCTFail(@"Expectation failed: %@", error);

@@ -36,6 +36,8 @@
 
 import Foundation
 
+// swiftlint:disable trailing_closure
+
 /// Implementation of AccessTokenProvider which provides AccessToken using callback
 @objc(VSSCallbackJwtProvider) open class CallbackJwtProvider: NSObject, AccessTokenProvider {
     /// Callback, which takes a TokenContext and completion handler

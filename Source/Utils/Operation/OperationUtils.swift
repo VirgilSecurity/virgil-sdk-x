@@ -37,11 +37,11 @@
 import Foundation
 
 /// Class that helps to create Operation instances for common cases
-public final class OperationUtils {
+public enum OperationUtils {
     /// Creates empty async operation
     ///
     /// - Returns: GenericOperation<Void>
-    public class func makeEmptyOperation() -> GenericOperation<Void> {
+    public static func makeEmptyOperation() -> GenericOperation<Void> {
         return CallbackOperation { _, completion in
             completion(Void(), nil)
         }
@@ -51,7 +51,8 @@ public final class OperationUtils {
     ///
     /// - Parameter completion: completion callback to be called after finding result
     /// - Returns: GenericOperation<Void>
-    public class func makeCompletionOperation<T>(completion: @escaping (T?, Error?) -> Void) -> GenericOperation<Void> {
+    public static func makeCompletionOperation<T>(
+        completion: @escaping (T?, Error?) -> Void) -> GenericOperation<Void> {
         let completionOperation = CallbackOperation { _, completion in
             completion(Void(), nil)
         }
@@ -74,14 +75,14 @@ public final class OperationUtils {
         return completionOperation
     }
 
-    private class func makeRetryOperation(aggregateOperation: Operation,
-                                          makeAggregateOperation: @escaping (Bool) -> Operation,
-                                          completionOperation: Operation,
-                                          queue: OperationQueue) -> GenericOperation<Void> {
+    private static func makeRetryOperation(aggregateOperation: Operation,
+                                           makeAggregateOperation: @escaping (Bool) -> Operation,
+                                           completionOperation: Operation,
+                                           queue: OperationQueue) -> GenericOperation<Void> {
         let retryCheckOp = CallbackOperation<Void> { [unowned completionOperation, queue] operation, completion in
             if let error = operation.findDependencyError(),
                 let serviceError = error as? ServiceError,
-                serviceError.errorCode == 20304 {
+                serviceError.errorCode == 20_304 {
                 let aggregateOperationRetry = makeAggregateOperation(true)
                 completionOperation.addDependency(aggregateOperationRetry)
                 completionOperation.removeDependency(aggregateOperation)
@@ -99,7 +100,7 @@ public final class OperationUtils {
     ///
     /// - Parameter makeAggregateOperation: Operation fabric closure
     /// - Returns: GenericOperation<T>
-    public class func makeRetryAggregate<T>(
+    public static func makeRetryAggregate<T>(
         makeAggregateOperation: @escaping (Bool) -> GenericOperation<T>) -> GenericOperation<T> {
         return CallbackOperation<T> { _, completion in
             let queue = OperationQueue()
@@ -109,7 +110,8 @@ public final class OperationUtils {
             let retryCheckOperation =
                 self.makeRetryOperation(aggregateOperation: aggregateOperation,
                                         makeAggregateOperation: makeAggregateOperation,
-                                        completionOperation: completionOperation, queue: queue)
+                                        completionOperation: completionOperation,
+                                        queue: queue)
 
             retryCheckOperation.addDependency(aggregateOperation)
 
@@ -127,8 +129,9 @@ public final class OperationUtils {
     ///   - tokenContext: TokenContext
     ///   - accessTokenProvider: AccessTokenProvider
     /// - Returns: GenericOperation<AccessToken>
-    public class func makeGetTokenOperation(tokenContext: TokenContext,
-                                            accessTokenProvider: AccessTokenProvider) -> GenericOperation<AccessToken> {
+    public static func makeGetTokenOperation(tokenContext: TokenContext,
+                                             accessTokenProvider: AccessTokenProvider)
+        -> GenericOperation<AccessToken> {
         return CallbackOperation<AccessToken> { _, completion in
             accessTokenProvider.getToken(with: tokenContext, completion: completion)
         }

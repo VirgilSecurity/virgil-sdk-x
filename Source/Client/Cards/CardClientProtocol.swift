@@ -67,5 +67,15 @@ import Foundation
     ///   - token: String with `Access Token`
     /// - Returns: Array with `RawSignedModel`s of matched Virgil Cards
     /// - Throws: Depends on implementation
+    @available(*, deprecated, message: "Deprecated in favor of searchCards with array of identities")
     @objc func searchCards(identity: String, token: String) throws -> [RawSignedModel]
+
+    /// Performs search of Virgil Cards using given identities on the Virgil Cards Service
+    ///
+    /// - Parameters:
+    ///   - identities: Identities of cards to search
+    ///   - token: String with `Access Token`
+    /// - Returns: Array with `RawSignedModel`s of matched Virgil Cards
+    /// - Throws: Depends on implementation
+    @objc func searchCards(identities: [String], token: String) throws -> [RawSignedModel]
 }

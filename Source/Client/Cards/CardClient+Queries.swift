@@ -113,12 +113,31 @@ extension CardClient: CardClientProtocol {
     ///           NSError with CardClient.serviceErrorDomain error domain,
     ///               http status code as error code, and description string if present in http body
     ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
+    @available(*, deprecated, message: "Deprecated in favor of searchCards with array of identities")
     @objc open func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
+        return try self.searchCards(identities: [identity], token: token)
+    }
+
+    /// Performs search of Virgil Cards using given identities on the Virgil Cards Service
+    ///
+    /// - Parameters:
+    ///   - identities: Identities of cards to search
+    ///   - token: String with `Access Token`
+    /// - Returns: Array with `RawSignedModel`s of matched Virgil Cards
+    /// - Throws: CardClientError.constructingUrl, if url initialization failed
+    ///           CardServiceError, if service returned correctly-formed error json
+    ///           NSError with CardClient.serviceErrorDomain error domain,
+    ///               http status code as error code, and description string if present in http body
+    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
+    public func searchCards(identities: [String], token: String) throws -> [RawSignedModel] {
         guard let url = URL(string: "card/v5/actions/search", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
 
-        let request = try ServiceRequest(url: url, method: .post, accessToken: token, params: ["identity": identity])
+        let request = try ServiceRequest(url: url,
+                                         method: .post,
+                                         accessToken: token,
+                                         params: ["identities": identities])
 
         let response = try self.connection.send(request)
 

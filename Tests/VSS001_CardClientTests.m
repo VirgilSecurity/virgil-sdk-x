@@ -189,7 +189,7 @@
     XCTAssert(error == nil && card != nil);
     
     NSArray<VSSRawSignedModel *> *foundRawCards = [self.cardClient searchCardsWithIdentity:identity token:strToken error:&error];
-    XCTAssert(foundRawCards.count != 0);
+    XCTAssert(foundRawCards.count == 1);
     VSSRawSignedModel *foundRawCard = foundRawCards.firstObject;
     
     VSSCard *foundCard = [VSSCardManager parseCardFrom:foundRawCard cardCrypto:self.cardCrypto error:&error];
@@ -255,7 +255,72 @@
     VSSRawSignedModel *responseRawCard = [self.cardClient publishCardWithModel:rawCard token:strToken error:&error];
     XCTAssert(error != nil);
     XCTAssert(responseRawCard == nil);
-    XCTAssert([[error localizedDescription] isEqualToString:@"JWT is invalid"]);
+}
+
+-(void)test006_STC_41 {
+    NSError *error;
+    NSString *identity1 = [[NSUUID alloc] init].UUIDString;
+    NSString *identity2 = [[NSUUID alloc] init].UUIDString;
+    NSString *strToken1 = [self.utils getTokenStringWithIdentity:identity1 error:&error];
+    XCTAssert(error == nil);
+    NSString *strToken2 = [self.utils getTokenStringWithIdentity:identity2 error:&error];
+    XCTAssert(error == nil);
+    
+    VSMVirgilKeyPair *keyPair1 = [self.crypto generateKeyPairAndReturnError:&error];
+    XCTAssert(error == nil);
+    VSMVirgilKeyPair *keyPair2 = [self.crypto generateKeyPairAndReturnError:&error];
+    XCTAssert(error == nil);
+    
+    NSData *exportedPublicKey1 = [self.crypto exportPublicKey:keyPair1.publicKey];
+    NSData *exportedPublicKey2 = [self.crypto exportPublicKey:keyPair2.publicKey];
+    
+    VSSRawCardContent *content1 = [[VSSRawCardContent alloc] initWithIdentity:identity1 publicKey:exportedPublicKey1 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
+    VSSRawCardContent *content2 = [[VSSRawCardContent alloc] initWithIdentity:identity2 publicKey:exportedPublicKey2 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
+    NSData *snapshot1 = [content1 snapshotAndReturnError:nil];
+    NSData *snapshot2 = [content2 snapshotAndReturnError:nil];
+    VSSRawSignedModel *rawCard1 = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot1];
+    VSSRawSignedModel *rawCard2 = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot2];
+    
+    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
+    [signer selfSignWithModel:rawCard1 privateKey:keyPair1.privateKey additionalData:nil error:&error];
+    XCTAssert(error == nil);
+    [signer selfSignWithModel:rawCard2 privateKey:keyPair2.privateKey additionalData:nil error:&error];
+    XCTAssert(error == nil);
+    
+    VSSRawSignedModel *publishedRawCard1 = [self.cardClient publishCardWithModel:rawCard1 token:strToken1 error:&error];
+    XCTAssert(error == nil);
+    VSSRawSignedModel *publishedRawCard2 = [self.cardClient publishCardWithModel:rawCard2 token:strToken2 error:&error];
+    XCTAssert(error == nil);
+    VSSCard *card1 = [VSSCardManager parseCardFrom:publishedRawCard1 cardCrypto:self.cardCrypto error:&error];
+    XCTAssert(error == nil && card1 != nil);
+    VSSCard *card2 = [VSSCardManager parseCardFrom:publishedRawCard2 cardCrypto:self.cardCrypto error:&error];
+    XCTAssert(error == nil && card2 != nil);
+    
+    NSArray<VSSRawSignedModel *> *foundRawCards = [self.cardClient searchCardsWithIdentities:@[identity1, identity2] token:strToken1 error:&error];
+    XCTAssert(foundRawCards.count == 2);
+    
+    VSSCard *foundCard1 = [VSSCardManager parseCardFrom:foundRawCards[0] cardCrypto:self.cardCrypto error:&error];
+    XCTAssert(error == nil && foundCard1 != nil);
+    VSSCard *foundCard2 = [VSSCardManager parseCardFrom:foundRawCards[1] cardCrypto:self.cardCrypto error:&error];
+    XCTAssert(error == nil && foundCard2 != nil);
+    
+    if ([foundCard1.identity isEqualToString:identity2]) {
+        VSSCard *temp = foundCard1;
+        foundCard1 = foundCard2;
+        foundCard2 = temp;
+    }
+    
+    VSSRawCardContent *responseContent1 = [[VSSRawCardContent alloc] initWithSnapshot:foundCard1.contentSnapshot error:nil];
+    VSSRawCardContent *responseContent2 = [[VSSRawCardContent alloc] initWithSnapshot:foundCard2.contentSnapshot error:nil];
+    
+    XCTAssert([self.utils isRawCardContentEqualWithContent:content1 and:responseContent1]);
+    XCTAssert([self.utils isRawCardContentEqualWithContent:content2 and:responseContent2]);
+    
+    XCTAssert([self.utils isCardsEqualWithCard:card1 and:foundCard1]);
+    XCTAssert([self.utils isCardsEqualWithCard:card2 and:foundCard2]);
+    
+    XCTAssert([self.verifier verifyCard:foundCard1]);
+    XCTAssert([self.verifier verifyCard:foundCard2]);
 }
 
 @end

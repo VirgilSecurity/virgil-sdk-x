@@ -109,7 +109,7 @@ import Foundation
 
     /// Created access for trusted application + current application
     ///
-    /// - Parameter name: entry nake
+    /// - Parameter name: entry name
     /// - Returns: SecAccess
     /// - Throws: KeychainStorageError
     @objc public func createAccess(forName name: String) throws -> SecAccess {
@@ -508,7 +508,10 @@ import Foundation
                 throw KeychainStorageError(errCode: .errorParsingKeychainResponse)
         }
 
-        return KeychainEntry(data: storedKeyEntry.value, name: storedKeyEntry.name,
-                             meta: storedKeyEntry.meta, creationDate: creationDate, modificationDate: modificationDate)
+        return KeychainEntry(data: storedKeyEntry.value,
+                             name: storedKeyEntry.name,
+                             meta: storedKeyEntry.meta,
+                             creationDate: creationDate,
+                             modificationDate: modificationDate)
     }
 }

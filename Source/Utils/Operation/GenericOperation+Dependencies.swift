@@ -36,6 +36,8 @@
 
 import Foundation
 
+// swiftlint:disable missing_docs
+
 // MARK: - Dependency-related operations
 public extension GenericOperation {
     /// Finds first dependency with Result of correct type and returns its result,

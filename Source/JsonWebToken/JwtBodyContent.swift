@@ -122,7 +122,8 @@ import Foundation
     /// - Throws: Rethrows from JSONEncoder
     @objc public init(appId: String, identity: String, expiresAt: Date,
                       issuedAt: Date, additionalData: [String: String]? = nil) throws {
-        let container = Container(appId: appId, identity: identity,
+        let container = Container(appId: appId,
+                                  identity: identity,
                                   expiresAt: expiresAt,
                                   issuedAt: issuedAt,
                                   additionalData: additionalData)

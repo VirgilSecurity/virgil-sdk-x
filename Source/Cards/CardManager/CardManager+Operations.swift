@@ -127,12 +127,12 @@ extension CardManager {
         return publishCardOperation
     }
 
-    internal func makeSearchCardsOperation(identity: String) -> GenericOperation<[Card]> {
+    internal func makeSearchCardsOperation(identities: [String]) -> GenericOperation<[Card]> {
         let searchCardsOperation = CallbackOperation<[Card]> { operation, completion in
             do {
                 let token: AccessToken = try operation.findDependencyResult()
 
-                let rawSignedModels = try self.cardClient.searchCards(identity: identity,
+                let rawSignedModels = try self.cardClient.searchCards(identities: identities,
                                                                       token: token.stringRepresentation())
 
                 var cards: [Card] = []
@@ -143,18 +143,16 @@ extension CardManager {
                 }
 
                 try cards.forEach { card in
-                    guard card.identity == identity else {
+                    guard identities.contains(card.identity) else {
                         throw CardManagerError.gotWrongCard
                     }
 
-                    let previousCard = cards.first(where: { $0.identifier == card.previousCardId })
+                    let previousCard = cards.first { $0.identifier == card.previousCardId }
                     card.previousCard = previousCard
                     previousCard?.isOutdated = true
                 }
 
-                let result = cards.filter { card in cards.filter { $0.previousCard === card }.isEmpty }
-
-                completion(result, nil)
+                completion(cards.filter { !$0.isOutdated }, nil)
             }
             catch {
                 completion(nil, error)
@@ -202,8 +200,10 @@ extension CardManager {
             do {
                 let token: AccessToken = try operation.findDependencyResult()
 
-                let rawCard = try self.generateRawCard(privateKey: privateKey, publicKey: publicKey,
-                                                       identity: token.identity(), previousCardId: previousCardId,
+                let rawCard = try self.generateRawCard(privateKey: privateKey,
+                                                       publicKey: publicKey,
+                                                       identity: token.identity(),
+                                                       previousCardId: previousCardId,
                                                        extraFields: extraFields)
 
                 completion(rawCard, nil)

@@ -37,7 +37,7 @@
 import Foundation
 
 /// Class used for logging
-public class Log {
+public enum Log {
     /// Log with DEBUG level
     ///
     /// - Parameters:
@@ -45,8 +45,8 @@ public class Log {
     ///   - functionName: functionName
     ///   - file: file
     ///   - line: line
-    public class func debug(_ closure: @autoclosure () -> String, functionName: String = #function,
-                            file: String = #file, line: UInt = #line) {
+    public static func debug(_ closure: @autoclosure () -> String, functionName: String = #function,
+                             file: String = #file, line: UInt = #line) {
         #if DEBUG
             self.log("<DEBUG>: \(closure())", functionName: functionName, file: file, line: line)
         #endif
@@ -59,18 +59,18 @@ public class Log {
     ///   - functionName: functionName
     ///   - file: file
     ///   - line: line
-    public class func error(_ closure: @autoclosure () -> String, functionName: String = #function,
-                            file: String = #file, line: UInt = #line) {
+    public static func error(_ closure: @autoclosure () -> String, functionName: String = #function,
+                             file: String = #file, line: UInt = #line) {
         self.log("<ERROR>: \(closure())", functionName: functionName, file: file, line: line)
     }
 
-    private class func log(_ closure: @autoclosure () -> String, functionName: String = #function,
-                           file: String = #file, line: UInt = #line) {
+    private static func log(_ closure: @autoclosure () -> String, functionName: String = #function,
+                            file: String = #file, line: UInt = #line) {
         let str = "VIRGILSDK_LOG: \(functionName) : \(closure())"
         Log.writeInLog(str)
     }
 
-    private class func writeInLog(_ message: String) {
+    private static func writeInLog(_ message: String) {
         NSLogv("%@", getVaList([message]))
     }
 }

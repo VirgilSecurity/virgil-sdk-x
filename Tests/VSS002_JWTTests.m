@@ -239,7 +239,7 @@ static const NSTimeInterval timeout = 8.;
     }];
 }
     
-- (void)test006_STC39 {
+- (void)test006_STC_39 {
     NSTimeInterval ttl = 10;
     VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
     
@@ -290,7 +290,7 @@ static const NSTimeInterval timeout = 8.;
     XCTAssert(callCounter == 1);
 }
     
-- (void)test007_STC40 {
+- (void)test007_STC_40 {
     NSTimeInterval ttl = 10;
     VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
     

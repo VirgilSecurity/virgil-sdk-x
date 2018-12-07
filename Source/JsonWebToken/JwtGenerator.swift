@@ -81,15 +81,18 @@ import VirgilCryptoAPI
     /// - Throws: Rethrows from JwtHeaderContent, JwtBodyContent, Jwt, AccessTokenSigner
     @objc public func generateToken(identity: String, additionalData: [String: String]? = nil) throws -> Jwt {
         let jwtHeaderContent = try JwtHeaderContent(keyIdentifier: self.apiPublicKeyIdentifier)
-        let jwtBodyContent = try JwtBodyContent(appId: self.appId, identity: identity,
-                                                expiresAt: Date() + self.ttl, issuedAt: Date(),
+        let jwtBodyContent = try JwtBodyContent(appId: self.appId,
+                                                identity: identity,
+                                                expiresAt: Date() + self.ttl,
+                                                issuedAt: Date(),
                                                 additionalData: additionalData)
 
         let data = try Jwt.dataToSign(headerContent: jwtHeaderContent, bodyContent: jwtBodyContent)
 
         let signature = try self.accessTokenSigner.generateTokenSignature(of: data, using: self.apiKey)
 
-        return try Jwt(headerContent: jwtHeaderContent, bodyContent: jwtBodyContent,
+        return try Jwt(headerContent: jwtHeaderContent,
+                       bodyContent: jwtBodyContent,
                        signatureContent: JwtSignatureContent(signature: signature))
     }
 }

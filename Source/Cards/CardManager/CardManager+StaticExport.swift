@@ -49,7 +49,8 @@ extension CardManager {
     /// - Throws: CardManagerError.cardIsNotVerified, if Card verificaction has failed
     ///           Rethrows from RawSignedModel, JSONDecoder, CardCrypto
     @objc open class func importCard(fromBase64Encoded base64EncodedString: String,
-                                     cardCrypto: CardCrypto, cardVerifier: CardVerifier) throws -> Card {
+                                     cardCrypto: CardCrypto,
+                                     cardVerifier: CardVerifier) throws -> Card {
         let rawCard = try RawSignedModel.import(fromBase64Encoded: base64EncodedString)
         let card = try CardManager.parseCard(from: rawCard, cardCrypto: cardCrypto)
 
@@ -70,7 +71,8 @@ extension CardManager {
     /// - Throws: CardManagerError.cardIsNotVerified, if Card verificaction has failed
     ///           Rethrows from RawSignedModel, JSONDecoder, CardCrypto, JSONSerialization
     @objc open class func importCard(fromJson json: Any,
-                                     cardCrypto: CardCrypto, cardVerifier: CardVerifier) throws -> Card {
+                                     cardCrypto: CardCrypto,
+                                     cardVerifier: CardVerifier) throws -> Card {
         let rawCard = try RawSignedModel.import(fromJson: json)
         let card = try CardManager.parseCard(from: rawCard, cardCrypto: cardCrypto)
 
@@ -91,7 +93,8 @@ extension CardManager {
     /// - Throws: CardManagerError.cardIsNotVerified, if Card verificaction has failed
     ///           Rethrows from RawSignedModel, JSONDecoder, CardCrypto, JSONSerialization
     @objc open class func importCard(fromRawCard rawCard: RawSignedModel,
-                                     cardCrypto: CardCrypto, cardVerifier: CardVerifier) throws -> Card {
+                                     cardCrypto: CardCrypto,
+                                     cardVerifier: CardVerifier) throws -> Card {
         let card = try CardManager.parseCard(from: rawCard, cardCrypto: cardCrypto)
 
         guard cardVerifier.verifyCard(card) else {

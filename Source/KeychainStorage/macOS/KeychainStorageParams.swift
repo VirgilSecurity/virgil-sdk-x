@@ -63,9 +63,9 @@ import Security
     ///   - trustedApplications: List of trusted applications
     /// - Returns: Initialized KeychainStorageParams
     /// - Throws: KeychainStorageError
-    @objc static public func makeKeychainStorageParams(trustedApplications: [String] = [])
-        throws -> KeychainStorageParams {
-        guard let appName = Bundle.main.bundleIdentifier else {
+    @objc public static func makeKeychainStorageParams(
+        appName: String? = nil, trustedApplications: [String] = []) throws -> KeychainStorageParams {
+        guard let appName = appName ?? Bundle.main.bundleIdentifier else {
             throw KeychainStorageError(errCode: .invalidAppBundle)
         }
 
