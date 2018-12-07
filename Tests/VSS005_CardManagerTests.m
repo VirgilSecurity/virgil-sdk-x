@@ -553,12 +553,7 @@ static const NSTimeInterval timeout = 20.;
                     card1.isOutdated = true;
                     
                     for (VSSCard* card in returnedCards) {
-                        if ([card.identifier isEqualToString:card1.identifier]) {
-                            XCTAssert([self.utils isCardsEqualWithCard:card and:card1]);
-                            XCTAssert([self.utils isCardsEqualWithCard:card.previousCard and:card2]);
-                            XCTAssert([card.previousCardId isEqualToString:card2.identifier]);
-                        }
-                        else if ([card.identifier isEqualToString:card2.identifier]) {
+                        if ([card.identifier isEqualToString:card2.identifier]) {
                             XCTAssert([self.utils isCardsEqualWithCard:card and:card2]);
                             XCTAssert([self.utils isCardsEqualWithCard:card.previousCard and:card1]);
                             XCTAssert([card.previousCardId isEqualToString:card1.identifier]);

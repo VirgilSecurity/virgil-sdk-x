@@ -310,14 +310,8 @@
         foundCard2 = temp;
     }
     
-    VSSRawCardContent *responseContent1 = [[VSSRawCardContent alloc] initWithSnapshot:foundRawCards[0].contentSnapshot error:nil];
-    VSSRawCardContent *responseContent2 = [[VSSRawCardContent alloc] initWithSnapshot:foundRawCards[1].contentSnapshot error:nil];
-    
-    if ([responseContent1.identity isEqualToString:identity2]) {
-        VSSRawCardContent *temp = responseContent1;
-        responseContent1 = responseContent2;
-        responseContent2 = temp;
-    }
+    VSSRawCardContent *responseContent1 = [[VSSRawCardContent alloc] initWithSnapshot:foundCard1.contentSnapshot error:nil];
+    VSSRawCardContent *responseContent2 = [[VSSRawCardContent alloc] initWithSnapshot:foundCard2.contentSnapshot error:nil];
     
     XCTAssert([self.utils isRawCardContentEqualWithContent:content1 and:responseContent1]);
     XCTAssert([self.utils isRawCardContentEqualWithContent:content2 and:responseContent2]);
