@@ -1,6 +1,6 @@
 # Virgil Security Objective-C/Swift SDK
 
-[![Build Status](https://api.travis-ci.com/VirgilSecurity/sdk-x.svg?branch=master)](https://travis-ci.com/VirgilSecurity/sdk-x)
+[![Build Status](https://api.travis-ci.com/VirgilSecurity/virgil-sdk-x.svg?branch=master)](https://travis-ci.com/VirgilSecurity/virgil-sdk-x)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilSDK.svg)](https://cocoapods.org/pods/VirgilSDK)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Platform](https://img.shields.io/cocoapods/p/VirgilSDK.svg?style=flat)](http://cocoadocs.org/docsets/VirgilSDK)
@@ -72,8 +72,8 @@ $ brew install carthage
 To integrate VirgilSDK into your Xcode project using Carthage, create an empty file with name *Cartfile* in your project's root folder and add following lines to your *Cartfile*
 
 ```
-github "VirgilSecurity/sdk-x" ~> 5.6
-github "VirgilSecurity/crypto-x" ~> 3.2
+github "VirgilSecurity/virgil-sdk-x" ~> 5.6
+github "VirgilSecurity/virgil-crypto-x" ~> 3.2
 ```
 
 #### Linking against prebuilt binaries
@@ -269,7 +269,7 @@ You can find us on [Twitter](https://twitter.com/VirgilSecurity) or send us emai
 
 Also, get extra help from our support team on [Slack](https://virgilsecurity.slack.com/join/shared_invite/enQtMjg4MDE4ODM3ODA4LTc2OWQwOTQ3YjNhNTQ0ZjJiZDc2NjkzYjYxNTI0YzhmNTY2ZDliMGJjYWQ5YmZiOGU5ZWEzNmJiMWZhYWVmYTM).
 
-[_virgil_crypto]: https://github.com/VirgilSecurity/crypto-x
+[_virgil_crypto]: https://github.com/VirgilSecurity/virgil-crypto-x
 [_cards_service]: https://developer.virgilsecurity.com/docs/api-reference/card-service/v5
 [_use_card]: https://developer.virgilsecurity.com/docs/swift/how-to/public-key-management/v5/use-card-for-crypto-operation
 [_get_card]: https://developer.virgilsecurity.com/docs/swift/how-to/public-key-management/v5/get-card
