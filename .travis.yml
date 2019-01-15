@@ -1,5 +1,5 @@
 language: swift
-osx_image: xcode10
+osx_image: xcode10.1
 
 env:
   global:
@@ -11,17 +11,17 @@ env:
     - WATCHOS_FRAMEWORK_SCHEME="VirgilSDK watchOS"
     - IOS_TEST_SCHEME="SDKTestApp iOS"
     - TVOS_TEST_SCHEME="SDKTestApp tvOS"
-    - IOS_SDK=iphonesimulator12.0
+    - IOS_SDK=iphonesimulator12.1
     - MACOS_SDK=macosx10.14
-    - TVOS_SDK=appletvsimulator12.0
-    - WATCHOS_SDK=watchsimulator5.0
+    - TVOS_SDK=appletvsimulator12.1
+    - WATCHOS_SDK=watchsimulator5.1
     - FRAMEWORK_NAME=VirgilSDK
 
   matrix:
-    - DESTINATION="OS=12.0,name=iPhone SE"                     ENABLE_BUILD="YES"    SCHEME="$IOS_FRAMEWORK_SCHEME"        SDK="$IOS_SDK"        TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="iOS"        RUN_TESTS="YES"    ADDITIONAL_TESTS_SCHEME="$IOS_TEST_SCHEME"     PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"    SWIFT_LINT="NO"
+    - DESTINATION="OS=12.1,name=iPhone SE"                     ENABLE_BUILD="YES"    SCHEME="$IOS_FRAMEWORK_SCHEME"        SDK="$IOS_SDK"        TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="iOS"        RUN_TESTS="YES"    ADDITIONAL_TESTS_SCHEME="$IOS_TEST_SCHEME"     PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"    SWIFT_LINT="NO"
     - DESTINATION="arch=x86_64"                                ENABLE_BUILD="YES"    SCHEME="$MACOS_FRAMEWORK_SCHEME"      SDK="$MACOS_SDK"      TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="Mac"        RUN_TESTS="YES"    ADDITIONAL_TESTS_SCHEME=""                     PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"    SWIFT_LINT="NO"
-    - DESTINATION="OS=12.0,name=Apple TV 4K"                   ENABLE_BUILD="YES"    SCHEME="$TVOS_FRAMEWORK_SCHEME"       SDK="$TVOS_SDK"       TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="tvOS"       RUN_TESTS="YES"    ADDITIONAL_TESTS_SCHEME="$TVOS_TEST_SCHEME"    PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"    SWIFT_LINT="NO"
-    - DESTINATION="OS=5.0,name=Apple Watch Series 4 - 44mm"    ENABLE_BUILD="YES"    SCHEME="$WATCHOS_FRAMEWORK_SCHEME"    SDK="$WATCHOS_SDK"    TWO_STEP_BUILD_ENABLED="NO"     CARTHAGE_PLATFORM_NAME="watchOS"    RUN_TESTS="NO"     ADDITIONAL_TESTS_SCHEME=""                     PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"    SWIFT_LINT="NO"
+    - DESTINATION="OS=12.1,name=Apple TV 4K"                   ENABLE_BUILD="YES"    SCHEME="$TVOS_FRAMEWORK_SCHEME"       SDK="$TVOS_SDK"       TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="tvOS"       RUN_TESTS="YES"    ADDITIONAL_TESTS_SCHEME="$TVOS_TEST_SCHEME"    PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"    SWIFT_LINT="NO"
+    - DESTINATION="OS=5.1,name=Apple Watch Series 4 - 44mm"    ENABLE_BUILD="YES"    SCHEME="$WATCHOS_FRAMEWORK_SCHEME"    SDK="$WATCHOS_SDK"    TWO_STEP_BUILD_ENABLED="NO"     CARTHAGE_PLATFORM_NAME="watchOS"    RUN_TESTS="NO"     ADDITIONAL_TESTS_SCHEME=""                     PUBLISH_DOCS="NO"     PUBLISH_CARTHAGE="NO"     POD_LIB_LINT="NO"    SWIFT_LINT="NO"
     - DESTINATION="arch=x86_64"                                ENABLE_BUILD="NO"     SCHEME="$MACOS_FRAMEWORK_SCHEME"      SDK="$MACOS_SDK"      TWO_STEP_BUILD_ENABLED="YES"    CARTHAGE_PLATFORM_NAME="Mac"        RUN_TESTS="YES"    ADDITIONAL_TESTS_SCHEME=""                     PUBLISH_DOCS="YES"    PUBLISH_CARTHAGE="YES"    POD_LIB_LINT="YES"   SWIFT_LINT="YES"
 
 before_install:
@@ -73,7 +73,7 @@ script:
 
   # Build with carthage
   - if [ $PUBLISH_CARTHAGE == "YES" ]; then
-      carthage build --no-skip-current --no-use-binaries;
+      carthage build --no-skip-current;
     fi
   
   # Check pod lib
@@ -88,8 +88,7 @@ before_deploy:
 
 after_success:
   # Generate and publish docs
-  # - if [ -n "${TRAVIS_TAG}" ] && [ $PUBLISH_DOCS == "YES" ]; then
-  - if [ $PUBLISH_DOCS == "YES" ]; then
+  - if [ -n "${TRAVIS_TAG}" ] && [ $PUBLISH_DOCS == "YES" ]; then
       ./CI/publish-docs.sh;
     fi
 
@@ -101,7 +100,7 @@ deploy:
     file: $FRAMEWORK_NAME.framework.zip
     skip_cleanup: true
     on:
-      repo: VirgilSecurity/sdk-x
+      repo: VirgilSecurity/virgil-sdk-x
       tags: true
       condition: $PUBLISH_CARTHAGE = "YES"
 

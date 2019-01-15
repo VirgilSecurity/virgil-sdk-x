@@ -36,7 +36,7 @@
 #
 
 # Settings
-REPO_PATH=https://github.com/VirgilSecurity/sdk-x.git
+REPO_PATH=https://github.com/VirgilSecurity/virgil-sdk-x.git
 HTML_PATH_DST="${TRAVIS_BUILD_DIR}/docs"
 CHANGESET=$(git rev-parse --verify HEAD)
 
