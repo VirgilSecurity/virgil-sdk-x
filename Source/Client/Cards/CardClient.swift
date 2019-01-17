@@ -68,7 +68,11 @@ import Foundation
     ///
     /// - Parameter serviceUrl: URL of service client will use
     @objc public convenience init(serviceUrl: URL) {
-        self.init(serviceUrl: serviceUrl, connection: HttpConnection())
+        let version = VersionUtils.getVersion(bundleIdentitifer: "com.virgilsecurity.VirgilSDK")
+
+        let connection = HttpConnection(adapters: [VirgilAgentAdapter(product: "sdk", version: version)])
+
+        self.init(serviceUrl: serviceUrl, connection: connection)
     }
 
     /// Handles error from Card Service

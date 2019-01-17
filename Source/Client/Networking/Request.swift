@@ -46,13 +46,13 @@ import Foundation
 /// Represents Http request
 open class Request {
     /// Url of request
-    public let url: URL
+    public var url: URL
     /// Http method
-    public let method: Method
+    public var method: Method
     /// Request headers
-    public let headers: [String: String]?
+    public var headers: [String: String]?
     /// Request body
-    public let body: Data?
+    public var body: Data?
 
     /// Default request timeout
     public static let defaultTimeout: TimeInterval = 45
