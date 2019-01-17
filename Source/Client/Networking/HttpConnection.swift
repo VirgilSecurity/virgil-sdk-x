@@ -54,14 +54,22 @@ open class HttpConnection: HttpConnectionProtocol {
     /// Url session used to create network tasks
     private let session: URLSession
 
-    /// Creates HttpConnection with maximum number of concurrent operations
-    /// = HttpConnection.defaulMaxConcurrentOperationCount
-    public init(maxConcurrentOperationCount: Int = HttpConnection.defaulMaxConcurrentOperationCount) {
+    private let adapters: [HttpRequestAdapter]
+
+    /// Init
+    ///
+    /// - Parameters:
+    ///   - maxConcurrentOperationCount: maximum number of concurrent operations
+    ///   - adapters: request adapters
+    public init(maxConcurrentOperationCount: Int = HttpConnection.defaulMaxConcurrentOperationCount,
+                adapters: [HttpRequestAdapter] = []) {
         self.queue = OperationQueue()
         self.queue.maxConcurrentOperationCount = maxConcurrentOperationCount
 
         let config = URLSessionConfiguration.ephemeral
         self.session = URLSession(configuration: config, delegate: nil, delegateQueue: self.queue)
+
+        self.adapters = adapters
     }
 
     /// Sends Request and returns Response over http
@@ -71,7 +79,11 @@ open class HttpConnection: HttpConnectionProtocol {
     /// - Throws: ServiceConnectionError.noUrlInRequest if provided URLRequest doesn't have url
     ///           ServiceConnectionError.wrongResponseType if response is not of HTTPURLResponse type
     public func send(_ request: Request) throws -> Response {
-        let nativeRequest = request.getNativeRequest()
+        let nativeRequest = try self.adapters
+            .reduce(request) { _, adapter -> Request in
+                try adapter.adapt(request)
+            }
+            .getNativeRequest()
 
         guard let url = nativeRequest.url else {
             throw ServiceConnectionError.noUrlInRequest
