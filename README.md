@@ -48,7 +48,7 @@ target '<Your Target Name>' do
   use_frameworks!
 
   pod 'VirgilCryptoApiImpl', '~> 3.2'
-  pod 'VirgilSDK', '~> 5.6'
+  pod 'VirgilSDK', '~> 5.7'
 end
 ```
 
@@ -72,7 +72,7 @@ $ brew install carthage
 To integrate VirgilSDK into your Xcode project using Carthage, create an empty file with name *Cartfile* in your project's root folder and add following lines to your *Cartfile*
 
 ```
-github "VirgilSecurity/virgil-sdk-x" ~> 5.6
+github "VirgilSecurity/virgil-sdk-x" ~> 5.7
 github "VirgilSecurity/virgil-crypto-x" ~> 3.2
 ```
 
