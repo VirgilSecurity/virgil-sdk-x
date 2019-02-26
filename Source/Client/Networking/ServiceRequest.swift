@@ -66,7 +66,7 @@ open class ServiceRequest: Request {
     ///   - headers: Http headers
     /// - Throws: ServiceRequestError.getQueryWithDecodableIsNotSupported, if GET query with params
     ///           Rethrows from JSONEncoder
-    public init<T: Encodable>(url: URL, method: Method, accessToken: String, params: T? = nil,
+    public init<T: Encodable>(url: URL, method: Method, params: T? = nil,
                               headers: [String: String] = [:]) throws {
         let bodyData: Data?
         let newUrl: URL
@@ -91,11 +91,7 @@ open class ServiceRequest: Request {
             newUrl = url
         }
 
-        var requestHeaders = [ServiceRequest.accessTokenHeader: "\(ServiceRequest.accessTokenPrefix) \(accessToken)"]
-
-        try requestHeaders.merge(headers) { _, _ in throw ServiceRequestError.duplicateHeadersKey }
-
-        super.init(url: newUrl, method: method, headers: requestHeaders, body: bodyData)
+        super.init(url: newUrl, method: method, body: bodyData)
     }
 
     /// Initializer
@@ -111,7 +107,7 @@ open class ServiceRequest: Request {
     ///           ServiceRequestError.urlComponentsConvertingFailed,
     ///               if error occured while building url from components during GET request
     ///           Rethrows from JSONSerialization
-    public init(url: URL, method: Method, accessToken: String, params: Any? = nil,
+    public init(url: URL, method: Method, params: Any? = nil,
                 headers: [String: String] = [:]) throws {
         let bodyData: Data?
         let newUrl: URL
@@ -148,10 +144,13 @@ open class ServiceRequest: Request {
             newUrl = url
         }
 
-        var requestHeaders = [ServiceRequest.accessTokenHeader: "\(ServiceRequest.accessTokenPrefix) \(accessToken)"]
-
-        try requestHeaders.merge(headers) { _, _ in throw ServiceRequestError.duplicateHeadersKey }
-
-        super.init(url: newUrl, method: method, headers: requestHeaders, body: bodyData)
+        super.init(url: newUrl, method: method, body: bodyData)
+    }
+    
+    public func setAccessToken(_ accessToken: String) {
+        let tokenValue = "\(ServiceRequest.accessTokenPrefix) \(accessToken)"
+        let tokenHeader = [ServiceRequest.accessTokenHeader: tokenValue]
+        
+        self.headers = (self.headers ?? [:]).merging(tokenHeader) { _, _ in return tokenValue }
     }
 }

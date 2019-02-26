@@ -52,9 +52,6 @@ import VirgilCryptoAPI
     @objc public let modelSigner: ModelSigner
     /// CardCrypto instance
     @objc public let cardCrypto: CardCrypto
-    /// AccessTokenProvider instance used for getting Access Token
-    /// when performing queries
-    @objc public let accessTokenProvider: AccessTokenProvider
     /// CardClient instance used for performing queries
     @objc public let cardClient: CardClientProtocol
     /// Card Verifier instance used for verifying Cards
@@ -70,7 +67,6 @@ import VirgilCryptoAPI
     @objc public init(params: CardManagerParams) {
         self.modelSigner = params.modelSigner
         self.cardCrypto = params.cardCrypto
-        self.accessTokenProvider = params.accessTokenProvider
         self.cardClient = params.cardClient
         self.cardVerifier = params.cardVerifier
         self.retryOnUnauthorized = params.retryOnUnauthorized

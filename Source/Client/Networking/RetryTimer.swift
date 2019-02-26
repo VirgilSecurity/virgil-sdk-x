@@ -35,38 +35,53 @@
 //
 
 import Foundation
-import VirgilCryptoAPI
 
-/// Contains parameters for initializing CardManager
-@objc(VSSCardManagerParams) public final class CardManagerParams: NSObject {
-    /// CardCrypto instance
-    @objc public let cardCrypto: CardCrypto
-    /// Card Verifier instance used for verifying Cards
-    @objc public let cardVerifier: CardVerifier
-    /// ModelSigner instance used for self signing Cards
-    @objc public var modelSigner: ModelSigner
-    /// CardClient instance used for performing queries
-    @objc public var cardClient: CardClientProtocol
-    /// Callback used for custom signing RawSignedModel, which takes RawSignedModel
-    /// to sign and competion handler, called with signed RawSignedModel or provided error
-    @objc public var signCallback: ((RawSignedModel, @escaping (RawSignedModel?, Error?) -> Void) -> Void)?
-    /// Will automatically perform second query with forceReload = true AccessToken if true
-    @objc public var retryOnUnauthorized: Bool
+public enum Retry {
+    case noRetry
+    case retryService(delay: TimeInterval)
+    case retryAuth
+}
 
-    /// Initializer
-    ///
-    /// - Parameters:
-    ///   - cardCrypto: CardCrypto instance
-    ///   - accessTokenProvider: AccessTokenProvider instance for getting Access Token
-    ///     when performing queries
-    ///   - cardVerifier: Card Verifier instance for verifyng Cards
-    @objc public init(cardCrypto: CardCrypto, accessTokenProvider: AccessTokenProvider, cardVerifier: CardVerifier) {
-        self.cardCrypto = cardCrypto
-        self.modelSigner = ModelSigner(cardCrypto: cardCrypto)
-        self.cardClient = CardClient(accessTokenProvider: accessTokenProvider)
-        self.cardVerifier = cardVerifier
-        self.retryOnUnauthorized = true
-
-        super.init()
+open class RetryTimer {
+    open private(set) var retryCount: Int = 0
+    public let maxRetryCount: Int = 3
+    public let cap: TimeInterval = 10
+    public let minDelay: TimeInterval = 0
+    public let base: TimeInterval = 1
+    
+    open func retryTime(for response: Response) -> Retry {
+        if 200..<400 ~= response.statusCode {
+            return .noRetry
+        }
+        
+        if 500..<600 ~= response.statusCode {
+            if self.retryCount >= self.maxRetryCount {
+                return .noRetry
+            }
+            
+            let delay = self.nextRetryDelay()
+            
+            self.retryCount += 1
+            
+            return .retryService(delay: delay)
+        }
+        
+        if 400..<500 ~= response.statusCode {
+            if response.statusCode == 401 {
+                // FIXME: Check if error is 401.20304
+                
+                return .retryAuth
+            }
+        }
+        
+        return .noRetry
+    }
+    
+    open func nextRetryDelay() -> TimeInterval {
+        let baseDelay = min(self.cap, self.base * pow(TimeInterval(2), TimeInterval(self.retryCount)))
+        let jitterDelay = TimeInterval.random(in: 0..<baseDelay)
+        let delay = max(self.minDelay, jitterDelay)
+        
+        return delay
     }
 }
