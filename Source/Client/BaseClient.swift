@@ -51,7 +51,7 @@ import Foundation
     public let connection: HttpConnectionProtocol
     /// Error domain for Error instances thrown from service
     @objc open class var serviceErrorDomain: String { return "VirgilSDK.BaseServiceErrorDomain" }
-    
+
     @objc public let accessTokenProvider: AccessTokenProvider
 
     /// Initializes a new `BaseClient` instance
@@ -66,40 +66,43 @@ import Foundation
 
         super.init()
     }
-    
-    func sendWithRetry(_ request: ServiceRequest, tokenContext: TokenContext) throws -> Response {
+
+    open func sendWithRetry(_ request: ServiceRequest, tokenContext: TokenContext) throws -> Response {
         let retryTimer = RetryTimer()
-        
+
         try self.setToken(for: request, tokenContext: tokenContext)
 
         let response = try { () -> Response in
             while true {
                 let response = try self.connection.send(request)
-                
+
                 switch retryTimer.retryTime(for: response) {
                 case .noRetry:
                     return response
-                    
+
                 case .retryService(let retryDelay):
-                    usleep(useconds_t(retryDelay * 1000000))
-                    
+                    usleep(useconds_t(retryDelay * 1_000_000))
+
                 case .retryAuth:
                     let retryTokenContext = TokenContext(identity: tokenContext.identity,
                                                          service: tokenContext.service,
                                                          operation: tokenContext.operation,
                                                          forceReload: true)
-                    
+
                     try self.setToken(for: request, tokenContext: retryTokenContext)
                 }
             }
         }()
-        
+
         return response
     }
-    
+
     private func setToken(for request: ServiceRequest, tokenContext: TokenContext) throws {
-        let token = try OperationUtils.makeGetTokenOperation(tokenContext: tokenContext, accessTokenProvider: self.accessTokenProvider).startSync().getResult()
-        
+        let token = try OperationUtils.makeGetTokenOperation(tokenContext: tokenContext,
+                                                             accessTokenProvider: self.accessTokenProvider)
+            .startSync()
+            .getResult()
+
         request.setAccessToken(token.stringRepresentation())
     }
 

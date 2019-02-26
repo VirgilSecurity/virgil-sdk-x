@@ -146,11 +146,11 @@ open class ServiceRequest: Request {
 
         super.init(url: newUrl, method: method, body: bodyData)
     }
-    
+
     public func setAccessToken(_ accessToken: String) {
         let tokenValue = "\(ServiceRequest.accessTokenPrefix) \(accessToken)"
         let tokenHeader = [ServiceRequest.accessTokenHeader: tokenValue]
-        
-        self.headers = (self.headers ?? [:]).merging(tokenHeader) { _, _ in return tokenValue }
+
+        self.headers = (self.headers ?? [:]).merging(tokenHeader) { _, _ in tokenValue }
     }
 }

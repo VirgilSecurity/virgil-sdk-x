@@ -48,18 +48,18 @@ extension CardManager {
         return CallbackOperation { _, completion in
             do {
                 let responseModel = try self.cardClient.getCard(withId: cardId)
-                
+
                 let card = try self.parseCard(from: responseModel.rawCard)
                 card.isOutdated = responseModel.isOutdated
-                
+
                 guard card.identifier == cardId else {
                     throw CardManagerError.gotWrongCard
                 }
-                
+
                 guard self.cardVerifier.verifyCard(card) else {
                     throw CardManagerError.cardIsNotVerified
                 }
-                
+
                 completion(card, nil)
             }
             catch {
@@ -147,10 +147,10 @@ extension CardManager {
                     else {
                         completion(rawCard, nil)
                     }
-                    }.startSync().getResult()
-                
+                }.startSync().getResult()
+
                 let responseModel = try self.cardClient.publishCard(model: signedRawCard)
-                
+
                 guard responseModel.contentSnapshot == rawCard.contentSnapshot,
                     let selfSignature = rawCard.signatures
                         .first(where: { $0.signer == ModelSigner.selfSignerIdentifier }),
@@ -159,13 +159,13 @@ extension CardManager {
                     selfSignature.snapshot == responseSelfSignature.snapshot else {
                         throw CardManagerError.gotWrongCard
                 }
-                
+
                 let card = try self.parseCard(from: responseModel)
-                
+
                 guard self.cardVerifier.verifyCard(card) else {
                     throw CardManagerError.cardIsNotVerified
                 }
-                
+
                 completion(card, nil)
             }
             catch {
@@ -188,16 +188,16 @@ extension CardManager {
     open func publishCard(privateKey: PrivateKey, publicKey: PublicKey,
                           identity: String, previousCardId: String? = nil,
                           extraFields: [String: String]? = nil) -> GenericOperation<Card> {
-        return CallbackOperation { operation, completion in
+        return CallbackOperation { _, completion in
             do {
                 let rawCard = try self.generateRawCard(privateKey: privateKey,
                                                        publicKey: publicKey,
                                                        identity: identity,
                                                        previousCardId: previousCardId,
                                                        extraFields: extraFields)
-                
+
                 let card = try self.publishCard(rawCard: rawCard).startSync().getResult()
-                
+
                 completion(card, nil)
             }
             catch {
@@ -219,9 +219,9 @@ extension CardManager {
             do {
                 let cards = try self.cardClient.searchCards(identities: identities)
                     .map { rawSignedModel -> Card in
-                        return try self.parseCard(from: rawSignedModel)
+                        try self.parseCard(from: rawSignedModel)
                     }
-                    
+
                 let result = try cards
                     .compactMap { card -> Card? in
                         guard identities.contains(card.identity) else {
@@ -236,7 +236,7 @@ extension CardManager {
 
                         return card
                     }
-                
+
                 guard result.allSatisfy({ self.cardVerifier.verifyCard($0) }) else {
                     throw CardManagerError.cardIsNotVerified
                 }
@@ -247,6 +247,6 @@ extension CardManager {
                 completion(nil, error)
             }
         }
-        
+
     }
 }
