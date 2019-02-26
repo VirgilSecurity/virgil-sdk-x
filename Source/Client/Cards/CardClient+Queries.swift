@@ -54,14 +54,16 @@ extension CardClient: CardClientProtocol {
     ///           NSError with CardClient.serviceErrorDomain error domain,
     ///               http status code as error code, and description string if present in http body
     ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
-    @objc open func getCard(withId cardId: String, token: String) throws -> GetCardResponse {
+    @objc open func getCard(withId cardId: String) throws -> GetCardResponse {
         guard let url = URL(string: "card/v5/\(cardId)", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
+        
+        let tokenContext = TokenContext(service: "cards", operation: "get", forceReload: false)
 
-        let request = try ServiceRequest(url: url, method: .get, accessToken: token)
+        let request = try ServiceRequest(url: url, method: .get)
 
-        let response = try self.connection.send(request)
+        let response = try self.sendWithRetry(request, tokenContext: tokenContext)
 
         let isOutdated: Bool
         // Swift dictionaries doesn't support case-insensitive keys, NSDictionary does
@@ -90,32 +92,18 @@ extension CardClient: CardClientProtocol {
     ///           NSError with CardClient.serviceErrorDomain error domain,
     ///               http status code as error code, and description string if present in http body
     ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
-    @objc open func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
+    @objc open func publishCard(model: RawSignedModel) throws -> RawSignedModel {
         guard let url = URL(string: "card/v5", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
+        
+        let tokenContext = TokenContext(service: "cards", operation: "publish", forceReload: false)
 
-        let request = try ServiceRequest(url: url, method: .post, accessToken: token, params: model)
+        let request = try ServiceRequest(url: url, method: .post, params: model)
 
-        let response = try self.connection.send(request)
+        let response = try self.sendWithRetry(request, tokenContext: tokenContext)
 
         return try self.processResponse(response)
-    }
-
-    /// Performs search of Virgil Cards using given identity on the Virgil Cards Service
-    ///
-    /// - Parameters:
-    ///   - identity: Identity of cards to search
-    ///   - token: String with `Access Token`
-    /// - Returns: Array with `RawSignedModel`s of matched Virgil Cards
-    /// - Throws: CardClientError.constructingUrl, if url initialization failed
-    ///           CardServiceError, if service returned correctly-formed error json
-    ///           NSError with CardClient.serviceErrorDomain error domain,
-    ///               http status code as error code, and description string if present in http body
-    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
-    @available(*, deprecated, message: "Deprecated in favor of searchCards with array of identities")
-    @objc open func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
-        return try self.searchCards(identities: [identity], token: token)
     }
 
     /// Performs search of Virgil Cards using given identities on the Virgil Cards Service
@@ -129,17 +117,18 @@ extension CardClient: CardClientProtocol {
     ///           NSError with CardClient.serviceErrorDomain error domain,
     ///               http status code as error code, and description string if present in http body
     ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
-    public func searchCards(identities: [String], token: String) throws -> [RawSignedModel] {
+    public func searchCards(identities: [String]) throws -> [RawSignedModel] {
         guard let url = URL(string: "card/v5/actions/search", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
+        
+        let tokenContext = TokenContext(service: "cards", operation: "search", forceReload: false)
 
         let request = try ServiceRequest(url: url,
                                          method: .post,
-                                         accessToken: token,
                                          params: ["identities": identities])
 
-        let response = try self.connection.send(request)
+        let response = try self.sendWithRetry(request, tokenContext: tokenContext)
 
         return try self.processResponse(response)
     }

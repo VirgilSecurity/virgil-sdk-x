@@ -75,54 +75,6 @@ public enum OperationUtils {
         return completionOperation
     }
 
-    private static func makeRetryOperation(aggregateOperation: Operation,
-                                           makeAggregateOperation: @escaping (Bool) -> Operation,
-                                           completionOperation: Operation,
-                                           queue: OperationQueue) -> GenericOperation<Void> {
-        let retryCheckOp = CallbackOperation<Void> { [unowned completionOperation, queue] operation, completion in
-            if let error = operation.findDependencyError(),
-                let serviceError = error as? ServiceError,
-                serviceError.errorCode == 20_304 {
-                let aggregateOperationRetry = makeAggregateOperation(true)
-                completionOperation.addDependency(aggregateOperationRetry)
-                completionOperation.removeDependency(aggregateOperation)
-                queue.addOperation(aggregateOperationRetry)
-                completion(Void(), nil)
-            }
-
-            completion(Void(), nil)
-        }
-
-        return retryCheckOp
-    }
-
-    /// Creates retry operation using operation fabric in form of closure
-    ///
-    /// - Parameter makeAggregateOperation: Operation fabric closure
-    /// - Returns: GenericOperation<T>
-    public static func makeRetryAggregate<T>(
-        makeAggregateOperation: @escaping (Bool) -> GenericOperation<T>) -> GenericOperation<T> {
-        return CallbackOperation<T> { _, completion in
-            let queue = OperationQueue()
-
-            let aggregateOperation = makeAggregateOperation(false)
-            let completionOperation = self.makeCompletionOperation(completion: completion)
-            let retryCheckOperation =
-                self.makeRetryOperation(aggregateOperation: aggregateOperation,
-                                        makeAggregateOperation: makeAggregateOperation,
-                                        completionOperation: completionOperation,
-                                        queue: queue)
-
-            retryCheckOperation.addDependency(aggregateOperation)
-
-            completionOperation.addDependency(aggregateOperation)
-            completionOperation.addDependency(retryCheckOperation)
-
-            let operations = [aggregateOperation, retryCheckOperation, completionOperation]
-            queue.addOperations(operations, waitUntilFinished: false)
-        }
-    }
-
     /// Creates operation that obtains token
     ///
     /// - Parameters:
