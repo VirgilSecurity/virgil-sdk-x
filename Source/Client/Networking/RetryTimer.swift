@@ -48,40 +48,40 @@ open class RetryTimer {
     public let cap: TimeInterval = 10
     public let minDelay: TimeInterval = 0
     public let base: TimeInterval = 1
-    
+
     open func retryTime(for response: Response) -> Retry {
         if 200..<400 ~= response.statusCode {
             return .noRetry
         }
-        
+
         if 500..<600 ~= response.statusCode {
             if self.retryCount >= self.maxRetryCount {
                 return .noRetry
             }
-            
+
             let delay = self.nextRetryDelay()
-            
+
             self.retryCount += 1
-            
+
             return .retryService(delay: delay)
         }
-        
+
         if 400..<500 ~= response.statusCode {
             if response.statusCode == 401 {
                 // FIXME: Check if error is 401.20304
-                
+
                 return .retryAuth
             }
         }
-        
+
         return .noRetry
     }
-    
+
     open func nextRetryDelay() -> TimeInterval {
         let baseDelay = min(self.cap, self.base * pow(TimeInterval(2), TimeInterval(self.retryCount)))
         let jitterDelay = TimeInterval.random(in: 0..<baseDelay)
         let delay = max(self.minDelay, jitterDelay)
-        
+
         return delay
     }
 }

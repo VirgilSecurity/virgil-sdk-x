@@ -58,7 +58,7 @@ extension CardClient: CardClientProtocol {
         guard let url = URL(string: "card/v5/\(cardId)", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
-        
+
         let tokenContext = TokenContext(service: "cards", operation: "get", forceReload: false)
 
         let request = try ServiceRequest(url: url, method: .get)
@@ -96,7 +96,7 @@ extension CardClient: CardClientProtocol {
         guard let url = URL(string: "card/v5", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
-        
+
         let tokenContext = TokenContext(service: "cards", operation: "publish", forceReload: false)
 
         let request = try ServiceRequest(url: url, method: .post, params: model)
@@ -121,7 +121,7 @@ extension CardClient: CardClientProtocol {
         guard let url = URL(string: "card/v5/actions/search", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
-        
+
         let tokenContext = TokenContext(service: "cards", operation: "search", forceReload: false)
 
         let request = try ServiceRequest(url: url,

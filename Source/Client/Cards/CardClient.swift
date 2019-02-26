@@ -55,7 +55,9 @@ import Foundation
     /// - Parameters:
     ///   - serviceUrl: URL of service client will use
     ///   - connection: custom HTTPConnection
-    override public init(accessTokenProvider: AccessTokenProvider, serviceUrl: URL = CardClient.defaultURL, connection: HttpConnectionProtocol) {
+    override public init(accessTokenProvider: AccessTokenProvider,
+                         serviceUrl: URL = CardClient.defaultURL,
+                         connection: HttpConnectionProtocol) {
         super.init(accessTokenProvider: accessTokenProvider, serviceUrl: serviceUrl, connection: connection)
     }
 

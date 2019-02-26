@@ -37,7 +37,7 @@
 import Foundation
 
 /// Helper class to work with version
-public final class VersionUtils {
+public enum VersionUtils {
     /// Returns semantic version
     ///
     /// - Parameter bundleIdentitifer: bundle identifier
@@ -52,7 +52,7 @@ public final class VersionUtils {
             return "unknown"
         }
     }
-    
+
     /// Returns platform
     ///
     /// - Returns: platform
