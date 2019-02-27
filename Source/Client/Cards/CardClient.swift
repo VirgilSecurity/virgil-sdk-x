@@ -51,30 +51,28 @@ import Foundation
     // swiftlint:enable force_unwrapping
 
     /// Initializes a new `CardClient` instance
-    ///
-    /// - Parameters:
-    ///   - serviceUrl: URL of service client will use
-    ///   - connection: custom HTTPConnection
-    override public init(accessTokenProvider: AccessTokenProvider,
-                         serviceUrl: URL = CardClient.defaultURL,
-                         connection: HttpConnectionProtocol) {
-        super.init(accessTokenProvider: accessTokenProvider, serviceUrl: serviceUrl, connection: connection)
-    }
-
-    /// Initializes a new `CardClient` instance
     @objc public convenience init(accessTokenProvider: AccessTokenProvider) {
         self.init(accessTokenProvider: accessTokenProvider, serviceUrl: CardClient.defaultURL)
+    }
+    
+    @objc public convenience init(accessTokenProvider: AccessTokenProvider, serviceUrl: URL) {
+        self.init(accessTokenProvider: accessTokenProvider, serviceUrl: CardClient.defaultURL, requestRetryConfig: RequestRetry.Config())
     }
 
     /// Initializes a new `CardClient` instance
     ///
     /// - Parameter serviceUrl: URL of service client will use
-    @objc public convenience init(accessTokenProvider: AccessTokenProvider, serviceUrl: URL) {
+    public convenience init(accessTokenProvider: AccessTokenProvider,
+                            serviceUrl: URL,
+                            requestRetryConfig: RequestRetry.Config) {
         let version = VersionUtils.getVersion(bundleIdentitifer: "com.virgilsecurity.VirgilSDK")
 
         let connection = HttpConnection(adapters: [VirgilAgentAdapter(product: "sdk", version: version)])
-
-        self.init(accessTokenProvider: accessTokenProvider, serviceUrl: serviceUrl, connection: connection)
+        
+        self.init(accessTokenProvider: accessTokenProvider,
+                  serviceUrl: serviceUrl,
+                  requestRetryConfig: requestRetryConfig,
+                  connection: connection)
     }
 
     /// Handles error from Card Service

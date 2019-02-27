@@ -35,53 +35,58 @@
 //
 
 import Foundation
+import XCTest
+import VirgilSDK
 
-public enum Retry {
-    case noRetry
-    case retryService(delay: TimeInterval)
-    case retryAuth
-}
-
-open class RetryTimer {
-    open private(set) var retryCount: Int = 0
-    public let maxRetryCount: Int = 3
-    public let cap: TimeInterval = 10
-    public let minDelay: TimeInterval = 0
-    public let base: TimeInterval = 1
-
-    open func retryTime(for response: Response) -> Retry {
-        if 200..<400 ~= response.statusCode {
-            return .noRetry
-        }
-
-        if 500..<600 ~= response.statusCode {
-            if self.retryCount >= self.maxRetryCount {
-                return .noRetry
+class VSS015_RequestRetryTests: XCTestCase {
+    func test1() {
+        for _ in 0..<100 {
+            let config = RequestRetry.Config(maxRetryCount: 3, cap: 10, minDelay: 5, base: 3, exp: 2)
+            let retry = RequestRetry(config: config)
+            
+            let delay1 = try! retry.nextRetryDelay()
+            let delay2 = try! retry.nextRetryDelay()
+            let delay3 = try! retry.nextRetryDelay()
+            
+            XCTAssert(delay1 == 5)
+            XCTAssert(5 <= delay2 && delay2 <= 6)
+            XCTAssert(5 <= delay3 && delay3 <= 10)
+            
+            do {
+                _ = try retry.nextRetryDelay()
+                XCTFail()
             }
-
-            let delay = self.nextRetryDelay()
-
-            self.retryCount += 1
-
-            return .retryService(delay: delay)
+            catch { }
         }
-
-        if 400..<500 ~= response.statusCode {
-            if response.statusCode == 401 {
-                // FIXME: Check if error is 401.20304
-
-                return .retryAuth
-            }
-        }
-
-        return .noRetry
     }
-
-    open func nextRetryDelay() -> TimeInterval {
-        let baseDelay = min(self.cap, self.base * pow(TimeInterval(2), TimeInterval(self.retryCount)))
-        let jitterDelay = TimeInterval.random(in: 0..<baseDelay)
-        let delay = max(self.minDelay, jitterDelay)
-
-        return delay
+    
+    func test2() {
+        let retry = RequestRetry()
+        
+        let statusCode = 500
+        
+        let urlResponse = HTTPURLResponse(url: URL(string: "https://example.com/")!, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+        
+        let response = Response(statusCode: statusCode, response: urlResponse, body: nil)
+        
+        guard case .retryService(_) = retry.retryChoice(for: response) else {
+            XCTFail()
+            return
+        }
+    }
+    
+    func test3() {
+        let retry = RequestRetry()
+        
+        let statusCode = 200
+        
+        let urlResponse = HTTPURLResponse(url: URL(string: "https://example.com/")!, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+        
+        let response = Response(statusCode: statusCode, response: urlResponse, body: nil)
+        
+        guard case .noRetry = retry.retryChoice(for: response) else {
+            XCTFail()
+            return
+        }
     }
 }

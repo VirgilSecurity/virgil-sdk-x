@@ -50,8 +50,6 @@ import VirgilCryptoAPI
     /// Callback used for custom signing RawSignedModel, which takes RawSignedModel
     /// to sign and competion handler, called with signed RawSignedModel or provided error
     @objc public var signCallback: ((RawSignedModel, @escaping (RawSignedModel?, Error?) -> Void) -> Void)?
-    /// Will automatically perform second query with forceReload = true AccessToken if true
-    @objc public var retryOnUnauthorized: Bool
 
     /// Initializer
     ///
@@ -65,7 +63,6 @@ import VirgilCryptoAPI
         self.modelSigner = ModelSigner(cardCrypto: cardCrypto)
         self.cardClient = CardClient(accessTokenProvider: accessTokenProvider)
         self.cardVerifier = cardVerifier
-        self.retryOnUnauthorized = true
 
         super.init()
     }

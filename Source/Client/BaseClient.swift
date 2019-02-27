@@ -53,22 +53,28 @@ import Foundation
     @objc open class var serviceErrorDomain: String { return "VirgilSDK.BaseServiceErrorDomain" }
 
     @objc public let accessTokenProvider: AccessTokenProvider
+    
+    public let requestRetryConfig: RequestRetry.Config
 
     /// Initializes a new `BaseClient` instance
     ///
     /// - Parameters:
     ///   - serviceUrl: URL of service client will use
     ///   - connection: custom HTTPConnection
-    public init(accessTokenProvider: AccessTokenProvider, serviceUrl: URL, connection: HttpConnectionProtocol) {
+    public init(accessTokenProvider: AccessTokenProvider,
+                serviceUrl: URL,
+                requestRetryConfig: RequestRetry.Config,
+                connection: HttpConnectionProtocol) {
         self.accessTokenProvider = accessTokenProvider
         self.serviceUrl = serviceUrl
+        self.requestRetryConfig = requestRetryConfig
         self.connection = connection
 
         super.init()
     }
 
     open func sendWithRetry(_ request: ServiceRequest, tokenContext: TokenContext) throws -> Response {
-        let retryTimer = RetryTimer()
+        let requestRetry = RequestRetry(config: self.requestRetryConfig)
 
         try self.setToken(for: request, tokenContext: tokenContext)
 
@@ -76,12 +82,12 @@ import Foundation
             while true {
                 let response = try self.connection.send(request)
 
-                switch retryTimer.retryTime(for: response) {
+                switch requestRetry.retryChoice(for: request, with: response) {
                 case .noRetry:
                     return response
 
                 case .retryService(let retryDelay):
-                    usleep(useconds_t(retryDelay * 1_000_000))
+                    Thread.sleep(forTimeInterval: retryDelay)
 
                 case .retryAuth:
                     let retryTokenContext = TokenContext(identity: tokenContext.identity,

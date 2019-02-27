@@ -56,8 +56,6 @@ import VirgilCryptoAPI
     @objc public let cardClient: CardClientProtocol
     /// Card Verifier instance used for verifying Cards
     @objc public let cardVerifier: CardVerifier
-    /// Will automatically perform second query with forceReload = true AccessToken if true
-    @objc public let retryOnUnauthorized: Bool
     /// Called to perform additional signatures for card before publishing
     @objc public let signCallback: ((RawSignedModel, @escaping (RawSignedModel?, Error?) -> Void) -> Void)?
 
@@ -69,7 +67,6 @@ import VirgilCryptoAPI
         self.cardCrypto = params.cardCrypto
         self.cardClient = params.cardClient
         self.cardVerifier = params.cardVerifier
-        self.retryOnUnauthorized = params.retryOnUnauthorized
         self.signCallback = params.signCallback
 
         super.init()
