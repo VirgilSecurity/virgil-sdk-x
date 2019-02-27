@@ -36,51 +36,90 @@
 
 import Foundation
 
-public enum Retry {
-    case noRetry
-    case retryService(delay: TimeInterval)
-    case retryAuth
-}
-
-open class RetryTimer {
+open class RequestRetry {
+    public struct Config {
+        public var maxRetryCount: Int
+        public var cap: TimeInterval
+        public var minDelay: TimeInterval
+        public var base: TimeInterval
+        public var exp: TimeInterval
+        
+        public init(maxRetryCount: Int = 3,
+                    cap: TimeInterval = 10,
+                    minDelay: TimeInterval = 0,
+                    base: TimeInterval = 1,
+                    exp: TimeInterval = 2) {
+            self.maxRetryCount = maxRetryCount
+            self.cap = cap
+            self.minDelay = minDelay
+            self.base = base
+            self.exp = exp
+        }
+    }
+    
+    public enum Choice {
+        case noRetry
+        case retryService(delay: TimeInterval)
+        case retryAuth
+    }
+    
     open private(set) var retryCount: Int = 0
-    public let maxRetryCount: Int = 3
-    public let cap: TimeInterval = 10
-    public let minDelay: TimeInterval = 0
-    public let base: TimeInterval = 1
+    public let config: Config
+    
+    public convenience init() {
+        self.init(config: Config())
+    }
+    
+    public init(config: Config) {
+        self.config = config
+    }
 
-    open func retryTime(for response: Response) -> Retry {
+    open func retryChoice(for request: ServiceRequest, with response: Response) -> Choice {
         if 200..<400 ~= response.statusCode {
             return .noRetry
         }
 
         if 500..<600 ~= response.statusCode {
-            if self.retryCount >= self.maxRetryCount {
+            do {
+                let delay = try self.nextRetryDelay()
+
+                return .retryService(delay: delay)
+            }
+            catch {
                 return .noRetry
             }
-
-            let delay = self.nextRetryDelay()
-
-            self.retryCount += 1
-
-            return .retryService(delay: delay)
         }
 
         if 400..<500 ~= response.statusCode {
             if response.statusCode == 401 {
-                // FIXME: Check if error is 401.20304
+                if let body = response.body,
+                    let rawServiceError = try? JSONDecoder().decode(RawServiceError.self, from: body),
+                    rawServiceError.code == 20304 {
 
-                return .retryAuth
+                    return .retryAuth
+                }
+                
+                return .noRetry
             }
         }
 
         return .noRetry
     }
+    
+    public enum RetryError: Error {
+        case retryCountExceeded
+    }
 
-    open func nextRetryDelay() -> TimeInterval {
-        let baseDelay = min(self.cap, self.base * pow(TimeInterval(2), TimeInterval(self.retryCount)))
+    open func nextRetryDelay() throws -> TimeInterval {
+        guard self.retryCount < self.config.maxRetryCount else {
+            throw RetryError.retryCountExceeded
+        }
+        
+        let baseDelay = min(self.config.cap, self.config.base * pow(self.config.exp, TimeInterval(self.retryCount)))
         let jitterDelay = TimeInterval.random(in: 0..<baseDelay)
-        let delay = max(self.minDelay, jitterDelay)
+        let delay = max(self.config.minDelay, jitterDelay)
+        
+        self.retryCount += 1
 
         return delay
     }
