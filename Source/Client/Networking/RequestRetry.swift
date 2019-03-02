@@ -36,14 +36,29 @@
 
 import Foundation
 
+/// Class for handling retries for network requests
 open class RequestRetry {
+    /// Config for retries
     public struct Config {
+        /// Max number of retries
         public var maxRetryCount: Int
+        /// Max interval for retry
         public var cap: TimeInterval
+        /// Minimum interval for retry (before jitter)
         public var minDelay: TimeInterval
+        /// Base value for retry
         public var base: TimeInterval
+        /// Exp base for retry
         public var exp: TimeInterval
-        
+
+        /// Init
+        ///
+        /// - Parameters:
+        ///   - maxRetryCount: Max number of retries
+        ///   - cap: Max interval for retry
+        ///   - minDelay: Minimum interval for retry (before jitter)
+        ///   - base: Base value for retry
+        ///   - exp: Exp base for retry
         public init(maxRetryCount: Int = 3,
                     cap: TimeInterval = 10,
                     minDelay: TimeInterval = 0,
@@ -56,24 +71,42 @@ open class RequestRetry {
             self.exp = exp
         }
     }
-    
+
+    /// Retry choise
+    ///
+    /// - noRetry: should not retry
+    /// - retryService: retry due to service error
+    /// - retryAuth: retry due to auth error (should try with new Access Token)
     public enum Choice {
         case noRetry
         case retryService(delay: TimeInterval)
         case retryAuth
     }
-    
+
+    /// Number of performed retries
     open private(set) var retryCount: Int = 0
+
+    /// Retry config
     public let config: Config
-    
+
+    /// Default init
     public convenience init() {
         self.init(config: Config())
     }
-    
+
+    /// Init
+    ///
+    /// - Parameter config: Retry config
     public init(config: Config) {
         self.config = config
     }
 
+    /// Decide on retry
+    ///
+    /// - Parameters:
+    ///   - request: Request to retry
+    ///   - response: Response receiver from service
+    /// - Returns: Retry choise
     open func retryChoice(for request: ServiceRequest, with response: Response) -> Choice {
         if 200..<400 ~= response.statusCode {
             return .noRetry
@@ -94,31 +127,38 @@ open class RequestRetry {
             if response.statusCode == 401 {
                 if let body = response.body,
                     let rawServiceError = try? JSONDecoder().decode(RawServiceError.self, from: body),
-                    rawServiceError.code == 20304 {
+                    rawServiceError.code == 20_304 {
 
                     return .retryAuth
                 }
-                
+
                 return .noRetry
             }
         }
 
         return .noRetry
     }
-    
+
+    /// Retry Error
+    ///
+    /// - retryCountExceeded: retry count is maximum
     public enum RetryError: Error {
         case retryCountExceeded
     }
 
+    /// Next delat for retry
+    ///
+    /// - Returns: max(minDelay, rand(0..<min(cap, base * exp ^ retryCount)))
+    /// - Throws: RetryError.retryCountExceeded if retry count is maximum
     open func nextRetryDelay() throws -> TimeInterval {
         guard self.retryCount < self.config.maxRetryCount else {
             throw RetryError.retryCountExceeded
         }
-        
+
         let baseDelay = min(self.config.cap, self.config.base * pow(self.config.exp, TimeInterval(self.retryCount)))
         let jitterDelay = TimeInterval.random(in: 0..<baseDelay)
         let delay = max(self.config.minDelay, jitterDelay)
-        
+
         self.retryCount += 1
 
         return delay

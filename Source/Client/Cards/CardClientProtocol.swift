@@ -42,9 +42,7 @@ import Foundation
 @objc(VSSCardClientProtocol) public protocol CardClientProtocol: class {
     /// Returns `GetCardResponse` with `RawSignedModel` of card from the Virgil Cards Service with given ID, if exists
     ///
-    /// - Parameters:
-    ///   - cardId: String with unique Virgil Card identifier
-    ///   - token: String with `Access Token`
+    /// - Parameter cardId: String with unique Virgil Card identifier
     /// - Returns: `GetCardResponse` if card found
     /// - Throws: Depends on implementation
     @objc func getCard(withId cardId: String) throws -> GetCardResponse
@@ -53,18 +51,14 @@ import Foundation
     /// Also makes the Card accessible for search/get queries from other users
     /// `RawSignedModel` should contain appropriate signatures
     ///
-    /// - Parameters:
-    ///   - model: Signed `RawSignedModel`
-    ///   - token: String with `Access Token`
+    /// - Parameter model: Signed `RawSignedModel`
     /// - Returns: `RawSignedModel` of created card
     /// - Throws: Depends on implementation
     @objc func publishCard(model: RawSignedModel) throws -> RawSignedModel
 
     /// Performs search of Virgil Cards using given identities on the Virgil Cards Service
     ///
-    /// - Parameters:
-    ///   - identities: Identities of cards to search
-    ///   - token: String with `Access Token`
+    /// - Parameter identities: Identities of cards to search
     /// - Returns: Array with `RawSignedModel`s of matched Virgil Cards
     /// - Throws: Depends on implementation
     @objc func searchCards(identities: [String]) throws -> [RawSignedModel]

@@ -63,13 +63,17 @@ class VSS015_RequestRetryTests: XCTestCase {
     func test2() {
         let retry = RequestRetry()
         
+        let url = URL(string: "https://example.com/")!
+        
+        let request = try! ServiceRequest(url: url, method: .get)
+        
         let statusCode = 500
         
-        let urlResponse = HTTPURLResponse(url: URL(string: "https://example.com/")!, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+        let urlResponse = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
         
         let response = Response(statusCode: statusCode, response: urlResponse, body: nil)
         
-        guard case .retryService(_) = retry.retryChoice(for: response) else {
+        guard case .retryService(_) = retry.retryChoice(for: request, with: response) else {
             XCTFail()
             return
         }
@@ -78,13 +82,17 @@ class VSS015_RequestRetryTests: XCTestCase {
     func test3() {
         let retry = RequestRetry()
         
+        let url = URL(string: "https://example.com/")!
+        
+        let request = try! ServiceRequest(url: url, method: .get)
+        
         let statusCode = 200
         
-        let urlResponse = HTTPURLResponse(url: URL(string: "https://example.com/")!, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+        let urlResponse = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
         
         let response = Response(statusCode: statusCode, response: urlResponse, body: nil)
         
-        guard case .noRetry = retry.retryChoice(for: response) else {
+        guard case .noRetry = retry.retryChoice(for: request, with: response) else {
             XCTFail()
             return
         }
