@@ -81,18 +81,6 @@
     [super tearDown];
 }
 
-- (VSSCardClient *)setupClientWithIdentity:(NSString *)identity {
-    NSError *error;
-    
-    id<VSSAccessTokenProvider> provider = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
-    
-    XCTAssert(error == nil);
-    
-    VSSCardClient *cardClient = self.consts.serviceURL == nil ? [[VSSCardClient alloc] initWithAccessTokenProvider:provider] : [[VSSCardClient alloc] initWithAccessTokenProvider:provider serviceUrl:self.consts.serviceURL];
-    
-    return cardClient;
-}
-
 - (void)test001_CreateCard {
     NSError *error;
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
@@ -101,7 +89,8 @@
     NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey error:nil];
     NSString *identity = [[NSUUID alloc] init].UUIDString;
     
-    VSSCardClient *cardClient = [self setupClientWithIdentity:identity];
+    VSSCardClient *cardClient = [self.utils setupClientWithIdentity:identity error:&error];
+    XCTAssert(error == nil);
 
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     
@@ -136,7 +125,8 @@
     NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
     
-    VSSCardClient *cardClient = [self setupClientWithIdentity:identity];
+    VSSCardClient *cardClient = [self.utils setupClientWithIdentity:identity error:&error];
+    XCTAssert(error == nil);
     
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
@@ -175,7 +165,8 @@
     NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
     
-    VSSCardClient *cardClient = [self setupClientWithIdentity:identity];
+    VSSCardClient *cardClient = [self.utils setupClientWithIdentity:identity error:&error];
+    XCTAssert(error == nil);
     
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
@@ -226,7 +217,8 @@
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     XCTAssert(rawCard != nil);
     
-    VSSCardClient *cardClient = [self setupClientWithIdentity:wrongIdentity];
+    VSSCardClient *cardClient = [self.utils setupClientWithIdentity:wrongIdentity error:&error];
+    XCTAssert(error == nil);
     
     VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
@@ -275,8 +267,10 @@
     NSString *identity1 = [[NSUUID alloc] init].UUIDString;
     NSString *identity2 = [[NSUUID alloc] init].UUIDString;
     
-    VSSCardClient *cardClient1 = [self setupClientWithIdentity:identity1];
-    VSSCardClient *cardClient2 = [self setupClientWithIdentity:identity2];
+    VSSCardClient *cardClient1 = [self.utils setupClientWithIdentity:identity1 error:&error];
+    XCTAssert(error == nil);
+    VSSCardClient *cardClient2 = [self.utils setupClientWithIdentity:identity2 error:&error];
+    XCTAssert(error == nil);
     
     VSMVirgilKeyPair *keyPair1 = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);

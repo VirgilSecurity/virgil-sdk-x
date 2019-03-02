@@ -64,7 +64,7 @@ import Foundation
     ///   - serviceUrl: service URL
     @objc public convenience init(accessTokenProvider: AccessTokenProvider, serviceUrl: URL) {
         self.init(accessTokenProvider: accessTokenProvider,
-                  serviceUrl: CardClient.defaultURL,
+                  serviceUrl: serviceUrl,
                   requestRetryConfig: RequestRetry.Config())
     }
 
