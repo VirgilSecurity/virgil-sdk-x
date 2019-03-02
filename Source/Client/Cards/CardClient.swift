@@ -50,42 +50,40 @@ import Foundation
     @objc public static let defaultURL = URL(string: "https://api.virgilsecurity.com")!
     // swiftlint:enable force_unwrapping
 
-    /// Initializes a new `CardClient` instance
+    /// Initializes new `CardClient` instance
+    ///
+    /// - Parameter accessTokenProvider: Access Token Provider
     @objc public convenience init(accessTokenProvider: AccessTokenProvider) {
         self.init(accessTokenProvider: accessTokenProvider, serviceUrl: CardClient.defaultURL)
     }
-    
+
+    /// Initializes new `CardClient` instance
+    ///
+    /// - Parameters:
+    ///   - accessTokenProvider: Access Token Provider
+    ///   - serviceUrl: service URL
     @objc public convenience init(accessTokenProvider: AccessTokenProvider, serviceUrl: URL) {
-        self.init(accessTokenProvider: accessTokenProvider, serviceUrl: CardClient.defaultURL, requestRetryConfig: RequestRetry.Config())
+        self.init(accessTokenProvider: accessTokenProvider,
+                  serviceUrl: CardClient.defaultURL,
+                  requestRetryConfig: RequestRetry.Config())
     }
 
-    /// Initializes a new `CardClient` instance
+    /// Initializes new `CardClient` instance
     ///
-    /// - Parameter serviceUrl: URL of service client will use
+    /// - Parameters:
+    ///   - accessTokenProvider: Access Token Provider
+    ///   - serviceUrl: service URL
+    ///   - requestRetryConfig: Retry config
     public convenience init(accessTokenProvider: AccessTokenProvider,
                             serviceUrl: URL,
                             requestRetryConfig: RequestRetry.Config) {
         let version = VersionUtils.getVersion(bundleIdentitifer: "com.virgilsecurity.VirgilSDK")
 
         let connection = HttpConnection(adapters: [VirgilAgentAdapter(product: "sdk", version: version)])
-        
+
         self.init(accessTokenProvider: accessTokenProvider,
                   serviceUrl: serviceUrl,
                   requestRetryConfig: requestRetryConfig,
                   connection: connection)
-    }
-
-    /// Handles error from Card Service
-    ///
-    /// - Parameters:
-    ///   - statusCode: http status code
-    ///   - body: response body
-    /// - Returns: Corresponding error
-    override open func handleError(statusCode: Int, body: Data?) -> Error {
-        if let body = body, let rawServiceError = try? JSONDecoder().decode(RawServiceError.self, from: body) {
-            return ServiceError(httpStatusCode: statusCode, rawServiceError: rawServiceError)
-        }
-
-        return super.handleError(statusCode: statusCode, body: body)
     }
 }

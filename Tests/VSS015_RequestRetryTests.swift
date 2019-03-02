@@ -63,11 +63,13 @@ class VSS015_RequestRetryTests: XCTestCase {
     func test2() {
         let retry = RequestRetry()
         
+        let url = URL(string: "https://example.com/")!
+        
+        let request = try! ServiceRequest(url: url, method: .get)
+        
         let statusCode = 500
         
-        let request = try! ServiceRequest(url: URL(string: "https://example.com/")!, method: .post)
-        
-        let urlResponse = HTTPURLResponse(url: URL(string: "https://example.com/")!, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+        let urlResponse = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
         
         let response = Response(statusCode: statusCode, response: urlResponse, body: nil)
         
@@ -80,11 +82,13 @@ class VSS015_RequestRetryTests: XCTestCase {
     func test3() {
         let retry = RequestRetry()
         
-        let request = try! ServiceRequest(url: URL(string: "https://example.com/")!, method: .post)
+        let url = URL(string: "https://example.com/")!
+        
+        let request = try! ServiceRequest(url: url, method: .get)
         
         let statusCode = 200
         
-        let urlResponse = HTTPURLResponse(url: URL(string: "https://example.com/")!, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+        let urlResponse = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
         
         let response = Response(statusCode: statusCode, response: urlResponse, body: nil)
         
