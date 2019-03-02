@@ -60,9 +60,9 @@ script:
         # Build Framework in Release and Run Tests if specified
         if [ $RUN_TESTS == "YES" ]; then
           if [ -n "$ADDITIONAL_TESTS_SCHEME" ]; then
-            xcodebuild -verbose -project "$PROJECT" -scheme "$ADDITIONAL_TESTS_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug clean test;
+            xcodebuild -verbose -project "$PROJECT" -scheme "$ADDITIONAL_TESTS_SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug clean test | xcpretty;
           else
-            xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug test;
+            xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -sdk "$SDK" -destination "$DESTINATION" -configuration Debug test | xcpretty;
           fi
         fi
       else
