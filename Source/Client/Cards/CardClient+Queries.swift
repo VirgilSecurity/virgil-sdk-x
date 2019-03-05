@@ -42,6 +42,10 @@ extension CardClient: CardClientProtocol {
     @objc public static let xVirgilIsSuperseededKey = "x-virgil-is-superseeded"
     /// HTTP header value for xVirgilIsSuperseededKey key for getCard response that marks outdated cards
     @objc public static let xVirgilIsSuperseededTrue = "true"
+    
+    private func createRetry() -> RetryProtocol {
+        return ExpBackoffRetry(config: self.retryConfig)
+    }
 
     /// Returns `GetCardResponse` with `RawSignedModel` of card from the Virgil Cards Service with given ID, if exists
     ///
@@ -60,7 +64,7 @@ extension CardClient: CardClientProtocol {
 
         let request = try ServiceRequest(url: url, method: .get)
 
-        let response = try self.sendWithRetry(request, tokenContext: tokenContext)
+        let response = try self.sendWithRetry(request, retry: self.createRetry(), tokenContext: tokenContext)
 
         let isOutdated: Bool
         // Swift dictionaries doesn't support case-insensitive keys, NSDictionary does
@@ -95,7 +99,7 @@ extension CardClient: CardClientProtocol {
 
         let request = try ServiceRequest(url: url, method: .post, params: model)
 
-        let response = try self.sendWithRetry(request, tokenContext: tokenContext)
+        let response = try self.sendWithRetry(request, retry: self.createRetry(), tokenContext: tokenContext)
 
         return try self.processResponse(response)
     }
@@ -119,7 +123,7 @@ extension CardClient: CardClientProtocol {
                                          method: .post,
                                          params: ["identities": identities])
 
-        let response = try self.sendWithRetry(request, tokenContext: tokenContext)
+        let response = try self.sendWithRetry(request, retry: self.createRetry(), tokenContext: tokenContext)
 
         return try self.processResponse(response)
     }

@@ -36,22 +36,14 @@
 
 import Foundation
 
-/// Model for representing service errors
-@objc(VSSRawServiceError) public final class RawServiceError: NSObject, Codable {
-    /// Code of error
-    @objc public let code: Int
-    /// Description of error
-    @objc public let message: String
-
-    /// Initializer
+/// Protocol for handling retries for network requests
+public protocol RetryProtocol {
+    /// Decide on retry
     ///
     /// - Parameters:
-    ///   - code: Error code
-    ///   - message: Error description
-    internal init(code: Int, message: String) {
-        self.code = code
-        self.message = message
-
-        super.init()
-    }
+    ///   - client: Client that sends request
+    ///   - request: Request to retry
+    ///   - response: Response receiver from service
+    /// - Returns: Retry choice
+    func retryChoice(from client: BaseClient, for request: ServiceRequest, with response: Response) -> RetryChoice
 }

@@ -53,21 +53,18 @@ import Foundation
     @objc open class var serviceErrorDomain: String { return "VirgilSDK.BaseServiceErrorDomain" }
     /// Access token provider
     @objc public let accessTokenProvider: AccessTokenProvider
-    /// Retry config
-    public let requestRetryConfig: RequestRetry.Config
 
-    /// Initializes a new `BaseClient` instance
+    /// Initializes new `BaseClient` instance
     ///
     /// - Parameters:
-    ///   - serviceUrl: URL of service client will use
-    ///   - connection: custom HTTPConnection
+    ///   - accessTokenProvider: Access token provider
+    ///   - serviceUrl: service url
+    ///   - connection: Http Conntection
     public init(accessTokenProvider: AccessTokenProvider,
                 serviceUrl: URL,
-                requestRetryConfig: RequestRetry.Config,
-                connection: HttpConnectionProtocol) {
+                connection: HttpConnectionProtocol = HttpConnection()) {
         self.accessTokenProvider = accessTokenProvider
         self.serviceUrl = serviceUrl
-        self.requestRetryConfig = requestRetryConfig
         self.connection = connection
 
         super.init()
@@ -77,28 +74,30 @@ import Foundation
     ///
     /// - Parameters:
     ///   - request: request to send
+    ///   - retry: Retry
     ///   - tokenContext: token context to forward to Access Token Provider
     /// - Returns: Response
     /// - Throws:
     ///         - Rethrows from AccessTokenProvider
     ///         - Rethrows from HttpConnection
-    open func sendWithRetry(_ request: ServiceRequest, tokenContext: TokenContext) throws -> Response {
-        let requestRetry = RequestRetry(config: self.requestRetryConfig)
-
+    open func sendWithRetry(_ request: ServiceRequest, retry: RetryProtocol, tokenContext: TokenContext) throws -> Response {
         try self.setToken(for: request, tokenContext: tokenContext)
 
         let response = try { () -> Response in
             while true {
                 let response = try self.connection.send(request)
 
-                switch requestRetry.retryChoice(for: request, with: response) {
+                switch retry.retryChoice(from: self, for: request, with: response) {
                 case .noRetry:
                     return response
 
                 case .retryService(let retryDelay):
+                    Log.debug("Retrying request to \(request.url.absoluteString) in \(retryDelay) s")
                     Thread.sleep(forTimeInterval: retryDelay)
+                    Log.debug("Retrying request to \(request.url.absoluteString)")
 
                 case .retryAuth:
+                    Log.debug("Retrying request to \(request.url.absoluteString) with new auth")
                     let retryTokenContext = TokenContext(identity: tokenContext.identity,
                                                          service: tokenContext.service,
                                                          operation: tokenContext.operation,
