@@ -49,8 +49,6 @@ import Foundation
 open class HttpConnection: HttpConnectionProtocol {
     /// Default number of maximum concurrent operations
     public static let defaulMaxConcurrentOperationCount = 10
-    /// Queue for URLSession
-    private let queue: OperationQueue
     /// Url session used to create network tasks
     private let session: URLSession
 
@@ -59,15 +57,10 @@ open class HttpConnection: HttpConnectionProtocol {
     /// Init
     ///
     /// - Parameters:
-    ///   - maxConcurrentOperationCount: maximum number of concurrent operations
     ///   - adapters: request adapters
-    public init(maxConcurrentOperationCount: Int = HttpConnection.defaulMaxConcurrentOperationCount,
-                adapters: [HttpRequestAdapter] = []) {
-        self.queue = OperationQueue()
-        self.queue.maxConcurrentOperationCount = maxConcurrentOperationCount
-
+    public init(adapters: [HttpRequestAdapter] = []) {
         let config = URLSessionConfiguration.ephemeral
-        self.session = URLSession(configuration: config, delegate: nil, delegateQueue: self.queue)
+        self.session = URLSession(configuration: config)
 
         self.adapters = adapters
     }
@@ -140,6 +133,5 @@ open class HttpConnection: HttpConnectionProtocol {
 
     deinit {
         self.session.invalidateAndCancel()
-        self.queue.cancelAllOperations()
     }
 }

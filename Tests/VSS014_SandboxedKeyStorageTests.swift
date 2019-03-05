@@ -35,6 +35,7 @@
 //
 
 import Foundation
+import VirgilSDK
 import XCTest
 
 class VSS014_SandboxedKeychainStorageTests: XCTestCase {

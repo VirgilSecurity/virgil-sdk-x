@@ -49,6 +49,8 @@ import Foundation
     /// Default URL for service
     @objc public static let defaultURL = URL(string: "https://api.virgilsecurity.com")!
     // swiftlint:enable force_unwrapping
+    
+    internal let retryConfig: ExpBackoffRetry.Config
 
     /// Initializes new `CardClient` instance
     ///
@@ -65,7 +67,7 @@ import Foundation
     @objc public convenience init(accessTokenProvider: AccessTokenProvider, serviceUrl: URL) {
         self.init(accessTokenProvider: accessTokenProvider,
                   serviceUrl: serviceUrl,
-                  requestRetryConfig: RequestRetry.Config())
+                  retryConfig: ExpBackoffRetry.Config())
     }
 
     /// Initializes new `CardClient` instance
@@ -74,16 +76,17 @@ import Foundation
     ///   - accessTokenProvider: Access Token Provider
     ///   - serviceUrl: service URL
     ///   - requestRetryConfig: Retry config
-    public convenience init(accessTokenProvider: AccessTokenProvider,
+    public init(accessTokenProvider: AccessTokenProvider,
                             serviceUrl: URL,
-                            requestRetryConfig: RequestRetry.Config) {
+                            retryConfig: ExpBackoffRetry.Config) {
         let version = VersionUtils.getVersion(bundleIdentitifer: "com.virgilsecurity.VirgilSDK")
 
         let connection = HttpConnection(adapters: [VirgilAgentAdapter(product: "sdk", version: version)])
+        
+        self.retryConfig = retryConfig
 
-        self.init(accessTokenProvider: accessTokenProvider,
+        super.init(accessTokenProvider: accessTokenProvider,
                   serviceUrl: serviceUrl,
-                  requestRetryConfig: requestRetryConfig,
                   connection: connection)
     }
 }

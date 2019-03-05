@@ -36,22 +36,13 @@
 
 import Foundation
 
-/// Model for representing service errors
-@objc(VSSRawServiceError) public final class RawServiceError: NSObject, Codable {
-    /// Code of error
-    @objc public let code: Int
-    /// Description of error
-    @objc public let message: String
-
-    /// Initializer
-    ///
-    /// - Parameters:
-    ///   - code: Error code
-    ///   - message: Error description
-    internal init(code: Int, message: String) {
-        self.code = code
-        self.message = message
-
-        super.init()
-    }
+/// Retry choice
+///
+/// - noRetry: should not retry
+/// - retryService: retry due to service error
+/// - retryAuth: retry due to auth error (should try with new Access Token)
+public enum RetryChoice {
+    case noRetry
+    case retryService(delay: TimeInterval)
+    case retryAuth
 }
