@@ -80,7 +80,9 @@ import Foundation
     /// - Throws:
     ///         - Rethrows from AccessTokenProvider
     ///         - Rethrows from HttpConnection
-    open func sendWithRetry(_ request: ServiceRequest, retry: RetryProtocol, tokenContext: TokenContext) throws -> Response {
+    open func sendWithRetry(_ request: ServiceRequest,
+                            retry: RetryProtocol,
+                            tokenContext: TokenContext) throws -> Response {
         try self.setToken(for: request, tokenContext: tokenContext)
 
         let response = try { () -> Response in

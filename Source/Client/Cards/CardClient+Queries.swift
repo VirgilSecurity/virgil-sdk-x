@@ -42,7 +42,7 @@ extension CardClient: CardClientProtocol {
     @objc public static let xVirgilIsSuperseededKey = "x-virgil-is-superseeded"
     /// HTTP header value for xVirgilIsSuperseededKey key for getCard response that marks outdated cards
     @objc public static let xVirgilIsSuperseededTrue = "true"
-    
+
     private func createRetry() -> RetryProtocol {
         return ExpBackoffRetry(config: self.retryConfig)
     }

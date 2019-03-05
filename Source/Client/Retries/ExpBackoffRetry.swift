@@ -97,7 +97,9 @@ open class ExpBackoffRetry: RetryProtocol {
     ///   - request: Request to retry
     ///   - response: Response receiver from service
     /// - Returns: Retry choice
-    open func retryChoice(from client: BaseClient, for request: ServiceRequest, with response: Response) -> RetryChoice {
+    open func retryChoice(from client: BaseClient,
+                          for request: ServiceRequest,
+                          with response: Response) -> RetryChoice {
         if 200..<400 ~= response.statusCode {
             return .noRetry
         }
@@ -144,17 +146,17 @@ open class ExpBackoffRetry: RetryProtocol {
         guard self.retryCount < self.config.maxRetryCount else {
             throw ExpBackoffRetryError.retryCountExceeded
         }
-        
-        let uintPow = { (a: UInt, b: UInt) -> UInt in
-            guard b != 0 else {
+
+        let uintPow = { (base: UInt, pow: UInt) -> UInt in
+            guard pow != 0 else {
                 return 1
             }
 
             var res: UInt = 1
-            for _ in 0..<b {
-                res *= b
+            for _ in 0..<pow {
+                res *= base
             }
-            
+
             return res
         }
 
