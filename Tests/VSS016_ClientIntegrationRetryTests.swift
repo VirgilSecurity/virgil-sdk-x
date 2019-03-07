@@ -152,7 +152,7 @@ class VSS016_ClientIntegrationRetryTests: XCTestCase {
         XCTAssert(connectionRetry.checkFinishState())
     }
     
-    func test03__STC_51__client_retry__retry_autrh__should_retry() {
+    func test03__STC_51__client_retry__retry_auth__should_retry() {
         let connectionRetry = ConnectionRetryMock(testId: .test03)
         let client = BaseClient(accessTokenProvider: self.accessTokenProvider, serviceUrl: self.baseUrl, connection: connectionRetry)
         
