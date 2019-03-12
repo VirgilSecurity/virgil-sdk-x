@@ -37,7 +37,6 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 @import VirgilSDK;
-@import VirgilCryptoApiImpl;
 @import VirgilCrypto;
 
 #import "VSSTestsConst.h"
@@ -55,7 +54,7 @@ static const NSTimeInterval timeout = 8.;
     XCTestExpectation *ex2 = [self expectationWithDescription:@"JwtProvider throws if callback returns invalid token"];
     NSTimeInterval ttl = 5;
     VSSCallbackJwtProvider *callbackJwtProvider = [[VSSCallbackJwtProvider alloc] initWithGetTokenCallback:^(VSSTokenContext *tokenContext, void(^ completionHandler)(NSString* token, NSError* error)) {
-        VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+        VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES error:nil];
 
         NSError *err;
         VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
@@ -103,7 +102,7 @@ static const NSTimeInterval timeout = 8.;
     XCTestExpectation *ex = [self expectationWithDescription:@"ConstAccessTokenProvider should always return the same token regardless of the tokenContext"];
 
     NSError *err;
-    VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+    VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES error:nil];
     VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
     XCTAssert(err == nil);
 
@@ -201,7 +200,7 @@ static const NSTimeInterval timeout = 8.;
     XCTestExpectation *ex = [self expectationWithDescription:@"cachingJwtProvider should cache token"];
     NSTimeInterval ttl = 10;
     VSSCachingJwtProvider *cachingJwtProvider = [[VSSCachingJwtProvider alloc] initWithInitialJwt:nil renewTokenCallback:^(VSSTokenContext *tokenContext, void(^completionHandler)(NSString* token, NSError* error)) {
-        VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+        VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES error:nil];
         
         NSError *err;
         VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
@@ -241,7 +240,7 @@ static const NSTimeInterval timeout = 8.;
     
 - (void)test006_STC_39 {
     NSTimeInterval ttl = 10;
-    VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+    VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES error:nil];
     
     NSError *err;
     VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
@@ -292,7 +291,7 @@ static const NSTimeInterval timeout = 8.;
     
 - (void)test007_STC_40 {
     NSTimeInterval ttl = 10;
-    VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+    VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES error:nil];
     
     NSError *err;
     VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];

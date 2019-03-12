@@ -37,7 +37,7 @@
 import Foundation
 import VirgilCrypto
 import XCTest
-import VirgilCryptoApiImpl
+import VirgilCrypto
 import VirgilSDK
 
 class VSS006_KeyStorageTests: XCTestCase {
@@ -50,11 +50,11 @@ class VSS006_KeyStorageTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        self.crypto = VirgilCrypto()
+        self.crypto = try! VirgilCrypto()
         self.storage = KeyStorage()
         let keyPair = try! self.crypto.generateKeyPair()
         
-        let privateKeyRawData = self.crypto.exportPrivateKey(keyPair.privateKey)
+        let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey)
         let privateKeyName = UUID().uuidString
         
         self.keyEntry = KeyEntry(name: privateKeyName, value: privateKeyRawData)
@@ -81,7 +81,7 @@ class VSS006_KeyStorageTests: XCTestCase {
     
         let keyPair = try! self.crypto.generateKeyPair()
         
-        let privateKeyRawData = self.crypto.exportPrivateKey(keyPair.privateKey)
+        let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey)
         let privateKeyName = self.keyEntry.name
         
         let keyEntry = KeyEntry(name: privateKeyName, value: privateKeyRawData)
@@ -132,7 +132,7 @@ class VSS006_KeyStorageTests: XCTestCase {
         
         let keyPair = try! self.crypto.generateKeyPair()
         
-        let privateKeyRawData = self.crypto.exportPrivateKey(keyPair.privateKey)
+        let privateKeyRawData = try! self.crypto.exportPrivateKey(keyPair.privateKey)
         let privateKeyName = self.keyEntry.name
         
         let keyEntry = KeyEntry(name: privateKeyName, value: privateKeyRawData)

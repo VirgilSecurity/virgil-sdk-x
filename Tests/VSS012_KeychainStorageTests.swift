@@ -37,7 +37,7 @@
 import Foundation
 import VirgilSDK
 import XCTest
-import VirgilCryptoApiImpl
+import VirgilCrypto
 
 class VSS012_KeychainStorageTests: XCTestCase {
     private var storage: KeychainStorage!

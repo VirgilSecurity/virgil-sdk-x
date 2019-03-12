@@ -37,7 +37,6 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 @import VirgilSDK;
-@import VirgilCryptoApiImpl;
 @import VirgilCrypto;
 
 #import "VSSTestsConst.h"
@@ -61,7 +60,7 @@
     self.continueAfterFailure = NO;
     
     self.consts = [[VSSTestsConst alloc] init];
-    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:NO error:nil];
     self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
     self.cardClient = self.consts.serviceURL == nil ? [[VSSCardClient alloc] init] : [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL];
@@ -89,7 +88,7 @@
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
     
-    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
+    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey error:nil];
     NSString *identity = [[NSUUID alloc] init].UUIDString;
 
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
@@ -116,7 +115,7 @@
     
     XCTAssert([self.utils isCardsEqualWithCard:responseCard and:card]);
     
-    NSData *exportedPublicKeyCard = [self.crypto exportPublicKey:(VSMVirgilPublicKey *)card.publicKey];
+    NSData *exportedPublicKeyCard = [self.crypto exportPublicKey:(VSMVirgilPublicKey *)card.publicKey error:nil];
     XCTAssert(error == nil);
     
     XCTAssert([exportedPublicKeyCard isEqualToData:exportedPublicKey]);
@@ -133,7 +132,7 @@
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
 
-    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
+    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey error:nil];
 
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     NSData *snapshot = [content snapshotAndReturnError:nil];
@@ -172,7 +171,7 @@
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
     
-    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
+    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey error:nil];
     
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     NSData *snapshot = [content snapshotAndReturnError:nil];
@@ -208,7 +207,7 @@
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
     
-    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
+    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey error:nil];
     NSString *identity = @"identity1";
     NSString *wrongIdentity = @"identity2";
     
@@ -236,7 +235,7 @@
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
     
-    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey];
+    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey error:nil];
     NSString *identity = @"identity1";
     
     VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
@@ -271,8 +270,8 @@
     VSMVirgilKeyPair *keyPair2 = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
     
-    NSData *exportedPublicKey1 = [self.crypto exportPublicKey:keyPair1.publicKey];
-    NSData *exportedPublicKey2 = [self.crypto exportPublicKey:keyPair2.publicKey];
+    NSData *exportedPublicKey1 = [self.crypto exportPublicKey:keyPair1.publicKey error:nil];
+    NSData *exportedPublicKey2 = [self.crypto exportPublicKey:keyPair2.publicKey error:nil];
     
     VSSRawCardContent *content1 = [[VSSRawCardContent alloc] initWithIdentity:identity1 publicKey:exportedPublicKey1 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
     VSSRawCardContent *content2 = [[VSSRawCardContent alloc] initWithIdentity:identity2 publicKey:exportedPublicKey2 previousCardId:nil version:@"5.0" createdAt:NSDate.date];
