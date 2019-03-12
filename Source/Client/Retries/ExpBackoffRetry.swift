@@ -89,16 +89,36 @@ open class ExpBackoffRetry: RetryProtocol {
     public init(config: Config) {
         self.config = config
     }
+    
+    public func retryChoice(for request: ServiceRequest, with error: Error) -> RetryChoice {
+        let nsError = error as NSError
+        
+        guard nsError.domain == NSURLErrorDomain else {
+            return .noRetry
+        }
+        
+        let errorCode = nsError.code
+        
+        switch errorCode {
+        // TODO: Review this list
+        case NSURLErrorTimedOut,
+             NSURLErrorCannotConnectToHost,
+             NSURLErrorNetworkConnectionLost,
+             NSURLErrorNotConnectedToInternet,
+             NSURLErrorSecureConnectionFailed:
+            return .retryConnection
+            
+        default: return .noRetry
+        }
+    }
 
     /// Decide on retry
     ///
     /// - Parameters:
-    ///   - client: Client that sends request
     ///   - request: Request to retry
     ///   - response: Response receiver from service
     /// - Returns: Retry choice
-    open func retryChoice(from client: BaseClient,
-                          for request: ServiceRequest,
+    open func retryChoice(for request: ServiceRequest,
                           with response: Response) -> RetryChoice {
         if 200..<400 ~= response.statusCode {
             return .noRetry
@@ -138,7 +158,7 @@ open class ExpBackoffRetry: RetryProtocol {
         case retryCountExceeded
     }
 
-    /// Next delat for retry
+    /// Next delauy for retry
     ///
     /// - Returns: max(minDelay, rand(0..<min(cap, base * exp ^ retryCount)))
     /// - Throws: RetryError.retryCountExceeded if retry count is maximum

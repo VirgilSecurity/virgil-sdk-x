@@ -104,6 +104,49 @@
 		423D3E7A222E6CDB006C7E4C /* RetryChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423D3E77222E6CDB006C7E4C /* RetryChoice.swift */; };
 		423D3E7B222E6CDB006C7E4C /* RetryChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423D3E77222E6CDB006C7E4C /* RetryChoice.swift */; };
 		4244F7FB20331D670053EE4B /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 4244F7F920331D610053EE4B /* data.json */; };
+		4244F81D203365BB0053EE4B /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4244F81C203365BB0053EE4B /* ServiceRequest.swift */; };
+		4244F81E203365BB0053EE4B /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4244F81C203365BB0053EE4B /* ServiceRequest.swift */; };
+		4244F81F203365BB0053EE4B /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4244F81C203365BB0053EE4B /* ServiceRequest.swift */; };
+		4244F820203365BB0053EE4B /* ServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4244F81C203365BB0053EE4B /* ServiceRequest.swift */; };
+		42499F3D21ECCBF00076851C /* VSCCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CBE3B521ECBB9B000F99E6 /* VSCCrypto.framework */; };
+		42499F3E21ECCBFC0076851C /* VirgilCryptoApiImpl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CBE3AB21ECBB9B000F99E6 /* VirgilCryptoApiImpl.framework */; };
+		424A7F2721EF66E4006BED3F /* KeychainStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F1521EF66E4006BED3F /* KeychainStorageProtocol.swift */; };
+		424A7F2821EF66E4006BED3F /* KeychainStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F1521EF66E4006BED3F /* KeychainStorageProtocol.swift */; };
+		424A7F2921EF66E4006BED3F /* KeychainStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F1521EF66E4006BED3F /* KeychainStorageProtocol.swift */; };
+		424A7F2A21EF66E4006BED3F /* KeychainStorageProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F1521EF66E4006BED3F /* KeychainStorageProtocol.swift */; };
+		424A7F2B21EF66E4006BED3F /* SandboxedKeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F2621EF66E4006BED3F /* SandboxedKeychainStorage.swift */; };
+		424A7F2C21EF66E4006BED3F /* SandboxedKeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F2621EF66E4006BED3F /* SandboxedKeychainStorage.swift */; };
+		424A7F2D21EF66E4006BED3F /* SandboxedKeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F2621EF66E4006BED3F /* SandboxedKeychainStorage.swift */; };
+		424A7F2E21EF66E4006BED3F /* SandboxedKeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F2621EF66E4006BED3F /* SandboxedKeychainStorage.swift */; };
+		424A7F3021EF6870006BED3F /* Mutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F2F21EF6870006BED3F /* Mutex.swift */; };
+		424A7F3121EF6870006BED3F /* Mutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F2F21EF6870006BED3F /* Mutex.swift */; };
+		424A7F3221EF6870006BED3F /* Mutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F2F21EF6870006BED3F /* Mutex.swift */; };
+		424A7F3321EF6870006BED3F /* Mutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F2F21EF6870006BED3F /* Mutex.swift */; };
+		424A7F5721EF9F05006BED3F /* HttpRequestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F5621EF9F05006BED3F /* HttpRequestAdapter.swift */; };
+		424A7F5821EF9F05006BED3F /* HttpRequestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F5621EF9F05006BED3F /* HttpRequestAdapter.swift */; };
+		424A7F5921EF9F05006BED3F /* HttpRequestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F5621EF9F05006BED3F /* HttpRequestAdapter.swift */; };
+		424A7F5A21EF9F05006BED3F /* HttpRequestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F5621EF9F05006BED3F /* HttpRequestAdapter.swift */; };
+		424A7F6C21EFA15C006BED3F /* VirgilAgentAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F6B21EFA15C006BED3F /* VirgilAgentAdapter.swift */; };
+		424A7F6D21EFA15C006BED3F /* VirgilAgentAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F6B21EFA15C006BED3F /* VirgilAgentAdapter.swift */; };
+		424A7F6E21EFA15C006BED3F /* VirgilAgentAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F6B21EFA15C006BED3F /* VirgilAgentAdapter.swift */; };
+		424A7F6F21EFA15C006BED3F /* VirgilAgentAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F6B21EFA15C006BED3F /* VirgilAgentAdapter.swift */; };
+		424A7F8B21F0B62A006BED3F /* VersionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F8A21F0B62A006BED3F /* VersionUtils.swift */; };
+		424A7F8C21F0B62A006BED3F /* VersionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F8A21F0B62A006BED3F /* VersionUtils.swift */; };
+		424A7F8D21F0B62A006BED3F /* VersionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F8A21F0B62A006BED3F /* VersionUtils.swift */; };
+		424A7F8E21F0B62A006BED3F /* VersionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F8A21F0B62A006BED3F /* VersionUtils.swift */; };
+		424ACC652231384200DD5072 /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC642231384200DD5072 /* NetworkOperation.swift */; };
+		424ACC662231384200DD5072 /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC642231384200DD5072 /* NetworkOperation.swift */; };
+		424ACC672231384200DD5072 /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC642231384200DD5072 /* NetworkOperation.swift */; };
+		424ACC682231384200DD5072 /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC642231384200DD5072 /* NetworkOperation.swift */; };
+		424ACC7A22314C9100DD5072 /* NetworkRetryOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7922314C9100DD5072 /* NetworkRetryOperation.swift */; };
+		424ACC7B22314C9100DD5072 /* NetworkRetryOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7922314C9100DD5072 /* NetworkRetryOperation.swift */; };
+		424ACC7C22314C9100DD5072 /* NetworkRetryOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7922314C9100DD5072 /* NetworkRetryOperation.swift */; };
+		424ACC7D22314C9100DD5072 /* NetworkRetryOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7922314C9100DD5072 /* NetworkRetryOperation.swift */; };
+		424ACC7F223154D700DD5072 /* VSS017_NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7E223154D700DD5072 /* VSS017_NetworkTests.swift */; };
+		424ACC80223154D700DD5072 /* VSS017_NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7E223154D700DD5072 /* VSS017_NetworkTests.swift */; };
+		424ACC81223154D700DD5072 /* VSS017_NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7E223154D700DD5072 /* VSS017_NetworkTests.swift */; };
+		424B9BD520EB8D7A00415ED4 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
+		424B9BDB20EB8D9E00415ED4 /* VirgilSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		424B9BEC20EB8F2000415ED4 /* VSS007_KeyStorageiOSSpecificTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B6CF681F58771A0024857B /* VSS007_KeyStorageiOSSpecificTests.swift */; };
 		424B9BFD20EB9CAD00415ED4 /* VSS007_KeyStorageiOSSpecificTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B6CF681F58771A0024857B /* VSS007_KeyStorageiOSSpecificTests.swift */; };
 		4263A1F61EBC7FFB00B13FF1 /* VSSKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4263A1F31EBC7FFB00B13FF1 /* VSSKeyStorage.m */; };
@@ -708,6 +751,9 @@
 		424A7F5621EF9F05006BED3F /* HttpRequestAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpRequestAdapter.swift; sourceTree = "<group>"; };
 		424A7F6B21EFA15C006BED3F /* VirgilAgentAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirgilAgentAdapter.swift; sourceTree = "<group>"; };
 		424A7F8A21F0B62A006BED3F /* VersionUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionUtils.swift; sourceTree = "<group>"; };
+		424ACC642231384200DD5072 /* NetworkOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
+		424ACC7922314C9100DD5072 /* NetworkRetryOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRetryOperation.swift; sourceTree = "<group>"; };
+		424ACC7E223154D700DD5072 /* VSS017_NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSS017_NetworkTests.swift; sourceTree = "<group>"; };
 		425EF98320C96CC200CE1D4F /* VSS012_KeychainStorageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSS012_KeychainStorageTests.swift; sourceTree = "<group>"; };
 		4263A1F31EBC7FFB00B13FF1 /* VSSKeyStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeyStorage.m; sourceTree = "<group>"; };
 		4263A1F41EBC7FFB00B13FF1 /* VSSKeyStorageConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeyStorageConfiguration.h; sourceTree = "<group>"; };
@@ -1147,6 +1193,7 @@
 				424A7F4C21EF760F006BED3F /* VSS014_SandboxedKeyStorageTests.swift */,
 				423D3E332225E054006C7E4C /* VSS015_ExpBackoffRetryTests.swift */,
 				423D3E40222AB1B5006C7E4C /* VSS016_ClientIntegrationRetryTests.swift */,
+				424ACC7E223154D700DD5072 /* VSS017_NetworkTests.swift */,
 				166C67BD201F5BB200D79608 /* VSSTestUtils.h */,
 				166C67BE201F5C0500D79608 /* VSSTestUtils.m */,
 				429123611F4B0B3700103BE0 /* VSSTestsConst.h */,
@@ -1275,6 +1322,8 @@
 				4284C4AF1F716C7700B75491 /* Response.swift */,
 				424A7F5621EF9F05006BED3F /* HttpRequestAdapter.swift */,
 				424A7F6B21EFA15C006BED3F /* VirgilAgentAdapter.swift */,
+				424ACC642231384200DD5072 /* NetworkOperation.swift */,
+				424ACC7922314C9100DD5072 /* NetworkRetryOperation.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1794,6 +1843,9 @@
 				42D7AF89224396AD009D02FD /* CardManagerParams.swift in Sources */,
 				42D7AF7E224396AD009D02FD /* Data+hex.swift in Sources */,
 				42D7AF8D224396AD009D02FD /* Whitelist.swift in Sources */,
+				428B164120E39A940041CA75 /* CardManager+StaticExport.swift in Sources */,
+				1624B8392012151B007D223C /* CallbackOperation.swift in Sources */,
+				424ACC7B22314C9100DD5072 /* NetworkRetryOperation.swift in Sources */,
 				16E7F5B720332511009A9025 /* PrivateKeyEntry.swift in Sources */,
 				42D0570D20EA7A3600FC544E /* KeychainStorageParams.swift in Sources */,
 				42D7AF59224396AD009D02FD /* RawSignedModel.swift in Sources */,
@@ -1820,6 +1872,14 @@
 				42D7AF63224396AD009D02FD /* ServiceRequest.swift in Sources */,
 				42D7AF8C224396AD009D02FD /* VerifierCredentials.swift in Sources */,
 				42D7AF6B224396AD009D02FD /* AccessToken.swift in Sources */,
+				424A7F3121EF6870006BED3F /* Mutex.swift in Sources */,
+				42DD290B2074F6D900C9C014 /* RawSignedModel.swift in Sources */,
+				422B4D39203494F3003923E2 /* CardManager+Parse.swift in Sources */,
+				424A7F2C21EF66E4006BED3F /* SandboxedKeychainStorage.swift in Sources */,
+				424A7F6D21EFA15C006BED3F /* VirgilAgentAdapter.swift in Sources */,
+				424ACC662231384200DD5072 /* NetworkOperation.swift in Sources */,
+				4284C4071F6C00C300B75491 /* CardManager.swift in Sources */,
+				42DA83AE20321F980091D223 /* CardManager+Obj-C.swift in Sources */,
 				423D3E74222E6C28006C7E4C /* RetryProtocol.swift in Sources */,
 				42D7B03D224399BC009D02FD /* KeychainStorage.swift in Sources */,
 			);
@@ -1845,6 +1905,20 @@
 				42D7AEBD224377F2009D02FD /* VSS010_PrivateKeyStorageTests.m in Sources */,
 				42D7AEB8224377F1009D02FD /* VSS005_CardManagerTests.m in Sources */,
 				423D3E42222AB1B5006C7E4C /* VSS016_ClientIntegrationRetryTests.swift in Sources */,
+				423D3E0F2225A64D006C7E4C /* VSS009_ExtraCardManagerTests.swift in Sources */,
+				423D3E112225A64D006C7E4C /* VSS011_OperationsTests.swift in Sources */,
+				423D3E0D2225A64D006C7E4C /* VSS006_KeyStorageTests.swift in Sources */,
+				166C67C0201F5C0500D79608 /* VSSTestUtils.m in Sources */,
+				424ACC80223154D700DD5072 /* VSS017_NetworkTests.swift in Sources */,
+				423D3E142225A64D006C7E4C /* VSS014_SandboxedKeyStorageTests.swift in Sources */,
+				423D3DFA2225A267006C7E4C /* VSS002_JWTTests.m in Sources */,
+				16F3D4732031B6FF00257A43 /* VSS001_CardClientTests.m in Sources */,
+				423D3E132225A64D006C7E4C /* VSS013_MutexTests.swift in Sources */,
+				423D3E002225A281006C7E4C /* VSS004_CrossCompatibilityTests.m in Sources */,
+				423D3E352225E054006C7E4C /* VSS015_ExpBackoffRetryTests.swift in Sources */,
+				4291237B1F4B0B3700103BE0 /* VSSTestsConst.m in Sources */,
+				423D3E0E2225A64D006C7E4C /* VSS008_DataExtensionsTests.swift in Sources */,
+				423D3E012225A281006C7E4C /* VSS005_CardManagerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1885,6 +1959,26 @@
 				42D7AF95224396AE009D02FD /* GetCardResponse.swift in Sources */,
 				42D7AF9C224396AE009D02FD /* ServiceRequest.swift in Sources */,
 				42D7AFC5224396AE009D02FD /* VerifierCredentials.swift in Sources */,
+				4284C3C31F6BEA2100B75491 /* HttpConnection.swift in Sources */,
+				16B3FD6A20079DF5008F0357 /* CardSignature.swift in Sources */,
+				4284C3C21F6BEA2100B75491 /* HttpConnectionProtocol.swift in Sources */,
+				424ACC7C22314C9100DD5072 /* NetworkRetryOperation.swift in Sources */,
+				4229CCBF2039D21100AFEF4F /* GenericOperation+Dependencies.swift in Sources */,
+				424A7F3221EF6870006BED3F /* Mutex.swift in Sources */,
+				4229CCC42039D22400AFEF4F /* Result.swift in Sources */,
+				42DD291C2074F6D900C9C014 /* CardClientProtocol.swift in Sources */,
+				4284C4B91F728B6700B75491 /* Response.swift in Sources */,
+				16B3FD4A2004D5FC008F0357 /* AccessToken.swift in Sources */,
+				16B3FD5B200507F3008F0357 /* JwtBodyContent.swift in Sources */,
+				424A7F2D21EF66E4006BED3F /* SandboxedKeychainStorage.swift in Sources */,
+				4284C3B81F6BEA0100B75491 /* Log.swift in Sources */,
+				4284C3BE1F6BEA0600B75491 /* VSSKeyEntry.m in Sources */,
+				4284C3B91F6BEA0100B75491 /* CardManager.swift in Sources */,
+				16B3FD95200CE74C008F0357 /* JwtVerifier.swift in Sources */,
+				424ACC672231384200DD5072 /* NetworkOperation.swift in Sources */,
+				42D0570B20EA7A2C00FC544E /* KeychainEntry.swift in Sources */,
+				4284C4671F70057900B75491 /* VerifierCredentials.swift in Sources */,
+				168491C9201A26A100D6938B /* TokenContext.swift in Sources */,
 				16AE0B372020DA9E005B311B /* VSSKeyAttrs.m in Sources */,
 				42D056E620EA737400FC544E /* KeychainStorageParams.swift in Sources */,
 				42D7AF99224396AE009D02FD /* HttpConnectionProtocol.swift in Sources */,
@@ -1963,6 +2057,26 @@
 				42D7AFCE224396AF009D02FD /* GetCardResponse.swift in Sources */,
 				42D7AFD5224396AF009D02FD /* ServiceRequest.swift in Sources */,
 				42D7AFFE224396AF009D02FD /* VerifierCredentials.swift in Sources */,
+				4284C3C51F6BEA2200B75491 /* HttpConnection.swift in Sources */,
+				16B3FD6B20079DF5008F0357 /* CardSignature.swift in Sources */,
+				4284C3C41F6BEA2200B75491 /* HttpConnectionProtocol.swift in Sources */,
+				424ACC7D22314C9100DD5072 /* NetworkRetryOperation.swift in Sources */,
+				4229CCC02039D21100AFEF4F /* GenericOperation+Dependencies.swift in Sources */,
+				424A7F3321EF6870006BED3F /* Mutex.swift in Sources */,
+				4229CCC52039D22400AFEF4F /* Result.swift in Sources */,
+				42DD291D2074F6D900C9C014 /* CardClientProtocol.swift in Sources */,
+				4284C4BB1F728B6700B75491 /* Response.swift in Sources */,
+				16B3FD4B2004D5FC008F0357 /* AccessToken.swift in Sources */,
+				16B3FD5C200507F3008F0357 /* JwtBodyContent.swift in Sources */,
+				424A7F2E21EF66E4006BED3F /* SandboxedKeychainStorage.swift in Sources */,
+				4284C3BB1F6BEA0200B75491 /* Log.swift in Sources */,
+				4284C3BF1F6BEA0700B75491 /* VSSKeyEntry.m in Sources */,
+				4284C3BC1F6BEA0200B75491 /* CardManager.swift in Sources */,
+				16B3FD96200CE74C008F0357 /* JwtVerifier.swift in Sources */,
+				424ACC682231384200DD5072 /* NetworkOperation.swift in Sources */,
+				42D0570C20EA7A2C00FC544E /* KeychainEntry.swift in Sources */,
+				4284C4681F70057900B75491 /* VerifierCredentials.swift in Sources */,
+				168491CA201A26A100D6938B /* TokenContext.swift in Sources */,
 				16AE0B362020DA9E005B311B /* VSSKeyAttrs.m in Sources */,
 				42D056E920EA737600FC544E /* KeychainStorageParams.swift in Sources */,
 				42D7AFD2224396AF009D02FD /* HttpConnectionProtocol.swift in Sources */,
@@ -2017,6 +2131,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				424ACC7F223154D700DD5072 /* VSS017_NetworkTests.swift in Sources */,
 				423D3E062225A64C006C7E4C /* VSS008_DataExtensionsTests.swift in Sources */,
 				423D3DFC2225A281006C7E4C /* VSS003_ModelSigner_CardVerifierTests.m in Sources */,
 				423D3E41222AB1B5006C7E4C /* VSS016_ClientIntegrationRetryTests.swift in Sources */,
@@ -2051,6 +2166,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				424ACC81223154D700DD5072 /* VSS017_NetworkTests.swift in Sources */,
 				423D3E162225A64F006C7E4C /* VSS008_DataExtensionsTests.swift in Sources */,
 				423D3E022225A282006C7E4C /* VSS003_ModelSigner_CardVerifierTests.m in Sources */,
 				423D3E43222AB1B5006C7E4C /* VSS016_ClientIntegrationRetryTests.swift in Sources */,
@@ -2082,6 +2198,15 @@
 				42D7B008224397B8009D02FD /* (null) in Sources */,
 				42D7AF30224396AC009D02FD /* ServiceError.swift in Sources */,
 				42D7AF20224396AC009D02FD /* RawSignedModel.swift in Sources */,
+				424ACC7A22314C9100DD5072 /* NetworkRetryOperation.swift in Sources */,
+				4229CCBD2039D21100AFEF4F /* GenericOperation+Dependencies.swift in Sources */,
+				4284C4561F6FECB600B75491 /* CardVerifier.swift in Sources */,
+				4267C6622089DFAE007EAEB2 /* ServiceError.swift in Sources */,
+				42D0570920EA7A2B00FC544E /* KeychainEntry.swift in Sources */,
+				16B3FD7A200CBB6C008F0357 /* CallbackJwtProvider.swift in Sources */,
+				42DD290A2074F6D900C9C014 /* RawSignedModel.swift in Sources */,
+				4284C4B01F716C7700B75491 /* Response.swift in Sources */,
+				42DA83AD20321F980091D223 /* CardManager+Obj-C.swift in Sources */,
 				4263A1F61EBC7FFB00B13FF1 /* VSSKeyStorage.m in Sources */,
 				42D7AF38224396AC009D02FD /* JwtHeaderContent.swift in Sources */,
 				42D7B011224398C9009D02FD /* CardClient+Queries.swift in Sources */,
@@ -2146,6 +2271,15 @@
 				16E7F5B220332002009A9025 /* PrivateKeyStorage.swift in Sources */,
 				42D7B03C224399BC009D02FD /* KeychainStorage.swift in Sources */,
 				42D7AF33224396AC009D02FD /* ConstAccessTokenProvider.swift in Sources */,
+				16B3FD542005059C008F0357 /* JwtHeaderContent.swift in Sources */,
+				42DD29162074F6D900C9C014 /* GetCardResponse.swift in Sources */,
+				424A7F6C21EFA15C006BED3F /* VirgilAgentAdapter.swift in Sources */,
+				424A7F2B21EF66E4006BED3F /* SandboxedKeychainStorage.swift in Sources */,
+				4229CCC22039D22400AFEF4F /* Result.swift in Sources */,
+				423D3DF022248801006C7E4C /* CardClient.swift in Sources */,
+				4229CCB82037380200AFEF4F /* DateUtils.swift in Sources */,
+				424A7F8B21F0B62A006BED3F /* VersionUtils.swift in Sources */,
+				424ACC652231384200DD5072 /* NetworkOperation.swift in Sources */,
 				423CEB5A1DCA06C900CCACB8 /* VSSKeyEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

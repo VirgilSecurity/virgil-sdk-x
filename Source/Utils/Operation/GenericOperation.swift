@@ -47,6 +47,7 @@ import Foundation
     case resultIsMissing = 2
     case missingDependencies = 3
     case dependencyFailed = 4
+    case operationCancelled = 5
 }
 
 /// Represents AsyncOperation with Generic result
@@ -75,7 +76,8 @@ open class GenericOperation<T>: AsyncOperation {
 
         self.completionBlock = {
             guard let result = self.result else {
-                let result: Result<T> = Result.failure(GenericOperationError.resultIsMissing)
+                let error = self.isCancelled ? GenericOperationError.operationCancelled : GenericOperationError.resultIsMissing
+                let result: Result<T> = Result.failure(error)
                 self.result = result
 
                 completion(result)
@@ -123,7 +125,8 @@ open class GenericOperation<T>: AsyncOperation {
         queue.waitUntilAllOperationsAreFinished()
 
         guard let result = self.result else {
-            let result: Result<T> = Result.failure(GenericOperationError.resultIsMissing)
+            let error = self.isCancelled ? GenericOperationError.operationCancelled : GenericOperationError.resultIsMissing
+            let result: Result<T> = Result.failure(error)
             self.result = result
             return result
         }

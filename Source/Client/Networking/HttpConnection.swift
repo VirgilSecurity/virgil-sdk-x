@@ -71,7 +71,7 @@ open class HttpConnection: HttpConnectionProtocol {
     /// - Returns: Obtained response
     /// - Throws: ServiceConnectionError.noUrlInRequest if provided URLRequest doesn't have url
     ///           ServiceConnectionError.wrongResponseType if response is not of HTTPURLResponse type
-    public func send(_ request: Request) throws -> Response {
+    public func send(_ request: Request) throws -> GenericOperation<Response> {
         let nativeRequest = try self.adapters
             .reduce(request) { _, adapter -> Request in
                 try adapter.adapt(request)
@@ -95,40 +95,8 @@ open class HttpConnection: HttpConnectionProtocol {
                 Log.debug("*******COOKIE: \(cookie.name): \(cookie.value)")
             }
         }
-
-        let semaphore = DispatchSemaphore(value: 0)
-
-        var dataT: Data?
-        var responseT: URLResponse?
-        var errorT: Error?
-        let task = self.session.dataTask(with: nativeRequest) { dataR, responseR, errorR in
-            dataT = dataR
-            responseT = responseR
-            errorT = errorR
-
-            semaphore.signal()
-        }
-        task.resume()
-
-        semaphore.wait()
-
-        if let error = errorT {
-            throw error
-        }
-
-        guard let response = responseT as? HTTPURLResponse else {
-            throw ServiceConnectionError.wrongResponseType
-        }
-
-        Log.debug("\(className): response URL: \(response.url?.absoluteString ?? "")")
-        Log.debug("\(className): response HTTP status code: \(response.statusCode)")
-        Log.debug("\(className): response headers: \(response.allHeaderFields as AnyObject)")
-
-        if let data = dataT, !data.isEmpty, let str = String(data: data, encoding: .utf8) {
-            Log.debug("\(className): response body: \(str)")
-        }
-
-        return Response(statusCode: response.statusCode, response: response, body: dataT)
+        
+        return NetworkOperation(request: nativeRequest, session: self.session)
     }
 
     deinit {

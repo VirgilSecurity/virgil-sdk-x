@@ -82,35 +82,12 @@ import Foundation
     ///         - Rethrows from HttpConnection
     open func sendWithRetry(_ request: ServiceRequest,
                             retry: RetryProtocol,
-                            tokenContext: TokenContext) throws -> Response {
-        try self.setToken(for: request, tokenContext: tokenContext)
-
-        let response = try { () -> Response in
-            while true {
-                let response = try self.connection.send(request)
-
-                switch retry.retryChoice(from: self, for: request, with: response) {
-                case .noRetry:
-                    return response
-
-                case .retryService(let retryDelay):
-                    Log.debug("Retrying request to \(request.url.absoluteString) in \(retryDelay) s")
-                    Thread.sleep(forTimeInterval: retryDelay)
-                    Log.debug("Retrying request to \(request.url.absoluteString)")
-
-                case .retryAuth:
-                    Log.debug("Retrying request to \(request.url.absoluteString) with new auth")
-                    let retryTokenContext = TokenContext(identity: tokenContext.identity,
-                                                         service: tokenContext.service,
-                                                         operation: tokenContext.operation,
-                                                         forceReload: true)
-
-                    try self.setToken(for: request, tokenContext: retryTokenContext)
-                }
-            }
-        }()
-
-        return response
+                            tokenContext: TokenContext) throws -> GenericOperation<Response> {
+        return NetworkRetryOperation(request: request,
+                                     retry: retry,
+                                     tokenContext: tokenContext,
+                                     accessTokenProvider: self.accessTokenProvider,
+                                     connection: self.connection)
     }
 
     private func setToken(for request: ServiceRequest, tokenContext: TokenContext) throws {

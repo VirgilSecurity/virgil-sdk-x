@@ -64,7 +64,7 @@ extension CardClient: CardClientProtocol {
 
         let request = try ServiceRequest(url: url, method: .get)
 
-        let response = try self.sendWithRetry(request, retry: self.createRetry(), tokenContext: tokenContext)
+        let response = try self.sendWithRetry(request, retry: self.createRetry(), tokenContext: tokenContext).startSync().getResult()
 
         let isOutdated: Bool
         // Swift dictionaries doesn't support case-insensitive keys, NSDictionary does
@@ -99,7 +99,7 @@ extension CardClient: CardClientProtocol {
 
         let request = try ServiceRequest(url: url, method: .post, params: model)
 
-        let response = try self.sendWithRetry(request, retry: self.createRetry(), tokenContext: tokenContext)
+        let response = try self.sendWithRetry(request, retry: self.createRetry(), tokenContext: tokenContext).startSync().getResult()
 
         return try self.processResponse(response)
     }
@@ -123,7 +123,7 @@ extension CardClient: CardClientProtocol {
                                          method: .post,
                                          params: ["identities": identities])
 
-        let response = try self.sendWithRetry(request, retry: self.createRetry(), tokenContext: tokenContext)
+        let response = try self.sendWithRetry(request, retry: self.createRetry(), tokenContext: tokenContext).startSync().getResult()
 
         return try self.processResponse(response)
     }
