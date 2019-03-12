@@ -349,4 +349,43 @@ static const NSTimeInterval timeout = 8.;
     XCTAssert(callCounter == 1);
 }
 
+- (void)test008_STC_43 {
+    XCTestExpectation *ex = [self expectationWithDescription:@"CachingJwtProvider should reload token on forceReload = true"];
+    NSTimeInterval ttl = 10;
+
+    VSSCachingJwtProvider *cachingJwtProvider = [[VSSCachingJwtProvider alloc] initWithInitialJwt:nil renewTokenCallback:^(VSSTokenContext *tokenContext, void(^completionHandler)(NSString* token, NSError* error)) {
+        VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+
+        NSError *err;
+        VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
+        XCTAssert(err == nil);
+
+        VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:crypto];
+        VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] apiPublicKeyIdentifier:@"id" accessTokenSigner:signer appId:@"app_id" ttl:ttl];
+
+        NSString *identity = tokenContext.identity;
+        VSSJwt *jwt = [generator generateTokenWithIdentity:identity additionalData:nil error:&err];
+        XCTAssert(err == nil);
+
+        completionHandler([jwt stringRepresentation], err);
+    }];
+
+    VSSTokenContext *tokenContext = [[VSSTokenContext alloc] initWithIdentity:@"some_identity" service:@"cards" operation:@"test" forceReload:NO];
+    [cachingJwtProvider getTokenWith:tokenContext completion:^(id<VSSAccessToken> jwt, NSError *error) {
+        XCTAssert(error == nil && jwt != nil);
+
+        VSSTokenContext *newTokenContext = [[VSSTokenContext alloc] initWithIdentity:@"some_identity" service:@"cards" operation:@"test" forceReload:YES];
+        [cachingJwtProvider getTokenWith:newTokenContext completion:^(id<VSSAccessToken> newJwt, NSError *error) {
+            XCTAssert(error == nil && newJwt != nil && newJwt != jwt);
+
+            [ex fulfill];
+        }];
+    }];
+
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
+    }];
+}
+
 @end
