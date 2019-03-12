@@ -102,14 +102,14 @@ import Foundation
     @objc public func getToken(with tokenContext: TokenContext, completion: @escaping AccessTokenCallback) {
         let expirationTime = Date().addingTimeInterval(5)
 
-        if let jwt = self.jwt, !jwt.isExpired(date: expirationTime) {
+        if let jwt = self.jwt, !jwt.isExpired(date: expirationTime), !tokenContext.forceReload {
             completion(jwt, nil)
             return
         }
 
         self.semaphore.wait()
 
-        if let jwt = self.jwt, !jwt.isExpired(date: expirationTime) {
+        if let jwt = self.jwt, !jwt.isExpired(date: expirationTime), !tokenContext.forceReload {
             self.semaphore.signal()
             completion(jwt, nil)
             return
