@@ -53,7 +53,11 @@ class ConnectionRetryMock: HttpConnectionProtocol, RetryProtocol {
         self.testId = testId
     }
     
-    func retryChoice(from client: BaseClient, for request: ServiceRequest, with response: Response) -> RetryChoice {
+    func retryChoice(for request: ServiceRequest, with error: Error) -> RetryChoice {
+        fatalError()
+    }
+    
+    func retryChoice(for request: ServiceRequest, with response: Response) -> RetryChoice {
         switch self.testId {
         case .test01:
             return .noRetry
@@ -64,34 +68,11 @@ class ConnectionRetryMock: HttpConnectionProtocol, RetryProtocol {
         }
     }
 
-    func send(_ request: Request) throws -> Response {
-        switch self.testId {
-        case .test01:
-            guard self.requestCount < 1 else {
-                throw NSError()
-            }
-            
-            self.requestCount += 1
-
-            return self.response
+    func send(_ request: Request) throws -> GenericOperation<Response> {
+        self.requestCount += 1
         
-        case .test02:
-            guard self.requestCount < 3 else {
-                throw NSError()
-            }
-            
-            self.requestCount += 1
-            
-            return self.response
-            
-        case .test03:
-            guard self.requestCount < 2 else {
-                throw NSError()
-            }
-            
-            self.requestCount += 1
-            
-            return self.response
+        return CallbackOperation { _, completion in
+            completion(self.response, nil)
         }
     }
     
@@ -129,7 +110,7 @@ class VSS016_ClientIntegrationRetryTests: XCTestCase {
         let client = BaseClient(accessTokenProvider: self.accessTokenProvider, serviceUrl: self.baseUrl, connection: connectionRetry)
         
         do {
-            _ = try client.sendWithRetry(self.request, retry: connectionRetry, tokenContext: TokenContext(service: "", operation: ""))
+            _ = try client.sendWithRetry(self.request, retry: connectionRetry, tokenContext: TokenContext(service: "", operation: "")).startSync().getResult()
         }
         catch {
             XCTFail()
@@ -143,7 +124,7 @@ class VSS016_ClientIntegrationRetryTests: XCTestCase {
         let client = BaseClient(accessTokenProvider: self.accessTokenProvider, serviceUrl: self.baseUrl, connection: connectionRetry)
         
         do {
-            _ = try client.sendWithRetry(self.request, retry: connectionRetry, tokenContext: TokenContext(service: "", operation: ""))
+            _ = try client.sendWithRetry(self.request, retry: connectionRetry, tokenContext: TokenContext(service: "", operation: "")).startSync().getResult()
         }
         catch {
             XCTFail()
@@ -157,7 +138,7 @@ class VSS016_ClientIntegrationRetryTests: XCTestCase {
         let client = BaseClient(accessTokenProvider: self.accessTokenProvider, serviceUrl: self.baseUrl, connection: connectionRetry)
         
         do {
-            _ = try client.sendWithRetry(self.request, retry: connectionRetry, tokenContext: TokenContext(service: "", operation: ""))
+            _ = try client.sendWithRetry(self.request, retry: connectionRetry, tokenContext: TokenContext(service: "", operation: "")).startSync().getResult()
         }
         catch {
             XCTFail()

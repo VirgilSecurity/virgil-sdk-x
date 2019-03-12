@@ -35,15 +35,47 @@
 //
 
 import Foundation
+import VirgilSDK
+import XCTest
 
-/// Retry choice
-///
-/// - noRetry: should not retry
-/// - retryService: retry due to service error
-/// - retryAuth: retry due to auth error (should try with new Access Token)
-public enum RetryChoice {
-    case noRetry
-    case retryService(delay: TimeInterval)
-    case retryAuth
-    case retryConnection
+class VSS017_NetworkTests: XCTestCase {
+    private var client: BaseClient!
+    let url = URL(string: "https://example.com/")!
+    
+    override func setUp() {
+        let crypto = VirgilCrypto()
+        let consts = VSSTestsConst()
+        let utils = VSSTestUtils(crypto: crypto, consts: consts)
+        let generator = utils.getGeneratorJwtProvider(withIdentity: "identity", error: nil)
+        
+        self.client = BaseClient(accessTokenProvider: generator, serviceUrl: self.url)
+    }
+    
+    func test01() {
+        let exp = expectation(description: "")
+        
+        let request = try! ServiceRequest(url: self.url, method: .get)
+        let connectionRetry = ExpBackoffRetry()
+        
+        let op = try! self.client.sendWithRetry(request, retry: connectionRetry, tokenContext: TokenContext(service: "", operation: ""))
+        
+        op.start() { result, error in
+            XCTAssert(result == nil)
+            XCTAssert(error != nil)
+            
+            do {
+                throw error!
+            }
+            catch GenericOperationError.operationCancelled { }
+            catch {
+                XCTFail()
+            }
+            
+            exp.fulfill()
+        }
+        
+        op.cancel()
+        
+        self.wait(for: [exp], timeout: 15)
+    }
 }

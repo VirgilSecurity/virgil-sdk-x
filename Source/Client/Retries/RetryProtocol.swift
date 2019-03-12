@@ -41,9 +41,10 @@ public protocol RetryProtocol {
     /// Decide on retry
     ///
     /// - Parameters:
-    ///   - client: Client that sends request
     ///   - request: Request to retry
     ///   - response: Response receiver from service
     /// - Returns: Retry choice
-    func retryChoice(from client: BaseClient, for request: ServiceRequest, with response: Response) -> RetryChoice
+    func retryChoice(for request: ServiceRequest, with response: Response) -> RetryChoice
+    
+    func retryChoice(for request: ServiceRequest, with error: Error) -> RetryChoice
 }

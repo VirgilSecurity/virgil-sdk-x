@@ -39,18 +39,7 @@ import XCTest
 @testable import VirgilSDK
 
 class VSS015_ExpBackoffRetryTests: XCTestCase {
-    private var client: BaseClient!
     let url = URL(string: "https://example.com/")!
-    
-    override func setUp() {
-        class AccessTokenProviderStub: AccessTokenProvider {
-            func getToken(with tokenContext: TokenContext, completion: @escaping (AccessToken?, Error?) -> Void) {
-                completion(nil, nil)
-            }
-        }
-        
-        self.client = BaseClient(accessTokenProvider: AccessTokenProviderStub(), serviceUrl: self.url)
-    }
     
     func test01__STC_43__nextRetryDelay__fixedConfig__shouldBeInCorrectRange() {
         for _ in 0..<100 {
@@ -84,7 +73,7 @@ class VSS015_ExpBackoffRetryTests: XCTestCase {
         
         let response = Response(statusCode: statusCode, response: urlResponse, body: nil)
         
-        guard case .retryService(_) = retry.retryChoice(from: self.client, for: request, with: response) else {
+        guard case .retryService(_) = retry.retryChoice(for: request, with: response) else {
             XCTFail()
             return
         }
@@ -103,7 +92,7 @@ class VSS015_ExpBackoffRetryTests: XCTestCase {
         
         let response = Response(statusCode: statusCode, response: urlResponse, body: try! JSONEncoder().encode(rawServiceError))
         
-        guard case .retryAuth = retry.retryChoice(from: self.client, for: request, with: response) else {
+        guard case .retryAuth = retry.retryChoice(for: request, with: response) else {
             XCTFail()
             return
         }
@@ -122,7 +111,7 @@ class VSS015_ExpBackoffRetryTests: XCTestCase {
         
         let response = Response(statusCode: statusCode, response: urlResponse, body: try! JSONEncoder().encode(rawServiceError))
         
-        guard case .noRetry = retry.retryChoice(from: self.client, for: request, with: response) else {
+        guard case .noRetry = retry.retryChoice(for: request, with: response) else {
             XCTFail()
             return
         }
@@ -139,7 +128,7 @@ class VSS015_ExpBackoffRetryTests: XCTestCase {
         
         let response = Response(statusCode: statusCode, response: urlResponse, body: nil)
         
-        guard case .noRetry = retry.retryChoice(from: self.client, for: request, with: response) else {
+        guard case .noRetry = retry.retryChoice(for: request, with: response) else {
             XCTFail()
             return
         }
@@ -156,7 +145,7 @@ class VSS015_ExpBackoffRetryTests: XCTestCase {
         
         let response = Response(statusCode: statusCode, response: urlResponse, body: nil)
         
-        guard case .noRetry = retry.retryChoice(from: self.client, for: request, with: response) else {
+        guard case .noRetry = retry.retryChoice(for: request, with: response) else {
             XCTFail()
             return
         }
