@@ -44,7 +44,7 @@ script:
       swiftlint
     fi
   
-  - SCHEME="VirgilCrypto ${PREFIX}"
+  - SCHEME="VirgilSDK ${PREFIX}"
 
   - |
     if [ $BUILD == "2" ]; then
