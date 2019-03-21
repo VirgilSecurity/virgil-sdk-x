@@ -66,7 +66,7 @@ static const NSTimeInterval timeout = 20.;
     
     self.identity = [identity copy];
     self.consts = [[VSSTestsConst alloc] init];
-    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:NO];
+    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:NO error:nil];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
     self.forceCallback = forceCallback;
     self.counter = 0;
@@ -109,7 +109,7 @@ static const NSTimeInterval timeout = 20.;
     [super setUp];
     
     self.consts = [[VSSTestsConst alloc] init];
-    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES error:nil];
     self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
     self.modelSigner = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
@@ -322,7 +322,7 @@ static const NSTimeInterval timeout = 20.;
     XCTAssert(error == nil);
     
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:nil];
-    NSData *publicKeyData = [self.crypto exportPublicKey:keyPair.publicKey];
+    NSData *publicKeyData = [self.crypto exportPublicKey:keyPair.publicKey error:nil];
     VSSVerifierCredentials *creds = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKeyData];
     
     VSSWhitelist *whitelist1 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds] error:&error];

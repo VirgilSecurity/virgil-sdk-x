@@ -37,7 +37,6 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 @import VirgilSDK;
-@import VirgilCryptoApiImpl;
 @import VirgilCrypto;
 
 #import "VSSTestsConst.h"
@@ -62,7 +61,7 @@
     [super setUp];
     
     self.consts = [[VSSTestsConst alloc] init];
-    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES error:nil];
     self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
     self.modelSigner = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
@@ -213,7 +212,7 @@
     XCTAssert([card1.identifier isEqualToString:self.testData[@"STC-3.card_id"]]);
     XCTAssert([card1.identity isEqualToString:@"test"]);
     XCTAssert(card1.publicKey != nil);
-    XCTAssert([[[self.crypto exportPublicKey:(VSMVirgilPublicKey *)card1.publicKey] base64EncodedStringWithOptions:0] isEqualToString:self.testData[@"STC-3.public_key_base64"]]);
+    XCTAssert([[[self.crypto exportPublicKey:(VSMVirgilPublicKey *)card1.publicKey error:nil] base64EncodedStringWithOptions:0] isEqualToString:self.testData[@"STC-3.public_key_base64"]]);
     XCTAssert([card1.version isEqualToString:@"5.0"]);
     XCTAssert(card1.previousCard == nil);
     XCTAssert(card1.previousCardId == nil);
@@ -264,7 +263,7 @@
     
     XCTAssert([card1.identifier isEqualToString:self.testData[@"STC-4.card_id"]]);
     XCTAssert([card1.identity isEqualToString:@"test"]);
-    XCTAssert([[[self.crypto exportPublicKey:(VSMVirgilPublicKey *)card1.publicKey] base64EncodedStringWithOptions:0] isEqualToString:self.testData[@"STC-4.public_key_base64"]]);
+    XCTAssert([[[self.crypto exportPublicKey:(VSMVirgilPublicKey *)card1.publicKey error:nil] base64EncodedStringWithOptions:0] isEqualToString:self.testData[@"STC-4.public_key_base64"]]);
     XCTAssert([card1.version isEqualToString:@"5.0"]);
     XCTAssert(card1.previousCard == nil);
     XCTAssert(card1.previousCardId == nil);
@@ -354,7 +353,7 @@
     
     NSString *apiKeyStringBase64 = self.testData[@"STC-23.api_private_key_base64"];
     NSData *apiKeyDataBase64 = [[NSData alloc] initWithBase64EncodedString:apiKeyStringBase64 options:0];
-    VSMVirgilPrivateKeyExporter *exporter = [[VSMVirgilPrivateKeyExporter alloc] initWithVirgilCrypto:self.crypto password:nil];
+    VSMVirgilPrivateKeyExporter *exporter = [[VSMVirgilPrivateKeyExporter alloc] initWithVirgilCrypto:self.crypto];
     VSMVirgilPrivateKey *privateKey = (VSMVirgilPrivateKey *)[exporter importPrivateKeyFrom:apiKeyDataBase64 error:&error];
     XCTAssert(error == nil);
     

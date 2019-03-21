@@ -37,7 +37,6 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 @import VirgilSDK;
-@import VirgilCryptoApiImpl;
 @import VirgilCrypto;
 
 #import "VSSTestsConst.h"
@@ -62,7 +61,7 @@
     [super setUp];
     
     self.consts = [[VSSTestsConst alloc] init];
-    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES  error:nil];
     self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
     self.cardClient = self.consts.serviceURL == nil ? [[VSSCardClient alloc] init] : [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL];
@@ -101,7 +100,7 @@
     XCTAssert([signature1.signer isEqualToString:@"self"]);
     XCTAssert(signature1.signature.length != 0);
 
-    BOOL success = [self.crypto verifySignature:signature1.signature of:data with:keyPair1.publicKey];
+    BOOL success = [self.crypto verifySignature_objc:signature1.signature of:data with:keyPair1.publicKey];
     XCTAssert(success);
     
     [self.modelSigner selfSignWithModel:rawCard privateKey:keyPair1.privateKey additionalData:nil error:&error];
@@ -118,7 +117,7 @@
     XCTAssert(signature2.snapshot == nil && [signature2.signer isEqualToString:@"test"]);
     XCTAssert(signature2.signature.length != 0);
     
-    success = [self.crypto verifySignature:signature2.signature of:data with:keyPair2.publicKey];
+    success = [self.crypto verifySignature_objc:signature2.signature of:data with:keyPair2.publicKey];
     XCTAssert(success);
     
     [self.modelSigner signWithModel:rawCard signer:@"test" privateKey:keyPair2.privateKey additionalData:nil error:&error];
@@ -151,7 +150,7 @@
     NSMutableData *selfData = [rawCard.contentSnapshot mutableCopy];
     [selfData appendData:jsonData];
     
-    BOOL success = [self.crypto verifySignature:signature1.signature of:selfData with:keyPair1.publicKey];
+    BOOL success = [self.crypto verifySignature_objc:signature1.signature of:selfData with:keyPair1.publicKey];
     XCTAssert(success);
     
     VSMVirgilKeyPair *keyPair2 = [self.crypto generateKeyPairAndReturnError:&error];
@@ -165,7 +164,7 @@
     XCTAssert([signature2.signer isEqualToString:@"test"]);
     XCTAssert(signature2.signature.length != 0);
     
-    success = [self.crypto verifySignature:signature2.signature of:selfData with:keyPair2.publicKey];
+    success = [self.crypto verifySignature_objc:signature2.signature of:selfData with:keyPair2.publicKey];
     XCTAssert(success);
 }
 
@@ -194,7 +193,7 @@
     NSMutableData *selfData = [rawCard.contentSnapshot mutableCopy];
     [selfData appendData:jsonData];
     
-    BOOL success = [self.crypto verifySignature:signature1.signature of:selfData with:keyPair1.publicKey];
+    BOOL success = [self.crypto verifySignature_objc:signature1.signature of:selfData with:keyPair1.publicKey];
     XCTAssert(success);
     
     VSMVirgilKeyPair *keyPair2 = [self.crypto generateKeyPairAndReturnError:&error];
@@ -208,7 +207,7 @@
     XCTAssert([signature2.signer isEqualToString:@"test"]);
     XCTAssert(signature2.signature.length != 0);
     
-    success = [self.crypto verifySignature:signature2.signature of:selfData with:keyPair2.publicKey];
+    success = [self.crypto verifySignature_objc:signature2.signature of:selfData with:keyPair2.publicKey];
     XCTAssert(success);
 }
 
@@ -230,13 +229,13 @@
     XCTAssert(card != nil && error == nil);
 
     NSString *privateKey1Base64 = self.testData[@"STC-10.private_key1_base64"];
-    VSMVirgilPrivateKeyExporter *exporter = [[VSMVirgilPrivateKeyExporter alloc] initWithVirgilCrypto:self.crypto password:nil];
+    VSMVirgilPrivateKeyExporter *exporter = [[VSMVirgilPrivateKeyExporter alloc] initWithVirgilCrypto:self.crypto];
     NSData *data = [[NSData alloc] initWithBase64EncodedString:privateKey1Base64 options:0];
     VSMVirgilPrivateKey *privateKey = (VSMVirgilPrivateKey *)[exporter importPrivateKeyFrom:data error:&error];
     XCTAssert(error == nil);
 
-    VSMVirgilPublicKey *publicKey1 = [self.crypto extractPublicKeyFrom:privateKey error:&error];
-    NSData *publicKey1Data = [self.crypto exportPublicKey:publicKey1];
+    VSMVirgilPublicKey *publicKey1 = [self.crypto extractPublicKeyFrom:privateKey];
+    NSData *publicKey1Data = [self.crypto exportPublicKey:publicKey1 error:nil];
     XCTAssert(error == nil);
     
     XCTAssert([self.verifier verifyCard:card]);
@@ -247,8 +246,8 @@
     self.verifier.verifyVirgilSignature = true;
     XCTAssert([self.verifier verifyCard:card]);
     
-    NSData *publicKeyData2 = [self.crypto exportPublicKey:[self.crypto generateKeyPairAndReturnError:nil].publicKey];
-    NSData *publicKeyData3 = [self.crypto exportPublicKey:[self.crypto generateKeyPairAndReturnError:nil].publicKey];
+    NSData *publicKeyData2 = [self.crypto exportPublicKey:[self.crypto generateKeyPairAndReturnError:nil].publicKey error:nil];
+    NSData *publicKeyData3 = [self.crypto exportPublicKey:[self.crypto generateKeyPairAndReturnError:nil].publicKey error:nil];
     
     VSSVerifierCredentials *creds1 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKey1Data];
     VSSWhitelist *whitelist1 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds1] error:&error];
@@ -381,7 +380,7 @@
     XCTAssert(pubicKeyBase64 != nil);
     
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:nil];
-    NSData *publicKeyData = [self.crypto exportPublicKey:keyPair.publicKey];
+    NSData *publicKeyData = [self.crypto exportPublicKey:keyPair.publicKey error:nil];
     
     VSSVerifierCredentials *creds1 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKeyData];
     VSSWhitelist *whitelist1 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds1] error:&error];

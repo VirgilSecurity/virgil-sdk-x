@@ -37,7 +37,6 @@
 #import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 @import VirgilSDK;
-@import VirgilCryptoApiImpl;
 @import VirgilCrypto;
 
 #import "VSSTestsConst.h"
@@ -55,7 +54,7 @@ static const NSTimeInterval timeout = 8.;
     XCTestExpectation *ex2 = [self expectationWithDescription:@"JwtProvider throws if callback returns invalid token"];
     NSTimeInterval ttl = 5;
     VSSCallbackJwtProvider *callbackJwtProvider = [[VSSCallbackJwtProvider alloc] initWithGetTokenCallback:^(VSSTokenContext *tokenContext, void(^ completionHandler)(NSString* token, NSError* error)) {
-        VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+        VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES error:nil];
 
         NSError *err;
         VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
@@ -103,7 +102,7 @@ static const NSTimeInterval timeout = 8.;
     XCTestExpectation *ex = [self expectationWithDescription:@"ConstAccessTokenProvider should always return the same token regardless of the tokenContext"];
 
     NSError *err;
-    VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+    VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES error:nil];
     VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
     XCTAssert(err == nil);
 
@@ -201,7 +200,7 @@ static const NSTimeInterval timeout = 8.;
     XCTestExpectation *ex = [self expectationWithDescription:@"cachingJwtProvider should cache token"];
     NSTimeInterval ttl = 10;
     VSSCachingJwtProvider *cachingJwtProvider = [[VSSCachingJwtProvider alloc] initWithInitialJwt:nil renewTokenCallback:^(VSSTokenContext *tokenContext, void(^completionHandler)(NSString* token, NSError* error)) {
-        VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+        VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES error:nil];
         
         NSError *err;
         VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
@@ -241,7 +240,7 @@ static const NSTimeInterval timeout = 8.;
     
 - (void)test006_STC_39 {
     NSTimeInterval ttl = 10;
-    VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+    VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES error:nil];
     
     NSError *err;
     VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
@@ -292,7 +291,7 @@ static const NSTimeInterval timeout = 8.;
     
 - (void)test007_STC_40 {
     NSTimeInterval ttl = 10;
-    VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+    VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES error:nil];
     
     NSError *err;
     VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
@@ -347,6 +346,45 @@ static const NSTimeInterval timeout = 8.;
     XCTAssert(jwt1 == jwt2);
     XCTAssert(jwt2 != jwt3);
     XCTAssert(callCounter == 1);
+}
+
+- (void)test008_STC_43 {
+    XCTestExpectation *ex = [self expectationWithDescription:@"CachingJwtProvider should reload token on forceReload = true"];
+    NSTimeInterval ttl = 10;
+
+    VSSCachingJwtProvider *cachingJwtProvider = [[VSSCachingJwtProvider alloc] initWithInitialJwt:nil renewTokenCallback:^(VSSTokenContext *tokenContext, void(^completionHandler)(NSString* token, NSError* error)) {
+        VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:true error:nil];
+
+        NSError *err;
+        VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
+        XCTAssert(err == nil);
+
+        VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:crypto];
+        VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] apiPublicKeyIdentifier:@"id" accessTokenSigner:signer appId:@"app_id" ttl:ttl];
+
+        NSString *identity = tokenContext.identity;
+        VSSJwt *jwt = [generator generateTokenWithIdentity:identity additionalData:nil error:&err];
+        XCTAssert(err == nil);
+
+        completionHandler([jwt stringRepresentation], err);
+    }];
+
+    VSSTokenContext *tokenContext = [[VSSTokenContext alloc] initWithIdentity:@"some_identity" service:@"cards" operation:@"test" forceReload:NO];
+    [cachingJwtProvider getTokenWith:tokenContext completion:^(id<VSSAccessToken> jwt, NSError *error) {
+        XCTAssert(error == nil && jwt != nil);
+
+        VSSTokenContext *newTokenContext = [[VSSTokenContext alloc] initWithIdentity:@"some_identity" service:@"cards" operation:@"test" forceReload:YES];
+        [cachingJwtProvider getTokenWith:newTokenContext completion:^(id<VSSAccessToken> newJwt, NSError *error) {
+            XCTAssert(error == nil && newJwt != nil && newJwt != jwt);
+
+            [ex fulfill];
+        }];
+    }];
+
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
+    }];
 }
 
 @end

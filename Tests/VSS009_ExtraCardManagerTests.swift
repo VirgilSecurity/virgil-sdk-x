@@ -38,7 +38,7 @@ import Foundation
 
 import VirgilCrypto
 import XCTest
-import VirgilCryptoApiImpl
+import VirgilCrypto
 import VirgilSDK
 
 class CardClientStub_STC34: CardClientProtocol {
@@ -98,7 +98,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         let testFileData = try! Data(contentsOf: testFileURL)
         self.testsDict = try! JSONSerialization.jsonObject(with: testFileData, options: JSONSerialization.ReadingOptions.init(rawValue: 0)) as! Dictionary<String, Any>
 
-        self.crypto = VirgilCrypto()
+        self.crypto = try! VirgilCrypto()
         self.consts = VSSTestsConst()
         self.utils = VSSTestUtils(crypto: self.crypto, consts: self.consts)
         self.cardCrypto = VirgilCardCrypto(virgilCrypto: self.crypto)
@@ -242,7 +242,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         let rawCard1 = RawSignedModel(contentSnapshot: snapshot)
 
         let privateKeyBase64 = self.testsDict["STC-34.private_key_base64"] as! String
-        let exporter = VirgilPrivateKeyExporter(virgilCrypto: self.crypto, password: nil)
+        let exporter = VirgilPrivateKeyExporter(virgilCrypto: self.crypto)
         let privateKey = try! exporter.importPrivateKey(from: Data(base64Encoded: privateKeyBase64)!)
         let extraDataSnapshot = self.testsDict["STC-34.self_signature_snapshot_base64"] as! String
         try! self.modelSigner.selfSign(model: rawCard1, privateKey: privateKey, additionalData: Data(base64Encoded: extraDataSnapshot)!)

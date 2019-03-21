@@ -3,7 +3,7 @@
 [![Build Status](https://api.travis-ci.com/VirgilSecurity/virgil-sdk-x.svg?branch=master)](https://travis-ci.com/VirgilSecurity/virgil-sdk-x)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/VirgilSDK.svg)](https://cocoapods.org/pods/VirgilSDK)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Platform](https://img.shields.io/cocoapods/p/VirgilSDK.svg?style=flat)](http://cocoadocs.org/docsets/VirgilSDK)
+[![Platform](https://img.shields.io/cocoapods/p/VirgilSDK.svg?style=flat)](https://cocoapods.org/pods/VirgilSDK)
 [![GitHub license](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg)](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE)
 
 [Introduction](#introduction) | [SDK Features](#sdk-features) | [Installation](#installation) | [Usage Examples](#usage-examples) | [Docs](#docs) | [Support](#support)
@@ -47,7 +47,7 @@ To integrate VirgilSDK into your Xcode project using CocoaPods, specify it in yo
 target '<Your Target Name>' do
   use_frameworks!
 
-  pod 'VirgilCryptoApiImpl', '~> 3.2'
+  pod 'VirgilCrypto', '~> 5.0.0-alpha'
   pod 'VirgilSDK', '~> 5.7'
 end
 ```
@@ -73,7 +73,7 @@ To integrate VirgilSDK into your Xcode project using Carthage, create an empty f
 
 ```
 github "VirgilSecurity/virgil-sdk-x" ~> 5.7
-github "VirgilSecurity/virgil-crypto-x" ~> 3.2
+github "VirgilSecurity/virgil-crypto-x" ~> 5.0.0-alpha
 ```
 
 #### Linking against prebuilt binaries
@@ -91,9 +91,10 @@ This will build each dependency or download a pre-compiled framework from github
 On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, add following frameworks from the *Carthage/Build* folder inside your project's folder:
  - VirgilSDK
  - VirgilCryptoAPI
- - VirgilCryptoApiImpl
  - VirgilCrypto
- - VSCCrypto
+ - VirgilCryptoFoundation
+ - VSCCommon
+ - VSCFoundation
 
 On your application targets’ “Build Phases” settings tab, click the “+” icon and choose “New Run Script Phase.” Create a Run Script in which you specify your shell (ex: */bin/sh*), add the following contents to the script area below the shell:
 
@@ -106,9 +107,10 @@ and add the paths to the frameworks you want to use under “Input Files”, e.g
 ```
 $(SRCROOT)/Carthage/Build/iOS/VirgilSDK.framework
 $(SRCROOT)/Carthage/Build/iOS/VirgilCryptoAPI.framework
-$(SRCROOT)/Carthage/Build/iOS/VirgilCryptoAPIImpl.framework
 $(SRCROOT)/Carthage/Build/iOS/VirgilCrypto.framework
-$(SRCROOT)/Carthage/Build/iOS/VSCCrypto.framework
+$(SRCROOT)/Carthage/Build/iOS/VirgilCryptoFoundation.framework
+$(SRCROOT)/Carthage/Build/iOS/VSCCommon.framework
+$(SRCROOT)/Carthage/Build/iOS/VSCFoundation.framework
 ```
 
 ##### Building for macOS
@@ -116,9 +118,10 @@ $(SRCROOT)/Carthage/Build/iOS/VSCCrypto.framework
 On your application target's “General” settings tab, in the “Embedded Binaries” section, drag and drop following frameworks from the Carthage/Build folder on disk:
  - VirgilSDK
  - VirgilCryptoAPI
- - VirgilCryptoApiImpl
  - VirgilCrypto
- - VSCCrypto
+ - VirgilCryptoFoundation
+ - VSCCommon
+ - VSCFoundation
 
 Additionally, you'll need to copy debug symbols for debugging and crash reporting on macOS.
 
@@ -139,30 +142,62 @@ This will fetch dependencies into a *Carthage/Checkouts* folder inside your proj
 Next, on your application target's “General” settings tab, in the “Embedded Binaries” section add the following frameworks from subprojects:
  - VirgilSDK
  - VirgilCryptoAPI
- - VirgilCryptoApiImpl
  - VirgilCrypto
- - VSCCrypto
+ - VirgilCryptoFoundation
+ - VSCCommon
+ - VSCFoundation
 
 
 ## Usage Examples
 
 Before starting practicing with the usage examples be sure that the SDK is configured. Check out our [SDK configuration guides][_configure_sdk] for more information.
 
+#### Generate key pair using VirgilCrypto
+
+```swift
+import VirgilSDK
+import VirgilCrypto
+
+let crypto = try! VirgilCrypto()
+
+let keyPair = try! crypto.generateKeyPair()
+```
+
+#### Save and retrieve key using keychain storage
+
+```swift
+import VirgilSDK
+import VirgilCrypto
+
+let storageParams = try! KeychainStorageParams.makeKeychainStorageParams()
+let keychainStorage = KeychainStorage(storageParams: storageParams)
+
+// export key to Data
+let exporter = VirgilPrivateKeyExporter(virgilCrypto: crypto)
+let data = try! exporter.exportPrivateKey(privateKey: keyPair.privateKey)
+
+let identity = "Alice"
+
+// save key data
+let entry = try! keychainStorage.store(data: data, withName: identity, meta: nil)
+
+// retrieve key data
+let retrievedEntry = try! keychainStorage.retrieveEntry(withName: identity)
+
+// import key from Data
+let privateKey = try! exporter.importPrivateKey(from: retrievedEntry.data)
+```
+
 #### Generate and publish user's Cards with Public Keys inside on Cards Service
 Use the following lines of code to create and publish a user's Card with Public Key inside on Virgil Cards Service:
 
 ```swift
 import VirgilSDK
-import VirgilCryptoApiImpl
-
-// use Virgil Crypto
-let crypto = VirgilCrypto()
-
-// generate a user's key pair
-let keyPair = try! crypto.generateKeyPair()
+import VirgilCrypto
 
 // save a private key into key storage
-try! privateKeyStorage.store(privateKey: keyPair.privateKey, name: "Alice", meta: nil)
+let data = try! exporter.exportPrivateKey(privateKey: keyPair.privateKey)
+let entry = try! keychainStorage.store(data: data, withName: "Alice", meta: nil)
 
 // publish user's card on the Cards Service
 cardManager.publishCard(privateKey: keyPair.privateKey, publicKey: keyPair.publicKey).start { result in
@@ -183,15 +218,15 @@ In the following example, we load a Private Key from a customized Key Storage an
 
 ```swift
 import VirgilSDK
-import VirgilCryptoApiImpl
+import VirgilCrypto
 
 // prepare a message
 let messageToEncrypt = "Hello, Bob!"
 let dataToEncrypt = messageToEncrypt.data(using: .utf8)!
 
 // prepare a user's private key
-let alicePrivateKeyEntry = try! privateKeyStorage.load(withName: "Alice")
-let alicePrivateKey = alicePrivateKeyEntry.privateKey as! VirgilPrivateKey
+let alicePrivateKeyEntry = try! keychainStorage.retrieveEntry(withName: "Alice")
+let alicePrivateKey = try! exporter.importPrivateKey(from: retrievedEntry.data)
 
 // using cardManager search for user's cards on Cards Service
 cardManager.searchCards(identity: "Bob").start { result in
@@ -202,7 +237,8 @@ cardManager.searchCards(identity: "Bob").start { result in
             .map { $0.publicKey } as! [VirgilPublicKey]
 
         // sign a message with a private key then encrypt on a public key
-        let encryptedData = try! crypto.signThenEncrypt(dataToEncrypt, with: alicePrivateKey,
+        let encryptedData = try! crypto.signThenEncrypt(dataToEncrypt,
+                                                        with: alicePrivateKey,
                                                         for: bobRelevantCardsPublicKeys)
 
     // Error occured
@@ -216,11 +252,11 @@ Once the Users receive the signed and encrypted message, they can decrypt it wit
 
 ```swift
 import VirgilSDK
-import VirgilCryptoApiImpl
+import VirgilCrypto
 
 // prepare a user's private key
-let bobPrivateKeyEntry = try! privateKeyStorage.load(withName: "Bob")
-let bobPrivateKey = bobPrivateKeyEntry.privateKey as! VirgilPrivateKey
+let bobPrivateKeyEntry = try! keychainStorage.retrieveEntry(withName: "Bob")
+let bobPrivateKey = try! exporter.importPrivateKey(from: retrievedEntry.data)
 
 // using cardManager search for user's cards on Cards Service
 cardManager.searchCards(identity: "Alice").start { result in
