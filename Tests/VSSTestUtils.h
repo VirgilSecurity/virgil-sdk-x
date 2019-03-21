@@ -40,7 +40,7 @@
 #import "VSSTestsConst.h"
 
 @import VirgilSDK;
-@import VirgilCryptoApiImpl;
+@import VirgilCrypto;
 
 @interface VSSTestUtils : NSObject
 

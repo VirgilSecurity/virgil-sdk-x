@@ -37,7 +37,6 @@
 #import <XCTest/XCTest.h>
 @import VirgilSDK;
 @import VirgilCryptoAPI;
-@import VirgilCryptoApiImpl;
 @import VirgilCrypto;
 
 @interface VSS010_PrivateKeyStorageTests : XCTestCase
@@ -52,8 +51,8 @@
 - (void)setUp {
     [super setUp];
     
-    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:NO];
-    id<VSAPrivateKeyExporter> privateKeyExporter = [[VSMVirgilPrivateKeyExporter alloc] initWithVirgilCrypto:self.crypto password:nil];
+    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:NO error:nil];
+    id<VSAPrivateKeyExporter> privateKeyExporter = [[VSMVirgilPrivateKeyExporter alloc] initWithVirgilCrypto:self.crypto];
     VSSKeyStorage *keyStorage = [[VSSKeyStorage alloc] init];
     self.privateKeyStorage = [[VSSPrivateKeyStorage alloc] initWithPrivateKeyExporter:privateKeyExporter keyStorage:keyStorage];
 }
@@ -74,8 +73,8 @@
     XCTAssert(error == nil && privateKeyEntry != nil);
     XCTAssert(privateKeyEntry.meta == nil);
     
-    NSData *privateKeyData1 = [self.crypto exportPrivateKey:(VSMVirgilPrivateKey *)privateKeyEntry.privateKey];
-    NSData *privateKeyData2 = [self.crypto exportPrivateKey:keyPair.privateKey];
+    NSData *privateKeyData1 = [self.crypto exportPrivateKey:(VSMVirgilPrivateKey *)privateKeyEntry.privateKey error:nil];
+    NSData *privateKeyData2 = [self.crypto exportPrivateKey:keyPair.privateKey error:nil];
     
     XCTAssert([privateKeyData1 isEqualToData:privateKeyData2]);
 }
@@ -95,8 +94,8 @@
     VSSPrivateKeyEntry *privateKeyEntry = [self.privateKeyStorage loadWithName:name error:&error];
     XCTAssert(error == nil && privateKeyEntry != nil);
     
-    NSData *privateKeyData1 = [self.crypto exportPrivateKey:(VSMVirgilPrivateKey *)privateKeyEntry.privateKey];
-    NSData *privateKeyData2 = [self.crypto exportPrivateKey:keyPair.privateKey];
+    NSData *privateKeyData1 = [self.crypto exportPrivateKey:(VSMVirgilPrivateKey *)privateKeyEntry.privateKey error:nil];
+    NSData *privateKeyData2 = [self.crypto exportPrivateKey:keyPair.privateKey error:nil];
     
     XCTAssert([privateKeyData1 isEqualToData:privateKeyData2]);
     XCTAssert([dict isEqualToDictionary:privateKeyEntry.meta]);
