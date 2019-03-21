@@ -353,7 +353,7 @@ static const NSTimeInterval timeout = 8.;
     NSTimeInterval ttl = 10;
 
     VSSCachingJwtProvider *cachingJwtProvider = [[VSSCachingJwtProvider alloc] initWithInitialJwt:nil renewTokenCallback:^(VSSTokenContext *tokenContext, void(^completionHandler)(NSString* token, NSError* error)) {
-        VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSCKeyTypeFAST_EC_ED25519 useSHA256Fingerprints:true];
+        VSMVirgilCrypto *crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:true error:nil];
 
         NSError *err;
         VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
