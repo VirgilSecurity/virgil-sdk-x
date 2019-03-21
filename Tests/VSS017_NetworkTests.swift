@@ -43,7 +43,7 @@ class VSS017_NetworkTests: XCTestCase {
     let url = URL(string: "https://example.com/")!
     
     override func setUp() {
-        let crypto = VirgilCrypto()
+        let crypto = try! VirgilCrypto()
         let consts = VSSTestsConst()
         let utils = VSSTestUtils(crypto: crypto, consts: consts)
         let generator = utils.getGeneratorJwtProvider(withIdentity: "identity", error: nil)
