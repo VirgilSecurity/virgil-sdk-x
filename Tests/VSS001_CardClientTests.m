@@ -186,8 +186,8 @@
     XCTAssert(error == nil);
     VSSCard *card = [VSSCardManager parseCardFrom:publishedRawCard cardCrypto:self.cardCrypto error:&error];
     XCTAssert(error == nil && card != nil);
-    
-    NSArray<VSSRawSignedModel *> *foundRawCards = [self.cardClient searchCardsWithIdentity:identity token:strToken error:&error];
+
+    NSArray<VSSRawSignedModel *> *foundRawCards = [self.cardClient searchCardsWithIdentities:@[identity] token:strToken error:&error];
     XCTAssert(foundRawCards.count == 1);
     VSSRawSignedModel *foundRawCard = foundRawCards.firstObject;
     
