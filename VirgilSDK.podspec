@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                        = "VirgilSDK"
-  s.version                     = "5.7.1"
+  s.version                     = "5.7.2"
   s.license                     = { :type => "BSD", :file => "LICENSE" }
   s.summary                     = "Virgil SDK for Apple devices and languages."
   s.homepage                    = "https://github.com/VirgilSecurity/virgil-sdk-x/"
