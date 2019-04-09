@@ -41,7 +41,9 @@ import Foundation
 /// - success: Operation has succeeded
 /// - failure: Operation has failed
 public enum Result<T> {
+    /// Operation has succeeded
     case success(T)
+    /// Operation has failed
     case failure(Error)
 
     /// Returns underlying result if successful
