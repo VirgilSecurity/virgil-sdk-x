@@ -61,6 +61,7 @@ import Foundation
 
     private let container: Container
 
+    // swiftlint:disable explicit_acl
     private struct Container: Codable {
         let appId: String
         let identity: String
@@ -110,6 +111,7 @@ import Foundation
             }
         }
     }
+    // swiftlint:enable explicit_acl
 
     /// Initializer
     ///

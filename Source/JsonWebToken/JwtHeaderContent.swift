@@ -59,6 +59,7 @@ import Foundation
 
     private let container: Container
 
+    // swiftlint:disable explicit_acl
     private struct Container: Codable {
         let algorithm: String
         let type: String
@@ -72,6 +73,7 @@ import Foundation
             case keyIdentifier = "kid"
         }
     }
+    // swiftlint:enable explicit_acl
 
     /// Initializer
     ///

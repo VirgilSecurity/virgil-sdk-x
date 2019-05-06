@@ -29,7 +29,7 @@ Virgil SDK is provided as a set of frameworks. These frameworks are distributed 
 
 All frameworks are available for:
 - iOS 9.0+
-- macOS 10.10+
+- macOS 10.11+
 - tvOS 9.0+
 - watchOS 2.0+
 
@@ -47,7 +47,7 @@ To integrate VirgilSDK into your Xcode project using CocoaPods, specify it in yo
 target '<Your Target Name>' do
   use_frameworks!
 
-  pod 'VirgilCrypto', '~> 5.0.0-alpha'
+  pod 'VirgilCrypto', '~> 5.0.0-alpha2'
   pod 'VirgilSDK', '~> 5.7'
 end
 ```
@@ -73,7 +73,7 @@ To integrate VirgilSDK into your Xcode project using Carthage, create an empty f
 
 ```
 github "VirgilSecurity/virgil-sdk-x" ~> 5.7
-github "VirgilSecurity/virgil-crypto-x" ~> 5.0.0-alpha
+github "VirgilSecurity/virgil-crypto-x" ~> 5.0.0-alpha2
 ```
 
 #### Linking against prebuilt binaries
