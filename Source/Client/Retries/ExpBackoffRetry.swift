@@ -89,26 +89,26 @@ open class ExpBackoffRetry: RetryProtocol {
     public init(config: Config) {
         self.config = config
     }
-    
+
     public func retryChoice(for request: ServiceRequest, with error: Error) -> RetryChoice {
         let nsError = error as NSError
-        
+
         guard nsError.domain == NSURLErrorDomain else {
             return .noRetry
         }
-        
+
         let errorCode = nsError.code
-        
+
         switch errorCode {
-        // TODO: Review this list
         case NSURLErrorTimedOut,
              NSURLErrorCannotConnectToHost,
              NSURLErrorNetworkConnectionLost,
              NSURLErrorNotConnectedToInternet,
              NSURLErrorSecureConnectionFailed:
             return .retryConnection
-            
-        default: return .noRetry
+
+        default:
+            return .noRetry
         }
     }
 

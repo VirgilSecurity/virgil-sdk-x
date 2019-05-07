@@ -38,13 +38,19 @@ import Foundation
 
 /// Protocol for handling retries for network requests
 public protocol RetryProtocol {
-    /// Decide on retry
+    /// Decide on retry in case of success
     ///
     /// - Parameters:
     ///   - request: Request to retry
     ///   - response: Response receiver from service
     /// - Returns: Retry choice
     func retryChoice(for request: ServiceRequest, with response: Response) -> RetryChoice
-    
+
+    /// Decire on retry in case of error
+    ///
+    /// - Parameters:
+    ///   - request: Request to retry
+    ///   - error: Response receiver from service
+    /// - Returns: Retry choice
     func retryChoice(for request: ServiceRequest, with error: Error) -> RetryChoice
 }

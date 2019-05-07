@@ -36,11 +36,14 @@
 
 import Foundation
 
+// swiftlint:disable missing_docs
+
 /// Retry choice
 ///
 /// - noRetry: should not retry
 /// - retryService: retry due to service error
 /// - retryAuth: retry due to auth error (should try with new Access Token)
+/// - retryConnection: retry due connection error
 public enum RetryChoice {
     case noRetry
     case retryService(delay: TimeInterval)

@@ -55,8 +55,8 @@
 
 -(VSSGeneratorJwtProvider * __nonnull)getGeneratorJwtProviderWithIdentity:(NSString * __nonnull)identity error:(NSError * __nullable * __nullable)errorPtr;
 
-- (VSSCardClient *)setupClientWithProvider:(id<VSSAccessTokenProvider> __nonnull)provider;
-- (VSSCardClient *)setupClientWithIdentity:(NSString *)identity error:(NSError * __nullable * __nullable)errorPtr;
+- (VSSCardClient * __nonnull)setupClientWithProvider:(id<VSSAccessTokenProvider> __nonnull)provider;
+- (VSSCardClient * __nonnull)setupClientWithIdentity:(NSString * __nonnull)identity error:(NSError * __nullable * __nullable)errorPtr;
 
 -(NSData * __nonnull)getRandomData;
 

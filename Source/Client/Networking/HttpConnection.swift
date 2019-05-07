@@ -95,7 +95,7 @@ open class HttpConnection: HttpConnectionProtocol {
                 Log.debug("*******COOKIE: \(cookie.name): \(cookie.value)")
             }
         }
-        
+
         return NetworkOperation(request: nativeRequest, session: self.session)
     }
 

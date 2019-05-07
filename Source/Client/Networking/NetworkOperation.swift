@@ -36,27 +36,30 @@
 
 import Foundation
 
+/// Network Operation
 open class NetworkOperation: GenericOperation<Response> {
     /// Task type
     public typealias Task = (NetworkOperation, @escaping (Response?, Error?) -> Void) -> Void
-    
+
     /// Task to execute
     public let request: URLRequest
-    
+
+    /// Url Sesssion
     public let session: URLSession
-    
+
+    /// Task
     public private(set) var task: URLSessionTask?
-    
+
     /// Initializer
     ///
     /// - Parameter task: task to execute
     public init(request: URLRequest, session: URLSession) {
         self.request = request
         self.session = session
-        
+
         super.init()
     }
-    
+
     /// Main function
     override open func main() {
         let task = self.session.dataTask(with: self.request) { [unowned self] data, response, error in
@@ -81,19 +84,20 @@ open class NetworkOperation: GenericOperation<Response> {
             if let body = data, let str = String(data: body, encoding: .utf8) {
                 Log.debug("\(self.className): response body: \(str)")
             }
-            
+
             let result = Response(statusCode: response.statusCode, response: response, body: data)
-            
+
             self.result = .success(result)
         }
 
         self.task = task
         task.resume()
     }
-    
-    open override func cancel() {
+
+    /// Cancel
+    override open func cancel() {
         self.task?.cancel()
-        
+
         super.cancel()
     }
 }

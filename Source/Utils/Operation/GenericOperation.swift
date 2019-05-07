@@ -76,7 +76,15 @@ open class GenericOperation<T>: AsyncOperation {
 
         self.completionBlock = {
             guard let result = self.result else {
-                let error = self.isCancelled ? GenericOperationError.operationCancelled : GenericOperationError.resultIsMissing
+                let error: Error
+
+                if self.isCancelled {
+                    error = GenericOperationError.operationCancelled
+                }
+                else {
+                    error = GenericOperationError.resultIsMissing
+                }
+
                 let result: Result<T> = Result.failure(error)
                 self.result = result
 
@@ -125,7 +133,15 @@ open class GenericOperation<T>: AsyncOperation {
         queue.waitUntilAllOperationsAreFinished()
 
         guard let result = self.result else {
-            let error = self.isCancelled ? GenericOperationError.operationCancelled : GenericOperationError.resultIsMissing
+            let error: Error
+
+            if self.isCancelled {
+                error = GenericOperationError.operationCancelled
+            }
+            else {
+                error = GenericOperationError.resultIsMissing
+            }
+
             let result: Result<T> = Result.failure(error)
             self.result = result
             return result

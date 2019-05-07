@@ -12,6 +12,13 @@ disabled_rules:
   - multiline_parameters
   - closure_body_length
   - no_grouping_extension
+  - identifier_name
+  - lower_acl_than_parent
+  - file_length
+  - type_body_length
+  - function_body_length
+  - explicit_acl
+  - cyclomatic_complexity
 
 opt_in_rules:
   - array_init
