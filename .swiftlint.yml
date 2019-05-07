@@ -67,7 +67,6 @@ opt_in_rules:
   - empty_xctest_method
   - explicit_self
   - fallthrough
-  - file_length
   - for_where
   - force_cast
   - force_try
@@ -117,7 +116,6 @@ opt_in_rules:
   - trailing_newline
   - trailing_semicolon
   - trailing_whitespace
-  - type_body_length
   - type_name
   - unavailable_function
   - unneeded_break_in_switch
