@@ -74,3 +74,5 @@ public extension GenericOperation {
         return nil
     }
 }
+
+// swiftlint:enable missing_docs

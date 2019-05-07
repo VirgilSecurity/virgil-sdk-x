@@ -48,7 +48,7 @@ public enum NetworkRetryOperationError: Error {
 
 /// Class for network operation with retry
 open class NetworkRetryOperation: GenericOperation<Response> {
-    
+
     /// Last network operations
     public private(set) var lastNetworkOperation: GenericOperation<Response>?
 
@@ -57,19 +57,19 @@ open class NetworkRetryOperation: GenericOperation<Response> {
 
     /// Request
     public let request: ServiceRequest
-    
+
     /// Retry
     public let retry: RetryProtocol
-    
+
     /// Token context
     public let tokenContext: TokenContext
-    
+
     /// Access Token Provider
     public let accessTokenProvider: AccessTokenProvider
-    
+
     /// Conntection
     public let connection: HttpConnectionProtocol
-    
+
     /// Token
     public private(set) var token: AccessToken? = nil
 
@@ -101,7 +101,7 @@ open class NetworkRetryOperation: GenericOperation<Response> {
             self.finish()
             return
         }
-        
+
         var now = Date()
 
         let timeoutDate = now.addingTimeInterval(NetworkRetryOperation.timeout)
@@ -141,7 +141,7 @@ open class NetworkRetryOperation: GenericOperation<Response> {
                         guard !self.isCancelled else {
                             return nil
                         }
-                        
+
                         now = Date()
 
                         guard now < timeoutDate else {
@@ -174,12 +174,12 @@ open class NetworkRetryOperation: GenericOperation<Response> {
 
                     case .retryService(let retryDelay):
                         Log.debug("Retrying request to \(request.url.absoluteString) in \(retryDelay) s")
-                        
+
                         guard now.addingTimeInterval(retryDelay) < timeoutDate else {
                             Log.debug("Request to \(request.url.absoluteString) timeout")
                             throw NetworkRetryOperationError.timeout
                         }
-                        
+
                         Thread.sleep(forTimeInterval: retryDelay)
                         Log.debug("Retrying request to \(request.url.absoluteString)")
 
@@ -268,7 +268,7 @@ open class NetworkRetryOperation: GenericOperation<Response> {
 
                         forceRefreshToken = false
                     }
-                    
+
                     now = Date()
                 }
             }()

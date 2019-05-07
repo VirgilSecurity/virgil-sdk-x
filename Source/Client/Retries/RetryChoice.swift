@@ -50,3 +50,5 @@ public enum RetryChoice {
     case retryAuth
     case retryConnection
 }
+
+// swiftlint:enable missing_docs

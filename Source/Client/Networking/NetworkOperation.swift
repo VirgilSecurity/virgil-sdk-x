@@ -77,12 +77,12 @@ open class NetworkOperation: GenericOperation<Response> {
                 return
             }
 
-            Log.debug("\(self.className): response URL: \(response.url?.absoluteString ?? "")")
-            Log.debug("\(self.className): response HTTP status code: \(response.statusCode)")
-            Log.debug("\(self.className): response headers: \(response.allHeaderFields as AnyObject)")
+            Log.debug("NetworkOperation: response URL: \(response.url?.absoluteString ?? "")")
+            Log.debug("NetworkOperation: response HTTP status code: \(response.statusCode)")
+            Log.debug("NetworkOperation: response headers: \(response.allHeaderFields as AnyObject)")
 
             if let body = data, let str = String(data: body, encoding: .utf8) {
-                Log.debug("\(self.className): response body: \(str)")
+                Log.debug("NetworkOperation: response body: \(str)")
             }
 
             let result = Response(statusCode: response.statusCode, response: response, body: data)
