@@ -196,8 +196,9 @@ open class NetworkRetryOperation: GenericOperation<Response> {
                         Log.debug("Retrying request to \(request.url.absoluteString) due to connection problems")
 
                         let reachabilityHelper = ReachabilityHelper()
-                        
-                        try reachabilityHelper.waitTillReachable(timeoutDate: timeoutDate, url: request.url.absoluteString)
+
+                        try reachabilityHelper.waitTillReachable(timeoutDate: timeoutDate,
+                                                                 url: request.url.absoluteString)
 
                         forceRefreshToken = false
                     }
