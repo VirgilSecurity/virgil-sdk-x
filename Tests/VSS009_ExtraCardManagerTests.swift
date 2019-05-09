@@ -42,6 +42,10 @@ import VirgilCrypto
 import VirgilSDK
 
 class CardClientStub_STC34: CardClientProtocol {
+    func revokeCard(withId cardId: String, token: String) throws {
+        throw NSError()
+    }
+    
     func searchCards(identities: [String], token: String) throws -> [RawSignedModel] {
         return [try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-34.as_string"] as! String)]
     }

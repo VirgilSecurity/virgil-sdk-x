@@ -129,7 +129,7 @@ extension CardClient: CardClientProtocol {
     ///           NSError with CardClient.serviceErrorDomain error domain,
     ///               http status code as error code, and description string if present in http body
     ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
-    public func searchCards(identities: [String], token: String) throws -> [RawSignedModel] {
+    @objc public func searchCards(identities: [String], token: String) throws -> [RawSignedModel] {
         guard let url = URL(string: "card/v5/actions/search", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
@@ -142,5 +142,40 @@ extension CardClient: CardClientProtocol {
         let response = try self.connection.send(request)
 
         return try self.processResponse(response)
+    }
+
+    /// Revokes card. Revoked card gets isOutdated flag to be set to true.
+    /// Also, such cards could be obtained using get query, but will be absent in search query result.
+    ///
+    /// - Parameters:
+    ///   - cardId: identifier of card to revoke
+    ///   - token: String with `Access Token`
+    /// - Throws: CardClientError.constructingUrl, if url initialization failed
+    ///           CardServiceError, if service returned correctly-formed error json
+    ///           NSError with CardClient.serviceErrorDomain error domain,
+    ///               http status code as error code, and description string if present in http body
+    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
+    @objc public func revokeCard(withId cardId: String, token: String) throws {
+        // FIXME: Uncomment after service update
+//        guard let url = URL(string: "card/v5/actions/revoke/\(cardId)", relativeTo: self.serviceUrl) else {
+//            throw CardClientError.constructingUrl
+//        }
+//
+//        let request = try ServiceRequest(url: url,
+//                                         method: .post,
+//                                         accessToken: token)
+//
+
+        guard let url = URL(string: "card/v5/actions/delete/\(cardId)", relativeTo: self.serviceUrl) else {
+            throw CardClientError.constructingUrl
+        }
+
+        let request = try ServiceRequest(url: url,
+                                         method: .delete,
+                                         accessToken: token)
+
+        let response = try self.connection.send(request)
+
+        try self.validateResponse(response)
     }
 }

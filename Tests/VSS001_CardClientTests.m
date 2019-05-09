@@ -322,4 +322,41 @@
     XCTAssert([self.verifier verifyCard:foundCard2]);
 }
 
+-(void)test007_RevokeCard {
+    NSError *error;
+    VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
+    XCTAssert(error == nil);
+    
+    NSData *exportedPublicKey = [self.crypto exportPublicKey:keyPair.publicKey error:nil];
+    NSString *identity = [[NSUUID alloc] init].UUIDString;
+    
+    VSSRawCardContent *content = [[VSSRawCardContent alloc] initWithIdentity:identity publicKey:exportedPublicKey previousCardId:nil version:@"5.0" createdAt:NSDate.date];
+    
+    NSData *snapshot = [content snapshotAndReturnError:nil];
+    
+    VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
+    XCTAssert(error == nil && rawCard != nil);
+    
+    NSString *strToken = [self.utils getTokenStringWithIdentity:identity error:&error];
+    XCTAssert(error == nil);
+    
+    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
+    [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
+    XCTAssert(error == nil);
+    
+    VSSRawSignedModel *responseRawCard = [self.cardClient publishCardWithModel:rawCard token:strToken error:&error];
+    XCTAssert(error == nil && responseRawCard != nil);
+    
+    VSSCard *responseCard = [VSSCardManager parseCardFrom:responseRawCard cardCrypto:self.cardCrypto error:&error];
+    XCTAssert(error == nil && responseCard != nil);
+    
+    [self.cardClient revokeCardWithId:responseCard.identifier token:strToken error:&error];
+    XCTAssert(error == nil);
+    
+    VSSGetCardResponse *response = [self.cardClient getCardWithId:responseCard.identifier token:strToken error:&error];
+    XCTAssert(error == nil && response != nil);
+    
+    XCTAssert(response.isOutdated);
+}
+
 @end

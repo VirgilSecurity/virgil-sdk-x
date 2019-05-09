@@ -162,6 +162,23 @@ extension CardManager {
         return searchCardsOperation
     }
 
+    internal func makeRevokeCardOperation(id: String) -> GenericOperation<Void> {
+        let searchCardsOperation = CallbackOperation<Void> { operation, completion in
+            do {
+                let token: AccessToken = try operation.findDependencyResult()
+
+                try self.cardClient.revokeCard(withId: id, token: token.stringRepresentation())
+
+                completion(Void(), nil)
+            }
+            catch {
+                completion(nil, error)
+            }
+        }
+
+        return searchCardsOperation
+    }
+
     internal func makeAdditionalSignOperation() -> GenericOperation<RawSignedModel> {
         let signOperation = CallbackOperation<RawSignedModel> { operation, completion in
             do {
