@@ -35,7 +35,6 @@
 //
 
 import Foundation
-import SystemConfiguration
 
 /// NetworkRetryOperation errors
 ///
@@ -196,75 +195,9 @@ open class NetworkRetryOperation: GenericOperation<Response> {
                     case .retryConnection:
                         Log.debug("Retrying request to \(request.url.absoluteString) due to connection problems")
 
-                        var address = sockaddr_in()
-                        address.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
-                        address.sin_family = sa_family_t(AF_INET)
-
-                        guard let reachability = withUnsafePointer(to: &address, { pointer in
-                            pointer.withMemoryRebound(to: sockaddr.self, capacity: MemoryLayout<sockaddr>.size) {
-                                SCNetworkReachabilityCreateWithAddress(nil, $0)
-                            }
-                        }) else {
-                            throw NetworkRetryOperationError.reachabilityError
-                        }
-
-                        let queue = DispatchQueue(label: "RetryQueue")
-
-                        guard SCNetworkReachabilitySetDispatchQueue(reachability, queue) else {
-                            throw NetworkRetryOperationError.reachabilityError
-                        }
-
-                        class Context: NSObject {
-                            let urlString: String
-                            var condition = NSCondition()
-
-                            init(urlString: String) {
-                                self.urlString = urlString
-
-                                super.init()
-                            }
-                        }
-
-                        let context = Context(urlString: request.url.absoluteString)
-
-                        var info = SCNetworkReachabilityContext(version: 0,
-                                                                info: Unmanaged.passUnretained(context).toOpaque(),
-                                                                retain: nil,
-                                                                release: nil,
-                                                                copyDescription: nil)
-
-                        let callback: SCNetworkReachabilityCallBack = { _, flags, info in
-                            guard let info = info else {
-                                fatalError()
-                            }
-
-                            let context = Unmanaged<Context>.fromOpaque(info).takeUnretainedValue()
-
-                            let isReachable = flags.contains(.reachable)
-                            let needsConnection = flags.contains(.connectionRequired)
-                            let canConnectAutomatically = flags.contains(.connectionOnDemand)
-                                || flags.contains(.connectionOnTraffic)
-                            let canConnectWithoutUserInteraction = canConnectAutomatically
-                                && !flags.contains(.interventionRequired)
-
-                            if isReachable && (!needsConnection || canConnectWithoutUserInteraction) {
-                                Log.debug("Retrying request to \(context.urlString) connection restored")
-                                context.condition.signal()
-                            }
-                        }
-
-                        guard SCNetworkReachabilitySetCallback(reachability, callback, &info) else {
-                            throw NetworkRetryOperationError.reachabilityError
-                        }
-
-                        let waitResult = context.condition.wait(until: timeoutDate)
-
-                        SCNetworkReachabilitySetCallback(reachability, nil, nil)
-
-                        guard waitResult else {
-                            Log.debug("Retrying request to \(context.urlString) connection timeout")
-                            throw NetworkRetryOperationError.timeout
-                        }
+                        let reachabilityHelper = ReachabilityHelper()
+                        
+                        try reachabilityHelper.waitTillReachable(timeoutDate: timeoutDate, url: request.url.absoluteString)
 
                         forceRefreshToken = false
                     }

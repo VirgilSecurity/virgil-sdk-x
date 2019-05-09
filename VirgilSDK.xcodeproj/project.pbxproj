@@ -113,7 +113,6 @@
 		424ACC7A22314C9100DD5072 /* NetworkRetryOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7922314C9100DD5072 /* NetworkRetryOperation.swift */; };
 		424ACC7B22314C9100DD5072 /* NetworkRetryOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7922314C9100DD5072 /* NetworkRetryOperation.swift */; };
 		424ACC7C22314C9100DD5072 /* NetworkRetryOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7922314C9100DD5072 /* NetworkRetryOperation.swift */; };
-		424ACC7D22314C9100DD5072 /* NetworkRetryOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7922314C9100DD5072 /* NetworkRetryOperation.swift */; };
 		424ACC7F223154D700DD5072 /* VSS017_NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7E223154D700DD5072 /* VSS017_NetworkTests.swift */; };
 		424ACC80223154D700DD5072 /* VSS017_NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7E223154D700DD5072 /* VSS017_NetworkTests.swift */; };
 		424ACC81223154D700DD5072 /* VSS017_NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7E223154D700DD5072 /* VSS017_NetworkTests.swift */; };
@@ -126,7 +125,11 @@
 		4263A2001EBC804C00B13FF1 /* VSSKeyStorageConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 4263A1FB1EBC800400B13FF1 /* VSSKeyStorageConfiguration.m */; };
 		4263A2011EBC805100B13FF1 /* VSSKeyStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4263A1F91EBC800400B13FF1 /* VSSKeyStorage.m */; };
 		4284C3BE1F6BEA0600B75491 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
-		4284C3BF1F6BEA0700B75491 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
+		42860D332284321400494515 /* NetworkRetryOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7922314C9100DD5072 /* NetworkRetryOperation.swift */; };
+		42860D352284324E00494515 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42860D342284324E00494515 /* ReachabilityHelper.swift */; };
+		42860D362284324E00494515 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42860D342284324E00494515 /* ReachabilityHelper.swift */; };
+		42860D372284324E00494515 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42860D342284324E00494515 /* ReachabilityHelper.swift */; };
+		42860D382284324E00494515 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42860D342284324E00494515 /* ReachabilityHelper.swift */; };
 		429123671F4B0B3700103BE0 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
 		4291237F1F4C53E100103BE0 /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4291237E1F4C53E100103BE0 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		429123821F4C540100103BE0 /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 429123801F4C53E700103BE0 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -744,6 +747,7 @@
 		4284C4AF1F716C7700B75491 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		4285E6F0203B662A00499FB4 /* VSS010_PrivateKeyStorageTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS010_PrivateKeyStorageTests.m; sourceTree = "<group>"; };
 		4285E6F4203B82BB00499FB4 /* VSS011_OperationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSS011_OperationsTests.swift; sourceTree = "<group>"; };
+		42860D342284324E00494515 /* ReachabilityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityHelper.swift; sourceTree = "<group>"; };
 		428B163F20E39A940041CA75 /* CardManager+StaticExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardManager+StaticExport.swift"; sourceTree = "<group>"; };
 		429123531F4B0B3700103BE0 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		429123561F4B0B3700103BE0 /* TestConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestConfig.plist; sourceTree = "<group>"; };
@@ -1290,6 +1294,7 @@
 				424A7F6B21EFA15C006BED3F /* VirgilAgentAdapter.swift */,
 				424ACC642231384200DD5072 /* NetworkOperation.swift */,
 				424ACC7922314C9100DD5072 /* NetworkRetryOperation.swift */,
+				42860D342284324E00494515 /* ReachabilityHelper.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1772,6 +1777,7 @@
 				42D7AF82224396AD009D02FD /* VersionUtils.swift in Sources */,
 				42D7AF6D224396AD009D02FD /* CallbackJwtProvider.swift in Sources */,
 				42D7AF6E224396AD009D02FD /* GeneratorJwtProvider.swift in Sources */,
+				42860D362284324E00494515 /* ReachabilityHelper.swift in Sources */,
 				42D7B04B22439A51009D02FD /* VirgilAgentAdapter.swift in Sources */,
 				423D3E79222E6CDB006C7E4C /* RetryChoice.swift in Sources */,
 				42D7AF87224396AD009D02FD /* CardManager+Obj-C.swift in Sources */,
@@ -1892,6 +1898,7 @@
 				42D7AF94224396AE009D02FD /* RawSignature.swift in Sources */,
 				42D7AFC1224396AE009D02FD /* CardManager+Parse.swift in Sources */,
 				42D7AFB5224396AE009D02FD /* CallbackOperation.swift in Sources */,
+				42860D372284324E00494515 /* ReachabilityHelper.swift in Sources */,
 				423D3E75222E6C28006C7E4C /* RetryProtocol.swift in Sources */,
 				42D7B04C22439A52009D02FD /* VirgilAgentAdapter.swift in Sources */,
 				423D3E7A222E6CDB006C7E4C /* RetryChoice.swift in Sources */,
@@ -1954,6 +1961,7 @@
 				16AE0B352020DA9B005B311B /* VSSKeyStorageConfiguration.m in Sources */,
 				42D7AFE5224396AF009D02FD /* JwtSignatureContent.swift in Sources */,
 				42D7AFCA224396AF009D02FD /* RawServiceError.swift in Sources */,
+				42860D382284324E00494515 /* ReachabilityHelper.swift in Sources */,
 				42D7AFFD224396AF009D02FD /* VirgilCardVerifier.swift in Sources */,
 				42D7AFDB224396AF009D02FD /* ServiceError.swift in Sources */,
 				42D7AFCB224396AF009D02FD /* RawSignedModel.swift in Sources */,
@@ -1979,12 +1987,9 @@
 				42D7AFDA224396AF009D02FD /* BaseClient.swift in Sources */,
 				42D7AFE2224396AF009D02FD /* Jwt.swift in Sources */,
 				42D7AFE6224396AF009D02FD /* JwtGenerator.swift in Sources */,
-				4284C3BF1F6BEA0700B75491 /* VSSKeyEntry.m in Sources */,
 				42D7AFCE224396AF009D02FD /* GetCardResponse.swift in Sources */,
 				42D7AFD5224396AF009D02FD /* ServiceRequest.swift in Sources */,
 				42D7AFFE224396AF009D02FD /* VerifierCredentials.swift in Sources */,
-				424ACC7D22314C9100DD5072 /* NetworkRetryOperation.swift in Sources */,
-				4284C3BF1F6BEA0700B75491 /* VSSKeyEntry.m in Sources */,
 				424ACC682231384200DD5072 /* NetworkOperation.swift in Sources */,
 				16AE0B362020DA9E005B311B /* VSSKeyAttrs.m in Sources */,
 				42D056E920EA737600FC544E /* KeychainStorageParams.swift in Sources */,
@@ -2003,6 +2008,7 @@
 				42D7B037224399BC009D02FD /* KeychainStorageProtocol.swift in Sources */,
 				42D7AFF1224396AF009D02FD /* Data+base64Url.swift in Sources */,
 				42D7AFE0224396AF009D02FD /* GeneratorJwtProvider.swift in Sources */,
+				42860D332284321400494515 /* NetworkRetryOperation.swift in Sources */,
 				42D7AFE1224396AF009D02FD /* CachingJwtProvider.swift in Sources */,
 				42D7AFF8224396AF009D02FD /* CardManager+StaticExport.swift in Sources */,
 				42D7AFFC224396AF009D02FD /* CardVerifier.swift in Sources */,
@@ -2159,6 +2165,7 @@
 				42D7AF42224396AC009D02FD /* GenericOperation+Dependencies.swift in Sources */,
 				42D7AF41224396AC009D02FD /* Result.swift in Sources */,
 				42D7AF34224396AC009D02FD /* CallbackJwtProvider.swift in Sources */,
+				42860D352284324E00494515 /* ReachabilityHelper.swift in Sources */,
 				42D7AF2C224396AC009D02FD /* HttpRequestAdapter.swift in Sources */,
 				42D7AF24224396AC009D02FD /* CardClient.swift in Sources */,
 				42D7B038224399BC009D02FD /* KeychainEntry.swift in Sources */,
