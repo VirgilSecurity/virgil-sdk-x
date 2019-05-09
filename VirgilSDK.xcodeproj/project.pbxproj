@@ -130,6 +130,7 @@
 		42860D362284324E00494515 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42860D342284324E00494515 /* ReachabilityHelper.swift */; };
 		42860D372284324E00494515 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42860D342284324E00494515 /* ReachabilityHelper.swift */; };
 		42860D382284324E00494515 /* ReachabilityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42860D342284324E00494515 /* ReachabilityHelper.swift */; };
+		42860D3A2284340300494515 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 423CEB591DCA06C900CCACB8 /* VSSKeyEntry.m */; };
 		429123671F4B0B3700103BE0 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
 		4291237F1F4C53E100103BE0 /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 4291237E1F4C53E100103BE0 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		429123821F4C540100103BE0 /* VSSKeyStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 429123801F4C53E700103BE0 /* VSSKeyStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1957,6 +1958,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42860D3A2284340300494515 /* VSSKeyEntry.m in Sources */,
 				423D3E71222E6C1A006C7E4C /* ExpBackoffRetry.swift in Sources */,
 				16AE0B352020DA9B005B311B /* VSSKeyStorageConfiguration.m in Sources */,
 				42D7AFE5224396AF009D02FD /* JwtSignatureContent.swift in Sources */,
