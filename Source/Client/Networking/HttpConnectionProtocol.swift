@@ -43,7 +43,7 @@ public protocol HttpConnectionProtocol: class {
     /// Sends Request and returns Response
     ///
     /// - Parameter request: Request to send
-    /// - Returns: Obrained response
+    /// - Returns: Obtained response
     /// - Throws: Depends on implementation
-    func send(_ request: Request) throws -> Response
+    func send(_ request: Request) throws -> GenericOperation<Response>
 }

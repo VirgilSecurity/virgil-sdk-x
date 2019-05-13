@@ -37,7 +37,7 @@
 import Foundation
 
 /// Model for representing service errors
-@objc(VSSRawServiceError) public final class RawServiceError: NSObject, Decodable {
+@objc(VSSRawServiceError) public final class RawServiceError: NSObject, Codable {
     /// Code of error
     @objc public let code: Int
     /// Description of error

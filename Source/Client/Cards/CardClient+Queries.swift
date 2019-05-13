@@ -43,25 +43,32 @@ extension CardClient: CardClientProtocol {
     /// HTTP header value for xVirgilIsSuperseededKey key for getCard response that marks outdated cards
     @objc public static let xVirgilIsSuperseededTrue = "true"
 
+    private func createRetry() -> RetryProtocol {
+        return ExpBackoffRetry(config: self.retryConfig)
+    }
+
     /// Returns `GetCardResponse` with `RawSignedModel` of card from the Virgil Cards Service with given ID, if exists
     ///
-    /// - Parameters:
-    ///   - cardId: String with unique Virgil Card identifier
-    ///   - token: String with `Access Token`
+    /// - Parameter cardId: String with unique Virgil Card identifier
     /// - Returns: `GetCardResponse` if card found
-    /// - Throws: CardClientError.constructingUrl, if url initialization failed
-    ///           CardServiceError, if service returned correctly-formed error json
-    ///           NSError with CardClient.serviceErrorDomain error domain,
-    ///               http status code as error code, and description string if present in http body
-    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
-    @objc open func getCard(withId cardId: String, token: String) throws -> GetCardResponse {
+    /// - Throws:
+    ///         - CardClientError.constructingUrl, if url initialization failed
+    ///         - Rethrows from ServiceRequest
+    ///         - Rethrows ServiceError or NSError from BaseClient
+    @objc open func getCard(withId cardId: String) throws -> GetCardResponse {
         guard let url = URL(string: "card/v5/\(cardId)", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
 
-        let request = try ServiceRequest(url: url, method: .get, accessToken: token)
+        let tokenContext = TokenContext(service: "cards", operation: "get", forceReload: false)
 
-        let response = try self.connection.send(request)
+        let request = try ServiceRequest(url: url, method: .get)
+
+        let response = try self.sendWithRetry(request,
+                                              retry: self.createRetry(),
+                                              tokenContext: tokenContext)
+            .startSync()
+            .getResult()
 
         let isOutdated: Bool
         // Swift dictionaries doesn't support case-insensitive keys, NSDictionary does
@@ -81,65 +88,54 @@ extension CardClient: CardClientProtocol {
     /// Also makes the Card accessible for search/get queries from other users
     /// `RawSignedModel` should contain appropriate signatures
     ///
-    /// - Parameters:
-    ///   - model: Signed `RawSignedModel`
-    ///   - token: String with `Access Token`
+    /// - Parameter model: Signed `RawSignedModel`
     /// - Returns: `RawSignedModel` of created card
-    /// - Throws: CardClientError.constructingUrl, if url initialization failed
-    ///           CardServiceError, if service returned correctly-formed error json
-    ///           NSError with CardClient.serviceErrorDomain error domain,
-    ///               http status code as error code, and description string if present in http body
-    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
-    @objc open func publishCard(model: RawSignedModel, token: String) throws -> RawSignedModel {
+    /// - Throws:
+    ///         - CardClientError.constructingUrl, if url initialization failed
+    ///         - Rethrows from ServiceRequest
+    ///         - Rethrows ServiceError or NSError from BaseClient
+    @objc open func publishCard(model: RawSignedModel) throws -> RawSignedModel {
         guard let url = URL(string: "card/v5", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
 
-        let request = try ServiceRequest(url: url, method: .post, accessToken: token, params: model)
+        let tokenContext = TokenContext(service: "cards", operation: "publish", forceReload: false)
 
-        let response = try self.connection.send(request)
+        let request = try ServiceRequest(url: url, method: .post, params: model)
+
+        let response = try self.sendWithRetry(request,
+                                              retry: self.createRetry(),
+                                              tokenContext: tokenContext)
+            .startSync()
+            .getResult()
 
         return try self.processResponse(response)
     }
 
-    /// Performs search of Virgil Cards using given identity on the Virgil Cards Service
-    ///
-    /// - Parameters:
-    ///   - identity: Identity of cards to search
-    ///   - token: String with `Access Token`
-    /// - Returns: Array with `RawSignedModel`s of matched Virgil Cards
-    /// - Throws: CardClientError.constructingUrl, if url initialization failed
-    ///           CardServiceError, if service returned correctly-formed error json
-    ///           NSError with CardClient.serviceErrorDomain error domain,
-    ///               http status code as error code, and description string if present in http body
-    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
-    @available(*, deprecated, message: "Deprecated in favor of searchCards with array of identities")
-    @objc open func searchCards(identity: String, token: String) throws -> [RawSignedModel] {
-        return try self.searchCards(identities: [identity], token: token)
-    }
-
     /// Performs search of Virgil Cards using given identities on the Virgil Cards Service
     ///
-    /// - Parameters:
-    ///   - identities: Identities of cards to search
-    ///   - token: String with `Access Token`
+    /// - Parameter identities: Identities of cards to search
     /// - Returns: Array with `RawSignedModel`s of matched Virgil Cards
-    /// - Throws: CardClientError.constructingUrl, if url initialization failed
-    ///           CardServiceError, if service returned correctly-formed error json
-    ///           NSError with CardClient.serviceErrorDomain error domain,
-    ///               http status code as error code, and description string if present in http body
-    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
-    public func searchCards(identities: [String], token: String) throws -> [RawSignedModel] {
+    /// - Throws:
+    ///         - CardClientError.constructingUrl, if url initialization failed
+    ///         - Rethrows from ServiceRequest
+    ///         - Rethrows ServiceError or NSError from BaseClient
+    public func searchCards(identities: [String]) throws -> [RawSignedModel] {
         guard let url = URL(string: "card/v5/actions/search", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
 
+        let tokenContext = TokenContext(service: "cards", operation: "search", forceReload: false)
+
         let request = try ServiceRequest(url: url,
                                          method: .post,
-                                         accessToken: token,
                                          params: ["identities": identities])
 
-        let response = try self.connection.send(request)
+        let response = try self.sendWithRetry(request,
+                                              retry: self.createRetry(),
+                                              tokenContext: tokenContext)
+            .startSync()
+            .getResult()
 
         return try self.processResponse(response)
     }

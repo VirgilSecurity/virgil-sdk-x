@@ -48,7 +48,6 @@
 @property (nonatomic) VSMVirgilCrypto *crypto;
 @property (nonatomic) VSMVirgilCardCrypto *cardCrypto;
 @property (nonatomic) VSSTestUtils *utils;
-@property (nonatomic) VSSCardClient *cardClient;
 @property (nonatomic) VSSModelSigner *modelSigner;
 @property (nonatomic) VSSVirgilCardVerifier *verifier;
 @property (nonatomic) NSDictionary *testData;
@@ -66,7 +65,6 @@
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
     self.modelSigner = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
     self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
-    self.cardClient = self.consts.serviceURL == nil ? [[VSSCardClient alloc] init] : [[VSSCardClient alloc] initWithServiceUrl:self.consts.serviceURL];
     
     self.verifier.verifySelfSignature = false;
     self.verifier.verifyVirgilSignature = false;
@@ -197,7 +195,7 @@
     XCTAssert(error == nil);
     
     VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
-    cardManagerParams.cardClient = self.cardClient;
+    cardManagerParams.cardClient = self.consts.serviceURL == nil ? [[VSSCardClient alloc] initWithAccessTokenProvider:generator] : [[VSSCardClient alloc] initWithAccessTokenProvider:generator serviceUrl:self.consts.serviceURL];
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
     
@@ -249,7 +247,7 @@
     XCTAssert(error == nil);
     
     VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
-    cardManagerParams.cardClient = self.cardClient;
+    cardManagerParams.cardClient = self.consts.serviceURL == nil ? [[VSSCardClient alloc] initWithAccessTokenProvider:generator] : [[VSSCardClient alloc] initWithAccessTokenProvider:generator serviceUrl:self.consts.serviceURL];
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
     

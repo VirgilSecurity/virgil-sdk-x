@@ -35,40 +35,22 @@
 //
 
 import Foundation
-import VirgilCryptoAPI
 
-/// Declares error types and codes for CardManager
-///
-/// - cardIsNotVerified: Virgil Card was not verified by cardVerifier
-/// - gotWrongCard: Response Card doesn't match to what was queried
-@objc(VSSCardManagerError) public enum CardManagerError: Int, Error {
-    case cardIsNotVerified = 1
-    case gotWrongCard = 2
-}
-
-/// Class responsible for operations with Virgil Cards
-@objc(VSSCardManager) open class CardManager: NSObject {
-    /// ModelSigner instance used for self signing Cards
-    @objc public let modelSigner: ModelSigner
-    /// CardCrypto instance
-    @objc public let cardCrypto: CardCrypto
-    /// CardClient instance used for performing queries
-    @objc public let cardClient: CardClientProtocol
-    /// Card Verifier instance used for verifying Cards
-    @objc public let cardVerifier: CardVerifier
-    /// Called to perform additional signatures for card before publishing
-    @objc public let signCallback: ((RawSignedModel, @escaping (RawSignedModel?, Error?) -> Void) -> Void)?
-
-    /// Initializer
+/// Protocol for handling retries for network requests
+public protocol RetryProtocol {
+    /// Decide on retry in case of success
     ///
-    /// - Parameter params: CardManagerParams with needed parameters
-    @objc public init(params: CardManagerParams) {
-        self.modelSigner = params.modelSigner
-        self.cardCrypto = params.cardCrypto
-        self.cardClient = params.cardClient
-        self.cardVerifier = params.cardVerifier
-        self.signCallback = params.signCallback
+    /// - Parameters:
+    ///   - request: Request to retry
+    ///   - response: Response receiver from service
+    /// - Returns: Retry choice
+    func retryChoice(for request: ServiceRequest, with response: Response) -> RetryChoice
 
-        super.init()
-    }
+    /// Decire on retry in case of error
+    ///
+    /// - Parameters:
+    ///   - request: Request to retry
+    ///   - error: Response receiver from service
+    /// - Returns: Retry choice
+    func retryChoice(for request: ServiceRequest, with error: Error) -> RetryChoice
 }

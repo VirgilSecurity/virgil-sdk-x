@@ -35,40 +35,20 @@
 //
 
 import Foundation
-import VirgilCryptoAPI
 
-/// Declares error types and codes for CardManager
+// swiftlint:disable missing_docs
+
+/// Retry choice
 ///
-/// - cardIsNotVerified: Virgil Card was not verified by cardVerifier
-/// - gotWrongCard: Response Card doesn't match to what was queried
-@objc(VSSCardManagerError) public enum CardManagerError: Int, Error {
-    case cardIsNotVerified = 1
-    case gotWrongCard = 2
+/// - noRetry: should not retry
+/// - retryService: retry due to service error
+/// - retryAuth: retry due to auth error (should try with new Access Token)
+/// - retryConnection: retry due connection error
+public enum RetryChoice {
+    case noRetry
+    case retryService(delay: TimeInterval)
+    case retryAuth
+    case retryConnection
 }
 
-/// Class responsible for operations with Virgil Cards
-@objc(VSSCardManager) open class CardManager: NSObject {
-    /// ModelSigner instance used for self signing Cards
-    @objc public let modelSigner: ModelSigner
-    /// CardCrypto instance
-    @objc public let cardCrypto: CardCrypto
-    /// CardClient instance used for performing queries
-    @objc public let cardClient: CardClientProtocol
-    /// Card Verifier instance used for verifying Cards
-    @objc public let cardVerifier: CardVerifier
-    /// Called to perform additional signatures for card before publishing
-    @objc public let signCallback: ((RawSignedModel, @escaping (RawSignedModel?, Error?) -> Void) -> Void)?
-
-    /// Initializer
-    ///
-    /// - Parameter params: CardManagerParams with needed parameters
-    @objc public init(params: CardManagerParams) {
-        self.modelSigner = params.modelSigner
-        self.cardCrypto = params.cardCrypto
-        self.cardClient = params.cardClient
-        self.cardVerifier = params.cardVerifier
-        self.signCallback = params.signCallback
-
-        super.init()
-    }
-}
+// swiftlint:enable missing_docs

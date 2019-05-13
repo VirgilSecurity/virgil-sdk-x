@@ -35,40 +35,17 @@
 //
 
 import Foundation
-import VirgilCryptoAPI
+#if !os(watchOS)
+import SystemConfiguration
+#endif
 
-/// Declares error types and codes for CardManager
-///
-/// - cardIsNotVerified: Virgil Card was not verified by cardVerifier
-/// - gotWrongCard: Response Card doesn't match to what was queried
-@objc(VSSCardManagerError) public enum CardManagerError: Int, Error {
-    case cardIsNotVerified = 1
-    case gotWrongCard = 2
-}
-
-/// Class responsible for operations with Virgil Cards
-@objc(VSSCardManager) open class CardManager: NSObject {
-    /// ModelSigner instance used for self signing Cards
-    @objc public let modelSigner: ModelSigner
-    /// CardCrypto instance
-    @objc public let cardCrypto: CardCrypto
-    /// CardClient instance used for performing queries
-    @objc public let cardClient: CardClientProtocol
-    /// Card Verifier instance used for verifying Cards
-    @objc public let cardVerifier: CardVerifier
-    /// Called to perform additional signatures for card before publishing
-    @objc public let signCallback: ((RawSignedModel, @escaping (RawSignedModel?, Error?) -> Void) -> Void)?
-
-    /// Initializer
+/// ReachabilityProtocol
+public protocol ReachabilityProtocol {
+    /// Blocks threads till network becomes reachable, or till timeoutDate has come
     ///
-    /// - Parameter params: CardManagerParams with needed parameters
-    @objc public init(params: CardManagerParams) {
-        self.modelSigner = params.modelSigner
-        self.cardCrypto = params.cardCrypto
-        self.cardClient = params.cardClient
-        self.cardVerifier = params.cardVerifier
-        self.signCallback = params.signCallback
-
-        super.init()
-    }
+    /// - Parameters:
+    ///   - timeoutDate: timeout date
+    ///   - url: request url
+    /// - Throws: Depends on implementation
+    func waitTillReachable(timeoutDate: Date, url: String) throws
 }

@@ -50,42 +50,44 @@ import Foundation
     @objc public static let defaultURL = URL(string: "https://api.virgilsecurity.com")!
     // swiftlint:enable force_unwrapping
 
-    /// Initializes a new `CardClient` instance
+    internal let retryConfig: ExpBackoffRetry.Config
+
+    /// Initializes new `CardClient` instance
+    ///
+    /// - Parameter accessTokenProvider: Access Token Provider
+    @objc public convenience init(accessTokenProvider: AccessTokenProvider) {
+        self.init(accessTokenProvider: accessTokenProvider, serviceUrl: CardClient.defaultURL)
+    }
+
+    /// Initializes new `CardClient` instance
     ///
     /// - Parameters:
-    ///   - serviceUrl: URL of service client will use
-    ///   - connection: custom HTTPConnection
-    override public init(serviceUrl: URL = CardClient.defaultURL, connection: HttpConnectionProtocol) {
-        super.init(serviceUrl: serviceUrl, connection: connection)
+    ///   - accessTokenProvider: Access Token Provider
+    ///   - serviceUrl: service URL
+    @objc public convenience init(accessTokenProvider: AccessTokenProvider, serviceUrl: URL) {
+        self.init(accessTokenProvider: accessTokenProvider,
+                  serviceUrl: serviceUrl,
+                  retryConfig: ExpBackoffRetry.Config())
     }
 
-    /// Initializes a new `CardClient` instance
-    @objc public convenience init() {
-        self.init(serviceUrl: CardClient.defaultURL)
-    }
-
-    /// Initializes a new `CardClient` instance
+    /// Initializes new `CardClient` instance
     ///
-    /// - Parameter serviceUrl: URL of service client will use
-    @objc public convenience init(serviceUrl: URL) {
+    /// - Parameters:
+    ///   - accessTokenProvider: Access Token Provider
+    ///   - serviceUrl: service URL
+    ///   - requestRetryConfig: Retry config
+    public init(accessTokenProvider: AccessTokenProvider,
+                serviceUrl: URL,
+                connection: HttpConnectionProtocol? = nil,
+                retryConfig: ExpBackoffRetry.Config) {
         let version = VersionUtils.getVersion(bundleIdentitifer: "com.virgilsecurity.VirgilSDK")
 
-        let connection = HttpConnection(adapters: [VirgilAgentAdapter(product: "sdk", version: version)])
+        let connection = connection ?? HttpConnection(adapters: [VirgilAgentAdapter(product: "sdk", version: version)])
 
-        self.init(serviceUrl: serviceUrl, connection: connection)
-    }
+        self.retryConfig = retryConfig
 
-    /// Handles error from Card Service
-    ///
-    /// - Parameters:
-    ///   - statusCode: http status code
-    ///   - body: response body
-    /// - Returns: Corresponding error
-    override open func handleError(statusCode: Int, body: Data?) -> Error {
-        if let body = body, let rawServiceError = try? JSONDecoder().decode(RawServiceError.self, from: body) {
-            return ServiceError(httpStatusCode: statusCode, rawServiceError: rawServiceError)
-        }
-
-        return super.handleError(statusCode: statusCode, body: body)
+        super.init(accessTokenProvider: accessTokenProvider,
+                   serviceUrl: serviceUrl,
+                   connection: connection)
     }
 }

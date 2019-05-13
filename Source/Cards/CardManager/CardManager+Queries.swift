@@ -45,33 +45,26 @@ extension CardManager {
     /// - Parameter cardId: identifier of Virgil Card to find
     /// - Returns: CallbackOperation<GetCardResponse> for getting `GetCardResponse` with verified Virgil Card
     open func getCard(withId cardId: String) -> GenericOperation<Card> {
-        let makeAggregateOperation: (Bool) -> GenericOperation<Card> = { force in
-            CallbackOperation { _, completion in
-                let tokenContext = TokenContext(service: "cards", operation: "get", forceReload: force)
-                let getTokenOperation = OperationUtils.makeGetTokenOperation(
-                    tokenContext: tokenContext, accessTokenProvider: self.accessTokenProvider)
-                let getCardOperation = self.makeGetCardOperation(cardId: cardId)
-                let verifyCardOperation = self.makeVerifyCardOperation()
-                let completionOperation = OperationUtils.makeCompletionOperation(completion: completion)
+        return CallbackOperation { _, completion in
+            do {
+                let responseModel = try self.cardClient.getCard(withId: cardId)
 
-                getCardOperation.addDependency(getTokenOperation)
-                verifyCardOperation.addDependency(getCardOperation)
+                let card = try self.parseCard(from: responseModel.rawCard)
+                card.isOutdated = responseModel.isOutdated
 
-                completionOperation.addDependency(getTokenOperation)
-                completionOperation.addDependency(getCardOperation)
-                completionOperation.addDependency(verifyCardOperation)
+                guard card.identifier == cardId else {
+                    throw CardManagerError.gotWrongCard
+                }
 
-                let queue = OperationQueue()
-                let operations = [getTokenOperation, getCardOperation, verifyCardOperation, completionOperation]
-                queue.addOperations(operations, waitUntilFinished: false)
+                guard self.cardVerifier.verifyCard(card) else {
+                    throw CardManagerError.cardIsNotVerified
+                }
+
+                completion(card, nil)
             }
-        }
-
-        if !self.retryOnUnauthorized {
-            return makeAggregateOperation(false)
-        }
-        else {
-            return OperationUtils.makeRetryAggregate(makeAggregateOperation: makeAggregateOperation)
+            catch {
+                completion(nil, error)
+            }
         }
     }
 
@@ -143,49 +136,41 @@ extension CardManager {
     /// - Parameter rawCard: RawSignedModel of Card to create
     /// - Returns: CallbackOperation<Card> for creating Virgil Card instance
     open func publishCard(rawCard: RawSignedModel) -> GenericOperation<Card> {
-        let makeAggregateOperation: (Bool) -> GenericOperation<Card> = { forceReload in
-            CallbackOperation { _, completion in
-                let tokenContext = TokenContext(service: "cards", operation: "publish", forceReload: forceReload)
-                let getTokenOperation = OperationUtils.makeGetTokenOperation(
-                    tokenContext: tokenContext, accessTokenProvider: self.accessTokenProvider)
-                let generateRawCardOperation = self.makeGenerateRawCardOperation(rawCard: rawCard)
-                let signOperation = self.makeAdditionalSignOperation()
-                let publishCardOperation = self.makePublishCardOperation()
-                let verifyCardOperation = self.makeVerifyCardOperation()
-                let completionOperation = OperationUtils.makeCompletionOperation(completion: completion)
+        return CallbackOperation { _, completion in
+            do {
+                let signedRawCard = try CallbackOperation<RawSignedModel> { _, completion in
+                    if let signCallback = self.signCallback {
+                        signCallback(rawCard) { rawCard, error in
+                            completion(rawCard, error)
+                        }
+                    }
+                    else {
+                        completion(rawCard, nil)
+                    }
+                }.startSync().getResult()
 
-                generateRawCardOperation.addDependency(getTokenOperation)
-                signOperation.addDependency(generateRawCardOperation)
-                publishCardOperation.addDependency(getTokenOperation)
-                publishCardOperation.addDependency(signOperation)
-                verifyCardOperation.addDependency(publishCardOperation)
+                let responseModel = try self.cardClient.publishCard(model: signedRawCard)
 
-                completionOperation.addDependency(getTokenOperation)
-                completionOperation.addDependency(generateRawCardOperation)
-                completionOperation.addDependency(signOperation)
-                completionOperation.addDependency(publishCardOperation)
-                completionOperation.addDependency(verifyCardOperation)
+                guard responseModel.contentSnapshot == rawCard.contentSnapshot,
+                    let selfSignature = rawCard.signatures
+                        .first(where: { $0.signer == ModelSigner.selfSignerIdentifier }),
+                    let responseSelfSignature = responseModel.signatures
+                        .first(where: { $0.signer == ModelSigner.selfSignerIdentifier }),
+                    selfSignature.snapshot == responseSelfSignature.snapshot else {
+                        throw CardManagerError.gotWrongCard
+                }
 
-                let queue = OperationQueue()
+                let card = try self.parseCard(from: responseModel)
 
-                let operations = [
-                    getTokenOperation,
-                    generateRawCardOperation,
-                    signOperation,
-                    publishCardOperation,
-                    verifyCardOperation,
-                    completionOperation
-                ]
+                guard self.cardVerifier.verifyCard(card) else {
+                    throw CardManagerError.cardIsNotVerified
+                }
 
-                queue.addOperations(operations, waitUntilFinished: false)
+                completion(card, nil)
             }
-        }
-
-        if !self.retryOnUnauthorized {
-            return makeAggregateOperation(false)
-        }
-        else {
-            return OperationUtils.makeRetryAggregate(makeAggregateOperation: makeAggregateOperation)
+            catch {
+                completion(nil, error)
+            }
         }
     }
 
@@ -201,68 +186,24 @@ extension CardManager {
     /// - Returns: CallbackOperation<Card> for generating self signed RawSignedModel and
     ///            creating Virgil Card instance on the Virgil Cards Service
     open func publishCard(privateKey: PrivateKey, publicKey: PublicKey,
-                          identity: String? = nil, previousCardId: String? = nil,
+                          identity: String, previousCardId: String? = nil,
                           extraFields: [String: String]? = nil) -> GenericOperation<Card> {
-        let makeAggregateOperation: (Bool) -> GenericOperation<Card> = { forceReload in
-            CallbackOperation { operation, completion in
-                let tokenContext = TokenContext(service: "cards", operation: "publish", forceReload: forceReload)
-                let getTokenOperation = OperationUtils.makeGetTokenOperation(
-                    tokenContext: tokenContext, accessTokenProvider: self.accessTokenProvider)
-                let generateRawCardOperation =
-                    self.makeGenerateRawCardOperation(privateKey: privateKey,
-                                                      publicKey: publicKey,
-                                                      previousCardId: previousCardId,
-                                                      extraFields: extraFields)
-                let signOperation = self.makeAdditionalSignOperation()
-                let publishCardOperation = self.makePublishCardOperation()
-                let verifyCardOperation = self.makeVerifyCardOperation()
-                let completionOperation = OperationUtils.makeCompletionOperation(completion: completion)
+        return CallbackOperation { _, completion in
+            do {
+                let rawCard = try self.generateRawCard(privateKey: privateKey,
+                                                       publicKey: publicKey,
+                                                       identity: identity,
+                                                       previousCardId: previousCardId,
+                                                       extraFields: extraFields)
 
-                generateRawCardOperation.addDependency(getTokenOperation)
-                signOperation.addDependency(generateRawCardOperation)
-                publishCardOperation.addDependency(getTokenOperation)
-                publishCardOperation.addDependency(signOperation)
-                verifyCardOperation.addDependency(publishCardOperation)
+                let card = try self.publishCard(rawCard: rawCard).startSync().getResult()
 
-                completionOperation.addDependency(getTokenOperation)
-                completionOperation.addDependency(generateRawCardOperation)
-                completionOperation.addDependency(signOperation)
-                completionOperation.addDependency(publishCardOperation)
-                completionOperation.addDependency(verifyCardOperation)
-
-                let queue = OperationQueue()
-
-                let operations = [
-                    getTokenOperation,
-                    generateRawCardOperation,
-                    signOperation,
-                    publishCardOperation,
-                    verifyCardOperation,
-                    completionOperation
-                ]
-
-                queue.addOperations(operations, waitUntilFinished: false)
+                completion(card, nil)
+            }
+            catch {
+                completion(nil, error)
             }
         }
-
-        if !self.retryOnUnauthorized {
-            return makeAggregateOperation(false)
-        }
-        else {
-            return OperationUtils.makeRetryAggregate(makeAggregateOperation: makeAggregateOperation)
-        }
-    }
-
-    /// Makes CallbackOperation<[Card]> for performing search of Virgil Cards
-    /// using identity on the Virgil Cards Service
-    ///
-    /// NOTE: Resulting array will contain only actual cards.
-    ///       Older cards (that were replaced) can be accessed using previousCard property of new cards.
-    ///
-    /// - Parameter identity: identity of cards to search
-    /// - Returns: CallbackOperation<[Card]> for performing search of Virgil Cards
-    open func searchCards(identity: String) -> GenericOperation<[Card]> {
-        return self.searchCards(identities: [identity])
     }
 
     /// Makes CallbackOperation<[Card]> for performing search of Virgil Cards
@@ -274,40 +215,38 @@ extension CardManager {
     /// - Parameter identities: identities of cards to search
     /// - Returns: CallbackOperation<[Card]> for performing search of Virgil Cards
     open func searchCards(identities: [String]) -> GenericOperation<[Card]> {
-        let makeAggregateOperation: (Bool) -> GenericOperation<[Card]> = { forceReload in
-            CallbackOperation { _, completion in
-                let tokenContext = TokenContext(service: "cards", operation: "search", forceReload: forceReload)
-                let getTokenOperation = OperationUtils.makeGetTokenOperation(
-                    tokenContext: tokenContext, accessTokenProvider: self.accessTokenProvider)
-                let searchCardsOperation = self.makeSearchCardsOperation(identities: identities)
-                let verifyCardsOperation = self.makeVerifyCardsOperation()
-                let completionOperation = OperationUtils.makeCompletionOperation(completion: completion)
+        return CallbackOperation { _, completion in
+            do {
+                let cards = try self.cardClient.searchCards(identities: identities)
+                    .map { rawSignedModel -> Card in
+                        try self.parseCard(from: rawSignedModel)
+                    }
 
-                searchCardsOperation.addDependency(getTokenOperation)
-                verifyCardsOperation.addDependency(searchCardsOperation)
+                let result = try cards
+                    .compactMap { card -> Card? in
+                        guard identities.contains(card.identity) else {
+                            throw CardManagerError.gotWrongCard
+                        }
 
-                completionOperation.addDependency(getTokenOperation)
-                completionOperation.addDependency(searchCardsOperation)
-                completionOperation.addDependency(verifyCardsOperation)
+                        if let nextCard = cards.first(where: { $0.previousCardId == card.identifier }) {
+                            nextCard.previousCard = card
+                            card.isOutdated = true
+                            return nil
+                        }
 
-                let queue = OperationQueue()
+                        return card
+                    }
 
-                let operations = [
-                    getTokenOperation,
-                    searchCardsOperation,
-                    verifyCardsOperation,
-                    completionOperation
-                ]
+                guard result.allSatisfy({ self.cardVerifier.verifyCard($0) }) else {
+                    throw CardManagerError.cardIsNotVerified
+                }
 
-                queue.addOperations(operations, waitUntilFinished: false)
+                completion(result, nil)
+            }
+            catch {
+                completion(nil, error)
             }
         }
 
-        if !self.retryOnUnauthorized {
-            return makeAggregateOperation(false)
-        }
-        else {
-            return OperationUtils.makeRetryAggregate(makeAggregateOperation: makeAggregateOperation)
-        }
     }
 }

@@ -155,6 +155,18 @@
     return nil;
 }
 
+- (VSSCardClient *)setupClientWithProvider:(id<VSSAccessTokenProvider>)provider {
+    VSSCardClient *cardClient = self.consts.serviceURL == nil ? [[VSSCardClient alloc] initWithAccessTokenProvider:provider] : [[VSSCardClient alloc] initWithAccessTokenProvider:provider serviceUrl:self.consts.serviceURL];
+    
+    return cardClient;
+}
+
+- (VSSCardClient *)setupClientWithIdentity:(NSString *)identity error:(NSError **)errorPtr;{    
+    id<VSSAccessTokenProvider> provider = [self getGeneratorJwtProviderWithIdentity:identity error:errorPtr];
+    
+    return [self setupClientWithProvider:provider];
+}
+
 - (NSData * __nonnull)getRandomData {
     int length = 2048;
     NSMutableData *data = [NSMutableData dataWithCapacity:length];

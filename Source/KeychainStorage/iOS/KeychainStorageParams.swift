@@ -37,12 +37,12 @@
 import Foundation
 import Security
 
-// swiftlint:disable line_length
-
 /// Class responsible for KeychainStorage setup
 @objc(VSSKeychainStorageParams) public final class KeychainStorageParams: NSObject {
     /// Application name
     @objc public let appName: String
+
+    // swiftlint:disable line_length
 
     /// Access group. See https://developer.apple.com/reference/security/ksecattraccessgroup
     @objc public let accessGroup: String?
@@ -50,6 +50,8 @@ import Security
     /// Accessibility.
     /// See https://developer.apple.com/documentation/security/keychain_services/keychain_items/restricting_keychain_item_accessibility
     @objc public let accessibility: String
+
+    // swiftlint:enable line_length
 
     internal init(appName: String, accessGroup: String?, accessibility: String?) {
         self.appName = appName
