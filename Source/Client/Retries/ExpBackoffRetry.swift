@@ -90,6 +90,12 @@ open class ExpBackoffRetry: RetryProtocol {
         self.config = config
     }
 
+    /// Decire on retry in case of error
+    ///
+    /// - Parameters:
+    ///   - request: Request to retry
+    ///   - error: Response receiver from service
+    /// - Returns: Retry choice
     public func retryChoice(for request: ServiceRequest, with error: Error) -> RetryChoice {
         let nsError = error as NSError
 
@@ -112,7 +118,7 @@ open class ExpBackoffRetry: RetryProtocol {
         }
     }
 
-    /// Decide on retry
+    /// Decide on retry in case of success
     ///
     /// - Parameters:
     ///   - request: Request to retry
