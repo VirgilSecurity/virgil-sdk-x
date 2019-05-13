@@ -80,7 +80,6 @@ class VerifierStubTrue: CardVerifier {
 class VSS009_ExtraCardManagerTests: XCTestCase {
     private var crypto: VirgilCrypto!
     private var consts: VSSTestsConst!
-    private var cardCrypto: VirgilCardCrypto!
     private var utils: VSSTestUtils!
     private var modelSigner: ModelSigner!
     private var testsDict: Dictionary<String, Any>!
@@ -98,8 +97,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         self.crypto = try! VirgilCrypto()
         self.consts = VSSTestsConst()
         self.utils = VSSTestUtils(crypto: self.crypto, consts: self.consts)
-        self.cardCrypto = VirgilCardCrypto(virgilCrypto: self.crypto)
-        self.modelSigner = ModelSigner(cardCrypto: self.cardCrypto)
+        self.modelSigner = ModelSigner(crypto: self.crypto)
         self.generator = self.utils.getGeneratorJwtProvider(withIdentity: "identity", error: nil)
         if let serviceURL = self.consts.serviceURL {
             self.cardClient = CardClient(accessTokenProvider: self.generator, serviceUrl: serviceURL)
@@ -112,7 +110,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
     override func tearDown() {
         self.crypto = nil
         self.consts = nil
-        self.cardCrypto = nil
+        self.crypto = nil
         self.modelSigner = nil
         
         super.tearDown()
@@ -120,7 +118,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
 
     // MARK: Tests
     func test001_STC_13() {
-        let cardManagerParams = CardManagerParams(cardCrypto: self.cardCrypto, accessTokenProvider: self.generator, cardVerifier: VerifierStubFalse())
+        let cardManagerParams = CardManagerParams(crypto: self.crypto, accessTokenProvider: self.generator, cardVerifier: VerifierStubFalse())
         cardManagerParams.cardClient = self.cardClient
         
         let cardManager = CardManager(params: cardManagerParams)
@@ -204,7 +202,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
     }
 
     func test002_STC_34() {
-        let cardManagerParams = CardManagerParams(cardCrypto: self.cardCrypto, accessTokenProvider: self.generator, cardVerifier: VerifierStubTrue())
+        let cardManagerParams = CardManagerParams(crypto: self.crypto, accessTokenProvider: self.generator, cardVerifier: VerifierStubTrue())
         cardManagerParams.cardClient = CardClientStub_STC34()
         
         let cardManager = CardManager(params: cardManagerParams)
@@ -221,7 +219,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
     }
 
     func test003_STC_35() {
-        let cardManagerParams = CardManagerParams(cardCrypto: self.cardCrypto, accessTokenProvider: self.generator, cardVerifier: VerifierStubTrue())
+        let cardManagerParams = CardManagerParams(crypto: self.crypto, accessTokenProvider: self.generator, cardVerifier: VerifierStubTrue())
         cardManagerParams.cardClient = CardClientStub_STC34()
         
         let cardManager = CardManager(params: cardManagerParams)
@@ -234,9 +232,9 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         let rawCard1 = RawSignedModel(contentSnapshot: snapshot)
 
         let privateKeyBase64 = self.testsDict["STC-34.private_key_base64"] as! String
-        let exporter = VirgilPrivateKeyExporter(virgilCrypto: self.crypto)
-        let privateKey = try! exporter.importPrivateKey(from: Data(base64Encoded: privateKeyBase64)!)
+        let privateKey = try! crypto.importPrivateKey(from: Data(base64Encoded: privateKeyBase64)!).privateKey
         let extraDataSnapshot = self.testsDict["STC-34.self_signature_snapshot_base64"] as! String
+        
         try! self.modelSigner.selfSign(model: rawCard1, privateKey: privateKey, additionalData: Data(base64Encoded: extraDataSnapshot)!)
 
         switch cardManager.publishCard(rawCard: rawCard1).startSync() {
@@ -264,7 +262,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
     }
     
     func test004_STC_36() {
-        let cardManagerParams = CardManagerParams(cardCrypto: self.cardCrypto, accessTokenProvider: self.generator, cardVerifier: VerifierStubTrue())
+        let cardManagerParams = CardManagerParams(crypto: self.crypto, accessTokenProvider: self.generator, cardVerifier: VerifierStubTrue())
         cardManagerParams.cardClient = CardClientStub_STC34()
         
         let cardManager = CardManager(params: cardManagerParams)

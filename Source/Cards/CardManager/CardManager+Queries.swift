@@ -35,7 +35,7 @@
 //
 
 import Foundation
-import VirgilCryptoAPI
+import VirgilCrypto
 
 // MARK: - Extension for primary operations
 extension CardManager {
@@ -71,17 +71,17 @@ extension CardManager {
     /// Generates self signed RawSignedModel
     ///
     /// - Parameters:
-    ///   - privateKey: PrivateKey to self sign with
+    ///   - privateKey: VirgilPrivateKey to self sign with
     ///   - publicKey: Public Key instance
     ///   - identity: Card's identity
     ///   - previousCardId: Identifier of Virgil Card with same identity this Card will replace
     ///   - extraFields: Dictionary with extra data to sign with model. Should be JSON-compatible
     /// - Returns: Self signed RawSignedModel
-    /// - Throws: Rethrows from CardCrypto, JSONEncoder, JSONSerialization, ModelSigner
-    @objc open func generateRawCard(privateKey: PrivateKey, publicKey: PublicKey,
+    /// - Throws: Rethrows from Crypto, JSONEncoder, JSONSerialization, ModelSigner
+    @objc open func generateRawCard(privateKey: VirgilPrivateKey, publicKey: VirgilPublicKey,
                                     identity: String, previousCardId: String? = nil,
                                     extraFields: [String: String]? = nil) throws -> RawSignedModel {
-        return try CardManager.generateRawCard(cardCrypto: self.cardCrypto,
+        return try CardManager.generateRawCard(crypto: self.crypto,
                                                modelSigner: self.modelSigner,
                                                privateKey: privateKey,
                                                publicKey: publicKey,
@@ -93,20 +93,20 @@ extension CardManager {
     /// Generates self signed RawSignedModel
     ///
     /// - Parameters:
-    ///   - cardCrypto: CardCrypto implementation
+    ///   - crypto: VirgilCrypto implementation
     ///   - modelSigner: ModelSigner implementation
-    ///   - privateKey: PrivateKey to self sign with
+    ///   - privateKey: VirgilPrivateKey to self sign with
     ///   - publicKey: Public Key instance
     ///   - identity: Card's identity
     ///   - previousCardId: Identifier of Virgil Card with same identity this Card will replace
     ///   - extraFields: Dictionary with extra data to sign with model. Should be JSON-compatible
     /// - Returns: Self signed RawSignedModel
-    /// - Throws: Rethrows from CardCrypto, JSONEncoder, JSONSerialization, ModelSigner
-    @objc open class func generateRawCard(cardCrypto: CardCrypto, modelSigner: ModelSigner,
-                                          privateKey: PrivateKey, publicKey: PublicKey,
+    /// - Throws: Rethrows from Crypto, JSONEncoder, JSONSerialization, ModelSigner
+    @objc open class func generateRawCard(crypto: VirgilCrypto, modelSigner: ModelSigner,
+                                          privateKey: VirgilPrivateKey, publicKey: VirgilPublicKey,
                                           identity: String, previousCardId: String? = nil,
                                           extraFields: [String: String]? = nil) throws -> RawSignedModel {
-        let exportedPubKey = try cardCrypto.exportPublicKey(publicKey)
+        let exportedPubKey = try crypto.exportPublicKey(publicKey)
 
         let cardContent = RawCardContent(identity: identity,
                                          publicKey: exportedPubKey,
@@ -178,14 +178,14 @@ extension CardManager {
     /// creating Virgil Card instance on the Virgil Cards Service
     ///
     /// - Parameters:
-    ///   - privateKey: PrivateKey to self sign with
+    ///   - privateKey: VirgilPrivateKey to self sign with
     ///   - publicKey: Public Key instance
     ///   - identity: Card's identity
     ///   - previousCardId: Identifier of Virgil Card with same identity this Card will replace
     ///   - extraFields: Dictionary with extra data to sign with model. Should be JSON-compatible
     /// - Returns: CallbackOperation<Card> for generating self signed RawSignedModel and
     ///            creating Virgil Card instance on the Virgil Cards Service
-    open func publishCard(privateKey: PrivateKey, publicKey: PublicKey,
+    open func publishCard(privateKey: VirgilPrivateKey, publicKey: VirgilPublicKey,
                           identity: String, previousCardId: String? = nil,
                           extraFields: [String: String]? = nil) -> GenericOperation<Card> {
         return CallbackOperation { _, completion in

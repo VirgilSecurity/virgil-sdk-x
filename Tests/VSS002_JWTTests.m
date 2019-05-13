@@ -60,8 +60,7 @@ static const NSTimeInterval timeout = 8.;
         VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
         XCTAssert(err == nil);
 
-        VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:crypto];
-        VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] apiPublicKeyIdentifier:@"id" accessTokenSigner:signer appId:@"app_id" ttl:ttl];
+        VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] crypto:crypto appId:@"app_id" ttl:ttl error:nil];
 
         NSString *identity = tokenContext.identity;
         VSSJwt *jwt = [generator generateTokenWithIdentity:identity additionalData:nil error:&err];
@@ -107,8 +106,7 @@ static const NSTimeInterval timeout = 8.;
     XCTAssert(err == nil);
 
     NSTimeInterval ttl = 2;
-    VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:crypto];
-    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] apiPublicKeyIdentifier:@"id" accessTokenSigner:signer appId:@"app_id" ttl:ttl];
+    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] crypto:crypto appId:@"app_id" ttl:ttl error:nil];
     VSSTokenContext *tokenContext = [[VSSTokenContext alloc] initWithIdentity:@"some_identity1" service:@"cards" operation:@"test" forceReload:NO];
     VSSJwt *jwt = [generator generateTokenWithIdentity:@"some_identity2" additionalData:nil error:&err];
     XCTAssert(err == nil);
@@ -206,8 +204,7 @@ static const NSTimeInterval timeout = 8.;
         VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
         XCTAssert(err == nil);
         
-        VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:crypto];
-        VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] apiPublicKeyIdentifier:@"id" accessTokenSigner:signer appId:@"app_id" ttl:ttl];
+        VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] crypto:crypto appId:@"app_id" ttl:ttl error:nil];
         
         NSString *identity = tokenContext.identity;
         VSSJwt *jwt = [generator generateTokenWithIdentity:identity additionalData:nil error:&err];
@@ -248,8 +245,7 @@ static const NSTimeInterval timeout = 8.;
     
     NSString *identity = @"some_identity";
     
-    VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:crypto];
-    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] apiPublicKeyIdentifier:@"id" accessTokenSigner:signer appId:@"app_id" ttl:ttl];
+    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] crypto:crypto appId:@"app_id" ttl:ttl error:nil];
     
     NSInteger __block callCounter = 0;
     
@@ -299,8 +295,7 @@ static const NSTimeInterval timeout = 8.;
     
     NSString *identity = @"some_identity";
     
-    VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:crypto];
-    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] apiPublicKeyIdentifier:@"id" accessTokenSigner:signer appId:@"app_id" ttl:ttl];
+    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] crypto:crypto appId:@"app_id" ttl:ttl error:nil];
     
     VSSJwt *initialJwt = [generator generateTokenWithIdentity:identity additionalData:nil error:nil];
     
@@ -359,8 +354,7 @@ static const NSTimeInterval timeout = 8.;
         VSMVirgilKeyPair *keyPair = [crypto generateKeyPairAndReturnError:&err];
         XCTAssert(err == nil);
 
-        VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:crypto];
-        VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] apiPublicKeyIdentifier:@"id" accessTokenSigner:signer appId:@"app_id" ttl:ttl];
+        VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:[keyPair privateKey] crypto:crypto appId:@"app_id" ttl:ttl error:nil];
 
         NSString *identity = tokenContext.identity;
         VSSJwt *jwt = [generator generateTokenWithIdentity:identity additionalData:nil error:&err];

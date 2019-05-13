@@ -46,7 +46,6 @@
 
 @property (nonatomic) VSSTestsConst *consts;
 @property (nonatomic) VSMVirgilCrypto *crypto;
-@property (nonatomic) VSMVirgilCardCrypto *cardCrypto;
 @property (nonatomic) VSSTestUtils *utils;
 @property (nonatomic) VSSModelSigner *modelSigner;
 @property (nonatomic) VSSVirgilCardVerifier *verifier;
@@ -61,10 +60,9 @@
     
     self.consts = [[VSSTestsConst alloc] init];
     self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES error:nil];
-    self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
-    self.modelSigner = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
-    self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
+    self.modelSigner = [[VSSModelSigner alloc] initWithCrypto:self.crypto];
+    self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[]];
     
     self.verifier.verifySelfSignature = false;
     self.verifier.verifyVirgilSignature = false;
@@ -194,7 +192,7 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
     cardManagerParams.cardClient = self.consts.serviceURL == nil ? [[VSSCardClient alloc] initWithAccessTokenProvider:generator] : [[VSSCardClient alloc] initWithAccessTokenProvider:generator serviceUrl:self.consts.serviceURL];
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
@@ -246,7 +244,7 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
     cardManagerParams.cardClient = self.consts.serviceURL == nil ? [[VSSCardClient alloc] initWithAccessTokenProvider:generator] : [[VSSCardClient alloc] initWithAccessTokenProvider:generator serviceUrl:self.consts.serviceURL];
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
@@ -309,12 +307,6 @@
 
 -(void)test005_STC_22 {
     NSError *error;
-    VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:self.crypto];
-    NSData *publicKeyBase64 = [[NSData alloc] initWithBase64EncodedString:self.testData[@"STC-22.api_public_key_base64"] options:0];
-    VSMVirgilPublicKey *publicKey = [self.crypto importPublicKeyFrom:publicKeyBase64 error:&error];
-    XCTAssert(error == nil);
-    
-    VSSJwtVerifier *verifier = [[VSSJwtVerifier alloc] initWithApiPublicKey:publicKey apiPublicKeyIdentifier:self.testData[@"STC-22.api_key_id"] accessTokenSigner:signer];
     
     VSSJwt *jwt = [[VSSJwt alloc] initWithStringRepresentation:self.testData[@"STC-22.jwt"] error:&error];
     XCTAssert(error == nil && jwt != nil);
@@ -336,18 +328,10 @@
                           @"username":@"some_username"
                           };
     XCTAssert([jwt.bodyContent.additionalData isEqualToDictionary:dic]);
-    
-    XCTAssert([verifier verifyWithToken:jwt]);
 }
 
 -(void)test006_STC_23 {
     NSError *error;
-    
-    VSMVirgilAccessTokenSigner *signer = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:self.crypto];
-    NSData *publicKeyBase64 = [[NSData alloc] initWithBase64EncodedString:self.testData[@"STC-23.api_public_key_base64"] options:0];
-    VSMVirgilPublicKey *publicKey = [self.crypto importPublicKeyFrom:publicKeyBase64 error:&error];
-    XCTAssert(error == nil);
-    VSSJwtVerifier *verifier = [[VSSJwtVerifier alloc] initWithApiPublicKey:publicKey apiPublicKeyIdentifier:self.testData[@"STC-23.api_key_id"] accessTokenSigner:signer];
     
     NSString *apiKeyStringBase64 = self.testData[@"STC-23.api_private_key_base64"];
     NSData *apiKeyDataBase64 = [[NSData alloc] initWithBase64EncodedString:apiKeyStringBase64 options:0];
@@ -355,7 +339,7 @@
     VSMVirgilPrivateKey *privateKey = (VSMVirgilPrivateKey *)[exporter importPrivateKeyFrom:apiKeyDataBase64 error:&error];
     XCTAssert(error == nil);
     
-    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey apiPublicKeyIdentifier:self.testData[@"STC-23.api_key_id"] accessTokenSigner:signer appId:self.testData[@"STC-23.app_id"] ttl:1000];
+    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey crypto:self.crypto appId:self.testData[@"STC-23.app_id"] ttl:1000 error:nil];
     
     NSString *identity = @"some_identity";
     NSDictionary *dic = @{
@@ -375,8 +359,6 @@
     XCTAssert(![jwt isExpiredWithDate:NSDate.date]);
     
     XCTAssert([jwt.bodyContent.additionalData isEqualToDictionary:dic]);
-    
-    XCTAssert([verifier verifyWithToken:jwt]);
 }
 
 @end

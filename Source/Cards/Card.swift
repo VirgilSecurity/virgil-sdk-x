@@ -35,7 +35,7 @@
 //
 
 import Foundation
-import VirgilCryptoAPI
+import VirgilCrypto
 
 /// Class representing Virgil Card
 @objc(VSSCard) public class Card: NSObject {
@@ -44,8 +44,8 @@ import VirgilCryptoAPI
     @objc public let identifier: String
     /// Virgil Card identity
     @objc public let identity: String
-    /// PublicKey of Virgil Card
-    @objc public let publicKey: PublicKey
+    /// VirgilPublicKey of Virgil Card
+    @objc public let publicKey: VirgilPublicKey
     /// Identifier of outdated previous Virgil Card with same identity
     @objc public let previousCardId: String?
     /// Previous Virgil Card instance
@@ -61,7 +61,7 @@ import VirgilCryptoAPI
     /// Snapshot of corresponding `RawCardContent`
     @objc public let contentSnapshot: Data
 
-    internal init(identifier: String, identity: String, publicKey: PublicKey,
+    internal init(identifier: String, identity: String, publicKey: VirgilPublicKey,
                   isOutdated: Bool = false, version: String, createdAt: Date,
                   signatures: [CardSignature], previousCardId: String? = nil,
                   previousCard: Card? = nil, contentSnapshot: Data) {

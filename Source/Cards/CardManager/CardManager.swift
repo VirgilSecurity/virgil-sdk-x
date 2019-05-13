@@ -35,7 +35,7 @@
 //
 
 import Foundation
-import VirgilCryptoAPI
+import VirgilCrypto
 
 /// Declares error types and codes for CardManager
 ///
@@ -50,8 +50,8 @@ import VirgilCryptoAPI
 @objc(VSSCardManager) open class CardManager: NSObject {
     /// ModelSigner instance used for self signing Cards
     @objc public let modelSigner: ModelSigner
-    /// CardCrypto instance
-    @objc public let cardCrypto: CardCrypto
+    /// Crypto instance
+    @objc public let crypto: VirgilCrypto
     /// CardClient instance used for performing queries
     @objc public let cardClient: CardClientProtocol
     /// Card Verifier instance used for verifying Cards
@@ -64,7 +64,7 @@ import VirgilCryptoAPI
     /// - Parameter params: CardManagerParams with needed parameters
     @objc public init(params: CardManagerParams) {
         self.modelSigner = params.modelSigner
-        self.cardCrypto = params.cardCrypto
+        self.crypto = params.crypto
         self.cardClient = params.cardClient
         self.cardVerifier = params.cardVerifier
         self.signCallback = params.signCallback

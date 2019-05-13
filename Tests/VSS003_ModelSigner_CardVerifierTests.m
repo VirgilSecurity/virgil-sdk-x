@@ -46,7 +46,6 @@
 
 @property (nonatomic) VSSTestsConst *consts;
 @property (nonatomic) VSMVirgilCrypto *crypto;
-@property (nonatomic) VSMVirgilCardCrypto *cardCrypto;
 @property (nonatomic) VSSTestUtils *utils;
 @property (nonatomic) VSSCardClient *cardClient;
 @property (nonatomic) VSSModelSigner *modelSigner;
@@ -62,10 +61,9 @@
     
     self.consts = [[VSSTestsConst alloc] init];
     self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES  error:nil];
-    self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
-    self.modelSigner = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
-    self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
+    self.modelSigner = [[VSSModelSigner alloc] initWithCrypto:self.crypto];
+    self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[]];
     
     self.verifier.verifySelfSignature = false;
     self.verifier.verifyVirgilSignature = false;
@@ -216,7 +214,7 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
     cardManagerParams.cardClient = self.cardClient;
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
@@ -281,7 +279,7 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
     cardManagerParams.cardClient = self.cardClient;
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
@@ -303,7 +301,7 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
     cardManagerParams.cardClient = self.cardClient;
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
@@ -325,7 +323,7 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
     cardManagerParams.cardClient = self.cardClient;
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
@@ -345,7 +343,7 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
 
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
     cardManagerParams.cardClient = self.cardClient;
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
@@ -365,7 +363,7 @@
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
     cardManagerParams.cardClient = self.cardClient;
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];

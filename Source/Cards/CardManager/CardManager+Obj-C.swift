@@ -35,7 +35,7 @@
 //
 
 import Foundation
-import VirgilCryptoAPI
+import VirgilCrypto
 
 //Objective-C compatible Queries
 extension CardManager {
@@ -71,12 +71,12 @@ extension CardManager {
     ///
     /// - Parameters:
     ///   - privateKey: Private Key to self sign RawSignedModel with
-    ///   - publicKey: PublicKey for generating RawSignedModel
+    ///   - publicKey: VirgilPublicKey for generating RawSignedModel
     ///   - identity: identity for generating RawSignedModel. Will be taken from token if omitted
     ///   - previousCardId: identifier of Virgil Card to replace
     ///   - extraFields: Dictionary with extra data to sign with model
     ///   - completion: completion handler, called with published and verified Card or corresponding error
-    @objc open func publishCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String,
+    @objc open func publishCard(privateKey: VirgilPrivateKey, publicKey: VirgilPublicKey, identity: String,
                                 previousCardId: String? = nil, extraFields: [String: String]? = nil,
                                 completion: @escaping (Card?, Error?) -> Void) {
         self.publishCard(privateKey: privateKey,

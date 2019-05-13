@@ -35,12 +35,12 @@
 //
 
 import Foundation
-import VirgilCryptoAPI
+import VirgilCrypto
 
 /// Contains parameters for initializing CardManager
 @objc(VSSCardManagerParams) public final class CardManagerParams: NSObject {
-    /// CardCrypto instance
-    @objc public let cardCrypto: CardCrypto
+    /// Crypto instance
+    @objc public let crypto: VirgilCrypto
     /// Card Verifier instance used for verifying Cards
     @objc public let cardVerifier: CardVerifier
     /// ModelSigner instance used for self signing Cards
@@ -54,13 +54,13 @@ import VirgilCryptoAPI
     /// Initializer
     ///
     /// - Parameters:
-    ///   - cardCrypto: CardCrypto instance
+    ///   - crypto: VirgilCrypto instance
     ///   - accessTokenProvider: AccessTokenProvider instance for getting Access Token
     ///     when performing queries
     ///   - cardVerifier: Card Verifier instance for verifyng Cards
-    @objc public init(cardCrypto: CardCrypto, accessTokenProvider: AccessTokenProvider, cardVerifier: CardVerifier) {
-        self.cardCrypto = cardCrypto
-        self.modelSigner = ModelSigner(cardCrypto: cardCrypto)
+    @objc public init(crypto: VirgilCrypto, accessTokenProvider: AccessTokenProvider, cardVerifier: CardVerifier) {
+        self.crypto = crypto
+        self.modelSigner = ModelSigner(crypto: crypto)
         self.cardClient = CardClient(accessTokenProvider: accessTokenProvider)
         self.cardVerifier = cardVerifier
 

@@ -95,7 +95,6 @@ static const NSTimeInterval timeout = 20.;
 
 @property (nonatomic) VSSTestsConst *consts;
 @property (nonatomic) VSMVirgilCrypto *crypto;
-@property (nonatomic) VSMVirgilCardCrypto *cardCrypto;
 @property (nonatomic) VSSTestUtils *utils;
 @property (nonatomic) VSSCardClient *cardClient;
 @property (nonatomic) VSSModelSigner *modelSigner;
@@ -110,11 +109,10 @@ static const NSTimeInterval timeout = 20.;
     
     self.consts = [[VSSTestsConst alloc] init];
     self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES error:nil];
-    self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
-    self.modelSigner = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
+    self.modelSigner = [[VSSModelSigner alloc] initWithCrypto:self.crypto];
     if (self.consts.servicePublicKey == nil) {
-        self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
+        self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[]];
     }
     else {
         NSData *publicKeyData = [[NSData alloc] initWithBase64EncodedString:self.consts.servicePublicKey options:0];
@@ -122,7 +120,7 @@ static const NSTimeInterval timeout = 20.;
         NSError *error;
         VSSWhitelist *whitelist = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds] error:&error];
         XCTAssert(error == nil);
-        self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[whitelist]];
+        self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[whitelist]];
         self.verifier.verifyVirgilSignature = NO;
     }
 }
@@ -139,7 +137,7 @@ static const NSTimeInterval timeout = 20.;
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
     cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
@@ -176,7 +174,7 @@ static const NSTimeInterval timeout = 20.;
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
 
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
     cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
@@ -218,7 +216,7 @@ static const NSTimeInterval timeout = 20.;
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
 
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
     cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
@@ -264,7 +262,7 @@ static const NSTimeInterval timeout = 20.;
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
 
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
     cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
@@ -333,7 +331,7 @@ static const NSTimeInterval timeout = 20.;
     
     VSSVirgilCardVerifier *verifier;
     if (self.consts.servicePublicKey == nil) {
-        verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[whitelist1]];
+        verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[whitelist1]];
     }
     else {
         NSData *publicKeyData = [[NSData alloc] initWithBase64EncodedString:self.consts.servicePublicKey options:0];
@@ -341,11 +339,11 @@ static const NSTimeInterval timeout = 20.;
         NSError *error;
         VSSWhitelist *whitelist = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds] error:&error];
         XCTAssert(error == nil);
-        verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[whitelist, whitelist1]];
+        verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[whitelist, whitelist1]];
         verifier.verifyVirgilSignature = NO;
     }
     
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:verifier];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:verifier];
     cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
@@ -383,7 +381,7 @@ static const NSTimeInterval timeout = 20.;
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
     cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
@@ -423,7 +421,7 @@ static const NSTimeInterval timeout = 20.;
     VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator cardVerifier:self.verifier];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
     cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity error:&error];
     XCTAssert(error == nil);
     
@@ -491,7 +489,7 @@ static const NSTimeInterval timeout = 20.;
         counter++;
     }];
 
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:tokenProvider cardVerifier:self.verifier];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:tokenProvider cardVerifier:self.verifier];
     cardManagerParams.cardClient = [self.utils setupClientWithProvider:tokenProvider];
 
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
@@ -529,11 +527,11 @@ static const NSTimeInterval timeout = 20.;
     VSSGeneratorJwtProvider *generator2 = [self.utils getGeneratorJwtProviderWithIdentity:identity2 error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManagerParams *cardManagerParams1 = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator1 cardVerifier:self.verifier];
+    VSSCardManagerParams *cardManagerParams1 = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator1 cardVerifier:self.verifier];
     cardManagerParams1.cardClient = [self.utils setupClientWithIdentity:identity1 error:&error];
     XCTAssert(error == nil);
     
-    VSSCardManagerParams *cardManagerParams2 = [[VSSCardManagerParams alloc] initWithCardCrypto:self.cardCrypto accessTokenProvider:generator2 cardVerifier:self.verifier];
+    VSSCardManagerParams *cardManagerParams2 = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator2 cardVerifier:self.verifier];
     cardManagerParams2.cardClient = [self.utils setupClientWithIdentity:identity2 error:&error];
     XCTAssert(error == nil);
     

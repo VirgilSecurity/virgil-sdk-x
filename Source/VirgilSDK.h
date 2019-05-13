@@ -34,4 +34,4 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-#import "VSSKeyStoragePublic.h"
+#import "VSSKeyEntry.h"

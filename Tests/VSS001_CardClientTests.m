@@ -46,7 +46,6 @@
 
 @property (nonatomic) VSSTestsConst *consts;
 @property (nonatomic) VSMVirgilCrypto *crypto;
-@property (nonatomic) VSMVirgilCardCrypto *cardCrypto;
 @property (nonatomic) VSSTestUtils *utils;
 @property (nonatomic) VSSVirgilCardVerifier *verifier;
 
@@ -60,11 +59,10 @@
     
     self.consts = [[VSSTestsConst alloc] init];
     self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:NO error:nil];
-    self.cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
     self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
     
     if (self.consts.servicePublicKey == nil) {
-        self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[]];
+        self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[]];
     }
     else {
         NSData *publicKeyData = [[NSData alloc] initWithBase64EncodedString:self.consts.servicePublicKey options:0];
@@ -72,7 +70,7 @@
         NSError *error;
         VSSWhitelist *whitelist = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds] error:&error];
         XCTAssert(error == nil);
-        self.verifier = [[VSSVirgilCardVerifier alloc] initWithCardCrypto:self.cardCrypto whitelists:@[whitelist]];
+        self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[whitelist]];
         self.verifier.verifyVirgilSignature = NO;
     }
 }
@@ -99,16 +97,16 @@
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     XCTAssert(error == nil && rawCard != nil);
     
-    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
+    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.crypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
     XCTAssert(error == nil);
     
     VSSRawSignedModel *responseRawCard = [cardClient publishCardWithModel:rawCard error:&error];
     XCTAssert(error == nil && responseRawCard != nil);
 
-    VSSCard *responseCard = [VSSCardManager parseCardFrom:responseRawCard cardCrypto:self.cardCrypto error:&error];
+    VSSCard *responseCard = [VSSCardManager parseCardFrom:responseRawCard crypto:self.crypto error:&error];
     XCTAssert(error == nil && responseCard != nil);
-    VSSCard *card = [VSSCardManager parseCardFrom:rawCard cardCrypto:self.cardCrypto error:&error];
+    VSSCard *card = [VSSCardManager parseCardFrom:rawCard crypto:self.crypto error:&error];
     XCTAssert(error == nil && card != nil && responseCard != nil);
     
     XCTAssert([self.utils isCardsEqualWithCard:responseCard and:card]);
@@ -138,19 +136,19 @@
 
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     
-    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
+    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.crypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
     XCTAssert(error == nil);
     XCTAssert(rawCard.signatures.count == 1);
     
     VSSRawSignedModel *publishedRawCard = [cardClient publishCardWithModel:rawCard error:&error];
     XCTAssert(error == nil);
-    VSSCard *card = [VSSCardManager parseCardFrom:publishedRawCard cardCrypto:self.cardCrypto error:&error];
+    VSSCard *card = [VSSCardManager parseCardFrom:publishedRawCard crypto:self.crypto error:&error];
     XCTAssert(error == nil && card != nil);
     
     VSSGetCardResponse *getCardResponse = [cardClient getCardWithId:card.identifier error:&error];
     
-    VSSCard *foundCard = [VSSCardManager parseCardFrom:getCardResponse.rawCard cardCrypto:self.cardCrypto error:&error];
+    VSSCard *foundCard = [VSSCardManager parseCardFrom:getCardResponse.rawCard crypto:self.crypto error:&error];
     XCTAssert(error == nil && foundCard != nil);
 
     VSSRawCardContent *responseContent = [[VSSRawCardContent alloc] initWithSnapshot:getCardResponse.rawCard.contentSnapshot error:nil];
@@ -177,21 +175,21 @@
     NSData *snapshot = [content snapshotAndReturnError:nil];
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     
-    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
+    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.crypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
     XCTAssert(error == nil);
     XCTAssert(rawCard.signatures.count == 1);
     
     VSSRawSignedModel *publishedRawCard = [cardClient publishCardWithModel:rawCard error:&error];
     XCTAssert(error == nil);
-    VSSCard *card = [VSSCardManager parseCardFrom:publishedRawCard cardCrypto:self.cardCrypto error:&error];
+    VSSCard *card = [VSSCardManager parseCardFrom:publishedRawCard crypto:self.crypto error:&error];
     XCTAssert(error == nil && card != nil);
     
     NSArray<VSSRawSignedModel *> *foundRawCards = [cardClient searchCardsWithIdentities:@[identity] error:&error];
     XCTAssert(foundRawCards.count == 1);
     VSSRawSignedModel *foundRawCard = foundRawCards.firstObject;
     
-    VSSCard *foundCard = [VSSCardManager parseCardFrom:foundRawCard cardCrypto:self.cardCrypto error:&error];
+    VSSCard *foundCard = [VSSCardManager parseCardFrom:foundRawCard crypto:self.crypto error:&error];
     XCTAssert(error == nil && foundCard != nil);
     
     VSSRawCardContent *responseContent = [[VSSRawCardContent alloc] initWithSnapshot:foundRawCard.contentSnapshot error:nil];
@@ -220,7 +218,7 @@
     VSSCardClient *cardClient = [self.utils setupClientWithIdentity:wrongIdentity error:&error];
     XCTAssert(error == nil);
     
-    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
+    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.crypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
     XCTAssert(error == nil);
     
@@ -253,7 +251,7 @@
     
     VSSCardClient *cardClient = self.consts.serviceURL == nil ? [[VSSCardClient alloc] initWithAccessTokenProvider:provider] : [[VSSCardClient alloc] initWithAccessTokenProvider:provider serviceUrl:self.consts.serviceURL];
     
-    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
+    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.crypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:&error];
     XCTAssert(error == nil);
     
@@ -287,7 +285,7 @@
     VSSRawSignedModel *rawCard1 = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot1];
     VSSRawSignedModel *rawCard2 = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot2];
     
-    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCardCrypto:self.cardCrypto];
+    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.crypto];
     [signer selfSignWithModel:rawCard1 privateKey:keyPair1.privateKey additionalData:nil error:&error];
     XCTAssert(error == nil);
     [signer selfSignWithModel:rawCard2 privateKey:keyPair2.privateKey additionalData:nil error:&error];
@@ -297,17 +295,17 @@
     XCTAssert(error == nil);
     VSSRawSignedModel *publishedRawCard2 = [cardClient2 publishCardWithModel:rawCard2 error:&error];
     XCTAssert(error == nil);
-    VSSCard *card1 = [VSSCardManager parseCardFrom:publishedRawCard1 cardCrypto:self.cardCrypto error:&error];
+    VSSCard *card1 = [VSSCardManager parseCardFrom:publishedRawCard1 crypto:self.crypto error:&error];
     XCTAssert(error == nil && card1 != nil);
-    VSSCard *card2 = [VSSCardManager parseCardFrom:publishedRawCard2 cardCrypto:self.cardCrypto error:&error];
+    VSSCard *card2 = [VSSCardManager parseCardFrom:publishedRawCard2 crypto:self.crypto error:&error];
     XCTAssert(error == nil && card2 != nil);
     
     NSArray<VSSRawSignedModel *> *foundRawCards = [cardClient1 searchCardsWithIdentities:@[identity1, identity2] error:&error];
     XCTAssert(foundRawCards.count == 2);
     
-    VSSCard *foundCard1 = [VSSCardManager parseCardFrom:foundRawCards[0] cardCrypto:self.cardCrypto error:&error];
+    VSSCard *foundCard1 = [VSSCardManager parseCardFrom:foundRawCards[0] crypto:self.crypto error:&error];
     XCTAssert(error == nil && foundCard1 != nil);
-    VSSCard *foundCard2 = [VSSCardManager parseCardFrom:foundRawCards[1] cardCrypto:self.cardCrypto error:&error];
+    VSSCard *foundCard2 = [VSSCardManager parseCardFrom:foundRawCards[1] crypto:self.crypto error:&error];
     XCTAssert(error == nil && foundCard2 != nil);
     
     if ([foundCard1.identity isEqualToString:identity2]) {

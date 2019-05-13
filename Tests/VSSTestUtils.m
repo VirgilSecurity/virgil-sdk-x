@@ -63,8 +63,7 @@
     
     VSSRawSignedModel *rawCard = [[VSSRawSignedModel alloc] initWithContentSnapshot:snapshot];
     
-    VSMVirgilCardCrypto *cardCrypto = [[VSMVirgilCardCrypto alloc] initWithVirgilCrypto:self.crypto];
-    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCardCrypto:cardCrypto];
+    VSSModelSigner *signer = [[VSSModelSigner alloc] initWithCrypto:self.crypto];
     [signer selfSignWithModel:rawCard privateKey:keyPair.privateKey additionalData:nil error:errorPtr];
 
     return rawCard;
@@ -77,23 +76,13 @@
     if (privateKey == nil)
         return nil;
     
-    VSMVirgilAccessTokenSigner *tokenSigner = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:self.crypto];
-    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey apiPublicKeyIdentifier:self.consts.apiPublicKeyId accessTokenSigner:tokenSigner appId:self.consts.applicationId ttl:1000];
+    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey crypto:self.crypto appId:self.consts.applicationId ttl:1000 error:nil];
     
     VSSJwt *jwt = [generator generateTokenWithIdentity:identity additionalData:nil error:errorPtr];
     if (jwt == nil)
         return nil;
 
     NSString *strToken = [jwt stringRepresentation];
-    
-    NSData *pubKey = [[NSData alloc] initWithBase64EncodedString:self.consts.apiPublicKeyBase64 options:0];
-    VSMVirgilPublicKey *key = [self.crypto importPublicKeyFrom:pubKey error:errorPtr];
-    
-    VSSJwtVerifier *verifier = [[VSSJwtVerifier alloc] initWithApiPublicKey:key apiPublicKeyIdentifier:_consts.apiPublicKeyId accessTokenSigner:tokenSigner];
-    
-    if ([verifier verifyWithToken:jwt] == false) {
-        return nil;
-    }
     
     return strToken;
 }
@@ -103,8 +92,7 @@
     NSData *privKey = [[NSData alloc] initWithBase64EncodedString:_consts.apiPrivateKeyBase64 options:0];
     VSMVirgilPrivateKey *privateKey = (VSMVirgilPrivateKey *)[exporter importPrivateKeyFrom:privKey error:errorPtr];
     
-    VSMVirgilAccessTokenSigner *tokenSigner = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:self.crypto];
-    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey apiPublicKeyIdentifier:self.consts.apiPublicKeyId accessTokenSigner:tokenSigner appId:self.consts.applicationId ttl:ttl];
+    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey crypto:self.crypto appId:self.consts.applicationId ttl:ttl error:nil];
     
     VSSJwt *jwtToken = [generator generateTokenWithIdentity:identity additionalData:nil error:errorPtr];
     return jwtToken;
@@ -114,8 +102,7 @@
     VSMVirgilKeyPair *wrongKeyPair = [self.crypto generateKeyPairAndReturnError:errorPtr];
     VSMVirgilPrivateKey *privateKey = wrongKeyPair.privateKey;
     
-    VSMVirgilAccessTokenSigner *tokenSigner = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:self.crypto];
-    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey apiPublicKeyIdentifier:self.consts.apiPublicKeyId accessTokenSigner:tokenSigner appId:self.consts.applicationId ttl:1000];
+    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey crypto:self.crypto appId:self.consts.applicationId ttl:1000 error:nil];
     
     VSSJwt *jwtToken = [generator generateTokenWithIdentity:identity additionalData:nil error:errorPtr];
     
@@ -129,8 +116,7 @@
     NSData *privKey = [[NSData alloc] initWithBase64EncodedString:self.consts.apiPrivateKeyBase64 options:0];
     VSMVirgilPrivateKey *privateKey = (VSMVirgilPrivateKey *)[exporter importPrivateKeyFrom:privKey error:errorPtr];
 
-    VSMVirgilAccessTokenSigner *tokenSigner = [[VSMVirgilAccessTokenSigner alloc] initWithVirgilCrypto:self.crypto];
-    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey apiPublicKeyIdentifier:self.consts.apiPublicKeyId accessTokenSigner:tokenSigner appId:self.consts.applicationId ttl:1000];
+    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey crypto:self.crypto appId:self.consts.applicationId ttl:1000 error:nil];
 
     VSSGeneratorJwtProvider *generatorProvider = [[VSSGeneratorJwtProvider alloc] initWithJwtGenerator:generator defaultIdentity:identity additionalData:nil];
 

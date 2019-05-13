@@ -40,7 +40,7 @@ import Foundation
 @objc(VSSRawCardContent) public final class RawCardContent: NSObject, Codable {
     /// Card identity
     @objc public let identity: String
-    /// PublicKey data
+    /// VirgilPublicKey data
     @objc public let publicKey: Data
     /// Identifier of outdated previous Virgil Card with same identity.
     @objc public let previousCardId: String?
@@ -62,7 +62,7 @@ import Foundation
     ///
     /// - Parameters:
     ///   - identity: Card identity
-    ///   - publicKey: PublicKey data
+    ///   - publicKey: VirgilPublicKey data
     ///   - previousCardId: Identifier of previous Virgil Card with same identity
     ///   - version: Virgil Card version
     ///   - createdAt: Date of creation
@@ -79,7 +79,7 @@ import Foundation
     ///
     /// - Parameters:
     ///   - identity: Card identity
-    ///   - publicKey: PublicKey data
+    ///   - publicKey: VirgilPublicKey data
     ///   - previousCardId: Identifier of previous Virgil Card with same identity
     ///   - version: Virgil Card version
     ///   - createdAtTimestamp: Timestamp of creation
