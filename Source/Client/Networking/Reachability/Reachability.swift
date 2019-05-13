@@ -39,15 +39,19 @@ import Foundation
 import SystemConfiguration
 #endif
 
-internal class ReachabilityHelper {
-
-#if os(watchOS)
-    internal func waitTillReachable(timeoutDate: Date, url: String) throws {
+/// Reachability
+public class Reachability: ReachabilityProtocol {
+    /// Blocks threads till network becomes reachable, or till timeoutDate has come
+    ///
+    /// - Parameters:
+    ///   - timeoutDate: timeout date
+    ///   - url: request url
+    /// - Throws: NetworkRetryOperationError.reachabilityError, NetworkRetryOperationError.timeout
+    public func waitTillReachable(timeoutDate: Date, url: String) throws {
+    #if os(watchOS)
         // Not supported
         throw NetworkRetryOperationError.reachabilityError
-    }
-#else
-    internal func waitTillReachable(timeoutDate: Date, url: String) throws {
+    #else
         var address = sockaddr_in()
         address.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
         address.sin_family = sa_family_t(AF_INET)
@@ -117,6 +121,6 @@ internal class ReachabilityHelper {
             Log.debug("Retrying request to \(context.urlString) connection timeout")
             throw NetworkRetryOperationError.timeout
         }
+    #endif
     }
-#endif
 }

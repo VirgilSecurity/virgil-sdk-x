@@ -51,7 +51,7 @@ class VSS017_NetworkTests: XCTestCase {
         self.client = BaseClient(accessTokenProvider: generator, serviceUrl: self.url)
     }
     
-    func test01() {
+    func test01__cancel__should_be_cancelled() {
         let exp = expectation(description: "")
         
         let request = try! ServiceRequest(url: self.url, method: .get)
@@ -77,5 +77,81 @@ class VSS017_NetworkTests: XCTestCase {
         op.cancel()
         
         self.wait(for: [exp], timeout: 15)
+    }
+    
+    func test02__network_retry__should_retry() {
+        let request = try! ServiceRequest(url: self.url, method: .get)
+        
+        class FakeAccessToken: AccessToken {
+            func stringRepresentation() -> String {
+                return ""
+            }
+            
+            func identity() -> String {
+                return ""
+            }
+        }
+        
+        class FakeConnection: HttpConnectionProtocol {
+            private var counter = 0
+            
+            func checkState() {
+                XCTAssert(self.counter == 3)
+            }
+            
+            func send(_ request: Request) throws -> GenericOperation<Response> {
+                if (self.counter == 0 || self.counter == 1) {
+                    self.counter += 1
+                    return CallbackOperation { _, completion in
+                        completion(nil, NSError(domain: NSURLErrorDomain, code: NSURLErrorCannotConnectToHost, userInfo: nil))
+                    }
+                }
+                else if (self.counter == 2) {
+                    self.counter += 1
+                    let urlResponse = HTTPURLResponse(url: URL(string: "https://example.com")!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+                    
+                    return CallbackOperation { _, completion in
+                        completion(Response(statusCode: 200, response: urlResponse, body: nil), nil)
+                    }
+                }
+                
+                XCTFail()
+                throw NSError()
+            }
+        }
+        
+        class FakeReachability: ReachabilityProtocol {
+            private var counter = 0
+            
+            func checkState() {
+                XCTAssert(self.counter == 2)
+            }
+            
+            func waitTillReachable(timeoutDate: Date, url: String) throws {
+                self.counter += 1
+                sleep(2)
+            }
+        }
+        
+        let reachability = FakeReachability()
+        let connection = FakeConnection()
+        
+        
+        let op = NetworkRetryOperation(request: request,
+                                       retry: ExpBackoffRetry(),
+                                       tokenContext: TokenContext(service: "", operation: ""),
+                                       accessTokenProvider: ConstAccessTokenProvider(accessToken: FakeAccessToken()),
+                                       connection: connection,
+                                       reachability: reachability)
+        
+        do {
+            _ = try op.startSync().getResult()
+        }
+        catch {
+            XCTFail(error.localizedDescription)
+        }
+        
+        reachability.checkState()
+        connection.checkState()
     }
 }

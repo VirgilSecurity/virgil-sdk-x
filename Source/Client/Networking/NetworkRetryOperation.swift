@@ -72,6 +72,9 @@ open class NetworkRetryOperation: GenericOperation<Response> {
     /// Token
     public private(set) var token: AccessToken? = nil
 
+    /// Reachability
+    public let reachability: ReachabilityProtocol
+
     /// Initializer
     ///
     /// - Parameters:
@@ -84,12 +87,14 @@ open class NetworkRetryOperation: GenericOperation<Response> {
                 retry: RetryProtocol,
                 tokenContext: TokenContext,
                 accessTokenProvider: AccessTokenProvider,
-                connection: HttpConnectionProtocol) {
+                connection: HttpConnectionProtocol,
+                reachability: ReachabilityProtocol? = nil) {
         self.request = request
         self.retry = retry
         self.tokenContext = tokenContext
         self.accessTokenProvider = accessTokenProvider
         self.connection = connection
+        self.reachability = reachability ?? Reachability()
 
         super.init()
     }
@@ -195,10 +200,8 @@ open class NetworkRetryOperation: GenericOperation<Response> {
                     case .retryConnection:
                         Log.debug("Retrying request to \(request.url.absoluteString) due to connection problems")
 
-                        let reachabilityHelper = ReachabilityHelper()
-
-                        try reachabilityHelper.waitTillReachable(timeoutDate: timeoutDate,
-                                                                 url: request.url.absoluteString)
+                        try self.reachability.waitTillReachable(timeoutDate: timeoutDate,
+                                                                url: request.url.absoluteString)
 
                         forceRefreshToken = false
                     }
