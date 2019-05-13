@@ -78,10 +78,11 @@ import Foundation
     ///   - requestRetryConfig: Retry config
     public init(accessTokenProvider: AccessTokenProvider,
                 serviceUrl: URL,
+                connection: HttpConnectionProtocol? = nil,
                 retryConfig: ExpBackoffRetry.Config) {
         let version = VersionUtils.getVersion(bundleIdentitifer: "com.virgilsecurity.VirgilSDK")
 
-        let connection = HttpConnection(adapters: [VirgilAgentAdapter(product: "sdk", version: version)])
+        let connection = connection ?? HttpConnection(adapters: [VirgilAgentAdapter(product: "sdk", version: version)])
 
         self.retryConfig = retryConfig
 
