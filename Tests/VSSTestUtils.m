@@ -70,9 +70,8 @@
 }
 
 - (NSString * __nonnull)getTokenStringWithIdentity:(NSString * __nonnull)identity error:(NSError * __nullable * __nullable)errorPtr {
-    VSMVirgilPrivateKeyExporter *exporter = [[VSMVirgilPrivateKeyExporter alloc] initWithVirgilCrypto:self.crypto];
     NSData *privKey = [[NSData alloc] initWithBase64EncodedString:self.consts.apiPrivateKeyBase64 options:0];
-    VSMVirgilPrivateKey *privateKey = (VSMVirgilPrivateKey *)[exporter importPrivateKeyFrom:privKey error:errorPtr];
+    VSMVirgilPrivateKey *privateKey = [self.crypto importPrivateKeyFrom:privKey error:errorPtr].privateKey;
     if (privateKey == nil)
         return nil;
     
@@ -88,9 +87,8 @@
 }
 
 - (id<VSSAccessToken> __nonnull)getTokenWithIdentity:(NSString * __nonnull)identity ttl:(NSTimeInterval)ttl error:(NSError * __nullable * __nullable)errorPtr {
-    VSMVirgilPrivateKeyExporter *exporter = [[VSMVirgilPrivateKeyExporter alloc] initWithVirgilCrypto:self.crypto];
     NSData *privKey = [[NSData alloc] initWithBase64EncodedString:_consts.apiPrivateKeyBase64 options:0];
-    VSMVirgilPrivateKey *privateKey = (VSMVirgilPrivateKey *)[exporter importPrivateKeyFrom:privKey error:errorPtr];
+    VSMVirgilPrivateKey *privateKey = [self.crypto importPrivateKeyFrom:privKey error:errorPtr].privateKey;
     
     VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey crypto:self.crypto appId:self.consts.applicationId ttl:ttl error:nil];
     
@@ -112,9 +110,8 @@
 }
 
 - (VSSGeneratorJwtProvider * __nonnull)getGeneratorJwtProviderWithIdentity:(NSString *)identity error:(NSError * __nullable * __nullable)errorPtr {
-    VSMVirgilPrivateKeyExporter *exporter = [[VSMVirgilPrivateKeyExporter alloc] initWithVirgilCrypto:self.crypto];
     NSData *privKey = [[NSData alloc] initWithBase64EncodedString:self.consts.apiPrivateKeyBase64 options:0];
-    VSMVirgilPrivateKey *privateKey = (VSMVirgilPrivateKey *)[exporter importPrivateKeyFrom:privKey error:errorPtr];
+    VSMVirgilPrivateKey *privateKey = [self.crypto importPrivateKeyFrom:privKey error:errorPtr].privateKey;
 
     VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey crypto:self.crypto appId:self.consts.applicationId ttl:1000 error:nil];
 

@@ -226,9 +226,9 @@
     XCTAssert(card != nil && error == nil);
 
     NSString *privateKey1Base64 = self.testData[@"STC-10.private_key1_base64"];
-    VSMVirgilPrivateKeyExporter *exporter = [[VSMVirgilPrivateKeyExporter alloc] initWithVirgilCrypto:self.crypto];
+    
     NSData *data = [[NSData alloc] initWithBase64EncodedString:privateKey1Base64 options:0];
-    VSMVirgilPrivateKey *privateKey = (VSMVirgilPrivateKey *)[exporter importPrivateKeyFrom:data error:&error];
+    VSMVirgilPrivateKey *privateKey = [self.crypto importPrivateKeyFrom:data error:&error].privateKey;
     XCTAssert(error == nil);
 
     VSMVirgilPublicKey *publicKey1 = [self.crypto extractPublicKeyFrom:privateKey];

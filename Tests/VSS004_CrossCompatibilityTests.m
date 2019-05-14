@@ -335,8 +335,7 @@
     
     NSString *apiKeyStringBase64 = self.testData[@"STC-23.api_private_key_base64"];
     NSData *apiKeyDataBase64 = [[NSData alloc] initWithBase64EncodedString:apiKeyStringBase64 options:0];
-    VSMVirgilPrivateKeyExporter *exporter = [[VSMVirgilPrivateKeyExporter alloc] initWithVirgilCrypto:self.crypto];
-    VSMVirgilPrivateKey *privateKey = (VSMVirgilPrivateKey *)[exporter importPrivateKeyFrom:apiKeyDataBase64 error:&error];
+    VSMVirgilPrivateKey *privateKey = [self.crypto importPrivateKeyFrom:apiKeyDataBase64 error:&error].privateKey;
     XCTAssert(error == nil);
     
     VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey crypto:self.crypto appId:self.testData[@"STC-23.app_id"] ttl:1000 error:nil];
