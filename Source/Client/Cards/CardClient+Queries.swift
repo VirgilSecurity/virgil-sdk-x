@@ -156,22 +156,12 @@ extension CardClient: CardClientProtocol {
     ///               http status code as error code, and description string if present in http body
     ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
     @objc public func revokeCard(withId cardId: String, token: String) throws {
-        // FIXME: Uncomment after service update
-//        guard let url = URL(string: "card/v5/actions/revoke/\(cardId)", relativeTo: self.serviceUrl) else {
-//            throw CardClientError.constructingUrl
-//        }
-//
-//        let request = try ServiceRequest(url: url,
-//                                         method: .post,
-//                                         accessToken: token)
-//
-
-        guard let url = URL(string: "card/v5/actions/delete/\(cardId)", relativeTo: self.serviceUrl) else {
+        guard let url = URL(string: "card/v5/actions/revoke/\(cardId)", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
 
         let request = try ServiceRequest(url: url,
-                                         method: .delete,
+                                         method: .post,
                                          accessToken: token)
 
         let response = try self.connection.send(request)
