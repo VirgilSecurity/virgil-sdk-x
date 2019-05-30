@@ -310,4 +310,45 @@ extension CardManager {
             return OperationUtils.makeRetryAggregate(makeAggregateOperation: makeAggregateOperation)
         }
     }
+
+    /// Makes CallbackOperation<Void> for performing revokation of Virgil Card
+    ///
+    /// Revoked card gets isOutdated flag to be set to true.
+    /// Also, such cards could be obtained using get query, but will be absent in search query result.
+    ///
+    /// - Parameter cardId: identifier of card to revoke
+    /// - Returns: CallbackOperation<Void>
+    open func revokeCard(withId cardId: String) -> GenericOperation<Void> {
+        let makeAggregateOperation: (Bool) -> GenericOperation<Void> = { forceReload in
+            CallbackOperation { _, completion in
+                let tokenContext = TokenContext(service: "cards", operation: "revoke", forceReload: forceReload)
+                let getTokenOperation = OperationUtils.makeGetTokenOperation(
+                    tokenContext: tokenContext, accessTokenProvider: self.accessTokenProvider)
+                let revokeCardOperation = self.makeRevokeCardOperation(id: cardId)
+                let completionOperation = OperationUtils.makeCompletionOperation(completion: completion)
+
+                revokeCardOperation.addDependency(getTokenOperation)
+
+                completionOperation.addDependency(getTokenOperation)
+                completionOperation.addDependency(revokeCardOperation)
+
+                let queue = OperationQueue()
+
+                let operations = [
+                    getTokenOperation,
+                    revokeCardOperation,
+                    completionOperation
+                ]
+
+                queue.addOperations(operations, waitUntilFinished: false)
+            }
+        }
+
+        if !self.retryOnUnauthorized {
+            return makeAggregateOperation(false)
+        }
+        else {
+            return OperationUtils.makeRetryAggregate(makeAggregateOperation: makeAggregateOperation)
+        }
+    }
 }
