@@ -1569,10 +1569,9 @@
 			};
 			buildConfigurationList = 361403101BB2E05F002E69CA /* Build configuration list for PBXProject "VirgilSDK" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
