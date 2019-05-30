@@ -248,6 +248,7 @@ cardManager.searchCards(identity: "Bob").start { result in
 ```
 
 #### Decrypt then verify data
+
 Once the Users receive the signed and encrypted message, they can decrypt it with their own Private Key and verify signature with a Sender's Card:
 
 ```swift
@@ -272,6 +273,19 @@ cardManager.searchCards(identity: "Alice").start { result in
     // Error occured
     case .failure(let error): break
     }
+}
+```
+
+#### Revoke card
+
+User can revoke his card in case he doesn't need it anymore. Revoked card can still be obained using its identifier, but this card won't appear during search query.
+
+```swift
+import VirgilSDK
+import VirgilCrypto
+
+// using cardManager to revoke card
+let result = cardManager.revokeCard(withId: card.identifier).startSync()
 }
 ```
 
