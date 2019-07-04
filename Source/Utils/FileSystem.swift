@@ -36,32 +36,39 @@
 
 import VirgilCrypto
 
+/// Encryption credentials
+@objc(VSSFileSystemCredentials) open class FileSystemCredentials: NSObject {
+    /// Crypto
+    @objc public let crypto: VirgilCrypto
+    
+    /// Keypair
+    @objc public let keyPair: VirgilKeyPair
+    
+    @objc public init(crypto: VirgilCrypto, keyPair: VirgilKeyPair) {
+        self.crypto = crypto
+        self.keyPair = keyPair
+
+        super.init()
+    }
+}
+
 /// Class for saving data to the filesystem
 /// - Note: This class is NOT thread-safe
 /// - Tag: FileSystem
-open class FileSystem: NSObject {
-    /// Encryption credentials
-    public struct Credentials {
-        /// Crypto
-        public let crypto: VirgilCrypto
-
-        /// Keypair
-        public let keyPair: VirgilKeyPair
-    }
-
+@objc(VSSFileSystem) open class FileSystem: NSObject {
     private let fileManager = FileManager()
 
     /// Prefix
-    public let prefix: String
+    @objc public let prefix: String
 
     /// User identifier (identity)
-    public let userIdentifier: String
+    @objc public let userIdentifier: String
 
     /// Path components
-    public let pathComponents: [String]
+    @objc public let pathComponents: [String]
 
     /// Encryption credentials
-    public let credentials: Credentials?
+    @objc public let credentials: FileSystemCredentials?
 
     /// Init
     ///
@@ -70,10 +77,10 @@ open class FileSystem: NSObject {
     ///   - userIdentifier: user identifier
     ///   - pathComponents: path components
     ///   - credentials: encryption credentials
-    public init(prefix: String,
+    @objc public init(prefix: String,
                 userIdentifier: String,
                 pathComponents: [String],
-                credentials: Credentials? = nil) {
+                credentials: FileSystemCredentials? = nil) {
         self.prefix = prefix
         self.userIdentifier = userIdentifier
         self.pathComponents = pathComponents
@@ -177,7 +184,7 @@ extension FileSystem {
     ///   - name: file name
     ///   - subdir: subdirectory
     /// - Throws: Rethrows from FileManager
-    public func write(data: Data, name: String, subdir: String? = nil) throws {
+    @objc public func write(data: Data, name: String, subdir: String? = nil) throws {
         let url = try self.getFullUrl(name: name, subdir: subdir)
 
         try self.writeFile(url: url, data: data)
@@ -190,7 +197,7 @@ extension FileSystem {
     ///   - subdir: subdirectory
     /// - Returns: Data
     /// - Throws: Rethrows from FileManager
-    public func read(name: String, subdir: String? = nil) throws -> Data {
+    @objc public func read(name: String, subdir: String? = nil) throws -> Data {
         let url = try self.getFullUrl(name: name, subdir: subdir)
 
         return try self.readFile(url: url)
@@ -202,7 +209,7 @@ extension FileSystem {
     ///   - name: file name
     ///   - subdir: subdirectory
     /// - Throws: Rethrows from FileManager
-    public func delete(name: String, subdir: String? = nil) throws {
+    @objc public func delete(name: String, subdir: String? = nil) throws {
         let url = try self.getFullUrl(name: name, subdir: subdir)
 
         try self.fileManager.removeItem(at: url)
@@ -212,7 +219,7 @@ extension FileSystem {
     ///
     /// - Parameter subdir: subdirectory
     /// - Throws: Rethrows from FileManager
-    public func delete(subdir: String? = nil) throws {
+    @objc public func delete(subdir: String? = nil) throws {
         let url = try self.getFullUrl(name: nil, subdir: subdir)
 
         try self.fileManager.removeItem(at: url)
