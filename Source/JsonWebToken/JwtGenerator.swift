@@ -68,7 +68,7 @@ import VirgilCrypto
                       appId: String,
                       ttl: TimeInterval = JwtGenerator.defaultTtl) throws {
         self.apiKey = apiKey
-        
+
         let publicKeyData = try crypto.exportPublicKey(crypto.extractPublicKey(from: apiKey))
         self.apiPublicKeyIdentifier = crypto
             .computeHash(for: publicKeyData, using: .sha512).subdata(in: 0..<16)

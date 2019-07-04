@@ -68,6 +68,10 @@
 		423D3E7A222E6CDB006C7E4C /* RetryChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423D3E77222E6CDB006C7E4C /* RetryChoice.swift */; };
 		423D3E7B222E6CDB006C7E4C /* RetryChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423D3E77222E6CDB006C7E4C /* RetryChoice.swift */; };
 		4244F7FB20331D670053EE4B /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 4244F7F920331D610053EE4B /* data.json */; };
+		42492F3422CE8BFB00BEA96F /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42492F3322CE8BFB00BEA96F /* FileSystem.swift */; };
+		42492F3522CE8BFB00BEA96F /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42492F3322CE8BFB00BEA96F /* FileSystem.swift */; };
+		42492F3622CE8BFB00BEA96F /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42492F3322CE8BFB00BEA96F /* FileSystem.swift */; };
+		42492F3722CE8BFB00BEA96F /* FileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42492F3322CE8BFB00BEA96F /* FileSystem.swift */; };
 		424ACC652231384200DD5072 /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC642231384200DD5072 /* NetworkOperation.swift */; };
 		424ACC662231384200DD5072 /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC642231384200DD5072 /* NetworkOperation.swift */; };
 		424ACC672231384200DD5072 /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC642231384200DD5072 /* NetworkOperation.swift */; };
@@ -565,6 +569,7 @@
 		423D3E77222E6CDB006C7E4C /* RetryChoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryChoice.swift; sourceTree = "<group>"; };
 		4244F7F920331D610053EE4B /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		4244F81C203365BB0053EE4B /* ServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRequest.swift; sourceTree = "<group>"; };
+		42492F3322CE8BFB00BEA96F /* FileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
 		424A7F2F21EF6870006BED3F /* Mutex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mutex.swift; sourceTree = "<group>"; };
 		424A7F3421EF6EE4006BED3F /* VSS013_MutexTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSS013_MutexTests.swift; sourceTree = "<group>"; };
 		424A7F4C21EF760F006BED3F /* VSS014_SandboxedKeyStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSS014_SandboxedKeyStorageTests.swift; sourceTree = "<group>"; };
@@ -870,6 +875,7 @@
 			isa = PBXGroup;
 			children = (
 				1624B83120120872007D223C /* Operation */,
+				42492F3322CE8BFB00BEA96F /* FileSystem.swift */,
 				4284C34A1F6AAB7B00B75491 /* Log.swift */,
 				4284C41C1F6C03DF00B75491 /* Data+hex.swift */,
 				16B3FD5D20078113008F0357 /* Data+base64Url.swift */,
@@ -1492,6 +1498,7 @@
 				42D7AF7F224396AD009D02FD /* Data+base64Url.swift in Sources */,
 				42D7AF80224396AD009D02FD /* DateUtils.swift in Sources */,
 				42D7B041224399BC009D02FD /* SandboxedKeychainStorage.swift in Sources */,
+				42492F3522CE8BFB00BEA96F /* FileSystem.swift in Sources */,
 				42D7AF8E224396AD009D02FD /* Card.swift in Sources */,
 				42D7AF78224396AD009D02FD /* AsyncOperation.swift in Sources */,
 				42D7AF65224396AD009D02FD /* HttpRequestAdapter.swift in Sources */,
@@ -1589,6 +1596,7 @@
 				42D7AFAB224396AE009D02FD /* JwtBodyContent.swift in Sources */,
 				42D7AF94224396AE009D02FD /* RawSignature.swift in Sources */,
 				42D7AFC1224396AE009D02FD /* CardManager+Parse.swift in Sources */,
+				42492F3622CE8BFB00BEA96F /* FileSystem.swift in Sources */,
 				42D7AFB5224396AE009D02FD /* CallbackOperation.swift in Sources */,
 				42860D4E22896B8D00494515 /* Reachability.swift in Sources */,
 				423D3E75222E6C28006C7E4C /* RetryProtocol.swift in Sources */,
@@ -1664,6 +1672,7 @@
 				42D7AFE4224396AF009D02FD /* JwtBodyContent.swift in Sources */,
 				42D7AFCD224396AF009D02FD /* RawSignature.swift in Sources */,
 				42D7AFFA224396AF009D02FD /* CardManager+Parse.swift in Sources */,
+				42492F3722CE8BFB00BEA96F /* FileSystem.swift in Sources */,
 				42860D5322896B8D00494515 /* ReachabilityProtocol.swift in Sources */,
 				42D7AFEE224396AF009D02FD /* CallbackOperation.swift in Sources */,
 				423D3E76222E6C28006C7E4C /* RetryProtocol.swift in Sources */,
@@ -1803,6 +1812,7 @@
 				42D7AF50224396AC009D02FD /* CardManagerParams.swift in Sources */,
 				42D7AF39224396AC009D02FD /* JwtBodyContent.swift in Sources */,
 				42D7AF22224396AC009D02FD /* RawSignature.swift in Sources */,
+				42492F3422CE8BFB00BEA96F /* FileSystem.swift in Sources */,
 				42D7AF4F224396AC009D02FD /* CardManager+Parse.swift in Sources */,
 				42D7AF43224396AC009D02FD /* CallbackOperation.swift in Sources */,
 				423D3E6E222E6C15006C7E4C /* ExpBackoffRetry.swift in Sources */,

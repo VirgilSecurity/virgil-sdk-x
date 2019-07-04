@@ -154,7 +154,7 @@ extension CardClient: CardClientProtocol {
         guard let url = URL(string: "card/v5/actions/revoke/\(cardId)", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
-        
+
         let tokenContext = TokenContext(service: "cards", operation: "revoke", forceReload: false)
 
         let request = try ServiceRequest(url: url,
