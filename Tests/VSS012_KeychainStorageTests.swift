@@ -68,7 +68,7 @@ class VSS012_KeychainStorageTests: XCTestCase {
         
         XCTAssert(keychainEntry.name == name)
         XCTAssert(keychainEntry.data == data)
-        let eps: TimeInterval = 1
+        let eps: TimeInterval = 2
         XCTAssert(abs(keychainEntry.creationDate.timeIntervalSince1970 - Date().timeIntervalSince1970) < eps)
         XCTAssert(abs(keychainEntry.modificationDate.timeIntervalSince1970 - Date().timeIntervalSince1970) < eps)
         XCTAssert(keychainEntry.meta == nil)
@@ -146,7 +146,7 @@ class VSS012_KeychainStorageTests: XCTestCase {
         
         XCTAssert(keychainEntry.name == name)
         XCTAssert(keychainEntry.data == data)
-        let eps: TimeInterval = 1
+        let eps: TimeInterval = 2
         XCTAssert(abs(keychainEntry.creationDate.timeIntervalSince1970 - Date().timeIntervalSince1970) < eps)
         XCTAssert(abs(keychainEntry.modificationDate.timeIntervalSince1970 - Date().timeIntervalSince1970) < eps)
         XCTAssert(keychainEntry.meta == meta)
@@ -170,7 +170,7 @@ class VSS012_KeychainStorageTests: XCTestCase {
         XCTAssert(keychainEntry2.data == data2)
         XCTAssert(keychainEntry2.meta == nil)
         XCTAssert(keychainEntry2.creationDate == keychainEntry1.creationDate)
-        let eps: TimeInterval = 1
+        let eps: TimeInterval = 2
         XCTAssert((keychainEntry2.modificationDate.timeIntervalSince1970 - keychainEntry2.creationDate.timeIntervalSince1970 - waitTime) < eps)
     }
     

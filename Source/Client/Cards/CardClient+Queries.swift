@@ -116,10 +116,11 @@ extension CardClient: CardClientProtocol {
     ///
     /// - Parameter identities: Identities of cards to search
     /// - Returns: Array with `RawSignedModel`s of matched Virgil Cards
-    /// - Throws:
-    ///         - CardClientError.constructingUrl, if url initialization failed
-    ///         - Rethrows from ServiceRequest
-    ///         - Rethrows ServiceError or NSError from BaseClient
+    /// - Throws: CardClientError.constructingUrl, if url initialization failed
+    ///           CardServiceError, if service returned correctly-formed error json
+    ///           NSError with CardClient.serviceErrorDomain error domain,
+    ///               http status code as error code, and description string if present in http body
+    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
     public func searchCards(identities: [String]) throws -> [RawSignedModel] {
         guard let url = URL(string: "card/v5/actions/search", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
@@ -138,5 +139,32 @@ extension CardClient: CardClientProtocol {
             .getResult()
 
         return try self.processResponse(response)
+    }
+
+    /// Revokes card. Revoked card gets isOutdated flag to be set to true.
+    /// Also, such cards could be obtained using get query, but will be absent in search query result.
+    ///
+    /// - Parameter cardId: identifier of card to revoke
+    /// - Throws: CardClientError.constructingUrl, if url initialization failed
+    ///           CardServiceError, if service returned correctly-formed error json
+    ///           NSError with CardClient.serviceErrorDomain error domain,
+    ///               http status code as error code, and description string if present in http body
+    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
+    @objc public func revokeCard(withId cardId: String) throws {
+        guard let url = URL(string: "card/v5/actions/revoke/\(cardId)", relativeTo: self.serviceUrl) else {
+            throw CardClientError.constructingUrl
+        }
+        
+        let tokenContext = TokenContext(service: "cards", operation: "revoke", forceReload: false)
+
+        let request = try ServiceRequest(url: url,
+                                         method: .post)
+
+        let response = try self.sendWithRetry(request,
+                                              retry: self.createRetry(),
+                                              tokenContext: tokenContext)
+        .startSync().getResult()
+
+        try self.validateResponse(response)
     }
 }

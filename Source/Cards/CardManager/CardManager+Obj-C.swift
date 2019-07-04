@@ -97,4 +97,19 @@ extension CardManager {
     @objc open func searchCards(identities: [String], completion: @escaping ([Card]?, Error?) -> Void) {
         self.searchCards(identities: identities).start(completion: completion)
     }
+
+    /// Makes CallbackOperation<Void> for performing revokation of Virgil Card
+    ///
+    /// Revoked card gets isOutdated flag to be set to true.
+    /// Also, such cards could be obtained using get query, but will be absent in search query result.
+    ///
+    /// - Parameters:
+    ///   - cardId: identifier of card to revoke
+    ///   - completion: completion handler, called with corresponding error if any occured
+    @objc open func revokeCard(withId cardId: String,
+                               completion: @escaping (Error?) -> Void) {
+        self.revokeCard(withId: cardId).start { _, error in
+            completion(error)
+        }
+    }
 }

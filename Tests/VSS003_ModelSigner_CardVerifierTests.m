@@ -231,7 +231,7 @@
     VSMVirgilPrivateKey *privateKey = [self.crypto importPrivateKeyFrom:data error:&error].privateKey;
     XCTAssert(error == nil);
 
-    VSMVirgilPublicKey *publicKey1 = [self.crypto extractPublicKeyFrom:privateKey];
+    VSMVirgilPublicKey *publicKey1 = [self.crypto extractPublicKeyFrom:privateKey error:&error];
     NSData *publicKey1Data = [self.crypto exportPublicKey:publicKey1 error:nil];
     XCTAssert(error == nil);
     

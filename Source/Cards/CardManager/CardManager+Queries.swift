@@ -249,4 +249,23 @@ extension CardManager {
         }
 
     }
+
+    /// Makes CallbackOperation<Void> for performing revokation of Virgil Card
+    ///
+    /// Revoked card gets isOutdated flag to be set to true.
+    /// Also, such cards could be obtained using get query, but will be absent in search query result.
+    ///
+    /// - Parameter cardId: identifier of card to revoke
+    /// - Returns: CallbackOperation<Void>
+    open func revokeCard(withId cardId: String) -> GenericOperation<Void> {
+        return CallbackOperation { _, completion in
+            do {
+                try self.cardClient.revokeCard(withId: cardId)
+                completion(Void(), nil)
+            }
+            catch {
+                completion(nil, error)
+            }
+        }
+    }
 }

@@ -62,4 +62,11 @@ import Foundation
     /// - Returns: Array with `RawSignedModel`s of matched Virgil Cards
     /// - Throws: Depends on implementation
     @objc func searchCards(identities: [String]) throws -> [RawSignedModel]
+
+    /// Revokes card. Revoked card gets isOutdated flag to be set to true.
+    /// Also, such cards could be obtained using get query, but will be absent in search query result.
+    ///
+    /// - Parameter cardId: identifier of card to revoke
+    /// - Throws: Depends on implementation
+    @objc func revokeCard(withId cardId: String) throws
 }

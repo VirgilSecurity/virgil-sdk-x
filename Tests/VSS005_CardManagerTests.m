@@ -96,7 +96,6 @@ static const NSTimeInterval timeout = 20.;
 @property (nonatomic) VSSTestsConst *consts;
 @property (nonatomic) VSMVirgilCrypto *crypto;
 @property (nonatomic) VSSTestUtils *utils;
-@property (nonatomic) VSSCardClient *cardClient;
 @property (nonatomic) VSSModelSigner *modelSigner;
 @property (nonatomic) VSSVirgilCardVerifier *verifier;
 
@@ -576,6 +575,45 @@ static const NSTimeInterval timeout = 20.;
                 }];
             }];
         }];
+    }];
+    
+    [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
+        if (error != nil)
+            XCTFail(@"Expectation failed: %@", error);
+    }];
+}
+
+- (void)test010_RevokeCard {
+    XCTestExpectation *ex = [self expectationWithDescription:@""];
+    
+    NSError *error;
+    NSString *identity = [[NSUUID alloc] init].UUIDString;
+    VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
+    XCTAssert(error == nil);
+    
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
+    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity error:&error];
+    
+    VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
+    
+    VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
+    XCTAssert(error == nil);
+    
+    [cardManager publishCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:nil completion:^(VSSCard *card, NSError *error) {
+        XCTAssert(error == nil && card != nil);
+        XCTAssert(card.isOutdated == false);
+        
+        [cardManager revokeCardWithId:card.identifier completion:^(NSError *error) {
+            XCTAssert(error == nil);
+            
+            [cardManager getCardWithId:card.identifier completion:^(VSSCard *card1, NSError *error) {
+                XCTAssert(error == nil && card1 != nil);
+                XCTAssert(card1.isOutdated == true);
+                
+                [ex fulfill];
+            }];
+        }];
+
     }];
     
     [self waitForExpectationsWithTimeout:timeout handler:^(NSError *error) {
