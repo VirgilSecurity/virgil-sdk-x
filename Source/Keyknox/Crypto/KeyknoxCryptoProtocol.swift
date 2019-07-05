@@ -34,20 +34,29 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-#import <Foundation/Foundation.h>
+import Foundation
+import VirgilCrypto
 
-//In order to make this work, substitute appropriate values
-@interface VSSTestsConst : NSObject
+/// Protocol with crypto operations needed for Keyknox
+public protocol KeyknoxCryptoProtocol: class {
+    /// Decrypts EncryptedKeyknoxValue
+    ///
+    /// - Parameters:
+    ///   - encryptedKeyknoxValue: encrypted value from Keyknox service
+    ///   - privateKey: private key to decrypt data
+    ///   - publicKeys: allowed public keys to verify signature
+    /// - Returns: DecryptedKeyknoxValue
+    /// - Throws: Depends on implementation
+    func decrypt(encryptedKeyknoxValue: EncryptedKeyknoxValue, privateKey: VirgilPrivateKey,
+                 publicKeys: [VirgilPublicKey]) throws -> DecryptedKeyknoxValue
 
-@property (nonatomic, readonly) NSString * __nonnull apiPublicKeyId;
-@property (nonatomic, readonly) NSString * __nonnull apiPrivateKeyBase64;
-@property (nonatomic, readonly) NSString * __nonnull apiPublicKeyBase64;
-@property (nonatomic, readonly) NSString * __nonnull applicationId;
-@property (nonatomic, readonly) NSURL * __nullable serviceURL;
-@property (nonatomic, readonly) NSString * __nonnull existentCardId;
-@property (nonatomic, readonly) NSString * __nonnull existentCardIdentity;
-@property (nonatomic, readonly) NSString * __nullable servicePublicKey;
-
-@property (nonatomic, readonly) NSDictionary * __nonnull config;
-
-@end
+    /// Encrypts data for Keyknox
+    ///
+    /// - Parameters:
+    ///   - data: Data to encrypt
+    ///   - privateKey: Private key to sign data
+    ///   - publicKeys: Public keys to encrypt data
+    /// - Returns: Meta information and encrypted blob
+    /// - Throws: Depends on implementation
+    func encrypt(data: Data, privateKey: VirgilPrivateKey, publicKeys: [VirgilPublicKey]) throws -> (Data, Data)
+}

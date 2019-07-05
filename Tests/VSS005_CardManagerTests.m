@@ -39,63 +39,20 @@
 @import VirgilSDK;
 @import VirgilCrypto;
 
-#import "VSSTestsConst.h"
-#import "VSSTestUtils.h"
+#if TARGET_OS_IOS
+#import "VirgilSDK_AppTests_iOS-Swift.h"
+#elif TARGET_OS_TV
+#import "VirgilSDK_AppTests_tvOS-Swift.h"
+#elif TARGET_OS_OSX
+#import "VirgilSDK_macOS_Tests-Swift.h"
+#endif
 
 static const NSTimeInterval timeout = 20.;
 
-@interface VSSAccessTokenProviderMock: NSObject<VSSAccessTokenProvider>
-
-@property (nonatomic) VSSTestsConst *consts;
-@property (nonatomic) VSMVirgilCrypto *crypto;
-@property (nonatomic) VSSTestUtils *utils;
-@property (nonatomic) NSString *identity;
-@property (nonatomic) void (^forceCallback)(BOOL) ;
-@property NSInteger counter;
-
--(id)initWithIdentity:(NSString *)identity forceCallback:(void (^)(BOOL))forceCallback;
-
-- (void)getTokenWith:(VSSTokenContext * _Nonnull)tokenContext completion:(void (^ _Nonnull)(id<VSSAccessToken> _Nullable, NSError * _Nullable))completion;
-
-@end
-
-@implementation VSSAccessTokenProviderMock
-
--(id)initWithIdentity:(NSString *)identity forceCallback:(void (^)(BOOL))forceCallback {
-    self = [super init];
-    
-    self.identity = [identity copy];
-    self.consts = [[VSSTestsConst alloc] init];
-    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:NO error:nil];
-    self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
-    self.forceCallback = forceCallback;
-    self.counter = 0;
-    
-    return self;
-}
-
-- (void)getTokenWith:(VSSTokenContext * _Nonnull)tokenContext completion:(void (^ _Nonnull)(id<VSSAccessToken> _Nullable, NSError * _Nullable))completion {
-    NSTimeInterval interval = (self.counter % 2) == 0 ? 5 : 1000;
-    self.forceCallback(tokenContext.forceReload);
-    
-    NSError *error;
-    id<VSSAccessToken> token = [self.utils getTokenWithIdentity:self.identity ttl:interval error:&error];
-    
-    if (self.counter % 2 == 0)
-        sleep(10);
-    
-    self.counter++;
-
-    completion(token, error);
-}
-
-@end
-
 @interface VSS005_CardManagerTests : XCTestCase
 
-@property (nonatomic) VSSTestsConst *consts;
 @property (nonatomic) VSMVirgilCrypto *crypto;
-@property (nonatomic) VSSTestUtils *utils;
+@property (nonatomic) TestUtils *utils;
 @property (nonatomic) VSSModelSigner *modelSigner;
 @property (nonatomic) VSSVirgilCardVerifier *verifier;
 
@@ -106,9 +63,8 @@ static const NSTimeInterval timeout = 20.;
 - (void)setUp {
     [super setUp];
     
-    self.consts = [[VSSTestsConst alloc] init];
     self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES error:nil];
-    self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
+    self.utils = [TestUtils readFromBundle];
     self.modelSigner = [[VSSModelSigner alloc] initWithCrypto:self.crypto];
     if (self.consts.servicePublicKey == nil) {
         self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[]];
@@ -170,11 +126,9 @@ static const NSTimeInterval timeout = 20.;
 
     NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
-    VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
-    XCTAssert(error == nil);
 
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
-    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity error:&error];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:[self.utils getGeneratorJwtProviderWithIdentity:identity] cardVerifier:self.verifier];
+    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity];
     XCTAssert(error == nil);
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
@@ -189,13 +143,10 @@ static const NSTimeInterval timeout = 20.;
     [cardManager publishCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:dic completion:^(VSSCard *card, NSError *error) {
         XCTAssert(error == nil && card != nil);
         XCTAssert(card.isOutdated == false);
-        XCTAssert([[self.utils getSelfSignatureFromCard:card].extraFields isEqualToDictionary:dic]);
 
         [cardManager getCardWithId:card.identifier completion:^(VSSCard *card1, NSError *error) {
             XCTAssert(error == nil && card1 != nil);
             XCTAssert(card1.isOutdated == false);
-
-            XCTAssert([self.utils isCardsEqualWithCard:card and:card1]);
 
             [ex fulfill];
         }];

@@ -36,6 +36,7 @@
 
 import Foundation
 import VirgilSDK
+import VirgilCrypto
 import XCTest
 
 class VSS017_NetworkTests: XCTestCase {
@@ -43,10 +44,8 @@ class VSS017_NetworkTests: XCTestCase {
     let url = URL(string: "https://example.com/")!
     
     override func setUp() {
-        let crypto = try! VirgilCrypto()
-        let consts = VSSTestsConst()
-        let utils = VSSTestUtils(crypto: crypto, consts: consts)
-        let generator = utils.getGeneratorJwtProvider(withIdentity: "identity", error: nil)
+        let utils = TestUtils.readFromBundle()
+        let generator = utils.getGeneratorJwtProvider(withIdentity: "identity")
         
         self.client = BaseClient(accessTokenProvider: generator, serviceUrl: self.url)
     }

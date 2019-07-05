@@ -35,64 +35,32 @@
 //
 
 import Foundation
-import VirgilSDK
-import XCTest
 
-class VSS013_MutexTests: XCTestCase {
-    func test__nothing__thread_unsafe() {
-        let counter = 2
-        
-        var i = 0
-        
-        var queues: [DispatchQueue] = []
-        
-        for j in 0..<counter {
-            queues.append(DispatchQueue(label: "\(j)"))
-        }
-        
-        for j in 0..<counter {
-            queues[j].async {
-                let k = i
-                
-                sleep(1)
-                
-                i = k + 1
-            }
-        }
-        
-        sleep(UInt32(2 * counter))
-        
-        XCTAssert(i != counter)
-    }
-    
-    func test__lock_unlock__thread_unsafe() {
-        let counter = 2
-        
-        
-        var i = 0
-        
-        var queues: [DispatchQueue] = []
-        
-        for j in 0..<counter {
-            queues.append(DispatchQueue(label: "\(j)"))
-        }
-        
-        let mutex = Mutex()
-        
-        for j in 0..<counter {
-            queues[j].async {
-                try! mutex.executeSync {
-                    let k = i
-                    
-                    sleep(1)
-                    
-                    i = k + 1
-                }
-            }
-        }
-        
-        sleep(UInt32(2 * counter))
-        
-        XCTAssert(i == counter)
-    }
+/// Declares error types and codes for SyncKeyStorage
+///
+/// - keychainEntryNotFoundWhileUpdating: KeychainEntry not found while updating
+/// - cloudEntryNotFoundWhileUpdating: CloudEntry not found while updating
+/// - cloudEntryNotFoundWhileDeleting: CloudEntry notfound while deleting
+/// - keychainEntryNotFoundWhileComparing: KeychainEntry not found while comparing
+/// - keychainEntryAlreadyExistsWhileStoring: KeychainEntry already exists while storing
+/// - cloudEntryAlreadyExistsWhileStoring: CloudEntry already exists while storing
+/// - invalidModificationDateInKeychainEntry: Invalid modificationDate in KeychainEntry
+/// - invalidCreationDateInKeychainEntry: Invalid creationDate in KeychainEntry
+/// - noMetaInKeychainEntry: No meta in keychainEntry
+/// - invalidKeysInEntryMeta: Invalid keys in entry meta
+/// - inconsistentStateError: Inconsistent state error
+/// - entrySavingError: Error while saving entry
+@objc(VSSSyncKeyStorageError) public enum SyncKeyStorageError: Int, Error {
+    case keychainEntryNotFoundWhileUpdating = 1
+    case cloudEntryNotFoundWhileUpdating = 2
+    case cloudEntryNotFoundWhileDeleting = 3
+    case keychainEntryNotFoundWhileComparing = 4
+    case keychainEntryAlreadyExistsWhileStoring = 5
+    case cloudEntryAlreadyExistsWhileStoring = 6
+    case invalidModificationDateInKeychainEntry = 7
+    case invalidCreationDateInKeychainEntry = 8
+    case noMetaInKeychainEntry = 9
+    case invalidKeysInEntryMeta = 10
+    case inconsistentStateError = 11
+    case entrySavingError = 12
 }

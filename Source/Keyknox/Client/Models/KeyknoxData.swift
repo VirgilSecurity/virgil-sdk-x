@@ -35,64 +35,9 @@
 //
 
 import Foundation
-import VirgilSDK
-import XCTest
 
-class VSS013_MutexTests: XCTestCase {
-    func test__nothing__thread_unsafe() {
-        let counter = 2
-        
-        var i = 0
-        
-        var queues: [DispatchQueue] = []
-        
-        for j in 0..<counter {
-            queues.append(DispatchQueue(label: "\(j)"))
-        }
-        
-        for j in 0..<counter {
-            queues[j].async {
-                let k = i
-                
-                sleep(1)
-                
-                i = k + 1
-            }
-        }
-        
-        sleep(UInt32(2 * counter))
-        
-        XCTAssert(i != counter)
-    }
-    
-    func test__lock_unlock__thread_unsafe() {
-        let counter = 2
-        
-        
-        var i = 0
-        
-        var queues: [DispatchQueue] = []
-        
-        for j in 0..<counter {
-            queues.append(DispatchQueue(label: "\(j)"))
-        }
-        
-        let mutex = Mutex()
-        
-        for j in 0..<counter {
-            queues[j].async {
-                try! mutex.executeSync {
-                    let k = i
-                    
-                    sleep(1)
-                    
-                    i = k + 1
-                }
-            }
-        }
-        
-        sleep(UInt32(2 * counter))
-        
-        XCTAssert(i == counter)
-    }
+internal struct KeyknoxData: Codable {
+    internal let meta: Data
+    internal let value: Data
+    internal let version: String
 }

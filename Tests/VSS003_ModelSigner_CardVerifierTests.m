@@ -39,14 +39,18 @@
 @import VirgilSDK;
 @import VirgilCrypto;
 
-#import "VSSTestsConst.h"
-#import "VSSTestUtils.h"
+#if TARGET_OS_IOS
+#import "VirgilSDK_AppTests_iOS-Swift.h"
+#elif TARGET_OS_TV
+#import "VirgilSDK_AppTests_tvOS-Swift.h"
+#elif TARGET_OS_OSX
+#import "VirgilSDK_macOS_Tests-Swift.h"
+#endif
 
 @interface VSS003_ModelSignerCardVerifierTests : XCTestCase
 
-@property (nonatomic) VSSTestsConst *consts;
 @property (nonatomic) VSMVirgilCrypto *crypto;
-@property (nonatomic) VSSTestUtils *utils;
+@property (nonatomic) TestUtils *utils;
 @property (nonatomic) VSSCardClient *cardClient;
 @property (nonatomic) VSSModelSigner *modelSigner;
 @property (nonatomic) VSSVirgilCardVerifier *verifier;
@@ -59,9 +63,8 @@
 - (void)setUp {
     [super setUp];
     
-    self.consts = [[VSSTestsConst alloc] init];
     self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES  error:nil];
-    self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
+    self.utils = [TestUtils readFromBundle];
     self.modelSigner = [[VSSModelSigner alloc] initWithCrypto:self.crypto];
     self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[]];
     
@@ -211,7 +214,7 @@
 -(void)test003_STC_10 {
     NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
-    VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
+    id<VSSAccessTokenProvider> generator = [self.utils getGeneratorJwtProviderWithIdentity:identity];
     XCTAssert(error == nil);
     
     VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
@@ -232,7 +235,6 @@
     XCTAssert(error == nil);
 
     VSMVirgilPublicKey *publicKey1 = [self.crypto extractPublicKeyFrom:privateKey error:&error];
-    NSData *publicKey1Data = [self.crypto exportPublicKey:publicKey1 error:nil];
     XCTAssert(error == nil);
     
     XCTAssert([self.verifier verifyCard:card]);
@@ -243,27 +245,27 @@
     self.verifier.verifyVirgilSignature = true;
     XCTAssert([self.verifier verifyCard:card]);
     
-    NSData *publicKeyData2 = [self.crypto exportPublicKey:[self.crypto generateKeyPairAndReturnError:nil].publicKey error:nil];
-    NSData *publicKeyData3 = [self.crypto exportPublicKey:[self.crypto generateKeyPairAndReturnError:nil].publicKey error:nil];
+    VSMVirgilPublicKey *publicKey2 = [self.crypto generateKeyPairAndReturnError:nil].publicKey;
+    VSMVirgilPublicKey *publicKey3 = [self.crypto generateKeyPairAndReturnError:nil].publicKey;
     
-    VSSVerifierCredentials *creds1 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKey1Data];
+    VSSVerifierCredentials *creds1 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKey1];
     VSSWhitelist *whitelist1 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds1] error:&error];
     XCTAssert(error == nil);
     self.verifier.whitelists = @[whitelist1];
 
     XCTAssert([self.verifier verifyCard:card]);
     
-    VSSVerifierCredentials *creds21 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKey1Data];
-    VSSVerifierCredentials *creds22 = [[VSSVerifierCredentials alloc] initWithSigner:@"test1" publicKey:publicKeyData2];
+    VSSVerifierCredentials *creds21 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKey1];
+    VSSVerifierCredentials *creds22 = [[VSSVerifierCredentials alloc] initWithSigner:@"test1" publicKey:publicKey2];
     VSSWhitelist *whitelist2 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds21, creds22] error:&error];
     XCTAssert(error == nil);
     self.verifier.whitelists = @[whitelist2];
     
     XCTAssert([self.verifier verifyCard:card]);
     
-    VSSVerifierCredentials *creds31 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKey1Data];
-    VSSVerifierCredentials *creds32 = [[VSSVerifierCredentials alloc] initWithSigner:@"test1" publicKey:publicKeyData2];
-    VSSVerifierCredentials *creds33 = [[VSSVerifierCredentials alloc] initWithSigner:@"test2" publicKey:publicKeyData3];
+    VSSVerifierCredentials *creds31 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKey1];
+    VSSVerifierCredentials *creds32 = [[VSSVerifierCredentials alloc] initWithSigner:@"test1" publicKey:publicKey2];
+    VSSVerifierCredentials *creds33 = [[VSSVerifierCredentials alloc] initWithSigner:@"test2" publicKey:publicKey3];
     VSSWhitelist *whitelist31 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds31, creds32] error:&error];
     XCTAssert(error == nil);
     VSSWhitelist *whitelist32 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds33] error:&error];
@@ -276,7 +278,7 @@
 -(void)test004_STC_11 {
     NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
-    VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
+    id<VSSAccessTokenProvider> generator = [self.utils getGeneratorJwtProviderWithIdentity:identity];
     XCTAssert(error == nil);
     
     VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
@@ -298,7 +300,7 @@
 -(void)test005_STC_12 {
     NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
-    VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
+    id<VSSAccessTokenProvider> generator = [self.utils getGeneratorJwtProviderWithIdentity:identity];
     XCTAssert(error == nil);
     
     VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
@@ -320,7 +322,7 @@
 -(void)test006_STC_14 {
     NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
-    VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
+    id<VSSAccessTokenProvider> generator = [self.utils getGeneratorJwtProviderWithIdentity:identity];
     XCTAssert(error == nil);
     
     VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
@@ -340,7 +342,7 @@
 -(void)test007_STC_15 {
     NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
-    VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
+    id<VSSAccessTokenProvider> generator = [self.utils getGeneratorJwtProviderWithIdentity:identity];
     XCTAssert(error == nil);
 
     VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
@@ -360,7 +362,7 @@
 -(void)test008_STC_16 {
     NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
-    VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
+    id<VSSAccessTokenProvider> generator = [self.utils getGeneratorJwtProviderWithIdentity:identity];
     XCTAssert(error == nil);
     
     VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
@@ -373,20 +375,20 @@
     VSSCard *card = [cardManager importCardFromBase64Encoded:cardString error:&error];
     XCTAssert(card != nil);
     
-    NSData *pubicKeyBase64 = [[NSData alloc] initWithBase64EncodedString:self.testData[@"STC-16.public_key1_base64"] options:0];
-    XCTAssert(pubicKeyBase64 != nil);
+    NSData *publicKeyBase64 = [[NSData alloc] initWithBase64EncodedString:self.testData[@"STC-16.public_key1_base64"] options:0];
+    XCTAssert(publicKeyBase64 != nil);
+    VSMVirgilPublicKey *publicKey = [self.crypto importPublicKeyFrom:publicKeyBase64 error:nil];
     
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:nil];
-    NSData *publicKeyData = [self.crypto exportPublicKey:keyPair.publicKey error:nil];
     
-    VSSVerifierCredentials *creds1 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKeyData];
+    VSSVerifierCredentials *creds1 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:keyPair.publicKey];
     VSSWhitelist *whitelist1 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds1] error:&error];
     XCTAssert(error == nil);
     self.verifier.whitelists = @[whitelist1];
     
     XCTAssert(![self.verifier verifyCard:card]);
     
-    VSSVerifierCredentials *creds2 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:pubicKeyBase64];
+    VSSVerifierCredentials *creds2 = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKey];
     VSSWhitelist *whitelist2 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds2] error:&error];
     XCTAssert(error == nil);
     self.verifier.whitelists = @[whitelist2];

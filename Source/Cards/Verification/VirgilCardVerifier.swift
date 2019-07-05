@@ -119,11 +119,10 @@ import VirgilCrypto
             guard let signerInfo = whitelist.verifiersCredentials.first(where: {
                     Set<String>(card.signatures.map({ $0.signer })).contains($0.signer)
                   }),
-                  let publicKey = try? self.crypto.importPublicKey(from: signerInfo.publicKey),
                   VirgilCardVerifier.verify(crypto: self.crypto,
                                             card: card,
                                             signer: signerInfo.signer,
-                                            signerPublicKey: publicKey) else {
+                                            signerPublicKey: signerInfo.publicKey) else {
                return false
             }
         }

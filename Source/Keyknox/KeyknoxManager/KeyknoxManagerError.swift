@@ -35,64 +35,16 @@
 //
 
 import Foundation
-import VirgilSDK
-import XCTest
 
-class VSS013_MutexTests: XCTestCase {
-    func test__nothing__thread_unsafe() {
-        let counter = 2
-        
-        var i = 0
-        
-        var queues: [DispatchQueue] = []
-        
-        for j in 0..<counter {
-            queues.append(DispatchQueue(label: "\(j)"))
-        }
-        
-        for j in 0..<counter {
-            queues[j].async {
-                let k = i
-                
-                sleep(1)
-                
-                i = k + 1
-            }
-        }
-        
-        sleep(UInt32(2 * counter))
-        
-        XCTAssert(i != counter)
-    }
-    
-    func test__lock_unlock__thread_unsafe() {
-        let counter = 2
-        
-        
-        var i = 0
-        
-        var queues: [DispatchQueue] = []
-        
-        for j in 0..<counter {
-            queues.append(DispatchQueue(label: "\(j)"))
-        }
-        
-        let mutex = Mutex()
-        
-        for j in 0..<counter {
-            queues[j].async {
-                try! mutex.executeSync {
-                    let k = i
-                    
-                    sleep(1)
-                    
-                    i = k + 1
-                }
-            }
-        }
-        
-        sleep(UInt32(2 * counter))
-        
-        XCTAssert(i == counter)
-    }
+/// Declares error types and codes for KeyknoxManager
+///
+/// - noPublicKeys: Public keys array is empty
+/// - keysShouldBeUpdated: Both private and publice keys are absent
+/// - serverRespondedWithTamperedValue: Value pushed to Keyknox and returned from Keyknox doesn't match
+/// - dataIsEmpty: Data is empty
+@objc(VSSKeyknoxManagerError) public enum KeyknoxManagerError: Int, Error {
+    case noPublicKeys = 1
+    case keysShouldBeUpdated = 2
+    case serverRespondedWithTamperedValue = 3
+    case dataIsEmpty = 4
 }

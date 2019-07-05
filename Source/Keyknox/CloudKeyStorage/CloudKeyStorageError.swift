@@ -35,64 +35,16 @@
 //
 
 import Foundation
-import VirgilSDK
-import XCTest
 
-class VSS013_MutexTests: XCTestCase {
-    func test__nothing__thread_unsafe() {
-        let counter = 2
-        
-        var i = 0
-        
-        var queues: [DispatchQueue] = []
-        
-        for j in 0..<counter {
-            queues.append(DispatchQueue(label: "\(j)"))
-        }
-        
-        for j in 0..<counter {
-            queues[j].async {
-                let k = i
-                
-                sleep(1)
-                
-                i = k + 1
-            }
-        }
-        
-        sleep(UInt32(2 * counter))
-        
-        XCTAssert(i != counter)
-    }
-    
-    func test__lock_unlock__thread_unsafe() {
-        let counter = 2
-        
-        
-        var i = 0
-        
-        var queues: [DispatchQueue] = []
-        
-        for j in 0..<counter {
-            queues.append(DispatchQueue(label: "\(j)"))
-        }
-        
-        let mutex = Mutex()
-        
-        for j in 0..<counter {
-            queues[j].async {
-                try! mutex.executeSync {
-                    let k = i
-                    
-                    sleep(1)
-                    
-                    i = k + 1
-                }
-            }
-        }
-        
-        sleep(UInt32(2 * counter))
-        
-        XCTAssert(i == counter)
-    }
+/// Declares error types and codes for KeyknoxManager
+///
+/// - entryNotFound: Entry was not found
+/// - entrySavingError: Error while saving entry
+/// - entryAlreadyExists: Entry already exists
+/// - cloudStorageOutOfSync: Sync this storage before any other operations
+@objc(VSSCloudKeyStorageError) public enum CloudKeyStorageError: Int, Error {
+    case entryNotFound = 1
+    case entrySavingError = 2
+    case entryAlreadyExists = 3
+    case cloudStorageOutOfSync = 4
 }

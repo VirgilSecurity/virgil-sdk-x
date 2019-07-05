@@ -36,6 +36,7 @@
 
 import Foundation
 import XCTest
+import VirgilCrypto
 import VirgilSDK
 
 enum TestId {
@@ -98,10 +99,8 @@ class VSS016_ClientIntegrationRetryTests: XCTestCase {
     override func setUp() {
         self.baseUrl = URL(string: "https://example.com")!
         
-        let crypto = try! VirgilCrypto()
-        let consts = VSSTestsConst()
-        let utils = VSSTestUtils(crypto: crypto, consts: consts)
-        self.accessTokenProvider = utils.getGeneratorJwtProvider(withIdentity: "identity", error: nil)
+        let utils = TestUtils.readFromBundle()
+        self.accessTokenProvider = utils.getGeneratorJwtProvider(withIdentity: "identity")
         self.request = try! ServiceRequest(url: self.baseUrl, method: .post)
     }
     

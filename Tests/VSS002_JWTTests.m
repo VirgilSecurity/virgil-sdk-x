@@ -39,7 +39,13 @@
 @import VirgilSDK;
 @import VirgilCrypto;
 
-#import "VSSTestsConst.h"
+#if TARGET_OS_IOS
+#import "VirgilSDK_AppTests_iOS-Swift.h"
+#elif TARGET_OS_TV
+#import "VirgilSDK_AppTests_tvOS-Swift.h"
+#elif TARGET_OS_OSX
+#import "VirgilSDK_macOS_Tests-Swift.h"
+#endif
 
 static const NSTimeInterval timeout = 8.;
 

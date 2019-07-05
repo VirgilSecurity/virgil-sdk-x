@@ -39,14 +39,18 @@
 @import VirgilSDK;
 @import VirgilCrypto;
 
-#import "VSSTestsConst.h"
-#import "VSSTestUtils.h"
+#if TARGET_OS_IOS
+#import "VirgilSDK_AppTests_iOS-Swift.h"
+#elif TARGET_OS_TV
+#import "VirgilSDK_AppTests_tvOS-Swift.h"
+#elif TARGET_OS_OSX
+#import "VirgilSDK_macOS_Tests-Swift.h"
+#endif
 
 @interface VSS004_CrossCompatibilityTests: XCTestCase
 
-@property (nonatomic) VSSTestsConst *consts;
 @property (nonatomic) VSMVirgilCrypto *crypto;
-@property (nonatomic) VSSTestUtils *utils;
+@property (nonatomic) TestUtils *utils;
 @property (nonatomic) VSSModelSigner *modelSigner;
 @property (nonatomic) VSSVirgilCardVerifier *verifier;
 @property (nonatomic) NSDictionary *testData;
@@ -58,9 +62,8 @@
 - (void)setUp {
     [super setUp];
     
-    self.consts = [[VSSTestsConst alloc] init];
     self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES error:nil];
-    self.utils = [[VSSTestUtils alloc] initWithCrypto:self.crypto consts:self.consts];
+    self.utils = [TestUtils readFromBundle];
     self.modelSigner = [[VSSModelSigner alloc] initWithCrypto:self.crypto];
     self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[]];
     
@@ -169,8 +172,6 @@
     XCTAssert([rawCard2.contentSnapshot isEqualToData:rawCard1.contentSnapshot]);
     XCTAssert(rawCard2.signatures.count == 3);
     
-    XCTAssert([self.utils isRawSignaturesEqualWithSignatures:rawCard1.signatures and:rawCard2.signatures]);
-    
     NSDictionary *rawCardContentDict = [NSJSONSerialization JSONObjectWithData:[cardContent1 snapshotAndReturnError:nil] options:0 error:nil];
     XCTAssert(rawCardContentDict != nil);
     NSDictionary *rawCardContentDictImported = [NSJSONSerialization JSONObjectWithData:rawCard1.contentSnapshot options:0 error:nil];
@@ -189,11 +190,9 @@
 -(void)test003_STC_3 {
     NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
-    VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
-    XCTAssert(error == nil);
     
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
-    cardManagerParams.cardClient = self.consts.serviceURL == nil ? [[VSSCardClient alloc] initWithAccessTokenProvider:generator] : [[VSSCardClient alloc] initWithAccessTokenProvider:generator serviceUrl:self.consts.serviceURL];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:[self.utils getGeneratorJwtProviderWithIdentity:identity] cardVerifier:self.verifier];
+    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity];
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
     
@@ -224,7 +223,7 @@
     VSSCard *card2 = [cardManager importCardFromJson:dic error:&error];
     XCTAssert(card2 != nil);
     
-    [self.utils isCardsEqualWithCard:card1 and:card2];
+    XCTAssert([card1.identifier isEqualToString:card2.identifier]);
     
     NSString *exportedCardString = [cardManager exportCardAsBase64EncodedString:card1 error:&error];
     XCTAssert(error == nil);
@@ -241,11 +240,9 @@
 -(void)test004_STC_4 {
     NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
-    VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
-    XCTAssert(error == nil);
     
-    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
-    cardManagerParams.cardClient = self.consts.serviceURL == nil ? [[VSSCardClient alloc] initWithAccessTokenProvider:generator] : [[VSSCardClient alloc] initWithAccessTokenProvider:generator serviceUrl:self.consts.serviceURL];
+    VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:[self.utils getGeneratorJwtProviderWithIdentity:identity] cardVerifier:self.verifier];
+    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity];
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
     
@@ -290,8 +287,6 @@
     
     VSSCard *card2 = [cardManager importCardFromJson:dic error:&error];
     XCTAssert(card2 != nil);
-    XCTAssert([self.utils isCardsEqualWithCard:card1 and:card2]);
-    XCTAssert([self.utils isCardSignaturesEqualWithSignatures:card1.signatures and:card2.signatures]);
     
     NSString *exportedCardString = [cardManager exportCardAsBase64EncodedString:card1 error:&error];
     XCTAssert(error == nil);

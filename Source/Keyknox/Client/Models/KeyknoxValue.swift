@@ -35,64 +35,40 @@
 //
 
 import Foundation
-import VirgilSDK
-import XCTest
 
-class VSS013_MutexTests: XCTestCase {
-    func test__nothing__thread_unsafe() {
-        let counter = 2
-        
-        var i = 0
-        
-        var queues: [DispatchQueue] = []
-        
-        for j in 0..<counter {
-            queues.append(DispatchQueue(label: "\(j)"))
-        }
-        
-        for j in 0..<counter {
-            queues[j].async {
-                let k = i
-                
-                sleep(1)
-                
-                i = k + 1
-            }
-        }
-        
-        sleep(UInt32(2 * counter))
-        
-        XCTAssert(i != counter)
+/// Value stored on Keyknox service
+@objc(VSSKeyknoxValue) public class KeyknoxValue: NSObject {
+    /// Meta info
+    @objc public let meta: Data
+
+    /// Value
+    @objc public let value: Data
+
+    /// Value in X.Y format. X - major version, Y - minor
+    @objc public let version: String
+
+    /// Keyknox hash
+    @objc public let keyknoxHash: Data
+
+    internal convenience init(keyknoxData: KeyknoxData, keyknoxHash: Data) {
+        self.init(meta: keyknoxData.meta,
+                  value: keyknoxData.value,
+                  version: keyknoxData.version,
+                  keyknoxHash: keyknoxHash)
     }
-    
-    func test__lock_unlock__thread_unsafe() {
-        let counter = 2
-        
-        
-        var i = 0
-        
-        var queues: [DispatchQueue] = []
-        
-        for j in 0..<counter {
-            queues.append(DispatchQueue(label: "\(j)"))
-        }
-        
-        let mutex = Mutex()
-        
-        for j in 0..<counter {
-            queues[j].async {
-                try! mutex.executeSync {
-                    let k = i
-                    
-                    sleep(1)
-                    
-                    i = k + 1
-                }
-            }
-        }
-        
-        sleep(UInt32(2 * counter))
-        
-        XCTAssert(i == counter)
+
+    internal init(meta: Data, value: Data, version: String, keyknoxHash: Data) {
+        self.meta = meta
+        self.value = value
+        self.version = version
+        self.keyknoxHash = keyknoxHash
+
+        super.init()
     }
 }
+
+/// Represent encrypted Keyknox value
+@objc(VSSEncryptedKeyknoxValue) public class EncryptedKeyknoxValue: KeyknoxValue { }
+
+/// Represent decrypted Keyknox value
+@objc(VSSDecryptedKeyknoxValue) public class DecryptedKeyknoxValue: KeyknoxValue { }

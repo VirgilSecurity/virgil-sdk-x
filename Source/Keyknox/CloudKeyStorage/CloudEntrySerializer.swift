@@ -34,74 +34,26 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-#define STRINGIZE(x) #x
-#define STRINGIZE2(x) STRINGIZE(x)
+import Foundation
 
-#import "VSSTestsConst.h"
+internal final class CloudEntrySerializer {
+    internal func serialize(dict: [String: CloudEntry]) throws -> Data {
+        let encoder = JSONEncoder()
 
-@implementation VSSTestsConst
+        encoder.dateEncodingStrategy = .custom(DateUtils.timestampMilliDateEncodingStrategy)
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        NSBundle *bundle = [NSBundle bundleForClass:self.class];
-        NSURL *configFileUrl = [bundle URLForResource:@"TestConfig" withExtension:@"plist"];
-        NSDictionary *config = [NSDictionary dictionaryWithContentsOfURL:configFileUrl];
-        _config = config;
+        return try encoder.encode(dict)
     }
-    
-    return self;
+
+    internal func deserialize(data: Data) throws -> [String: CloudEntry] {
+        guard !data.isEmpty else {
+            return [String: CloudEntry]()
+        }
+
+        let decoder = JSONDecoder()
+
+        decoder.dateDecodingStrategy = .custom(DateUtils.timestampMilliDateDecodingStrategy)
+
+        return try decoder.decode(Dictionary<String, CloudEntry>.self, from: data)
+    }
 }
-
-- (NSString *)apiPublicKeyId {
-    NSString *appToken = self.config[@"ApiPublicKeyId"];
-
-    return appToken;
-}
-
-- (NSString *)apiPrivateKeyBase64 {
-    NSString *appPrivateKey = self.config[@"ApiPrivateKey"];
-    
-    return appPrivateKey;
-}
-
-- (NSString *)apiPublicKeyBase64 {
-    NSString *appPrivateKeyPassword = self.config[@"ApiPublicKey"];
-
-    return appPrivateKeyPassword;
-}
-
-- (NSString *)applicationId {
-    NSString *appId = self.config[@"AppId"];
-    
-    return appId;
-}
-
-- (NSURL *)serviceURL {
-    NSString *cardsUrl = self.config[@"ServiceURL"];
-    if (cardsUrl != nil)
-        return [[NSURL alloc] initWithString:cardsUrl];
-    
-    return nil;
-}
-
-- (NSString *)existentCardId {
-    NSString *cardId = self.config[@"CardId"];
-    
-    return cardId;
-}
-
-- (NSString *)existentCardIdentity {
-    NSString *cardIdentity = self.config[@"CardIdentity"];
-    
-    return cardIdentity;
-}
-
-- (NSString *)servicePublicKey {
-    NSString *servicePublicKey = self.config[@"ServicePublicKey"];
-    
-    return servicePublicKey;
-}
-
-@end

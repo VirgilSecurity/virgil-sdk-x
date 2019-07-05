@@ -34,5 +34,42 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-#import "VSSTestsConst.h"
-#import "VSSTestUtils.h"
+import Foundation
+
+// MARK: Sync helpers
+extension SyncKeyStorage {
+    internal func syncDeleteEntries(_ entriesToDelete: [String]) throws {
+        try entriesToDelete.forEach {
+            try self.keychainStorage.deleteEntry(withName: $0)
+        }
+    }
+
+    internal func syncStoreEntries(_ entriesToStore: [String]) throws {
+        try entriesToStore.forEach {
+            let cloudEntry = try self.cloudKeyStorage.retrieveEntry(withName: $0)
+
+            let meta = try self.keychainUtils.createMetaForKeychain(from: cloudEntry)
+
+            _ = try self.keychainStorage.store(data: cloudEntry.data, withName: cloudEntry.name, meta: meta)
+        }
+    }
+
+    internal func syncCompareEntries(_ entriesToCompare: [String], keychainEntries: [KeychainEntry]) throws {
+        // Determine newest version and either update keychain entry or upload newer version to cloud
+        try entriesToCompare.forEach { name in
+            guard let keychainEntry = keychainEntries.first(where: { $0.name == name }) else {
+                throw SyncKeyStorageError.keychainEntryNotFoundWhileComparing
+            }
+
+            let cloudEntry = try self.cloudKeyStorage.retrieveEntry(withName: name)
+
+            let keychainDate = try self.keychainUtils.extractModificationDate(fromKeychainEntry: keychainEntry)
+
+            if keychainDate.modificationDate < cloudEntry.modificationDate {
+                let meta = try self.keychainUtils.createMetaForKeychain(from: cloudEntry)
+
+                try self.keychainStorage.updateEntry(withName: cloudEntry.name, data: cloudEntry.data, meta: meta)
+            }
+        }
+    }
+}

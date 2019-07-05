@@ -83,12 +83,11 @@ class VerifierStubTrue: CardVerifier {
 
 class VSS009_ExtraCardManagerTests: XCTestCase {
     private var crypto: VirgilCrypto!
-    private var consts: VSSTestsConst!
-    private var utils: VSSTestUtils!
+    private var utils: TestUtils!
     private var modelSigner: ModelSigner!
     private var testsDict: Dictionary<String, Any>!
     private var cardClient: CardClient!
-    private var generator: GeneratorJwtProvider!
+    private var generator: AccessTokenProvider!
 
     // MARK: Setup
     override func setUp() {
@@ -99,25 +98,15 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         self.testsDict = try! JSONSerialization.jsonObject(with: testFileData, options: JSONSerialization.ReadingOptions.init(rawValue: 0)) as! Dictionary<String, Any>
 
         self.crypto = try! VirgilCrypto()
-        self.consts = VSSTestsConst()
-        self.utils = VSSTestUtils(crypto: self.crypto, consts: self.consts)
+        self.utils = TestUtils.readFromBundle()
         self.modelSigner = ModelSigner(crypto: self.crypto)
-        self.generator = self.utils.getGeneratorJwtProvider(withIdentity: "identity", error: nil)
-        if let serviceURL = self.consts.serviceURL {
+        self.generator = self.utils.getGeneratorJwtProvider(withIdentity: "identity")
+        if let serviceURL = self.utils.config.ServiceURL {
             self.cardClient = CardClient(accessTokenProvider: self.generator, serviceUrl: serviceURL)
         }
         else {
             self.cardClient = CardClient(accessTokenProvider: self.generator)
         }
-    }
-
-    override func tearDown() {
-        self.crypto = nil
-        self.consts = nil
-        self.crypto = nil
-        self.modelSigner = nil
-        
-        super.tearDown()
     }
 
     // MARK: Tests
@@ -180,7 +169,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
             }
         }
 
-        let operation3 = cardManager.getCard(withId: self.consts.existentCardId)
+        let operation3 = cardManager.getCard(withId: self.utils.config.CardId)
 
         switch operation3.startSync() {
         case .success: XCTFail()
@@ -192,7 +181,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
             }
         }
 
-        let operation4 = cardManager.searchCards(identities: [self.consts.existentCardIdentity])
+        let operation4 = cardManager.searchCards(identities: [self.utils.config.CardIdentity])
 
         switch operation4.startSync() {
         case .success: XCTFail()
