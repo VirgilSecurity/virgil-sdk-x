@@ -34,18 +34,7 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-#import <Foundation/Foundation.h>
-#import <XCTest/XCTest.h>
-@import VirgilSDK;
-@import VirgilCrypto;
-
-#if TARGET_OS_IOS
-#import "VirgilSDK_AppTests_iOS-Swift.h"
-#elif TARGET_OS_TV
-#import "VirgilSDK_AppTests_tvOS-Swift.h"
-#elif TARGET_OS_OSX
-#import "VirgilSDK_macOS_Tests-Swift.h"
-#endif
+#import "VSSTestBase.h"
 
 @interface VSSAccessTokenProviderMock: NSObject<VSSAccessTokenProvider>
 
@@ -93,10 +82,8 @@
 
 static const NSTimeInterval timeout = 20.;
 
-@interface VSS005_CardManagerTests : XCTestCase
+@interface VSS005_CardManagerTests : VSSTestBase
 
-@property (nonatomic) VSMVirgilCrypto *crypto;
-@property (nonatomic) TestUtils *utils;
 @property (nonatomic) VSSModelSigner *modelSigner;
 @property (nonatomic) VSSVirgilCardVerifier *verifier;
 
@@ -107,8 +94,6 @@ static const NSTimeInterval timeout = 20.;
 - (void)setUp {
     [super setUp];
     
-    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES error:nil];
-    self.utils = [TestUtils readFromBundle];
     self.verifier = [self.utils setupVerifierWithWhitelists:@[]];
     self.modelSigner = [[VSSModelSigner alloc] initWithCrypto:self.crypto];
 }

@@ -25,6 +25,10 @@
 
 /* Begin PBXBuildFile section */
 		168AAA3322CF806900C1E324 /* VSS005_CardManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C9352021FB1200286FAB /* VSS005_CardManagerTests.m */; };
+		168AAA3722CF969E00C1E324 /* VSK001_KeyknoxClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42492FDE22CEA7BE00BEA96F /* VSK001_KeyknoxClientTests.m */; };
+		168AAA3C22CF9B6900C1E324 /* VSSTestBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AAA3B22CF9B6900C1E324 /* VSSTestBase.m */; };
+		168AAA3D22CF9B6900C1E324 /* VSSTestBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AAA3B22CF9B6900C1E324 /* VSSTestBase.m */; };
+		168AAA3E22CF9B6900C1E324 /* VSSTestBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AAA3B22CF9B6900C1E324 /* VSSTestBase.m */; };
 		42011DB420CAB72300B84755 /* KeychainStorageParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42011DB320CAB72300B84755 /* KeychainStorageParams.swift */; };
 		4209486C22805B2C00CAF5E6 /* VirgilSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4209486D22806A9800CAF5E6 /* VersionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F8A21F0B62A006BED3F /* VersionUtils.swift */; };
@@ -196,8 +200,8 @@
 		42492FE422CEA7BE00BEA96F /* VSK003_CloudKeyStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42492FDC22CEA7BD00BEA96F /* VSK003_CloudKeyStorageTests.m */; };
 		42492FE522CEA7BE00BEA96F /* VSK004_SyncKeyStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42492FDD22CEA7BE00BEA96F /* VSK004_SyncKeyStorageTests.swift */; };
 		42492FE722CEA7BE00BEA96F /* VSK004_SyncKeyStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42492FDD22CEA7BE00BEA96F /* VSK004_SyncKeyStorageTests.swift */; };
-		42492FE822CEA7BE00BEA96F /* VSK001_ClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42492FDE22CEA7BE00BEA96F /* VSK001_ClientTests.m */; };
-		42492FEA22CEA7BE00BEA96F /* VSK001_ClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42492FDE22CEA7BE00BEA96F /* VSK001_ClientTests.m */; };
+		42492FE822CEA7BE00BEA96F /* VSK001_KeyknoxClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42492FDE22CEA7BE00BEA96F /* VSK001_KeyknoxClientTests.m */; };
+		42492FEA22CEA7BE00BEA96F /* VSK001_KeyknoxClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42492FDE22CEA7BE00BEA96F /* VSK001_KeyknoxClientTests.m */; };
 		42492FEB22CEA7BE00BEA96F /* VSK005_CloudEntrySerializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42492FDF22CEA7BE00BEA96F /* VSK005_CloudEntrySerializerTests.swift */; };
 		42492FED22CEA7BE00BEA96F /* VSK005_CloudEntrySerializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42492FDF22CEA7BE00BEA96F /* VSK005_CloudEntrySerializerTests.swift */; };
 		42492FEE22CEA7BE00BEA96F /* VSK006_SyncKeyStorageKeychainUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42492FE022CEA7BE00BEA96F /* VSK006_SyncKeyStorageKeychainUtilsTests.swift */; };
@@ -631,6 +635,8 @@
 		1624B83D2012215B007D223C /* CardManager+Queries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardManager+Queries.swift"; sourceTree = "<group>"; };
 		1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS004_CrossCompatibilityTests.m; sourceTree = "<group>"; };
 		168491C3201A252900D6938B /* TokenContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenContext.swift; sourceTree = "<group>"; };
+		168AAA3B22CF9B6900C1E324 /* VSSTestBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSSTestBase.m; sourceTree = "<group>"; };
+		168AAA3F22CF9C8A00C1E324 /* VSSTestBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VSSTestBase.h; sourceTree = "<group>"; };
 		16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS003_ModelSigner_CardVerifierTests.m; sourceTree = "<group>"; };
 		16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS002_JWTTests.m; sourceTree = "<group>"; };
 		16B3FD412004D5E0008F0357 /* AccessTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenProvider.swift; sourceTree = "<group>"; };
@@ -696,7 +702,7 @@
 		42492F7B22CE9FC400BEA96F /* KeyknoxValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyknoxValue.swift; sourceTree = "<group>"; };
 		42492FDC22CEA7BD00BEA96F /* VSK003_CloudKeyStorageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSK003_CloudKeyStorageTests.m; sourceTree = "<group>"; };
 		42492FDD22CEA7BE00BEA96F /* VSK004_SyncKeyStorageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSK004_SyncKeyStorageTests.swift; sourceTree = "<group>"; };
-		42492FDE22CEA7BE00BEA96F /* VSK001_ClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSK001_ClientTests.m; sourceTree = "<group>"; };
+		42492FDE22CEA7BE00BEA96F /* VSK001_KeyknoxClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSK001_KeyknoxClientTests.m; sourceTree = "<group>"; };
 		42492FDF22CEA7BE00BEA96F /* VSK005_CloudEntrySerializerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSK005_CloudEntrySerializerTests.swift; sourceTree = "<group>"; };
 		42492FE022CEA7BE00BEA96F /* VSK006_SyncKeyStorageKeychainUtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VSK006_SyncKeyStorageKeychainUtilsTests.swift; sourceTree = "<group>"; };
 		42492FE122CEA7BE00BEA96F /* VSK002_KeyknoxManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSK002_KeyknoxManagerTests.m; sourceTree = "<group>"; };
@@ -918,7 +924,7 @@
 		168AAA3222CF7C8500C1E324 /* Keyknox */ = {
 			isa = PBXGroup;
 			children = (
-				42492FDE22CEA7BE00BEA96F /* VSK001_ClientTests.m */,
+				42492FDE22CEA7BE00BEA96F /* VSK001_KeyknoxClientTests.m */,
 				42492FE122CEA7BE00BEA96F /* VSK002_KeyknoxManagerTests.m */,
 				42492FDC22CEA7BD00BEA96F /* VSK003_CloudKeyStorageTests.m */,
 				42492FDD22CEA7BE00BEA96F /* VSK004_SyncKeyStorageTests.swift */,
@@ -1212,6 +1218,8 @@
 				168AAA3222CF7C8500C1E324 /* Keyknox */,
 				168AAA3522CF937400C1E324 /* Cards */,
 				42492FF822CF47BC00BEA96F /* TestUtils.swift */,
+				168AAA3F22CF9C8A00C1E324 /* VSSTestBase.h */,
+				168AAA3B22CF9B6900C1E324 /* VSSTestBase.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1804,7 +1812,9 @@
 				42817A9E22CF58BF006998D6 /* TestUtils.swift in Sources */,
 				42817AAC22CF5B41006998D6 /* VSS004_CrossCompatibilityTests.m in Sources */,
 				168AAA3322CF806900C1E324 /* VSS005_CardManagerTests.m in Sources */,
+				168AAA3722CF969E00C1E324 /* VSK001_KeyknoxClientTests.m in Sources */,
 				42817A9F22CF5A76006998D6 /* VSS002_JWTTests.m in Sources */,
+				168AAA3D22CF9B6900C1E324 /* VSSTestBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2022,9 +2032,10 @@
 				424ACC7F223154D700DD5072 /* VSS017_NetworkTests.swift in Sources */,
 				423D3E062225A64C006C7E4C /* VSS008_DataExtensionsTests.swift in Sources */,
 				423D3DFC2225A281006C7E4C /* VSS003_ModelSigner_CardVerifierTests.m in Sources */,
+				168AAA3C22CF9B6900C1E324 /* VSSTestBase.m in Sources */,
 				42492FF922CF47BC00BEA96F /* TestUtils.swift in Sources */,
 				42492FF122CEA7BE00BEA96F /* VSK002_KeyknoxManagerTests.m in Sources */,
-				42492FE822CEA7BE00BEA96F /* VSK001_ClientTests.m in Sources */,
+				42492FE822CEA7BE00BEA96F /* VSK001_KeyknoxClientTests.m in Sources */,
 				423D3E41222AB1B5006C7E4C /* VSS016_ClientIntegrationRetryTests.swift in Sources */,
 				42492FE222CEA7BE00BEA96F /* VSK003_CloudKeyStorageTests.m in Sources */,
 				42D058E320EB89CC00FC544E /* VSS001_CardClientTests.m in Sources */,
@@ -2059,9 +2070,10 @@
 				424ACC81223154D700DD5072 /* VSS017_NetworkTests.swift in Sources */,
 				423D3E162225A64F006C7E4C /* VSS008_DataExtensionsTests.swift in Sources */,
 				423D3E022225A282006C7E4C /* VSS003_ModelSigner_CardVerifierTests.m in Sources */,
+				168AAA3E22CF9B6900C1E324 /* VSSTestBase.m in Sources */,
 				42492FFB22CF47BC00BEA96F /* TestUtils.swift in Sources */,
 				42492FF322CEA7BE00BEA96F /* VSK002_KeyknoxManagerTests.m in Sources */,
-				42492FEA22CEA7BE00BEA96F /* VSK001_ClientTests.m in Sources */,
+				42492FEA22CEA7BE00BEA96F /* VSK001_KeyknoxClientTests.m in Sources */,
 				423D3E43222AB1B5006C7E4C /* VSS016_ClientIntegrationRetryTests.swift in Sources */,
 				42492FE422CEA7BE00BEA96F /* VSK003_CloudKeyStorageTests.m in Sources */,
 				42492FED22CEA7BE00BEA96F /* VSK005_CloudEntrySerializerTests.swift in Sources */,

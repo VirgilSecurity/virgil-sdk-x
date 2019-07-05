@@ -47,7 +47,7 @@
 #import "VirgilSDK_macOS_Tests-Swift.h"
 #endif
 
-@interface VSK001_ClientTests : XCTestCase
+@interface VSK001_KeyknoxClientTests : XCTestCase
 
 @property (nonatomic) TestUtils *utils;
 @property (nonatomic) VSMVirgilCrypto *crypto;
@@ -55,7 +55,7 @@
 
 @end
 
-@implementation VSK001_ClientTests
+@implementation VSK001_KeyknoxClientTests
 
 - (void)setUp {
     [super setUp];

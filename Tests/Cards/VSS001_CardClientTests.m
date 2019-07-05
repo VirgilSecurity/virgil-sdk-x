@@ -34,23 +34,10 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-#import <Foundation/Foundation.h>
-#import <XCTest/XCTest.h>
-@import VirgilSDK;
-@import VirgilCrypto;
+#import "VSSTestBase.h"
 
-#if TARGET_OS_IOS
-#import "VirgilSDK_AppTests_iOS-Swift.h"
-#elif TARGET_OS_TV
-#import "VirgilSDK_AppTests_tvOS-Swift.h"
-#elif TARGET_OS_OSX
-#import "VirgilSDK_macOS_Tests-Swift.h"
-#endif
+@interface VSS001_CardClientTests : VSSTestBase
 
-@interface VSS001_CardClientTests : XCTestCase
-
-@property (nonatomic) VSMVirgilCrypto *crypto;
-@property (nonatomic) TestUtils *utils;
 @property (nonatomic) VSSVirgilCardVerifier *verifier;
 
 @end
@@ -59,10 +46,7 @@
 
 - (void)setUp {
     [super setUp];
-    self.continueAfterFailure = NO;
 
-    self.utils = [TestUtils readFromBundle];
-    self.crypto = self.utils.crypto;
     self.verifier = [self.utils setupVerifierWithWhitelists:@[]];
 }
 

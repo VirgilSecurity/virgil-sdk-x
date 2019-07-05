@@ -52,7 +52,7 @@ static const NSTimeInterval timeout = 20.;
 
 @interface VSK002_KeyknoxManagerTests : XCTestCase
 
-@property (nonatomic) TestConfig *config;
+@property (nonatomic) TestUtils *config;
 @property (nonatomic) VSMVirgilCrypto *crypto;
 @property (nonatomic) VSSKeyknoxManager *keyknoxManager;
 @property (nonatomic) uint32_t numberOfKeys;
