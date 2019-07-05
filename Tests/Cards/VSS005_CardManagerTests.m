@@ -47,6 +47,50 @@
 #import "VirgilSDK_macOS_Tests-Swift.h"
 #endif
 
+@interface VSSAccessTokenProviderMock: NSObject<VSSAccessTokenProvider>
+
+@property (nonatomic) VSMVirgilCrypto *crypto;
+@property (nonatomic) TestUtils *utils;
+@property (nonatomic) NSString *identity;
+@property (nonatomic) void (^forceCallback)(BOOL) ;
+@property NSInteger counter;
+
+-(id)initWithIdentity:(NSString *)identity forceCallback:(void (^)(BOOL))forceCallback;
+
+- (void)getTokenWith:(VSSTokenContext * _Nonnull)tokenContext completion:(void (^ _Nonnull)(id<VSSAccessToken> _Nullable, NSError * _Nullable))completion;
+
+@end
+
+@implementation VSSAccessTokenProviderMock
+
+-(id)initWithIdentity:(NSString *)identity forceCallback:(void (^)(BOOL))forceCallback {
+    self = [super init];
+
+    self.identity = [identity copy];
+    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:NO error:nil];
+    self.utils = [TestUtils readFromBundle];
+    self.forceCallback = forceCallback;
+    self.counter = 0;
+
+    return self;
+}
+
+- (void)getTokenWith:(VSSTokenContext * _Nonnull)tokenContext completion:(void (^ _Nonnull)(id<VSSAccessToken> _Nullable, NSError * _Nullable))completion {
+    NSTimeInterval interval = (self.counter % 2) == 0 ? 5 : 1000;
+    self.forceCallback(tokenContext.forceReload);
+
+    id<VSSAccessToken> token = [self.utils generateTokenWithIdentity:self.identity ttl:interval];
+
+    if (self.counter % 2 == 0)
+        sleep(10);
+
+    self.counter++;
+
+    completion(token, nil);
+}
+
+@end
+
 static const NSTimeInterval timeout = 20.;
 
 @interface VSS005_CardManagerTests : XCTestCase
@@ -65,19 +109,8 @@ static const NSTimeInterval timeout = 20.;
     
     self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:YES error:nil];
     self.utils = [TestUtils readFromBundle];
+    self.verifier = [self.utils setupVerifierWithWhitelists:@[]];
     self.modelSigner = [[VSSModelSigner alloc] initWithCrypto:self.crypto];
-    if (self.consts.servicePublicKey == nil) {
-        self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[]];
-    }
-    else {
-        NSData *publicKeyData = [[NSData alloc] initWithBase64EncodedString:self.consts.servicePublicKey options:0];
-        VSSVerifierCredentials *creds = [[VSSVerifierCredentials alloc] initWithSigner:@"virgil" publicKey:publicKeyData];
-        NSError *error;
-        VSSWhitelist *whitelist = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds] error:&error];
-        XCTAssert(error == nil);
-        self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[whitelist]];
-        self.verifier.verifyVirgilSignature = NO;
-    }
 }
 
 - (void)tearDown {
@@ -86,30 +119,28 @@ static const NSTimeInterval timeout = 20.;
 
 -(void)test001_STC_17 {
     XCTestExpectation *ex = [self expectationWithDescription:@"Card should be published and get"];
-    
-    NSError *error;
+
     NSString *identity = [[NSUUID alloc] init].UUIDString;
-    VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
-    XCTAssert(error == nil);
+    id<VSSAccessTokenProvider> generator = [self.utils getGeneratorJwtProviderWithIdentity:identity];
     
     VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
-    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity error:&error];
-    XCTAssert(error == nil);
+    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity];
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
-    
+
+    NSError *error;
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
     
-    [cardManager publishCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:nil completion:^(VSSCard *card, NSError *error) {
-        XCTAssert(error == nil && card != nil);
-        XCTAssert(card.isOutdated == false);
+    [cardManager publishCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:nil completion:^(VSSCard *card1, NSError *error) {
+        XCTAssert(error == nil && card1 != nil);
+        XCTAssert(card1.isOutdated == false);
         
-        [cardManager getCardWithId:card.identifier completion:^(VSSCard *card1, NSError *error) {
-            XCTAssert(error == nil && card1 != nil);
-            XCTAssert(card1.isOutdated == false);
+        [cardManager getCardWithId:card1.identifier completion:^(VSSCard *card2, NSError *error) {
+            XCTAssert(error == nil && card2 != nil);
+            XCTAssert(card2.isOutdated == false);
             
-            XCTAssert([self.utils isCardsEqualWithCard:card and:card1]);
+            XCTAssert([self.utils isCardsEqualWithCard1:card1 card2:card2]);
             
             [ex fulfill];
         }];
@@ -161,17 +192,15 @@ static const NSTimeInterval timeout = 20.;
 -(void)test003_STC_19 {
     XCTestExpectation *ex = [self expectationWithDescription:@"Card should be replaced"];
 
-    NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
-    VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
-    XCTAssert(error == nil);
+    id<VSSAccessTokenProvider> generator = [self.utils getGeneratorJwtProviderWithIdentity:identity];
 
     VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
-    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity error:&error];
-    XCTAssert(error == nil);
+    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity];
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
 
+    NSError *error;
     VSMVirgilKeyPair *keyPair1 = [self.crypto generateKeyPairAndReturnError:&error];
     VSMVirgilKeyPair *keyPair2 = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
@@ -207,17 +236,15 @@ static const NSTimeInterval timeout = 20.;
 -(void)test004_STC_20 {
     XCTestExpectation *ex = [self expectationWithDescription:@"Cards should be published and searched"];
 
-    NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
-    VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
-    XCTAssert(error == nil);
+    id<VSSAccessTokenProvider> generator = [self.utils getGeneratorJwtProviderWithIdentity:identity];
 
     VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
-    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity error:&error];
-    XCTAssert(error == nil);
+    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity];
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
 
+    NSError *error;
     VSMVirgilKeyPair *keyPair1 = [self.crypto generateKeyPairAndReturnError:&error];
     VSMVirgilKeyPair *keyPair2 = [self.crypto generateKeyPairAndReturnError:&error];
     VSMVirgilKeyPair *keyPair3 = [self.crypto generateKeyPairAndReturnError:&error];
@@ -240,12 +267,12 @@ static const NSTimeInterval timeout = 20.;
 
                     for (VSSCard* card in returnedCards) {
                         if ([card.identifier isEqualToString:card2.identifier]) {
-                            XCTAssert([self.utils isCardsEqualWithCard:card and:card2]);
-                            XCTAssert([self.utils isCardsEqualWithCard:card.previousCard and:card1]);
+                            XCTAssert([self.utils isCardsEqualWithCard1:card card2:card2]);
+                            XCTAssert([self.utils isCardsEqualWithCard1:card.previousCard card2:card1]);
                             XCTAssert([card.previousCardId isEqualToString:card1.identifier]);
                         }
                         else if ([card.identifier isEqualToString:card3.identifier]) {
-                            XCTAssert([self.utils isCardsEqualWithCard:card and:card3]);
+                            XCTAssert([self.utils isCardsEqualWithCard1:card card2:card3]);
                         }
                         else {
                             XCTFail();
@@ -267,35 +294,19 @@ static const NSTimeInterval timeout = 20.;
 - (void)test005_STC_21 {
     XCTestExpectation *ex = [self expectationWithDescription:@"Card should be published"];
 
-    NSError *error;
     NSString *identity =[[NSUUID alloc] init].UUIDString;
-    VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
-    XCTAssert(error == nil);
-    
-    VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:nil];
-    NSData *publicKeyData = [self.crypto exportPublicKey:keyPair.publicKey error:nil];
-    VSSVerifierCredentials *creds = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:publicKeyData];
-    
+    id<VSSAccessTokenProvider> generator = [self.utils getGeneratorJwtProviderWithIdentity:identity];
+
+    NSError *error;
+    VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
+    VSSVerifierCredentials *creds = [[VSSVerifierCredentials alloc] initWithSigner:@"extra" publicKey:keyPair.publicKey];
     VSSWhitelist *whitelist1 = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds] error:&error];
     XCTAssert(error == nil);
-    
-    VSSVirgilCardVerifier *verifier;
-    if (self.consts.servicePublicKey == nil) {
-        verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[whitelist1]];
-    }
-    else {
-        NSData *publicKeyData = [[NSData alloc] initWithBase64EncodedString:self.consts.servicePublicKey options:0];
-        VSSVerifierCredentials *creds = [[VSSVerifierCredentials alloc] initWithSigner:@"virgil" publicKey:publicKeyData];
-        NSError *error;
-        VSSWhitelist *whitelist = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds] error:&error];
-        XCTAssert(error == nil);
-        verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[whitelist, whitelist1]];
-        verifier.verifyVirgilSignature = NO;
-    }
+
+    VSSVirgilCardVerifier *verifier = [self.utils setupVerifierWithWhitelists:@[whitelist1]];
     
     VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:verifier];
-    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity error:&error];
-    XCTAssert(error == nil);
+    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity];
     
     cardManagerParams.signCallback = ^void(VSSRawSignedModel *model, void (^ completionHandler)(VSSRawSignedModel *signedModel, NSError* error)) {
         NSError *error;
@@ -325,21 +336,18 @@ static const NSTimeInterval timeout = 20.;
 
 -(void)test006_PublishRawCard {
     XCTestExpectation *ex = [self expectationWithDescription:@"Card should be published and get"];
-    
-    NSError *error;
+
     NSString *identity = [[NSUUID alloc] init].UUIDString;
-    VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
-    XCTAssert(error == nil);
+    id<VSSAccessTokenProvider> generator = [self.utils getGeneratorJwtProviderWithIdentity:identity];
     
     VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
-    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity error:&error];
-    XCTAssert(error == nil);
+    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity];
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
-    
-    VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
-    XCTAssert(error == nil);
-    
+
+    VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:nil];
+
+    NSError *error;
     VSSRawSignedModel *rawCard = [cardManager generateRawCardWithPrivateKey:keyPair.privateKey publicKey:keyPair.publicKey identity:identity previousCardId:nil extraFields:nil error:&error];
     XCTAssert(error == nil);
     
@@ -350,8 +358,8 @@ static const NSTimeInterval timeout = 20.;
         [cardManager getCardWithId:card.identifier completion:^(VSSCard *card1, NSError *error) {
             XCTAssert(error == nil && card1 != nil);
             XCTAssert(card1.isOutdated == false);
-            
-            XCTAssert([self.utils isCardsEqualWithCard:card and:card1]);
+
+            XCTAssert([self.utils isCardsEqualWithCard1:card card2:card1]);
             
             [ex fulfill];
         }];
@@ -365,18 +373,16 @@ static const NSTimeInterval timeout = 20.;
 
 -(void)test007_ImportExportRawCard {
     XCTestExpectation *ex = [self expectationWithDescription:@"Card should be published and get"];
-    
-    NSError *error;
+
     NSString *identity = [[NSUUID alloc] init].UUIDString;
-    VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
-    XCTAssert(error == nil);
-    
+    id<VSSAccessTokenProvider> generator = [self.utils getGeneratorJwtProviderWithIdentity:identity];
+
     VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
-    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity error:&error];
-    XCTAssert(error == nil);
+    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity];
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
-    
+
+    NSError *error;
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);
     
@@ -410,8 +416,8 @@ static const NSTimeInterval timeout = 20.;
         
         VSSCard *card1 = [cardManager importCardFromRawCard:rawCard error:&err];
         XCTAssert(err == nil);
-        
-        XCTAssert([self.utils isCardsEqualWithCard:card and:card1]);
+
+        XCTAssert([self.utils isCardsEqualWithCard1:card card2:card1]);
         
         [ex fulfill];
     }];
@@ -430,17 +436,17 @@ static const NSTimeInterval timeout = 20.;
 
     NSInteger __block counter = 0;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
-    VSSAccessTokenProviderMock *tokenProvider = [[VSSAccessTokenProviderMock alloc] initWithIdentity:identity forceCallback:^(BOOL force) {
+    id<VSSAccessTokenProvider> tokenProvider = [[VSSAccessTokenProviderMock alloc] initWithIdentity:identity forceCallback:^(BOOL force) {
         if (counter % 2 == 0)
             XCTAssert(!force);
         else
             XCTAssert(force);
-        
+
         counter++;
     }];
 
     VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:tokenProvider cardVerifier:self.verifier];
-    cardManagerParams.cardClient = [self.utils setupClientWithProvider:tokenProvider];
+    cardManagerParams.cardClient = [self.utils setupClientWithTokenProvider:tokenProvider];
 
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
 
@@ -469,25 +475,22 @@ static const NSTimeInterval timeout = 20.;
 
 - (void)test009_STC_42 {
     XCTestExpectation *ex = [self expectationWithDescription:@"Cards should be published and searched"];
-    
-    NSError *error;
+
     NSString *identity1 = [[NSUUID alloc] init].UUIDString;
     NSString *identity2 = [[NSUUID alloc] init].UUIDString;
-    VSSGeneratorJwtProvider *generator1 = [self.utils getGeneratorJwtProviderWithIdentity:identity1 error:&error];
-    VSSGeneratorJwtProvider *generator2 = [self.utils getGeneratorJwtProviderWithIdentity:identity2 error:&error];
-    XCTAssert(error == nil);
+    id<VSSAccessTokenProvider> generator1 = [self.utils getGeneratorJwtProviderWithIdentity:identity1];
+    id<VSSAccessTokenProvider> generator2 = [self.utils getGeneratorJwtProviderWithIdentity:identity2];
     
     VSSCardManagerParams *cardManagerParams1 = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator1 cardVerifier:self.verifier];
-    cardManagerParams1.cardClient = [self.utils setupClientWithIdentity:identity1 error:&error];
-    XCTAssert(error == nil);
+    cardManagerParams1.cardClient = [self.utils setupClientWithIdentity:identity1];
     
     VSSCardManagerParams *cardManagerParams2 = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator2 cardVerifier:self.verifier];
-    cardManagerParams2.cardClient = [self.utils setupClientWithIdentity:identity2 error:&error];
-    XCTAssert(error == nil);
+    cardManagerParams2.cardClient = [self.utils setupClientWithIdentity:identity2];
     
     VSSCardManager *cardManager1 = [[VSSCardManager alloc] initWithParams:cardManagerParams1];
     VSSCardManager *cardManager2 = [[VSSCardManager alloc] initWithParams:cardManagerParams2];
-    
+
+    NSError *error;
     VSMVirgilKeyPair *keyPair1 = [self.crypto generateKeyPairAndReturnError:&error];
     VSMVirgilKeyPair *keyPair2 = [self.crypto generateKeyPairAndReturnError:&error];
     VSMVirgilKeyPair *keyPair3 = [self.crypto generateKeyPairAndReturnError:&error];
@@ -510,12 +513,12 @@ static const NSTimeInterval timeout = 20.;
                     
                     for (VSSCard* card in returnedCards) {
                         if ([card.identifier isEqualToString:card2.identifier]) {
-                            XCTAssert([self.utils isCardsEqualWithCard:card and:card2]);
-                            XCTAssert([self.utils isCardsEqualWithCard:card.previousCard and:card1]);
+                            XCTAssert([self.utils isCardsEqualWithCard1:card card2:card2]);
+                            XCTAssert([self.utils isCardsEqualWithCard1:card.previousCard card2:card1]);
                             XCTAssert([card.previousCardId isEqualToString:card1.identifier]);
                         }
                         else if ([card.identifier isEqualToString:card3.identifier]) {
-                            XCTAssert([self.utils isCardsEqualWithCard:card and:card3]);
+                            XCTAssert([self.utils isCardsEqualWithCard1:card card2:card3]);
                         }
                         else {
                             XCTFail();
@@ -539,11 +542,11 @@ static const NSTimeInterval timeout = 20.;
     
     NSError *error;
     NSString *identity = [[NSUUID alloc] init].UUIDString;
-    VSSGeneratorJwtProvider *generator = [self.utils getGeneratorJwtProviderWithIdentity:identity error:&error];
+    id<VSSAccessTokenProvider> generator = [self.utils getGeneratorJwtProviderWithIdentity:identity];
     XCTAssert(error == nil);
     
     VSSCardManagerParams *cardManagerParams = [[VSSCardManagerParams alloc] initWithCrypto:self.crypto accessTokenProvider:generator cardVerifier:self.verifier];
-    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity error:&error];
+    cardManagerParams.cardClient = [self.utils setupClientWithIdentity:identity];
     
     VSSCardManager *cardManager = [[VSSCardManager alloc] initWithParams:cardManagerParams];
     

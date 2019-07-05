@@ -61,11 +61,11 @@
     [super setUp];
     
     self.utils = [TestUtils readFromBundle];
-    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:NO error:nil];
+    self.crypto = self.utils.crypto;
     
     NSString *identity = [[NSUUID alloc] init].UUIDString;
     
-    self.keyknoxClient = [[VSSKeyknoxClient alloc] initWithAccessTokenProvider:[self.utils getGeneratorJwtProviderWithIdentity:identity] serviceUrl:self.utils.config.ServiceURL];
+    self.keyknoxClient = [self.utils setupKeyknoxClientWithIdentity:identity];
 }
 
 - (void)tearDown {

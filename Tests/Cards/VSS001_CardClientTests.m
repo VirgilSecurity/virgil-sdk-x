@@ -60,21 +60,10 @@
 - (void)setUp {
     [super setUp];
     self.continueAfterFailure = NO;
-    
-    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:NO error:nil];
+
     self.utils = [TestUtils readFromBundle];
-    
-    if (self.utils.servicePublicKey == nil) {
-        self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[]];
-    }
-    else {
-        VSSVerifierCredentials *creds = [[VSSVerifierCredentials alloc] initWithSigner:@"virgil" publicKey:self.utils.servicePublicKey];
-        NSError *error;
-        VSSWhitelist *whitelist = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds] error:&error];
-        XCTAssert(error == nil);
-        self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[whitelist]];
-        self.verifier.verifyVirgilSignature = NO;
-    }
+    self.crypto = self.utils.crypto;
+    self.verifier = [self.utils setupVerifierWithWhitelists:@[]];
 }
 
 - (void)tearDown {
