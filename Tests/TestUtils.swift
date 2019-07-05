@@ -133,6 +133,17 @@ private class Config: NSObject, Decodable {
         return KeyknoxClient(accessTokenProvider: self.getGeneratorJwtProvider(withIdentity: identity),
                              serviceUrl: self.serviceURL ?? KeyknoxClient.defaultURL)
     }
+
+    @objc public func setupKeyknoxManager(client: KeyknoxClient,
+                                          publicKeys: [VirgilPublicKey],
+                                          privateKey: VirgilPrivateKey) -> KeyknoxManager {
+        let crypto = KeyknoxCrypto(crypto: self.crypto)
+
+        return try! KeyknoxManager(keyknoxClient: client,
+                                   publicKeys: publicKeys,
+                                   privateKey: privateKey,
+                                   crypto: crypto)
+    }
 }
 
 // Comparisons

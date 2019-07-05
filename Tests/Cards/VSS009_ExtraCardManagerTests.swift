@@ -34,8 +34,6 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-import Foundation
-
 import VirgilCrypto
 import XCTest
 import VirgilCrypto
@@ -101,12 +99,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
         self.utils = TestUtils.readFromBundle()
         self.modelSigner = ModelSigner(crypto: self.crypto)
         self.generator = self.utils.getGeneratorJwtProvider(withIdentity: "identity")
-        if let serviceURL = self.utils.config.ServiceURL {
-            self.cardClient = CardClient(accessTokenProvider: self.generator, serviceUrl: serviceURL)
-        }
-        else {
-            self.cardClient = CardClient(accessTokenProvider: self.generator)
-        }
+        self.cardClient = self.utils.setupClient(tokenProvider: self.generator)
     }
 
     // MARK: Tests
