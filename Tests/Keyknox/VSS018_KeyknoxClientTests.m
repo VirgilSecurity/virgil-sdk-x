@@ -36,13 +36,13 @@
 
 #import "VSSTestBase.h"
 
-@interface VSK001_KeyknoxClientTests : VSSTestBase
+@interface VSS001_KeyknoxClientTests : VSSTestBase
 
 @property (nonatomic) VSSKeyknoxClient *keyknoxClient;
 
 @end
 
-@implementation VSK001_KeyknoxClientTests
+@implementation VSS001_KeyknoxClientTests
 
 - (void)setUp {
     [super setUp];

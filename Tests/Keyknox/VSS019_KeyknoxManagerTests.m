@@ -38,7 +38,7 @@
 
 static const NSTimeInterval timeout = 20.;
 
-@interface VSK002_KeyknoxManagerTests : VSSTestBase
+@interface VSS002_KeyknoxManagerTests : VSSTestBase
 
 @property (nonatomic) VSSKeyknoxManager *keyknoxManager;
 @property (nonatomic) uint32_t numberOfKeys;
@@ -47,7 +47,7 @@ static const NSTimeInterval timeout = 20.;
 
 @end
 
-@implementation VSK002_KeyknoxManagerTests
+@implementation VSS002_KeyknoxManagerTests
 
 - (void)setUp {
     [super setUp];

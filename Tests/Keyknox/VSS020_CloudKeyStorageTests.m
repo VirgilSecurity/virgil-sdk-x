@@ -38,7 +38,7 @@
 
 static const NSTimeInterval timeout = 20.;
 
-@interface VSK003_CloudKeyStorageTests : VSSTestBase
+@interface VSS003_CloudKeyStorageTests : VSSTestBase
 
 @property (nonatomic) VSMVirgilKeyPair *keyPair;
 @property (nonatomic) VSSCloudKeyStorage *keyStorage;
@@ -47,7 +47,7 @@ static const NSTimeInterval timeout = 20.;
 
 @end
 
-@implementation VSK003_CloudKeyStorageTests
+@implementation VSS003_CloudKeyStorageTests
 
 - (void)setUp {
     [super setUp];

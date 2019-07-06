@@ -38,7 +38,7 @@
 import XCTest
 import VirgilCrypto
 
-class VSK004_SyncKeyStorageTests: XCTestCase {
+class VSS004_SyncKeyStorageTests: XCTestCase {
     private var syncKeyStorage: SyncKeyStorage!
     private var keychainStorageWrapper: KeychainStorageProtocol!
     private var cloudKeyStorage: CloudKeyStorage!

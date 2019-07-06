@@ -38,7 +38,7 @@ import Foundation
 import XCTest
 @testable import VirgilSDK
 
-class VSK006_SyncKeyStorageKeychainUtilsTests: XCTestCase {
+class VSS006_SyncKeyStorageKeychainUtilsTests: XCTestCase {
     private let keychainUtils = KeychainUtils()
     
     func test001_testMeta() {

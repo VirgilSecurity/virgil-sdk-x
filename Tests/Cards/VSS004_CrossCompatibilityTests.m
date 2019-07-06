@@ -56,7 +56,7 @@
     self.verifier.verifyVirgilSignature = false;
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [bundle pathForResource:@"data" ofType:@"json"];
+    NSString *path = [bundle pathForResource:@"Cards" ofType:@"json"];
     NSData *dicData = [[NSData alloc] initWithContentsOfFile:path];
     XCTAssert(dicData != nil);
     

@@ -38,13 +38,13 @@ import Foundation
 import XCTest
 @testable import VirgilSDK
 
-class VSK005_CloudEntrySerializerTests: XCTestCase {
+class VSS005_CloudEntrySerializerTests: XCTestCase {
     private var cloud: NSDictionary!
     
     override func setUp() {
         super.setUp()
 
-        let bundle = Bundle(for: VSK005_CloudEntrySerializerTests.self)
+        let bundle = Bundle(for: VSS005_CloudEntrySerializerTests.self)
         let fileUrl = bundle.url(forResource: "Keyknox", withExtension: "json")!
         let data = try! Data(contentsOf: fileUrl)
         

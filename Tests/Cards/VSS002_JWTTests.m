@@ -126,7 +126,7 @@ static const NSTimeInterval timeout = 8.;
 - (void)test003_STC_28 {
     NSError *error;
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [bundle pathForResource:@"data" ofType:@"json"];
+    NSString *path = [bundle pathForResource:@"Cards" ofType:@"json"];
     NSData *dicData = [[NSData alloc] initWithContentsOfFile:path];
     XCTAssert(dicData != nil);
 
@@ -159,7 +159,7 @@ static const NSTimeInterval timeout = 8.;
 - (void)test004_STC_29 {
     NSError *error;
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [bundle pathForResource:@"data" ofType:@"json"];
+    NSString *path = [bundle pathForResource:@"Cards" ofType:@"json"];
     NSData *dicData = [[NSData alloc] initWithContentsOfFile:path];
     XCTAssert(dicData != nil);
 
