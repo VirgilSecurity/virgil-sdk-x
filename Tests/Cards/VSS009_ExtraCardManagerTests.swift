@@ -34,7 +34,6 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-import VirgilCrypto
 import XCTest
 import VirgilCrypto
 import VirgilSDK

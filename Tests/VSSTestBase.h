@@ -37,7 +37,6 @@
 #ifndef VSSTestBase_h
 #define VSSTestBase_h
 
-#import <Foundation/Foundation.h>
 #import <XCTest/XCTest.h>
 
 @import VirgilSDK;
