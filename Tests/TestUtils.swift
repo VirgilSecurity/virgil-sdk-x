@@ -49,8 +49,17 @@ private class Config: NSObject, Decodable {
 @objc public class TestUtils: NSObject {
     
     @objc public let crypto: VirgilCrypto
+
     private let config: Config
-    
+
+    @objc public var cardId: String {
+        return self.config.CardId
+    }
+
+    @objc public var cardIdentity: String {
+        return self.config.CardIdentity
+    }
+
     private let apiKey: VirgilPrivateKey
     private let servicePublicKey: VirgilPublicKey?
     private let serviceURL: URL?

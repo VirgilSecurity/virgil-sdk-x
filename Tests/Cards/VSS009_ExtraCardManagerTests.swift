@@ -162,7 +162,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
             }
         }
 
-        let operation3 = cardManager.getCard(withId: self.utils.config.CardId)
+        let operation3 = cardManager.getCard(withId: self.utils.cardId)
 
         switch operation3.startSync() {
         case .success: XCTFail()
@@ -174,7 +174,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
             }
         }
 
-        let operation4 = cardManager.searchCards(identities: [self.utils.config.CardIdentity])
+        let operation4 = cardManager.searchCards(identities: [self.utils.cardIdentity])
 
         switch operation4.startSync() {
         case .success: XCTFail()
