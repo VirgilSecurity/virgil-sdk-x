@@ -43,9 +43,9 @@ class VSK005_CloudEntrySerializerTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        
-        let bundle = Bundle(for: VSS005_CloudEntrySerializerTests.self)
-        let fileUrl = bundle.url(forResource: "Cloud", withExtension: "json")!
+
+        let bundle = Bundle(for: VSK005_CloudEntrySerializerTests.self)
+        let fileUrl = bundle.url(forResource: "Keyknox", withExtension: "json")!
         let data = try! Data(contentsOf: fileUrl)
         
         self.cloud = try! JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
