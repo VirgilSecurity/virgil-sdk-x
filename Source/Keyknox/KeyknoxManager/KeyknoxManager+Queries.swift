@@ -89,7 +89,7 @@ extension KeyknoxManager {
             self.queue.async {
                 do {
                     let resetValueResult = try self.resetValueOperation()
-                    
+
                     completion(resetValueResult, nil)
                 }
                 catch {
@@ -119,19 +119,20 @@ extension KeyknoxManager {
                 do {
                     let pullValueResult = try self.pullValueOperation()
                     let decryptResult = try self.decryptOperation(keyknoxData: pullValueResult)
-                    
+
                     guard !decryptResult.value.isEmpty else {
                         completion(decryptResult, nil)
                         return
                     }
-                    
+
                     let encryptResult = try self.encryptOperation(data: decryptResult.value,
                                                                   newPublicKeys: newPublicKeys,
                                                                   newPrivateKey: newPrivateKey)
-                    
-                    let pushValueResult = try self.pushValueOperation(data: encryptResult, previousHash: pullValueResult.keyknoxHash)
+
+                    let pushValueResult = try self.pushValueOperation(data: encryptResult,
+                                                                      previousHash: pullValueResult.keyknoxHash)
                     let decryptResult2 = try self.decryptOperation(keyknoxData: pushValueResult)
-                    
+
                     completion(decryptResult2, nil)
                 }
                 catch {
@@ -166,7 +167,7 @@ extension KeyknoxManager {
                                                                   newPrivateKey: newPrivateKey)
                     let pushValueResult = try self.pushValueOperation(data: encryptResult, previousHash: previousHash)
                     let decryptResult = try self.decryptOperation(keyknoxData: pushValueResult)
-                    
+
                     completion(decryptResult, nil)
                 }
                 catch {

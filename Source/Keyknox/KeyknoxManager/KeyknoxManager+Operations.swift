@@ -60,7 +60,7 @@ extension KeyknoxManager {
         guard response.value.isEmpty && response.meta.isEmpty else {
             throw KeyknoxManagerError.serverRespondedWithTamperedValue
         }
-        
+
         return response
     }
 

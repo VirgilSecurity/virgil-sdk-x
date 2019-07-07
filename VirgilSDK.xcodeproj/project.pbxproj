@@ -285,12 +285,9 @@
 		42D0589420EB894500FC544E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D0589320EB894500FC544E /* AppDelegate.swift */; };
 		42D0589620EB894500FC544E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D0589520EB894500FC544E /* ViewController.swift */; };
 		42D0589920EB894500FC544E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D0589720EB894500FC544E /* Main.storyboard */; };
-		42D0589B20EB894700FC544E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42D0589A20EB894700FC544E /* Assets.xcassets */; };
-		42D0589E20EB894700FC544E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D0589C20EB894700FC544E /* LaunchScreen.storyboard */; };
 		42D058B820EB897200FC544E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D058B720EB897200FC544E /* AppDelegate.swift */; };
 		42D058BA20EB897200FC544E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D058B920EB897200FC544E /* ViewController.swift */; };
 		42D058BD20EB897200FC544E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D058BB20EB897200FC544E /* Main.storyboard */; };
-		42D058BF20EB897300FC544E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42D058BE20EB897300FC544E /* Assets.xcassets */; };
 		42D058E120EB89CC00FC544E /* Cards.json in Resources */ = {isa = PBXBuildFile; fileRef = 4244F7F920331D610053EE4B /* Cards.json */; };
 		42D058E220EB89CC00FC544E /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
 		42D058E320EB89CC00FC544E /* VSS001_CardClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */; };
@@ -771,15 +768,12 @@
 		42D0589320EB894500FC544E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42D0589520EB894500FC544E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		42D0589820EB894500FC544E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		42D0589A20EB894700FC544E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		42D0589D20EB894700FC544E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		42D0589F20EB894700FC544E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42D058A720EB896200FC544E /* VirgilSDK AppTests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilSDK AppTests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D058B520EB897200FC544E /* SDKTestApp tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SDKTestApp tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D058B720EB897200FC544E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		42D058B920EB897200FC544E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		42D058BC20EB897200FC544E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		42D058BE20EB897300FC544E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		42D058C020EB897300FC544E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42D058F420EB89E000FC544E /* VirgilSDK AppTests tvOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VirgilSDK AppTests tvOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42D7AE8A2242D9DB009D02FD /* VSCFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VSCFoundation.framework; path = Carthage/Build/iOS/VSCFoundation.framework; sourceTree = "<group>"; };
@@ -1265,8 +1259,6 @@
 				42D0589320EB894500FC544E /* AppDelegate.swift */,
 				42D0589520EB894500FC544E /* ViewController.swift */,
 				42D0589720EB894500FC544E /* Main.storyboard */,
-				42D0589A20EB894700FC544E /* Assets.xcassets */,
-				42D0589C20EB894700FC544E /* LaunchScreen.storyboard */,
 				42D0589F20EB894700FC544E /* Info.plist */,
 			);
 			path = "SDKTestApp iOS";
@@ -1278,7 +1270,6 @@
 				42D058B720EB897200FC544E /* AppDelegate.swift */,
 				42D058B920EB897200FC544E /* ViewController.swift */,
 				42D058BB20EB897200FC544E /* Main.storyboard */,
-				42D058BE20EB897300FC544E /* Assets.xcassets */,
 				42D058C020EB897300FC544E /* Info.plist */,
 			);
 			path = "SDKTestApp tvOS";
@@ -1680,8 +1671,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42D0589E20EB894700FC544E /* LaunchScreen.storyboard in Resources */,
-				42D0589B20EB894700FC544E /* Assets.xcassets in Resources */,
 				42D0589920EB894500FC544E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1700,7 +1689,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42D058BF20EB897300FC544E /* Assets.xcassets in Resources */,
 				42D058BD20EB897200FC544E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2276,14 +2264,6 @@
 				42D0589820EB894500FC544E /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		42D0589C20EB894700FC544E /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				42D0589D20EB894700FC544E /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 		42D058BB20EB897200FC544E /* Main.storyboard */ = {

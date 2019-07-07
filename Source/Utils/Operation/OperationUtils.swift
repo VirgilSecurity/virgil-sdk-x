@@ -82,7 +82,7 @@ public enum OperationUtils {
     ///   - accessTokenProvider: AccessTokenProvider
     /// - Returns: GenericOperation<AccessToken>
     internal static func makeGetTokenOperation(tokenContext: TokenContext,
-                                             accessTokenProvider: AccessTokenProvider)
+                                               accessTokenProvider: AccessTokenProvider)
         -> GenericOperation<AccessToken> {
         return CallbackOperation<AccessToken> { _, completion in
             accessTokenProvider.getToken(with: tokenContext, completion: completion)

@@ -163,7 +163,8 @@ extension CardClient: CardClientProtocol {
         let response = try self.sendWithRetry(request,
                                               retry: self.createRetry(),
                                               tokenContext: tokenContext)
-        .startSync().getResult()
+            .startSync()
+            .getResult()
 
         try self.validateResponse(response)
     }

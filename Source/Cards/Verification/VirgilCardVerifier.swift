@@ -130,7 +130,10 @@ import VirgilCrypto
         return true
     }
 
-    private class func verify(crypto: VirgilCrypto, card: Card, signer: String, signerPublicKey: VirgilPublicKey) -> Bool {
+    private class func verify(crypto: VirgilCrypto,
+                              card: Card,
+                              signer: String,
+                              signerPublicKey: VirgilPublicKey) -> Bool {
         guard let signature = card.signatures.first(where: { $0.signer == signer }),
               let cardSnapshot = try? card.getRawCard().contentSnapshot else {
                 return false
