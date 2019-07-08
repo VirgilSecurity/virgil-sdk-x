@@ -43,8 +43,7 @@ import VirgilCrypto
     /// - Note: Can be taken [here](https://dashboard.virgilsecurity.com/api-keys)
     @objc public let apiKey: VirgilPrivateKey
     /// Public Key identifier of Api Key
-    /// - Note: Can be taken [here](https://dashboard.virgilsecurity.com/api-keys)
-    @objc public let apiPublicKeyIdentifier: String
+    @objc private(set) public var apiPublicKeyIdentifier: String
     /// Implementation of AccessTokenSigner for signing generated tokens
     @objc public let crypto: VirgilCrypto
     /// Application Id
@@ -81,6 +80,16 @@ import VirgilCrypto
         self.ttl = ttl
 
         super.init()
+    }
+
+    /// Sets api key identifier:
+    /// - Note: Use this method only if you have old application, for newer applications
+    /// this identifier will be computed automatically.
+    /// - Note: Can be taken [here](https://dashboard.virgilsecurity.com/api-keys)
+    ///
+    /// - Parameter identifier: Public Key identifier of Api Key
+    @objc public func setApiKeyIdentifier(_ identifier: String) {
+        self.apiPublicKeyIdentifier = identifier
     }
 
     /// Generates new JWT
