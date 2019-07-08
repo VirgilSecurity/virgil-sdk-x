@@ -52,9 +52,9 @@ extension CardClient: CardClientProtocol {
     /// - Parameter cardId: String with unique Virgil Card identifier
     /// - Returns: `GetCardResponse` if card found
     /// - Throws:
-    ///         - CardClientError.constructingUrl, if url initialization failed
-    ///         - Rethrows from ServiceRequest
-    ///         - Rethrows ServiceError or NSError from BaseClient
+    ///   - `CardClientError.constructingUrl`, if url initialization failed
+    ///   - Rethrows from `ServiceRequest`
+    ///   - Rethrows `ServiceError` or `NSError` from `BaseClient`
     @objc open func getCard(withId cardId: String) throws -> GetCardResponse {
         guard let url = URL(string: "card/v5/\(cardId)", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
@@ -91,9 +91,9 @@ extension CardClient: CardClientProtocol {
     /// - Parameter model: Signed `RawSignedModel`
     /// - Returns: `RawSignedModel` of created card
     /// - Throws:
-    ///         - CardClientError.constructingUrl, if url initialization failed
-    ///         - Rethrows from ServiceRequest
-    ///         - Rethrows ServiceError or NSError from BaseClient
+    ///   - `CardClientError.constructingUrl`, if url initialization failed
+    ///   - Rethrows from `ServiceRequest`
+    ///   - Rethrows `ServiceError` or `NSError` from `BaseClient`
     @objc open func publishCard(model: RawSignedModel) throws -> RawSignedModel {
         guard let url = URL(string: "card/v5", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
@@ -116,11 +116,12 @@ extension CardClient: CardClientProtocol {
     ///
     /// - Parameter identities: Identities of cards to search
     /// - Returns: Array with `RawSignedModel`s of matched Virgil Cards
-    /// - Throws: CardClientError.constructingUrl, if url initialization failed
-    ///           CardServiceError, if service returned correctly-formed error json
-    ///           NSError with CardClient.serviceErrorDomain error domain,
-    ///               http status code as error code, and description string if present in http body
-    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
+    /// - Throws:
+    ///   - CardClientError.constructingUrl, if url initialization failed
+    ///   - CardServiceError, if service returned correctly-formed error json
+    ///   - NSError with CardClient.serviceErrorDomain error domain,
+    ///     http status code as error code, and description string if present in http body
+    ///   - Rethrows from `ServiceRequest`, `HttpConnectionProtocol`, `JsonDecoder`, `BaseClient`
     public func searchCards(identities: [String]) throws -> [RawSignedModel] {
         guard let url = URL(string: "card/v5/actions/search", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
@@ -145,11 +146,12 @@ extension CardClient: CardClientProtocol {
     /// Also, such cards could be obtained using get query, but will be absent in search query result.
     ///
     /// - Parameter cardId: identifier of card to revoke
-    /// - Throws: CardClientError.constructingUrl, if url initialization failed
-    ///           CardServiceError, if service returned correctly-formed error json
-    ///           NSError with CardClient.serviceErrorDomain error domain,
-    ///               http status code as error code, and description string if present in http body
-    ///           Rethrows from ServiceRequest, HttpConnectionProtocol, JsonDecoder, BaseClient
+    /// - Throws:
+    ///   - CardClientError.constructingUrl, if url initialization failed
+    ///   - CardServiceError, if service returned correctly-formed error json
+    ///   - NSError with CardClient.serviceErrorDomain error domain,
+    ///     http status code as error code, and description string if present in http body
+    ///   - Rethrows from `ServiceRequest`, `HttpConnectionProtocol`, `JsonDecoder`, `BaseClient`
     @objc public func revokeCard(withId cardId: String) throws {
         guard let url = URL(string: "card/v5/actions/revoke/\(cardId)", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl

@@ -42,8 +42,9 @@ extension CardManager {
     ///
     /// - Parameter base64EncodedString: base64 encoded string with Card
     /// - Returns: imported and verified Card
-    /// - Throws: CardManagerError.cardIsNotVerified, if Card verificaction has failed
-    ///           Rethrows from RawSignedModel, JSONDecoder, Crypto
+    /// - Throws:
+    ///   - `CardManagerError.cardIsNotVerified`, if Card verificaction has failed
+    ///   - Rethrows from `RawSignedModel`, `JSONDecoder`, `VirgilCrypto`
     @objc open func importCard(fromBase64Encoded base64EncodedString: String) throws -> Card {
         return try CardManager.importCard(fromBase64Encoded: base64EncodedString,
                                           crypto: self.crypto,
@@ -54,8 +55,9 @@ extension CardManager {
     ///
     /// - Parameter json: json Dictionary
     /// - Returns: imported and verified Card
-    /// - Throws: CardManagerError.cardIsNotVerified, if Card verificaction has failed
-    ///           Rethrows from RawSignedModel, JSONDecoder, Crypto, JSONSerialization
+    /// - Throws:
+    ///   - `CardManagerError.cardIsNotVerified`, if Card verificaction has failed
+    ///   - Rethrows from `RawSignedModel`, `JSONDecoder`, `VirgilCrypto`, `JSONSerialization`
     @objc open func importCard(fromJson json: Any) throws -> Card {
         return try CardManager.importCard(fromJson: json,
                                           crypto: self.crypto,
@@ -66,8 +68,9 @@ extension CardManager {
     ///
     /// - Parameter rawCard: RawSignedModel
     /// - Returns: imported and verified Card
-    /// - Throws: CardManagerError.cardIsNotVerified, if Card verificaction has failed
-    ///           Rethrows from RawSignedModel, JSONDecoder, Crypto, JSONSerialization
+    /// - Throws:
+    ///   - `CardManagerError.cardIsNotVerified`, if Card verificaction has failed
+    ///   - Rethrows from `RawSignedModel`, `JSONDecoder`, `VirgilCrypto`, `JSONSerialization`
     @objc open func importCard(fromRawCard rawCard: RawSignedModel) throws -> Card {
         return try CardManager.importCard(fromRawCard: rawCard,
                                           crypto: self.crypto,
@@ -78,8 +81,9 @@ extension CardManager {
     ///
     /// - Parameter card: Card to be exported
     /// - Returns: base64 encoded string with Card
-    /// - Throws: CardManagerError.cardIsNotVerified, if Card verificaction has failed
-    ///           Rethrows from RawSignedModel, JSOEncoder, Crypto
+    /// - Throws:
+    ///  - `CardManagerError.cardIsNotVerified`, if Card verificaction has failed
+    ///  - Rethrows from `RawSignedModel`, `JSONEncoder`, `VirgilCrypto`
     @objc open func exportCardAsBase64EncodedString(_ card: Card) throws -> String {
         return try CardManager.exportCardAsBase64EncodedString(card)
     }
@@ -88,8 +92,9 @@ extension CardManager {
     ///
     /// - Parameter card: Card to be exported
     /// - Returns: json Dictionary with Card
-    /// - Throws: CardManagerError.cardIsNotVerified, if Card verificaction has failed
-    ///           Rethrows from RawSignedModel, JSOEncoder, Crypto, JSONSerialization
+    /// - Throws:
+    ///   - `CardManagerError.cardIsNotVerified`, if Card verificaction has failed
+    ///   - Rethrows from `RawSignedModel`, `JSONEncoder`, `VirgilCrypto`, `JSONSerialization`
     @objc open func exportCardAsJson(_ card: Card) throws -> Any {
         return try CardManager.exportCardAsJson(card)
     }
@@ -97,8 +102,9 @@ extension CardManager {
     ///
     /// - Parameter card: Card to be exported
     /// - Returns: RawSignedModel representing Card
-    /// - Throws: CardManagerError.cardIsNotVerified, if Card verificaction has failed
-    ///           Rethrows from RawSignedModel, JSOEncoder, Crypto
+    /// - Throws:
+    ///   - `CardManagerError.cardIsNotVerified`, if Card verificaction has failed
+    ///   - Rethrows from `RawSignedModel`, `JSONEncoder`, `VirgilCrypto`
     @objc open func exportCardAsRawCard(_ card: Card) throws -> RawSignedModel {
         return try CardManager.exportCardAsRawCard(card)
     }

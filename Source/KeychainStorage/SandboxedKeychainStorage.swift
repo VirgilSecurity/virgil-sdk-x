@@ -126,8 +126,8 @@ extension SandboxedKeychainStorage {
     ///   - meta: Meta
     /// - Returns: Stored Keychain entry
     /// - Throws:
-    ///        - Rethrows from KeychainStorage
-    ///        - errorConvertingKeychainEntry
+    ///   - Rethrows from `KeychainStorage`
+    ///   - `errorConvertingKeychainEntry`
     public func store(data: Data, withName name: String, meta: [String: String]?) throws -> KeychainEntry {
         let keychainName = self.keychainName(fromEntryName: name)
 
@@ -157,8 +157,8 @@ extension SandboxedKeychainStorage {
     /// - Parameter name: Name
     /// - Returns: Retrieved Keychain entry
     /// - Throws:
-    ///        - Rethrows from KeychainStorage
-    ///        - errorConvertingKeychainEntry
+    ///   - Rethrows from `KeychainStorage`
+    ///   - `errorConvertingKeychainEntry`
     public func retrieveEntry(withName name: String) throws -> KeychainEntry {
         let keychainName = self.keychainName(fromEntryName: name)
 
@@ -175,8 +175,8 @@ extension SandboxedKeychainStorage {
     ///
     /// - Returns: All Keychain entries
     /// - Throws:
-    ///        - Rethrows from KeychainStorage
-    ///        - errorConvertingKeychainEntry
+    ///   - Rethrows from `KeychainStorage`
+    ///   - `errorConvertingKeychainEntry`
     public func retrieveAllEntries() throws -> [KeychainEntry] {
         return self.mapKeychainEntries(try self.keychainStorage.retrieveAllEntries())
     }
@@ -184,7 +184,7 @@ extension SandboxedKeychainStorage {
     /// Deletes keychain entry
     ///
     /// - Parameter name: Name
-    /// - Throws: Rethrows from KeychainStorage
+    /// - Throws: Rethrows from `KeychainStorage`
     public func deleteEntry(withName name: String) throws {
         let keychainName = self.keychainName(fromEntryName: name)
 
@@ -195,7 +195,7 @@ extension SandboxedKeychainStorage {
     ///
     /// - Parameter name: Name
     /// - Returns: true if entry exists, false - otherwise
-    /// - Throws: Rethrows from KeychainStorage
+    /// - Throws: Rethrows from `KeychainStorage`
     public func existsEntry(withName name: String) throws -> Bool {
         let keychainName = self.keychainName(fromEntryName: name)
 

@@ -77,7 +77,7 @@ extension CardManager {
     ///   - previousCardId: Identifier of Virgil Card with same identity this Card will replace
     ///   - extraFields: Dictionary with extra data to sign with model. Should be JSON-compatible
     /// - Returns: Self signed RawSignedModel
-    /// - Throws: Rethrows from Crypto, JSONEncoder, JSONSerialization, ModelSigner
+    /// - Throws: Rethrows from `VirgilCrypto`, `JSONEncoder`, `JSONSerialization`, `ModelSigner`
     @objc open func generateRawCard(privateKey: VirgilPrivateKey, publicKey: VirgilPublicKey,
                                     identity: String, previousCardId: String? = nil,
                                     extraFields: [String: String]? = nil) throws -> RawSignedModel {
@@ -101,7 +101,7 @@ extension CardManager {
     ///   - previousCardId: Identifier of Virgil Card with same identity this Card will replace
     ///   - extraFields: Dictionary with extra data to sign with model. Should be JSON-compatible
     /// - Returns: Self signed RawSignedModel
-    /// - Throws: Rethrows from Crypto, JSONEncoder, JSONSerialization, ModelSigner
+    /// - Throws: Rethrows from `VirgilCrypto`, `JSONEncoder`, `JSONSerialization`, `ModelSigner`
     @objc open class func generateRawCard(crypto: VirgilCrypto, modelSigner: ModelSigner,
                                           privateKey: VirgilPrivateKey, publicKey: VirgilPublicKey,
                                           identity: String, previousCardId: String? = nil,
@@ -209,8 +209,8 @@ extension CardManager {
     /// Makes CallbackOperation<[Card]> for performing search of Virgil Cards
     /// on the Virgil Cards Service using identities
     ///
-    /// NOTE: Resulting array will contain only actual cards.
-    ///       Older cards (that were replaced) can be accessed using previousCard property of new cards.
+    /// - Note: Resulting array will contain only actual cards.
+    ///         Older cards (that were replaced) can be accessed using previousCard property of new cards.
     ///
     /// - Parameter identities: identities of cards to search
     /// - Returns: CallbackOperation<[Card]> for performing search of Virgil Cards

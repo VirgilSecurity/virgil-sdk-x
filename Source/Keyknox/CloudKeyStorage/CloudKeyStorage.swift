@@ -67,7 +67,7 @@ import VirgilCrypto
     ///   - crypto: Crypto
     ///   - publicKeys: Public keys used for encryption and signature verification
     ///   - privateKey: Private key used for decryption and signature verification
-    /// - Throws: Rethrows from KeyknoxManager
+    /// - Throws: Rethrows from `KeyknoxManager`
     @objc public convenience init(accessTokenProvider: AccessTokenProvider,
                                   crypto: VirgilCrypto,
                                   publicKeys: [VirgilPublicKey], privateKey: VirgilPrivateKey) throws {

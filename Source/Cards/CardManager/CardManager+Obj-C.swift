@@ -42,7 +42,7 @@ extension CardManager {
     /// Asynchronously returns `Card` with given identifier
     /// from the Virgil Cards Service with given ID, if exists
     ///
-    /// NOTE: See swift version for additional info
+    /// - Note: See swift version for additional info
     ///
     /// - Parameters:
     ///   - cardId: string with unique Virgil Card identifier
@@ -55,7 +55,7 @@ extension CardManager {
     /// Also makes the Card accessible for search/get queries from other users
     /// `RawSignedModel` should be at least selfSigned
     ///
-    /// NOTE: See swift version for additional info
+    /// - Note: See swift version for additional info
     ///
     /// - Parameters:
     ///   - rawCard: self signed `RawSignedModel`
@@ -67,7 +67,7 @@ extension CardManager {
     /// Asynchronously generates self signed RawSignedModel and creates Virgil Card
     /// instance on the Virgil Cards Service and associates it with unique identifier
     ///
-    /// NOTE: See swift version for additional info
+    /// - Note: See swift version for additional info
     ///
     /// - Parameters:
     ///   - privateKey: Private Key to self sign RawSignedModel with
@@ -89,7 +89,7 @@ extension CardManager {
 
     /// Asynchronously performs search of Virgil Cards on the Virgil Cards Service using identities
     ///
-    /// NOTE: See swift version for additional info
+    /// - Note: See swift version for additional info
     ///
     /// - Parameters:
     ///   - identities: identities of cards to search

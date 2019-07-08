@@ -117,7 +117,8 @@ import VirgilCrypto
     ///   - privateKey: VirgilPrivateKey to sign with
     ///   - extraFields: Dictionary with extra data to sign with model
     /// - Throws: corresponding error id signature generation fails
-    @objc public func selfSign(model: RawSignedModel, privateKey: VirgilPrivateKey,
+    @objc public func selfSign(model: RawSignedModel,
+                               privateKey: VirgilPrivateKey,
                                extraFields: [String: String]? = nil) throws {
         try self.sign(model: model,
                       signer: ModelSigner.selfSignerIdentifier,

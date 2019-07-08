@@ -40,9 +40,19 @@ import Foundation
 ///
 /// - constructingUrl: constructing url of endpoint failed
 /// - invalidPreviousHashHeader: error whilte extracting previousHash from response header
-@objc(VSSKeyknoxClientError) public enum KeyknoxClientError: Int, Error {
+@objc(VSSKeyknoxClientError) public enum KeyknoxClientError: Int, LocalizedError {
     case constructingUrl = 1
     case invalidPreviousHashHeader = 2
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .constructingUrl:
+            return "Constructing url of endpoint failed"
+        case .invalidPreviousHashHeader:
+            return "Error whilte extracting previousHash from response header"
+        }
+    }
 }
 
 /// Class representing operations with Virgil Keyknox service

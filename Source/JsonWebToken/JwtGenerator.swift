@@ -61,7 +61,7 @@ import VirgilCrypto
     ///   - crypto: VirgilCrypto
     ///   - appId: Application Id
     ///   - ttl: Lifetime of generated tokens
-    /// - Throws: Rethrows from VirgilCrypto
+    /// - Throws: Rethrows from `VirgilCrypto`
     @objc public init(apiKey: VirgilPrivateKey,
                       crypto: VirgilCrypto,
                       appId: String,
@@ -98,7 +98,7 @@ import VirgilCrypto
     ///   - identity: Identity to generate with
     ///   - additionalData: Dictionary with additional data
     /// - Returns: Generated and signed `Jwt`
-    /// - Throws: Rethrows from JwtHeaderContent, JwtBodyContent, Jwt, AccessTokenSigner
+    /// - Throws: Rethrows from `JwtHeaderContent`, `JwtBodyContent`, `Jwt`, `AccessTokenSigner`
     @objc public func generateToken(identity: String, additionalData: [String: String]? = nil) throws -> Jwt {
         let jwtHeaderContent = try JwtHeaderContent(keyIdentifier: self.apiPublicKeyIdentifier)
         let jwtBodyContent = try JwtBodyContent(appId: self.appId,
