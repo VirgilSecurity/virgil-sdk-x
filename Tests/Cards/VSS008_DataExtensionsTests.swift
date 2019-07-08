@@ -34,41 +34,33 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-import Foundation
-import Security
+import VirgilSDK
+import XCTest
 
-/// Class responsible for KeychainStorage setup
-@objc(VSSKeychainStorageParams) public final class KeychainStorageParams: NSObject {
-    /// Application name
-    @objc public let appName: String
+class VSS008_DataExtensionsTests: XCTestCase {
+    func test001_base64Url() {
+        let base64encoded = "MFEwDQYJYIZIAWUDBAIDBQAEQJuTxlQ7r+RG2P8D12OFOdgPsIDmZMd4UBMIG1c1Amqm/oc1wRUzk7ccz1RbTWEt2XP+1GbkF0Z6s6FYf1QEUQI="
+        let base64UrlEncoded = "MFEwDQYJYIZIAWUDBAIDBQAEQJuTxlQ7r-RG2P8D12OFOdgPsIDmZMd4UBMIG1c1Amqm_oc1wRUzk7ccz1RbTWEt2XP-1GbkF0Z6s6FYf1QEUQI"
 
-    /// Trusted applications
-    @objc public let trustedApplications: [String]
+        let data = Data(base64Encoded: base64encoded)!
+        
+        let base64url = data.base64UrlEncodedString()
 
-    /// Init
-    ///
-    /// - Parameters:
-    ///   - appName: Application name
-    ///   - trustedApplications: List of trusted applications
-    @objc public init(appName: String, trustedApplications: [String]) {
-        self.appName = appName
-        self.trustedApplications = trustedApplications
+        XCTAssert(base64url == base64UrlEncoded)
 
-        super.init()
+        let newData = Data(base64UrlEncoded: base64url)
+        
+        XCTAssert(newData != nil)
+        
+        XCTAssert(data == newData!)
     }
-
-    /// Fabric method
-    ///
-    /// - Parameters:
-    ///   - trustedApplications: List of trusted applications
-    /// - Returns: Initialized KeychainStorageParams
-    /// - Throws: KeychainStorageError
-    @objc public static func makeKeychainStorageParams(appName: String? = nil,
-                                                       trustedApplications: [String] = []) throws -> KeychainStorageParams {
-        guard let appName = appName ?? Bundle.main.bundleIdentifier else {
-            throw KeychainStorageError(errCode: .invalidAppBundle)
-        }
-
-        return KeychainStorageParams(appName: appName, trustedApplications: [])
+    
+    func test002_hex() {
+        let str = "This is a test."
+        let strHex = "54686973206973206120746573742e"
+        
+        XCTAssert(str.data(using: .utf8)!.hexEncodedString() == strHex)
+        
+        XCTAssert(String(data: Data(hexEncodedString: strHex)!, encoding: .utf8) == str)
     }
 }

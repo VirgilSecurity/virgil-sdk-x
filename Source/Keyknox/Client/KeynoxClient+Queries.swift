@@ -43,7 +43,7 @@ extension KeyknoxClient: KeyknoxClientProtocol {
 
     /// Header key for previous blob hash
     @objc public static let virgilKeyknoxPreviousHashKey = "Virgil-Keyknox-Previous-Hash"
-    
+
     private func createRetry() -> RetryProtocol {
         return ExpBackoffRetry(config: self.retryConfig)
     }
@@ -77,10 +77,14 @@ extension KeyknoxClient: KeyknoxClientProtocol {
         }
 
         let request = try ServiceRequest(url: url, method: .put, params: params, headers: headers)
-        
+
         let tokenContext = TokenContext(service: "keyknox", operation: "put", forceReload: false)
 
-        let response = try self.sendWithRetry(request, retry: self.createRetry(), tokenContext: tokenContext).startSync().getResult()
+        let response = try self.sendWithRetry(request,
+                                              retry: self.createRetry(),
+                                              tokenContext: tokenContext)
+            .startSync()
+            .getResult()
 
         let keyknoxData: KeyknoxData = try self.processResponse(response)
 
@@ -103,7 +107,11 @@ extension KeyknoxClient: KeyknoxClientProtocol {
         let request = try ServiceRequest(url: url, method: .get)
 
         let tokenContext = TokenContext(service: "keyknox", operation: "get", forceReload: false)
-        let response = try self.sendWithRetry(request, retry: self.createRetry(), tokenContext: tokenContext).startSync().getResult()
+        let response = try self.sendWithRetry(request,
+                                              retry: self.createRetry(),
+                                              tokenContext: tokenContext)
+            .startSync()
+            .getResult()
 
         let keyknoxData: KeyknoxData = try self.processResponse(response)
 
@@ -126,7 +134,11 @@ extension KeyknoxClient: KeyknoxClientProtocol {
         let request = try ServiceRequest(url: url, method: .post)
         let tokenContext = TokenContext(service: "keyknox", operation: "delete", forceReload: false)
 
-        let response = try self.sendWithRetry(request, retry: self.createRetry(), tokenContext: tokenContext).startSync().getResult()
+        let response = try self.sendWithRetry(request,
+                                              retry: self.createRetry(),
+                                              tokenContext: tokenContext)
+            .startSync()
+            .getResult()
 
         let keyknoxData: KeyknoxData = try self.processResponse(response)
 

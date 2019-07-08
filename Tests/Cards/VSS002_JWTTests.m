@@ -34,22 +34,11 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-#import <Foundation/Foundation.h>
-#import <XCTest/XCTest.h>
-@import VirgilSDK;
-@import VirgilCrypto;
-
-#if TARGET_OS_IOS
-#import "VirgilSDK_AppTests_iOS-Swift.h"
-#elif TARGET_OS_TV
-#import "VirgilSDK_AppTests_tvOS-Swift.h"
-#elif TARGET_OS_OSX
-#import "VirgilSDK_macOS_Tests-Swift.h"
-#endif
+#import "VSSTestBase.h"
 
 static const NSTimeInterval timeout = 8.;
 
-@interface VSS002_JWTTests : XCTestCase
+@interface VSS002_JWTTests : VSSTestBase
 
 @end
 
@@ -137,7 +126,7 @@ static const NSTimeInterval timeout = 8.;
 - (void)test003_STC_28 {
     NSError *error;
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [bundle pathForResource:@"data" ofType:@"json"];
+    NSString *path = [bundle pathForResource:@"Cards" ofType:@"json"];
     NSData *dicData = [[NSData alloc] initWithContentsOfFile:path];
     XCTAssert(dicData != nil);
 
@@ -170,7 +159,7 @@ static const NSTimeInterval timeout = 8.;
 - (void)test004_STC_29 {
     NSError *error;
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
-    NSString *path = [bundle pathForResource:@"data" ofType:@"json"];
+    NSString *path = [bundle pathForResource:@"Cards" ofType:@"json"];
     NSData *dicData = [[NSData alloc] initWithContentsOfFile:path];
     XCTAssert(dicData != nil);
 

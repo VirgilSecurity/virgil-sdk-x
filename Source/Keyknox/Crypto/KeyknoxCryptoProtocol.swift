@@ -47,7 +47,8 @@ public protocol KeyknoxCryptoProtocol: class {
     ///   - publicKeys: allowed public keys to verify signature
     /// - Returns: DecryptedKeyknoxValue
     /// - Throws: Depends on implementation
-    func decrypt(encryptedKeyknoxValue: EncryptedKeyknoxValue, privateKey: VirgilPrivateKey,
+    func decrypt(encryptedKeyknoxValue: EncryptedKeyknoxValue,
+                 privateKey: VirgilPrivateKey,
                  publicKeys: [VirgilPublicKey]) throws -> DecryptedKeyknoxValue
 
     /// Encrypts data for Keyknox

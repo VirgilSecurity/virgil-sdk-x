@@ -40,10 +40,10 @@ import VirgilCrypto
 @objc(VSSFileSystemCredentials) open class FileSystemCredentials: NSObject {
     /// Crypto
     @objc public let crypto: VirgilCrypto
-    
+
     /// Keypair
     @objc public let keyPair: VirgilKeyPair
-    
+
     @objc public init(crypto: VirgilCrypto, keyPair: VirgilKeyPair) {
         self.crypto = crypto
         self.keyPair = keyPair
@@ -78,9 +78,9 @@ import VirgilCrypto
     ///   - pathComponents: path components
     ///   - credentials: encryption credentials
     @objc public init(prefix: String,
-                userIdentifier: String,
-                pathComponents: [String],
-                credentials: FileSystemCredentials? = nil) {
+                      userIdentifier: String,
+                      pathComponents: [String],
+                      credentials: FileSystemCredentials? = nil) {
         self.prefix = prefix
         self.userIdentifier = userIdentifier
         self.pathComponents = pathComponents

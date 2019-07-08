@@ -34,38 +34,22 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-#import <Foundation/Foundation.h>
-#import <XCTest/XCTest.h>
-@import VirgilSDK;
-@import VirgilCrypto;
+#import "VSSTestBase.h"
 
-#if TARGET_OS_IOS
-#import "VirgilSDK_AppTests_iOS-Swift.h"
-#elif TARGET_OS_TV
-#import "VirgilSDK_AppTests_tvOS-Swift.h"
-#elif TARGET_OS_OSX
-#import "VirgilSDK_macOS_Tests-Swift.h"
-#endif
+@interface VSS001_KeyknoxClientTests : VSSTestBase
 
-@interface VSK001_ClientTests : XCTestCase
-
-@property (nonatomic) TestUtils *utils;
-@property (nonatomic) VSMVirgilCrypto *crypto;
 @property (nonatomic) VSSKeyknoxClient *keyknoxClient;
 
 @end
 
-@implementation VSK001_ClientTests
+@implementation VSS001_KeyknoxClientTests
 
 - (void)setUp {
     [super setUp];
     
-    self.utils = [TestUtils readFromBundle];
-    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:NO error:nil];
-    
     NSString *identity = [[NSUUID alloc] init].UUIDString;
     
-    self.keyknoxClient = [[VSSKeyknoxClient alloc] initWithAccessTokenProvider:[self.utils getGeneratorJwtProviderWithIdentity:identity] serviceUrl:self.utils.config.ServiceURL];
+    self.keyknoxClient = [self.utils setupKeyknoxClientWithIdentity:identity];
 }
 
 - (void)tearDown {

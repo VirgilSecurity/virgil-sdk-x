@@ -34,12 +34,11 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-import Foundation
 import VirgilSDK
 import VirgilCrypto
 
 private class Config: NSObject, Decodable {
-    let ServicePublicKey: String
+    let ServicePublicKey: String?
     let ApiPrivateKey: String
     let AppId: String
     let ServiceURL: String?
@@ -50,10 +49,19 @@ private class Config: NSObject, Decodable {
 @objc public class TestUtils: NSObject {
     
     @objc public let crypto: VirgilCrypto
+
     private let config: Config
-    
+
+    @objc public var cardId: String {
+        return self.config.CardId
+    }
+
+    @objc public var cardIdentity: String {
+        return self.config.CardIdentity
+    }
+
     private let apiKey: VirgilPrivateKey
-    @objc public let servicePublicKey: VirgilPublicKey
+    private let servicePublicKey: VirgilPublicKey?
     private let serviceURL: URL?
     
     private init(config: Config) {
@@ -62,14 +70,11 @@ private class Config: NSObject, Decodable {
         self.crypto = crypto
         
         self.apiKey = try! crypto.importPrivateKey(from: Data(base64UrlEncoded: self.config.ApiPrivateKey)!).privateKey
-        self.servicePublicKey = try! crypto.importPublicKey(from: Data(base64UrlEncoded: self.config.ServicePublicKey)!)
-        
-        if let urlStr = config.ServiceURL {
-            self.serviceURL = URL(string: urlStr)!
-        }
-        else {
-            self.serviceURL = nil
-        }
+
+        self.servicePublicKey = config.ServicePublicKey == nil ?
+            nil : try! crypto.importPublicKey(from: Data(base64UrlEncoded: config.ServicePublicKey!)!)
+
+        self.serviceURL = config.ServiceURL == nil ? nil : URL(string: config.ServiceURL!)!
         
         super.init()
     }
@@ -80,6 +85,12 @@ private class Config: NSObject, Decodable {
         let data = try! Data(contentsOf: configFileUrl)
         
         return TestUtils(config: try! PropertyListDecoder().decode(Config.self, from: data))
+    }
+
+    @objc public func generateToken(withIdentity identity: String, ttl: TimeInterval) -> AccessToken  {
+        let generator = try! JwtGenerator(apiKey: self.apiKey, crypto: self.crypto, appId: self.config.AppId, ttl: ttl)
+
+        return try! generator.generateToken(identity: identity)
     }
     
     @objc public func getGeneratorJwtProvider(withIdentity identity: String) -> AccessTokenProvider {
@@ -98,9 +109,88 @@ private class Config: NSObject, Decodable {
     @objc public func getRandomData() -> Data {
         return try! self.crypto.generateRandomData(ofSize: 1024)
     }
+
+    @objc public func setupVerifier(whitelists: [Whitelist]) -> VirgilCardVerifier {
+        let verfier: VirgilCardVerifier
+
+        if let servicePublicKey = self.servicePublicKey {
+            let creds = VerifierCredentials(signer: "virgil", publicKey: servicePublicKey)
+
+            let whitelists = whitelists + [try! Whitelist(verifiersCredentials: [creds])]
+
+            verfier = VirgilCardVerifier(crypto: self.crypto, whitelists: whitelists)!
+            verfier.verifyVirgilSignature = false
+        } else {
+            verfier = VirgilCardVerifier(crypto: self.crypto, whitelists: whitelists)!
+        }
+        
+        return verfier
+    }
     
     @objc public func setupClient(withIdentity identity: String) -> CardClient {
-        
-        return CardClient(accessTokenProvider: self.getGeneratorJwtProvider(withIdentity: identity), serviceUrl: self.serviceURL ?? CardClient.defaultURL)
+        return self.setupClient(tokenProvider: self.getGeneratorJwtProvider(withIdentity: identity))
+    }
+
+    @objc public func setupClient(tokenProvider: AccessTokenProvider) -> CardClient {
+
+        return CardClient(accessTokenProvider: tokenProvider,
+                          serviceUrl: self.serviceURL ?? CardClient.defaultURL)
+    }
+
+    @objc public func setupKeyknoxClient(withIdentity identity: String) -> KeyknoxClient {
+
+        return KeyknoxClient(accessTokenProvider: self.getGeneratorJwtProvider(withIdentity: identity),
+                             serviceUrl: self.serviceURL ?? KeyknoxClient.defaultURL)
+    }
+
+    @objc public func setupKeyknoxManager(client: KeyknoxClient,
+                                          publicKeys: [VirgilPublicKey],
+                                          privateKey: VirgilPrivateKey) -> KeyknoxManager {
+        let crypto = KeyknoxCrypto(crypto: self.crypto)
+
+        return try! KeyknoxManager(keyknoxClient: client,
+                                   publicKeys: publicKeys,
+                                   privateKey: privateKey,
+                                   crypto: crypto)
+    }
+}
+
+// Comparisons
+extension TestUtils {
+    @objc public func isCardsEqual(card1: Card?, card2: Card?) -> Bool {
+        if card1 == card2 {
+            return true
+        }
+
+        guard let card1 = card1, let card2 = card2 else {
+            return false
+        }
+
+        let selfSignature1 = card1.signatures.first { $0.signer == "self" }
+        let selfSignature2 = card2.signatures.first { $0.signer == "self" }
+
+        return card1.identifier == card2.identifier &&
+            card1.identity == card2.identity &&
+            card1.version == card2.version &&
+            card1.isOutdated == card2.isOutdated &&
+            card1.createdAt == card2.createdAt &&
+            card1.previousCardId == card2.previousCardId &&
+            self.isCardsEqual(card1: card1.previousCard, card2: card2.previousCard) &&
+            self.isCardSignaturesEqual(signature1: selfSignature1, signature2: selfSignature2)
+    }
+
+    @objc public func isCardSignaturesEqual(signature1: CardSignature?, signature2: CardSignature?) -> Bool {
+        if signature1 == signature2 {
+            return true
+        }
+
+        guard let signature1 = signature1, let signature2 = signature2 else {
+            return false
+        }
+
+        return signature1.signer == signature2.signer &&
+            signature1.signature == signature2.signature &&
+            signature1.snapshot == signature2.snapshot &&
+            signature1.extraFields == signature2.extraFields
     }
 }

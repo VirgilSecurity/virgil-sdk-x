@@ -70,9 +70,12 @@ import VirgilCrypto
         self.apiKey = apiKey
 
         let publicKeyData = try crypto.exportPublicKey(crypto.extractPublicKey(from: apiKey))
+
         self.apiPublicKeyIdentifier = crypto
-            .computeHash(for: publicKeyData, using: .sha512).subdata(in: 0..<16)
+            .computeHash(for: publicKeyData, using: .sha512)
+            .subdata(in: 0..<16)
             .hexEncodedString()
+
         self.crypto = crypto
         self.appId = appId
         self.ttl = ttl

@@ -34,23 +34,10 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-#import <Foundation/Foundation.h>
-#import <XCTest/XCTest.h>
-@import VirgilSDK;
-@import VirgilCrypto;
+#import "VSSTestBase.h"
 
-#if TARGET_OS_IOS
-#import "VirgilSDK_AppTests_iOS-Swift.h"
-#elif TARGET_OS_TV
-#import "VirgilSDK_AppTests_tvOS-Swift.h"
-#elif TARGET_OS_OSX
-#import "VirgilSDK_macOS_Tests-Swift.h"
-#endif
+@interface VSS001_CardClientTests : VSSTestBase
 
-@interface VSS001_CardClientTests : XCTestCase
-
-@property (nonatomic) VSMVirgilCrypto *crypto;
-@property (nonatomic) TestUtils *utils;
 @property (nonatomic) VSSVirgilCardVerifier *verifier;
 
 @end
@@ -59,22 +46,8 @@
 
 - (void)setUp {
     [super setUp];
-    self.continueAfterFailure = NO;
-    
-    self.crypto = [[VSMVirgilCrypto alloc] initWithDefaultKeyType:VSMKeyPairTypeEd25519 useSHA256Fingerprints:NO error:nil];
-    self.utils = [TestUtils readFromBundle];
-    
-    if (self.utils.servicePublicKey == nil) {
-        self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[]];
-    }
-    else {
-        VSSVerifierCredentials *creds = [[VSSVerifierCredentials alloc] initWithSigner:@"virgil" publicKey:self.utils.servicePublicKey];
-        NSError *error;
-        VSSWhitelist *whitelist = [[VSSWhitelist alloc] initWithVerifiersCredentials:@[creds] error:&error];
-        XCTAssert(error == nil);
-        self.verifier = [[VSSVirgilCardVerifier alloc] initWithCrypto:self.crypto whitelists:@[whitelist]];
-        self.verifier.verifyVirgilSignature = NO;
-    }
+
+    self.verifier = [self.utils setupVerifierWithWhitelists:@[]];
 }
 
 - (void)tearDown {

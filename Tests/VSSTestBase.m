@@ -34,13 +34,17 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-@import VirgilSDK;
+#import "VSSTestBase.h"
 
-@interface VSSCardResponse ()
+@implementation VSSTestBase
 
-- (VSSCard * __nonnull)buildCard;
+- (void)setUp {
+    [super setUp];
 
-- (instancetype __nullable)initWithDict:(NSDictionary * __nonnull)candidate;
+    self.utils = [TestUtils readFromBundle];
+    self.crypto = self.utils.crypto;
+
+    self.continueAfterFailure = NO;
+}
 
 @end
-

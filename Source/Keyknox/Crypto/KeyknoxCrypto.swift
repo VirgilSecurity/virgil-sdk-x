@@ -76,7 +76,8 @@ extension KeyknoxCrypto: KeyknoxCryptoProtocol {
     /// - Throws: KeyknoxCryptoError.emptyPublicKeysList is public keys list is empty
     ///           KeyknoxManagerError.decryptionFailed if decryption failed
     ///           Rethrows from Cipher
-    open func decrypt(encryptedKeyknoxValue: EncryptedKeyknoxValue, privateKey: VirgilPrivateKey,
+    open func decrypt(encryptedKeyknoxValue: EncryptedKeyknoxValue,
+                      privateKey: VirgilPrivateKey,
                       publicKeys: [VirgilPublicKey]) throws -> DecryptedKeyknoxValue {
         guard !publicKeys.isEmpty else {
             throw KeyknoxCryptoError.emptyPublicKeysList

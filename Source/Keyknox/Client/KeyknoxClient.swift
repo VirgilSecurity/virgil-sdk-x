@@ -51,7 +51,7 @@ import Foundation
     /// Default URL for service
     @objc public static let defaultURL = URL(string: "https://api.virgilsecurity.com")!
     // swiftlint:enable force_unwrapping
-    
+
     internal let retryConfig: ExpBackoffRetry.Config
 
     /// Initializes new `KeyknoxClient` instance
@@ -60,7 +60,7 @@ import Foundation
     @objc public convenience init(accessTokenProvider: AccessTokenProvider) {
         self.init(accessTokenProvider: accessTokenProvider, serviceUrl: KeyknoxClient.defaultURL)
     }
-    
+
     /// Initializes new `KeyknoxClient` instance
     ///
     /// - Parameters:
@@ -71,7 +71,7 @@ import Foundation
                   serviceUrl: serviceUrl,
                   retryConfig: ExpBackoffRetry.Config())
     }
-    
+
     /// Initializes new `KeyknoxClient` instance
     ///
     /// - Parameters:
@@ -83,11 +83,11 @@ import Foundation
                 connection: HttpConnectionProtocol? = nil,
                 retryConfig: ExpBackoffRetry.Config) {
         let version = VersionUtils.getVersion(bundleIdentitifer: "com.virgilsecurity.VirgilSDK")
-        
+
         let connection = connection ?? HttpConnection(adapters: [VirgilAgentAdapter(product: "sdk", version: version)])
-        
+
         self.retryConfig = retryConfig
-        
+
         super.init(accessTokenProvider: accessTokenProvider,
                    serviceUrl: serviceUrl,
                    connection: connection)
