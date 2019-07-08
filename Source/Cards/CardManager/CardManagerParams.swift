@@ -35,15 +35,12 @@
 //
 
 import Foundation
-import VirgilCryptoAPI
+import VirgilCrypto
 
 /// Contains parameters for initializing CardManager
 @objc(VSSCardManagerParams) public final class CardManagerParams: NSObject {
-    /// CardCrypto instance
-    @objc public let cardCrypto: CardCrypto
-    /// AccessTokenProvider instance used for getting Access Token
-    /// when performing queries
-    @objc public let accessTokenProvider: AccessTokenProvider
+    /// Crypto instance
+    @objc public let crypto: VirgilCrypto
     /// Card Verifier instance used for verifying Cards
     @objc public let cardVerifier: CardVerifier
     /// ModelSigner instance used for self signing Cards
@@ -53,23 +50,19 @@ import VirgilCryptoAPI
     /// Callback used for custom signing RawSignedModel, which takes RawSignedModel
     /// to sign and competion handler, called with signed RawSignedModel or provided error
     @objc public var signCallback: ((RawSignedModel, @escaping (RawSignedModel?, Error?) -> Void) -> Void)?
-    /// Will automatically perform second query with forceReload = true AccessToken if true
-    @objc public var retryOnUnauthorized: Bool
 
     /// Initializer
     ///
     /// - Parameters:
-    ///   - cardCrypto: CardCrypto instance
+    ///   - crypto: VirgilCrypto instance
     ///   - accessTokenProvider: AccessTokenProvider instance for getting Access Token
     ///     when performing queries
     ///   - cardVerifier: Card Verifier instance for verifyng Cards
-    @objc public init(cardCrypto: CardCrypto, accessTokenProvider: AccessTokenProvider, cardVerifier: CardVerifier) {
-        self.cardCrypto = cardCrypto
-        self.modelSigner = ModelSigner(cardCrypto: cardCrypto)
-        self.cardClient = CardClient()
-        self.accessTokenProvider = accessTokenProvider
+    @objc public init(crypto: VirgilCrypto, accessTokenProvider: AccessTokenProvider, cardVerifier: CardVerifier) {
+        self.crypto = crypto
+        self.modelSigner = ModelSigner(crypto: crypto)
+        self.cardClient = CardClient(accessTokenProvider: accessTokenProvider)
         self.cardVerifier = cardVerifier
-        self.retryOnUnauthorized = true
 
         super.init()
     }

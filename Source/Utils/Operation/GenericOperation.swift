@@ -47,13 +47,14 @@ import Foundation
     case resultIsMissing = 2
     case missingDependencies = 3
     case dependencyFailed = 4
+    case operationCancelled = 5
 }
 
 /// Represents AsyncOperation with Generic result
 open class GenericOperation<T>: AsyncOperation {
     /// Operation Result
     /// WARNING: Do not modify this value outside of GenericOperation functions
-    public var result: Result<T>? = nil {
+    public var result: Result<T, Error>? = nil {
         didSet {
             if let result = self.result,
                 case .failure(let error) = result {
@@ -65,7 +66,7 @@ open class GenericOperation<T>: AsyncOperation {
     /// Creates OperationQueue and starts operation
     ///
     /// - Parameter completion: Completion callback
-    open func start(completion: @escaping (Result<T>) -> Void) {
+    open func start(completion: @escaping (Result<T, Error>) -> Void) {
         guard !self.isCancelled else {
             self.finish()
             return
@@ -75,7 +76,16 @@ open class GenericOperation<T>: AsyncOperation {
 
         self.completionBlock = {
             guard let result = self.result else {
-                let result: Result<T> = Result.failure(GenericOperationError.resultIsMissing)
+                let error: Error
+
+                if self.isCancelled {
+                    error = GenericOperationError.operationCancelled
+                }
+                else {
+                    error = GenericOperationError.resultIsMissing
+                }
+
+                let result: Result<T, Error> = Result.failure(error)
                 self.result = result
 
                 completion(result)
@@ -105,7 +115,7 @@ open class GenericOperation<T>: AsyncOperation {
     ///
     /// - Parameter timeout: Operation timeout
     /// - Returns: Operation Result
-    open func startSync(timeout: TimeInterval? = nil) -> Result<T> {
+    open func startSync(timeout: TimeInterval? = nil) -> Result<T, Error> {
         let queue = OperationQueue()
 
         queue.addOperation(self)
@@ -114,7 +124,7 @@ open class GenericOperation<T>: AsyncOperation {
             let deadlineTime = DispatchTime.now() + timeout
 
             DispatchQueue.global(qos: .background).asyncAfter(deadline: deadlineTime) {
-                let result: Result<T> = Result.failure(GenericOperationError.timeout)
+                let result: Result<T, Error> = Result.failure(GenericOperationError.timeout)
                 self.result = result
                 queue.cancelAllOperations()
             }
@@ -123,7 +133,16 @@ open class GenericOperation<T>: AsyncOperation {
         queue.waitUntilAllOperationsAreFinished()
 
         guard let result = self.result else {
-            let result: Result<T> = Result.failure(GenericOperationError.resultIsMissing)
+            let error: Error
+
+            if self.isCancelled {
+                error = GenericOperationError.operationCancelled
+            }
+            else {
+                error = GenericOperationError.resultIsMissing
+            }
+
+            let result: Result<T, Error> = Result.failure(error)
             self.result = result
             return result
         }

@@ -128,3 +128,5 @@ import Foundation
         }
     }
 }
+
+// swiftlint:enable trailing_closure

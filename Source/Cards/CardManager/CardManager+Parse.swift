@@ -35,23 +35,23 @@
 //
 
 import Foundation
-import VirgilCryptoAPI
+import VirgilCrypto
 
 extension CardManager {
     /// Imports Virgil Card from RawSignedModel
     ///
     /// - Parameters:
-    ///   - cardCrypto: `CardCrypto` instance
+    ///   - crypto: `Crypto` instance
     ///   - rawSignedModel: RawSignedModel to import
     /// - Returns: imported Card
     /// - Throws: corresponding error
-    @objc open class func parseCard(from rawSignedModel: RawSignedModel, cardCrypto: CardCrypto) throws -> Card {
+    @objc open class func parseCard(from rawSignedModel: RawSignedModel, crypto: VirgilCrypto) throws -> Card {
         let contentSnapshot = rawSignedModel.contentSnapshot
         let rawCardContent = try JSONDecoder().decode(RawCardContent.self, from: contentSnapshot)
 
         let publicKeyData = rawCardContent.publicKey
-        let publicKey = try cardCrypto.importPublicKey(from: publicKeyData)
-        let fingerprint = try cardCrypto.generateSHA512(for: rawSignedModel.contentSnapshot)
+        let publicKey = try crypto.importPublicKey(from: publicKeyData)
+        let fingerprint = crypto.computeHash(for: rawSignedModel.contentSnapshot, using: .sha512)
         let cardId = fingerprint.subdata(in: 0..<32).hexEncodedString()
 
         var cardSignatures: [CardSignature] = []
@@ -87,13 +87,13 @@ extension CardManager {
                     contentSnapshot: rawSignedModel.contentSnapshot)
     }
 
-    /// Imports Virgil Card from RawSignedModel using self CardCrypto instance
+    /// Imports Virgil Card from RawSignedModel using self Crypto instance
     ///
     /// - Parameters:
     ///   - rawSignedModel: RawSignedModel to import
     /// - Returns: imported Card
     /// - Throws: corresponding error
     @objc open func parseCard(from rawSignedModel: RawSignedModel) throws -> Card {
-        return try CardManager.parseCard(from: rawSignedModel, cardCrypto: self.cardCrypto)
+        return try CardManager.parseCard(from: rawSignedModel, crypto: self.crypto)
     }
 }
