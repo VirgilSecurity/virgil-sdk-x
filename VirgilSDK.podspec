@@ -11,13 +11,10 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target      = "9.0"
   s.watchos.deployment_target   = "2.0"
   s.source_files                = 'Source/**/*.{h,m,swift}'
-  s.public_header_files         = 'Source/VirgilSDK.h',
-                                  'Source/KeyStorage/*.{h}',
-                                  'Source/KeyStorage/iOS/*.{h}',
-                                  'Source/KeyStorage/macOS/*.{h}'
+  s.public_header_files         = 'Source/VirgilSDK.h'
   s.ios.exclude_files           = "Source/**/macOS/*.{h,m,swift}"
   s.osx.exclude_files           = "Source/**/iOS/*.{h,m,swift}"
   s.tvos.exclude_files          = "Source/**/macOS/*.{h,m,swift}"
   s.watchos.exclude_files       = "Source/**/macOS/*.{h,m,swift}"
-  s.dependency "VirgilCrypto", "~> 5.0.0"
+  s.dependency "VirgilCrypto", "~> 5.0"
 end

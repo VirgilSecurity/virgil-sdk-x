@@ -1,1 +1,1 @@
-github "VirgilSecurity/virgil-crypto-x" "develop-v6"
+github "VirgilSecurity/virgil-crypto-x" ~> 5.0
