@@ -53,7 +53,7 @@ extension CloudKeyStorage {
     /// - Parameters:
     ///   - keyEntries: Entries to store
     ///   - completion: Completion handler
-    @objc open func storeEntries(_ keyEntries: [KeyEntry], completion: @escaping (Error?) -> Void) {
+    @objc open func storeEntries(_ keyEntries: [KeyknoxKeyEntry], completion: @escaping (Error?) -> Void) {
         self.storeEntries(keyEntries).start { _, error in
             completion(error)
         }

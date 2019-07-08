@@ -102,7 +102,7 @@ extension SyncKeyStorage {
     /// - Parameters:
     ///   - keyEntries: Key entries to store
     ///   - completion: Completion handler
-    @objc open func storeEntries(_ keyEntries: [KeyEntry],
+    @objc open func storeEntries(_ keyEntries: [KeyknoxKeyEntry],
                                  completion: @escaping ([KeychainEntry]?, Error?) -> Void) {
         self.storeEntries(keyEntries).start(completion: completion)
     }

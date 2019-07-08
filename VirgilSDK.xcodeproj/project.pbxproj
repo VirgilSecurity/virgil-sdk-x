@@ -241,6 +241,10 @@
 		42817A9F22CF5A76006998D6 /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
 		42817AA022CF5A7E006998D6 /* VSS003_ModelSigner_CardVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */; };
 		42817AAC22CF5B41006998D6 /* VSS004_CrossCompatibilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */; };
+		42817AB122D3507F006998D6 /* KeyknoxKeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42817AB022D3507F006998D6 /* KeyknoxKeyEntry.swift */; };
+		42817AB222D3507F006998D6 /* KeyknoxKeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42817AB022D3507F006998D6 /* KeyknoxKeyEntry.swift */; };
+		42817AB322D3507F006998D6 /* KeyknoxKeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42817AB022D3507F006998D6 /* KeyknoxKeyEntry.swift */; };
+		42817AB422D3507F006998D6 /* KeyknoxKeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42817AB022D3507F006998D6 /* KeyknoxKeyEntry.swift */; };
 		42860D332284321400494515 /* NetworkRetryOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7922314C9100DD5072 /* NetworkRetryOperation.swift */; };
 		42860D4C22896B8D00494515 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42860D4622896B8D00494515 /* Reachability.swift */; };
 		42860D4D22896B8D00494515 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42860D4622896B8D00494515 /* Reachability.swift */; };
@@ -727,6 +731,7 @@
 		4267C65C2089DF0E007EAEB2 /* OperationUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationUtils.swift; sourceTree = "<group>"; };
 		4267C6612089DFAE007EAEB2 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		4267C688208A14F8007EAEB2 /* CachingJwtProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingJwtProvider.swift; sourceTree = "<group>"; };
+		42817AB022D3507F006998D6 /* KeyknoxKeyEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyknoxKeyEntry.swift; sourceTree = "<group>"; };
 		4284C34A1F6AAB7B00B75491 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSS001_CardClientTests.m; sourceTree = "<group>"; };
 		4284C3861F6BE95700B75491 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1130,6 +1135,7 @@
 		42492F6D22CE9FC400BEA96F /* CloudKeyStorage */ = {
 			isa = PBXGroup;
 			children = (
+				42817AB022D3507F006998D6 /* KeyknoxKeyEntry.swift */,
 				42492F6E22CE9FC400BEA96F /* CloudKeyStorage.swift */,
 				42492F6F22CE9FC400BEA96F /* CloudKeyStorageError.swift */,
 				42492F7022CE9FC400BEA96F /* CloudEntrySerializer.swift */,
@@ -1752,6 +1758,7 @@
 				42D7AF68224396AD009D02FD /* BaseClient.swift in Sources */,
 				42D7AF60224396AD009D02FD /* HttpConnectionProtocol.swift in Sources */,
 				42492F8122CE9FC400BEA96F /* KeyknoxCrypto.swift in Sources */,
+				42817AB222D3507F006998D6 /* KeyknoxKeyEntry.swift in Sources */,
 				42492FC922CE9FC500BEA96F /* KeyknoxClientProtocol.swift in Sources */,
 				42D7AF86224396AD009D02FD /* CardManager+StaticExport.swift in Sources */,
 				42492F4622CE9FB500BEA96F /* RawSignedModel.swift in Sources */,
@@ -1879,6 +1886,7 @@
 				42D7AF99224396AE009D02FD /* HttpConnectionProtocol.swift in Sources */,
 				42D7AF9D224396AE009D02FD /* Response.swift in Sources */,
 				42492F8222CE9FC400BEA96F /* KeyknoxCrypto.swift in Sources */,
+				42817AB322D3507F006998D6 /* KeyknoxKeyEntry.swift in Sources */,
 				42492FCA22CE9FC500BEA96F /* KeyknoxClientProtocol.swift in Sources */,
 				42D7AFB9224396AE009D02FD /* DateUtils.swift in Sources */,
 				42492F4722CE9FB500BEA96F /* RawSignedModel.swift in Sources */,
@@ -1977,6 +1985,7 @@
 				42D7AFF2224396AF009D02FD /* DateUtils.swift in Sources */,
 				42D7AFEF224396AF009D02FD /* Log.swift in Sources */,
 				42492F8322CE9FC400BEA96F /* KeyknoxCrypto.swift in Sources */,
+				42817AB422D3507F006998D6 /* KeyknoxKeyEntry.swift in Sources */,
 				42492FCB22CE9FC500BEA96F /* KeyknoxClientProtocol.swift in Sources */,
 				42D7AFD4224396AF009D02FD /* Request.swift in Sources */,
 				42492F4822CE9FB500BEA96F /* RawSignedModel.swift in Sources */,
@@ -2151,6 +2160,7 @@
 				42D7AF44224396AC009D02FD /* Log.swift in Sources */,
 				42D7AF29224396AC009D02FD /* Request.swift in Sources */,
 				42492F8022CE9FC400BEA96F /* KeyknoxCrypto.swift in Sources */,
+				42817AB122D3507F006998D6 /* KeyknoxKeyEntry.swift in Sources */,
 				42492FC822CE9FC500BEA96F /* KeyknoxClientProtocol.swift in Sources */,
 				42D7AF4E224396AC009D02FD /* CardManager+Obj-C.swift in Sources */,
 				42492F4522CE9FB500BEA96F /* RawSignedModel.swift in Sources */,

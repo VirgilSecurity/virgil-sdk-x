@@ -183,7 +183,7 @@ static const NSTimeInterval timeout = 20.;
     int numberOfKeys = 100;
 
     NSMutableArray<VSMVirgilPrivateKey *> *privateKeys = [[NSMutableArray alloc] init];
-    NSMutableArray<VSSKeyEntry *> *keyEntries = [[NSMutableArray alloc] init];
+    NSMutableArray<VSSKeyknoxKeyEntry *> *keyEntries = [[NSMutableArray alloc] init];
 
     for (int i = 0; i < numberOfKeys; i++) {
         VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:nil];
@@ -193,7 +193,8 @@ static const NSTimeInterval timeout = 20.;
         if (i > 0 && i < numberOfKeys - 1) {
             NSString *name = [NSString stringWithFormat:@"%d", i];
             NSData *data = [self.crypto exportPrivateKey:keyPair.privateKey error:nil];
-            VSSKeyEntry *keyEntry = [VSSKeyEntry keyEntryWithName:name value:data];
+            VSSKeyknoxKeyEntry *keyEntry = [[VSSKeyknoxKeyEntry alloc] initWithName:name data:data meta:nil];
+            
             [keyEntries addObject:keyEntry];
         }
     }
@@ -287,13 +288,13 @@ static const NSTimeInterval timeout = 20.;
 
     int numberOfKeys = 100;
 
-    NSMutableArray<VSSKeyEntry *> *keyEntries = [[NSMutableArray alloc] init];
+    NSMutableArray<VSSKeyknoxKeyEntry *> *keyEntries = [[NSMutableArray alloc] init];
 
     for (int i = 0; i < numberOfKeys; i++) {
         VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:nil];
         NSString *name = [NSString stringWithFormat:@"%d", i];
         NSData *privateKeyData = [self.crypto exportPrivateKey:keyPair.privateKey error:nil];
-        VSSKeyEntry *keyEntry = [VSSKeyEntry keyEntryWithName:name value:privateKeyData];
+        VSSKeyknoxKeyEntry *keyEntry = [[VSSKeyknoxKeyEntry alloc] initWithName:name data:privateKeyData meta:nil];
         [keyEntries addObject:keyEntry];
     }
 
@@ -353,13 +354,13 @@ static const NSTimeInterval timeout = 20.;
     
     int numberOfKeys = 10;
     
-    NSMutableArray<VSSKeyEntry *> *keyEntries = [[NSMutableArray alloc] init];
+    NSMutableArray<VSSKeyknoxKeyEntry *> *keyEntries = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < numberOfKeys; i++) {
         VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:nil];
         NSString *name = [NSString stringWithFormat:@"%d", i];
         NSData *privateKeyData = [self.crypto exportPrivateKey:keyPair.privateKey error:nil];
-        VSSKeyEntry *keyEntry = [VSSKeyEntry keyEntryWithName:name value:privateKeyData];
+        VSSKeyknoxKeyEntry *keyEntry = [[VSSKeyknoxKeyEntry alloc] initWithName:name data:privateKeyData meta:nil];
         [keyEntries addObject:keyEntry];
     }
     
@@ -423,13 +424,13 @@ static const NSTimeInterval timeout = 20.;
     
     int numberOfKeys = 10;
     
-    NSMutableArray<VSSKeyEntry *> *keyEntries = [[NSMutableArray alloc] init];
+    NSMutableArray<VSSKeyknoxKeyEntry *> *keyEntries = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < numberOfKeys; i++) {
         VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:nil];
         NSString *name = [NSString stringWithFormat:@"%d", i];
         NSData *privateKeyData = [self.crypto exportPrivateKey:keyPair.privateKey error:nil];
-        VSSKeyEntry *keyEntry = [VSSKeyEntry keyEntryWithName:name value:privateKeyData];
+        VSSKeyknoxKeyEntry *keyEntry = [[VSSKeyknoxKeyEntry alloc] initWithName:name data:privateKeyData meta:nil];
         [keyEntries addObject:keyEntry];
     }
     
@@ -437,13 +438,13 @@ static const NSTimeInterval timeout = 20.;
         [self.keyStorage storeEntries:keyEntries completion:^(NSError *error) {
             NSDictionary *meta = @{@"key": @"value"};
             [self.keyStorage updateEntryWithName:keyEntries[0].name
-                                            data:keyEntries[1].value
+                                            data:keyEntries[1].data
                                             meta:meta
                                       completion:^(VSSCloudEntry *cloudEntry, NSError *error) {
                 XCTAssert(cloudEntry != nil && error == nil);
                 
                 XCTAssert([cloudEntry.name isEqualToString:keyEntries[0].name]);
-                XCTAssert([cloudEntry.data isEqualToData:keyEntries[1].value]);
+                XCTAssert([cloudEntry.data isEqualToData:keyEntries[1].data]);
                 XCTAssert([cloudEntry.meta isEqualToDictionary:meta]);
                 
                 NSError *err;
@@ -451,7 +452,7 @@ static const NSTimeInterval timeout = 20.;
                 XCTAssert(cloudEntry2 != nil && err == nil);
                 
                 XCTAssert([cloudEntry2.name isEqualToString:keyEntries[0].name]);
-                XCTAssert([cloudEntry2.data isEqualToData:keyEntries[1].value]);
+                XCTAssert([cloudEntry2.data isEqualToData:keyEntries[1].data]);
                 XCTAssert([cloudEntry2.meta isEqualToDictionary:meta]);
                 
                 [self.keyStorage retrieveCloudEntriesWithCompletion:^(NSError *error) {
@@ -460,7 +461,7 @@ static const NSTimeInterval timeout = 20.;
                     XCTAssert(cloudEntry != nil && err == nil);
 
                     XCTAssert([cloudEntry.name isEqualToString:keyEntries[0].name]);
-                    XCTAssert([cloudEntry.data isEqualToData:keyEntries[1].value]);
+                    XCTAssert([cloudEntry.data isEqualToData:keyEntries[1].data]);
                     XCTAssert([cloudEntry.meta isEqualToDictionary:meta]);
 
                     [ex fulfill];
@@ -480,13 +481,13 @@ static const NSTimeInterval timeout = 20.;
     
     int numberOfKeys = 10;
     
-    NSMutableArray<VSSKeyEntry *> *keyEntries = [[NSMutableArray alloc] init];
+    NSMutableArray<VSSKeyknoxKeyEntry *> *keyEntries = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < numberOfKeys; i++) {
         VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:nil];
         NSString *name = [NSString stringWithFormat:@"%d", i];
         NSData *privateKeyData = [self.crypto exportPrivateKey:keyPair.privateKey error:nil];
-        VSSKeyEntry *keyEntry = [VSSKeyEntry keyEntryWithName:name value:privateKeyData];
+        VSSKeyknoxKeyEntry *keyEntry = [[VSSKeyknoxKeyEntry alloc] initWithName:name data:privateKeyData meta:nil];
         [keyEntries addObject:keyEntry];
     }
     
@@ -536,23 +537,23 @@ static const NSTimeInterval timeout = 20.;
     
     int numberOfKeys = 10;
     
-    NSMutableArray<VSSKeyEntry *> *keyEntries = [[NSMutableArray alloc] init];
+    NSMutableArray<VSSKeyknoxKeyEntry *> *keyEntries = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < numberOfKeys; i++) {
         VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:nil];
         NSString *name = [NSString stringWithFormat:@"%d", i];
         NSData *privateKeyData = [self.crypto exportPrivateKey:keyPair.privateKey error:nil];
-        VSSKeyEntry *keyEntry = [VSSKeyEntry keyEntryWithName:name value:privateKeyData];
+        VSSKeyknoxKeyEntry *keyEntry = [[VSSKeyknoxKeyEntry alloc] initWithName:name data:privateKeyData meta:nil];
         [keyEntries addObject:keyEntry];
     }
     
-    [self.keyStorage storeEntryWithName:keyEntries[0].name data:keyEntries[0].value meta:nil completion:^(NSError *error) {
+    [self.keyStorage storeEntryWithName:keyEntries[0].name data:keyEntries[0].data meta:nil completion:^(NSError *error) {
         XCTAssert([error.domain isEqualToString:VSSCloudKeyStorageErrorDomain] && error.code == VSSCloudKeyStorageErrorCloudStorageOutOfSync);
         
         [self.keyStorage storeEntries:keyEntries completion:^(NSError *error) {
             XCTAssert([error.domain isEqualToString:VSSCloudKeyStorageErrorDomain] && error.code == VSSCloudKeyStorageErrorCloudStorageOutOfSync);
             
-            [self.keyStorage updateEntryWithName:keyEntries[0].name data:keyEntries[0].value meta:nil completion:^(VSSCloudEntry *entry, NSError *error) {
+            [self.keyStorage updateEntryWithName:keyEntries[0].name data:keyEntries[0].data meta:nil completion:^(VSSCloudEntry *entry, NSError *error) {
                 XCTAssert(entry == nil && [error.domain isEqualToString:VSSCloudKeyStorageErrorDomain] && error.code == VSSCloudKeyStorageErrorCloudStorageOutOfSync);
                 
                 [self.keyStorage deleteEntryWithName:keyEntries[0].name completion:^(NSError *error) {

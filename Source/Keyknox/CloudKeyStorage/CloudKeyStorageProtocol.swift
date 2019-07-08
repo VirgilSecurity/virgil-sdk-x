@@ -43,7 +43,7 @@ public protocol CloudKeyStorageProtocol {
     ///
     /// - Parameter keyEntries: Entries to store
     /// - Returns: GenericOperation<[CloudEntry]>
-    func storeEntries(_ keyEntries: [KeyEntry]) -> GenericOperation<[CloudEntry]>
+    func storeEntries(_ keyEntries: [KeyknoxKeyEntry]) -> GenericOperation<[CloudEntry]>
 
     /// Store entry to cloud
     ///

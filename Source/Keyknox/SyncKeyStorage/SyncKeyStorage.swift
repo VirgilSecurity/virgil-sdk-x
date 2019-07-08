@@ -211,7 +211,7 @@ extension SyncKeyStorage {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
-                    let keychainEntries = try self.storeEntriesSync([KeyEntry(name: name, value: data, meta: meta)])
+                    let keychainEntries = try self.storeEntriesSync([KeyknoxKeyEntry(name: name, data: data, meta: meta)])
                     guard keychainEntries.count == 1, let keychainEntry = keychainEntries.first else {
                         throw SyncKeyStorageError.entrySavingError
                     }
@@ -229,7 +229,7 @@ extension SyncKeyStorage {
     ///
     /// - Parameter keyEntries: Key entries to store
     /// - Returns: GenericOperation<[KeychainEntry]>
-    open func storeEntries(_ keyEntries: [KeyEntry]) -> GenericOperation<[KeychainEntry]> {
+    open func storeEntries(_ keyEntries: [KeyknoxKeyEntry]) -> GenericOperation<[KeychainEntry]> {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
@@ -242,7 +242,7 @@ extension SyncKeyStorage {
         }
     }
 
-    private func storeEntriesSync(_ keyEntries: [KeyEntry]) throws -> [KeychainEntry] {
+    private func storeEntriesSync(_ keyEntries: [KeyknoxKeyEntry]) throws -> [KeychainEntry] {
         for keyEntry in keyEntries {
             guard !(try self.keychainStorage.existsEntry(withName: keyEntry.name)) else {
                 throw SyncKeyStorageError.keychainEntryAlreadyExistsWhileStoring
@@ -263,7 +263,7 @@ extension SyncKeyStorage {
             }
 
             let meta = try self.keychainUtils.createMetaForKeychain(from: entry.1)
-            let keychainEntry = try self.keychainStorage.store(data: entry.0.value,
+            let keychainEntry = try self.keychainStorage.store(data: entry.0.data,
                                                                withName: entry.0.name,
                                                                meta: meta)
 

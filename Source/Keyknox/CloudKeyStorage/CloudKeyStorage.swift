@@ -81,7 +81,7 @@ import VirgilCrypto
 }
 
 extension CloudKeyStorage: CloudKeyStorageProtocol {
-    private func storeEntriesSync(_ keyEntries: [KeyEntry]) throws -> [CloudEntry] {
+    private func storeEntriesSync(_ keyEntries: [KeyknoxKeyEntry]) throws -> [CloudEntry] {
         guard self.storageWasSynced else {
             throw CloudKeyStorageError.cloudStorageOutOfSync
         }
@@ -96,7 +96,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
         for entry in keyEntries {
             let now = Date()
             let cloudEntry = CloudEntry(name: entry.name,
-                                        data: entry.value,
+                                        data: entry.data,
                                         creationDate: now,
                                         modificationDate: now,
                                         meta: entry.meta)
@@ -121,7 +121,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
     ///
     /// - Parameter keyEntries: Entries to store
     /// - Returns: GenericOperation<[CloudEntry]>
-    open func storeEntries(_ keyEntries: [KeyEntry]) -> GenericOperation<[CloudEntry]> {
+    open func storeEntries(_ keyEntries: [KeyknoxKeyEntry]) -> GenericOperation<[CloudEntry]> {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
@@ -146,7 +146,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
-                    let cloudEntries = try self.storeEntriesSync([KeyEntry(name: name, value: data, meta: meta)])
+                    let cloudEntries = try self.storeEntriesSync([KeyknoxKeyEntry(name: name, data: data, meta: meta)])
                     guard cloudEntries.count == 1, let cloudEntry = cloudEntries.first else {
                         throw CloudKeyStorageError.entrySavingError
                     }
