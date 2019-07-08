@@ -130,7 +130,6 @@ Before starting practicing with the usage examples be sure that the SDK is confi
 #### Generate key pair using VirgilCrypto
 
 ```swift
-import VirgilSDK
 import VirgilCrypto
 
 let crypto = try! VirgilCrypto()
@@ -148,8 +147,7 @@ let storageParams = try! KeychainStorageParams.makeKeychainStorageParams()
 let keychainStorage = KeychainStorage(storageParams: storageParams)
 
 // export key to Data
-let exporter = VirgilPrivateKeyExporter(virgilCrypto: crypto)
-let data = try! exporter.exportPrivateKey(privateKey: keyPair.privateKey)
+let data = try! crypto.exportPrivateKey(keyPair.privateKey)
 
 let identity = "Alice"
 
@@ -171,7 +169,7 @@ import VirgilSDK
 import VirgilCrypto
 
 // save a private key into key storage
-let data = try! exporter.exportPrivateKey(privateKey: keyPair.privateKey)
+let data = try! crypto.exportPrivateKey(keyPair.privateKey)
 let entry = try! keychainStorage.store(data: data, withName: "Alice", meta: nil)
 
 // publish user's card on the Cards Service
@@ -201,7 +199,7 @@ let dataToEncrypt = messageToEncrypt.data(using: .utf8)!
 
 // prepare a user's private key
 let alicePrivateKeyEntry = try! keychainStorage.retrieveEntry(withName: "Alice")
-let alicePrivateKey = try! exporter.importPrivateKey(from: retrievedEntry.data)
+let alicePrivateKey = try! exporter.importPrivateKey(from: alicePrivateKeyEntry.data)
 
 // using cardManager search for user's cards on Cards Service
 cardManager.searchCards(identity: "Bob").start { result in
@@ -209,7 +207,7 @@ cardManager.searchCards(identity: "Bob").start { result in
     // Cards are obtained
     case .success(let cards):
         let bobRelevantCardsPublicKeys = cards
-            .map { $0.publicKey } as! [VirgilPublicKey]
+            .map { $0.publicKey }
 
         // sign a message with a private key then encrypt on a public key
         let encryptedData = try! crypto.signThenEncrypt(dataToEncrypt,
@@ -232,17 +230,18 @@ import VirgilCrypto
 
 // prepare a user's private key
 let bobPrivateKeyEntry = try! keychainStorage.retrieveEntry(withName: "Bob")
-let bobPrivateKey = try! exporter.importPrivateKey(from: retrievedEntry.data)
+let bobPrivateKey = try! exporter.importPrivateKey(from: bobPrivateKeyEntry.data)
 
 // using cardManager search for user's cards on Cards Service
 cardManager.searchCards(identity: "Alice").start { result in
     switch result {
     // Cards are obtained
     case .success(let cards):
-        let aliceRelevantCardsPublicKeys = cards.map { $0.publicKey } as! [VirgilPublicKey]
+        let aliceRelevantCardsPublicKeys = cards.map { $0.publicKey }
 
         // decrypt with a private key and verify using a public key
-        let decryptedData = try! crypto.decryptThenVerify(encryptedData, with: bobPrivateKey,
+        let decryptedData = try! crypto.decryptThenVerify(encryptedData, 
+                                                          with: bobPrivateKey,
                                                           usingOneOf: aliceRelevantCardsPublicKeys)
 
     // Error occured
@@ -257,11 +256,8 @@ User can revoke his card in case he doesn't need it anymore. Revoked card can st
 
 ```swift
 import VirgilSDK
-import VirgilCrypto
 
-// using cardManager to revoke card
-let result = cardManager.revokeCard(withId: card.identifier).startSync()
-}
+let result = try! cardManager.revokeCard(withId: card.identifier).startSync().get()
 ```
 
 ## Docs
