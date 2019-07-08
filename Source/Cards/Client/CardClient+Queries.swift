@@ -68,7 +68,7 @@ extension CardClient: CardClientProtocol {
                                               retry: self.createRetry(),
                                               tokenContext: tokenContext)
             .startSync()
-            .getResult()
+            .get()
 
         let isOutdated: Bool
         // Swift dictionaries doesn't support case-insensitive keys, NSDictionary does
@@ -107,7 +107,7 @@ extension CardClient: CardClientProtocol {
                                               retry: self.createRetry(),
                                               tokenContext: tokenContext)
             .startSync()
-            .getResult()
+            .get()
 
         return try self.processResponse(response)
     }
@@ -136,7 +136,7 @@ extension CardClient: CardClientProtocol {
                                               retry: self.createRetry(),
                                               tokenContext: tokenContext)
             .startSync()
-            .getResult()
+            .get()
 
         return try self.processResponse(response)
     }
@@ -164,7 +164,7 @@ extension CardClient: CardClientProtocol {
                                               retry: self.createRetry(),
                                               tokenContext: tokenContext)
             .startSync()
-            .getResult()
+            .get()
 
         try self.validateResponse(response)
     }

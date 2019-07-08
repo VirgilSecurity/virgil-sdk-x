@@ -140,7 +140,7 @@ open class NetworkRetryOperation: GenericOperation<Response> {
                             .makeGetTokenOperation(tokenContext: tokenContext,
                                                    accessTokenProvider: self.accessTokenProvider)
                             .startSync()
-                            .getResult()
+                            .get()
 
                         guard !self.isCancelled else {
                             return nil
@@ -174,7 +174,7 @@ open class NetworkRetryOperation: GenericOperation<Response> {
 
                     switch retryChoice {
                     case .noRetry:
-                        return try result.getResult()
+                        return try result.get()
 
                     case .retryService(let retryDelay):
                         Log.debug("Retrying request to \(request.url.absoluteString) in \(retryDelay) s")

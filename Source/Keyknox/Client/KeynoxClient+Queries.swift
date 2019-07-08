@@ -84,7 +84,7 @@ extension KeyknoxClient: KeyknoxClientProtocol {
                                               retry: self.createRetry(),
                                               tokenContext: tokenContext)
             .startSync()
-            .getResult()
+            .get()
 
         let keyknoxData: KeyknoxData = try self.processResponse(response)
 
@@ -111,7 +111,7 @@ extension KeyknoxClient: KeyknoxClientProtocol {
                                               retry: self.createRetry(),
                                               tokenContext: tokenContext)
             .startSync()
-            .getResult()
+            .get()
 
         let keyknoxData: KeyknoxData = try self.processResponse(response)
 
@@ -138,7 +138,7 @@ extension KeyknoxClient: KeyknoxClientProtocol {
                                               retry: self.createRetry(),
                                               tokenContext: tokenContext)
             .startSync()
-            .getResult()
+            .get()
 
         let keyknoxData: KeyknoxData = try self.processResponse(response)
 

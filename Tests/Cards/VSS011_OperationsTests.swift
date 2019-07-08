@@ -262,16 +262,16 @@ class VSS011_OperationsTests: XCTestCase {
     }
     
     func test012_ResultTest() {
-        let result1 = Result<Int>.success(3)
+        let result1 = Result<Int, Error>.success(3)
         
-        XCTAssert(try! result1.getResult() == 3)
+        XCTAssert(try! result1.get() == 3)
         
-        let result2 = Result<Int>.failure(NSError(domain: "TEST", code: 12345))
+        let result2 = Result<Int, Error>.failure(NSError(domain: "TEST", code: 12345))
         
         var errorWasThrown = false
         
         do {
-            let _ = try result2.getResult()
+            let _ = try result2.get()
         }
         catch {
             let error = error as NSError

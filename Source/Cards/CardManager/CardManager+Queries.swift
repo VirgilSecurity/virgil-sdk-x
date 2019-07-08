@@ -147,7 +147,7 @@ extension CardManager {
                     else {
                         completion(rawCard, nil)
                     }
-                }.startSync().getResult()
+                }.startSync().get()
 
                 let responseModel = try self.cardClient.publishCard(model: signedRawCard)
 
@@ -196,7 +196,7 @@ extension CardManager {
                                                        previousCardId: previousCardId,
                                                        extraFields: extraFields)
 
-                let card = try self.publishCard(rawCard: rawCard).startSync().getResult()
+                let card = try self.publishCard(rawCard: rawCard).startSync().get()
 
                 completion(card, nil)
             }

@@ -139,7 +139,7 @@ extension SyncKeyStorage {
                                                                           data: data,
                                                                           meta: meta)
                         .startSync()
-                        .getResult()
+                        .get()
 
                     let meta = try self.keychainUtils.createMetaForKeychain(from: cloudEntry)
                     try self.keychainStorage.updateEntry(withName: name, data: data, meta: meta)
@@ -176,7 +176,7 @@ extension SyncKeyStorage {
                         }
                     }
 
-                    _ = try self.cloudKeyStorage.deleteEntries(withNames: names).startSync().getResult()
+                    _ = try self.cloudKeyStorage.deleteEntries(withNames: names).startSync().get()
 
                     for name in names {
                         _ = try self.keychainStorage.deleteEntry(withName: name)
@@ -253,7 +253,7 @@ extension SyncKeyStorage {
             }
         }
 
-        let cloudEntries = try self.cloudKeyStorage.storeEntries(keyEntries).startSync().getResult()
+        let cloudEntries = try self.cloudKeyStorage.storeEntries(keyEntries).startSync().get()
 
         var keychainEntries = [KeychainEntry]()
 
@@ -370,7 +370,7 @@ extension SyncKeyStorage {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
-                    _ = try self.cloudKeyStorage.deleteAllEntries().startSync().getResult()
+                    _ = try self.cloudKeyStorage.deleteAllEntries().startSync().get()
 
                     let entriesToDelete = try self.keychainStorage.retrieveAllEntries()
                         .compactMap(self.keychainUtils.filterKeyknoxKeychainEntry)

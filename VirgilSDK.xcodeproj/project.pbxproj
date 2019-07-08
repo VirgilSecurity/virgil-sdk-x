@@ -343,7 +343,6 @@
 		42D7AF3E224396AC009D02FD /* OperationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4267C65C2089DF0E007EAEB2 /* OperationUtils.swift */; };
 		42D7AF3F224396AC009D02FD /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B82C2010AE75007D223C /* AsyncOperation.swift */; };
 		42D7AF40224396AC009D02FD /* GenericOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83220120898007D223C /* GenericOperation.swift */; };
-		42D7AF41224396AC009D02FD /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCC12039D22400AFEF4F /* Result.swift */; };
 		42D7AF42224396AC009D02FD /* GenericOperation+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCBC2039D21100AFEF4F /* GenericOperation+Dependencies.swift */; };
 		42D7AF43224396AC009D02FD /* CallbackOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B8372012151B007D223C /* CallbackOperation.swift */; };
 		42D7AF44224396AC009D02FD /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C34A1F6AAB7B00B75491 /* Log.swift */; };
@@ -388,7 +387,6 @@
 		42D7AF77224396AD009D02FD /* OperationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4267C65C2089DF0E007EAEB2 /* OperationUtils.swift */; };
 		42D7AF78224396AD009D02FD /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B82C2010AE75007D223C /* AsyncOperation.swift */; };
 		42D7AF79224396AD009D02FD /* GenericOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83220120898007D223C /* GenericOperation.swift */; };
-		42D7AF7A224396AD009D02FD /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCC12039D22400AFEF4F /* Result.swift */; };
 		42D7AF7B224396AD009D02FD /* GenericOperation+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCBC2039D21100AFEF4F /* GenericOperation+Dependencies.swift */; };
 		42D7AF7C224396AD009D02FD /* CallbackOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B8372012151B007D223C /* CallbackOperation.swift */; };
 		42D7AF7D224396AD009D02FD /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C34A1F6AAB7B00B75491 /* Log.swift */; };
@@ -434,7 +432,6 @@
 		42D7AFB0224396AE009D02FD /* OperationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4267C65C2089DF0E007EAEB2 /* OperationUtils.swift */; };
 		42D7AFB1224396AE009D02FD /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B82C2010AE75007D223C /* AsyncOperation.swift */; };
 		42D7AFB2224396AE009D02FD /* GenericOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83220120898007D223C /* GenericOperation.swift */; };
-		42D7AFB3224396AE009D02FD /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCC12039D22400AFEF4F /* Result.swift */; };
 		42D7AFB4224396AE009D02FD /* GenericOperation+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCBC2039D21100AFEF4F /* GenericOperation+Dependencies.swift */; };
 		42D7AFB5224396AE009D02FD /* CallbackOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B8372012151B007D223C /* CallbackOperation.swift */; };
 		42D7AFB6224396AE009D02FD /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C34A1F6AAB7B00B75491 /* Log.swift */; };
@@ -480,7 +477,6 @@
 		42D7AFE9224396AF009D02FD /* OperationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4267C65C2089DF0E007EAEB2 /* OperationUtils.swift */; };
 		42D7AFEA224396AF009D02FD /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B82C2010AE75007D223C /* AsyncOperation.swift */; };
 		42D7AFEB224396AF009D02FD /* GenericOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B83220120898007D223C /* GenericOperation.swift */; };
-		42D7AFEC224396AF009D02FD /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCC12039D22400AFEF4F /* Result.swift */; };
 		42D7AFED224396AF009D02FD /* GenericOperation+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4229CCBC2039D21100AFEF4F /* GenericOperation+Dependencies.swift */; };
 		42D7AFEE224396AF009D02FD /* CallbackOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1624B8372012151B007D223C /* CallbackOperation.swift */; };
 		42D7AFEF224396AF009D02FD /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4284C34A1F6AAB7B00B75491 /* Log.swift */; };
@@ -671,7 +667,6 @@
 		4229CCA220371C7D00AFEF4F /* JwtSignatureContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtSignatureContent.swift; sourceTree = "<group>"; };
 		4229CCB72037380200AFEF4F /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		4229CCBC2039D21100AFEF4F /* GenericOperation+Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GenericOperation+Dependencies.swift"; sourceTree = "<group>"; };
-		4229CCC12039D22400AFEF4F /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		422B4D37203494F3003923E2 /* CardManager+Parse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardManager+Parse.swift"; sourceTree = "<group>"; };
 		423D3E332225E054006C7E4C /* VSS015_ExpBackoffRetryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSS015_ExpBackoffRetryTests.swift; sourceTree = "<group>"; };
 		423D3E40222AB1B5006C7E4C /* VSS016_ClientIntegrationRetryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSS016_ClientIntegrationRetryTests.swift; sourceTree = "<group>"; };
@@ -908,7 +903,6 @@
 				4267C65C2089DF0E007EAEB2 /* OperationUtils.swift */,
 				1624B82C2010AE75007D223C /* AsyncOperation.swift */,
 				1624B83220120898007D223C /* GenericOperation.swift */,
-				4229CCC12039D22400AFEF4F /* Result.swift */,
 				4229CCBC2039D21100AFEF4F /* GenericOperation+Dependencies.swift */,
 				1624B8372012151B007D223C /* CallbackOperation.swift */,
 			);
@@ -1777,7 +1771,6 @@
 				42492F4E22CE9FB500BEA96F /* RawSignature.swift in Sources */,
 				42D7AF79224396AD009D02FD /* GenericOperation.swift in Sources */,
 				42D7AF7D224396AD009D02FD /* Log.swift in Sources */,
-				42D7AF7A224396AD009D02FD /* Result.swift in Sources */,
 				42D7AF70224396AD009D02FD /* Jwt.swift in Sources */,
 				42492FBD22CE9FC500BEA96F /* CloudEntry.swift in Sources */,
 				42492FA122CE9FC400BEA96F /* KeyknoxManagerError.swift in Sources */,
@@ -1917,7 +1910,6 @@
 				42492F8A22CE9FC400BEA96F /* SyncKeyStorage+Obj-C.swift in Sources */,
 				42492F4B22CE9FB500BEA96F /* RawCardContent.swift in Sources */,
 				42D7AFB4224396AE009D02FD /* GenericOperation+Dependencies.swift in Sources */,
-				42D7AFB3224396AE009D02FD /* Result.swift in Sources */,
 				42D7AFA6224396AE009D02FD /* CallbackJwtProvider.swift in Sources */,
 				42D7AF9E224396AE009D02FD /* HttpRequestAdapter.swift in Sources */,
 				42D7B05122439A63009D02FD /* Mutex.swift in Sources */,
@@ -2016,7 +2008,6 @@
 				42492F8B22CE9FC400BEA96F /* SyncKeyStorage+Obj-C.swift in Sources */,
 				42492F4C22CE9FB500BEA96F /* RawCardContent.swift in Sources */,
 				42D7AFED224396AF009D02FD /* GenericOperation+Dependencies.swift in Sources */,
-				42D7AFEC224396AF009D02FD /* Result.swift in Sources */,
 				42D7AFDF224396AF009D02FD /* CallbackJwtProvider.swift in Sources */,
 				42D7AFD7224396AF009D02FD /* HttpRequestAdapter.swift in Sources */,
 				42D7B05222439A65009D02FD /* Mutex.swift in Sources */,
@@ -2185,7 +2176,6 @@
 				42492FA022CE9FC400BEA96F /* KeyknoxManagerError.swift in Sources */,
 				42492F9822CE9FC400BEA96F /* KeyknoxManager+Operations.swift in Sources */,
 				42D7AF42224396AC009D02FD /* GenericOperation+Dependencies.swift in Sources */,
-				42D7AF41224396AC009D02FD /* Result.swift in Sources */,
 				42492F9422CE9FC400BEA96F /* KeychainUtils.swift in Sources */,
 				42492F8422CE9FC400BEA96F /* SyncKeyStorage+SyncHelpers.swift in Sources */,
 				42492F8822CE9FC400BEA96F /* SyncKeyStorage+Obj-C.swift in Sources */,

@@ -94,7 +94,7 @@ import Foundation
         let token = try OperationUtils.makeGetTokenOperation(tokenContext: tokenContext,
                                                              accessTokenProvider: self.accessTokenProvider)
             .startSync()
-            .getResult()
+            .get()
 
         request.setAccessToken(token.stringRepresentation())
     }

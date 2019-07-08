@@ -143,7 +143,7 @@ class VSS017_NetworkTests: XCTestCase {
                                        reachability: reachability)
         
         do {
-            _ = try op.startSync().getResult()
+            _ = try op.startSync().get()
         }
         catch {
             XCTFail(error.localizedDescription)
