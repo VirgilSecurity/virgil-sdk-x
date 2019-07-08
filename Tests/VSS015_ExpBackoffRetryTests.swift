@@ -98,7 +98,7 @@ class VSS015_ExpBackoffRetryTests: XCTestCase {
         }
     }
     
-    func test04__STC_46__retryChoice__status401Other__shouldTriggerAuthRetry() {
+    func test04__STC_46__retryChoice__status401Other__shouldNotTriggerAuthRetry() {
         let retry = ExpBackoffRetry()
         
         let request = try! ServiceRequest(url: self.url, method: .get)
