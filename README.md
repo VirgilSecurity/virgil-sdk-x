@@ -257,7 +257,14 @@ User can revoke his card in case he doesn't need it anymore. Revoked card can st
 ```swift
 import VirgilSDK
 
-let result = try! cardManager.revokeCard(withId: card.identifier).startSync().get()
+let result = cardManager.revokeCard(withId: card.identifier).start { result in
+    switch result {
+        // Card is revoked
+        case .success: break
+        // Error occured
+        case .failure(let error): break
+    }
+}
 ```
 
 ## Docs
