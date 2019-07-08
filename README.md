@@ -88,7 +88,6 @@ This will build each dependency or download a pre-compiled framework from github
 
 On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, add following frameworks from the *Carthage/Build* folder inside your project's folder:
  - VirgilSDK
- - VirgilCryptoAPI
  - VirgilCrypto
  - VirgilCryptoFoundation
  - VSCCommon
@@ -104,7 +103,6 @@ and add the paths to the frameworks you want to use under “Input Files”, e.g
 
 ```
 $(SRCROOT)/Carthage/Build/iOS/VirgilSDK.framework
-$(SRCROOT)/Carthage/Build/iOS/VirgilCryptoAPI.framework
 $(SRCROOT)/Carthage/Build/iOS/VirgilCrypto.framework
 $(SRCROOT)/Carthage/Build/iOS/VirgilCryptoFoundation.framework
 $(SRCROOT)/Carthage/Build/iOS/VSCCommon.framework
@@ -115,7 +113,6 @@ $(SRCROOT)/Carthage/Build/iOS/VSCFoundation.framework
 
 On your application target's “General” settings tab, in the “Embedded Binaries” section, drag and drop following frameworks from the Carthage/Build folder on disk:
  - VirgilSDK
- - VirgilCryptoAPI
  - VirgilCrypto
  - VirgilCryptoFoundation
  - VSCCommon
@@ -125,26 +122,6 @@ Additionally, you'll need to copy debug symbols for debugging and crash reportin
 
 On your application target’s “Build Phases” settings tab, click the “+” icon and choose “New Copy Files Phase”.
 Click the “Destination” drop-down menu and select “Products Directory”. For each framework, drag and drop corresponding dSYM file.
-
-#### Integrating as subproject
-
-It is possible to use carthage just for fetching the right sources for further integration into your project.
-Run following command:
-
-```bash
-$ carthage update --no-build
-```
-
-This will fetch dependencies into a *Carthage/Checkouts* folder inside your project's folder. Then, drag and drop VirgilCrypto.xcodeproj, VirgilCryptoAPI.xcodeproj and VirgilSDK.xcodeproj from corresponding folders inside Carthage/Checkouts folder to your Xcode Project Navigator sidebar.
-
-Next, on your application target's “General” settings tab, in the “Embedded Binaries” section add the following frameworks from subprojects:
- - VirgilSDK
- - VirgilCryptoAPI
- - VirgilCrypto
- - VirgilCryptoFoundation
- - VSCCommon
- - VSCFoundation
-
 
 ## Usage Examples
 
