@@ -39,8 +39,16 @@ import Foundation
 /// Declares client error types and codes
 ///
 /// - noBody: service response does not have body
-@objc(VSSBaseClientError) public enum BaseClientError: Int, Error {
+@objc(VSSBaseClientError) public enum BaseClientError: Int, LocalizedError {
     case noBody = 1
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .noBody:
+            return "Service response does not have body"
+        }
+    }
 }
 
 /// Base class for clients
@@ -78,8 +86,8 @@ import Foundation
     ///   - tokenContext: token context to forward to Access Token Provider
     /// - Returns: Response
     /// - Throws:
-    ///         - Rethrows from AccessTokenProvider
-    ///         - Rethrows from HttpConnection
+    ///   - Rethrows from `AccessTokenProvider`
+    ///   - Rethrows from `HttpConnection`
     open func sendWithRetry(_ request: ServiceRequest,
                             retry: RetryProtocol,
                             tokenContext: TokenContext) throws -> GenericOperation<Response> {
@@ -105,9 +113,9 @@ import Foundation
     ///   - statusCode: http status code
     ///   - body: response body
     /// - Returns:
-    ///         - ServiceError if service responded with correct error json
-    ///         - NSError with http response string in the description, if present
-    ///         - NSError without description in case of empty response
+    ///   - ServiceError if service responded with correct error json
+    ///   - NSError with http response string in the description, if present
+    ///   - NSError without description in case of empty response
     open func handleError(statusCode: Int, body: Data?) -> Error {
         if let body = body {
             if let rawServiceError = try? JSONDecoder().decode(RawServiceError.self, from: body) {
@@ -140,8 +148,8 @@ import Foundation
     /// - Parameter response: response
     /// - Returns: Decoded object of type T
     /// - Throws:
-    ///         - BaseClientError.noBody if body was not found in the response
-    ///         - Rethrows from JSONDecoder
+    ///   - BaseClientError.noBody if body was not found in the response
+    ///   - Rethrows from `JSONDecoder`
     open func processResponse<T: Decodable>(_ response: Response) throws -> T {
         try self.validateResponse(response)
 

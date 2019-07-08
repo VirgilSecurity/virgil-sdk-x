@@ -183,7 +183,7 @@ extension FileSystem {
     ///   - data: data to write
     ///   - name: file name
     ///   - subdir: subdirectory
-    /// - Throws: Rethrows from FileManager
+    /// - Throws: Rethrows from `FileManager`
     @objc public func write(data: Data, name: String, subdir: String? = nil) throws {
         let url = try self.getFullUrl(name: name, subdir: subdir)
 
@@ -196,7 +196,7 @@ extension FileSystem {
     ///   - name: file name
     ///   - subdir: subdirectory
     /// - Returns: Data
-    /// - Throws: Rethrows from FileManager
+    /// - Throws: Rethrows from `FileManager`
     @objc public func read(name: String, subdir: String? = nil) throws -> Data {
         let url = try self.getFullUrl(name: name, subdir: subdir)
 
@@ -208,7 +208,7 @@ extension FileSystem {
     /// - Parameters:
     ///   - name: file name
     ///   - subdir: subdirectory
-    /// - Throws: Rethrows from FileManager
+    /// - Throws: Rethrows from `FileManager`
     @objc public func delete(name: String, subdir: String? = nil) throws {
         let url = try self.getFullUrl(name: name, subdir: subdir)
 
@@ -218,7 +218,7 @@ extension FileSystem {
     /// Delete directory
     ///
     /// - Parameter subdir: subdirectory
-    /// - Throws: Rethrows from FileManager
+    /// - Throws: Rethrows from `FileManager`
     @objc public func delete(subdir: String? = nil) throws {
         let url = try self.getFullUrl(name: nil, subdir: subdir)
 

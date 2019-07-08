@@ -97,7 +97,7 @@ import Foundation
     /// Initializes `RawCardContent` from binary content snapshot
     ///
     /// - Parameter snapshot: Binary snapshot of `RawCardContent`
-    /// - Throws: Rethrows from JSONDecoder
+    /// - Throws: Rethrows from `JSONDecoder`
     @objc public convenience init(snapshot: Data) throws {
         let content = try JSONDecoder().decode(RawCardContent.self, from: snapshot)
 
@@ -111,7 +111,7 @@ import Foundation
     /// Takes binary snapshot of `RawCardContent`
     ///
     /// - Returns: Binary snapshot of `RawCardContent`
-    /// - Throws: Rethrows from JSONEncoder
+    /// - Throws: Rethrows from `JSONEncoder`
     @objc public func snapshot() throws -> Data {
         return try JSONEncoder().encode(self)
     }

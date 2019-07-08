@@ -82,7 +82,7 @@ import Foundation
     ///   - type: token type
     ///   - contentType: content type for this JWT
     ///   - keyIdentifier: identifier of public key which should be used to verify signature
-    /// - Throws: Rethrows from JSONEncoder
+    /// - Throws: Rethrows from `JSONEncoder`
     @objc public init(algorithm: String = "VEDS512", type: String = "JWT",
                       contentType: String = "virgil-jwt;v=1", keyIdentifier: String) throws {
         let container = Container(algorithm: algorithm,
@@ -98,8 +98,9 @@ import Foundation
     /// Imports JwtHeaderContent from base64Url encoded string
     ///
     /// - Parameter base64UrlEncoded: base64Url encoded string with JwtHeaderContent
-    /// - Throws: JwtHeaderContentError.base64UrlStrIsInvalid If given base64 string is invalid
-    ///           Rethrows from JSONDecoder
+    /// - Throws:
+    ///   - JwtHeaderContentError.base64UrlStrIsInvalid If given base64 string is invalid
+    ///   - Rethrows from `JSONDecoder`
     @objc public init(base64UrlEncoded: String) throws {
         guard let data = Data(base64UrlEncoded: base64UrlEncoded) else {
             throw JwtHeaderContentError.base64UrlStrIsInvalid

@@ -39,8 +39,16 @@ import Foundation
 /// Declares client error types and codes
 ///
 /// - constructingUrl: constructing url of endpoint failed
-@objc(VSSCardClientError) public enum CardClientError: Int, Error {
+@objc(VSSCardClientError) public enum CardClientError: Int, LocalizedError {
     case constructingUrl = 1
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .constructingUrl:
+            return "Constructing url of endpoint failed"
+        }
+    }
 }
 
 /// Class representing operations with Virgil Cards service

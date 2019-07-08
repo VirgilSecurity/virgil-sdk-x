@@ -64,8 +64,9 @@ open class ServiceRequest: Request {
     ///   - accessToken: Access token
     ///   - params: Encodable request body
     ///   - headers: Http headers
-    /// - Throws: ServiceRequestError.getQueryWithDecodableIsNotSupported, if GET query with params
-    ///           Rethrows from JSONEncoder
+    /// - Throws:
+    ///   - ServiceRequestError.getQueryWithDecodableIsNotSupported, if GET query with params
+    ///   - Rethrows from `JSONEncoder`
     public init<T: Encodable>(url: URL, method: Method, params: T? = nil,
                               headers: [String: String] = [:]) throws {
         let bodyData: Data?
@@ -102,11 +103,12 @@ open class ServiceRequest: Request {
     ///   - accessToken: Access token
     ///   - params: JSON-encodable object
     ///   - headers: Http headers
-    /// - Throws: ServiceRequestError.invalidGetRequestParameters,
-    ///               if GET request is initialized and params are not [String: String]
-    ///           ServiceRequestError.urlComponentsConvertingFailed,
-    ///               if error occured while building url from components during GET request
-    ///           Rethrows from JSONSerialization
+    /// - Throws:
+    ///   - ServiceRequestError.invalidGetRequestParameters,
+    ///     if GET request is initialized and params are not [String: String]
+    ///   - ServiceRequestError.urlComponentsConvertingFailed,
+    ///     if error occured while building url from components during GET request
+    ///   - Rethrows from `JSONSerialization`
     public init(url: URL, method: Method, params: Any? = nil,
                 headers: [String: String] = [:]) throws {
         let bodyData: Data?

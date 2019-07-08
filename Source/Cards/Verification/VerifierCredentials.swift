@@ -44,7 +44,7 @@ import VirgilCrypto
     ///   - Self verifier: "self"
     ///   - Virgil Service verifier: "virgil"
     @objc public let signer: String
-    /// Exported Public Key to verify with
+    /// Public Key to verify with
     @objc public let publicKey: VirgilPublicKey
 
     /// Initializer

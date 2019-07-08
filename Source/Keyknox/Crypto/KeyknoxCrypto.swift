@@ -73,9 +73,10 @@ extension KeyknoxCrypto: KeyknoxCryptoProtocol {
     ///   - privateKey: private key to decrypt data. Should be of type VirgilPrivateKey
     ///   - publicKeys: allowed public keys to verify signature. Should be of type VirgilPublicKey
     /// - Returns: DecryptedKeyknoxValue
-    /// - Throws: KeyknoxCryptoError.emptyPublicKeysList is public keys list is empty
-    ///           KeyknoxManagerError.decryptionFailed if decryption failed
-    ///           Rethrows from Cipher
+    /// - Throws:
+    ///   - `KeyknoxCryptoError.emptyPublicKeysList` is public keys list is empty
+    ///   - `KeyknoxManagerError.decryptionFailed` if decryption failed
+    ///   - Rethrows from `VirgilCrypto`
     open func decrypt(encryptedKeyknoxValue: EncryptedKeyknoxValue,
                       privateKey: VirgilPrivateKey,
                       publicKeys: [VirgilPublicKey]) throws -> DecryptedKeyknoxValue {
@@ -113,9 +114,10 @@ extension KeyknoxCrypto: KeyknoxCryptoProtocol {
     ///   - privateKey: Private key to sign data. Should be of type VirgilPrivateKey
     ///   - publicKeys: Public keys to encrypt data. Should be of type VirgilPublicKey
     /// - Returns: Meta information and encrypted blob
-    /// - Throws: KeyknoxCryptoError.emptyPublicKeysList is public keys list is empty
-    ///           KeyknoxCryptoError.emptyData if data if empty
-    ///           Rethrows from Cipher, Signer
+    /// - Throws:
+    ///   - `KeyknoxCryptoError.emptyPublicKeysList` is public keys list is empty
+    ///   - `KeyknoxCryptoError.emptyData` if data if empty
+    ///   - Rethrows from `RecipientCipher`, `Signer`
     open func encrypt(data: Data, privateKey: VirgilPrivateKey, publicKeys: [VirgilPublicKey]) throws -> (Data, Data) {
         guard !publicKeys.isEmpty else {
             throw KeyknoxCryptoError.emptyPublicKeysList

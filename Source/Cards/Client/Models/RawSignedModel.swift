@@ -72,7 +72,7 @@ import Foundation
     ///
     /// - Parameter json: Json-compatible dictionary
     /// - Returns: RawSignedModel instance
-    /// - Throws: Rethrows from JSONDecoder and NSJSONSerialization
+    /// - Throws: Rethrows from `JSONDecoder` and `NSJSONSerialization`
     @objc public static func `import`(fromJson json: Any) throws -> RawSignedModel {
         let data = try JSONSerialization.data(withJSONObject: json, options: [])
 
@@ -83,8 +83,9 @@ import Foundation
     ///
     /// - Parameter base64EncodedString: Base64 encoded string with `RawSignedModel`
     /// - Returns: RawSignedModel instance
-    /// - Throws: RawSignedModelError.invalidBase64String if passed string is not base64 encoded data.
-    ///           Rethrows from JSONDecoder
+    /// - Throws:
+    ///   - `RawSignedModelError.invalidBase64String` if passed string is not base64 encoded data.
+    ///   - Rethrows from JSONDecoder
     @objc public static func `import`(fromBase64Encoded base64EncodedString: String) throws -> RawSignedModel {
         guard let data = Data(base64Encoded: base64EncodedString) else {
             throw RawSignedModelError.invalidBase64String
@@ -96,7 +97,7 @@ import Foundation
     /// Exports `RawSignedModel` as base64 encoded string
     ///
     /// - Returns: Base64 encoded string with `RawSignedModel`
-    /// - Throws: Rethrows from JSONEncoder
+    /// - Throws: Rethrows from `JSONEncoder`
     @objc public func exportAsBase64EncodedString() throws -> String {
        return try JSONEncoder().encode(self).base64EncodedString()
     }
@@ -104,7 +105,7 @@ import Foundation
     /// Exports `RawSignedModel` as json dictionary
     ///
     /// - Returns: Json-compatible dictionary with `RawSignedModel`
-    /// - Throws: Rethrows from JSONEncoder and JSONSerialization
+    /// - Throws: Rethrows from `JSONEncoder` and `JSONSerialization`
     @objc public func exportAsJson() throws -> Any {
         let data = try JSONEncoder().encode(self)
 

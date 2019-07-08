@@ -55,9 +55,10 @@ extension KeyknoxClient: KeyknoxClientProtocol {
     ///   - value: encrypted blob
     ///   - previousHash: hash of previous blob
     /// - Returns: EncryptedKeyknoxValue
-    /// - Throws: KeyknoxClientError.constructingUrl if URL init failed
-    ///           KeyknoxClientError.invalidPreviousHashHeader if extracting previousHash from response header failed
-    ///           Rethrows from ServiceRequest, Connection, BaseClient
+    /// - Throws:
+    ///   - `KeyknoxClientError.constructingUrl` if URL init failed
+    ///   - `KeyknoxClientError.invalidPreviousHashHeader` if extracting previousHash from response header failed
+    ///   - Rethrows from `ServiceRequest`, `Connection`, `BaseClient`
     public func pushValue(meta: Data, value: Data, previousHash: Data? = nil) throws -> EncryptedKeyknoxValue {
         guard let url = URL(string: "keyknox/v1", relativeTo: self.serviceUrl) else {
             throw KeyknoxClientError.constructingUrl
@@ -96,9 +97,10 @@ extension KeyknoxClient: KeyknoxClientProtocol {
     /// Pulls values from Keyknox service
     ///
     /// - Returns: EncryptedKeyknoxValue
-    /// - Throws: KeyknoxClientError.constructingUrl if URL init failed
-    ///           KeyknoxClientError.invalidPreviousHashHeader if extracting previousHash from response header failed
-    ///           Rethrows from ServiceRequest, Connection, BaseClient
+    /// - Throws:
+    ///   - `KeyknoxClientError.constructingUrl` if URL init failed
+    ///   - `KeyknoxClientError.invalidPreviousHashHeader` if extracting previousHash from response header failed
+    ///   - Rethrows from `ServiceRequest`, `Connection`, `BaseClient`
     public func pullValue() throws -> EncryptedKeyknoxValue {
         guard let url = URL(string: "keyknox/v1", relativeTo: self.serviceUrl) else {
             throw KeyknoxClientError.constructingUrl
@@ -123,9 +125,10 @@ extension KeyknoxClient: KeyknoxClientProtocol {
     /// Resets Keyknox value (makes it empty). Also increments version
     ///
     /// - Returns: DecryptedKeyknoxValue
-    /// - Throws: KeyknoxClientError.constructingUrl if URL init failed
-    ///           KeyknoxClientError.invalidPreviousHashHeader if extracting previousHash from response header failed
-    ///           Rethrows from ServiceRequest, Connection, BaseClient
+    /// - Throws:
+    ///   - `KeyknoxClientError.constructingUrl` if URL init failed
+    ///   - `KeyknoxClientError.invalidPreviousHashHeader` if extracting previousHash from response header failed
+    ///   - Rethrows from `ServiceRequest`, `Connection`, `BaseClient`
     @objc open func resetValue() throws -> DecryptedKeyknoxValue {
         guard let url = URL(string: "keyknox/v1/reset", relativeTo: self.serviceUrl) else {
             throw KeyknoxClientError.constructingUrl

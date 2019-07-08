@@ -82,7 +82,7 @@ import VirgilCrypto
     /// - Parameters:
     ///   - identity: User's identity to separate keys in Keychain
     ///   - cloudKeyStorage: CloudKeyStorageProtocol implementation
-    /// - Throws: Rethrows from KeychainStorageParams
+    /// - Throws: Rethrows from `KeychainStorageParams`
     @objc public convenience init(identity: String, cloudKeyStorage: CloudKeyStorage) throws {
         let configuration = try KeychainStorageParams.makeKeychainStorageParams()
         let keychainStorage = KeychainStorage(storageParams: configuration)
@@ -98,7 +98,7 @@ import VirgilCrypto
     ///   - accessTokenProvider: AccessTokenProvider implementation
     ///   - publicKeys: Public keys used for encryption and signature verification
     ///   - privateKey: Private key used for decryption and signature generation
-    /// - Throws: Rethrows from CloudKeyStorage and KeychainStorageParams
+    /// - Throws: Rethrows from `CloudKeyStorage` and `KeychainStorageParams`
     @objc public convenience init(identity: String, accessTokenProvider: AccessTokenProvider,
                                   crypto: VirgilCrypto,
                                   publicKeys: [VirgilPublicKey], privateKey: VirgilPrivateKey) throws {
@@ -157,7 +157,7 @@ extension SyncKeyStorage {
     ///
     /// - Parameter name: Name
     /// - Returns: KeychainEntry
-    /// - Throws: Rethrows from KeychainStorage
+    /// - Throws: Rethrows from `KeychainStorage`
     @objc open func retrieveEntry(withName name: String) throws -> KeychainEntry {
         return try self.keychainStorage.retrieveEntry(withName: name)
     }
@@ -349,7 +349,7 @@ extension SyncKeyStorage {
     /// Retrieves all entries from Keychain
     ///
     /// - Returns: Keychain entries
-    /// - Throws: Rethrows from KeychainStorage
+    /// - Throws: Rethrows from `KeychainStorage`
     open func retrieveAllEntries() throws -> [KeychainEntry] {
         return try self.keychainStorage.retrieveAllEntries().compactMap(self.keychainUtils.filterKeyknoxKeychainEntry)
     }
@@ -357,8 +357,8 @@ extension SyncKeyStorage {
     /// Checks if entry exists in Keychain
     ///
     /// - Parameter name: Entry name
-    /// - Returns: true if entry exists, false - otherwise
-    /// - Throws: Rethrows from KeychainStorage
+    /// - Returns: true if entry exists, false otherwise
+    /// - Throws: Rethrows from `KeychainStorage`
     open func existsEntry(withName name: String) throws -> Bool {
         return try self.keychainStorage.existsEntry(withName: name)
     }
