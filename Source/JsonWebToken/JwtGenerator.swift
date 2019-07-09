@@ -58,39 +58,36 @@ import VirgilCrypto
     ///
     /// - Parameters:
     ///   - apiKey: Api Private Key for signing generated tokens
+    ///   - apiPublicKeyIdentifier: Public Key identifier of Api Key
     ///   - crypto: VirgilCrypto
     ///   - appId: Application Id
     ///   - ttl: Lifetime of generated tokens
     /// - Throws: Rethrows from `VirgilCrypto`
     @objc public init(apiKey: VirgilPrivateKey,
+                      apiPublicKeyIdentifier: String? = nil,
                       crypto: VirgilCrypto,
                       appId: String,
                       ttl: TimeInterval = JwtGenerator.defaultTtl) throws {
         self.apiKey = apiKey
+        
+        if let apiPublicKeyIdentifier = apiPublicKeyIdentifier {
+            self.apiPublicKeyIdentifier = apiPublicKeyIdentifier
+        }
+        else {
+            let publicKeyData = try crypto.exportPublicKey(crypto.extractPublicKey(from: apiKey))
+            let publicKeyDataBase64 = publicKeyData.base64EncodedData()
 
-        let publicKeyData = try crypto.exportPublicKey(crypto.extractPublicKey(from: apiKey))
-        let publicKeyDataBase64 = publicKeyData.base64EncodedData()
-
-        self.apiPublicKeyIdentifier = crypto
-            .computeHash(for: publicKeyDataBase64, using: .sha512)
-            .subdata(in: 0..<16)
-            .hexEncodedString()
+            self.apiPublicKeyIdentifier = crypto
+                .computeHash(for: publicKeyDataBase64, using: .sha512)
+                .subdata(in: 0..<16)
+                .hexEncodedString()
+        }
 
         self.crypto = crypto
         self.appId = appId
         self.ttl = ttl
 
         super.init()
-    }
-
-    /// Sets api key identifier:
-    /// - Note: Use this method only if you have old application, for newer applications
-    /// this identifier will be computed automatically.
-    /// - Note: Can be taken [here](https://dashboard.virgilsecurity.com/api-keys)
-    ///
-    /// - Parameter identifier: Public Key identifier of Api Key
-    @objc public func setApiKeyIdentifier(_ identifier: String) {
-        self.apiPublicKeyIdentifier = identifier
     }
 
     /// Generates new JWT
