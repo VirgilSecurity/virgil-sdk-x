@@ -64,23 +64,25 @@ import VirgilCrypto
     ///   - ttl: Lifetime of generated tokens
     /// - Throws: Rethrows from `VirgilCrypto`
     @objc public init(apiKey: VirgilPrivateKey,
-                      apiPublicKeyIdentifier: String? = nil,
+                      apiPublicKeyIdentifier: String,
                       crypto: VirgilCrypto,
                       appId: String,
                       ttl: TimeInterval = JwtGenerator.defaultTtl) throws {
         self.apiKey = apiKey
+        self.apiPublicKeyIdentifier = apiPublicKeyIdentifier
         
-        if let apiPublicKeyIdentifier = apiPublicKeyIdentifier {
-            self.apiPublicKeyIdentifier = apiPublicKeyIdentifier
-        }
-        else {
-            let publicKeyData = try crypto.exportPublicKey(crypto.extractPublicKey(from: apiKey))
-
-            self.apiPublicKeyIdentifier = crypto
-                .computeHash(for: publicKeyData, using: .sha512)
-                .subdata(in: 0..<16)
-                .hexEncodedString()
-        }
+        // TODO: Make apiPublicKeyIdentifier optional for version 6.1
+//        if let apiPublicKeyIdentifier = apiPublicKeyIdentifier {
+//            self.apiPublicKeyIdentifier = apiPublicKeyIdentifier
+//        }
+//        else {
+//            let publicKeyData = try crypto.exportPublicKey(crypto.extractPublicKey(from: apiKey))
+//
+//            self.apiPublicKeyIdentifier = crypto
+//                .computeHash(for: publicKeyData, using: .sha512)
+//                .subdata(in: 0..<16)
+//                .hexEncodedString()
+//        }
 
         self.crypto = crypto
         self.appId = appId
