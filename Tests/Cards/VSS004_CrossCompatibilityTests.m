@@ -318,7 +318,7 @@
     VSMVirgilPrivateKey *privateKey = [self.crypto importPrivateKeyFrom:apiKeyDataBase64 error:&error].privateKey;
     XCTAssert(error == nil);
     
-    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey apiPublicKeyIdentifier:nil crypto:self.crypto appId:self.testData[@"STC-23.app_id"] ttl:1000 error:nil];
+    VSSJwtGenerator *generator = [[VSSJwtGenerator alloc] initWithApiKey:privateKey apiPublicKeyIdentifier:self.testData[@"STC-23.api_key_id"] crypto:self.crypto appId:self.testData[@"STC-23.app_id"] ttl:1000 error:nil];
     
     NSString *identity = @"some_identity";
     NSDictionary *dic = @{

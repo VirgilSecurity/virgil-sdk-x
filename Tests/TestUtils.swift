@@ -40,6 +40,7 @@ import VirgilCrypto
 private class Config: NSObject, Decodable {
     let ServicePublicKey: String?
     let ApiPrivateKey: String
+    let ApiKeyId: String
     let AppId: String
     let ServiceURL: String?
     let CardId: String
@@ -88,13 +89,20 @@ private class Config: NSObject, Decodable {
     }
 
     @objc public func generateToken(withIdentity identity: String, ttl: TimeInterval) -> AccessToken  {
-        let generator = try! JwtGenerator(apiKey: self.apiKey, crypto: self.crypto, appId: self.config.AppId, ttl: ttl)
+        let generator = try! JwtGenerator(apiKey: self.apiKey,
+                                          apiPublicKeyIdentifier: self.config.ApiKeyId,
+                                          crypto: self.crypto,
+                                          appId: self.config.AppId,
+                                          ttl: ttl)
 
         return try! generator.generateToken(identity: identity)
     }
     
     @objc public func getGeneratorJwtProvider(withIdentity identity: String) -> AccessTokenProvider {
-        let generator = try! JwtGenerator(apiKey: self.apiKey, crypto: self.crypto, appId: self.config.AppId)
+        let generator = try! JwtGenerator(apiKey: self.apiKey,
+                                          apiPublicKeyIdentifier: self.config.ApiKeyId,
+                                          crypto: self.crypto,
+                                          appId: self.config.AppId)
         
         return CachingJwtProvider(renewJwtCallback: { (_, completion) in
             do {
