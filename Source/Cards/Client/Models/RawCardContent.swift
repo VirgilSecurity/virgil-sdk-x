@@ -41,7 +41,7 @@ import Foundation
     /// Card identity
     @objc public let identity: String
     /// VirgilPublicKey data
-    @objc public let publicKey: Data
+    @objc public let publicKey: Data?
     /// Identifier of outdated previous Virgil Card with same identity.
     @objc public let previousCardId: String?
     /// Version of Virgil Card
@@ -83,7 +83,7 @@ import Foundation
     ///   - previousCardId: Identifier of previous Virgil Card with same identity
     ///   - version: Virgil Card version
     ///   - createdAtTimestamp: Timestamp of creation
-    @objc public init(identity: String, publicKey: Data, previousCardId: String? = nil,
+    @objc public init(identity: String, publicKey: Data?, previousCardId: String? = nil,
                       version: String = "5.0", createdAtTimestamp: Int64) {
         self.identity = identity
         self.publicKey = publicKey

@@ -44,6 +44,7 @@ import VirgilCrypto
 @objc(VSSCardManagerError) public enum CardManagerError: Int, Error {
     case cardIsNotVerified = 1
     case gotWrongCard = 2
+    case chainWasRevoked = 3
 }
 
 /// Class responsible for operations with Virgil Cards

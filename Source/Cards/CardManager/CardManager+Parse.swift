@@ -49,7 +49,10 @@ extension CardManager {
         let contentSnapshot = rawSignedModel.contentSnapshot
         let rawCardContent = try JSONDecoder().decode(RawCardContent.self, from: contentSnapshot)
 
-        let publicKeyData = rawCardContent.publicKey
+        guard let publicKeyData = rawCardContent.publicKey else {
+            throw CardManagerError.chainWasRevoked
+        }
+
         let publicKey = try crypto.importPublicKey(from: publicKeyData)
         let fingerprint = crypto.computeHash(for: rawSignedModel.contentSnapshot, using: .sha512)
         let cardId = fingerprint.subdata(in: 0..<32).hexEncodedString()
