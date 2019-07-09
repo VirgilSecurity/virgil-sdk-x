@@ -69,9 +69,10 @@ import VirgilCrypto
         self.apiKey = apiKey
 
         let publicKeyData = try crypto.exportPublicKey(crypto.extractPublicKey(from: apiKey))
+        let publicKeyDataBase64 = publicKeyData.base64EncodedData()
 
         self.apiPublicKeyIdentifier = crypto
-            .computeHash(for: publicKeyData, using: .sha512)
+            .computeHash(for: publicKeyDataBase64, using: .sha512)
             .subdata(in: 0..<16)
             .hexEncodedString()
 
