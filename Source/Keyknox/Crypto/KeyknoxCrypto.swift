@@ -40,15 +40,25 @@ import VirgilCryptoFoundation
 
 /// Declares error types and codes for KeyknoxCrypto
 ///
-/// - signerNotFound: Data signer is not present in PublicKeys array
-/// - signatureVerificationFailed: Signature is not verified
 /// - decryptionFailed: Decryption failed
 /// - emptyPublicKeysList: Public keys list is empty
 /// - emptyData: Trying to encrypt empty data
-@objc(VSSKeyknoxCryptoError) public enum KeyknoxCryptoError: Int, Error {
+@objc(VSSKeyknoxCryptoError) public enum KeyknoxCryptoError: Int, LocalizedError {
     case decryptionFailed = 3
     case emptyPublicKeysList = 4
     case emptyData = 5
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .decryptionFailed:
+            return "Decryption failed"
+        case .emptyPublicKeysList:
+            return "Public keys list is empty"
+        case .emptyData:
+            return "Trying to encrypt empty data"
+        }
+    }
 }
 
 /// KeyknoxCryptoProtocol implementation using VirgilCrypto

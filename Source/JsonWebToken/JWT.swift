@@ -40,9 +40,19 @@ import Foundation
 ///
 /// - incorrectNumberOfJwtComponents: Number of JWT components doesn't equal 3
 /// - utf8StrIsInvalid: Invalid UTF8 string to sign
-@objc(VSSJwtError) public enum JwtError: Int, Error {
+@objc(VSSJwtError) public enum JwtError: Int, LocalizedError {
     case incorrectNumberOfJwtComponents = 1
     case utf8StrIsInvalid = 2
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .incorrectNumberOfJwtComponents:
+            return "Number of JWT components doesn't equal 3"
+        case .utf8StrIsInvalid:
+            return "Invalid UTF8 string to sign"
+        }
+    }
 }
 
 /// Class implementing `AccessToken` in terms of Virgil JWT

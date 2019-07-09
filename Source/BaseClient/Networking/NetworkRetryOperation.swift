@@ -40,9 +40,19 @@ import Foundation
 ///
 /// - timeout: timeout
 /// - reachabilityError: SCNetworkReachability returned error
-public enum NetworkRetryOperationError: Error {
+public enum NetworkRetryOperationError: LocalizedError {
     case timeout
     case reachabilityError
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .timeout:
+            return "Timeout has fired"
+        case .reachabilityError:
+            return "SCNetworkReachability returned error"
+        }
+    }
 }
 
 /// Class for network operation with retry

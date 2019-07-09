@@ -42,11 +42,25 @@ import Foundation
 /// - urlComponentsConvertingFailed: Error building url from components during GET request
 /// - getQueryWithDecodableIsNotSupported: GET query with Encodable body is not supported
 /// - duplicateHeadersKey: Passed headers dictionary contains forbidden http header keys
-@objc(VSSServiceRequestError) public enum ServiceRequestError: Int, Error {
+@objc(VSSServiceRequestError) public enum ServiceRequestError: Int, LocalizedError {
     case invalidGetRequestParameters = 1
     case urlComponentsConvertingFailed = 2
     case getQueryWithDecodableIsNotSupported = 3
     case duplicateHeadersKey = 4
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .invalidGetRequestParameters:
+            return "GET request parameters are not [String: String] and cannot be encoded"
+        case .urlComponentsConvertingFailed:
+            return "Error building url from components during GET request"
+        case .getQueryWithDecodableIsNotSupported:
+            return "GET query with Encodable body is not supported"
+        case .duplicateHeadersKey:
+            return "Passed headers dictionary contains forbidden http header keys"
+        }
+    }
 }
 
 /// Class represents HTTP Request to Virgil Service

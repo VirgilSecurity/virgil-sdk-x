@@ -39,8 +39,16 @@ import Foundation
 /// Declares error types and codes for KeychainStorageWrapper
 ///
 /// - errorConvertingKeychainEntry: Invalid Keychain entry
-@objc(VSSSandboxedKeychainStorageError) public enum SandboxedKeychainStorageError: Int, Error {
+@objc(VSSSandboxedKeychainStorageError) public enum SandboxedKeychainStorageError: Int, LocalizedError {
     case errorConvertingKeychainEntry = 0
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .errorConvertingKeychainEntry:
+            return "Invalid Keychain entry"
+        }
+    }
 }
 
 /// KeychainStorage that sandboxes entries using identity and prefix

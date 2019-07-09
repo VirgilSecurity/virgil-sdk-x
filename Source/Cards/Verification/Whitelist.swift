@@ -39,8 +39,16 @@ import Foundation
 /// Declares error types and codes
 ///
 /// - duplicateSigner: tried to add verifier credentials from same signer
-@objc(VSSWhitelistError) public enum WhitelistError: Int, Error {
+@objc(VSSWhitelistError) public enum WhitelistError: Int, LocalizedError {
     case duplicateSigner = 1
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .duplicateSigner:
+            return "Tried to add verifier credentials from same signer"
+        }
+    }
 }
 
 /// Class representing collection of verifiers

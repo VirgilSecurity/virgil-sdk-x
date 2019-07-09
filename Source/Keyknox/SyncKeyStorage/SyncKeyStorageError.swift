@@ -40,7 +40,7 @@ import Foundation
 ///
 /// - keychainEntryNotFoundWhileUpdating: KeychainEntry not found while updating
 /// - cloudEntryNotFoundWhileUpdating: CloudEntry not found while updating
-/// - cloudEntryNotFoundWhileDeleting: CloudEntry notfound while deleting
+/// - cloudEntryNotFoundWhileDeleting: CloudEntry not found while deleting
 /// - keychainEntryNotFoundWhileComparing: KeychainEntry not found while comparing
 /// - keychainEntryAlreadyExistsWhileStoring: KeychainEntry already exists while storing
 /// - cloudEntryAlreadyExistsWhileStoring: CloudEntry already exists while storing
@@ -50,7 +50,7 @@ import Foundation
 /// - invalidKeysInEntryMeta: Invalid keys in entry meta
 /// - inconsistentStateError: Inconsistent state error
 /// - entrySavingError: Error while saving entry
-@objc(VSSSyncKeyStorageError) public enum SyncKeyStorageError: Int, Error {
+@objc(VSSSyncKeyStorageError) public enum SyncKeyStorageError: Int, LocalizedError {
     case keychainEntryNotFoundWhileUpdating = 1
     case cloudEntryNotFoundWhileUpdating = 2
     case cloudEntryNotFoundWhileDeleting = 3
@@ -63,4 +63,34 @@ import Foundation
     case invalidKeysInEntryMeta = 10
     case inconsistentStateError = 11
     case entrySavingError = 12
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .keychainEntryNotFoundWhileUpdating:
+            return "KeychainEntry not found while updating"
+        case .cloudEntryNotFoundWhileUpdating:
+            return "CloudEntry not found while updating"
+        case .cloudEntryNotFoundWhileDeleting:
+            return "CloudEntry not found while deleting"
+        case .keychainEntryNotFoundWhileComparing:
+            return "KeychainEntry not found while comparing"
+        case .keychainEntryAlreadyExistsWhileStoring:
+            return "KeychainEntry already exists while storing"
+        case .cloudEntryAlreadyExistsWhileStoring:
+            return "CloudEntry already exists while storing"
+        case .invalidModificationDateInKeychainEntry:
+            return "Invalid modificationDate in KeychainEntry"
+        case .invalidCreationDateInKeychainEntry:
+            return "Invalid creationDate in KeychainEntry"
+        case .noMetaInKeychainEntry:
+            return "No meta in keychainEntry"
+        case .invalidKeysInEntryMeta:
+            return "Invalid keys in entry meta"
+        case .inconsistentStateError:
+            return "Inconsistent state error"
+        case .entrySavingError:
+            return "Error while saving entry"
+        }
+    }
 }

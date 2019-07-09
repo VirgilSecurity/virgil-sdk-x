@@ -42,9 +42,23 @@ import Foundation
 /// - entrySavingError: Error while saving entry
 /// - entryAlreadyExists: Entry already exists
 /// - cloudStorageOutOfSync: Sync this storage before any other operations
-@objc(VSSCloudKeyStorageError) public enum CloudKeyStorageError: Int, Error {
+@objc(VSSCloudKeyStorageError) public enum CloudKeyStorageError: Int, LocalizedError {
     case entryNotFound = 1
     case entrySavingError = 2
     case entryAlreadyExists = 3
     case cloudStorageOutOfSync = 4
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .entryNotFound:
+            return "Entry was not found"
+        case .entrySavingError:
+            return "Error while saving entry"
+        case .entryAlreadyExists:
+            return "Entry already exists"
+        case .cloudStorageOutOfSync:
+            return "Sync this storage before any other operations"
+        }
+    }
 }

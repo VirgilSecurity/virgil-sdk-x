@@ -41,10 +41,23 @@ import VirgilCrypto
 ///
 /// - cardIsNotVerified: Virgil Card was not verified by cardVerifier
 /// - gotWrongCard: Response Card doesn't match to what was queried
-@objc(VSSCardManagerError) public enum CardManagerError: Int, Error {
+/// - chainWasRevoked: Virgil Card was revoked
+@objc(VSSCardManagerError) public enum CardManagerError: Int, LocalizedError {
     case cardIsNotVerified = 1
     case gotWrongCard = 2
     case chainWasRevoked = 3
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .cardIsNotVerified:
+            return "Virgil Card was not verified by cardVerifier"
+        case .gotWrongCard:
+            return "Response Card doesn't match to what was queried"
+        case .chainWasRevoked:
+            return "Virgil Card was revoked"
+        }
+    }
 }
 
 /// Class responsible for operations with Virgil Cards

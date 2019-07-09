@@ -39,8 +39,16 @@ import Foundation
 /// Declares error types and codes
 ///
 /// - urlRequestIsIncompleteOrInvalid: Provided URLRequest is incomplete or invalid
-@objc(VSSRequestError) public enum RequestError: Int, Error {
+@objc(VSSRequestError) public enum RequestError: Int, LocalizedError {
     case urlRequestIsIncompleteOrInvalid = 1
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .urlRequestIsIncompleteOrInvalid:
+            return "Provided URLRequest is incomplete or invalid"
+        }
+    }
 }
 
 /// Represents Http request

@@ -38,9 +38,17 @@ import Foundation
 
 /// Declares error types and codes
 ///
-/// - base64UrlStrIsInvalid: If given base64 string is invalid
-@objc(VSSJwtSignatureContentError) public enum JwtSignatureContentError: Int, Error {
+/// - base64UrlStrIsInvalid: Given base64 string is invalid
+@objc(VSSJwtSignatureContentError) public enum JwtSignatureContentError: Int, LocalizedError {
     case base64UrlStrIsInvalid = 1
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .base64UrlStrIsInvalid:
+            return "Given base64 string is invalid"
+        }
+    }
 }
 
 /// Class representing JWT Signature content

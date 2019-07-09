@@ -39,8 +39,16 @@ import Foundation
 /// Declares error types and codes
 ///
 /// - errorAndResultMissing: Both Result and Error are missing in callback
-@objc(VSSCallbackOperationError) public enum CallbackOperationError: Int, Error {
+@objc(VSSCallbackOperationError) public enum CallbackOperationError: Int, LocalizedError {
     case errorAndResultMissing = 1
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .errorAndResultMissing:
+            return "Both Result and Error are missing in callback"
+        }
+    }
 }
 
 /// Async GenericOperation that can be initialized with callback

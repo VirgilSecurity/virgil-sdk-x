@@ -42,12 +42,29 @@ import Foundation
 /// - resultIsMissing: Result variable is empty after execution
 /// - missingDependencies: Dependend operation result not found
 /// - dependencyFailed: Dependend operation has failed
-@objc(VSSGenericOperationError) public enum GenericOperationError: Int, Error {
+/// - operationCancelled: Operation was cancelled
+@objc(VSSGenericOperationError) public enum GenericOperationError: Int, LocalizedError {
     case timeout = 1
     case resultIsMissing = 2
     case missingDependencies = 3
     case dependencyFailed = 4
     case operationCancelled = 5
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .timeout:
+            return "Timeout has fired"
+        case .resultIsMissing:
+            return "Result variable is empty after execution"
+        case .missingDependencies:
+            return "Dependend operation result not found"
+        case .dependencyFailed:
+            return "Dependend operation has failed"
+        case .operationCancelled:
+            return "Operation was cancelled"
+        }
+    }
 }
 
 /// Represents AsyncOperation with Generic result

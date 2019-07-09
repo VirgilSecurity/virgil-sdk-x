@@ -40,9 +40,19 @@ import Foundation
 ///
 /// - invalidBase64String: Passed string is not correct base64 encoded string
 /// - duplicateSignature: Signature with same signer already exists
-@objc(VSSRawSignedModelError) public enum RawSignedModelError: Int, Error {
+@objc(VSSRawSignedModelError) public enum RawSignedModelError: Int, LocalizedError {
     case invalidBase64String = 1
     case duplicateSignature = 2
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .invalidBase64String:
+            return "Passed string is not correct base64 encoded string"
+        case .duplicateSignature:
+            return "Signature with same signer already exists"
+        }
+    }
 }
 
 /// Represents some model in binary form that can have signatures and corresponds to Virgil Cards Service model

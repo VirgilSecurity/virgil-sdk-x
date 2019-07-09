@@ -40,9 +40,19 @@ import Foundation
 ///
 /// - noUrlInRequest: Provided URLRequest doesn't have url
 /// - wrongResponseType: Response is not of HTTPURLResponse type
-@objc(VSSServiceConnectionError) public enum ServiceConnectionError: Int, Error {
+@objc(VSSServiceConnectionError) public enum ServiceConnectionError: Int, LocalizedError {
     case noUrlInRequest = 1
     case wrongResponseType = 2
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .noUrlInRequest:
+            return "Provided URLRequest doesn't have url"
+        case .wrongResponseType:
+            return "Response is not of HTTPURLResponse type"
+        }
+    }
 }
 
 /// Simple HttpConnection implementation
