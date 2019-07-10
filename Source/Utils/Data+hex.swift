@@ -79,3 +79,5 @@ public extension Data {
         self = data
     }
 }
+
+// swiftlint:enable missing_docs

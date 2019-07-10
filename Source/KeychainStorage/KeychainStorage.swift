@@ -92,8 +92,6 @@ import Foundation
     }
 }
 
-// swiftlint:disable function_body_length type_body_length file_length
-
 /// Class responsible for Keychain interactions.
 @objc(VSSKeychainStorage) open class KeychainStorage: NSObject {
 #if os(macOS)

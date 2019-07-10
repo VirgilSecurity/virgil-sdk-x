@@ -35,32 +35,41 @@
 //
 
 import Foundation
-import VirgilCryptoAPI
+import VirgilCrypto
 
 /// Declares error types and codes for CardManager
 ///
 /// - cardIsNotVerified: Virgil Card was not verified by cardVerifier
 /// - gotWrongCard: Response Card doesn't match to what was queried
-@objc(VSSCardManagerError) public enum CardManagerError: Int, Error {
+/// - chainWasRevoked: Virgil Card was revoked
+@objc(VSSCardManagerError) public enum CardManagerError: Int, LocalizedError {
     case cardIsNotVerified = 1
     case gotWrongCard = 2
+    case chainWasRevoked = 3
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .cardIsNotVerified:
+            return "Virgil Card was not verified by cardVerifier"
+        case .gotWrongCard:
+            return "Response Card doesn't match to what was queried"
+        case .chainWasRevoked:
+            return "Virgil Card was revoked"
+        }
+    }
 }
 
 /// Class responsible for operations with Virgil Cards
 @objc(VSSCardManager) open class CardManager: NSObject {
     /// ModelSigner instance used for self signing Cards
     @objc public let modelSigner: ModelSigner
-    /// CardCrypto instance
-    @objc public let cardCrypto: CardCrypto
-    /// AccessTokenProvider instance used for getting Access Token
-    /// when performing queries
-    @objc public let accessTokenProvider: AccessTokenProvider
+    /// Crypto instance
+    @objc public let crypto: VirgilCrypto
     /// CardClient instance used for performing queries
     @objc public let cardClient: CardClientProtocol
     /// Card Verifier instance used for verifying Cards
     @objc public let cardVerifier: CardVerifier
-    /// Will automatically perform second query with forceReload = true AccessToken if true
-    @objc public let retryOnUnauthorized: Bool
     /// Called to perform additional signatures for card before publishing
     @objc public let signCallback: ((RawSignedModel, @escaping (RawSignedModel?, Error?) -> Void) -> Void)?
 
@@ -69,11 +78,9 @@ import VirgilCryptoAPI
     /// - Parameter params: CardManagerParams with needed parameters
     @objc public init(params: CardManagerParams) {
         self.modelSigner = params.modelSigner
-        self.cardCrypto = params.cardCrypto
-        self.accessTokenProvider = params.accessTokenProvider
+        self.crypto = params.crypto
         self.cardClient = params.cardClient
         self.cardVerifier = params.cardVerifier
-        self.retryOnUnauthorized = params.retryOnUnauthorized
         self.signCallback = params.signCallback
 
         super.init()

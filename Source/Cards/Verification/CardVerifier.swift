@@ -35,7 +35,7 @@
 //
 
 import Foundation
-import VirgilCryptoAPI
+import VirgilCrypto
 
 /// Protocol representing Card verification process.
 @objc(VSSCardVefifier) public protocol CardVerifier {

@@ -35,20 +35,20 @@
 //
 
 import Foundation
-import VirgilCryptoAPI
+import VirgilCrypto
 
 /// Class responsible for signing RawSignerModel
 @objc(VSSModelSigner) public final class ModelSigner: NSObject {
     /// Signer identifier for self signatures
     @objc public static let selfSignerIdentifier = "self"
-    /// CardCrypto implementation instance for generating signatures
-    @objc public let cardCrypto: CardCrypto
+    /// Crypto implementation instance for generating signatures
+    @objc public let crypto: VirgilCrypto
 
     /// Initializer
     ///
-    /// - Parameter cardCrypto: CardCrypto implementation instance for generating signatures
-    @objc public init(cardCrypto: CardCrypto) {
-        self.cardCrypto = cardCrypto
+    /// - Parameter crypto: VirgilCrypto implementation instance for generating signatures
+    @objc public init(crypto: VirgilCrypto) {
+        self.crypto = crypto
 
         super.init()
     }
@@ -58,13 +58,15 @@ import VirgilCryptoAPI
     /// - Parameters:
     ///   - model: RawSignedModel to sign
     ///   - signer: identifier of signer
-    ///   - privateKey: PrivateKey to sign with
+    ///   - privateKey: VirgilPrivateKey to sign with
     ///   - additionalData: additionalData to sign with model
     /// - Throws: corresponding error id signature generation fails
-    @objc public func sign(model: RawSignedModel, signer: String, privateKey: PrivateKey,
+    @objc public func sign(model: RawSignedModel,
+                           signer: String,
+                           privateKey: VirgilPrivateKey,
                            additionalData: Data?) throws {
         let combinedSnapshot = model.contentSnapshot + (additionalData ?? Data())
-        let signature = try cardCrypto.generateSignature(of: combinedSnapshot, using: privateKey)
+        let signature = try self.crypto.generateSignature(of: combinedSnapshot, using: privateKey)
 
         let rawSignature = RawSignature(signer: signer,
                                         signature: signature,
@@ -73,14 +75,14 @@ import VirgilCryptoAPI
         try model.addSignature(rawSignature)
     }
 
-    /// Adds owner's signature to given RawSignedModel using provided PrivateKey
+    /// Adds owner's signature to given RawSignedModel using provided VirgilPrivateKey
     ///
     /// - Parameters:
     ///   - model: RawSignedModel to sign
-    ///   - privateKey: PrivateKey to sign with
+    ///   - privateKey: VirgilPrivateKey to sign with
     ///   - additionalData: additionalData to sign with model
     /// - Throws: corresponding error id signature generation fails
-    @objc public func selfSign(model: RawSignedModel, privateKey: PrivateKey, additionalData: Data?) throws {
+    @objc public func selfSign(model: RawSignedModel, privateKey: VirgilPrivateKey, additionalData: Data?) throws {
         try self.sign(model: model,
                       signer: ModelSigner.selfSignerIdentifier,
                       privateKey: privateKey,
@@ -92,10 +94,10 @@ import VirgilCryptoAPI
     /// - Parameters:
     ///   - model: RawSignedModel to sign
     ///   - signer: identifier of signer
-    ///   - privateKey: PrivateKey to sign with
+    ///   - privateKey: VirgilPrivateKey to sign with
     ///   - extraFields: Dictionary with extra data to sign with model
     /// - Throws: corresponding error id signature generation fails
-    @objc public func sign(model: RawSignedModel, signer: String, privateKey: PrivateKey,
+    @objc public func sign(model: RawSignedModel, signer: String, privateKey: VirgilPrivateKey,
                            extraFields: [String: String]? = nil) throws {
         let additionalData: Data?
         if let extraFields = extraFields {
@@ -108,14 +110,15 @@ import VirgilCryptoAPI
         try self.sign(model: model, signer: signer, privateKey: privateKey, additionalData: additionalData)
     }
 
-    /// Adds owner's signature to given RawSignedModel using provided PrivateKey
+    /// Adds owner's signature to given RawSignedModel using provided VirgilPrivateKey
     ///
     /// - Parameters:
     ///   - model: RawSignedModel to sign
-    ///   - privateKey: PrivateKey to sign with
+    ///   - privateKey: VirgilPrivateKey to sign with
     ///   - extraFields: Dictionary with extra data to sign with model
     /// - Throws: corresponding error id signature generation fails
-    @objc public func selfSign(model: RawSignedModel, privateKey: PrivateKey,
+    @objc public func selfSign(model: RawSignedModel,
+                               privateKey: VirgilPrivateKey,
                                extraFields: [String: String]? = nil) throws {
         try self.sign(model: model,
                       signer: ModelSigner.selfSignerIdentifier,

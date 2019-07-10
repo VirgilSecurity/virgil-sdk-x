@@ -64,3 +64,5 @@ public extension Data {
         self.init(base64Encoded: base64EncodedWithPadding)
     }
 }
+
+// swiftlint:enable missing_docs

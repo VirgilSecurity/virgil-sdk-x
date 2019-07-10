@@ -39,8 +39,16 @@ import Foundation
 /// Declares error types and codes for KeychainStorageWrapper
 ///
 /// - errorConvertingKeychainEntry: Invalid Keychain entry
-@objc(VSSSandboxedKeychainStorageError) public enum SandboxedKeychainStorageError: Int, Error {
+@objc(VSSSandboxedKeychainStorageError) public enum SandboxedKeychainStorageError: Int, LocalizedError {
     case errorConvertingKeychainEntry = 0
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .errorConvertingKeychainEntry:
+            return "Invalid Keychain entry"
+        }
+    }
 }
 
 /// KeychainStorage that sandboxes entries using identity and prefix
@@ -126,8 +134,8 @@ extension SandboxedKeychainStorage {
     ///   - meta: Meta
     /// - Returns: Stored Keychain entry
     /// - Throws:
-    ///        - Rethrows from KeychainStorage
-    ///        - errorConvertingKeychainEntry
+    ///   - Rethrows from `KeychainStorage`
+    ///   - `errorConvertingKeychainEntry`
     public func store(data: Data, withName name: String, meta: [String: String]?) throws -> KeychainEntry {
         let keychainName = self.keychainName(fromEntryName: name)
 
@@ -157,8 +165,8 @@ extension SandboxedKeychainStorage {
     /// - Parameter name: Name
     /// - Returns: Retrieved Keychain entry
     /// - Throws:
-    ///        - Rethrows from KeychainStorage
-    ///        - errorConvertingKeychainEntry
+    ///   - Rethrows from `KeychainStorage`
+    ///   - `errorConvertingKeychainEntry`
     public func retrieveEntry(withName name: String) throws -> KeychainEntry {
         let keychainName = self.keychainName(fromEntryName: name)
 
@@ -175,8 +183,8 @@ extension SandboxedKeychainStorage {
     ///
     /// - Returns: All Keychain entries
     /// - Throws:
-    ///        - Rethrows from KeychainStorage
-    ///        - errorConvertingKeychainEntry
+    ///   - Rethrows from `KeychainStorage`
+    ///   - `errorConvertingKeychainEntry`
     public func retrieveAllEntries() throws -> [KeychainEntry] {
         return self.mapKeychainEntries(try self.keychainStorage.retrieveAllEntries())
     }
@@ -184,7 +192,7 @@ extension SandboxedKeychainStorage {
     /// Deletes keychain entry
     ///
     /// - Parameter name: Name
-    /// - Throws: Rethrows from KeychainStorage
+    /// - Throws: Rethrows from `KeychainStorage`
     public func deleteEntry(withName name: String) throws {
         let keychainName = self.keychainName(fromEntryName: name)
 
@@ -195,7 +203,7 @@ extension SandboxedKeychainStorage {
     ///
     /// - Parameter name: Name
     /// - Returns: true if entry exists, false - otherwise
-    /// - Throws: Rethrows from KeychainStorage
+    /// - Throws: Rethrows from `KeychainStorage`
     public func existsEntry(withName name: String) throws -> Bool {
         let keychainName = self.keychainName(fromEntryName: name)
 

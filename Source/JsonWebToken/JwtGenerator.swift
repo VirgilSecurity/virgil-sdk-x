@@ -35,37 +35,56 @@
 //
 
 import Foundation
-import VirgilCryptoAPI
+import VirgilCrypto
 
 /// Class responsible for JWT generation
 @objc(VSSJwtGenerator) open class JwtGenerator: NSObject {
     /// Api Private Key for signing generated tokens
     /// - Note: Can be taken [here](https://dashboard.virgilsecurity.com/api-keys)
-    @objc public let apiKey: PrivateKey
+    @objc public let apiKey: VirgilPrivateKey
     /// Public Key identifier of Api Key
-    /// - Note: Can be taken [here](https://dashboard.virgilsecurity.com/api-keys)
-    @objc public let apiPublicKeyIdentifier: String
+    @objc private(set) public var apiPublicKeyIdentifier: String
     /// Implementation of AccessTokenSigner for signing generated tokens
-    @objc public let accessTokenSigner: AccessTokenSigner
+    @objc public let crypto: VirgilCrypto
     /// Application Id
     /// - Note: Can be taken [here](https://dashboard.virgilsecurity.com)
     @objc public let appId: String
     /// Lifetime of generated tokens
     @objc public let ttl: TimeInterval
+    /// Default JWT ttl
+    @objc public static let defaultTtl: TimeInterval = 15 * 60
 
     /// Initializer
     ///
     /// - Parameters:
     ///   - apiKey: Api Private Key for signing generated tokens
     ///   - apiPublicKeyIdentifier: Public Key identifier of Api Key
-    ///   - accessTokenSigner: implementation of AccessTokenSigner for signing generated tokens
+    ///   - crypto: VirgilCrypto
     ///   - appId: Application Id
     ///   - ttl: Lifetime of generated tokens
-    @objc public init(apiKey: PrivateKey, apiPublicKeyIdentifier: String,
-                      accessTokenSigner: AccessTokenSigner, appId: String, ttl: TimeInterval) {
+    /// - Throws: Rethrows from `VirgilCrypto`
+    @objc public init(apiKey: VirgilPrivateKey,
+                      apiPublicKeyIdentifier: String,
+                      crypto: VirgilCrypto,
+                      appId: String,
+                      ttl: TimeInterval = JwtGenerator.defaultTtl) throws {
         self.apiKey = apiKey
         self.apiPublicKeyIdentifier = apiPublicKeyIdentifier
-        self.accessTokenSigner = accessTokenSigner
+        
+        // TODO: Make apiPublicKeyIdentifier optional for version 6.1
+//        if let apiPublicKeyIdentifier = apiPublicKeyIdentifier {
+//            self.apiPublicKeyIdentifier = apiPublicKeyIdentifier
+//        }
+//        else {
+//            let publicKeyData = try crypto.exportPublicKey(crypto.extractPublicKey(from: apiKey))
+//
+//            self.apiPublicKeyIdentifier = crypto
+//                .computeHash(for: publicKeyData, using: .sha512)
+//                .subdata(in: 0..<16)
+//                .hexEncodedString()
+//        }
+
+        self.crypto = crypto
         self.appId = appId
         self.ttl = ttl
 
@@ -78,7 +97,7 @@ import VirgilCryptoAPI
     ///   - identity: Identity to generate with
     ///   - additionalData: Dictionary with additional data
     /// - Returns: Generated and signed `Jwt`
-    /// - Throws: Rethrows from JwtHeaderContent, JwtBodyContent, Jwt, AccessTokenSigner
+    /// - Throws: Rethrows from `JwtHeaderContent`, `JwtBodyContent`, `Jwt`, `AccessTokenSigner`
     @objc public func generateToken(identity: String, additionalData: [String: String]? = nil) throws -> Jwt {
         let jwtHeaderContent = try JwtHeaderContent(keyIdentifier: self.apiPublicKeyIdentifier)
         let jwtBodyContent = try JwtBodyContent(appId: self.appId,
@@ -89,7 +108,7 @@ import VirgilCryptoAPI
 
         let data = try Jwt.dataToSign(headerContent: jwtHeaderContent, bodyContent: jwtBodyContent)
 
-        let signature = try self.accessTokenSigner.generateTokenSignature(of: data, using: self.apiKey)
+        let signature = try self.crypto.generateSignature(of: data, using: self.apiKey)
 
         return try Jwt(headerContent: jwtHeaderContent,
                        bodyContent: jwtBodyContent,

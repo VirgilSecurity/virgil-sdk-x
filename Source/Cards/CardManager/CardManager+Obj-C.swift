@@ -35,14 +35,14 @@
 //
 
 import Foundation
-import VirgilCryptoAPI
+import VirgilCrypto
 
 //Objective-C compatible Queries
 extension CardManager {
     /// Asynchronously returns `Card` with given identifier
     /// from the Virgil Cards Service with given ID, if exists
     ///
-    /// NOTE: See swift version for additional info
+    /// - Note: See swift version for additional info
     ///
     /// - Parameters:
     ///   - cardId: string with unique Virgil Card identifier
@@ -55,7 +55,7 @@ extension CardManager {
     /// Also makes the Card accessible for search/get queries from other users
     /// `RawSignedModel` should be at least selfSigned
     ///
-    /// NOTE: See swift version for additional info
+    /// - Note: See swift version for additional info
     ///
     /// - Parameters:
     ///   - rawCard: self signed `RawSignedModel`
@@ -67,16 +67,16 @@ extension CardManager {
     /// Asynchronously generates self signed RawSignedModel and creates Virgil Card
     /// instance on the Virgil Cards Service and associates it with unique identifier
     ///
-    /// NOTE: See swift version for additional info
+    /// - Note: See swift version for additional info
     ///
     /// - Parameters:
     ///   - privateKey: Private Key to self sign RawSignedModel with
-    ///   - publicKey: PublicKey for generating RawSignedModel
+    ///   - publicKey: VirgilPublicKey for generating RawSignedModel
     ///   - identity: identity for generating RawSignedModel. Will be taken from token if omitted
     ///   - previousCardId: identifier of Virgil Card to replace
     ///   - extraFields: Dictionary with extra data to sign with model
     ///   - completion: completion handler, called with published and verified Card or corresponding error
-    @objc open func publishCard(privateKey: PrivateKey, publicKey: PublicKey, identity: String,
+    @objc open func publishCard(privateKey: VirgilPrivateKey, publicKey: VirgilPublicKey, identity: String,
                                 previousCardId: String? = nil, extraFields: [String: String]? = nil,
                                 completion: @escaping (Card?, Error?) -> Void) {
         self.publishCard(privateKey: privateKey,
@@ -87,20 +87,9 @@ extension CardManager {
             .start(completion: completion)
     }
 
-    /// Asynchronously performs search of Virgil Cards using identity on the Virgil Cards Service
-    ///
-    /// NOTE: See swift version for additional info
-    ///
-    /// - Parameters:
-    ///   - identity: identity of cards to search
-    ///   - completion: completion handler, called with found and verified Cards or corresponding error
-    @objc open func searchCards(identity: String, completion: @escaping ([Card]?, Error?) -> Void) {
-        self.searchCards(identity: identity).start(completion: completion)
-    }
-
     /// Asynchronously performs search of Virgil Cards on the Virgil Cards Service using identities
     ///
-    /// NOTE: See swift version for additional info
+    /// - Note: See swift version for additional info
     ///
     /// - Parameters:
     ///   - identities: identities of cards to search

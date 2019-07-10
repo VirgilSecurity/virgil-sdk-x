@@ -38,9 +38,17 @@ import Foundation
 
 /// Declares error types and codes
 ///
-/// - base64UrlStrIsInvalid: If given base64 string is invalid
-@objc(VSSJwtBodyContentError) public enum JwtBodyContentError: Int, Error {
+/// - base64UrlStrIsInvalid: Given base64 string is invalid
+@objc(VSSJwtBodyContentError) public enum JwtBodyContentError: Int, LocalizedError {
     case base64UrlStrIsInvalid = 1
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .base64UrlStrIsInvalid:
+            return "Given base64 string is invalid"
+        }
+    }
 }
 
 /// Class representing JWT Body content
@@ -121,7 +129,7 @@ import Foundation
     ///   - expiresAt: expiration date
     ///   - issuedAt: issued date
     ///   - additionalData: dictionary with additional data
-    /// - Throws: Rethrows from JSONEncoder
+    /// - Throws: Rethrows from `JSONEncoder`
     @objc public init(appId: String, identity: String, expiresAt: Date,
                       issuedAt: Date, additionalData: [String: String]? = nil) throws {
         let container = Container(appId: appId,
@@ -142,8 +150,9 @@ import Foundation
     /// Imports JwtBodyContent from base64Url encoded string
     ///
     /// - Parameter base64UrlEncoded: base64Url encoded string with JwtBodyContent
-    /// - Throws: JwtBodyContentError.base64UrlStrIsInvalid If given base64 string is invalid
-    ///           Rethrows from JSONDencoder
+    /// - Throws:
+    ///   - `JwtBodyContentError.base64UrlStrIsInvalid` If given base64 string is invalid
+    ///   - Rethrows from `JSONDencoder`
     @objc public init(base64UrlEncoded: String) throws {
         guard let data = Data(base64UrlEncoded: base64UrlEncoded) else {
             throw JwtBodyContentError.base64UrlStrIsInvalid

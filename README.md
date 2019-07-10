@@ -47,8 +47,7 @@ To integrate VirgilSDK into your Xcode project using CocoaPods, specify it in yo
 target '<Your Target Name>' do
   use_frameworks!
 
-  pod 'VirgilCrypto', '~> 5.0.0-alpha3'
-  pod 'VirgilSDK', '~> 5.8'
+  pod 'VirgilSDK', '~> 6.0'
 end
 ```
 
@@ -72,8 +71,7 @@ $ brew install carthage
 To integrate VirgilSDK into your Xcode project using Carthage, create an empty file with name *Cartfile* in your project's root folder and add following lines to your *Cartfile*
 
 ```
-github "VirgilSecurity/virgil-sdk-x" ~> 5.8
-github "VirgilSecurity/virgil-crypto-x" ~> 5.0.0-alpha3
+github "VirgilSecurity/virgil-sdk-x" ~> 6.0
 ```
 
 #### Linking against prebuilt binaries
@@ -90,7 +88,6 @@ This will build each dependency or download a pre-compiled framework from github
 
 On your application targets’ “General” settings tab, in the “Linked Frameworks and Libraries” section, add following frameworks from the *Carthage/Build* folder inside your project's folder:
  - VirgilSDK
- - VirgilCryptoAPI
  - VirgilCrypto
  - VirgilCryptoFoundation
  - VSCCommon
@@ -106,7 +103,6 @@ and add the paths to the frameworks you want to use under “Input Files”, e.g
 
 ```
 $(SRCROOT)/Carthage/Build/iOS/VirgilSDK.framework
-$(SRCROOT)/Carthage/Build/iOS/VirgilCryptoAPI.framework
 $(SRCROOT)/Carthage/Build/iOS/VirgilCrypto.framework
 $(SRCROOT)/Carthage/Build/iOS/VirgilCryptoFoundation.framework
 $(SRCROOT)/Carthage/Build/iOS/VSCCommon.framework
@@ -117,7 +113,6 @@ $(SRCROOT)/Carthage/Build/iOS/VSCFoundation.framework
 
 On your application target's “General” settings tab, in the “Embedded Binaries” section, drag and drop following frameworks from the Carthage/Build folder on disk:
  - VirgilSDK
- - VirgilCryptoAPI
  - VirgilCrypto
  - VirgilCryptoFoundation
  - VSCCommon
@@ -128,26 +123,6 @@ Additionally, you'll need to copy debug symbols for debugging and crash reportin
 On your application target’s “Build Phases” settings tab, click the “+” icon and choose “New Copy Files Phase”.
 Click the “Destination” drop-down menu and select “Products Directory”. For each framework, drag and drop corresponding dSYM file.
 
-#### Integrating as subproject
-
-It is possible to use carthage just for fetching the right sources for further integration into your project.
-Run following command:
-
-```bash
-$ carthage update --no-build
-```
-
-This will fetch dependencies into a *Carthage/Checkouts* folder inside your project's folder. Then, drag and drop VirgilCrypto.xcodeproj, VirgilCryptoAPI.xcodeproj and VirgilSDK.xcodeproj from corresponding folders inside Carthage/Checkouts folder to your Xcode Project Navigator sidebar.
-
-Next, on your application target's “General” settings tab, in the “Embedded Binaries” section add the following frameworks from subprojects:
- - VirgilSDK
- - VirgilCryptoAPI
- - VirgilCrypto
- - VirgilCryptoFoundation
- - VSCCommon
- - VSCFoundation
-
-
 ## Usage Examples
 
 Before starting practicing with the usage examples be sure that the SDK is configured. Check out our [SDK configuration guides][_configure_sdk] for more information.
@@ -155,7 +130,6 @@ Before starting practicing with the usage examples be sure that the SDK is confi
 #### Generate key pair using VirgilCrypto
 
 ```swift
-import VirgilSDK
 import VirgilCrypto
 
 let crypto = try! VirgilCrypto()
@@ -173,8 +147,7 @@ let storageParams = try! KeychainStorageParams.makeKeychainStorageParams()
 let keychainStorage = KeychainStorage(storageParams: storageParams)
 
 // export key to Data
-let exporter = VirgilPrivateKeyExporter(virgilCrypto: crypto)
-let data = try! exporter.exportPrivateKey(privateKey: keyPair.privateKey)
+let data = try! crypto.exportPrivateKey(keyPair.privateKey)
 
 let identity = "Alice"
 
@@ -196,7 +169,7 @@ import VirgilSDK
 import VirgilCrypto
 
 // save a private key into key storage
-let data = try! exporter.exportPrivateKey(privateKey: keyPair.privateKey)
+let data = try! crypto.exportPrivateKey(keyPair.privateKey)
 let entry = try! keychainStorage.store(data: data, withName: "Alice", meta: nil)
 
 // publish user's card on the Cards Service
@@ -226,7 +199,7 @@ let dataToEncrypt = messageToEncrypt.data(using: .utf8)!
 
 // prepare a user's private key
 let alicePrivateKeyEntry = try! keychainStorage.retrieveEntry(withName: "Alice")
-let alicePrivateKey = try! exporter.importPrivateKey(from: retrievedEntry.data)
+let alicePrivateKey = try! exporter.importPrivateKey(from: alicePrivateKeyEntry.data)
 
 // using cardManager search for user's cards on Cards Service
 cardManager.searchCards(identity: "Bob").start { result in
@@ -234,7 +207,7 @@ cardManager.searchCards(identity: "Bob").start { result in
     // Cards are obtained
     case .success(let cards):
         let bobRelevantCardsPublicKeys = cards
-            .map { $0.publicKey } as! [VirgilPublicKey]
+            .map { $0.publicKey }
 
         // sign a message with a private key then encrypt on a public key
         let encryptedData = try! crypto.signThenEncrypt(dataToEncrypt,
@@ -257,17 +230,18 @@ import VirgilCrypto
 
 // prepare a user's private key
 let bobPrivateKeyEntry = try! keychainStorage.retrieveEntry(withName: "Bob")
-let bobPrivateKey = try! exporter.importPrivateKey(from: retrievedEntry.data)
+let bobPrivateKey = try! exporter.importPrivateKey(from: bobPrivateKeyEntry.data)
 
 // using cardManager search for user's cards on Cards Service
 cardManager.searchCards(identity: "Alice").start { result in
     switch result {
     // Cards are obtained
     case .success(let cards):
-        let aliceRelevantCardsPublicKeys = cards.map { $0.publicKey } as! [VirgilPublicKey]
+        let aliceRelevantCardsPublicKeys = cards.map { $0.publicKey }
 
         // decrypt with a private key and verify using a public key
-        let decryptedData = try! crypto.decryptThenVerify(encryptedData, with: bobPrivateKey,
+        let decryptedData = try! crypto.decryptThenVerify(encryptedData, 
+                                                          with: bobPrivateKey,
                                                           usingOneOf: aliceRelevantCardsPublicKeys)
 
     // Error occured
@@ -282,10 +256,14 @@ User can revoke his card in case he doesn't need it anymore. Revoked card can st
 
 ```swift
 import VirgilSDK
-import VirgilCrypto
 
-// using cardManager to revoke card
-let result = cardManager.revokeCard(withId: card.identifier).startSync()
+let result = cardManager.revokeCard(withId: card.identifier).start { result in
+    switch result {
+        // Card is revoked
+        case .success: break
+        // Error occured
+        case .failure(let error): break
+    }
 }
 ```
 

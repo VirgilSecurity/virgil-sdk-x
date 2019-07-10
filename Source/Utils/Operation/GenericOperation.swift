@@ -42,18 +42,36 @@ import Foundation
 /// - resultIsMissing: Result variable is empty after execution
 /// - missingDependencies: Dependend operation result not found
 /// - dependencyFailed: Dependend operation has failed
-@objc(VSSGenericOperationError) public enum GenericOperationError: Int, Error {
+/// - operationCancelled: Operation was cancelled
+@objc(VSSGenericOperationError) public enum GenericOperationError: Int, LocalizedError {
     case timeout = 1
     case resultIsMissing = 2
     case missingDependencies = 3
     case dependencyFailed = 4
+    case operationCancelled = 5
+
+    /// Human-readable localized description
+    public var errorDescription: String? {
+        switch self {
+        case .timeout:
+            return "Timeout has fired"
+        case .resultIsMissing:
+            return "Result variable is empty after execution"
+        case .missingDependencies:
+            return "Dependend operation result not found"
+        case .dependencyFailed:
+            return "Dependend operation has failed"
+        case .operationCancelled:
+            return "Operation was cancelled"
+        }
+    }
 }
 
 /// Represents AsyncOperation with Generic result
 open class GenericOperation<T>: AsyncOperation {
     /// Operation Result
     /// WARNING: Do not modify this value outside of GenericOperation functions
-    public var result: Result<T>? = nil {
+    public var result: Result<T, Error>? = nil {
         didSet {
             if let result = self.result,
                 case .failure(let error) = result {
@@ -65,7 +83,7 @@ open class GenericOperation<T>: AsyncOperation {
     /// Creates OperationQueue and starts operation
     ///
     /// - Parameter completion: Completion callback
-    open func start(completion: @escaping (Result<T>) -> Void) {
+    open func start(completion: @escaping (Result<T, Error>) -> Void) {
         guard !self.isCancelled else {
             self.finish()
             return
@@ -75,7 +93,16 @@ open class GenericOperation<T>: AsyncOperation {
 
         self.completionBlock = {
             guard let result = self.result else {
-                let result: Result<T> = Result.failure(GenericOperationError.resultIsMissing)
+                let error: Error
+
+                if self.isCancelled {
+                    error = GenericOperationError.operationCancelled
+                }
+                else {
+                    error = GenericOperationError.resultIsMissing
+                }
+
+                let result: Result<T, Error> = Result.failure(error)
                 self.result = result
 
                 completion(result)
@@ -105,7 +132,7 @@ open class GenericOperation<T>: AsyncOperation {
     ///
     /// - Parameter timeout: Operation timeout
     /// - Returns: Operation Result
-    open func startSync(timeout: TimeInterval? = nil) -> Result<T> {
+    open func startSync(timeout: TimeInterval? = nil) -> Result<T, Error> {
         let queue = OperationQueue()
 
         queue.addOperation(self)
@@ -114,7 +141,7 @@ open class GenericOperation<T>: AsyncOperation {
             let deadlineTime = DispatchTime.now() + timeout
 
             DispatchQueue.global(qos: .background).asyncAfter(deadline: deadlineTime) {
-                let result: Result<T> = Result.failure(GenericOperationError.timeout)
+                let result: Result<T, Error> = Result.failure(GenericOperationError.timeout)
                 self.result = result
                 queue.cancelAllOperations()
             }
@@ -123,7 +150,16 @@ open class GenericOperation<T>: AsyncOperation {
         queue.waitUntilAllOperationsAreFinished()
 
         guard let result = self.result else {
-            let result: Result<T> = Result.failure(GenericOperationError.resultIsMissing)
+            let error: Error
+
+            if self.isCancelled {
+                error = GenericOperationError.operationCancelled
+            }
+            else {
+                error = GenericOperationError.resultIsMissing
+            }
+
+            let result: Result<T, Error> = Result.failure(error)
             self.result = result
             return result
         }

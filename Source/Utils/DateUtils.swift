@@ -74,7 +74,7 @@ public enum DateUtils {
     ///
     /// - Parameter decoder: Decoder
     /// - Returns: Decoded Date
-    /// - Throws: Rethrows from Decoder
+    /// - Throws: Rethrows from `Decoder`
     public static func timestampDateDecodingStrategy(decoder: Decoder) throws -> Date {
         let timestamp = try decoder.singleValueContainer().decode(Int64.self)
 
@@ -86,7 +86,7 @@ public enum DateUtils {
     /// - Parameters:
     ///   - date: Date to encode
     ///   - encoder: Encoder
-    /// - Throws: Rethrows from Encoder
+    /// - Throws: Rethrows from `Encoder`
     public static func timestampDateEncodingStrategy(date: Date, encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(self.dateToTimestamp(date: date))
@@ -96,7 +96,7 @@ public enum DateUtils {
     ///
     /// - Parameter decoder: Decoder
     /// - Returns: Decoded Date
-    /// - Throws: Rethrows from Decoder
+    /// - Throws: Rethrows from `Decoder`
     public static func timestampMilliDateDecodingStrategy(decoder: Decoder) throws -> Date {
         let timestamp = try decoder.singleValueContainer().decode(Int64.self)
 
@@ -108,7 +108,7 @@ public enum DateUtils {
     /// - Parameters:
     ///   - date: Date to encode
     ///   - encoder: Encoder
-    /// - Throws: Rethrows from Encoder
+    /// - Throws: Rethrows from `Encoder`
     public static func timestampMilliDateEncodingStrategy(date: Date, encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(self.dateToMilliTimestamp(date: date))

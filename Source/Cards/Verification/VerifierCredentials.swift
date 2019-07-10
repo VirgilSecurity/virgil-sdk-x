@@ -35,6 +35,7 @@
 //
 
 import Foundation
+import VirgilCrypto
 
 /// Class representing verifier credentials
 @objc(VSSVerifierCredentials) public class VerifierCredentials: NSObject {
@@ -43,15 +44,15 @@ import Foundation
     ///   - Self verifier: "self"
     ///   - Virgil Service verifier: "virgil"
     @objc public let signer: String
-    /// Exported Public Key to verify with
-    @objc public let publicKey: Data
+    /// Public Key to verify with
+    @objc public let publicKey: VirgilPublicKey
 
     /// Initializer
     ///
     /// - Parameters:
     ///   - signer: identifier of signer
-    ///   - publicKey: exported Public Key to verify with
-    @objc public init(signer: String, publicKey: Data) {
+    ///   - publicKey: Public Key to verify with
+    @objc public init(signer: String, publicKey: VirgilPublicKey) {
         self.signer = signer
         self.publicKey = publicKey
 
