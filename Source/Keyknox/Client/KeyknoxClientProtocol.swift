@@ -43,22 +43,61 @@ import Foundation
     /// Push value to Keyknox service
     ///
     /// - Parameters:
+    ///   - identities: identities
+    ///   - root1: path root1
+    ///   - root2: path root2
+    ///   - key: key
     ///   - meta: meta data
     ///   - value: encrypted blob
     ///   - previousHash: hash of previous blob
+    ///   - overwrite: if true - overwrites identities, if false - complements
     /// - Returns: EncryptedKeyknoxValue
     /// - Throws: Depends on implementation
-    @objc func pushValue(meta: Data, value: Data, previousHash: Data?) throws -> EncryptedKeyknoxValue
+    @objc func pushValue(identities: [String],
+                         root1: String,
+                         root2: String,
+                         key: String,
+                         meta: Data,
+                         value: Data,
+                         previousHash: Data?,
+                         overwrite: Bool) throws -> EncryptedKeyknoxValue
 
     /// Pulls values from Keyknox service
     ///
+    /// - Parameters:
+    ///   - identity: Keyknox owner identity (if nil - access own keyknox)
+    ///   - root1: path root1
+    ///   - root2: path root2
+    ///   - key: key
     /// - Returns: EncryptedKeyknoxValue
     /// - Throws: Depends on implementation
-    @objc func pullValue() throws -> EncryptedKeyknoxValue
+    @objc func pullValue(identity: String?,
+                         root1: String,
+                         root2: String,
+                         key: String) throws -> EncryptedKeyknoxValue
+
+    /// Get keys for given root
+    ///
+    /// - Parameters:
+    ///   - identity: Keyknox owner identity (if nil - access own keyknox)
+    ///   - root1: path root1
+    ///   - root2: path root2
+    /// - Returns: Array of keys
+    /// - Throws: Depends on implementation
+    @objc func getKeys(identity: String?,
+                       root1: String?,
+                       root2: String?) throws -> [String]
 
     /// Resets Keyknox value (makes it empty). Also increments version
     ///
+    /// - Parameters:
+    ///   - root1: path root1
+    ///   - root2: path root2
+    ///   - key: key
     /// - Returns: DecryptedKeyknoxValue
     /// - Throws: Depends on implementation
-    @objc func resetValue() throws -> DecryptedKeyknoxValue
+    @objc func resetValue(identities: [String],
+                          root1: String?,
+                          root2: String?,
+                          key: String?) throws -> DecryptedKeyknoxValue
 }

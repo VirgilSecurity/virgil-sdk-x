@@ -38,6 +38,7 @@ import Foundation
 
 // MARK: - Queries
 extension KeyknoxClient: KeyknoxClientProtocol {
+    
     /// Header key for blob hash
     @objc public static let virgilKeyknoxHashKey = "Virgil-Keyknox-Hash"
 
@@ -48,18 +49,14 @@ extension KeyknoxClient: KeyknoxClientProtocol {
         return ExpBackoffRetry(config: self.retryConfig)
     }
 
-    /// Push value to Keyknox service
-    ///
-    /// - Parameters:
-    ///   - meta: meta data
-    ///   - value: encrypted blob
-    ///   - previousHash: hash of previous blob
-    /// - Returns: EncryptedKeyknoxValue
-    /// - Throws:
-    ///   - `KeyknoxClientError.constructingUrl` if URL init failed
-    ///   - `KeyknoxClientError.invalidPreviousHashHeader` if extracting previousHash from response header failed
-    ///   - Rethrows from `ServiceRequest`, `Connection`, `BaseClient`
-    public func pushValue(meta: Data, value: Data, previousHash: Data? = nil) throws -> EncryptedKeyknoxValue {
+    public func pushValue(identities: [String],
+                          root1: String,
+                          root2: String,
+                          key: String,
+                          meta: Data,
+                          value: Data,
+                          previousHash: Data?,
+                          overwrite: Bool) throws -> EncryptedKeyknoxValue {
         guard let url = URL(string: "keyknox/v1", relativeTo: self.serviceUrl) else {
             throw KeyknoxClientError.constructingUrl
         }
@@ -93,15 +90,8 @@ extension KeyknoxClient: KeyknoxClientProtocol {
 
         return EncryptedKeyknoxValue(keyknoxData: keyknoxData, keyknoxHash: keyknoxHash)
     }
-
-    /// Pulls values from Keyknox service
-    ///
-    /// - Returns: EncryptedKeyknoxValue
-    /// - Throws:
-    ///   - `KeyknoxClientError.constructingUrl` if URL init failed
-    ///   - `KeyknoxClientError.invalidPreviousHashHeader` if extracting previousHash from response header failed
-    ///   - Rethrows from `ServiceRequest`, `Connection`, `BaseClient`
-    public func pullValue() throws -> EncryptedKeyknoxValue {
+    
+    public func pullValue(identity: String?, root1: String, root2: String, key: String) throws -> EncryptedKeyknoxValue {
         guard let url = URL(string: "keyknox/v1", relativeTo: self.serviceUrl) else {
             throw KeyknoxClientError.constructingUrl
         }
@@ -121,15 +111,15 @@ extension KeyknoxClient: KeyknoxClientProtocol {
 
         return EncryptedKeyknoxValue(keyknoxData: keyknoxData, keyknoxHash: keyknoxHash)
     }
+    
+    public func getKeys(identity: String?, root1: String?, root2: String?) throws -> [String] {
+        throw NSError()
+    }
 
-    /// Resets Keyknox value (makes it empty). Also increments version
-    ///
-    /// - Returns: DecryptedKeyknoxValue
-    /// - Throws:
-    ///   - `KeyknoxClientError.constructingUrl` if URL init failed
-    ///   - `KeyknoxClientError.invalidPreviousHashHeader` if extracting previousHash from response header failed
-    ///   - Rethrows from `ServiceRequest`, `Connection`, `BaseClient`
-    @objc open func resetValue() throws -> DecryptedKeyknoxValue {
+    @objc open func resetValue(identities: [String],
+                               root1: String?,
+                               root2: String?,
+                               key: String?) throws -> DecryptedKeyknoxValue {
         guard let url = URL(string: "keyknox/v1/reset", relativeTo: self.serviceUrl) else {
             throw KeyknoxClientError.constructingUrl
         }
