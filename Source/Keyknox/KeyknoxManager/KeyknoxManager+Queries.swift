@@ -55,13 +55,13 @@ extension KeyknoxManager {
                                                                 privateKey: privateKey,
                                                                 publicKeys: publicKeys)
                     let keyknoxValue = try self.keyknoxClient.pushValue(identities: [],
-                                                                    root1: root1,
-                                                                    root2: root2,
-                                                                    key: key,
-                                                                    meta: encryptedData.0,
-                                                                    value: encryptedData.1,
-                                                                    previousHash: previousHash,
-                                                                    overwrite: overwrite)
+                                                                        root1: root1,
+                                                                        root2: root2,
+                                                                        key: key,
+                                                                        meta: encryptedData.0,
+                                                                        value: encryptedData.1,
+                                                                        previousHash: previousHash,
+                                                                        overwrite: overwrite)
                     let decryptedData = try self.crypto.decrypt(encryptedKeyknoxValue: keyknoxValue,
                                                                 privateKey: privateKey,
                                                                 publicKeys: publicKeys)

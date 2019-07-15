@@ -154,6 +154,12 @@ import VirgilCrypto
         return dataToReturn
     }
 
+    private func readFiles(url: URL) throws -> [Data] {
+        let fileURLs = try self.fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+
+        return try fileURLs.map { try self.readFile(url: $0) }
+    }
+
     private func getFullUrl(name: String?, subdir: String?) throws -> URL {
         var url = try self.createSuppDir()
 
@@ -201,6 +207,12 @@ extension FileSystem {
         let url = try self.getFullUrl(name: name, subdir: subdir)
 
         return try self.readFile(url: url)
+    }
+
+    @objc public func read(subdir: String) throws -> [Data] {
+        let url = try self.getFullUrl(name: nil, subdir: subdir)
+
+        return try self.readFiles(url: url)
     }
 
     /// Delete data
