@@ -35,6 +35,7 @@
 //
 
 import Foundation
+import LocalAuthentication
 
 /// Declares error codes for KeychainStorage. See KeychainStorageError
 ///
@@ -110,7 +111,7 @@ import Foundation
     /// - Parameter name: entry name
     /// - Returns: SecAccess
     /// - Throws: KeychainStorageError
-    @objc public func createAccess(forName name: String) throws -> SecAccess {
+    @objc public func createAccess(forName name: String, queryOptions: KeychainQueryOptions) throws -> SecAccess {
         // Make an exception list of trusted applications; that is,
         // applications that are allowed to access the item without
         // requiring user confirmation:
@@ -124,7 +125,7 @@ import Foundation
         var trustedList = [SecTrustedApplication]()
         trustedList.append(myself)
 
-        for application in self.storageParams.trustedApplications {
+        for application in queryOptions.trustedApplications {
             var appT: SecTrustedApplication?
 
             status = SecTrustedApplicationCreateFromPath(application, &appT)
@@ -135,7 +136,7 @@ import Foundation
             trustedList.append(app)
         }
 
-        //Create an access object:
+        // Create an access object:
         var accessT: SecAccess?
         status = SecAccessCreate(name as CFString, trustedList as CFArray, &accessT)
         guard status == errSecSuccess, let access = accessT else {
@@ -145,6 +146,46 @@ import Foundation
         return access
     }
 #endif
+    
+    @objc public func createAccessControl() throws -> SecAccessControl {
+        let flags: SecAccessControlCreateFlags
+        
+    #if os(macOS)
+        if #available(OSX 10.13.4, *) {
+            flags = [.biometryCurrentSet, .or, .devicePasscode]
+        }
+        else if #available(OSX 10.12.1, *) {
+            flags = [.touchIDCurrentSet, .or, .devicePasscode]
+        }
+        else {
+            flags = [.devicePasscode]
+        }
+    #else
+        if #available(iOS 11.3, *) {
+            flags = [.biometryCurrentSet, .or, .devicePasscode]
+        }
+        else {
+            flags = [.touchIDCurrentSet, .or, .devicePasscode]
+        }
+    #endif
+
+        guard let access = SecAccessControlCreateWithFlags(nil,
+                                                           kSecAttrAccessibleWhenPasscodeSetThisDeviceOnly,
+                                                           flags,
+                                                           nil)
+            else {
+                // FIXME
+                throw NSError()
+        }
+        
+        return access
+    }
+    
+    @objc public func createLAContext() throws -> LAContext {
+        let context = LAContext()
+        
+        return context
+    }
 
     /// Private key identifier format
     @objc public static let privateKeyIdentifierFormat = ".%@.privatekey.%@\0"
@@ -169,7 +210,11 @@ import Foundation
     ///   - meta: Additional meta info
     /// - Returns: Stored entry
     /// - Throws: KeychainStorageError
-    @objc open func store(data: Data, withName name: String, meta: [String: String]?) throws -> KeychainEntry {
+    @objc open func store(data: Data,
+                          withName name: String,
+                          meta: [String: String]?,
+                          queryOptions: KeychainQueryOptions?) throws -> KeychainEntry {
+        let queryOptions = queryOptions ?? KeychainQueryOptions()
         let tag = String(format: KeychainStorage.privateKeyIdentifierFormat, self.storageParams.appName, name)
 
     #if os(iOS) || os(tvOS) || os(watchOS)
@@ -184,7 +229,7 @@ import Foundation
             kSecAttrApplicationLabel as String: nameData,
             kSecAttrApplicationTag as String: tagData,
 
-            kSecAttrAccessible as String: self.storageParams.accessibility as CFString,
+            kSecAttrAccessible as String: queryOptions.accessibility as CFString,
             kSecAttrLabel as String: name,
             kSecAttrIsPermanent as String: true,
             kSecAttrCanEncrypt as String: true,
@@ -201,13 +246,13 @@ import Foundation
         ]
 
         // Access groups are not supported in simulator
-        #if TARGET_OS_IPHONE && !TARGET_IPHONE_SIMULATOR
-        if let accessGroup = self.storageParams.accessGroup {
-            query[kSecAttrAccessGroup] = accessGroup
+        #if !targetEnvironment(simulator)
+        if let accessGroup = queryOptions.accessGroup {
+            query[kSecAttrAccessGroup as String] = accessGroup
         }
         #endif
     #elseif os(macOS)
-        let access = try self.createAccess(forName: name)
+        let access = try self.createAccess(forName: name, queryOptions: queryOptions)
 
         var query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -230,6 +275,12 @@ import Foundation
         query[kSecAttrIsInvisible as String] = true
         #endif
     #endif
+        
+        if queryOptions.biometricallyProtected {
+            query.removeValue(forKey: kSecAttrAccessible as String)
+            query[kSecAttrAccessControl as String] = try self.createAccessControl()
+            query[kSecUseAuthenticationContext as String] = try self.createLAContext()
+        }
 
         let keyEntry = KeyEntry(name: name, value: data, meta: meta)
         let keyEntryData = NSKeyedArchiver.archivedData(withRootObject: keyEntry)
@@ -252,7 +303,11 @@ import Foundation
     ///   - data: New data
     ///   - meta: New meta info
     /// - Throws: KeychainStorageError
-    @objc open func updateEntry(withName name: String, data: Data, meta: [String: String]?) throws {
+    @objc open func updateEntry(withName name: String,
+                                data: Data,
+                                meta: [String: String]?,
+                                queryOptions: KeychainQueryOptions?) throws {
+        let queryOptions = queryOptions ?? KeychainQueryOptions()
         let tag = String(format: KeychainStorage.privateKeyIdentifierFormat, self.storageParams.appName, name)
 
     #if os(iOS) || os(tvOS) || os(watchOS)
@@ -271,12 +326,12 @@ import Foundation
 
         // Access groups are not supported in simulator
         #if !targetEnvironment(simulator)
-        if let accessGroup = self.storageParams.accessGroup {
+        if let accessGroup = queryOptions.accessGroup {
             query[kSecAttrAccessGroup as String] = accessGroup
         }
         #endif
     #elseif os(macOS)
-        let query: [String: Any] = [
+        var query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: name,
             kSecAttrService as String: tag,
@@ -284,6 +339,11 @@ import Foundation
             kSecAttrComment as String: self.commentString()
         ]
     #endif
+        
+        if queryOptions.biometricallyProtected {
+            query[kSecAttrAccessControl as String] = try self.createAccessControl()
+            query[kSecUseAuthenticationContext as String] = try self.createLAContext()
+        }
 
         let keyEntry = KeyEntry(name: name, value: data, meta: meta)
         let keyEntryData = NSKeyedArchiver.archivedData(withRootObject: keyEntry)
@@ -304,7 +364,8 @@ import Foundation
     /// - Parameter name: Alias
     /// - Returns: Retrieved entry
     /// - Throws: KeychainStorageError
-    @objc open func retrieveEntry(withName name: String) throws -> KeychainEntry {
+    @objc open func retrieveEntry(withName name: String, queryOptions: KeychainQueryOptions?) throws -> KeychainEntry {
+        let queryOptions = queryOptions ?? KeychainQueryOptions()
         let tag = String(format: KeychainStorage.privateKeyIdentifierFormat, self.storageParams.appName, name)
 
     #if os(iOS) || os(tvOS) || os(watchOS)
@@ -313,7 +374,7 @@ import Foundation
                 throw KeychainStorageError(errCode: .utf8ConvertingError)
         }
 
-        let query: [String: Any] = [
+        var query: [String: Any] = [
             kSecClass as String: kSecClassKey,
             kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
             kSecAttrApplicationLabel as String: nameData,
@@ -323,7 +384,7 @@ import Foundation
             kSecReturnAttributes as String: true
         ]
     #elseif os(macOS)
-        let query: [String: Any] = [
+        var query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: name,
             kSecAttrService as String: tag,
@@ -334,6 +395,15 @@ import Foundation
             kSecAttrComment as String: self.commentString()
         ]
     #endif
+        
+        if queryOptions.biometricallyProtected {
+            query[kSecAttrAccessControl as String] = try self.createAccessControl()
+            query[kSecUseAuthenticationContext as String] = try self.createLAContext()
+            query[kSecUseOperationPrompt as String] = /* FIXME */ "Access your password on the keychain"
+        }
+        else {
+            query[kSecUseAuthenticationUI as String] = kSecUseAuthenticationUISkip
+        }
 
         var dataObject: AnyObject?
 
@@ -348,9 +418,11 @@ import Foundation
     ///
     /// - Returns: Retrieved entries
     /// - Throws: KeychainStorageError
-    @objc open func retrieveAllEntries() throws -> [KeychainEntry] {
+    @objc open func retrieveAllEntries(queryOptions: KeychainQueryOptions?) throws -> [KeychainEntry] {
+        let queryOptions = queryOptions ?? KeychainQueryOptions()
+
     #if os(iOS) || os(tvOS) || os(watchOS)
-        let query: [String: Any] = [
+        var query: [String: Any] = [
             kSecClass as String: kSecClassKey,
             kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
 
@@ -360,7 +432,7 @@ import Foundation
             kSecMatchLimit as String: kSecMatchLimitAll
         ]
     #elseif os(macOS)
-        let query: [String: Any] = [
+        var query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
 
             kSecReturnData as String: true,
@@ -373,6 +445,14 @@ import Foundation
             kSecAttrComment as String: self.commentString()
         ]
     #endif
+        
+        if queryOptions.biometricallyProtected {
+            query[kSecAttrAccessControl as String] = try self.createAccessControl()
+            query[kSecUseAuthenticationContext as String] = try self.createLAContext()
+        }
+        else {
+            query[kSecUseAuthenticationUI as String] = kSecUseAuthenticationUISkip
+        }
 
         var dataObject: AnyObject?
 
@@ -395,7 +475,8 @@ import Foundation
     ///
     /// - Parameter name: Alias
     /// - Throws: KeychainStorageError
-    @objc open func deleteEntry(withName name: String) throws {
+    @objc open func deleteEntry(withName name: String, queryOptions: KeychainQueryOptions?) throws {
+        let queryOptions = queryOptions ?? KeychainQueryOptions()
         let tag = String(format: KeychainStorage.privateKeyIdentifierFormat, self.storageParams.appName, name)
 
     #if os(iOS) || os(tvOS) || os(watchOS)
@@ -404,14 +485,14 @@ import Foundation
                 throw KeychainStorageError(errCode: .utf8ConvertingError)
         }
 
-        let query: [String: Any] = [
+        var query: [String: Any] = [
             kSecClass as String: kSecClassKey,
             kSecAttrKeyClass as String: kSecAttrKeyClassPrivate,
             kSecAttrApplicationLabel as String: nameData,
             kSecAttrApplicationTag as String: tagData
         ]
     #elseif os(macOS)
-        let query: [String: Any] = [
+        var query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: name,
             kSecAttrService as String: tag,
@@ -419,6 +500,12 @@ import Foundation
             kSecAttrComment as String: self.commentString()
         ]
     #endif
+        
+        if queryOptions.biometricallyProtected {
+            // FIXME
+            query[kSecAttrAccessControl as String] = try self.createAccessControl()
+            query[kSecUseAuthenticationContext as String] = try self.createLAContext()
+        }
 
         let status = SecItemDelete(query as CFDictionary)
 
@@ -430,14 +517,16 @@ import Foundation
     /// Deletes all entries from Keychain
     ///
     /// - Throws: KeychainStorageError
-    @objc open func deleteAllEntries() throws {
+    @objc open func deleteAllEntries(queryOptions: KeychainQueryOptions? = nil) throws {
+        let queryOptions = queryOptions ?? KeychainQueryOptions()
+        
     #if os(iOS) || os(tvOS) || os(watchOS)
-        let query: [String: Any] = [
+        var query: [String: Any] = [
             kSecClass as String: kSecClassKey,
             kSecAttrKeyClass as String: kSecAttrKeyClassPrivate
         ]
     #elseif os(macOS)
-        let query: [String: Any] = [
+        var query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
 
             // Workaround: kSecMatchLimitAll doesn't work
@@ -447,6 +536,12 @@ import Foundation
             kSecAttrComment as String: self.commentString()
         ]
     #endif
+        
+        if queryOptions.biometricallyProtected {
+            // FIXME
+            query[kSecAttrAccessControl as String] = try self.createAccessControl()
+            query[kSecUseAuthenticationContext as String] = try self.createLAContext()
+        }
 
         let status = SecItemDelete(query as CFDictionary)
 
@@ -464,9 +559,9 @@ import Foundation
     /// - Parameter name: Alias
     /// - Returns: true if entry exists, false otherwise
     /// - Throws: KeychainStorageError
-    open func existsEntry(withName name: String) throws -> Bool {
+    open func existsEntry(withName name: String, queryOptions: KeychainQueryOptions?) throws -> Bool {
         do {
-            _ = try self.retrieveEntry(withName: name)
+            _ = try self.retrieveEntry(withName: name, queryOptions: queryOptions)
 
             return true
         }

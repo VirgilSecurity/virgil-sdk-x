@@ -65,10 +65,9 @@ class VSS004_SyncKeyStorageTests: XCTestCase {
         
     #if os(macOS)
         self.syncKeyStorage = SyncKeyStorage(identity: identity,
-                                             keychainStorage: KeychainStorage(storageParams: KeychainStorageParams(appName: "Tests",
-                                                                                                                   trustedApplications: [])),
+                                             keychainStorage: KeychainStorage(storageParams: try! KeychainStorageParams.makeKeychainStorageParams(appName: "test")),
                                              cloudKeyStorage: cloudKeyStorage)
-        let params = KeychainStorageParams(appName: "Tests", trustedApplications: [])
+        let params = try! KeychainStorageParams.makeKeychainStorageParams(appName: "test")
     #elseif os(iOS) || os(tvOS)
         self.syncKeyStorage = try! SyncKeyStorage(identity: identity, cloudKeyStorage: cloudKeyStorage)
         
