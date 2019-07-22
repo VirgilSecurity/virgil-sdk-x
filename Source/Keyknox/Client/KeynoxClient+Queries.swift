@@ -57,11 +57,16 @@ extension KeyknoxClient: KeyknoxClientProtocol {
                           value: Data,
                           previousHash: Data?,
                           overwrite: Bool) throws -> EncryptedKeyknoxValue {
-        guard let url = URL(string: "keyknox/v1", relativeTo: self.serviceUrl) else {
+        guard let url = URL(string: "keyknox/v2/push", relativeTo: self.serviceUrl) else {
             throw KeyknoxClientError.constructingUrl
         }
 
-        let params = [
+        let params: [String : Any] = [
+            "root": root1,
+            "path": root2,
+            "key": key,
+            "identities": identities,
+            "overwrite": overwrite,
             "meta": meta.base64EncodedString(),
             "value": value.base64EncodedString()
         ]
@@ -74,7 +79,7 @@ extension KeyknoxClient: KeyknoxClientProtocol {
             headers = [:]
         }
 
-        let request = try ServiceRequest(url: url, method: .put, params: params, headers: headers)
+        let request = try ServiceRequest(url: url, method: .post, params: params, headers: headers)
 
         let tokenContext = TokenContext(service: "keyknox", operation: "put", forceReload: false)
 
@@ -92,13 +97,24 @@ extension KeyknoxClient: KeyknoxClientProtocol {
     }
     
     public func pullValue(identity: String?, root1: String, root2: String, key: String) throws -> EncryptedKeyknoxValue {
-        guard let url = URL(string: "keyknox/v1", relativeTo: self.serviceUrl) else {
+        guard let url = URL(string: "keyknox/v2/pull", relativeTo: self.serviceUrl) else {
             throw KeyknoxClientError.constructingUrl
         }
 
-        let request = try ServiceRequest(url: url, method: .get)
+        var params = [
+            "root": root1,
+            "path": root2,
+            "key": key
+        ]
+
+        if let identity = identity {
+            params["identity"] = identity
+        }
+
+        let request = try ServiceRequest(url: url, method: .post, params: params)
 
         let tokenContext = TokenContext(service: "keyknox", operation: "get", forceReload: false)
+
         let response = try self.sendWithRetry(request,
                                               retry: self.createRetry(),
                                               tokenContext: tokenContext)
@@ -113,18 +129,62 @@ extension KeyknoxClient: KeyknoxClientProtocol {
     }
     
     public func getKeys(identity: String?, root1: String?, root2: String?) throws -> [String] {
-        throw NSError()
-    }
-
-    @objc open func resetValue(identities: [String],
-                               root1: String?,
-                               root2: String?,
-                               key: String?) throws -> DecryptedKeyknoxValue {
-        guard let url = URL(string: "keyknox/v1/reset", relativeTo: self.serviceUrl) else {
+        guard let url = URL(string: "keyknox/v2/keys", relativeTo: self.serviceUrl) else {
             throw KeyknoxClientError.constructingUrl
         }
 
-        let request = try ServiceRequest(url: url, method: .post)
+        var params: [String: String] = [:]
+
+        if let root1 = root1 {
+            params["root"] = root1
+        }
+
+        if let root2 = root2 {
+            params["path"] = root2
+        }
+
+        if let identity = identity {
+            params["identity"] = identity
+        }
+
+        let request = try ServiceRequest(url: url, method: .post, params: params)
+
+        let tokenContext = TokenContext(service: "keyknox", operation: "get", forceReload: false)
+
+        let response = try self.sendWithRetry(request,
+                                              retry: self.createRetry(),
+                                              tokenContext: tokenContext)
+            .startSync()
+            .get()
+
+        let keys: [String] = try self.processResponse(response)
+
+        return keys
+    }
+
+    @objc open func resetValue(root1: String?,
+                               root2: String?,
+                               key: String?) throws -> DecryptedKeyknoxValue {
+        guard let url = URL(string: "keyknox/v2/reset", relativeTo: self.serviceUrl) else {
+            throw KeyknoxClientError.constructingUrl
+        }
+
+        var params: [String: String] = [:]
+
+        if let root1 = root1 {
+            params["root"] = root1
+        }
+
+        if let root2 = root2 {
+            params["path"] = root2
+        }
+
+        if let key = key {
+            params["key"] = key
+        }
+
+        let request = try ServiceRequest(url: url, method: .post, params: params)
+
         let tokenContext = TokenContext(service: "keyknox", operation: "delete", forceReload: false)
 
         let response = try self.sendWithRetry(request,

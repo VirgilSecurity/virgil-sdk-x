@@ -104,15 +104,13 @@ extension KeyknoxManager {
     /// Resets Keyknox value (makes it empty). Also increments version
     ///
     /// - Returns: GenericOperation<Void>
-    open func resetValue(identities: [String],
-                         root1: String,
+    open func resetValue(root1: String,
                          root2: String,
                          key: String) -> GenericOperation<DecryptedKeyknoxValue> {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
-                    let resetValueResult = try self.keyknoxClient.resetValue(identities: identities,
-                                                                             root1: root1,
+                    let resetValueResult = try self.keyknoxClient.resetValue(root1: root1,
                                                                              root2: root2,
                                                                              key: key)
 
