@@ -54,7 +54,7 @@ extension KeyknoxManager {
                     let encryptedData = try self.crypto.encrypt(data: data,
                                                                 privateKey: privateKey,
                                                                 publicKeys: publicKeys)
-                    let keyknoxValue = try self.keyknoxClient.pushValue(identities: [],
+                    let keyknoxValue = try self.keyknoxClient.pushValue(identities: identities,
                                                                         root1: root1,
                                                                         root2: root2,
                                                                         key: key,
@@ -84,7 +84,7 @@ extension KeyknoxManager {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
-                    let keyknoxValue = try self.keyknoxClient.pullValue(identity: nil,
+                    let keyknoxValue = try self.keyknoxClient.pullValue(identity: identity,
                                                                         root1: root1,
                                                                         root2: root2,
                                                                         key: key)
@@ -93,6 +93,23 @@ extension KeyknoxManager {
                                                                 publicKeys: publicKeys)
 
                     completion(decryptedData, nil)
+                }
+                catch {
+                    completion(nil, error)
+                }
+            }
+        }
+    }
+
+    open func getKeys(identity: String?,
+                      root1: String?,
+                      root2: String?) -> GenericOperation<[String]> {
+        return CallbackOperation { _, completion in
+            self.queue.async {
+                do {
+                    let keys = try self.keyknoxClient.getKeys(identity: identity, root1: root1, root2: root2)
+
+                    completion(keys, nil)
                 }
                 catch {
                     completion(nil, error)

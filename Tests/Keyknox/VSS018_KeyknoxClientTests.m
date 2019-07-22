@@ -159,11 +159,10 @@
                                                                                error:&error];
     XCTAssert(response != nil && error == nil);
 
-    VSSDecryptedKeyknoxValue *response2 = [self.keyknoxClient resetValueWithIdentities:@[]
-                                                                                 root1:VSSCloudKeyStorage.root1
-                                                                                 root2:VSSCloudKeyStorage.root2
-                                                                                   key:VSSCloudKeyStorage.key
-                                                                                 error:&error];
+    VSSDecryptedKeyknoxValue *response2 = [self.keyknoxClient resetValueWithRoot1:VSSCloudKeyStorage.root1
+                                                                            root2:VSSCloudKeyStorage.root2
+                                                                              key:VSSCloudKeyStorage.key
+                                                                            error:&error];
     XCTAssert(response2 != nil && error == nil);
 
     XCTAssert(response2.value.length == 0);
@@ -174,11 +173,10 @@
 - (void)test05_KTC5_resetEmptyValue {
     NSError *error;
 
-    VSSDecryptedKeyknoxValue *response = [self.keyknoxClient resetValueWithIdentities:@[]
-                                                                                root1:VSSCloudKeyStorage.root1
-                                                                                root2:VSSCloudKeyStorage.root2
-                                                                                  key:VSSCloudKeyStorage.key
-                                                                                error:&error];
+    VSSDecryptedKeyknoxValue *response = [self.keyknoxClient resetValueWithRoot1:VSSCloudKeyStorage.root1
+                                                                           root2:VSSCloudKeyStorage.root2
+                                                                             key:VSSCloudKeyStorage.key
+                                                                           error:&error];
 
     XCTAssert(response != nil && error == nil);
 
