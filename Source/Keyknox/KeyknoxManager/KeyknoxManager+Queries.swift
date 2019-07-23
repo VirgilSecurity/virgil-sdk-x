@@ -103,7 +103,7 @@ extension KeyknoxManager {
 
     open func getKeys(identity: String?,
                       root1: String?,
-                      root2: String?) -> GenericOperation<[String]> {
+                      root2: String?) -> GenericOperation<Set<String>> {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {

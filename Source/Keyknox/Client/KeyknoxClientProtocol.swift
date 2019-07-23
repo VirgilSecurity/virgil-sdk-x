@@ -86,7 +86,7 @@ import Foundation
     /// - Throws: Depends on implementation
     @objc func getKeys(identity: String?,
                        root1: String?,
-                       root2: String?) throws -> [String]
+                       root2: String?) throws -> Set<String>
 
     /// Resets Keyknox value (makes it empty). Also increments version
     ///

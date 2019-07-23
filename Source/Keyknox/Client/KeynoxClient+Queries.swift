@@ -132,7 +132,7 @@ extension KeyknoxClient: KeyknoxClientProtocol {
         return EncryptedKeyknoxValue(keyknoxData: keyknoxData, keyknoxHash: keyknoxHash)
     }
     
-    public func getKeys(identity: String?, root1: String?, root2: String?) throws -> [String] {
+    public func getKeys(identity: String?, root1: String?, root2: String?) throws -> Set<String> {
         guard let url = URL(string: "keyknox/v2/keys", relativeTo: self.serviceUrl) else {
             throw KeyknoxClientError.constructingUrl
         }
@@ -163,7 +163,7 @@ extension KeyknoxClient: KeyknoxClientProtocol {
 
         let keys: [String] = try self.processResponse(response)
 
-        return keys
+        return Set(keys)
     }
 
     @objc open func resetValue(root1: String?,
