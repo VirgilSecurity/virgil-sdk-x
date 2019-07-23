@@ -91,7 +91,9 @@ extension KeyknoxClient: KeyknoxClientProtocol {
 
         let keyknoxData: KeyknoxData = try self.processResponse(response)
 
-        let keyknoxHash = try self.extractKeyknoxHash(response: response)
+        // FIXME: backend
+        let keyknoxHash = Data()
+//        let keyknoxHash = try self.extractKeyknoxHash(response: response)
 
         return EncryptedKeyknoxValue(keyknoxData: keyknoxData, keyknoxHash: keyknoxHash)
     }
@@ -123,7 +125,9 @@ extension KeyknoxClient: KeyknoxClientProtocol {
 
         let keyknoxData: KeyknoxData = try self.processResponse(response)
 
-        let keyknoxHash = try self.extractKeyknoxHash(response: response)
+        // FIXME: backend
+        let keyknoxHash = Data()
+//        let keyknoxHash = try self.extractKeyknoxHash(response: response)
 
         return EncryptedKeyknoxValue(keyknoxData: keyknoxData, keyknoxHash: keyknoxHash)
     }
@@ -195,19 +199,21 @@ extension KeyknoxClient: KeyknoxClientProtocol {
 
         let keyknoxData: KeyknoxData = try self.processResponse(response)
 
-        let keyknoxHash = try self.extractKeyknoxHash(response: response)
+        // FIXME: backend
+        let keyknoxHash = Data()
+//        let keyknoxHash = try self.extractKeyknoxHash(response: response)
 
         return DecryptedKeyknoxValue(keyknoxData: keyknoxData, keyknoxHash: keyknoxHash)
     }
 
-    private func extractKeyknoxHash(response: Response) throws -> Data {
-        let responseHeaders = response.response.allHeaderFields as NSDictionary
-
-        guard let keyknoxHashStr = responseHeaders[KeyknoxClient.virgilKeyknoxHashKey] as? String,
-            let keyknoxHash = Data(base64Encoded: keyknoxHashStr) else {
-                throw KeyknoxClientError.invalidPreviousHashHeader
-        }
-
-        return keyknoxHash
-    }
+//    private func extractKeyknoxHash(response: Response) throws -> Data {
+//        let responseHeaders = response.response.allHeaderFields as NSDictionary
+//
+//        guard let keyknoxHashStr = responseHeaders[KeyknoxClient.virgilKeyknoxHashKey] as? String,
+//            let keyknoxHash = Data(base64Encoded: keyknoxHashStr) else {
+//                throw KeyknoxClientError.invalidPreviousHashHeader
+//        }
+//
+//        return keyknoxHash
+//    }
 }
