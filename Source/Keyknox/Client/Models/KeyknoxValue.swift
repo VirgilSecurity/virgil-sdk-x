@@ -38,11 +38,11 @@ import Foundation
 
 /// Value stored on Keyknox service
 @objc(VSSKeyknoxValue) public class KeyknoxValue: NSObject {
-    internal let root1: String
-    internal let root2: String
-    internal let key: String
-    internal let owner: String
-    internal let identities: [String]
+    @objc public let root1: String
+    @objc public let root2: String
+    @objc public let key: String
+    @objc public let owner: String
+    @objc public let identities: [String]
 
     /// Meta info
     @objc public let meta: Data
