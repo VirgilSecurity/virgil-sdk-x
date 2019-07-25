@@ -38,6 +38,12 @@ import Foundation
 
 /// Value stored on Keyknox service
 @objc(VSSKeyknoxValue) public class KeyknoxValue: NSObject {
+    internal let root1: String
+    internal let root2: String
+    internal let key: String
+    internal let owner: String
+    internal let identities: [String]
+
     /// Meta info
     @objc public let meta: Data
 
@@ -51,13 +57,31 @@ import Foundation
     @objc public let keyknoxHash: Data
 
     internal convenience init(keyknoxData: KeyknoxData, keyknoxHash: Data) {
-        self.init(meta: keyknoxData.meta,
+        self.init(root1: keyknoxData.root,
+                  root2: keyknoxData.path,
+                  key: keyknoxData.key,
+                  owner: keyknoxData.owner,
+                  identities: keyknoxData.users,
+                  meta: keyknoxData.meta,
                   value: keyknoxData.value,
                   version: keyknoxData.version,
                   keyknoxHash: keyknoxHash)
     }
 
-    internal init(meta: Data, value: Data, version: String, keyknoxHash: Data) {
+    internal init(root1: String,
+                  root2: String,
+                  key: String,
+                  owner: String,
+                  identities: [String],
+                  meta: Data,
+                  value: Data,
+                  version: String,
+                  keyknoxHash: Data) {
+        self.root1 = root1
+        self.root2 = root2
+        self.key = key
+        self.owner = owner
+        self.identities = identities
         self.meta = meta
         self.value = value
         self.version = version
