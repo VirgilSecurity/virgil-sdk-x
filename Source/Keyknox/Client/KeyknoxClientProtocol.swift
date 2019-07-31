@@ -50,7 +50,6 @@ import Foundation
     ///   - meta: meta data
     ///   - value: encrypted blob
     ///   - previousHash: hash of previous blob
-    ///   - overwrite: if true - overwrites identities, if false - complements
     /// - Returns: EncryptedKeyknoxValue
     /// - Throws: Depends on implementation
     @objc func pushValue(identities: [String],
@@ -59,8 +58,7 @@ import Foundation
                          key: String,
                          meta: Data,
                          value: Data,
-                         previousHash: Data?,
-                         overwrite: Bool) throws -> EncryptedKeyknoxValue
+                         previousHash: Data?) throws -> EncryptedKeyknoxValue
 
     /// Pulls values from Keyknox service
     ///

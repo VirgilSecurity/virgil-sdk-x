@@ -45,7 +45,6 @@ extension KeyknoxManager {
                         key: String,
                         data: Data,
                         previousHash: Data?,
-                        overwrite: Bool,
                         publicKeys: [VirgilPublicKey],
                         privateKey: VirgilPrivateKey) -> GenericOperation<DecryptedKeyknoxValue> {
         return CallbackOperation { _, completion in
@@ -60,8 +59,7 @@ extension KeyknoxManager {
                                                                         key: key,
                                                                         meta: encryptedData.0,
                                                                         value: encryptedData.1,
-                                                                        previousHash: previousHash,
-                                                                        overwrite: overwrite)
+                                                                        previousHash: previousHash)
                     let decryptedData = try self.crypto.decrypt(encryptedKeyknoxValue: keyknoxValue,
                                                                 privateKey: privateKey,
                                                                 publicKeys: publicKeys)
@@ -153,7 +151,6 @@ extension KeyknoxManager {
                                key: String,
                                oldPublicKeys: [VirgilPublicKey],
                                oldPrivateKey: VirgilPrivateKey,
-                               overwrite: Bool,
                                newPublicKeys: [VirgilPublicKey]? = nil,
                                newPrivateKey: VirgilPrivateKey? = nil) -> GenericOperation<DecryptedKeyknoxValue> {
         return CallbackOperation { _, completion in
@@ -188,8 +185,7 @@ extension KeyknoxManager {
                                                                         key: key,
                                                                         meta: encryptedData.0,
                                                                         value: encryptedData.1,
-                                                                        previousHash: keyknoxValue.keyknoxHash,
-                                                                        overwrite: overwrite)
+                                                                        previousHash: keyknoxValue.keyknoxHash)
                     
                     let decryptedData2 = try self.crypto.decrypt(encryptedKeyknoxValue: keyknoxValue2,
                                                                  privateKey: newPrivateKey ?? oldPrivateKey,
@@ -219,7 +215,6 @@ extension KeyknoxManager {
                                key: String,
                                value: Data,
                                previousHash: Data,
-                               overwrite: Bool,
                                newPublicKeys: [VirgilPublicKey],
                                newPrivateKey: VirgilPrivateKey) -> GenericOperation<DecryptedKeyknoxValue> {
         return CallbackOperation { _, completion in
@@ -239,8 +234,7 @@ extension KeyknoxManager {
                                                                         key: key,
                                                                         meta: encryptedData.0,
                                                                         value: encryptedData.1,
-                                                                        previousHash: previousHash,
-                                                                        overwrite: overwrite)
+                                                                        previousHash: previousHash)
                     let decryptedData = try self.crypto.decrypt(encryptedKeyknoxValue: keyknoxValue,
                                                                 privateKey: newPrivateKey,
                                                                 publicKeys: newPublicKeys)

@@ -65,16 +65,16 @@
                                                                                root1:VSSCloudKeyStorage.root1
                                                                                root2:VSSCloudKeyStorage.root2
                                                                                  key:VSSCloudKeyStorage.key
-                                                                                meta:meta value:encryptedData
+                                                                                meta:meta
+                                                                               value:encryptedData
                                                                         previousHash:nil
-                                                                           overwrite:false
                                                                                error:&error];
 
     XCTAssert(response != nil && error == nil);
 
     XCTAssert([response.meta isEqualToData:meta]);
     XCTAssert([response.value isEqualToData:encryptedData]);
-    XCTAssert([response.version isEqualToString:@"1.0"]);
+    XCTAssert(response.version == 1);
     XCTAssert(response.keyknoxHash.length > 0);
 
     VSSEncryptedKeyknoxValue *response2 = [self.keyknoxClient pullValueWithIdentity:nil
@@ -86,8 +86,11 @@
 
     XCTAssert([response2.meta isEqualToData:meta]);
     XCTAssert([response2.value isEqualToData:encryptedData]);
-    XCTAssert([response2.version isEqualToString:@"1.0"]);
+    XCTAssert(response2.version == 1);
     XCTAssert([response2.keyknoxHash isEqualToData:response.keyknoxHash]);
+
+    NSSet<NSString *> *keys = [self.keyknoxClient getKeysWithIdentity:nil root1:VSSCloudKeyStorage.root1 root2:VSSCloudKeyStorage.root2 error:&error];
+    XCTAssert(keys != nil && error == nil);
 }
 
 - (void)test02_KTC2_updateData {
@@ -102,7 +105,6 @@
                                                                                 meta:meta
                                                                                value:encryptedData
                                                                         previousHash:nil
-                                                                           overwrite:false
                                                                                error:&error];
     XCTAssert(response != nil && error == nil);
 
@@ -116,14 +118,13 @@
                                                                                  meta:meta2
                                                                                 value:encryptedData2
                                                                          previousHash:response.keyknoxHash
-                                                                            overwrite:false
                                                                                 error:&error];
 
     XCTAssert(response2 != nil && error == nil);
 
     XCTAssert([response2.meta isEqualToData:meta2]);
     XCTAssert([response2.value isEqualToData:encryptedData2]);
-    XCTAssert([response2.version isEqualToString:@"2.0"]);
+    XCTAssert(response2.version == 2);
     XCTAssert(response2.keyknoxHash.length > 0);
 }
 
@@ -139,7 +140,7 @@
 
     XCTAssert(response.value.length == 0);
     XCTAssert(response.meta.length == 0);
-    XCTAssert([response.version isEqualToString:@"1.0"]);
+    XCTAssert(response.version == 1);
 }
 
 - (void)test04_KTC4_resetValue {
@@ -155,7 +156,6 @@
                                                                                 meta:someMeta
                                                                                value:someData
                                                                         previousHash:nil
-                                                                           overwrite:false
                                                                                error:&error];
     XCTAssert(response != nil && error == nil);
 
@@ -167,7 +167,18 @@
 
     XCTAssert(response2.value.length == 0);
     XCTAssert(response2.meta.length == 0);
-    XCTAssert([response2.version isEqualToString:@"2.0"]);
+    XCTAssert(response.version == 2);
+
+    VSSEncryptedKeyknoxValue *response3 = [self.keyknoxClient pullValueWithIdentity:nil
+                                                                              root1:VSSCloudKeyStorage.root1
+                                                                              root2:VSSCloudKeyStorage.root2
+                                                                                key:VSSCloudKeyStorage.key
+                                                                              error:&error];
+    XCTAssert(response != nil && error == nil);
+
+    XCTAssert(response3.meta.length == 0);
+    XCTAssert(response3.value.length == 0);
+    XCTAssert(response3.version == 1);
 }
 
 - (void)test05_KTC5_resetEmptyValue {
@@ -182,7 +193,7 @@
 
     XCTAssert(response.value.length == 0);
     XCTAssert(response.meta.length == 0);
-    XCTAssert([response.version isEqualToString:@"1.0"]);
+    XCTAssert(response.version == 1);
 }
 
 @end

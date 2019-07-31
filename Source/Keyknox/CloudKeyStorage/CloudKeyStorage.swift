@@ -124,7 +124,6 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
                        key: CloudKeyStorage.key,
                        data: data,
                        previousHash: self.decryptedKeyknoxData?.keyknoxHash,
-                       overwrite: false,
                        publicKeys: self.publicKeys,
                        privateKey: self.privateKey)
             .startSync()
@@ -215,7 +214,6 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
                                    key: CloudKeyStorage.key,
                                    data: data,
                                    previousHash: self.decryptedKeyknoxData?.keyknoxHash,
-                                   overwrite: false,
                                    publicKeys: self.publicKeys,
                                    privateKey: self.privateKey)
                         .startSync()
@@ -314,7 +312,6 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
                                    key: CloudKeyStorage.key,
                                    data: data,
                                    previousHash: self.decryptedKeyknoxData?.keyknoxHash,
-                                   overwrite: false,
                                    publicKeys: self.publicKeys,
                                    privateKey: self.privateKey)
                         .startSync()
@@ -388,7 +385,6 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
                                           key: CloudKeyStorage.key,
                                           value: decryptedKeyknoxData.value,
                                           previousHash: decryptedKeyknoxData.keyknoxHash,
-                                          overwrite: false,
                                           newPublicKeys: publicKeys,
                                           newPrivateKey: privateKey)
                         .startSync()
