@@ -50,8 +50,8 @@ import Foundation
     /// Value
     @objc public let value: Data
 
-    /// Value in X.Y format. X - major version, Y - minor
-    @objc public let version: String
+    /// Version number
+    @objc public let version: Int
 
     /// Keyknox hash
     @objc public let keyknoxHash: Data
@@ -61,7 +61,7 @@ import Foundation
                   root2: keyknoxData.path,
                   key: keyknoxData.key,
                   owner: keyknoxData.owner,
-                  identities: keyknoxData.users,
+                  identities: keyknoxData.identities,
                   meta: keyknoxData.meta,
                   value: keyknoxData.value,
                   version: keyknoxData.version,
@@ -75,7 +75,7 @@ import Foundation
                   identities: [String],
                   meta: Data,
                   value: Data,
-                  version: String,
+                  version: Int,
                   keyknoxHash: Data) {
         self.root1 = root1
         self.root2 = root2

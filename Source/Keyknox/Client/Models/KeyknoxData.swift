@@ -41,8 +41,8 @@ internal struct KeyknoxData: Codable {
     internal let path: String
     internal let key: String
     internal let owner: String
-    internal let users: [String]
+    internal let identities: [String]
     internal let meta: Data
     internal let value: Data
-    internal let version: String
+    internal let version: Int
 }
