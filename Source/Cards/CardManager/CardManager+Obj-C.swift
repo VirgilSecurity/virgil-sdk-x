@@ -98,6 +98,10 @@ extension CardManager {
         self.searchCards(identities: identities).start(completion: completion)
     }
 
+    @objc open func getOutdatedCardIds(_ cardIds: [String], completion: @escaping ([String]?, Error?) -> Void) {
+        self.getOutdatedCardIds(cardIds).start(completion: completion)
+    }
+
     /// Makes CallbackOperation<Void> for performing revokation of Virgil Card
     ///
     /// Revoked card gets isOutdated flag to be set to true.

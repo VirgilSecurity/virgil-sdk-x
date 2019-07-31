@@ -142,6 +142,26 @@ extension CardClient: CardClientProtocol {
         return try self.processResponse(response)
     }
 
+    public func getOutdatedCardIds(_ cardIds: [String]) throws -> [String] {
+        guard let url = URL(string: "card/v5/actions/updated", relativeTo: self.serviceUrl) else {
+            throw CardClientError.constructingUrl
+        }
+
+        let tokenContext = TokenContext(service: "cards", operation: "search", forceReload: false)
+
+        let request = try ServiceRequest(url: url,
+                                         method: .post,
+                                         params: ["card-ids": cardIds])
+
+        let response = try self.sendWithRetry(request,
+                                              retry: self.createRetry(),
+                                              tokenContext: tokenContext)
+            .startSync()
+            .get()
+
+        return try self.processResponse(response)
+    }
+
     /// Revokes card. Revoked card gets isOutdated flag to be set to true.
     /// Also, such cards could be obtained using get query, but will be absent in search query result.
     ///
