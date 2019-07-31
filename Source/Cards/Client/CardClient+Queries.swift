@@ -122,7 +122,7 @@ extension CardClient: CardClientProtocol {
     ///   - NSError with CardClient.serviceErrorDomain error domain,
     ///     http status code as error code, and description string if present in http body
     ///   - Rethrows from `ServiceRequest`, `HttpConnectionProtocol`, `JsonDecoder`, `BaseClient`
-    public func searchCards(identities: [String]) throws -> [RawSignedModel] {
+    @objc public func searchCards(identities: [String]) throws -> [RawSignedModel] {
         guard let url = URL(string: "card/v5/actions/search", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
@@ -142,16 +142,16 @@ extension CardClient: CardClientProtocol {
         return try self.processResponse(response)
     }
 
-    public func getOutdatedCardIds(_ cardIds: [String]) throws -> [String] {
+    @objc public func getOutdated(cardIds: [String]) throws -> [String] {
         guard let url = URL(string: "card/v5/actions/updated", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
 
-        let tokenContext = TokenContext(service: "cards", operation: "search", forceReload: false)
+        let tokenContext = TokenContext(service: "cards", operation: "get-outdated", forceReload: false)
 
         let request = try ServiceRequest(url: url,
                                          method: .post,
-                                         params: ["card-ids": cardIds])
+                                         params: ["card_ids": cardIds])
 
         let response = try self.sendWithRetry(request,
                                               retry: self.createRetry(),

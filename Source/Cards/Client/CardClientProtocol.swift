@@ -63,7 +63,7 @@ import Foundation
     /// - Throws: Depends on implementation
     @objc func searchCards(identities: [String]) throws -> [RawSignedModel]
 
-    @objc func getOutdatedCardIds(_ cardIds: [String]) throws -> [String]
+    @objc func getOutdated(cardIds: [String]) throws -> [String]
 
     /// Revokes card. Revoked card gets isOutdated flag to be set to true.
     /// Also, such cards could be obtained using get query, but will be absent in search query result.

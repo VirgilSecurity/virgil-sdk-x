@@ -169,7 +169,27 @@
     XCTAssert([self.verifier verifyCard:foundCard]);
 }
 
--(void)test004_STC_27 {
+- (void)test004_GetOutdated {
+    NSString *identity1 = [[NSUUID alloc] init].UUIDString;
+    NSString *identity2 = [[NSUUID alloc] init].UUIDString;
+
+    NSError *error;
+    VSSCard *card1 = [self.utils publishCardWithIdentity:identity1 error:&error];
+    VSSCard *card2 = [self.utils publishCardWithIdentity:identity1 error:&error];
+    VSSCard *card3 = [self.utils publishCardWithIdentity:identity2 error:&error];
+    XCTAssert(error == nil);
+
+    NSArray *cardIds = @[card1.identifier, card2.identifier, card3.identifier];
+
+    VSSCardClient *cardClient = [self.utils setupClientWithIdentity:identity1];
+
+    NSArray<NSString *> *responseCardIds1 = [cardClient getOutdatedWithCardIds:cardIds error:&error];
+    XCTAssert(error == nil);
+    XCTAssert(responseCardIds1.count == 1);
+    XCTAssert([responseCardIds1.firstObject isEqualToString:card2.identifier]);
+}
+
+-(void)test005_STC_27 {
     NSError *error;
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:&error];
     XCTAssert(error == nil);

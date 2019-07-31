@@ -46,6 +46,10 @@ class CardClientStub_STC34: CardClientProtocol {
     @objc func searchCards(identities: [String]) throws -> [RawSignedModel] {
         return [try RawSignedModel.import(fromBase64Encoded: self.testsDict["STC-34.as_string"] as! String)]
     }
+
+    func getOutdatedCardIds(_ cardIds: [String]) throws -> [String] {
+        throw NSError()
+    }
     
     private var testsDict: Dictionary<String, Any>!
 

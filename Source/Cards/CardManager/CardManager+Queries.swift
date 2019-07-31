@@ -249,10 +249,10 @@ extension CardManager {
         }
     }
 
-    open func getOutdatedCardIds(_ cardIds: [String]) -> GenericOperation<[String]> {
+    open func getOutdated(cardIds: [String]) -> GenericOperation<[String]> {
         return CallbackOperation { _, completion in
             do {
-                let cardIds = try self.cardClient.getOutdatedCardIds(cardIds)
+                let cardIds = try self.cardClient.getOutdated(cardIds: cardIds)
 
                 completion(cardIds, nil)
             }
