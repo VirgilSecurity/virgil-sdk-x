@@ -56,12 +56,12 @@ class VSS004_SyncKeyStorageTests: XCTestCase {
         
         let keyPair = try! crypto.generateKeyPair()
 
-        let keyknoxManager = utils.setupKeyknoxManager(client: keyknoxClient, publicKeys: [keyPair.publicKey], privateKey: keyPair.privateKey)
-        
-        self.cloudKeyStorage = CloudKeyStorage(keyknoxManager: keyknoxManager)
+        let keyknoxManager = utils.setupKeyknoxManager(client: keyknoxClient)
+
+        self.cloudKeyStorage = CloudKeyStorage(keyknoxManager: keyknoxManager, publicKeys: [keyPair.publicKey], privateKey: keyPair.privateKey)
         try! self.cloudKeyStorage.retrieveCloudEntries().startSync().get()
 
-        let cloudKeyStorage = CloudKeyStorage(keyknoxManager: keyknoxManager)
+        let cloudKeyStorage = CloudKeyStorage(keyknoxManager: keyknoxManager, publicKeys: [keyPair.publicKey], privateKey: keyPair.privateKey)
         
     #if os(macOS)
         self.syncKeyStorage = SyncKeyStorage(identity: identity,
@@ -251,10 +251,10 @@ class VSS004_SyncKeyStorageTests: XCTestCase {
         
         _ = try! self.syncKeyStorage.updateRecipients(newPublicKeys: newPublicKeys, newPrivateKey: newPrivateKey).startSync().get()
 
-        let keyknoxManager = (self.syncKeyStorage.cloudKeyStorage as! CloudKeyStorage).keyknoxManager
-        let pubIds = (keyknoxManager.publicKeys).map { $0.identifier }
+        let cloudKeyStorage = self.syncKeyStorage.cloudKeyStorage as! CloudKeyStorage
+        let pubIds = (cloudKeyStorage.publicKeys).map { $0.identifier }
         XCTAssert(pubIds == newPublicKeys.map { $0.identifier })
-        XCTAssert((keyknoxManager.privateKey).identifier == newPrivateKey.identifier)
+        XCTAssert((cloudKeyStorage.privateKey).identifier == newPrivateKey.identifier)
 
         let keychainEntry2 = try! self.syncKeyStorage.retrieveEntry(withName: name)
         XCTAssert(keychainEntry2.name == name)

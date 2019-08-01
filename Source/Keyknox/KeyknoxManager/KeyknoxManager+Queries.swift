@@ -128,7 +128,6 @@ extension KeyknoxManager {
                     let resetValueResult = try self.keyknoxClient.resetValue(root1: root1,
                                                                              root2: root2,
                                                                              key: key)
-
                     completion(resetValueResult, nil)
                 }
                 catch {

@@ -39,67 +39,89 @@ import VirgilCrypto
 
 // MARK: - Obj-C extension
 extension KeyknoxManager {
-//    /// Signs then encrypts and pushed value to Keyknox service
-//    ///
-//    /// - Parameters:
-//    ///   - value: value to push
-//    ///   - previousHash: previous value hash
-//    ///   - completion: Completion handler
-//    @objc open func pushValue(_ value: Data,
-//                              previousHash: Data?,
-//                              publicKeys: [VirgilPublicKey],
-//                              privateKey: VirgilPrivateKey,
-//                              completion: @escaping (DecryptedKeyknoxValue?, Error?) -> Void) {
-//        self.pushValue(value,
-//                       previousHash: previousHash,
-//                       publicKeys: publicKeys,
-//                       privateKey: privateKey).start(completion: completion)
-//    }
-//
-//    /// Pull value, decrypt then verify signature
-//    ///
-//    /// - Parameter completion: Completion handler
-//    @objc open func pullValue(completion: @escaping (DecryptedKeyknoxValue?, Error?) -> Void) {
-//        self.pullValue().start(completion: completion)
-//    }
-//
-//    /// Resets Keyknox value (makes it empty). Also increments version
-//    ///
-//    /// - Returns: Completion handler
-//    @objc open func resetValue(completion: @escaping(DecryptedKeyknoxValue?, Error?) -> Void) {
-//        self.resetValue().start(completion: completion)
-//    }
-//
-//    /// Updates public keys for ecnryption and signature verification
-//    /// and private key for decryption and signature generation
-//    ///
-//    /// - Parameters:
-//    ///   - newPublicKeys: New public keys that will be used for encryption and signature verification
-//    ///   - newPrivateKey: New private key that will be used for decryption and signature generation
-//    ///   - completion: Completion handler
-//    @objc open func updateRecipients(newPublicKeys: [VirgilPublicKey]? = nil,
-//                                     newPrivateKey: VirgilPrivateKey? = nil,
-//                                     completion: @escaping (DecryptedKeyknoxValue?, Error?) -> Void) {
-//        self.updateRecipients(newPublicKeys: newPublicKeys, newPrivateKey: newPrivateKey).start(completion: completion)
-//    }
-//
-//    /// Updates public keys for ecnryption and signature verification
-//    /// and private key for decryption and signature generation
-//    ///
-//    /// - Parameters:
-//    ///   - value: Current Keyknox value
-//    ///   - previousHash: Previous Keyknox value hash
-//    ///   - newPublicKeys: New public keys that will be used for encryption and signature verification
-//    ///   - newPrivateKey: New private key that will be used for decryption and signature generation
-//    ///   - completion: Completion handler
-//    @objc open func updateRecipients(value: Data, previousHash: Data,
-//                                     newPublicKeys: [VirgilPublicKey]? = nil,
-//                                     newPrivateKey: VirgilPrivateKey? = nil,
-//                                     completion: @escaping (DecryptedKeyknoxValue?, Error?) -> Void) {
-//        self.updateRecipients(value: value,
-//                              previousHash: previousHash,
-//                              newPublicKeys: newPublicKeys,
-//                              newPrivateKey: newPrivateKey)
-//            .start(completion: completion)
-//    }
+    @objc open func pushValue(identities: [String],
+                              root1: String,
+                              root2: String,
+                              key: String,
+                              data: Data,
+                              previousHash: Data?,
+                              publicKeys: [VirgilPublicKey],
+                              privateKey: VirgilPrivateKey,
+                              completion: @escaping (DecryptedKeyknoxValue?, Error?) -> Void) {
+        self.pushValue(identities: identities,
+                       root1: root1,
+                       root2: root2,
+                       key: key,
+                       data: data,
+                       previousHash: previousHash,
+                       publicKeys: publicKeys,
+                       privateKey: privateKey).start(completion: completion)
+    }
+
+    @objc open func pullValue(identity: String?,
+                              root1: String,
+                              root2: String,
+                              key: String,
+                              publicKeys: [VirgilPublicKey],
+                              privateKey: VirgilPrivateKey,
+                              completion: @escaping (DecryptedKeyknoxValue?, Error?) -> Void) {
+        self.pullValue(identity: identity,
+                       root1: root1,
+                       root2: root2,
+                       key: key,
+                       publicKeys: publicKeys,
+                       privateKey: privateKey).start(completion: completion)
+    }
+
+    @objc open func getKeys(identity: String?,
+                            root1: String?,
+                            root2: String?,
+                            completion: @escaping (Set<String>?, Error?) -> Void) {
+        self.getKeys(identity: identity, root1: root1, root2: root2).start(completion: completion)
+    }
+
+    @objc open func resetValue(root1: String?,
+                               root2: String?,
+                               key: String?,
+                               completion: @escaping(DecryptedKeyknoxValue?, Error?) -> Void) {
+        self.resetValue(root1: root1, root2: root2, key: key).start(completion: completion)
+    }
+
+    @objc open func updateRecipients(identities: [String],
+                                     root1: String,
+                                     root2: String,
+                                     key: String,
+                                     oldPublicKeys: [VirgilPublicKey],
+                                     oldPrivateKey: VirgilPrivateKey,
+                                     newPublicKeys: [VirgilPublicKey]? = nil,
+                                     newPrivateKey: VirgilPrivateKey? = nil,
+                                     completion: @escaping (DecryptedKeyknoxValue?, Error?) -> Void) {
+        self.updateRecipients(identities: identities,
+                              root1: root1,
+                              root2: root2,
+                              key: key,
+                              oldPublicKeys: oldPublicKeys,
+                              oldPrivateKey: oldPrivateKey,
+                              newPublicKeys: newPublicKeys,
+                              newPrivateKey: newPrivateKey).start(completion: completion)
+    }
+
+    @objc open func updateRecipients(identities: [String],
+                                     root1: String,
+                                     root2: String,
+                                     key: String,
+                                     value: Data,
+                                     previousHash: Data,
+                                     newPublicKeys: [VirgilPublicKey],
+                                     newPrivateKey: VirgilPrivateKey,
+                                     completion: @escaping (DecryptedKeyknoxValue?, Error?) -> Void) {
+        self.updateRecipients(identities: identities,
+                              root1: root1,
+                              root2: root2,
+                              key: key,
+                              value: value,
+                              previousHash: previousHash,
+                              newPublicKeys: newPublicKeys,
+                              newPrivateKey: newPrivateKey).start(completion: completion)
+    }
 }

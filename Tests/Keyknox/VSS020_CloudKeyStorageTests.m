@@ -59,13 +59,13 @@ static const NSTimeInterval timeout = 20.;
 
     VSSKeyknoxClient *keyknoxClient = [self.utils setupKeyknoxClientWithIdentity:identity];
 
-    VSSKeyknoxManager *keyknoxManager = [self.utils setupKeyknoxManagerWithClient:keyknoxClient
-                                                                       publicKeys:@[keyPair.publicKey]
-                                                                       privateKey:keyPair.privateKey];
+    VSSKeyknoxManager *keyknoxManager = [self.utils setupKeyknoxManagerWithClient:keyknoxClient];
 
     self.keyknoxManager = keyknoxManager;
     
-    self.keyStorage = [[VSSCloudKeyStorage alloc] initWithKeyknoxManager:keyknoxManager];
+    self.keyStorage = [[VSSCloudKeyStorage alloc] initWithKeyknoxManager:keyknoxManager
+                                                              publicKeys:@[keyPair.publicKey]
+                                                              privateKey:keyPair.privateKey];
 }
 
 - (void)tearDown {
@@ -581,8 +581,18 @@ static const NSTimeInterval timeout = 20.;
 
 - (void)test11_KTC41_deleteInvalidValue {
     XCTestExpectation *ex = [self expectationWithDescription:@""];
-    
-    [self.keyknoxManager pushValue:[[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding] previousHash:nil completion:^(VSSDecryptedKeyknoxValue *value, NSError *error) {
+
+    NSData *data = [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
+
+    [self.keyknoxManager pushValueWithIdentities:@[]
+                                           root1:VSSCloudKeyStorage.root1
+                                           root2:VSSCloudKeyStorage.root2
+                                             key:VSSCloudKeyStorage.key
+                                            data:data
+                                    previousHash:nil
+                                      publicKeys:@[self.keyPair.publicKey]
+                                      privateKey:self.keyPair.privateKey
+                                      completion:^(VSSDecryptedKeyknoxValue *value, NSError *error) {
         XCTAssert(value != nil && error == nil);
         
         [self.keyStorage deleteAllEntriesWithCompletion:^(NSError *error) {
