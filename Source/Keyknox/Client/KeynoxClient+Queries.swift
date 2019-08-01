@@ -60,7 +60,7 @@ extension KeyknoxClient: KeyknoxClientProtocol {
             throw KeyknoxClientError.constructingUrl
         }
 
-        let params: [String : Any] = [
+        let params: [String: Encodable] = [
             "root": root1,
             "path": root2,
             "key": key,

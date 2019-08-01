@@ -160,7 +160,7 @@ open class ServiceRequest: Request {
             newUrl = url
         }
 
-        super.init(url: newUrl, method: method, body: bodyData)
+        super.init(url: newUrl, method: method, headers: headers, body: bodyData)
     }
 
     public func setAccessToken(_ accessToken: String) {

@@ -167,7 +167,7 @@
 
     XCTAssert(response2.value.length == 0);
     XCTAssert(response2.meta.length == 0);
-    XCTAssert(response.version == 2);
+    XCTAssert(response2.version == 1);
 
     VSSEncryptedKeyknoxValue *response3 = [self.keyknoxClient pullValueWithIdentity:nil
                                                                               root1:VSSCloudKeyStorage.root1
