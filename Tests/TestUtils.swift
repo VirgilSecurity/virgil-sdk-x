@@ -118,13 +118,16 @@ private class Config: NSObject, Decodable {
         return try! self.crypto.generateRandomData(ofSize: 1024)
     }
 
-    @objc public func publishCard(identity: String?) throws -> Card {
+    @objc public func publishCard(identity: String?, previousCardId: String? = nil) throws -> Card {
         let keyPair = try self.crypto.generateKeyPair()
         let exportedPublicKey = try self.crypto.exportPublicKey(keyPair.publicKey)
 
         let identity = identity ?? UUID().uuidString
 
-        let content = RawCardContent(identity: identity, publicKey: exportedPublicKey, createdAt: Date())
+        let content = RawCardContent(identity: identity,
+                                     publicKey: exportedPublicKey,
+                                     previousCardId: previousCardId,
+                                     createdAt: Date())
         let snapshot = try content.snapshot()
 
         let rawCard = RawSignedModel(contentSnapshot: snapshot)

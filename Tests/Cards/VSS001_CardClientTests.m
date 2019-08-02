@@ -174,19 +174,19 @@
     NSString *identity2 = [[NSUUID alloc] init].UUIDString;
 
     NSError *error;
-    VSSCard *card1 = [self.utils publishCardWithIdentity:identity1 error:&error];
-    VSSCard *card2 = [self.utils publishCardWithIdentity:identity1 error:&error];
-    VSSCard *card3 = [self.utils publishCardWithIdentity:identity2 error:&error];
+    VSSCard *card1 = [self.utils publishCardWithIdentity:identity1 previousCardId:nil error:&error];
+    VSSCard *card2 = [self.utils publishCardWithIdentity:identity1 previousCardId:card1.identifier error:&error];
+    VSSCard *card3 = [self.utils publishCardWithIdentity:identity2 previousCardId:nil error:&error];
     XCTAssert(error == nil);
 
     NSArray *cardIds = @[card1.identifier, card2.identifier, card3.identifier];
 
     VSSCardClient *cardClient = [self.utils setupClientWithIdentity:identity1];
 
-    NSArray<NSString *> *responseCardIds1 = [cardClient getOutdatedWithCardIds:cardIds error:&error];
+    NSArray<NSString *> *responseCardIds = [cardClient getOutdatedWithCardIds:cardIds error:&error];
     XCTAssert(error == nil);
-    XCTAssert(responseCardIds1.count == 1);
-    XCTAssert([responseCardIds1.firstObject isEqualToString:card2.identifier]);
+    XCTAssert(responseCardIds.count == 1);
+    XCTAssert([responseCardIds.firstObject isEqualToString:card1.identifier]);
 }
 
 -(void)test005_STC_27 {
