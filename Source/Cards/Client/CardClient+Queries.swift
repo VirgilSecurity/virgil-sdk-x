@@ -143,7 +143,7 @@ extension CardClient: CardClientProtocol {
     }
 
     @objc public func getOutdated(cardIds: [String]) throws -> [String] {
-        guard let url = URL(string: "card/v5/actions/updated", relativeTo: self.serviceUrl) else {
+        guard let url = URL(string: "card/v5/actions/outdated", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
 
