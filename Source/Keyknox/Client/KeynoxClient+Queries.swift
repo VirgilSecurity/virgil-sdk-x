@@ -159,7 +159,7 @@ extension KeyknoxClient: KeyknoxClientProtocol {
         return Set(keys)
     }
 
-    @objc open func resetValue(identity: String,
+    @objc open func resetValue(identity: String?,
                                root1: String,
                                root2: String,
                                key: String?) throws -> DecryptedKeyknoxValue {
@@ -168,13 +168,16 @@ extension KeyknoxClient: KeyknoxClientProtocol {
         }
 
         var params: [String: String] = [
-            "identity": identity,
             "root": root1,
             "path": root2
         ]
 
         if let key = key {
             params["key"] = key
+        }
+
+        if let identity = identity {
+            params["identity"] = identity
         }
 
         let request = try ServiceRequest(url: url, method: .post, params: params)

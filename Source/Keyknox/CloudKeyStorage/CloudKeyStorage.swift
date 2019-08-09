@@ -341,7 +341,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
             self.queue.async {
                 do {
                     let response = try self.keyknoxManager
-                        .resetValue(identity: self.identity,
+                        .resetValue(identity: nil,
                                     root1: CloudKeyStorage.root1,
                                     root2: CloudKeyStorage.root2,
                                     key: CloudKeyStorage.key)

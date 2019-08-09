@@ -94,7 +94,7 @@ import Foundation
     ///   - key: key
     /// - Returns: DecryptedKeyknoxValue
     /// - Throws: Depends on implementation
-    @objc func resetValue(identity: String,
+    @objc func resetValue(identity: String?,
                           root1: String,
                           root2: String,
                           key: String?) throws -> DecryptedKeyknoxValue
