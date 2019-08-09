@@ -73,7 +73,7 @@ extension KeyknoxManager {
         }
     }
 
-    open func pullValue(identity: String?,
+    open func pullValue(identity: String,
                         root1: String,
                         root2: String,
                         key: String,
@@ -99,7 +99,7 @@ extension KeyknoxManager {
         }
     }
 
-    open func getKeys(identity: String?,
+    open func getKeys(identity: String,
                       root1: String?,
                       root2: String?) -> GenericOperation<Set<String>> {
         return CallbackOperation { _, completion in
@@ -119,13 +119,15 @@ extension KeyknoxManager {
     /// Resets Keyknox value (makes it empty). Also increments version
     ///
     /// - Returns: GenericOperation<Void>
-    open func resetValue(root1: String?,
-                         root2: String?,
+    open func resetValue(identity: String,
+                         root1: String,
+                         root2: String,
                          key: String?) -> GenericOperation<DecryptedKeyknoxValue> {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
-                    let resetValueResult = try self.keyknoxClient.resetValue(root1: root1,
+                    let resetValueResult = try self.keyknoxClient.resetValue(identity: identity,
+                                                                             root1: root1,
                                                                              root2: root2,
                                                                              key: key)
                     completion(resetValueResult, nil)
@@ -144,7 +146,8 @@ extension KeyknoxManager {
     ///   - newPublicKeys: New public keys that will be used for encryption and signature verification
     ///   - newPrivateKey: New private key that will be used for decryption and signature generation
     /// - Returns: CallbackOperation<DecryptedKeyknoxValue>
-    open func updateRecipients(identities: [String],
+    open func updateRecipients(fromIdentity identity: String,
+                               identities: [String],
                                root1: String,
                                root2: String,
                                key: String,
@@ -161,7 +164,7 @@ extension KeyknoxManager {
                 }
 
                 do {
-                    let keyknoxValue = try self.keyknoxClient.pullValue(identity: nil,
+                    let keyknoxValue = try self.keyknoxClient.pullValue(identity: identity,
                                                                         root1: root1,
                                                                         root2: root2,
                                                                         key: key)

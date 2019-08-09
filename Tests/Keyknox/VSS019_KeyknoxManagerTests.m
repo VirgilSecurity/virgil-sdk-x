@@ -44,6 +44,7 @@ static const NSTimeInterval timeout = 20.;
 @property (nonatomic) uint32_t numberOfKeys;
 @property (nonatomic) VSSKeyknoxClient *keyknoxClient;
 @property (nonatomic) VSMVirgilKeyPair *keyPair;
+@property (nonatomic) NSString *identity;
 
 @end
 
@@ -53,6 +54,8 @@ static const NSTimeInterval timeout = 20.;
     [super setUp];
 
     NSString *identity = [[NSUUID alloc] init].UUIDString;
+
+    self.identity = identity;
 
     self.keyknoxClient = [self.utils setupKeyknoxClientWithIdentity:identity];
 
@@ -73,7 +76,7 @@ static const NSTimeInterval timeout = 20.;
     
     NSData *someData = [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
 
-    [self.keyknoxManager pushValueWithIdentities:@[]
+    [self.keyknoxManager pushValueWithIdentities:@[self.identity]
                                            root1:VSSCloudKeyStorage.root1
                                            root2:VSSCloudKeyStorage.root2
                                              key:VSSCloudKeyStorage.key
@@ -100,7 +103,7 @@ static const NSTimeInterval timeout = 20.;
 
     NSData *someData = [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
 
-    [self.keyknoxManager pushValueWithIdentities:@[]
+    [self.keyknoxManager pushValueWithIdentities:@[self.identity]
                                            root1:VSSCloudKeyStorage.root1
                                            root2:VSSCloudKeyStorage.root2
                                              key:VSSCloudKeyStorage.key
@@ -109,7 +112,7 @@ static const NSTimeInterval timeout = 20.;
                                       publicKeys:@[self.keyPair.publicKey]
                                       privateKey:self.keyPair.privateKey
                                       completion:^(VSSDecryptedKeyknoxValue *decryptedData, NSError *error) {
-        [self.keyknoxManager pullValueWithIdentity:nil
+        [self.keyknoxManager pullValueWithIdentity:self.identity
                                              root1:VSSCloudKeyStorage.root1
                                              root2:VSSCloudKeyStorage.root2
                                                key:VSSCloudKeyStorage.key
@@ -131,7 +134,7 @@ static const NSTimeInterval timeout = 20.;
 - (void)test03_KTC8_pullEmptyValue {
     XCTestExpectation *ex = [self expectationWithDescription:@""];
 
-    [self.keyknoxManager pullValueWithIdentity:nil
+    [self.keyknoxManager pullValueWithIdentity:self.identity
                                          root1:VSSCloudKeyStorage.root1
                                          root2:VSSCloudKeyStorage.root2
                                            key:VSSCloudKeyStorage.key
@@ -139,7 +142,6 @@ static const NSTimeInterval timeout = 20.;
                                     privateKey:self.keyPair.privateKey completion:^(VSSDecryptedKeyknoxValue *decryptedData, NSError *error) {
         XCTAssert(decryptedData != nil && error == nil);
         XCTAssert(decryptedData.value.length == 0 && decryptedData.meta.length == 0);
-        XCTAssert(decryptedData.version == 1);
 
         [ex fulfill];
     }];

@@ -39,6 +39,7 @@
 @interface VSS001_KeyknoxClientTests : VSSTestBase
 
 @property (nonatomic) VSSKeyknoxClient *keyknoxClient;
+@property (nonatomic) NSString *identity;
 
 @end
 
@@ -48,6 +49,8 @@
     [super setUp];
     
     NSString *identity = [[NSUUID alloc] init].UUIDString;
+
+    self.identity = identity;
     
     self.keyknoxClient = [self.utils setupKeyknoxClientWithIdentity:identity];
 }
@@ -61,7 +64,7 @@
     NSData *meta =  [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
     
     NSError *error;
-    VSSEncryptedKeyknoxValue *response = [self.keyknoxClient pushValueWithIdentities:@[]
+    VSSEncryptedKeyknoxValue *response = [self.keyknoxClient pushValueWithIdentities:@[self.identity]
                                                                                root1:VSSCloudKeyStorage.root1
                                                                                root2:VSSCloudKeyStorage.root2
                                                                                  key:VSSCloudKeyStorage.key
@@ -74,10 +77,9 @@
 
     XCTAssert([response.meta isEqualToData:meta]);
     XCTAssert([response.value isEqualToData:encryptedData]);
-    XCTAssert(response.version == 1);
     XCTAssert(response.keyknoxHash.length > 0);
 
-    VSSEncryptedKeyknoxValue *response2 = [self.keyknoxClient pullValueWithIdentity:nil
+    VSSEncryptedKeyknoxValue *response2 = [self.keyknoxClient pullValueWithIdentity:self.identity
                                                                               root1:VSSCloudKeyStorage.root1
                                                                               root2:VSSCloudKeyStorage.root2
                                                                                 key:VSSCloudKeyStorage.key
@@ -86,10 +88,12 @@
 
     XCTAssert([response2.meta isEqualToData:meta]);
     XCTAssert([response2.value isEqualToData:encryptedData]);
-    XCTAssert(response2.version == 1);
     XCTAssert([response2.keyknoxHash isEqualToData:response.keyknoxHash]);
 
-    NSSet<NSString *> *keys = [self.keyknoxClient getKeysWithIdentity:nil root1:VSSCloudKeyStorage.root1 root2:VSSCloudKeyStorage.root2 error:&error];
+    NSSet<NSString *> *keys = [self.keyknoxClient getKeysWithIdentity:self.identity
+                                                                root1:VSSCloudKeyStorage.root1
+                                                                root2:VSSCloudKeyStorage.root2
+                                                                error:&error];
     XCTAssert(keys != nil && error == nil);
 }
 
@@ -98,7 +102,7 @@
     NSData *meta =  [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
 
     NSError *error;
-    VSSEncryptedKeyknoxValue *response = [self.keyknoxClient pushValueWithIdentities:@[]
+    VSSEncryptedKeyknoxValue *response = [self.keyknoxClient pushValueWithIdentities:@[self.identity]
                                                                                root1:VSSCloudKeyStorage.root1
                                                                                root2:VSSCloudKeyStorage.root2
                                                                                  key:VSSCloudKeyStorage.key
@@ -111,7 +115,7 @@
     NSData *encryptedData2 = [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
     NSData *meta2 = [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
 
-    VSSEncryptedKeyknoxValue *response2 = [self.keyknoxClient pushValueWithIdentities:@[]
+    VSSEncryptedKeyknoxValue *response2 = [self.keyknoxClient pushValueWithIdentities:@[self.identity]
                                                                                 root1:VSSCloudKeyStorage.root1
                                                                                 root2:VSSCloudKeyStorage.root2
                                                                                   key:VSSCloudKeyStorage.key
@@ -124,13 +128,12 @@
 
     XCTAssert([response2.meta isEqualToData:meta2]);
     XCTAssert([response2.value isEqualToData:encryptedData2]);
-    XCTAssert(response2.version == 2);
     XCTAssert(response2.keyknoxHash.length > 0);
 }
 
 - (void)test03_KTC3_pullEmpty {
     NSError *error;
-    VSSEncryptedKeyknoxValue *response = [self.keyknoxClient pullValueWithIdentity:nil
+    VSSEncryptedKeyknoxValue *response = [self.keyknoxClient pullValueWithIdentity:self.identity
                                                                              root1:VSSCloudKeyStorage.root1
                                                                              root2:VSSCloudKeyStorage.root2
                                                                                key:VSSCloudKeyStorage.key
@@ -140,7 +143,6 @@
 
     XCTAssert(response.value.length == 0);
     XCTAssert(response.meta.length == 0);
-    XCTAssert(response.version == 1);
 }
 
 - (void)test04_KTC4_resetValue {
@@ -149,7 +151,7 @@
     NSData *someData = [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
     NSData *someMeta = [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
 
-    VSSEncryptedKeyknoxValue *response = [self.keyknoxClient pushValueWithIdentities:@[]
+    VSSEncryptedKeyknoxValue *response = [self.keyknoxClient pushValueWithIdentities:@[self.identity]
                                                                                root1:VSSCloudKeyStorage.root1
                                                                                root2:VSSCloudKeyStorage.root2
                                                                                  key:VSSCloudKeyStorage.key
@@ -159,17 +161,17 @@
                                                                                error:&error];
     XCTAssert(response != nil && error == nil);
 
-    VSSDecryptedKeyknoxValue *response2 = [self.keyknoxClient resetValueWithRoot1:VSSCloudKeyStorage.root1
-                                                                            root2:VSSCloudKeyStorage.root2
-                                                                              key:VSSCloudKeyStorage.key
-                                                                            error:&error];
+    VSSDecryptedKeyknoxValue *response2 = [self.keyknoxClient resetValueWithIdentity:self.identity
+                                                                               root1:VSSCloudKeyStorage.root1
+                                                                               root2:VSSCloudKeyStorage.root2
+                                                                                 key:VSSCloudKeyStorage.key
+                                                                               error:&error];
     XCTAssert(response2 != nil && error == nil);
 
     XCTAssert(response2.value.length == 0);
     XCTAssert(response2.meta.length == 0);
-    XCTAssert(response2.version == 1);
 
-    VSSEncryptedKeyknoxValue *response3 = [self.keyknoxClient pullValueWithIdentity:nil
+    VSSEncryptedKeyknoxValue *response3 = [self.keyknoxClient pullValueWithIdentity:self.identity
                                                                               root1:VSSCloudKeyStorage.root1
                                                                               root2:VSSCloudKeyStorage.root2
                                                                                 key:VSSCloudKeyStorage.key
@@ -178,22 +180,21 @@
 
     XCTAssert(response3.meta.length == 0);
     XCTAssert(response3.value.length == 0);
-    XCTAssert(response3.version == 1);
 }
 
 - (void)test05_KTC5_resetEmptyValue {
     NSError *error;
 
-    VSSDecryptedKeyknoxValue *response = [self.keyknoxClient resetValueWithRoot1:VSSCloudKeyStorage.root1
-                                                                           root2:VSSCloudKeyStorage.root2
-                                                                             key:VSSCloudKeyStorage.key
-                                                                           error:&error];
+    VSSDecryptedKeyknoxValue *response = [self.keyknoxClient resetValueWithIdentity:self.identity
+                                                                              root1:VSSCloudKeyStorage.root1
+                                                                              root2:VSSCloudKeyStorage.root2
+                                                                                key:VSSCloudKeyStorage.key
+                                                                              error:&error];
 
     XCTAssert(response != nil && error == nil);
 
     XCTAssert(response.value.length == 0);
     XCTAssert(response.meta.length == 0);
-    XCTAssert(response.version == 1);
 }
 
 @end

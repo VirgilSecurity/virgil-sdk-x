@@ -44,5 +44,4 @@ internal struct KeyknoxData: Codable {
     internal let identities: [String]
     internal let meta: Data
     internal let value: Data
-    internal let version: Int
 }

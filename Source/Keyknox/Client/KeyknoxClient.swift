@@ -43,6 +43,7 @@ import Foundation
 @objc(VSSKeyknoxClientError) public enum KeyknoxClientError: Int, LocalizedError {
     case constructingUrl = 1
     case invalidPreviousHashHeader = 2
+    case emptyIdentities = 3
 
     /// Human-readable localized description
     public var errorDescription: String? {
@@ -51,6 +52,8 @@ import Foundation
             return "Constructing url of endpoint failed"
         case .invalidPreviousHashHeader:
             return "Error whilte extracting previousHash from response header"
+        case .emptyIdentities:
+            return "Identities should not be empty"
         }
     }
 }

@@ -63,13 +63,13 @@ import Foundation
     /// Pulls values from Keyknox service
     ///
     /// - Parameters:
-    ///   - identity: Keyknox owner identity (if nil - access own keyknox)
+    ///   - identity: Keyknox owner identity
     ///   - root1: path root1
     ///   - root2: path root2
     ///   - key: key
     /// - Returns: EncryptedKeyknoxValue
     /// - Throws: Depends on implementation
-    @objc func pullValue(identity: String?,
+    @objc func pullValue(identity: String,
                          root1: String,
                          root2: String,
                          key: String) throws -> EncryptedKeyknoxValue
@@ -77,12 +77,12 @@ import Foundation
     /// Get keys for given root
     ///
     /// - Parameters:
-    ///   - identity: Keyknox owner identity (if nil - access own keyknox)
+    ///   - identity: Keyknox owner identity
     ///   - root1: path root1
     ///   - root2: path root2
     /// - Returns: Array of keys
     /// - Throws: Depends on implementation
-    @objc func getKeys(identity: String?,
+    @objc func getKeys(identity: String,
                        root1: String?,
                        root2: String?) throws -> Set<String>
 
@@ -94,7 +94,8 @@ import Foundation
     ///   - key: key
     /// - Returns: DecryptedKeyknoxValue
     /// - Throws: Depends on implementation
-    @objc func resetValue(root1: String?,
-                          root2: String?,
+    @objc func resetValue(identity: String,
+                          root1: String,
+                          root2: String,
                           key: String?) throws -> DecryptedKeyknoxValue
 }

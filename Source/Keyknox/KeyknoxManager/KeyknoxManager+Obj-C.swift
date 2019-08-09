@@ -58,7 +58,7 @@ extension KeyknoxManager {
                        privateKey: privateKey).start(completion: completion)
     }
 
-    @objc open func pullValue(identity: String?,
+    @objc open func pullValue(identity: String,
                               root1: String,
                               root2: String,
                               key: String,
@@ -73,21 +73,23 @@ extension KeyknoxManager {
                        privateKey: privateKey).start(completion: completion)
     }
 
-    @objc open func getKeys(identity: String?,
+    @objc open func getKeys(identity: String,
                             root1: String?,
                             root2: String?,
                             completion: @escaping (Set<String>?, Error?) -> Void) {
         self.getKeys(identity: identity, root1: root1, root2: root2).start(completion: completion)
     }
 
-    @objc open func resetValue(root1: String?,
-                               root2: String?,
+    @objc open func resetValue(identity: String,
+                               root1: String,
+                               root2: String,
                                key: String?,
                                completion: @escaping(DecryptedKeyknoxValue?, Error?) -> Void) {
-        self.resetValue(root1: root1, root2: root2, key: key).start(completion: completion)
+        self.resetValue(identity: identity, root1: root1, root2: root2, key: key).start(completion: completion)
     }
 
-    @objc open func updateRecipients(identities: [String],
+    @objc open func updateRecipients(fromIdentity identity: String,
+                                     identities: [String],
                                      root1: String,
                                      root2: String,
                                      key: String,
@@ -96,7 +98,8 @@ extension KeyknoxManager {
                                      newPublicKeys: [VirgilPublicKey]? = nil,
                                      newPrivateKey: VirgilPrivateKey? = nil,
                                      completion: @escaping (DecryptedKeyknoxValue?, Error?) -> Void) {
-        self.updateRecipients(identities: identities,
+        self.updateRecipients(fromIdentity: identity,
+                              identities: identities,
                               root1: root1,
                               root2: root2,
                               key: key,

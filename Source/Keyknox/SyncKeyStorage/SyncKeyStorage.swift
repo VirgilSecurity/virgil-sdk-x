@@ -102,7 +102,8 @@ import VirgilCrypto
     @objc public convenience init(identity: String, accessTokenProvider: AccessTokenProvider,
                                   crypto: VirgilCrypto,
                                   publicKeys: [VirgilPublicKey], privateKey: VirgilPrivateKey) throws {
-        let cloudKeyStorage = try CloudKeyStorage(accessTokenProvider: accessTokenProvider,
+        let cloudKeyStorage = try CloudKeyStorage(identity: identity,
+                                                  accessTokenProvider: accessTokenProvider,
                                                   crypto: crypto,
                                                   publicKeys: publicKeys,
                                                   privateKey: privateKey)

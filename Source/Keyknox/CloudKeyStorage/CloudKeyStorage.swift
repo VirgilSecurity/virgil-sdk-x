@@ -41,6 +41,8 @@ import VirgilCrypto
 @objc(VSSCloudKeyStorage) open class CloudKeyStorage: NSObject {
     /// KeyknoxManager
     @objc public let keyknoxManager: KeyknoxManager
+
+    @objc public let identity: String
     
     /// Public keys used for encryption and signature verification
     @objc public internal(set) var publicKeys: [VirgilPublicKey]
@@ -64,7 +66,8 @@ import VirgilCrypto
     /// Init
     ///
     /// - Parameter keyknoxManager: KeyknoxManager
-    @objc public init(keyknoxManager: KeyknoxManager, publicKeys: [VirgilPublicKey], privateKey: VirgilPrivateKey) {
+    @objc public init(identity: String, keyknoxManager: KeyknoxManager, publicKeys: [VirgilPublicKey], privateKey: VirgilPrivateKey) {
+        self.identity = identity
         self.keyknoxManager = keyknoxManager
         self.privateKey = privateKey
         self.publicKeys = publicKeys
@@ -80,13 +83,14 @@ import VirgilCrypto
     ///   - publicKeys: Public keys used for encryption and signature verification
     ///   - privateKey: Private key used for decryption and signature verification
     /// - Throws: Rethrows from `KeyknoxManager`
-    @objc public convenience init(accessTokenProvider: AccessTokenProvider,
+    @objc public convenience init(identity: String,
+                                  accessTokenProvider: AccessTokenProvider,
                                   crypto: VirgilCrypto,
                                   publicKeys: [VirgilPublicKey], privateKey: VirgilPrivateKey) throws {
         let keyknoxManager = try KeyknoxManager(accessTokenProvider: accessTokenProvider,
                                                 crypto: crypto)
 
-        self.init(keyknoxManager: keyknoxManager, publicKeys: publicKeys, privateKey: privateKey)
+        self.init(identity: identity, keyknoxManager: keyknoxManager, publicKeys: publicKeys, privateKey: privateKey)
     }
 }
 
@@ -118,7 +122,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
         let data = try self.cloudEntrySerializer.serialize(dict: self.cache)
 
         let response = try self.keyknoxManager
-            .pushValue(identities: [],
+            .pushValue(identities: [self.identity],
                        root1: CloudKeyStorage.root1,
                        root2: CloudKeyStorage.root2,
                        key: CloudKeyStorage.key,
@@ -208,7 +212,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
                     let data = try self.cloudEntrySerializer.serialize(dict: self.cache)
 
                     let response = try self.keyknoxManager
-                        .pushValue(identities: [],
+                        .pushValue(identities: [self.identity],
                                    root1: CloudKeyStorage.root1,
                                    root2: CloudKeyStorage.root2,
                                    key: CloudKeyStorage.key,
@@ -306,7 +310,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
                     let data = try self.cloudEntrySerializer.serialize(dict: self.cache)
 
                     let response = try self.keyknoxManager
-                        .pushValue(identities: [],
+                        .pushValue(identities: [self.identity],
                                    root1: CloudKeyStorage.root1,
                                    root2: CloudKeyStorage.root2,
                                    key: CloudKeyStorage.key,
@@ -337,7 +341,8 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
             self.queue.async {
                 do {
                     let response = try self.keyknoxManager
-                        .resetValue(root1: CloudKeyStorage.root1,
+                        .resetValue(identity: self.identity,
+                                    root1: CloudKeyStorage.root1,
                                     root2: CloudKeyStorage.root2,
                                     key: CloudKeyStorage.key)
                         .startSync().get()
@@ -379,7 +384,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
                     let privateKey = newPrivateKey ?? self.privateKey
 
                     let response = try self.keyknoxManager
-                        .updateRecipients(identities: [],
+                        .updateRecipients(identities: [self.identity],
                                           root1: CloudKeyStorage.root1,
                                           root2: CloudKeyStorage.root2,
                                           key: CloudKeyStorage.key,
@@ -413,7 +418,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
             self.queue.async {
                 do {
                     let response = try self.keyknoxManager
-                        .pullValue(identity: nil,
+                        .pullValue(identity: self.identity,
                                    root1: CloudKeyStorage.root1,
                                    root2: CloudKeyStorage.root2,
                                    key: CloudKeyStorage.key,

@@ -102,7 +102,6 @@ extension KeyknoxCrypto: KeyknoxCryptoProtocol {
                                          identities: encryptedKeyknoxValue.identities,
                                          meta: Data(),
                                          value: Data(),
-                                         version: encryptedKeyknoxValue.version,
                                          keyknoxHash: encryptedKeyknoxValue.keyknoxHash)
         }
 
@@ -123,7 +122,6 @@ extension KeyknoxCrypto: KeyknoxCryptoProtocol {
                                      identities: encryptedKeyknoxValue.identities,
                                      meta: encryptedKeyknoxValue.meta,
                                      value: decryptedData,
-                                     version: encryptedKeyknoxValue.version,
                                      keyknoxHash: encryptedKeyknoxValue.keyknoxHash)
     }
 

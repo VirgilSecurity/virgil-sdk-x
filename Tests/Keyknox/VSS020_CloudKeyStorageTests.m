@@ -44,6 +44,7 @@ static const NSTimeInterval timeout = 20.;
 @property (nonatomic) VSSCloudKeyStorage *keyStorage;
 @property (nonatomic) VSSKeyknoxManager *keyknoxManager;
 @property (nonatomic) NSInteger numberOfKeys;
+@property (nonatomic) NSString *identity;
 
 @end
 
@@ -54,6 +55,8 @@ static const NSTimeInterval timeout = 20.;
 
     NSString *identity = [[NSUUID alloc] init].UUIDString;
 
+    self.identity = identity;
+
     VSMVirgilKeyPair *keyPair = [self.crypto generateKeyPairAndReturnError:nil];
     self.keyPair = keyPair;
 
@@ -63,9 +66,10 @@ static const NSTimeInterval timeout = 20.;
 
     self.keyknoxManager = keyknoxManager;
     
-    self.keyStorage = [[VSSCloudKeyStorage alloc] initWithKeyknoxManager:keyknoxManager
-                                                              publicKeys:@[keyPair.publicKey]
-                                                              privateKey:keyPair.privateKey];
+    self.keyStorage = [[VSSCloudKeyStorage alloc] initWithIdentity:identity
+                                                    keyknoxManager:keyknoxManager
+                                                        publicKeys:@[keyPair.publicKey]
+                                                        privateKey:keyPair.privateKey];
 }
 
 - (void)tearDown {
@@ -584,7 +588,7 @@ static const NSTimeInterval timeout = 20.;
 
     NSData *data = [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
 
-    [self.keyknoxManager pushValueWithIdentities:@[]
+    [self.keyknoxManager pushValueWithIdentities:@[self.identity]
                                            root1:VSSCloudKeyStorage.root1
                                            root2:VSSCloudKeyStorage.root2
                                              key:VSSCloudKeyStorage.key

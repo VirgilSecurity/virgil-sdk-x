@@ -58,10 +58,16 @@ class VSS004_SyncKeyStorageTests: XCTestCase {
 
         let keyknoxManager = utils.setupKeyknoxManager(client: keyknoxClient)
 
-        self.cloudKeyStorage = CloudKeyStorage(keyknoxManager: keyknoxManager, publicKeys: [keyPair.publicKey], privateKey: keyPair.privateKey)
+        self.cloudKeyStorage = CloudKeyStorage(identity: identity,
+                                               keyknoxManager: keyknoxManager,
+                                               publicKeys: [keyPair.publicKey],
+                                               privateKey: keyPair.privateKey)
         try! self.cloudKeyStorage.retrieveCloudEntries().startSync().get()
 
-        let cloudKeyStorage = CloudKeyStorage(keyknoxManager: keyknoxManager, publicKeys: [keyPair.publicKey], privateKey: keyPair.privateKey)
+        let cloudKeyStorage = CloudKeyStorage(identity: identity,
+                                              keyknoxManager: keyknoxManager,
+                                              publicKeys: [keyPair.publicKey],
+                                              privateKey: keyPair.privateKey)
         
     #if os(macOS)
         self.syncKeyStorage = SyncKeyStorage(identity: identity,
