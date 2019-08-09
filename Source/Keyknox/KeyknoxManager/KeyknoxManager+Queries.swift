@@ -161,4 +161,19 @@ extension KeyknoxManager {
             }
         }
     }
+    
+    open func deleteRecipient(params: KeyknoxDeleteRecipientParams) -> GenericOperation<DecryptedKeyknoxValue> {
+        return CallbackOperation { _, completion in
+            self.queue.async {
+                do {
+                    let keyknoxValue = try self.keyknoxClient.deleteRecipient(params: params)
+                    
+                    completion(keyknoxValue, nil)
+                }
+                catch {
+                    completion(nil, error)
+                }
+            }
+        }
+    }
 }

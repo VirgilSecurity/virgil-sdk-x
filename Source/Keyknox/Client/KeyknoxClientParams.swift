@@ -52,7 +52,7 @@ import Foundation
     }
 }
 
-@objc(VSSKeyknoxDeleteParticipantParams) public class KeyknoxDeleteParticipantParams: NSObject {
+@objc(VSSKeyknoxDeleteParticipantParams) public class KeyknoxDeleteRecipientParams: NSObject {
     @objc public let identity: String
     @objc public let root: String
     @objc public let path: String

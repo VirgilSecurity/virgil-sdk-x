@@ -83,4 +83,9 @@ extension KeyknoxManager {
                               newPublicKeys: newPublicKeys,
                               newPrivateKey: newPrivateKey).start(completion: completion)
     }
+    
+    @objc open func deleteRecipient(params: KeyknoxDeleteRecipientParams,
+                                    completion: @escaping (DecryptedKeyknoxValue?, Error?) -> Void) {
+        self.deleteRecipient(params: params).start(completion: completion)
+    }
 }

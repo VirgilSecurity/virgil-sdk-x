@@ -280,7 +280,7 @@ extension KeyknoxClient: KeyknoxClientProtocol {
         return keyknoxValue
     }
     
-    @objc open func deleteRecipient(params: KeyknoxDeleteParticipantParams) throws -> DecryptedKeyknoxValue {
+    @objc open func deleteRecipient(params: KeyknoxDeleteRecipientParams) throws -> DecryptedKeyknoxValue {
         guard let url = URL(string: "keyknox/v2/reset", relativeTo: self.serviceUrl) else {
             throw KeyknoxClientError.constructingUrl
         }

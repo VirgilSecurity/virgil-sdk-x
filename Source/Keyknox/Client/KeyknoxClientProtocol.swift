@@ -85,5 +85,5 @@ import Foundation
     /// - Throws: Depends on implementation
     @objc func resetValue(params: KeyknoxResetParams?) throws -> DecryptedKeyknoxValue
     
-    @objc func deleteRecipient(params: KeyknoxDeleteParticipantParams) throws -> DecryptedKeyknoxValue
+    @objc func deleteRecipient(params: KeyknoxDeleteRecipientParams) throws -> DecryptedKeyknoxValue
 }

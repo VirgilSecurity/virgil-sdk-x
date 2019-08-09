@@ -1151,8 +1151,8 @@
 				42492F7622CE9FC400BEA96F /* KeyknoxClientProtocol.swift */,
 				42492F7722CE9FC400BEA96F /* KeyknoxClient.swift */,
 				42492F7822CE9FC400BEA96F /* KeynoxClient+Queries.swift */,
-				42492F7922CE9FC400BEA96F /* Models */,
 				42ECFAE122FDB44A00868C28 /* KeyknoxClientParams.swift */,
+				42492F7922CE9FC400BEA96F /* Models */,
 			);
 			path = Client;
 			sourceTree = "<group>";
