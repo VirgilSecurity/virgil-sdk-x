@@ -524,6 +524,10 @@
 		42D7B05022439A62009D02FD /* Mutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F2F21EF6870006BED3F /* Mutex.swift */; };
 		42D7B05122439A63009D02FD /* Mutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F2F21EF6870006BED3F /* Mutex.swift */; };
 		42D7B05222439A65009D02FD /* Mutex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F2F21EF6870006BED3F /* Mutex.swift */; };
+		42ECFAE222FDB44A00868C28 /* KeyknoxClientParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ECFAE122FDB44A00868C28 /* KeyknoxClientParams.swift */; };
+		42ECFAE322FDB44A00868C28 /* KeyknoxClientParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ECFAE122FDB44A00868C28 /* KeyknoxClientParams.swift */; };
+		42ECFAE422FDB44A00868C28 /* KeyknoxClientParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ECFAE122FDB44A00868C28 /* KeyknoxClientParams.swift */; };
+		42ECFAE522FDB44A00868C28 /* KeyknoxClientParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ECFAE122FDB44A00868C28 /* KeyknoxClientParams.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -794,6 +798,7 @@
 		42DD29522074FB4700C9C014 /* RawServiceError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawServiceError.swift; sourceTree = "<group>"; };
 		42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42EB30E71DB8EC17001DF4C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42ECFAE122FDB44A00868C28 /* KeyknoxClientParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyknoxClientParams.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1147,6 +1152,7 @@
 				42492F7722CE9FC400BEA96F /* KeyknoxClient.swift */,
 				42492F7822CE9FC400BEA96F /* KeynoxClient+Queries.swift */,
 				42492F7922CE9FC400BEA96F /* Models */,
+				42ECFAE122FDB44A00868C28 /* KeyknoxClientParams.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -1772,6 +1778,7 @@
 				42492F4E22CE9FB500BEA96F /* RawSignature.swift in Sources */,
 				42D7AF79224396AD009D02FD /* GenericOperation.swift in Sources */,
 				42D7AF7D224396AD009D02FD /* Log.swift in Sources */,
+				42ECFAE322FDB44A00868C28 /* KeyknoxClientParams.swift in Sources */,
 				42D7AF70224396AD009D02FD /* Jwt.swift in Sources */,
 				42492FBD22CE9FC500BEA96F /* CloudEntry.swift in Sources */,
 				42492FA122CE9FC400BEA96F /* KeyknoxManagerError.swift in Sources */,
@@ -1899,6 +1906,7 @@
 				42492F4F22CE9FB500BEA96F /* RawSignature.swift in Sources */,
 				42D7AFA7224396AE009D02FD /* GeneratorJwtProvider.swift in Sources */,
 				42D7AFA8224396AE009D02FD /* CachingJwtProvider.swift in Sources */,
+				42ECFAE422FDB44A00868C28 /* KeyknoxClientParams.swift in Sources */,
 				42D7AFBF224396AE009D02FD /* CardManager+StaticExport.swift in Sources */,
 				42D7AFC3224396AE009D02FD /* CardVerifier.swift in Sources */,
 				42492FBE22CE9FC500BEA96F /* CloudEntry.swift in Sources */,
@@ -1997,6 +2005,7 @@
 				42492F5022CE9FB500BEA96F /* RawSignature.swift in Sources */,
 				42860D332284321400494515 /* NetworkRetryOperation.swift in Sources */,
 				42D7AFE1224396AF009D02FD /* CachingJwtProvider.swift in Sources */,
+				42ECFAE522FDB44A00868C28 /* KeyknoxClientParams.swift in Sources */,
 				42D7AFF8224396AF009D02FD /* CardManager+StaticExport.swift in Sources */,
 				42D7AFFC224396AF009D02FD /* CardVerifier.swift in Sources */,
 				42492FBF22CE9FC500BEA96F /* CloudEntry.swift in Sources */,
@@ -2171,6 +2180,7 @@
 				42492F4D22CE9FB500BEA96F /* RawSignature.swift in Sources */,
 				42D7AF4D224396AC009D02FD /* CardManager+StaticExport.swift in Sources */,
 				42D7AF51224396AC009D02FD /* CardVerifier.swift in Sources */,
+				42ECFAE222FDB44A00868C28 /* KeyknoxClientParams.swift in Sources */,
 				42D7AF4C224396AC009D02FD /* CardManager+Export.swift in Sources */,
 				42D7AF3F224396AC009D02FD /* AsyncOperation.swift in Sources */,
 				42492FBC22CE9FC500BEA96F /* CloudEntry.swift in Sources */,
