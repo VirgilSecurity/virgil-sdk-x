@@ -39,9 +39,6 @@ import VirgilCrypto
 
 /// Class responsible for synchronization between Keychain and Keyknox Cloud
 @objc(VSSSyncKeyStorage) open class SyncKeyStorage: NSObject {
-    /// User's identity to separate keys in Keychain
-    @objc public let identity: String
-
     /// CloudKeyStorageProtocol implementation
     public let cloudKeyStorage: CloudKeyStorageProtocol
 
@@ -69,7 +66,6 @@ import VirgilCrypto
     ///   - cloudKeyStorage: CloudKeyStorageProtocol implementation
     public init(identity: String, keychainStorage: KeychainStorageProtocol,
                 cloudKeyStorage: CloudKeyStorageProtocol) {
-        self.identity = identity
         self.keychainStorage = SandboxedKeychainStorage(identity: identity, keychainStorage: keychainStorage)
         self.cloudKeyStorage = cloudKeyStorage
         self.keychainUtils = KeychainUtils()
@@ -102,8 +98,7 @@ import VirgilCrypto
     @objc public convenience init(identity: String, accessTokenProvider: AccessTokenProvider,
                                   crypto: VirgilCrypto,
                                   publicKeys: [VirgilPublicKey], privateKey: VirgilPrivateKey) throws {
-        let cloudKeyStorage = try CloudKeyStorage(identity: identity,
-                                                  accessTokenProvider: accessTokenProvider,
+        let cloudKeyStorage = try CloudKeyStorage(accessTokenProvider: accessTokenProvider,
                                                   crypto: crypto,
                                                   publicKeys: publicKeys,
                                                   privateKey: privateKey)

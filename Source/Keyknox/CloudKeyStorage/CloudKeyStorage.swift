@@ -41,8 +41,6 @@ import VirgilCrypto
 @objc(VSSCloudKeyStorage) open class CloudKeyStorage: NSObject {
     /// KeyknoxManager
     @objc public let keyknoxManager: KeyknoxManager
-
-    @objc public let identity: String
     
     /// Public keys used for encryption and signature verification
     @objc public internal(set) var publicKeys: [VirgilPublicKey]
@@ -66,8 +64,7 @@ import VirgilCrypto
     /// Init
     ///
     /// - Parameter keyknoxManager: KeyknoxManager
-    @objc public init(identity: String, keyknoxManager: KeyknoxManager, publicKeys: [VirgilPublicKey], privateKey: VirgilPrivateKey) {
-        self.identity = identity
+    @objc public init(keyknoxManager: KeyknoxManager, publicKeys: [VirgilPublicKey], privateKey: VirgilPrivateKey) {
         self.keyknoxManager = keyknoxManager
         self.privateKey = privateKey
         self.publicKeys = publicKeys
@@ -83,14 +80,13 @@ import VirgilCrypto
     ///   - publicKeys: Public keys used for encryption and signature verification
     ///   - privateKey: Private key used for decryption and signature verification
     /// - Throws: Rethrows from `KeyknoxManager`
-    @objc public convenience init(identity: String,
-                                  accessTokenProvider: AccessTokenProvider,
+    @objc public convenience init(accessTokenProvider: AccessTokenProvider,
                                   crypto: VirgilCrypto,
                                   publicKeys: [VirgilPublicKey], privateKey: VirgilPrivateKey) throws {
         let keyknoxManager = try KeyknoxManager(accessTokenProvider: accessTokenProvider,
                                                 crypto: crypto)
 
-        self.init(identity: identity, keyknoxManager: keyknoxManager, publicKeys: publicKeys, privateKey: privateKey)
+        self.init(keyknoxManager: keyknoxManager, publicKeys: publicKeys, privateKey: privateKey)
     }
 }
 
