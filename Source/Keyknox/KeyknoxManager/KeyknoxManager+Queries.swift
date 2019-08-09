@@ -39,10 +39,7 @@ import VirgilCrypto
 
 // MARK: - Queries
 extension KeyknoxManager {
-    open func pushValue(identities: [String],
-                        root1: String,
-                        root2: String,
-                        key: String,
+    open func pushValue(params: KeyknoxPushParams? = nil,
                         data: Data,
                         previousHash: Data?,
                         publicKeys: [VirgilPublicKey],
@@ -53,10 +50,7 @@ extension KeyknoxManager {
                     let encryptedData = try self.crypto.encrypt(data: data,
                                                                 privateKey: privateKey,
                                                                 publicKeys: publicKeys)
-                    let keyknoxValue = try self.keyknoxClient.pushValue(identities: identities,
-                                                                        root1: root1,
-                                                                        root2: root2,
-                                                                        key: key,
+                    let keyknoxValue = try self.keyknoxClient.pushValue(params: params,
                                                                         meta: encryptedData.0,
                                                                         value: encryptedData.1,
                                                                         previousHash: previousHash)
@@ -73,19 +67,13 @@ extension KeyknoxManager {
         }
     }
 
-    open func pullValue(identity: String,
-                        root1: String,
-                        root2: String,
-                        key: String,
+    open func pullValue(params: KeyknoxPullParams? = nil,
                         publicKeys: [VirgilPublicKey],
                         privateKey: VirgilPrivateKey) -> GenericOperation<DecryptedKeyknoxValue> {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
-                    let keyknoxValue = try self.keyknoxClient.pullValue(identity: identity,
-                                                                        root1: root1,
-                                                                        root2: root2,
-                                                                        key: key)
+                    let keyknoxValue = try self.keyknoxClient.pullValue(params: params)
                     let decryptedData = try self.crypto.decrypt(encryptedKeyknoxValue: keyknoxValue,
                                                                 privateKey: privateKey,
                                                                 publicKeys: publicKeys)
@@ -99,13 +87,11 @@ extension KeyknoxManager {
         }
     }
 
-    open func getKeys(identity: String,
-                      root1: String?,
-                      root2: String?) -> GenericOperation<Set<String>> {
+    open func getKeys(params: KeyknoxGetKeysParams) -> GenericOperation<Set<String>> {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
-                    let keys = try self.keyknoxClient.getKeys(identity: identity, root1: root1, root2: root2)
+                    let keys = try self.keyknoxClient.getKeys(params: params)
 
                     completion(keys, nil)
                 }
@@ -119,17 +105,11 @@ extension KeyknoxManager {
     /// Resets Keyknox value (makes it empty). Also increments version
     ///
     /// - Returns: GenericOperation<Void>
-    open func resetValue(identity: String?,
-                         root1: String,
-                         root2: String,
-                         key: String?) -> GenericOperation<DecryptedKeyknoxValue> {
+    open func resetValue(params: KeyknoxResetParams? = nil) -> GenericOperation<DecryptedKeyknoxValue> {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
-                    let resetValueResult = try self.keyknoxClient.resetValue(identity: identity,
-                                                                             root1: root1,
-                                                                             root2: root2,
-                                                                             key: key)
+                    let resetValueResult = try self.keyknoxClient.resetValue(params: params)
                     completion(resetValueResult, nil)
                 }
                 catch {
@@ -139,70 +119,7 @@ extension KeyknoxManager {
         }
     }
 
-    /// Updates public keys for ecnryption and signature verification
-    /// and private key for decryption and signature generation
-    ///
-    /// - Parameters:
-    ///   - newPublicKeys: New public keys that will be used for encryption and signature verification
-    ///   - newPrivateKey: New private key that will be used for decryption and signature generation
-    /// - Returns: CallbackOperation<DecryptedKeyknoxValue>
-    open func updateRecipients(fromIdentity identity: String,
-                               identities: [String],
-                               root1: String,
-                               root2: String,
-                               key: String,
-                               oldPublicKeys: [VirgilPublicKey],
-                               oldPrivateKey: VirgilPrivateKey,
-                               newPublicKeys: [VirgilPublicKey]? = nil,
-                               newPrivateKey: VirgilPrivateKey? = nil) -> GenericOperation<DecryptedKeyknoxValue> {
-        return CallbackOperation { _, completion in
-            self.queue.async {
-                guard (newPublicKeys != nil && !(newPublicKeys?.isEmpty ?? true))
-                    || newPrivateKey != nil else {
-                        completion(nil, KeyknoxManagerError.keysShouldBeUpdated)
-                        return
-                }
-
-                do {
-                    let keyknoxValue = try self.keyknoxClient.pullValue(identity: identity,
-                                                                        root1: root1,
-                                                                        root2: root2,
-                                                                        key: key)
-                    let decryptedData = try self.crypto.decrypt(encryptedKeyknoxValue: keyknoxValue,
-                                                                privateKey: oldPrivateKey,
-                                                                publicKeys: oldPublicKeys)
-
-                    guard !decryptedData.value.isEmpty else {
-                        completion(decryptedData, nil)
-                        return
-                    }
-
-                    let encryptedData = try self.crypto.encrypt(data: decryptedData.value,
-                                                                privateKey: newPrivateKey ?? oldPrivateKey,
-                                                                publicKeys: newPublicKeys ?? oldPublicKeys)
-
-                    let keyknoxValue2 = try self.keyknoxClient.pushValue(identities: identities,
-                                                                        root1: root1,
-                                                                        root2: root2,
-                                                                        key: key,
-                                                                        meta: encryptedData.0,
-                                                                        value: encryptedData.1,
-                                                                        previousHash: keyknoxValue.keyknoxHash)
-                    
-                    let decryptedData2 = try self.crypto.decrypt(encryptedKeyknoxValue: keyknoxValue2,
-                                                                 privateKey: newPrivateKey ?? oldPrivateKey,
-                                                                 publicKeys: newPublicKeys ?? oldPublicKeys)
-
-                    completion(decryptedData2, nil)
-                }
-                catch {
-                    completion(nil, error)
-                }
-            }
-        }
-    }
-
-    /// Updates public keys for ecnryption and signature verification
+    /// Updates public keys for encryption and signature verification
     /// and private key for decryption and signature generation
     ///
     /// - Parameters:
@@ -211,10 +128,7 @@ extension KeyknoxManager {
     ///   - newPublicKeys: New public keys that will be used for encryption and signature verification
     ///   - newPrivateKey: New private key that will be used for decryption and signature generation
     /// - Returns: CallbackOperation<DecryptedKeyknoxValue>
-    open func updateRecipients(identities: [String],
-                               root1: String,
-                               root2: String,
-                               key: String,
+    open func updateRecipients(params: KeyknoxPushParams? = nil,
                                value: Data,
                                previousHash: Data,
                                newPublicKeys: [VirgilPublicKey],
@@ -230,10 +144,7 @@ extension KeyknoxManager {
                     let encryptedData = try self.crypto.encrypt(data: value,
                                                                 privateKey: newPrivateKey,
                                                                 publicKeys: newPublicKeys)
-                    let keyknoxValue = try self.keyknoxClient.pushValue(identities: identities,
-                                                                        root1: root1,
-                                                                        root2: root2,
-                                                                        key: key,
+                    let keyknoxValue = try self.keyknoxClient.pushValue(params: params,
                                                                         meta: encryptedData.0,
                                                                         value: encryptedData.1,
                                                                         previousHash: previousHash)

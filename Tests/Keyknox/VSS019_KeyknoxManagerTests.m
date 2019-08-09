@@ -75,16 +75,13 @@ static const NSTimeInterval timeout = 20.;
     XCTestExpectation *ex = [self expectationWithDescription:@""];
     
     NSData *someData = [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
-
-    [self.keyknoxManager pushValueWithIdentities:@[self.identity]
-                                           root1:VSSCloudKeyStorage.root1
-                                           root2:VSSCloudKeyStorage.root2
-                                             key:VSSCloudKeyStorage.key
-                                            data:someData
-                                    previousHash:nil
-                                      publicKeys:@[self.keyPair.publicKey]
-                                      privateKey:self.keyPair.privateKey
-                                      completion:^(VSSDecryptedKeyknoxValue *decryptedData, NSError *error) {
+    
+    [self.keyknoxManager pushValueWithParams:nil
+                                        data:someData
+                                previousHash:nil
+                                  publicKeys:@[self.keyPair.publicKey]
+                                  privateKey:self.keyPair.privateKey
+                                  completion:^(VSSDecryptedKeyknoxValue *decryptedData, NSError *error) {
         XCTAssert(decryptedData != nil && error == nil);
 
         XCTAssert([decryptedData.value isEqualToData:someData]);
@@ -103,21 +100,17 @@ static const NSTimeInterval timeout = 20.;
 
     NSData *someData = [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
 
-    [self.keyknoxManager pushValueWithIdentities:@[self.identity]
-                                           root1:VSSCloudKeyStorage.root1
-                                           root2:VSSCloudKeyStorage.root2
-                                             key:VSSCloudKeyStorage.key
-                                            data:someData
-                                    previousHash:nil
-                                      publicKeys:@[self.keyPair.publicKey]
-                                      privateKey:self.keyPair.privateKey
-                                      completion:^(VSSDecryptedKeyknoxValue *decryptedData, NSError *error) {
-        [self.keyknoxManager pullValueWithIdentity:self.identity
-                                             root1:VSSCloudKeyStorage.root1
-                                             root2:VSSCloudKeyStorage.root2
-                                               key:VSSCloudKeyStorage.key
-                                        publicKeys:@[self.keyPair.publicKey]
-                                        privateKey:self.keyPair.privateKey completion:^(VSSDecryptedKeyknoxValue *decryptedData, NSError *error) {
+    [self.keyknoxManager pushValueWithParams:nil
+                                        data:someData
+                                previousHash:nil
+                                  publicKeys:@[self.keyPair.publicKey]
+                                  privateKey:self.keyPair.privateKey
+                                  completion:^(VSSDecryptedKeyknoxValue *decryptedData, NSError *error) {
+                                      
+        [self.keyknoxManager pullValueWithParams:nil
+                                  publicKeys:@[self.keyPair.publicKey]
+                                  privateKey:self.keyPair.privateKey
+                                  completion:^(VSSDecryptedKeyknoxValue *decryptedData, NSError *error) {
             XCTAssert(decryptedData != nil && error == nil);
             XCTAssert([decryptedData.value isEqualToData:someData]);
 
@@ -134,12 +127,9 @@ static const NSTimeInterval timeout = 20.;
 - (void)test03_KTC8_pullEmptyValue {
     XCTestExpectation *ex = [self expectationWithDescription:@""];
 
-    [self.keyknoxManager pullValueWithIdentity:self.identity
-                                         root1:VSSCloudKeyStorage.root1
-                                         root2:VSSCloudKeyStorage.root2
-                                           key:VSSCloudKeyStorage.key
-                                    publicKeys:@[self.keyPair.publicKey]
-                                    privateKey:self.keyPair.privateKey completion:^(VSSDecryptedKeyknoxValue *decryptedData, NSError *error) {
+    [self.keyknoxManager pullValueWithParams:nil
+                                  publicKeys:@[self.keyPair.publicKey]
+                                  privateKey:self.keyPair.privateKey completion:^(VSSDecryptedKeyknoxValue *decryptedData, NSError *error) {
         XCTAssert(decryptedData != nil && error == nil);
         XCTAssert(decryptedData.value.length == 0 && decryptedData.meta.length == 0);
 

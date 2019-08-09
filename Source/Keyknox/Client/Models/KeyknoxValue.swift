@@ -38,8 +38,8 @@ import Foundation
 
 /// Value stored on Keyknox service
 @objc(VSSKeyknoxValue) public class KeyknoxValue: NSObject {
-    @objc public let root1: String
-    @objc public let root2: String
+    @objc public let root: String
+    @objc public let path: String
     @objc public let key: String
     @objc public let owner: String
     @objc public let identities: [String]
@@ -53,9 +53,9 @@ import Foundation
     /// Keyknox hash
     @objc public let keyknoxHash: Data
 
-    internal convenience init(keyknoxData: KeyknoxData, keyknoxHash: Data) {
-        self.init(root1: keyknoxData.root,
-                  root2: keyknoxData.path,
+    internal convenience init(keyknoxData: KeyknoxDataV2, keyknoxHash: Data) {
+        self.init(root: keyknoxData.root,
+                  path: keyknoxData.path,
                   key: keyknoxData.key,
                   owner: keyknoxData.owner,
                   identities: keyknoxData.identities,
@@ -63,17 +63,28 @@ import Foundation
                   value: keyknoxData.value,
                   keyknoxHash: keyknoxHash)
     }
+    
+    internal convenience init(keyknoxData: KeyknoxData, keyknoxHash: Data, identity: String) {
+        self.init(root: KeyknoxClient.keyStorageRoot,
+                  path: KeyknoxClient.keyStoragePath,
+                  key: KeyknoxClient.keyStorageKey,
+                  owner: identity,
+                  identities: [identity],
+                  meta: keyknoxData.meta,
+                  value: keyknoxData.value,
+                  keyknoxHash: keyknoxHash)
+    }
 
-    internal init(root1: String,
-                  root2: String,
+    internal init(root: String,
+                  path: String,
                   key: String,
                   owner: String,
                   identities: [String],
                   meta: Data,
                   value: Data,
                   keyknoxHash: Data) {
-        self.root1 = root1
-        self.root2 = root2
+        self.root = root
+        self.path = path
         self.key = key
         self.owner = owner
         self.identities = identities

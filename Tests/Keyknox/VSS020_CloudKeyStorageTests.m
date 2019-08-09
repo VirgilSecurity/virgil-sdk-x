@@ -588,15 +588,12 @@ static const NSTimeInterval timeout = 20.;
 
     NSData *data = [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
 
-    [self.keyknoxManager pushValueWithIdentities:@[self.identity]
-                                           root1:VSSCloudKeyStorage.root1
-                                           root2:VSSCloudKeyStorage.root2
-                                             key:VSSCloudKeyStorage.key
-                                            data:data
-                                    previousHash:nil
-                                      publicKeys:@[self.keyPair.publicKey]
-                                      privateKey:self.keyPair.privateKey
-                                      completion:^(VSSDecryptedKeyknoxValue *value, NSError *error) {
+    [self.keyknoxManager pushValueWithParams:nil
+                                        data:data
+                                previousHash:nil
+                                  publicKeys:@[self.keyPair.publicKey]
+                                  privateKey:self.keyPair.privateKey
+                                  completion:^(VSSDecryptedKeyknoxValue *value, NSError *error) {
         XCTAssert(value != nil && error == nil);
         
         [self.keyStorage deleteAllEntriesWithCompletion:^(NSError *error) {

@@ -36,6 +36,95 @@
 
 import Foundation
 
+@objc(VSSKeyknoxGetKeysParams) public class KeyknoxGetKeysParams: NSObject {
+    @objc public let identity: String?
+    @objc public let root: String?
+    @objc public let path: String?
+    
+    @objc public init(identity: String?,
+                      root: String?,
+                      path: String?) {
+        self.identity = identity
+        self.root = root
+        self.path = path
+        
+        super.init()
+    }
+}
+
+@objc(VSSKeyknoxDeleteParticipantParams) public class KeyknoxDeleteParticipantParams: NSObject {
+    @objc public let identity: String
+    @objc public let root: String
+    @objc public let path: String
+    @objc public let key: String?
+    
+    @objc public init(identity: String,
+                      root: String,
+                      path: String,
+                      key: String?) {
+        self.identity = identity
+        self.root = root
+        self.path = path
+        self.key = key
+        
+        super.init()
+    }
+}
+
+@objc(VSSKeyknoxResetParams) public class KeyknoxResetParams: NSObject {
+    @objc public let root: String?
+    @objc public let path: String?
+    @objc public let key: String?
+    
+    @objc public init(root: String?,
+                      path: String?,
+                      key: String?) {
+        self.root = root
+        self.path = path
+        self.key = key
+        
+        super.init()
+    }
+}
+
+@objc(VSSKeyknoxPullParams) public class KeyknoxPullParams: NSObject {
+    @objc public let identity: String
+    @objc public let root: String
+    @objc public let path: String
+    @objc public let key: String
+    
+    @objc public init(identity: String,
+                      root: String,
+                      path: String,
+                      key: String) {
+        self.identity = identity
+        self.root = root
+        self.path = path
+        self.key = key
+        
+        super.init()
+    }
+}
+
+@objc(VSSKeyknoxPushParams) public class KeyknoxPushParams: NSObject {
+    @objc public let identities: [String]
+    @objc public let root: String
+    @objc public let path: String
+    @objc public let key: String
+    
+    @objc public init(identities: [String],
+                      root: String,
+                      path: String,
+                      key: String) {
+        self.identities = identities
+        self.root = root
+        self.path = path
+        self.key = key
+        
+        super.init()
+    }
+}
+
 /// Protocol for KeyknoxClient
 ///
 /// See: KeyknoxClient for default implementation
@@ -43,19 +132,13 @@ import Foundation
     /// Push value to Keyknox service
     ///
     /// - Parameters:
-    ///   - identities: identities
-    ///   - root1: path root1
-    ///   - root2: path root2
-    ///   - key: key
+    ///   - params: params
     ///   - meta: meta data
     ///   - value: encrypted blob
     ///   - previousHash: hash of previous blob
     /// - Returns: EncryptedKeyknoxValue
     /// - Throws: Depends on implementation
-    @objc func pushValue(identities: [String],
-                         root1: String,
-                         root2: String,
-                         key: String,
+    @objc func pushValue(params: KeyknoxPushParams?,
                          meta: Data,
                          value: Data,
                          previousHash: Data?) throws -> EncryptedKeyknoxValue
@@ -64,38 +147,32 @@ import Foundation
     ///
     /// - Parameters:
     ///   - identity: Keyknox owner identity
-    ///   - root1: path root1
-    ///   - root2: path root2
+    ///   - root: path root
+    ///   - path: path path
     ///   - key: key
     /// - Returns: EncryptedKeyknoxValue
     /// - Throws: Depends on implementation
-    @objc func pullValue(identity: String,
-                         root1: String,
-                         root2: String,
-                         key: String) throws -> EncryptedKeyknoxValue
+    @objc func pullValue(params: KeyknoxPullParams?) throws -> EncryptedKeyknoxValue
 
     /// Get keys for given root
     ///
     /// - Parameters:
     ///   - identity: Keyknox owner identity
-    ///   - root1: path root1
-    ///   - root2: path root2
+    ///   - root: path root
+    ///   - path: path path
     /// - Returns: Array of keys
     /// - Throws: Depends on implementation
-    @objc func getKeys(identity: String,
-                       root1: String?,
-                       root2: String?) throws -> Set<String>
+    @objc func getKeys(params: KeyknoxGetKeysParams) throws -> Set<String>
 
     /// Resets Keyknox value (makes it empty). Also increments version
     ///
     /// - Parameters:
-    ///   - root1: path root1
-    ///   - root2: path root2
+    ///   - root: path root
+    ///   - path: path path
     ///   - key: key
     /// - Returns: DecryptedKeyknoxValue
     /// - Throws: Depends on implementation
-    @objc func resetValue(identity: String?,
-                          root1: String,
-                          root2: String,
-                          key: String?) throws -> DecryptedKeyknoxValue
+    @objc func resetValue(params: KeyknoxResetParams?) throws -> DecryptedKeyknoxValue
+    
+    @objc func deleteRecipient(params: KeyknoxDeleteParticipantParams) throws -> DecryptedKeyknoxValue
 }

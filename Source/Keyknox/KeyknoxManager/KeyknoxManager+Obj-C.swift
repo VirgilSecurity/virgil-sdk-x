@@ -39,89 +39,45 @@ import VirgilCrypto
 
 // MARK: - Obj-C extension
 extension KeyknoxManager {
-    @objc open func pushValue(identities: [String],
-                              root1: String,
-                              root2: String,
-                              key: String,
+    @objc open func pushValue(params: KeyknoxPushParams? = nil,
                               data: Data,
                               previousHash: Data?,
                               publicKeys: [VirgilPublicKey],
                               privateKey: VirgilPrivateKey,
                               completion: @escaping (DecryptedKeyknoxValue?, Error?) -> Void) {
-        self.pushValue(identities: identities,
-                       root1: root1,
-                       root2: root2,
-                       key: key,
+        self.pushValue(params: params,
                        data: data,
                        previousHash: previousHash,
                        publicKeys: publicKeys,
                        privateKey: privateKey).start(completion: completion)
     }
 
-    @objc open func pullValue(identity: String,
-                              root1: String,
-                              root2: String,
-                              key: String,
+    @objc open func pullValue(params: KeyknoxPullParams? = nil,
                               publicKeys: [VirgilPublicKey],
                               privateKey: VirgilPrivateKey,
                               completion: @escaping (DecryptedKeyknoxValue?, Error?) -> Void) {
-        self.pullValue(identity: identity,
-                       root1: root1,
-                       root2: root2,
-                       key: key,
+        self.pullValue(params: params,
                        publicKeys: publicKeys,
                        privateKey: privateKey).start(completion: completion)
     }
 
-    @objc open func getKeys(identity: String,
-                            root1: String?,
-                            root2: String?,
+    @objc open func getKeys(params: KeyknoxGetKeysParams,
                             completion: @escaping (Set<String>?, Error?) -> Void) {
-        self.getKeys(identity: identity, root1: root1, root2: root2).start(completion: completion)
+        self.getKeys(params: params).start(completion: completion)
     }
 
-    @objc open func resetValue(identity: String,
-                               root1: String,
-                               root2: String,
-                               key: String?,
+    @objc open func resetValue(params: KeyknoxResetParams,
                                completion: @escaping(DecryptedKeyknoxValue?, Error?) -> Void) {
-        self.resetValue(identity: identity, root1: root1, root2: root2, key: key).start(completion: completion)
+        self.resetValue(params: params).start(completion: completion)
     }
 
-    @objc open func updateRecipients(fromIdentity identity: String,
-                                     identities: [String],
-                                     root1: String,
-                                     root2: String,
-                                     key: String,
-                                     oldPublicKeys: [VirgilPublicKey],
-                                     oldPrivateKey: VirgilPrivateKey,
-                                     newPublicKeys: [VirgilPublicKey]? = nil,
-                                     newPrivateKey: VirgilPrivateKey? = nil,
-                                     completion: @escaping (DecryptedKeyknoxValue?, Error?) -> Void) {
-        self.updateRecipients(fromIdentity: identity,
-                              identities: identities,
-                              root1: root1,
-                              root2: root2,
-                              key: key,
-                              oldPublicKeys: oldPublicKeys,
-                              oldPrivateKey: oldPrivateKey,
-                              newPublicKeys: newPublicKeys,
-                              newPrivateKey: newPrivateKey).start(completion: completion)
-    }
-
-    @objc open func updateRecipients(identities: [String],
-                                     root1: String,
-                                     root2: String,
-                                     key: String,
+    @objc open func updateRecipients(params: KeyknoxPushParams? = nil,
                                      value: Data,
                                      previousHash: Data,
                                      newPublicKeys: [VirgilPublicKey],
                                      newPrivateKey: VirgilPrivateKey,
                                      completion: @escaping (DecryptedKeyknoxValue?, Error?) -> Void) {
-        self.updateRecipients(identities: identities,
-                              root1: root1,
-                              root2: root2,
-                              key: key,
+        self.updateRecipients(params: params,
                               value: value,
                               previousHash: previousHash,
                               newPublicKeys: newPublicKeys,
