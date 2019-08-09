@@ -78,7 +78,7 @@ import Foundation
     
     @objc public init(root: String? = nil,
                       path: String? = nil,
-                      key: String?) {
+                      key: String? = nil) {
         self.root = root
         self.path = path
         self.key = key
