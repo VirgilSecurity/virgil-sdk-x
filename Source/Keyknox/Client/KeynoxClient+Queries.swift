@@ -140,7 +140,7 @@ extension KeyknoxClient: KeyknoxClientProtocol {
         let request: ServiceRequest
         
         if let params = params {
-            guard let url = URL(string: "keyknox/v2/push", relativeTo: self.serviceUrl) else {
+            guard let url = URL(string: "keyknox/v2/pull", relativeTo: self.serviceUrl) else {
                 throw KeyknoxClientError.constructingUrl
             }
             
