@@ -205,9 +205,6 @@ import LocalAuthentication
                 query[kSecUseAuthenticationContext as String] = LAContext()
             }
         }
-        else {
-            query[kSecUseAuthenticationUI as String] = kSecUseAuthenticationUISkip
-        }
     #endif
     }
 
