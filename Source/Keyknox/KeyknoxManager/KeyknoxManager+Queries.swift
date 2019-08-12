@@ -39,6 +39,15 @@ import VirgilCrypto
 
 // MARK: - Queries
 extension KeyknoxManager {
+    /// Pushes value
+    ///
+    /// - Parameters:
+    ///   - params: Push params
+    ///   - data: data to push
+    ///   - previousHash: Previous hash
+    ///   - publicKeys: public keys to encrypt
+    ///   - privateKey: private key to sign
+    /// - Returns: GenericOperation<DecryptedKeyknoxValue>
     open func pushValue(params: KeyknoxPushParams? = nil,
                         data: Data,
                         previousHash: Data?,
@@ -67,6 +76,13 @@ extension KeyknoxManager {
         }
     }
 
+    /// Pulls value
+    ///
+    /// - Parameters:
+    ///   - params: Pull params
+    ///   - publicKeys: public keys to verify signature
+    ///   - privateKey: private key to decrypt
+    /// - Returns: GenericOperation<DecryptedKeyknoxValue>
     open func pullValue(params: KeyknoxPullParams? = nil,
                         publicKeys: [VirgilPublicKey],
                         privateKey: VirgilPrivateKey) -> GenericOperation<DecryptedKeyknoxValue> {
@@ -87,6 +103,10 @@ extension KeyknoxManager {
         }
     }
 
+    /// Returns set of keys
+    ///
+    /// - Parameter params: Get keys params
+    /// - Returns: GenericOperation<Set<String>>
     open func getKeys(params: KeyknoxGetKeysParams) -> GenericOperation<Set<String>> {
         return CallbackOperation { _, completion in
             self.queue.async {
@@ -102,9 +122,10 @@ extension KeyknoxManager {
         }
     }
 
-    /// Resets Keyknox value (makes it empty). Also increments version
+    /// Resets Keyknox value (makes it empty)
     ///
-    /// - Returns: GenericOperation<Void>
+    /// - Parameter params: reset params
+    /// - Returns: GenericOperation<DecryptedKeyknoxValue>
     open func resetValue(params: KeyknoxResetParams? = nil) -> GenericOperation<DecryptedKeyknoxValue> {
         return CallbackOperation { _, completion in
             self.queue.async {
@@ -161,13 +182,17 @@ extension KeyknoxManager {
             }
         }
     }
-    
+
+    /// Deletes recipient from list of shared
+    ///
+    /// - Parameter params: Delete recipient params
+    /// - Returns: GenericOperation<DecryptedKeyknoxValue>
     open func deleteRecipient(params: KeyknoxDeleteRecipientParams) -> GenericOperation<DecryptedKeyknoxValue> {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
                     let keyknoxValue = try self.keyknoxClient.deleteRecipient(params: params)
-                    
+
                     completion(keyknoxValue, nil)
                 }
                 catch {

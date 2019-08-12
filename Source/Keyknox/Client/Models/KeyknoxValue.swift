@@ -63,7 +63,7 @@ import Foundation
                   value: keyknoxData.value,
                   keyknoxHash: keyknoxHash)
     }
-    
+
     internal convenience init(keyknoxData: KeyknoxData, keyknoxHash: Data, identity: String) {
         self.init(root: KeyknoxClient.keyStorageRoot,
                   path: KeyknoxClient.keyStoragePath,

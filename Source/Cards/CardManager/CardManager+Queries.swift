@@ -249,6 +249,10 @@ extension CardManager {
         }
     }
 
+    /// Returns list of cards that were replaced with newer ones
+    ///
+    /// - Parameter cardIds: card ids to check
+    /// - Returns: GenericOperation<[String]>
     open func getOutdated(cardIds: [String]) -> GenericOperation<[String]> {
         return CallbackOperation { _, completion in
             do {

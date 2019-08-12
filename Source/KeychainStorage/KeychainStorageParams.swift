@@ -47,7 +47,7 @@ import Security
 
         super.init()
     }
-    
+
     /// Factory method.
     ///
     /// - Parameter appName: application name, if nil - redirects to Bundle.main.bundleIdentifier

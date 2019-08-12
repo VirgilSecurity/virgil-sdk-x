@@ -42,16 +42,16 @@ import Foundation
     @objc public var trustedApplications: [String] = []
 #else
     // swiftlint:disable line_length
-    
+
     /// Access group. See https://developer.apple.com/reference/security/ksecattraccessgroup
     @objc public var accessGroup: String? = nil
-    
+
     /// Accessibility.
     /// See https://developer.apple.com/documentation/security/keychain_services/keychain_items/restricting_keychain_item_accessibility
     @objc public var accessibility: String = kSecAttrAccessibleAfterFirstUnlock as String
-    
+
     // swiftlint:enable line_length
 #endif
-    
+
     @objc public var biometricallyProtected: Bool = false
 }

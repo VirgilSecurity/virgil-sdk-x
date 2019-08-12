@@ -88,24 +88,24 @@ extension KeychainStorage: KeychainStorageProtocol {
     public func retrieveAllEntries() throws -> [KeychainEntry] {
         return try self.retrieveAllEntries(queryOptions: nil)
     }
-    
+
     public func deleteEntry(withName name: String) throws {
         try self.deleteEntry(withName: name, queryOptions: nil)
     }
-    
+
     public func existsEntry(withName name: String) throws -> Bool {
         return try self.existsEntry(withName: name, queryOptions: nil)
     }
-    
+
     public func retrieveEntry(withName name: String) throws -> KeychainEntry {
         return try self.retrieveEntry(withName: name, queryOptions: nil)
     }
-    
-    public func updateEntry(withName name: String, data: Data, meta: [String : String]?) throws {
+
+    public func updateEntry(withName name: String, data: Data, meta: [String: String]?) throws {
         try self.updateEntry(withName: name, data: data, meta: meta, queryOptions: nil)
     }
-    
-    public func store(data: Data, withName name: String, meta: [String : String]?) throws -> KeychainEntry {
+
+    public func store(data: Data, withName name: String, meta: [String: String]?) throws -> KeychainEntry {
         return try self.store(data: data, withName: name, meta: meta, queryOptions: nil)
     }
 }

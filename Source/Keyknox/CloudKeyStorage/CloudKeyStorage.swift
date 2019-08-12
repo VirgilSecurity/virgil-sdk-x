@@ -41,13 +41,13 @@ import VirgilCrypto
 @objc(VSSCloudKeyStorage) open class CloudKeyStorage: NSObject {
     /// KeyknoxManager
     @objc public let keyknoxManager: KeyknoxManager
-    
+
     /// Public keys used for encryption and signature verification
     @objc public internal(set) var publicKeys: [VirgilPublicKey]
-    
+
     /// Private key used for decryption and signing
     @objc public internal(set) var privateKey: VirgilPrivateKey
-    
+
     @objc public static let root = "DEFAULT"
     @objc public static let path = "DEFAULT"
     @objc public static let key = "DEFAULT"
@@ -326,7 +326,8 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
                 do {
                     let response = try self.keyknoxManager
                         .resetValue()
-                        .startSync().get()
+                        .startSync()
+                        .get()
 
                     self.cache = try self.cloudEntrySerializer.deserialize(data: response.value)
                     self.decryptedKeyknoxData = response
@@ -360,7 +361,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
                         completion((), nil)
                         return
                     }
-                    
+
                     let publicKeys = newPublicKeys ?? self.publicKeys
                     let privateKey = newPrivateKey ?? self.privateKey
 
@@ -374,7 +375,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
 
                     self.cache = try self.cloudEntrySerializer.deserialize(data: response.value)
                     self.decryptedKeyknoxData = response
-                    
+
                     self.publicKeys = publicKeys
                     self.privateKey = privateKey
 
@@ -397,7 +398,8 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
                     let response = try self.keyknoxManager
                         .pullValue(publicKeys: self.publicKeys,
                                    privateKey: self.privateKey)
-                        .startSync().get()
+                        .startSync()
+                        .get()
 
                     self.cache = try self.cloudEntrySerializer.deserialize(data: response.value)
                     self.decryptedKeyknoxData = response

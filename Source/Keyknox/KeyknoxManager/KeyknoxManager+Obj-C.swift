@@ -39,6 +39,15 @@ import VirgilCrypto
 
 // MARK: - Obj-C extension
 extension KeyknoxManager {
+    /// Pushes value
+    ///
+    /// - Parameters:
+    ///   - params: Push params
+    ///   - data: data to push
+    ///   - previousHash: Previous hash
+    ///   - publicKeys: public keys to encrypt
+    ///   - privateKey: private key to sign
+    ///   - completion: completion handler
     @objc open func pushValue(params: KeyknoxPushParams? = nil,
                               data: Data,
                               previousHash: Data?,
@@ -49,28 +58,54 @@ extension KeyknoxManager {
                        data: data,
                        previousHash: previousHash,
                        publicKeys: publicKeys,
-                       privateKey: privateKey).start(completion: completion)
+                       privateKey: privateKey)
+            .start(completion: completion)
     }
 
+    /// Pulls value
+    ///
+    /// - Parameters:
+    ///   - params: Pull params
+    ///   - publicKeys: public keys to verify signature
+    ///   - privateKey: private key to decrypt
+    ///   - completion: completion handler
     @objc open func pullValue(params: KeyknoxPullParams? = nil,
                               publicKeys: [VirgilPublicKey],
                               privateKey: VirgilPrivateKey,
                               completion: @escaping (DecryptedKeyknoxValue?, Error?) -> Void) {
         self.pullValue(params: params,
                        publicKeys: publicKeys,
-                       privateKey: privateKey).start(completion: completion)
+                       privateKey: privateKey)
+            .start(completion: completion)
     }
 
+    /// Returns set of keys
+    ///
+    /// - Parameter params: Get keys params
+    ///   - completion: completion handler
     @objc open func getKeys(params: KeyknoxGetKeysParams,
                             completion: @escaping (Set<String>?, Error?) -> Void) {
         self.getKeys(params: params).start(completion: completion)
     }
 
+    /// Resets Keyknox value (makes it empty)
+    ///
+    ///   - params: Reset pararms
+    ///   - completion: completion handler
     @objc open func resetValue(params: KeyknoxResetParams,
                                completion: @escaping(DecryptedKeyknoxValue?, Error?) -> Void) {
         self.resetValue(params: params).start(completion: completion)
     }
 
+    /// Updates public keys for encryption and signature verification
+    /// and private key for decryption and signature generation
+    ///
+    /// - Parameters:
+    ///   - value: Current Keyknox value
+    ///   - previousHash: Previous Keyknox value hash
+    ///   - newPublicKeys: New public keys that will be used for encryption and signature verification
+    ///   - newPrivateKey: New private key that will be used for decryption and signature generation
+    ///   - completion: completion handler
     @objc open func updateRecipients(params: KeyknoxPushParams? = nil,
                                      value: Data,
                                      previousHash: Data,
@@ -81,9 +116,15 @@ extension KeyknoxManager {
                               value: value,
                               previousHash: previousHash,
                               newPublicKeys: newPublicKeys,
-                              newPrivateKey: newPrivateKey).start(completion: completion)
+                              newPrivateKey: newPrivateKey)
+            .start(completion: completion)
     }
-    
+
+    /// Deletes recipient from list of shared
+    ///
+    /// - Parameters:
+    ///   - params: Delete recipient params
+    ///   - completion: completion handler
     @objc open func deleteRecipient(params: KeyknoxDeleteRecipientParams,
                                     completion: @escaping (DecryptedKeyknoxValue?, Error?) -> Void) {
         self.deleteRecipient(params: params).start(completion: completion)

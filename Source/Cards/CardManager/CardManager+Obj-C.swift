@@ -98,6 +98,11 @@ extension CardManager {
         self.searchCards(identities: identities).start(completion: completion)
     }
 
+    /// Returns list of cards that were replaced with newer ones
+    ///
+    /// - Parameters:
+    ///   - cardIds: card ids to check
+    ///   - completion: completion handler, called with list of old card ids or corresponding error
     @objc open func getOutdated(cardIds: [String], completion: @escaping ([String]?, Error?) -> Void) {
         self.getOutdated(cardIds: cardIds).start(completion: completion)
     }

@@ -36,28 +36,55 @@
 
 import Foundation
 
+/// Keyknox get parameters
 @objc(VSSKeyknoxGetKeysParams) public class KeyknoxGetKeysParams: NSObject {
+    /// Keyknox owner identity
     @objc public let identity: String?
+
+    /// Root
     @objc public let root: String?
+
+    /// Path
     @objc public let path: String?
-    
+
+    /// Init
+    ///
+    /// - Parameters:
+    ///   - identity: Keyknox owner identity
+    ///   - root: Root
+    ///   - path: Path
     @objc public init(identity: String? = nil,
                       root: String? = nil,
                       path: String? = nil) {
         self.identity = identity
         self.root = root
         self.path = path
-        
+
         super.init()
     }
 }
 
+/// Keyknox delete participant parameters
 @objc(VSSKeyknoxDeleteParticipantParams) public class KeyknoxDeleteRecipientParams: NSObject {
+    /// Recipient identity
     @objc public let identity: String
+
+    /// Root
     @objc public let root: String
+
+    /// Path
     @objc public let path: String
+
+    /// Key
     @objc public let key: String?
-    
+
+    /// Init
+    ///
+    /// - Parameters:
+    ///   - identity: Recipient identity
+    ///   - root: Root
+    ///   - path: Path
+    ///   - key: Key
     @objc public init(identity: String,
                       root: String,
                       path: String,
@@ -66,34 +93,61 @@ import Foundation
         self.root = root
         self.path = path
         self.key = key
-        
+
         super.init()
     }
 }
 
+/// Keyknox reset parameters
 @objc(VSSKeyknoxResetParams) public class KeyknoxResetParams: NSObject {
+    /// Root
     @objc public let root: String?
+
+    /// Path
     @objc public let path: String?
+
+    /// Key
     @objc public let key: String?
-    
+
+    /// Root
+    ///
+    /// - Parameters:
+    ///   - root: Root
+    ///   - path: Path
+    ///   - key: key descriptionKey
     @objc public init(root: String? = nil,
                       path: String? = nil,
                       key: String? = nil) {
         self.root = root
         self.path = path
         self.key = key
-        
+
         super.init()
     }
 }
 
+/// Keyknox pull parameters
 @objc(VSSKeyknoxPullParams) public class KeyknoxPullParams: NSObject {
-    @objc public let identity: String
+    /// Owner identity
+    @objc public let identity: String?
+
+    /// Root
     @objc public let root: String
+
+    /// Path
     @objc public let path: String
+
+    /// Key
     @objc public let key: String
-    
-    @objc public init(identity: String,
+
+    /// Init
+    ///
+    /// - Parameters:
+    ///   - identity: Owner identity
+    ///   - root: Root
+    ///   - path: Path
+    ///   - key: Key
+    @objc public init(identity: String?,
                       root: String,
                       path: String,
                       key: String) {
@@ -101,17 +155,32 @@ import Foundation
         self.root = root
         self.path = path
         self.key = key
-        
+
         super.init()
     }
 }
 
+/// Keyknox push parameters
 @objc(VSSKeyknoxPushParams) public class KeyknoxPushParams: NSObject {
+    /// Identities with accrss
     @objc public let identities: [String]
+
+    /// Root
     @objc public let root: String
+
+    /// Path
     @objc public let path: String
+
+    /// Key
     @objc public let key: String
-    
+
+    /// Init
+    ///
+    /// - Parameters:
+    ///   - identities: Identities with access
+    ///   - root: Root
+    ///   - path: Path
+    ///   - key: Key
     @objc public init(identities: [String],
                       root: String,
                       path: String,
@@ -120,7 +189,7 @@ import Foundation
         self.root = root
         self.path = path
         self.key = key
-        
+
         super.init()
     }
 }

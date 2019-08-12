@@ -63,6 +63,11 @@ import Foundation
     /// - Throws: Depends on implementation
     @objc func searchCards(identities: [String]) throws -> [RawSignedModel]
 
+    /// Returns list of cards that were replaced with newer ones
+    ///
+    /// - Parameter cardIds: card ids to check
+    /// - Returns: List of old card ids
+    /// - Throws: Depends on implementation
     @objc func getOutdated(cardIds: [String]) throws -> [String]
 
     /// Revokes card. Revoked card gets isOutdated flag to be set to true.

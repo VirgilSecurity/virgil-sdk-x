@@ -207,7 +207,8 @@ extension SyncKeyStorage {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
-                    let keychainEntries = try self.storeEntriesSync([KeyknoxKeyEntry(name: name, data: data, meta: meta)])
+                    let entry = KeyknoxKeyEntry(name: name, data: data, meta: meta)
+                    let keychainEntries = try self.storeEntriesSync([entry])
                     guard keychainEntries.count == 1, let keychainEntry = keychainEntries.first else {
                         throw SyncKeyStorageError.entrySavingError
                     }

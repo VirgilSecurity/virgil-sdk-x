@@ -155,7 +155,9 @@ import VirgilCrypto
     }
 
     private func getFileNames(url: URL) throws -> [String] {
-        let fileURLs = try self.fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+        let fileURLs = try self.fileManager.contentsOfDirectory(at: url,
+                                                                includingPropertiesForKeys: nil,
+                                                                options: .skipsHiddenFiles)
 
         return fileURLs.map { $0.lastPathComponent }
     }
@@ -181,8 +183,8 @@ import VirgilCrypto
     }
 }
 
-// MARK: - Public API
-extension FileSystem {
+/// MARK: - Public API
+public extension FileSystem {
     /// Write data
     ///
     /// - Parameters:
@@ -190,7 +192,7 @@ extension FileSystem {
     ///   - name: file name
     ///   - subdir: subdirectory
     /// - Throws: Rethrows from `FileManager`
-    @objc public func write(data: Data, name: String, subdir: String? = nil) throws {
+    @objc func write(data: Data, name: String, subdir: String? = nil) throws {
         let url = try self.getFullUrl(name: name, subdir: subdir)
 
         try self.writeFile(url: url, data: data)
@@ -203,13 +205,18 @@ extension FileSystem {
     ///   - subdir: subdirectory
     /// - Returns: Data
     /// - Throws: Rethrows from `FileManager`
-    @objc public func read(name: String, subdir: String? = nil) throws -> Data {
+    @objc func read(name: String, subdir: String? = nil) throws -> Data {
         let url = try self.getFullUrl(name: name, subdir: subdir)
 
         return try self.readFile(url: url)
     }
 
-    @objc public func getFileNames(subdir: String? = nil) throws -> [String] {
+    /// Returns file names in given subdirectoty
+    ///
+    /// - Parameter subdir: subdirectory
+    /// - Returns: File names
+    /// - Throws: Rethrows from `FileManager`
+    @objc func getFileNames(subdir: String? = nil) throws -> [String] {
         let url = try self.getFullUrl(name: nil, subdir: subdir)
 
         return try self.getFileNames(url: url)
@@ -221,7 +228,7 @@ extension FileSystem {
     ///   - name: file name
     ///   - subdir: subdirectory
     /// - Throws: Rethrows from `FileManager`
-    @objc public func delete(name: String, subdir: String? = nil) throws {
+    @objc func delete(name: String, subdir: String? = nil) throws {
         let url = try self.getFullUrl(name: name, subdir: subdir)
 
         try self.fileManager.removeItem(at: url)
@@ -231,7 +238,7 @@ extension FileSystem {
     ///
     /// - Parameter subdir: subdirectory
     /// - Throws: Rethrows from `FileManager`
-    @objc public func delete(subdir: String? = nil) throws {
+    @objc func delete(subdir: String? = nil) throws {
         let url = try self.getFullUrl(name: nil, subdir: subdir)
 
         try self.fileManager.removeItem(at: url)

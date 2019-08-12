@@ -84,6 +84,11 @@ import Foundation
     /// - Returns: DecryptedKeyknoxValue
     /// - Throws: Depends on implementation
     @objc func resetValue(params: KeyknoxResetParams?) throws -> DecryptedKeyknoxValue
-    
+
+    /// Deletes recipient
+    ///
+    /// - Parameter params: Delete recipient params
+    /// - Returns: DecryptedKeyknoxValue
+    /// - Throws: Depends on implementation
     @objc func deleteRecipient(params: KeyknoxDeleteRecipientParams) throws -> DecryptedKeyknoxValue
 }

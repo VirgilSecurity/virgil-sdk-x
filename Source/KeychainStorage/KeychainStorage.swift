@@ -45,6 +45,7 @@ import LocalAuthentication
 /// - errorParsingKeychainResponse: Error while deserializing keychain response
 /// - invalidAppBundle: Bundle.main.bundleIdentifier is empty
 /// - keychainError: Keychain returned error
+/// - creatingAccessControlFailed: SecAccessControlCreateWithFlags returned error
 @objc(VSSKeychainStorageErrorCodes) public enum KeychainStorageErrorCodes: Int {
     case utf8ConvertingError = 1
     case emptyKeychainResponse = 2
@@ -52,6 +53,7 @@ import LocalAuthentication
     case errorParsingKeychainResponse = 4
     case invalidAppBundle = 5
     case keychainError = 6
+    case creatingAccessControlFailed = 7
 }
 
 /// Class respresenting error returned from KeychainStorage
@@ -146,10 +148,10 @@ import LocalAuthentication
         return access
     }
 #endif
-    
+
     @objc public func createAccessControl() throws -> SecAccessControl {
         let flags: SecAccessControlCreateFlags
-        
+
     #if os(macOS)
         if #available(OSX 10.13.4, *) {
             flags = [.biometryCurrentSet, .or, .devicePasscode]
@@ -174,16 +176,15 @@ import LocalAuthentication
                                                            flags,
                                                            nil)
             else {
-                // FIXME
-                throw NSError()
+                throw KeychainStorageError(errCode: KeychainStorageErrorCodes.creatingAccessControlFailed)
         }
-        
+
         return access
     }
-    
+
     @objc public func createLAContext() throws -> LAContext {
         let context = LAContext()
-        
+
         return context
     }
 
@@ -275,7 +276,7 @@ import LocalAuthentication
         query[kSecAttrIsInvisible as String] = true
         #endif
     #endif
-        
+
         if queryOptions.biometricallyProtected {
             query.removeValue(forKey: kSecAttrAccessible as String)
             query[kSecAttrAccessControl as String] = try self.createAccessControl()
@@ -339,7 +340,7 @@ import LocalAuthentication
             kSecAttrComment as String: self.commentString()
         ]
     #endif
-        
+
         if queryOptions.biometricallyProtected {
             query[kSecAttrAccessControl as String] = try self.createAccessControl()
             query[kSecUseAuthenticationContext as String] = try self.createLAContext()
@@ -395,7 +396,7 @@ import LocalAuthentication
             kSecAttrComment as String: self.commentString()
         ]
     #endif
-        
+
         if queryOptions.biometricallyProtected {
             query[kSecAttrAccessControl as String] = try self.createAccessControl()
             query[kSecUseAuthenticationContext as String] = try self.createLAContext()
@@ -445,7 +446,7 @@ import LocalAuthentication
             kSecAttrComment as String: self.commentString()
         ]
     #endif
-        
+
         if queryOptions.biometricallyProtected {
             query[kSecAttrAccessControl as String] = try self.createAccessControl()
             query[kSecUseAuthenticationContext as String] = try self.createLAContext()
@@ -500,7 +501,7 @@ import LocalAuthentication
             kSecAttrComment as String: self.commentString()
         ]
     #endif
-        
+
         if queryOptions.biometricallyProtected {
             // FIXME
             query[kSecAttrAccessControl as String] = try self.createAccessControl()
@@ -519,7 +520,7 @@ import LocalAuthentication
     /// - Throws: KeychainStorageError
     @objc open func deleteAllEntries(queryOptions: KeychainQueryOptions? = nil) throws {
         let queryOptions = queryOptions ?? KeychainQueryOptions()
-        
+
     #if os(iOS) || os(tvOS) || os(watchOS)
         var query: [String: Any] = [
             kSecClass as String: kSecClassKey,
@@ -536,7 +537,7 @@ import LocalAuthentication
             kSecAttrComment as String: self.commentString()
         ]
     #endif
-        
+
         if queryOptions.biometricallyProtected {
             // FIXME
             query[kSecAttrAccessControl as String] = try self.createAccessControl()
