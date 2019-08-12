@@ -35,47 +35,23 @@
 //
 
 import Foundation
-import Security
 
-/// Class responsible for KeychainStorage setup
-@objc(VSSKeychainStorageParams) public final class KeychainStorageParams: NSObject {
-    /// Application name
-    @objc public let appName: String
-
+@objc(VSSKeychainQueryOptions) public class KeychainQueryOptions: NSObject {
+#if os(macOS)
+    /// Trusted applications
+    @objc public var trustedApplications: [String] = []
+#else
     // swiftlint:disable line_length
-
+    
     /// Access group. See https://developer.apple.com/reference/security/ksecattraccessgroup
-    @objc public let accessGroup: String?
-
+    @objc public var accessGroup: String? = nil
+    
     /// Accessibility.
     /// See https://developer.apple.com/documentation/security/keychain_services/keychain_items/restricting_keychain_item_accessibility
-    @objc public let accessibility: String
-
+    @objc public var accessibility: String = kSecAttrAccessibleAfterFirstUnlock as String
+    
     // swiftlint:enable line_length
-
-    internal init(appName: String, accessGroup: String?, accessibility: String?) {
-        self.appName = appName
-        self.accessGroup = accessGroup
-        self.accessibility = accessibility ?? kSecAttrAccessibleAfterFirstUnlock as String
-
-        super.init()
-    }
-
-    /// Factory method.
-    ///
-    /// - Parameters:
-    ///   - accessGroup: accessGroup. Default value is nil
-    ///   - accessibility: accessibility. Default value is kSecAttrAccessibleAfterFirstUnlock
-    /// - Returns: Initialized KeychainStorageParams
-    /// - Throws: KeychainStorageError
-    @objc public static func makeKeychainStorageParams(appName: String? = nil,
-                                                       accessGroup: String? = nil,
-                                                       accessibility: String? = nil)
-        throws -> KeychainStorageParams {
-        guard let appName = appName ?? Bundle.main.bundleIdentifier else {
-            throw KeychainStorageError(errCode: .invalidAppBundle)
-        }
-
-        return KeychainStorageParams(appName: appName, accessGroup: accessGroup, accessibility: accessibility)
-    }
+#endif
+    
+    @objc public var biometricallyProtected: Bool = false
 }

@@ -14,9 +14,5 @@ Pod::Spec.new do |s|
   s.source_files                = 'Source/**/*.{h,m,swift}'
   s.public_header_files         = 'Source/VirgilSDK.h',
                                   'Source/KeychainStorage/*.h'
-  s.ios.exclude_files           = "Source/**/macOS/*.{h,m,swift}"
-  s.osx.exclude_files           = "Source/**/iOS/*.{h,m,swift}"
-  s.tvos.exclude_files          = "Source/**/macOS/*.{h,m,swift}"
-  s.watchos.exclude_files       = "Source/**/macOS/*.{h,m,swift}"
   s.dependency "VirgilCrypto", "~> 5.0"
 end

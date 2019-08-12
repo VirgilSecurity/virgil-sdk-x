@@ -66,10 +66,9 @@ static const NSTimeInterval timeout = 20.;
 
     self.keyknoxManager = keyknoxManager;
     
-    self.keyStorage = [[VSSCloudKeyStorage alloc] initWithIdentity:identity
-                                                    keyknoxManager:keyknoxManager
-                                                        publicKeys:@[keyPair.publicKey]
-                                                        privateKey:keyPair.privateKey];
+    self.keyStorage = [[VSSCloudKeyStorage alloc] initWithKeyknoxManager:keyknoxManager
+                                                              publicKeys:@[keyPair.publicKey]
+                                                              privateKey:keyPair.privateKey];
 }
 
 - (void)tearDown {

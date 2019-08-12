@@ -58,23 +58,20 @@ class VSS004_SyncKeyStorageTests: XCTestCase {
 
         let keyknoxManager = utils.setupKeyknoxManager(client: keyknoxClient)
 
-        self.cloudKeyStorage = CloudKeyStorage(identity: identity,
-                                               keyknoxManager: keyknoxManager,
+        self.cloudKeyStorage = CloudKeyStorage(keyknoxManager: keyknoxManager,
                                                publicKeys: [keyPair.publicKey],
                                                privateKey: keyPair.privateKey)
         try! self.cloudKeyStorage.retrieveCloudEntries().startSync().get()
 
-        let cloudKeyStorage = CloudKeyStorage(identity: identity,
-                                              keyknoxManager: keyknoxManager,
+        let cloudKeyStorage = CloudKeyStorage(keyknoxManager: keyknoxManager,
                                               publicKeys: [keyPair.publicKey],
                                               privateKey: keyPair.privateKey)
         
     #if os(macOS)
         self.syncKeyStorage = SyncKeyStorage(identity: identity,
-                                             keychainStorage: KeychainStorage(storageParams: KeychainStorageParams(appName: "Tests",
-                                                                                                                   trustedApplications: [])),
+                                             keychainStorage: KeychainStorage(storageParams: try! KeychainStorageParams.makeKeychainStorageParams(appName: "test")),
                                              cloudKeyStorage: cloudKeyStorage)
-        let params = KeychainStorageParams(appName: "Tests", trustedApplications: [])
+        let params = try! KeychainStorageParams.makeKeychainStorageParams(appName: "test")
     #elseif os(iOS) || os(tvOS)
         self.syncKeyStorage = try! SyncKeyStorage(identity: identity, cloudKeyStorage: cloudKeyStorage)
         

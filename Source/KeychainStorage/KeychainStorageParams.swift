@@ -42,33 +42,23 @@ import Security
     /// Application name
     @objc public let appName: String
 
-    /// Trusted applications
-    @objc public let trustedApplications: [String]
-
-    /// Init
-    ///
-    /// - Parameters:
-    ///   - appName: Application name
-    ///   - trustedApplications: List of trusted applications
-    @objc public init(appName: String, trustedApplications: [String]) {
+    internal init(appName: String) {
         self.appName = appName
-        self.trustedApplications = trustedApplications
 
         super.init()
     }
-
-    /// Fabric method
+    
+    /// Factory method.
     ///
-    /// - Parameters:
-    ///   - trustedApplications: List of trusted applications
+    /// - Parameter appName: application name, if nil - redirects to Bundle.main.bundleIdentifier
     /// - Returns: Initialized KeychainStorageParams
     /// - Throws: KeychainStorageError
-    @objc public static func makeKeychainStorageParams(appName: String? = nil,
-                                                       trustedApplications: [String] = []) throws -> KeychainStorageParams {
+    @objc public static func makeKeychainStorageParams(appName: String? = nil)
+        throws -> KeychainStorageParams {
         guard let appName = appName ?? Bundle.main.bundleIdentifier else {
             throw KeychainStorageError(errCode: .invalidAppBundle)
         }
 
-        return KeychainStorageParams(appName: appName, trustedApplications: [])
+        return KeychainStorageParams(appName: appName)
     }
 }
