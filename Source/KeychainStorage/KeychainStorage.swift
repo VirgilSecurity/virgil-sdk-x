@@ -35,7 +35,7 @@
 //
 
 import Foundation
-#if !os(watchOS)
+#if os(macOS) || os(iOS)
 import LocalAuthentication
 #endif
 
@@ -151,7 +151,7 @@ import LocalAuthentication
     }
 #endif
 
-#if !os(watchOS)
+#if os(macOS) || os(iOS)
     @objc public func createAccessControl() throws -> SecAccessControl {
         let flags: SecAccessControlCreateFlags
 
@@ -167,13 +167,6 @@ import LocalAuthentication
         }
     #elseif os(iOS)
         if #available(iOS 11.3, *) {
-            flags = [.biometryCurrentSet, .or, .devicePasscode]
-        }
-        else {
-            flags = [.touchIDCurrentSet, .or, .devicePasscode]
-        }
-    #elseif os(tvOS)
-        if #available(tvOS 11.3, *) {
             flags = [.biometryCurrentSet, .or, .devicePasscode]
         }
         else {
@@ -195,15 +188,12 @@ import LocalAuthentication
 
     private func addBiometricParams(toQuery query: inout [String: Any],
                                     withQueryOptions queryOptions: KeychainQueryOptions) throws {
-    #if !os(watchOS)
+    #if os(macOS) || os(iOS)
         if queryOptions.biometricallyProtected {
             query.removeValue(forKey: kSecAttrAccessible as String)
             query[kSecAttrAccessControl as String] = try self.createAccessControl()
             query[kSecUseOperationPrompt as String] = queryOptions.biometricPromt
-            
-            if #available(tvOS 10.0, *) {
-                query[kSecUseAuthenticationContext as String] = LAContext()
-            }
+            query[kSecUseAuthenticationContext as String] = LAContext()
         }
     #endif
     }

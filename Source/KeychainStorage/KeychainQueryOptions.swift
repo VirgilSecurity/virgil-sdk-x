@@ -53,7 +53,7 @@ import Foundation
     // swiftlint:enable line_length
 #endif
 
-#if !os(watchOS)
+#if os(macOS) || os(iOS)
     /// Use biometric protection
     @objc public var biometricallyProtected: Bool = false
 
