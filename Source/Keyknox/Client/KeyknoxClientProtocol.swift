@@ -56,31 +56,21 @@ import Foundation
 
     /// Pulls values from Keyknox service
     ///
-    /// - Parameters:
-    ///   - identity: Keyknox owner identity
-    ///   - root: path root
-    ///   - path: path path
-    ///   - key: key
+    /// - Parameter params: Pull params
     /// - Returns: EncryptedKeyknoxValue
     /// - Throws: Depends on implementation
     @objc func pullValue(params: KeyknoxPullParams?) throws -> EncryptedKeyknoxValue
 
     /// Get keys for given root
     ///
-    /// - Parameters:
-    ///   - identity: Keyknox owner identity
-    ///   - root: path root
-    ///   - path: path path
+    /// - Parameter params: Get keys params
     /// - Returns: Array of keys
     /// - Throws: Depends on implementation
     @objc func getKeys(params: KeyknoxGetKeysParams) throws -> Set<String>
 
-    /// Resets Keyknox value (makes it empty). Also increments version
+    /// Resets Keyknox value (makes it empty)
     ///
-    /// - Parameters:
-    ///   - root: path root
-    ///   - path: path path
-    ///   - key: key
+    /// - Parameter params: Reset params
     /// - Returns: DecryptedKeyknoxValue
     /// - Throws: Depends on implementation
     @objc func resetValue(params: KeyknoxResetParams?) throws -> DecryptedKeyknoxValue

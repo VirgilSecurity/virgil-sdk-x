@@ -159,11 +159,7 @@ extension KeyknoxClient: KeyknoxClientProtocol {
 
     /// Pulls values from Keyknox service
     ///
-    /// - Parameters:
-    ///   - identity: Keyknox owner identity
-    ///   - root: path root
-    ///   - path: path path
-    ///   - key: key
+    /// - Parameter params: Pull params
     /// - Returns: EncryptedKeyknoxValue
     /// - Throws:
     ///   - KeyknoxClientError.constructingUrl, if url initialization failed
@@ -224,10 +220,7 @@ extension KeyknoxClient: KeyknoxClientProtocol {
 
     /// Get keys for given root
     ///
-    /// - Parameters:
-    ///   - identity: Keyknox owner identity
-    ///   - root: path root
-    ///   - path: path path
+    /// - Parameter params: Get keys params
     /// - Returns: Array of keys
     /// - Throws:
     ///   - KeyknoxClientError.constructingUrl, if url initialization failed
@@ -269,12 +262,9 @@ extension KeyknoxClient: KeyknoxClientProtocol {
         return Set(keys)
     }
 
-    /// Resets Keyknox value (makes it empty). Also increments version
+    /// Resets Keyknox value (makes it empty)
     ///
-    /// - Parameters:
-    ///   - root: path root
-    ///   - path: path path
-    ///   - key: key
+    /// - Parameter params: Reset params
     /// - Returns: DecryptedKeyknoxValue
     /// - Throws:
     ///   - KeyknoxClientError.constructingUrl, if url initialization failed

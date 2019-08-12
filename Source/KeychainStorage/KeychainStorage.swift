@@ -191,12 +191,6 @@ import LocalAuthentication
 
         return access
     }
-
-    @objc public func createLAContext() throws -> LAContext {
-        let context = LAContext()
-
-        return context
-    }
 #endif
 
     private func addBiometricParams(toQuery query: inout [String: Any],
@@ -205,8 +199,11 @@ import LocalAuthentication
         if queryOptions.biometricallyProtected {
             query.removeValue(forKey: kSecAttrAccessible as String)
             query[kSecAttrAccessControl as String] = try self.createAccessControl()
-            query[kSecUseAuthenticationContext as String] = try self.createLAContext()
             query[kSecUseOperationPrompt as String] = queryOptions.biometricPromt
+            
+            if #available(tvOS 10.0, *) {
+                query[kSecUseAuthenticationContext as String] = LAContext()
+            }
         }
         else {
             query[kSecUseAuthenticationUI as String] = kSecUseAuthenticationUISkip
