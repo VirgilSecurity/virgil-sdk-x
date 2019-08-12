@@ -35,7 +35,9 @@
 //
 
 import Foundation
+#if !os(watchOS)
 import LocalAuthentication
+#endif
 
 /// Declares error codes for KeychainStorage. See KeychainStorageError
 ///
@@ -149,6 +151,7 @@ import LocalAuthentication
     }
 #endif
 
+#if !os(watchOS)
     @objc public func createAccessControl() throws -> SecAccessControl {
         let flags: SecAccessControlCreateFlags
 
@@ -162,8 +165,15 @@ import LocalAuthentication
         else {
             flags = [.devicePasscode]
         }
-    #else
+    #elseif os(iOS)
         if #available(iOS 11.3, *) {
+            flags = [.biometryCurrentSet, .or, .devicePasscode]
+        }
+        else {
+            flags = [.touchIDCurrentSet, .or, .devicePasscode]
+        }
+    #elseif os(tvOS)
+        if #available(tvOS 11.3, *) {
             flags = [.biometryCurrentSet, .or, .devicePasscode]
         }
         else {
@@ -186,6 +196,22 @@ import LocalAuthentication
         let context = LAContext()
 
         return context
+    }
+#endif
+
+    private func addBiometricParams(toQuery query: inout [String: Any],
+                                    withQueryOptions queryOptions: KeychainQueryOptions) throws {
+    #if !os(watchOS)
+        if queryOptions.biometricallyProtected {
+            query.removeValue(forKey: kSecAttrAccessible as String)
+            query[kSecAttrAccessControl as String] = try self.createAccessControl()
+            query[kSecUseAuthenticationContext as String] = try self.createLAContext()
+            query[kSecUseOperationPrompt as String] = queryOptions.biometricPromt
+        }
+        else {
+            query[kSecUseAuthenticationUI as String] = kSecUseAuthenticationUISkip
+        }
+    #endif
     }
 
     /// Private key identifier format
@@ -277,11 +303,7 @@ import LocalAuthentication
         #endif
     #endif
 
-        if queryOptions.biometricallyProtected {
-            query.removeValue(forKey: kSecAttrAccessible as String)
-            query[kSecAttrAccessControl as String] = try self.createAccessControl()
-            query[kSecUseAuthenticationContext as String] = try self.createLAContext()
-        }
+        try self.addBiometricParams(toQuery: &query, withQueryOptions: queryOptions)
 
         let keyEntry = KeyEntry(name: name, value: data, meta: meta)
         let keyEntryData = NSKeyedArchiver.archivedData(withRootObject: keyEntry)
@@ -341,10 +363,7 @@ import LocalAuthentication
         ]
     #endif
 
-        if queryOptions.biometricallyProtected {
-            query[kSecAttrAccessControl as String] = try self.createAccessControl()
-            query[kSecUseAuthenticationContext as String] = try self.createLAContext()
-        }
+        try self.addBiometricParams(toQuery: &query, withQueryOptions: queryOptions)
 
         let keyEntry = KeyEntry(name: name, value: data, meta: meta)
         let keyEntryData = NSKeyedArchiver.archivedData(withRootObject: keyEntry)
@@ -397,14 +416,7 @@ import LocalAuthentication
         ]
     #endif
 
-        if queryOptions.biometricallyProtected {
-            query[kSecAttrAccessControl as String] = try self.createAccessControl()
-            query[kSecUseAuthenticationContext as String] = try self.createLAContext()
-            query[kSecUseOperationPrompt as String] = /* FIXME */ "Access your password on the keychain"
-        }
-        else {
-            query[kSecUseAuthenticationUI as String] = kSecUseAuthenticationUISkip
-        }
+        try self.addBiometricParams(toQuery: &query, withQueryOptions: queryOptions)
 
         var dataObject: AnyObject?
 
@@ -447,13 +459,7 @@ import LocalAuthentication
         ]
     #endif
 
-        if queryOptions.biometricallyProtected {
-            query[kSecAttrAccessControl as String] = try self.createAccessControl()
-            query[kSecUseAuthenticationContext as String] = try self.createLAContext()
-        }
-        else {
-            query[kSecUseAuthenticationUI as String] = kSecUseAuthenticationUISkip
-        }
+        try self.addBiometricParams(toQuery: &query, withQueryOptions: queryOptions)
 
         var dataObject: AnyObject?
 
@@ -502,11 +508,7 @@ import LocalAuthentication
         ]
     #endif
 
-        if queryOptions.biometricallyProtected {
-            // FIXME
-            query[kSecAttrAccessControl as String] = try self.createAccessControl()
-            query[kSecUseAuthenticationContext as String] = try self.createLAContext()
-        }
+        try self.addBiometricParams(toQuery: &query, withQueryOptions: queryOptions)
 
         let status = SecItemDelete(query as CFDictionary)
 
@@ -538,11 +540,7 @@ import LocalAuthentication
         ]
     #endif
 
-        if queryOptions.biometricallyProtected {
-            // FIXME
-            query[kSecAttrAccessControl as String] = try self.createAccessControl()
-            query[kSecUseAuthenticationContext as String] = try self.createLAContext()
-        }
+        try self.addBiometricParams(toQuery: &query, withQueryOptions: queryOptions)
 
         let status = SecItemDelete(query as CFDictionary)
 

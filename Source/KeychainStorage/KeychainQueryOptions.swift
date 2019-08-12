@@ -53,5 +53,11 @@ import Foundation
     // swiftlint:enable line_length
 #endif
 
+#if !os(watchOS)
+    /// Use biometric protection
     @objc public var biometricallyProtected: Bool = false
+
+    /// User promt for UI
+    @objc public var biometricPromt: String = "Access your password on the keychain"
+#endif
 }

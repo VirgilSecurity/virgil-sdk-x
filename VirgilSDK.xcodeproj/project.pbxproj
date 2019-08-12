@@ -49,7 +49,6 @@
 		16BB9B4E22F2FF4B0057D6B2 /* VSS019_KeyknoxManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42492FE122CEA7BE00BEA96F /* VSS019_KeyknoxManagerTests.m */; };
 		16BB9B4F22F303DF0057D6B2 /* VSS020_CloudKeyStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42492FDC22CEA7BD00BEA96F /* VSS020_CloudKeyStorageTests.m */; };
 		16BB9B5022F305490057D6B2 /* VSS021_SyncKeyStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42492FDD22CEA7BE00BEA96F /* VSS021_SyncKeyStorageTests.swift */; };
-		42011DB420CAB72300B84755 /* KeychainStorageParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42011DB320CAB72300B84755 /* KeychainStorageParams.swift */; };
 		4209486C22805B2C00CAF5E6 /* VirgilSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4209486D22806A9800CAF5E6 /* VersionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F8A21F0B62A006BED3F /* VersionUtils.swift */; };
 		422499C31EB39B380032F556 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422499BA1EB39B380032F556 /* VirgilSDK.framework */; };
@@ -2541,7 +2540,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -2574,7 +2573,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 10.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
