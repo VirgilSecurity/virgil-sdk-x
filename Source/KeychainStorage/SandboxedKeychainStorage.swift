@@ -57,10 +57,10 @@ import Foundation
     public let keychainStorage: KeychainStorageProtocol
 
     /// User's identity
-    public let identity: String?
+    @objc public let identity: String?
 
     /// Entries' name prefix
-    public let prefix: String?
+    @objc public let prefix: String?
 
     /// Init
     ///
@@ -136,7 +136,7 @@ extension SandboxedKeychainStorage {
     /// - Throws:
     ///   - Rethrows from `KeychainStorage`
     ///   - `errorConvertingKeychainEntry`
-    public func store(data: Data, withName name: String, meta: [String: String]?) throws -> KeychainEntry {
+    @objc public func store(data: Data, withName name: String, meta: [String: String]?) throws -> KeychainEntry {
         let keychainName = self.keychainName(fromEntryName: name)
 
         let keychainEntry = try self.keychainStorage.store(data: data, withName: keychainName, meta: meta)
@@ -154,7 +154,7 @@ extension SandboxedKeychainStorage {
     ///   - name: Name
     ///   - data: New data
     ///   - meta: New meta
-    public func updateEntry(withName name: String, data: Data, meta: [String: String]?) throws {
+    @objc public func updateEntry(withName name: String, data: Data, meta: [String: String]?) throws {
         let keychainName = self.keychainName(fromEntryName: name)
 
         try self.keychainStorage.updateEntry(withName: keychainName, data: data, meta: meta)
@@ -167,7 +167,7 @@ extension SandboxedKeychainStorage {
     /// - Throws:
     ///   - Rethrows from `KeychainStorage`
     ///   - `errorConvertingKeychainEntry`
-    public func retrieveEntry(withName name: String) throws -> KeychainEntry {
+    @objc public func retrieveEntry(withName name: String) throws -> KeychainEntry {
         let keychainName = self.keychainName(fromEntryName: name)
 
         let keychainEntry = try self.keychainStorage.retrieveEntry(withName: keychainName)
@@ -185,7 +185,7 @@ extension SandboxedKeychainStorage {
     /// - Throws:
     ///   - Rethrows from `KeychainStorage`
     ///   - `errorConvertingKeychainEntry`
-    public func retrieveAllEntries() throws -> [KeychainEntry] {
+    @objc public func retrieveAllEntries() throws -> [KeychainEntry] {
         return self.mapKeychainEntries(try self.keychainStorage.retrieveAllEntries())
     }
 
@@ -193,7 +193,7 @@ extension SandboxedKeychainStorage {
     ///
     /// - Parameter name: Name
     /// - Throws: Rethrows from `KeychainStorage`
-    public func deleteEntry(withName name: String) throws {
+    @objc public func deleteEntry(withName name: String) throws {
         let keychainName = self.keychainName(fromEntryName: name)
 
         try self.keychainStorage.deleteEntry(withName: keychainName)

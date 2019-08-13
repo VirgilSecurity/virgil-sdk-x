@@ -39,6 +39,10 @@ import VirgilCrypto
 import VirgilSDK
 
 class CardClientStub_STC34: CardClientProtocol {
+    func getOutdated(cardIds: [String]) throws -> [String] {
+        throw NSError()
+    }
+
     @objc func revokeCard(withId cardId: String) throws {
         throw NSError()
     }

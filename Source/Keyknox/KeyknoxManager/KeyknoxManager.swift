@@ -42,12 +42,6 @@ import VirgilCrypto
     /// KeyknoxClient instance used for performing queries
     @objc public let keyknoxClient: KeyknoxClientProtocol
 
-    /// Public keys used for encryption and signature verification
-    @objc public internal(set) var publicKeys: [VirgilPublicKey]
-
-    /// Private key used for decryption and signing
-    @objc public internal(set) var privateKey: VirgilPrivateKey
-
     /// KeyknoxCryptoProtocol implementation
     public let crypto: KeyknoxCryptoProtocol
 
@@ -57,20 +51,11 @@ import VirgilCrypto
     ///
     /// - Parameters:
     ///   - keyknoxClient: KeyknoxClientProtocol implementation
-    ///   - publicKeys: Public keys used for encryption and signature verification
-    ///   - privateKey: Private key used for decryption and signing
     ///   - crypto: KeyknoxCryptoProtocol implementation
     /// - Throws: KeyknoxManagerError.noPublicKeys if public keys array is empty
     public init(keyknoxClient: KeyknoxClientProtocol,
-                publicKeys: [VirgilPublicKey], privateKey: VirgilPrivateKey,
                 crypto: KeyknoxCryptoProtocol? = nil) throws {
-        guard !publicKeys.isEmpty else {
-            throw KeyknoxManagerError.noPublicKeys
-        }
-
         self.keyknoxClient = keyknoxClient
-        self.publicKeys = publicKeys
-        self.privateKey = privateKey
         if let crypto = crypto {
             self.crypto = crypto
         }
@@ -86,15 +71,10 @@ import VirgilCrypto
     /// - Parameters:
     ///   - accessTokenProvider: AccessTokenProvider implementation
     ///   - crypto: Crypto
-    ///   - publicKeys: Public keys used for encryption and signature verification
-    ///   - privateKey: Private key used for decryption and signing
     /// - Throws: KeyknoxManagerError.noPublicKeys
     @objc public convenience init(accessTokenProvider: AccessTokenProvider,
-                                  crypto: VirgilCrypto,
-                                  publicKeys: [VirgilPublicKey], privateKey: VirgilPrivateKey) throws {
+                                  crypto: VirgilCrypto) throws {
         try self.init(keyknoxClient: KeyknoxClient(accessTokenProvider: accessTokenProvider),
-                      publicKeys: publicKeys,
-                      privateKey: privateKey,
                       crypto: KeyknoxCrypto(crypto: crypto))
     }
 }

@@ -35,40 +35,29 @@
 //
 
 import Foundation
-import Security
 
-/// Class responsible for KeychainStorage setup
-@objc(VSSKeychainStorageParams) public final class KeychainStorageParams: NSObject {
-    /// Application name
-    @objc public let appName: String
-
+@objc(VSSKeychainQueryOptions) public class KeychainQueryOptions: NSObject {
+#if os(macOS)
     /// Trusted applications
-    @objc public let trustedApplications: [String]
+    @objc public var trustedApplications: [String] = []
+#else
+    // swiftlint:disable line_length
 
-    /// Init
-    ///
-    /// - Parameters:
-    ///   - appName: Application name
-    ///   - trustedApplications: List of trusted applications
-    @objc public init(appName: String, trustedApplications: [String]) {
-        self.appName = appName
-        self.trustedApplications = trustedApplications
+    /// Access group. See https://developer.apple.com/reference/security/ksecattraccessgroup
+    @objc public var accessGroup: String? = nil
 
-        super.init()
-    }
+    /// Accessibility.
+    /// See https://developer.apple.com/documentation/security/keychain_services/keychain_items/restricting_keychain_item_accessibility
+    @objc public var accessibility: String = kSecAttrAccessibleAfterFirstUnlock as String
 
-    /// Fabric method
-    ///
-    /// - Parameters:
-    ///   - trustedApplications: List of trusted applications
-    /// - Returns: Initialized KeychainStorageParams
-    /// - Throws: KeychainStorageError
-    @objc public static func makeKeychainStorageParams(appName: String? = nil,
-                                                       trustedApplications: [String] = []) throws -> KeychainStorageParams {
-        guard let appName = appName ?? Bundle.main.bundleIdentifier else {
-            throw KeychainStorageError(errCode: .invalidAppBundle)
-        }
+    // swiftlint:enable line_length
+#endif
 
-        return KeychainStorageParams(appName: appName, trustedApplications: [])
-    }
+#if os(macOS) || os(iOS)
+    /// Use biometric protection
+    @objc public var biometricallyProtected: Bool = false
+
+    /// User promt for UI
+    @objc public var biometricPromt: String = "Access your password on the keychain"
+#endif
 }

@@ -58,6 +58,9 @@ import Foundation
     @objc public static let defaultURL = URL(string: "https://api.virgilsecurity.com")!
     // swiftlint:enable force_unwrapping
 
+    /// Error domain for Error instances thrown from service
+    @objc override open class var serviceErrorDomain: String { return "VirgilSDK.CardServiceErrorDomain" }
+
     internal let retryConfig: ExpBackoffRetry.Config
 
     /// Initializes new `CardClient` instance

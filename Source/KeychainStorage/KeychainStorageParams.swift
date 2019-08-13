@@ -42,40 +42,23 @@ import Security
     /// Application name
     @objc public let appName: String
 
-    // swiftlint:disable line_length
-
-    /// Access group. See https://developer.apple.com/reference/security/ksecattraccessgroup
-    @objc public let accessGroup: String?
-
-    /// Accessibility.
-    /// See https://developer.apple.com/documentation/security/keychain_services/keychain_items/restricting_keychain_item_accessibility
-    @objc public let accessibility: String
-
-    // swiftlint:enable line_length
-
-    internal init(appName: String, accessGroup: String?, accessibility: String?) {
+    internal init(appName: String) {
         self.appName = appName
-        self.accessGroup = accessGroup
-        self.accessibility = accessibility ?? kSecAttrAccessibleAfterFirstUnlock as String
 
         super.init()
     }
 
     /// Factory method.
     ///
-    /// - Parameters:
-    ///   - accessGroup: accessGroup. Default value is nil
-    ///   - accessibility: accessibility. Default value is kSecAttrAccessibleAfterFirstUnlock
+    /// - Parameter appName: application name, if nil - redirects to Bundle.main.bundleIdentifier
     /// - Returns: Initialized KeychainStorageParams
     /// - Throws: KeychainStorageError
-    @objc public static func makeKeychainStorageParams(appName: String? = nil,
-                                                       accessGroup: String? = nil,
-                                                       accessibility: String? = nil)
+    @objc public static func makeKeychainStorageParams(appName: String? = nil)
         throws -> KeychainStorageParams {
         guard let appName = appName ?? Bundle.main.bundleIdentifier else {
             throw KeychainStorageError(errCode: .invalidAppBundle)
         }
 
-        return KeychainStorageParams(appName: appName, accessGroup: accessGroup, accessibility: accessibility)
+        return KeychainStorageParams(appName: appName)
     }
 }

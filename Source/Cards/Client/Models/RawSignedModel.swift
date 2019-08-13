@@ -101,6 +101,16 @@ import Foundation
             throw RawSignedModelError.invalidBase64String
         }
 
+        return try self.import(fromData: data)
+    }
+
+    /// Initializes `RawSignedModel` from Data
+    ///
+    /// - Parameter data: Data with `RawSignedModel`
+    /// - Returns: RawSignedModel instance
+    /// - Throws:
+    ///   - Rethrows from JSONDecoder
+    @objc public static func `import`(fromData data: Data) throws -> RawSignedModel {
         return try JSONDecoder().decode(RawSignedModel.self, from: data)
     }
 
@@ -109,7 +119,15 @@ import Foundation
     /// - Returns: Base64 encoded string with `RawSignedModel`
     /// - Throws: Rethrows from `JSONEncoder`
     @objc public func exportAsBase64EncodedString() throws -> String {
-       return try JSONEncoder().encode(self).base64EncodedString()
+       return try self.exportAsData().base64EncodedString()
+    }
+
+    /// Exports `RawSignedModel` as Data
+    ///
+    /// - Returns: Data with `RawSignedModel`
+    /// - Throws: Rethrows from `JSONEncoder`
+    @objc public func exportAsData() throws -> Data {
+        return try JSONEncoder().encode(self)
     }
 
     /// Exports `RawSignedModel` as json dictionary

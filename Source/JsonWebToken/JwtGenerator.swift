@@ -43,7 +43,7 @@ import VirgilCrypto
     /// - Note: Can be taken [here](https://dashboard.virgilsecurity.com/api-keys)
     @objc public let apiKey: VirgilPrivateKey
     /// Public Key identifier of Api Key
-    @objc private(set) public var apiPublicKeyIdentifier: String
+    @objc public private(set) var apiPublicKeyIdentifier: String
     /// Implementation of AccessTokenSigner for signing generated tokens
     @objc public let crypto: VirgilCrypto
     /// Application Id
@@ -70,7 +70,7 @@ import VirgilCrypto
                       ttl: TimeInterval = JwtGenerator.defaultTtl) throws {
         self.apiKey = apiKey
         self.apiPublicKeyIdentifier = apiPublicKeyIdentifier
-        
+
         // TODO: Make apiPublicKeyIdentifier optional for version 6.1
 //        if let apiPublicKeyIdentifier = apiPublicKeyIdentifier {
 //            self.apiPublicKeyIdentifier = apiPublicKeyIdentifier

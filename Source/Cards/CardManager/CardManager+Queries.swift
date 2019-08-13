@@ -247,7 +247,23 @@ extension CardManager {
                 completion(nil, error)
             }
         }
+    }
 
+    /// Returns list of cards that were replaced with newer ones
+    ///
+    /// - Parameter cardIds: card ids to check
+    /// - Returns: GenericOperation<[String]>
+    open func getOutdated(cardIds: [String]) -> GenericOperation<[String]> {
+        return CallbackOperation { _, completion in
+            do {
+                let cardIds = try self.cardClient.getOutdated(cardIds: cardIds)
+
+                completion(cardIds, nil)
+            }
+            catch {
+                completion(nil, error)
+            }
+        }
     }
 
     /// Makes CallbackOperation<Void> for performing revokation of Virgil Card

@@ -95,9 +95,13 @@ extension KeyknoxCrypto: KeyknoxCryptoProtocol {
         }
 
         if encryptedKeyknoxValue.value.isEmpty && encryptedKeyknoxValue.meta.isEmpty {
-            return DecryptedKeyknoxValue(meta: Data(),
+            return DecryptedKeyknoxValue(root: encryptedKeyknoxValue.root,
+                                         path: encryptedKeyknoxValue.path,
+                                         key: encryptedKeyknoxValue.key,
+                                         owner: encryptedKeyknoxValue.owner,
+                                         identities: encryptedKeyknoxValue.identities,
+                                         meta: Data(),
                                          value: Data(),
-                                         version: encryptedKeyknoxValue.version,
                                          keyknoxHash: encryptedKeyknoxValue.keyknoxHash)
         }
 
@@ -111,9 +115,13 @@ extension KeyknoxCrypto: KeyknoxCryptoProtocol {
             throw KeyknoxCryptoError.decryptionFailed
         }
 
-        return DecryptedKeyknoxValue(meta: encryptedKeyknoxValue.meta,
+        return DecryptedKeyknoxValue(root: encryptedKeyknoxValue.root,
+                                     path: encryptedKeyknoxValue.path,
+                                     key: encryptedKeyknoxValue.key,
+                                     owner: encryptedKeyknoxValue.owner,
+                                     identities: encryptedKeyknoxValue.identities,
+                                     meta: encryptedKeyknoxValue.meta,
                                      value: decryptedData,
-                                     version: encryptedKeyknoxValue.version,
                                      keyknoxHash: encryptedKeyknoxValue.keyknoxHash)
     }
 

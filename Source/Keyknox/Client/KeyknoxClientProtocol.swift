@@ -43,22 +43,42 @@ import Foundation
     /// Push value to Keyknox service
     ///
     /// - Parameters:
+    ///   - params: params
     ///   - meta: meta data
     ///   - value: encrypted blob
     ///   - previousHash: hash of previous blob
     /// - Returns: EncryptedKeyknoxValue
     /// - Throws: Depends on implementation
-    @objc func pushValue(meta: Data, value: Data, previousHash: Data?) throws -> EncryptedKeyknoxValue
+    @objc func pushValue(params: KeyknoxPushParams?,
+                         meta: Data,
+                         value: Data,
+                         previousHash: Data?) throws -> EncryptedKeyknoxValue
 
     /// Pulls values from Keyknox service
     ///
+    /// - Parameter params: Pull params
     /// - Returns: EncryptedKeyknoxValue
     /// - Throws: Depends on implementation
-    @objc func pullValue() throws -> EncryptedKeyknoxValue
+    @objc func pullValue(params: KeyknoxPullParams?) throws -> EncryptedKeyknoxValue
 
-    /// Resets Keyknox value (makes it empty). Also increments version
+    /// Get keys for given root
     ///
+    /// - Parameter params: Get keys params
+    /// - Returns: Array of keys
+    /// - Throws: Depends on implementation
+    @objc func getKeys(params: KeyknoxGetKeysParams) throws -> Set<String>
+
+    /// Resets Keyknox value (makes it empty)
+    ///
+    /// - Parameter params: Reset params
     /// - Returns: DecryptedKeyknoxValue
     /// - Throws: Depends on implementation
-    @objc func resetValue() throws -> DecryptedKeyknoxValue
+    @objc func resetValue(params: KeyknoxResetParams?) throws -> DecryptedKeyknoxValue
+
+    /// Deletes recipient
+    ///
+    /// - Parameter params: Delete recipient params
+    /// - Returns: DecryptedKeyknoxValue
+    /// - Throws: Depends on implementation
+    @objc func deleteRecipient(params: KeyknoxDeleteRecipientParams) throws -> DecryptedKeyknoxValue
 }

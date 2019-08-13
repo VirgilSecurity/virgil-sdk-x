@@ -118,6 +118,41 @@ private class Config: NSObject, Decodable {
         return try! self.crypto.generateRandomData(ofSize: 1024)
     }
 
+    @objc public func publishCard(identity: String?, previousCardId: String? = nil) throws -> Card {
+        let keyPair = try self.crypto.generateKeyPair()
+        let exportedPublicKey = try self.crypto.exportPublicKey(keyPair.publicKey)
+
+        let identity = identity ?? UUID().uuidString
+
+        let content = RawCardContent(identity: identity,
+                                     publicKey: exportedPublicKey,
+                                     previousCardId: previousCardId,
+                                     createdAt: Date())
+        let snapshot = try content.snapshot()
+
+        let rawCard = RawSignedModel(contentSnapshot: snapshot)
+
+        let token = self.generateToken(withIdentity: identity, ttl: 1000)
+
+        let serviceUrl = URL(string: self.config.ServiceURL!)!
+
+        let provider = ConstAccessTokenProvider(accessToken: token)
+
+        let cardClient = CardClient(accessTokenProvider: provider,
+                                    serviceUrl: serviceUrl,
+                                    connection: nil,
+                                    retryConfig: ExpBackoffRetry.Config())
+
+        let signer = ModelSigner(crypto: self.crypto)
+
+        try! signer.selfSign(model: rawCard, privateKey: keyPair.privateKey)
+
+        let responseRawCard = try cardClient.publishCard(model: rawCard)
+        let card = try CardManager.parseCard(from: responseRawCard, crypto: crypto)
+
+        return card
+    }
+
     @objc public func setupVerifier(whitelists: [Whitelist]) -> VirgilCardVerifier {
         let verfier: VirgilCardVerifier
 
@@ -151,15 +186,8 @@ private class Config: NSObject, Decodable {
                              serviceUrl: self.serviceURL ?? KeyknoxClient.defaultURL)
     }
 
-    @objc public func setupKeyknoxManager(client: KeyknoxClient,
-                                          publicKeys: [VirgilPublicKey],
-                                          privateKey: VirgilPrivateKey) -> KeyknoxManager {
-        let crypto = KeyknoxCrypto(crypto: self.crypto)
-
-        return try! KeyknoxManager(keyknoxClient: client,
-                                   publicKeys: publicKeys,
-                                   privateKey: privateKey,
-                                   crypto: crypto)
+    @objc public func setupKeyknoxManager(client: KeyknoxClient) -> KeyknoxManager {
+        return try! KeyknoxManager(keyknoxClient: client)
     }
 }
 

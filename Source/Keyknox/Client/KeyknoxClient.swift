@@ -40,9 +40,13 @@ import Foundation
 ///
 /// - constructingUrl: constructing url of endpoint failed
 /// - invalidPreviousHashHeader: error whilte extracting previousHash from response header
+/// - emptyIdentities: identities array is empty
+/// - invalidOptions: internal invalid options error
 @objc(VSSKeyknoxClientError) public enum KeyknoxClientError: Int, LocalizedError {
     case constructingUrl = 1
     case invalidPreviousHashHeader = 2
+    case emptyIdentities = 3
+    case invalidOptions = 4
 
     /// Human-readable localized description
     public var errorDescription: String? {
@@ -51,6 +55,10 @@ import Foundation
             return "Constructing url of endpoint failed"
         case .invalidPreviousHashHeader:
             return "Error whilte extracting previousHash from response header"
+        case .emptyIdentities:
+            return "Identities should not be empty"
+        case .invalidOptions:
+            return "Internal invalid options error"
         }
     }
 }
@@ -61,6 +69,9 @@ import Foundation
     /// Default URL for service
     @objc public static let defaultURL = URL(string: "https://api.virgilsecurity.com")!
     // swiftlint:enable force_unwrapping
+
+    /// Error domain for Error instances thrown from service
+    @objc override open class var serviceErrorDomain: String { return "VirgilSDK.KeyknoxServiceErrorDomain" }
 
     internal let retryConfig: ExpBackoffRetry.Config
 

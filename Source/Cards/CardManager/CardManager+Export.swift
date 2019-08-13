@@ -51,6 +51,19 @@ extension CardManager {
                                           cardVerifier: self.cardVerifier)
     }
 
+    /// Imports and verifies Card from Data
+    ///
+    /// - Parameter data: Data with Card
+    /// - Returns: imported and verified Card
+    /// - Throws:
+    ///   - `CardManagerError.cardIsNotVerified`, if Card verificaction has failed
+    ///   - Rethrows from `RawSignedModel`, `JSONDecoder`, `VirgilCrypto`
+    @objc open func importCard(fromData data: Data) throws -> Card {
+        return try CardManager.importCard(fromData: data,
+                                          crypto: self.crypto,
+                                          cardVerifier: self.cardVerifier)
+    }
+
     /// Imports and verifies Card from json Dictionary
     ///
     /// - Parameter json: json Dictionary

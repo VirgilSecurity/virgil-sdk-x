@@ -38,29 +38,58 @@ import Foundation
 
 /// Value stored on Keyknox service
 @objc(VSSKeyknoxValue) public class KeyknoxValue: NSObject {
+    @objc public let root: String
+    @objc public let path: String
+    @objc public let key: String
+    @objc public let owner: String
+    @objc public let identities: [String]
+
     /// Meta info
     @objc public let meta: Data
 
     /// Value
     @objc public let value: Data
 
-    /// Value in X.Y format. X - major version, Y - minor
-    @objc public let version: String
-
     /// Keyknox hash
     @objc public let keyknoxHash: Data
 
-    internal convenience init(keyknoxData: KeyknoxData, keyknoxHash: Data) {
-        self.init(meta: keyknoxData.meta,
+    internal convenience init(keyknoxData: KeyknoxDataV2, keyknoxHash: Data) {
+        self.init(root: keyknoxData.root,
+                  path: keyknoxData.path,
+                  key: keyknoxData.key,
+                  owner: keyknoxData.owner,
+                  identities: keyknoxData.identities,
+                  meta: keyknoxData.meta,
                   value: keyknoxData.value,
-                  version: keyknoxData.version,
                   keyknoxHash: keyknoxHash)
     }
 
-    internal init(meta: Data, value: Data, version: String, keyknoxHash: Data) {
+    internal convenience init(keyknoxData: KeyknoxData, keyknoxHash: Data, identity: String) {
+        self.init(root: KeyknoxClient.keyStorageRoot,
+                  path: KeyknoxClient.keyStoragePath,
+                  key: KeyknoxClient.keyStorageKey,
+                  owner: identity,
+                  identities: [identity],
+                  meta: keyknoxData.meta,
+                  value: keyknoxData.value,
+                  keyknoxHash: keyknoxHash)
+    }
+
+    internal init(root: String,
+                  path: String,
+                  key: String,
+                  owner: String,
+                  identities: [String],
+                  meta: Data,
+                  value: Data,
+                  keyknoxHash: Data) {
+        self.root = root
+        self.path = path
+        self.key = key
+        self.owner = owner
+        self.identities = identities
         self.meta = meta
         self.value = value
-        self.version = version
         self.keyknoxHash = keyknoxHash
 
         super.init()

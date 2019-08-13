@@ -118,11 +118,11 @@ extension CardClient: CardClientProtocol {
     /// - Returns: Array with `RawSignedModel`s of matched Virgil Cards
     /// - Throws:
     ///   - CardClientError.constructingUrl, if url initialization failed
-    ///   - CardServiceError, if service returned correctly-formed error json
+    ///   - ServiceError, if service returned correctly-formed error json
     ///   - NSError with CardClient.serviceErrorDomain error domain,
     ///     http status code as error code, and description string if present in http body
     ///   - Rethrows from `ServiceRequest`, `HttpConnectionProtocol`, `JsonDecoder`, `BaseClient`
-    public func searchCards(identities: [String]) throws -> [RawSignedModel] {
+    @objc public func searchCards(identities: [String]) throws -> [RawSignedModel] {
         guard let url = URL(string: "card/v5/actions/search", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
@@ -142,13 +142,43 @@ extension CardClient: CardClientProtocol {
         return try self.processResponse(response)
     }
 
+    /// Returns list of cards that were replaced with newer ones
+    ///
+    /// - Parameter cardIds: card ids to check
+    /// - Returns: List of old card ids
+    /// - Throws:
+    ///   - CardClientError.constructingUrl, if url initialization failed
+    ///   - ServiceError, if service returned correctly-formed error json
+    ///   - NSError with CardClient.serviceErrorDomain error domain,
+    ///     http status code as error code, and description string if present in http body
+    ///   - Rethrows from `ServiceRequest`, `HttpConnectionProtocol`, `JsonDecoder`, `BaseClient`
+    @objc public func getOutdated(cardIds: [String]) throws -> [String] {
+        guard let url = URL(string: "card/v5/actions/outdated", relativeTo: self.serviceUrl) else {
+            throw CardClientError.constructingUrl
+        }
+
+        let tokenContext = TokenContext(service: "cards", operation: "get-outdated", forceReload: false)
+
+        let request = try ServiceRequest(url: url,
+                                         method: .post,
+                                         params: ["card_ids": cardIds])
+
+        let response = try self.sendWithRetry(request,
+                                              retry: self.createRetry(),
+                                              tokenContext: tokenContext)
+            .startSync()
+            .get()
+
+        return try self.processResponse(response)
+    }
+
     /// Revokes card. Revoked card gets isOutdated flag to be set to true.
     /// Also, such cards could be obtained using get query, but will be absent in search query result.
     ///
     /// - Parameter cardId: identifier of card to revoke
     /// - Throws:
     ///   - CardClientError.constructingUrl, if url initialization failed
-    ///   - CardServiceError, if service returned correctly-formed error json
+    ///   - ServiceError, if service returned correctly-formed error json
     ///   - NSError with CardClient.serviceErrorDomain error domain,
     ///     http status code as error code, and description string if present in http body
     ///   - Rethrows from `ServiceRequest`, `HttpConnectionProtocol`, `JsonDecoder`, `BaseClient`

@@ -39,6 +39,7 @@
 @interface VSS001_KeyknoxClientTests : VSSTestBase
 
 @property (nonatomic) VSSKeyknoxClient *keyknoxClient;
+@property (nonatomic) NSString *identity;
 
 @end
 
@@ -48,6 +49,8 @@
     [super setUp];
     
     NSString *identity = [[NSUUID alloc] init].UUIDString;
+
+    self.identity = identity;
     
     self.keyknoxClient = [self.utils setupKeyknoxClientWithIdentity:identity];
 }
@@ -61,79 +64,99 @@
     NSData *meta =  [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
     
     NSError *error;
-    VSSEncryptedKeyknoxValue *response = [self.keyknoxClient pushValueWithMeta:meta value:encryptedData previousHash:nil error:&error];
+    VSSEncryptedKeyknoxValue *response = [self.keyknoxClient pushValueWithParams:nil
+                                                                            meta:meta
+                                                                           value:encryptedData
+                                                                    previousHash:nil
+                                                                           error:&error];
+
     XCTAssert(response != nil && error == nil);
 
     XCTAssert([response.meta isEqualToData:meta]);
     XCTAssert([response.value isEqualToData:encryptedData]);
-    XCTAssert([response.version isEqualToString:@"1.0"]);
     XCTAssert(response.keyknoxHash.length > 0);
 
-    VSSEncryptedKeyknoxValue *response2 = [self.keyknoxClient pullValueAndReturnError:&error];
+    VSSEncryptedKeyknoxValue *response2 = [self.keyknoxClient pullValueWithParams:nil error:&error];
     XCTAssert(response != nil && error == nil);
 
     XCTAssert([response2.meta isEqualToData:meta]);
     XCTAssert([response2.value isEqualToData:encryptedData]);
-    XCTAssert([response2.version isEqualToString:@"1.0"]);
     XCTAssert([response2.keyknoxHash isEqualToData:response.keyknoxHash]);
 }
 
 - (void)test02_KTC2_updateData {
     NSData *encryptedData = [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
     NSData *meta =  [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
-    
+
     NSError *error;
-    VSSEncryptedKeyknoxValue *response = [self.keyknoxClient pushValueWithMeta:meta value:encryptedData previousHash:nil error:&error];
+    VSSEncryptedKeyknoxValue *response = [self.keyknoxClient pushValueWithParams:nil
+                                                                            meta:meta
+                                                                           value:encryptedData
+                                                                    previousHash:nil
+                                                                           error:&error];
     XCTAssert(response != nil && error == nil);
-    
+
     NSData *encryptedData2 = [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
     NSData *meta2 = [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
-    
-    VSSEncryptedKeyknoxValue *response2 = [self.keyknoxClient pushValueWithMeta:meta2 value:encryptedData2 previousHash:response.keyknoxHash error:&error];
+
+    VSSEncryptedKeyknoxValue *response2 = [self.keyknoxClient pushValueWithParams:nil
+                                                                             meta:meta2
+                                                                            value:encryptedData2
+                                                                     previousHash:response.keyknoxHash
+                                                                            error:&error];
+
     XCTAssert(response2 != nil && error == nil);
-    
+
     XCTAssert([response2.meta isEqualToData:meta2]);
     XCTAssert([response2.value isEqualToData:encryptedData2]);
-    XCTAssert([response2.version isEqualToString:@"2.0"]);
     XCTAssert(response2.keyknoxHash.length > 0);
 }
 
 - (void)test03_KTC3_pullEmpty {
     NSError *error;
-    VSSEncryptedKeyknoxValue *response = [self.keyknoxClient pullValueAndReturnError:&error];
+    VSSEncryptedKeyknoxValue *response = [self.keyknoxClient pullValueWithParams:nil error:&error];
+
     XCTAssert(response != nil && error == nil);
-    
+
     XCTAssert(response.value.length == 0);
     XCTAssert(response.meta.length == 0);
-    XCTAssert([response.version isEqualToString:@"1.0"]);
 }
 
 - (void)test04_KTC4_resetValue {
     NSError *error;
-    
+
     NSData *someData = [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
     NSData *someMeta = [[[NSUUID alloc] init].UUIDString dataUsingEncoding:NSUTF8StringEncoding];
-    
-    VSSEncryptedKeyknoxValue *response = [self.keyknoxClient pushValueWithMeta:someMeta value:someData previousHash:nil error:&error];
+
+    VSSEncryptedKeyknoxValue *response = [self.keyknoxClient pushValueWithParams:nil
+                                                                            meta:someMeta
+                                                                           value:someData
+                                                                    previousHash:nil
+                                                                           error:&error];
     XCTAssert(response != nil && error == nil);
-    
-    VSSDecryptedKeyknoxValue *response2 = [self.keyknoxClient resetValueAndReturnError:&error];
+
+    VSSDecryptedKeyknoxValue *response2 = [self.keyknoxClient resetValueWithParams:nil error:&error];
     XCTAssert(response2 != nil && error == nil);
-    
+
     XCTAssert(response2.value.length == 0);
     XCTAssert(response2.meta.length == 0);
-    XCTAssert([response2.version isEqualToString:@"2.0"]);
+
+    VSSEncryptedKeyknoxValue *response3 = [self.keyknoxClient pullValueWithParams:nil error:&error];
+    XCTAssert(response != nil && error == nil);
+
+    XCTAssert(response3.meta.length == 0);
+    XCTAssert(response3.value.length == 0);
 }
 
 - (void)test05_KTC5_resetEmptyValue {
     NSError *error;
-    
-    VSSDecryptedKeyknoxValue *response = [self.keyknoxClient resetValueAndReturnError:&error];
+
+    VSSDecryptedKeyknoxValue *response = [self.keyknoxClient resetValueWithParams:nil error:&error];
+
     XCTAssert(response != nil && error == nil);
-    
+
     XCTAssert(response.value.length == 0);
     XCTAssert(response.meta.length == 0);
-    XCTAssert([response.version isEqualToString:@"1.0"]);
 }
 
 @end
