@@ -199,10 +199,10 @@ let dataToEncrypt = messageToEncrypt.data(using: .utf8)!
 
 // prepare a user's private key
 let alicePrivateKeyEntry = try! keychainStorage.retrieveEntry(withName: "Alice")
-let alicePrivateKey = try! exporter.importPrivateKey(from: alicePrivateKeyEntry.data)
+let alicePrivateKey = try! crypto.importPrivateKey(from: alicePrivateKeyEntry.data)
 
 // using cardManager search for user's cards on Cards Service
-cardManager.searchCards(identity: "Bob").start { result in
+cardManager.searchCards(identities: ["Bob"]).start { result in
     switch result {
     // Cards are obtained
     case .success(let cards):
@@ -210,9 +210,9 @@ cardManager.searchCards(identity: "Bob").start { result in
             .map { $0.publicKey }
 
         // sign a message with a private key then encrypt on a public key
-        let encryptedData = try! crypto.signThenEncrypt(dataToEncrypt,
-                                                        with: alicePrivateKey,
-                                                        for: bobRelevantCardsPublicKeys)
+        let encryptedData = try! crypto.signAndEncrypt(dataToEncrypt,
+                                                       with: alicePrivateKey,
+                                                       for: bobRelevantCardsPublicKeys)
 
     // Error occured
     case .failure(let error): break
@@ -233,16 +233,16 @@ let bobPrivateKeyEntry = try! keychainStorage.retrieveEntry(withName: "Bob")
 let bobPrivateKey = try! exporter.importPrivateKey(from: bobPrivateKeyEntry.data)
 
 // using cardManager search for user's cards on Cards Service
-cardManager.searchCards(identity: "Alice").start { result in
+cardManager.searchCards(identities: ["Alice"]).start { result in
     switch result {
     // Cards are obtained
     case .success(let cards):
         let aliceRelevantCardsPublicKeys = cards.map { $0.publicKey }
 
         // decrypt with a private key and verify using a public key
-        let decryptedData = try! crypto.decryptThenVerify(encryptedData, 
-                                                          with: bobPrivateKey,
-                                                          usingOneOf: aliceRelevantCardsPublicKeys)
+        let decryptedData = try! crypto.decryptAndVerify(encryptedData, 
+                                                         with: bobPrivateKey,
+                                                         usingOneOf: aliceRelevantCardsPublicKeys)
 
     // Error occured
     case .failure(let error): break
