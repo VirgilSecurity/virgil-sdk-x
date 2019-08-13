@@ -140,57 +140,6 @@ extension KeyknoxManager {
         }
     }
 
-    /// Updates public keys for encryption and signature verification
-    /// and private key for decryption and signature generation
-    ///
-    /// - Parameters:
-    ///   - oldPublicKeys: Current public keys
-    ///   - oldPrivateKey: Current private key
-    ///   - newPublicKeys: New public keys that will be used for encryption and signature verification
-    ///   - newPrivateKey: New private key that will be used for decryption and signature generation
-    /// - Returns: CallbackOperation<DecryptedKeyknoxValue>
-    open func updateRecipients(oldPublicKeys: [VirgilPublicKey],
-                               oldPrivateKey: VirgilPrivateKey,
-                               newPublicKeys: [VirgilPublicKey],
-                               newPrivateKey: VirgilPrivateKey) -> GenericOperation<DecryptedKeyknoxValue> {
-        return CallbackOperation { _, completion in
-            self.queue.async {
-                guard !newPublicKeys.isEmpty else {
-                    completion(nil, KeyknoxManagerError.noPublicKeys)
-                    return
-                }
-
-                do {
-                    let keyknoxValue1 = try self.keyknoxClient.pullValue(params: nil)
-                    let decryptedData1 = try self.crypto.decrypt(encryptedKeyknoxValue: keyknoxValue1,
-                                                                 privateKey: oldPrivateKey,
-                                                                 publicKeys: oldPublicKeys)
-
-                    guard !decryptedData1.value.isEmpty else {
-                        completion(decryptedData1, nil)
-                        return
-                    }
-
-                    let encryptedData = try self.crypto.encrypt(data: decryptedData1.value,
-                                                                privateKey: newPrivateKey,
-                                                                publicKeys: newPublicKeys)
-                    let keyknoxValue2 = try self.keyknoxClient.pushValue(params: nil,
-                                                                         meta: encryptedData.0,
-                                                                         value: encryptedData.1,
-                                                                         previousHash: keyknoxValue1.keyknoxHash)
-                    let decryptedData2 = try self.crypto.decrypt(encryptedKeyknoxValue: keyknoxValue2,
-                                                                 privateKey: newPrivateKey,
-                                                                 publicKeys: newPublicKeys)
-
-                    completion(decryptedData2, nil)
-                }
-                catch {
-                    completion(nil, error)
-                }
-            }
-        }
-    }
-
     /// Deletes recipient from list of shared
     ///
     /// - Parameter params: Delete recipient params

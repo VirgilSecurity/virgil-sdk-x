@@ -101,7 +101,7 @@ import Foundation
 /// Keyknox reset parameters
 @objc(VSSKeyknoxResetParams) public class KeyknoxResetParams: NSObject {
     /// Root
-    @objc public let root: String?
+    @objc public let root: String
 
     /// Path
     @objc public let path: String?
@@ -115,7 +115,7 @@ import Foundation
     ///   - root: Root
     ///   - path: Path
     ///   - key: key descriptionKey
-    @objc public init(root: String? = nil,
+    @objc public init(root: String,
                       path: String? = nil,
                       key: String? = nil) {
         self.root = root

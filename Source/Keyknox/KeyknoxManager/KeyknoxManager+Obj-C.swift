@@ -97,27 +97,6 @@ extension KeyknoxManager {
         self.resetValue(params: params).start(completion: completion)
     }
 
-    /// Updates public keys for encryption and signature verification
-    /// and private key for decryption and signature generation
-    ///
-    /// - Parameters:
-    ///   - oldPublicKeys: Current public keys
-    ///   - oldPrivateKey: Current private key
-    ///   - newPublicKeys: New public keys that will be used for encryption and signature verification
-    ///   - newPrivateKey: New private key that will be used for decryption and signature generation
-    ///   - completion: completion handler
-    @objc open func updateRecipients(oldPublicKeys: [VirgilPublicKey],
-                                     oldPrivateKey: VirgilPrivateKey,
-                                     newPublicKeys: [VirgilPublicKey],
-                                     newPrivateKey: VirgilPrivateKey,
-                                     completion: @escaping (DecryptedKeyknoxValue?, Error?) -> Void) {
-        self.updateRecipients(oldPublicKeys: oldPublicKeys,
-                              oldPrivateKey: oldPrivateKey,
-                              newPublicKeys: newPublicKeys,
-                              newPrivateKey: newPrivateKey)
-            .start(completion: completion)
-    }
-
     /// Deletes recipient from list of shared
     ///
     /// - Parameters:
