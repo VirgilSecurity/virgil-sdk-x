@@ -366,10 +366,10 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
                     let privateKey = newPrivateKey ?? self.privateKey
 
                     let response = try self.keyknoxManager
-                        .updateRecipients(value: decryptedKeyknoxData.value,
-                                          previousHash: decryptedKeyknoxData.keyknoxHash,
-                                          newPublicKeys: publicKeys,
-                                          newPrivateKey: privateKey)
+                        .pushValue(data: decryptedKeyknoxData.value,
+                                   previousHash: decryptedKeyknoxData.keyknoxHash,
+                                   publicKeys: publicKeys,
+                                   privateKey: privateKey)
                         .startSync()
                         .get()
 

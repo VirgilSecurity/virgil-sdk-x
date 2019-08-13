@@ -39,12 +39,10 @@ import Foundation
 /// Declares error types and codes for KeyknoxManager
 ///
 /// - noPublicKeys: Public keys array is empty
-/// - keysShouldBeUpdated: Both private and publice keys are absent
 /// - serverRespondedWithTamperedValue: Value pushed to Keyknox and returned from Keyknox doesn't match
 /// - dataIsEmpty: Data is empty
 @objc(VSSKeyknoxManagerError) public enum KeyknoxManagerError: Int, LocalizedError {
     case noPublicKeys = 1
-    case keysShouldBeUpdated = 2
     case serverRespondedWithTamperedValue = 3
     case dataIsEmpty = 4
 
@@ -53,8 +51,6 @@ import Foundation
         switch self {
         case .noPublicKeys:
             return "Public keys array is empty"
-        case .keysShouldBeUpdated:
-            return "Both private and publice keys are absent"
         case .serverRespondedWithTamperedValue:
             return "Value pushed to Keyknox and returned from Keyknox doesn't match"
         case .dataIsEmpty:

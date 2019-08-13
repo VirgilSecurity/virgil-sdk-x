@@ -61,10 +61,10 @@ import LocalAuthentication
 /// Class respresenting error returned from KeychainStorage
 @objc(VSSKeychainStorageError) public final class KeychainStorageError: NSObject, CustomNSError {
     /// Error domain
-    public static var errorDomain: String { return "VirgilSDK.KeyStorageErrorDomain" }
+    @objc public static var errorDomain: String { return "VirgilSDK.KeyStorageErrorDomain" }
 
     /// Error code. See KeychainStorageErrorCodes
-    public var errorCode: Int { return self.errCode.rawValue }
+    @objc public var errorCode: Int { return self.errCode.rawValue }
 
     /// Error code. See KeychainStorageErrorCodes
     @objc public let errCode: KeychainStorageErrorCodes

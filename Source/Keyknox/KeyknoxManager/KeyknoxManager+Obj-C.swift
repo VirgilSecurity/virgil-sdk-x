@@ -92,7 +92,7 @@ extension KeyknoxManager {
     ///
     ///   - params: Reset pararms
     ///   - completion: completion handler
-    @objc open func resetValue(params: KeyknoxResetParams,
+    @objc open func resetValue(params: KeyknoxResetParams? = nil,
                                completion: @escaping(DecryptedKeyknoxValue?, Error?) -> Void) {
         self.resetValue(params: params).start(completion: completion)
     }
@@ -101,20 +101,18 @@ extension KeyknoxManager {
     /// and private key for decryption and signature generation
     ///
     /// - Parameters:
-    ///   - value: Current Keyknox value
-    ///   - previousHash: Previous Keyknox value hash
+    ///   - oldPublicKeys: Current public keys
+    ///   - oldPrivateKey: Current private key
     ///   - newPublicKeys: New public keys that will be used for encryption and signature verification
     ///   - newPrivateKey: New private key that will be used for decryption and signature generation
     ///   - completion: completion handler
-    @objc open func updateRecipients(params: KeyknoxPushParams? = nil,
-                                     value: Data,
-                                     previousHash: Data,
+    @objc open func updateRecipients(oldPublicKeys: [VirgilPublicKey],
+                                     oldPrivateKey: VirgilPrivateKey,
                                      newPublicKeys: [VirgilPublicKey],
                                      newPrivateKey: VirgilPrivateKey,
                                      completion: @escaping (DecryptedKeyknoxValue?, Error?) -> Void) {
-        self.updateRecipients(params: params,
-                              value: value,
-                              previousHash: previousHash,
+        self.updateRecipients(oldPublicKeys: oldPublicKeys,
+                              oldPrivateKey: oldPrivateKey,
                               newPublicKeys: newPublicKeys,
                               newPrivateKey: newPrivateKey)
             .start(completion: completion)
