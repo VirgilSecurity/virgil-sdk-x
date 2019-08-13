@@ -280,9 +280,11 @@ extension KeyknoxClient: KeyknoxClientProtocol {
                 throw KeyknoxClientError.constructingUrl
             }
 
-            var queryParams: [String: String] = [
-                "root": params.root
-            ]
+            var queryParams: [String: String] = [:]
+
+            if let root = params.root {
+                queryParams["root"] = root
+            }
 
             if let path = params.path {
                 queryParams["path"] = path
