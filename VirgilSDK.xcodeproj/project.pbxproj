@@ -24,6 +24,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		1631EDE4230C44B500B4F8C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1631EDE3230C44B500B4F8C7 /* AppDelegate.swift */; };
+		1631EDE6230C44B500B4F8C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1631EDE5230C44B500B4F8C7 /* Assets.xcassets */; };
+		1631EDE9230C44B500B4F8C7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1631EDE7230C44B500B4F8C7 /* MainMenu.xib */; };
 		1665EE0E22E5B83000774788 /* VSS022_CloudEntrySerializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42492FDF22CEA7BE00BEA96F /* VSS022_CloudEntrySerializerTests.swift */; };
 		168AAA3322CF806900C1E324 /* VSS005_CardManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16E6C9352021FB1200286FAB /* VSS005_CardManagerTests.m */; };
 		168AAA3722CF969E00C1E324 /* VSS018_KeyknoxClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42492FDE22CEA7BE00BEA96F /* VSS018_KeyknoxClientTests.m */; };
@@ -535,6 +538,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1631EDEF230C44C300B4F8C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1631EDE0230C44B500B4F8C7;
+			remoteInfo = "SDKTestApp macOS";
+		};
 		422499C41EB39B380032F556 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3614030D1BB2E05F002E69CA /* Project object */;
@@ -648,6 +658,12 @@
 		1624B83220120898007D223C /* GenericOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericOperation.swift; sourceTree = "<group>"; };
 		1624B8372012151B007D223C /* CallbackOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallbackOperation.swift; sourceTree = "<group>"; };
 		1624B83D2012215B007D223C /* CardManager+Queries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardManager+Queries.swift"; sourceTree = "<group>"; };
+		1631EDE1230C44B500B4F8C7 /* SDKTestApp macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SDKTestApp macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1631EDE3230C44B500B4F8C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1631EDE5230C44B500B4F8C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1631EDE8230C44B500B4F8C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		1631EDEA230C44B500B4F8C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1631EDEB230C44B500B4F8C7 /* SDKTestApp_macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SDKTestApp_macOS.entitlements; sourceTree = "<group>"; };
 		1658681E2018B77D00A27B00 /* VSS004_CrossCompatibilityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSS004_CrossCompatibilityTests.m; sourceTree = "<group>"; };
 		168491C3201A252900D6938B /* TokenContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenContext.swift; sourceTree = "<group>"; };
 		168AAA3B22CF9B6900C1E324 /* VSSTestBase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VSSTestBase.m; sourceTree = "<group>"; };
@@ -806,6 +822,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		1631EDDE230C44B500B4F8C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		422499B61EB39B380032F556 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -932,6 +955,18 @@
 			path = CardManager;
 			sourceTree = "<group>";
 		};
+		1631EDE2230C44B500B4F8C7 /* SDKTestApp macOS */ = {
+			isa = PBXGroup;
+			children = (
+				1631EDE3230C44B500B4F8C7 /* AppDelegate.swift */,
+				1631EDE5230C44B500B4F8C7 /* Assets.xcassets */,
+				1631EDE7230C44B500B4F8C7 /* MainMenu.xib */,
+				1631EDEA230C44B500B4F8C7 /* Info.plist */,
+				1631EDEB230C44B500B4F8C7 /* SDKTestApp_macOS.entitlements */,
+			);
+			path = "SDKTestApp macOS";
+			sourceTree = "<group>";
+		};
 		168AAA3222CF7C8500C1E324 /* Keyknox */ = {
 			isa = PBXGroup;
 			children = (
@@ -1009,6 +1044,7 @@
 				42B81C171DB8E5FB00E5E2AE /* Tests */,
 				42D0589220EB894500FC544E /* SDKTestApp iOS */,
 				42D058B620EB897200FC544E /* SDKTestApp tvOS */,
+				1631EDE2230C44B500B4F8C7 /* SDKTestApp macOS */,
 				361403161BB2E05F002E69CA /* Products */,
 				ECBE87D3B790F5C27AAB2582 /* Frameworks */,
 			);
@@ -1026,6 +1062,7 @@
 				42D058A720EB896200FC544E /* VirgilSDK AppTests iOS.xctest */,
 				42D058B520EB897200FC544E /* SDKTestApp tvOS.app */,
 				42D058F420EB89E000FC544E /* VirgilSDK AppTests tvOS.xctest */,
+				1631EDE1230C44B500B4F8C7 /* SDKTestApp macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1377,6 +1414,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		1631EDE0230C44B500B4F8C7 /* SDKTestApp macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1631EDEE230C44B500B4F8C7 /* Build configuration list for PBXNativeTarget "SDKTestApp macOS" */;
+			buildPhases = (
+				1631EDDD230C44B500B4F8C7 /* Sources */,
+				1631EDDE230C44B500B4F8C7 /* Frameworks */,
+				1631EDDF230C44B500B4F8C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SDKTestApp macOS";
+			productName = "SDKTestApp macOS";
+			productReference = 1631EDE1230C44B500B4F8C7 /* SDKTestApp macOS.app */;
+			productType = "com.apple.product-type.application";
+		};
 		422499B91EB39B380032F556 /* VirgilSDK macOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 422499CF1EB39B380032F556 /* Build configuration list for PBXNativeTarget "VirgilSDK macOS" */;
@@ -1407,6 +1461,7 @@
 			);
 			dependencies = (
 				422499C51EB39B380032F556 /* PBXTargetDependency */,
+				1631EDF0230C44C300B4F8C7 /* PBXTargetDependency */,
 			);
 			name = "VirgilSDK macOS Tests";
 			productName = "VirgilSDK macOSTests";
@@ -1546,10 +1601,15 @@
 		3614030D1BB2E05F002E69CA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1030;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = VirgilSecurity;
 				TargetAttributes = {
+					1631EDE0230C44B500B4F8C7 = {
+						CreatedOnToolsVersion = 10.3;
+						DevelopmentTeam = MS3LY2W55D;
+						ProvisioningStyle = Automatic;
+					};
 					422499B91EB39B380032F556 = {
 						CreatedOnToolsVersion = 8.3.2;
 						LastSwiftMigration = 1020;
@@ -1559,6 +1619,7 @@
 						CreatedOnToolsVersion = 8.3.2;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
+						TestTargetID = 1631EDE0230C44B500B4F8C7;
 					};
 					42745A511ED43D9400C1DEEC = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -1626,11 +1687,21 @@
 				42D058F320EB89E000FC544E /* VirgilSDK AppTests tvOS */,
 				4284C3941F6BE97C00B75491 /* VirgilSDK watchOS */,
 				42745A511ED43D9400C1DEEC /* VirgilSDK */,
+				1631EDE0230C44B500B4F8C7 /* SDKTestApp macOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1631EDDF230C44B500B4F8C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1631EDE6230C44B500B4F8C7 /* Assets.xcassets in Resources */,
+				1631EDE9230C44B500B4F8C7 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		422499C01EB39B380032F556 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1694,6 +1765,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		1631EDDD230C44B500B4F8C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1631EDE4230C44B500B4F8C7 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		422499B51EB39B380032F556 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2202,6 +2281,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		1631EDF0230C44C300B4F8C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1631EDE0230C44B500B4F8C7 /* SDKTestApp macOS */;
+			targetProxy = 1631EDEF230C44C300B4F8C7 /* PBXContainerItemProxy */;
+		};
 		422499C51EB39B380032F556 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 422499B91EB39B380032F556 /* VirgilSDK macOS */;
@@ -2250,6 +2334,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		1631EDE7230C44B500B4F8C7 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1631EDE8230C44B500B4F8C7 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
 		42D0589720EB894500FC544E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2269,6 +2361,68 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1631EDEC230C44B500B4F8C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "SDKTestApp macOS/SDKTestApp_macOS.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = MS3LY2W55D;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SDKTestApp macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.SDKTestApp-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1631EDED230C44B500B4F8C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = "SDKTestApp macOS/SDKTestApp_macOS.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = MS3LY2W55D;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "SDKTestApp macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.SDKTestApp-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		361403361BB2E05F002E69CA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2469,6 +2623,7 @@
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SDKTestApp macOS.app/Contents/MacOS/SDKTestApp macOS";
 			};
 			name = Debug;
 		};
@@ -2493,6 +2648,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SDKTestApp macOS.app/Contents/MacOS/SDKTestApp macOS";
 			};
 			name = Release;
 		};
@@ -2957,6 +3113,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1631EDEE230C44B500B4F8C7 /* Build configuration list for PBXNativeTarget "SDKTestApp macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1631EDEC230C44B500B4F8C7 /* Debug */,
+				1631EDED230C44B500B4F8C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		361403101BB2E05F002E69CA /* Build configuration list for PBXProject "VirgilSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
