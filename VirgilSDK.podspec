@@ -7,7 +7,6 @@ Pod::Spec.new do |s|
   s.homepage                    = "https://github.com/VirgilSecurity/virgil-sdk-x/"
   s.authors                     = { "Virgil Security" => "https://virgilsecurity.com/" }
   s.source                      = { :git => "https://github.com/VirgilSecurity/virgil-sdk-x.git", :tag => s.version }
-  s.pod_target_xcconfig = { "PRODUCT_BUNDLE_IDENTIFIER" => "com.virgilsecurity.VirgilSDK" }
   s.ios.deployment_target       = "9.0"
   s.osx.deployment_target       = "10.11"
   s.tvos.deployment_target      = "9.0"
