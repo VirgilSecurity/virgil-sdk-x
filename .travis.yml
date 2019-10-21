@@ -58,7 +58,8 @@ script:
 
   # Build with carthage
   - if [ $PUBLISH_CARTHAGE == "YES" ]; then
-      brew update && brew upgrade carthage || true;
+      brew update;
+      brew outdated carthage || brew upgrade carthage;
       carthage build --no-skip-current;
       carthage archive;
     fi
