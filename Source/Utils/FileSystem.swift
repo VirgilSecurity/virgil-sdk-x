@@ -126,9 +126,9 @@ import VirgilCrypto
         let dataToWrite: Data
 
         if let credentials = self.credentials, !data.isEmpty {
-            dataToWrite = try credentials.crypto.signAndEncrypt(data,
-                                                                with: credentials.keyPair.privateKey,
-                                                                for: [credentials.keyPair.publicKey])
+            dataToWrite = try credentials.crypto.authEncrypt(data,
+                                                             with: credentials.keyPair.privateKey,
+                                                             for: [credentials.keyPair.publicKey])
         }
         else {
             dataToWrite = data
@@ -143,9 +143,10 @@ import VirgilCrypto
         let dataToReturn: Data
 
         if let credentials = self.credentials, !data.isEmpty {
-            dataToReturn = try credentials.crypto.decryptAndVerify(data,
-                                                                   with: credentials.keyPair.privateKey,
-                                                                   using: credentials.keyPair.publicKey)
+            dataToReturn = try credentials.crypto.authDecrypt(data,
+                                                              with: credentials.keyPair.privateKey,
+                                                              usingOneOf: [credentials.keyPair.publicKey],
+                                                              allowNotEncryptedSignature: true)
         }
         else {
             dataToReturn = data
