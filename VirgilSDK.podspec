@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                        = "VirgilSDK"
-  s.version                     = "7.0.1"
+  s.version                     = "7.0.2"
   s.swift_version               = "5.0"
   s.license                     = { :type => "BSD", :file => "LICENSE" }
   s.summary                     = "Virgil SDK for Apple devices and languages."
@@ -14,5 +14,5 @@ Pod::Spec.new do |s|
   s.source_files                = 'Source/**/*.{h,m,swift}'
   s.public_header_files         = 'Source/VirgilSDK.h',
                                   'Source/KeychainStorage/*.h'
-  s.dependency "VirgilCrypto", "~> 5.0"
+  s.dependency "VirgilCrypto", "~> 5.2"
 end
