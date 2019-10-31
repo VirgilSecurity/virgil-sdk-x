@@ -35,44 +35,68 @@
 //
 
 import Foundation
-import VirgilCrypto
 
-/// Class responsible for managing Keyknox value with E2EE
-@objc(VSSKeyknoxManager) open class KeyknoxManager: NSObject {
-    /// KeyknoxClient instance used for performing queries
-    @objc public let keyknoxClient: KeyknoxClientProtocol
-    
-    /// VirgilCrypto
-    @objc public let crypto: VirgilCrypto
-    
-    /// KeyknoxCryptoProtocol implementation
-    public let keyknoxCrypto: KeyknoxCryptoProtocol
+public class Timer {
+    private let interval: TimeInterval
+    private let timer: DispatchSourceTimer
 
-    internal let queue = DispatchQueue(label: "KeyknoxManagerQueue")
-
-    /// Init
-    ///
-    /// - Parameters:
-    ///   - keyknoxClient: KeyknoxClientProtocol implementation
-    ///   - crypto: VirgilCrypto
-    /// - Throws: KeyknoxManagerError.noPublicKeys if public keys array is empty
-    public init(keyknoxClient: KeyknoxClientProtocol, crypto: VirgilCrypto) {
-        self.keyknoxClient = keyknoxClient
-        self.crypto = crypto
-        self.keyknoxCrypto = KeyknoxCrypto(crypto: crypto)
-
-        super.init()
+    private enum State {
+        case suspended
+        case resumed
     }
 
-    /// Init
-    ///
-    /// - Parameters:
-    ///   - accessTokenProvider: AccessTokenProvider implementation
-    ///   - crypto: Crypto
-    /// - Throws: KeyknoxManagerError.noPublicKeys
-    @objc public convenience init(accessTokenProvider: AccessTokenProvider,
-                                  crypto: VirgilCrypto) {
-        self.init(keyknoxClient: KeyknoxClient(accessTokenProvider: accessTokenProvider),
-                  crypto: crypto)
+    private var state: State = .suspended
+
+    public init(interval: TimeInterval,
+                repeating: Bool = true,
+                startFromNow: Bool = true,
+                handler: @escaping () -> Void) {
+        self.interval = interval
+
+        let timer = DispatchSource.makeTimerSource()
+
+        let startAfter = startFromNow ? 0 : self.interval
+        
+        if repeating {
+            timer.schedule(deadline: .now() + startAfter,
+                           repeating: self.interval)
+        }
+        else {
+            timer.schedule(deadline: .now() + startAfter)
+        }
+
+        timer.setEventHandler(handler: handler)
+
+        self.timer = timer
+    }
+
+    deinit {
+        self.timer.setEventHandler {}
+        self.timer.cancel()
+
+        /*
+         If the timer is suspended, calling cancel without resuming
+         triggers a crash. This is documented here https://forums.developer.apple.com/thread/15902
+         */
+
+        self.resume()
+    }
+
+    public func resume() {
+        if self.state == .resumed {
+            return
+        }
+
+        self.state = .resumed
+        self.timer.resume()
+    }
+
+    public func suspend() {
+        if self.state == .suspended {
+            return
+        }
+
+        self.state = .suspended
+        self.timer.suspend()
     }
 }

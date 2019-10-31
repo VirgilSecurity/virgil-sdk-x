@@ -35,44 +35,51 @@
 //
 
 import Foundation
-import VirgilCrypto
 
-/// Class responsible for managing Keyknox value with E2EE
-@objc(VSSKeyknoxManager) open class KeyknoxManager: NSObject {
-    /// KeyknoxClient instance used for performing queries
-    @objc public let keyknoxClient: KeyknoxClientProtocol
+public class ProtectedKey {
+    public let keyName: String
+    public let accessTime: TimeInterval?
+    public let keychainStorage: KeychainStorage
     
-    /// VirgilCrypto
-    @objc public let crypto: VirgilCrypto
-    
-    /// KeyknoxCryptoProtocol implementation
-    public let keyknoxCrypto: KeyknoxCryptoProtocol
-
-    internal let queue = DispatchQueue(label: "KeyknoxManagerQueue")
-
-    /// Init
-    ///
-    /// - Parameters:
-    ///   - keyknoxClient: KeyknoxClientProtocol implementation
-    ///   - crypto: VirgilCrypto
-    /// - Throws: KeyknoxManagerError.noPublicKeys if public keys array is empty
-    public init(keyknoxClient: KeyknoxClientProtocol, crypto: VirgilCrypto) {
-        self.keyknoxClient = keyknoxClient
-        self.crypto = crypto
-        self.keyknoxCrypto = KeyknoxCrypto(crypto: crypto)
-
-        super.init()
+    public init(keyName: String, accessTime: TimeInterval?, keychainStorage: KeychainStorage) {
+        self.keyName = keyName
+        self.accessTime = accessTime
+        self.keychainStorage = keychainStorage
     }
-
-    /// Init
-    ///
-    /// - Parameters:
-    ///   - accessTokenProvider: AccessTokenProvider implementation
-    ///   - crypto: Crypto
-    /// - Throws: KeyknoxManagerError.noPublicKeys
-    @objc public convenience init(accessTokenProvider: AccessTokenProvider,
-                                  crypto: VirgilCrypto) {
-        self.init(keyknoxClient: KeyknoxClient(accessTokenProvider: accessTokenProvider),
-                  crypto: crypto)
+    
+    private var timer: Timer?
+    private var keychainEntry: KeychainEntry?
+    
+    @objc public func getKeychainEntry() throws -> KeychainEntry {
+        if let keychainEntry = self.keychainEntry {
+            return keychainEntry
+        }
+        
+        let options = KeychainQueryOptions()
+        options.biometricallyProtected = true
+        
+        let newKeychainEntry = try self.keychainStorage.retrieveEntry(withName: self.keyName, queryOptions: options)
+        
+        self.updateKeychainEntry(keychainEntry: newKeychainEntry)
+        
+        return newKeychainEntry
+    }
+    
+    private func deleteKey() {
+        self.timer = nil
+        self.keychainEntry = nil
+    }
+    
+    private func updateKeychainEntry(keychainEntry: KeychainEntry) {
+        self.keychainEntry = keychainEntry
+        
+        if let accessTime = self.accessTime {
+            let timer = Timer(interval: accessTime, repeating: false, startFromNow: true) { [weak self] in
+                self?.deleteKey()
+            }
+            
+            self.timer = timer
+            timer.resume()
+        }
     }
 }
