@@ -45,16 +45,9 @@ import VirgilCrypto
     /// Keypair
     public let privateKeyWrap: PrivateKeyWrapper
     
-    @objc public init(crypto: VirgilCrypto, keyPair: VirgilKeyPair) {
+    public init(crypto: VirgilCrypto, privateKeyWrapper: PrivateKeyWrapper) {
         self.crypto = crypto
-        self.privateKeyWrap = PrivateKeyWrapper(keyPair: keyPair)
-
-        super.init()
-    }
-    
-    public init(crypto: VirgilCrypto, protectedKey: ProtectedKey) {
-        self.crypto = crypto
-        self.privateKeyWrap = PrivateKeyWrapper(protectedKey: protectedKey, crypto: crypto)
+        self.privateKeyWrap = privateKeyWrapper
 
         super.init()
     }

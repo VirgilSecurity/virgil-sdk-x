@@ -40,7 +40,9 @@ import VirgilCrypto
 public class PrivateKeyWrapper {
     private enum WrappedKey {
         case plain(VirgilPrivateKey)
+    #if os(iOS)
         case protected(ProtectedKey)
+    #endif
     }
     
     private let wrappedKey: WrappedKey
@@ -59,6 +61,7 @@ public class PrivateKeyWrapper {
         self.crypto = nil
     }
     
+#if os(iOS)
     public init(protectedKey: ProtectedKey, crypto: VirgilCrypto) {
         self.wrappedKey = .protected(protectedKey)
         self.publicKey = nil
@@ -70,6 +73,7 @@ public class PrivateKeyWrapper {
         self.publicKey = publicKey
         self.crypto = crypto
     }
+#endif
     
     public func getKeyPair() throws -> VirgilKeyPair {
         switch self.wrappedKey {
@@ -82,12 +86,13 @@ public class PrivateKeyWrapper {
                 self.publicKey = publicKey
                 return VirgilKeyPair(privateKey: privateKey, publicKey: publicKey)
             }
-
+    #if os(iOS)
         case .protected(let protectedKey):
             let keychainEntry = try protectedKey.getKeychainEntry()
             let keyPair = try crypto!.importPrivateKey(from: keychainEntry.data)
             self.publicKey = keyPair.publicKey
             return keyPair
+    #endif
         }
     }
     
@@ -95,9 +100,10 @@ public class PrivateKeyWrapper {
         switch self.wrappedKey {
         case .plain(let privateKey):
             return privateKey
-
+    #if os(iOS)
         case .protected(_):
             return try self.getKeyPair().privateKey
+    #endif 
         }
     }
     
