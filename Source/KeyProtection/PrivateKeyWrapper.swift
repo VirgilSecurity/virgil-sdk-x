@@ -44,37 +44,37 @@ public class PrivateKeyWrapper {
         case protected(ProtectedKey)
     #endif
     }
-    
+
     private let wrappedKey: WrappedKey
     private var publicKey: VirgilPublicKey?
     private let crypto: VirgilCrypto?
-    
+
     public init(privateKey: VirgilPrivateKey, crypto: VirgilCrypto) {
         self.wrappedKey = .plain(privateKey)
         self.publicKey = nil
         self.crypto = crypto
     }
-    
+
     public init(keyPair: VirgilKeyPair) {
         self.wrappedKey = .plain(keyPair.privateKey)
         self.publicKey = keyPair.publicKey
         self.crypto = nil
     }
-    
+
 #if os(iOS)
     public init(protectedKey: ProtectedKey, crypto: VirgilCrypto) {
         self.wrappedKey = .protected(protectedKey)
         self.publicKey = nil
         self.crypto = crypto
     }
-    
+
     public init(protectedKey: ProtectedKey, publicKey: VirgilPublicKey, crypto: VirgilCrypto) {
         self.wrappedKey = .protected(protectedKey)
         self.publicKey = publicKey
         self.crypto = crypto
     }
 #endif
-    
+
     public func getKeyPair() throws -> VirgilKeyPair {
         switch self.wrappedKey {
         case .plain(let privateKey):
@@ -95,23 +95,23 @@ public class PrivateKeyWrapper {
     #endif
         }
     }
-    
+
     public func getPrivateKey() throws -> VirgilPrivateKey {
         switch self.wrappedKey {
         case .plain(let privateKey):
             return privateKey
     #if os(iOS)
-        case .protected(_):
+        case .protected:
             return try self.getKeyPair().privateKey
-    #endif 
+    #endif
         }
     }
-    
+
     public func getPublicKey() throws -> VirgilPublicKey {
         if let publicKey = self.publicKey {
             return publicKey
         }
-        
+
         return try self.getKeyPair().publicKey
     }
 }

@@ -40,44 +40,44 @@ public class ProtectedKey {
     public let keyName: String
     public let accessTime: TimeInterval?
     public let keychainStorage: KeychainStorage
-    
+
     public init(keyName: String, accessTime: TimeInterval?, keychainStorage: KeychainStorage) {
         self.keyName = keyName
         self.accessTime = accessTime
         self.keychainStorage = keychainStorage
     }
-    
+
     private var timer: Timer?
     private var keychainEntry: KeychainEntry?
-    
+
     @objc public func getKeychainEntry() throws -> KeychainEntry {
         if let keychainEntry = self.keychainEntry {
             return keychainEntry
         }
-        
+
         let options = KeychainQueryOptions()
         options.biometricallyProtected = true
-        
+
         let newKeychainEntry = try self.keychainStorage.retrieveEntry(withName: self.keyName, queryOptions: options)
-        
+
         self.updateKeychainEntry(keychainEntry: newKeychainEntry)
-        
+
         return newKeychainEntry
     }
-    
+
     private func deleteKey() {
         self.timer = nil
         self.keychainEntry = nil
     }
-    
+
     private func updateKeychainEntry(keychainEntry: KeychainEntry) {
         self.keychainEntry = keychainEntry
-        
+
         if let accessTime = self.accessTime {
             let timer = Timer(interval: accessTime, repeating: false, startFromNow: true) { [weak self] in
                 self?.deleteKey()
             }
-            
+
             self.timer = timer
             timer.resume()
         }

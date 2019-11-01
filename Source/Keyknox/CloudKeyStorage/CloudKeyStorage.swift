@@ -88,11 +88,11 @@ import VirgilCrypto
 
         self.init(keyknoxManager: keyknoxManager, publicKeys: publicKeys, privateKey: privateKey)
     }
-    
+
     private func getPrivateKeyWrapper() -> PrivateKeyWrapper {
         return self.getPrivateKeyWrapper(privateKey: self.privateKey)
     }
-    
+
     private func getPrivateKeyWrapper(privateKey: VirgilPrivateKey) -> PrivateKeyWrapper {
         return PrivateKeyWrapper(privateKey: privateKey, crypto: self.keyknoxManager.crypto)
     }

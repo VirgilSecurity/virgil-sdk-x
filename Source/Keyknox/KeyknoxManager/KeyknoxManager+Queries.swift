@@ -57,7 +57,7 @@ extension KeyknoxManager {
             self.queue.async {
                 do {
                     let privateKey = try privateKeyWrapper.getPrivateKey()
-                    
+
                     let encryptedData = try self.keyknoxCrypto.encrypt(data: data,
                                                                        privateKey: privateKey,
                                                                        publicKeys: publicKeys)

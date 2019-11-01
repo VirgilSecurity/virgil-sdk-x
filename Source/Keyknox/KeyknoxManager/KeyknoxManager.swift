@@ -41,10 +41,10 @@ import VirgilCrypto
 @objc(VSSKeyknoxManager) open class KeyknoxManager: NSObject {
     /// KeyknoxClient instance used for performing queries
     @objc public let keyknoxClient: KeyknoxClientProtocol
-    
+
     /// VirgilCrypto
     @objc public let crypto: VirgilCrypto
-    
+
     /// KeyknoxCryptoProtocol implementation
     public let keyknoxCrypto: KeyknoxCryptoProtocol
 

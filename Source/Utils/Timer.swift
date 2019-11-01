@@ -56,7 +56,7 @@ public class Timer {
         let timer = DispatchSource.makeTimerSource()
 
         let startAfter = startFromNow ? 0 : self.interval
-        
+
         if repeating {
             timer.schedule(deadline: .now() + startAfter,
                            repeating: self.interval)

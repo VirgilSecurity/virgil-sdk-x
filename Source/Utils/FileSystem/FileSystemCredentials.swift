@@ -44,7 +44,7 @@ import VirgilCrypto
 
     /// Keypair
     public let privateKeyWrap: PrivateKeyWrapper
-    
+
     public init(crypto: VirgilCrypto, privateKeyWrapper: PrivateKeyWrapper) {
         self.crypto = crypto
         self.privateKeyWrap = privateKeyWrapper

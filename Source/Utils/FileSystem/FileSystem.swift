@@ -69,7 +69,7 @@ import VirgilCrypto
         self.userIdentifier = userIdentifier
         self.pathComponents = pathComponents
         self.credentials = credentials
-        
+
         super.init()
     }
 
@@ -119,34 +119,34 @@ import VirgilCrypto
 
         return try self.decrypt(data: data)
     }
-    
+
     private func encrypt(data: Data) throws -> Data {
         guard !data.isEmpty else {
             return data
         }
-        
+
         guard let credentials = self.credentials else {
             return data
         }
-        
+
         let keyPair = try credentials.privateKeyWrap.getKeyPair()
-        
+
         return try credentials.crypto.authEncrypt(data,
                                                   with: keyPair.privateKey,
                                                   for: [keyPair.publicKey])
     }
-    
+
     private func decrypt(data: Data) throws -> Data {
         guard !data.isEmpty else {
             return data
         }
-        
+
         guard let credentials = self.credentials else {
             return data
         }
-        
+
         let keyPair = try credentials.privateKeyWrap.getKeyPair()
-        
+
         return try credentials.crypto.authDecrypt(data,
                                                   with: keyPair.privateKey,
                                                   usingOneOf: [keyPair.publicKey],
