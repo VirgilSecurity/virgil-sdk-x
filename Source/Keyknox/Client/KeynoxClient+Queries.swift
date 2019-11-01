@@ -138,12 +138,11 @@ extension KeyknoxClient: KeyknoxClientProtocol {
 
         let response = try networkOperation.startSync().get()
 
-        let keyknoxHash = try self.extractKeyknoxHash(response: response)
-
         let keyknoxValue: EncryptedKeyknoxValue
 
         if params == nil {
             let keyknoxData: KeyknoxData = try self.processResponse(response)
+            let keyknoxHash = try self.extractKeyknoxHash(response: response)
 
             let identity = try self.extractIdentity(operation: networkOperation)
 
@@ -151,6 +150,7 @@ extension KeyknoxClient: KeyknoxClientProtocol {
         }
         else {
             let keyknoxData: KeyknoxDataV2 = try self.processResponse(response)
+            let keyknoxHash = try self.extractKeyknoxHash(response: response)
             keyknoxValue = EncryptedKeyknoxValue(keyknoxData: keyknoxData, keyknoxHash: keyknoxHash)
         }
 
@@ -200,18 +200,18 @@ extension KeyknoxClient: KeyknoxClientProtocol {
 
         let response = try networkOperation.startSync().get()
 
-        let keyknoxHash = try self.extractKeyknoxHash(response: response)
-
         let keyknoxValue: EncryptedKeyknoxValue
 
         if params == nil {
             let keyknoxData: KeyknoxData = try self.processResponse(response)
+            let keyknoxHash = try self.extractKeyknoxHash(response: response)
             let identity = try self.extractIdentity(operation: networkOperation)
 
             keyknoxValue = EncryptedKeyknoxValue(keyknoxData: keyknoxData, keyknoxHash: keyknoxHash, identity: identity)
         }
         else {
             let keyknoxData: KeyknoxDataV2 = try self.processResponse(response)
+            let keyknoxHash = try self.extractKeyknoxHash(response: response)
             keyknoxValue = EncryptedKeyknoxValue(keyknoxData: keyknoxData, keyknoxHash: keyknoxHash)
         }
 
@@ -312,19 +312,18 @@ extension KeyknoxClient: KeyknoxClientProtocol {
 
         let response = try networkOperation.startSync().get()
 
-        let keyknoxHash = try self.extractKeyknoxHash(response: response)
-
         let keyknoxValue: DecryptedKeyknoxValue
 
         if params == nil {
             let keyknoxData: KeyknoxData = try self.processResponse(response)
-
+            let keyknoxHash = try self.extractKeyknoxHash(response: response)
             let identity = try self.extractIdentity(operation: networkOperation)
 
             keyknoxValue = DecryptedKeyknoxValue(keyknoxData: keyknoxData, keyknoxHash: keyknoxHash, identity: identity)
         }
         else {
             let keyknoxData: KeyknoxDataV2 = try self.processResponse(response)
+            let keyknoxHash = try self.extractKeyknoxHash(response: response)
             keyknoxValue = DecryptedKeyknoxValue(keyknoxData: keyknoxData, keyknoxHash: keyknoxHash)
         }
 
