@@ -44,7 +44,9 @@ import Foundation
 /// - biometricKey: key stored under biometric protection
 public enum PrivateKeyWrapperType {
     case plainKey
+#if os(iOS)
     case biometricKey
+#endif
 }
 
 // swiftlint:enable missing_docs

@@ -281,6 +281,9 @@
 		42860D7B2289B94200494515 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42860D772289B94200494515 /* VirgilCrypto.framework */; };
 		429123671F4B0B3700103BE0 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
 		42C7B2862370321C00D1BE96 /* PrivateKeyWrapperType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C7B2852370321C00D1BE96 /* PrivateKeyWrapperType.swift */; };
+		42C7B28723704A3100D1BE96 /* PrivateKeyWrapperType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C7B2852370321C00D1BE96 /* PrivateKeyWrapperType.swift */; };
+		42C7B28823704A3200D1BE96 /* PrivateKeyWrapperType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C7B2852370321C00D1BE96 /* PrivateKeyWrapperType.swift */; };
+		42C7B28923704A3300D1BE96 /* PrivateKeyWrapperType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C7B2852370321C00D1BE96 /* PrivateKeyWrapperType.swift */; };
 		42CBE3D521ECBC19000F99E6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CBE3D421ECBC19000F99E6 /* Security.framework */; platformFilter = ios; };
 		42CBE3DA21ECBC2A000F99E6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CBE3D921ECBC2A000F99E6 /* Security.framework */; };
 		42D0589420EB894500FC544E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D0589320EB894500FC544E /* AppDelegate.swift */; };
@@ -1785,6 +1788,7 @@
 				42D7B05022439A62009D02FD /* Mutex.swift in Sources */,
 				42D7AF84224396AD009D02FD /* CardManager+Queries.swift in Sources */,
 				42D7AF68224396AD009D02FD /* BaseClient.swift in Sources */,
+				42C7B28723704A3100D1BE96 /* PrivateKeyWrapperType.swift in Sources */,
 				42D7AF60224396AD009D02FD /* HttpConnectionProtocol.swift in Sources */,
 				42492F8122CE9FC400BEA96F /* KeyknoxCrypto.swift in Sources */,
 				42817AB222D3507F006998D6 /* KeyknoxKeyEntry.swift in Sources */,
@@ -1917,6 +1921,7 @@
 				424ACC672231384200DD5072 /* NetworkOperation.swift in Sources */,
 				42D7AF99224396AE009D02FD /* HttpConnectionProtocol.swift in Sources */,
 				42D7AF9D224396AE009D02FD /* Response.swift in Sources */,
+				42C7B28823704A3200D1BE96 /* PrivateKeyWrapperType.swift in Sources */,
 				42492F8222CE9FC400BEA96F /* KeyknoxCrypto.swift in Sources */,
 				42817AB322D3507F006998D6 /* KeyknoxKeyEntry.swift in Sources */,
 				42492FCA22CE9FC500BEA96F /* KeyknoxClientProtocol.swift in Sources */,
@@ -2020,6 +2025,7 @@
 				42D7AFD6224396AF009D02FD /* Response.swift in Sources */,
 				42D7AFF2224396AF009D02FD /* DateUtils.swift in Sources */,
 				42D7AFEF224396AF009D02FD /* Log.swift in Sources */,
+				42C7B28923704A3300D1BE96 /* PrivateKeyWrapperType.swift in Sources */,
 				42492F8322CE9FC400BEA96F /* KeyknoxCrypto.swift in Sources */,
 				42817AB422D3507F006998D6 /* KeyknoxKeyEntry.swift in Sources */,
 				42492FCB22CE9FC500BEA96F /* KeyknoxClientProtocol.swift in Sources */,
