@@ -51,25 +51,50 @@ import UIKit
     /// Cleans private key from RAM on background
     @objc public let cleanOnEnterBackground: Bool
 
+    /// Requests private key on entering foreground
+    @objc public let requestOnEnterForeground: Bool
+    
+    /// Error callback function type
+    public typealias ErrorCallback = (Error) -> ()
+    
+    /// Error callback for errors during entering foreground
+    public let enterForegroundErrorCallback: ErrorCallback?
+
     /// Init
     /// - Parameters:
     ///   - keyName: key name
     ///   - accessTime: access time during which key is cached in RAM
     ///   - cleanOnEnterBackground: clean private key while application is entering background
+    ///   - requestOnEnterForeground: requests private key while entering foreground
+    ///   - enterForegroundErrorCallback: error callback for errors during entering foreground
     ///   - keychainStorage: KeychainStorage
     public init(keyName: String,
                 accessTime: TimeInterval?,
                 cleanOnEnterBackground: Bool,
+                requestOnEnterForeground: Bool,
+                enterForegroundErrorCallback: ErrorCallback?,
                 keychainStorage: KeychainStorage) {
         self.keyName = keyName
         self.accessTime = accessTime
         self.cleanOnEnterBackground = cleanOnEnterBackground
+        self.requestOnEnterForeground = requestOnEnterForeground
+        self.enterForegroundErrorCallback = enterForegroundErrorCallback
         self.keychainStorage = keychainStorage
         
         super.init()
         
         if self.cleanOnEnterBackground {
-            NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackgroundHandler), name: UIApplication.didEnterBackgroundNotification, object: nil)
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(didEnterBackgroundHandler),
+                                                   name: UIApplication.didEnterBackgroundNotification,
+                                                   object: nil)
+        }
+        
+        if self.requestOnEnterForeground {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(willEnterForegroundHandler),
+                                                   name: UIApplication.willEnterForegroundNotification,
+                                                   object: nil)
         }
     }
 
@@ -79,6 +104,17 @@ import UIKit
     @objc private func didEnterBackgroundHandler() {
         if self.cleanOnEnterBackground {
             self.deleteKey()
+        }
+    }
+    
+    @objc private func willEnterForegroundHandler() {
+        if self.requestOnEnterForeground && self.keychainEntry == nil {
+            do {
+                _ = try self.getKeychainEntry()
+            }
+            catch {
+                self.enterForegroundErrorCallback?(error)
+            }
         }
     }
 
