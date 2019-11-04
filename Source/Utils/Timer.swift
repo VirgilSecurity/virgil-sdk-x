@@ -48,13 +48,13 @@ public class Timer {
     private var state: State = .suspended
 
     // swiftlint:disable missing_docs
-    
+
     /// Timer type
     public enum TimerType {
         case oneTime(TimeInterval)
         case repeating(Bool, TimeInterval)
     }
-    
+
     // swiftlint:enable missing_docs
 
     /// Init
@@ -71,8 +71,8 @@ public class Timer {
         switch timerType {
         case .oneTime(let interval):
             timer.schedule(deadline: .now() + interval)
-            
-        case .repeating(let startFromNow, let interval):
+
+        case let .repeating(startFromNow, interval):
             let startAfter = startFromNow ? 0 : interval
 
             timer.schedule(deadline: .now() + startAfter, repeating: interval)

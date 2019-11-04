@@ -53,13 +53,16 @@ import VirgilCrypto
     private let wrappedKey: WrappedKey
     private var publicKey: VirgilPublicKey?
     private let crypto: VirgilCrypto?
-    
-    private init(wrappedKey: WrappedKey, publicKey: VirgilPublicKey?, crypto: VirgilCrypto?, type: PrivateKeyWrapperType) {
+
+    private init(wrappedKey: WrappedKey,
+                 publicKey: VirgilPublicKey?,
+                 crypto: VirgilCrypto?,
+                 type: PrivateKeyWrapperType) {
         self.wrappedKey = wrappedKey
         self.publicKey = publicKey
         self.crypto = crypto
         self.type = type
-        
+
         super.init()
     }
 
@@ -67,13 +70,13 @@ import VirgilCrypto
     /// - Parameters:
     ///   - privateKey: plain private key
     ///   - crypto: VirgilCrypto
-    @objc convenience public init(privateKey: VirgilPrivateKey, crypto: VirgilCrypto) {
+    @objc public convenience init(privateKey: VirgilPrivateKey, crypto: VirgilCrypto) {
         self.init(wrappedKey: .plain(privateKey), publicKey: nil, crypto: crypto, type: .plainKey)
     }
 
     /// Init
     /// - Parameter keyPair: Plain keypair
-    @objc convenience public init(keyPair: VirgilKeyPair) {
+    @objc public convenience init(keyPair: VirgilKeyPair) {
         self.init(wrappedKey: .plain(keyPair.privateKey), publicKey: keyPair.publicKey, crypto: nil, type: .plainKey)
     }
 
@@ -82,7 +85,7 @@ import VirgilCrypto
     /// - Parameters:
     ///   - protectedKey: Protected key
     ///   - crypto: VirgilCrypto
-    @objc convenience public init(protectedKey: ProtectedKey, crypto: VirgilCrypto) {
+    @objc public convenience init(protectedKey: ProtectedKey, crypto: VirgilCrypto) {
         self.init(wrappedKey: .protected(protectedKey), publicKey: nil, crypto: crypto, type: .biometricKey)
     }
 
@@ -91,7 +94,7 @@ import VirgilCrypto
     ///   - protectedKey: protected key
     ///   - publicKey: public key
     ///   - crypto: VirgilCrypto
-    @objc convenience public init(protectedKey: ProtectedKey, publicKey: VirgilPublicKey, crypto: VirgilCrypto) {
+    @objc public convenience init(protectedKey: ProtectedKey, publicKey: VirgilPublicKey, crypto: VirgilCrypto) {
         self.init(wrappedKey: .protected(protectedKey), publicKey: publicKey, crypto: crypto, type: .biometricKey)
     }
 #endif

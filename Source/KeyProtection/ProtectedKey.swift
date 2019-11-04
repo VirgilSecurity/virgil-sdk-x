@@ -47,16 +47,16 @@ import UIKit
 
     /// KeychainStorage
     @objc public let keychainStorage: KeychainStorage
-    
+
     /// Cleans private key from RAM on background
     @objc public let cleanOnEnterBackground: Bool
 
     /// Requests private key on entering foreground
     @objc public let requestOnEnterForeground: Bool
-    
+
     /// Error callback function type
-    public typealias ErrorCallback = (Error) -> ()
-    
+    public typealias ErrorCallback = (Error) -> Void
+
     /// Error callback for errors during entering foreground
     public let enterForegroundErrorCallback: ErrorCallback?
 
@@ -80,16 +80,16 @@ import UIKit
         self.requestOnEnterForeground = requestOnEnterForeground
         self.enterForegroundErrorCallback = enterForegroundErrorCallback
         self.keychainStorage = keychainStorage
-        
+
         super.init()
-        
+
         if self.cleanOnEnterBackground {
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(didEnterBackgroundHandler),
                                                    name: UIApplication.didEnterBackgroundNotification,
                                                    object: nil)
         }
-        
+
         if self.requestOnEnterForeground {
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(willEnterForegroundHandler),
@@ -100,13 +100,13 @@ import UIKit
 
     private var timer: Timer?
     private var keychainEntry: KeychainEntry?
-    
+
     @objc private func didEnterBackgroundHandler() {
         if self.cleanOnEnterBackground {
             self.deleteKey()
         }
     }
-    
+
     @objc private func willEnterForegroundHandler() {
         if self.requestOnEnterForeground && self.keychainEntry == nil {
             do {
@@ -152,7 +152,7 @@ import UIKit
             timer.resume()
         }
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }

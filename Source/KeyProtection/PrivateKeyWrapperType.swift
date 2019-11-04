@@ -36,17 +36,13 @@
 
 import Foundation
 
-// swiftlint:disable missing_docs
-
 /// Type of PrivateKeyWrapper
 ///
 /// - plainKey: plain key stored in RAM
 /// - biometricKey: key stored under biometric protection
 @objc(VSSPrivateKeyWrapperType) public enum PrivateKeyWrapperType: Int {
-    case plainKey
+    case plainKey = 1
 #if os(iOS)
-    case biometricKey
+    case biometricKey = 2
 #endif
 }
-
-// swiftlint:enable missing_docs
