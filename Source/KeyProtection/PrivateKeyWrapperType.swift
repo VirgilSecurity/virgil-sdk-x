@@ -36,44 +36,15 @@
 
 import Foundation
 
-// MARK: - Data extension for hex encoding and decoding
-public extension Data {
-    /// Encodes data in hex format
-    ///
-    /// - Returns: Hex-encoded string
-    func hexEncodedString() -> String {
-        return self
-            .map { String(format: "%02hhx", $0) }
-            .joined()
-    }
+// swiftlint:disable missing_docs
 
-    /// Initializer
-    ///
-    /// - Parameter hex: Hex-encoded string
-    init?(hexEncodedString hex: String) {
-        let length = hex.lengthOfBytes(using: .ascii)
-
-        guard length % 2 == 0 else {
-            return nil
-        }
-
-        var data = Data()
-        data.reserveCapacity(length / 2)
-
-        var lowerBound = hex.startIndex
-
-        while true {
-            guard let upperBound = hex.index(lowerBound, offsetBy: 2, limitedBy: hex.endIndex) else {
-                break
-            }
-
-            let substr = String(hex[Range(uncheckedBounds: (lowerBound, upperBound))])
-            let res = strtol(substr, nil, 16)
-            data.append(contentsOf: [UInt8(res)])
-
-            lowerBound = upperBound
-        }
-
-        self = data
-    }
+/// Type of PrivateKeyWrapper
+///
+/// - plainKey: plain key stored in RAM
+/// - biometricKey: key stored under biometric protection
+public enum PrivateKeyWrapperType {
+    case plainKey
+    case biometricKey
 }
+
+// swiftlint:enable missing_docs

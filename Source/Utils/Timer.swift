@@ -36,6 +36,7 @@
 
 import Foundation
 
+/// Timer class
 public class Timer {
     private let interval: TimeInterval
     private let timer: DispatchSourceTimer
@@ -47,6 +48,12 @@ public class Timer {
 
     private var state: State = .suspended
 
+    /// Init
+    /// - Parameters:
+    ///   - interval: TimeInterval
+    ///   - repeating: will repeat if true
+    ///   - startFromNow: start now
+    ///   - handler: timer handler
     public init(interval: TimeInterval,
                 repeating: Bool = true,
                 startFromNow: Bool = true,
@@ -82,6 +89,7 @@ public class Timer {
         self.resume()
     }
 
+    /// Resumes timer
     public func resume() {
         if self.state == .resumed {
             return
@@ -91,6 +99,7 @@ public class Timer {
         self.timer.resume()
     }
 
+    /// Suspends timer
     public func suspend() {
         if self.state == .suspended {
             return

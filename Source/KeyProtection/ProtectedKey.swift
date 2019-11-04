@@ -36,11 +36,22 @@
 
 import Foundation
 
+/// Class for accessing biometrically secured private keys, with proper caching
 public class ProtectedKey {
+    /// Key name
     public let keyName: String
+
+    /// Access time during which key is cached in RAM
     public let accessTime: TimeInterval?
+
+    /// KeychainStorage
     public let keychainStorage: KeychainStorage
 
+    /// Init
+    /// - Parameters:
+    ///   - keyName: key name
+    ///   - accessTime: access time during which key is cached in RAM
+    ///   - keychainStorage: KeychainStorage
     public init(keyName: String, accessTime: TimeInterval?, keychainStorage: KeychainStorage) {
         self.keyName = keyName
         self.accessTime = accessTime
@@ -50,6 +61,7 @@ public class ProtectedKey {
     private var timer: Timer?
     private var keychainEntry: KeychainEntry?
 
+    /// Returns keychain entry
     @objc public func getKeychainEntry() throws -> KeychainEntry {
         if let keychainEntry = self.keychainEntry {
             return keychainEntry

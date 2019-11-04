@@ -182,7 +182,7 @@ import VirgilCrypto
     }
 }
 
-/// MARK: - Public API
+// MARK: - Public API
 public extension FileSystem {
     /// Write data
     ///

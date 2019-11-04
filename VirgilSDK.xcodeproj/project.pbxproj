@@ -280,6 +280,7 @@
 		42860D7A2289B94200494515 /* VSCFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42860D762289B94100494515 /* VSCFoundation.framework */; };
 		42860D7B2289B94200494515 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42860D772289B94200494515 /* VirgilCrypto.framework */; };
 		429123671F4B0B3700103BE0 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
+		42C7B2862370321C00D1BE96 /* PrivateKeyWrapperType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C7B2852370321C00D1BE96 /* PrivateKeyWrapperType.swift */; };
 		42CBE3D521ECBC19000F99E6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CBE3D421ECBC19000F99E6 /* Security.framework */; platformFilter = ios; };
 		42CBE3DA21ECBC2A000F99E6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CBE3D921ECBC2A000F99E6 /* Security.framework */; };
 		42D0589420EB894500FC544E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D0589320EB894500FC544E /* AppDelegate.swift */; };
@@ -774,6 +775,7 @@
 		428B163F20E39A940041CA75 /* CardManager+StaticExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardManager+StaticExport.swift"; sourceTree = "<group>"; };
 		429123561F4B0B3700103BE0 /* TestConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestConfig.plist; sourceTree = "<group>"; };
 		42B7E3721DB9023400D70C12 /* VirgilSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VirgilSDK.h; sourceTree = "<group>"; };
+		42C7B2852370321C00D1BE96 /* PrivateKeyWrapperType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateKeyWrapperType.swift; sourceTree = "<group>"; };
 		42CBE3D421ECBC19000F99E6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		42CBE3D921ECBC2A000F99E6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		42CF01F31F6A9DD5003ABB19 /* CardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardManager.swift; sourceTree = "<group>"; };
@@ -1332,6 +1334,7 @@
 			children = (
 				42F3B721236AE9800053F5F8 /* ProtectedKey.swift */,
 				42F3B73E236B21440053F5F8 /* PrivateKeyWrapper.swift */,
+				42C7B2852370321C00D1BE96 /* PrivateKeyWrapperType.swift */,
 			);
 			path = KeyProtection;
 			sourceTree = "<group>";
@@ -2204,6 +2207,7 @@
 				42492FC822CE9FC500BEA96F /* KeyknoxClientProtocol.swift in Sources */,
 				42D7AF4E224396AC009D02FD /* CardManager+Obj-C.swift in Sources */,
 				42492F4522CE9FB500BEA96F /* RawSignedModel.swift in Sources */,
+				42C7B2862370321C00D1BE96 /* PrivateKeyWrapperType.swift in Sources */,
 				42D7AF45224396AC009D02FD /* Data+hex.swift in Sources */,
 				42D7AF3E224396AC009D02FD /* OperationUtils.swift in Sources */,
 				42492FCC22CE9FC500BEA96F /* KeyknoxClient.swift in Sources */,

@@ -37,6 +37,9 @@
 import Foundation
 import VirgilCrypto
 
+// swiftlint:disable force_unwrapping
+
+/// Class that wraps either plain private key or biometrically protected key
 public class PrivateKeyWrapper {
     private enum WrappedKey {
         case plain(VirgilPrivateKey)
@@ -45,36 +48,58 @@ public class PrivateKeyWrapper {
     #endif
     }
 
+    /// Key type
+    public let type: PrivateKeyWrapperType
     private let wrappedKey: WrappedKey
     private var publicKey: VirgilPublicKey?
     private let crypto: VirgilCrypto?
 
+    /// Init
+    /// - Parameters:
+    ///   - privateKey: plain private key
+    ///   - crypto: VirgilCrypto
     public init(privateKey: VirgilPrivateKey, crypto: VirgilCrypto) {
         self.wrappedKey = .plain(privateKey)
         self.publicKey = nil
         self.crypto = crypto
+        self.type = .plainKey
     }
 
+    /// Init
+    /// - Parameter keyPair: Plain keypair
     public init(keyPair: VirgilKeyPair) {
         self.wrappedKey = .plain(keyPair.privateKey)
         self.publicKey = keyPair.publicKey
         self.crypto = nil
+        self.type = .plainKey
     }
 
 #if os(iOS)
+    /// Init
+    /// - Parameters:
+    ///   - protectedKey: Protected key
+    ///   - crypto: VirgilCrypto
     public init(protectedKey: ProtectedKey, crypto: VirgilCrypto) {
         self.wrappedKey = .protected(protectedKey)
         self.publicKey = nil
         self.crypto = crypto
+        self.type = .biometricKey
     }
 
+    /// Init
+    /// - Parameters:
+    ///   - protectedKey: protected key
+    ///   - publicKey: public key
+    ///   - crypto: VirgilCrypto
     public init(protectedKey: ProtectedKey, publicKey: VirgilPublicKey, crypto: VirgilCrypto) {
         self.wrappedKey = .protected(protectedKey)
         self.publicKey = publicKey
         self.crypto = crypto
+        self.type = .biometricKey
     }
 #endif
 
+    /// Returns key pair
     public func getKeyPair() throws -> VirgilKeyPair {
         switch self.wrappedKey {
         case .plain(let privateKey):
@@ -96,6 +121,7 @@ public class PrivateKeyWrapper {
         }
     }
 
+    /// Returns private key
     public func getPrivateKey() throws -> VirgilPrivateKey {
         switch self.wrappedKey {
         case .plain(let privateKey):
@@ -107,6 +133,7 @@ public class PrivateKeyWrapper {
         }
     }
 
+    /// Returns public key
     public func getPublicKey() throws -> VirgilPublicKey {
         if let publicKey = self.publicKey {
             return publicKey
@@ -115,3 +142,5 @@ public class PrivateKeyWrapper {
         return try self.getKeyPair().publicKey
     }
 }
+
+// swiftlint:enable force_unwrapping
