@@ -35,6 +35,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// Class for accessing biometrically secured private keys, with proper caching
 @objc(VSSProtectedKey) public class ProtectedKey: NSObject {
@@ -46,20 +47,40 @@ import Foundation
 
     /// KeychainStorage
     @objc public let keychainStorage: KeychainStorage
+    
+    /// Cleans private key from RAM on background
+    @objc public let cleanOnEnterBackground: Bool
 
     /// Init
     /// - Parameters:
     ///   - keyName: key name
     ///   - accessTime: access time during which key is cached in RAM
+    ///   - cleanOnEnterBackground: clean private key while application is entering background
     ///   - keychainStorage: KeychainStorage
-    public init(keyName: String, accessTime: TimeInterval?, keychainStorage: KeychainStorage) {
+    public init(keyName: String,
+                accessTime: TimeInterval?,
+                cleanOnEnterBackground: Bool,
+                keychainStorage: KeychainStorage) {
         self.keyName = keyName
         self.accessTime = accessTime
+        self.cleanOnEnterBackground = cleanOnEnterBackground
         self.keychainStorage = keychainStorage
+        
+        super.init()
+        
+        if self.cleanOnEnterBackground {
+            NotificationCenter.default.addObserver(self, selector: #selector(didEnterBackgroundHandler), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        }
     }
 
     private var timer: Timer?
     private var keychainEntry: KeychainEntry?
+    
+    @objc private func didEnterBackgroundHandler() {
+        if self.cleanOnEnterBackground {
+            self.deleteKey()
+        }
+    }
 
     /// Returns keychain entry
     @objc public func getKeychainEntry() throws -> KeychainEntry {
@@ -77,7 +98,8 @@ import Foundation
         return newKeychainEntry
     }
 
-    private func deleteKey() {
+    /// Deletes key from RAM
+    @objc public func deleteKey() {
         self.timer = nil
         self.keychainEntry = nil
     }
@@ -93,5 +115,9 @@ import Foundation
             self.timer = timer
             timer.resume()
         }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
