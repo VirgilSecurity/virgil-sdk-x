@@ -38,7 +38,6 @@ import Foundation
 
 /// Timer class
 public class Timer {
-    private let interval: TimeInterval
     private let timer: DispatchSourceTimer
 
     private enum State {
@@ -48,28 +47,35 @@ public class Timer {
 
     private var state: State = .suspended
 
+    // swiftlint:disable missing_docs
+    
+    /// Timer type
+    public enum TimerType {
+        case oneTime(TimeInterval)
+        case repeating(Bool, TimeInterval)
+    }
+    
+    // swiftlint:enable missing_docs
+
     /// Init
     /// - Parameters:
     ///   - interval: TimeInterval
     ///   - repeating: will repeat if true
     ///   - startFromNow: start now
     ///   - handler: timer handler
-    public init(interval: TimeInterval,
-                repeating: Bool = true,
-                startFromNow: Bool = true,
+    public init(timerType: TimerType,
                 handler: @escaping () -> Void) {
-        self.interval = interval
 
         let timer = DispatchSource.makeTimerSource()
 
-        let startAfter = startFromNow ? 0 : self.interval
+        switch timerType {
+        case .oneTime(let interval):
+            timer.schedule(deadline: .now() + interval)
+            
+        case .repeating(let startFromNow, let interval):
+            let startAfter = startFromNow ? 0 : interval
 
-        if repeating {
-            timer.schedule(deadline: .now() + startAfter,
-                           repeating: self.interval)
-        }
-        else {
-            timer.schedule(deadline: .now() + startAfter)
+            timer.schedule(deadline: .now() + startAfter, repeating: interval)
         }
 
         timer.setEventHandler(handler: handler)
