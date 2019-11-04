@@ -42,7 +42,7 @@ import Foundation
 ///
 /// - plainKey: plain key stored in RAM
 /// - biometricKey: key stored under biometric protection
-public enum PrivateKeyWrapperType {
+@objc(VSSPrivateKeyWrapperType) public enum PrivateKeyWrapperType: Int {
     case plainKey
 #if os(iOS)
     case biometricKey

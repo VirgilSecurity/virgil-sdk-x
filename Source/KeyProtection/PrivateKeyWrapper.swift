@@ -40,7 +40,7 @@ import VirgilCrypto
 // swiftlint:disable force_unwrapping
 
 /// Class that wraps either plain private key or biometrically protected key
-public class PrivateKeyWrapper {
+@objc(VSSPrivateKeyWrapper) public class PrivateKeyWrapper: NSObject {
     private enum WrappedKey {
         case plain(VirgilPrivateKey)
     #if os(iOS)
@@ -49,7 +49,7 @@ public class PrivateKeyWrapper {
     }
 
     /// Key type
-    public let type: PrivateKeyWrapperType
+    @objc public let type: PrivateKeyWrapperType
     private let wrappedKey: WrappedKey
     private var publicKey: VirgilPublicKey?
     private let crypto: VirgilCrypto?
@@ -58,7 +58,7 @@ public class PrivateKeyWrapper {
     /// - Parameters:
     ///   - privateKey: plain private key
     ///   - crypto: VirgilCrypto
-    public init(privateKey: VirgilPrivateKey, crypto: VirgilCrypto) {
+    @objc public init(privateKey: VirgilPrivateKey, crypto: VirgilCrypto) {
         self.wrappedKey = .plain(privateKey)
         self.publicKey = nil
         self.crypto = crypto
@@ -67,7 +67,7 @@ public class PrivateKeyWrapper {
 
     /// Init
     /// - Parameter keyPair: Plain keypair
-    public init(keyPair: VirgilKeyPair) {
+    @objc public init(keyPair: VirgilKeyPair) {
         self.wrappedKey = .plain(keyPair.privateKey)
         self.publicKey = keyPair.publicKey
         self.crypto = nil
@@ -79,7 +79,7 @@ public class PrivateKeyWrapper {
     /// - Parameters:
     ///   - protectedKey: Protected key
     ///   - crypto: VirgilCrypto
-    public init(protectedKey: ProtectedKey, crypto: VirgilCrypto) {
+    @objc public init(protectedKey: ProtectedKey, crypto: VirgilCrypto) {
         self.wrappedKey = .protected(protectedKey)
         self.publicKey = nil
         self.crypto = crypto
@@ -91,7 +91,7 @@ public class PrivateKeyWrapper {
     ///   - protectedKey: protected key
     ///   - publicKey: public key
     ///   - crypto: VirgilCrypto
-    public init(protectedKey: ProtectedKey, publicKey: VirgilPublicKey, crypto: VirgilCrypto) {
+    @objc public init(protectedKey: ProtectedKey, publicKey: VirgilPublicKey, crypto: VirgilCrypto) {
         self.wrappedKey = .protected(protectedKey)
         self.publicKey = publicKey
         self.crypto = crypto
@@ -100,7 +100,7 @@ public class PrivateKeyWrapper {
 #endif
 
     /// Returns key pair
-    public func getKeyPair() throws -> VirgilKeyPair {
+    @objc public func getKeyPair() throws -> VirgilKeyPair {
         switch self.wrappedKey {
         case .plain(let privateKey):
             if let publicKey = self.publicKey {
@@ -122,7 +122,7 @@ public class PrivateKeyWrapper {
     }
 
     /// Returns private key
-    public func getPrivateKey() throws -> VirgilPrivateKey {
+    @objc public func getPrivateKey() throws -> VirgilPrivateKey {
         switch self.wrappedKey {
         case .plain(let privateKey):
             return privateKey
@@ -134,7 +134,7 @@ public class PrivateKeyWrapper {
     }
 
     /// Returns public key
-    public func getPublicKey() throws -> VirgilPublicKey {
+    @objc public func getPublicKey() throws -> VirgilPublicKey {
         if let publicKey = self.publicKey {
             return publicKey
         }

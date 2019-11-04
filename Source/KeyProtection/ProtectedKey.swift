@@ -37,15 +37,15 @@
 import Foundation
 
 /// Class for accessing biometrically secured private keys, with proper caching
-public class ProtectedKey {
+@objc(VSSProtectedKey) public class ProtectedKey: NSObject {
     /// Key name
-    public let keyName: String
+    @objc public let keyName: String
 
     /// Access time during which key is cached in RAM
     public let accessTime: TimeInterval?
 
     /// KeychainStorage
-    public let keychainStorage: KeychainStorage
+    @objc public let keychainStorage: KeychainStorage
 
     /// Init
     /// - Parameters:
