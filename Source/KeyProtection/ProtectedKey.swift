@@ -86,7 +86,7 @@ public class ProtectedKey {
         self.keychainEntry = keychainEntry
 
         if let accessTime = self.accessTime {
-            let timer = Timer(interval: accessTime, repeating: false, startFromNow: true) { [weak self] in
+            let timer = Timer(timerType: .oneTime(accessTime)) { [weak self] in
                 self?.deleteKey()
             }
 
