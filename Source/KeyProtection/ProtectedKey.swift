@@ -100,42 +100,63 @@ import UIKit
 
     private var timer: Timer?
     private var keychainEntry: KeychainEntry?
-
+    private let queue = DispatchQueue(label: "VSSProtectedKeyQueue")
+    
     @objc private func didEnterBackgroundHandler() {
         if self.cleanOnEnterBackground {
-            self.deleteKey()
+            self.queue.sync {
+                self.deleteKey()
+            }
         }
     }
 
+    private var uiTimer: Timer?
     @objc private func willEnterForegroundHandler() {
         if self.requestOnEnterForeground && self.keychainEntry == nil {
-            do {
-                _ = try self.getKeychainEntry()
-            }
-            catch {
-                self.enterForegroundErrorCallback?(error)
+            self.queue.sync {
+                if self.uiTimer != nil {
+                    self.uiTimer?.suspend()
+                    self.uiTimer = nil
+                }
+                
+                let uiTimer = Timer(timerType: .oneTime(0.5)) { [weak self] in
+                    self?.queue.sync {
+                        do {
+                            _ = try self?.getKeychainEntry()
+                        }
+                        catch {
+                            self?.enterForegroundErrorCallback?(error)
+                        }
+                        
+                        self?.uiTimer = nil
+                    }
+                }
+                
+                self.uiTimer = uiTimer
+                uiTimer.resume()
             }
         }
     }
 
     /// Returns keychain entry
     @objc public func getKeychainEntry() throws -> KeychainEntry {
-        if let keychainEntry = self.keychainEntry {
-            return keychainEntry
+        try self.queue.sync {
+            if let keychainEntry = self.keychainEntry {
+                return keychainEntry
+            }
+
+            let options = KeychainQueryOptions()
+            options.biometricallyProtected = true
+
+            let newKeychainEntry = try self.keychainStorage.retrieveEntry(withName: self.keyName, queryOptions: options)
+
+            self.updateKeychainEntry(keychainEntry: newKeychainEntry)
+
+            return newKeychainEntry
         }
-
-        let options = KeychainQueryOptions()
-        options.biometricallyProtected = true
-
-        let newKeychainEntry = try self.keychainStorage.retrieveEntry(withName: self.keyName, queryOptions: options)
-
-        self.updateKeychainEntry(keychainEntry: newKeychainEntry)
-
-        return newKeychainEntry
     }
 
-    /// Deletes key from RAM
-    @objc public func deleteKey() {
+    private func deleteKey() {
         self.timer = nil
         self.keychainEntry = nil
     }
