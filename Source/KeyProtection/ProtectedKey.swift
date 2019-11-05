@@ -122,7 +122,7 @@ import UIKit
                 let uiTimer = Timer(timerType: .oneTime(0.5)) { [weak self] in
                     self?.queue.sync {
                         do {
-                            _ = try self?.getKeychainEntry()
+                            _ = try self?.getKeychainEntryInternal(runInQueue: false)
                         }
                         catch {
                             self?.enterForegroundErrorCallback?(error)
@@ -137,10 +137,9 @@ import UIKit
             }
         }
     }
-
-    /// Returns keychain entry
-    @objc public func getKeychainEntry() throws -> KeychainEntry {
-        try self.queue.sync {
+    
+    private func getKeychainEntryInternal(runInQueue: Bool) throws -> KeychainEntry {
+        let closure = { () -> KeychainEntry in
             if let keychainEntry = self.keychainEntry {
                 return keychainEntry
             }
@@ -154,6 +153,20 @@ import UIKit
 
             return newKeychainEntry
         }
+        
+        if runInQueue {
+            return try self.queue.sync {
+                return try closure()
+            }
+        }
+        else {
+            return try closure()
+        }
+    }
+    
+    /// Returns keychain entry
+    @objc public func getKeychainEntry() throws -> KeychainEntry {
+        return try self.getKeychainEntryInternal(runInQueue: true)
     }
 
     private func deleteKey() {
