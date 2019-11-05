@@ -228,7 +228,8 @@
 		424ACC7C22314C9100DD5072 /* NetworkRetryOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7922314C9100DD5072 /* NetworkRetryOperation.swift */; };
 		424ACC7F223154D700DD5072 /* VSS017_NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7E223154D700DD5072 /* VSS017_NetworkTests.swift */; };
 		424ACC81223154D700DD5072 /* VSS017_NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7E223154D700DD5072 /* VSS017_NetworkTests.swift */; };
-		428026AC237193250052A7A2 /* ProtectedKeyOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428026AB237193250052A7A2 /* ProtectedKeyOptions.swift */; };
+		428026B0237197210052A7A2 /* ProtectedKeyOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428026AE237197210052A7A2 /* ProtectedKeyOptions.swift */; };
+		428026B1237197210052A7A2 /* ProtectedKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428026AF237197210052A7A2 /* ProtectedKey.swift */; };
 		42817A9E22CF58BF006998D6 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42492FF822CF47BC00BEA96F /* TestUtils.swift */; };
 		42817A9F22CF5A76006998D6 /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
 		42817AA022CF5A7E006998D6 /* VSS003_ModelSigner_CardVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */; };
@@ -533,7 +534,6 @@
 		42ECFAE322FDB44A00868C28 /* KeyknoxClientParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ECFAE122FDB44A00868C28 /* KeyknoxClientParams.swift */; };
 		42ECFAE422FDB44A00868C28 /* KeyknoxClientParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ECFAE122FDB44A00868C28 /* KeyknoxClientParams.swift */; };
 		42ECFAE522FDB44A00868C28 /* KeyknoxClientParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ECFAE122FDB44A00868C28 /* KeyknoxClientParams.swift */; };
-		42F3B722236AE9800053F5F8 /* ProtectedKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F3B721236AE9800053F5F8 /* ProtectedKey.swift */; };
 		42F3B724236AEC120053F5F8 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F3B723236AEC120053F5F8 /* Timer.swift */; };
 		42F3B725236AEC120053F5F8 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F3B723236AEC120053F5F8 /* Timer.swift */; };
 		42F3B726236AEC120053F5F8 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F3B723236AEC120053F5F8 /* Timer.swift */; };
@@ -750,7 +750,8 @@
 		4267C65C2089DF0E007EAEB2 /* OperationUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationUtils.swift; sourceTree = "<group>"; };
 		4267C6612089DFAE007EAEB2 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		4267C688208A14F8007EAEB2 /* CachingJwtProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingJwtProvider.swift; sourceTree = "<group>"; };
-		428026AB237193250052A7A2 /* ProtectedKeyOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectedKeyOptions.swift; sourceTree = "<group>"; };
+		428026AE237197210052A7A2 /* ProtectedKeyOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtectedKeyOptions.swift; sourceTree = "<group>"; };
+		428026AF237197210052A7A2 /* ProtectedKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProtectedKey.swift; sourceTree = "<group>"; };
 		42817AB022D3507F006998D6 /* KeyknoxKeyEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyknoxKeyEntry.swift; sourceTree = "<group>"; };
 		42817AB522D8C0C4006998D6 /* KeychainQueryOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainQueryOptions.swift; sourceTree = "<group>"; };
 		42817ABA22D8C258006998D6 /* KeychainStorageParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainStorageParams.swift; sourceTree = "<group>"; };
@@ -822,7 +823,6 @@
 		42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VirgilSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42EB30E71DB8EC17001DF4C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42ECFAE122FDB44A00868C28 /* KeyknoxClientParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyknoxClientParams.swift; sourceTree = "<group>"; };
-		42F3B721236AE9800053F5F8 /* ProtectedKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectedKey.swift; sourceTree = "<group>"; };
 		42F3B723236AEC120053F5F8 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		42F3B72F236B18A50053F5F8 /* FileSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileSystem.swift; sourceTree = "<group>"; };
 		42F3B734236B18B40053F5F8 /* FileSystemCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemCredentials.swift; sourceTree = "<group>"; };
@@ -1211,6 +1211,15 @@
 			path = KeychainStorage;
 			sourceTree = "<group>";
 		};
+		428026AD237197210052A7A2 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				428026AE237197210052A7A2 /* ProtectedKeyOptions.swift */,
+				428026AF237197210052A7A2 /* ProtectedKey.swift */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
 		4284C4531F6FECB600B75491 /* Verification */ = {
 			isa = PBXGroup;
 			children = (
@@ -1337,8 +1346,7 @@
 		42F3B720236AE9670053F5F8 /* KeyProtection */ = {
 			isa = PBXGroup;
 			children = (
-				428026AB237193250052A7A2 /* ProtectedKeyOptions.swift */,
-				42F3B721236AE9800053F5F8 /* ProtectedKey.swift */,
+				428026AD237197210052A7A2 /* iOS */,
 				42F3B73E236B21440053F5F8 /* PrivateKeyWrapper.swift */,
 				42C7B2852370321C00D1BE96 /* PrivateKeyWrapperType.swift */,
 			);
@@ -2162,7 +2170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42D7AF3A224396AC009D02FD /* JwtSignatureContent.swift in Sources */,
-				428026AC237193250052A7A2 /* ProtectedKeyOptions.swift in Sources */,
+				428026B0237197210052A7A2 /* ProtectedKeyOptions.swift in Sources */,
 				42492F4122CE9FB500BEA96F /* CardClient.swift in Sources */,
 				42492FC022CE9FC500BEA96F /* CloudKeyStorageProtocol.swift in Sources */,
 				42492FB022CE9FC500BEA96F /* CloudKeyStorageError.swift in Sources */,
@@ -2172,7 +2180,6 @@
 				424ACC7A22314C9100DD5072 /* NetworkRetryOperation.swift in Sources */,
 				42D7AF38224396AC009D02FD /* JwtHeaderContent.swift in Sources */,
 				42492FD022CE9FC500BEA96F /* KeynoxClient+Queries.swift in Sources */,
-				42F3B722236AE9800053F5F8 /* ProtectedKey.swift in Sources */,
 				42492F9C22CE9FC400BEA96F /* KeyknoxManager.swift in Sources */,
 				42D7AF4A224396AC009D02FD /* CardManager.swift in Sources */,
 				42D7AF31224396AC009D02FD /* AccessTokenProvider.swift in Sources */,
@@ -2240,6 +2247,7 @@
 				42D7AF4C224396AC009D02FD /* CardManager+Export.swift in Sources */,
 				42D7AF3F224396AC009D02FD /* AsyncOperation.swift in Sources */,
 				42492FBC22CE9FC500BEA96F /* CloudEntry.swift in Sources */,
+				428026B1237197210052A7A2 /* ProtectedKey.swift in Sources */,
 				42492FA022CE9FC400BEA96F /* KeyknoxManagerError.swift in Sources */,
 				42D7AF42224396AC009D02FD /* GenericOperation+Dependencies.swift in Sources */,
 				42492F9422CE9FC400BEA96F /* KeychainUtils.swift in Sources */,
