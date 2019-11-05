@@ -228,6 +228,7 @@
 		424ACC7C22314C9100DD5072 /* NetworkRetryOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7922314C9100DD5072 /* NetworkRetryOperation.swift */; };
 		424ACC7F223154D700DD5072 /* VSS017_NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7E223154D700DD5072 /* VSS017_NetworkTests.swift */; };
 		424ACC81223154D700DD5072 /* VSS017_NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424ACC7E223154D700DD5072 /* VSS017_NetworkTests.swift */; };
+		428026AC237193250052A7A2 /* ProtectedKeyOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428026AB237193250052A7A2 /* ProtectedKeyOptions.swift */; };
 		42817A9E22CF58BF006998D6 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42492FF822CF47BC00BEA96F /* TestUtils.swift */; };
 		42817A9F22CF5A76006998D6 /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
 		42817AA022CF5A7E006998D6 /* VSS003_ModelSigner_CardVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */; };
@@ -749,6 +750,7 @@
 		4267C65C2089DF0E007EAEB2 /* OperationUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationUtils.swift; sourceTree = "<group>"; };
 		4267C6612089DFAE007EAEB2 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		4267C688208A14F8007EAEB2 /* CachingJwtProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingJwtProvider.swift; sourceTree = "<group>"; };
+		428026AB237193250052A7A2 /* ProtectedKeyOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectedKeyOptions.swift; sourceTree = "<group>"; };
 		42817AB022D3507F006998D6 /* KeyknoxKeyEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyknoxKeyEntry.swift; sourceTree = "<group>"; };
 		42817AB522D8C0C4006998D6 /* KeychainQueryOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainQueryOptions.swift; sourceTree = "<group>"; };
 		42817ABA22D8C258006998D6 /* KeychainStorageParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainStorageParams.swift; sourceTree = "<group>"; };
@@ -1335,6 +1337,7 @@
 		42F3B720236AE9670053F5F8 /* KeyProtection */ = {
 			isa = PBXGroup;
 			children = (
+				428026AB237193250052A7A2 /* ProtectedKeyOptions.swift */,
 				42F3B721236AE9800053F5F8 /* ProtectedKey.swift */,
 				42F3B73E236B21440053F5F8 /* PrivateKeyWrapper.swift */,
 				42C7B2852370321C00D1BE96 /* PrivateKeyWrapperType.swift */,
@@ -2159,6 +2162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42D7AF3A224396AC009D02FD /* JwtSignatureContent.swift in Sources */,
+				428026AC237193250052A7A2 /* ProtectedKeyOptions.swift in Sources */,
 				42492F4122CE9FB500BEA96F /* CardClient.swift in Sources */,
 				42492FC022CE9FC500BEA96F /* CloudKeyStorageProtocol.swift in Sources */,
 				42492FB022CE9FC500BEA96F /* CloudKeyStorageError.swift in Sources */,

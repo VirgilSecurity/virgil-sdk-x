@@ -42,44 +42,45 @@ import UIKit
     /// Key name
     @objc public let keyName: String
 
-    /// Access time during which key is cached in RAM
+    /// Access time during which key is cached in RAM. If nil, key won't be cleaned from RAM using timer. Default - nil
     public let accessTime: TimeInterval?
 
     /// KeychainStorage
     @objc public let keychainStorage: KeychainStorage
 
-    /// Cleans private key from RAM on background
+    /// Cleans private key from RAM on background. Default - false
     @objc public let cleanOnEnterBackground: Bool
 
-    /// Requests private key on entering foreground
+    /// Requests private key on entering foreground. Default - false
     @objc public let requestOnEnterForeground: Bool
 
     /// Error callback function type
     public typealias ErrorCallback = (Error) -> Void
 
-    /// Error callback for errors during entering foreground
+    /// Error callback for errors during entering foreground. Default - nil
     public let enterForegroundErrorCallback: ErrorCallback?
 
     /// Init
     /// - Parameters:
     ///   - keyName: key name
-    ///   - accessTime: access time during which key is cached in RAM
-    ///   - cleanOnEnterBackground: clean private key while application is entering background
-    ///   - requestOnEnterForeground: requests private key while entering foreground
-    ///   - enterForegroundErrorCallback: error callback for errors during entering foreground
-    ///   - keychainStorage: KeychainStorage
-    public init(keyName: String,
-                accessTime: TimeInterval?,
-                cleanOnEnterBackground: Bool,
-                requestOnEnterForeground: Bool,
-                enterForegroundErrorCallback: ErrorCallback?,
-                keychainStorage: KeychainStorage) {
+    ///   - options: ProtectedKeyOptions
+    @objc public init(keyName: String, options: ProtectedKeyOptions? = nil) throws {
+        
+        let keyOptions: ProtectedKeyOptions
+        
+        if let options = options {
+            keyOptions = options
+        }
+        else {
+            keyOptions = try ProtectedKeyOptions.makeOptions()
+        }
+        
         self.keyName = keyName
-        self.accessTime = accessTime
-        self.cleanOnEnterBackground = cleanOnEnterBackground
-        self.requestOnEnterForeground = requestOnEnterForeground
-        self.enterForegroundErrorCallback = enterForegroundErrorCallback
-        self.keychainStorage = keychainStorage
+        self.accessTime = keyOptions.accessTime
+        self.cleanOnEnterBackground = keyOptions.cleanOnEnterBackground
+        self.requestOnEnterForeground = keyOptions.requestOnEnterForeground
+        self.enterForegroundErrorCallback = keyOptions.enterForegroundErrorCallback
+        self.keychainStorage = keyOptions.keychainStorage
 
         super.init()
 
