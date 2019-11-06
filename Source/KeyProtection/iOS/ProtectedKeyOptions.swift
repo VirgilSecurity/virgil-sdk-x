@@ -55,11 +55,11 @@ import Foundation
 
     /// Error callback for errors during entering foreground. Deafult - nil
     public var enterForegroundErrorCallback: ErrorCallback?
-    
+
     /// Creates default options
     @objc public static func makeOptions() throws -> ProtectedKeyOptions {
         let params = try KeychainStorageParams.makeKeychainStorageParams()
-        
+
         return ProtectedKeyOptions(accessTime: nil,
                                    cleanOnEnterBackground: false,
                                    requestOnEnterForeground: false,
@@ -85,7 +85,7 @@ import Foundation
         self.requestOnEnterForeground = requestOnEnterForeground
         self.enterForegroundErrorCallback = enterForegroundErrorCallback
         self.keychainStorage = keychainStorage
-        
+
         super.init()
     }
 }

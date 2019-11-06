@@ -65,16 +65,16 @@ import UIKit
     ///   - keyName: key name
     ///   - options: ProtectedKeyOptions
     @objc public init(keyName: String, options: ProtectedKeyOptions? = nil) throws {
-        
+
         let keyOptions: ProtectedKeyOptions
-        
+
         if let options = options {
             keyOptions = options
         }
         else {
             keyOptions = try ProtectedKeyOptions.makeOptions()
         }
-        
+
         self.keyName = keyName
         self.accessTime = keyOptions.accessTime
         self.cleanOnEnterBackground = keyOptions.cleanOnEnterBackground
@@ -102,7 +102,7 @@ import UIKit
     private var timer: Timer?
     private var keychainEntry: KeychainEntry?
     private let queue = DispatchQueue(label: "VSSProtectedKeyQueue")
-    
+
     @objc private func didEnterBackgroundHandler() {
         if self.cleanOnEnterBackground {
             self.queue.sync {
@@ -112,6 +112,7 @@ import UIKit
     }
 
     private var uiTimer: Timer?
+
     @objc private func willEnterForegroundHandler() {
         if self.requestOnEnterForeground && self.keychainEntry == nil {
             self.queue.sync {
@@ -119,7 +120,7 @@ import UIKit
                     self.uiTimer?.suspend()
                     self.uiTimer = nil
                 }
-                
+
                 let uiTimer = Timer(timerType: .oneTime(0.5)) { [weak self] in
                     self?.queue.sync {
                         do {
@@ -128,17 +129,17 @@ import UIKit
                         catch {
                             self?.enterForegroundErrorCallback?(error)
                         }
-                        
+
                         self?.uiTimer = nil
                     }
                 }
-                
+
                 self.uiTimer = uiTimer
                 uiTimer.resume()
             }
         }
     }
-    
+
     private func getKeychainEntryInternal(runInQueue: Bool) throws -> KeychainEntry {
         let closure = { () -> KeychainEntry in
             if let keychainEntry = self.keychainEntry {
@@ -154,17 +155,17 @@ import UIKit
 
             return newKeychainEntry
         }
-        
+
         if runInQueue {
             return try self.queue.sync {
-                return try closure()
+                try closure()
             }
         }
         else {
             return try closure()
         }
     }
-    
+
     /// Returns keychain entry
     @objc public func getKeychainEntry() throws -> KeychainEntry {
         return try self.getKeychainEntryInternal(runInQueue: true)
