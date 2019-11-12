@@ -138,7 +138,7 @@ import VirgilCrypto
         return publicKey
     }
 
-    @objc public func resetCache() throws {
+    @objc public func resetCache() {
         self.publicKey = nil
 
         switch self.wrappedKey {
