@@ -48,7 +48,7 @@ import UIKit
     /// KeychainStorage
     @objc public let keychainStorage: KeychainStorage
 
-    /// Cleans private key from RAM on background. Default - false
+    /// Cleans private key from RAM on entering background. Default - false
     @objc public let cleanOnEnterBackground: Bool
 
     /// Requests private key on entering foreground. Default - false

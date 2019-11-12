@@ -38,22 +38,22 @@ import Foundation
 
 /// Options for managing ProtectedKey
 @objc(VSSProtectedKeyOptions) public class ProtectedKeyOptions: NSObject {
-    /// Access time during which key is cached in RAM. If nil, key won't be cleaned from RAM using timer. Deafult - nil
+    /// Access time during which key is cached in RAM. If nil, key won't be cleaned from RAM using timer. Default - nil
     public var accessTime: TimeInterval?
 
     /// KeychainStorage
     @objc public var keychainStorage: KeychainStorage
 
-    /// Cleans private key from RAM on background. Deafult - false
+    /// Cleans private key from RAM on background. Default - false
     @objc public var cleanOnEnterBackground: Bool
 
-    /// Requests private key on entering foreground. Deafult - false
+    /// Requests private key on entering foreground. Default - false
     @objc public var requestOnEnterForeground: Bool
 
     /// Error callback function type
     public typealias ErrorCallback = (Error) -> Void
 
-    /// Error callback for errors during entering foreground. Deafult - nil
+    /// Error callback for errors during entering foreground. Default - nil
     public var enterForegroundErrorCallback: ErrorCallback?
 
     /// Creates default options
