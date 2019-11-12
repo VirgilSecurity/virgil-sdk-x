@@ -42,7 +42,5 @@ import Foundation
 /// - biometricKey: key stored under biometric protection
 @objc(VSSPrivateKeyWrapperType) public enum PrivateKeyWrapperType: Int {
     case plainKey = 1
-#if os(iOS)
     case biometricKey = 2
-#endif
 }

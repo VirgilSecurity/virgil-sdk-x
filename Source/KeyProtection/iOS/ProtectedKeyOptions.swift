@@ -41,6 +41,8 @@ import Foundation
     /// Access time during which key is cached in RAM. If nil, key won't be cleaned from RAM using timer. Default - nil
     public var accessTime: TimeInterval?
 
+    @objc public var biometricallyProtected: Bool
+
     /// KeychainStorage
     @objc public var keychainStorage: KeychainStorage
 
@@ -61,6 +63,7 @@ import Foundation
         let params = try KeychainStorageParams.makeKeychainStorageParams()
 
         return ProtectedKeyOptions(accessTime: nil,
+                                   biometricallyProtected: false,
                                    cleanOnEnterBackground: false,
                                    requestOnEnterForeground: false,
                                    enterForegroundErrorCallback: nil,
@@ -76,11 +79,13 @@ import Foundation
     ///   - enterForegroundErrorCallback: error callback for errors during entering foreground
     ///   - keychainStorage: KeychainStorage
     public init(accessTime: TimeInterval?,
+                biometricallyProtected: Bool,
                 cleanOnEnterBackground: Bool,
                 requestOnEnterForeground: Bool,
                 enterForegroundErrorCallback: ErrorCallback?,
                 keychainStorage: KeychainStorage) {
         self.accessTime = accessTime
+        self.biometricallyProtected = biometricallyProtected
         self.cleanOnEnterBackground = cleanOnEnterBackground
         self.requestOnEnterForeground = requestOnEnterForeground
         self.enterForegroundErrorCallback = enterForegroundErrorCallback

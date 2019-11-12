@@ -46,6 +46,12 @@
 		168AAA5322D0F02000C1E324 /* VSS023_SyncKeyStorageKeychainUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42492FE022CEA7BE00BEA96F /* VSS023_SyncKeyStorageKeychainUtilsTests.swift */; };
 		168AAA5422D0F02100C1E324 /* VSS023_SyncKeyStorageKeychainUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42492FE022CEA7BE00BEA96F /* VSS023_SyncKeyStorageKeychainUtilsTests.swift */; };
 		168AAA5522D0F02200C1E324 /* VSS023_SyncKeyStorageKeychainUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42492FE022CEA7BE00BEA96F /* VSS023_SyncKeyStorageKeychainUtilsTests.swift */; };
+		16909DDD237AEDE400AAC3CC /* ProtectedKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428026AF237197210052A7A2 /* ProtectedKey.swift */; };
+		16909DDE237AEDE500AAC3CC /* ProtectedKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428026AF237197210052A7A2 /* ProtectedKey.swift */; };
+		16909DDF237AEDE600AAC3CC /* ProtectedKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428026AF237197210052A7A2 /* ProtectedKey.swift */; };
+		16909DE0237AEDEA00AAC3CC /* ProtectedKeyOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428026AE237197210052A7A2 /* ProtectedKeyOptions.swift */; };
+		16909DE1237AEDEB00AAC3CC /* ProtectedKeyOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428026AE237197210052A7A2 /* ProtectedKeyOptions.swift */; };
+		16909DE2237AEDEB00AAC3CC /* ProtectedKeyOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428026AE237197210052A7A2 /* ProtectedKeyOptions.swift */; };
 		16BB9B4E22F2FF4B0057D6B2 /* VSS019_KeyknoxManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42492FE122CEA7BE00BEA96F /* VSS019_KeyknoxManagerTests.m */; };
 		16BB9B4F22F303DF0057D6B2 /* VSS020_CloudKeyStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 42492FDC22CEA7BD00BEA96F /* VSS020_CloudKeyStorageTests.m */; };
 		16BB9B5022F305490057D6B2 /* VSS021_SyncKeyStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42492FDD22CEA7BE00BEA96F /* VSS021_SyncKeyStorageTests.swift */; };
@@ -1753,6 +1759,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42D7AF88224396AD009D02FD /* CardManager+Parse.swift in Sources */,
+				16909DE0237AEDEA00AAC3CC /* ProtectedKeyOptions.swift in Sources */,
 				42492F4222CE9FB500BEA96F /* CardClient.swift in Sources */,
 				42492FC122CE9FC500BEA96F /* CloudKeyStorageProtocol.swift in Sources */,
 				42492FB122CE9FC500BEA96F /* CloudKeyStorageError.swift in Sources */,
@@ -1826,6 +1833,7 @@
 				42D7AF70224396AD009D02FD /* Jwt.swift in Sources */,
 				42492FBD22CE9FC500BEA96F /* CloudEntry.swift in Sources */,
 				42492FA122CE9FC400BEA96F /* KeyknoxManagerError.swift in Sources */,
+				16909DDD237AEDE400AAC3CC /* ProtectedKey.swift in Sources */,
 				42D7AF77224396AD009D02FD /* OperationUtils.swift in Sources */,
 				42F3B740236B21440053F5F8 /* PrivateKeyWrapper.swift in Sources */,
 				42F3B731236B18A50053F5F8 /* FileSystem.swift in Sources */,
@@ -1886,6 +1894,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				423D3E70222E6C19006C7E4C /* ExpBackoffRetry.swift in Sources */,
+				16909DE1237AEDEB00AAC3CC /* ProtectedKeyOptions.swift in Sources */,
 				42492F4322CE9FB500BEA96F /* CardClient.swift in Sources */,
 				42492FC222CE9FC500BEA96F /* CloudKeyStorageProtocol.swift in Sources */,
 				42492FB222CE9FC500BEA96F /* CloudKeyStorageError.swift in Sources */,
@@ -1959,6 +1968,7 @@
 				42D7AFBF224396AE009D02FD /* CardManager+StaticExport.swift in Sources */,
 				42D7AFC3224396AE009D02FD /* CardVerifier.swift in Sources */,
 				42492FBE22CE9FC500BEA96F /* CloudEntry.swift in Sources */,
+				16909DDE237AEDE500AAC3CC /* ProtectedKey.swift in Sources */,
 				42492FA222CE9FC400BEA96F /* KeyknoxManagerError.swift in Sources */,
 				42F3B741236B21440053F5F8 /* PrivateKeyWrapper.swift in Sources */,
 				42F3B732236B18A50053F5F8 /* FileSystem.swift in Sources */,
@@ -1990,6 +2000,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				423D3E71222E6C1A006C7E4C /* ExpBackoffRetry.swift in Sources */,
+				16909DE2237AEDEB00AAC3CC /* ProtectedKeyOptions.swift in Sources */,
 				42492F4422CE9FB500BEA96F /* CardClient.swift in Sources */,
 				42492FC322CE9FC500BEA96F /* CloudKeyStorageProtocol.swift in Sources */,
 				42492FB322CE9FC500BEA96F /* CloudKeyStorageError.swift in Sources */,
@@ -2063,6 +2074,7 @@
 				42D7AFF8224396AF009D02FD /* CardManager+StaticExport.swift in Sources */,
 				42D7AFFC224396AF009D02FD /* CardVerifier.swift in Sources */,
 				42492FBF22CE9FC500BEA96F /* CloudEntry.swift in Sources */,
+				16909DDF237AEDE600AAC3CC /* ProtectedKey.swift in Sources */,
 				42492FA322CE9FC400BEA96F /* KeyknoxManagerError.swift in Sources */,
 				42F3B742236B21440053F5F8 /* PrivateKeyWrapper.swift in Sources */,
 				42F3B733236B18A50053F5F8 /* FileSystem.swift in Sources */,

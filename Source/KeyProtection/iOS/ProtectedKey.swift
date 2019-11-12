@@ -35,8 +35,10 @@
 //
 
 import Foundation
-import UIKit
 
+#if os(iOS)
+import UIKit
+#endif
 /// Class for accessing biometrically secured private keys, with proper caching
 @objc(VSSProtectedKey) public class ProtectedKey: NSObject {
     /// Key name
@@ -45,8 +47,8 @@ import UIKit
     /// Access time during which key is cached in RAM. If nil, key won't be cleaned from RAM using timer. Default - nil
     public let accessTime: TimeInterval?
 
-    /// KeychainStorage
-    @objc public let keychainStorage: KeychainStorage
+#if os(iOS)
+    @objc public let biometricallyProtected: Bool
 
     /// Cleans private key from RAM on entering background. Default - false
     @objc public let cleanOnEnterBackground: Bool
@@ -59,6 +61,10 @@ import UIKit
 
     /// Error callback for errors during entering foreground. Default - nil
     public let enterForegroundErrorCallback: ErrorCallback?
+#endif
+
+    /// KeychainStorage
+    @objc public let keychainStorage: KeychainStorage
 
     /// Init
     /// - Parameters:
@@ -77,13 +83,18 @@ import UIKit
 
         self.keyName = keyName
         self.accessTime = keyOptions.accessTime
+        self.keychainStorage = keyOptions.keychainStorage
+
+    #if os(iOS)
+        self.biometricallyProtected = keyOptions.biometricallyProtected
         self.cleanOnEnterBackground = keyOptions.cleanOnEnterBackground
         self.requestOnEnterForeground = keyOptions.requestOnEnterForeground
         self.enterForegroundErrorCallback = keyOptions.enterForegroundErrorCallback
-        self.keychainStorage = keyOptions.keychainStorage
+    #endif
 
         super.init()
 
+    #if os(iOS)
         if self.cleanOnEnterBackground {
             NotificationCenter.default.addObserver(self,
                                                    selector: #selector(didEnterBackgroundHandler),
@@ -97,12 +108,15 @@ import UIKit
                                                    name: UIApplication.willEnterForegroundNotification,
                                                    object: nil)
         }
+
+    #endif
     }
 
     private var timer: Timer?
     private var keychainEntry: KeychainEntry?
     private let queue = DispatchQueue(label: "VSSProtectedKeyQueue")
 
+#if os(iOS)
     @objc private func didEnterBackgroundHandler() {
         if self.cleanOnEnterBackground {
             self.queue.sync {
@@ -139,6 +153,7 @@ import UIKit
             }
         }
     }
+#endif
 
     private func getKeychainEntryInternal(runInQueue: Bool) throws -> KeychainEntry {
         let closure = { () -> KeychainEntry in
@@ -147,7 +162,9 @@ import UIKit
             }
 
             let options = KeychainQueryOptions()
-            options.biometricallyProtected = true
+        #if os(iOS)
+            options.biometricallyProtected = self.biometricallyProtected
+        #endif
 
             let newKeychainEntry = try self.keychainStorage.retrieveEntry(withName: self.keyName, queryOptions: options)
 

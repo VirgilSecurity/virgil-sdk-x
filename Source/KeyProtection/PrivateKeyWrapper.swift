@@ -43,9 +43,7 @@ import VirgilCrypto
 @objc(VSSPrivateKeyWrapper) public class PrivateKeyWrapper: NSObject {
     private enum WrappedKey {
         case plain(VirgilPrivateKey)
-    #if os(iOS)
         case protected(ProtectedKey)
-    #endif
     }
 
     /// Key type
@@ -80,7 +78,6 @@ import VirgilCrypto
         self.init(wrappedKey: .plain(keyPair.privateKey), publicKey: keyPair.publicKey, crypto: nil, type: .plainKey)
     }
 
-#if os(iOS)
     /// Init
     /// - Parameters:
     ///   - protectedKey: Protected key
@@ -97,7 +94,6 @@ import VirgilCrypto
     @objc public convenience init(protectedKey: ProtectedKey, publicKey: VirgilPublicKey, crypto: VirgilCrypto) {
         self.init(wrappedKey: .protected(protectedKey), publicKey: publicKey, crypto: crypto, type: .biometricKey)
     }
-#endif
 
     /// Returns key pair
     @objc public func getKeyPair() throws -> VirgilKeyPair {
@@ -111,13 +107,11 @@ import VirgilCrypto
                 self.publicKey = publicKey
                 return VirgilKeyPair(privateKey: privateKey, publicKey: publicKey)
             }
-    #if os(iOS)
         case .protected(let protectedKey):
             let keychainEntry = try protectedKey.getKeychainEntry()
             let keyPair = try crypto!.importPrivateKey(from: keychainEntry.data)
             self.publicKey = keyPair.publicKey
             return keyPair
-    #endif
         }
     }
 
@@ -126,10 +120,8 @@ import VirgilCrypto
         switch self.wrappedKey {
         case .plain(let privateKey):
             return privateKey
-    #if os(iOS)
         case .protected:
             return try self.getKeyPair().privateKey
-    #endif
         }
     }
 
