@@ -41,56 +41,34 @@ import Foundation
     /// Access time during which key is cached in RAM. If nil, key won't be cleaned from RAM using timer. Default - nil
     public var accessTime: TimeInterval?
 
-    @objc public var biometricallyProtected: Bool
-
     /// KeychainStorage
-    @objc public var keychainStorage: KeychainStorage
+    @objc public var keychainStorage: KeychainStorage!
+
+#if os(iOS)
+    @objc public var biometricallyProtected: Bool = false
 
     /// Cleans private key from RAM on background. Default - false
-    @objc public var cleanOnEnterBackground: Bool
+    @objc public var cleanOnEnterBackground: Bool = false
 
     /// Requests private key on entering foreground. Default - false
-    @objc public var requestOnEnterForeground: Bool
+    @objc public var requestOnEnterForeground: Bool = false
 
     /// Error callback function type
     public typealias ErrorCallback = (Error) -> Void
 
     /// Error callback for errors during entering foreground. Default - nil
-    public var enterForegroundErrorCallback: ErrorCallback?
+    public var enterForegroundErrorCallback: ErrorCallback? = nil
 
-    /// Creates default options
+#endif
+
     @objc public static func makeOptions() throws -> ProtectedKeyOptions {
         let params = try KeychainStorageParams.makeKeychainStorageParams()
+        let keychainStorage = KeychainStorage(storageParams: params)
 
-        return ProtectedKeyOptions(accessTime: nil,
-                                   biometricallyProtected: false,
-                                   cleanOnEnterBackground: false,
-                                   requestOnEnterForeground: false,
-                                   enterForegroundErrorCallback: nil,
-                                   keychainStorage: KeychainStorage(storageParams: params))
+        return ProtectedKeyOptions(keychainStorage: keychainStorage)
     }
 
-    /// Init
-    /// - Parameters:
-    ///   - keyName: key name
-    ///   - accessTime: access time during which key is cached in RAM
-    ///   - cleanOnEnterBackground: clean private key while application is entering background
-    ///   - requestOnEnterForeground: requests private key while entering foreground
-    ///   - enterForegroundErrorCallback: error callback for errors during entering foreground
-    ///   - keychainStorage: KeychainStorage
-    public init(accessTime: TimeInterval?,
-                biometricallyProtected: Bool,
-                cleanOnEnterBackground: Bool,
-                requestOnEnterForeground: Bool,
-                enterForegroundErrorCallback: ErrorCallback?,
-                keychainStorage: KeychainStorage) {
-        self.accessTime = accessTime
-        self.biometricallyProtected = biometricallyProtected
-        self.cleanOnEnterBackground = cleanOnEnterBackground
-        self.requestOnEnterForeground = requestOnEnterForeground
-        self.enterForegroundErrorCallback = enterForegroundErrorCallback
+    @objc public init(keychainStorage: KeychainStorage) {
         self.keychainStorage = keychainStorage
-
-        super.init()
     }
 }

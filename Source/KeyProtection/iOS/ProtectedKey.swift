@@ -71,19 +71,11 @@ import UIKit
     ///   - keyName: key name
     ///   - options: ProtectedKeyOptions
     @objc public init(keyName: String, options: ProtectedKeyOptions? = nil) throws {
-
-        let keyOptions: ProtectedKeyOptions
-
-        if let options = options {
-            keyOptions = options
-        }
-        else {
-            keyOptions = try ProtectedKeyOptions.makeOptions()
-        }
+        let options = try options ?? ProtectedKeyOptions.makeOptions()
 
         self.keyName = keyName
-        self.accessTime = keyOptions.accessTime
-        self.keychainStorage = keyOptions.keychainStorage
+        self.accessTime = options.accessTime
+        self.keychainStorage = options.keychainStorage
 
     #if os(iOS)
         self.biometricallyProtected = keyOptions.biometricallyProtected
