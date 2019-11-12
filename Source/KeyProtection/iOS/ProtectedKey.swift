@@ -40,7 +40,7 @@ import Foundation
 import UIKit
 #endif
 /// Class for accessing biometrically secured private keys, with proper caching
-@objc(VSSProtectedKey) public class ProtectedKey: NSObject {
+@objc(VSSProtectedKey) open class ProtectedKey: NSObject {
     /// Key name
     @objc public let keyName: String
 
@@ -184,7 +184,7 @@ import UIKit
     }
 
     /// Returns keychain entry
-    @objc public func getKeychainEntry() throws -> KeychainEntry {
+    @objc open func getKeychainEntry() throws -> KeychainEntry {
         return try self.getKeychainEntryInternal(runInQueue: true)
     }
 
