@@ -78,10 +78,10 @@ import UIKit
         self.keychainStorage = options.keychainStorage
 
     #if os(iOS)
-        self.biometricallyProtected = keyOptions.biometricallyProtected
-        self.cleanOnEnterBackground = keyOptions.cleanOnEnterBackground
-        self.requestOnEnterForeground = keyOptions.requestOnEnterForeground
-        self.enterForegroundErrorCallback = keyOptions.enterForegroundErrorCallback
+        self.biometricallyProtected = options.biometricallyProtected
+        self.cleanOnEnterBackground = options.cleanOnEnterBackground
+        self.requestOnEnterForeground = options.requestOnEnterForeground
+        self.enterForegroundErrorCallback = options.enterForegroundErrorCallback
     #endif
 
         super.init()
