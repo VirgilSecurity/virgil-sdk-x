@@ -37,18 +37,22 @@
 import Foundation
 
 /// Represent card service error
-@objc(VSSServiceError) public final class ServiceError: NSObject, CustomNSError {
+@objc(VSSServiceError) open class ServiceError: NSObject, CustomNSError {
     /// Http status code
     @objc public let httpStatusCode: Int
     /// Recieved and decoded `RawServiceError`
     @objc public let rawServiceError: RawServiceError
+    /// Error domain
+    @objc public let errorDomain: String
 
     /// Initializer
-    ///
-    /// - Parameter rawServiceError: recieved and decoded rawServiceError
-    @objc public init(httpStatusCode: Int, rawServiceError: RawServiceError) {
+    /// - Parameter httpStatusCode: http status code
+    /// - Parameter rawServiceError: raw service error
+    /// - Parameter errorDomain: error domain
+    @objc public init(httpStatusCode: Int, rawServiceError: RawServiceError, errorDomain: String? = nil) {
         self.httpStatusCode = httpStatusCode
         self.rawServiceError = rawServiceError
+        self.errorDomain = errorDomain ?? ServiceError.errorDomain
     }
 
     /// Error domain or Error instances thrown from Service
