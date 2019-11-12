@@ -188,7 +188,7 @@ import UIKit
         return try self.getKeychainEntryInternal(runInQueue: true)
     }
 
-    private func deleteKey() {
+    @objc public func deleteKey() {
         self.timer = nil
         self.keychainEntry = nil
     }
