@@ -44,10 +44,10 @@ import UIKit
     /// Key name
     @objc public let keyName: String
 
+#if os(iOS)
     /// Access time during which key is cached in RAM. If nil, key won't be cleaned from RAM using timer. Default - nil
     public let accessTime: TimeInterval?
 
-#if os(iOS)
     @objc public let biometricallyProtected: Bool
 
     /// Cleans private key from RAM on entering background. Default - false
@@ -74,10 +74,10 @@ import UIKit
         let options = try options ?? ProtectedKeyOptions.makeOptions()
 
         self.keyName = keyName
-        self.accessTime = options.accessTime
         self.keychainStorage = options.keychainStorage
 
     #if os(iOS)
+        self.accessTime = options.accessTime
         self.biometricallyProtected = options.biometricallyProtected
         self.cleanOnEnterBackground = options.cleanOnEnterBackground
         self.requestOnEnterForeground = options.requestOnEnterForeground
@@ -188,6 +188,7 @@ import UIKit
     private func updateKeychainEntry(keychainEntry: KeychainEntry) {
         self.keychainEntry = keychainEntry
 
+    #if os(iOS)
         if let accessTime = self.accessTime {
             let timer = Timer(timerType: .oneTime(accessTime)) { [weak self] in
                 self?.deleteKey()
@@ -196,6 +197,7 @@ import UIKit
             self.timer = timer
             timer.resume()
         }
+    #endif
     }
 
     deinit {

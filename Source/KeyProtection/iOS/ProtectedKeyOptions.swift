@@ -38,13 +38,13 @@ import Foundation
 
 /// Options for managing ProtectedKey
 @objc(VSSProtectedKeyOptions) public class ProtectedKeyOptions: NSObject {
-    /// Access time during which key is cached in RAM. If nil, key won't be cleaned from RAM using timer. Default - nil
-    public var accessTime: TimeInterval?
-
     /// KeychainStorage
     @objc public var keychainStorage: KeychainStorage!
 
 #if os(iOS)
+    /// Access time during which key is cached in RAM. If nil, key won't be cleaned from RAM using timer. Default - nil
+    public var accessTime: TimeInterval?
+    
     @objc public var biometricallyProtected: Bool = false
 
     /// Cleans private key from RAM on background. Default - false
