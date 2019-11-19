@@ -43,6 +43,7 @@ import Foundation
     @objc public let key: String
     @objc public let owner: String
     @objc public let identities: [String]
+    @objc public let version: String?
 
     /// Meta info
     @objc public let meta: Data
@@ -61,7 +62,8 @@ import Foundation
                   identities: keyknoxData.identities,
                   meta: keyknoxData.meta,
                   value: keyknoxData.value,
-                  keyknoxHash: keyknoxHash)
+                  keyknoxHash: keyknoxHash,
+                  version: nil)
     }
 
     internal convenience init(keyknoxData: KeyknoxData, keyknoxHash: Data, identity: String) {
@@ -72,7 +74,8 @@ import Foundation
                   identities: [identity],
                   meta: keyknoxData.meta,
                   value: keyknoxData.value,
-                  keyknoxHash: keyknoxHash)
+                  keyknoxHash: keyknoxHash,
+                  version: keyknoxData.version)
     }
 
     internal init(root: String,
@@ -82,7 +85,8 @@ import Foundation
                   identities: [String],
                   meta: Data,
                   value: Data,
-                  keyknoxHash: Data) {
+                  keyknoxHash: Data,
+                  version: String?) {
         self.root = root
         self.path = path
         self.key = key
@@ -91,6 +95,7 @@ import Foundation
         self.meta = meta
         self.value = value
         self.keyknoxHash = keyknoxHash
+        self.version = version
 
         super.init()
     }

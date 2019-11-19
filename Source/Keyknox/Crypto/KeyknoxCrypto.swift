@@ -102,7 +102,8 @@ extension KeyknoxCrypto: KeyknoxCryptoProtocol {
                                          identities: encryptedKeyknoxValue.identities,
                                          meta: Data(),
                                          value: Data(),
-                                         keyknoxHash: encryptedKeyknoxValue.keyknoxHash)
+                                         keyknoxHash: encryptedKeyknoxValue.keyknoxHash,
+                                         version: encryptedKeyknoxValue.version)
         }
 
         let decryptedData: Data
@@ -122,7 +123,8 @@ extension KeyknoxCrypto: KeyknoxCryptoProtocol {
                                      identities: encryptedKeyknoxValue.identities,
                                      meta: encryptedKeyknoxValue.meta,
                                      value: decryptedData,
-                                     keyknoxHash: encryptedKeyknoxValue.keyknoxHash)
+                                     keyknoxHash: encryptedKeyknoxValue.keyknoxHash,
+                                     version: encryptedKeyknoxValue.version)
     }
 
     /// Encrypts data for Keyknox

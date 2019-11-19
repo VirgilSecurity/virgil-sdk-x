@@ -39,6 +39,7 @@ import Foundation
 internal struct KeyknoxData: Codable {
     internal let meta: Data
     internal let value: Data
+    internal let version: String
 }
 
 internal struct KeyknoxDataV2: Codable {
