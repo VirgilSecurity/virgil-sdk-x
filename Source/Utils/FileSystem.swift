@@ -128,7 +128,8 @@ import VirgilCrypto
         if let credentials = self.credentials, !data.isEmpty {
             dataToWrite = try credentials.crypto.authEncrypt(data,
                                                              with: credentials.keyPair.privateKey,
-                                                             for: [credentials.keyPair.publicKey])
+                                                             for: [credentials.keyPair.publicKey],
+                                                             enablePadding: false)
         }
         else {
             dataToWrite = data
