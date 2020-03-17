@@ -164,7 +164,7 @@ import VirgilCrypto
         return fileURLs.map { $0.lastPathComponent }
     }
 
-    private func getFullUrl(name: String?, subdir: String?) throws -> URL {
+    public func getFullUrl(name: String?, subdir: String?) throws -> URL {
         var url = try self.createSuppDir()
 
         self.pathComponents.forEach {
