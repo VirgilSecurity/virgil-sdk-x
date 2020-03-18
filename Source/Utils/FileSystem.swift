@@ -56,7 +56,7 @@ import VirgilCrypto
 /// - Note: This class is NOT thread-safe
 /// - Tag: FileSystem
 @objc(VSSFileSystem) open class FileSystem: NSObject {
-    private let fileManager = FileManager()
+    public let fileManager = FileManager()
 
     /// Prefix
     @objc public let prefix: String
