@@ -123,3 +123,17 @@ extension Bool: DbInValue, DbOutValue {
         }
     }
 }
+
+extension Int32: DbInValue, DbOutValue {
+    public init?(stmt: Statement, index: Int32) {
+        self = sqlite3_column_int(stmt.stmt, index)
+    }
+
+    public func dumpTo(stmt: Statement, index: Int32) throws {
+        let res = sqlite3_bind_int(stmt.stmt, index, self)
+
+        guard res == SQLITE_OK else {
+            throw SQLiteError(errorNum: res)
+        }
+    }
+}
