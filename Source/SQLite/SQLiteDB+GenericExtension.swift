@@ -134,7 +134,7 @@ public extension SQLiteDB {
     }
 }
 
-extension SQLiteDB {
+public extension SQLiteDB {
     func bindOut
         <T>(stmt: Statement) throws
         -> T? where T: DbOutValue {
