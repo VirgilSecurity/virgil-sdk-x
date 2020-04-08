@@ -40,7 +40,7 @@ import SQLite3
 // swiftlint:disable identifier_name
 
 /// Represents error of SQLite
-@objc(VTESQLiteError) public class SQLiteError: NSObject, LocalizedError {
+@objc(VSSSQLiteError) public class SQLiteError: NSObject, LocalizedError {
     // Code of error
     public let errorNum: Int32?
 
@@ -60,8 +60,8 @@ import SQLite3
     }
 }
 
-internal class SQLiteDB {
-    internal func generateStmt(statement: String) throws -> Statement {
+public class SQLiteDB: NSObject {
+    public func generateStmt(statement: String) throws -> Statement {
         var stmt: OpaquePointer?
 
         let res = sqlite3_prepare_v2(self.handle, statement, -1, &stmt, nil)
@@ -79,9 +79,9 @@ internal class SQLiteDB {
 
     private let handle: OpaquePointer
 
-    internal let path: String
+    public let path: String
 
-    internal init(prefix: String,
+    public init(prefix: String,
                   userIdentifier: String,
                   name: String) throws {
         var url = try FileManager.default.url(for: .applicationSupportDirectory,
@@ -119,13 +119,13 @@ internal class SQLiteDB {
         self.handle = handle
     }
 
-    internal func executeNoResult(statement: String) throws {
+    public func executeNoResult(statement: String) throws {
         let stmt = try self.generateStmt(statement: statement)
 
         try self.executeNoResult(statement: stmt)
     }
 
-    internal func executeNoResult(statement: Statement) throws {
+    public func executeNoResult(statement: Statement) throws {
         let res = sqlite3_step(statement.stmt)
 
         guard res == SQLITE_DONE else {
@@ -133,7 +133,7 @@ internal class SQLiteDB {
         }
     }
 
-    internal func executeStep(statement: Statement) throws -> Bool {
+    public func executeStep(statement: Statement) throws -> Bool {
         let res = sqlite3_step(statement.stmt)
 
         switch res {
@@ -147,7 +147,7 @@ internal class SQLiteDB {
         }
     }
 
-    internal func bindIn<T>(stmt: Statement, index: Int32, value: T?) throws where T: DbInValue {
+    public func bindIn<T>(stmt: Statement, index: Int32, value: T?) throws where T: DbInValue {
         guard let value = value else {
             let res = sqlite3_bind_null(stmt.stmt, index)
 
@@ -161,7 +161,7 @@ internal class SQLiteDB {
         try value.dumpTo(stmt: stmt, index: index)
     }
 
-    internal func bindOut<T>(stmt: Statement, index: Int32) -> T? where T: DbOutValue {
+    public func bindOut<T>(stmt: Statement, index: Int32) -> T? where T: DbOutValue {
         return T(stmt: stmt, index: index)
     }
 

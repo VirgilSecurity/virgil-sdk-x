@@ -36,10 +36,10 @@
 
 import Foundation
 
-internal protocol DbInValue {
+public protocol DbInValue {
     func dumpTo(stmt: Statement, index: Int32) throws
 }
 
-internal protocol DbOutValue {
+public protocol DbOutValue {
     init?(stmt: Statement, index: Int32)
 }

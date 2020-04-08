@@ -53,7 +53,7 @@ import SQLite3
 }
 
 extension Data: DbInValue, DbOutValue {
-    internal init?(stmt: Statement, index: Int32) {
+    public init?(stmt: Statement, index: Int32) {
         let len = Int(sqlite3_column_bytes(stmt.stmt, index))
 
         guard len != 0 else {
@@ -68,7 +68,7 @@ extension Data: DbInValue, DbOutValue {
         self.init(bytes: queryResult, count: len)
     }
 
-    internal func dumpTo(stmt: Statement, index: Int32) throws {
+    public func dumpTo(stmt: Statement, index: Int32) throws {
         let res = self.withUnsafeBytes {
             sqlite3_bind_blob(stmt.stmt, index, $0.baseAddress, Int32($0.count), nil)
         }
@@ -80,7 +80,7 @@ extension Data: DbInValue, DbOutValue {
 }
 
 extension String: DbInValue, DbOutValue {
-    internal init?(stmt: Statement, index: Int32) {
+    public init?(stmt: Statement, index: Int32) {
         let len = Int(sqlite3_column_bytes(stmt.stmt, index))
 
         guard len != 0 else {
@@ -95,7 +95,7 @@ extension String: DbInValue, DbOutValue {
         self.init(cString: queryResult)
     }
 
-    internal func dumpTo(stmt: Statement, index: Int32) throws {
+    public func dumpTo(stmt: Statement, index: Int32) throws {
         guard let utf8Text = (self as NSString).utf8String else {
             throw SQLiteBindingError.invalidString
         }
@@ -109,18 +109,17 @@ extension String: DbInValue, DbOutValue {
 }
 
 extension Bool: DbInValue, DbOutValue {
-    internal init?(stmt: Statement, index: Int32) {
+    public init?(stmt: Statement, index: Int32) {
         let int = sqlite3_column_int(stmt.stmt, index)
 
         self = int == 0 ? false : true
     }
 
-    internal func dumpTo(stmt: Statement, index: Int32) throws {
+    public func dumpTo(stmt: Statement, index: Int32) throws {
         let res = sqlite3_bind_int(stmt.stmt, index, self ? 1 : 0)
 
         guard res == SQLITE_OK else {
             throw SQLiteError(errorNum: res)
         }
     }
-
 }

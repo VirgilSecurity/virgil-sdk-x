@@ -37,10 +37,10 @@
 import Foundation
 import SQLite3
 
-internal class Statement {
-    internal let stmt: OpaquePointer
+public class Statement {
+    public let stmt: OpaquePointer
 
-    internal init(stmt: OpaquePointer) {
+    public init(stmt: OpaquePointer) {
         self.stmt = stmt
     }
 

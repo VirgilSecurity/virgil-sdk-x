@@ -39,8 +39,8 @@ import Foundation
 // swiftlint:disable function_parameter_count
 // swiftlint:disable large_tuple
 
-extension SQLiteDB {
-    internal func bindIn
+public extension SQLiteDB {
+    func bindIn
         <T>
         (stmt: Statement,
          value: T?) throws
@@ -48,7 +48,7 @@ extension SQLiteDB {
                 try self.bindIn(stmt: stmt, index: 1, value: value)
     }
 
-    internal func bindIn
+    func bindIn
         <T1, T2>
         (stmt: Statement,
          value1: T1?,
@@ -59,7 +59,7 @@ extension SQLiteDB {
                 try self.bindIn(stmt: stmt, index: 2, value: value2)
     }
 
-    internal func bindIn
+    func bindIn
         <T1, T2, T3>
         (stmt: Statement,
          value1: T1?,
@@ -73,7 +73,7 @@ extension SQLiteDB {
                 try self.bindIn(stmt: stmt, index: 3, value: value3)
     }
 
-    internal func bindIn
+    func bindIn
         <T1, T2, T3, T4>
         (stmt: Statement,
          value1: T1?,
@@ -90,7 +90,7 @@ extension SQLiteDB {
             try self.bindIn(stmt: stmt, index: 4, value: value4)
     }
 
-    internal func bindIn
+    func bindIn
         <T1, T2, T3, T4, T5>
         (stmt: Statement,
          value1: T1?,
@@ -110,7 +110,7 @@ extension SQLiteDB {
             try self.bindIn(stmt: stmt, index: 5, value: value5)
     }
 
-    internal func bindIn
+    func bindIn
         <T1, T2, T3, T4, T5, T6>
         (stmt: Statement,
          value1: T1?,
@@ -135,13 +135,13 @@ extension SQLiteDB {
 }
 
 extension SQLiteDB {
-    internal func bindOut
+    func bindOut
         <T>(stmt: Statement) throws
         -> T? where T: DbOutValue {
             return self.bindOut(stmt: stmt, index: 0)
     }
 
-    internal func bindOut
+    func bindOut
         <T1, T2>
         (stmt: Statement) throws
         -> (T1?, T2?)
@@ -153,7 +153,7 @@ extension SQLiteDB {
             return (res1, res2)
     }
 
-    internal func bindOut
+    func bindOut
         <T1, T2, T3>
         (stmt: Statement) throws
         -> (T1?, T2?, T3?)
@@ -167,7 +167,7 @@ extension SQLiteDB {
             return (res1, res2, res3)
     }
 
-    internal func bindOut
+    func bindOut
         <T1, T2, T3, T4>
         (stmt: Statement) throws
         -> (T1?, T2?, T3?, T4?)
@@ -183,7 +183,7 @@ extension SQLiteDB {
             return (res1, res2, res3, res4)
     }
 
-    internal func bindOut
+    func bindOut
         <T1, T2, T3, T4, T5>
         (stmt: Statement) throws
         -> (T1?, T2?, T3?, T4?, T5?)
@@ -201,7 +201,7 @@ extension SQLiteDB {
             return (res1, res2, res3, res4, res5)
     }
 
-    internal func bindOut
+    func bindOut
         <T1, T2, T3, T4, T5, T6>
         (stmt: Statement) throws
         -> (T1?, T2?, T3?, T4?, T5?, T6?)
