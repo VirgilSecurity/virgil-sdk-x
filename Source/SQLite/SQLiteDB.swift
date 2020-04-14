@@ -149,13 +149,19 @@ public class SQLiteDB: NSObject {
 
         self.handle = handle
     }
-
+    
+    /// Executes statement without output values
+    /// - Parameter statement: statement
+    /// - Throws: `SQLiteError`
     public func executeNoResult(statement: String) throws {
         let stmt = try self.generateStmt(statement: statement)
 
         try self.executeNoResult(statement: stmt)
     }
 
+    /// Executes statement without output values
+    /// - Parameter statement: statement string
+    /// - Throws: `SQLiteError`
     public func executeNoResult(statement: Statement) throws {
         let res = sqlite3_step(statement.stmt)
 
@@ -164,10 +170,10 @@ public class SQLiteDB: NSObject {
         }
     }
 
-    public func getNumberOfChangedRowsInLastOperation() -> Int {
-        return Int(sqlite3_changes(self.handle))
-    }
-
+    /// Executes statement with output values
+    /// - Parameter statement: statement
+    /// - Throws: `SQLiteError`
+    /// - Returns: Returns true if output values are available
     public func executeStep(statement: Statement) throws -> Bool {
         let res = sqlite3_step(statement.stmt)
 
@@ -182,6 +188,12 @@ public class SQLiteDB: NSObject {
         }
     }
 
+    /// Binds input argument
+    /// - Parameters:
+    ///   - stmt: statement
+    ///   - index: index of input argument
+    ///   - value: value of input argument
+    /// - Throws: `SQLiteError`
     public func bindIn<T>(stmt: Statement, index: Int32, value: T?) throws where T: DbInValue {
         guard let value = value else {
             let res = sqlite3_bind_null(stmt.stmt, index)
@@ -195,7 +207,12 @@ public class SQLiteDB: NSObject {
 
         try value.dumpTo(stmt: stmt, index: index)
     }
-
+    
+    /// Binds output values
+    /// - Parameters:
+    ///   - stmt: statement
+    ///   - index: output value
+    /// - Returns: `SQLiteError`
     public func bindOut<T>(stmt: Statement, index: Int32) -> T? where T: DbOutValue {
         return T(stmt: stmt, index: index)
     }

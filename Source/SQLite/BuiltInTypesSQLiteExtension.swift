@@ -52,6 +52,7 @@ import SQLite3
     }
 }
 
+/// Adds support for Data to be used in SQLite statements
 extension Data: DbInValue, DbOutValue {
     public init?(stmt: Statement, index: Int32) {
         let len = Int(sqlite3_column_bytes(stmt.stmt, index))
@@ -79,6 +80,7 @@ extension Data: DbInValue, DbOutValue {
     }
 }
 
+/// Adds support for String to be used in SQLite statements
 extension String: DbInValue, DbOutValue {
     public init?(stmt: Statement, index: Int32) {
         let len = Int(sqlite3_column_bytes(stmt.stmt, index))
@@ -108,6 +110,7 @@ extension String: DbInValue, DbOutValue {
     }
 }
 
+/// Adds support for Bool to be used in SQLite statements
 extension Bool: DbInValue, DbOutValue {
     public init?(stmt: Statement, index: Int32) {
         let int = sqlite3_column_int(stmt.stmt, index)
@@ -124,6 +127,7 @@ extension Bool: DbInValue, DbOutValue {
     }
 }
 
+/// Adds support for Int32 to be used in SQLite statements
 extension Int32: DbInValue, DbOutValue {
     public init?(stmt: Statement, index: Int32) {
         self = sqlite3_column_int(stmt.stmt, index)
