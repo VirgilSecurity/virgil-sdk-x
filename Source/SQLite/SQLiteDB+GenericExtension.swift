@@ -39,7 +39,13 @@ import Foundation
 // swiftlint:disable function_parameter_count
 // swiftlint:disable large_tuple
 
+/// Binding argumanets extension
 public extension SQLiteDB {
+    /// Bind arguments
+    /// - Parameters:
+    ///   - stmt: statement
+    ///   - value: value to bind
+    /// - Throws: `SQLiteError`
     func bindIn
         <T>
         (stmt: Statement,
@@ -48,6 +54,12 @@ public extension SQLiteDB {
                 try self.bindIn(stmt: stmt, index: 1, value: value)
     }
 
+    /// Bind arguments
+    /// - Parameters:
+    ///   - stmt: statement
+    ///   - value1: value1 to bind
+    ///   - value2: value2 to bind
+    /// - Throws: `SQLiteError`
     func bindIn
         <T1, T2>
         (stmt: Statement,
@@ -59,6 +71,13 @@ public extension SQLiteDB {
                 try self.bindIn(stmt: stmt, index: 2, value: value2)
     }
 
+    /// Bind arguments
+    /// - Parameters:
+    ///   - stmt: statement
+    ///   - value1: value1 to bind
+    ///   - value2: value2 to bind
+    ///   - value3: value3 to bind
+    /// - Throws: `SQLiteError`
     func bindIn
         <T1, T2, T3>
         (stmt: Statement,
@@ -72,7 +91,14 @@ public extension SQLiteDB {
                 try self.bindIn(stmt: stmt, index: 2, value: value2)
                 try self.bindIn(stmt: stmt, index: 3, value: value3)
     }
-
+    /// Bind arguments
+    /// - Parameters:
+    ///   - stmt: statement
+    ///   - value1: value1 to bind
+    ///   - value2: value2 to bind
+    ///   - value3: value3 to bind
+    ///   - value4: value4 to bind
+    /// - Throws: `SQLiteError`
     func bindIn
         <T1, T2, T3, T4>
         (stmt: Statement,
@@ -89,7 +115,15 @@ public extension SQLiteDB {
             try self.bindIn(stmt: stmt, index: 3, value: value3)
             try self.bindIn(stmt: stmt, index: 4, value: value4)
     }
-
+    /// Bind arguments
+    /// - Parameters:
+    ///   - stmt: statement
+    ///   - value1: value1 to bind
+    ///   - value2: value2 to bind
+    ///   - value3: value3 to bind
+    ///   - value4: value4 to bind
+    ///   - value5: value5 to bind
+    /// - Throws: `SQLiteError`
     func bindIn
         <T1, T2, T3, T4, T5>
         (stmt: Statement,
@@ -110,6 +144,16 @@ public extension SQLiteDB {
             try self.bindIn(stmt: stmt, index: 5, value: value5)
     }
 
+    /// Bind arguments
+    /// - Parameters:
+    ///   - stmt: statement
+    ///   - value1: value1 to bind
+    ///   - value2: value2 to bind
+    ///   - value3: value3 to bind
+    ///   - value4: value4 to bind
+    ///   - value5: value5 to bind
+    ///   - value6: value6 to bind
+    /// - Throws: `SQLiteError`
     func bindIn
         <T1, T2, T3, T4, T5, T6>
         (stmt: Statement,
@@ -134,13 +178,22 @@ public extension SQLiteDB {
     }
 }
 
+/// Binding outputs extension
 public extension SQLiteDB {
+    /// Bind output
+    /// - Parameter stmt: statement
+    /// - Throws: `SQLiteError`
+    /// - Returns: output value
     func bindOut
         <T>(stmt: Statement) throws
         -> T? where T: DbOutValue {
             return self.bindOut(stmt: stmt, index: 0)
     }
 
+    /// Bind output
+    /// - Parameter stmt: statement
+    /// - Throws: `SQLiteError`
+    /// - Returns: output values tuple
     func bindOut
         <T1, T2>
         (stmt: Statement) throws
@@ -153,6 +206,10 @@ public extension SQLiteDB {
             return (res1, res2)
     }
 
+    /// Bind output
+    /// - Parameter stmt: statement
+    /// - Throws: `SQLiteError`
+    /// - Returns: output values tuple
     func bindOut
         <T1, T2, T3>
         (stmt: Statement) throws
@@ -167,6 +224,10 @@ public extension SQLiteDB {
             return (res1, res2, res3)
     }
 
+    /// Bind output
+    /// - Parameter stmt: statement
+    /// - Throws: `SQLiteError`
+    /// - Returns: output values tuple
     func bindOut
         <T1, T2, T3, T4>
         (stmt: Statement) throws
@@ -183,6 +244,10 @@ public extension SQLiteDB {
             return (res1, res2, res3, res4)
     }
 
+    /// Bind output
+    /// - Parameter stmt: statement
+    /// - Throws: `SQLiteError`
+    /// - Returns: output values tuple
     func bindOut
         <T1, T2, T3, T4, T5>
         (stmt: Statement) throws
@@ -201,6 +266,10 @@ public extension SQLiteDB {
             return (res1, res2, res3, res4, res5)
     }
 
+    /// Bind output
+    /// - Parameter stmt: statement
+    /// - Throws: `SQLiteError`
+    /// - Returns: output values tuple
     func bindOut
         <T1, T2, T3, T4, T5, T6>
         (stmt: Statement) throws

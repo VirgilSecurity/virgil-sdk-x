@@ -36,10 +36,20 @@
 
 import Foundation
 
+/// Value that supports binding as an argument into SQLite statement
 public protocol DbInValue {
+    /// Dumps value into sqlite statement under index
+    /// - Parameters:
+    ///   - stmt: statement
+    ///   - index: index
     func dumpTo(stmt: Statement, index: Int32) throws
 }
 
+/// Value that supports binding as an output from SQLite statement
 public protocol DbOutValue {
+    /// Initializes values from statement
+    /// - Parameters:
+    ///   - stmt: statement
+    ///   - index: index
     init?(stmt: Statement, index: Int32)
 }

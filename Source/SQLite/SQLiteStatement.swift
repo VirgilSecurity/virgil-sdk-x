@@ -37,9 +37,13 @@
 import Foundation
 import SQLite3
 
+/// SQLite statement
 public class Statement {
+    /// Underlying statement
     public let stmt: OpaquePointer
 
+    /// Constructor
+    /// - Parameter stmt: statement
     public init(stmt: OpaquePointer) {
         self.stmt = stmt
     }

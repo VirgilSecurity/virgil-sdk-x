@@ -60,7 +60,12 @@ import SQLite3
     }
 }
 
+/// SQLiteDB
 public class SQLiteDB: NSObject {
+    /// Generates statement
+    /// - Parameter statement: statement string
+    /// - Throws: SQLiteError
+    /// - Returns: generated statement
     public func generateStmt(statement: String) throws -> Statement {
         var stmt: OpaquePointer?
 
@@ -79,11 +84,20 @@ public class SQLiteDB: NSObject {
 
     private let handle: OpaquePointer
 
+    /// DB file path
     public let path: String
 
+    /// Init
+    /// - Parameters:
+    ///   - prefix: file path prefix
+    ///   - userIdentifier: user identifier
+    ///   - name: db file name
+    /// - Throws:
+    ///   - SQLiteError
+    ///   - Rethrows from `FileManager`
     public init(prefix: String,
-                  userIdentifier: String,
-                  name: String) throws {
+                userIdentifier: String,
+                name: String) throws {
         var url = try FileManager.default.url(for: .applicationSupportDirectory,
                                               in: .userDomainMask,
                                               appropriateFor: nil,
@@ -131,6 +145,10 @@ public class SQLiteDB: NSObject {
         guard res == SQLITE_DONE else {
             throw SQLiteError(errorNum: res)
         }
+    }
+
+    public func getNumberOfChangedRowsInLastOperation() -> Int {
+        return Int(sqlite3_changes(self.handle))
     }
 
     public func executeStep(statement: Statement) throws -> Bool {
