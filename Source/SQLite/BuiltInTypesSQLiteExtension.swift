@@ -40,7 +40,7 @@ import SQLite3
 /// Represents error of SQLite Binding
 ///
 /// - invalidString: Invalid String
-@objc(VTESQLiteBindingError) public enum SQLiteBindingError: Int, LocalizedError {
+@objc(VSSSQLiteBindingError) public enum SQLiteBindingError: Int, LocalizedError {
     case invalidString = 1
 
     /// Human-readable localized description
