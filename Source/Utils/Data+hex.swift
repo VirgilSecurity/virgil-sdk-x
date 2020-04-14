@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2015-2019 Virgil Security Inc.
+// Copyright (C) 2015-2020 Virgil Security Inc.
 //
 // All rights reserved.
 //
@@ -35,8 +35,6 @@
 //
 
 import Foundation
-
-// swiftlint:disable missing_docs
 
 // MARK: - Data extension for hex encoding and decoding
 public extension Data {
@@ -79,5 +77,3 @@ public extension Data {
         self = data
     }
 }
-
-// swiftlint:enable missing_docs

@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2015-2019 Virgil Security Inc.
+// Copyright (C) 2015-2020 Virgil Security Inc.
 //
 // All rights reserved.
 //
@@ -119,7 +119,9 @@ import Foundation
     open func handleError(statusCode: Int, body: Data?) -> Error {
         if let body = body {
             if let rawServiceError = try? JSONDecoder().decode(RawServiceError.self, from: body) {
-                return ServiceError(httpStatusCode: statusCode, rawServiceError: rawServiceError, errorDomain: type(of: self).serviceErrorDomain)
+                return ServiceError(httpStatusCode: statusCode,
+                                    rawServiceError: rawServiceError,
+                                    errorDomain: type(of: self).serviceErrorDomain)
             }
             else if let string = String(data: body, encoding: .utf8) {
                 return NSError(domain: type(of: self).serviceErrorDomain,
