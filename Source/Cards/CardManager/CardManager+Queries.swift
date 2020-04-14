@@ -212,12 +212,14 @@ extension CardManager {
     /// - Note: Resulting array will contain only actual cards.
     ///         Older cards (that were replaced) can be accessed using previousCard property of new cards.
     ///
-    /// - Parameter identities: identities of cards to search
+    /// - Parameters:
+    ///     - identities: identities of cards to search
+    ///     - cardTypes: card types
     /// - Returns: CallbackOperation<[Card]> for performing search of Virgil Cards
-    open func searchCards(identities: [String]) -> GenericOperation<[Card]> {
+    open func searchCards(identities: [String], cardTypes: [String]? = nil) -> GenericOperation<[Card]> {
         return CallbackOperation { _, completion in
             do {
-                let cards = try self.cardClient.searchCards(identities: identities)
+                let cards = try self.cardClient.searchCards(identities: identities, cardTypes: cardTypes)
                     .map { rawSignedModel -> Card in
                         try self.parseCard(from: rawSignedModel)
                     }

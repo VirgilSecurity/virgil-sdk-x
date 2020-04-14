@@ -42,6 +42,10 @@ import Foundation
     @objc public let identity: String
     /// VirgilPublicKey data
     @objc public let publicKey: Data?
+    /// Card type
+    @objc public let cardType: String?
+    /// Device info
+    @objc public let deviceInfo: Data?
     /// Identifier of outdated previous Virgil Card with same identity.
     @objc public let previousCardId: String?
     /// Version of Virgil Card
@@ -52,6 +56,8 @@ import Foundation
     /// Defines coding keys for encoding and decoding
     private enum CodingKeys: String, CodingKey {
         case publicKey = "public_key"
+        case cardType = "card_type"
+        case deviceInfo = "device_info"
         case previousCardId = "previous_card_id"
         case createdAt = "created_at"
         case identity = "identity"
@@ -66,10 +72,13 @@ import Foundation
     ///   - previousCardId: Identifier of previous Virgil Card with same identity
     ///   - version: Virgil Card version
     ///   - createdAt: Date of creation
-    @objc public convenience init(identity: String, publicKey: Data, previousCardId: String? = nil,
+    @objc public convenience init(identity: String, publicKey: Data, cardType: String? = nil,
+                                  deviceInfo: Data? = nil, previousCardId: String? = nil,
                                   version: String = "5.0", createdAt: Date) {
         self.init(identity: identity,
                   publicKey: publicKey,
+                  cardType: cardType,
+                  deviceInfo: deviceInfo,
                   previousCardId: previousCardId,
                   version: version,
                   createdAtTimestamp: DateUtils.dateToTimestamp(date: createdAt))
@@ -83,10 +92,12 @@ import Foundation
     ///   - previousCardId: Identifier of previous Virgil Card with same identity
     ///   - version: Virgil Card version
     ///   - createdAtTimestamp: Timestamp of creation
-    @objc public init(identity: String, publicKey: Data?, previousCardId: String? = nil,
-                      version: String = "5.0", createdAtTimestamp: Int64) {
+    @objc public init(identity: String, publicKey: Data?, cardType: String? = nil, deviceInfo: Data? = nil,
+                      previousCardId: String? = nil, version: String = "5.0", createdAtTimestamp: Int64) {
         self.identity = identity
         self.publicKey = publicKey
+        self.cardType = cardType
+        self.deviceInfo = deviceInfo
         self.previousCardId = previousCardId
         self.version = version
         self.createdAt = createdAtTimestamp
@@ -103,6 +114,8 @@ import Foundation
 
         self.init(identity: content.identity,
                   publicKey: content.publicKey,
+                  cardType: content.cardType,
+                  deviceInfo: content.deviceInfo,
                   previousCardId: content.previousCardId,
                   version: content.version,
                   createdAtTimestamp: content.createdAt)

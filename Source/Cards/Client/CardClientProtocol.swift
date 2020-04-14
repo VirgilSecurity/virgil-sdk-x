@@ -58,10 +58,12 @@ import Foundation
 
     /// Performs search of Virgil Cards using given identities on the Virgil Cards Service
     ///
-    /// - Parameter identities: Identities of cards to search
+    /// - Parameters:
+    ///     - identities: Identities of cards to search
+    ///     - cardTypes: Card types
     /// - Returns: Array with `RawSignedModel`s of matched Virgil Cards
     /// - Throws: Depends on implementation
-    @objc func searchCards(identities: [String]) throws -> [RawSignedModel]
+    @objc func searchCards(identities: [String], cardTypes: [String]?) throws -> [RawSignedModel]
 
     /// Returns list of cards that were replaced with newer ones
     ///

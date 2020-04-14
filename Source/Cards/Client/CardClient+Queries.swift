@@ -114,7 +114,9 @@ extension CardClient: CardClientProtocol {
 
     /// Performs search of Virgil Cards using given identities on the Virgil Cards Service
     ///
-    /// - Parameter identities: Identities of cards to search
+    /// - Parameters:
+    ///     - identities: Identities of cards to search
+    ///     - cardTypes: Card types
     /// - Returns: Array with `RawSignedModel`s of matched Virgil Cards
     /// - Throws:
     ///   - CardClientError.constructingUrl, if url initialization failed
@@ -122,16 +124,22 @@ extension CardClient: CardClientProtocol {
     ///   - NSError with CardClient.serviceErrorDomain error domain,
     ///     http status code as error code, and description string if present in http body
     ///   - Rethrows from `ServiceRequest`, `HttpConnectionProtocol`, `JsonDecoder`, `BaseClient`
-    @objc public func searchCards(identities: [String]) throws -> [RawSignedModel] {
+    @objc public func searchCards(identities: [String], cardTypes: [String]? = nil) throws -> [RawSignedModel] {
         guard let url = URL(string: "card/v5/actions/search", relativeTo: self.serviceUrl) else {
             throw CardClientError.constructingUrl
         }
 
         let tokenContext = TokenContext(service: "cards", operation: "search", forceReload: false)
+        
+        var params = ["identities": identities]
+        
+        if let cardTypes = cardTypes {
+            params["card_types"] = cardTypes
+        }
 
         let request = try ServiceRequest(url: url,
                                          method: .post,
-                                         params: ["identities": identities])
+                                         params: params)
 
         let response = try self.sendWithRetry(request,
                                               retry: self.createRetry(),

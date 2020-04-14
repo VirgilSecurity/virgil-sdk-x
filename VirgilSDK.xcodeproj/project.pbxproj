@@ -304,6 +304,10 @@
 		42860D7A2289B94200494515 /* VSCFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42860D762289B94100494515 /* VSCFoundation.framework */; };
 		42860D7B2289B94200494515 /* VirgilCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42860D772289B94200494515 /* VirgilCrypto.framework */; };
 		429123671F4B0B3700103BE0 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
+		42B239D424448231006C68F3 /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B239D324448231006C68F3 /* CardType.swift */; };
+		42B239D524448231006C68F3 /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B239D324448231006C68F3 /* CardType.swift */; };
+		42B239D624448231006C68F3 /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B239D324448231006C68F3 /* CardType.swift */; };
+		42B239D724448231006C68F3 /* CardType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B239D324448231006C68F3 /* CardType.swift */; };
 		42CBE3D521ECBC19000F99E6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CBE3D421ECBC19000F99E6 /* Security.framework */; platformFilter = ios; };
 		42CBE3DA21ECBC2A000F99E6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CBE3D921ECBC2A000F99E6 /* Security.framework */; };
 		42D0589420EB894500FC544E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D0589320EB894500FC544E /* AppDelegate.swift */; };
@@ -786,6 +790,7 @@
 		42860D772289B94200494515 /* VirgilCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VirgilCrypto.framework; path = Carthage/Build/watchOS/VirgilCrypto.framework; sourceTree = "<group>"; };
 		428B163F20E39A940041CA75 /* CardManager+StaticExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardManager+StaticExport.swift"; sourceTree = "<group>"; };
 		429123561F4B0B3700103BE0 /* TestConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestConfig.plist; sourceTree = "<group>"; };
+		42B239D324448231006C68F3 /* CardType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardType.swift; sourceTree = "<group>"; };
 		42B7E3721DB9023400D70C12 /* VirgilSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VirgilSDK.h; sourceTree = "<group>"; };
 		42CBE3D421ECBC19000F99E6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		42CBE3D921ECBC2A000F99E6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
@@ -953,6 +958,7 @@
 				42DA83A320321F980091D223 /* CardManager+Obj-C.swift */,
 				422B4D37203494F3003923E2 /* CardManager+Parse.swift */,
 				42DA83A420321F980091D223 /* CardManagerParams.swift */,
+				42B239D324448231006C68F3 /* CardType.swift */,
 			);
 			path = CardManager;
 			sourceTree = "<group>";
@@ -1745,6 +1751,7 @@
 				42D7AF6E224396AD009D02FD /* GeneratorJwtProvider.swift in Sources */,
 				42D7B04B22439A51009D02FD /* VirgilAgentAdapter.swift in Sources */,
 				423D3E79222E6CDB006C7E4C /* RetryChoice.swift in Sources */,
+				42B239D524448231006C68F3 /* CardType.swift in Sources */,
 				42492FD122CE9FC500BEA96F /* KeynoxClient+Queries.swift in Sources */,
 				42492F9D22CE9FC400BEA96F /* KeyknoxManager.swift in Sources */,
 				42860D4D22896B8D00494515 /* Reachability.swift in Sources */,
@@ -1879,6 +1886,7 @@
 				42D7AFC4224396AE009D02FD /* VirgilCardVerifier.swift in Sources */,
 				42D7AFA2224396AE009D02FD /* ServiceError.swift in Sources */,
 				42D7AFAA224396AE009D02FD /* JwtHeaderContent.swift in Sources */,
+				42B239D624448231006C68F3 /* CardType.swift in Sources */,
 				42492FD222CE9FC500BEA96F /* KeynoxClient+Queries.swift in Sources */,
 				42492F9E22CE9FC400BEA96F /* KeyknoxManager.swift in Sources */,
 				42D7AFBC224396AE009D02FD /* CardManager.swift in Sources */,
@@ -1984,6 +1992,7 @@
 				42D7AFFD224396AF009D02FD /* VirgilCardVerifier.swift in Sources */,
 				42D7AFDB224396AF009D02FD /* ServiceError.swift in Sources */,
 				42D7AFE3224396AF009D02FD /* JwtHeaderContent.swift in Sources */,
+				42B239D724448231006C68F3 /* CardType.swift in Sources */,
 				42492FD322CE9FC500BEA96F /* KeynoxClient+Queries.swift in Sources */,
 				42492F9F22CE9FC400BEA96F /* KeyknoxManager.swift in Sources */,
 				42D7AFF5224396AF009D02FD /* CardManager.swift in Sources */,
@@ -2165,6 +2174,7 @@
 				42D7AF30224396AC009D02FD /* ServiceError.swift in Sources */,
 				424ACC7A22314C9100DD5072 /* NetworkRetryOperation.swift in Sources */,
 				42D7AF38224396AC009D02FD /* JwtHeaderContent.swift in Sources */,
+				42B239D424448231006C68F3 /* CardType.swift in Sources */,
 				42492FD022CE9FC500BEA96F /* KeynoxClient+Queries.swift in Sources */,
 				42492F9C22CE9FC400BEA96F /* KeyknoxManager.swift in Sources */,
 				42D7AF4A224396AC009D02FD /* CardManager.swift in Sources */,
