@@ -100,21 +100,24 @@ public class SQLiteDB: NSObject {
                 prefix: String,
                 userIdentifier: String,
                 name: String) throws {
-        
+
         var url: URL
 
         if let appGroup = appGroup {
-            guard let sharedContainer = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else {
-                throw NSError(domain: "FileManager", code: -1, userInfo: [NSLocalizedDescriptionKey: "Security application group identifier is invalid"])
+            guard let sharedContainer =
+                FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else {
+                throw NSError(domain: "FileManager",
+                              code: -1,
+                              userInfo: [NSLocalizedDescriptionKey: "Security application group identifier is invalid"])
             }
-            
+
             url = sharedContainer
         }
         else {
             url = try FileManager.default.url(for: .applicationSupportDirectory,
-                                                      in: .userDomainMask,
-                                                      appropriateFor: nil,
-                                                      create: false)
+                                              in: .userDomainMask,
+                                              appropriateFor: nil,
+                                              create: false)
         }
 
         url.appendPathComponent(prefix)
