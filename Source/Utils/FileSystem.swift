@@ -56,7 +56,8 @@ import VirgilCrypto
 /// - Note: This class is NOT thread-safe
 /// - Tag: FileSystem
 @objc(VSSFileSystem) open class FileSystem: NSObject {
-    public let fileManager = FileManager()
+    /// File Manager
+    @objc public let fileManager = FileManager()
 
     /// Prefix
     @objc public let prefix: String
@@ -163,8 +164,16 @@ import VirgilCrypto
 
         return fileURLs.map { $0.lastPathComponent }
     }
+}
 
-    public func getFullUrl(name: String?, subdir: String?) throws -> URL {
+/// MARK: - Public API
+public extension FileSystem {
+    /// Returns full url of file with given name and subdirectory
+    ///
+    /// - Parameters:
+    ///   - name: file name
+    ///   - subdir: subdirectory
+    @objc func getFullUrl(name: String?, subdir: String?) throws -> URL {
         var url = try self.createSuppDir()
 
         self.pathComponents.forEach {
@@ -183,10 +192,7 @@ import VirgilCrypto
 
         return url
     }
-}
 
-/// MARK: - Public API
-public extension FileSystem {
     /// Write data
     ///
     /// - Parameters:
