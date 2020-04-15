@@ -149,7 +149,7 @@ public class SQLiteDB: NSObject {
 
         self.handle = handle
     }
-    
+
     /// Executes statement without output values
     /// - Parameter statement: statement
     /// - Throws: `SQLiteError`
@@ -207,7 +207,7 @@ public class SQLiteDB: NSObject {
 
         try value.dumpTo(stmt: stmt, index: index)
     }
-    
+
     /// Binds output values
     /// - Parameters:
     ///   - stmt: statement
