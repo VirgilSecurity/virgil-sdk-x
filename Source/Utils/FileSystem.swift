@@ -76,6 +76,7 @@ import VirgilCrypto
     /// Init
     ///
     /// - Parameters:
+    ///   - appGroup: appGroup
     ///   - prefix: prefix
     ///   - userIdentifier: user identifier
     ///   - pathComponents: path components
