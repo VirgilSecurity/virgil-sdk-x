@@ -59,6 +59,8 @@ import VirgilCrypto
     /// File Manager
     @objc public let fileManager = FileManager()
 
+    @objc public let appGroup: String?
+
     /// Prefix
     @objc public let prefix: String
 
@@ -78,10 +80,12 @@ import VirgilCrypto
     ///   - userIdentifier: user identifier
     ///   - pathComponents: path components
     ///   - credentials: encryption credentials
-    @objc public init(prefix: String,
+    @objc public init(appGroup: String? = nil,
+                      prefix: String,
                       userIdentifier: String,
                       pathComponents: [String],
                       credentials: FileSystemCredentials? = nil) {
+        self.appGroup = appGroup
         self.prefix = prefix
         self.userIdentifier = userIdentifier
         self.pathComponents = pathComponents
@@ -89,10 +93,23 @@ import VirgilCrypto
     }
 
     private func createSuppDir() throws -> URL {
-        var dirUrl = try self.fileManager.url(for: .applicationSupportDirectory,
+        var dirUrl: URL
+
+        if let appGroup = self.appGroup {
+            guard let container = self.fileManager.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else {
+                throw NSError(domain: "FileManager",
+                              code: -1,
+                              userInfo: [NSLocalizedDescriptionKey: "Security application group identifier is invalid"])
+            }
+
+            dirUrl = container
+        }
+        else {
+            dirUrl = try self.fileManager.url(for: .applicationSupportDirectory,
                                               in: .userDomainMask,
                                               appropriateFor: nil,
                                               create: true)
+        }
 
         dirUrl.appendPathComponent(self.prefix)
         dirUrl.appendPathComponent(self.userIdentifier)
@@ -166,7 +183,7 @@ import VirgilCrypto
     }
 }
 
-/// MARK: - Public API
+// MARK: - Public API
 public extension FileSystem {
     /// Returns full url of file with given name and subdirectory
     ///
