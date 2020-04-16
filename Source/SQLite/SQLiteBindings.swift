@@ -36,22 +36,20 @@
 
 import Foundation
 
-/// Represents response from CardClient's getCard function with RawSignedModel and whether or not card is outdated
-@objc(VSSGetCardResponse) public final class GetCardResponse: NSObject {
-    /// RawSignedModel of Virgil Card
-    @objc public let rawCard: RawSignedModel
-    /// True if Virgil Card is outdated, false - otherwise
-    @objc public let isOutdated: Bool
-
-    /// Initializer
-    ///
+/// Value that supports binding as an argument into SQLite statement
+public protocol DbInValue {
+    /// Dumps value into sqlite statement under index
     /// - Parameters:
-    ///   - rawCard: `RawSignedModel` of Virgil Card
-    ///   - isOutdated: Whether card is outdated or not
-    public init(rawCard: RawSignedModel, isOutdated: Bool) {
-        self.rawCard = rawCard
-        self.isOutdated = isOutdated
+    ///   - stmt: statement
+    ///   - index: index
+    func dumpTo(stmt: Statement, index: Int32) throws
+}
 
-        super.init()
-    }
+/// Value that supports binding as an output from SQLite statement
+public protocol DbOutValue {
+    /// Initializes values from statement
+    /// - Parameters:
+    ///   - stmt: statement
+    ///   - index: index
+    init?(stmt: Statement, index: Int32)
 }

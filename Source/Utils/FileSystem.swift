@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2015-2019 Virgil Security Inc.
+// Copyright (C) 2015-2020 Virgil Security Inc.
 //
 // All rights reserved.
 //
@@ -56,7 +56,10 @@ import VirgilCrypto
 /// - Note: This class is NOT thread-safe
 /// - Tag: FileSystem
 @objc(VSSFileSystem) open class FileSystem: NSObject {
-    private let fileManager = FileManager()
+    /// File Manager
+    @objc public let fileManager = FileManager()
+
+    @objc public let appGroup: String?
 
     /// Prefix
     @objc public let prefix: String
@@ -73,14 +76,17 @@ import VirgilCrypto
     /// Init
     ///
     /// - Parameters:
+    ///   - appGroup: appGroup
     ///   - prefix: prefix
     ///   - userIdentifier: user identifier
     ///   - pathComponents: path components
     ///   - credentials: encryption credentials
-    @objc public init(prefix: String,
+    @objc public init(appGroup: String? = nil,
+                      prefix: String,
                       userIdentifier: String,
                       pathComponents: [String],
                       credentials: FileSystemCredentials? = nil) {
+        self.appGroup = appGroup
         self.prefix = prefix
         self.userIdentifier = userIdentifier
         self.pathComponents = pathComponents
@@ -88,10 +94,23 @@ import VirgilCrypto
     }
 
     private func createSuppDir() throws -> URL {
-        var dirUrl = try self.fileManager.url(for: .applicationSupportDirectory,
+        var dirUrl: URL
+
+        if let appGroup = self.appGroup {
+            guard let container = self.fileManager.containerURL(forSecurityApplicationGroupIdentifier: appGroup) else {
+                throw NSError(domain: "FileManager",
+                              code: -1,
+                              userInfo: [NSLocalizedDescriptionKey: "Security application group identifier is invalid"])
+            }
+
+            dirUrl = container
+        }
+        else {
+            dirUrl = try self.fileManager.url(for: .applicationSupportDirectory,
                                               in: .userDomainMask,
                                               appropriateFor: nil,
                                               create: true)
+        }
 
         dirUrl.appendPathComponent(self.prefix)
         dirUrl.appendPathComponent(self.userIdentifier)
@@ -163,8 +182,16 @@ import VirgilCrypto
 
         return fileURLs.map { $0.lastPathComponent }
     }
+}
 
-    private func getFullUrl(name: String?, subdir: String?) throws -> URL {
+// MARK: - Public API
+public extension FileSystem {
+    /// Returns full url of file with given name and subdirectory
+    ///
+    /// - Parameters:
+    ///   - name: file name
+    ///   - subdir: subdirectory
+    @objc func getFullUrl(name: String?, subdir: String?) throws -> URL {
         var url = try self.createSuppDir()
 
         self.pathComponents.forEach {
@@ -185,7 +212,7 @@ import VirgilCrypto
     }
 }
 
-/// MARK: - Public API
+// MARK: - Public API
 public extension FileSystem {
     /// Write data
     ///
