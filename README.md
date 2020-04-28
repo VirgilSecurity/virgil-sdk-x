@@ -23,7 +23,6 @@ In case you need additional security functionality for multi-device support, gro
 - Encrypt, sign, decrypt and verify data
 - Store private keys in secure local storage
 - Use [Virgil Crypto Library](https://github.com/VirgilSecurity/virgil-crypto-x)
-- Use your own crypto library
 
 ## Installation
 
@@ -125,8 +124,6 @@ Additionally, you'll need to copy debug symbols for debugging and crash reportin
 On your application target’s “Build Phases” settings tab, click the “+” icon and choose “New Copy Files Phase”.
 Click the “Destination” drop-down menu and select “Products Directory”. For each framework, drag and drop corresponding dSYM file.
 
-
-
 ## Configure SDK
 
 This section contains guides on how to set up Virgil Core SDK modules for authenticating users, managing Virgil Cards and storing private keys.
@@ -166,47 +163,6 @@ let accessTokenProvider = CallbackJwtProvider { tokenContext, completion in
 ```
 
 #### Generate JWT on Server side
-
-Next, you'll need to set up the `JwtGenerator` and generate a JWT using the Virgil SDK.
-
-Here is an example of how to generate a JWT:
-
-```swift
-import VirgilSDK
-import VirgilCrypto
-
-// App Key (you got this Key at Virgil Dashboard)
-let appKeyBase64 = "MIGhMF0GCSqGSIb3DQEFDTBQMC8GC...xtxevI421z3gRbjAtoWkfWraSLD6gj0="
-let privateKeyData = Data(base64Encoded: appKeyBase64)!
-
-// Crypto library imports a private key into a necessary format
-let crypto = VirgilCrypto()
-let appKey = try! crypto.importPrivateKey(from: privateKeyData)
-
-// initialize accessTokenSigner that signs users JWTs
-let accessTokenSigner = VirgilAccessTokenSigner()
-
-// use your App Credentials you got at Virgil Dashboard:
-let appId = "be00e10e4e1f4bf58f9b4dc85d79c77a" // App ID
-let appKeyId = "70b447e321f3a0fd" // App Key ID
-let ttl: TimeInterval = 60 * 60 * 24 // 1 hour (JWT's lifetime)
-
-// setup JWT generator with necessary parameters:
-let jwtGenerator = JwtGenerator(apiKey: appKey, apiPublicKeyIdentifier: appKeyId,
-                                accessTokenSigner: accessTokenSigner, appId: appId, ttl: ttl)
-
-// generate JWT for a user
-// remember that you must provide each user with his unique JWT
-// each JWT contains unique user's identity (in this case - Alice)
-// identity can be any value: name, email, some id etc.
-let identity = "Alice"
-let aliceJwt = try! jwtGenerator.generateToken(identity: identity)
-
-// as result you get users JWT, it looks like this: "eyJraWQiOiI3MGI0NDd...RvMK7p7Ak"
-// you can provide users with JWT at registration or authorization steps
-// Send a JWT to client-side
-let jwtString = aliceJwt.stringRepresentation()
-```
 
 For this subsection we've created a sample backend that demonstrates how you can set up your backend to generate the JWTs. To set up and run the sample backend locally, head over to your GitHub repo of choice:
 
@@ -257,36 +213,6 @@ let cardManagerParams = CardManagerParams(cardCrypto: cardCrypto,
                                           cardVerifier: cardVerifier)
 
 let cardManager = CardManager(params: cardManagerParams)
-```
-
-### Set up Key Storage for private keys
-
-This subsection shows how to set up a `VSSKeyStorage` using Virgil SDK in order to save private keys after their generation.
-
-Here is an example of how to set up the `VSSKeyStorage` class:
-
-```swift
-import VirgilSDK
-import VirgilCrypto
-
-// initialize Crypto library
-let crypto = VirgilCrypto()
-// Generate a private key
-let keyPair = try! crypto.generateKeyPair()
-let privateKey = keyPair.privateKey
-
-// Setup PrivateKeyStorage
-let privateKeyExporter = VirgilPrivateKeyExporter()
-let privateKeyStorage = PrivateKeyStorage(privateKeyExporter: privateKeyExporter)
-
-// Store a private key with a name, for example Alice
-try! privateKeyStorage.store(privateKey: privateKey, name: "Alice", meta: nil)
-
-// To load Alice private key use the following code lines:
-let privateKeyEntry = try! privateKeyStorage.load(withName: "Alice")
-
-// Delete a private key
-try! privateKeyStorage.delete(withName: "Alice")
 ```
 
 ## Usage Examples
