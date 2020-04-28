@@ -33,7 +33,7 @@ The Virgil Core SDK allows developers to get up and running with Virgil API quic
 
 ## Installation
 
-Virgil Core SDK is provided as a set of frameworks. These frameworks are distributed via Carthage and CocoaPods.  Also in this guide, you find one more package called VirgilCrypto (Virgil Crypto Library) that is used by the SDK to perform cryptographic operations.
+Virgil Core SDK is provided as a set of frameworks. These frameworks are distributed via Carthage and CocoaPods.  Also in this guide, you'll find one more package called VirgilCrypto (Virgil Crypto Library) that is used by the SDK to perform cryptographic operations.
 
 All frameworks are available for:
 - iOS 9.0+
