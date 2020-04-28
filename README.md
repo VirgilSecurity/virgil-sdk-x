@@ -7,7 +7,7 @@
 [![GitHub license](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg)](https://github.com/VirgilSecurity/virgil/blob/master/LICENSE)
 
 
-[Introduction](#introduction) | [SDK Features](#sdk-features) | [Crypto Library Purposes](#crypto-library-purposes) | [Installation](#installation) | [Configure SDK](#configure-sdk) | [Usage Examples](#usage-examples) | [Docs](#docs) | [Support](#support)
+[Introduction](#introduction) | [SDK Features](#sdk-features) | [Installation](#installation) | [Configure SDK](#configure-sdk) | [Usage Examples](#usage-examples) | [Docs](#docs) | [Support](#support)
 
 ## Introduction
 
@@ -27,7 +27,7 @@ In case you need additional security functionality for multi-device support, gro
 
 ## Installation
 
-Virgil Core SDK is provided as a set of frameworks. These frameworks are distributed via Carthage and CocoaPods.  Also in this guide, you'll find one more package called VirgilCrypto (Virgil Crypto Library) that is used by the SDK to perform cryptographic operations.
+Virgil Core SDK is provided as a set of frameworks. These frameworks are distributed via Carthage and CocoaPods. In this guide you'll also find one more package - Virgil Crypto Library, that is used by the SDK to perform cryptographic operations.
 
 All frameworks are available for:
 - iOS 9.0+
