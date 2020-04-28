@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2015-2019 Virgil Security Inc.
+// Copyright (C) 2015-2020 Virgil Security Inc.
 //
 // All rights reserved.
 //
@@ -35,8 +35,6 @@
 //
 
 import Foundation
-
-// swiftlint:disable missing_docs
 
 // MARK: - Dependency-related operations
 public extension GenericOperation {
@@ -74,5 +72,3 @@ public extension GenericOperation {
         return nil
     }
 }
-
-// swiftlint:enable missing_docs

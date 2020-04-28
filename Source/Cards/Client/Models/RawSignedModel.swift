@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2015-2019 Virgil Security Inc.
+// Copyright (C) 2015-2020 Virgil Security Inc.
 //
 // All rights reserved.
 //
@@ -145,7 +145,7 @@ import Foundation
     /// - Parameter signature: signature to add
     /// - Throws: RawSignedModelError.duplicateSignature if signature with same signer already exists
     @objc public func addSignature(_ signature: RawSignature) throws {
-        guard self.signatures.first(where: { $0.signer == signature.signer }) == nil else {
+        guard !self.signatures.contains(where: { $0.signer == signature.signer }) else {
             throw RawSignedModelError.duplicateSignature
         }
 
