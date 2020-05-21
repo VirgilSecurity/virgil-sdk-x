@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>VSSKeysManager Protocol Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">VirgilSDK </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Virgil Security</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/destroyKeyWithName:error:">- destroyKeyWithName:error:</option>
+		
+		<option value="//api/name/generateKey">- generateKey</option>
+		
+		<option value="//api/name/importKeyFromData:password:">- importKeyFromData:password:</option>
+		
+		<option value="//api/name/loadKeyWithName:password:error:">- loadKeyWithName:password:error:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">VSSKeysManager Protocol Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Conforms to</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>VSSKeysManagerProtocol.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Entry point for all interaction with Virgil Keys.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/generateKey" title="generateKey"></a>
+	<h3 class="method-title"><code><a href="#//api/name/generateKey">&ndash;&nbsp;generateKey</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates new key pair.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (VSSVirgilKey *__nonnull)generateKey</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>allocated and initialized <a href="../Classes/VSSVirgilKey.html">VSSVirgilKey</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeysManagerProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/loadKeyWithName:password:error:" title="loadKeyWithName:password:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/loadKeyWithName:password:error:">&ndash;&nbsp;loadKeyWithName:password:error:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Loads previously stored key from storage.
+User can store key using <a href="../Classes/VSSVirgilKey.html">VSSVirgilKey</a> storeWithName:password:error: method.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (VSSVirgilKey *__nullable)loadKeyWithName:(NSString *__nonnull)<em>name</em> password:(NSString *__nullable)<em>password</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>name</code></th>
+						<td><p>NSString with key name</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>NSString with key password if password was used while storing key</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>allocated and initialized <a href="../Classes/VSSVirgilKey.html">VSSVirgilKey</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeysManagerProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/importKeyFromData:password:" title="importKeyFromData:password:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/importKeyFromData:password:">&ndash;&nbsp;importKeyFromData:password:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Imports key from exported format.
+User can export key using <a href="../Classes/VSSVirgilKey.html">VSSVirgilKey</a> exportWithPassword: method.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (VSSVirgilKey *__nullable)importKeyFromData:(NSData *__nonnull)<em>data</em> password:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSData with exported key</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>NSString with key password if password was used while storing key</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>allocated and initialized <a href="../Classes/VSSVirgilKey.html">VSSVirgilKey</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeysManagerProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/destroyKeyWithName:error:" title="destroyKeyWithName:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/destroyKeyWithName:error:">&ndash;&nbsp;destroyKeyWithName:error:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Removes key from storage.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)destroyKeyWithName:(NSString *__nonnull)<em>name</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>name</code></th>
+						<td><p>NSString with key name</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>YES if succeeded, NO otherwise</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeysManagerProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2017 Virgil Security. All rights reserved. Updated: 2017-09-29</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

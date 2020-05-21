@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>VSSCrypto Protocol Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">VirgilSDK </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Virgil Security</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/calculateFingerprintForData:">- calculateFingerprintForData:</option>
+		
+		<option value="//api/name/computeHashForData:withAlgorithm:">- computeHashForData:withAlgorithm:</option>
+		
+		<option value="//api/name/decryptData:withPrivateKey:error:NS_SWIFT_NAME:">- decryptData:withPrivateKey:error:NS_SWIFT_NAME:</option>
+		
+		<option value="//api/name/decryptStream:toOutputStream:withPrivateKey:error:NS_SWIFT_NAME:">- decryptStream:toOutputStream:withPrivateKey:error:NS_SWIFT_NAME:</option>
+		
+		<option value="//api/name/decryptThenVerifyData:withPrivateKey:usingOneOfSignersPublicKeys:error:NS_SWIFT_NAME:">- decryptThenVerifyData:withPrivateKey:usingOneOfSignersPublicKeys:error:NS_SWIFT_NAME:</option>
+		
+		<option value="//api/name/decryptThenVerifyData:withPrivateKey:usingSignerPublicKey:error:NS_SWIFT_NAME:">- decryptThenVerifyData:withPrivateKey:usingSignerPublicKey:error:NS_SWIFT_NAME:</option>
+		
+		<option value="//api/name/encryptData:forRecipients:error:NS_SWIFT_NAME:">- encryptData:forRecipients:error:NS_SWIFT_NAME:</option>
+		
+		<option value="//api/name/encryptStream:toOutputStream:forRecipients:error:NS_SWIFT_NAME:">- encryptStream:toOutputStream:forRecipients:error:NS_SWIFT_NAME:</option>
+		
+		<option value="//api/name/exportPrivateKey:withPassword:">- exportPrivateKey:withPassword:</option>
+		
+		<option value="//api/name/exportPublicKey:">- exportPublicKey:</option>
+		
+		<option value="//api/name/extractPublicKeyFromPrivateKey:NS_SWIFT_NAME:">- extractPublicKeyFromPrivateKey:NS_SWIFT_NAME:</option>
+		
+		<option value="//api/name/generateKeyPair">- generateKeyPair</option>
+		
+		<option value="//api/name/generateMultipleKeyPairs:">- generateMultipleKeyPairs:</option>
+		
+		<option value="//api/name/generateSignatureForData:withPrivateKey:error:">- generateSignatureForData:withPrivateKey:error:</option>
+		
+		<option value="//api/name/generateSignatureForStream:withPrivateKey:error:">- generateSignatureForStream:withPrivateKey:error:</option>
+		
+		<option value="//api/name/importPrivateKeyFromData:">- importPrivateKeyFromData:</option>
+		
+		<option value="//api/name/importPrivateKeyFromData:withPassword:">- importPrivateKeyFromData:withPassword:</option>
+		
+		<option value="//api/name/importPublicKeyFromData:">- importPublicKeyFromData:</option>
+		
+		<option value="//api/name/signThenEncryptData:withPrivateKey:forRecipients:error:NS_SWIFT_NAME:">- signThenEncryptData:withPrivateKey:forRecipients:error:NS_SWIFT_NAME:</option>
+		
+		<option value="//api/name/verifyData:withSignature:usingSignerPublicKey:error:NS_SWIFT_NAME:">- verifyData:withSignature:usingSignerPublicKey:error:NS_SWIFT_NAME:</option>
+		
+		<option value="//api/name/verifyStream:signature:usingSignerPublicKey:error:NS_SWIFT_NAME:">- verifyStream:signature:usingSignerPublicKey:error:NS_SWIFT_NAME:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">VSSCrypto Protocol Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Conforms to</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>VSSCryptoProtocol.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Protocol for all cryptographic operations.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						<a title="Key-related functionality" name="task_Key-related functionality"></a>
+						<h2 class="task-title">Key-related functionality</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/generateKeyPair" title="generateKeyPair"></a>
+	<h3 class="method-title"><code><a href="#//api/name/generateKeyPair">&ndash;&nbsp;generateKeyPair</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates key pair using ed25519 algorithm.
+See <a href="../Classes/VSSKeyPair.html">VSSKeyPair</a>.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (VSSKeyPair *__nonnull)generateKeyPair</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>generated <a href="../Classes/VSSKeyPair.html">VSSKeyPair</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/generateMultipleKeyPairs:" title="generateMultipleKeyPairs:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/generateMultipleKeyPairs:">&ndash;&nbsp;generateMultipleKeyPairs:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates multiple key pairs using ed25519 algorithm.
+See <a href="../Classes/VSSKeyPair.html">VSSKeyPair</a>.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSArray&lt;VSSKeyPair*&gt; *__nonnull)generateMultipleKeyPairs:(NSUInteger)<em>numberOfKeyPairs</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>numberOfKeyPairs</code></th>
+						<td><p>number of keys to be generated</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>array with generated keys</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/importPrivateKeyFromData:withPassword:" title="importPrivateKeyFromData:withPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/importPrivateKeyFromData:withPassword:">&ndash;&nbsp;importPrivateKeyFromData:withPassword:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Imports Private Key with password from NSData raw representation.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (VSSPrivateKey *__nullable)importPrivateKeyFromData:(NSData *__nonnull)<em>data</em> withPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSData raw representation of Private Key</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>NSString password for Private Key</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>imported <a href="../Classes/VSSPrivateKey.html">VSSPrivateKey</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/importPrivateKeyFromData:" title="importPrivateKeyFromData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/importPrivateKeyFromData:">&ndash;&nbsp;importPrivateKeyFromData:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Imports Private Key without password from NSData raw representation.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (VSSPrivateKey *__nullable)importPrivateKeyFromData:(NSData *__nonnull)<em>data</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSData raw representation of Private Key</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>imported <a href="../Classes/VSSPrivateKey.html">VSSPrivateKey</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/importPublicKeyFromData:" title="importPublicKeyFromData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/importPublicKeyFromData:">&ndash;&nbsp;importPublicKeyFromData:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Imports Public Key from NSData raw representation.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (VSSPublicKey *__nullable)importPublicKeyFromData:(NSData *__nonnull)<em>data</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSData Public Key raw representation</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>imported <a href="../Classes/VSSPublicKey.html">VSSPublicKey</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/extractPublicKeyFromPrivateKey:NS_SWIFT_NAME:" title="extractPublicKeyFromPrivateKey:NS_SWIFT_NAME:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/extractPublicKeyFromPrivateKey:NS_SWIFT_NAME:">&ndash;&nbsp;extractPublicKeyFromPrivateKey:NS_SWIFT_NAME:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Extracts corresponding Public Key from Private Key.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (VSSPublicKey *__nonnull)extractPublicKeyFromPrivateKey:(VSSPrivateKey *__nonnull)<em>privateKey</em> NS_SWIFT_NAME</code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>privateKey</code></th>
+						<td><p><a href="../Classes/VSSPrivateKey.html">VSSPrivateKey</a> instance</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>extracted <a href="../Classes/VSSPublicKey.html">VSSPublicKey</a></p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/exportPrivateKey:withPassword:" title="exportPrivateKey:withPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/exportPrivateKey:withPassword:">&ndash;&nbsp;exportPrivateKey:withPassword:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Exports Private Key to raw NSData representation.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nonnull)exportPrivateKey:(VSSPrivateKey *__nonnull)<em>privateKey</em> withPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>privateKey</code></th>
+						<td><p><a href="../Classes/VSSPrivateKey.html">VSSPrivateKey</a> instance</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>NSString with password for export</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData raw representation of Private Key</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/exportPublicKey:" title="exportPublicKey:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/exportPublicKey:">&ndash;&nbsp;exportPublicKey:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Exports Public Key to raw NSData representation.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nonnull)exportPublicKey:(VSSPublicKey *__nonnull)<em>publicKey</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>publicKey</code></th>
+						<td><p><a href="../Classes/VSSPublicKey.html">VSSPublicKey</a> instance</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData raw representation of Public Key</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Encrypt/Decrypt-related functionality" name="task_Encrypt/Decrypt-related functionality"></a>
+						<h2 class="task-title">Encrypt/Decrypt-related functionality</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/encryptData:forRecipients:error:NS_SWIFT_NAME:" title="encryptData:forRecipients:error:NS_SWIFT_NAME:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/encryptData:forRecipients:error:NS_SWIFT_NAME:">&ndash;&nbsp;encryptData:forRecipients:error:NS_SWIFT_NAME:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Encrypts data.
+Only those, who have <a href="../Classes/VSSPrivateKey.html">VSSPrivateKey</a> corresponding to one of <a href="../Classes/VSSPublicKey.html">VSSPublicKey</a> in recipients array will be able to decrypt data.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)encryptData:(NSData *__nonnull)<em>data</em> forRecipients:(NSArray&lt;VSSPublicKey*&gt; *__nonnull)<em>recipients</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em> NS_SWIFT_NAME</code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSData instance with any sensitive data</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>recipients</code></th>
+						<td><p>NSArray of <a href="../Classes/VSSPublicKey.html">VSSPublicKey</a> instances corresponding to recipients</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData instance with encrypted data</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/encryptStream:toOutputStream:forRecipients:error:NS_SWIFT_NAME:" title="encryptStream:toOutputStream:forRecipients:error:NS_SWIFT_NAME:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/encryptStream:toOutputStream:forRecipients:error:NS_SWIFT_NAME:">&ndash;&nbsp;encryptStream:toOutputStream:forRecipients:error:NS_SWIFT_NAME:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Encrypts stream.
+Only those, who have <a href="../Classes/VSSPrivateKey.html">VSSPrivateKey</a> corresponding to one of <a href="../Classes/VSSPublicKey.html">VSSPublicKey</a> in recipients array will be able to decrypt stream.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)encryptStream:(NSInputStream *__nonnull)<em>stream</em> toOutputStream:(NSOutputStream *__nonnull)<em>outputStream</em> forRecipients:(NSArray&lt;VSSPublicKey*&gt; *__nonnull)<em>recipients</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em> NS_SWIFT_NAME</code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>stream</code></th>
+						<td><p>NSInputStream isntance with incoming data</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>outputStream</code></th>
+						<td><p>NSOutputStream with encrypted data</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>recipients</code></th>
+						<td><p>NSArray of <a href="../Classes/VSSPublicKey.html">VSSPublicKey</a> instances corresponding to recipients</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BOOL value which indicates whether encryption was successful or failed</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/verifyData:withSignature:usingSignerPublicKey:error:NS_SWIFT_NAME:" title="verifyData:withSignature:usingSignerPublicKey:error:NS_SWIFT_NAME:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/verifyData:withSignature:usingSignerPublicKey:error:NS_SWIFT_NAME:">&ndash;&nbsp;verifyData:withSignature:usingSignerPublicKey:error:NS_SWIFT_NAME:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Verifies data for genuineness.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)verifyData:(NSData *__nonnull)<em>data</em> withSignature:(NSData *__nonnull)<em>signature</em> usingSignerPublicKey:(VSSPublicKey *__nonnull)<em>signerPublicKey</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em> NS_SWIFT_NAME</code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSData instance with data to be verified</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>signature</code></th>
+						<td><p>NSData instance with corresponding signature</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>signerPublicKey</code></th>
+						<td><p><a href="../Classes/VSSPublicKey.html">VSSPublicKey</a> instance with data signer&rsquo;s Public Key</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BOOL value which indicates whether data was successfully verified or verification failed</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/verifyStream:signature:usingSignerPublicKey:error:NS_SWIFT_NAME:" title="verifyStream:signature:usingSignerPublicKey:error:NS_SWIFT_NAME:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/verifyStream:signature:usingSignerPublicKey:error:NS_SWIFT_NAME:">&ndash;&nbsp;verifyStream:signature:usingSignerPublicKey:error:NS_SWIFT_NAME:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Verifies stream for genuineness.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)verifyStream:(NSInputStream *__nonnull)<em>stream</em> signature:(NSData *__nonnull)<em>signature</em> usingSignerPublicKey:(VSSPublicKey *__nonnull)<em>signerPublicKey</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em> NS_SWIFT_NAME</code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>stream</code></th>
+						<td><p>NSInputStream instance with data to be verified</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>signature</code></th>
+						<td><p>NSData instance with corresponding signature</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>signerPublicKey</code></th>
+						<td><p><a href="../Classes/VSSPublicKey.html">VSSPublicKey</a> instance with stream signer&rsquo;s Public Key</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BOOL value which indicates whether stream was successfully verified or verification failed</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/decryptData:withPrivateKey:error:NS_SWIFT_NAME:" title="decryptData:withPrivateKey:error:NS_SWIFT_NAME:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/decryptData:withPrivateKey:error:NS_SWIFT_NAME:">&ndash;&nbsp;decryptData:withPrivateKey:error:NS_SWIFT_NAME:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Decrypts data.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)decryptData:(NSData *__nonnull)<em>data</em> withPrivateKey:(VSSPrivateKey *__nonnull)<em>privateKey</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em> NS_SWIFT_NAME</code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSData instance with encrypted data to be decrypted</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>privateKey</code></th>
+						<td><p><a href="../Classes/VSSPrivateKey.html">VSSPrivateKey</a> instance of data recipient</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData instance with decrypted data</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/decryptStream:toOutputStream:withPrivateKey:error:NS_SWIFT_NAME:" title="decryptStream:toOutputStream:withPrivateKey:error:NS_SWIFT_NAME:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/decryptStream:toOutputStream:withPrivateKey:error:NS_SWIFT_NAME:">&ndash;&nbsp;decryptStream:toOutputStream:withPrivateKey:error:NS_SWIFT_NAME:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Decrypts stream.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)decryptStream:(NSInputStream *__nonnull)<em>stream</em> toOutputStream:(NSOutputStream *__nonnull)<em>outputStream</em> withPrivateKey:(VSSPrivateKey *__nonnull)<em>privateKey</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em> NS_SWIFT_NAME</code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>stream</code></th>
+						<td><p>NSInputStream with encrypted data to be decrypted</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>outputStream</code></th>
+						<td><p>NSOutputStream instance where encrypted data will be written</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>privateKey</code></th>
+						<td><p><a href="../Classes/VSSPrivateKey.html">VSSPrivateKey</a> instance of data recipient</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>BOOL value which indicates whether encryption succeeded or failed</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/signThenEncryptData:withPrivateKey:forRecipients:error:NS_SWIFT_NAME:" title="signThenEncryptData:withPrivateKey:forRecipients:error:NS_SWIFT_NAME:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signThenEncryptData:withPrivateKey:forRecipients:error:NS_SWIFT_NAME:">&ndash;&nbsp;signThenEncryptData:withPrivateKey:forRecipients:error:NS_SWIFT_NAME:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Signs and ecrypts data.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)signThenEncryptData:(NSData *__nonnull)<em>data</em> withPrivateKey:(VSSPrivateKey *__nonnull)<em>privateKey</em> forRecipients:(NSArray&lt;VSSPublicKey*&gt; *__nonnull)<em>recipients</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em> NS_SWIFT_NAME</code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSData instance with data to be signed and ecnrypted</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>privateKey</code></th>
+						<td><p><a href="../Classes/VSSPrivateKey.html">VSSPrivateKey</a> isntance of signer</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>recipients</code></th>
+						<td><p>NSArray of <a href="../Classes/VSSPublicKey.html">VSSPublicKey</a> instances corresponding to recipients</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData instance with signed and ecrypted data</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/decryptThenVerifyData:withPrivateKey:usingOneOfSignersPublicKeys:error:NS_SWIFT_NAME:" title="decryptThenVerifyData:withPrivateKey:usingOneOfSignersPublicKeys:error:NS_SWIFT_NAME:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/decryptThenVerifyData:withPrivateKey:usingOneOfSignersPublicKeys:error:NS_SWIFT_NAME:">&ndash;&nbsp;decryptThenVerifyData:withPrivateKey:usingOneOfSignersPublicKeys:error:NS_SWIFT_NAME:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Decrypts and verifies data.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)decryptThenVerifyData:(NSData *__nonnull)<em>data</em> withPrivateKey:(VSSPrivateKey *__nonnull)<em>privateKey</em> usingOneOfSignersPublicKeys:(NSArray&lt;VSSPublicKey*&gt; *__nonnull)<em>signersPublicKeys</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em> NS_SWIFT_NAME</code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSData instance with encrypted and signed data</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>privateKey</code></th>
+						<td><p><a href="../Classes/VSSPrivateKey.html">VSSPrivateKey</a> isntance of data recipient</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>signersPublicKeys</code></th>
+						<td><p>Array of <a href="../Classes/VSSPublicKey.html">VSSPublicKey</a> instances of possible signers</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData instance with encrypted and verified data</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/decryptThenVerifyData:withPrivateKey:usingSignerPublicKey:error:NS_SWIFT_NAME:" title="decryptThenVerifyData:withPrivateKey:usingSignerPublicKey:error:NS_SWIFT_NAME:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/decryptThenVerifyData:withPrivateKey:usingSignerPublicKey:error:NS_SWIFT_NAME:">&ndash;&nbsp;decryptThenVerifyData:withPrivateKey:usingSignerPublicKey:error:NS_SWIFT_NAME:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<pre><code> Decrypts and verifies data.
+</code></pre>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)decryptThenVerifyData:(NSData *__nonnull)<em>data</em> withPrivateKey:(VSSPrivateKey *__nonnull)<em>privateKey</em> usingSignerPublicKey:(VSSPublicKey *__nonnull)<em>signerPublicKey</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em> NS_SWIFT_NAME</code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSData instance with encrypted and signed data</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>privateKey</code></th>
+						<td><p><a href="../Classes/VSSPrivateKey.html">VSSPrivateKey</a> isntance of data recipient</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>signerPublicKey</code></th>
+						<td><p><a href="../Classes/VSSPublicKey.html">VSSPublicKey</a> instance with data signer&rsquo;s Public Key</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData instance with encrypted and verified data</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Hash-related functionality" name="task_Hash-related functionality"></a>
+						<h2 class="task-title">Hash-related functionality</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/generateSignatureForData:withPrivateKey:error:" title="generateSignatureForData:withPrivateKey:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/generateSignatureForData:withPrivateKey:error:">&ndash;&nbsp;generateSignatureForData:withPrivateKey:error:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates signature for data.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)generateSignatureForData:(NSData *__nonnull)<em>data</em> withPrivateKey:(VSSPrivateKey *__nonnull)<em>privateKey</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSData with data to be signed</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>privateKey</code></th>
+						<td><p><a href="../Classes/VSSPrivateKey.html">VSSPrivateKey</a> of signer</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData instance with signature</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/generateSignatureForStream:withPrivateKey:error:" title="generateSignatureForStream:withPrivateKey:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/generateSignatureForStream:withPrivateKey:error:">&ndash;&nbsp;generateSignatureForStream:withPrivateKey:error:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates signature for stream.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)generateSignatureForStream:(NSInputStream *__nonnull)<em>stream</em> withPrivateKey:(VSSPrivateKey *__nonnull)<em>privateKey</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>stream</code></th>
+						<td><p>NSInputStream with data to be signed</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>privateKey</code></th>
+						<td><p><a href="../Classes/VSSPrivateKey.html">VSSPrivateKey</a> of signer</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData instance with signature</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/calculateFingerprintForData:" title="calculateFingerprintForData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/calculateFingerprintForData:">&ndash;&nbsp;calculateFingerprintForData:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Calculates <a href="../Classes/VSSFingerprint.html">VSSFingerprint</a> for data.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (VSSFingerprint *__nonnull)calculateFingerprintForData:(NSData *__nonnull)<em>data</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSData instance with data of which fingerprint will be calculated</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p><a href="../Classes/VSSFingerprint.html">VSSFingerprint</a> instance corresponding to data</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/computeHashForData:withAlgorithm:" title="computeHashForData:withAlgorithm:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/computeHashForData:withAlgorithm:">&ndash;&nbsp;computeHashForData:withAlgorithm:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Computes hash for data using chosen algorithm</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nonnull)computeHashForData:(NSData *__nonnull)<em>data</em> withAlgorithm:(VSSHashAlgorithm)<em>algorithm</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSData instance with data of which hash will be calculated</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>algorithm</code></th>
+						<td><p>Algorithm used for hash calculation. See <a href="../Constants/VSSHashAlgorithm.html">VSSHashAlgorithm</a></p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData instance with hash</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCryptoProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2017 Virgil Security. All rights reserved. Updated: 2017-09-04</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

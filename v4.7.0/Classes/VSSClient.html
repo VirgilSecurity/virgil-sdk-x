@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>VSSClient Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">VirgilSDK </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Virgil Security</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/serviceConfig">serviceConfig</option>
+		
+	</optgroup>
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/confirmIdentityWithActionId:confirmationCode:timeToLive:countToLive:completion:">- confirmIdentityWithActionId:confirmationCode:timeToLive:countToLive:completion:</option>
+		
+		<option value="//api/name/createCardRelationWithSignedCardRequest:completion:">- createCardRelationWithSignedCardRequest:completion:</option>
+		
+		<option value="//api/name/init">- init</option>
+		
+		<option value="//api/name/initWithApplicationToken:">- initWithApplicationToken:</option>
+		
+		<option value="//api/name/initWithServiceConfig:">- initWithServiceConfig:</option>
+		
+		<option value="//api/name/removeCardRelationWithRequest:completion:">- removeCardRelationWithRequest:completion:</option>
+		
+		<option value="//api/name/validateIdentity:identityType:validationToken:completion:">- validateIdentity:identityType:validationToken:completion:</option>
+		
+		<option value="//api/name/verifyIdentity:identityType:extraFields:completion:">- verifyIdentity:identityType:extraFields:completion:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">VSSClient Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td><a href="../Classes/VSSBaseClient.html">VSSBaseClient</a> : NSObject</td>
+</tr><tr>
+	<th>Conforms to</th>
+	<td><a href="../Protocols/VSSClient.html">VSSClient</a></td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>VSSClient.h<br />VSSClient.m</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Default implementation of VSSClient protocol used for all interactions with Virgil Services.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/serviceConfig" title="serviceConfig"></a>
+	<h3 class="method-title"><code><a href="#//api/name/serviceConfig">&nbsp;&nbsp;serviceConfig</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p><a href="../Classes/VSSServiceConfig.html">VSSServiceConfig</a> instance, which contains the information needed to interract with Virgil Services such as service URLs, token, CardValidator.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) VSSServiceConfig *serviceConfig</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSClient.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithServiceConfig:" title="initWithServiceConfig:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithServiceConfig:">&ndash;&nbsp;initWithServiceConfig:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Designated constructor.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype __nonnull)initWithServiceConfig:(VSSServiceConfig *__nonnull)<em>serviceConfig</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>serviceConfig</code></th>
+						<td><p><a href="../Classes/VSSServiceConfig.html">VSSServiceConfig</a> instance containing the service configuration.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>initialized VSSClient instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSClient.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithApplicationToken:" title="initWithApplicationToken:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithApplicationToken:">&ndash;&nbsp;initWithApplicationToken:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Convenient constructor.
+This constructor initialized VSSClient instance with given token and default <a href="../Classes/VSSServiceConfig.html">VSSServiceConfig</a> value (default service urls, no Card Validator).</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype __nonnull)initWithApplicationToken:(NSString *__nonnull)<em>token</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>token</code></th>
+						<td><p>NSString containing application token received from <a href="https://developer.virgilsecurity.com/dashboard/">https://developer.virgilsecurity.com/dashboard/</a></p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>initialized VSSClient instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSClient.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/init" title="init"></a>
+	<h3 class="method-title"><code><a href="#//api/name/init">&ndash;&nbsp;init</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Convenient constructor.
+This constructor initialized VSSClient instance with given token and default <a href="../Classes/VSSServiceConfig.html">VSSServiceConfig</a> value (default service urls, no token, no Card Validator).</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype __nonnull)init</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>initialized VSSClient instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSClient.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/createCardRelationWithSignedCardRequest:completion:" title="createCardRelationWithSignedCardRequest:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/createCardRelationWithSignedCardRequest:completion:">&ndash;&nbsp;createCardRelationWithSignedCardRequest:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates trusted one-way relation between two virgil cards.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)createCardRelationWithSignedCardRequest:(VSSSignedCardRequest *)<em>request</em> completion:(void ( ^ ) ( NSError *))<em>callback</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>request</code></th>
+						<td><p>VSSSignedRequest with snapshot of card that is trusted and signed by card that trusts</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>callback</code></th>
+						<td><p>callback with NSError instance if error occured</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSClientProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/removeCardRelationWithRequest:completion:" title="removeCardRelationWithRequest:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/removeCardRelationWithRequest:completion:">&ndash;&nbsp;removeCardRelationWithRequest:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Removes relation from one card to another.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)removeCardRelationWithRequest:(VSSRemoveCardRelationRequest *)<em>request</em> completion:(void ( ^ ) ( NSError *))<em>callback</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>request</code></th>
+						<td><p><a href="../Classes/VSSRemoveCardRelationRequest.html">VSSRemoveCardRelationRequest</a> created for card which is removing from relation</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>callback</code></th>
+						<td><p>callback with NSError instance if error occured</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSClientProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/verifyIdentity:identityType:extraFields:completion:" title="verifyIdentity:identityType:extraFields:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/verifyIdentity:identityType:extraFields:completion:">&ndash;&nbsp;verifyIdentity:identityType:extraFields:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Sends the request for identity verification, that&rsquo;s will be processed depending of specified type.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)verifyIdentity:(NSString *)<em>identity</em> identityType:(NSString *)<em>identityType</em> extraFields:(NSDictionary&lt;NSString*,NSString*&gt; *)<em>extraFields</em> completion:(void ( ^ ) ( NSString *, NSError *))<em>callback</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>identity</code></th>
+						<td><p>NSString unique string that represents identity</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>identityType</code></th>
+						<td><p>NSString with type of identity</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>extraFields</code></th>
+						<td><p>NSDictionary with values which will be passed with verification message</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>callback</code></th>
+						<td><p>callback with NSString with action ID, or NSError instance if error occured</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSClientProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/confirmIdentityWithActionId:confirmationCode:timeToLive:countToLive:completion:" title="confirmIdentityWithActionId:confirmationCode:timeToLive:countToLive:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/confirmIdentityWithActionId:confirmationCode:timeToLive:countToLive:completion:">&ndash;&nbsp;confirmIdentityWithActionId:confirmationCode:timeToLive:countToLive:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Confirms the identity using confirmation code, that has been generated to confirm an identity.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)confirmIdentityWithActionId:(NSString *)<em>actionId</em> confirmationCode:(NSString *)<em>confirmationCode</em> timeToLive:(NSInteger)<em>timeToLive</em> countToLive:(NSInteger)<em>countToLive</em> completion:(void ( ^ ) ( VSSConfirmIdentityResponse *, NSError *))<em>callback</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>actionId</code></th>
+						<td><p>NSString action identifier that was obtained on verification step</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>confirmationCode</code></th>
+						<td><p>NSString confirmation code that was recived on email box</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>timeToLive</code></th>
+						<td><p>NSInteger TTL is used to limit the lifetime of the token in seconds (maximum value is 60 * 60 * 24 * 365 = 1 year)</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>countToLive</code></th>
+						<td><p>NSInteger CTL is used to restrict the number of usages (maximum value is 100)</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>callback</code></th>
+						<td><p>callback with <a href="../Classes/VSSConfirmIdentityResponse.html">VSSConfirmIdentityResponse</a> object, or NSError instance if error occured</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSClientProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/validateIdentity:identityType:validationToken:completion:" title="validateIdentity:identityType:validationToken:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/validateIdentity:identityType:validationToken:completion:">&ndash;&nbsp;validateIdentity:identityType:validationToken:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Returns without error if validation token is valid</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)validateIdentity:(NSString *)<em>identity</em> identityType:(NSString *)<em>identityType</em> validationToken:(NSString *)<em>validationToken</em> completion:(void ( ^ ) ( NSError *))<em>callback</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>identity</code></th>
+						<td><p>NSString unique string that represents identity</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>identityType</code></th>
+						<td><p>NSString with type of identity</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>validationToken</code></th>
+						<td><p>NSString with validation token obtained during confirmation step</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>callback</code></th>
+						<td><p>callback with NSError instance if error occured, or nil if validation succeeded</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSClientProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2017 Virgil Security. All rights reserved. Updated: 2017-09-29</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

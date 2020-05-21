@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>GeneratorJwtProvider Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/GeneratorJwtProvider" class="dashAnchor"></a>
+    <a title="GeneratorJwtProvider Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">VirgilSDK Docs</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">VirgilSDK Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        GeneratorJwtProvider Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AsyncOperation.html">AsyncOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AsyncOperation/State.html">– State</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BaseClient.html">BaseClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CachingJwtProvider.html">CachingJwtProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CallbackJwtProvider.html">CallbackJwtProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CallbackOperation.html">CallbackOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Card.html">Card</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardClient.html">CardClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardManager.html">CardManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardManagerParams.html">CardManagerParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardSignature.html">CardSignature</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ConstAccessTokenProvider.html">ConstAccessTokenProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/DateUtils.html">DateUtils</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GeneratorJwtProvider.html">GeneratorJwtProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GenericOperation.html">GenericOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetCardResponse.html">GetCardResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HttpConnection.html">HttpConnection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Jwt.html">Jwt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtBodyContent.html">JwtBodyContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtGenerator.html">JwtGenerator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtHeaderContent.html">JwtHeaderContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtSignatureContent.html">JwtSignatureContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtVerifier.html">JwtVerifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeychainEntry.html">KeychainEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeychainStorage.html">KeychainStorage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeychainStorageError.html">KeychainStorageError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeychainStorageParams.html">KeychainStorageParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Log.html">Log</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ModelSigner.html">ModelSigner</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/OperationUtils.html">OperationUtils</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PrivateKeyEntry.html">PrivateKeyEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PrivateKeyStorage.html">PrivateKeyStorage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RawCardContent.html">RawCardContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RawServiceError.html">RawServiceError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RawSignature.html">RawSignature</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RawSignedModel.html">RawSignedModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Request/Method.html">– Method</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ServiceError.html">ServiceError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ServiceRequest.html">ServiceRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TokenContext.html">TokenContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VerifierCredentials.html">VerifierCredentials</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VirgilCardVerifier.html">VirgilCardVerifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Whitelist.html">Whitelist</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/BaseClientError.html">BaseClientError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CallbackOperationError.html">CallbackOperationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CardClientError.html">CardClientError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CardManagerError.html">CardManagerError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/GenericOperationError.html">GenericOperationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JwtBodyContentError.html">JwtBodyContentError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JwtError.html">JwtError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JwtHeaderContentError.html">JwtHeaderContentError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JwtSignatureContentError.html">JwtSignatureContentError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/KeychainStorageErrorCodes.html">KeychainStorageErrorCodes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RawSignedModelError.html">RawSignedModelError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RequestError.html">RequestError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Result.html">Result</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ServiceConnectionError.html">ServiceConnectionError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ServiceRequestError.html">ServiceRequestError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/WhitelistError.html">WhitelistError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Data.html">Data</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AccessToken.html">AccessToken</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AccessTokenProvider.html">AccessTokenProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CardClientProtocol.html">CardClientProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CardVerifier.html">CardVerifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HttpConnectionProtocol.html">HttpConnectionProtocol</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>GeneratorJwtProvider</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">@objc(VSSGeneratorJwtProvider)</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kt">GeneratorJwtProvider</span> <span class="p">:</span> <span class="kt">NSObject</span><span class="p">,</span> <span class="kt"><a href="../Protocols/AccessTokenProvider.html">AccessTokenProvider</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>Implementation of AccessTokenProvider which provides generated JWTs</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilSDK@objc(cs)VSSGeneratorJwtProvider(py)jwtGenerator"></a>
+                    <a name="//apple_ref/swift/Property/jwtGenerator" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilSDK@objc(cs)VSSGeneratorJwtProvider(py)jwtGenerator">jwtGenerator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>JwtGeneretor for generating new tokens</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">jwtGenerator</span><span class="p">:</span> <span class="kt"><a href="../Classes/JwtGenerator.html">JwtGenerator</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilSDK@objc(cs)VSSGeneratorJwtProvider(py)defaultIdentity"></a>
+                    <a name="//apple_ref/swift/Property/defaultIdentity" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilSDK@objc(cs)VSSGeneratorJwtProvider(py)defaultIdentity">defaultIdentity</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Identity that will be used for generating token if tokenContext do not have it (e.g. for read operations)
+WARNING: Do not create cards with defaultIdentity</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">defaultIdentity</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilSDK@objc(cs)VSSGeneratorJwtProvider(py)additionalData"></a>
+                    <a name="//apple_ref/swift/Property/additionalData" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilSDK@objc(cs)VSSGeneratorJwtProvider(py)additionalData">additionalData</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Additional data, that will be present in token</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">additionalData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilSDK@objc(cs)VSSGeneratorJwtProvider(im)initWithJwtGenerator:defaultIdentity:additionalData:"></a>
+                    <a name="//apple_ref/swift/Method/init(jwtGenerator:defaultIdentity:additionalData:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilSDK@objc(cs)VSSGeneratorJwtProvider(im)initWithJwtGenerator:defaultIdentity:additionalData:">init(jwtGenerator:defaultIdentity:additionalData:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializer</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">jwtGenerator</span><span class="p">:</span> <span class="kt"><a href="../Classes/JwtGenerator.html">JwtGenerator</a></span><span class="p">,</span> <span class="n"><a href="../Classes/GeneratorJwtProvider.html#/c:@M@VirgilSDK@objc(cs)VSSGeneratorJwtProvider(py)defaultIdentity">defaultIdentity</a></span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">additionalData</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>jwtGenerator</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code><a href="../Classes/JwtGenerator.html">JwtGenerator</a></code> instance for generating new tokens</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>defaultIdentity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Identity that will be used for generating token
+             if tokenContext do not have it (e.g. for read operations)
+             WARNING: Do not create cards with defaultIdentity</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>additionalData</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Additional data, that will be present in token</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilSDK@objc(cs)VSSGeneratorJwtProvider(im)getTokenWith:completion:"></a>
+                    <a name="//apple_ref/swift/Method/getToken(with:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilSDK@objc(cs)VSSGeneratorJwtProvider(im)getTokenWith:completion:">getToken(with:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Provides new generated JWT</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">getToken</span><span class="p">(</span><span class="n">with</span> <span class="nv">tokenContext</span><span class="p">:</span> <span class="kt"><a href="../Classes/TokenContext.html">TokenContext</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Protocols/AccessToken.html">AccessToken</a></span><span class="p">?,</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tokenContext</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code><a href="../Classes/TokenContext.html">TokenContext</a></code>, provides context explaining why token is needed</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>completion closure, called with access token or corresponding error</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://virgilsecurity.com/" target="_blank" rel="external">Virgil Security</a>. All rights reserved. (Last updated: 2018-07-23)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.3</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

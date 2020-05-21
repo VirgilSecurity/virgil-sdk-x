@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>KeyknoxClient Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/KeyknoxClient" class="dashAnchor"></a>
+    <a title="KeyknoxClient Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">VirgilSDK Docs</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">VirgilSDK Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        KeyknoxClient Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AsyncOperation.html">AsyncOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AsyncOperation/State.html">– State</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BaseClient.html">BaseClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CachingJwtProvider.html">CachingJwtProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CallbackJwtProvider.html">CallbackJwtProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CallbackOperation.html">CallbackOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Card.html">Card</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardClient.html">CardClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardManager.html">CardManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardManagerParams.html">CardManagerParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardSignature.html">CardSignature</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CloudEntry.html">CloudEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CloudEntry/CodingKeys.html">– CodingKeys</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CloudKeyStorage.html">CloudKeyStorage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ConstAccessTokenProvider.html">ConstAccessTokenProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:@M@VirgilSDK@objc(cs)VSSDecryptedKeyknoxValue">DecryptedKeyknoxValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes.html#/c:@M@VirgilSDK@objc(cs)VSSEncryptedKeyknoxValue">EncryptedKeyknoxValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ExpBackoffRetry.html">ExpBackoffRetry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ExpBackoffRetry/Config.html">– Config</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ExpBackoffRetry/ExpBackoffRetryError.html">– ExpBackoffRetryError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FileSystem.html">FileSystem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FileSystemCredentials.html">FileSystemCredentials</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GeneratorJwtProvider.html">GeneratorJwtProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GenericOperation.html">GenericOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetCardResponse.html">GetCardResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HttpConnection.html">HttpConnection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Jwt.html">Jwt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtBodyContent.html">JwtBodyContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtGenerator.html">JwtGenerator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtHeaderContent.html">JwtHeaderContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtSignatureContent.html">JwtSignatureContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeychainEntry.html">KeychainEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeychainQueryOptions.html">KeychainQueryOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeychainStorage.html">KeychainStorage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeychainStorageError.html">KeychainStorageError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeychainStorageParams.html">KeychainStorageParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeyknoxClient.html">KeyknoxClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeyknoxCrypto.html">KeyknoxCrypto</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeyknoxDeleteRecipientParams.html">KeyknoxDeleteRecipientParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeyknoxGetKeysParams.html">KeyknoxGetKeysParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeyknoxKeyEntry.html">KeyknoxKeyEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeyknoxManager.html">KeyknoxManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeyknoxPullParams.html">KeyknoxPullParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeyknoxPushParams.html">KeyknoxPushParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeyknoxResetParams.html">KeyknoxResetParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeyknoxValue.html">KeyknoxValue</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ModelSigner.html">ModelSigner</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Mutex.html">Mutex</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NetworkOperation.html">NetworkOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NetworkRetryOperation.html">NetworkRetryOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RawCardContent.html">RawCardContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RawServiceError.html">RawServiceError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RawSignature.html">RawSignature</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RawSignedModel.html">RawSignedModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Reachability.html">Reachability</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Request/Method.html">– Method</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SandboxedKeychainStorage.html">SandboxedKeychainStorage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ServiceError.html">ServiceError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ServiceRequest.html">ServiceRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SyncKeyStorage.html">SyncKeyStorage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TokenContext.html">TokenContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VerifierCredentials.html">VerifierCredentials</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VirgilAgentAdapter.html">VirgilAgentAdapter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VirgilCardVerifier.html">VirgilCardVerifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Whitelist.html">Whitelist</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/BaseClientError.html">BaseClientError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CallbackOperationError.html">CallbackOperationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CardClientError.html">CardClientError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CardManagerError.html">CardManagerError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CloudKeyStorageError.html">CloudKeyStorageError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DateUtils.html">DateUtils</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/GenericOperationError.html">GenericOperationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JwtBodyContentError.html">JwtBodyContentError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JwtError.html">JwtError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JwtHeaderContentError.html">JwtHeaderContentError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JwtSignatureContentError.html">JwtSignatureContentError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/KeychainStorageErrorCodes.html">KeychainStorageErrorCodes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/KeyknoxClientError.html">KeyknoxClientError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/KeyknoxCryptoError.html">KeyknoxCryptoError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/KeyknoxManagerError.html">KeyknoxManagerError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Log.html">Log</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MutexError.html">MutexError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/NetworkRetryOperationError.html">NetworkRetryOperationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OperationUtils.html">OperationUtils</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RawSignedModelError.html">RawSignedModelError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RequestError.html">RequestError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RetryChoice.html">RetryChoice</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SandboxedKeychainStorageError.html">SandboxedKeychainStorageError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ServiceConnectionError.html">ServiceConnectionError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ServiceRequestError.html">ServiceRequestError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SyncKeyStorageError.html">SyncKeyStorageError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/VersionUtils.html">VersionUtils</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/WhitelistError.html">WhitelistError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Data.html">Data</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AccessToken.html">AccessToken</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AccessTokenProvider.html">AccessTokenProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CardClientProtocol.html">CardClientProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CardVerifier.html">CardVerifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CloudKeyStorageProtocol.html">CloudKeyStorageProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HttpConnectionProtocol.html">HttpConnectionProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HttpRequestAdapter.html">HttpRequestAdapter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/KeychainStorageProtocol.html">KeychainStorageProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/KeyknoxClientProtocol.html">KeyknoxClientProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/KeyknoxCryptoProtocol.html">KeyknoxCryptoProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ReachabilityProtocol.html">ReachabilityProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RetryProtocol.html">RetryProtocol</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>KeyknoxClient</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">@objc(VSSKeyknoxClient)</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kt">KeyknoxClient</span> <span class="p">:</span> <span class="kt"><a href="../Classes/BaseClient.html">BaseClient</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>Class representing operations with Virgil Keyknox service</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilSDK@objc(cs)VSSKeyknoxClient(cpy)defaultURL"></a>
+                    <a name="//apple_ref/swift/Variable/defaultURL" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilSDK@objc(cs)VSSKeyknoxClient(cpy)defaultURL">defaultURL</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Default URL for service</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">defaultURL</span><span class="p">:</span> <span class="kt">URL</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilSDK@objc(cs)VSSKeyknoxClient(cpy)serviceErrorDomain"></a>
+                    <a name="//apple_ref/swift/Variable/serviceErrorDomain" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilSDK@objc(cs)VSSKeyknoxClient(cpy)serviceErrorDomain">serviceErrorDomain</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Error domain for Error instances thrown from service</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="k">override</span> <span class="kd">open</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">serviceErrorDomain</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilSDK@objc(cs)VSSKeyknoxClient(im)initWithAccessTokenProvider:"></a>
+                    <a name="//apple_ref/swift/Method/init(accessTokenProvider:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilSDK@objc(cs)VSSKeyknoxClient(im)initWithAccessTokenProvider:">init(accessTokenProvider:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes new <code>KeyknoxClient</code> instance</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">accessTokenProvider</span><span class="p">:</span> <span class="kt"><a href="../Protocols/AccessTokenProvider.html">AccessTokenProvider</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accessTokenProvider</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Access Token Provider</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilSDK@objc(cs)VSSKeyknoxClient(im)initWithAccessTokenProvider:serviceUrl:"></a>
+                    <a name="//apple_ref/swift/Method/init(accessTokenProvider:serviceUrl:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilSDK@objc(cs)VSSKeyknoxClient(im)initWithAccessTokenProvider:serviceUrl:">init(accessTokenProvider:serviceUrl:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes new <code>KeyknoxClient</code> instance</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">accessTokenProvider</span><span class="p">:</span> <span class="kt"><a href="../Protocols/AccessTokenProvider.html">AccessTokenProvider</a></span><span class="p">,</span> <span class="nv">serviceUrl</span><span class="p">:</span> <span class="kt">URL</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accessTokenProvider</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Access Token Provider</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>serviceUrl</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>service URL</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9VirgilSDK13KeyknoxClientC19accessTokenProvider10serviceUrl10connection11retryConfigAcA06AccessfG0_p_10Foundation3URLVAA22HttpConnectionProtocol_pSgAA15ExpBackoffRetryC0L0Vtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(accessTokenProvider:serviceUrl:connection:retryConfig:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9VirgilSDK13KeyknoxClientC19accessTokenProvider10serviceUrl10connection11retryConfigAcA06AccessfG0_p_10Foundation3URLVAA22HttpConnectionProtocol_pSgAA15ExpBackoffRetryC0L0Vtcfc">init(accessTokenProvider:serviceUrl:connection:retryConfig:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes new <code>KeyknoxClient</code> instance</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">accessTokenProvider</span><span class="p">:</span> <span class="kt"><a href="../Protocols/AccessTokenProvider.html">AccessTokenProvider</a></span><span class="p">,</span>
+            <span class="nv">serviceUrl</span><span class="p">:</span> <span class="kt">URL</span><span class="p">,</span>
+            <span class="nv">connection</span><span class="p">:</span> <span class="kt"><a href="../Protocols/HttpConnectionProtocol.html">HttpConnectionProtocol</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+            <span class="nv">retryConfig</span><span class="p">:</span> <span class="kt"><a href="../Classes/ExpBackoffRetry.html">ExpBackoffRetry</a></span><span class="o">.</span><span class="kt">Config</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>accessTokenProvider</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Access Token Provider</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>serviceUrl</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>service URL</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>requestRetryConfig</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Retry config</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Queries"></a>
+                <a name="//apple_ref/swift/Section/Queries" class="dashAnchor"></a>
+                <a href="#/Queries">
+                  <h3 class="section-name">Queries</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(cpy)virgilKeyknoxHashKey"></a>
+                    <a name="//apple_ref/swift/Variable/virgilKeyknoxHashKey" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(cpy)virgilKeyknoxHashKey">virgilKeyknoxHashKey</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Header key for blob hash</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">virgilKeyknoxHashKey</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(cpy)virgilKeyknoxPreviousHashKey"></a>
+                    <a name="//apple_ref/swift/Variable/virgilKeyknoxPreviousHashKey" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(cpy)virgilKeyknoxPreviousHashKey">virgilKeyknoxPreviousHashKey</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Header key for previous blob hash</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">virgilKeyknoxPreviousHashKey</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(cpy)keyStorageRoot"></a>
+                    <a name="//apple_ref/swift/Variable/keyStorageRoot" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(cpy)keyStorageRoot">keyStorageRoot</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Default root value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">keyStorageRoot</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(cpy)keyStoragePath"></a>
+                    <a name="//apple_ref/swift/Variable/keyStoragePath" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(cpy)keyStoragePath">keyStoragePath</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Default path value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">keyStoragePath</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(cpy)keyStorageKey"></a>
+                    <a name="//apple_ref/swift/Variable/keyStorageKey" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(cpy)keyStorageKey">keyStorageKey</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Default key value</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">keyStorageKey</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(im)pushValueWithParams:meta:value:previousHash:error:"></a>
+                    <a name="//apple_ref/swift/Method/pushValue(params:meta:value:previousHash:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(im)pushValueWithParams:meta:value:previousHash:error:">pushValue(params:meta:value:previousHash:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Push value to Keyknox service</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <ul>
+<li>KeyknoxClientError.emptyIdentities, if identities are empty</li>
+<li>KeyknoxClientError.constructingUrl, if url initialization failed</li>
+<li>KeyknoxClientError.invalidOptions, if internal options error occured</li>
+<li>ServiceError, if service returned correctly-formed error json</li>
+<li>NSError with KeyknoxClient.serviceErrorDomain error domain,
+http status code as error code, and description string if present in http body</li>
+<li>Rethrows from <code><a href="../Classes/ServiceRequest.html">ServiceRequest</a></code>, <code><a href="../Protocols/HttpConnectionProtocol.html">HttpConnectionProtocol</a></code>, <code>JsonDecoder</code>, <code><a href="../Classes/BaseClient.html">BaseClient</a></code></li>
+</ul>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">pushValue</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="kt"><a href="../Classes/KeyknoxPushParams.html">KeyknoxPushParams</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                      <span class="nv">meta</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span>
+                      <span class="nv">value</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span>
+                      <span class="nv">previousHash</span><span class="p">:</span> <span class="kt">Data</span><span class="p">?)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/c:@M@VirgilSDK@objc(cs)VSSEncryptedKeyknoxValue">EncryptedKeyknoxValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>params</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>params</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>meta</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>meta data</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>value</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>encrypted blob</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>previousHash</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>hash of previous blob</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>EncryptedKeyknoxValue</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(im)pullValueWithParams:error:"></a>
+                    <a name="//apple_ref/swift/Method/pullValue(params:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(im)pullValueWithParams:error:">pullValue(params:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Pulls values from Keyknox service</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <ul>
+<li>KeyknoxClientError.constructingUrl, if url initialization failed</li>
+<li>ServiceError, if service returned correctly-formed error json</li>
+<li>NSError with KeyknoxClient.serviceErrorDomain error domain,
+http status code as error code, and description string if present in http body</li>
+<li>Rethrows from <code><a href="../Classes/ServiceRequest.html">ServiceRequest</a></code>, <code><a href="../Protocols/HttpConnectionProtocol.html">HttpConnectionProtocol</a></code>, <code>JsonDecoder</code>, <code><a href="../Classes/BaseClient.html">BaseClient</a></code></li>
+</ul>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">pullValue</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="kt"><a href="../Classes/KeyknoxPullParams.html">KeyknoxPullParams</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/c:@M@VirgilSDK@objc(cs)VSSEncryptedKeyknoxValue">EncryptedKeyknoxValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>params</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Pull params</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>EncryptedKeyknoxValue</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(im)getKeysWithParams:error:"></a>
+                    <a name="//apple_ref/swift/Method/getKeys(params:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(im)getKeysWithParams:error:">getKeys(params:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Get keys for given root</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <ul>
+<li>KeyknoxClientError.constructingUrl, if url initialization failed</li>
+<li>ServiceError, if service returned correctly-formed error json</li>
+<li>NSError with KeyknoxClient.serviceErrorDomain error domain,
+http status code as error code, and description string if present in http body</li>
+<li>Rethrows from <code><a href="../Classes/ServiceRequest.html">ServiceRequest</a></code>, <code><a href="../Protocols/HttpConnectionProtocol.html">HttpConnectionProtocol</a></code>, <code>JsonDecoder</code>, <code><a href="../Classes/BaseClient.html">BaseClient</a></code></li>
+</ul>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">getKeys</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="kt"><a href="../Classes/KeyknoxGetKeysParams.html">KeyknoxGetKeysParams</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Set</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>params</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Get keys params</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Array of keys</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(im)resetValueWithParams:error:"></a>
+                    <a name="//apple_ref/swift/Method/resetValue(params:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(im)resetValueWithParams:error:">resetValue(params:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Resets Keyknox value (makes it empty)</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <ul>
+<li>KeyknoxClientError.constructingUrl, if url initialization failed</li>
+<li>ServiceError, if service returned correctly-formed error json</li>
+<li>NSError with KeyknoxClient.serviceErrorDomain error domain,
+http status code as error code, and description string if present in http body</li>
+<li>Rethrows from <code><a href="../Classes/ServiceRequest.html">ServiceRequest</a></code>, <code><a href="../Protocols/HttpConnectionProtocol.html">HttpConnectionProtocol</a></code>, <code>JsonDecoder</code>, <code><a href="../Classes/BaseClient.html">BaseClient</a></code></li>
+</ul>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">resetValue</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="kt"><a href="../Classes/KeyknoxResetParams.html">KeyknoxResetParams</a></span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/c:@M@VirgilSDK@objc(cs)VSSDecryptedKeyknoxValue">DecryptedKeyknoxValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>params</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Reset params</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>DecryptedKeyknoxValue</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(im)deleteRecipientWithParams:error:"></a>
+                    <a name="//apple_ref/swift/Method/deleteRecipient(params:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSKeyknoxClient(im)deleteRecipientWithParams:error:">deleteRecipient(params:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Deletes recipient</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <ul>
+<li>KeyknoxClientError.constructingUrl, if url initialization failed</li>
+<li>ServiceError, if service returned correctly-formed error json</li>
+<li>NSError with KeyknoxClient.serviceErrorDomain error domain,
+http status code as error code, and description string if present in http body</li>
+<li>Rethrows from <code><a href="../Classes/ServiceRequest.html">ServiceRequest</a></code>, <code><a href="../Protocols/HttpConnectionProtocol.html">HttpConnectionProtocol</a></code>, <code>JsonDecoder</code>, <code><a href="../Classes/BaseClient.html">BaseClient</a></code></li>
+</ul>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">deleteRecipient</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="kt"><a href="../Classes/KeyknoxDeleteRecipientParams.html">KeyknoxDeleteRecipientParams</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes.html#/c:@M@VirgilSDK@objc(cs)VSSDecryptedKeyknoxValue">DecryptedKeyknoxValue</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>params</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Delete recipient params</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>DecryptedKeyknoxValue</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://virgilsecurity.com/" target="_blank" rel="external">Virgil Security</a>. All rights reserved. (Last updated: 2019-10-23)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.11.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

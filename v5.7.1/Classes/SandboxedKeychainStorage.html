@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SandboxedKeychainStorage Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/SandboxedKeychainStorage" class="dashAnchor"></a>
+    <a title="SandboxedKeychainStorage Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">VirgilSDK Docs</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">VirgilSDK Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        SandboxedKeychainStorage Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AsyncOperation.html">AsyncOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AsyncOperation/State.html">– State</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BaseClient.html">BaseClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CachingJwtProvider.html">CachingJwtProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CallbackJwtProvider.html">CallbackJwtProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CallbackOperation.html">CallbackOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Card.html">Card</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardClient.html">CardClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardManager.html">CardManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardManagerParams.html">CardManagerParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardSignature.html">CardSignature</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ConstAccessTokenProvider.html">ConstAccessTokenProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GeneratorJwtProvider.html">GeneratorJwtProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GenericOperation.html">GenericOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetCardResponse.html">GetCardResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HttpConnection.html">HttpConnection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Jwt.html">Jwt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtBodyContent.html">JwtBodyContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtGenerator.html">JwtGenerator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtHeaderContent.html">JwtHeaderContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtSignatureContent.html">JwtSignatureContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtVerifier.html">JwtVerifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeychainEntry.html">KeychainEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeychainStorage.html">KeychainStorage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeychainStorageError.html">KeychainStorageError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeychainStorageParams.html">KeychainStorageParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ModelSigner.html">ModelSigner</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Mutex.html">Mutex</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PrivateKeyEntry.html">PrivateKeyEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PrivateKeyStorage.html">PrivateKeyStorage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RawCardContent.html">RawCardContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RawServiceError.html">RawServiceError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RawSignature.html">RawSignature</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RawSignedModel.html">RawSignedModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Request/Method.html">– Method</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SandboxedKeychainStorage.html">SandboxedKeychainStorage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ServiceError.html">ServiceError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ServiceRequest.html">ServiceRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TokenContext.html">TokenContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VerifierCredentials.html">VerifierCredentials</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VersionUtils.html">VersionUtils</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VirgilAgentAdapter.html">VirgilAgentAdapter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VirgilCardVerifier.html">VirgilCardVerifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Whitelist.html">Whitelist</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/BaseClientError.html">BaseClientError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CallbackOperationError.html">CallbackOperationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CardClientError.html">CardClientError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CardManagerError.html">CardManagerError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DateUtils.html">DateUtils</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/GenericOperationError.html">GenericOperationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JwtBodyContentError.html">JwtBodyContentError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JwtError.html">JwtError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JwtHeaderContentError.html">JwtHeaderContentError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JwtSignatureContentError.html">JwtSignatureContentError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/KeychainStorageErrorCodes.html">KeychainStorageErrorCodes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Log.html">Log</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/MutexError.html">MutexError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OperationUtils.html">OperationUtils</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RawSignedModelError.html">RawSignedModelError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RequestError.html">RequestError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Result.html">Result</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/SandboxedKeychainStorageError.html">SandboxedKeychainStorageError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ServiceConnectionError.html">ServiceConnectionError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ServiceRequestError.html">ServiceRequestError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/WhitelistError.html">WhitelistError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Data.html">Data</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AccessToken.html">AccessToken</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AccessTokenProvider.html">AccessTokenProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CardClientProtocol.html">CardClientProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CardVerifier.html">CardVerifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HttpConnectionProtocol.html">HttpConnectionProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HttpRequestAdapter.html">HttpRequestAdapter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/KeychainStorageProtocol.html">KeychainStorageProtocol</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>SandboxedKeychainStorage</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">@objc(VSSSandboxedKeychainStorage)</span>
+<span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">SandboxedKeychainStorage</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>KeychainStorage that sandboxes entries using identity and prefix</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9VirgilSDK24SandboxedKeychainStorageC08keychainE0AA0dE8Protocol_pvp"></a>
+                    <a name="//apple_ref/swift/Property/keychainStorage" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9VirgilSDK24SandboxedKeychainStorageC08keychainE0AA0dE8Protocol_pvp">keychainStorage</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Underlying key storage</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">keychainStorage</span><span class="p">:</span> <span class="kt"><a href="../Protocols/KeychainStorageProtocol.html">KeychainStorageProtocol</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9VirgilSDK24SandboxedKeychainStorageC8identitySSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/identity" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9VirgilSDK24SandboxedKeychainStorageC8identitySSSgvp">identity</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>User&rsquo;s identity</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">identity</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9VirgilSDK24SandboxedKeychainStorageC6prefixSSSgvp"></a>
+                    <a name="//apple_ref/swift/Property/prefix" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9VirgilSDK24SandboxedKeychainStorageC6prefixSSSgvp">prefix</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Entries&rsquo; name prefix</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">prefix</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9VirgilSDK24SandboxedKeychainStorageC8identity6prefix08keychainE0ACSSSg_AgA0dE8Protocol_ptcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(identity:prefix:keychainStorage:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9VirgilSDK24SandboxedKeychainStorageC8identity6prefix08keychainE0ACSSSg_AgA0dE8Protocol_ptcfc">init(identity:prefix:keychainStorage:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Init</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">identity</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">prefix</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">keychainStorage</span><span class="p">:</span> <span class="kt"><a href="../Protocols/KeychainStorageProtocol.html">KeychainStorageProtocol</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>identity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>User&rsquo;s identity</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>prefix</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Entries&rsquo; name prefix</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keychainStorage</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>KeychainStorage used to store keys</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9VirgilSDK24SandboxedKeychainStorageC5store4data8withName4metaAA0D5EntryC10Foundation4DataV_SSSDyS2SGSgtKF"></a>
+                    <a name="//apple_ref/swift/Method/store(data:withName:meta:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9VirgilSDK24SandboxedKeychainStorageC5store4data8withName4metaAA0D5EntryC10Foundation4DataV_SSSDyS2SGSgtKF">store(data:withName:meta:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Stores key in Keychain</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <ul>
+<li>Rethrows from KeychainStorage</li>
+<li>errorConvertingKeychainEntry</li>
+</ul>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">store</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="n">withName</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">meta</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]?)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/KeychainEntry.html">KeychainEntry</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Data</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Name</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>meta</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Meta</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Stored Keychain entry</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9VirgilSDK24SandboxedKeychainStorageC11updateEntry8withName4data4metaySS_10Foundation4DataVSDyS2SGSgtKF"></a>
+                    <a name="//apple_ref/swift/Method/updateEntry(withName:data:meta:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9VirgilSDK24SandboxedKeychainStorageC11updateEntry8withName4data4metaySS_10Foundation4DataVSDyS2SGSgtKF">updateEntry(withName:data:meta:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Updates entry</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">updateEntry</span><span class="p">(</span><span class="n">withName</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">meta</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]?)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Name</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>New data</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>meta</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>New meta</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9VirgilSDK24SandboxedKeychainStorageC13retrieveEntry8withNameAA0dG0CSS_tKF"></a>
+                    <a name="//apple_ref/swift/Method/retrieveEntry(withName:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9VirgilSDK24SandboxedKeychainStorageC13retrieveEntry8withNameAA0dG0CSS_tKF">retrieveEntry(withName:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves entry from Keychain</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <ul>
+<li>Rethrows from KeychainStorage</li>
+<li>errorConvertingKeychainEntry</li>
+</ul>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveEntry</span><span class="p">(</span><span class="n">withName</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/KeychainEntry.html">KeychainEntry</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Name</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Retrieved Keychain entry</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9VirgilSDK24SandboxedKeychainStorageC18retrieveAllEntriesSayAA0D5EntryCGyKF"></a>
+                    <a name="//apple_ref/swift/Method/retrieveAllEntries()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9VirgilSDK24SandboxedKeychainStorageC18retrieveAllEntriesSayAA0D5EntryCGyKF">retrieveAllEntries()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Retrieves all entries from Keychain</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    <ul>
+<li>Rethrows from KeychainStorage</li>
+<li>errorConvertingKeychainEntry</li>
+</ul>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">retrieveAllEntries</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Classes/KeychainEntry.html">KeychainEntry</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>All Keychain entries</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9VirgilSDK24SandboxedKeychainStorageC11deleteEntry8withNameySS_tKF"></a>
+                    <a name="//apple_ref/swift/Method/deleteEntry(withName:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9VirgilSDK24SandboxedKeychainStorageC11deleteEntry8withNameySS_tKF">deleteEntry(withName:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Deletes keychain entry</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    Rethrows from KeychainStorage
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">deleteEntry</span><span class="p">(</span><span class="n">withName</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Name</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9VirgilSDK24SandboxedKeychainStorageC11existsEntry8withNameSbSS_tKF"></a>
+                    <a name="//apple_ref/swift/Method/existsEntry(withName:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9VirgilSDK24SandboxedKeychainStorageC11existsEntry8withNameSbSS_tKF">existsEntry(withName:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Checks if entry exists in Keychain</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    Rethrows from KeychainStorage
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">existsEntry</span><span class="p">(</span><span class="n">withName</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>name</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Name</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>true if entry exists, false - otherwise</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2019 <a class="link" href="https://virgilsecurity.com/" target="_blank" rel="external">Virgil Security</a>. All rights reserved. (Last updated: 2019-03-21)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

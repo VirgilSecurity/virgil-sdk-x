@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>VSSCardsManager Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">VirgilSDK </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Virgil Security</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/createCardWithIdentity:ownerKey:customFields:error:">- createCardWithIdentity:ownerKey:customFields:error:</option>
+		
+		<option value="//api/name/createCardWithIdentity:ownerKey:error:">- createCardWithIdentity:ownerKey:error:</option>
+		
+		<option value="//api/name/importVirgilCardFromData:">- importVirgilCardFromData:</option>
+		
+		<option value="//api/name/init">- init</option>
+		
+		<option value="//api/name/searchCardsWithIdentities:completion:">- searchCardsWithIdentities:completion:</option>
+		
+		<option value="//api/name/searchCardsWithIdentityType:identities:completion:">- searchCardsWithIdentityType:identities:completion:</option>
+		
+		<option value="//api/name/searchGlobalCardsWithIdentities:completion:">- searchGlobalCardsWithIdentities:completion:</option>
+		
+		<option value="//api/name/searchGlobalCardsWithIdentityType:identities:completion:">- searchGlobalCardsWithIdentityType:identities:completion:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">VSSCardsManager Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Conforms to</th>
+	<td><a href="../Protocols/VSSCardsManager.html">VSSCardsManager</a></td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>VSSCardsManager.h<br />VSSCardsManager.m</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Implementation of VSSCardsManager protocol.
+VSSCardsManager should not be created by user and is accessible only using <a href="../Classes/VSSVirgilApi.html">VSSVirgilApi</a>.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/init" title="init"></a>
+	<h3 class="method-title"><code><a href="#//api/name/init">&ndash;&nbsp;init</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Unavailable no-argument initializer inherited from NSObject</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype __nonnull)init</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCardsManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/createCardWithIdentity:ownerKey:customFields:error:" title="createCardWithIdentity:ownerKey:customFields:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/createCardWithIdentity:ownerKey:customFields:error:">&ndash;&nbsp;createCardWithIdentity:ownerKey:customFields:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates (but doesn&rsquo;t publish) new Virgil Card.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (VSSVirgilCard *)createCardWithIdentity:(VSSVirgilIdentity *)<em>identity</em> ownerKey:(VSSVirgilKey *)<em>ownerKey</em> customFields:(NSDictionary&lt;NSString*,NSString*&gt; *)<em>customFields</em> error:(NSError **)<em>errorPtr</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>identity</code></th>
+						<td><p>confirmed <a href="../Classes/VSSVirgilIdentity.html">VSSVirgilIdentity</a> instance describing identity of Virgil Card owner. See <a href="../Classes/VSSIdentitiesManager.html">VSSIdentitiesManager</a>.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>ownerKey</code></th>
+						<td><p><a href="../Classes/VSSVirgilKey.html">VSSVirgilKey</a> instance with Virgil Card owner&rsquo;s key</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>customFields</code></th>
+						<td><p>NSDictionary with custom payload if needed</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>allocated and initialized <a href="../Classes/VSSVirgilCard.html">VSSVirgilCard</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCardsManagerProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/createCardWithIdentity:ownerKey:error:" title="createCardWithIdentity:ownerKey:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/createCardWithIdentity:ownerKey:error:">&ndash;&nbsp;createCardWithIdentity:ownerKey:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates (but doesn&rsquo;t publish) new Virgil Card.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (VSSVirgilCard *)createCardWithIdentity:(VSSVirgilIdentity *)<em>identity</em> ownerKey:(VSSVirgilKey *)<em>ownerKey</em> error:(NSError **)<em>errorPtr</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>identity</code></th>
+						<td><p><a href="../Classes/VSSVirgilIdentity.html">VSSVirgilIdentity</a> instance describing identity of Virgil Card owner. See <a href="../Classes/VSSIdentitiesManager.html">VSSIdentitiesManager</a></p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>ownerKey</code></th>
+						<td><p><a href="../Classes/VSSVirgilKey.html">VSSVirgilKey</a> instance with Virgil Card owner&rsquo;s key</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>allocated and initialized <a href="../Classes/VSSVirgilCard.html">VSSVirgilCard</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCardsManagerProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/searchCardsWithIdentities:completion:" title="searchCardsWithIdentities:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/searchCardsWithIdentities:completion:">&ndash;&nbsp;searchCardsWithIdentities:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Performs search of Virgil Cards using list of identities on the Virgil Service.
+NOTE: Search is perfomed in Application scope.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)searchCardsWithIdentities:(NSArray&lt;NSString*&gt; *)<em>identities</em> completion:(void ( ^ ) ( NSArray&lt;VSSVirgilCard*&gt; *, NSError *))<em>callback</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>identities</code></th>
+						<td><p>NSArray with identity values</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>callback</code></th>
+						<td><p>callback with list of found <a href="../Classes/VSSVirgilCard.html">VSSVirgilCard</a> instance, or NSError instance if error occured</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCardsManagerProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/searchCardsWithIdentityType:identities:completion:" title="searchCardsWithIdentityType:identities:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/searchCardsWithIdentityType:identities:completion:">&ndash;&nbsp;searchCardsWithIdentityType:identities:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Performs search of Virgil Cards using list of identities on the Virgil Service.
+NOTE: Search is perfomed in Application scope.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)searchCardsWithIdentityType:(NSString *)<em>identityType</em> identities:(NSArray&lt;NSString*&gt; *)<em>identities</em> completion:(void ( ^ ) ( NSArray&lt;VSSVirgilCard*&gt; *, NSError *))<em>callback</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>identityType</code></th>
+						<td><p>NSString with identity type</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>identities</code></th>
+						<td><p>NSArray with identity values</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>callback</code></th>
+						<td><p>callback with list of found <a href="../Classes/VSSVirgilCard.html">VSSVirgilCard</a> instance, or NSError instance if error occured</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCardsManagerProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/searchGlobalCardsWithIdentities:completion:" title="searchGlobalCardsWithIdentities:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/searchGlobalCardsWithIdentities:completion:">&ndash;&nbsp;searchGlobalCardsWithIdentities:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Performs search of Virgil Cards using list of identities on the Virgil Service.
+NOTE: Search is perfomed in Global scope.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)searchGlobalCardsWithIdentities:(NSArray&lt;NSString*&gt; *)<em>identities</em> completion:(void ( ^ ) ( NSArray&lt;VSSVirgilCard*&gt; *, NSError *))<em>callback</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>identities</code></th>
+						<td><p>NSArray with identity values</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>callback</code></th>
+						<td><p>callback with list of found <a href="../Classes/VSSVirgilCard.html">VSSVirgilCard</a> instance, or NSError instance if error occured</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCardsManagerProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/searchGlobalCardsWithIdentityType:identities:completion:" title="searchGlobalCardsWithIdentityType:identities:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/searchGlobalCardsWithIdentityType:identities:completion:">&ndash;&nbsp;searchGlobalCardsWithIdentityType:identities:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Performs search of Virgil Cards using list of identities on the Virgil Service.
+NOTE: Search is perfomed in Global scope.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)searchGlobalCardsWithIdentityType:(NSString *)<em>identityType</em> identities:(NSArray&lt;NSString*&gt; *)<em>identities</em> completion:(void ( ^ ) ( NSArray&lt;VSSVirgilCard*&gt; *, NSError *))<em>callback</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>identityType</code></th>
+						<td><p>NSString with identity type</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>identities</code></th>
+						<td><p>NSArray with identity values</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>callback</code></th>
+						<td><p>callback with list of found <a href="../Classes/VSSVirgilCard.html">VSSVirgilCard</a> instance, or NSError instance if error occured</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCardsManagerProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/importVirgilCardFromData:" title="importVirgilCardFromData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/importVirgilCardFromData:">&ndash;&nbsp;importVirgilCardFromData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Imports Virgil Card from NSString representation.
+To export Virgil Card use <a href="../Protocols/VSSExportable.html">VSSExportable</a> protocol which <a href="../Classes/VSSVirgilCard.html">VSSVirgilCard</a> conforms to.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (VSSVirgilCard *)importVirgilCardFromData:(NSString *)<em>data</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSString representation of <a href="../Classes/VSSVirgilCard.html">VSSVirgilCard</a></p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>allocated and initialized <a href="../Classes/VSSVirgilCard.html">VSSVirgilCard</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSCardsManagerProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2017 Virgil Security. All rights reserved. Updated: 2017-08-31</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>VSSVirgilKey Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">VirgilSDK </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Virgil Security</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/privateKey">privateKey</option>
+		
+	</optgroup>
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/decryptBase64String:error:NS_SWIFT_NAME:">- decryptBase64String:error:NS_SWIFT_NAME:</option>
+		
+		<option value="//api/name/decryptData:error:NS_SWIFT_NAME:">- decryptData:error:NS_SWIFT_NAME:</option>
+		
+		<option value="//api/name/decryptThenVerifyBase64String:from:error:NS_SWIFT_NAME:">- decryptThenVerifyBase64String:from:error:NS_SWIFT_NAME:</option>
+		
+		<option value="//api/name/decryptThenVerifyBase64String:fromOneOf:error:NS_SWIFT_NAME:">- decryptThenVerifyBase64String:fromOneOf:error:NS_SWIFT_NAME:</option>
+		
+		<option value="//api/name/decryptThenVerifyData:from:error:NS_SWIFT_NAME:">- decryptThenVerifyData:from:error:NS_SWIFT_NAME:</option>
+		
+		<option value="//api/name/decryptThenVerifyData:fromOneOf:error:NS_SWIFT_NAME:">- decryptThenVerifyData:fromOneOf:error:NS_SWIFT_NAME:</option>
+		
+		<option value="//api/name/exportPublicKey">- exportPublicKey</option>
+		
+		<option value="//api/name/exportWithPassword:">- exportWithPassword:</option>
+		
+		<option value="//api/name/generateSignatureForData:error:">- generateSignatureForData:error:</option>
+		
+		<option value="//api/name/generateSignatureForString:error:">- generateSignatureForString:error:</option>
+		
+		<option value="//api/name/init">- init</option>
+		
+		<option value="//api/name/signThenEncryptData:forRecipients:error:NS_SWIFT_NAME:">- signThenEncryptData:forRecipients:error:NS_SWIFT_NAME:</option>
+		
+		<option value="//api/name/signThenEncryptString:forRecipients:error:NS_SWIFT_NAME:">- signThenEncryptString:forRecipients:error:NS_SWIFT_NAME:</option>
+		
+		<option value="//api/name/storeWithName:password:error:">- storeWithName:password:error:</option>
+		
+		<option value="//api/name/storeWithName:password:meta:error:">- storeWithName:password:meta:error:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">VSSVirgilKey Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>VSSVirgilKey.h<br />VSSVirgilKey.m</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Class representing key.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/generateSignatureForData:error:" title="generateSignatureForData:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/generateSignatureForData:error:">&ndash;&nbsp;generateSignatureForData:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates signature for data.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)generateSignatureForData:(NSData *__nonnull)<em>data</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSData from which signature will be calculated</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData with signature</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSVirgilKey.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/generateSignatureForString:error:" title="generateSignatureForString:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/generateSignatureForString:error:">&ndash;&nbsp;generateSignatureForString:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Generates signature for string.
+NOTE: string is converted to binary representation using UTF8 encoding.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)generateSignatureForString:(NSString *__nonnull)<em>string</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>string</code></th>
+						<td><p>NSString from which signature will be calculated</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData with signature</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSVirgilKey.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/decryptData:error:NS_SWIFT_NAME:" title="decryptData:error:NS_SWIFT_NAME:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/decryptData:error:NS_SWIFT_NAME:">&ndash;&nbsp;decryptData:error:NS_SWIFT_NAME:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Decrypts data.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)decryptData:(NSData *__nonnull)<em>data</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em> NS_SWIFT_NAME</code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSData with encrypted data</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData with decrypted data</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSVirgilKey.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/decryptBase64String:error:NS_SWIFT_NAME:" title="decryptBase64String:error:NS_SWIFT_NAME:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/decryptBase64String:error:NS_SWIFT_NAME:">&ndash;&nbsp;decryptBase64String:error:NS_SWIFT_NAME:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Decrypts data.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)decryptBase64String:(NSString *__nonnull)<em>base64String</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em> NS_SWIFT_NAME</code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>base64String</code></th>
+						<td><p>NSString with encrypted data in base64 format</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData with decrypted data</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSVirgilKey.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/signThenEncryptData:forRecipients:error:NS_SWIFT_NAME:" title="signThenEncryptData:forRecipients:error:NS_SWIFT_NAME:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signThenEncryptData:forRecipients:error:NS_SWIFT_NAME:">&ndash;&nbsp;signThenEncryptData:forRecipients:error:NS_SWIFT_NAME:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Signs and encrypts data.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)signThenEncryptData:(NSData *__nonnull)<em>data</em> forRecipients:(NSArray&lt;VSSVirgilCard*&gt; *__nonnull)<em>recipients</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em> NS_SWIFT_NAME</code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSData with data to be signed and encrypted</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>recipients</code></th>
+						<td><p>list of <a href="../Classes/VSSVirgilCard.html">VSSVirgilCard</a> instances whose owners will be able to decrypt data</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData with signed and encrypted data</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSVirgilKey.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/signThenEncryptString:forRecipients:error:NS_SWIFT_NAME:" title="signThenEncryptString:forRecipients:error:NS_SWIFT_NAME:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/signThenEncryptString:forRecipients:error:NS_SWIFT_NAME:">&ndash;&nbsp;signThenEncryptString:forRecipients:error:NS_SWIFT_NAME:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Signs and encrypts string.
+NOTE: string is converted to binary representation using UTF8 encoding.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)signThenEncryptString:(NSString *__nonnull)<em>string</em> forRecipients:(NSArray&lt;VSSVirgilCard*&gt; *__nonnull)<em>recipients</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em> NS_SWIFT_NAME</code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>string</code></th>
+						<td><p>NSString with string to be signed and encrypted</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>recipients</code></th>
+						<td><p>list of <a href="../Classes/VSSVirgilCard.html">VSSVirgilCard</a> instances whose owners will be able to decrypt data</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData with signed and encrypted data</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSVirgilKey.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/decryptThenVerifyData:from:error:NS_SWIFT_NAME:" title="decryptThenVerifyData:from:error:NS_SWIFT_NAME:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/decryptThenVerifyData:from:error:NS_SWIFT_NAME:">&ndash;&nbsp;decryptThenVerifyData:from:error:NS_SWIFT_NAME:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Decrypts and verifies data.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)decryptThenVerifyData:(NSData *__nonnull)<em>data</em> from:(VSSVirgilCard *__nonnull)<em>card</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em> NS_SWIFT_NAME</code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSData with signed and encrypted data</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>card</code></th>
+						<td><p><a href="../Classes/VSSVirgilCard.html">VSSVirgilCard</a> of person who encrypted and signed data</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>decrypted and verified data</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSVirgilKey.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/decryptThenVerifyData:fromOneOf:error:NS_SWIFT_NAME:" title="decryptThenVerifyData:fromOneOf:error:NS_SWIFT_NAME:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/decryptThenVerifyData:fromOneOf:error:NS_SWIFT_NAME:">&ndash;&nbsp;decryptThenVerifyData:fromOneOf:error:NS_SWIFT_NAME:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Decrypts and verifies data.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)decryptThenVerifyData:(NSData *__nonnull)<em>data</em> fromOneOf:(NSArray&lt;VSSVirgilCard*&gt; *__nonnull)<em>cards</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em> NS_SWIFT_NAME</code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>data</code></th>
+						<td><p>NSData with signed and encrypted data</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>cards</code></th>
+						<td><p>list of <a href="../Classes/VSSVirgilCard.html">VSSVirgilCard</a> instance of persons who could encrypt and sign data. Verification checks for correct signature from AT LEAST ONE Virgil Card from the list.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>decrypted and verified data</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSVirgilKey.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/decryptThenVerifyBase64String:from:error:NS_SWIFT_NAME:" title="decryptThenVerifyBase64String:from:error:NS_SWIFT_NAME:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/decryptThenVerifyBase64String:from:error:NS_SWIFT_NAME:">&ndash;&nbsp;decryptThenVerifyBase64String:from:error:NS_SWIFT_NAME:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Decrypts and verifies data.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)decryptThenVerifyBase64String:(NSString *__nonnull)<em>base64String</em> from:(VSSVirgilCard *__nonnull)<em>card</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em> NS_SWIFT_NAME</code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>base64String</code></th>
+						<td><p>NSString with signed and encrypted data in base64 format</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>card</code></th>
+						<td><p><a href="../Classes/VSSVirgilCard.html">VSSVirgilCard</a> of person who encrypted and signed data</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>decrypted and verified data</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSVirgilKey.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/decryptThenVerifyBase64String:fromOneOf:error:NS_SWIFT_NAME:" title="decryptThenVerifyBase64String:fromOneOf:error:NS_SWIFT_NAME:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/decryptThenVerifyBase64String:fromOneOf:error:NS_SWIFT_NAME:">&ndash;&nbsp;decryptThenVerifyBase64String:fromOneOf:error:NS_SWIFT_NAME:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Decrypts and verifies data.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nullable)decryptThenVerifyBase64String:(NSString *__nonnull)<em>base64String</em> fromOneOf:(NSArray&lt;VSSVirgilCard*&gt; *__nonnull)<em>cards</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em> NS_SWIFT_NAME</code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>base64String</code></th>
+						<td><p>NSString with signed and encrypted data in base64 format</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>cards</code></th>
+						<td><p>list of <a href="../Classes/VSSVirgilCard.html">VSSVirgilCard</a> instance of persons who could encrypt and sign data. Verification checks for correct signature from AT LEAST ONE Virgil Card from the list.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>decrypted and verified data</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSVirgilKey.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/storeWithName:password:meta:error:" title="storeWithName:password:meta:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/storeWithName:password:meta:error:">&ndash;&nbsp;storeWithName:password:meta:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Stores key in storage.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)storeWithName:(NSString *__nonnull)<em>name</em> password:(NSString *__nullable)<em>password</em> meta:(NSDictionary&lt;NSString*,NSString*&gt; *__nullable)<em>meta</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>name</code></th>
+						<td><p>NSString with key name</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>NSString with key password</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>meta</code></th>
+						<td><p>NSDictionary with any meta data</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>YES if succeeded, NO otherwise.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSVirgilKey.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/storeWithName:password:error:" title="storeWithName:password:error:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/storeWithName:password:error:">&ndash;&nbsp;storeWithName:password:error:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Stores key in storage.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (BOOL)storeWithName:(NSString *__nonnull)<em>name</em> password:(NSString *__nullable)<em>password</em> error:(NSError *__nullable *__nullable)<em>errorPtr</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>name</code></th>
+						<td><p>NSString with key name</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>NSString with key password</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>errorPtr</code></th>
+						<td><p>NSError pointer to return error if needed</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>YES if succeeded, NO otherwise.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSVirgilKey.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/exportPublicKey" title="exportPublicKey"></a>
+	<h3 class="method-title"><code><a href="#//api/name/exportPublicKey">&ndash;&nbsp;exportPublicKey</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Exports public key.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nonnull)exportPublicKey</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData with exported public key</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSVirgilKey.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/exportWithPassword:" title="exportWithPassword:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/exportWithPassword:">&ndash;&nbsp;exportWithPassword:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Exports private key.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSData *__nonnull)exportWithPassword:(NSString *__nullable)<em>password</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>password</code></th>
+						<td><p>NSString with password</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>NSData with exported private key</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSVirgilKey.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/privateKey" title="privateKey"></a>
+	<h3 class="method-title"><code><a href="#//api/name/privateKey">&nbsp;&nbsp;privateKey</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Getter for underlying low-level api <a href="../Classes/VSSPrivateKey.html">VSSPrivateKey</a> isntance.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) VSSPrivateKey *privateKey</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSVirgilKey.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/init" title="init"></a>
+	<h3 class="method-title"><code><a href="#//api/name/init">&ndash;&nbsp;init</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Unavailable no-argument initializer inherited from NSObject</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype __nonnull)init</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSVirgilKey.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2017 Virgil Security. All rights reserved. Updated: 2017-08-31</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

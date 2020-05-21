@@ -1,0 +1,2361 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CardManager Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/CardManager" class="dashAnchor"></a>
+    <a title="CardManager Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">VirgilSDK Docs</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">VirgilSDK Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        CardManager Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AsyncOperation.html">AsyncOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AsyncOperation/State.html">– State</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BaseClient.html">BaseClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CachingJwtProvider.html">CachingJwtProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CallbackJwtProvider.html">CallbackJwtProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CallbackOperation.html">CallbackOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Card.html">Card</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardClient.html">CardClient</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardManager.html">CardManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardManagerParams.html">CardManagerParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CardSignature.html">CardSignature</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ConstAccessTokenProvider.html">ConstAccessTokenProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GeneratorJwtProvider.html">GeneratorJwtProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GenericOperation.html">GenericOperation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/GetCardResponse.html">GetCardResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HttpConnection.html">HttpConnection</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Jwt.html">Jwt</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtBodyContent.html">JwtBodyContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtGenerator.html">JwtGenerator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtHeaderContent.html">JwtHeaderContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtSignatureContent.html">JwtSignatureContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/JwtVerifier.html">JwtVerifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeychainEntry.html">KeychainEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeychainStorage.html">KeychainStorage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeychainStorageError.html">KeychainStorageError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/KeychainStorageParams.html">KeychainStorageParams</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ModelSigner.html">ModelSigner</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PrivateKeyEntry.html">PrivateKeyEntry</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PrivateKeyStorage.html">PrivateKeyStorage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RawCardContent.html">RawCardContent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RawServiceError.html">RawServiceError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RawSignature.html">RawSignature</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RawSignedModel.html">RawSignedModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Request.html">Request</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Request/Method.html">– Method</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Response.html">Response</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ServiceError.html">ServiceError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ServiceRequest.html">ServiceRequest</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TokenContext.html">TokenContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VerifierCredentials.html">VerifierCredentials</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VirgilCardVerifier.html">VirgilCardVerifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Whitelist.html">Whitelist</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/BaseClientError.html">BaseClientError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CallbackOperationError.html">CallbackOperationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CardClientError.html">CardClientError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/CardManagerError.html">CardManagerError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/DateUtils.html">DateUtils</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/GenericOperationError.html">GenericOperationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JwtBodyContentError.html">JwtBodyContentError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JwtError.html">JwtError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JwtHeaderContentError.html">JwtHeaderContentError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/JwtSignatureContentError.html">JwtSignatureContentError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/KeychainStorageErrorCodes.html">KeychainStorageErrorCodes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Log.html">Log</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/OperationUtils.html">OperationUtils</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RawSignedModelError.html">RawSignedModelError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RequestError.html">RequestError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/Result.html">Result</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ServiceConnectionError.html">ServiceConnectionError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/ServiceRequestError.html">ServiceRequestError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/WhitelistError.html">WhitelistError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Data.html">Data</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AccessToken.html">AccessToken</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AccessTokenProvider.html">AccessTokenProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CardClientProtocol.html">CardClientProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CardVerifier.html">CardVerifier</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/HttpConnectionProtocol.html">HttpConnectionProtocol</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>CardManager</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">@objc(VSSCardManager)</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kt">CardManager</span> <span class="p">:</span> <span class="kt">NSObject</span></code></pre>
+
+                </div>
+              </div>
+            <p>Class responsible for operations with Virgil Cards</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilSDK@objc(cs)VSSCardManager(py)modelSigner"></a>
+                    <a name="//apple_ref/swift/Property/modelSigner" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilSDK@objc(cs)VSSCardManager(py)modelSigner">modelSigner</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>ModelSigner instance used for self signing Cards</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">modelSigner</span><span class="p">:</span> <span class="kt"><a href="../Classes/ModelSigner.html">ModelSigner</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilSDK@objc(cs)VSSCardManager(py)cardCrypto"></a>
+                    <a name="//apple_ref/swift/Property/cardCrypto" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilSDK@objc(cs)VSSCardManager(py)cardCrypto">cardCrypto</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>CardCrypto instance</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">cardCrypto</span><span class="p">:</span> <span class="kt">CardCrypto</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilSDK@objc(cs)VSSCardManager(py)accessTokenProvider"></a>
+                    <a name="//apple_ref/swift/Property/accessTokenProvider" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilSDK@objc(cs)VSSCardManager(py)accessTokenProvider">accessTokenProvider</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>AccessTokenProvider instance used for getting Access Token
+when performing queries</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">accessTokenProvider</span><span class="p">:</span> <span class="kt"><a href="../Protocols/AccessTokenProvider.html">AccessTokenProvider</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilSDK@objc(cs)VSSCardManager(py)cardClient"></a>
+                    <a name="//apple_ref/swift/Property/cardClient" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilSDK@objc(cs)VSSCardManager(py)cardClient">cardClient</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>CardClient instance used for performing queries</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">cardClient</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CardClientProtocol.html">CardClientProtocol</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilSDK@objc(cs)VSSCardManager(py)cardVerifier"></a>
+                    <a name="//apple_ref/swift/Property/cardVerifier" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilSDK@objc(cs)VSSCardManager(py)cardVerifier">cardVerifier</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Card Verifier instance used for verifying Cards</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">cardVerifier</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CardVerifier.html">CardVerifier</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilSDK@objc(cs)VSSCardManager(py)retryOnUnauthorized"></a>
+                    <a name="//apple_ref/swift/Property/retryOnUnauthorized" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilSDK@objc(cs)VSSCardManager(py)retryOnUnauthorized">retryOnUnauthorized</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Will automatically perform second query with forceReload = true AccessToken if true</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">retryOnUnauthorized</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilSDK@objc(cs)VSSCardManager(py)signCallback"></a>
+                    <a name="//apple_ref/swift/Property/signCallback" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilSDK@objc(cs)VSSCardManager(py)signCallback">signCallback</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called to perform additional signatures for card before publishing</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="k">let</span> <span class="nv">signCallback</span><span class="p">:</span> <span class="p">((</span><span class="kt"><a href="../Classes/RawSignedModel.html">RawSignedModel</a></span><span class="p">,</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Classes/RawSignedModel.html">RawSignedModel</a></span><span class="p">?,</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@VirgilSDK@objc(cs)VSSCardManager(im)initWithParams:"></a>
+                    <a name="//apple_ref/swift/Method/init(params:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@VirgilSDK@objc(cs)VSSCardManager(im)initWithParams:">init(params:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializer</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">params</span><span class="p">:</span> <span class="kt"><a href="../Classes/CardManagerParams.html">CardManagerParams</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>params</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>CardManagerParams with needed parameters</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Import%20export%20cards"></a>
+                <a name="//apple_ref/swift/Section/Import export cards" class="dashAnchor"></a>
+                <a href="#/Import%20export%20cards">
+                  <h3 class="section-name">Import export cards</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)importCardFromBase64Encoded:error:"></a>
+                    <a name="//apple_ref/swift/Method/importCard(fromBase64Encoded:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)importCardFromBase64Encoded:error:">importCard(fromBase64Encoded:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Imports and verifies Card from base64 encoded string</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    CardManagerError.cardIsNotVerified, if Card verificaction has failed
+      Rethrows from RawSignedModel, JSONDecoder, CardCrypto
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">importCard</span><span class="p">(</span><span class="n">fromBase64Encoded</span> <span class="nv">base64EncodedString</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Card.html">Card</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>base64EncodedString</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>base64 encoded string with Card</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>imported and verified Card</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)importCardFromJson:error:"></a>
+                    <a name="//apple_ref/swift/Method/importCard(fromJson:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)importCardFromJson:error:">importCard(fromJson:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Imports and verifies Card from json Dictionary</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    CardManagerError.cardIsNotVerified, if Card verificaction has failed
+      Rethrows from RawSignedModel, JSONDecoder, CardCrypto, JSONSerialization
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">importCard</span><span class="p">(</span><span class="n">fromJson</span> <span class="nv">json</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Card.html">Card</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>json</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>json Dictionary</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>imported and verified Card</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)importCardFromRawCard:error:"></a>
+                    <a name="//apple_ref/swift/Method/importCard(fromRawCard:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)importCardFromRawCard:error:">importCard(fromRawCard:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Imports and verifies Card from RawSignedModel</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    CardManagerError.cardIsNotVerified, if Card verificaction has failed
+      Rethrows from RawSignedModel, JSONDecoder, CardCrypto, JSONSerialization
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">importCard</span><span class="p">(</span><span class="n">fromRawCard</span> <span class="nv">rawCard</span><span class="p">:</span> <span class="kt"><a href="../Classes/RawSignedModel.html">RawSignedModel</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Card.html">Card</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rawCard</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>RawSignedModel</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>imported and verified Card</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)exportCardAsBase64EncodedString:error:"></a>
+                    <a name="//apple_ref/swift/Method/exportCardAsBase64EncodedString(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)exportCardAsBase64EncodedString:error:">exportCardAsBase64EncodedString(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Exports Card as base64 encoded string</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    CardManagerError.cardIsNotVerified, if Card verificaction has failed
+      Rethrows from RawSignedModel, JSOEncoder, CardCrypto
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">exportCardAsBase64EncodedString</span><span class="p">(</span><span class="n">_</span> <span class="nv">card</span><span class="p">:</span> <span class="kt"><a href="../Classes/Card.html">Card</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>card</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Card to be exported</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>base64 encoded string with Card</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)exportCardAsJson:error:"></a>
+                    <a name="//apple_ref/swift/Method/exportCardAsJson(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)exportCardAsJson:error:">exportCardAsJson(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Exports Card as json Dictionary</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    CardManagerError.cardIsNotVerified, if Card verificaction has failed
+      Rethrows from RawSignedModel, JSOEncoder, CardCrypto, JSONSerialization
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">exportCardAsJson</span><span class="p">(</span><span class="n">_</span> <span class="nv">card</span><span class="p">:</span> <span class="kt"><a href="../Classes/Card.html">Card</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Any</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>card</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Card to be exported</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>json Dictionary with Card</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)exportCardAsRawCard:error:"></a>
+                    <a name="//apple_ref/swift/Method/exportCardAsRawCard(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)exportCardAsRawCard:error:">exportCardAsRawCard(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Exports Card as RawSignedModel</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    CardManagerError.cardIsNotVerified, if Card verificaction has failed
+      Rethrows from RawSignedModel, JSOEncoder, CardCrypto
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">exportCardAsRawCard</span><span class="p">(</span><span class="n">_</span> <span class="nv">card</span><span class="p">:</span> <span class="kt"><a href="../Classes/Card.html">Card</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/RawSignedModel.html">RawSignedModel</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>card</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Card to be exported</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>RawSignedModel representing Card</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)getCardWithId:completion:"></a>
+                    <a name="//apple_ref/swift/Method/getCard(withId:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)getCardWithId:completion:">getCard(withId:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asynchronously returns <code><a href="../Classes/Card.html">Card</a></code> with given identifier
+from the Virgil Cards Service with given ID, if exists</p>
+
+<p>NOTE: See swift version for additional info</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">getCard</span><span class="p">(</span><span class="n">withId</span> <span class="nv">cardId</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Classes/Card.html">Card</a></span><span class="p">?,</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cardId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>string with unique Virgil Card identifier</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>completion handler, called with found and verified Card or corresponding error</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)publishCardWithRawCard:completion:"></a>
+                    <a name="//apple_ref/swift/Method/publishCard(rawCard:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)publishCardWithRawCard:completion:">publishCard(rawCard:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asynchronously creates Virgil Card instance on the Virgil Cards Service and associates it with unique identifier
+Also makes the Card accessible for search/get queries from other users
+<code><a href="../Classes/RawSignedModel.html">RawSignedModel</a></code> should be at least selfSigned</p>
+
+<p>NOTE: See swift version for additional info</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">publishCard</span><span class="p">(</span><span class="nv">rawCard</span><span class="p">:</span> <span class="kt"><a href="../Classes/RawSignedModel.html">RawSignedModel</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Classes/Card.html">Card</a></span><span class="p">?,</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rawCard</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>self signed <code><a href="../Classes/RawSignedModel.html">RawSignedModel</a></code></p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>completion handler, called with published and verified Card or corresponding error</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)publishCardWithPrivateKey:publicKey:identity:previousCardId:extraFields:completion:"></a>
+                    <a name="//apple_ref/swift/Method/publishCard(privateKey:publicKey:identity:previousCardId:extraFields:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)publishCardWithPrivateKey:publicKey:identity:previousCardId:extraFields:completion:">publishCard(privateKey:publicKey:identity:previousCardId:extraFields:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asynchronously generates self signed RawSignedModel and creates Virgil Card
+instance on the Virgil Cards Service and associates it with unique identifier</p>
+
+<p>NOTE: See swift version for additional info</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">publishCard</span><span class="p">(</span><span class="nv">privateKey</span><span class="p">:</span> <span class="kt">PrivateKey</span><span class="p">,</span> <span class="nv">publicKey</span><span class="p">:</span> <span class="kt">PublicKey</span><span class="p">,</span> <span class="nv">identity</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                      <span class="nv">previousCardId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">extraFields</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                      <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt"><a href="../Classes/Card.html">Card</a></span><span class="p">?,</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>privateKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Private Key to self sign RawSignedModel with</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>publicKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>PublicKey for generating RawSignedModel</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>identity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>identity for generating RawSignedModel. Will be taken from token if omitted</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>previousCardId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>identifier of Virgil Card to replace</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>extraFields</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Dictionary with extra data to sign with model</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>completion handler, called with published and verified Card or corresponding error</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)searchCardsWithIdentity:completion:"></a>
+                    <a name="//apple_ref/swift/Method/searchCards(identity:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)searchCardsWithIdentity:completion:">searchCards(identity:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asynchronously performs search of Virgil Cards using identity on the Virgil Cards Service</p>
+
+<p>NOTE: See swift version for additional info</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">searchCards</span><span class="p">(</span><span class="nv">identity</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt"><a href="../Classes/Card.html">Card</a></span><span class="p">]?,</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>identity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>identity of cards to search</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>completion handler, called with found and verified Cards or corresponding error</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)searchCardsWithIdentities:completion:"></a>
+                    <a name="//apple_ref/swift/Method/searchCards(identities:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)searchCardsWithIdentities:completion:">searchCards(identities:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Asynchronously performs search of Virgil Cards on the Virgil Cards Service using identities</p>
+
+<p>NOTE: See swift version for additional info</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">searchCards</span><span class="p">(</span><span class="nv">identities</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">],</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">([</span><span class="kt"><a href="../Classes/Card.html">Card</a></span><span class="p">]?,</span> <span class="kt">Error</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>identities</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>identities of cards to search</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>completion handler, called with found and verified Cards or corresponding error</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(cm)parseCardFrom:cardCrypto:error:"></a>
+                    <a name="//apple_ref/swift/Method/parseCard(from:cardCrypto:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(cm)parseCardFrom:cardCrypto:error:">parseCard(from:cardCrypto:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Imports Virgil Card from RawSignedModel</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    corresponding error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">parseCard</span><span class="p">(</span><span class="n">from</span> <span class="nv">rawSignedModel</span><span class="p">:</span> <span class="kt"><a href="../Classes/RawSignedModel.html">RawSignedModel</a></span><span class="p">,</span> <span class="nv">cardCrypto</span><span class="p">:</span> <span class="kt">CardCrypto</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Card.html">Card</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cardCrypto</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>CardCrypto</code> instance</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rawSignedModel</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>RawSignedModel to import</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>imported Card</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)parseCardFrom:error:"></a>
+                    <a name="//apple_ref/swift/Method/parseCard(from:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)parseCardFrom:error:">parseCard(from:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Imports Virgil Card from RawSignedModel using self CardCrypto instance</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    corresponding error
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">parseCard</span><span class="p">(</span><span class="n">from</span> <span class="nv">rawSignedModel</span><span class="p">:</span> <span class="kt"><a href="../Classes/RawSignedModel.html">RawSignedModel</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Card.html">Card</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rawSignedModel</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>RawSignedModel to import</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>imported Card</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Extension%20for%20primary%20operations"></a>
+                <a name="//apple_ref/swift/Section/Extension for primary operations" class="dashAnchor"></a>
+                <a href="#/Extension%20for%20primary%20operations">
+                  <h3 class="section-name">Extension for primary operations</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9VirgilSDK11CardManagerC03getC06withIdAA16GenericOperationCyAA0C0CGSS_tF"></a>
+                    <a name="//apple_ref/swift/Method/getCard(withId:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9VirgilSDK11CardManagerC03getC06withIdAA16GenericOperationCyAA0C0CGSS_tF">getCard(withId:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes CallbackOperation<Card> for getting verified Virgil Card
+from the Virgil Cards Service with given ID, if exists</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">getCard</span><span class="p">(</span><span class="n">withId</span> <span class="nv">cardId</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/GenericOperation.html">GenericOperation</a></span><span class="o">&lt;</span><span class="kt"><a href="../Classes/Card.html">Card</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cardId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>identifier of Virgil Card to find</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CallbackOperation<GetCardResponse> for getting <code><a href="../Classes/GetCardResponse.html">GetCardResponse</a></code> with verified Virgil Card</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)generateRawCardWithPrivateKey:publicKey:identity:previousCardId:extraFields:error:"></a>
+                    <a name="//apple_ref/swift/Method/generateRawCard(privateKey:publicKey:identity:previousCardId:extraFields:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(im)generateRawCardWithPrivateKey:publicKey:identity:previousCardId:extraFields:error:">generateRawCard(privateKey:publicKey:identity:previousCardId:extraFields:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates self signed RawSignedModel</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    Rethrows from CardCrypto, JSONEncoder, JSONSerialization, ModelSigner
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">generateRawCard</span><span class="p">(</span><span class="nv">privateKey</span><span class="p">:</span> <span class="kt">PrivateKey</span><span class="p">,</span> <span class="nv">publicKey</span><span class="p">:</span> <span class="kt">PublicKey</span><span class="p">,</span>
+                          <span class="nv">identity</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">previousCardId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                          <span class="nv">extraFields</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/RawSignedModel.html">RawSignedModel</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>privateKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>PrivateKey to self sign with</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>publicKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Public Key instance</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>identity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Card&rsquo;s identity</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>previousCardId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Identifier of Virgil Card with same identity this Card will replace</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>extraFields</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Dictionary with extra data to sign with model. Should be JSON-compatible</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Self signed RawSignedModel</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(cm)generateRawCardWithCardCrypto:modelSigner:privateKey:publicKey:identity:previousCardId:extraFields:error:"></a>
+                    <a name="//apple_ref/swift/Method/generateRawCard(cardCrypto:modelSigner:privateKey:publicKey:identity:previousCardId:extraFields:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(cm)generateRawCardWithCardCrypto:modelSigner:privateKey:publicKey:identity:previousCardId:extraFields:error:">generateRawCard(cardCrypto:modelSigner:privateKey:publicKey:identity:previousCardId:extraFields:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Generates self signed RawSignedModel</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    Rethrows from CardCrypto, JSONEncoder, JSONSerialization, ModelSigner
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">generateRawCard</span><span class="p">(</span><span class="nv">cardCrypto</span><span class="p">:</span> <span class="kt">CardCrypto</span><span class="p">,</span> <span class="nv">modelSigner</span><span class="p">:</span> <span class="kt"><a href="../Classes/ModelSigner.html">ModelSigner</a></span><span class="p">,</span>
+                                <span class="nv">privateKey</span><span class="p">:</span> <span class="kt">PrivateKey</span><span class="p">,</span> <span class="nv">publicKey</span><span class="p">:</span> <span class="kt">PublicKey</span><span class="p">,</span>
+                                <span class="nv">identity</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">previousCardId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                                <span class="nv">extraFields</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/RawSignedModel.html">RawSignedModel</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cardCrypto</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>CardCrypto implementation</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>modelSigner</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>ModelSigner implementation</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>privateKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>PrivateKey to self sign with</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>publicKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Public Key instance</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>identity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Card&rsquo;s identity</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>previousCardId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Identifier of Virgil Card with same identity this Card will replace</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>extraFields</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Dictionary with extra data to sign with model. Should be JSON-compatible</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Self signed RawSignedModel</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9VirgilSDK11CardManagerC07publishC003rawC0AA16GenericOperationCyAA0C0CGAA14RawSignedModelC_tF"></a>
+                    <a name="//apple_ref/swift/Method/publishCard(rawCard:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9VirgilSDK11CardManagerC07publishC003rawC0AA16GenericOperationCyAA0C0CGAA14RawSignedModelC_tF">publishCard(rawCard:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes CallbackOperation<Card> for creating Virgil Card instance
+on the Virgil Cards Service and associates it with unique identifier</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">publishCard</span><span class="p">(</span><span class="nv">rawCard</span><span class="p">:</span> <span class="kt"><a href="../Classes/RawSignedModel.html">RawSignedModel</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/GenericOperation.html">GenericOperation</a></span><span class="o">&lt;</span><span class="kt"><a href="../Classes/Card.html">Card</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rawCard</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>RawSignedModel of Card to create</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CallbackOperation<Card> for creating Virgil Card instance</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9VirgilSDK11CardManagerC07publishC010privateKey06publicG08identity08previousC2Id11extraFieldsAA16GenericOperationCyAA0C0CG0A9CryptoAPI07PrivateG0_p_AO06PublicG0_pSSSgARSDyS2SGSgtF"></a>
+                    <a name="//apple_ref/swift/Method/publishCard(privateKey:publicKey:identity:previousCardId:extraFields:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9VirgilSDK11CardManagerC07publishC010privateKey06publicG08identity08previousC2Id11extraFieldsAA16GenericOperationCyAA0C0CG0A9CryptoAPI07PrivateG0_p_AO06PublicG0_pSSSgARSDyS2SGSgtF">publishCard(privateKey:publicKey:identity:previousCardId:extraFields:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes CallbackOperation<Card> for generating self signed RawSignedModel and
+creating Virgil Card instance on the Virgil Cards Service</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">publishCard</span><span class="p">(</span><span class="nv">privateKey</span><span class="p">:</span> <span class="kt">PrivateKey</span><span class="p">,</span> <span class="nv">publicKey</span><span class="p">:</span> <span class="kt">PublicKey</span><span class="p">,</span>
+                      <span class="nv">identity</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">previousCardId</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                      <span class="nv">extraFields</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">String</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/GenericOperation.html">GenericOperation</a></span><span class="o">&lt;</span><span class="kt"><a href="../Classes/Card.html">Card</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>privateKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>PrivateKey to self sign with</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>publicKey</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Public Key instance</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>identity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Card&rsquo;s identity</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>previousCardId</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Identifier of Virgil Card with same identity this Card will replace</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>extraFields</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Dictionary with extra data to sign with model. Should be JSON-compatible</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CallbackOperation<Card> for generating self signed RawSignedModel and
+       creating Virgil Card instance on the Virgil Cards Service</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9VirgilSDK11CardManagerC11searchCards8identityAA16GenericOperationCySayAA0C0CGGSS_tF"></a>
+                    <a name="//apple_ref/swift/Method/searchCards(identity:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9VirgilSDK11CardManagerC11searchCards8identityAA16GenericOperationCySayAA0C0CGGSS_tF">searchCards(identity:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes CallbackOperation&lt;[Card]&gt; for performing search of Virgil Cards
+using identity on the Virgil Cards Service</p>
+
+<p>NOTE: Resulting array will contain only actual cards.
+      Older cards (that were replaced) can be accessed using previousCard property of new cards.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">searchCards</span><span class="p">(</span><span class="nv">identity</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/GenericOperation.html">GenericOperation</a></span><span class="o">&lt;</span><span class="p">[</span><span class="kt"><a href="../Classes/Card.html">Card</a></span><span class="p">]</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>identity</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>identity of cards to search</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CallbackOperation&lt;[Card]&gt; for performing search of Virgil Cards</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:9VirgilSDK11CardManagerC11searchCards10identitiesAA16GenericOperationCySayAA0C0CGGSaySSG_tF"></a>
+                    <a name="//apple_ref/swift/Method/searchCards(identities:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:9VirgilSDK11CardManagerC11searchCards10identitiesAA16GenericOperationCySayAA0C0CGGSaySSG_tF">searchCards(identities:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes CallbackOperation&lt;[Card]&gt; for performing search of Virgil Cards
+on the Virgil Cards Service using identities</p>
+
+<p>NOTE: Resulting array will contain only actual cards.
+      Older cards (that were replaced) can be accessed using previousCard property of new cards.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">searchCards</span><span class="p">(</span><span class="nv">identities</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/GenericOperation.html">GenericOperation</a></span><span class="o">&lt;</span><span class="p">[</span><span class="kt"><a href="../Classes/Card.html">Card</a></span><span class="p">]</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>identities</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>identities of cards to search</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>CallbackOperation&lt;[Card]&gt; for performing search of Virgil Cards</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Import%20export%20cards:%20static%20functions"></a>
+                <a name="//apple_ref/swift/Section/Import export cards: static functions" class="dashAnchor"></a>
+                <a href="#/Import%20export%20cards:%20static%20functions">
+                  <h3 class="section-name">Import export cards: static functions</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(cm)importCardFromBase64Encoded:cardCrypto:cardVerifier:error:"></a>
+                    <a name="//apple_ref/swift/Method/importCard(fromBase64Encoded:cardCrypto:cardVerifier:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(cm)importCardFromBase64Encoded:cardCrypto:cardVerifier:error:">importCard(fromBase64Encoded:cardCrypto:cardVerifier:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Imports and verifies Card from base64 encoded string</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    CardManagerError.cardIsNotVerified, if Card verificaction has failed
+      Rethrows from RawSignedModel, JSONDecoder, CardCrypto
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">importCard</span><span class="p">(</span><span class="n">fromBase64Encoded</span> <span class="nv">base64EncodedString</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span>
+                           <span class="nv">cardCrypto</span><span class="p">:</span> <span class="kt">CardCrypto</span><span class="p">,</span>
+                           <span class="nv">cardVerifier</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CardVerifier.html">CardVerifier</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Card.html">Card</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>base64EncodedString</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>base64 encoded string with Card</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cardCrypto</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>CardCrypto implementation</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cardVerifier</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>CardVerifier implementation</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>imported and verified Card</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(cm)importCardFromJson:cardCrypto:cardVerifier:error:"></a>
+                    <a name="//apple_ref/swift/Method/importCard(fromJson:cardCrypto:cardVerifier:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(cm)importCardFromJson:cardCrypto:cardVerifier:error:">importCard(fromJson:cardCrypto:cardVerifier:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Imports and verifies Card from json Dictionary</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    CardManagerError.cardIsNotVerified, if Card verificaction has failed
+      Rethrows from RawSignedModel, JSONDecoder, CardCrypto, JSONSerialization
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">importCard</span><span class="p">(</span><span class="n">fromJson</span> <span class="nv">json</span><span class="p">:</span> <span class="kt">Any</span><span class="p">,</span>
+                           <span class="nv">cardCrypto</span><span class="p">:</span> <span class="kt">CardCrypto</span><span class="p">,</span>
+                           <span class="nv">cardVerifier</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CardVerifier.html">CardVerifier</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Card.html">Card</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>json</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>json Dictionary</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cardCrypto</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>CardCrypto implementation</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cardVerifier</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>CardVerifier implementation</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>imported and verified Card</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(cm)importCardFromRawCard:cardCrypto:cardVerifier:error:"></a>
+                    <a name="//apple_ref/swift/Method/importCard(fromRawCard:cardCrypto:cardVerifier:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(cm)importCardFromRawCard:cardCrypto:cardVerifier:error:">importCard(fromRawCard:cardCrypto:cardVerifier:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Imports and verifies Card from RawSignedModel</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    CardManagerError.cardIsNotVerified, if Card verificaction has failed
+      Rethrows from RawSignedModel, JSONDecoder, CardCrypto, JSONSerialization
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">importCard</span><span class="p">(</span><span class="n">fromRawCard</span> <span class="nv">rawCard</span><span class="p">:</span> <span class="kt"><a href="../Classes/RawSignedModel.html">RawSignedModel</a></span><span class="p">,</span>
+                           <span class="nv">cardCrypto</span><span class="p">:</span> <span class="kt">CardCrypto</span><span class="p">,</span>
+                           <span class="nv">cardVerifier</span><span class="p">:</span> <span class="kt"><a href="../Protocols/CardVerifier.html">CardVerifier</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Card.html">Card</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rawCard</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>RawSignedModel</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cardCrypto</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>CardCrypto implementation</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cardVerifier</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>CardVerifier implementation</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>imported and verified Card</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(cm)exportCardAsBase64EncodedString:error:"></a>
+                    <a name="//apple_ref/swift/Method/exportCardAsBase64EncodedString(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(cm)exportCardAsBase64EncodedString:error:">exportCardAsBase64EncodedString(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Exports Card as base64 encoded string</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    CardManagerError.cardIsNotVerified, if Card verificaction has failed
+      Rethrows from RawSignedModel, JSOEncoder, CardCrypto
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">exportCardAsBase64EncodedString</span><span class="p">(</span><span class="n">_</span> <span class="nv">card</span><span class="p">:</span> <span class="kt"><a href="../Classes/Card.html">Card</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>card</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Card to be exported</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>base64 encoded string with Card</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(cm)exportCardAsJson:error:"></a>
+                    <a name="//apple_ref/swift/Method/exportCardAsJson(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(cm)exportCardAsJson:error:">exportCardAsJson(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Exports Card as json Dictionary</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    CardManagerError.cardIsNotVerified, if Card verificaction has failed
+      Rethrows from RawSignedModel, JSOEncoder, CardCrypto, JSONSerialization
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">exportCardAsJson</span><span class="p">(</span><span class="n">_</span> <span class="nv">card</span><span class="p">:</span> <span class="kt"><a href="../Classes/Card.html">Card</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Any</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>card</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Card to be exported</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>json Dictionary with Card</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@VirgilSDK@objc(cs)VSSCardManager(cm)exportCardAsRawCard:error:"></a>
+                    <a name="//apple_ref/swift/Method/exportCardAsRawCard(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@VirgilSDK@objc(cs)VSSCardManager(cm)exportCardAsRawCard:error:">exportCardAsRawCard(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Exports Card as RawSignedModel</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    CardManagerError.cardIsNotVerified, if Card verificaction has failed
+      Rethrows from RawSignedModel, JSOEncoder, CardCrypto
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">exportCardAsRawCard</span><span class="p">(</span><span class="n">_</span> <span class="nv">card</span><span class="p">:</span> <span class="kt"><a href="../Classes/Card.html">Card</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/RawSignedModel.html">RawSignedModel</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>card</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Card to be exported</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>RawSignedModel representing Card</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://virgilsecurity.com/" target="_blank" rel="external">Virgil Security</a>. All rights reserved. (Last updated: 2018-12-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

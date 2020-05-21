@@ -1,0 +1,278 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Cards/CardManager/CardManager.swift",
+      "line": 45,
+      "symbol": "CardManagerError.cardIsNotVerified",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Cards/CardManager/CardManager.swift",
+      "line": 46,
+      "symbol": "CardManagerError.gotWrongCard",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Cards/Verification/Whitelist.swift",
+      "line": 43,
+      "symbol": "WhitelistError.duplicateSigner",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Client/BaseClient.swift",
+      "line": 43,
+      "symbol": "BaseClientError.noBody",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Client/Cards/CardClient.swift",
+      "line": 43,
+      "symbol": "CardClientError.constructingUrl",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Client/Cards/Models/RawSignedModel.swift",
+      "line": 44,
+      "symbol": "RawSignedModelError.invalidBase64String",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Client/Cards/Models/RawSignedModel.swift",
+      "line": 45,
+      "symbol": "RawSignedModelError.duplicateSignature",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Client/Networking/HttpConnection.swift",
+      "line": 44,
+      "symbol": "ServiceConnectionError.noUrlInRequest",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Client/Networking/HttpConnection.swift",
+      "line": 45,
+      "symbol": "ServiceConnectionError.wrongResponseType",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Client/Networking/Request.swift",
+      "line": 43,
+      "symbol": "RequestError.urlRequestIsIncompleteOrInvalid",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Client/Networking/Request.swift",
+      "line": 67,
+      "symbol": "Request.Method.get",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Client/Networking/Request.swift",
+      "line": 68,
+      "symbol": "Request.Method.post",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Client/Networking/Request.swift",
+      "line": 69,
+      "symbol": "Request.Method.put",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Client/Networking/Request.swift",
+      "line": 70,
+      "symbol": "Request.Method.delete",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Client/Networking/ServiceRequest.swift",
+      "line": 46,
+      "symbol": "ServiceRequestError.invalidGetRequestParameters",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Client/Networking/ServiceRequest.swift",
+      "line": 47,
+      "symbol": "ServiceRequestError.urlComponentsConvertingFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Client/Networking/ServiceRequest.swift",
+      "line": 48,
+      "symbol": "ServiceRequestError.getQueryWithDecodableIsNotSupported",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Client/Networking/ServiceRequest.swift",
+      "line": 49,
+      "symbol": "ServiceRequestError.duplicateHeadersKey",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/JsonWebToken/JWT.swift",
+      "line": 44,
+      "symbol": "JwtError.incorrectNumberOfJwtComponents",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/JsonWebToken/JWT.swift",
+      "line": 45,
+      "symbol": "JwtError.utf8StrIsInvalid",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/JsonWebToken/JwtBodyContent.swift",
+      "line": 43,
+      "symbol": "JwtBodyContentError.base64UrlStrIsInvalid",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/JsonWebToken/JwtHeaderContent.swift",
+      "line": 43,
+      "symbol": "JwtHeaderContentError.base64UrlStrIsInvalid",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/JsonWebToken/JwtSignatureContent.swift",
+      "line": 43,
+      "symbol": "JwtSignatureContentError.base64UrlStrIsInvalid",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/KeychainStorage/KeychainStorage.swift",
+      "line": 48,
+      "symbol": "KeychainStorageErrorCodes.utf8ConvertingError",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/KeychainStorage/KeychainStorage.swift",
+      "line": 49,
+      "symbol": "KeychainStorageErrorCodes.emptyKeychainResponse",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/KeychainStorage/KeychainStorage.swift",
+      "line": 50,
+      "symbol": "KeychainStorageErrorCodes.wrongResponseType",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/KeychainStorage/KeychainStorage.swift",
+      "line": 51,
+      "symbol": "KeychainStorageErrorCodes.errorParsingKeychainResponse",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/KeychainStorage/KeychainStorage.swift",
+      "line": 52,
+      "symbol": "KeychainStorageErrorCodes.invalidAppBundle",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/KeychainStorage/KeychainStorage.swift",
+      "line": 53,
+      "symbol": "KeychainStorageErrorCodes.keychainError",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Utils/Operation/AsyncOperation.swift",
+      "line": 63,
+      "symbol": "AsyncOperation.State.ready",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Utils/Operation/AsyncOperation.swift",
+      "line": 64,
+      "symbol": "AsyncOperation.State.executing",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Utils/Operation/AsyncOperation.swift",
+      "line": 65,
+      "symbol": "AsyncOperation.State.finished",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Utils/Operation/CallbackOperation.swift",
+      "line": 43,
+      "symbol": "CallbackOperationError.errorAndResultMissing",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Utils/Operation/GenericOperation.swift",
+      "line": 46,
+      "symbol": "GenericOperationError.timeout",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Utils/Operation/GenericOperation.swift",
+      "line": 47,
+      "symbol": "GenericOperationError.resultIsMissing",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Utils/Operation/GenericOperation.swift",
+      "line": 48,
+      "symbol": "GenericOperationError.missingDependencies",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Utils/Operation/GenericOperation.swift",
+      "line": 49,
+      "symbol": "GenericOperationError.dependencyFailed",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Utils/Operation/Result.swift",
+      "line": 44,
+      "symbol": "Result.success",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/travis/build/VirgilSecurity/virgil-sdk-x/Source/Utils/Operation/Result.swift",
+      "line": 45,
+      "symbol": "Result.failure",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/travis/build/VirgilSecurity/virgil-sdk-x"
+}

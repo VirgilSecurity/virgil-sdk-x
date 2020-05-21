@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>VSSKeyStorageConfiguration Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">VirgilSDK </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Virgil Security</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/accessGroup">accessGroup</option>
+		
+		<option value="//api/name/accessibility">accessibility</option>
+		
+		<option value="//api/name/applicationName">applicationName</option>
+		
+		<option value="//api/name/trustedApplications">trustedApplications</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/keyStorageConfigurationWithAccessibility:accessGroup:">+ keyStorageConfigurationWithAccessibility:accessGroup:</option>
+		
+		<option value="//api/name/keyStorageConfigurationWithAccessibility:trustedApplications:">+ keyStorageConfigurationWithAccessibility:trustedApplications:</option>
+		
+		<option value="//api/name/keyStorageConfigurationWithDefaultValues">+ keyStorageConfigurationWithDefaultValues</option>
+		
+	</optgroup>
+	
+
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">VSSKeyStorageConfiguration Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Conforms to</th>
+	<td>NSCopying</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>VSSKeyStorageConfiguration.h<br />VSSKeyStorageConfiguration.m</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Class used to initialize default <a href="../Classes/VSSKeyStorage.html">VSSKeyStorage</a> implementation.
+See <a href="../Classes/VSSKeyStorage.html">VSSKeyStorage</a>.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/keyStorageConfigurationWithDefaultValues" title="keyStorageConfigurationWithDefaultValues"></a>
+	<h3 class="method-title"><code><a href="#//api/name/keyStorageConfigurationWithDefaultValues">+&nbsp;keyStorageConfigurationWithDefaultValues</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Default <a href="../Classes/VSSKeyStorage.html">VSSKeyStorage</a> values with <a href="#//api/name/applicationName">applicationName</a> = NSBundle.mainBundle.bundleIdentifier, <a href="#//api/name/accessibility">accessibility</a> = kSecAttrAccessibleWhenUnlocked, <a href="#//api/name/accessGroup">accessGroup</a> = nil</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyStorageConfiguration *__nonnull)keyStorageConfigurationWithDefaultValues</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>allocated and initialized VSSKeyStorageConfiguration instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyStorageConfiguration.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/keyStorageConfigurationWithAccessibility:accessGroup:" title="keyStorageConfigurationWithAccessibility:accessGroup:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/keyStorageConfigurationWithAccessibility:accessGroup:">+&nbsp;keyStorageConfigurationWithAccessibility:accessGroup:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Factory method which allocates and initalizes VSSKeyStorageConfiguration instance.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyStorageConfiguration *__nonnull)keyStorageConfigurationWithAccessibility:(NSString *__nullable)<em>accessibility</em> accessGroup:(NSString *__nullable)<em>accessGroup</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>accessibility</code></th>
+						<td><p>see <a href="https://developer.apple.com/reference/security/keychain">https://developer.apple.com/reference/security/keychain</a><em>services/keychain_item</em><a href="#//api/name/accessibility">accessibility</a>_constants</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>accessGroup</code></th>
+						<td><p>see <a href="https://developer.apple.com/reference/security/ksecattraccessgroup">https://developer.apple.com/reference/security/ksecattraccessgroup</a></p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>allocated and initialized VSSKeyStorageConfiguration instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyStorageConfiguration.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/accessibility" title="accessibility"></a>
+	<h3 class="method-title"><code><a href="#//api/name/accessibility">&nbsp;&nbsp;accessibility</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Accessibility. See <a href="https://developer.apple.com/reference/security/keychain">https://developer.apple.com/reference/security/keychain</a>_services/keychain_item_accessibility_constants</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy) NSString *accessibility</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyStorageConfiguration.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/accessGroup" title="accessGroup"></a>
+	<h3 class="method-title"><code><a href="#//api/name/accessGroup">&nbsp;&nbsp;accessGroup</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>AccessGroup. See <a href="https://developer.apple.com/reference/security/ksecattraccessgroup">https://developer.apple.com/reference/security/ksecattraccessgroup</a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy) NSString *accessGroup</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyStorageConfiguration.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/applicationName" title="applicationName"></a>
+	<h3 class="method-title"><code><a href="#//api/name/applicationName">&nbsp;&nbsp;applicationName</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>ApplicationName.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly, copy) NSString *applicationName</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyStorageConfiguration.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/keyStorageConfigurationWithAccessibility:trustedApplications:" title="keyStorageConfigurationWithAccessibility:trustedApplications:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/keyStorageConfigurationWithAccessibility:trustedApplications:">+&nbsp;keyStorageConfigurationWithAccessibility:trustedApplications:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Factory method which allocates and initalizes VSSKeyStorageConfiguration instance.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (VSSKeyStorageConfiguration *__nonnull)keyStorageConfigurationWithAccessibility:(NSString *__nullable)<em>accessibility</em> trustedApplications:(NSArray&lt;NSString*&gt; *__nullable)<em>trustedApplications</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>accessibility</code></th>
+						<td><p>see <a href="https://developer.apple.com/reference/security/keychain">https://developer.apple.com/reference/security/keychain</a><em>services/keychain_item</em><a href="#//api/name/accessibility">accessibility</a>_constants</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>trustedApplications</code></th>
+						<td><p>needed to set up access. No need to add executing application itself. See <a href="https://developer.apple.com/reference/security/secaccess">https://developer.apple.com/reference/security/secaccess</a></p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>allocated and initialized VSSKeyStorageConfiguration instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyStorageConfiguration.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/trustedApplications" title="trustedApplications"></a>
+	<h3 class="method-title"><code><a href="#//api/name/trustedApplications">&nbsp;&nbsp;trustedApplications</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Trusted application to set up access. No need to add executing application itself. See <a href="https://developer.apple.com/reference/security/secaccess">https://developer.apple.com/reference/security/secaccess</a></p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, readonly) NSArray&lt;NSString*&gt; *trustedApplications</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSKeyStorageConfiguration.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2017 Virgil Security. All rights reserved. Updated: 2017-07-05</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

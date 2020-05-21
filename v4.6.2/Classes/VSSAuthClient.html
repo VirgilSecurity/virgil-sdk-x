@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>VSSAuthClient Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">VirgilSDK </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Virgil Security</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/serviceConfig">serviceConfig</option>
+		
+	</optgroup>
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/ackChallengeMessageWithAuthGrantId:encryptedMessage:completion:">- ackChallengeMessageWithAuthGrantId:encryptedMessage:completion:</option>
+		
+		<option value="//api/name/getChallengeMessageForVirgilCardWithId:completion:">- getChallengeMessageForVirgilCardWithId:completion:</option>
+		
+		<option value="//api/name/init">- init</option>
+		
+		<option value="//api/name/initWithAuthServiceConfig:">- initWithAuthServiceConfig:</option>
+		
+		<option value="//api/name/obtainAccessTokenWithAccessCode:completion:">- obtainAccessTokenWithAccessCode:completion:</option>
+		
+		<option value="//api/name/refreshAccessTokenWithRefreshToken:completion:">- refreshAccessTokenWithRefreshToken:completion:</option>
+		
+		<option value="//api/name/verifyAccessToken:completion:">- verifyAccessToken:completion:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">VSSAuthClient Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td><a href="../Classes/VSSBaseClient.html">VSSBaseClient</a> : NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>VSSAuthClient.h<br />VSSAuthClient.m</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Client used for all interactions with Virgil Auth Services.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/serviceConfig" title="serviceConfig"></a>
+	<h3 class="method-title"><code><a href="#//api/name/serviceConfig">&nbsp;&nbsp;serviceConfig</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p><a href="../Classes/VSSAuthServiceConfig.html">VSSAuthServiceConfig</a> instance, which contains the information needed to interract with Virgil Auth Services such as service URLs, public keys.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, copy, readonly) VSSAuthServiceConfig *serviceConfig</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSAuthClient.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithAuthServiceConfig:" title="initWithAuthServiceConfig:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithAuthServiceConfig:">&ndash;&nbsp;initWithAuthServiceConfig:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Designated constructor.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype __nonnull)initWithAuthServiceConfig:(VSSAuthServiceConfig *__nonnull)<em>serviceConfig</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>serviceConfig</code></th>
+						<td><p><a href="../Classes/VSSServiceConfig.html">VSSServiceConfig</a> instance containing the service configuration.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>initialized <a href="../Classes/VSSClient.html">VSSClient</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSAuthClient.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/init" title="init"></a>
+	<h3 class="method-title"><code><a href="#//api/name/init">&ndash;&nbsp;init</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Convenient constructor.
+This constructor initialized VSSAuthClient instance with production Auth Service Public Key and URL.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype __nonnull)init</code></div>
+
+		    
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>initialized VSSAuthClient instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSAuthClient.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/getChallengeMessageForVirgilCardWithId:completion:" title="getChallengeMessageForVirgilCardWithId:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/getChallengeMessageForVirgilCardWithId:completion:">&ndash;&nbsp;getChallengeMessageForVirgilCardWithId:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Requests challenge message from Virgil Auth Service to obtain access token.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)getChallengeMessageForVirgilCardWithId:(NSString *__nonnull)<em>virgilCardId</em> completion:(void ( ^ __nonnull ) ( VSSChallengeMessageResponse *__nullable , NSError *__nullable ))<em>callback</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>virgilCardId</code></th>
+						<td><p>NSString with id of virgil card for which token will be granted</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>callback</code></th>
+						<td><p>callback with <a href="../Classes/VSSChallengeMessageResponse.html">VSSChallengeMessageResponse</a> object, or NSError instance if error occured</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSAuthClient.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/ackChallengeMessageWithAuthGrantId:encryptedMessage:completion:" title="ackChallengeMessageWithAuthGrantId:encryptedMessage:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/ackChallengeMessageWithAuthGrantId:encryptedMessage:completion:">&ndash;&nbsp;ackChallengeMessageWithAuthGrantId:encryptedMessage:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Acknowledges using auth grant id and reencrypted message. Message should be reencrypted for Virgil Auth Service whose public key can be found in <a href="../Classes/VSSClient.html">VSSClient</a>.m.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)ackChallengeMessageWithAuthGrantId:(NSString *__nonnull)<em>authGrantId</em> encryptedMessage:(NSData *__nonnull)<em>encryptedMessage</em> completion:(void ( ^ __nonnull ) ( NSString *__nullable , NSError *__nullable ))<em>callback</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>authGrantId</code></th>
+						<td><p>NSString auth grant id which can be found in <a href="../Classes/VSSChallengeMessageResponse.html">VSSChallengeMessageResponse</a></p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>encryptedMessage</code></th>
+						<td><p>Reencrypted for Virgil Auth Service message. Original message can be found inside <a href="../Classes/VSSChallengeMessageResponse.html">VSSChallengeMessageResponse</a></p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>callback</code></th>
+						<td><p>callback with access code, or NSError instance if error occured</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSAuthClient.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/obtainAccessTokenWithAccessCode:completion:" title="obtainAccessTokenWithAccessCode:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/obtainAccessTokenWithAccessCode:completion:">&ndash;&nbsp;obtainAccessTokenWithAccessCode:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Obtaines access and refresh tokens using access code.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)obtainAccessTokenWithAccessCode:(NSString *__nonnull)<em>accessCode</em> completion:(void ( ^ __nonnull ) ( VSSObtainTokenResponse *__nullable , NSError *__nullable ))<em>callback</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>accessCode</code></th>
+						<td><p>NSString with access code</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>callback</code></th>
+						<td><p>callback with <a href="../Classes/VSSObtainTokenResponse.html">VSSObtainTokenResponse</a> object, or NSError instance if error occured</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSAuthClient.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/refreshAccessTokenWithRefreshToken:completion:" title="refreshAccessTokenWithRefreshToken:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/refreshAccessTokenWithRefreshToken:completion:">&ndash;&nbsp;refreshAccessTokenWithRefreshToken:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Refreshes access token using refresh token</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)refreshAccessTokenWithRefreshToken:(NSString *__nonnull)<em>refreshToken</em> completion:(void ( ^ __nonnull ) ( VSSTokenResponse *__nullable , NSError *__nullable ))<em>callback</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>refreshToken</code></th>
+						<td><p>NSString with refresh token</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>callback</code></th>
+						<td><p>callback with <a href="../Classes/VSSTokenResponse.html">VSSTokenResponse</a> object, or NSError instance if error occured</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSAuthClient.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/verifyAccessToken:completion:" title="verifyAccessToken:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/verifyAccessToken:completion:">&ndash;&nbsp;verifyAccessToken:completion:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Verifies access token.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)verifyAccessToken:(NSString *__nonnull)<em>accessToken</em> completion:(void ( ^ __nonnull ) ( NSString *__nullable , NSError *__nullable ))<em>callback</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>accessToken</code></th>
+						<td><p>NSString with access token</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>callback</code></th>
+						<td><p>callback with virgil card id of token owner, or NSError instance if error occured</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSAuthClient.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2017 Virgil Security. All rights reserved. Updated: 2017-09-04</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

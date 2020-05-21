@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>VSSIdentitiesManager Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1333)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">VirgilSDK </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Virgil Security</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/createApplicationIdentityWithName:">- createApplicationIdentityWithName:</option>
+		
+		<option value="//api/name/createEmailIdentityWithEmail:">- createEmailIdentityWithEmail:</option>
+		
+		<option value="//api/name/createUserIdentityWithValue:type:">- createUserIdentityWithValue:type:</option>
+		
+		<option value="//api/name/init">- init</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">VSSIdentitiesManager Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Conforms to</th>
+	<td><a href="../Protocols/VSSIdentitiesManager.html">VSSIdentitiesManager</a></td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>VSSIdentitiesManager.h<br />VSSIdentitiesManager.m</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Implementation of VSSIdentitiesManager protocol.
+VSSIdentitiesManager should not be created by user and is accessible only using <a href="../Classes/VSSVirgilApi.html">VSSVirgilApi</a>.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/init" title="init"></a>
+	<h3 class="method-title"><code><a href="#//api/name/init">&ndash;&nbsp;init</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Unavailable no-argument initializer inherited from NSObject</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype __nonnull)init</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSIdentitiesManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/createUserIdentityWithValue:type:" title="createUserIdentityWithValue:type:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/createUserIdentityWithValue:type:">&ndash;&nbsp;createUserIdentityWithValue:type:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates User Identity needed to create Virgil Cards in Application scope.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (VSSUserIdentity *)createUserIdentityWithValue:(NSString *)<em>value</em> type:(NSString *)<em>type</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>value</code></th>
+						<td><p>NSString with identity value</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>type</code></th>
+						<td><p>NSString with identity type (e.g. username)</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>allocated and initialized <a href="../Classes/VSSUserIdentity.html">VSSUserIdentity</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSIdentitiesManagerProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/createEmailIdentityWithEmail:" title="createEmailIdentityWithEmail:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/createEmailIdentityWithEmail:">&ndash;&nbsp;createEmailIdentityWithEmail:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates Email Identity corresponding to specific email needed to create Virgil Cards in Global scope.
+NOTE1: email identities should be confirmed before use, see <a href="../Classes/VSSEmailIdentity.html">VSSEmailIdentity</a> interface for details.
+NOTE2: confirmed email identities are for one time usage. User should create and confirm new identity for each create, revoke or any other operation.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (VSSEmailIdentity *)createEmailIdentityWithEmail:(NSString *)<em>email</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>email</code></th>
+						<td><p>NSString with email</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>allocated and initialized <a href="../Classes/VSSEmailIdentity.html">VSSEmailIdentity</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSIdentitiesManagerProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/createApplicationIdentityWithName:" title="createApplicationIdentityWithName:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/createApplicationIdentityWithName:">&ndash;&nbsp;createApplicationIdentityWithName:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates Application Identity used for creating Application Virgil Cards.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (VSSApplicationIdentity *)createApplicationIdentityWithName:(NSString *)<em>name</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>name</code></th>
+						<td><p>NSString with application bundle name</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>allocated and initialized <a href="../Classes/VSSApplicationIdentity.html">VSSApplicationIdentity</a> instance</p>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">VSSIdentitiesManagerProtocol.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2017 Virgil Security. All rights reserved. Updated: 2017-07-05</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>
