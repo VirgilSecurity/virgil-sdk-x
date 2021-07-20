@@ -19,6 +19,7 @@ disabled_rules:
   - function_body_length
   - explicit_acl
   - cyclomatic_complexity
+  - inclusive_language
 
 opt_in_rules:
   - array_init
@@ -122,7 +123,6 @@ opt_in_rules:
   - unused_enumerated
   - unused_import
   - unused_optional_binding
-  - unused_private_declaration
   - vertical_parameter_alignment
   - vertical_whitespace
   - void_return

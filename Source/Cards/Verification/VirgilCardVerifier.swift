@@ -53,9 +53,9 @@ import VirgilCrypto
     /// Imported Virgil Service's Public Key for verifying Virgil Cards Service signatures
     @objc public let virgilPublicKey: VirgilPublicKey
     /// VirgilCardVerifier will verify self signature if true
-    @objc public var verifySelfSignature: Bool = true
+    @objc public var verifySelfSignature = true
     /// VirgilCardVerifier will verify Virgil Cards Service signatures if true
-    @objc public var verifyVirgilSignature: Bool = true
+    @objc public var verifyVirgilSignature = true
     /// Array with collections of verifiers
     /// - Important: VirgilCardVerifier verifies Card if it contains signature from AT LEAST
     ///   one verifier from EACH Whitelist
