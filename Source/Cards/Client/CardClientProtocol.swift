@@ -39,7 +39,7 @@ import Foundation
 /// Protocol for CardClient
 ///
 /// See: CardClient for default implementation
-@objc(VSSCardClientProtocol) public protocol CardClientProtocol: class {
+@objc(VSSCardClientProtocol) public protocol CardClientProtocol: AnyObject {
     /// Returns `GetCardResponse` with `RawSignedModel` of card from the Virgil Cards Service with given ID, if exists
     ///
     /// - Parameter cardId: String with unique Virgil Card identifier

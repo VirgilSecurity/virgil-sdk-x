@@ -39,7 +39,7 @@ import Foundation
 /// Protocol for KeyknoxClient
 ///
 /// See: KeyknoxClient for default implementation
-@objc(VSSKeyknoxClientProtocol) public protocol KeyknoxClientProtocol: class {
+@objc(VSSKeyknoxClientProtocol) public protocol KeyknoxClientProtocol: AnyObject {
     /// Push value to Keyknox service
     ///
     /// - Parameters:

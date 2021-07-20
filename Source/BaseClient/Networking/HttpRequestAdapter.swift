@@ -37,7 +37,7 @@
 import Foundation
 
 /// Protocol to adapt http request
-public protocol HttpRequestAdapter: class {
+public protocol HttpRequestAdapter: AnyObject {
     /// Adapts http request
     ///
     /// - Parameter request: request to adapt

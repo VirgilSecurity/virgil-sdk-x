@@ -37,7 +37,7 @@
 import Foundation
 
 /// Protocol with Keychain operations
-public protocol KeychainStorageProtocol: class {
+public protocol KeychainStorageProtocol: AnyObject {
     /// Stores key in Keychain
     ///
     /// - Parameters:

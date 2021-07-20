@@ -38,7 +38,7 @@ import Foundation
 import VirgilCrypto
 
 /// Protocol with crypto operations needed for Keyknox
-public protocol KeyknoxCryptoProtocol: class {
+public protocol KeyknoxCryptoProtocol: AnyObject {
     /// Decrypts EncryptedKeyknoxValue
     ///
     /// - Parameters:

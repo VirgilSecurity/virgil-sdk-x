@@ -39,7 +39,7 @@ import Foundation
 /// Protocol for HTTP connection
 ///
 /// See: HttpConnection for default implementation
-public protocol HttpConnectionProtocol: class {
+public protocol HttpConnectionProtocol: AnyObject {
     /// Sends Request and returns Response
     ///
     /// - Parameter request: Request to send
