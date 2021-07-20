@@ -2541,7 +2541,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilSDK-macOSTests";
 				PRODUCT_MODULE_NAME = VirgilSDK_macOS_Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2570,7 +2570,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilSDK-macOSTests";
 				PRODUCT_MODULE_NAME = VirgilSDK_macOS_Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2840,6 +2840,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilSDK-AppTests-iOS";
 				PRODUCT_MODULE_NAME = VirgilSDK_AppTests_iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2876,6 +2877,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilSDK-AppTests-iOS";
 				PRODUCT_MODULE_NAME = VirgilSDK_AppTests_iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2975,6 +2977,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilSDK-AppTests-tvOS";
 				PRODUCT_MODULE_NAME = VirgilSDK_AppTests_tvOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3010,6 +3013,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilSDK-AppTests-tvOS";
 				PRODUCT_MODULE_NAME = VirgilSDK_AppTests_tvOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
