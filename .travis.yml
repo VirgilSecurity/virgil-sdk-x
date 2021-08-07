@@ -70,7 +70,7 @@ deploy:
   # Upload framework to gh-releases for carthage
   - provider: releases
     api_key: $GITHUB_ACCESS_TOKEN
-    file: $FRAMEWORK_NAME.framework.zip
+    file: $FRAMEWORK_NAME.xcframework.zip
     skip_cleanup: true
     on:
       repo: $REPO
