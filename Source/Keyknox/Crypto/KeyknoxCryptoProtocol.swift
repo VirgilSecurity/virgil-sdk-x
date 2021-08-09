@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2015-2020 Virgil Security Inc.
+// Copyright (C) 2015-2021 Virgil Security Inc.
 //
 // All rights reserved.
 //
@@ -38,7 +38,7 @@ import Foundation
 import VirgilCrypto
 
 /// Protocol with crypto operations needed for Keyknox
-public protocol KeyknoxCryptoProtocol: class {
+public protocol KeyknoxCryptoProtocol: AnyObject {
     /// Decrypts EncryptedKeyknoxValue
     ///
     /// - Parameters:

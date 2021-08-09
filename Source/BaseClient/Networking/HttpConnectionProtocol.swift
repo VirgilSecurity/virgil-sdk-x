@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2015-2020 Virgil Security Inc.
+// Copyright (C) 2015-2021 Virgil Security Inc.
 //
 // All rights reserved.
 //
@@ -39,7 +39,7 @@ import Foundation
 /// Protocol for HTTP connection
 ///
 /// See: HttpConnection for default implementation
-public protocol HttpConnectionProtocol: class {
+public protocol HttpConnectionProtocol: AnyObject {
     /// Sends Request and returns Response
     ///
     /// - Parameter request: Request to send

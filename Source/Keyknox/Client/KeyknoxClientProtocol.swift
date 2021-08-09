@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2015-2020 Virgil Security Inc.
+// Copyright (C) 2015-2021 Virgil Security Inc.
 //
 // All rights reserved.
 //
@@ -39,7 +39,7 @@ import Foundation
 /// Protocol for KeyknoxClient
 ///
 /// See: KeyknoxClient for default implementation
-@objc(VSSKeyknoxClientProtocol) public protocol KeyknoxClientProtocol: class {
+@objc(VSSKeyknoxClientProtocol) public protocol KeyknoxClientProtocol: AnyObject {
     /// Push value to Keyknox service
     ///
     /// - Parameters:

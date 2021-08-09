@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2015-2020 Virgil Security Inc.
+// Copyright (C) 2015-2021 Virgil Security Inc.
 //
 // All rights reserved.
 //
@@ -55,7 +55,7 @@ import Foundation
 
 #if os(macOS) || os(iOS)
     /// Use biometric protection
-    @objc public var biometricallyProtected: Bool = false
+    @objc public var biometricallyProtected = false
 
     /// User promt for UI
     @objc public var biometricPromt: String = "Access your password on the keychain"

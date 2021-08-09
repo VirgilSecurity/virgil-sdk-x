@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2015-2020 Virgil Security Inc.
+// Copyright (C) 2015-2021 Virgil Security Inc.
 //
 // All rights reserved.
 //
@@ -37,7 +37,7 @@
 import Foundation
 
 /// Protocol with Keychain operations
-public protocol KeychainStorageProtocol: class {
+public protocol KeychainStorageProtocol: AnyObject {
     /// Stores key in Keychain
     ///
     /// - Parameters:

@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2015-2020 Virgil Security Inc.
+// Copyright (C) 2015-2021 Virgil Security Inc.
 //
 // All rights reserved.
 //
@@ -37,7 +37,7 @@
 import Foundation
 
 /// Protocol to adapt http request
-public protocol HttpRequestAdapter: class {
+public protocol HttpRequestAdapter: AnyObject {
     /// Adapts http request
     ///
     /// - Parameter request: request to adapt

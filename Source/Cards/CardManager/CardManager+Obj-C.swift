@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2015-2020 Virgil Security Inc.
+// Copyright (C) 2015-2021 Virgil Security Inc.
 //
 // All rights reserved.
 //
@@ -37,7 +37,7 @@
 import Foundation
 import VirgilCrypto
 
-//Objective-C compatible Queries
+// Objective-C compatible Queries
 extension CardManager {
     /// Asynchronously returns `Card` with given identifier
     /// from the Virgil Cards Service with given ID, if exists
