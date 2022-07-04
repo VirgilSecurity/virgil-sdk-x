@@ -52,10 +52,6 @@
 		4209486C22805B2C00CAF5E6 /* VirgilSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4209486D22806A9800CAF5E6 /* VersionUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424A7F8A21F0B62A006BED3F /* VersionUtils.swift */; };
 		422499C31EB39B380032F556 /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 422499BA1EB39B380032F556 /* VirgilSDK.framework */; };
-		42272802202120F800265E25 /* VirgilSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7E3721DB9023400D70C12 /* VirgilSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42272818202120F900265E25 /* VirgilSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7E3721DB9023400D70C12 /* VirgilSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42272819202120FA00265E25 /* VirgilSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7E3721DB9023400D70C12 /* VirgilSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4227281A202120FA00265E25 /* VirgilSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 42B7E3721DB9023400D70C12 /* VirgilSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		423D3DF92225A264006C7E4C /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
 		423D3DFB2225A268006C7E4C /* VSS002_JWTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AA6B082015F72400A0BA69 /* VSS002_JWTTests.m */; };
 		423D3DFC2225A281006C7E4C /* VSS003_ModelSigner_CardVerifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 16973141201659640054DE1E /* VSS003_ModelSigner_CardVerifierTests.m */; };
@@ -277,14 +273,6 @@
 		42860D5122896B8D00494515 /* ReachabilityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42860D4722896B8D00494515 /* ReachabilityProtocol.swift */; };
 		42860D5222896B8D00494515 /* ReachabilityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42860D4722896B8D00494515 /* ReachabilityProtocol.swift */; };
 		42860D5322896B8D00494515 /* ReachabilityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42860D4722896B8D00494515 /* ReachabilityProtocol.swift */; };
-		42860D5C2289882F00494515 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 42860D5A2289882F00494515 /* VSSKeyEntry.m */; };
-		42860D5D2289882F00494515 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 42860D5A2289882F00494515 /* VSSKeyEntry.m */; };
-		42860D5E2289882F00494515 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 42860D5A2289882F00494515 /* VSSKeyEntry.m */; };
-		42860D5F2289882F00494515 /* VSSKeyEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 42860D5A2289882F00494515 /* VSSKeyEntry.m */; };
-		42860D602289882F00494515 /* VSSKeyEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 42860D5B2289882F00494515 /* VSSKeyEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42860D612289882F00494515 /* VSSKeyEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 42860D5B2289882F00494515 /* VSSKeyEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42860D622289882F00494515 /* VSSKeyEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 42860D5B2289882F00494515 /* VSSKeyEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		42860D632289882F00494515 /* VSSKeyEntry.h in Headers */ = {isa = PBXBuildFile; fileRef = 42860D5B2289882F00494515 /* VSSKeyEntry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		429123671F4B0B3700103BE0 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
 		42CBE3D521ECBC19000F99E6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CBE3D421ECBC19000F99E6 /* Security.framework */; platformFilter = ios; };
 		42D0589420EB894500FC544E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D0589320EB894500FC544E /* AppDelegate.swift */; };
@@ -537,6 +525,10 @@
 		974219B426A76EFD00CF790B /* VirgilCryptoFoundation.xcframework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9742198326A76DF600CF790B /* VirgilCryptoFoundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		974219B526A76EFD00CF790B /* VSCCommon.xcframework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9742198526A76DF700CF790B /* VSCCommon.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		974219B626A76EFE00CF790B /* VSCFoundation.xcframework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9742198626A76DF700CF790B /* VSCFoundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		97A0C02F28735D7000599BBD /* KeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0C02E28735D6F00599BBD /* KeyEntry.swift */; };
+		97A0C03028735D7000599BBD /* KeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0C02E28735D6F00599BBD /* KeyEntry.swift */; };
+		97A0C03128735D7000599BBD /* KeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0C02E28735D6F00599BBD /* KeyEntry.swift */; };
+		97A0C03228735D7000599BBD /* KeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0C02E28735D6F00599BBD /* KeyEntry.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -761,11 +753,8 @@
 		4285E6F4203B82BB00499FB4 /* VSS011_OperationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSS011_OperationsTests.swift; sourceTree = "<group>"; };
 		42860D4622896B8D00494515 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		42860D4722896B8D00494515 /* ReachabilityProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityProtocol.swift; sourceTree = "<group>"; };
-		42860D5A2289882F00494515 /* VSSKeyEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSKeyEntry.m; sourceTree = "<group>"; };
-		42860D5B2289882F00494515 /* VSSKeyEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSKeyEntry.h; sourceTree = "<group>"; };
 		428B163F20E39A940041CA75 /* CardManager+StaticExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardManager+StaticExport.swift"; sourceTree = "<group>"; };
 		429123561F4B0B3700103BE0 /* TestConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestConfig.plist; sourceTree = "<group>"; };
-		42B7E3721DB9023400D70C12 /* VirgilSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VirgilSDK.h; sourceTree = "<group>"; };
 		42CBE3D421ECBC19000F99E6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		42CF01F31F6A9DD5003ABB19 /* CardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardManager.swift; sourceTree = "<group>"; };
 		42CF01FC1F6AA209003ABB19 /* HttpConnectionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpConnectionProtocol.swift; sourceTree = "<group>"; };
@@ -798,6 +787,7 @@
 		9742198426A76DF700CF790B /* VirgilCrypto.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = VirgilCrypto.xcframework; path = Carthage/Build/VirgilCrypto.xcframework; sourceTree = "<group>"; };
 		9742198526A76DF700CF790B /* VSCCommon.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = VSCCommon.xcframework; path = Carthage/Build/VSCCommon.xcframework; sourceTree = "<group>"; };
 		9742198626A76DF700CF790B /* VSCFoundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = VSCFoundation.xcframework; path = Carthage/Build/VSCFoundation.xcframework; sourceTree = "<group>"; };
+		97A0C02E28735D6F00599BBD /* KeyEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyEntry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1013,7 +1003,6 @@
 		3614033E1BB2E0FC002E69CA /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				42B7E3721DB9023400D70C12 /* VirgilSDK.h */,
 				42F0AB1C1D9ABF2200747799 /* BaseClient */,
 				16B3FD402004D58F008F0357 /* JsonWebToken */,
 				425EF96E20C966D100CE1D4F /* KeychainStorage */,
@@ -1154,8 +1143,7 @@
 		425EF96E20C966D100CE1D4F /* KeychainStorage */ = {
 			isa = PBXGroup;
 			children = (
-				42860D5B2289882F00494515 /* VSSKeyEntry.h */,
-				42860D5A2289882F00494515 /* VSSKeyEntry.m */,
+				97A0C02E28735D6F00599BBD /* KeyEntry.swift */,
 				42817ABA22D8C258006998D6 /* KeychainStorageParams.swift */,
 				42817AB522D8C0C4006998D6 /* KeychainQueryOptions.swift */,
 				42D7B031224399BB009D02FD /* KeychainEntry.swift */,
@@ -1320,8 +1308,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42860D612289882F00494515 /* VSSKeyEntry.h in Headers */,
-				42272818202120F900265E25 /* VirgilSDK.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1329,8 +1315,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42860D622289882F00494515 /* VSSKeyEntry.h in Headers */,
-				42272819202120FA00265E25 /* VirgilSDK.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1338,8 +1322,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42860D632289882F00494515 /* VSSKeyEntry.h in Headers */,
-				4227281A202120FA00265E25 /* VirgilSDK.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1347,8 +1329,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42860D602289882F00494515 /* VSSKeyEntry.h in Headers */,
-				42272802202120F800265E25 /* VirgilSDK.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1729,6 +1709,7 @@
 				42D7AF68224396AD009D02FD /* BaseClient.swift in Sources */,
 				42D7AF60224396AD009D02FD /* HttpConnectionProtocol.swift in Sources */,
 				42492F8122CE9FC400BEA96F /* KeyknoxCrypto.swift in Sources */,
+				97A0C03028735D7000599BBD /* KeyEntry.swift in Sources */,
 				42817AB222D3507F006998D6 /* KeyknoxKeyEntry.swift in Sources */,
 				42492FC922CE9FC500BEA96F /* KeyknoxClientProtocol.swift in Sources */,
 				42D7AF86224396AD009D02FD /* CardManager+StaticExport.swift in Sources */,
@@ -1739,7 +1720,6 @@
 				42D7AF8D224396AD009D02FD /* Whitelist.swift in Sources */,
 				424ACC7B22314C9100DD5072 /* NetworkRetryOperation.swift in Sources */,
 				42860D5122896B8D00494515 /* ReachabilityProtocol.swift in Sources */,
-				42860D5D2289882F00494515 /* VSSKeyEntry.m in Sources */,
 				42492F7D22CE9FC400BEA96F /* KeyknoxCryptoProtocol.swift in Sources */,
 				42D7AF76224396AD009D02FD /* TokenContext.swift in Sources */,
 				42492F5622CE9FB500BEA96F /* CardClientProtocol.swift in Sources */,
@@ -1863,6 +1843,7 @@
 				42D7AF9D224396AE009D02FD /* Response.swift in Sources */,
 				42492F8222CE9FC400BEA96F /* KeyknoxCrypto.swift in Sources */,
 				42817AB322D3507F006998D6 /* KeyknoxKeyEntry.swift in Sources */,
+				97A0C03128735D7000599BBD /* KeyEntry.swift in Sources */,
 				42492FCA22CE9FC500BEA96F /* KeyknoxClientProtocol.swift in Sources */,
 				42D7AFB9224396AE009D02FD /* DateUtils.swift in Sources */,
 				42492F4722CE9FB500BEA96F /* RawSignedModel.swift in Sources */,
@@ -1871,7 +1852,6 @@
 				42492FCE22CE9FC500BEA96F /* KeyknoxClient.swift in Sources */,
 				42D7AFC0224396AE009D02FD /* CardManager+Obj-C.swift in Sources */,
 				42D7AFB7224396AE009D02FD /* Data+hex.swift in Sources */,
-				42860D5E2289882F00494515 /* VSSKeyEntry.m in Sources */,
 				42D7AFB0224396AE009D02FD /* OperationUtils.swift in Sources */,
 				42492F7E22CE9FC400BEA96F /* KeyknoxCryptoProtocol.swift in Sources */,
 				42D7AFC7224396AE009D02FD /* Card.swift in Sources */,
@@ -1968,6 +1948,7 @@
 				42D7AFEF224396AF009D02FD /* Log.swift in Sources */,
 				42492F8322CE9FC400BEA96F /* KeyknoxCrypto.swift in Sources */,
 				42817AB422D3507F006998D6 /* KeyknoxKeyEntry.swift in Sources */,
+				97A0C03228735D7000599BBD /* KeyEntry.swift in Sources */,
 				42492FCB22CE9FC500BEA96F /* KeyknoxClientProtocol.swift in Sources */,
 				42D7AFD4224396AF009D02FD /* Request.swift in Sources */,
 				42492F4822CE9FB500BEA96F /* RawSignedModel.swift in Sources */,
@@ -1976,7 +1957,6 @@
 				42492FCF22CE9FC500BEA96F /* KeyknoxClient.swift in Sources */,
 				42D7AFE9224396AF009D02FD /* OperationUtils.swift in Sources */,
 				42D7B000224396AF009D02FD /* Card.swift in Sources */,
-				42860D5F2289882F00494515 /* VSSKeyEntry.m in Sources */,
 				42D7B001224396AF009D02FD /* CardSignature.swift in Sources */,
 				42492F7F22CE9FC400BEA96F /* KeyknoxCryptoProtocol.swift in Sources */,
 				42D7B037224399BC009D02FD /* KeychainStorageProtocol.swift in Sources */,
@@ -2149,6 +2129,7 @@
 				42D7AF29224396AC009D02FD /* Request.swift in Sources */,
 				42492F8022CE9FC400BEA96F /* KeyknoxCrypto.swift in Sources */,
 				42817AB122D3507F006998D6 /* KeyknoxKeyEntry.swift in Sources */,
+				97A0C02F28735D7000599BBD /* KeyEntry.swift in Sources */,
 				42492FC822CE9FC500BEA96F /* KeyknoxClientProtocol.swift in Sources */,
 				42D7AF4E224396AC009D02FD /* CardManager+Obj-C.swift in Sources */,
 				42492F4522CE9FB500BEA96F /* RawSignedModel.swift in Sources */,
@@ -2156,7 +2137,6 @@
 				42D7AF3E224396AC009D02FD /* OperationUtils.swift in Sources */,
 				42492FCC22CE9FC500BEA96F /* KeyknoxClient.swift in Sources */,
 				42D7AF55224396AC009D02FD /* Card.swift in Sources */,
-				42860D5C2289882F00494515 /* VSSKeyEntry.m in Sources */,
 				42D7AF56224396AC009D02FD /* CardSignature.swift in Sources */,
 				42D7B034224399BC009D02FD /* KeychainStorageProtocol.swift in Sources */,
 				42492F7C22CE9FC400BEA96F /* KeyknoxCryptoProtocol.swift in Sources */,

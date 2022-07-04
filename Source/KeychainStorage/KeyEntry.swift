@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2015-2021 Virgil Security Inc.
+// Copyright (C) 2015-2022 Virgil Security Inc.
 //
 // All rights reserved.
 //
@@ -34,4 +34,44 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-#import "VSSKeyEntry.h"
+import Foundation
+
+@objc(VSSKeyEntry) public class KeyEntry: NSObject, NSCoding {
+
+    public let name: String
+    public let value: Data
+    public let meta: [String: String]?
+
+    private enum CodingKeys: String {
+        case name = "name"
+        case value = "value"
+        case meta = "meta"
+    }
+
+    public init(name: String, value: Data, meta: [String: String]?) {
+        self.name = name
+        self.value = value
+        self.meta = meta
+    }
+
+    public required init?(coder: NSCoder) {
+        self.name = coder.decodeObject(forKey: CodingKeys.name.rawValue) as! String
+        self.value = coder.decodeObject(forKey: CodingKeys.value.rawValue) as! Data
+
+        if coder.containsValue(forKey: CodingKeys.meta.rawValue) {
+            self.meta = coder.decodeObject(forKey: CodingKeys.meta.rawValue) as? [String: String]
+        }
+        else {
+            self.meta = nil
+        }
+    }
+
+    public func encode(with coder: NSCoder) {
+        coder.encode(self.name, forKey: CodingKeys.name.rawValue)
+        coder.encode(self.value, forKey: CodingKeys.value.rawValue)
+
+        if let meta = self.meta {
+            coder.encode(meta, forKey: CodingKeys.value.rawValue)
+        }
+    }
+}
