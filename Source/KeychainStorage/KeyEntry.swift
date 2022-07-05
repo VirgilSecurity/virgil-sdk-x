@@ -71,7 +71,7 @@ import Foundation
         coder.encode(self.value, forKey: CodingKeys.value.rawValue)
 
         if let meta = self.meta {
-            coder.encode(meta, forKey: CodingKeys.value.rawValue)
+            coder.encode(meta, forKey: CodingKeys.meta.rawValue)
         }
     }
 }
