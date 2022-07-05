@@ -55,8 +55,15 @@ import Foundation
     }
 
     public required init?(coder: NSCoder) {
-        self.name = coder.decodeObject(forKey: CodingKeys.name.rawValue) as! String
-        self.value = coder.decodeObject(forKey: CodingKeys.value.rawValue) as! Data
+        guard
+            let name = coder.decodeObject(forKey: CodingKeys.name.rawValue) as? String,
+            let value = coder.decodeObject(forKey: CodingKeys.value.rawValue) as? Data
+        else {
+            return nil
+        }
+
+        self.name = name
+        self.value = value
 
         if coder.containsValue(forKey: CodingKeys.meta.rawValue) {
             self.meta = coder.decodeObject(forKey: CodingKeys.meta.rawValue) as? [String: String]
