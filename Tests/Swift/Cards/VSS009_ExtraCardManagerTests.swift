@@ -54,7 +54,7 @@ class CardClientStub_STC34: CardClientProtocol {
     private var testsDict: Dictionary<String, Any>!
 
     init() {
-        let testFileURL = Bundle(for: type(of: self)).url(forResource: "Cards", withExtension: "json")!
+        let testFileURL = Bundle.module.url(forResource: "Cards", withExtension: "json")!
         let testFileData = try! Data(contentsOf: testFileURL)
         self.testsDict = try! JSONSerialization.jsonObject(with: testFileData, options: JSONSerialization.ReadingOptions.init(rawValue: 0)) as! Dictionary<String, Any>
     }
@@ -94,7 +94,7 @@ class VSS009_ExtraCardManagerTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        let testFileURL = Bundle(for: type(of: self)).url(forResource: "Cards", withExtension: "json")!
+        let testFileURL = Bundle.module.url(forResource: "Cards", withExtension: "json")!
         let testFileData = try! Data(contentsOf: testFileURL)
         self.testsDict = try! JSONSerialization.jsonObject(with: testFileData, options: JSONSerialization.ReadingOptions.init(rawValue: 0)) as! Dictionary<String, Any>
 

@@ -25,6 +25,19 @@ let package = Package(
                 .product(name: "VirgilCrypto", package: "virgil-crypto-x"),
             ],
             path: "Source"
+        ),
+        .testTarget(
+            name: "VirgilSDKTests",
+            dependencies: ["VirgilSDK"],
+            path: "Tests/Swift",
+            resources: [
+                .process("Data/Keyknox.json"),
+                .process("Data/Cards.json"),
+                .process("Data/TestConfig.plist")
+            ],
+            swiftSettings: [
+                .define("SPM_BUILD")
+            ]
         )
     ]
 )

@@ -82,8 +82,7 @@ private class Config: NSObject, Decodable {
     }
     
     @objc public static func readFromBundle() -> TestUtils {
-        let bundle = Bundle(for: self)
-        let configFileUrl = bundle.url(forResource: "TestConfig", withExtension: "plist")!
+        let configFileUrl = Bundle.module.url(forResource: "TestConfig", withExtension: "plist")!
         let data = try! Data(contentsOf: configFileUrl)
         
         return TestUtils(config: try! PropertyListDecoder().decode(Config.self, from: data))
