@@ -56,7 +56,9 @@ jobs:
       - name: Decrypt tests config
         run: ./decrypt-config.sh
       - name: SPM test
-      - run: brew install coreutils # install 'timeout' utility
-      - run: swift --version
-      - run: timeout 5m bash -c 'until swift build; do rm -fr .build && sleep 10; done' # fix for Swift Package Manager when it fails to download binary targets
-      - run: swift test
+        run: |
+            brew install coreutils # install 'timeout' utility
+            swift --version
+            # fix for Swift Package Manager when it fails to download binary targets
+            timeout 5m bash -c 'until swift build; do rm -fr .build && sleep 10; done'
+            swift test
