@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/VirgilSecurity/virgil-crypto-x.git",
       "state" : {
-        "branch" : "develop",
-        "revision" : "bb45915104076945276d8d32c515ecb5b2a1b362"
+        "revision" : "eee53f493c6dcdefe49378d2967b7fe750ad18e0",
+        "version" : "6.0.1"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/VirgilSecurity/virgil-cryptowrapper-x.git",
       "state" : {
-        "branch" : "develop",
-        "revision" : "aa65889e563b99527aefa8b53af4b769a92fbf21"
+        "revision" : "957bf2113ea570f1b934ffab5bbfbc8e12c7e6a3",
+        "version" : "0.16.1"
       }
     }
   ],
