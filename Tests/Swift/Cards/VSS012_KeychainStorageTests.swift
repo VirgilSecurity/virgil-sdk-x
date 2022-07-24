@@ -40,6 +40,7 @@ import VirgilCrypto
 
 class VSS012_KeychainStorageTests: XCTestCase {
     private var storage: KeychainStorage!
+    private var testsDict: Dictionary<String, Any>!
     
     // MARK: Setup
     override func setUp() {
@@ -48,6 +49,10 @@ class VSS012_KeychainStorageTests: XCTestCase {
         let storageParams = try! KeychainStorageParams.makeKeychainStorageParams(appName: "test")
 
         self.storage = KeychainStorage(storageParams: storageParams)
+
+        let testFileURL = Bundle.module.url(forResource: "Cards", withExtension: "json")!
+        let testFileData = try! Data(contentsOf: testFileURL)
+        self.testsDict = try! JSONSerialization.jsonObject(with: testFileData, options: JSONSerialization.ReadingOptions.init(rawValue: 0)) as! Dictionary<String, Any>
     }
     
     override func tearDown() {
@@ -191,12 +196,14 @@ class VSS012_KeychainStorageTests: XCTestCase {
         XCTAssert(!(try! self.storage.existsEntry(withName: name)))
     }
 
+    // Note: Starting from v8.0.1 VSSKeyEntry as objc class was deprecated. This test ensure that new swift class is intercompatible
     func test009_KeyEntryMigration() {
-        let name = "22AE48D7-37EB-456F-8BBA-2916F4AF3DBE"
-        let data = Data(base64Encoded: "QjZEQTRBNTgtRjRFQS00NDFFLUJGQ0EtQTE1OEEyNDVEQzMx")!
-        let meta = ["DE1307F5-8EFB-4C89-BCB9-318A5D46CDDF": "8C5E4A12-B671-4C08-A868-BA463E34D40D"]
+        let name = self.testsDict["Keychain.name"] as! String
+        let keychainDataString = self.testsDict["Keychain.data"] as! String
+        let data = Data(base64Encoded: keychainDataString)!
+        let meta = self.testsDict["Keychain.meta"] as! [String: String]
 
-        let dataString = "YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGpCwwVFhcfICEnVSRudWxs1A0ODxAREhMUVXZhbHVlVG1ldGFUbmFtZVYkY2xhc3OAA4AEgAKACF8QJDIyQUU0OEQ3LTM3RUItNDU2Ri04QkJBLTI5MTZGNEFGM0RCRU8QJEI2REE0QTU4LUY0RUEtNDQxRS1CRkNBLUExNThBMjQ1REMzMdMYGRAaHB5XTlMua2V5c1pOUy5vYmplY3RzoRuABaEdgAaAB18QJERFMTMwN0Y1LThFRkItNEM4OS1CQ0I5LTMxOEE1RDQ2Q0RERl8QJDhDNUU0QTEyLUI2NzEtNEMwOC1BODY4LUJBNDYzRTM0RDQwRNIiIyQlWiRjbGFzc25hbWVYJGNsYXNzZXNcTlNEaWN0aW9uYXJ5oiQmWE5TT2JqZWN00iIjKClbVlNTS2V5RW50cnmiKiZbVlNTS2V5RW50cnkACAARABoAJAApADIANwBJAEwAUQBTAF0AYwBsAHIAdwB8AIMAhQCHAIkAiwCyANkA4ADoAPMA9QD3APkA+wD9ASQBSwFQAVsBZAFxAXQBfQGCAY4BkQAAAAAAAAIBAAAAAAAAACsAAAAAAAAAAAAAAAAAAAGd"
+        let dataString = self.testsDict["Keychain.archieved_with_meta"] as! String
         let objectData = Data(base64Encoded: dataString)!
 
         let object = NSKeyedUnarchiver.unarchiveObject(with: objectData)
@@ -208,11 +215,12 @@ class VSS012_KeychainStorageTests: XCTestCase {
     }
 
     func test010_KeyEntryMigration_EmptyMeta() {
-        let name = "22AE48D7-37EB-456F-8BBA-2916F4AF3DBE"
-        let data = Data(base64Encoded: "QjZEQTRBNTgtRjRFQS00NDFFLUJGQ0EtQTE1OEEyNDVEQzMx")!
+        let name = self.testsDict["Keychain.name"] as! String
+        let keychainDataString = self.testsDict["Keychain.data"] as! String
+        let data = Data(base64Encoded: keychainDataString)!
         let meta: [String: String]? = nil
 
-        let dataString = "YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGlCwwVFhdVJG51bGzUDQ4PEBESExRVdmFsdWVUbWV0YVRuYW1lViRjbGFzc4ADgACAAoAEXxAkMjJBRTQ4RDctMzdFQi00NTZGLThCQkEtMjkxNkY0QUYzREJFTxAkQjZEQTRBNTgtRjRFQS00NDFFLUJGQ0EtQTE1OEEyNDVEQzMx0hgZGhtaJGNsYXNzbmFtZVgkY2xhc3Nlc1tWU1NLZXlFbnRyeaIcHVtWU1NLZXlFbnRyeVhOU09iamVjdAAIABEAGgAkACkAMgA3AEkATABRAFMAWQBfAGgAbgBzAHgAfwCBAIMAhQCHAK4A1QDaAOUA7gD6AP0BCQAAAAAAAAIBAAAAAAAAAB4AAAAAAAAAAAAAAAAAAAES"
+        let dataString = self.testsDict["Keychain.archieved"] as! String
         let objectData = Data(base64Encoded: dataString)!
 
         let object = NSKeyedUnarchiver.unarchiveObject(with: objectData)
