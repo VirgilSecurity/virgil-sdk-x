@@ -11,7 +11,7 @@ let package = Package(
     products: [
         .library(
             name: "VirgilSDK",
-            targets: ["VirgilSDK"]),
+            targets: ["VirgilSDK"])
     ],
 
     dependencies: [
@@ -22,7 +22,7 @@ let package = Package(
         .target(
             name: "VirgilSDK",
             dependencies: [
-                .product(name: "VirgilCrypto", package: "virgil-crypto-x"),
+                .product(name: "VirgilCrypto", package: "virgil-crypto-x")
             ],
             path: "Source"
         ),
