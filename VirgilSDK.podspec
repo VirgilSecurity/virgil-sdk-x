@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                        = "VirgilSDK"
-  s.version                     = "8.0.0"
+  s.version                     = "8.0.1"
   s.swift_version               = "5.0"
   s.license                     = { :type => "BSD", :file => "LICENSE" }
   s.summary                     = "Virgil SDK for Apple devices and languages."
