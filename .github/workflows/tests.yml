@@ -30,7 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Decrypt tests config
-        run: ./decrypt-config.sh
+        run: ./CI/decrypt-config.sh
       - name: Prepare Dependencies
         env:
             GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -54,7 +54,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Decrypt tests config
-        run: ./decrypt-config.sh
+        run: ./CI/decrypt-config.sh
       - name: SPM test
         run: |
             brew install coreutils # install 'timeout' utility
