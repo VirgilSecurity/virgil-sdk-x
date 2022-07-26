@@ -34,54 +34,51 @@
 // Lead Maintainer: Virgil Security Inc. <support@virgilsecurity.com>
 //
 
-#import "VSSKeyEntry.h"
+import Foundation
 
-NSString *const kVSSKeyEntryName = @"name";
-NSString *const kVSSKeyEntryValue = @"value";
-NSString *const kVSSKeyEntryMeta = @"meta";
+@objc(VSSKeyEntry) public class KeyEntry: NSObject, NSCoding {
 
-@interface VSSKeyEntry () <NSCoding>
+    public let name: String
+    public let value: Data
+    public let meta: [String: String]?
 
-- (instancetype __nonnull)initWithName:(NSString * __nonnull)name value:(NSData * __nonnull)value meta:(NSDictionary<NSString *, NSString *> * __nullable)meta;
-
-@end
-
-@implementation VSSKeyEntry
-
-- (instancetype)initWithCoder:(NSCoder *)coder {
-    self = [super init];
-    if (self) {
-        _name = [coder decodeObjectOfClass:[NSString class] forKey:kVSSKeyEntryName];
-        _value = [coder decodeObjectOfClass:[NSData class] forKey:kVSSKeyEntryValue];
-        _meta = [coder decodeObjectOfClass:[NSDictionary class] forKey:kVSSKeyEntryMeta];
+    private enum CodingKeys: String {
+        case name = "name"
+        case value = "value"
+        case meta = "meta"
     }
-    
-    return self;
-}
 
-- (void)encodeWithCoder:(NSCoder *)coder {
-    [coder encodeObject:self.name forKey:kVSSKeyEntryName];
-    [coder encodeObject:self.value forKey:kVSSKeyEntryValue];
-    [coder encodeObject:self.meta forKey:kVSSKeyEntryMeta];
-}
-
-- (instancetype)initWithName:(NSString *)name value:(NSData *)value meta:(NSDictionary<NSString *, NSString *> *)meta {
-    self = [super init];
-    if (self) {
-        _name = [name copy];
-        _value = [value copy];
-        _meta = [meta copy];
+    public init(name: String, value: Data, meta: [String: String]?) {
+        self.name = name
+        self.value = value
+        self.meta = meta
     }
-    
-    return self;
-}
 
-+ (VSSKeyEntry *)keyEntryWithName:(NSString *)name value:(NSData *)value meta:(NSDictionary<NSString *, NSString *> *)meta {
-    return [[VSSKeyEntry alloc] initWithName:name value:value meta:meta];
-}
+    public required init?(coder: NSCoder) {
+        guard
+            let name = coder.decodeObject(forKey: CodingKeys.name.rawValue) as? String,
+            let value = coder.decodeObject(forKey: CodingKeys.value.rawValue) as? Data
+        else {
+            return nil
+        }
 
-+ (VSSKeyEntry * __nonnull)keyEntryWithName:(NSString * __nonnull)name value:(NSData * __nonnull)value {
-    return [VSSKeyEntry keyEntryWithName:name value:value meta:nil];
-}
+        self.name = name
+        self.value = value
 
-@end
+        if coder.containsValue(forKey: CodingKeys.meta.rawValue) {
+            self.meta = coder.decodeObject(forKey: CodingKeys.meta.rawValue) as? [String: String]
+        }
+        else {
+            self.meta = nil
+        }
+    }
+
+    public func encode(with coder: NSCoder) {
+        coder.encode(self.name, forKey: CodingKeys.name.rawValue)
+        coder.encode(self.value, forKey: CodingKeys.value.rawValue)
+
+        if let meta = self.meta {
+            coder.encode(meta, forKey: CodingKeys.meta.rawValue)
+        }
+    }
+}

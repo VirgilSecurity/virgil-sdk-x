@@ -128,7 +128,10 @@ opt_in_rules:
   - void_return
   - weak_delegate
 
-excluded: 
+excluded:
+  - .build
+  - .swiftpm
+  - Package.swift
   - Carthage
   - Tests
   - SDKTestApp iOS

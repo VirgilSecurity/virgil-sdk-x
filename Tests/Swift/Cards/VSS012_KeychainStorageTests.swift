@@ -40,6 +40,7 @@ import VirgilCrypto
 
 class VSS012_KeychainStorageTests: XCTestCase {
     private var storage: KeychainStorage!
+    private var testsDict: Dictionary<String, Any>!
     
     // MARK: Setup
     override func setUp() {
@@ -48,6 +49,10 @@ class VSS012_KeychainStorageTests: XCTestCase {
         let storageParams = try! KeychainStorageParams.makeKeychainStorageParams(appName: "test")
 
         self.storage = KeychainStorage(storageParams: storageParams)
+
+        let testFileURL = Bundle.module.url(forResource: "Cards", withExtension: "json")!
+        let testFileData = try! Data(contentsOf: testFileURL)
+        self.testsDict = try! JSONSerialization.jsonObject(with: testFileData, options: JSONSerialization.ReadingOptions.init(rawValue: 0)) as! Dictionary<String, Any>
     }
     
     override func tearDown() {
@@ -189,5 +194,40 @@ class VSS012_KeychainStorageTests: XCTestCase {
         
         try! self.storage.deleteEntry(withName: name)
         XCTAssert(!(try! self.storage.existsEntry(withName: name)))
+    }
+
+    // Note: Starting from v8.0.1 VSSKeyEntry as objc class was deprecated. This test ensure that new swift class is intercompatible
+    func test009_KeyEntryMigration() {
+        let name = self.testsDict["Keychain.name"] as! String
+        let keychainDataString = self.testsDict["Keychain.data"] as! String
+        let data = Data(base64Encoded: keychainDataString)!
+        let meta = self.testsDict["Keychain.meta"] as! [String: String]
+
+        let dataString = self.testsDict["Keychain.archieved_with_meta"] as! String
+        let objectData = Data(base64Encoded: dataString)!
+
+        let object = NSKeyedUnarchiver.unarchiveObject(with: objectData)
+        let storedKeyEntry = object as! KeyEntry
+
+        XCTAssert(storedKeyEntry.name == name)
+        XCTAssert(storedKeyEntry.value == data)
+        XCTAssert(storedKeyEntry.meta == meta)
+    }
+
+    func test010_KeyEntryMigration_EmptyMeta() {
+        let name = self.testsDict["Keychain.name"] as! String
+        let keychainDataString = self.testsDict["Keychain.data"] as! String
+        let data = Data(base64Encoded: keychainDataString)!
+        let meta: [String: String]? = nil
+
+        let dataString = self.testsDict["Keychain.archieved"] as! String
+        let objectData = Data(base64Encoded: dataString)!
+
+        let object = NSKeyedUnarchiver.unarchiveObject(with: objectData)
+        let storedKeyEntry = object as! KeyEntry
+
+        XCTAssert(storedKeyEntry.name == name)
+        XCTAssert(storedKeyEntry.value == data)
+        XCTAssert(storedKeyEntry.meta == meta)
     }
 }
