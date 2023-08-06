@@ -8,9 +8,9 @@ on:
 jobs:
   Tests:
     name: Tests
-    runs-on: macOS-12
+    runs-on: macOS-13
     env:
-      DEVELOPER_DIR: /Applications/Xcode_13.4.1.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_14.3.1.app/Contents/Developer
       PROJECT: VirgilSDK.xcodeproj
     strategy:
       matrix:
@@ -53,7 +53,7 @@ jobs:
                 xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -destination "${{ matrix.destination }}" -configuration Release clean build | xcpretty;
             fi
   SPM:
-    runs-on: macOS-12
+    runs-on: macOS-13
     steps:
       - uses: actions/checkout@v2
       - name: Decrypt tests config
