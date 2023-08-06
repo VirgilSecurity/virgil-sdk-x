@@ -28,13 +28,3 @@ jobs:
         run: ./CI/publish-cocoapods.sh
         env:
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
-
-      # NOT supported for now due to issues with Carthage
-      # - name: Build Carthage Binary
-      #   run: |
-      #       ./CI/publish-carthage.sh;
-      # - name: Upload Carthage Binary
-      #   uses: AButler/upload-release-assets@v2.0
-      #   with:
-      #     files: 'VirgilSDK.xcframework.zip'
-      #     repo-token: ${{ secrets.GITHUB_TOKEN }}
