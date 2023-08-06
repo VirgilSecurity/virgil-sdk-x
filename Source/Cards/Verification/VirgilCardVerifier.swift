@@ -41,12 +41,12 @@ import VirgilCrypto
 /// By default verifies Card's self signature and Virgil Cards Service signature
 @objc(VSSVirgilCardVerifier) public final class VirgilCardVerifier: NSObject, CardVerifier {
     /// Signer identifier for self signatures
-    @objc public static let selfSignerIdentifier = "self"
+    @objc public static var selfSignerIdentifier = "self"
     /// Signer identifier for Virgil Cards Service signatures
-    @objc public static let virgilSignerIdentifier = "virgil"
+    @objc public static var virgilSignerIdentifier = "virgil"
     /// Base64 encoded string with Virgil Service's Public Key for verifying Virgil Cards Service signatures
     /// - Note: Can be found [here](https://dashboard.virgilsecurity.com)
-    @objc public static let virgilPublicKeyBase64 = "MCowBQYDK2VwAyEAljOYGANYiVq1WbvVvoYIKtvZi2ji9bAhxyu6iV/LF8M="
+    @objc public static var virgilPublicKeyBase64 = "MCowBQYDK2VwAyEAljOYGANYiVq1WbvVvoYIKtvZi2ji9bAhxyu6iV/LF8M="
 
     /// Crypto instance
     @objc public let crypto: VirgilCrypto

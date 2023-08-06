@@ -29,10 +29,10 @@ In case you need additional security functionality for multi-device support, gro
 Virgil Core SDK is provided as a set of frameworks. These frameworks are distributed via Carthage and CocoaPods. In this guide you'll also find one more package - Virgil Crypto Library, that is used by the SDK to perform cryptographic operations.
 
 All frameworks are available for:
-- iOS 9.0+
+- iOS 11.0+
 - macOS 10.11+
-- tvOS 9.0+
-- watchOS 2.0+
+- tvOS 11.0+
+- watchOS 4.0+
 
 ### COCOAPODS
 
@@ -109,6 +109,12 @@ Additionally, you'll need to copy debug symbols for debugging and crash reportin
 
 On your application target’s “Build Phases” settings tab, click the “+” icon and choose “New Copy Files Phase”.
 Click the “Destination” drop-down menu and select “Products Directory”. For each framework, drag and drop corresponding dSYM file.
+
+### Swift Package Manager
+
+[Swift Package Manager](https://www.swift.org/package-manager) is an official Apple tool for managing the distribution of Swift code.
+
+[The Apple documentation](https://developer.apple.com/documentation/swift_packages/adding_package_dependencies_to_your_app) can be used to add frameworks to an Xcode project.
 
 ## Configure SDK
 
