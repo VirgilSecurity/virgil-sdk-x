@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -500,22 +500,6 @@
 		973E0996287B079800F11F3F /* Bundle+SPM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E0995287B079800F11F3F /* Bundle+SPM.swift */; };
 		973E0997287B079800F11F3F /* Bundle+SPM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E0995287B079800F11F3F /* Bundle+SPM.swift */; };
 		973E0998287B079800F11F3F /* Bundle+SPM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E0995287B079800F11F3F /* Bundle+SPM.swift */; };
-		9742198726A76DF700CF790B /* VirgilCryptoFoundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9742198326A76DF600CF790B /* VirgilCryptoFoundation.xcframework */; };
-		9742198926A76DF700CF790B /* VirgilCrypto.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9742198426A76DF700CF790B /* VirgilCrypto.xcframework */; };
-		9742198B26A76DF800CF790B /* VSCCommon.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9742198526A76DF700CF790B /* VSCCommon.xcframework */; };
-		9742198D26A76DF800CF790B /* VSCFoundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9742198626A76DF700CF790B /* VSCFoundation.xcframework */; };
-		9742199026A76E6F00CF790B /* VirgilCrypto.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9742198426A76DF700CF790B /* VirgilCrypto.xcframework */; };
-		9742199226A76E6F00CF790B /* VirgilCryptoFoundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9742198326A76DF600CF790B /* VirgilCryptoFoundation.xcframework */; };
-		9742199426A76E6F00CF790B /* VSCCommon.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9742198526A76DF700CF790B /* VSCCommon.xcframework */; };
-		9742199626A76E6F00CF790B /* VSCFoundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9742198626A76DF700CF790B /* VSCFoundation.xcframework */; };
-		9742199926A76E8000CF790B /* VirgilCrypto.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9742198426A76DF700CF790B /* VirgilCrypto.xcframework */; };
-		9742199B26A76E8000CF790B /* VirgilCryptoFoundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9742198326A76DF600CF790B /* VirgilCryptoFoundation.xcframework */; };
-		9742199D26A76E8000CF790B /* VSCCommon.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9742198526A76DF700CF790B /* VSCCommon.xcframework */; };
-		9742199F26A76E8000CF790B /* VSCFoundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9742198626A76DF700CF790B /* VSCFoundation.xcframework */; };
-		974219A226A76E9000CF790B /* VirgilCrypto.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9742198426A76DF700CF790B /* VirgilCrypto.xcframework */; };
-		974219A426A76E9000CF790B /* VirgilCryptoFoundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9742198326A76DF600CF790B /* VirgilCryptoFoundation.xcframework */; };
-		974219A626A76E9000CF790B /* VSCCommon.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9742198526A76DF700CF790B /* VSCCommon.xcframework */; };
-		974219A826A76E9000CF790B /* VSCFoundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9742198626A76DF700CF790B /* VSCFoundation.xcframework */; };
 		974219AB26A76EE700CF790B /* VirgilCrypto.xcframework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9742198426A76DF700CF790B /* VirgilCrypto.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		974219AC26A76EE700CF790B /* VirgilCryptoFoundation.xcframework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9742198326A76DF600CF790B /* VirgilCryptoFoundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		974219AD26A76EE700CF790B /* VSCCommon.xcframework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9742198526A76DF700CF790B /* VSCCommon.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -532,6 +516,10 @@
 		97A0C03028735D7000599BBD /* KeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0C02E28735D6F00599BBD /* KeyEntry.swift */; };
 		97A0C03128735D7000599BBD /* KeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0C02E28735D6F00599BBD /* KeyEntry.swift */; };
 		97A0C03228735D7000599BBD /* KeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0C02E28735D6F00599BBD /* KeyEntry.swift */; };
+		F4474D772A7F49D00098EEC0 /* VirgilCrypto in Frameworks */ = {isa = PBXBuildFile; productRef = F4474D762A7F49D00098EEC0 /* VirgilCrypto */; };
+		F4474D792A7F49DA0098EEC0 /* VirgilCrypto in Frameworks */ = {isa = PBXBuildFile; productRef = F4474D782A7F49DA0098EEC0 /* VirgilCrypto */; };
+		F4474D7B2A7F49DF0098EEC0 /* VirgilCrypto in Frameworks */ = {isa = PBXBuildFile; productRef = F4474D7A2A7F49DF0098EEC0 /* VirgilCrypto */; };
+		F4474D7D2A7F49E80098EEC0 /* VirgilCrypto in Frameworks */ = {isa = PBXBuildFile; productRef = F4474D7C2A7F49E80098EEC0 /* VirgilCrypto */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -799,10 +787,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9742199626A76E6F00CF790B /* VSCFoundation.xcframework in Frameworks */,
-				9742199426A76E6F00CF790B /* VSCCommon.xcframework in Frameworks */,
-				9742199226A76E6F00CF790B /* VirgilCryptoFoundation.xcframework in Frameworks */,
-				9742199026A76E6F00CF790B /* VirgilCrypto.xcframework in Frameworks */,
+				F4474D792A7F49DA0098EEC0 /* VirgilCrypto in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -818,10 +803,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9742199F26A76E8000CF790B /* VSCFoundation.xcframework in Frameworks */,
-				9742199D26A76E8000CF790B /* VSCCommon.xcframework in Frameworks */,
-				9742199B26A76E8000CF790B /* VirgilCryptoFoundation.xcframework in Frameworks */,
-				9742199926A76E8000CF790B /* VirgilCrypto.xcframework in Frameworks */,
+				F4474D7B2A7F49DF0098EEC0 /* VirgilCrypto in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -829,10 +811,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				974219A826A76E9000CF790B /* VSCFoundation.xcframework in Frameworks */,
-				974219A626A76E9000CF790B /* VSCCommon.xcframework in Frameworks */,
-				974219A426A76E9000CF790B /* VirgilCryptoFoundation.xcframework in Frameworks */,
-				974219A226A76E9000CF790B /* VirgilCrypto.xcframework in Frameworks */,
+				F4474D7D2A7F49E80098EEC0 /* VirgilCrypto in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,11 +848,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9742198B26A76DF800CF790B /* VSCCommon.xcframework in Frameworks */,
-				9742198926A76DF700CF790B /* VirgilCrypto.xcframework in Frameworks */,
-				9742198726A76DF700CF790B /* VirgilCryptoFoundation.xcframework in Frameworks */,
+				F4474D772A7F49D00098EEC0 /* VirgilCrypto in Frameworks */,
 				42CBE3D521ECBC19000F99E6 /* Security.framework in Frameworks */,
-				9742198D26A76DF800CF790B /* VSCFoundation.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1385,6 +1361,9 @@
 			dependencies = (
 			);
 			name = "VirgilSDK macOS";
+			packageProductDependencies = (
+				F4474D782A7F49DA0098EEC0 /* VirgilCrypto */,
+			);
 			productName = "VirgilSDK macOS";
 			productReference = 422499BA1EB39B380032F556 /* VirgilSDK.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1422,6 +1401,9 @@
 			dependencies = (
 			);
 			name = "VirgilSDK tvOS";
+			packageProductDependencies = (
+				F4474D7A2A7F49DF0098EEC0 /* VirgilCrypto */,
+			);
 			productName = "VirgilSDK tvOS";
 			productReference = 4284C3861F6BE95700B75491 /* VirgilSDK.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1440,6 +1422,9 @@
 			dependencies = (
 			);
 			name = "VirgilSDK watchOS";
+			packageProductDependencies = (
+				F4474D7C2A7F49E80098EEC0 /* VirgilCrypto */,
+			);
 			productName = "VirgilSDK watchOS";
 			productReference = 4284C3951F6BE97C00B75491 /* VirgilSDK.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1531,6 +1516,9 @@
 			dependencies = (
 			);
 			name = "VirgilSDK iOS";
+			packageProductDependencies = (
+				F4474D762A7F49D00098EEC0 /* VirgilCrypto */,
+			);
 			productName = "VirgilSDK iOS";
 			productReference = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1541,8 +1529,9 @@
 		3614030D1BB2E05F002E69CA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1430;
 				ORGANIZATIONNAME = VirgilSecurity;
 				TargetAttributes = {
 					422499B91EB39B380032F556 = {
@@ -1607,6 +1596,10 @@
 				Base,
 			);
 			mainGroup = 3614030C1BB2E05F002E69CA;
+			packageReferences = (
+				F4474D752A7F49D00098EEC0 /* XCRemoteSwiftPackageReference "virgil-crypto-x" */,
+				F4474D7E2A7F4AB60098EEC0 /* XCRemoteSwiftPackageReference "virgil-cryptowrapper-x" */,
+			);
 			productRefGroup = 361403161BB2E05F002E69CA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -2309,6 +2302,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2332,8 +2326,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = VirgilSDK/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
@@ -2366,6 +2358,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2386,8 +2379,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = VirgilSDK/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_MODULE_NAME = VirgilSDK;
 				PRODUCT_NAME = VirgilSDK;
@@ -2409,12 +2400,14 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build",
@@ -2426,7 +2419,9 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDK;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2447,11 +2442,13 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build",
@@ -2463,7 +2460,9 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDK;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -2482,6 +2481,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2512,6 +2512,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build",
@@ -2534,6 +2535,7 @@
 		42745A521ED43D9400C1DEEC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -2541,6 +2543,7 @@
 		42745A531ED43D9400C1DEEC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -2560,6 +2563,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build",
@@ -2571,6 +2575,9 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDK;
 				PRODUCT_NAME = VirgilSDK;
 				SDKROOT = appletvos;
@@ -2579,7 +2586,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -2599,6 +2606,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build",
@@ -2610,13 +2618,16 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDK;
 				PRODUCT_NAME = VirgilSDK;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 11.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -2637,6 +2648,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build",
@@ -2648,6 +2660,9 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDK;
 				PRODUCT_NAME = VirgilSDK;
 				SDKROOT = watchos;
@@ -2658,7 +2673,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Debug;
 		};
@@ -2676,6 +2691,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build",
@@ -2687,6 +2703,9 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDK;
 				PRODUCT_NAME = VirgilSDK;
 				SDKROOT = watchos;
@@ -2695,7 +2714,7 @@
 				TARGETED_DEVICE_FAMILY = 4;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -2719,11 +2738,12 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "SDKTestApp iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.SDKTestApp-iOS";
 				PRODUCT_MODULE_NAME = SDKTestApp_iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2749,11 +2769,12 @@
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "SDKTestApp iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.SDKTestApp-iOS";
 				PRODUCT_MODULE_NAME = SDKTestApp_iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2786,7 +2807,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2823,7 +2844,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2862,6 +2883,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.SDKTestApp-tvOS";
 				PRODUCT_MODULE_NAME = SDKTestApp_tvOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2870,7 +2892,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Debug;
 		};
@@ -2892,13 +2914,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.SDKTestApp-tvOS";
 				PRODUCT_MODULE_NAME = SDKTestApp_tvOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Release;
 		};
@@ -2939,7 +2962,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SDKTestApp tvOS.app/SDKTestApp tvOS";
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Debug;
 		};
@@ -2973,7 +2996,7 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SDKTestApp tvOS.app/SDKTestApp tvOS";
-				TVOS_DEPLOYMENT_TARGET = 9.0;
+				TVOS_DEPLOYMENT_TARGET = 12.0;
 			};
 			name = Release;
 		};
@@ -2992,17 +3015,21 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build",
 				);
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDK;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -3026,17 +3053,21 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build",
 				);
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu99 gnu++11";
 				PRODUCT_BUNDLE_IDENTIFIER = com.virgilsecurity.VirgilSDK;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -3148,6 +3179,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F4474D752A7F49D00098EEC0 /* XCRemoteSwiftPackageReference "virgil-crypto-x" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/VirgilSecurity/virgil-crypto-x";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		F4474D7E2A7F4AB60098EEC0 /* XCRemoteSwiftPackageReference "virgil-cryptowrapper-x" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/VirgilSecurity/virgil-cryptowrapper-x";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.16.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F4474D762A7F49D00098EEC0 /* VirgilCrypto */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4474D752A7F49D00098EEC0 /* XCRemoteSwiftPackageReference "virgil-crypto-x" */;
+			productName = VirgilCrypto;
+		};
+		F4474D782A7F49DA0098EEC0 /* VirgilCrypto */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4474D752A7F49D00098EEC0 /* XCRemoteSwiftPackageReference "virgil-crypto-x" */;
+			productName = VirgilCrypto;
+		};
+		F4474D7A2A7F49DF0098EEC0 /* VirgilCrypto */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4474D752A7F49D00098EEC0 /* XCRemoteSwiftPackageReference "virgil-crypto-x" */;
+			productName = VirgilCrypto;
+		};
+		F4474D7C2A7F49E80098EEC0 /* VirgilCrypto */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4474D752A7F49D00098EEC0 /* XCRemoteSwiftPackageReference "virgil-crypto-x" */;
+			productName = VirgilCrypto;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3614030D1BB2E05F002E69CA /* Project object */;
 }

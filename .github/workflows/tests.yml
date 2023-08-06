@@ -35,12 +35,6 @@ jobs:
         env:
             ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
             ENCRYPTION_IV: ${{ secrets.ENCRYPTION_IV }}
-      - name: Prepare Dependencies
-        env:
-            GITHUB_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-            carthage version
-            carthage bootstrap --use-xcframeworks --platform ${{ matrix.prefix }}
       - name: Run ${{ matrix.prefix }} Tests
         run: |
             SCHEME="VirgilSDK ${{ matrix.prefix }}"
