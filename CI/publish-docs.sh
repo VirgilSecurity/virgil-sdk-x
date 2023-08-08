@@ -42,7 +42,7 @@ mkdir -p ${DOCS_DIR}
 git clone -b gh-pages "${REPO_PATH}" --single-branch ${DOCS_DIR}
 
 # Define SDK versions
-VIRGIL_SDK_VERSION="v9.0.0-dev.1"
+VIRGIL_SDK_VERSION="v9.0.0"
 CURRENT_VERSION_DIR="${DOCS_DIR}/${VIRGIL_SDK_VERSION}"
 
 # Generate the HTML documentation.
