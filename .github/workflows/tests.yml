@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - destination: "OS=17.0,name=iPhone 14 Pro"
+          - destination: "OS=17.0,name=iPhone 14"
             prefix: "iOS"
             test: "1"
           - destination: "arch=x86_64"
@@ -39,7 +39,7 @@ jobs:
         uses: nick-fields/retry@v2
         with:
           max_attempts: 20
-          timeout_minutes: 20
+          timeout_minutes: 30
           retry_on: error
           command: |
             SCHEME="VirgilSDK ${{ matrix.prefix }}"
