@@ -39,7 +39,7 @@ jobs:
         uses: nick-fields/retry@v2
         with:
           max_attempts: 20
-          timeout_minutes: 10
+          timeout_minutes: 20
           retry_on: error
           command: |
             SCHEME="VirgilSDK ${{ matrix.prefix }}"
