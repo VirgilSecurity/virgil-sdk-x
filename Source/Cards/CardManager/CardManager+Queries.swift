@@ -44,7 +44,7 @@ extension CardManager {
     ///
     /// - Parameter cardId: identifier of Virgil Card to find
     /// - Returns: CallbackOperation<GetCardResponse> for getting `GetCardResponse` with verified Virgil Card
-    open func getCard(withId cardId: String) -> GenericOperation<Card> {
+    public func getCard(withId cardId: String) -> GenericOperation<Card> {
         return CallbackOperation { _, completion in
             do {
                 let responseModel = try self.cardClient.getCard(withId: cardId)
@@ -135,7 +135,7 @@ extension CardManager {
     ///
     /// - Parameter rawCard: RawSignedModel of Card to create
     /// - Returns: CallbackOperation<Card> for creating Virgil Card instance
-    open func publishCard(rawCard: RawSignedModel) -> GenericOperation<Card> {
+    public func publishCard(rawCard: RawSignedModel) -> GenericOperation<Card> {
         return CallbackOperation { _, completion in
             do {
                 let signedRawCard = try CallbackOperation<RawSignedModel> { _, completion in
@@ -185,7 +185,7 @@ extension CardManager {
     ///   - extraFields: Dictionary with extra data to sign with model. Should be JSON-compatible
     /// - Returns: CallbackOperation<Card> for generating self signed RawSignedModel and
     ///            creating Virgil Card instance on the Virgil Cards Service
-    open func publishCard(privateKey: VirgilPrivateKey, publicKey: VirgilPublicKey,
+    public func publishCard(privateKey: VirgilPrivateKey, publicKey: VirgilPublicKey,
                           identity: String, previousCardId: String? = nil,
                           extraFields: [String: String]? = nil) -> GenericOperation<Card> {
         return CallbackOperation { _, completion in
@@ -214,7 +214,7 @@ extension CardManager {
     ///
     /// - Parameter identities: identities of cards to search
     /// - Returns: CallbackOperation<[Card]> for performing search of Virgil Cards
-    open func searchCards(identities: [String]) -> GenericOperation<[Card]> {
+    public func searchCards(identities: [String]) -> GenericOperation<[Card]> {
         return CallbackOperation { _, completion in
             do {
                 let cards = try self.cardClient.searchCards(identities: identities)
@@ -253,7 +253,7 @@ extension CardManager {
     ///
     /// - Parameter cardIds: card ids to check
     /// - Returns: GenericOperation<[String]>
-    open func getOutdated(cardIds: [String]) -> GenericOperation<[String]> {
+    public func getOutdated(cardIds: [String]) -> GenericOperation<[String]> {
         return CallbackOperation { _, completion in
             do {
                 let cardIds = try self.cardClient.getOutdated(cardIds: cardIds)
@@ -273,7 +273,7 @@ extension CardManager {
     ///
     /// - Parameter cardId: identifier of card to revoke
     /// - Returns: CallbackOperation<Void>
-    open func revokeCard(withId cardId: String) -> GenericOperation<Void> {
+    public func revokeCard(withId cardId: String) -> GenericOperation<Void> {
         return CallbackOperation { _, completion in
             do {
                 try self.cardClient.revokeCard(withId: cardId)

@@ -81,7 +81,7 @@ open class AsyncOperation: Operation {
 
     /// Call this function when you task is finished
     /// WARNING: You do not need override this function. Override main() func instead
-    open func finish() {
+    public func finish() {
         self.state = .finished
     }
 

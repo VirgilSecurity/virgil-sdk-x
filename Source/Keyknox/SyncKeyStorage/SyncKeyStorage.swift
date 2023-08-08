@@ -116,7 +116,7 @@ extension SyncKeyStorage {
     ///   - data: New data
     ///   - meta: New meta
     /// - Returns: GenericOperation<Void>
-    open func updateEntry(withName name: String, data: Data, meta: [String: String]?) -> GenericOperation<Void> {
+    public func updateEntry(withName name: String, data: Data, meta: [String: String]?) -> GenericOperation<Void> {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
@@ -162,7 +162,7 @@ extension SyncKeyStorage {
     ///
     /// - Parameter names: Names to delete
     /// - Returns: GenericOperation<Void>
-    open func deleteEntries(withNames names: [String]) -> GenericOperation<Void> {
+    public func deleteEntries(withNames names: [String]) -> GenericOperation<Void> {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
@@ -191,7 +191,7 @@ extension SyncKeyStorage {
     ///
     /// - Parameter name: Name
     /// - Returns: GenericOperation<Void>
-    open func deleteEntry(withName name: String) -> GenericOperation<Void> {
+    public func deleteEntry(withName name: String) -> GenericOperation<Void> {
         return self.deleteEntries(withNames: [name])
     }
 
@@ -202,7 +202,7 @@ extension SyncKeyStorage {
     ///   - data: Data
     ///   - meta: Meta
     /// - Returns: GenericOperation<KeychainEntry>
-    open func storeEntry(withName name: String, data: Data,
+    public func storeEntry(withName name: String, data: Data,
                          meta: [String: String]? = nil) -> GenericOperation<KeychainEntry> {
         return CallbackOperation { _, completion in
             self.queue.async {
@@ -226,7 +226,7 @@ extension SyncKeyStorage {
     ///
     /// - Parameter keyEntries: Key entries to store
     /// - Returns: GenericOperation<[KeychainEntry]>
-    open func storeEntries(_ keyEntries: [KeyknoxKeyEntry]) -> GenericOperation<[KeychainEntry]> {
+    public func storeEntries(_ keyEntries: [KeyknoxKeyEntry]) -> GenericOperation<[KeychainEntry]> {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
@@ -273,7 +273,7 @@ extension SyncKeyStorage {
     /// Performs synchronization between Keychain and Keyknox Cloud
     ///
     /// - Returns: GenericOperation<Void>
-    open func sync() -> GenericOperation<Void> {
+    public func sync() -> GenericOperation<Void> {
         return CallbackOperation { _, completion in
             self.queue.async {
                 let retrieveCloudEntriesOperation = self.cloudKeyStorage.retrieveCloudEntries()
@@ -337,7 +337,7 @@ extension SyncKeyStorage {
     ///   - newPublicKeys: New public keys
     ///   - newPrivateKey: New private key
     /// - Returns: GenericOperation<Void>
-    open func updateRecipients(newPublicKeys: [VirgilPublicKey]? = nil,
+    public func updateRecipients(newPublicKeys: [VirgilPublicKey]? = nil,
                                newPrivateKey: VirgilPrivateKey? = nil) -> GenericOperation<Void> {
         return self.cloudKeyStorage.updateRecipients(newPublicKeys: newPublicKeys,
                                                      newPrivateKey: newPrivateKey)
@@ -347,7 +347,7 @@ extension SyncKeyStorage {
     ///
     /// - Returns: Keychain entries
     /// - Throws: Rethrows from `KeychainStorage`
-    open func retrieveAllEntries() throws -> [KeychainEntry] {
+    public func retrieveAllEntries() throws -> [KeychainEntry] {
         return try self.keychainStorage.retrieveAllEntries().compactMap(self.keychainUtils.filterKeyknoxKeychainEntry)
     }
 
@@ -356,14 +356,14 @@ extension SyncKeyStorage {
     /// - Parameter name: Entry name
     /// - Returns: true if entry exists, false otherwise
     /// - Throws: Rethrows from `KeychainStorage`
-    open func existsEntry(withName name: String) throws -> Bool {
+    public func existsEntry(withName name: String) throws -> Bool {
         return try self.keychainStorage.existsEntry(withName: name)
     }
 
     /// Deletes all entries in both Keychain and Keyknox Cloud
     ///
     /// - Returns: GenericOperation<Void>
-    open func deleteAllEntries() -> GenericOperation<Void> {
+    public func deleteAllEntries() -> GenericOperation<Void> {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
