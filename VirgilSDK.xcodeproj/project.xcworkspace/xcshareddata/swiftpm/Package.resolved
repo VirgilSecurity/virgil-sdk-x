@@ -12,7 +12,7 @@
     {
       "identity" : "virgil-crypto-x",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/VirgilSecurity/virgil-crypto-x.git",
+      "location" : "https://github.com/VirgilSecurity/virgil-crypto-x",
       "state" : {
         "revision" : "96fef3abb3c96eec0c14cdf3f406658776071dbd",
         "version" : "7.0.0"

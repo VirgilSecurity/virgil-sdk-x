@@ -88,7 +88,7 @@ import Foundation
     /// - Throws:
     ///   - Rethrows from `AccessTokenProvider`
     ///   - Rethrows from `HttpConnection`
-    open func sendWithRetry(_ request: ServiceRequest,
+    public func sendWithRetry(_ request: ServiceRequest,
                             retry: RetryProtocol,
                             tokenContext: TokenContext) throws -> GenericOperation<Response> {
         return NetworkRetryOperation(request: request,
@@ -116,7 +116,7 @@ import Foundation
     ///   - ServiceError if service responded with correct error json
     ///   - NSError with http response string in the description, if present
     ///   - NSError without description in case of empty response
-    open func handleError(statusCode: Int, body: Data?) -> Error {
+    public func handleError(statusCode: Int, body: Data?) -> Error {
         if let body = body {
             if let rawServiceError = try? JSONDecoder().decode(RawServiceError.self, from: body) {
                 return ServiceError(httpStatusCode: statusCode,
@@ -139,7 +139,7 @@ import Foundation
     ///
     /// - Parameter response: response
     /// - Throws: See BaseClient.handleError
-    open func validateResponse(_ response: Response) throws {
+    public func validateResponse(_ response: Response) throws {
         guard 200..<300 ~= response.statusCode else {
             throw self.handleError(statusCode: response.statusCode, body: response.body)
         }
@@ -152,7 +152,7 @@ import Foundation
     /// - Throws:
     ///   - BaseClientError.noBody if body was not found in the response
     ///   - Rethrows from `JSONDecoder`
-    open func processResponse<T: Decodable>(_ response: Response) throws -> T {
+    public func processResponse<T: Decodable>(_ response: Response) throws -> T {
         try self.validateResponse(response)
 
         guard let data = response.body else {

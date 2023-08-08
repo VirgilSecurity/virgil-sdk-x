@@ -41,10 +41,8 @@ DOCS_DIR="${GITHUB_WORKSPACE}/docs"
 mkdir -p ${DOCS_DIR}
 git clone -b gh-pages "${REPO_PATH}" --single-branch ${DOCS_DIR}
 
-INFOPLIST_FILE_PATH="${GITHUB_WORKSPACE}/VirgilSDK/Info.plist"
-
 # Define SDK versions
-VIRGIL_SDK_VERSION="v"$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "${INFOPLIST_FILE_PATH}")
+VIRGIL_SDK_VERSION="v9.0.0"
 CURRENT_VERSION_DIR="${DOCS_DIR}/${VIRGIL_SDK_VERSION}"
 
 # Generate the HTML documentation.

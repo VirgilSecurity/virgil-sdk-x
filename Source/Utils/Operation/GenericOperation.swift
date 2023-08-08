@@ -83,7 +83,7 @@ open class GenericOperation<T>: AsyncOperation {
     /// Creates OperationQueue and starts operation
     ///
     /// - Parameter completion: Completion callback
-    open func start(completion: @escaping (Result<T, Error>) -> Void) {
+    public func start(completion: @escaping (Result<T, Error>) -> Void) {
         guard !self.isCancelled else {
             self.finish()
             return
@@ -117,7 +117,7 @@ open class GenericOperation<T>: AsyncOperation {
     /// Creates OperationQueue and starts operation
     ///
     /// - Parameter completion: Completion callback
-    open func start(completion: @escaping (T?, Error?) -> Void) {
+    public func start(completion: @escaping (T?, Error?) -> Void) {
         self.start { result in
             switch result {
             case .success(let res):
@@ -132,7 +132,7 @@ open class GenericOperation<T>: AsyncOperation {
     ///
     /// - Parameter timeout: Operation timeout
     /// - Returns: Operation Result
-    open func startSync(timeout: TimeInterval? = nil) -> Result<T, Error> {
+    public func startSync(timeout: TimeInterval? = nil) -> Result<T, Error> {
         let queue = OperationQueue()
 
         queue.addOperation(self)

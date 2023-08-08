@@ -542,7 +542,7 @@ import LocalAuthentication
     /// - Parameter name: Alias
     /// - Returns: true if entry exists, false otherwise
     /// - Throws: KeychainStorageError
-    open func existsEntry(withName name: String, queryOptions: KeychainQueryOptions?) throws -> Bool {
+    public func existsEntry(withName name: String, queryOptions: KeychainQueryOptions?) throws -> Bool {
         do {
             _ = try self.retrieveEntry(withName: name, queryOptions: queryOptions)
 

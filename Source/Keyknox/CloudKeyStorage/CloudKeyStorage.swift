@@ -135,7 +135,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
     ///
     /// - Parameter keyEntries: Entries to store
     /// - Returns: GenericOperation<[CloudEntry]>
-    open func storeEntries(_ keyEntries: [KeyknoxKeyEntry]) -> GenericOperation<[CloudEntry]> {
+    public func storeEntries(_ keyEntries: [KeyknoxKeyEntry]) -> GenericOperation<[CloudEntry]> {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
@@ -155,7 +155,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
     ///   - data: Data
     ///   - meta: Meta
     /// - Returns: GenericOperation<CloudEntry>
-    open func storeEntry(withName name: String, data: Data,
+    public func storeEntry(withName name: String, data: Data,
                          meta: [String: String]? = nil) -> GenericOperation<CloudEntry> {
         return CallbackOperation { _, completion in
             self.queue.async {
@@ -181,7 +181,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
     ///   - data: New data
     ///   - meta: New meta
     /// - Returns: GenericOperation<CloudEntry>
-    open func updateEntry(withName name: String, data: Data,
+    public func updateEntry(withName name: String, data: Data,
                           meta: [String: String]? = nil) -> GenericOperation<CloudEntry> {
         return CallbackOperation { _, completion in
             self.queue.async {
@@ -257,7 +257,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
     /// - Parameter name: Entry name
     /// - Returns: true if entry exists, false - otherwise
     /// - Throws: CloudKeyStorageError.cloudStorageOutOfSync if storage was not synced
-    open func existsEntry(withName name: String) throws -> Bool {
+    public func existsEntry(withName name: String) throws -> Bool {
         guard self.storageWasSynced else {
             throw CloudKeyStorageError.cloudStorageOutOfSync
         }
@@ -269,7 +269,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
     ///
     /// - Parameter name: Entry name
     /// - Returns: GenericOperation<Void>
-    open func deleteEntry(withName name: String) -> GenericOperation<Void> {
+    public func deleteEntry(withName name: String) -> GenericOperation<Void> {
         return self.deleteEntries(withNames: [name])
     }
 
@@ -277,7 +277,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
     ///
     /// - Parameter names: Names of entries to delete
     /// - Returns: GenericOperation<Void>
-    open func deleteEntries(withNames names: [String]) -> GenericOperation<Void> {
+    public func deleteEntries(withNames names: [String]) -> GenericOperation<Void> {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
@@ -320,7 +320,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
     /// Deletes all entries from Cloud
     ///
     /// - Returns: GenericOperation<Void>
-    open func deleteAllEntries() -> GenericOperation<Void> {
+    public func deleteAllEntries() -> GenericOperation<Void> {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {
@@ -347,7 +347,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
     ///   - newPublicKeys: New public keys
     ///   - newPrivateKey: New private key
     /// - Returns: GenericOperation<Void>
-    open func updateRecipients(newPublicKeys: [VirgilPublicKey]? = nil,
+    public func updateRecipients(newPublicKeys: [VirgilPublicKey]? = nil,
                                newPrivateKey: VirgilPrivateKey? = nil) -> GenericOperation<Void> {
         return CallbackOperation { _, completion in
             self.queue.async {
@@ -391,7 +391,7 @@ extension CloudKeyStorage: CloudKeyStorageProtocol {
     /// Retrieves entries from Cloud
     ///
     /// - Returns: GenericOperation<Void>
-    open func retrieveCloudEntries() -> GenericOperation<Void> {
+    public func retrieveCloudEntries() -> GenericOperation<Void> {
         return CallbackOperation { _, completion in
             self.queue.async {
                 do {

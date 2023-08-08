@@ -124,7 +124,7 @@ open class ExpBackoffRetry: RetryProtocol {
     ///   - request: Request to retry
     ///   - response: Response receiver from service
     /// - Returns: Retry choice
-    open func retryChoice(for request: ServiceRequest,
+    public func retryChoice(for request: ServiceRequest,
                           with response: Response) -> RetryChoice {
         if 200..<400 ~= response.statusCode {
             return .noRetry
@@ -168,7 +168,7 @@ open class ExpBackoffRetry: RetryProtocol {
     ///
     /// - Returns: max(minDelay, rand(0..<min(cap, base * exp ^ retryCount)))
     /// - Throws: RetryError.retryCountExceeded if retry count is maximum
-    open func nextRetryDelay() throws -> TimeInterval {
+    public func nextRetryDelay() throws -> TimeInterval {
         guard self.retryCount < self.config.maxRetryCount else {
             throw ExpBackoffRetryError.retryCountExceeded
         }
