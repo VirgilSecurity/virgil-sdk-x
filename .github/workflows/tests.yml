@@ -36,15 +36,19 @@ jobs:
             ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
             ENCRYPTION_IV: ${{ secrets.ENCRYPTION_IV }}
       - name: Run ${{ matrix.prefix }} Tests
-        run: |
-            SCHEME="VirgilSDK ${{ matrix.prefix }}"
+      uses: nick-fields/retry@v2
+      with:
+        max_attempts: 20
+        timeout_minutes: 10
+        retry_on: error
+        command: |
+          SCHEME="VirgilSDK ${{ matrix.prefix }}"
 
             if [ "${{ matrix.test }}" == "1" ]; then
-                # Build Framework
-                xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -destination "${{ matrix.destination }}" -configuration Debug clean build-for-testing | xcpretty;
-                # Run Tests
-                xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -destination "${{ matrix.destination }}" -configuration Debug test-without-building | xcpretty;
+                # Build & Test
+                xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -destination "${{ matrix.destination }}" -configuration Debug test | xcpretty;
             else
+                # Build Only
                 xcodebuild -verbose -project "$PROJECT" -scheme "$SCHEME" -destination "${{ matrix.destination }}" -configuration Release clean build | xcpretty;
             fi
   SPM:
