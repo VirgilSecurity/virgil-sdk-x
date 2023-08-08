@@ -273,7 +273,6 @@
 		42860D5122896B8D00494515 /* ReachabilityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42860D4722896B8D00494515 /* ReachabilityProtocol.swift */; };
 		42860D5222896B8D00494515 /* ReachabilityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42860D4722896B8D00494515 /* ReachabilityProtocol.swift */; };
 		42860D5322896B8D00494515 /* ReachabilityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42860D4722896B8D00494515 /* ReachabilityProtocol.swift */; };
-		429123671F4B0B3700103BE0 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
 		42CBE3D521ECBC19000F99E6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42CBE3D421ECBC19000F99E6 /* Security.framework */; platformFilter = ios; };
 		42D0589420EB894500FC544E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D0589320EB894500FC544E /* AppDelegate.swift */; };
 		42D0589620EB894500FC544E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D0589520EB894500FC544E /* ViewController.swift */; };
@@ -282,11 +281,9 @@
 		42D058BA20EB897200FC544E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D058B920EB897200FC544E /* ViewController.swift */; };
 		42D058BD20EB897200FC544E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D058BB20EB897200FC544E /* Main.storyboard */; };
 		42D058E120EB89CC00FC544E /* Cards.json in Resources */ = {isa = PBXBuildFile; fileRef = 4244F7F920331D610053EE4B /* Cards.json */; };
-		42D058E220EB89CC00FC544E /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
 		42D058E320EB89CC00FC544E /* VSS001_CardClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */; };
 		42D058FE20EB89ED00FC544E /* VSS001_CardClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4284C3551F6BDBC500B75491 /* VSS001_CardClientTests.m */; };
 		42D0590B20EB89F100FC544E /* Cards.json in Resources */ = {isa = PBXBuildFile; fileRef = 4244F7F920331D610053EE4B /* Cards.json */; };
-		42D0590C20EB89F100FC544E /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 429123561F4B0B3700103BE0 /* TestConfig.plist */; };
 		42D7AE832242D988009D02FD /* VirgilSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */; };
 		42D7AF1F224396AC009D02FD /* RawServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DD29522074FB4700C9C014 /* RawServiceError.swift */; };
 		42D7AF27224396AC009D02FD /* HttpConnectionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42CF01FC1F6AA209003ABB19 /* HttpConnectionProtocol.swift */; };
@@ -500,26 +497,19 @@
 		973E0996287B079800F11F3F /* Bundle+SPM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E0995287B079800F11F3F /* Bundle+SPM.swift */; };
 		973E0997287B079800F11F3F /* Bundle+SPM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E0995287B079800F11F3F /* Bundle+SPM.swift */; };
 		973E0998287B079800F11F3F /* Bundle+SPM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973E0995287B079800F11F3F /* Bundle+SPM.swift */; };
-		974219AB26A76EE700CF790B /* (null) in CopyFiles */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		974219AC26A76EE700CF790B /* (null) in CopyFiles */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		974219AD26A76EE700CF790B /* (null) in CopyFiles */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		974219AE26A76EE700CF790B /* (null) in CopyFiles */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		974219AF26A76EF200CF790B /* (null) in CopyFiles */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		974219B026A76EF200CF790B /* (null) in CopyFiles */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		974219B126A76EF200CF790B /* (null) in CopyFiles */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		974219B226A76EF200CF790B /* (null) in CopyFiles */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		974219B326A76EFD00CF790B /* (null) in CopyFiles */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		974219B426A76EFD00CF790B /* (null) in CopyFiles */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		974219B526A76EFD00CF790B /* (null) in CopyFiles */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		974219B626A76EFE00CF790B /* (null) in CopyFiles */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		97A0C02F28735D7000599BBD /* KeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0C02E28735D6F00599BBD /* KeyEntry.swift */; };
 		97A0C03028735D7000599BBD /* KeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0C02E28735D6F00599BBD /* KeyEntry.swift */; };
 		97A0C03128735D7000599BBD /* KeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0C02E28735D6F00599BBD /* KeyEntry.swift */; };
 		97A0C03228735D7000599BBD /* KeyEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0C02E28735D6F00599BBD /* KeyEntry.swift */; };
-		F4474D772A7F49D00098EEC0 /* VirgilCrypto in Frameworks */ = {isa = PBXBuildFile; productRef = F4474D762A7F49D00098EEC0 /* VirgilCrypto */; };
 		F4474D792A7F49DA0098EEC0 /* VirgilCrypto in Frameworks */ = {isa = PBXBuildFile; productRef = F4474D782A7F49DA0098EEC0 /* VirgilCrypto */; };
 		F4474D7B2A7F49DF0098EEC0 /* VirgilCrypto in Frameworks */ = {isa = PBXBuildFile; productRef = F4474D7A2A7F49DF0098EEC0 /* VirgilCrypto */; };
 		F4474D7D2A7F49E80098EEC0 /* VirgilCrypto in Frameworks */ = {isa = PBXBuildFile; productRef = F4474D7C2A7F49E80098EEC0 /* VirgilCrypto */; };
+		F44C27782A82D40F00EC1F75 /* VirgilCrypto in Frameworks */ = {isa = PBXBuildFile; productRef = F44C27772A82D40F00EC1F75 /* VirgilCrypto */; };
+		F44C27792A82D5E600EC1F75 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4C3E0F92A82B681000335AC /* TestConfig.plist */; };
+		F44C277A2A82D5EE00EC1F75 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4C3E0F92A82B681000335AC /* TestConfig.plist */; };
+		F44C277B2A82D5F100EC1F75 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4C3E0F92A82B681000335AC /* TestConfig.plist */; };
+		F44C277C2A82D5F200EC1F75 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4C3E0F92A82B681000335AC /* TestConfig.plist */; };
+		F44C277D2A82D5F400EC1F75 /* TestConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4C3E0F92A82B681000335AC /* TestConfig.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -595,10 +585,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				974219AF26A76EF200CF790B /* (null) in CopyFiles */,
-				974219B026A76EF200CF790B /* (null) in CopyFiles */,
-				974219B126A76EF200CF790B /* (null) in CopyFiles */,
-				974219B226A76EF200CF790B /* (null) in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,10 +594,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				974219AB26A76EE700CF790B /* (null) in CopyFiles */,
-				974219AC26A76EE700CF790B /* (null) in CopyFiles */,
-				974219AD26A76EE700CF790B /* (null) in CopyFiles */,
-				974219AE26A76EE700CF790B /* (null) in CopyFiles */,
 				4209486C22805B2C00CAF5E6 /* VirgilSDK.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -622,10 +604,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				974219B326A76EFD00CF790B /* (null) in CopyFiles */,
-				974219B426A76EFD00CF790B /* (null) in CopyFiles */,
-				974219B526A76EFD00CF790B /* (null) in CopyFiles */,
-				974219B626A76EFE00CF790B /* (null) in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -745,7 +723,6 @@
 		42860D4622896B8D00494515 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		42860D4722896B8D00494515 /* ReachabilityProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityProtocol.swift; sourceTree = "<group>"; };
 		428B163F20E39A940041CA75 /* CardManager+StaticExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CardManager+StaticExport.swift"; sourceTree = "<group>"; };
-		429123561F4B0B3700103BE0 /* TestConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestConfig.plist; sourceTree = "<group>"; };
 		42CBE3D421ECBC19000F99E6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		42CF01F31F6A9DD5003ABB19 /* CardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardManager.swift; sourceTree = "<group>"; };
 		42CF01FC1F6AA209003ABB19 /* HttpConnectionProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpConnectionProtocol.swift; sourceTree = "<group>"; };
@@ -773,6 +750,7 @@
 		42ECFAE122FDB44A00868C28 /* KeyknoxClientParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyknoxClientParams.swift; sourceTree = "<group>"; };
 		973E0995287B079800F11F3F /* Bundle+SPM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+SPM.swift"; sourceTree = "<group>"; };
 		97A0C02E28735D6F00599BBD /* KeyEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyEntry.swift; sourceTree = "<group>"; };
+		F4C3E0F92A82B681000335AC /* TestConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TestConfig.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -841,7 +819,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4474D772A7F49D00098EEC0 /* VirgilCrypto in Frameworks */,
+				F44C27782A82D40F00EC1F75 /* VirgilCrypto in Frameworks */,
 				42CBE3D521ECBC19000F99E6 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1130,7 +1108,7 @@
 			children = (
 				42492FF422CEA7ED00BEA96F /* Keyknox.json */,
 				4244F7F920331D610053EE4B /* Cards.json */,
-				429123561F4B0B3700103BE0 /* TestConfig.plist */,
+				F4C3E0F92A82B681000335AC /* TestConfig.plist */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1503,7 +1481,7 @@
 			);
 			name = "VirgilSDK iOS";
 			packageProductDependencies = (
-				F4474D762A7F49D00098EEC0 /* VirgilCrypto */,
+				F44C27772A82D40F00EC1F75 /* VirgilCrypto */,
 			);
 			productName = "VirgilSDK iOS";
 			productReference = 42EB30E41DB8EC17001DF4C0 /* VirgilSDK.framework */;
@@ -1608,8 +1586,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				429123671F4B0B3700103BE0 /* TestConfig.plist in Resources */,
 				4244F7FB20331D670053EE4B /* Cards.json in Resources */,
+				F44C277B2A82D5F100EC1F75 /* TestConfig.plist in Resources */,
 				42492FF622CEA7ED00BEA96F /* Keyknox.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1632,6 +1610,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F44C27792A82D5E600EC1F75 /* TestConfig.plist in Resources */,
 				42D0589920EB894500FC544E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1640,8 +1619,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42D058E220EB89CC00FC544E /* TestConfig.plist in Resources */,
 				42D058E120EB89CC00FC544E /* Cards.json in Resources */,
+				F44C277A2A82D5EE00EC1F75 /* TestConfig.plist in Resources */,
 				42492FF522CEA7ED00BEA96F /* Keyknox.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1650,6 +1629,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F44C277C2A82D5F200EC1F75 /* TestConfig.plist in Resources */,
 				42D058BD20EB897200FC544E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1658,8 +1638,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42D0590C20EB89F100FC544E /* TestConfig.plist in Resources */,
 				42D0590B20EB89F100FC544E /* Cards.json in Resources */,
+				F44C277D2A82D5F400EC1F75 /* TestConfig.plist in Resources */,
 				42492FF722CEA7ED00BEA96F /* Keyknox.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2410,7 +2390,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
@@ -2449,7 +2428,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -2462,17 +2440,18 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 9.0.0;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 9.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilSDK-macOSTests";
 				PRODUCT_MODULE_NAME = VirgilSDK_macOS_Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2491,16 +2470,17 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 9.0.0;
 				DEAD_CODE_STRIPPING = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = 9.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilSDK-macOSTests";
 				PRODUCT_MODULE_NAME = VirgilSDK_macOS_Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2563,7 +2543,6 @@
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.0;
 				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
@@ -2602,7 +2581,6 @@
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.0;
 				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -2643,7 +2621,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Debug;
@@ -2682,7 +2659,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
@@ -2699,6 +2675,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9.0.0;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2713,6 +2690,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MARKETING_VERSION = 9.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.SDKTestApp-iOS";
 				PRODUCT_MODULE_NAME = SDKTestApp_iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2735,6 +2713,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9.0.0;
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2744,6 +2723,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MARKETING_VERSION = 9.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.SDKTestApp-iOS";
 				PRODUCT_MODULE_NAME = SDKTestApp_iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2764,6 +2744,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9.0.0;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2773,7 +2754,6 @@
 					"$(inherited)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2781,6 +2761,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 9.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilSDK-AppTests-iOS";
 				PRODUCT_MODULE_NAME = VirgilSDK_AppTests_iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2804,11 +2785,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9.0.0;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2816,6 +2797,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 9.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilSDK-AppTests-iOS";
 				PRODUCT_MODULE_NAME = VirgilSDK_AppTests_iOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2837,6 +2819,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9.0.0;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2849,6 +2832,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MARKETING_VERSION = 9.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.SDKTestApp-tvOS";
 				PRODUCT_MODULE_NAME = SDKTestApp_tvOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2873,6 +2857,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9.0.0;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2880,6 +2865,7 @@
 					"@executable_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
+				MARKETING_VERSION = 9.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.SDKTestApp-tvOS";
 				PRODUCT_MODULE_NAME = SDKTestApp_tvOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2901,6 +2887,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9.0.0;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2909,13 +2896,13 @@
 					"$(inherited)",
 				);
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 9.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilSDK-AppTests-tvOS";
 				PRODUCT_MODULE_NAME = VirgilSDK_AppTests_tvOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2940,16 +2927,17 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9.0.0;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = 9.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.virgilsecurity.VirgilSDK-AppTests-tvOS";
 				PRODUCT_MODULE_NAME = VirgilSDK_AppTests_tvOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2995,7 +2983,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
@@ -3031,7 +3018,6 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -3144,18 +3130,13 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/VirgilSecurity/virgil-crypto-x";
 			requirement = {
-				branch = develop;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F4474D762A7F49D00098EEC0 /* VirgilCrypto */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F4474D752A7F49D00098EEC0 /* XCRemoteSwiftPackageReference "virgil-crypto-x" */;
-			productName = VirgilCrypto;
-		};
 		F4474D782A7F49DA0098EEC0 /* VirgilCrypto */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F4474D752A7F49D00098EEC0 /* XCRemoteSwiftPackageReference "virgil-crypto-x" */;
@@ -3167,6 +3148,11 @@
 			productName = VirgilCrypto;
 		};
 		F4474D7C2A7F49E80098EEC0 /* VirgilCrypto */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4474D752A7F49D00098EEC0 /* XCRemoteSwiftPackageReference "virgil-crypto-x" */;
+			productName = VirgilCrypto;
+		};
+		F44C27772A82D40F00EC1F75 /* VirgilCrypto */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F4474D752A7F49D00098EEC0 /* XCRemoteSwiftPackageReference "virgil-crypto-x" */;
 			productName = VirgilCrypto;

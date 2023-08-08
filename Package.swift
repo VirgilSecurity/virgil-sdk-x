@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "VirgilSDK",
     platforms: [
-        .macOS(.v10_11), .iOS(.v11), .tvOS(.v11), .watchOS(.v4)
+        .macOS(.v10_13), .iOS(.v11), .tvOS(.v11), .watchOS(.v4)
     ],
     products: [
         .library(
@@ -15,7 +15,7 @@ let package = Package(
     ],
 
     dependencies: [
-        .package(url: "https://github.com/VirgilSecurity/virgil-crypto-x.git", exact: .init(7, 0, 0, prereleaseIdentifiers: ["dev", "1"]))
+        .package(url: "https://github.com/VirgilSecurity/virgil-crypto-x.git", exact: .init(7, 0, 0))
     ],
 
     targets: [
