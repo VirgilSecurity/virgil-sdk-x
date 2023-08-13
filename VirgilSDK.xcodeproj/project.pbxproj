@@ -891,7 +891,6 @@
 		3614030C1BB2E05F002E69CA = {
 			isa = PBXGroup;
 			children = (
-				42EB30E51DB8EC17001DF4C0 /* VirgilSDK */,
 				3614033E1BB2E0FC002E69CA /* Source */,
 				42B81C171DB8E5FB00E5E2AE /* Tests */,
 				42D0589220EB894500FC544E /* SDKTestApp iOS */,
@@ -1161,13 +1160,6 @@
 				42DD29522074FB4700C9C014 /* RawServiceError.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		42EB30E51DB8EC17001DF4C0 /* VirgilSDK */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = VirgilSDK;
 			sourceTree = "<group>";
 		};
 		42F0AB1C1D9ABF2200747799 /* BaseClient */ = {
@@ -3131,7 +3123,7 @@
 			repositoryURL = "https://github.com/VirgilSecurity/virgil-crypto-x";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
+				minimumVersion = 7.0.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
