@@ -41,6 +41,7 @@ internal final class CloudEntrySerializer {
         let encoder = JSONEncoder()
 
         encoder.dateEncodingStrategy = .custom(DateUtils.timestampMilliDateEncodingStrategy)
+        encoder.outputFormatting = .sortedKeys
 
         return try encoder.encode(dict)
     }

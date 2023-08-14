@@ -42,6 +42,7 @@ jobs:
           timeout_minutes: 30
           retry_on: error
           command: |
+            set -o pipefail
             SCHEME="VirgilSDK ${{ matrix.prefix }}"
 
               if [ "${{ matrix.test }}" == "1" ]; then

@@ -15,7 +15,7 @@ let package = Package(
     ],
 
     dependencies: [
-        .package(url: "https://github.com/VirgilSecurity/virgil-crypto-x.git", exact: .init(7, 0, 0))
+        .package(url: "https://github.com/VirgilSecurity/virgil-crypto-x.git", exact: .init(7, 0, 1))
     ],
 
     targets: [
