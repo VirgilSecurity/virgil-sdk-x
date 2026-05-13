@@ -180,7 +180,7 @@ static const NSTimeInterval timeout = 8.;
     XCTAssert([issuedAt isEqualToString:testData[@"STC-29.jwt_issued_at"]]);
     NSString *expiresAt = [NSString stringWithFormat:@"%ld", (long)jwt.bodyContent.expiresAt.timeIntervalSince1970];
     XCTAssert([expiresAt isEqualToString:testData[@"STC-29.jwt_expires_at"]]);
-    XCTAssert([jwt isExpiredWithDate:NSDate.date] == false);
+    XCTAssert([jwt isExpiredWithDate:jwt.bodyContent.issuedAt] == false);
 
     NSData *data = [testData[@"STC-29.jwt_additional_data"] dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
