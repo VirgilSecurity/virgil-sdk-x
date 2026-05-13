@@ -41,8 +41,8 @@ DOCS_DIR="${GITHUB_WORKSPACE}/docs"
 mkdir -p ${DOCS_DIR}
 git clone -b gh-pages "${REPO_PATH}" --single-branch ${DOCS_DIR}
 
-# Define SDK versions
-VIRGIL_SDK_VERSION="v9.0.1"
+# Define SDK versions — derived from the git tag (normalise to v-prefixed)
+VIRGIL_SDK_VERSION="v${GITHUB_REF_NAME#v}"
 CURRENT_VERSION_DIR="${DOCS_DIR}/${VIRGIL_SDK_VERSION}"
 
 # Generate the HTML documentation.
